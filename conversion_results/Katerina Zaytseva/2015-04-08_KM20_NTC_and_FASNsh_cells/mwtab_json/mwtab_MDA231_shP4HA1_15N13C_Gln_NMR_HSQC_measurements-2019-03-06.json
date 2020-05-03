@@ -1,0 +1,3088 @@
+{
+    "METABOLOMICS WORKBENCH": {
+        "HEADER": "#METABOLOMICS WORKBENCH STUDY_ID:ST000000 ANALYSIS_ID:AN000000",
+        "STUDY_ID": "ST000000",
+        "ANALYSIS_ID": "AN000000",
+        "VERSION": "1",
+        "CREATED_ON": "2019-03-06"
+    },
+    "PROJECT": {
+        "PROJECT_TITLE": "The role of Fatty Acid Synthase (FASN) in Colorectal Cancer (CRC) metastasis",
+        "PROJECT_SUMMARY": "Determine the mechansims ( including alterations in metabolic pathways) that mediate the effect of FASN on metastasis in CRC",
+        "INSTITUTE": "University of Kentucky",
+        "DEPARTMENT": "Markey Cancer Center",
+        "LAST_NAME": "Zaytseva",
+        "FIRST_NAME": "Kate",
+        "ADDRESS": "B336-42, BBSRB\n741 South Limestone\nLexington, Kentucky 40536",
+        "EMAIL": "yyzayt2@uky.edu",
+        "PHONE": "000-000-0000"
+    },
+    "STUDY": {
+        "STUDY_TITLE": "FASN effect on HCT116 metabolism probed by 13C6-glucose  tracer",
+        "STUDY_TYPE": "compare the metabolic pathways in control and stable FASN knockdown HCT116 cells using 13C Glc tracer",
+        "STUDY_SUMMARY": "13C6-glucose tracer used to track the effects of FASN on KM20 cells metabolism",
+        "INSTITUTE": "University of Kentucky",
+        "DEPARTMENT": "Markey Cancer Center",
+        "LAST_NAME": "Zaytseva",
+        "FIRST_NAME": "Kate",
+        "ADDRESS": "B336-42, BBSRB\n741 South Limestone\nLexington, Kentucky 40536",
+        "EMAIL": "yyzayt2@uky.edu",
+        "PHONE": "000-000-0000",
+        "STUDY_COMMENTS": ""
+    },
+    "SUBJECT": {
+        "SUBJECT_TYPE": "Human",
+        "SUBJECT_SPECIES": "Homo sapiens",
+        "TAXONOMY_ID": "9606"
+    },
+    "SUBJECT_SAMPLE_FACTORS": {
+        "SUBJECT_SAMPLE_FACTORS": [
+            {
+                "subject_type": "-",
+                "local_sample_id": "2_ KM20 NTC _13C Glc_1 plate-media-24h",
+                "factors": "time_point:24 | protocol.id:13CGlc_NTC_shRNA",
+                "additional_sample_data": "lineage_1=2_ KM20 NTC _13C Glc_1 plate; cell_type=KM20; protocol.id=13CGlc_NTC_shRNA; replicate=2; species=Homo sapiens; species_type=Human; taxonomy_id=9606; lineage_2=2_ KM20 NTC _13C Glc_1 plate-media-24h; cell_type=KM20; protocol.id=['cells_media', 'NMR_file_storage18']; time_point=24; time_point%units=h; wet_weight=0.0943; wet_weight%units=g"
+            },
+            {
+                "subject_type": "-",
+                "local_sample_id": "3_ KM20 NTC _13C Glc_2 plate-media-24h",
+                "factors": "time_point:24 | protocol.id:13CGlc_NTC_shRNA",
+                "additional_sample_data": "lineage_1=3_ KM20 NTC _13C Glc_2 plate; cell_type=KM20; protocol.id=13CGlc_NTC_shRNA; replicate=3; species=Homo sapiens; species_type=Human; taxonomy_id=9606; lineage_2=3_ KM20 NTC _13C Glc_2 plate-media-24h; cell_type=KM20; protocol.id=['cells_media', 'NMR_file_storage19']; time_point=24; time_point%units=h; wet_weight=0.0939; wet_weight%units=g"
+            },
+            {
+                "subject_type": "-",
+                "local_sample_id": "4_ KM20 NTC _13C Glc_3 plate-media-24h",
+                "factors": "time_point:24 | protocol.id:13CGlc_NTC_shRNA",
+                "additional_sample_data": "lineage_1=4_ KM20 NTC _13C Glc_3 plate; cell_type=KM20; protocol.id=13CGlc_NTC_shRNA; replicate=1; species=Homo sapiens; species_type=Human; taxonomy_id=9606; lineage_2=4_ KM20 NTC _13C Glc_3 plate-media-24h; cell_type=KM20; protocol.id=['cells_media', 'NMR_file_storage20']; time_point=24; time_point%units=h; wet_weight=0.0943; wet_weight%units=g"
+            },
+            {
+                "subject_type": "-",
+                "local_sample_id": "6_ KM20 FASNsh _13C Glc_1plate-media-24h",
+                "factors": "time_point:24 | protocol.id:13CGlc_FASN_shRNA",
+                "additional_sample_data": "lineage_1=6_ KM20 FASNsh _13C Glc_1plate; cell_type=KM20; protocol.id=13CGlc_FASN_shRNA; replicate=3; species=Homo sapiens; species_type=Human; taxonomy_id=9606; lineage_2=6_ KM20 FASNsh _13C Glc_1plate-media-24h; cell_type=KM20; protocol.id=['cells_media', 'NMR_file_storage22']; time_point=24; time_point%units=h; wet_weight=0.0946; wet_weight%units=g"
+            },
+            {
+                "subject_type": "-",
+                "local_sample_id": "7_ KM20 FASNsh _13C Glc_2plate-media-24h",
+                "factors": "time_point:24 | protocol.id:13CGlc_FASN_shRNA",
+                "additional_sample_data": "lineage_1=7_ KM20 FASNsh _13C Glc_2plate; cell_type=KM20; protocol.id=13CGlc_FASN_shRNA; replicate=1; species=Homo sapiens; species_type=Human; taxonomy_id=9606; lineage_2=7_ KM20 FASNsh _13C Glc_2plate-media-24h; cell_type=KM20; protocol.id=['cells_media', 'NMR_file_storage23']; time_point=24; time_point%units=h; wet_weight=0.0946; wet_weight%units=g"
+            },
+            {
+                "subject_type": "-",
+                "local_sample_id": "4_ KM20 NTC _13C Glc_3 plate-media-0h",
+                "factors": "time_point:0 | protocol.id:13CGlc_NTC_shRNA",
+                "additional_sample_data": "lineage_1=4_ KM20 NTC _13C Glc_3 plate; cell_type=KM20; protocol.id=13CGlc_NTC_shRNA; replicate=1; species=Homo sapiens; species_type=Human; taxonomy_id=9606; lineage_2=4_ KM20 NTC _13C Glc_3 plate-media-0h; cell_type=KM20; protocol.id=['cells_media', 'NMR_file_storage12']; time_point=0; time_point%units=h; wet_weight=0.0975; wet_weight%units=g"
+            },
+            {
+                "subject_type": "-",
+                "local_sample_id": "2_ KM20 NTC _13C Glc_1 plate-media-0h",
+                "factors": "time_point:0 | protocol.id:13CGlc_NTC_shRNA",
+                "additional_sample_data": "lineage_1=2_ KM20 NTC _13C Glc_1 plate; cell_type=KM20; protocol.id=13CGlc_NTC_shRNA; replicate=2; species=Homo sapiens; species_type=Human; taxonomy_id=9606; lineage_2=2_ KM20 NTC _13C Glc_1 plate-media-0h; cell_type=KM20; protocol.id=['cells_media', 'NMR_file_storage10']; time_point=0; time_point%units=h; wet_weight=0.0974; wet_weight%units=g"
+            },
+            {
+                "subject_type": "-",
+                "local_sample_id": "3_ KM20 NTC _13C Glc_2 plate-media-0h",
+                "factors": "time_point:0 | protocol.id:13CGlc_NTC_shRNA",
+                "additional_sample_data": "lineage_1=3_ KM20 NTC _13C Glc_2 plate; cell_type=KM20; protocol.id=13CGlc_NTC_shRNA; replicate=3; species=Homo sapiens; species_type=Human; taxonomy_id=9606; lineage_2=3_ KM20 NTC _13C Glc_2 plate-media-0h; cell_type=KM20; protocol.id=['cells_media', 'NMR_file_storage11']; time_point=0; time_point%units=h; wet_weight=0.0975; wet_weight%units=g"
+            },
+            {
+                "subject_type": "-",
+                "local_sample_id": "6_ KM20 FASNsh _13C Glc_1plate-media-0h",
+                "factors": "time_point:0 | protocol.id:13CGlc_FASN_shRNA",
+                "additional_sample_data": "lineage_1=6_ KM20 FASNsh _13C Glc_1plate; cell_type=KM20; protocol.id=13CGlc_FASN_shRNA; replicate=3; species=Homo sapiens; species_type=Human; taxonomy_id=9606; lineage_2=6_ KM20 FASNsh _13C Glc_1plate-media-0h; cell_type=KM20; protocol.id=['cells_media', 'NMR_file_storage14']; time_point=0; time_point%units=h; wet_weight=0.0971; wet_weight%units=g"
+            },
+            {
+                "subject_type": "-",
+                "local_sample_id": "8_ KM20 FASNsh _13C Glc_3plate-media-0h",
+                "factors": "time_point:0 | protocol.id:13CGlc_FASN_shRNA",
+                "additional_sample_data": "lineage_1=8_ KM20 FASNsh _13C Glc_3plate; cell_type=KM20; protocol.id=13CGlc_FASN_shRNA; replicate=1; species=Homo sapiens; species_type=Human; taxonomy_id=9606; lineage_2=8_ KM20 FASNsh _13C Glc_3plate-media-0h; cell_type=KM20; protocol.id=['cells_media', 'NMR_file_storage16']; time_point=0; time_point%units=h; wet_weight=0.0969; wet_weight%units=g"
+            },
+            {
+                "subject_type": "-",
+                "local_sample_id": "8_ KM20 FASNsh _13C Glc_3plate-media-24h",
+                "factors": "time_point:24 | protocol.id:13CGlc_FASN_shRNA",
+                "additional_sample_data": "lineage_1=8_ KM20 FASNsh _13C Glc_3plate; cell_type=KM20; protocol.id=13CGlc_FASN_shRNA; replicate=1; species=Homo sapiens; species_type=Human; taxonomy_id=9606; lineage_2=8_ KM20 FASNsh _13C Glc_3plate-media-24h; cell_type=KM20; protocol.id=['cells_media', 'NMR_file_storage24']; time_point=24; time_point%units=h; wet_weight=0.095; wet_weight%units=g"
+            }
+        ]
+    },
+    "COLLECTION": {
+        "COLLECTION_SUMMARY": "Media is extracted from plate.",
+        "COLLECTION_PROTOCOL_ID": "cells_media",
+        "COLLECTION_PROTOCOL_FILENAME": "4A2_Media Extraction with acetone ppt step.pdf",
+        "SAMPLE_TYPE": "media"
+    },
+    "TREATMENT": {
+        "TREATMENT_SUMMARY": "Grown in unlabeled glucose and transfected with FASN shRNA.\nGrown in unlabeled glucose and transfected with non targeted shRNA.\nGrown in labeled glucose and transfected with FASN shRNA.\nGrown in labeled glucose and transfected with non targeted shRNA.",
+        "TREATMENT_PROTOCOL_ID": "12CGlc_FASN_shRNA\n12CGlc_NTC_shRNA\n13CGlc_FASN_shRNA\n13CGlc_NTC_shRNA"
+    },
+    "SAMPLEPREP": {
+        "SAMPLEPREP_SUMMARY": "Lipid extraction from cells.\nPolar extraction from cells.\nProtein extraction and quantification.",
+        "SAMPLEPREP_PROTOCOL_ID": "lipid_extraction\npolar_extraction\nprotein_extraction",
+        "SAMPLEPREP_PROTOCOL_FILENAME": "4B_Extract_Polar_Lipid_Prot_Fan_070417.pdf\n4B_Extract_Polar_Lipid_Prot_Fan_070417.pdf\n['4D_17Jun4_Fan_Prot_Quant.pdf', '4B_Extract_Polar_Lipid_Prot_Fan_070417.pdf']"
+    },
+    "ANALYSIS": {
+        "ANALYSIS_TYPE": "NMR"
+    },
+    "NMR": {
+        "INSTRUMENT_NAME": "Agilent 600",
+        "INSTRUMENT_TYPE": "Agilent 600",
+        "NMR_EXPERIMENT_TYPE": "HC-HSQC",
+        "STANDARD_CONCENTRATION": "0.5 mM",
+        "SPECTROMETER_FREQUENCY": "600 MHz",
+        "NMR_PROBE": "cryogenic triple resonance HCN",
+        "NMR_SOLVENT": "D20",
+        "NMR_TUBE_SIZE": "1.7 mm",
+        "SHIMMING_METHOD": "gradient shimming",
+        "PULSE_SEQUENCE": "gHSQCAD",
+        "WATER_SUPPRESSION": "presaturation",
+        "CHEMICAL_SHIFT_REF_CPD": "DSS",
+        "TEMPERATURE": "15 celsius",
+        "ACQUISITION_TIME": "2 s",
+        "RELAXATION_DELAY": "4 s",
+        "BASELINE_CORRECTION_METHOD": "Bernstein Polynomial"
+    },
+    "NMR_METABOLITE_DATA": {
+        "NMR_METABOLITE_DATA:UNITS": "normalized peak area",
+        "NMR_METABOLITE_DATA_START": {
+            "Samples": [
+                "2_ KM20 NTC _13C Glc_1 plate-media-24h",
+                "3_ KM20 NTC _13C Glc_2 plate-media-24h",
+                "4_ KM20 NTC _13C Glc_3 plate-media-24h",
+                "6_ KM20 FASNsh _13C Glc_1plate-media-24h",
+                "7_ KM20 FASNsh _13C Glc_2plate-media-24h",
+                "4_ KM20 NTC _13C Glc_3 plate-media-0h",
+                "2_ KM20 NTC _13C Glc_1 plate-media-0h",
+                "3_ KM20 NTC _13C Glc_2 plate-media-0h",
+                "6_ KM20 FASNsh _13C Glc_1plate-media-0h",
+                "8_ KM20 FASNsh _13C Glc_3plate-media-0h",
+                "8_ KM20 FASNsh _13C Glc_3plate-media-24h"
+            ],
+            "Factors": [
+                "time_point:24 | protocol.id:13CGlc_NTC_shRNA",
+                "time_point:24 | protocol.id:13CGlc_NTC_shRNA",
+                "time_point:24 | protocol.id:13CGlc_NTC_shRNA",
+                "time_point:24 | protocol.id:13CGlc_FASN_shRNA",
+                "time_point:24 | protocol.id:13CGlc_FASN_shRNA",
+                "time_point:0 | protocol.id:13CGlc_NTC_shRNA",
+                "time_point:0 | protocol.id:13CGlc_NTC_shRNA",
+                "time_point:0 | protocol.id:13CGlc_NTC_shRNA",
+                "time_point:0 | protocol.id:13CGlc_FASN_shRNA",
+                "time_point:0 | protocol.id:13CGlc_FASN_shRNA",
+                "time_point:24 | protocol.id:13CGlc_FASN_shRNA"
+            ],
+            "DATA": [
+                {
+                    "metabolite_name": "Ace-2_1",
+                    "2_ KM20 NTC _13C Glc_1 plate-media-24h": "143.9364673843019",
+                    "3_ KM20 NTC _13C Glc_2 plate-media-24h": "139.8500131487831",
+                    "4_ KM20 NTC _13C Glc_3 plate-media-24h": "149.7350797071648",
+                    "6_ KM20 FASNsh _13C Glc_1plate-media-24h": "153.6027572861172",
+                    "7_ KM20 FASNsh _13C Glc_2plate-media-24h": "151.6208995715964",
+                    "4_ KM20 NTC _13C Glc_3 plate-media-0h": "",
+                    "2_ KM20 NTC _13C Glc_1 plate-media-0h": "",
+                    "3_ KM20 NTC _13C Glc_2 plate-media-0h": "",
+                    "6_ KM20 FASNsh _13C Glc_1plate-media-0h": "",
+                    "8_ KM20 FASNsh _13C Glc_3plate-media-0h": "",
+                    "8_ KM20 FASNsh _13C Glc_3plate-media-24h": ""
+                },
+                {
+                    "metabolite_name": "Ala-3_1",
+                    "2_ KM20 NTC _13C Glc_1 plate-media-24h": "161.4779858987819",
+                    "3_ KM20 NTC _13C Glc_2 plate-media-24h": "145.7662484059944",
+                    "4_ KM20 NTC _13C Glc_3 plate-media-24h": "196.6759061619964",
+                    "6_ KM20 FASNsh _13C Glc_1plate-media-24h": "190.2951266607122",
+                    "7_ KM20 FASNsh _13C Glc_2plate-media-24h": "176.47467824801",
+                    "4_ KM20 NTC _13C Glc_3 plate-media-0h": "",
+                    "2_ KM20 NTC _13C Glc_1 plate-media-0h": "",
+                    "3_ KM20 NTC _13C Glc_2 plate-media-0h": "",
+                    "6_ KM20 FASNsh _13C Glc_1plate-media-0h": "",
+                    "8_ KM20 FASNsh _13C Glc_3plate-media-0h": "",
+                    "8_ KM20 FASNsh _13C Glc_3plate-media-24h": ""
+                },
+                {
+                    "metabolite_name": "Ala-3_2",
+                    "2_ KM20 NTC _13C Glc_1 plate-media-24h": "208.8562789990918",
+                    "3_ KM20 NTC _13C Glc_2 plate-media-24h": "206.4716785900412",
+                    "4_ KM20 NTC _13C Glc_3 plate-media-24h": "174.8816230977993",
+                    "6_ KM20 FASNsh _13C Glc_1plate-media-24h": "160.5322036946325",
+                    "7_ KM20 FASNsh _13C Glc_2plate-media-24h": "167.6732062603259",
+                    "4_ KM20 NTC _13C Glc_3 plate-media-0h": "",
+                    "2_ KM20 NTC _13C Glc_1 plate-media-0h": "",
+                    "3_ KM20 NTC _13C Glc_2 plate-media-0h": "",
+                    "6_ KM20 FASNsh _13C Glc_1plate-media-0h": "",
+                    "8_ KM20 FASNsh _13C Glc_3plate-media-0h": "",
+                    "8_ KM20 FASNsh _13C Glc_3plate-media-24h": ""
+                },
+                {
+                    "metabolite_name": "DSS_1",
+                    "2_ KM20 NTC _13C Glc_1 plate-media-24h": "",
+                    "3_ KM20 NTC _13C Glc_2 plate-media-24h": "",
+                    "4_ KM20 NTC _13C Glc_3 plate-media-24h": "",
+                    "6_ KM20 FASNsh _13C Glc_1plate-media-24h": "",
+                    "7_ KM20 FASNsh _13C Glc_2plate-media-24h": "2.019334902467429",
+                    "4_ KM20 NTC _13C Glc_3 plate-media-0h": "2.076714394217163",
+                    "2_ KM20 NTC _13C Glc_1 plate-media-0h": "",
+                    "3_ KM20 NTC _13C Glc_2 plate-media-0h": "",
+                    "6_ KM20 FASNsh _13C Glc_1plate-media-0h": "",
+                    "8_ KM20 FASNsh _13C Glc_3plate-media-0h": "",
+                    "8_ KM20 FASNsh _13C Glc_3plate-media-24h": ""
+                },
+                {
+                    "metabolite_name": "Gln+Glu-2_1",
+                    "2_ KM20 NTC _13C Glc_1 plate-media-24h": "448.6510146393926",
+                    "3_ KM20 NTC _13C Glc_2 plate-media-24h": "399.5657962030853",
+                    "4_ KM20 NTC _13C Glc_3 plate-media-24h": "426.7197567407257",
+                    "6_ KM20 FASNsh _13C Glc_1plate-media-24h": "500.9094954185077",
+                    "7_ KM20 FASNsh _13C Glc_2plate-media-24h": "526.901698955064",
+                    "4_ KM20 NTC _13C Glc_3 plate-media-0h": "718.1013671749175",
+                    "2_ KM20 NTC _13C Glc_1 plate-media-0h": "814.5728094279003",
+                    "3_ KM20 NTC _13C Glc_2 plate-media-0h": "932.3930840203374",
+                    "6_ KM20 FASNsh _13C Glc_1plate-media-0h": "856.4944204104457",
+                    "8_ KM20 FASNsh _13C Glc_3plate-media-0h": "687.0894726534175",
+                    "8_ KM20 FASNsh _13C Glc_3plate-media-24h": "797.4694684779498"
+                },
+                {
+                    "metabolite_name": "Gln+Glu-2_2",
+                    "2_ KM20 NTC _13C Glc_1 plate-media-24h": "582.1482546357892",
+                    "3_ KM20 NTC _13C Glc_2 plate-media-24h": "563.9457980653516",
+                    "4_ KM20 NTC _13C Glc_3 plate-media-24h": "605.2883334523674",
+                    "6_ KM20 FASNsh _13C Glc_1plate-media-24h": "507.8456174633097",
+                    "7_ KM20 FASNsh _13C Glc_2plate-media-24h": "517.5109718916912",
+                    "4_ KM20 NTC _13C Glc_3 plate-media-0h": "826.4783495529551",
+                    "2_ KM20 NTC _13C Glc_1 plate-media-0h": "735.066677354859",
+                    "3_ KM20 NTC _13C Glc_2 plate-media-0h": "823.6840682891565",
+                    "6_ KM20 FASNsh _13C Glc_1plate-media-0h": "747.2806307246851",
+                    "8_ KM20 FASNsh _13C Glc_3plate-media-0h": "745.5326942729874",
+                    "8_ KM20 FASNsh _13C Glc_3plate-media-24h": "686.7291582705274"
+                },
+                {
+                    "metabolite_name": "Gln+Glu-2_3",
+                    "2_ KM20 NTC _13C Glc_1 plate-media-24h": "392.4412511871504",
+                    "3_ KM20 NTC _13C Glc_2 plate-media-24h": "445.4195799341246",
+                    "4_ KM20 NTC _13C Glc_3 plate-media-24h": "456.963703763109",
+                    "6_ KM20 FASNsh _13C Glc_1plate-media-24h": "425.7714545504038",
+                    "7_ KM20 FASNsh _13C Glc_2plate-media-24h": "366.2810541459199",
+                    "4_ KM20 NTC _13C Glc_3 plate-media-0h": "",
+                    "2_ KM20 NTC _13C Glc_1 plate-media-0h": "",
+                    "3_ KM20 NTC _13C Glc_2 plate-media-0h": "",
+                    "6_ KM20 FASNsh _13C Glc_1plate-media-0h": "",
+                    "8_ KM20 FASNsh _13C Glc_3plate-media-0h": "",
+                    "8_ KM20 FASNsh _13C Glc_3plate-media-24h": ""
+                },
+                {
+                    "metabolite_name": "Gln-4_1",
+                    "2_ KM20 NTC _13C Glc_1 plate-media-24h": "",
+                    "3_ KM20 NTC _13C Glc_2 plate-media-24h": "",
+                    "4_ KM20 NTC _13C Glc_3 plate-media-24h": "",
+                    "6_ KM20 FASNsh _13C Glc_1plate-media-24h": "",
+                    "7_ KM20 FASNsh _13C Glc_2plate-media-24h": "",
+                    "4_ KM20 NTC _13C Glc_3 plate-media-0h": "42.69828675586036",
+                    "2_ KM20 NTC _13C Glc_1 plate-media-0h": "57.2370205594959",
+                    "3_ KM20 NTC _13C Glc_2 plate-media-0h": "45.33425828178106",
+                    "6_ KM20 FASNsh _13C Glc_1plate-media-0h": "11.5520229150414",
+                    "8_ KM20 FASNsh _13C Glc_3plate-media-0h": "33.99425959938741",
+                    "8_ KM20 FASNsh _13C Glc_3plate-media-24h": "53.66278920855674"
+                },
+                {
+                    "metabolite_name": "Gln-4_2",
+                    "2_ KM20 NTC _13C Glc_1 plate-media-24h": "",
+                    "3_ KM20 NTC _13C Glc_2 plate-media-24h": "",
+                    "4_ KM20 NTC _13C Glc_3 plate-media-24h": "",
+                    "6_ KM20 FASNsh _13C Glc_1plate-media-24h": "",
+                    "7_ KM20 FASNsh _13C Glc_2plate-media-24h": "",
+                    "4_ KM20 NTC _13C Glc_3 plate-media-0h": "",
+                    "2_ KM20 NTC _13C Glc_1 plate-media-0h": "",
+                    "3_ KM20 NTC _13C Glc_2 plate-media-0h": "",
+                    "6_ KM20 FASNsh _13C Glc_1plate-media-0h": "25.08937803329258",
+                    "8_ KM20 FASNsh _13C Glc_3plate-media-0h": "",
+                    "8_ KM20 FASNsh _13C Glc_3plate-media-24h": ""
+                },
+                {
+                    "metabolite_name": "Glu-3-b_1",
+                    "2_ KM20 NTC _13C Glc_1 plate-media-24h": "62.53072035606245",
+                    "3_ KM20 NTC _13C Glc_2 plate-media-24h": "66.7578533417283",
+                    "4_ KM20 NTC _13C Glc_3 plate-media-24h": "",
+                    "6_ KM20 FASNsh _13C Glc_1plate-media-24h": "",
+                    "7_ KM20 FASNsh _13C Glc_2plate-media-24h": "",
+                    "4_ KM20 NTC _13C Glc_3 plate-media-0h": "114.5219758595363",
+                    "2_ KM20 NTC _13C Glc_1 plate-media-0h": "",
+                    "3_ KM20 NTC _13C Glc_2 plate-media-0h": "",
+                    "6_ KM20 FASNsh _13C Glc_1plate-media-0h": "88.95171333071124",
+                    "8_ KM20 FASNsh _13C Glc_3plate-media-0h": "87.89176210998987",
+                    "8_ KM20 FASNsh _13C Glc_3plate-media-24h": ""
+                },
+                {
+                    "metabolite_name": "Glu-4_1",
+                    "2_ KM20 NTC _13C Glc_1 plate-media-24h": "105.5505715520937",
+                    "3_ KM20 NTC _13C Glc_2 plate-media-24h": "102.226390844397",
+                    "4_ KM20 NTC _13C Glc_3 plate-media-24h": "107.8300885854399",
+                    "6_ KM20 FASNsh _13C Glc_1plate-media-24h": "106.8296281620487",
+                    "7_ KM20 FASNsh _13C Glc_2plate-media-24h": "109.5370077396362",
+                    "4_ KM20 NTC _13C Glc_3 plate-media-0h": "",
+                    "2_ KM20 NTC _13C Glc_1 plate-media-0h": "",
+                    "3_ KM20 NTC _13C Glc_2 plate-media-0h": "",
+                    "6_ KM20 FASNsh _13C Glc_1plate-media-0h": "",
+                    "8_ KM20 FASNsh _13C Glc_3plate-media-0h": "",
+                    "8_ KM20 FASNsh _13C Glc_3plate-media-24h": ""
+                },
+                {
+                    "metabolite_name": "Lac-2_1",
+                    "2_ KM20 NTC _13C Glc_1 plate-media-24h": "72.33356510531425",
+                    "3_ KM20 NTC _13C Glc_2 plate-media-24h": "77.51444516863565",
+                    "4_ KM20 NTC _13C Glc_3 plate-media-24h": "82.97834462984808",
+                    "6_ KM20 FASNsh _13C Glc_1plate-media-24h": "59.83026790193832",
+                    "7_ KM20 FASNsh _13C Glc_2plate-media-24h": "66.51137221022347",
+                    "4_ KM20 NTC _13C Glc_3 plate-media-0h": "",
+                    "2_ KM20 NTC _13C Glc_1 plate-media-0h": "",
+                    "3_ KM20 NTC _13C Glc_2 plate-media-0h": "",
+                    "6_ KM20 FASNsh _13C Glc_1plate-media-0h": "",
+                    "8_ KM20 FASNsh _13C Glc_3plate-media-0h": "",
+                    "8_ KM20 FASNsh _13C Glc_3plate-media-24h": ""
+                },
+                {
+                    "metabolite_name": "Lac-2_2",
+                    "2_ KM20 NTC _13C Glc_1 plate-media-24h": "561.1669770006604",
+                    "3_ KM20 NTC _13C Glc_2 plate-media-24h": "556.7336148084431",
+                    "4_ KM20 NTC _13C Glc_3 plate-media-24h": "564.1936457793246",
+                    "6_ KM20 FASNsh _13C Glc_1plate-media-24h": "525.1790693713399",
+                    "7_ KM20 FASNsh _13C Glc_2plate-media-24h": "535.356266687411",
+                    "4_ KM20 NTC _13C Glc_3 plate-media-0h": "",
+                    "2_ KM20 NTC _13C Glc_1 plate-media-0h": "",
+                    "3_ KM20 NTC _13C Glc_2 plate-media-0h": "",
+                    "6_ KM20 FASNsh _13C Glc_1plate-media-0h": "",
+                    "8_ KM20 FASNsh _13C Glc_3plate-media-0h": "",
+                    "8_ KM20 FASNsh _13C Glc_3plate-media-24h": ""
+                },
+                {
+                    "metabolite_name": "Lac-2_3",
+                    "2_ KM20 NTC _13C Glc_1 plate-media-24h": "570.4954906274531",
+                    "3_ KM20 NTC _13C Glc_2 plate-media-24h": "603.6585618886488",
+                    "4_ KM20 NTC _13C Glc_3 plate-media-24h": "601.61965000502",
+                    "6_ KM20 FASNsh _13C Glc_1plate-media-24h": "615.8479604922911",
+                    "7_ KM20 FASNsh _13C Glc_2plate-media-24h": "585.5149837605406",
+                    "4_ KM20 NTC _13C Glc_3 plate-media-0h": "",
+                    "2_ KM20 NTC _13C Glc_1 plate-media-0h": "",
+                    "3_ KM20 NTC _13C Glc_2 plate-media-0h": "",
+                    "6_ KM20 FASNsh _13C Glc_1plate-media-0h": "",
+                    "8_ KM20 FASNsh _13C Glc_3plate-media-0h": "",
+                    "8_ KM20 FASNsh _13C Glc_3plate-media-24h": ""
+                },
+                {
+                    "metabolite_name": "Lac-2_4",
+                    "2_ KM20 NTC _13C Glc_1 plate-media-24h": "123.9129880835127",
+                    "3_ KM20 NTC _13C Glc_2 plate-media-24h": "101.085302406396",
+                    "4_ KM20 NTC _13C Glc_3 plate-media-24h": "148.0921395394292",
+                    "6_ KM20 FASNsh _13C Glc_1plate-media-24h": "148.1327596190933",
+                    "7_ KM20 FASNsh _13C Glc_2plate-media-24h": "104.3014283973091",
+                    "4_ KM20 NTC _13C Glc_3 plate-media-0h": "",
+                    "2_ KM20 NTC _13C Glc_1 plate-media-0h": "",
+                    "3_ KM20 NTC _13C Glc_2 plate-media-0h": "",
+                    "6_ KM20 FASNsh _13C Glc_1plate-media-0h": "",
+                    "8_ KM20 FASNsh _13C Glc_3plate-media-0h": "",
+                    "8_ KM20 FASNsh _13C Glc_3plate-media-24h": ""
+                },
+                {
+                    "metabolite_name": "Lac-3_1",
+                    "2_ KM20 NTC _13C Glc_1 plate-media-24h": "2098.711962183234",
+                    "3_ KM20 NTC _13C Glc_2 plate-media-24h": "2043.053008943244",
+                    "4_ KM20 NTC _13C Glc_3 plate-media-24h": "2547.423328677172",
+                    "6_ KM20 FASNsh _13C Glc_1plate-media-24h": "2606.536200888775",
+                    "7_ KM20 FASNsh _13C Glc_2plate-media-24h": "2341.729905398201",
+                    "4_ KM20 NTC _13C Glc_3 plate-media-0h": "24.48568749224984",
+                    "2_ KM20 NTC _13C Glc_1 plate-media-0h": "23.37551198184628",
+                    "3_ KM20 NTC _13C Glc_2 plate-media-0h": "21.10675776427527",
+                    "6_ KM20 FASNsh _13C Glc_1plate-media-0h": "19.06664288977522",
+                    "8_ KM20 FASNsh _13C Glc_3plate-media-0h": "21.80468344813683",
+                    "8_ KM20 FASNsh _13C Glc_3plate-media-24h": "20.77199783004198"
+                },
+                {
+                    "metabolite_name": "Lac-3_2",
+                    "2_ KM20 NTC _13C Glc_1 plate-media-24h": "1494.089359011063",
+                    "3_ KM20 NTC _13C Glc_2 plate-media-24h": "1489.073470187748",
+                    "4_ KM20 NTC _13C Glc_3 plate-media-24h": "1276.705563913544",
+                    "6_ KM20 FASNsh _13C Glc_1plate-media-24h": "1275.272034990092",
+                    "7_ KM20 FASNsh _13C Glc_2plate-media-24h": "1346.845542745911",
+                    "4_ KM20 NTC _13C Glc_3 plate-media-0h": "15.39094662489602",
+                    "2_ KM20 NTC _13C Glc_1 plate-media-0h": "11.37550854110012",
+                    "3_ KM20 NTC _13C Glc_2 plate-media-0h": "14.32655169804704",
+                    "6_ KM20 FASNsh _13C Glc_1plate-media-0h": "15.53792107046963",
+                    "8_ KM20 FASNsh _13C Glc_3plate-media-0h": "11.75147611368169",
+                    "8_ KM20 FASNsh _13C Glc_3plate-media-24h": "11.79294248633588"
+                },
+                {
+                    "metabolite_name": "Met-CH3_1",
+                    "2_ KM20 NTC _13C Glc_1 plate-media-24h": "",
+                    "3_ KM20 NTC _13C Glc_2 plate-media-24h": "",
+                    "4_ KM20 NTC _13C Glc_3 plate-media-24h": "",
+                    "6_ KM20 FASNsh _13C Glc_1plate-media-24h": "29.03741987124591",
+                    "7_ KM20 FASNsh _13C Glc_2plate-media-24h": "25.78524220090637",
+                    "4_ KM20 NTC _13C Glc_3 plate-media-0h": "",
+                    "2_ KM20 NTC _13C Glc_1 plate-media-0h": "30.72803970058338",
+                    "3_ KM20 NTC _13C Glc_2 plate-media-0h": "35.78290624869522",
+                    "6_ KM20 FASNsh _13C Glc_1plate-media-0h": "",
+                    "8_ KM20 FASNsh _13C Glc_3plate-media-0h": "",
+                    "8_ KM20 FASNsh _13C Glc_3plate-media-24h": "30.6879995212508"
+                },
+                {
+                    "metabolite_name": "P-Cho A_1",
+                    "2_ KM20 NTC _13C Glc_1 plate-media-24h": "59.41459319317293",
+                    "3_ KM20 NTC _13C Glc_2 plate-media-24h": "",
+                    "4_ KM20 NTC _13C Glc_3 plate-media-24h": "",
+                    "6_ KM20 FASNsh _13C Glc_1plate-media-24h": "",
+                    "7_ KM20 FASNsh _13C Glc_2plate-media-24h": "",
+                    "4_ KM20 NTC _13C Glc_3 plate-media-0h": "",
+                    "2_ KM20 NTC _13C Glc_1 plate-media-0h": "",
+                    "3_ KM20 NTC _13C Glc_2 plate-media-0h": "",
+                    "6_ KM20 FASNsh _13C Glc_1plate-media-0h": "75.5948716686384",
+                    "8_ KM20 FASNsh _13C Glc_3plate-media-0h": "",
+                    "8_ KM20 FASNsh _13C Glc_3plate-media-24h": ""
+                },
+                {
+                    "metabolite_name": "Succinate-2,3_1",
+                    "2_ KM20 NTC _13C Glc_1 plate-media-24h": "4.537042221067356",
+                    "3_ KM20 NTC _13C Glc_2 plate-media-24h": "",
+                    "4_ KM20 NTC _13C Glc_3 plate-media-24h": "",
+                    "6_ KM20 FASNsh _13C Glc_1plate-media-24h": "",
+                    "7_ KM20 FASNsh _13C Glc_2plate-media-24h": "",
+                    "4_ KM20 NTC _13C Glc_3 plate-media-0h": "",
+                    "2_ KM20 NTC _13C Glc_1 plate-media-0h": "",
+                    "3_ KM20 NTC _13C Glc_2 plate-media-0h": "",
+                    "6_ KM20 FASNsh _13C Glc_1plate-media-0h": "",
+                    "8_ KM20 FASNsh _13C Glc_3plate-media-0h": "",
+                    "8_ KM20 FASNsh _13C Glc_3plate-media-24h": ""
+                },
+                {
+                    "metabolite_name": "Tau-1 (SCH2)_1",
+                    "2_ KM20 NTC _13C Glc_1 plate-media-24h": "972.1421419171386",
+                    "3_ KM20 NTC _13C Glc_2 plate-media-24h": "930.4821852998746",
+                    "4_ KM20 NTC _13C Glc_3 plate-media-24h": "1048.331322105146",
+                    "6_ KM20 FASNsh _13C Glc_1plate-media-24h": "967.9954736941413",
+                    "7_ KM20 FASNsh _13C Glc_2plate-media-24h": "959.8365150467066",
+                    "4_ KM20 NTC _13C Glc_3 plate-media-0h": "1241.179976252811",
+                    "2_ KM20 NTC _13C Glc_1 plate-media-0h": "1094.427065953284",
+                    "3_ KM20 NTC _13C Glc_2 plate-media-0h": "1066.060231171439",
+                    "6_ KM20 FASNsh _13C Glc_1plate-media-0h": "1096.676536309151",
+                    "8_ KM20 FASNsh _13C Glc_3plate-media-0h": "1025.899144621512",
+                    "8_ KM20 FASNsh _13C Glc_3plate-media-24h": "1034.822999023674"
+                },
+                {
+                    "metabolite_name": "Tau-1 (SCH2)_2",
+                    "2_ KM20 NTC _13C Glc_1 plate-media-24h": "224.7548419353604",
+                    "3_ KM20 NTC _13C Glc_2 plate-media-24h": "216.0580477014695",
+                    "4_ KM20 NTC _13C Glc_3 plate-media-24h": "225.4186406878518",
+                    "6_ KM20 FASNsh _13C Glc_1plate-media-24h": "240.0736564497214",
+                    "7_ KM20 FASNsh _13C Glc_2plate-media-24h": "226.3393751711868",
+                    "4_ KM20 NTC _13C Glc_3 plate-media-0h": "205.4716136743838",
+                    "2_ KM20 NTC _13C Glc_1 plate-media-0h": "191.764607813797",
+                    "3_ KM20 NTC _13C Glc_2 plate-media-0h": "318.4202086100111",
+                    "6_ KM20 FASNsh _13C Glc_1plate-media-0h": "268.2879735865375",
+                    "8_ KM20 FASNsh _13C Glc_3plate-media-0h": "220.5318022495308",
+                    "8_ KM20 FASNsh _13C Glc_3plate-media-24h": "194.0739957012105"
+                },
+                {
+                    "metabolite_name": "Tau-2 (NCH2)_1",
+                    "2_ KM20 NTC _13C Glc_1 plate-media-24h": "1631.026275947984",
+                    "3_ KM20 NTC _13C Glc_2 plate-media-24h": "1685.661809164876",
+                    "4_ KM20 NTC _13C Glc_3 plate-media-24h": "1756.882901953544",
+                    "6_ KM20 FASNsh _13C Glc_1plate-media-24h": "1725.98410314337",
+                    "7_ KM20 FASNsh _13C Glc_2plate-media-24h": "1497.485913860812",
+                    "4_ KM20 NTC _13C Glc_3 plate-media-0h": "1963.56875130706",
+                    "2_ KM20 NTC _13C Glc_1 plate-media-0h": "1823.876335888133",
+                    "3_ KM20 NTC _13C Glc_2 plate-media-0h": "1980.806317284053",
+                    "6_ KM20 FASNsh _13C Glc_1plate-media-0h": "1848.410208617875",
+                    "8_ KM20 FASNsh _13C Glc_3plate-media-0h": "1647.884208646015",
+                    "8_ KM20 FASNsh _13C Glc_3plate-media-24h": "1648.693062003539"
+                },
+                {
+                    "metabolite_name": "Tris_1",
+                    "2_ KM20 NTC _13C Glc_1 plate-media-24h": "453.5283070598539",
+                    "3_ KM20 NTC _13C Glc_2 plate-media-24h": "497.2982707124375",
+                    "4_ KM20 NTC _13C Glc_3 plate-media-24h": "489.3689534098457",
+                    "6_ KM20 FASNsh _13C Glc_1plate-media-24h": "436.9814977595565",
+                    "7_ KM20 FASNsh _13C Glc_2plate-media-24h": "438.8068464101543",
+                    "4_ KM20 NTC _13C Glc_3 plate-media-0h": "690.2040445985973",
+                    "2_ KM20 NTC _13C Glc_1 plate-media-0h": "667.1530766521372",
+                    "3_ KM20 NTC _13C Glc_2 plate-media-0h": "621.5489513337799",
+                    "6_ KM20 FASNsh _13C Glc_1plate-media-0h": "612.2163352411503",
+                    "8_ KM20 FASNsh _13C Glc_3plate-media-0h": "640.009937712774",
+                    "8_ KM20 FASNsh _13C Glc_3plate-media-24h": "500.5562607223315"
+                },
+                {
+                    "metabolite_name": "Tris_2",
+                    "2_ KM20 NTC _13C Glc_1 plate-media-24h": "560.9649666888953",
+                    "3_ KM20 NTC _13C Glc_2 plate-media-24h": "524.6368675958909",
+                    "4_ KM20 NTC _13C Glc_3 plate-media-24h": "571.9949527241905",
+                    "6_ KM20 FASNsh _13C Glc_1plate-media-24h": "554.3508067464508",
+                    "7_ KM20 FASNsh _13C Glc_2plate-media-24h": "536.5207754641469",
+                    "4_ KM20 NTC _13C Glc_3 plate-media-0h": "714.0611991559948",
+                    "2_ KM20 NTC _13C Glc_1 plate-media-0h": "731.5198157256713",
+                    "3_ KM20 NTC _13C Glc_2 plate-media-0h": "545.8762050972215",
+                    "6_ KM20 FASNsh _13C Glc_1plate-media-0h": "674.5821773843909",
+                    "8_ KM20 FASNsh _13C Glc_3plate-media-0h": "646.8116227615614",
+                    "8_ KM20 FASNsh _13C Glc_3plate-media-24h": "608.5959285347493"
+                },
+                {
+                    "metabolite_name": "Tris_3",
+                    "2_ KM20 NTC _13C Glc_1 plate-media-24h": "298.0513294069879",
+                    "3_ KM20 NTC _13C Glc_2 plate-media-24h": "291.1600002455303",
+                    "4_ KM20 NTC _13C Glc_3 plate-media-24h": "314.7395588560185",
+                    "6_ KM20 FASNsh _13C Glc_1plate-media-24h": "299.5633599244584",
+                    "7_ KM20 FASNsh _13C Glc_2plate-media-24h": "295.9496773938944",
+                    "4_ KM20 NTC _13C Glc_3 plate-media-0h": "312.3544280676108",
+                    "2_ KM20 NTC _13C Glc_1 plate-media-0h": "233.4274252293987",
+                    "3_ KM20 NTC _13C Glc_2 plate-media-0h": "346.6130413082693",
+                    "6_ KM20 FASNsh _13C Glc_1plate-media-0h": "286.776267139203",
+                    "8_ KM20 FASNsh _13C Glc_3plate-media-0h": "251.9442227486969",
+                    "8_ KM20 FASNsh _13C Glc_3plate-media-24h": "262.0878521834121"
+                },
+                {
+                    "metabolite_name": "UDP-Glc_1",
+                    "2_ KM20 NTC _13C Glc_1 plate-media-24h": "",
+                    "3_ KM20 NTC _13C Glc_2 plate-media-24h": "",
+                    "4_ KM20 NTC _13C Glc_3 plate-media-24h": "",
+                    "6_ KM20 FASNsh _13C Glc_1plate-media-24h": "",
+                    "7_ KM20 FASNsh _13C Glc_2plate-media-24h": "",
+                    "4_ KM20 NTC _13C Glc_3 plate-media-0h": "25.05359813998004",
+                    "2_ KM20 NTC _13C Glc_1 plate-media-0h": "",
+                    "3_ KM20 NTC _13C Glc_2 plate-media-0h": "",
+                    "6_ KM20 FASNsh _13C Glc_1plate-media-0h": "",
+                    "8_ KM20 FASNsh _13C Glc_3plate-media-0h": "",
+                    "8_ KM20 FASNsh _13C Glc_3plate-media-24h": ""
+                },
+                {
+                    "metabolite_name": "Val-B_1",
+                    "2_ KM20 NTC _13C Glc_1 plate-media-24h": "22.66926997219572",
+                    "3_ KM20 NTC _13C Glc_2 plate-media-24h": "32.27579781766095",
+                    "4_ KM20 NTC _13C Glc_3 plate-media-24h": "32.70205828645076",
+                    "6_ KM20 FASNsh _13C Glc_1plate-media-24h": "24.67914267015485",
+                    "7_ KM20 FASNsh _13C Glc_2plate-media-24h": "19.95553412492587",
+                    "4_ KM20 NTC _13C Glc_3 plate-media-0h": "7.31651436501576",
+                    "2_ KM20 NTC _13C Glc_1 plate-media-0h": "",
+                    "3_ KM20 NTC _13C Glc_2 plate-media-0h": "14.56256597331681",
+                    "6_ KM20 FASNsh _13C Glc_1plate-media-0h": "8.82819919518578",
+                    "8_ KM20 FASNsh _13C Glc_3plate-media-0h": "10.41794774219316",
+                    "8_ KM20 FASNsh _13C Glc_3plate-media-24h": ""
+                },
+                {
+                    "metabolite_name": "aGlc_1",
+                    "2_ KM20 NTC _13C Glc_1 plate-media-24h": "7764.837980893722",
+                    "3_ KM20 NTC _13C Glc_2 plate-media-24h": "7789.911722140142",
+                    "4_ KM20 NTC _13C Glc_3 plate-media-24h": "8782.041374714418",
+                    "6_ KM20 FASNsh _13C Glc_1plate-media-24h": "8652.807401621852",
+                    "7_ KM20 FASNsh _13C Glc_2plate-media-24h": "7930.435395352238",
+                    "4_ KM20 NTC _13C Glc_3 plate-media-0h": "9880.665892470586",
+                    "2_ KM20 NTC _13C Glc_1 plate-media-0h": "9296.748515698071",
+                    "3_ KM20 NTC _13C Glc_2 plate-media-0h": "10041.49736069212",
+                    "6_ KM20 FASNsh _13C Glc_1plate-media-0h": "8981.685041934168",
+                    "8_ KM20 FASNsh _13C Glc_3plate-media-0h": "8604.454132124463",
+                    "8_ KM20 FASNsh _13C Glc_3plate-media-24h": "8717.515216346828"
+                },
+                {
+                    "metabolite_name": "bGlc_1",
+                    "2_ KM20 NTC _13C Glc_1 plate-media-24h": "2584.696318182407",
+                    "3_ KM20 NTC _13C Glc_2 plate-media-24h": "2528.783657559472",
+                    "4_ KM20 NTC _13C Glc_3 plate-media-24h": "2386.928707562012",
+                    "6_ KM20 FASNsh _13C Glc_1plate-media-24h": "2249.837233339695",
+                    "7_ KM20 FASNsh _13C Glc_2plate-media-24h": "2535.47717667606",
+                    "4_ KM20 NTC _13C Glc_3 plate-media-0h": "3003.844531229449",
+                    "2_ KM20 NTC _13C Glc_1 plate-media-0h": "3215.275871311032",
+                    "3_ KM20 NTC _13C Glc_2 plate-media-0h": "2956.30450410181",
+                    "6_ KM20 FASNsh _13C Glc_1plate-media-0h": "3417.543971732071",
+                    "8_ KM20 FASNsh _13C Glc_3plate-media-0h": "2912.832122677527",
+                    "8_ KM20 FASNsh _13C Glc_3plate-media-24h": "2391.840169590502"
+                },
+                {
+                    "metabolite_name": "bGlc_2",
+                    "2_ KM20 NTC _13C Glc_1 plate-media-24h": "3651.385695680003",
+                    "3_ KM20 NTC _13C Glc_2 plate-media-24h": "3721.922381124285",
+                    "4_ KM20 NTC _13C Glc_3 plate-media-24h": "4228.547321224373",
+                    "6_ KM20 FASNsh _13C Glc_1plate-media-24h": "3978.140594371959",
+                    "7_ KM20 FASNsh _13C Glc_2plate-media-24h": "3709.377377471279",
+                    "4_ KM20 NTC _13C Glc_3 plate-media-0h": "4790.070487073294",
+                    "2_ KM20 NTC _13C Glc_1 plate-media-0h": "4376.678761643056",
+                    "3_ KM20 NTC _13C Glc_2 plate-media-0h": "5075.753854264725",
+                    "6_ KM20 FASNsh _13C Glc_1plate-media-0h": "4306.570741742492",
+                    "8_ KM20 FASNsh _13C Glc_3plate-media-0h": "4047.143589063933",
+                    "8_ KM20 FASNsh _13C Glc_3plate-media-24h": "4620.893078489756"
+                },
+                {
+                    "metabolite_name": "m-Ins-1,3_1",
+                    "2_ KM20 NTC _13C Glc_1 plate-media-24h": "535.253194773074",
+                    "3_ KM20 NTC _13C Glc_2 plate-media-24h": "622.6226625484338",
+                    "4_ KM20 NTC _13C Glc_3 plate-media-24h": "569.509759385857",
+                    "6_ KM20 FASNsh _13C Glc_1plate-media-24h": "212.1567168667916",
+                    "7_ KM20 FASNsh _13C Glc_2plate-media-24h": "498.7942046419867",
+                    "4_ KM20 NTC _13C Glc_3 plate-media-0h": "475.1673093232596",
+                    "2_ KM20 NTC _13C Glc_1 plate-media-0h": "453.1618631286717",
+                    "3_ KM20 NTC _13C Glc_2 plate-media-0h": "690.4984628187456",
+                    "6_ KM20 FASNsh _13C Glc_1plate-media-0h": "613.7131537269211",
+                    "8_ KM20 FASNsh _13C Glc_3plate-media-0h": "455.7553355003563",
+                    "8_ KM20 FASNsh _13C Glc_3plate-media-24h": "494.9753753667518"
+                },
+                {
+                    "metabolite_name": "m-Ins-1,3_2",
+                    "2_ KM20 NTC _13C Glc_1 plate-media-24h": "",
+                    "3_ KM20 NTC _13C Glc_2 plate-media-24h": "",
+                    "4_ KM20 NTC _13C Glc_3 plate-media-24h": "",
+                    "6_ KM20 FASNsh _13C Glc_1plate-media-24h": "232.1487505059486",
+                    "7_ KM20 FASNsh _13C Glc_2plate-media-24h": "",
+                    "4_ KM20 NTC _13C Glc_3 plate-media-0h": "",
+                    "2_ KM20 NTC _13C Glc_1 plate-media-0h": "",
+                    "3_ KM20 NTC _13C Glc_2 plate-media-0h": "",
+                    "6_ KM20 FASNsh _13C Glc_1plate-media-0h": "",
+                    "8_ KM20 FASNsh _13C Glc_3plate-media-0h": "",
+                    "8_ KM20 FASNsh _13C Glc_3plate-media-24h": ""
+                }
+            ]
+        }
+    },
+    "METABOLITES": {
+        "METABOLITES_START": {
+            "Fields": [
+                "metabolite_name",
+                "base_inchi",
+                "isotopic_inchi",
+                "peak_description",
+                "peak_pattern",
+                "proton_count",
+                "representative_inchi",
+                "transient_peak"
+            ],
+            "DATA": [
+                {
+                    "resonance_assignment": "Ace-2_1",
+                    "base_inchi": "InChI=1S/C2H4O2/c1-2(3)4/h1H3,(H,3,4)/p-1",
+                    "isotopic_inchi": "InChI=1/C2H4O2/c1-2(3)4/h1H3,(H,3,4)/p-1/i1+1H3/fC2H3O2/q-1",
+                    "peak_description": "[1H5,1H6,1H7:13C1]HResonance",
+                    "peak_pattern": "",
+                    "proton_count": "3",
+                    "representative_inchi": "InChI=1S/C2H4O2/c1-2(3)4/h1H3,(H,3,4)/p-1",
+                    "transient_peak": "1"
+                },
+                {
+                    "resonance_assignment": "Ala-3_1",
+                    "base_inchi": "InChI=1S/C3H7NO2/c1-2(4)3(5)6/h2H,4H2,1H3,(H,5,6)/t2-/m0/s1",
+                    "isotopic_inchi": "InChI=1/C3H7NO2/c1-2(4)3(5)6/h2H,4H2,1H3,(H,5,6)/t2-/m0/s1/i1+1H3,2H/f/h4H",
+                    "peak_description": "[1H7,1H8,1H9:13C1]HResonance + [1H7,1H8,1H9:1H10]J3HH",
+                    "peak_pattern": "",
+                    "proton_count": "3",
+                    "representative_inchi": "InChI=1/C3H7NO2/c1-2(4)3(5)6/h2H,4H2,1H3,(H,5,6)/t2-/m0/s1/f/h4H",
+                    "transient_peak": "1"
+                },
+                {
+                    "resonance_assignment": "Ala-3_2",
+                    "base_inchi": "InChI=1S/C3H7NO2/c1-2(4)3(5)6/h2H,4H2,1H3,(H,5,6)/t2-/m0/s1",
+                    "isotopic_inchi": "InChI=1/C3H7NO2/c1-2(4)3(5)6/h2H,4H2,1H3,(H,5,6)/t2-/m0/s1/i1+1H3,2H/f/h4H",
+                    "peak_description": "[1H7,1H8,1H9:13C1]HResonance + [1H7,1H8,1H9:1H10]J3HH",
+                    "peak_pattern": "",
+                    "proton_count": "3",
+                    "representative_inchi": "InChI=1/C3H7NO2/c1-2(4)3(5)6/h2H,4H2,1H3,(H,5,6)/t2-/m0/s1/f/h4H",
+                    "transient_peak": "2"
+                },
+                {
+                    "resonance_assignment": "DSS_1",
+                    "base_inchi": "InChI=1S/C6H16O3SSi/c1-11(2,3)6-4-5-10(7,8)9/h4-6H2,1-3H3,(H,7,8,9)/i4D2,5D2,6D2",
+                    "isotopic_inchi": "InChI=1/C6H16O3SSi/c1-11(2,3)6-4-5-10(7,8)9/h4-6H2,1-3H3,(H,7,8,9)/p-1/i1+1H3,2+1H3,3+1H3,4D2,5D2,6D2/fC6H15O3SSi/q-1",
+                    "peak_description": "[1H12,1H13,1H14:13C1+1H15,1H16,1H17:13C2+1H18,1H19,1H20:13C3]Hresonance",
+                    "peak_pattern": "",
+                    "proton_count": "9",
+                    "representative_inchi": "InChI=1/C6H16O3SSi/c1-11(2,3)6-4-5-10(7,8)9/h4-6H2,1-3H3,(H,7,8,9)/p-1/i4D2,5D2,6D2/fC6H15O3SSi/q-1",
+                    "transient_peak": "1"
+                },
+                {
+                    "resonance_assignment": "Gln+Glu-2_1",
+                    "base_inchi": "InChI=1S/C5H10N2O3/c6-3(5(9)10)1-2-4(7)8/h3H,1-2,6H2,(H2,7,8)(H,9,10)/t3-/m0/s1; InChI=1S/C5H9NO4/c6-3(5(9)10)1-2-4(7)8/h3H,1-2,6H2,(H,7,8)(H,9,10)/t3-/m0/s1",
+                    "isotopic_inchi": "InChI=1/C5H9NO4/c6-3(5(9)10)1-2-4(7)8/h3H,1-2,6H2,(H,7,8)(H,9,10)/p-1/t3-/m0/s1/i1H2,3+1H/fC5H8NO4/h6H/q-1; InChI=1/C5H9NO4/c6-3(5(9)10)1-2-4(7)8/h3H,1-2,6H2,(H,7,8)(H,9,10)/p-1/t3-/m0/s1/i1H2,3+1H/fC5H8NO4/h6H/q-1",
+                    "peak_description": "[1H15:13C3]HResonance + [1H15:1H11,1H12]J3HH; [1H15:13C3]HResonance + [1H15:1H11,1H12]J3HH",
+                    "peak_pattern": "",
+                    "proton_count": "3",
+                    "representative_inchi": "InChI=1/C5H10N2O3/c6-3(5(9)10)1-2-4(7)8/h3H,1-2,6H2,(H2,7,8)(H,9,10)/t3-/m0/s1/f/h6-8H/b7-4+; InChI=1/C5H9NO4/c6-3(5(9)10)1-2-4(7)8/h3H,1-2,6H2,(H,7,8)(H,9,10)/p-1/t3-/m0/s1/fC5H8NO4/h6H/q-1",
+                    "transient_peak": "1"
+                },
+                {
+                    "resonance_assignment": "Gln+Glu-2_2",
+                    "base_inchi": "InChI=1S/C5H10N2O3/c6-3(5(9)10)1-2-4(7)8/h3H,1-2,6H2,(H2,7,8)(H,9,10)/t3-/m0/s1; InChI=1S/C5H9NO4/c6-3(5(9)10)1-2-4(7)8/h3H,1-2,6H2,(H,7,8)(H,9,10)/t3-/m0/s1",
+                    "isotopic_inchi": "InChI=1/C5H9NO4/c6-3(5(9)10)1-2-4(7)8/h3H,1-2,6H2,(H,7,8)(H,9,10)/p-1/t3-/m0/s1/i1H2,3+1H/fC5H8NO4/h6H/q-1; InChI=1/C5H9NO4/c6-3(5(9)10)1-2-4(7)8/h3H,1-2,6H2,(H,7,8)(H,9,10)/p-1/t3-/m0/s1/i1H2,3+1H/fC5H8NO4/h6H/q-1",
+                    "peak_description": "[1H15:13C3]HResonance + [1H15:1H11,1H12]J3HH; [1H15:13C3]HResonance + [1H15:1H11,1H12]J3HH",
+                    "peak_pattern": "",
+                    "proton_count": "3",
+                    "representative_inchi": "InChI=1/C5H10N2O3/c6-3(5(9)10)1-2-4(7)8/h3H,1-2,6H2,(H2,7,8)(H,9,10)/t3-/m0/s1/f/h6-8H/b7-4+; InChI=1/C5H9NO4/c6-3(5(9)10)1-2-4(7)8/h3H,1-2,6H2,(H,7,8)(H,9,10)/p-1/t3-/m0/s1/fC5H8NO4/h6H/q-1",
+                    "transient_peak": "2"
+                },
+                {
+                    "resonance_assignment": "Gln+Glu-2_3",
+                    "base_inchi": "InChI=1S/C5H10N2O3/c6-3(5(9)10)1-2-4(7)8/h3H,1-2,6H2,(H2,7,8)(H,9,10)/t3-/m0/s1; InChI=1S/C5H9NO4/c6-3(5(9)10)1-2-4(7)8/h3H,1-2,6H2,(H,7,8)(H,9,10)/t3-/m0/s1",
+                    "isotopic_inchi": "InChI=1/C5H9NO4/c6-3(5(9)10)1-2-4(7)8/h3H,1-2,6H2,(H,7,8)(H,9,10)/p-1/t3-/m0/s1/i1H2,3+1H/fC5H8NO4/h6H/q-1; InChI=1/C5H9NO4/c6-3(5(9)10)1-2-4(7)8/h3H,1-2,6H2,(H,7,8)(H,9,10)/p-1/t3-/m0/s1/i1H2,3+1H/fC5H8NO4/h6H/q-1",
+                    "peak_description": "[1H15:13C3]HResonance + [1H15:1H11,1H12]J3HH; [1H15:13C3]HResonance + [1H15:1H11,1H12]J3HH",
+                    "peak_pattern": "",
+                    "proton_count": "3",
+                    "representative_inchi": "InChI=1/C5H10N2O3/c6-3(5(9)10)1-2-4(7)8/h3H,1-2,6H2,(H2,7,8)(H,9,10)/t3-/m0/s1/f/h6-8H/b7-4+; InChI=1/C5H9NO4/c6-3(5(9)10)1-2-4(7)8/h3H,1-2,6H2,(H,7,8)(H,9,10)/p-1/t3-/m0/s1/fC5H8NO4/h6H/q-1",
+                    "transient_peak": "3"
+                },
+                {
+                    "resonance_assignment": "Gln-4_1",
+                    "base_inchi": "InChI=1S/C5H10N2O3/c6-3(5(9)10)1-2-4(7)8/h3H,1-2,6H2,(H2,7,8)(H,9,10)/t3-/m0/s1",
+                    "isotopic_inchi": "InChI=1/C5H10N2O3/c6-3(5(9)10)1-2-4(7)8/h3H,1-2,6H2,(H2,7,8)(H,9,10)/t3-/m0/s1/i1H2,2H2/f/h6-8H/b7-4+",
+                    "peak_description": "[1H13,1H14:C2]HResonance + [1H13,1H14:1H11,1H12]J3HH",
+                    "peak_pattern": "",
+                    "proton_count": "2",
+                    "representative_inchi": "InChI=1/C5H10N2O3/c6-3(5(9)10)1-2-4(7)8/h3H,1-2,6H2,(H2,7,8)(H,9,10)/t3-/m0/s1/f/h6-8H/b7-4+",
+                    "transient_peak": "1"
+                },
+                {
+                    "resonance_assignment": "Gln-4_2",
+                    "base_inchi": "InChI=1S/C5H10N2O3/c6-3(5(9)10)1-2-4(7)8/h3H,1-2,6H2,(H2,7,8)(H,9,10)/t3-/m0/s1",
+                    "isotopic_inchi": "InChI=1/C5H10N2O3/c6-3(5(9)10)1-2-4(7)8/h3H,1-2,6H2,(H2,7,8)(H,9,10)/t3-/m0/s1/i1H2,2H2/f/h6-8H/b7-4+",
+                    "peak_description": "[1H13,1H14:C2]HResonance + [1H13,1H14:1H11,1H12]J3HH",
+                    "peak_pattern": "",
+                    "proton_count": "2",
+                    "representative_inchi": "InChI=1/C5H10N2O3/c6-3(5(9)10)1-2-4(7)8/h3H,1-2,6H2,(H2,7,8)(H,9,10)/t3-/m0/s1/f/h6-8H/b7-4+",
+                    "transient_peak": "2"
+                },
+                {
+                    "resonance_assignment": "Glu-3-b_1",
+                    "base_inchi": "InChI=1S/C5H9NO4/c6-3(5(9)10)1-2-4(7)8/h3H,1-2,6H2,(H,7,8)(H,9,10)/t3-/m0/s1",
+                    "isotopic_inchi": "InChI=1/C5H9NO4/c6-3(5(9)10)1-2-4(7)8/h3H,1-2,6H2,(H,7,8)(H,9,10)/p-1/t3-/m0/s1/i1+1H2,2H2,3H/fC5H8NO4/h6H/q-1",
+                    "peak_description": "[1H11,1H12:13C1]HResonance + [1H11:1H12]J2HH + [1H11,1H12:1H13,1H14]J3HH + [1H11,1H12:1H15]J3HH",
+                    "peak_pattern": "",
+                    "proton_count": "1",
+                    "representative_inchi": "InChI=1/C5H9NO4/c6-3(5(9)10)1-2-4(7)8/h3H,1-2,6H2,(H,7,8)(H,9,10)/p-1/t3-/m0/s1/fC5H8NO4/h6H/q-1",
+                    "transient_peak": "1"
+                },
+                {
+                    "resonance_assignment": "Glu-4_1",
+                    "base_inchi": "InChI=1S/C5H9NO4/c6-3(5(9)10)1-2-4(7)8/h3H,1-2,6H2,(H,7,8)(H,9,10)/t3-/m0/s1",
+                    "isotopic_inchi": "InChI=1/C5H9NO4/c6-3(5(9)10)1-2-4(7)8/h3H,1-2,6H2,(H,7,8)(H,9,10)/p-1/t3-/m0/s1/i1H2,2+1H2/fC5H8NO4/h6H/q-1",
+                    "peak_description": "[1H13,1H14:13C2]HResonance + [1H13:1H14]J2HH + [1H13,1H14:1H11,1H12]J3HH",
+                    "peak_pattern": "",
+                    "proton_count": "2",
+                    "representative_inchi": "InChI=1/C5H9NO4/c6-3(5(9)10)1-2-4(7)8/h3H,1-2,6H2,(H,7,8)(H,9,10)/p-1/t3-/m0/s1/fC5H8NO4/h6H/q-1",
+                    "transient_peak": "1"
+                },
+                {
+                    "resonance_assignment": "Lac-2_1",
+                    "base_inchi": "InChI=1S/C3H6O3/c1-2(4)3(5)6/h2,4H,1H3,(H,5,6)/p-1",
+                    "isotopic_inchi": "InChI=1/C3H6O3/c1-2(4)3(5)6/h2,4H,1H3,(H,5,6)/p-1/t2-/m0/s1/i1H3,2+1H/fC3H5O3/q-1",
+                    "peak_description": "[1H10:13C2]HResonance + [1H10:1H7,1H8,1H9]J3HH",
+                    "peak_pattern": "",
+                    "proton_count": "1",
+                    "representative_inchi": "InChI=1S/C3H6O3/c1-2(4)3(5)6/h2,4H,1H3,(H,5,6)/p-1",
+                    "transient_peak": "1"
+                },
+                {
+                    "resonance_assignment": "Lac-2_2",
+                    "base_inchi": "InChI=1S/C3H6O3/c1-2(4)3(5)6/h2,4H,1H3,(H,5,6)/p-1",
+                    "isotopic_inchi": "InChI=1/C3H6O3/c1-2(4)3(5)6/h2,4H,1H3,(H,5,6)/p-1/t2-/m0/s1/i1H3,2+1H/fC3H5O3/q-1",
+                    "peak_description": "[1H10:13C2]HResonance + [1H10:1H7,1H8,1H9]J3HH",
+                    "peak_pattern": "",
+                    "proton_count": "1",
+                    "representative_inchi": "InChI=1S/C3H6O3/c1-2(4)3(5)6/h2,4H,1H3,(H,5,6)/p-1",
+                    "transient_peak": "2"
+                },
+                {
+                    "resonance_assignment": "Lac-2_3",
+                    "base_inchi": "InChI=1S/C3H6O3/c1-2(4)3(5)6/h2,4H,1H3,(H,5,6)/p-1",
+                    "isotopic_inchi": "InChI=1/C3H6O3/c1-2(4)3(5)6/h2,4H,1H3,(H,5,6)/p-1/t2-/m0/s1/i1H3,2+1H/fC3H5O3/q-1",
+                    "peak_description": "[1H10:13C2]HResonance + [1H10:1H7,1H8,1H9]J3HH",
+                    "peak_pattern": "",
+                    "proton_count": "1",
+                    "representative_inchi": "InChI=1S/C3H6O3/c1-2(4)3(5)6/h2,4H,1H3,(H,5,6)/p-1",
+                    "transient_peak": "3"
+                },
+                {
+                    "resonance_assignment": "Lac-2_4",
+                    "base_inchi": "InChI=1S/C3H6O3/c1-2(4)3(5)6/h2,4H,1H3,(H,5,6)/p-1",
+                    "isotopic_inchi": "InChI=1/C3H6O3/c1-2(4)3(5)6/h2,4H,1H3,(H,5,6)/p-1/t2-/m0/s1/i1H3,2+1H/fC3H5O3/q-1",
+                    "peak_description": "[1H10:13C2]HResonance + [1H10:1H7,1H8,1H9]J3HH",
+                    "peak_pattern": "",
+                    "proton_count": "1",
+                    "representative_inchi": "InChI=1S/C3H6O3/c1-2(4)3(5)6/h2,4H,1H3,(H,5,6)/p-1",
+                    "transient_peak": "4"
+                },
+                {
+                    "resonance_assignment": "Lac-3_1",
+                    "base_inchi": "InChI=1S/C3H6O3/c1-2(4)3(5)6/h2,4H,1H3,(H,5,6)/p-1",
+                    "isotopic_inchi": "InChI=1/C3H6O3/c1-2(4)3(5)6/h2,4H,1H3,(H,5,6)/p-1/t2-/m0/s1/i1+1H3,2H/fC3H5O3/q-1",
+                    "peak_description": "[1H7,1H8,1H9:13C1]HResonance + [1H7,1H8,1H9:1H10]J3HH",
+                    "peak_pattern": "",
+                    "proton_count": "3",
+                    "representative_inchi": "InChI=1S/C3H6O3/c1-2(4)3(5)6/h2,4H,1H3,(H,5,6)/p-1",
+                    "transient_peak": "1"
+                },
+                {
+                    "resonance_assignment": "Lac-3_2",
+                    "base_inchi": "InChI=1S/C3H6O3/c1-2(4)3(5)6/h2,4H,1H3,(H,5,6)/p-1",
+                    "isotopic_inchi": "InChI=1/C3H6O3/c1-2(4)3(5)6/h2,4H,1H3,(H,5,6)/p-1/t2-/m0/s1/i1+1H3,2H/fC3H5O3/q-1",
+                    "peak_description": "[1H7,1H8,1H9:13C1]HResonance + [1H7,1H8,1H9:1H10]J3HH",
+                    "peak_pattern": "",
+                    "proton_count": "3",
+                    "representative_inchi": "InChI=1S/C3H6O3/c1-2(4)3(5)6/h2,4H,1H3,(H,5,6)/p-1",
+                    "transient_peak": "2"
+                },
+                {
+                    "resonance_assignment": "Met-CH3_1",
+                    "base_inchi": "InChI=1S/C5H11NO2S/c1-9-3-2-4(6)5(7)8/h4H,2-3,6H2,1H3,(H,7,8)/t4-/m0/s1",
+                    "isotopic_inchi": "InChI=1/C5H11NO2S/c1-9-3-2-4(6)5(7)8/h4H,2-3,6H2,1H3,(H,7,8)/t4-/m0/s1/i1+1H3/f/h6H",
+                    "peak_description": "[1H10,1H11,1H12:13C1]HResonance",
+                    "peak_pattern": "",
+                    "proton_count": "3",
+                    "representative_inchi": "InChI=1/C5H11NO2S/c1-9-3-2-4(6)5(7)8/h4H,2-3,6H2,1H3,(H,7,8)/t4-/m0/s1/f/h6H",
+                    "transient_peak": "1"
+                },
+                {
+                    "resonance_assignment": "P-Cho A_1",
+                    "base_inchi": "InChI=1S/C5H14NO4P/c1-6(2,3)4-5-10-11(7,8)9/h4-5H2,1-3H3,(H-,7,8,9)/p-1",
+                    "isotopic_inchi": "InChI=1/C5H14NO4P/c1-6(2,3)4-5-10-11(7,8)9/h4-5H2,1-3H3,(H-,7,8,9)/p-1/i1+1H3,2+1H3,3+1H3/fC5H13NO4P/q-1",
+                    "peak_description": "[1H12,1H13,1H14:13C1+1H15,1H16,1H17:13C2+1H18,1H19,1H20:13C3]Hresonance",
+                    "peak_pattern": "",
+                    "proton_count": "9",
+                    "representative_inchi": "InChI=1S/C5H14NO4P/c1-6(2,3)4-5-10-11(7,8)9/h4-5H2,1-3H3,(H-,7,8,9)/p-1",
+                    "transient_peak": "1"
+                },
+                {
+                    "resonance_assignment": "Succinate-2,3_1",
+                    "base_inchi": "InChI=1S/C4H6O4/c5-3(6)1-2-4(7)8/h1-2H2,(H,5,6)(H,7,8)/p-2",
+                    "isotopic_inchi": "InChI=1/C4H6O4/c5-3(6)1-2-4(7)8/h1-2H2,(H,5,6)(H,7,8)/p-2/i1+1H2,2+1H2/fC4H4O4/q-2",
+                    "peak_description": "[1H9,1H10:13C1+1H11,1H12:13C2]Hresonance",
+                    "peak_pattern": "",
+                    "proton_count": "4",
+                    "representative_inchi": "InChI=1S/C4H6O4/c5-3(6)1-2-4(7)8/h1-2H2,(H,5,6)(H,7,8)/p-2",
+                    "transient_peak": "1"
+                },
+                {
+                    "resonance_assignment": "Tau-1 (SCH2)_1",
+                    "base_inchi": "InChI=1S/C2H7NO3S/c3-1-2-7(4,5)6/h1-3H2,(H,4,5,6)",
+                    "isotopic_inchi": "InChI=1/C2H7NO3S/c3-1-2-7(4,5)6/h1-3H2,(H,4,5,6)/i1H2,2+1H2/f/h3H",
+                    "peak_description": "[1H10,1H11:13C2]HResonance + [1H10,1H11:1H8,1H9]J3HH",
+                    "peak_pattern": "",
+                    "proton_count": "2",
+                    "representative_inchi": "InChI=1/C2H7NO3S/c3-1-2-7(4,5)6/h1-3H2,(H,4,5,6)/f/h3H",
+                    "transient_peak": "1"
+                },
+                {
+                    "resonance_assignment": "Tau-1 (SCH2)_2",
+                    "base_inchi": "InChI=1S/C2H7NO3S/c3-1-2-7(4,5)6/h1-3H2,(H,4,5,6)",
+                    "isotopic_inchi": "InChI=1/C2H7NO3S/c3-1-2-7(4,5)6/h1-3H2,(H,4,5,6)/i1H2,2+1H2/f/h3H",
+                    "peak_description": "[1H10,1H11:13C2]HResonance + [1H10,1H11:1H8,1H9]J3HH",
+                    "peak_pattern": "",
+                    "proton_count": "2",
+                    "representative_inchi": "InChI=1/C2H7NO3S/c3-1-2-7(4,5)6/h1-3H2,(H,4,5,6)/f/h3H",
+                    "transient_peak": "2"
+                },
+                {
+                    "resonance_assignment": "Tau-2 (NCH2)_1",
+                    "base_inchi": "InChI=1S/C2H7NO3S/c3-1-2-7(4,5)6/h1-3H2,(H,4,5,6)",
+                    "isotopic_inchi": "InChI=1/C2H7NO3S/c3-1-2-7(4,5)6/h1-3H2,(H,4,5,6)/i1+1H2,2H2/f/h3H",
+                    "peak_description": "[1H8,1H9:13C1]HResonance + [1H8,1H9:1H10,1H11]J3HH",
+                    "peak_pattern": "",
+                    "proton_count": "2",
+                    "representative_inchi": "InChI=1/C2H7NO3S/c3-1-2-7(4,5)6/h1-3H2,(H,4,5,6)/f/h3H",
+                    "transient_peak": "1"
+                },
+                {
+                    "resonance_assignment": "Tris_1",
+                    "base_inchi": "InChI=1S/C6H16O3SSi/c1-11(2,3)6-4-5-10(7,8)9/h4-6H2,1-3H3,(H,7,8,9)/i4D2,5D2,6D2",
+                    "isotopic_inchi": "InChI=1/C4H11NO3/c5-4(1-6,2-7)3-8/h6-8H,1-3,5H2/p+1/i1+1H2,2+1H2,3+1H2/fC4H12NO3/h5H/q+1",
+                    "peak_description": "[1H9,1H10:13C1+1H11,1H12:13C2+1H13,1H14:13C3]Hresonance",
+                    "peak_pattern": "",
+                    "proton_count": "6",
+                    "representative_inchi": "InChI=1/C6H16O3SSi/c1-11(2,3)6-4-5-10(7,8)9/h4-6H2,1-3H3,(H,7,8,9)/p-1/i4D2,5D2,6D2/fC6H15O3SSi/q-1",
+                    "transient_peak": "1"
+                },
+                {
+                    "resonance_assignment": "Tris_2",
+                    "base_inchi": "InChI=1S/C6H16O3SSi/c1-11(2,3)6-4-5-10(7,8)9/h4-6H2,1-3H3,(H,7,8,9)/i4D2,5D2,6D2",
+                    "isotopic_inchi": "InChI=1/C4H11NO3/c5-4(1-6,2-7)3-8/h6-8H,1-3,5H2/p+1/i1+1H2,2+1H2,3+1H2/fC4H12NO3/h5H/q+1",
+                    "peak_description": "[1H9,1H10:13C1+1H11,1H12:13C2+1H13,1H14:13C3]Hresonance",
+                    "peak_pattern": "",
+                    "proton_count": "6",
+                    "representative_inchi": "InChI=1/C6H16O3SSi/c1-11(2,3)6-4-5-10(7,8)9/h4-6H2,1-3H3,(H,7,8,9)/p-1/i4D2,5D2,6D2/fC6H15O3SSi/q-1",
+                    "transient_peak": "2"
+                },
+                {
+                    "resonance_assignment": "Tris_3",
+                    "base_inchi": "InChI=1S/C6H16O3SSi/c1-11(2,3)6-4-5-10(7,8)9/h4-6H2,1-3H3,(H,7,8,9)/i4D2,5D2,6D2",
+                    "isotopic_inchi": "InChI=1/C4H11NO3/c5-4(1-6,2-7)3-8/h6-8H,1-3,5H2/p+1/i1+1H2,2+1H2,3+1H2/fC4H12NO3/h5H/q+1",
+                    "peak_description": "[1H9,1H10:13C1+1H11,1H12:13C2+1H13,1H14:13C3]Hresonance",
+                    "peak_pattern": "",
+                    "proton_count": "6",
+                    "representative_inchi": "InChI=1/C6H16O3SSi/c1-11(2,3)6-4-5-10(7,8)9/h4-6H2,1-3H3,(H,7,8,9)/p-1/i4D2,5D2,6D2/fC6H15O3SSi/q-1",
+                    "transient_peak": "3"
+                },
+                {
+                    "resonance_assignment": "UDP-Glc_1",
+                    "base_inchi": "InChI=1S/C15H24N2O17P2/c18-3-5-8(20)10(22)12(24)14(32-5)33-36(28,29)34-35(26,27)30-4-6-9(21)11(23)13(31-6)17-2-1-7(19)16-15(17)25/h1-2,5-6,8-14,18,20-24H,3-4H2,(H,26,27)(H,28,29)(H,16,19,25)/t5-,6-,8-,9-,10+,11-,12-,13-,14-/m1/s1",
+                    "isotopic_inchi": "InChI=1S/C15H24N2O17P2/c18-3-5-8(20)10(22)12(24)14(32-5)33-36(28,29)34-35(26,27)30-4-6-9(21)11(23)13(31-6)17-2-1-7(19)16-15(17)25/h1-2,5-6,8-14,18,20-24H,3-4H2,(H,26,27)(H,28,29)(H,16,19,25)/t5-,6-,8-,9-,10+,11-,12-,13-,14-/m1/s1/i12H,14+1H",
+                    "peak_description": "[1H51:13C14]HResonance + [1H51:1H49]J3HH",
+                    "peak_pattern": "",
+                    "proton_count": "1",
+                    "representative_inchi": "InChI=1/C15H24N2O17P2/c18-3-5-8(20)10(22)12(24)14(32-5)33-36(28,29)34-35(26,27)30-4-6-9(21)11(23)13(31-6)17-2-1-7(19)16-15(17)25/h1-2,5-6,8-14,18,20-24H,3-4H2,(H,26,27)(H,28,29)(H,16,19,25)/t5-,6-,8-,9-,10+,11-,12-,13-,14-/m1/s1/f/h16,26,28H",
+                    "transient_peak": "1"
+                },
+                {
+                    "resonance_assignment": "Val-B_1",
+                    "base_inchi": "InChI=1S/C5H11NO2/c1-3(2)4(6)5(7)8/h3-4H,6H2,1-2H3,(H,7,8)/t4-/m0/s1",
+                    "isotopic_inchi": "InChI=1/C5H11NO2/c1-3(2)4(6)5(7)8/h3-4H,6H2,1-2H3,(H,7,8)/t4-/m0/s1/i1+1H3,3H/t3-,4-/f/h6H/i/tM",
+                    "peak_description": "[1H9,1H10,1H11:13C1]HResonance + [1H9,1H10,1H11:1H15]J3HH",
+                    "peak_pattern": "",
+                    "proton_count": "3",
+                    "representative_inchi": "InChI=1/C5H11NO2/c1-3(2)4(6)5(7)8/h3-4H,6H2,1-2H3,(H,7,8)/t4-/m0/s1/f/h6H",
+                    "transient_peak": "1"
+                },
+                {
+                    "resonance_assignment": "aGlc_1",
+                    "base_inchi": "InChI=1S/C6H12O6/c7-1-2-3(8)4(9)5(10)6(11)12-2/h2-11H,1H2/t2-,3-,4+,5-,6+/m1/s1",
+                    "isotopic_inchi": "InChI=1S/C6H12O6/c7-1-2-3(8)4(9)5(10)6(11)12-2/h2-11H,1H2/t2-,3-,4+,5-,6+/m1/s1/i5H,6+1H",
+                    "peak_description": "[1H19:13C6]HResonance + [1H19:1H18]J3HH",
+                    "peak_pattern": "",
+                    "proton_count": "0.35",
+                    "representative_inchi": "InChI=1S/C6H12O6/c7-1-2-3(8)4(9)5(10)6(11)12-2/h2-11H,1H2/t2-,3-,4+,5-,6+/m1/s1",
+                    "transient_peak": "1"
+                },
+                {
+                    "resonance_assignment": "bGlc_1",
+                    "base_inchi": "InChI=1S/C6H12O6/c7-1-2-3(8)4(9)5(10)6(11)12-2/h2-11H,1H2/t2-,3-,4+,5-,6-/m1/s1",
+                    "isotopic_inchi": "InChI=1S/C6H12O6/c7-1-2-3(8)4(9)5(10)6(11)12-2/h2-11H,1H2/t2-,3-,4+,5-,6-/m1/s1/i5H,6+1H",
+                    "peak_description": "[1H19:13C6]HResonance + [1H19:1H18]J3HH",
+                    "peak_pattern": "",
+                    "proton_count": "0.65",
+                    "representative_inchi": "InChI=1S/C6H12O6/c7-1-2-3(8)4(9)5(10)6(11)12-2/h2-11H,1H2/t2-,3-,4+,5-,6-/m1/s1",
+                    "transient_peak": "1"
+                },
+                {
+                    "resonance_assignment": "bGlc_2",
+                    "base_inchi": "InChI=1S/C6H12O6/c7-1-2-3(8)4(9)5(10)6(11)12-2/h2-11H,1H2/t2-,3-,4+,5-,6-/m1/s1",
+                    "isotopic_inchi": "InChI=1S/C6H12O6/c7-1-2-3(8)4(9)5(10)6(11)12-2/h2-11H,1H2/t2-,3-,4+,5-,6-/m1/s1/i5H,6+1H",
+                    "peak_description": "[1H19:13C6]HResonance + [1H19:1H18]J3HH",
+                    "peak_pattern": "",
+                    "proton_count": "0.65",
+                    "representative_inchi": "InChI=1S/C6H12O6/c7-1-2-3(8)4(9)5(10)6(11)12-2/h2-11H,1H2/t2-,3-,4+,5-,6-/m1/s1",
+                    "transient_peak": "2"
+                },
+                {
+                    "resonance_assignment": "m-Ins-1,3_1",
+                    "base_inchi": "InChI=1S/C6H12O6/c7-1-2(8)4(10)6(12)5(11)3(1)9/h1-12H/t1-,2-,3-,4+,5-,6-",
+                    "isotopic_inchi": "InChI=1S/C6H12O6/c7-1-2(8)4(10)6(12)5(11)3(1)9/h1-12H/t1-,2-,3-,4+,5-,6-/i1H,2+1H,3+1H,4H,5H/t1-,2+,3-,4-,5+,6+",
+                    "peak_description": "[1H13:13C1+1H17:13C5]HResonance + [1H13:1H14]J3HH + [1H13:1H15]J3HH + [1H17:1H15]J3HH + [1H17:1H18]J3HH",
+                    "peak_pattern": "",
+                    "proton_count": "2",
+                    "representative_inchi": "InChI=1S/C6H12O6/c7-1-2(8)4(10)6(12)5(11)3(1)9/h1-12H/t1-,2-,3-,4+,5-,6-",
+                    "transient_peak": "1"
+                },
+                {
+                    "resonance_assignment": "m-Ins-1,3_2",
+                    "base_inchi": "InChI=1S/C6H12O6/c7-1-2(8)4(10)6(12)5(11)3(1)9/h1-12H/t1-,2-,3-,4+,5-,6-",
+                    "isotopic_inchi": "InChI=1S/C6H12O6/c7-1-2(8)4(10)6(12)5(11)3(1)9/h1-12H/t1-,2-,3-,4+,5-,6-/i1H,2+1H,3+1H,4H,5H/t1-,2+,3-,4-,5+,6+",
+                    "peak_description": "[1H13:13C1+1H17:13C5]HResonance + [1H13:1H14]J3HH + [1H13:1H15]J3HH + [1H17:1H15]J3HH + [1H17:1H18]J3HH",
+                    "peak_pattern": "",
+                    "proton_count": "2",
+                    "representative_inchi": "InChI=1S/C6H12O6/c7-1-2(8)4(10)6(12)5(11)3(1)9/h1-12H/t1-,2-,3-,4+,5-,6-",
+                    "transient_peak": "2"
+                }
+            ]
+        }
+    },
+    "EXTENDED_METABOLITE_DATA": {
+        "EXTENDED_METABOLITE_START": {
+            "Fields": [
+                "metabolite_name",
+                "assignment_lower_bound",
+                "assignment_upper_bound",
+                "chemical_shift",
+                "peak_height",
+                "peak_width",
+                "sample.id"
+            ],
+            "DATA": [
+                {
+                    "resonance_assignment": "Ace-2_1",
+                    "assignment_lower_bound": "1.895",
+                    "assignment_upper_bound": "1.915",
+                    "chemical_shift": "1.910041152828313",
+                    "peak_height": "13.13828187869535",
+                    "peak_width": "9.245475043749142",
+                    "sample.id": "2_ KM20 NTC _13C Glc_1 plate-media-24h"
+                },
+                {
+                    "resonance_assignment": "Ace-2_1",
+                    "assignment_lower_bound": "1.895",
+                    "assignment_upper_bound": "1.915",
+                    "chemical_shift": "1.910699557395483",
+                    "peak_height": "12.45673816786649",
+                    "peak_width": "9.401569885854363",
+                    "sample.id": "3_ KM20 NTC _13C Glc_2 plate-media-24h"
+                },
+                {
+                    "resonance_assignment": "Ace-2_1",
+                    "assignment_lower_bound": "1.895",
+                    "assignment_upper_bound": "1.915",
+                    "chemical_shift": "1.911509054812469",
+                    "peak_height": "13.26567880901762",
+                    "peak_width": "9.285543007176642",
+                    "sample.id": "4_ KM20 NTC _13C Glc_3 plate-media-24h"
+                },
+                {
+                    "resonance_assignment": "Ace-2_1",
+                    "assignment_lower_bound": "1.895",
+                    "assignment_upper_bound": "1.915",
+                    "chemical_shift": "1.910222110304349",
+                    "peak_height": "13.462631393167",
+                    "peak_width": "9.305239355188304",
+                    "sample.id": "6_ KM20 FASNsh _13C Glc_1plate-media-24h"
+                },
+                {
+                    "resonance_assignment": "Ace-2_1",
+                    "assignment_lower_bound": "1.895",
+                    "assignment_upper_bound": "1.915",
+                    "chemical_shift": "1.911477333545043",
+                    "peak_height": "13.67075178033105",
+                    "peak_width": "9.298259709731665",
+                    "sample.id": "7_ KM20 FASNsh _13C Glc_2plate-media-24h"
+                },
+                {
+                    "resonance_assignment": "Ala-3_1",
+                    "assignment_lower_bound": "1.455",
+                    "assignment_upper_bound": "1.48",
+                    "chemical_shift": "1.461935870120635",
+                    "peak_height": "14.74562151037003",
+                    "peak_width": "9.204917245205738",
+                    "sample.id": "2_ KM20 NTC _13C Glc_1 plate-media-24h"
+                },
+                {
+                    "resonance_assignment": "Ala-3_1",
+                    "assignment_lower_bound": "1.455",
+                    "assignment_upper_bound": "1.48",
+                    "chemical_shift": "1.462521642357188",
+                    "peak_height": "13.78067460605691",
+                    "peak_width": "8.959183892121233",
+                    "sample.id": "3_ KM20 NTC _13C Glc_2 plate-media-24h"
+                },
+                {
+                    "resonance_assignment": "Ala-3_1",
+                    "assignment_lower_bound": "1.455",
+                    "assignment_upper_bound": "1.48",
+                    "chemical_shift": "1.46370110987043",
+                    "peak_height": "16.91313460016705",
+                    "peak_width": "9.78139854810138",
+                    "sample.id": "4_ KM20 NTC _13C Glc_3 plate-media-24h"
+                },
+                {
+                    "resonance_assignment": "Ala-3_1",
+                    "assignment_lower_bound": "1.455",
+                    "assignment_upper_bound": "1.48",
+                    "chemical_shift": "1.46249731563298",
+                    "peak_height": "15.70012255488233",
+                    "peak_width": "10.10142318543967",
+                    "sample.id": "6_ KM20 FASNsh _13C Glc_1plate-media-24h"
+                },
+                {
+                    "resonance_assignment": "Ala-3_1",
+                    "assignment_lower_bound": "1.455",
+                    "assignment_upper_bound": "1.48",
+                    "chemical_shift": "1.463461552660738",
+                    "peak_height": "15.40041523919665",
+                    "peak_width": "9.618197531953358",
+                    "sample.id": "7_ KM20 FASNsh _13C Glc_2plate-media-24h"
+                },
+                {
+                    "resonance_assignment": "Ala-3_2",
+                    "assignment_lower_bound": "1.455",
+                    "assignment_upper_bound": "1.48",
+                    "chemical_shift": "1.474549452895787",
+                    "peak_height": "18.10863076377959",
+                    "peak_width": "9.658376388096816",
+                    "sample.id": "2_ KM20 NTC _13C Glc_1 plate-media-24h"
+                },
+                {
+                    "resonance_assignment": "Ala-3_2",
+                    "assignment_lower_bound": "1.455",
+                    "assignment_upper_bound": "1.48",
+                    "chemical_shift": "1.475045686380975",
+                    "peak_height": "17.80103063445758",
+                    "peak_width": "9.703268184100278",
+                    "sample.id": "3_ KM20 NTC _13C Glc_2 plate-media-24h"
+                },
+                {
+                    "resonance_assignment": "Ala-3_2",
+                    "assignment_lower_bound": "1.455",
+                    "assignment_upper_bound": "1.48",
+                    "chemical_shift": "1.476276569810183",
+                    "peak_height": "16.72997811967729",
+                    "peak_width": "8.895003408268098",
+                    "sample.id": "4_ KM20 NTC _13C Glc_3 plate-media-24h"
+                },
+                {
+                    "resonance_assignment": "Ala-3_2",
+                    "assignment_lower_bound": "1.455",
+                    "assignment_upper_bound": "1.48",
+                    "chemical_shift": "1.474887897905797",
+                    "peak_height": "15.24669814556592",
+                    "peak_width": "8.810713292732148",
+                    "sample.id": "6_ KM20 FASNsh _13C Glc_1plate-media-24h"
+                },
+                {
+                    "resonance_assignment": "Ala-3_2",
+                    "assignment_lower_bound": "1.455",
+                    "assignment_upper_bound": "1.48",
+                    "chemical_shift": "1.47600004140759",
+                    "peak_height": "16.0739306428368",
+                    "peak_width": "8.898389050839233",
+                    "sample.id": "7_ KM20 FASNsh _13C Glc_2plate-media-24h"
+                },
+                {
+                    "resonance_assignment": "DSS_1",
+                    "assignment_lower_bound": "-0.02",
+                    "assignment_upper_bound": "0.02",
+                    "chemical_shift": "0.0002715935147831194",
+                    "peak_height": "0.6127519427453432",
+                    "peak_width": "8.645494649013436",
+                    "sample.id": "4_ KM20 NTC _13C Glc_3 plate-media-0h"
+                },
+                {
+                    "resonance_assignment": "DSS_1",
+                    "assignment_lower_bound": "-0.02",
+                    "assignment_upper_bound": "0.02",
+                    "chemical_shift": "0.0002522705999045693",
+                    "peak_height": "0.578887254159078",
+                    "peak_width": "9.529533939886717",
+                    "sample.id": "7_ KM20 FASNsh _13C Glc_2plate-media-24h"
+                },
+                {
+                    "resonance_assignment": "Gln+Glu-2_1",
+                    "assignment_lower_bound": "3.73",
+                    "assignment_upper_bound": "3.81",
+                    "chemical_shift": "3.75504251477939",
+                    "peak_height": "40.63541352546046",
+                    "peak_width": "16.6376792596712",
+                    "sample.id": "2_ KM20 NTC _13C Glc_1 plate-media-0h"
+                },
+                {
+                    "resonance_assignment": "Gln+Glu-2_1",
+                    "assignment_lower_bound": "3.73",
+                    "assignment_upper_bound": "3.81",
+                    "chemical_shift": "3.752281430954824",
+                    "peak_height": "29.49964419403699",
+                    "peak_width": "13.05456764019331",
+                    "sample.id": "2_ KM20 NTC _13C Glc_1 plate-media-24h"
+                },
+                {
+                    "resonance_assignment": "Gln+Glu-2_1",
+                    "assignment_lower_bound": "3.73",
+                    "assignment_upper_bound": "3.81",
+                    "chemical_shift": "3.754751162348104",
+                    "peak_height": "42.80301214688802",
+                    "peak_width": "18.61217406915471",
+                    "sample.id": "3_ KM20 NTC _13C Glc_2 plate-media-0h"
+                },
+                {
+                    "resonance_assignment": "Gln+Glu-2_1",
+                    "assignment_lower_bound": "3.73",
+                    "assignment_upper_bound": "3.81",
+                    "chemical_shift": "3.752288143936297",
+                    "peak_height": "27.75161943795321",
+                    "peak_width": "12.58354883342354",
+                    "sample.id": "3_ KM20 NTC _13C Glc_2 plate-media-24h"
+                },
+                {
+                    "resonance_assignment": "Gln+Glu-2_1",
+                    "assignment_lower_bound": "3.73",
+                    "assignment_upper_bound": "3.81",
+                    "chemical_shift": "3.755341607490529",
+                    "peak_height": "41.84947563113252",
+                    "peak_width": "14.77932122711446",
+                    "sample.id": "4_ KM20 NTC _13C Glc_3 plate-media-0h"
+                },
+                {
+                    "resonance_assignment": "Gln+Glu-2_1",
+                    "assignment_lower_bound": "3.73",
+                    "assignment_upper_bound": "3.81",
+                    "chemical_shift": "3.754204891035323",
+                    "peak_height": "29.23889064309973",
+                    "peak_width": "12.86863486393479",
+                    "sample.id": "4_ KM20 NTC _13C Glc_3 plate-media-24h"
+                },
+                {
+                    "resonance_assignment": "Gln+Glu-2_1",
+                    "assignment_lower_bound": "3.73",
+                    "assignment_upper_bound": "3.81",
+                    "chemical_shift": "3.753911179369989",
+                    "peak_height": "40.3806857488015",
+                    "peak_width": "18.14283328407681",
+                    "sample.id": "6_ KM20 FASNsh _13C Glc_1plate-media-0h"
+                },
+                {
+                    "resonance_assignment": "Gln+Glu-2_1",
+                    "assignment_lower_bound": "3.73",
+                    "assignment_upper_bound": "3.81",
+                    "chemical_shift": "3.753374132824034",
+                    "peak_height": "29.9356977203584",
+                    "peak_width": "14.03151804321045",
+                    "sample.id": "6_ KM20 FASNsh _13C Glc_1plate-media-24h"
+                },
+                {
+                    "resonance_assignment": "Gln+Glu-2_1",
+                    "assignment_lower_bound": "3.73",
+                    "assignment_upper_bound": "3.81",
+                    "chemical_shift": "3.754414111722629",
+                    "peak_height": "30.16437769338234",
+                    "peak_width": "14.38817209212372",
+                    "sample.id": "7_ KM20 FASNsh _13C Glc_2plate-media-24h"
+                },
+                {
+                    "resonance_assignment": "Gln+Glu-2_1",
+                    "assignment_lower_bound": "3.73",
+                    "assignment_upper_bound": "3.81",
+                    "chemical_shift": "3.753946678564967",
+                    "peak_height": "37.36849316704651",
+                    "peak_width": "15.6754123802219",
+                    "sample.id": "8_ KM20 FASNsh _13C Glc_3plate-media-0h"
+                },
+                {
+                    "resonance_assignment": "Gln+Glu-2_1",
+                    "assignment_lower_bound": "3.73",
+                    "assignment_upper_bound": "3.81",
+                    "chemical_shift": "3.75558940674274",
+                    "peak_height": "38.01476717124962",
+                    "peak_width": "17.31815940144928",
+                    "sample.id": "8_ KM20 FASNsh _13C Glc_3plate-media-24h"
+                },
+                {
+                    "resonance_assignment": "Gln+Glu-2_2",
+                    "assignment_lower_bound": "3.73",
+                    "assignment_upper_bound": "3.81",
+                    "chemical_shift": "3.772412074347202",
+                    "peak_height": "63.84488418879742",
+                    "peak_width": "11.86341077583663",
+                    "sample.id": "2_ KM20 NTC _13C Glc_1 plate-media-0h"
+                },
+                {
+                    "resonance_assignment": "Gln+Glu-2_2",
+                    "assignment_lower_bound": "3.73",
+                    "assignment_upper_bound": "3.81",
+                    "chemical_shift": "3.766715829992442",
+                    "peak_height": "46.68341635541586",
+                    "peak_width": "10.54832435316359",
+                    "sample.id": "2_ KM20 NTC _13C Glc_1 plate-media-24h"
+                },
+                {
+                    "resonance_assignment": "Gln+Glu-2_2",
+                    "assignment_lower_bound": "3.73",
+                    "assignment_upper_bound": "3.81",
+                    "chemical_shift": "3.772449056696785",
+                    "peak_height": "66.98873321042893",
+                    "peak_width": "12.17732331972723",
+                    "sample.id": "3_ KM20 NTC _13C Glc_2 plate-media-0h"
+                },
+                {
+                    "resonance_assignment": "Gln+Glu-2_2",
+                    "assignment_lower_bound": "3.73",
+                    "assignment_upper_bound": "3.81",
+                    "chemical_shift": "3.766838666370965",
+                    "peak_height": "44.81841159872778",
+                    "peak_width": "10.553357882791",
+                    "sample.id": "3_ KM20 NTC _13C Glc_2 plate-media-24h"
+                },
+                {
+                    "resonance_assignment": "Gln+Glu-2_2",
+                    "assignment_lower_bound": "3.73",
+                    "assignment_upper_bound": "3.81",
+                    "chemical_shift": "3.772814179868681",
+                    "peak_height": "71.15731743376922",
+                    "peak_width": "11.97195815286162",
+                    "sample.id": "4_ KM20 NTC _13C Glc_3 plate-media-0h"
+                },
+                {
+                    "resonance_assignment": "Gln+Glu-2_2",
+                    "assignment_lower_bound": "3.73",
+                    "assignment_upper_bound": "3.81",
+                    "chemical_shift": "3.76861854600709",
+                    "peak_height": "47.78820680919708",
+                    "peak_width": "10.61946217860075",
+                    "sample.id": "4_ KM20 NTC _13C Glc_3 plate-media-24h"
+                },
+                {
+                    "resonance_assignment": "Gln+Glu-2_2",
+                    "assignment_lower_bound": "3.73",
+                    "assignment_upper_bound": "3.81",
+                    "chemical_shift": "3.770945448955187",
+                    "peak_height": "64.87170975744851",
+                    "peak_width": "11.53687208461117",
+                    "sample.id": "6_ KM20 FASNsh _13C Glc_1plate-media-0h"
+                },
+                {
+                    "resonance_assignment": "Gln+Glu-2_2",
+                    "assignment_lower_bound": "3.73",
+                    "assignment_upper_bound": "3.81",
+                    "chemical_shift": "3.767481667223057",
+                    "peak_height": "42.0409539449122",
+                    "peak_width": "10.1345633376248",
+                    "sample.id": "6_ KM20 FASNsh _13C Glc_1plate-media-24h"
+                },
+                {
+                    "resonance_assignment": "Gln+Glu-2_2",
+                    "assignment_lower_bound": "3.73",
+                    "assignment_upper_bound": "3.81",
+                    "chemical_shift": "3.768453606796741",
+                    "peak_height": "42.94493935279929",
+                    "peak_width": "10.06229665083607",
+                    "sample.id": "7_ KM20 FASNsh _13C Glc_2plate-media-24h"
+                },
+                {
+                    "resonance_assignment": "Gln+Glu-2_2",
+                    "assignment_lower_bound": "3.73",
+                    "assignment_upper_bound": "3.81",
+                    "chemical_shift": "3.771535706676447",
+                    "peak_height": "63.59811536058342",
+                    "peak_width": "12.03566810967297",
+                    "sample.id": "8_ KM20 FASNsh _13C Glc_3plate-media-0h"
+                },
+                {
+                    "resonance_assignment": "Gln+Glu-2_2",
+                    "assignment_lower_bound": "3.73",
+                    "assignment_upper_bound": "3.81",
+                    "chemical_shift": "3.773177453450097",
+                    "peak_height": "59.56839234104692",
+                    "peak_width": "11.89942448328068",
+                    "sample.id": "8_ KM20 FASNsh _13C Glc_3plate-media-24h"
+                },
+                {
+                    "resonance_assignment": "Gln+Glu-2_3",
+                    "assignment_lower_bound": "3.73",
+                    "assignment_upper_bound": "3.81",
+                    "chemical_shift": "3.775301083245405",
+                    "peak_height": "39.21479089822451",
+                    "peak_width": "8.612006489937006",
+                    "sample.id": "2_ KM20 NTC _13C Glc_1 plate-media-24h"
+                },
+                {
+                    "resonance_assignment": "Gln+Glu-2_3",
+                    "assignment_lower_bound": "3.73",
+                    "assignment_upper_bound": "3.81",
+                    "chemical_shift": "3.775620980424682",
+                    "peak_height": "41.28543479706944",
+                    "peak_width": "9.168329578708411",
+                    "sample.id": "3_ KM20 NTC _13C Glc_2 plate-media-24h"
+                },
+                {
+                    "resonance_assignment": "Gln+Glu-2_3",
+                    "assignment_lower_bound": "3.73",
+                    "assignment_upper_bound": "3.81",
+                    "chemical_shift": "3.777380270793811",
+                    "peak_height": "43.25027879831045",
+                    "peak_width": "9.018986729747832",
+                    "sample.id": "4_ KM20 NTC _13C Glc_3 plate-media-24h"
+                },
+                {
+                    "resonance_assignment": "Gln+Glu-2_3",
+                    "assignment_lower_bound": "3.73",
+                    "assignment_upper_bound": "3.81",
+                    "chemical_shift": "3.775949201645619",
+                    "peak_height": "41.11543680257294",
+                    "peak_width": "8.90905721069645",
+                    "sample.id": "6_ KM20 FASNsh _13C Glc_1plate-media-24h"
+                },
+                {
+                    "resonance_assignment": "Gln+Glu-2_3",
+                    "assignment_lower_bound": "3.73",
+                    "assignment_upper_bound": "3.81",
+                    "chemical_shift": "3.776867876123871",
+                    "peak_height": "38.45137846634517",
+                    "peak_width": "8.300269404107626",
+                    "sample.id": "7_ KM20 FASNsh _13C Glc_2plate-media-24h"
+                },
+                {
+                    "resonance_assignment": "Gln-4_1",
+                    "assignment_lower_bound": "2.415",
+                    "assignment_upper_bound": "2.475",
+                    "chemical_shift": "2.437330620311504",
+                    "peak_height": "0.96017999416199",
+                    "peak_width": "31.93509559652856",
+                    "sample.id": "2_ KM20 NTC _13C Glc_1 plate-media-0h"
+                },
+                {
+                    "resonance_assignment": "Gln-4_1",
+                    "assignment_lower_bound": "2.415",
+                    "assignment_upper_bound": "2.475",
+                    "chemical_shift": "2.439828298041742",
+                    "peak_height": "0.8961867088422298",
+                    "peak_width": "35.33748861957922",
+                    "sample.id": "3_ KM20 NTC _13C Glc_2 plate-media-0h"
+                },
+                {
+                    "resonance_assignment": "Gln-4_1",
+                    "assignment_lower_bound": "2.415",
+                    "assignment_upper_bound": "2.475",
+                    "chemical_shift": "2.440821166415772",
+                    "peak_height": "0.9265348018058713",
+                    "peak_width": "35.14458607791312",
+                    "sample.id": "4_ KM20 NTC _13C Glc_3 plate-media-0h"
+                },
+                {
+                    "resonance_assignment": "Gln-4_1",
+                    "assignment_lower_bound": "2.415",
+                    "assignment_upper_bound": "2.475",
+                    "chemical_shift": "2.431422753235358",
+                    "peak_height": "0.5790918078723621",
+                    "peak_width": "9.904662000887784",
+                    "sample.id": "6_ KM20 FASNsh _13C Glc_1plate-media-0h"
+                },
+                {
+                    "resonance_assignment": "Gln-4_1",
+                    "assignment_lower_bound": "2.415",
+                    "assignment_upper_bound": "2.475",
+                    "chemical_shift": "2.437755793166713",
+                    "peak_height": "0.7284178776148655",
+                    "peak_width": "35.59055087941295",
+                    "sample.id": "8_ KM20 FASNsh _13C Glc_3plate-media-0h"
+                },
+                {
+                    "resonance_assignment": "Gln-4_1",
+                    "assignment_lower_bound": "2.415",
+                    "assignment_upper_bound": "2.475",
+                    "chemical_shift": "2.44143472647146",
+                    "peak_height": "0.875968379829764",
+                    "peak_width": "35.7121929379708",
+                    "sample.id": "8_ KM20 FASNsh _13C Glc_3plate-media-24h"
+                },
+                {
+                    "resonance_assignment": "Gln-4_2",
+                    "assignment_lower_bound": "2.415",
+                    "assignment_upper_bound": "2.475",
+                    "chemical_shift": "2.447771973634216",
+                    "peak_height": "0.8277699221725926",
+                    "peak_width": "14.9220287418202",
+                    "sample.id": "6_ KM20 FASNsh _13C Glc_1plate-media-0h"
+                },
+                {
+                    "resonance_assignment": "Glu-3-b_1",
+                    "assignment_lower_bound": "2.09",
+                    "assignment_upper_bound": "2.125",
+                    "chemical_shift": "2.124997805691415",
+                    "peak_height": "0.9944101628269386",
+                    "peak_width": "18.03617574737071",
+                    "sample.id": "2_ KM20 NTC _13C Glc_1 plate-media-24h"
+                },
+                {
+                    "resonance_assignment": "Glu-3-b_1",
+                    "assignment_lower_bound": "2.09",
+                    "assignment_upper_bound": "2.125",
+                    "chemical_shift": "2.124741676945459",
+                    "peak_height": "1.057376024933016",
+                    "peak_width": "18.71785621692793",
+                    "sample.id": "3_ KM20 NTC _13C Glc_2 plate-media-24h"
+                },
+                {
+                    "resonance_assignment": "Glu-3-b_1",
+                    "assignment_lower_bound": "2.09",
+                    "assignment_upper_bound": "2.125",
+                    "chemical_shift": "2.124478670600654",
+                    "peak_height": "1.663356105000795",
+                    "peak_width": "20.02068384587557",
+                    "sample.id": "4_ KM20 NTC _13C Glc_3 plate-media-0h"
+                },
+                {
+                    "resonance_assignment": "Glu-3-b_1",
+                    "assignment_lower_bound": "2.09",
+                    "assignment_upper_bound": "2.125",
+                    "chemical_shift": "2.124804015083564",
+                    "peak_height": "1.413118265839503",
+                    "peak_width": "20.30844653433734",
+                    "sample.id": "6_ KM20 FASNsh _13C Glc_1plate-media-0h"
+                },
+                {
+                    "resonance_assignment": "Glu-3-b_1",
+                    "assignment_lower_bound": "2.09",
+                    "assignment_upper_bound": "2.125",
+                    "chemical_shift": "2.124339650237152",
+                    "peak_height": "1.417832659125963",
+                    "peak_width": "19.34142881802345",
+                    "sample.id": "8_ KM20 FASNsh _13C Glc_3plate-media-0h"
+                },
+                {
+                    "resonance_assignment": "Glu-4_1",
+                    "assignment_lower_bound": "2.315",
+                    "assignment_upper_bound": "2.37",
+                    "chemical_shift": "2.364922787202422",
+                    "peak_height": "7.82447395053144",
+                    "peak_width": "7.979488142669019",
+                    "sample.id": "2_ KM20 NTC _13C Glc_1 plate-media-24h"
+                },
+                {
+                    "resonance_assignment": "Glu-4_1",
+                    "assignment_lower_bound": "2.315",
+                    "assignment_upper_bound": "2.37",
+                    "chemical_shift": "2.365457513819535",
+                    "peak_height": "7.698050303427729",
+                    "peak_width": "7.904990262923972",
+                    "sample.id": "3_ KM20 NTC _13C Glc_2 plate-media-24h"
+                },
+                {
+                    "resonance_assignment": "Glu-4_1",
+                    "assignment_lower_bound": "2.315",
+                    "assignment_upper_bound": "2.37",
+                    "chemical_shift": "2.36681589123077",
+                    "peak_height": "7.936441915227024",
+                    "peak_width": "7.971568934783336",
+                    "sample.id": "4_ KM20 NTC _13C Glc_3 plate-media-24h"
+                },
+                {
+                    "resonance_assignment": "Glu-4_1",
+                    "assignment_lower_bound": "2.315",
+                    "assignment_upper_bound": "2.37",
+                    "chemical_shift": "2.365412934128587",
+                    "peak_height": "7.540108337726775",
+                    "peak_width": "8.162558224230121",
+                    "sample.id": "6_ KM20 FASNsh _13C Glc_1plate-media-24h"
+                },
+                {
+                    "resonance_assignment": "Glu-4_1",
+                    "assignment_lower_bound": "2.315",
+                    "assignment_upper_bound": "2.37",
+                    "chemical_shift": "2.366467080248511",
+                    "peak_height": "7.797670565263869",
+                    "peak_width": "8.118407189727904",
+                    "sample.id": "7_ KM20 FASNsh _13C Glc_2plate-media-24h"
+                },
+                {
+                    "resonance_assignment": "Lac-2_1",
+                    "assignment_lower_bound": "4.08",
+                    "assignment_upper_bound": "4.13",
+                    "chemical_shift": "4.087838699088264",
+                    "peak_height": "3.281451191791783",
+                    "peak_width": "6.501528572265906",
+                    "sample.id": "2_ KM20 NTC _13C Glc_1 plate-media-24h"
+                },
+                {
+                    "resonance_assignment": "Lac-2_1",
+                    "assignment_lower_bound": "4.08",
+                    "assignment_upper_bound": "4.13",
+                    "chemical_shift": "4.088600390875111",
+                    "peak_height": "3.460654912820751",
+                    "peak_width": "6.684564506003495",
+                    "sample.id": "3_ KM20 NTC _13C Glc_2 plate-media-24h"
+                },
+                {
+                    "resonance_assignment": "Lac-2_1",
+                    "assignment_lower_bound": "4.08",
+                    "assignment_upper_bound": "4.13",
+                    "chemical_shift": "4.090277706252908",
+                    "peak_height": "3.755197845549683",
+                    "peak_width": "6.460153174437178",
+                    "sample.id": "4_ KM20 NTC _13C Glc_3 plate-media-24h"
+                },
+                {
+                    "resonance_assignment": "Lac-2_1",
+                    "assignment_lower_bound": "4.08",
+                    "assignment_upper_bound": "4.13",
+                    "chemical_shift": "4.088879628018453",
+                    "peak_height": "3.10815845271961",
+                    "peak_width": "6.224710130504289",
+                    "sample.id": "6_ KM20 FASNsh _13C Glc_1plate-media-24h"
+                },
+                {
+                    "resonance_assignment": "Lac-2_1",
+                    "assignment_lower_bound": "4.08",
+                    "assignment_upper_bound": "4.13",
+                    "chemical_shift": "4.089843110587662",
+                    "peak_height": "3.331662346899529",
+                    "peak_width": "6.185078804352313",
+                    "sample.id": "7_ KM20 FASNsh _13C Glc_2plate-media-24h"
+                },
+                {
+                    "resonance_assignment": "Lac-2_2",
+                    "assignment_lower_bound": "4.08",
+                    "assignment_upper_bound": "4.13",
+                    "chemical_shift": "4.100862028753388",
+                    "peak_height": "16.03462890852789",
+                    "peak_width": "9.64862859282027",
+                    "sample.id": "2_ KM20 NTC _13C Glc_1 plate-media-24h"
+                },
+                {
+                    "resonance_assignment": "Lac-2_2",
+                    "assignment_lower_bound": "4.08",
+                    "assignment_upper_bound": "4.13",
+                    "chemical_shift": "4.101720951404363",
+                    "peak_height": "15.91384038710389",
+                    "peak_width": "9.51063870362517",
+                    "sample.id": "3_ KM20 NTC _13C Glc_2 plate-media-24h"
+                },
+                {
+                    "resonance_assignment": "Lac-2_2",
+                    "assignment_lower_bound": "4.08",
+                    "assignment_upper_bound": "4.13",
+                    "chemical_shift": "4.103413906442666",
+                    "peak_height": "16.70444614567993",
+                    "peak_width": "9.303691951086899",
+                    "sample.id": "4_ KM20 NTC _13C Glc_3 plate-media-24h"
+                },
+                {
+                    "resonance_assignment": "Lac-2_2",
+                    "assignment_lower_bound": "4.08",
+                    "assignment_upper_bound": "4.13",
+                    "chemical_shift": "4.101860523164736",
+                    "peak_height": "15.29462805709679",
+                    "peak_width": "9.467398806827186",
+                    "sample.id": "6_ KM20 FASNsh _13C Glc_1plate-media-24h"
+                },
+                {
+                    "resonance_assignment": "Lac-2_2",
+                    "assignment_lower_bound": "4.08",
+                    "assignment_upper_bound": "4.13",
+                    "chemical_shift": "4.102809381871545",
+                    "peak_height": "15.81659199040033",
+                    "peak_width": "9.348653276552344",
+                    "sample.id": "7_ KM20 FASNsh _13C Glc_2plate-media-24h"
+                },
+                {
+                    "resonance_assignment": "Lac-2_3",
+                    "assignment_lower_bound": "4.08",
+                    "assignment_upper_bound": "4.13",
+                    "chemical_shift": "4.113816383252159",
+                    "peak_height": "16.62769837743177",
+                    "peak_width": "9.554212184611638",
+                    "sample.id": "2_ KM20 NTC _13C Glc_1 plate-media-24h"
+                },
+                {
+                    "resonance_assignment": "Lac-2_3",
+                    "assignment_lower_bound": "4.08",
+                    "assignment_upper_bound": "4.13",
+                    "chemical_shift": "4.114778837729656",
+                    "peak_height": "16.64593928518325",
+                    "peak_width": "10.06800586823578",
+                    "sample.id": "3_ KM20 NTC _13C Glc_2 plate-media-24h"
+                },
+                {
+                    "resonance_assignment": "Lac-2_3",
+                    "assignment_lower_bound": "4.08",
+                    "assignment_upper_bound": "4.13",
+                    "chemical_shift": "4.11635282030354",
+                    "peak_height": "17.55210538535454",
+                    "peak_width": "9.567836455983011",
+                    "sample.id": "4_ KM20 NTC _13C Glc_3 plate-media-24h"
+                },
+                {
+                    "resonance_assignment": "Lac-2_3",
+                    "assignment_lower_bound": "4.08",
+                    "assignment_upper_bound": "4.13",
+                    "chemical_shift": "4.114814810982567",
+                    "peak_height": "16.77328311678329",
+                    "peak_width": "10.07253161527041",
+                    "sample.id": "6_ KM20 FASNsh _13C Glc_1plate-media-24h"
+                },
+                {
+                    "resonance_assignment": "Lac-2_3",
+                    "assignment_lower_bound": "4.08",
+                    "assignment_upper_bound": "4.13",
+                    "chemical_shift": "4.115809097189388",
+                    "peak_height": "16.77447633217788",
+                    "peak_width": "9.72229857999478",
+                    "sample.id": "7_ KM20 FASNsh _13C Glc_2plate-media-24h"
+                },
+                {
+                    "resonance_assignment": "Lac-2_4",
+                    "assignment_lower_bound": "4.08",
+                    "assignment_upper_bound": "4.13",
+                    "chemical_shift": "4.126352268877421",
+                    "peak_height": "4.606402117588599",
+                    "peak_width": "7.916917338453492",
+                    "sample.id": "2_ KM20 NTC _13C Glc_1 plate-media-24h"
+                },
+                {
+                    "resonance_assignment": "Lac-2_4",
+                    "assignment_lower_bound": "4.08",
+                    "assignment_upper_bound": "4.13",
+                    "chemical_shift": "4.127773241161983",
+                    "peak_height": "4.119043360197077",
+                    "peak_width": "7.038955697197797",
+                    "sample.id": "3_ KM20 NTC _13C Glc_2 plate-media-24h"
+                },
+                {
+                    "resonance_assignment": "Lac-2_4",
+                    "assignment_lower_bound": "4.08",
+                    "assignment_upper_bound": "4.13",
+                    "chemical_shift": "4.12897555680304",
+                    "peak_height": "5.030790199461451",
+                    "peak_width": "8.217065517786745",
+                    "sample.id": "4_ KM20 NTC _13C Glc_3 plate-media-24h"
+                },
+                {
+                    "resonance_assignment": "Lac-2_4",
+                    "assignment_lower_bound": "4.08",
+                    "assignment_upper_bound": "4.13",
+                    "chemical_shift": "4.12764708643126",
+                    "peak_height": "4.793085528600213",
+                    "peak_width": "8.65421693629663",
+                    "sample.id": "6_ KM20 FASNsh _13C Glc_1plate-media-24h"
+                },
+                {
+                    "resonance_assignment": "Lac-2_4",
+                    "assignment_lower_bound": "4.08",
+                    "assignment_upper_bound": "4.13",
+                    "chemical_shift": "4.128323780348135",
+                    "peak_height": "4.365851571782815",
+                    "peak_width": "7.300162575639366",
+                    "sample.id": "7_ KM20 FASNsh _13C Glc_2plate-media-24h"
+                },
+                {
+                    "resonance_assignment": "Lac-3_1",
+                    "assignment_lower_bound": "1.3",
+                    "assignment_upper_bound": "1.34",
+                    "chemical_shift": "1.314590460604311",
+                    "peak_height": "2.264614457153592",
+                    "peak_width": "8.765446351113944",
+                    "sample.id": "2_ KM20 NTC _13C Glc_1 plate-media-0h"
+                },
+                {
+                    "resonance_assignment": "Lac-3_1",
+                    "assignment_lower_bound": "1.3",
+                    "assignment_upper_bound": "1.34",
+                    "chemical_shift": "1.313689207089926",
+                    "peak_height": "204.2967457850282",
+                    "peak_width": "9.593198229966587",
+                    "sample.id": "2_ KM20 NTC _13C Glc_1 plate-media-24h"
+                },
+                {
+                    "resonance_assignment": "Lac-3_1",
+                    "assignment_lower_bound": "1.3",
+                    "assignment_upper_bound": "1.34",
+                    "chemical_shift": "1.314569584887304",
+                    "peak_height": "2.213734198754927",
+                    "peak_width": "8.43643296629754",
+                    "sample.id": "3_ KM20 NTC _13C Glc_2 plate-media-0h"
+                },
+                {
+                    "resonance_assignment": "Lac-3_1",
+                    "assignment_lower_bound": "1.3",
+                    "assignment_upper_bound": "1.34",
+                    "chemical_shift": "1.314244359729879",
+                    "peak_height": "200.0863865508408",
+                    "peak_width": "9.599526609478756",
+                    "sample.id": "3_ KM20 NTC _13C Glc_2 plate-media-24h"
+                },
+                {
+                    "resonance_assignment": "Lac-3_1",
+                    "assignment_lower_bound": "1.3",
+                    "assignment_upper_bound": "1.34",
+                    "chemical_shift": "1.314432170936861",
+                    "peak_height": "2.467563389532354",
+                    "peak_width": "8.538504659573325",
+                    "sample.id": "4_ KM20 NTC _13C Glc_3 plate-media-0h"
+                },
+                {
+                    "resonance_assignment": "Lac-3_1",
+                    "assignment_lower_bound": "1.3",
+                    "assignment_upper_bound": "1.34",
+                    "chemical_shift": "1.314953246474025",
+                    "peak_height": "222.9129412372799",
+                    "peak_width": "10.0848318516565",
+                    "sample.id": "4_ KM20 NTC _13C Glc_3 plate-media-24h"
+                },
+                {
+                    "resonance_assignment": "Lac-3_1",
+                    "assignment_lower_bound": "1.3",
+                    "assignment_upper_bound": "1.34",
+                    "chemical_shift": "1.313486058101671",
+                    "peak_height": "2.164874595966066",
+                    "peak_width": "8.113076885906763",
+                    "sample.id": "6_ KM20 FASNsh _13C Glc_1plate-media-0h"
+                },
+                {
+                    "resonance_assignment": "Lac-3_1",
+                    "assignment_lower_bound": "1.3",
+                    "assignment_upper_bound": "1.34",
+                    "chemical_shift": "1.313667126032506",
+                    "peak_height": "221.4583959385583",
+                    "peak_width": "10.34411554894304",
+                    "sample.id": "6_ KM20 FASNsh _13C Glc_1plate-media-24h"
+                },
+                {
+                    "resonance_assignment": "Lac-3_1",
+                    "assignment_lower_bound": "1.3",
+                    "assignment_upper_bound": "1.34",
+                    "chemical_shift": "1.314841739622469",
+                    "peak_height": "211.6885102183661",
+                    "peak_width": "9.946083417602852",
+                    "sample.id": "7_ KM20 FASNsh _13C Glc_2plate-media-24h"
+                },
+                {
+                    "resonance_assignment": "Lac-3_1",
+                    "assignment_lower_bound": "1.3",
+                    "assignment_upper_bound": "1.34",
+                    "chemical_shift": "1.313743691167916",
+                    "peak_height": "2.232111253353609",
+                    "peak_width": "8.527272445158376",
+                    "sample.id": "8_ KM20 FASNsh _13C Glc_3plate-media-0h"
+                },
+                {
+                    "resonance_assignment": "Lac-3_1",
+                    "assignment_lower_bound": "1.3",
+                    "assignment_upper_bound": "1.34",
+                    "chemical_shift": "1.315044514618013",
+                    "peak_height": "2.134056988211548",
+                    "peak_width": "8.351093888304936",
+                    "sample.id": "8_ KM20 FASNsh _13C Glc_3plate-media-24h"
+                },
+                {
+                    "resonance_assignment": "Lac-3_2",
+                    "assignment_lower_bound": "1.3",
+                    "assignment_upper_bound": "1.34",
+                    "chemical_shift": "1.326472796429629",
+                    "peak_height": "1.515969772666717",
+                    "peak_width": "6.730161386669065",
+                    "sample.id": "2_ KM20 NTC _13C Glc_1 plate-media-0h"
+                },
+                {
+                    "resonance_assignment": "Lac-3_2",
+                    "assignment_lower_bound": "1.3",
+                    "assignment_upper_bound": "1.34",
+                    "chemical_shift": "1.325343284840629",
+                    "peak_height": "167.7184838300206",
+                    "peak_width": "8.34738411621451",
+                    "sample.id": "2_ KM20 NTC _13C Glc_1 plate-media-24h"
+                },
+                {
+                    "resonance_assignment": "Lac-3_2",
+                    "assignment_lower_bound": "1.3",
+                    "assignment_upper_bound": "1.34",
+                    "chemical_shift": "1.326153523033553",
+                    "peak_height": "1.736809208022575",
+                    "peak_width": "7.32222985797761",
+                    "sample.id": "3_ KM20 NTC _13C Glc_2 plate-media-0h"
+                },
+                {
+                    "resonance_assignment": "Lac-3_2",
+                    "assignment_lower_bound": "1.3",
+                    "assignment_upper_bound": "1.34",
+                    "chemical_shift": "1.326001993406545",
+                    "peak_height": "166.2450279194138",
+                    "peak_width": "8.378856574304105",
+                    "sample.id": "3_ KM20 NTC _13C Glc_2 plate-media-24h"
+                },
+                {
+                    "resonance_assignment": "Lac-3_2",
+                    "assignment_lower_bound": "1.3",
+                    "assignment_upper_bound": "1.34",
+                    "chemical_shift": "1.326516313103714",
+                    "peak_height": "1.808266526875071",
+                    "peak_width": "7.323871646556801",
+                    "sample.id": "4_ KM20 NTC _13C Glc_3 plate-media-0h"
+                },
+                {
+                    "resonance_assignment": "Lac-3_2",
+                    "assignment_lower_bound": "1.3",
+                    "assignment_upper_bound": "1.34",
+                    "chemical_shift": "1.326781258268211",
+                    "peak_height": "152.8086553115623",
+                    "peak_width": "7.989060707306749",
+                    "sample.id": "4_ KM20 NTC _13C Glc_3 plate-media-24h"
+                },
+                {
+                    "resonance_assignment": "Lac-3_2",
+                    "assignment_lower_bound": "1.3",
+                    "assignment_upper_bound": "1.34",
+                    "chemical_shift": "1.324992985618014",
+                    "peak_height": "1.83613891731424",
+                    "peak_width": "7.343014635321044",
+                    "sample.id": "6_ KM20 FASNsh _13C Glc_1plate-media-0h"
+                },
+                {
+                    "resonance_assignment": "Lac-3_2",
+                    "assignment_lower_bound": "1.3",
+                    "assignment_upper_bound": "1.34",
+                    "chemical_shift": "1.325411109231117",
+                    "peak_height": "148.2832355434379",
+                    "peak_width": "8.037868291595503",
+                    "sample.id": "6_ KM20 FASNsh _13C Glc_1plate-media-24h"
+                },
+                {
+                    "resonance_assignment": "Lac-3_2",
+                    "assignment_lower_bound": "1.3",
+                    "assignment_upper_bound": "1.34",
+                    "chemical_shift": "1.32661656293307",
+                    "peak_height": "154.3493654775269",
+                    "peak_width": "8.196359357326664",
+                    "sample.id": "7_ KM20 FASNsh _13C Glc_2plate-media-24h"
+                },
+                {
+                    "resonance_assignment": "Lac-3_2",
+                    "assignment_lower_bound": "1.3",
+                    "assignment_upper_bound": "1.34",
+                    "chemical_shift": "1.325503850999729",
+                    "peak_height": "1.607846393386758",
+                    "peak_width": "6.655549357369425",
+                    "sample.id": "8_ KM20 FASNsh _13C Glc_3plate-media-0h"
+                },
+                {
+                    "resonance_assignment": "Lac-3_2",
+                    "assignment_lower_bound": "1.3",
+                    "assignment_upper_bound": "1.34",
+                    "chemical_shift": "1.327039264777957",
+                    "peak_height": "1.524858545999646",
+                    "peak_width": "6.914151032765906",
+                    "sample.id": "8_ KM20 FASNsh _13C Glc_3plate-media-24h"
+                },
+                {
+                    "resonance_assignment": "Met-CH3_1",
+                    "assignment_lower_bound": "2.117",
+                    "assignment_upper_bound": "2.13",
+                    "chemical_shift": "2.125002270272029",
+                    "peak_height": "1.320927210342477",
+                    "peak_width": "20.82454855317546",
+                    "sample.id": "2_ KM20 NTC _13C Glc_1 plate-media-0h"
+                },
+                {
+                    "resonance_assignment": "Met-CH3_1",
+                    "assignment_lower_bound": "2.117",
+                    "assignment_upper_bound": "2.13",
+                    "chemical_shift": "2.125536842873052",
+                    "peak_height": "1.50360204021142",
+                    "peak_width": "20.97159636618447",
+                    "sample.id": "3_ KM20 NTC _13C Glc_2 plate-media-0h"
+                },
+                {
+                    "resonance_assignment": "Met-CH3_1",
+                    "assignment_lower_bound": "2.117",
+                    "assignment_upper_bound": "2.13",
+                    "chemical_shift": "2.125367072078775",
+                    "peak_height": "1.204081871206687",
+                    "peak_width": "20.44965210109626",
+                    "sample.id": "6_ KM20 FASNsh _13C Glc_1plate-media-24h"
+                },
+                {
+                    "resonance_assignment": "Met-CH3_1",
+                    "assignment_lower_bound": "2.117",
+                    "assignment_upper_bound": "2.13",
+                    "chemical_shift": "2.12604494881632",
+                    "peak_height": "1.218441745368439",
+                    "peak_width": "17.72183334432329",
+                    "sample.id": "7_ KM20 FASNsh _13C Glc_2plate-media-24h"
+                },
+                {
+                    "resonance_assignment": "Met-CH3_1",
+                    "assignment_lower_bound": "2.117",
+                    "assignment_upper_bound": "2.13",
+                    "chemical_shift": "2.125411893722729",
+                    "peak_height": "1.421819457941427",
+                    "peak_width": "19.09795799581529",
+                    "sample.id": "8_ KM20 FASNsh _13C Glc_3plate-media-24h"
+                },
+                {
+                    "resonance_assignment": "P-Cho A_1",
+                    "assignment_lower_bound": "3.205",
+                    "assignment_upper_bound": "3.22",
+                    "chemical_shift": "3.219862753330719",
+                    "peak_height": "17.40705933005001",
+                    "peak_width": "9.060492005467747",
+                    "sample.id": "2_ KM20 NTC _13C Glc_1 plate-media-24h"
+                },
+                {
+                    "resonance_assignment": "P-Cho A_1",
+                    "assignment_lower_bound": "3.205",
+                    "assignment_upper_bound": "3.22",
+                    "chemical_shift": "3.219751185002651",
+                    "peak_height": "20.90127904103682",
+                    "peak_width": "9.592762171241908",
+                    "sample.id": "6_ KM20 FASNsh _13C Glc_1plate-media-0h"
+                },
+                {
+                    "resonance_assignment": "Succinate-2,3_1",
+                    "assignment_lower_bound": "2.384",
+                    "assignment_upper_bound": "2.414",
+                    "chemical_shift": "2.395848103259653",
+                    "peak_height": "0.5876738390253693",
+                    "peak_width": "8.620201197298115",
+                    "sample.id": "2_ KM20 NTC _13C Glc_1 plate-media-24h"
+                },
+                {
+                    "resonance_assignment": "Tau-1 (SCH2)_1",
+                    "assignment_lower_bound": "3.23",
+                    "assignment_upper_bound": "3.275",
+                    "chemical_shift": "3.236408728139715",
+                    "peak_height": "50.81681236691832",
+                    "peak_width": "12.10046228023639",
+                    "sample.id": "2_ KM20 NTC _13C Glc_1 plate-media-0h"
+                },
+                {
+                    "resonance_assignment": "Tau-1 (SCH2)_1",
+                    "assignment_lower_bound": "3.23",
+                    "assignment_upper_bound": "3.275",
+                    "chemical_shift": "3.235176662591241",
+                    "peak_height": "44.81233096548884",
+                    "peak_width": "12.40506295111589",
+                    "sample.id": "2_ KM20 NTC _13C Glc_1 plate-media-24h"
+                },
+                {
+                    "resonance_assignment": "Tau-1 (SCH2)_1",
+                    "assignment_lower_bound": "3.23",
+                    "assignment_upper_bound": "3.275",
+                    "chemical_shift": "3.236315071293388",
+                    "peak_height": "50.23747658361352",
+                    "peak_width": "12.01231190175975",
+                    "sample.id": "3_ KM20 NTC _13C Glc_2 plate-media-0h"
+                },
+                {
+                    "resonance_assignment": "Tau-1 (SCH2)_1",
+                    "assignment_lower_bound": "3.23",
+                    "assignment_upper_bound": "3.275",
+                    "chemical_shift": "3.23598460441548",
+                    "peak_height": "43.56744984368303",
+                    "peak_width": "12.15677070091367",
+                    "sample.id": "3_ KM20 NTC _13C Glc_2 plate-media-24h"
+                },
+                {
+                    "resonance_assignment": "Tau-1 (SCH2)_1",
+                    "assignment_lower_bound": "3.23",
+                    "assignment_upper_bound": "3.275",
+                    "chemical_shift": "3.236694915463153",
+                    "peak_height": "54.85027363050597",
+                    "peak_width": "12.63301192690056",
+                    "sample.id": "4_ KM20 NTC _13C Glc_3 plate-media-0h"
+                },
+                {
+                    "resonance_assignment": "Tau-1 (SCH2)_1",
+                    "assignment_lower_bound": "3.23",
+                    "assignment_upper_bound": "3.275",
+                    "chemical_shift": "3.237322006051876",
+                    "peak_height": "46.93274374679216",
+                    "peak_width": "12.59307639971128",
+                    "sample.id": "4_ KM20 NTC _13C Glc_3 plate-media-24h"
+                },
+                {
+                    "resonance_assignment": "Tau-1 (SCH2)_1",
+                    "assignment_lower_bound": "3.23",
+                    "assignment_upper_bound": "3.275",
+                    "chemical_shift": "3.234822920069117",
+                    "peak_height": "51.21689199035215",
+                    "peak_width": "12.03146176875628",
+                    "sample.id": "6_ KM20 FASNsh _13C Glc_1plate-media-0h"
+                },
+                {
+                    "resonance_assignment": "Tau-1 (SCH2)_1",
+                    "assignment_lower_bound": "3.23",
+                    "assignment_upper_bound": "3.275",
+                    "chemical_shift": "3.235773220643902",
+                    "peak_height": "44.17445897812589",
+                    "peak_width": "12.39850421820649",
+                    "sample.id": "6_ KM20 FASNsh _13C Glc_1plate-media-24h"
+                },
+                {
+                    "resonance_assignment": "Tau-1 (SCH2)_1",
+                    "assignment_lower_bound": "3.23",
+                    "assignment_upper_bound": "3.275",
+                    "chemical_shift": "3.236841988668945",
+                    "peak_height": "44.01367076356065",
+                    "peak_width": "12.352381519465",
+                    "sample.id": "7_ KM20 FASNsh _13C Glc_2plate-media-24h"
+                },
+                {
+                    "resonance_assignment": "Tau-1 (SCH2)_1",
+                    "assignment_lower_bound": "3.23",
+                    "assignment_upper_bound": "3.275",
+                    "chemical_shift": "3.235470154851351",
+                    "peak_height": "48.48542784675639",
+                    "peak_width": "11.92688958815063",
+                    "sample.id": "8_ KM20 FASNsh _13C Glc_3plate-media-0h"
+                },
+                {
+                    "resonance_assignment": "Tau-1 (SCH2)_1",
+                    "assignment_lower_bound": "3.23",
+                    "assignment_upper_bound": "3.275",
+                    "chemical_shift": "3.237004950712945",
+                    "peak_height": "47.36326610808192",
+                    "peak_width": "12.27028121427743",
+                    "sample.id": "8_ KM20 FASNsh _13C Glc_3plate-media-24h"
+                },
+                {
+                    "resonance_assignment": "Tau-1 (SCH2)_2",
+                    "assignment_lower_bound": "3.23",
+                    "assignment_upper_bound": "3.275",
+                    "chemical_shift": "3.251401325344509",
+                    "peak_height": "15.1183446211356",
+                    "peak_width": "7.601600686346489",
+                    "sample.id": "2_ KM20 NTC _13C Glc_1 plate-media-0h"
+                },
+                {
+                    "resonance_assignment": "Tau-1 (SCH2)_2",
+                    "assignment_lower_bound": "3.23",
+                    "assignment_upper_bound": "3.275",
+                    "chemical_shift": "3.250122270956346",
+                    "peak_height": "15.86726143466382",
+                    "peak_width": "8.378773174590405",
+                    "sample.id": "2_ KM20 NTC _13C Glc_1 plate-media-24h"
+                },
+                {
+                    "resonance_assignment": "Tau-1 (SCH2)_2",
+                    "assignment_lower_bound": "3.23",
+                    "assignment_upper_bound": "3.275",
+                    "chemical_shift": "3.251059003491036",
+                    "peak_height": "19.26623174299964",
+                    "peak_width": "9.337820124279173",
+                    "sample.id": "3_ KM20 NTC _13C Glc_2 plate-media-0h"
+                },
+                {
+                    "resonance_assignment": "Tau-1 (SCH2)_2",
+                    "assignment_lower_bound": "3.23",
+                    "assignment_upper_bound": "3.275",
+                    "chemical_shift": "3.250904899429568",
+                    "peak_height": "15.75598947832292",
+                    "peak_width": "8.24199010058935",
+                    "sample.id": "3_ KM20 NTC _13C Glc_2 plate-media-24h"
+                },
+                {
+                    "resonance_assignment": "Tau-1 (SCH2)_2",
+                    "assignment_lower_bound": "3.23",
+                    "assignment_upper_bound": "3.275",
+                    "chemical_shift": "3.251649703317777",
+                    "peak_height": "16.01156527711217",
+                    "peak_width": "7.670105088860164",
+                    "sample.id": "4_ KM20 NTC _13C Glc_3 plate-media-0h"
+                },
+                {
+                    "resonance_assignment": "Tau-1 (SCH2)_2",
+                    "assignment_lower_bound": "3.23",
+                    "assignment_upper_bound": "3.275",
+                    "chemical_shift": "3.252447718970726",
+                    "peak_height": "15.53251034774244",
+                    "peak_width": "8.472138607111159",
+                    "sample.id": "4_ KM20 NTC _13C Glc_3 plate-media-24h"
+                },
+                {
+                    "resonance_assignment": "Tau-1 (SCH2)_2",
+                    "assignment_lower_bound": "3.23",
+                    "assignment_upper_bound": "3.275",
+                    "chemical_shift": "3.249616698367046",
+                    "peak_height": "18.01626158400342",
+                    "peak_width": "8.628249860794341",
+                    "sample.id": "6_ KM20 FASNsh _13C Glc_1plate-media-0h"
+                },
+                {
+                    "resonance_assignment": "Tau-1 (SCH2)_2",
+                    "assignment_lower_bound": "3.23",
+                    "assignment_upper_bound": "3.275",
+                    "chemical_shift": "3.250885776419096",
+                    "peak_height": "15.36968266753695",
+                    "peak_width": "8.960374938128364",
+                    "sample.id": "6_ KM20 FASNsh _13C Glc_1plate-media-24h"
+                },
+                {
+                    "resonance_assignment": "Tau-1 (SCH2)_2",
+                    "assignment_lower_bound": "3.23",
+                    "assignment_upper_bound": "3.275",
+                    "chemical_shift": "3.25197361369591",
+                    "peak_height": "14.97341999415553",
+                    "peak_width": "8.706677039536817",
+                    "sample.id": "7_ KM20 FASNsh _13C Glc_2plate-media-24h"
+                },
+                {
+                    "resonance_assignment": "Tau-1 (SCH2)_2",
+                    "assignment_lower_bound": "3.23",
+                    "assignment_upper_bound": "3.275",
+                    "chemical_shift": "3.250287035633036",
+                    "peak_height": "16.0655845791641",
+                    "peak_width": "8.105606980580818",
+                    "sample.id": "8_ KM20 FASNsh _13C Glc_3plate-media-0h"
+                },
+                {
+                    "resonance_assignment": "Tau-1 (SCH2)_2",
+                    "assignment_lower_bound": "3.23",
+                    "assignment_upper_bound": "3.275",
+                    "chemical_shift": "3.251801854275836",
+                    "peak_height": "14.87470983697913",
+                    "peak_width": "7.92070115588122",
+                    "sample.id": "8_ KM20 FASNsh _13C Glc_3plate-media-24h"
+                },
+                {
+                    "resonance_assignment": "Tau-2 (NCH2)_1",
+                    "assignment_lower_bound": "3.39",
+                    "assignment_upper_bound": "3.435",
+                    "chemical_shift": "3.409159818123234",
+                    "peak_height": "88.22919925580632",
+                    "peak_width": "11.23958520329403",
+                    "sample.id": "2_ KM20 NTC _13C Glc_1 plate-media-0h"
+                },
+                {
+                    "resonance_assignment": "Tau-2 (NCH2)_1",
+                    "assignment_lower_bound": "3.39",
+                    "assignment_upper_bound": "3.435",
+                    "chemical_shift": "3.408194571461439",
+                    "peak_height": "76.55329907193102",
+                    "peak_width": "11.79920544436829",
+                    "sample.id": "2_ KM20 NTC _13C Glc_1 plate-media-24h"
+                },
+                {
+                    "resonance_assignment": "Tau-2 (NCH2)_1",
+                    "assignment_lower_bound": "3.39",
+                    "assignment_upper_bound": "3.435",
+                    "chemical_shift": "3.409181772683053",
+                    "peak_height": "90.98754062620273",
+                    "peak_width": "12.11359736061769",
+                    "sample.id": "3_ KM20 NTC _13C Glc_2 plate-media-0h"
+                },
+                {
+                    "resonance_assignment": "Tau-2 (NCH2)_1",
+                    "assignment_lower_bound": "3.39",
+                    "assignment_upper_bound": "3.435",
+                    "chemical_shift": "3.408711869031606",
+                    "peak_height": "77.80196745244862",
+                    "peak_width": "12.09569457210781",
+                    "sample.id": "3_ KM20 NTC _13C Glc_2 plate-media-24h"
+                },
+                {
+                    "resonance_assignment": "Tau-2 (NCH2)_1",
+                    "assignment_lower_bound": "3.39",
+                    "assignment_upper_bound": "3.435",
+                    "chemical_shift": "3.409676679710282",
+                    "peak_height": "91.98240928284366",
+                    "peak_width": "11.62153731764354",
+                    "sample.id": "4_ KM20 NTC _13C Glc_3 plate-media-0h"
+                },
+                {
+                    "resonance_assignment": "Tau-2 (NCH2)_1",
+                    "assignment_lower_bound": "3.39",
+                    "assignment_upper_bound": "3.435",
+                    "chemical_shift": "3.410302025959862",
+                    "peak_height": "81.00233736956575",
+                    "peak_width": "11.95356991820304",
+                    "sample.id": "4_ KM20 NTC _13C Glc_3 plate-media-24h"
+                },
+                {
+                    "resonance_assignment": "Tau-2 (NCH2)_1",
+                    "assignment_lower_bound": "3.39",
+                    "assignment_upper_bound": "3.435",
+                    "chemical_shift": "3.407772673835373",
+                    "peak_height": "90.12639012416716",
+                    "peak_width": "11.35771077921203",
+                    "sample.id": "6_ KM20 FASNsh _13C Glc_1plate-media-0h"
+                },
+                {
+                    "resonance_assignment": "Tau-2 (NCH2)_1",
+                    "assignment_lower_bound": "3.39",
+                    "assignment_upper_bound": "3.435",
+                    "chemical_shift": "3.409097715241815",
+                    "peak_height": "77.46429529154442",
+                    "peak_width": "12.19438370917885",
+                    "sample.id": "6_ KM20 FASNsh _13C Glc_1plate-media-24h"
+                },
+                {
+                    "resonance_assignment": "Tau-2 (NCH2)_1",
+                    "assignment_lower_bound": "3.39",
+                    "assignment_upper_bound": "3.435",
+                    "chemical_shift": "3.40982616281989",
+                    "peak_height": "74.95226376181147",
+                    "peak_width": "11.19593547677207",
+                    "sample.id": "7_ KM20 FASNsh _13C Glc_2plate-media-24h"
+                },
+                {
+                    "resonance_assignment": "Tau-2 (NCH2)_1",
+                    "assignment_lower_bound": "3.39",
+                    "assignment_upper_bound": "3.435",
+                    "chemical_shift": "3.408159818123234",
+                    "peak_height": "83.38404952053246",
+                    "peak_width": "10.99070789011095",
+                    "sample.id": "8_ KM20 FASNsh _13C Glc_3plate-media-0h"
+                },
+                {
+                    "resonance_assignment": "Tau-2 (NCH2)_1",
+                    "assignment_lower_bound": "3.39",
+                    "assignment_upper_bound": "3.435",
+                    "chemical_shift": "3.410043706005125",
+                    "peak_height": "79.88744302898681",
+                    "peak_width": "11.47241702162508",
+                    "sample.id": "8_ KM20 FASNsh _13C Glc_3plate-media-24h"
+                },
+                {
+                    "resonance_assignment": "Tris_1",
+                    "assignment_lower_bound": "3.695",
+                    "assignment_upper_bound": "3.74",
+                    "chemical_shift": "3.704115175451041",
+                    "peak_height": "85.35724693408888",
+                    "peak_width": "13.01845511938676",
+                    "sample.id": "2_ KM20 NTC _13C Glc_1 plate-media-0h"
+                },
+                {
+                    "resonance_assignment": "Tris_1",
+                    "assignment_lower_bound": "3.695",
+                    "assignment_upper_bound": "3.74",
+                    "chemical_shift": "3.702503298589152",
+                    "peak_height": "68.64891466550893",
+                    "peak_width": "11.67214589963976",
+                    "sample.id": "2_ KM20 NTC _13C Glc_1 plate-media-24h"
+                },
+                {
+                    "resonance_assignment": "Tris_1",
+                    "assignment_lower_bound": "3.695",
+                    "assignment_upper_bound": "3.74",
+                    "chemical_shift": "3.703793482403969",
+                    "peak_height": "88.68391150245533",
+                    "peak_width": "12.23006066309089",
+                    "sample.id": "3_ KM20 NTC _13C Glc_2 plate-media-0h"
+                },
+                {
+                    "resonance_assignment": "Tris_1",
+                    "assignment_lower_bound": "3.695",
+                    "assignment_upper_bound": "3.74",
+                    "chemical_shift": "3.703232047856753",
+                    "peak_height": "71.5458675778033",
+                    "peak_width": "11.9070840699115",
+                    "sample.id": "3_ KM20 NTC _13C Glc_2 plate-media-24h"
+                },
+                {
+                    "resonance_assignment": "Tris_1",
+                    "assignment_lower_bound": "3.695",
+                    "assignment_upper_bound": "3.74",
+                    "chemical_shift": "3.704356322109117",
+                    "peak_height": "90.38734828854805",
+                    "peak_width": "12.78916095510865",
+                    "sample.id": "4_ KM20 NTC _13C Glc_3 plate-media-0h"
+                },
+                {
+                    "resonance_assignment": "Tris_1",
+                    "assignment_lower_bound": "3.695",
+                    "assignment_upper_bound": "3.74",
+                    "chemical_shift": "3.704812033264067",
+                    "peak_height": "72.73807489797531",
+                    "peak_width": "11.70305134711891",
+                    "sample.id": "4_ KM20 NTC _13C Glc_3 plate-media-24h"
+                },
+                {
+                    "resonance_assignment": "Tris_1",
+                    "assignment_lower_bound": "3.695",
+                    "assignment_upper_bound": "3.74",
+                    "chemical_shift": "3.702260438674293",
+                    "peak_height": "83.59649066793182",
+                    "peak_width": "12.61122465339742",
+                    "sample.id": "6_ KM20 FASNsh _13C Glc_1plate-media-0h"
+                },
+                {
+                    "resonance_assignment": "Tris_1",
+                    "assignment_lower_bound": "3.695",
+                    "assignment_upper_bound": "3.74",
+                    "chemical_shift": "3.703269738669533",
+                    "peak_height": "67.29940543128139",
+                    "peak_width": "11.48687842231935",
+                    "sample.id": "6_ KM20 FASNsh _13C Glc_1plate-media-24h"
+                },
+                {
+                    "resonance_assignment": "Tris_1",
+                    "assignment_lower_bound": "3.695",
+                    "assignment_upper_bound": "3.74",
+                    "chemical_shift": "3.703990733040522",
+                    "peak_height": "68.13756159574937",
+                    "peak_width": "10.9997194730393",
+                    "sample.id": "7_ KM20 FASNsh _13C Glc_2plate-media-24h"
+                },
+                {
+                    "resonance_assignment": "Tris_1",
+                    "assignment_lower_bound": "3.695",
+                    "assignment_upper_bound": "3.74",
+                    "chemical_shift": "3.703388676458829",
+                    "peak_height": "82.11795113147312",
+                    "peak_width": "13.14561882736405",
+                    "sample.id": "8_ KM20 FASNsh _13C Glc_3plate-media-0h"
+                },
+                {
+                    "resonance_assignment": "Tris_1",
+                    "assignment_lower_bound": "3.695",
+                    "assignment_upper_bound": "3.74",
+                    "chemical_shift": "3.704065651212738",
+                    "peak_height": "74.84205946173867",
+                    "peak_width": "11.36578647828268",
+                    "sample.id": "8_ KM20 FASNsh _13C Glc_3plate-media-24h"
+                },
+                {
+                    "resonance_assignment": "Tris_2",
+                    "assignment_lower_bound": "3.695",
+                    "assignment_upper_bound": "3.74",
+                    "chemical_shift": "3.721047078766666",
+                    "peak_height": "84.70115277841577",
+                    "peak_width": "14.64175037703576",
+                    "sample.id": "2_ KM20 NTC _13C Glc_1 plate-media-0h"
+                },
+                {
+                    "resonance_assignment": "Tris_2",
+                    "assignment_lower_bound": "3.695",
+                    "assignment_upper_bound": "3.74",
+                    "chemical_shift": "3.719077788231829",
+                    "peak_height": "73.0253183600058",
+                    "peak_width": "13.82235348898343",
+                    "sample.id": "2_ KM20 NTC _13C Glc_1 plate-media-24h"
+                },
+                {
+                    "resonance_assignment": "Tris_2",
+                    "assignment_lower_bound": "3.695",
+                    "assignment_upper_bound": "3.74",
+                    "chemical_shift": "3.720169064821298",
+                    "peak_height": "81.0100193583588",
+                    "peak_width": "12.3611817057042",
+                    "sample.id": "3_ KM20 NTC _13C Glc_2 plate-media-0h"
+                },
+                {
+                    "resonance_assignment": "Tris_2",
+                    "assignment_lower_bound": "3.695",
+                    "assignment_upper_bound": "3.74",
+                    "chemical_shift": "3.719816102651986",
+                    "peak_height": "70.89403553404591",
+                    "peak_width": "13.3753775026336",
+                    "sample.id": "3_ KM20 NTC _13C Glc_2 plate-media-24h"
+                },
+                {
+                    "resonance_assignment": "Tris_2",
+                    "assignment_lower_bound": "3.695",
+                    "assignment_upper_bound": "3.74",
+                    "chemical_shift": "3.721461984153741",
+                    "peak_height": "86.79420319401824",
+                    "peak_width": "14.23153421637289",
+                    "sample.id": "4_ KM20 NTC _13C Glc_3 plate-media-0h"
+                },
+                {
+                    "resonance_assignment": "Tris_2",
+                    "assignment_lower_bound": "3.695",
+                    "assignment_upper_bound": "3.74",
+                    "chemical_shift": "3.72149663468292",
+                    "peak_height": "75.50828146288089",
+                    "peak_width": "13.79633236660383",
+                    "sample.id": "4_ KM20 NTC _13C Glc_3 plate-media-24h"
+                },
+                {
+                    "resonance_assignment": "Tris_2",
+                    "assignment_lower_bound": "3.695",
+                    "assignment_upper_bound": "3.74",
+                    "chemical_shift": "3.719014924018592",
+                    "peak_height": "83.88898163329151",
+                    "peak_width": "13.99209434887544",
+                    "sample.id": "6_ KM20 FASNsh _13C Glc_1plate-media-0h"
+                },
+                {
+                    "resonance_assignment": "Tris_2",
+                    "assignment_lower_bound": "3.695",
+                    "assignment_upper_bound": "3.74",
+                    "chemical_shift": "3.719708614006253",
+                    "peak_height": "72.42339189295195",
+                    "peak_width": "13.83393348512361",
+                    "sample.id": "6_ KM20 FASNsh _13C Glc_1plate-media-24h"
+                },
+                {
+                    "resonance_assignment": "Tris_2",
+                    "assignment_lower_bound": "3.695",
+                    "assignment_upper_bound": "3.74",
+                    "chemical_shift": "3.720172498753341",
+                    "peak_height": "72.40846641547564",
+                    "peak_width": "13.52996301660516",
+                    "sample.id": "7_ KM20 FASNsh _13C Glc_2plate-media-24h"
+                },
+                {
+                    "resonance_assignment": "Tris_2",
+                    "assignment_lower_bound": "3.695",
+                    "assignment_upper_bound": "3.74",
+                    "chemical_shift": "3.720196655183782",
+                    "peak_height": "78.9487163140004",
+                    "peak_width": "13.76504103437454",
+                    "sample.id": "8_ KM20 FASNsh _13C Glc_3plate-media-0h"
+                },
+                {
+                    "resonance_assignment": "Tris_2",
+                    "assignment_lower_bound": "3.695",
+                    "assignment_upper_bound": "3.74",
+                    "chemical_shift": "3.720902195277407",
+                    "peak_height": "78.98782177164847",
+                    "peak_width": "14.03249650992315",
+                    "sample.id": "8_ KM20 FASNsh _13C Glc_3plate-media-24h"
+                },
+                {
+                    "resonance_assignment": "Tris_3",
+                    "assignment_lower_bound": "3.695",
+                    "assignment_upper_bound": "3.74",
+                    "chemical_shift": "3.732757159271865",
+                    "peak_height": "44.36341652489158",
+                    "peak_width": "8.91247284023462",
+                    "sample.id": "2_ KM20 NTC _13C Glc_1 plate-media-0h"
+                },
+                {
+                    "resonance_assignment": "Tris_3",
+                    "assignment_lower_bound": "3.695",
+                    "assignment_upper_bound": "3.74",
+                    "chemical_shift": "3.731663411149581",
+                    "peak_height": "47.87891672577577",
+                    "peak_width": "10.28477167908471",
+                    "sample.id": "2_ KM20 NTC _13C Glc_1 plate-media-24h"
+                },
+                {
+                    "resonance_assignment": "Tris_3",
+                    "assignment_lower_bound": "3.695",
+                    "assignment_upper_bound": "3.74",
+                    "chemical_shift": "3.732417238512648",
+                    "peak_height": "57.33980338262189",
+                    "peak_width": "10.18651700186015",
+                    "sample.id": "3_ KM20 NTC _13C Glc_2 plate-media-0h"
+                },
+                {
+                    "resonance_assignment": "Tris_3",
+                    "assignment_lower_bound": "3.695",
+                    "assignment_upper_bound": "3.74",
+                    "chemical_shift": "3.732342599820299",
+                    "peak_height": "48.64298344915903",
+                    "peak_width": "10.08790120790333",
+                    "sample.id": "3_ KM20 NTC _13C Glc_2 plate-media-24h"
+                },
+                {
+                    "resonance_assignment": "Tris_3",
+                    "assignment_lower_bound": "3.695",
+                    "assignment_upper_bound": "3.74",
+                    "chemical_shift": "3.733373622653225",
+                    "peak_height": "51.45741884468747",
+                    "peak_width": "9.945013339321347",
+                    "sample.id": "4_ KM20 NTC _13C Glc_3 plate-media-0h"
+                },
+                {
+                    "resonance_assignment": "Tris_3",
+                    "assignment_lower_bound": "3.695",
+                    "assignment_upper_bound": "3.74",
+                    "chemical_shift": "3.734007091763249",
+                    "peak_height": "50.47900795825835",
+                    "peak_width": "10.28788526535494",
+                    "sample.id": "4_ KM20 NTC _13C Glc_3 plate-media-24h"
+                },
+                {
+                    "resonance_assignment": "Tris_3",
+                    "assignment_lower_bound": "3.695",
+                    "assignment_upper_bound": "3.74",
+                    "chemical_shift": "3.730861774198881",
+                    "peak_height": "50.07054212788441",
+                    "peak_width": "9.620043596649024",
+                    "sample.id": "6_ KM20 FASNsh _13C Glc_1plate-media-0h"
+                },
+                {
+                    "resonance_assignment": "Tris_3",
+                    "assignment_lower_bound": "3.695",
+                    "assignment_upper_bound": "3.74",
+                    "chemical_shift": "3.732604326961613",
+                    "peak_height": "48.01059255914194",
+                    "peak_width": "10.35636976190114",
+                    "sample.id": "6_ KM20 FASNsh _13C Glc_1plate-media-24h"
+                },
+                {
+                    "resonance_assignment": "Tris_3",
+                    "assignment_lower_bound": "3.695",
+                    "assignment_upper_bound": "3.74",
+                    "chemical_shift": "3.73326604979524",
+                    "peak_height": "47.85384199098622",
+                    "peak_width": "10.35793683876837",
+                    "sample.id": "7_ KM20 FASNsh _13C Glc_2plate-media-24h"
+                },
+                {
+                    "resonance_assignment": "Tris_3",
+                    "assignment_lower_bound": "3.695",
+                    "assignment_upper_bound": "3.74",
+                    "chemical_shift": "3.731891551984675",
+                    "peak_height": "46.09804649650718",
+                    "peak_width": "9.198697643447693",
+                    "sample.id": "8_ KM20 FASNsh _13C Glc_3plate-media-0h"
+                },
+                {
+                    "resonance_assignment": "Tris_3",
+                    "assignment_lower_bound": "3.695",
+                    "assignment_upper_bound": "3.74",
+                    "chemical_shift": "3.733461653819506",
+                    "peak_height": "46.01344972263584",
+                    "peak_width": "9.502737547822473",
+                    "sample.id": "8_ KM20 FASNsh _13C Glc_3plate-media-24h"
+                },
+                {
+                    "resonance_assignment": "UDP-Glc_1",
+                    "assignment_lower_bound": "5.58",
+                    "assignment_upper_bound": "5.614",
+                    "chemical_shift": "5.588421194395544",
+                    "peak_height": "0.559766885623451",
+                    "peak_width": "13.06844548686745",
+                    "sample.id": "4_ KM20 NTC _13C Glc_3 plate-media-0h"
+                },
+                {
+                    "resonance_assignment": "Val-B_1",
+                    "assignment_lower_bound": "1.02",
+                    "assignment_upper_bound": "1.045",
+                    "chemical_shift": "1.028783771280712",
+                    "peak_height": "1.32743288883169",
+                    "peak_width": "14.42187610028588",
+                    "sample.id": "2_ KM20 NTC _13C Glc_1 plate-media-24h"
+                },
+                {
+                    "resonance_assignment": "Val-B_1",
+                    "assignment_lower_bound": "1.02",
+                    "assignment_upper_bound": "1.045",
+                    "chemical_shift": "1.025789679345322",
+                    "peak_height": "0.6456065850300851",
+                    "peak_width": "21.81129872072332",
+                    "sample.id": "3_ KM20 NTC _13C Glc_2 plate-media-0h"
+                },
+                {
+                    "resonance_assignment": "Val-B_1",
+                    "assignment_lower_bound": "1.02",
+                    "assignment_upper_bound": "1.045",
+                    "chemical_shift": "1.029088643781686",
+                    "peak_height": "1.482200018770312",
+                    "peak_width": "18.13892939053417",
+                    "sample.id": "3_ KM20 NTC _13C Glc_2 plate-media-24h"
+                },
+                {
+                    "resonance_assignment": "Val-B_1",
+                    "assignment_lower_bound": "1.02",
+                    "assignment_upper_bound": "1.045",
+                    "chemical_shift": "1.028666537850431",
+                    "peak_height": "0.5339616080119348",
+                    "peak_width": "10.7329193180129",
+                    "sample.id": "4_ KM20 NTC _13C Glc_3 plate-media-0h"
+                },
+                {
+                    "resonance_assignment": "Val-B_1",
+                    "assignment_lower_bound": "1.02",
+                    "assignment_upper_bound": "1.045",
+                    "chemical_shift": "1.030665251992448",
+                    "peak_height": "1.54757204496093",
+                    "peak_width": "16.67561891393458",
+                    "sample.id": "4_ KM20 NTC _13C Glc_3 plate-media-24h"
+                },
+                {
+                    "resonance_assignment": "Val-B_1",
+                    "assignment_lower_bound": "1.02",
+                    "assignment_upper_bound": "1.045",
+                    "chemical_shift": "1.026859569501077",
+                    "peak_height": "0.682437445880248",
+                    "peak_width": "10.0848318516565",
+                    "sample.id": "6_ KM20 FASNsh _13C Glc_1plate-media-0h"
+                },
+                {
+                    "resonance_assignment": "Val-B_1",
+                    "assignment_lower_bound": "1.02",
+                    "assignment_upper_bound": "1.045",
+                    "chemical_shift": "1.029052720835803",
+                    "peak_height": "1.404565723847292",
+                    "peak_width": "14.33001004369904",
+                    "sample.id": "6_ KM20 FASNsh _13C Glc_1plate-media-24h"
+                },
+                {
+                    "resonance_assignment": "Val-B_1",
+                    "assignment_lower_bound": "1.02",
+                    "assignment_upper_bound": "1.045",
+                    "chemical_shift": "1.029321670390894",
+                    "peak_height": "1.338230407525425",
+                    "peak_width": "12.28714378354055",
+                    "sample.id": "7_ KM20 FASNsh _13C Glc_2plate-media-24h"
+                },
+                {
+                    "resonance_assignment": "Val-B_1",
+                    "assignment_lower_bound": "1.02",
+                    "assignment_upper_bound": "1.045",
+                    "chemical_shift": "1.026976930658131",
+                    "peak_height": "0.6634454212572827",
+                    "peak_width": "11.59620411744202",
+                    "sample.id": "8_ KM20 FASNsh _13C Glc_3plate-media-0h"
+                },
+                {
+                    "resonance_assignment": "aGlc_1",
+                    "assignment_lower_bound": "5.205",
+                    "assignment_upper_bound": "5.235",
+                    "chemical_shift": "5.227796758391441",
+                    "peak_height": "103.5020666125635",
+                    "peak_width": "10.03953317602157",
+                    "sample.id": "2_ KM20 NTC _13C Glc_1 plate-media-0h"
+                },
+                {
+                    "resonance_assignment": "aGlc_1",
+                    "assignment_lower_bound": "5.205",
+                    "assignment_upper_bound": "5.235",
+                    "chemical_shift": "5.226806889969122",
+                    "peak_height": "87.2879949893398",
+                    "peak_width": "9.97224365160112",
+                    "sample.id": "2_ KM20 NTC _13C Glc_1 plate-media-24h"
+                },
+                {
+                    "resonance_assignment": "aGlc_1",
+                    "assignment_lower_bound": "5.205",
+                    "assignment_upper_bound": "5.235",
+                    "chemical_shift": "5.227684615106971",
+                    "peak_height": "105.4560027098399",
+                    "peak_width": "10.26128739650531",
+                    "sample.id": "3_ KM20 NTC _13C Glc_2 plate-media-0h"
+                },
+                {
+                    "resonance_assignment": "aGlc_1",
+                    "assignment_lower_bound": "5.205",
+                    "assignment_upper_bound": "5.235",
+                    "chemical_shift": "5.22749870219008",
+                    "peak_height": "86.84348490975594",
+                    "peak_width": "9.815676090673263",
+                    "sample.id": "3_ KM20 NTC _13C Glc_2 plate-media-24h"
+                },
+                {
+                    "resonance_assignment": "aGlc_1",
+                    "assignment_lower_bound": "5.205",
+                    "assignment_upper_bound": "5.235",
+                    "chemical_shift": "5.228498303286305",
+                    "peak_height": "107.4866168950289",
+                    "peak_width": "10.1389749599967",
+                    "sample.id": "4_ KM20 NTC _13C Glc_3 plate-media-0h"
+                },
+                {
+                    "resonance_assignment": "aGlc_1",
+                    "assignment_lower_bound": "5.205",
+                    "assignment_upper_bound": "5.235",
+                    "chemical_shift": "5.229607100053062",
+                    "peak_height": "91.23751484355765",
+                    "peak_width": "10.29586492086688",
+                    "sample.id": "4_ KM20 NTC _13C Glc_3 plate-media-24h"
+                },
+                {
+                    "resonance_assignment": "aGlc_1",
+                    "assignment_lower_bound": "5.205",
+                    "assignment_upper_bound": "5.235",
+                    "chemical_shift": "5.225488819629726",
+                    "peak_height": "106.4816112467415",
+                    "peak_width": "9.465774739907655",
+                    "sample.id": "6_ KM20 FASNsh _13C Glc_1plate-media-0h"
+                },
+                {
+                    "resonance_assignment": "aGlc_1",
+                    "assignment_lower_bound": "5.205",
+                    "assignment_upper_bound": "5.235",
+                    "chemical_shift": "5.228258456108492",
+                    "peak_height": "86.63963216362887",
+                    "peak_width": "10.5167280189829",
+                    "sample.id": "6_ KM20 FASNsh _13C Glc_1plate-media-24h"
+                },
+                {
+                    "resonance_assignment": "aGlc_1",
+                    "assignment_lower_bound": "5.205",
+                    "assignment_upper_bound": "5.235",
+                    "chemical_shift": "5.228933316613932",
+                    "peak_height": "86.58476594116627",
+                    "peak_width": "9.988991561840997",
+                    "sample.id": "7_ KM20 FASNsh _13C Glc_2plate-media-24h"
+                },
+                {
+                    "resonance_assignment": "aGlc_1",
+                    "assignment_lower_bound": "5.205",
+                    "assignment_upper_bound": "5.235",
+                    "chemical_shift": "5.226999444691526",
+                    "peak_height": "97.39795833900394",
+                    "peak_width": "9.89509197354102",
+                    "sample.id": "8_ KM20 FASNsh _13C Glc_3plate-media-0h"
+                },
+                {
+                    "resonance_assignment": "aGlc_1",
+                    "assignment_lower_bound": "5.205",
+                    "assignment_upper_bound": "5.235",
+                    "chemical_shift": "5.228745943281718",
+                    "peak_height": "92.5809854337761",
+                    "peak_width": "10.26882078346258",
+                    "sample.id": "8_ KM20 FASNsh _13C Glc_3plate-media-24h"
+                },
+                {
+                    "resonance_assignment": "bGlc_1",
+                    "assignment_lower_bound": "4.625",
+                    "assignment_upper_bound": "4.655",
+                    "chemical_shift": "4.633969083113685",
+                    "peak_height": "73.83855227313988",
+                    "peak_width": "8.509529410274231",
+                    "sample.id": "2_ KM20 NTC _13C Glc_1 plate-media-0h"
+                },
+                {
+                    "resonance_assignment": "bGlc_1",
+                    "assignment_lower_bound": "4.625",
+                    "assignment_upper_bound": "4.655",
+                    "chemical_shift": "4.633092999986248",
+                    "peak_height": "61.28139068464431",
+                    "peak_width": "8.328254666953223",
+                    "sample.id": "2_ KM20 NTC _13C Glc_1 plate-media-24h"
+                },
+                {
+                    "resonance_assignment": "bGlc_1",
+                    "assignment_lower_bound": "4.625",
+                    "assignment_upper_bound": "4.655",
+                    "chemical_shift": "4.63380365784281",
+                    "peak_height": "69.63952472006811",
+                    "peak_width": "8.25868597250084",
+                    "sample.id": "3_ KM20 NTC _13C Glc_2 plate-media-0h"
+                },
+                {
+                    "resonance_assignment": "bGlc_1",
+                    "assignment_lower_bound": "4.625",
+                    "assignment_upper_bound": "4.655",
+                    "chemical_shift": "4.633613076473612",
+                    "peak_height": "60.66052740304917",
+                    "peak_width": "8.179696564454511",
+                    "sample.id": "3_ KM20 NTC _13C Glc_2 plate-media-24h"
+                },
+                {
+                    "resonance_assignment": "bGlc_1",
+                    "assignment_lower_bound": "4.625",
+                    "assignment_upper_bound": "4.655",
+                    "chemical_shift": "4.63450531565803",
+                    "peak_height": "74.76715011424596",
+                    "peak_width": "7.926742827646193",
+                    "sample.id": "4_ KM20 NTC _13C Glc_3 plate-media-0h"
+                },
+                {
+                    "resonance_assignment": "bGlc_1",
+                    "assignment_lower_bound": "4.625",
+                    "assignment_upper_bound": "4.655",
+                    "chemical_shift": "4.635497431106695",
+                    "peak_height": "60.41162703416471",
+                    "peak_width": "7.947065170872485",
+                    "sample.id": "4_ KM20 NTC _13C Glc_3 plate-media-24h"
+                },
+                {
+                    "resonance_assignment": "bGlc_1",
+                    "assignment_lower_bound": "4.625",
+                    "assignment_upper_bound": "4.655",
+                    "chemical_shift": "4.632108029460726",
+                    "peak_height": "75.13049745928498",
+                    "peak_width": "8.57149298947274",
+                    "sample.id": "6_ KM20 FASNsh _13C Glc_1plate-media-0h"
+                },
+                {
+                    "resonance_assignment": "bGlc_1",
+                    "assignment_lower_bound": "4.625",
+                    "assignment_upper_bound": "4.655",
+                    "chemical_shift": "4.63424783216402",
+                    "peak_height": "56.88883480335365",
+                    "peak_width": "7.950756122608892",
+                    "sample.id": "6_ KM20 FASNsh _13C Glc_1plate-media-24h"
+                },
+                {
+                    "resonance_assignment": "bGlc_1",
+                    "assignment_lower_bound": "4.625",
+                    "assignment_upper_bound": "4.655",
+                    "chemical_shift": "4.635115306077576",
+                    "peak_height": "60.43173241741404",
+                    "peak_width": "8.261962262935679",
+                    "sample.id": "7_ KM20 FASNsh _13C Glc_2plate-media-24h"
+                },
+                {
+                    "resonance_assignment": "bGlc_1",
+                    "assignment_lower_bound": "4.625",
+                    "assignment_upper_bound": "4.655",
+                    "chemical_shift": "4.633032753419049",
+                    "peak_height": "69.85168459636671",
+                    "peak_width": "8.290254348582096",
+                    "sample.id": "8_ KM20 FASNsh _13C Glc_3plate-media-0h"
+                },
+                {
+                    "resonance_assignment": "bGlc_1",
+                    "assignment_lower_bound": "4.625",
+                    "assignment_upper_bound": "4.655",
+                    "chemical_shift": "4.634420594787148",
+                    "peak_height": "61.44134128821214",
+                    "peak_width": "7.641749299952513",
+                    "sample.id": "8_ KM20 FASNsh _13C Glc_3plate-media-24h"
+                },
+                {
+                    "resonance_assignment": "bGlc_2",
+                    "assignment_lower_bound": "4.625",
+                    "assignment_upper_bound": "4.655",
+                    "chemical_shift": "4.647901174714739",
+                    "peak_height": "86.48689497498162",
+                    "peak_width": "9.292629413612486",
+                    "sample.id": "2_ KM20 NTC _13C Glc_1 plate-media-0h"
+                },
+                {
+                    "resonance_assignment": "bGlc_2",
+                    "assignment_lower_bound": "4.625",
+                    "assignment_upper_bound": "4.655",
+                    "chemical_shift": "4.647046296448174",
+                    "peak_height": "73.97927050610237",
+                    "peak_width": "9.20788995151245",
+                    "sample.id": "2_ KM20 NTC _13C Glc_1 plate-media-24h"
+                },
+                {
+                    "resonance_assignment": "bGlc_2",
+                    "assignment_lower_bound": "4.625",
+                    "assignment_upper_bound": "4.655",
+                    "chemical_shift": "4.647732457774464",
+                    "peak_height": "91.02764035978299",
+                    "peak_width": "10.0848318516565",
+                    "sample.id": "3_ KM20 NTC _13C Glc_2 plate-media-0h"
+                },
+                {
+                    "resonance_assignment": "bGlc_2",
+                    "assignment_lower_bound": "4.625",
+                    "assignment_upper_bound": "4.655",
+                    "chemical_shift": "4.647489388556726",
+                    "peak_height": "74.73936794956792",
+                    "peak_width": "9.20788995151245",
+                    "sample.id": "3_ KM20 NTC _13C Glc_2 plate-media-24h"
+                },
+                {
+                    "resonance_assignment": "bGlc_2",
+                    "assignment_lower_bound": "4.625",
+                    "assignment_upper_bound": "4.655",
+                    "chemical_shift": "4.648338439828086",
+                    "peak_height": "93.15404735752541",
+                    "peak_width": "9.586721538928542",
+                    "sample.id": "4_ KM20 NTC _13C Glc_3 plate-media-0h"
+                },
+                {
+                    "resonance_assignment": "bGlc_2",
+                    "assignment_lower_bound": "4.625",
+                    "assignment_upper_bound": "4.655",
+                    "chemical_shift": "4.649461614479134",
+                    "peak_height": "81.04162189336247",
+                    "peak_width": "9.52031549493556",
+                    "sample.id": "4_ KM20 NTC _13C Glc_3 plate-media-24h"
+                },
+                {
+                    "resonance_assignment": "bGlc_2",
+                    "assignment_lower_bound": "4.625",
+                    "assignment_upper_bound": "4.655",
+                    "chemical_shift": "4.646094389046197",
+                    "peak_height": "86.0355617125645",
+                    "peak_width": "9.138337640034306",
+                    "sample.id": "6_ KM20 FASNsh _13C Glc_1plate-media-0h"
+                },
+                {
+                    "resonance_assignment": "bGlc_2",
+                    "assignment_lower_bound": "4.625",
+                    "assignment_upper_bound": "4.655",
+                    "chemical_shift": "4.648347382515363",
+                    "peak_height": "75.5565172863633",
+                    "peak_width": "9.767288068402955",
+                    "sample.id": "6_ KM20 FASNsh _13C Glc_1plate-media-24h"
+                },
+                {
+                    "resonance_assignment": "bGlc_2",
+                    "assignment_lower_bound": "4.625",
+                    "assignment_upper_bound": "4.655",
+                    "chemical_shift": "4.649080019566243",
+                    "peak_height": "74.20387804566819",
+                    "peak_width": "9.20788995151245",
+                    "sample.id": "7_ KM20 FASNsh _13C Glc_2plate-media-24h"
+                },
+                {
+                    "resonance_assignment": "bGlc_2",
+                    "assignment_lower_bound": "4.625",
+                    "assignment_upper_bound": "4.655",
+                    "chemical_shift": "4.646955356632996",
+                    "peak_height": "82.7552446887213",
+                    "peak_width": "9.23346408331164",
+                    "sample.id": "8_ KM20 FASNsh _13C Glc_3plate-media-0h"
+                },
+                {
+                    "resonance_assignment": "bGlc_2",
+                    "assignment_lower_bound": "4.625",
+                    "assignment_upper_bound": "4.655",
+                    "chemical_shift": "4.648413186740531",
+                    "peak_height": "83.58881660382754",
+                    "peak_width": "9.909727980606595",
+                    "sample.id": "8_ KM20 FASNsh _13C Glc_3plate-media-24h"
+                },
+                {
+                    "resonance_assignment": "m-Ins-1,3_1",
+                    "assignment_lower_bound": "3.505",
+                    "assignment_upper_bound": "3.5395",
+                    "chemical_shift": "3.531343974430927",
+                    "peak_height": "14.05331765625466",
+                    "peak_width": "20.29433585551248",
+                    "sample.id": "2_ KM20 NTC _13C Glc_1 plate-media-0h"
+                },
+                {
+                    "resonance_assignment": "m-Ins-1,3_1",
+                    "assignment_lower_bound": "3.505",
+                    "assignment_upper_bound": "3.5395",
+                    "chemical_shift": "3.531652984229784",
+                    "peak_height": "13.56547114805353",
+                    "peak_width": "22.73719986496509",
+                    "sample.id": "2_ KM20 NTC _13C Glc_1 plate-media-24h"
+                },
+                {
+                    "resonance_assignment": "m-Ins-1,3_1",
+                    "assignment_lower_bound": "3.505",
+                    "assignment_upper_bound": "3.5395",
+                    "chemical_shift": "3.531816797265466",
+                    "peak_height": "16.4381759671193",
+                    "peak_width": "24.41709106302536",
+                    "sample.id": "3_ KM20 NTC _13C Glc_2 plate-media-0h"
+                },
+                {
+                    "resonance_assignment": "m-Ins-1,3_1",
+                    "assignment_lower_bound": "3.505",
+                    "assignment_upper_bound": "3.5395",
+                    "chemical_shift": "3.531440759569774",
+                    "peak_height": "14.5750704547021",
+                    "peak_width": "24.63007149420372",
+                    "sample.id": "3_ KM20 NTC _13C Glc_2 plate-media-24h"
+                },
+                {
+                    "resonance_assignment": "m-Ins-1,3_1",
+                    "assignment_lower_bound": "3.505",
+                    "assignment_upper_bound": "3.5395",
+                    "chemical_shift": "3.53248601549446",
+                    "peak_height": "15.15516223534199",
+                    "peak_width": "20.02943983700603",
+                    "sample.id": "4_ KM20 NTC _13C Glc_3 plate-media-0h"
+                },
+                {
+                    "resonance_assignment": "m-Ins-1,3_1",
+                    "assignment_lower_bound": "3.505",
+                    "assignment_upper_bound": "3.5395",
+                    "chemical_shift": "3.533783279114076",
+                    "peak_height": "14.22365830541679",
+                    "peak_width": "23.15945425318846",
+                    "sample.id": "4_ KM20 NTC _13C Glc_3 plate-media-24h"
+                },
+                {
+                    "resonance_assignment": "m-Ins-1,3_1",
+                    "assignment_lower_bound": "3.505",
+                    "assignment_upper_bound": "3.5395",
+                    "chemical_shift": "3.530124937184812",
+                    "peak_height": "16.07811893068595",
+                    "peak_width": "22.96115591919214",
+                    "sample.id": "6_ KM20 FASNsh _13C Glc_1plate-media-0h"
+                },
+                {
+                    "resonance_assignment": "m-Ins-1,3_1",
+                    "assignment_lower_bound": "3.505",
+                    "assignment_upper_bound": "3.5395",
+                    "chemical_shift": "3.526221579141822",
+                    "peak_height": "6.904487905673003",
+                    "peak_width": "17.13397505418339",
+                    "sample.id": "6_ KM20 FASNsh _13C Glc_1plate-media-24h"
+                },
+                {
+                    "resonance_assignment": "m-Ins-1,3_1",
+                    "assignment_lower_bound": "3.505",
+                    "assignment_upper_bound": "3.5395",
+                    "chemical_shift": "3.533059075017296",
+                    "peak_height": "12.86845363436856",
+                    "peak_width": "22.86475678927194",
+                    "sample.id": "7_ KM20 FASNsh _13C Glc_2plate-media-24h"
+                },
+                {
+                    "resonance_assignment": "m-Ins-1,3_1",
+                    "assignment_lower_bound": "3.505",
+                    "assignment_upper_bound": "3.5395",
+                    "chemical_shift": "3.53084948683238",
+                    "peak_height": "13.75385731875524",
+                    "peak_width": "20.1164818625678",
+                    "sample.id": "8_ KM20 FASNsh _13C Glc_3plate-media-0h"
+                },
+                {
+                    "resonance_assignment": "m-Ins-1,3_1",
+                    "assignment_lower_bound": "3.505",
+                    "assignment_upper_bound": "3.5395",
+                    "chemical_shift": "3.5324050219465",
+                    "peak_height": "13.71020742019329",
+                    "peak_width": "21.61875589362444",
+                    "sample.id": "8_ KM20 FASNsh _13C Glc_3plate-media-24h"
+                },
+                {
+                    "resonance_assignment": "m-Ins-1,3_2",
+                    "assignment_lower_bound": "3.505",
+                    "assignment_upper_bound": "3.5395",
+                    "chemical_shift": "3.536909388648088",
+                    "peak_height": "7.648574618337355",
+                    "peak_width": "17.31316318407943",
+                    "sample.id": "6_ KM20 FASNsh _13C Glc_1plate-media-24h"
+                }
+            ]
+        }
+    }
+}

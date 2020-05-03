@@ -1,0 +1,3041 @@
+{
+  "factor": {
+    "subject.protocol.id": {
+      "allowed_values": [
+        "13CglcActive",
+        "13CglnActive",
+        "13CinoActive",
+        "13ClacActive",
+        "13CglcTreg",
+        "13ClacTreg",
+        "13CglnTreg"
+      ],
+      "id": "subject.protocol.id",
+      "project.id": "NCH_RW_Tcells",
+      "study.id": "Mouse-Tcells_13C-Glc-Gln-Lac-Ino-2"
+    }
+  },
+  "measurement": {
+    "ASn-15N1-19_mouse_13CglnTreg_rep1-cells-polar_GCMS_A": {
+      "assignment": "ASn-15N1",
+      "compound": "ASn",
+      "id": "ASn-15N1-19_mouse_13CglnTreg_rep1-cells-polar_GCMS_A",
+      "intensity": "0",
+      "intensity%type": "normalized peak area",
+      "isotopologue": "15N1",
+      "isotopologue%type": "15N",
+      "protocol.id": "GCMS1",
+      "sample.id": "19_mouse_13CglnTreg_rep1-cells-polar_GCMS_A"
+    },
+    "ASn-15N1-20_mouse_13CglnTreg_rep2-cells-polar_GCMS_A": {
+      "assignment": "ASn-15N1",
+      "compound": "ASn",
+      "id": "ASn-15N1-20_mouse_13CglnTreg_rep2-cells-polar_GCMS_A",
+      "intensity": "0",
+      "intensity%type": "normalized peak area",
+      "isotopologue": "15N1",
+      "isotopologue%type": "15N",
+      "protocol.id": "GCMS1",
+      "sample.id": "20_mouse_13CglnTreg_rep2-cells-polar_GCMS_A"
+    },
+    "ASn-15N1-21_mouse_13CglnTreg_rep3-cells-polar_GCMS_A": {
+      "assignment": "ASn-15N1",
+      "compound": "ASn",
+      "id": "ASn-15N1-21_mouse_13CglnTreg_rep3-cells-polar_GCMS_A",
+      "intensity": "0",
+      "intensity%type": "normalized peak area",
+      "isotopologue": "15N1",
+      "isotopologue%type": "15N",
+      "protocol.id": "GCMS1",
+      "sample.id": "21_mouse_13CglnTreg_rep3-cells-polar_GCMS_A"
+    },
+    "ASn-15N1-4_mouse_13CglnActive_rep1-cells-polar_GCMS_A": {
+      "assignment": "ASn-15N1",
+      "compound": "ASn",
+      "id": "ASn-15N1-4_mouse_13CglnActive_rep1-cells-polar_GCMS_A",
+      "intensity": "0.22059753996185794",
+      "intensity%type": "normalized peak area",
+      "isotopologue": "15N1",
+      "isotopologue%type": "15N",
+      "protocol.id": "GCMS1",
+      "sample.id": "4_mouse_13CglnActive_rep1-cells-polar_GCMS_A"
+    },
+    "ASn-15N1-5_mouse_13CglnActive_rep2-cells-polar_GCMS_A": {
+      "assignment": "ASn-15N1",
+      "compound": "ASn",
+      "id": "ASn-15N1-5_mouse_13CglnActive_rep2-cells-polar_GCMS_A",
+      "intensity": "0",
+      "intensity%type": "normalized peak area",
+      "isotopologue": "15N1",
+      "isotopologue%type": "15N",
+      "protocol.id": "GCMS1",
+      "sample.id": "5_mouse_13CglnActive_rep2-cells-polar_GCMS_A"
+    },
+    "ASn-15N1-6_mouse_13CglnActive_rep3-cells-polar_GCMS_A": {
+      "assignment": "ASn-15N1",
+      "compound": "ASn",
+      "id": "ASn-15N1-6_mouse_13CglnActive_rep3-cells-polar_GCMS_A",
+      "intensity": "0",
+      "intensity%type": "normalized peak area",
+      "isotopologue": "15N1",
+      "isotopologue%type": "15N",
+      "protocol.id": "GCMS1",
+      "sample.id": "6_mouse_13CglnActive_rep3-cells-polar_GCMS_A"
+    },
+    "Ala-15N1-19_mouse_13CglnTreg_rep1-cells-polar_GCMS_A": {
+      "assignment": "Ala-15N1",
+      "compound": "Ala",
+      "id": "Ala-15N1-19_mouse_13CglnTreg_rep1-cells-polar_GCMS_A",
+      "intensity": "0",
+      "intensity%type": "normalized peak area",
+      "isotopologue": "15N1",
+      "isotopologue%type": "15N",
+      "protocol.id": "GCMS1",
+      "sample.id": "19_mouse_13CglnTreg_rep1-cells-polar_GCMS_A"
+    },
+    "Ala-15N1-20_mouse_13CglnTreg_rep2-cells-polar_GCMS_A": {
+      "assignment": "Ala-15N1",
+      "compound": "Ala",
+      "id": "Ala-15N1-20_mouse_13CglnTreg_rep2-cells-polar_GCMS_A",
+      "intensity": "0",
+      "intensity%type": "normalized peak area",
+      "isotopologue": "15N1",
+      "isotopologue%type": "15N",
+      "protocol.id": "GCMS1",
+      "sample.id": "20_mouse_13CglnTreg_rep2-cells-polar_GCMS_A"
+    },
+    "Ala-15N1-21_mouse_13CglnTreg_rep3-cells-polar_GCMS_A": {
+      "assignment": "Ala-15N1",
+      "compound": "Ala",
+      "id": "Ala-15N1-21_mouse_13CglnTreg_rep3-cells-polar_GCMS_A",
+      "intensity": "0",
+      "intensity%type": "normalized peak area",
+      "isotopologue": "15N1",
+      "isotopologue%type": "15N",
+      "protocol.id": "GCMS1",
+      "sample.id": "21_mouse_13CglnTreg_rep3-cells-polar_GCMS_A"
+    },
+    "Ala-15N1-4_mouse_13CglnActive_rep1-cells-polar_GCMS_A": {
+      "assignment": "Ala-15N1",
+      "compound": "Ala",
+      "id": "Ala-15N1-4_mouse_13CglnActive_rep1-cells-polar_GCMS_A",
+      "intensity": "0",
+      "intensity%type": "normalized peak area",
+      "isotopologue": "15N1",
+      "isotopologue%type": "15N",
+      "protocol.id": "GCMS1",
+      "sample.id": "4_mouse_13CglnActive_rep1-cells-polar_GCMS_A"
+    },
+    "Ala-15N1-5_mouse_13CglnActive_rep2-cells-polar_GCMS_A": {
+      "assignment": "Ala-15N1",
+      "compound": "Ala",
+      "id": "Ala-15N1-5_mouse_13CglnActive_rep2-cells-polar_GCMS_A",
+      "intensity": "0",
+      "intensity%type": "normalized peak area",
+      "isotopologue": "15N1",
+      "isotopologue%type": "15N",
+      "protocol.id": "GCMS1",
+      "sample.id": "5_mouse_13CglnActive_rep2-cells-polar_GCMS_A"
+    },
+    "Ala-15N1-6_mouse_13CglnActive_rep3-cells-polar_GCMS_A": {
+      "assignment": "Ala-15N1",
+      "compound": "Ala",
+      "id": "Ala-15N1-6_mouse_13CglnActive_rep3-cells-polar_GCMS_A",
+      "intensity": "0.013034714516865477",
+      "intensity%type": "normalized peak area",
+      "isotopologue": "15N1",
+      "isotopologue%type": "15N",
+      "protocol.id": "GCMS1",
+      "sample.id": "6_mouse_13CglnActive_rep3-cells-polar_GCMS_A"
+    },
+    "Asn-15N2-19_mouse_13CglnTreg_rep1-cells-polar_GCMS_A": {
+      "assignment": "Asn-15N2",
+      "compound": "Asn",
+      "id": "Asn-15N2-19_mouse_13CglnTreg_rep1-cells-polar_GCMS_A",
+      "intensity": "0",
+      "intensity%type": "normalized peak area",
+      "isotopologue": "15N2",
+      "isotopologue%type": "15N",
+      "protocol.id": "GCMS1",
+      "sample.id": "19_mouse_13CglnTreg_rep1-cells-polar_GCMS_A"
+    },
+    "Asn-15N2-20_mouse_13CglnTreg_rep2-cells-polar_GCMS_A": {
+      "assignment": "Asn-15N2",
+      "compound": "Asn",
+      "id": "Asn-15N2-20_mouse_13CglnTreg_rep2-cells-polar_GCMS_A",
+      "intensity": "0",
+      "intensity%type": "normalized peak area",
+      "isotopologue": "15N2",
+      "isotopologue%type": "15N",
+      "protocol.id": "GCMS1",
+      "sample.id": "20_mouse_13CglnTreg_rep2-cells-polar_GCMS_A"
+    },
+    "Asn-15N2-21_mouse_13CglnTreg_rep3-cells-polar_GCMS_A": {
+      "assignment": "Asn-15N2",
+      "compound": "Asn",
+      "id": "Asn-15N2-21_mouse_13CglnTreg_rep3-cells-polar_GCMS_A",
+      "intensity": "0",
+      "intensity%type": "normalized peak area",
+      "isotopologue": "15N2",
+      "isotopologue%type": "15N",
+      "protocol.id": "GCMS1",
+      "sample.id": "21_mouse_13CglnTreg_rep3-cells-polar_GCMS_A"
+    },
+    "Asn-15N2-4_mouse_13CglnActive_rep1-cells-polar_GCMS_A": {
+      "assignment": "Asn-15N2",
+      "compound": "Asn",
+      "id": "Asn-15N2-4_mouse_13CglnActive_rep1-cells-polar_GCMS_A",
+      "intensity": "0",
+      "intensity%type": "normalized peak area",
+      "isotopologue": "15N2",
+      "isotopologue%type": "15N",
+      "protocol.id": "GCMS1",
+      "sample.id": "4_mouse_13CglnActive_rep1-cells-polar_GCMS_A"
+    },
+    "Asn-15N2-5_mouse_13CglnActive_rep2-cells-polar_GCMS_A": {
+      "assignment": "Asn-15N2",
+      "compound": "Asn",
+      "id": "Asn-15N2-5_mouse_13CglnActive_rep2-cells-polar_GCMS_A",
+      "intensity": "0",
+      "intensity%type": "normalized peak area",
+      "isotopologue": "15N2",
+      "isotopologue%type": "15N",
+      "protocol.id": "GCMS1",
+      "sample.id": "5_mouse_13CglnActive_rep2-cells-polar_GCMS_A"
+    },
+    "Asn-15N2-6_mouse_13CglnActive_rep3-cells-polar_GCMS_A": {
+      "assignment": "Asn-15N2",
+      "compound": "Asn",
+      "id": "Asn-15N2-6_mouse_13CglnActive_rep3-cells-polar_GCMS_A",
+      "intensity": "0",
+      "intensity%type": "normalized peak area",
+      "isotopologue": "15N2",
+      "isotopologue%type": "15N",
+      "protocol.id": "GCMS1",
+      "sample.id": "6_mouse_13CglnActive_rep3-cells-polar_GCMS_A"
+    },
+    "Asp-15N1-19_mouse_13CglnTreg_rep1-cells-polar_GCMS_A": {
+      "assignment": "Asp-15N1",
+      "compound": "Asp",
+      "id": "Asp-15N1-19_mouse_13CglnTreg_rep1-cells-polar_GCMS_A",
+      "intensity": "0",
+      "intensity%type": "normalized peak area",
+      "isotopologue": "15N1",
+      "isotopologue%type": "15N",
+      "protocol.id": "GCMS1",
+      "sample.id": "19_mouse_13CglnTreg_rep1-cells-polar_GCMS_A"
+    },
+    "Asp-15N1-20_mouse_13CglnTreg_rep2-cells-polar_GCMS_A": {
+      "assignment": "Asp-15N1",
+      "compound": "Asp",
+      "id": "Asp-15N1-20_mouse_13CglnTreg_rep2-cells-polar_GCMS_A",
+      "intensity": "0",
+      "intensity%type": "normalized peak area",
+      "isotopologue": "15N1",
+      "isotopologue%type": "15N",
+      "protocol.id": "GCMS1",
+      "sample.id": "20_mouse_13CglnTreg_rep2-cells-polar_GCMS_A"
+    },
+    "Asp-15N1-21_mouse_13CglnTreg_rep3-cells-polar_GCMS_A": {
+      "assignment": "Asp-15N1",
+      "compound": "Asp",
+      "id": "Asp-15N1-21_mouse_13CglnTreg_rep3-cells-polar_GCMS_A",
+      "intensity": "0",
+      "intensity%type": "normalized peak area",
+      "isotopologue": "15N1",
+      "isotopologue%type": "15N",
+      "protocol.id": "GCMS1",
+      "sample.id": "21_mouse_13CglnTreg_rep3-cells-polar_GCMS_A"
+    },
+    "Asp-15N1-4_mouse_13CglnActive_rep1-cells-polar_GCMS_A": {
+      "assignment": "Asp-15N1",
+      "compound": "Asp",
+      "id": "Asp-15N1-4_mouse_13CglnActive_rep1-cells-polar_GCMS_A",
+      "intensity": "0.7197905672124221",
+      "intensity%type": "normalized peak area",
+      "isotopologue": "15N1",
+      "isotopologue%type": "15N",
+      "protocol.id": "GCMS1",
+      "sample.id": "4_mouse_13CglnActive_rep1-cells-polar_GCMS_A"
+    },
+    "Asp-15N1-5_mouse_13CglnActive_rep2-cells-polar_GCMS_A": {
+      "assignment": "Asp-15N1",
+      "compound": "Asp",
+      "id": "Asp-15N1-5_mouse_13CglnActive_rep2-cells-polar_GCMS_A",
+      "intensity": "4.101932870498321",
+      "intensity%type": "normalized peak area",
+      "isotopologue": "15N1",
+      "isotopologue%type": "15N",
+      "protocol.id": "GCMS1",
+      "sample.id": "5_mouse_13CglnActive_rep2-cells-polar_GCMS_A"
+    },
+    "Asp-15N1-6_mouse_13CglnActive_rep3-cells-polar_GCMS_A": {
+      "assignment": "Asp-15N1",
+      "compound": "Asp",
+      "id": "Asp-15N1-6_mouse_13CglnActive_rep3-cells-polar_GCMS_A",
+      "intensity": "0",
+      "intensity%type": "normalized peak area",
+      "isotopologue": "15N1",
+      "isotopologue%type": "15N",
+      "protocol.id": "GCMS1",
+      "sample.id": "6_mouse_13CglnActive_rep3-cells-polar_GCMS_A"
+    },
+    "GAB-15N1-19_mouse_13CglnTreg_rep1-cells-polar_GCMS_A": {
+      "assignment": "GAB-15N1",
+      "compound": "GAB",
+      "id": "GAB-15N1-19_mouse_13CglnTreg_rep1-cells-polar_GCMS_A",
+      "intensity": "0",
+      "intensity%type": "normalized peak area",
+      "isotopologue": "15N1",
+      "isotopologue%type": "15N",
+      "protocol.id": "GCMS1",
+      "sample.id": "19_mouse_13CglnTreg_rep1-cells-polar_GCMS_A"
+    },
+    "GAB-15N1-20_mouse_13CglnTreg_rep2-cells-polar_GCMS_A": {
+      "assignment": "GAB-15N1",
+      "compound": "GAB",
+      "id": "GAB-15N1-20_mouse_13CglnTreg_rep2-cells-polar_GCMS_A",
+      "intensity": "0",
+      "intensity%type": "normalized peak area",
+      "isotopologue": "15N1",
+      "isotopologue%type": "15N",
+      "protocol.id": "GCMS1",
+      "sample.id": "20_mouse_13CglnTreg_rep2-cells-polar_GCMS_A"
+    },
+    "GAB-15N1-21_mouse_13CglnTreg_rep3-cells-polar_GCMS_A": {
+      "assignment": "GAB-15N1",
+      "compound": "GAB",
+      "id": "GAB-15N1-21_mouse_13CglnTreg_rep3-cells-polar_GCMS_A",
+      "intensity": "0",
+      "intensity%type": "normalized peak area",
+      "isotopologue": "15N1",
+      "isotopologue%type": "15N",
+      "protocol.id": "GCMS1",
+      "sample.id": "21_mouse_13CglnTreg_rep3-cells-polar_GCMS_A"
+    },
+    "GAB-15N1-4_mouse_13CglnActive_rep1-cells-polar_GCMS_A": {
+      "assignment": "GAB-15N1",
+      "compound": "GAB",
+      "id": "GAB-15N1-4_mouse_13CglnActive_rep1-cells-polar_GCMS_A",
+      "intensity": "0",
+      "intensity%type": "normalized peak area",
+      "isotopologue": "15N1",
+      "isotopologue%type": "15N",
+      "protocol.id": "GCMS1",
+      "sample.id": "4_mouse_13CglnActive_rep1-cells-polar_GCMS_A"
+    },
+    "GAB-15N1-5_mouse_13CglnActive_rep2-cells-polar_GCMS_A": {
+      "assignment": "GAB-15N1",
+      "compound": "GAB",
+      "id": "GAB-15N1-5_mouse_13CglnActive_rep2-cells-polar_GCMS_A",
+      "intensity": "0",
+      "intensity%type": "normalized peak area",
+      "isotopologue": "15N1",
+      "isotopologue%type": "15N",
+      "protocol.id": "GCMS1",
+      "sample.id": "5_mouse_13CglnActive_rep2-cells-polar_GCMS_A"
+    },
+    "GAB-15N1-6_mouse_13CglnActive_rep3-cells-polar_GCMS_A": {
+      "assignment": "GAB-15N1",
+      "compound": "GAB",
+      "id": "GAB-15N1-6_mouse_13CglnActive_rep3-cells-polar_GCMS_A",
+      "intensity": "0",
+      "intensity%type": "normalized peak area",
+      "isotopologue": "15N1",
+      "isotopologue%type": "15N",
+      "protocol.id": "GCMS1",
+      "sample.id": "6_mouse_13CglnActive_rep3-cells-polar_GCMS_A"
+    },
+    "Gln-15N1-19_mouse_13CglnTreg_rep1-cells-polar_GCMS_A": {
+      "assignment": "Gln-15N1",
+      "compound": "Gln",
+      "id": "Gln-15N1-19_mouse_13CglnTreg_rep1-cells-polar_GCMS_A",
+      "intensity": "0",
+      "intensity%type": "normalized peak area",
+      "isotopologue": "15N1",
+      "isotopologue%type": "15N",
+      "protocol.id": "GCMS1",
+      "sample.id": "19_mouse_13CglnTreg_rep1-cells-polar_GCMS_A"
+    },
+    "Gln-15N1-20_mouse_13CglnTreg_rep2-cells-polar_GCMS_A": {
+      "assignment": "Gln-15N1",
+      "compound": "Gln",
+      "id": "Gln-15N1-20_mouse_13CglnTreg_rep2-cells-polar_GCMS_A",
+      "intensity": "0",
+      "intensity%type": "normalized peak area",
+      "isotopologue": "15N1",
+      "isotopologue%type": "15N",
+      "protocol.id": "GCMS1",
+      "sample.id": "20_mouse_13CglnTreg_rep2-cells-polar_GCMS_A"
+    },
+    "Gln-15N1-21_mouse_13CglnTreg_rep3-cells-polar_GCMS_A": {
+      "assignment": "Gln-15N1",
+      "compound": "Gln",
+      "id": "Gln-15N1-21_mouse_13CglnTreg_rep3-cells-polar_GCMS_A",
+      "intensity": "0",
+      "intensity%type": "normalized peak area",
+      "isotopologue": "15N1",
+      "isotopologue%type": "15N",
+      "protocol.id": "GCMS1",
+      "sample.id": "21_mouse_13CglnTreg_rep3-cells-polar_GCMS_A"
+    },
+    "Gln-15N1-4_mouse_13CglnActive_rep1-cells-polar_GCMS_A": {
+      "assignment": "Gln-15N1",
+      "compound": "Gln",
+      "id": "Gln-15N1-4_mouse_13CglnActive_rep1-cells-polar_GCMS_A",
+      "intensity": "0.04438417595847999",
+      "intensity%type": "normalized peak area",
+      "isotopologue": "15N1",
+      "isotopologue%type": "15N",
+      "protocol.id": "GCMS1",
+      "sample.id": "4_mouse_13CglnActive_rep1-cells-polar_GCMS_A"
+    },
+    "Gln-15N1-5_mouse_13CglnActive_rep2-cells-polar_GCMS_A": {
+      "assignment": "Gln-15N1",
+      "compound": "Gln",
+      "id": "Gln-15N1-5_mouse_13CglnActive_rep2-cells-polar_GCMS_A",
+      "intensity": "0.004800542331832754",
+      "intensity%type": "normalized peak area",
+      "isotopologue": "15N1",
+      "isotopologue%type": "15N",
+      "protocol.id": "GCMS1",
+      "sample.id": "5_mouse_13CglnActive_rep2-cells-polar_GCMS_A"
+    },
+    "Gln-15N1-6_mouse_13CglnActive_rep3-cells-polar_GCMS_A": {
+      "assignment": "Gln-15N1",
+      "compound": "Gln",
+      "id": "Gln-15N1-6_mouse_13CglnActive_rep3-cells-polar_GCMS_A",
+      "intensity": "0",
+      "intensity%type": "normalized peak area",
+      "isotopologue": "15N1",
+      "isotopologue%type": "15N",
+      "protocol.id": "GCMS1",
+      "sample.id": "6_mouse_13CglnActive_rep3-cells-polar_GCMS_A"
+    },
+    "Gln-15N2-19_mouse_13CglnTreg_rep1-cells-polar_GCMS_A": {
+      "assignment": "Gln-15N2",
+      "compound": "Gln",
+      "id": "Gln-15N2-19_mouse_13CglnTreg_rep1-cells-polar_GCMS_A",
+      "intensity": "0",
+      "intensity%type": "normalized peak area",
+      "isotopologue": "15N2",
+      "isotopologue%type": "15N",
+      "protocol.id": "GCMS1",
+      "sample.id": "19_mouse_13CglnTreg_rep1-cells-polar_GCMS_A"
+    },
+    "Gln-15N2-20_mouse_13CglnTreg_rep2-cells-polar_GCMS_A": {
+      "assignment": "Gln-15N2",
+      "compound": "Gln",
+      "id": "Gln-15N2-20_mouse_13CglnTreg_rep2-cells-polar_GCMS_A",
+      "intensity": "0",
+      "intensity%type": "normalized peak area",
+      "isotopologue": "15N2",
+      "isotopologue%type": "15N",
+      "protocol.id": "GCMS1",
+      "sample.id": "20_mouse_13CglnTreg_rep2-cells-polar_GCMS_A"
+    },
+    "Gln-15N2-21_mouse_13CglnTreg_rep3-cells-polar_GCMS_A": {
+      "assignment": "Gln-15N2",
+      "compound": "Gln",
+      "id": "Gln-15N2-21_mouse_13CglnTreg_rep3-cells-polar_GCMS_A",
+      "intensity": "0",
+      "intensity%type": "normalized peak area",
+      "isotopologue": "15N2",
+      "isotopologue%type": "15N",
+      "protocol.id": "GCMS1",
+      "sample.id": "21_mouse_13CglnTreg_rep3-cells-polar_GCMS_A"
+    },
+    "Gln-15N2-4_mouse_13CglnActive_rep1-cells-polar_GCMS_A": {
+      "assignment": "Gln-15N2",
+      "compound": "Gln",
+      "id": "Gln-15N2-4_mouse_13CglnActive_rep1-cells-polar_GCMS_A",
+      "intensity": "0",
+      "intensity%type": "normalized peak area",
+      "isotopologue": "15N2",
+      "isotopologue%type": "15N",
+      "protocol.id": "GCMS1",
+      "sample.id": "4_mouse_13CglnActive_rep1-cells-polar_GCMS_A"
+    },
+    "Gln-15N2-5_mouse_13CglnActive_rep2-cells-polar_GCMS_A": {
+      "assignment": "Gln-15N2",
+      "compound": "Gln",
+      "id": "Gln-15N2-5_mouse_13CglnActive_rep2-cells-polar_GCMS_A",
+      "intensity": "0",
+      "intensity%type": "normalized peak area",
+      "isotopologue": "15N2",
+      "isotopologue%type": "15N",
+      "protocol.id": "GCMS1",
+      "sample.id": "5_mouse_13CglnActive_rep2-cells-polar_GCMS_A"
+    },
+    "Gln-15N2-6_mouse_13CglnActive_rep3-cells-polar_GCMS_A": {
+      "assignment": "Gln-15N2",
+      "compound": "Gln",
+      "id": "Gln-15N2-6_mouse_13CglnActive_rep3-cells-polar_GCMS_A",
+      "intensity": "0",
+      "intensity%type": "normalized peak area",
+      "isotopologue": "15N2",
+      "isotopologue%type": "15N",
+      "protocol.id": "GCMS1",
+      "sample.id": "6_mouse_13CglnActive_rep3-cells-polar_GCMS_A"
+    },
+    "Glu-15N1-19_mouse_13CglnTreg_rep1-cells-polar_GCMS_A": {
+      "assignment": "Glu-15N1",
+      "compound": "Glu",
+      "id": "Glu-15N1-19_mouse_13CglnTreg_rep1-cells-polar_GCMS_A",
+      "intensity": "0.6973294290551815",
+      "intensity%type": "normalized peak area",
+      "isotopologue": "15N1",
+      "isotopologue%type": "15N",
+      "protocol.id": "GCMS1",
+      "sample.id": "19_mouse_13CglnTreg_rep1-cells-polar_GCMS_A"
+    },
+    "Glu-15N1-20_mouse_13CglnTreg_rep2-cells-polar_GCMS_A": {
+      "assignment": "Glu-15N1",
+      "compound": "Glu",
+      "id": "Glu-15N1-20_mouse_13CglnTreg_rep2-cells-polar_GCMS_A",
+      "intensity": "0.005585043305734631",
+      "intensity%type": "normalized peak area",
+      "isotopologue": "15N1",
+      "isotopologue%type": "15N",
+      "protocol.id": "GCMS1",
+      "sample.id": "20_mouse_13CglnTreg_rep2-cells-polar_GCMS_A"
+    },
+    "Glu-15N1-21_mouse_13CglnTreg_rep3-cells-polar_GCMS_A": {
+      "assignment": "Glu-15N1",
+      "compound": "Glu",
+      "id": "Glu-15N1-21_mouse_13CglnTreg_rep3-cells-polar_GCMS_A",
+      "intensity": "0",
+      "intensity%type": "normalized peak area",
+      "isotopologue": "15N1",
+      "isotopologue%type": "15N",
+      "protocol.id": "GCMS1",
+      "sample.id": "21_mouse_13CglnTreg_rep3-cells-polar_GCMS_A"
+    },
+    "Glu-15N1-4_mouse_13CglnActive_rep1-cells-polar_GCMS_A": {
+      "assignment": "Glu-15N1",
+      "compound": "Glu",
+      "id": "Glu-15N1-4_mouse_13CglnActive_rep1-cells-polar_GCMS_A",
+      "intensity": "3.6916926956925598",
+      "intensity%type": "normalized peak area",
+      "isotopologue": "15N1",
+      "isotopologue%type": "15N",
+      "protocol.id": "GCMS1",
+      "sample.id": "4_mouse_13CglnActive_rep1-cells-polar_GCMS_A"
+    },
+    "Glu-15N1-5_mouse_13CglnActive_rep2-cells-polar_GCMS_A": {
+      "assignment": "Glu-15N1",
+      "compound": "Glu",
+      "id": "Glu-15N1-5_mouse_13CglnActive_rep2-cells-polar_GCMS_A",
+      "intensity": "3.4281683343780904",
+      "intensity%type": "normalized peak area",
+      "isotopologue": "15N1",
+      "isotopologue%type": "15N",
+      "protocol.id": "GCMS1",
+      "sample.id": "5_mouse_13CglnActive_rep2-cells-polar_GCMS_A"
+    },
+    "Glu-15N1-6_mouse_13CglnActive_rep3-cells-polar_GCMS_A": {
+      "assignment": "Glu-15N1",
+      "compound": "Glu",
+      "id": "Glu-15N1-6_mouse_13CglnActive_rep3-cells-polar_GCMS_A",
+      "intensity": "0.05471157782004994",
+      "intensity%type": "normalized peak area",
+      "isotopologue": "15N1",
+      "isotopologue%type": "15N",
+      "protocol.id": "GCMS1",
+      "sample.id": "6_mouse_13CglnActive_rep3-cells-polar_GCMS_A"
+    },
+    "N-Ace-Asp-15N1-19_mouse_13CglnTreg_rep1-cells-polar_GCMS_A": {
+      "assignment": "N-Ace-Asp-15N1",
+      "compound": "N-Ace-Asp",
+      "id": "N-Ace-Asp-15N1-19_mouse_13CglnTreg_rep1-cells-polar_GCMS_A",
+      "intensity": "0",
+      "intensity%type": "normalized peak area",
+      "isotopologue": "15N1",
+      "isotopologue%type": "15N",
+      "protocol.id": "GCMS1",
+      "sample.id": "19_mouse_13CglnTreg_rep1-cells-polar_GCMS_A"
+    },
+    "N-Ace-Asp-15N1-20_mouse_13CglnTreg_rep2-cells-polar_GCMS_A": {
+      "assignment": "N-Ace-Asp-15N1",
+      "compound": "N-Ace-Asp",
+      "id": "N-Ace-Asp-15N1-20_mouse_13CglnTreg_rep2-cells-polar_GCMS_A",
+      "intensity": "0",
+      "intensity%type": "normalized peak area",
+      "isotopologue": "15N1",
+      "isotopologue%type": "15N",
+      "protocol.id": "GCMS1",
+      "sample.id": "20_mouse_13CglnTreg_rep2-cells-polar_GCMS_A"
+    },
+    "N-Ace-Asp-15N1-21_mouse_13CglnTreg_rep3-cells-polar_GCMS_A": {
+      "assignment": "N-Ace-Asp-15N1",
+      "compound": "N-Ace-Asp",
+      "id": "N-Ace-Asp-15N1-21_mouse_13CglnTreg_rep3-cells-polar_GCMS_A",
+      "intensity": "0",
+      "intensity%type": "normalized peak area",
+      "isotopologue": "15N1",
+      "isotopologue%type": "15N",
+      "protocol.id": "GCMS1",
+      "sample.id": "21_mouse_13CglnTreg_rep3-cells-polar_GCMS_A"
+    },
+    "N-Ace-Asp-15N1-4_mouse_13CglnActive_rep1-cells-polar_GCMS_A": {
+      "assignment": "N-Ace-Asp-15N1",
+      "compound": "N-Ace-Asp",
+      "id": "N-Ace-Asp-15N1-4_mouse_13CglnActive_rep1-cells-polar_GCMS_A",
+      "intensity": "0",
+      "intensity%type": "normalized peak area",
+      "isotopologue": "15N1",
+      "isotopologue%type": "15N",
+      "protocol.id": "GCMS1",
+      "sample.id": "4_mouse_13CglnActive_rep1-cells-polar_GCMS_A"
+    },
+    "N-Ace-Asp-15N1-5_mouse_13CglnActive_rep2-cells-polar_GCMS_A": {
+      "assignment": "N-Ace-Asp-15N1",
+      "compound": "N-Ace-Asp",
+      "id": "N-Ace-Asp-15N1-5_mouse_13CglnActive_rep2-cells-polar_GCMS_A",
+      "intensity": "0",
+      "intensity%type": "normalized peak area",
+      "isotopologue": "15N1",
+      "isotopologue%type": "15N",
+      "protocol.id": "GCMS1",
+      "sample.id": "5_mouse_13CglnActive_rep2-cells-polar_GCMS_A"
+    },
+    "N-Ace-Asp-15N1-6_mouse_13CglnActive_rep3-cells-polar_GCMS_A": {
+      "assignment": "N-Ace-Asp-15N1",
+      "compound": "N-Ace-Asp",
+      "id": "N-Ace-Asp-15N1-6_mouse_13CglnActive_rep3-cells-polar_GCMS_A",
+      "intensity": "0",
+      "intensity%type": "normalized peak area",
+      "isotopologue": "15N1",
+      "isotopologue%type": "15N",
+      "protocol.id": "GCMS1",
+      "sample.id": "6_mouse_13CglnActive_rep3-cells-polar_GCMS_A"
+    },
+    "Pro-15N1-19_mouse_13CglnTreg_rep1-cells-polar_GCMS_A": {
+      "assignment": "Pro-15N1",
+      "compound": "Pro",
+      "id": "Pro-15N1-19_mouse_13CglnTreg_rep1-cells-polar_GCMS_A",
+      "intensity": "0",
+      "intensity%type": "normalized peak area",
+      "isotopologue": "15N1",
+      "isotopologue%type": "15N",
+      "protocol.id": "GCMS1",
+      "sample.id": "19_mouse_13CglnTreg_rep1-cells-polar_GCMS_A"
+    },
+    "Pro-15N1-20_mouse_13CglnTreg_rep2-cells-polar_GCMS_A": {
+      "assignment": "Pro-15N1",
+      "compound": "Pro",
+      "id": "Pro-15N1-20_mouse_13CglnTreg_rep2-cells-polar_GCMS_A",
+      "intensity": "0",
+      "intensity%type": "normalized peak area",
+      "isotopologue": "15N1",
+      "isotopologue%type": "15N",
+      "protocol.id": "GCMS1",
+      "sample.id": "20_mouse_13CglnTreg_rep2-cells-polar_GCMS_A"
+    },
+    "Pro-15N1-21_mouse_13CglnTreg_rep3-cells-polar_GCMS_A": {
+      "assignment": "Pro-15N1",
+      "compound": "Pro",
+      "id": "Pro-15N1-21_mouse_13CglnTreg_rep3-cells-polar_GCMS_A",
+      "intensity": "0",
+      "intensity%type": "normalized peak area",
+      "isotopologue": "15N1",
+      "isotopologue%type": "15N",
+      "protocol.id": "GCMS1",
+      "sample.id": "21_mouse_13CglnTreg_rep3-cells-polar_GCMS_A"
+    },
+    "Pro-15N1-4_mouse_13CglnActive_rep1-cells-polar_GCMS_A": {
+      "assignment": "Pro-15N1",
+      "compound": "Pro",
+      "id": "Pro-15N1-4_mouse_13CglnActive_rep1-cells-polar_GCMS_A",
+      "intensity": "0.11156650321674373",
+      "intensity%type": "normalized peak area",
+      "isotopologue": "15N1",
+      "isotopologue%type": "15N",
+      "protocol.id": "GCMS1",
+      "sample.id": "4_mouse_13CglnActive_rep1-cells-polar_GCMS_A"
+    },
+    "Pro-15N1-5_mouse_13CglnActive_rep2-cells-polar_GCMS_A": {
+      "assignment": "Pro-15N1",
+      "compound": "Pro",
+      "id": "Pro-15N1-5_mouse_13CglnActive_rep2-cells-polar_GCMS_A",
+      "intensity": "0.08463877653233622",
+      "intensity%type": "normalized peak area",
+      "isotopologue": "15N1",
+      "isotopologue%type": "15N",
+      "protocol.id": "GCMS1",
+      "sample.id": "5_mouse_13CglnActive_rep2-cells-polar_GCMS_A"
+    },
+    "Pro-15N1-6_mouse_13CglnActive_rep3-cells-polar_GCMS_A": {
+      "assignment": "Pro-15N1",
+      "compound": "Pro",
+      "id": "Pro-15N1-6_mouse_13CglnActive_rep3-cells-polar_GCMS_A",
+      "intensity": "0",
+      "intensity%type": "normalized peak area",
+      "isotopologue": "15N1",
+      "isotopologue%type": "15N",
+      "protocol.id": "GCMS1",
+      "sample.id": "6_mouse_13CglnActive_rep3-cells-polar_GCMS_A"
+    },
+    "Ser-15N1-19_mouse_13CglnTreg_rep1-cells-polar_GCMS_A": {
+      "assignment": "Ser-15N1",
+      "compound": "Ser",
+      "id": "Ser-15N1-19_mouse_13CglnTreg_rep1-cells-polar_GCMS_A",
+      "intensity": "0",
+      "intensity%type": "normalized peak area",
+      "isotopologue": "15N1",
+      "isotopologue%type": "15N",
+      "protocol.id": "GCMS1",
+      "sample.id": "19_mouse_13CglnTreg_rep1-cells-polar_GCMS_A"
+    },
+    "Ser-15N1-20_mouse_13CglnTreg_rep2-cells-polar_GCMS_A": {
+      "assignment": "Ser-15N1",
+      "compound": "Ser",
+      "id": "Ser-15N1-20_mouse_13CglnTreg_rep2-cells-polar_GCMS_A",
+      "intensity": "0",
+      "intensity%type": "normalized peak area",
+      "isotopologue": "15N1",
+      "isotopologue%type": "15N",
+      "protocol.id": "GCMS1",
+      "sample.id": "20_mouse_13CglnTreg_rep2-cells-polar_GCMS_A"
+    },
+    "Ser-15N1-21_mouse_13CglnTreg_rep3-cells-polar_GCMS_A": {
+      "assignment": "Ser-15N1",
+      "compound": "Ser",
+      "id": "Ser-15N1-21_mouse_13CglnTreg_rep3-cells-polar_GCMS_A",
+      "intensity": "0",
+      "intensity%type": "normalized peak area",
+      "isotopologue": "15N1",
+      "isotopologue%type": "15N",
+      "protocol.id": "GCMS1",
+      "sample.id": "21_mouse_13CglnTreg_rep3-cells-polar_GCMS_A"
+    },
+    "Ser-15N1-4_mouse_13CglnActive_rep1-cells-polar_GCMS_A": {
+      "assignment": "Ser-15N1",
+      "compound": "Ser",
+      "id": "Ser-15N1-4_mouse_13CglnActive_rep1-cells-polar_GCMS_A",
+      "intensity": "0.024718360648742582",
+      "intensity%type": "normalized peak area",
+      "isotopologue": "15N1",
+      "isotopologue%type": "15N",
+      "protocol.id": "GCMS1",
+      "sample.id": "4_mouse_13CglnActive_rep1-cells-polar_GCMS_A"
+    },
+    "Ser-15N1-5_mouse_13CglnActive_rep2-cells-polar_GCMS_A": {
+      "assignment": "Ser-15N1",
+      "compound": "Ser",
+      "id": "Ser-15N1-5_mouse_13CglnActive_rep2-cells-polar_GCMS_A",
+      "intensity": "0.023778724572995263",
+      "intensity%type": "normalized peak area",
+      "isotopologue": "15N1",
+      "isotopologue%type": "15N",
+      "protocol.id": "GCMS1",
+      "sample.id": "5_mouse_13CglnActive_rep2-cells-polar_GCMS_A"
+    },
+    "Ser-15N1-6_mouse_13CglnActive_rep3-cells-polar_GCMS_A": {
+      "assignment": "Ser-15N1",
+      "compound": "Ser",
+      "id": "Ser-15N1-6_mouse_13CglnActive_rep3-cells-polar_GCMS_A",
+      "intensity": "0.003398274851015273",
+      "intensity%type": "normalized peak area",
+      "isotopologue": "15N1",
+      "isotopologue%type": "15N",
+      "protocol.id": "GCMS1",
+      "sample.id": "6_mouse_13CglnActive_rep3-cells-polar_GCMS_A"
+    },
+    "pyroGlu-15N1-19_mouse_13CglnTreg_rep1-cells-polar_GCMS_A": {
+      "assignment": "pyroGlu-15N1",
+      "compound": "pyroGlu",
+      "id": "pyroGlu-15N1-19_mouse_13CglnTreg_rep1-cells-polar_GCMS_A",
+      "intensity": "0",
+      "intensity%type": "normalized peak area",
+      "isotopologue": "15N1",
+      "isotopologue%type": "15N",
+      "protocol.id": "GCMS1",
+      "sample.id": "19_mouse_13CglnTreg_rep1-cells-polar_GCMS_A"
+    },
+    "pyroGlu-15N1-20_mouse_13CglnTreg_rep2-cells-polar_GCMS_A": {
+      "assignment": "pyroGlu-15N1",
+      "compound": "pyroGlu",
+      "id": "pyroGlu-15N1-20_mouse_13CglnTreg_rep2-cells-polar_GCMS_A",
+      "intensity": "0",
+      "intensity%type": "normalized peak area",
+      "isotopologue": "15N1",
+      "isotopologue%type": "15N",
+      "protocol.id": "GCMS1",
+      "sample.id": "20_mouse_13CglnTreg_rep2-cells-polar_GCMS_A"
+    },
+    "pyroGlu-15N1-21_mouse_13CglnTreg_rep3-cells-polar_GCMS_A": {
+      "assignment": "pyroGlu-15N1",
+      "compound": "pyroGlu",
+      "id": "pyroGlu-15N1-21_mouse_13CglnTreg_rep3-cells-polar_GCMS_A",
+      "intensity": "0",
+      "intensity%type": "normalized peak area",
+      "isotopologue": "15N1",
+      "isotopologue%type": "15N",
+      "protocol.id": "GCMS1",
+      "sample.id": "21_mouse_13CglnTreg_rep3-cells-polar_GCMS_A"
+    },
+    "pyroGlu-15N1-4_mouse_13CglnActive_rep1-cells-polar_GCMS_A": {
+      "assignment": "pyroGlu-15N1",
+      "compound": "pyroGlu",
+      "id": "pyroGlu-15N1-4_mouse_13CglnActive_rep1-cells-polar_GCMS_A",
+      "intensity": "0",
+      "intensity%type": "normalized peak area",
+      "isotopologue": "15N1",
+      "isotopologue%type": "15N",
+      "protocol.id": "GCMS1",
+      "sample.id": "4_mouse_13CglnActive_rep1-cells-polar_GCMS_A"
+    },
+    "pyroGlu-15N1-5_mouse_13CglnActive_rep2-cells-polar_GCMS_A": {
+      "assignment": "pyroGlu-15N1",
+      "compound": "pyroGlu",
+      "id": "pyroGlu-15N1-5_mouse_13CglnActive_rep2-cells-polar_GCMS_A",
+      "intensity": "0",
+      "intensity%type": "normalized peak area",
+      "isotopologue": "15N1",
+      "isotopologue%type": "15N",
+      "protocol.id": "GCMS1",
+      "sample.id": "5_mouse_13CglnActive_rep2-cells-polar_GCMS_A"
+    },
+    "pyroGlu-15N1-6_mouse_13CglnActive_rep3-cells-polar_GCMS_A": {
+      "assignment": "pyroGlu-15N1",
+      "compound": "pyroGlu",
+      "id": "pyroGlu-15N1-6_mouse_13CglnActive_rep3-cells-polar_GCMS_A",
+      "intensity": "0",
+      "intensity%type": "normalized peak area",
+      "isotopologue": "15N1",
+      "isotopologue%type": "15N",
+      "protocol.id": "GCMS1",
+      "sample.id": "6_mouse_13CglnActive_rep3-cells-polar_GCMS_A"
+    }
+  },
+  "project": {
+    "NCH_RW_Tcells": {
+      "PI_email": "ruoning.wang@nationwidechildrens.org",
+      "PI_first_name": "Ruoning",
+      "PI_last_name": "Wang",
+      "address": "700 Children's Drive, Rm. WA5016, Columbus, OH 43205-2696",
+      "department": "Center for Childhood Cancer",
+      "description": "Mouse T-cell metabolism",
+      "id": "NCH_RW_Tcells",
+      "institution": "The Research Institute at Nationwide Children's Hospital",
+      "phone": "-",
+      "title": "mouse T cell metabolic flux"
+    }
+  },
+  "protocol": {
+    "13CglcActive": {
+      "description": "Active T_cells grown in labeled glucose.",
+      "filename": "",
+      "id": "13CglcActive",
+      "parentID": "cell_culture_experiment",
+      "type": "treatment"
+    },
+    "13CglcTreg": {
+      "description": "Regular T_cells grown in labeled glucose.",
+      "filename": "",
+      "id": "13CglcTreg",
+      "parentID": "cell_culture_experiment",
+      "type": "treatment"
+    },
+    "13CglnActive": {
+      "description": "Active T_cells grown in labeled glutamine.",
+      "filename": "",
+      "id": "13CglnActive",
+      "parentID": "cell_culture_experiment",
+      "type": "treatment"
+    },
+    "13CglnTreg": {
+      "description": "Regular T_cells grown in labeled glutamine.",
+      "filename": "",
+      "id": "13CglnTreg",
+      "parentID": "cell_culture_experiment",
+      "type": "treatment"
+    },
+    "13CinoActive": {
+      "description": "Active T_cells grown in labeled inosine.",
+      "filename": "",
+      "id": "13CinoActive",
+      "parentID": "cell_culture_experiment",
+      "type": "treatment"
+    },
+    "13ClacActive": {
+      "description": "Active T_cells grown in labeled lactate.",
+      "filename": "",
+      "id": "13ClacActive",
+      "parentID": "cell_culture_experiment",
+      "type": "treatment"
+    },
+    "13ClacTreg": {
+      "description": "Regular T_cells grown in labeled lactate.",
+      "filename": "",
+      "id": "13ClacTreg",
+      "parentID": "cell_culture_experiment",
+      "type": "treatment"
+    },
+    "GCMS1": {
+      "chromatography_description": "Targeted GC",
+      "chromatography_instrument_name": "GC-EI-MS, Thermo ITQ",
+      "chromatography_type": "Targeted GC",
+      "column_name": "SGE 0.15 mm i.d. x 50 m fused silica open-tubular column, coated with 0.25 \u03bcm BPX-5 (5% phenylmethyl- phenylsiloxane)",
+      "description": "GCMS Analytical Experiment with detection of compounds by comparison to standards.  Derivitization is done with MTBSTFA (N-methyl-N-[tert-butyldimethylsilyl]trifluoroacetamide).",
+      "id": "GCMS1",
+      "instrument": "GC-EI-MS, Thermo ITQ",
+      "instrument_type": "GC-ITQ",
+      "ion_mode": "POSITIVE",
+      "ionization": "EI",
+      "parentID": "GCMS_measurement",
+      "type": "MS"
+    },
+    "GCMS_file_storage1": {
+      "data_files": [
+        "1_mouse_13CglcActive_rep1-cells.raw"
+      ],
+      "id": "GCMS_file_storage1",
+      "parentID": "file_storage",
+      "sample.id": "1_mouse_13CglcActive_rep1-cells-polar_GCMS_A",
+      "type": "storage"
+    },
+    "GCMS_file_storage10": {
+      "data_files": [
+        "10_mouse_13ClacActive_rep1-cells.raw"
+      ],
+      "id": "GCMS_file_storage10",
+      "parentID": "file_storage",
+      "sample.id": "10_mouse_13ClacActive_rep1-cells-polar_GCMS_A",
+      "type": "storage"
+    },
+    "GCMS_file_storage11": {
+      "data_files": [
+        "11_mouse_13ClacActive_rep2-cells.raw"
+      ],
+      "id": "GCMS_file_storage11",
+      "parentID": "file_storage",
+      "sample.id": "11_mouse_13ClacActive_rep2-cells-polar_GCMS_A",
+      "type": "storage"
+    },
+    "GCMS_file_storage12": {
+      "data_files": [
+        "12_mouse_13ClacActive_rep3-cells.raw"
+      ],
+      "id": "GCMS_file_storage12",
+      "parentID": "file_storage",
+      "sample.id": "12_mouse_13ClacActive_rep3-cells-polar_GCMS_A",
+      "type": "storage"
+    },
+    "GCMS_file_storage13": {
+      "data_files": [
+        "13_mouse_13CglcTreg_rep1-cells.raw"
+      ],
+      "id": "GCMS_file_storage13",
+      "parentID": "file_storage",
+      "sample.id": "13_mouse_13CglcTreg_rep1-cells-polar_GCMS_A",
+      "type": "storage"
+    },
+    "GCMS_file_storage14": {
+      "data_files": [
+        "14_mouse_13CglcTreg_rep2-cells.raw"
+      ],
+      "id": "GCMS_file_storage14",
+      "parentID": "file_storage",
+      "sample.id": "14_mouse_13CglcTreg_rep2-cells-polar_GCMS_A",
+      "type": "storage"
+    },
+    "GCMS_file_storage15": {
+      "data_files": [
+        "15_mouse_13CglcTreg_rep3-cells.raw"
+      ],
+      "id": "GCMS_file_storage15",
+      "parentID": "file_storage",
+      "sample.id": "15_mouse_13CglcTreg_rep3-cells-polar_GCMS_A",
+      "type": "storage"
+    },
+    "GCMS_file_storage16": {
+      "data_files": [
+        "16_mouse_13ClacTreg_rep1-cells.raw"
+      ],
+      "id": "GCMS_file_storage16",
+      "parentID": "file_storage",
+      "sample.id": "16_mouse_13ClacTreg_rep1-cells-polar_GCMS_A",
+      "type": "storage"
+    },
+    "GCMS_file_storage17": {
+      "data_files": [
+        "17_mouse_13ClacTreg_rep2-cells.raw"
+      ],
+      "id": "GCMS_file_storage17",
+      "parentID": "file_storage",
+      "sample.id": "17_mouse_13ClacTreg_rep2-cells-polar_GCMS_A",
+      "type": "storage"
+    },
+    "GCMS_file_storage18": {
+      "data_files": [
+        "18_mouse_13ClacTreg_rep3-cells.raw"
+      ],
+      "id": "GCMS_file_storage18",
+      "parentID": "file_storage",
+      "sample.id": "18_mouse_13ClacTreg_rep3-cells-polar_GCMS_A",
+      "type": "storage"
+    },
+    "GCMS_file_storage19": {
+      "data_files": [
+        "19_mouse_13CglnTreg_rep1-cells.raw"
+      ],
+      "id": "GCMS_file_storage19",
+      "parentID": "file_storage",
+      "sample.id": "19_mouse_13CglnTreg_rep1-cells-polar_GCMS_A",
+      "type": "storage"
+    },
+    "GCMS_file_storage2": {
+      "data_files": [
+        "2_mouse_13CglcActive_rep2-cells.raw"
+      ],
+      "id": "GCMS_file_storage2",
+      "parentID": "file_storage",
+      "sample.id": "2_mouse_13CglcActive_rep2-cells-polar_GCMS_A",
+      "type": "storage"
+    },
+    "GCMS_file_storage20": {
+      "data_files": [
+        "20_mouse_13CglnTreg_rep2-cells.raw"
+      ],
+      "id": "GCMS_file_storage20",
+      "parentID": "file_storage",
+      "sample.id": "20_mouse_13CglnTreg_rep2-cells-polar_GCMS_A",
+      "type": "storage"
+    },
+    "GCMS_file_storage21": {
+      "data_files": [
+        "21_mouse_13CglnTreg_rep3-cells.raw"
+      ],
+      "id": "GCMS_file_storage21",
+      "parentID": "file_storage",
+      "sample.id": "21_mouse_13CglnTreg_rep3-cells-polar_GCMS_A",
+      "type": "storage"
+    },
+    "GCMS_file_storage3": {
+      "data_files": [
+        "3_mouse_13CglcActive_rep3-cells.raw"
+      ],
+      "id": "GCMS_file_storage3",
+      "parentID": "file_storage",
+      "sample.id": "3_mouse_13CglcActive_rep3-cells-polar_GCMS_A",
+      "type": "storage"
+    },
+    "GCMS_file_storage4": {
+      "data_files": [
+        "4_mouse_13CglnActive_rep1-cells.raw"
+      ],
+      "id": "GCMS_file_storage4",
+      "parentID": "file_storage",
+      "sample.id": "4_mouse_13CglnActive_rep1-cells-polar_GCMS_A",
+      "type": "storage"
+    },
+    "GCMS_file_storage5": {
+      "data_files": [
+        "5_mouse_13CglnActive_rep2-cells.raw"
+      ],
+      "id": "GCMS_file_storage5",
+      "parentID": "file_storage",
+      "sample.id": "5_mouse_13CglnActive_rep2-cells-polar_GCMS_A",
+      "type": "storage"
+    },
+    "GCMS_file_storage6": {
+      "data_files": [
+        "6_mouse_13CglnActive_rep3-cells.raw"
+      ],
+      "id": "GCMS_file_storage6",
+      "parentID": "file_storage",
+      "sample.id": "6_mouse_13CglnActive_rep3-cells-polar_GCMS_A",
+      "type": "storage"
+    },
+    "GCMS_file_storage7": {
+      "data_files": [
+        "7_mouse_13CinoActive_rep1-cells.raw"
+      ],
+      "id": "GCMS_file_storage7",
+      "parentID": "file_storage",
+      "sample.id": "7_mouse_13CinoActive_rep1-cells-polar_GCMS_A",
+      "type": "storage"
+    },
+    "GCMS_file_storage8": {
+      "data_files": [
+        "8_mouse_13CinoActive_rep2-cells.raw"
+      ],
+      "id": "GCMS_file_storage8",
+      "parentID": "file_storage",
+      "sample.id": "8_mouse_13CinoActive_rep2-cells-polar_GCMS_A",
+      "type": "storage"
+    },
+    "GCMS_file_storage9": {
+      "data_files": [
+        "9_mouse_13CinoActive_rep3-cells.raw"
+      ],
+      "id": "GCMS_file_storage9",
+      "parentID": "file_storage",
+      "sample.id": "9_mouse_13CinoActive_rep3-cells-polar_GCMS_A",
+      "type": "storage"
+    },
+    "cell_quench_collection": {
+      "description": "Collection and quench of cells in tissue culture",
+      "filename": "3A_Cells_Quench_Cell_Fan_20170412.pdf",
+      "id": "cell_quench_collection",
+      "sample_type": "cultured cells",
+      "type": "collection"
+    },
+    "lipid_extraction": {
+      "description": "Lipid extraction from cells.",
+      "filename": "4B_Extract_Polar_Lipid_Prot_Fan_070417.pdf",
+      "id": "lipid_extraction",
+      "type": "sample_prep"
+    },
+    "polar_extraction": {
+      "description": "Polar extraction from cells.",
+      "filename": "4B_Extract_Polar_Lipid_Prot_Fan_070417.pdf",
+      "id": "polar_extraction",
+      "type": "sample_prep"
+    },
+    "protein_extraction": {
+      "description": "Protein extraction and quantification.",
+      "filename": "4D_17Jun4_Fan_Prot_Quant.pdf,4B_Extract_Polar_Lipid_Prot_Fan_070417.pdf",
+      "id": "protein_extraction",
+      "type": "sample_prep"
+    }
+  },
+  "sample": {
+    "10_mouse_13ClacActive_rep1-cells": {
+      "id": "10_mouse_13ClacActive_rep1-cells",
+      "parentID": "10_mouse_13ClacActive_rep1",
+      "project.id": "NCH_RW_Tcells",
+      "protocol.id": "cell_quench_collection",
+      "study.id": "Mouse-Tcells_13C-Glc-Gln-Lac-Ino-2"
+    },
+    "10_mouse_13ClacActive_rep1-cells-lipid": {
+      "id": "10_mouse_13ClacActive_rep1-cells-lipid",
+      "parentID": "10_mouse_13ClacActive_rep1-cells",
+      "project.id": "NCH_RW_Tcells",
+      "protocol.id": "lipid_extraction",
+      "study.id": "Mouse-Tcells_13C-Glc-Gln-Lac-Ino-2",
+      "weight": "0.1892",
+      "weight%units": "g"
+    },
+    "10_mouse_13ClacActive_rep1-cells-polar_FTMS_A": {
+      "id": "10_mouse_13ClacActive_rep1-cells-polar_FTMS_A",
+      "parentID": "10_mouse_13ClacActive_rep1-cells",
+      "project.id": "NCH_RW_Tcells",
+      "protocol.id": "polar_extraction",
+      "replicate": "1",
+      "replicate%type": "analytical",
+      "study.id": "Mouse-Tcells_13C-Glc-Gln-Lac-Ino-2",
+      "type": "polar",
+      "weight": "0.0488",
+      "weight%units": "g"
+    },
+    "10_mouse_13ClacActive_rep1-cells-polar_FTMS_B": {
+      "id": "10_mouse_13ClacActive_rep1-cells-polar_FTMS_B",
+      "parentID": "10_mouse_13ClacActive_rep1-cells",
+      "project.id": "NCH_RW_Tcells",
+      "protocol.id": "polar_extraction",
+      "replicate": "2",
+      "replicate%type": "analytical",
+      "study.id": "Mouse-Tcells_13C-Glc-Gln-Lac-Ino-2",
+      "type": "polar",
+      "weight": "0.0483",
+      "weight%units": "g"
+    },
+    "10_mouse_13ClacActive_rep1-cells-polar_GCMS_A": {
+      "id": "10_mouse_13ClacActive_rep1-cells-polar_GCMS_A",
+      "parentID": "10_mouse_13ClacActive_rep1-cells",
+      "project.id": "NCH_RW_Tcells",
+      "protocol.id": [
+        "polar_extraction",
+        "GCMS_file_storage10"
+      ],
+      "replicate": "1",
+      "replicate%type": "analytical",
+      "study.id": "Mouse-Tcells_13C-Glc-Gln-Lac-Ino-2",
+      "type": "polar",
+      "weight": "0.0955",
+      "weight%units": "g"
+    },
+    "10_mouse_13ClacActive_rep1-cells-polar_NMR_A": {
+      "id": "10_mouse_13ClacActive_rep1-cells-polar_NMR_A",
+      "parentID": "10_mouse_13ClacActive_rep1-cells",
+      "project.id": "NCH_RW_Tcells",
+      "protocol.id": "polar_extraction",
+      "replicate": "1",
+      "replicate%type": "analytical",
+      "study.id": "Mouse-Tcells_13C-Glc-Gln-Lac-Ino-2",
+      "type": "polar",
+      "weight": "0.4692",
+      "weight%units": "g"
+    },
+    "10_mouse_13ClacActive_rep1-cells-protein": {
+      "dry_weight": "0.001080000000000192",
+      "dry_weight%units": "g",
+      "id": "10_mouse_13ClacActive_rep1-cells-protein",
+      "parentID": "10_mouse_13ClacActive_rep1-cells",
+      "project.id": "NCH_RW_Tcells",
+      "protein_weight": "0.37846791336924734",
+      "protein_weight%units": "mg",
+      "protocol.id": "protein_extraction",
+      "study.id": "Mouse-Tcells_13C-Glc-Gln-Lac-Ino-2"
+    },
+    "11_mouse_13ClacActive_rep2-cells": {
+      "id": "11_mouse_13ClacActive_rep2-cells",
+      "parentID": "11_mouse_13ClacActive_rep2",
+      "project.id": "NCH_RW_Tcells",
+      "protocol.id": "cell_quench_collection",
+      "study.id": "Mouse-Tcells_13C-Glc-Gln-Lac-Ino-2"
+    },
+    "11_mouse_13ClacActive_rep2-cells-lipid": {
+      "id": "11_mouse_13ClacActive_rep2-cells-lipid",
+      "parentID": "11_mouse_13ClacActive_rep2-cells",
+      "project.id": "NCH_RW_Tcells",
+      "protocol.id": "lipid_extraction",
+      "study.id": "Mouse-Tcells_13C-Glc-Gln-Lac-Ino-2",
+      "weight": "0.1927",
+      "weight%units": "g"
+    },
+    "11_mouse_13ClacActive_rep2-cells-polar_FTMS_A": {
+      "id": "11_mouse_13ClacActive_rep2-cells-polar_FTMS_A",
+      "parentID": "11_mouse_13ClacActive_rep2-cells",
+      "project.id": "NCH_RW_Tcells",
+      "protocol.id": "polar_extraction",
+      "replicate": "1",
+      "replicate%type": "analytical",
+      "study.id": "Mouse-Tcells_13C-Glc-Gln-Lac-Ino-2",
+      "type": "polar",
+      "weight": "0.0492",
+      "weight%units": "g"
+    },
+    "11_mouse_13ClacActive_rep2-cells-polar_FTMS_B": {
+      "id": "11_mouse_13ClacActive_rep2-cells-polar_FTMS_B",
+      "parentID": "11_mouse_13ClacActive_rep2-cells",
+      "project.id": "NCH_RW_Tcells",
+      "protocol.id": "polar_extraction",
+      "replicate": "2",
+      "replicate%type": "analytical",
+      "study.id": "Mouse-Tcells_13C-Glc-Gln-Lac-Ino-2",
+      "type": "polar",
+      "weight": "0.0491",
+      "weight%units": "g"
+    },
+    "11_mouse_13ClacActive_rep2-cells-polar_GCMS_A": {
+      "id": "11_mouse_13ClacActive_rep2-cells-polar_GCMS_A",
+      "parentID": "11_mouse_13ClacActive_rep2-cells",
+      "project.id": "NCH_RW_Tcells",
+      "protocol.id": [
+        "polar_extraction",
+        "GCMS_file_storage11"
+      ],
+      "replicate": "1",
+      "replicate%type": "analytical",
+      "study.id": "Mouse-Tcells_13C-Glc-Gln-Lac-Ino-2",
+      "type": "polar",
+      "weight": "0.0967",
+      "weight%units": "g"
+    },
+    "11_mouse_13ClacActive_rep2-cells-polar_NMR_A": {
+      "id": "11_mouse_13ClacActive_rep2-cells-polar_NMR_A",
+      "parentID": "11_mouse_13ClacActive_rep2-cells",
+      "project.id": "NCH_RW_Tcells",
+      "protocol.id": "polar_extraction",
+      "replicate": "1",
+      "replicate%type": "analytical",
+      "study.id": "Mouse-Tcells_13C-Glc-Gln-Lac-Ino-2",
+      "type": "polar",
+      "weight": "0.3559",
+      "weight%units": "g"
+    },
+    "11_mouse_13ClacActive_rep2-cells-protein": {
+      "dry_weight": "0.0011499999999999844",
+      "dry_weight%units": "g",
+      "id": "11_mouse_13ClacActive_rep2-cells-protein",
+      "parentID": "11_mouse_13ClacActive_rep2-cells",
+      "project.id": "NCH_RW_Tcells",
+      "protein_weight": "0.4015721533482259",
+      "protein_weight%units": "mg",
+      "protocol.id": "protein_extraction",
+      "study.id": "Mouse-Tcells_13C-Glc-Gln-Lac-Ino-2"
+    },
+    "12_mouse_13ClacActive_rep3-cells": {
+      "id": "12_mouse_13ClacActive_rep3-cells",
+      "parentID": "12_mouse_13ClacActive_rep3",
+      "project.id": "NCH_RW_Tcells",
+      "protocol.id": "cell_quench_collection",
+      "study.id": "Mouse-Tcells_13C-Glc-Gln-Lac-Ino-2"
+    },
+    "12_mouse_13ClacActive_rep3-cells-lipid": {
+      "id": "12_mouse_13ClacActive_rep3-cells-lipid",
+      "parentID": "12_mouse_13ClacActive_rep3-cells",
+      "project.id": "NCH_RW_Tcells",
+      "protocol.id": "lipid_extraction",
+      "study.id": "Mouse-Tcells_13C-Glc-Gln-Lac-Ino-2",
+      "weight": "0.1943",
+      "weight%units": "g"
+    },
+    "12_mouse_13ClacActive_rep3-cells-polar_FTMS_A": {
+      "id": "12_mouse_13ClacActive_rep3-cells-polar_FTMS_A",
+      "parentID": "12_mouse_13ClacActive_rep3-cells",
+      "project.id": "NCH_RW_Tcells",
+      "protocol.id": "polar_extraction",
+      "replicate": "1",
+      "replicate%type": "analytical",
+      "study.id": "Mouse-Tcells_13C-Glc-Gln-Lac-Ino-2",
+      "type": "polar",
+      "weight": "0.0473",
+      "weight%units": "g"
+    },
+    "12_mouse_13ClacActive_rep3-cells-polar_FTMS_B": {
+      "id": "12_mouse_13ClacActive_rep3-cells-polar_FTMS_B",
+      "parentID": "12_mouse_13ClacActive_rep3-cells",
+      "project.id": "NCH_RW_Tcells",
+      "protocol.id": "polar_extraction",
+      "replicate": "2",
+      "replicate%type": "analytical",
+      "study.id": "Mouse-Tcells_13C-Glc-Gln-Lac-Ino-2",
+      "type": "polar",
+      "weight": "0.0484",
+      "weight%units": "g"
+    },
+    "12_mouse_13ClacActive_rep3-cells-polar_GCMS_A": {
+      "id": "12_mouse_13ClacActive_rep3-cells-polar_GCMS_A",
+      "parentID": "12_mouse_13ClacActive_rep3-cells",
+      "project.id": "NCH_RW_Tcells",
+      "protocol.id": [
+        "polar_extraction",
+        "GCMS_file_storage12"
+      ],
+      "replicate": "1",
+      "replicate%type": "analytical",
+      "study.id": "Mouse-Tcells_13C-Glc-Gln-Lac-Ino-2",
+      "type": "polar",
+      "weight": "0.0965",
+      "weight%units": "g"
+    },
+    "12_mouse_13ClacActive_rep3-cells-polar_NMR_A": {
+      "id": "12_mouse_13ClacActive_rep3-cells-polar_NMR_A",
+      "parentID": "12_mouse_13ClacActive_rep3-cells",
+      "project.id": "NCH_RW_Tcells",
+      "protocol.id": "polar_extraction",
+      "replicate": "1",
+      "replicate%type": "analytical",
+      "study.id": "Mouse-Tcells_13C-Glc-Gln-Lac-Ino-2",
+      "type": "polar",
+      "weight": "0.4069",
+      "weight%units": "g"
+    },
+    "12_mouse_13ClacActive_rep3-cells-protein": {
+      "dry_weight": "0.0015100000000001224",
+      "dry_weight%units": "g",
+      "id": "12_mouse_13ClacActive_rep3-cells-protein",
+      "parentID": "12_mouse_13ClacActive_rep3-cells",
+      "project.id": "NCH_RW_Tcells",
+      "protein_weight": "0.5404123082757947",
+      "protein_weight%units": "mg",
+      "protocol.id": "protein_extraction",
+      "study.id": "Mouse-Tcells_13C-Glc-Gln-Lac-Ino-2"
+    },
+    "13_mouse_13CglcTreg_rep1-cells": {
+      "id": "13_mouse_13CglcTreg_rep1-cells",
+      "parentID": "13_mouse_13CglcTreg_rep1",
+      "project.id": "NCH_RW_Tcells",
+      "protocol.id": "cell_quench_collection",
+      "study.id": "Mouse-Tcells_13C-Glc-Gln-Lac-Ino-2"
+    },
+    "13_mouse_13CglcTreg_rep1-cells-lipid": {
+      "id": "13_mouse_13CglcTreg_rep1-cells-lipid",
+      "parentID": "13_mouse_13CglcTreg_rep1-cells",
+      "project.id": "NCH_RW_Tcells",
+      "protocol.id": "lipid_extraction",
+      "study.id": "Mouse-Tcells_13C-Glc-Gln-Lac-Ino-2",
+      "weight": "0.1918",
+      "weight%units": "g"
+    },
+    "13_mouse_13CglcTreg_rep1-cells-polar_FTMS_A": {
+      "id": "13_mouse_13CglcTreg_rep1-cells-polar_FTMS_A",
+      "parentID": "13_mouse_13CglcTreg_rep1-cells",
+      "project.id": "NCH_RW_Tcells",
+      "protocol.id": "polar_extraction",
+      "replicate": "1",
+      "replicate%type": "analytical",
+      "study.id": "Mouse-Tcells_13C-Glc-Gln-Lac-Ino-2",
+      "type": "polar",
+      "weight": "0.0485",
+      "weight%units": "g"
+    },
+    "13_mouse_13CglcTreg_rep1-cells-polar_FTMS_B": {
+      "id": "13_mouse_13CglcTreg_rep1-cells-polar_FTMS_B",
+      "parentID": "13_mouse_13CglcTreg_rep1-cells",
+      "project.id": "NCH_RW_Tcells",
+      "protocol.id": "polar_extraction",
+      "replicate": "2",
+      "replicate%type": "analytical",
+      "study.id": "Mouse-Tcells_13C-Glc-Gln-Lac-Ino-2",
+      "type": "polar",
+      "weight": "0.0486",
+      "weight%units": "g"
+    },
+    "13_mouse_13CglcTreg_rep1-cells-polar_GCMS_A": {
+      "id": "13_mouse_13CglcTreg_rep1-cells-polar_GCMS_A",
+      "parentID": "13_mouse_13CglcTreg_rep1-cells",
+      "project.id": "NCH_RW_Tcells",
+      "protocol.id": [
+        "polar_extraction",
+        "GCMS_file_storage13"
+      ],
+      "replicate": "1",
+      "replicate%type": "analytical",
+      "study.id": "Mouse-Tcells_13C-Glc-Gln-Lac-Ino-2",
+      "type": "polar",
+      "weight": "0.0969",
+      "weight%units": "g"
+    },
+    "13_mouse_13CglcTreg_rep1-cells-polar_NMR_A": {
+      "id": "13_mouse_13CglcTreg_rep1-cells-polar_NMR_A",
+      "parentID": "13_mouse_13CglcTreg_rep1-cells",
+      "project.id": "NCH_RW_Tcells",
+      "protocol.id": "polar_extraction",
+      "replicate": "1",
+      "replicate%type": "analytical",
+      "study.id": "Mouse-Tcells_13C-Glc-Gln-Lac-Ino-2",
+      "type": "polar",
+      "weight": "0.426",
+      "weight%units": "g"
+    },
+    "13_mouse_13CglcTreg_rep1-cells-protein": {
+      "dry_weight": "0.0006399999999999739",
+      "dry_weight%units": "g",
+      "id": "13_mouse_13CglcTreg_rep1-cells-protein",
+      "parentID": "13_mouse_13CglcTreg_rep1-cells",
+      "project.id": "NCH_RW_Tcells",
+      "protein_weight": "0.0728806493615591",
+      "protein_weight%units": "mg",
+      "protocol.id": "protein_extraction",
+      "study.id": "Mouse-Tcells_13C-Glc-Gln-Lac-Ino-2"
+    },
+    "14_mouse_13CglcTreg_rep2-cells": {
+      "id": "14_mouse_13CglcTreg_rep2-cells",
+      "parentID": "14_mouse_13CglcTreg_rep2",
+      "project.id": "NCH_RW_Tcells",
+      "protocol.id": "cell_quench_collection",
+      "study.id": "Mouse-Tcells_13C-Glc-Gln-Lac-Ino-2"
+    },
+    "14_mouse_13CglcTreg_rep2-cells-lipid": {
+      "id": "14_mouse_13CglcTreg_rep2-cells-lipid",
+      "parentID": "14_mouse_13CglcTreg_rep2-cells",
+      "project.id": "NCH_RW_Tcells",
+      "protocol.id": "lipid_extraction",
+      "study.id": "Mouse-Tcells_13C-Glc-Gln-Lac-Ino-2",
+      "weight": "0.1933",
+      "weight%units": "g"
+    },
+    "14_mouse_13CglcTreg_rep2-cells-polar_FTMS_A": {
+      "id": "14_mouse_13CglcTreg_rep2-cells-polar_FTMS_A",
+      "parentID": "14_mouse_13CglcTreg_rep2-cells",
+      "project.id": "NCH_RW_Tcells",
+      "protocol.id": "polar_extraction",
+      "replicate": "1",
+      "replicate%type": "analytical",
+      "study.id": "Mouse-Tcells_13C-Glc-Gln-Lac-Ino-2",
+      "type": "polar",
+      "weight": "0.0483",
+      "weight%units": "g"
+    },
+    "14_mouse_13CglcTreg_rep2-cells-polar_FTMS_B": {
+      "id": "14_mouse_13CglcTreg_rep2-cells-polar_FTMS_B",
+      "parentID": "14_mouse_13CglcTreg_rep2-cells",
+      "project.id": "NCH_RW_Tcells",
+      "protocol.id": "polar_extraction",
+      "replicate": "2",
+      "replicate%type": "analytical",
+      "study.id": "Mouse-Tcells_13C-Glc-Gln-Lac-Ino-2",
+      "type": "polar",
+      "weight": "0.049",
+      "weight%units": "g"
+    },
+    "14_mouse_13CglcTreg_rep2-cells-polar_GCMS_A": {
+      "id": "14_mouse_13CglcTreg_rep2-cells-polar_GCMS_A",
+      "parentID": "14_mouse_13CglcTreg_rep2-cells",
+      "project.id": "NCH_RW_Tcells",
+      "protocol.id": [
+        "polar_extraction",
+        "GCMS_file_storage14"
+      ],
+      "replicate": "1",
+      "replicate%type": "analytical",
+      "study.id": "Mouse-Tcells_13C-Glc-Gln-Lac-Ino-2",
+      "type": "polar",
+      "weight": "0.0969",
+      "weight%units": "g"
+    },
+    "14_mouse_13CglcTreg_rep2-cells-polar_NMR_A": {
+      "id": "14_mouse_13CglcTreg_rep2-cells-polar_NMR_A",
+      "parentID": "14_mouse_13CglcTreg_rep2-cells",
+      "project.id": "NCH_RW_Tcells",
+      "protocol.id": "polar_extraction",
+      "replicate": "1",
+      "replicate%type": "analytical",
+      "study.id": "Mouse-Tcells_13C-Glc-Gln-Lac-Ino-2",
+      "type": "polar",
+      "weight": "0.3647",
+      "weight%units": "g"
+    },
+    "14_mouse_13CglcTreg_rep2-cells-protein": {
+      "dry_weight": "0.0006699999999999484",
+      "dry_weight%units": "g",
+      "id": "14_mouse_13CglcTreg_rep2-cells-protein",
+      "parentID": "14_mouse_13CglcTreg_rep2-cells",
+      "project.id": "NCH_RW_Tcells",
+      "protein_weight": "0.08337903225806442",
+      "protein_weight%units": "mg",
+      "protocol.id": "protein_extraction",
+      "study.id": "Mouse-Tcells_13C-Glc-Gln-Lac-Ino-2"
+    },
+    "15_mouse_13CglcTreg_rep3-cells": {
+      "id": "15_mouse_13CglcTreg_rep3-cells",
+      "parentID": "15_mouse_13CglcTreg_rep3",
+      "project.id": "NCH_RW_Tcells",
+      "protocol.id": "cell_quench_collection",
+      "study.id": "Mouse-Tcells_13C-Glc-Gln-Lac-Ino-2"
+    },
+    "15_mouse_13CglcTreg_rep3-cells-lipid": {
+      "id": "15_mouse_13CglcTreg_rep3-cells-lipid",
+      "parentID": "15_mouse_13CglcTreg_rep3-cells",
+      "project.id": "NCH_RW_Tcells",
+      "protocol.id": "lipid_extraction",
+      "study.id": "Mouse-Tcells_13C-Glc-Gln-Lac-Ino-2",
+      "weight": "0.1922",
+      "weight%units": "g"
+    },
+    "15_mouse_13CglcTreg_rep3-cells-polar_FTMS_A": {
+      "id": "15_mouse_13CglcTreg_rep3-cells-polar_FTMS_A",
+      "parentID": "15_mouse_13CglcTreg_rep3-cells",
+      "project.id": "NCH_RW_Tcells",
+      "protocol.id": "polar_extraction",
+      "replicate": "1",
+      "replicate%type": "analytical",
+      "study.id": "Mouse-Tcells_13C-Glc-Gln-Lac-Ino-2",
+      "type": "polar",
+      "weight": "0.0484",
+      "weight%units": "g"
+    },
+    "15_mouse_13CglcTreg_rep3-cells-polar_FTMS_B": {
+      "id": "15_mouse_13CglcTreg_rep3-cells-polar_FTMS_B",
+      "parentID": "15_mouse_13CglcTreg_rep3-cells",
+      "project.id": "NCH_RW_Tcells",
+      "protocol.id": "polar_extraction",
+      "replicate": "2",
+      "replicate%type": "analytical",
+      "study.id": "Mouse-Tcells_13C-Glc-Gln-Lac-Ino-2",
+      "type": "polar",
+      "weight": "0.047",
+      "weight%units": "g"
+    },
+    "15_mouse_13CglcTreg_rep3-cells-polar_GCMS_A": {
+      "id": "15_mouse_13CglcTreg_rep3-cells-polar_GCMS_A",
+      "parentID": "15_mouse_13CglcTreg_rep3-cells",
+      "project.id": "NCH_RW_Tcells",
+      "protocol.id": [
+        "polar_extraction",
+        "GCMS_file_storage15"
+      ],
+      "replicate": "1",
+      "replicate%type": "analytical",
+      "study.id": "Mouse-Tcells_13C-Glc-Gln-Lac-Ino-2",
+      "type": "polar",
+      "weight": "0.1009",
+      "weight%units": "g"
+    },
+    "15_mouse_13CglcTreg_rep3-cells-polar_NMR_A": {
+      "id": "15_mouse_13CglcTreg_rep3-cells-polar_NMR_A",
+      "parentID": "15_mouse_13CglcTreg_rep3-cells",
+      "project.id": "NCH_RW_Tcells",
+      "protocol.id": "polar_extraction",
+      "replicate": "1",
+      "replicate%type": "analytical",
+      "study.id": "Mouse-Tcells_13C-Glc-Gln-Lac-Ino-2",
+      "type": "polar",
+      "weight": "0.4493",
+      "weight%units": "g"
+    },
+    "15_mouse_13CglcTreg_rep3-cells-protein": {
+      "dry_weight": "0.000740000000000185",
+      "dry_weight%units": "g",
+      "id": "15_mouse_13CglcTreg_rep3-cells-protein",
+      "parentID": "15_mouse_13CglcTreg_rep3-cells",
+      "project.id": "NCH_RW_Tcells",
+      "protein_weight": "0.07527925487231191",
+      "protein_weight%units": "mg",
+      "protocol.id": "protein_extraction",
+      "study.id": "Mouse-Tcells_13C-Glc-Gln-Lac-Ino-2"
+    },
+    "16_mouse_13ClacTreg_rep1-cells": {
+      "id": "16_mouse_13ClacTreg_rep1-cells",
+      "parentID": "16_mouse_13ClacTreg_rep1",
+      "project.id": "NCH_RW_Tcells",
+      "protocol.id": "cell_quench_collection",
+      "study.id": "Mouse-Tcells_13C-Glc-Gln-Lac-Ino-2"
+    },
+    "16_mouse_13ClacTreg_rep1-cells-lipid": {
+      "id": "16_mouse_13ClacTreg_rep1-cells-lipid",
+      "parentID": "16_mouse_13ClacTreg_rep1-cells",
+      "project.id": "NCH_RW_Tcells",
+      "protocol.id": "lipid_extraction",
+      "study.id": "Mouse-Tcells_13C-Glc-Gln-Lac-Ino-2",
+      "weight": "0.1892",
+      "weight%units": "g"
+    },
+    "16_mouse_13ClacTreg_rep1-cells-polar_FTMS_A": {
+      "id": "16_mouse_13ClacTreg_rep1-cells-polar_FTMS_A",
+      "parentID": "16_mouse_13ClacTreg_rep1-cells",
+      "project.id": "NCH_RW_Tcells",
+      "protocol.id": "polar_extraction",
+      "replicate": "1",
+      "replicate%type": "analytical",
+      "study.id": "Mouse-Tcells_13C-Glc-Gln-Lac-Ino-2",
+      "type": "polar",
+      "weight": "0.0484",
+      "weight%units": "g"
+    },
+    "16_mouse_13ClacTreg_rep1-cells-polar_FTMS_B": {
+      "id": "16_mouse_13ClacTreg_rep1-cells-polar_FTMS_B",
+      "parentID": "16_mouse_13ClacTreg_rep1-cells",
+      "project.id": "NCH_RW_Tcells",
+      "protocol.id": "polar_extraction",
+      "replicate": "2",
+      "replicate%type": "analytical",
+      "study.id": "Mouse-Tcells_13C-Glc-Gln-Lac-Ino-2",
+      "type": "polar",
+      "weight": "0.05",
+      "weight%units": "g"
+    },
+    "16_mouse_13ClacTreg_rep1-cells-polar_GCMS_A": {
+      "id": "16_mouse_13ClacTreg_rep1-cells-polar_GCMS_A",
+      "parentID": "16_mouse_13ClacTreg_rep1-cells",
+      "project.id": "NCH_RW_Tcells",
+      "protocol.id": [
+        "polar_extraction",
+        "GCMS_file_storage16"
+      ],
+      "replicate": "1",
+      "replicate%type": "analytical",
+      "study.id": "Mouse-Tcells_13C-Glc-Gln-Lac-Ino-2",
+      "type": "polar",
+      "weight": "0.0958",
+      "weight%units": "g"
+    },
+    "16_mouse_13ClacTreg_rep1-cells-polar_NMR_A": {
+      "id": "16_mouse_13ClacTreg_rep1-cells-polar_NMR_A",
+      "parentID": "16_mouse_13ClacTreg_rep1-cells",
+      "project.id": "NCH_RW_Tcells",
+      "protocol.id": "polar_extraction",
+      "replicate": "1",
+      "replicate%type": "analytical",
+      "study.id": "Mouse-Tcells_13C-Glc-Gln-Lac-Ino-2",
+      "type": "polar",
+      "weight": "0.4235",
+      "weight%units": "g"
+    },
+    "16_mouse_13ClacTreg_rep1-cells-protein": {
+      "dry_weight": "0.000600000000000156",
+      "dry_weight%units": "g",
+      "id": "16_mouse_13ClacTreg_rep1-cells-protein",
+      "parentID": "16_mouse_13ClacTreg_rep1-cells",
+      "project.id": "NCH_RW_Tcells",
+      "protein_weight": "0.08601167674731171",
+      "protein_weight%units": "mg",
+      "protocol.id": "protein_extraction",
+      "study.id": "Mouse-Tcells_13C-Glc-Gln-Lac-Ino-2"
+    },
+    "17_mouse_13ClacTreg_rep2-cells": {
+      "id": "17_mouse_13ClacTreg_rep2-cells",
+      "parentID": "17_mouse_13ClacTreg_rep2",
+      "project.id": "NCH_RW_Tcells",
+      "protocol.id": "cell_quench_collection",
+      "study.id": "Mouse-Tcells_13C-Glc-Gln-Lac-Ino-2"
+    },
+    "17_mouse_13ClacTreg_rep2-cells-lipid": {
+      "id": "17_mouse_13ClacTreg_rep2-cells-lipid",
+      "parentID": "17_mouse_13ClacTreg_rep2-cells",
+      "project.id": "NCH_RW_Tcells",
+      "protocol.id": "lipid_extraction",
+      "study.id": "Mouse-Tcells_13C-Glc-Gln-Lac-Ino-2",
+      "weight": "0.1902",
+      "weight%units": "g"
+    },
+    "17_mouse_13ClacTreg_rep2-cells-polar_FTMS_A": {
+      "id": "17_mouse_13ClacTreg_rep2-cells-polar_FTMS_A",
+      "parentID": "17_mouse_13ClacTreg_rep2-cells",
+      "project.id": "NCH_RW_Tcells",
+      "protocol.id": "polar_extraction",
+      "replicate": "1",
+      "replicate%type": "analytical",
+      "study.id": "Mouse-Tcells_13C-Glc-Gln-Lac-Ino-2",
+      "type": "polar",
+      "weight": "0.0488",
+      "weight%units": "g"
+    },
+    "17_mouse_13ClacTreg_rep2-cells-polar_FTMS_B": {
+      "id": "17_mouse_13ClacTreg_rep2-cells-polar_FTMS_B",
+      "parentID": "17_mouse_13ClacTreg_rep2-cells",
+      "project.id": "NCH_RW_Tcells",
+      "protocol.id": "polar_extraction",
+      "replicate": "2",
+      "replicate%type": "analytical",
+      "study.id": "Mouse-Tcells_13C-Glc-Gln-Lac-Ino-2",
+      "type": "polar",
+      "weight": "0.0482",
+      "weight%units": "g"
+    },
+    "17_mouse_13ClacTreg_rep2-cells-polar_GCMS_A": {
+      "id": "17_mouse_13ClacTreg_rep2-cells-polar_GCMS_A",
+      "parentID": "17_mouse_13ClacTreg_rep2-cells",
+      "project.id": "NCH_RW_Tcells",
+      "protocol.id": [
+        "polar_extraction",
+        "GCMS_file_storage17"
+      ],
+      "replicate": "1",
+      "replicate%type": "analytical",
+      "study.id": "Mouse-Tcells_13C-Glc-Gln-Lac-Ino-2",
+      "type": "polar",
+      "weight": "0.0978",
+      "weight%units": "g"
+    },
+    "17_mouse_13ClacTreg_rep2-cells-polar_NMR_A": {
+      "id": "17_mouse_13ClacTreg_rep2-cells-polar_NMR_A",
+      "parentID": "17_mouse_13ClacTreg_rep2-cells",
+      "project.id": "NCH_RW_Tcells",
+      "protocol.id": "polar_extraction",
+      "replicate": "1",
+      "replicate%type": "analytical",
+      "study.id": "Mouse-Tcells_13C-Glc-Gln-Lac-Ino-2",
+      "type": "polar",
+      "weight": "0.4466",
+      "weight%units": "g"
+    },
+    "17_mouse_13ClacTreg_rep2-cells-protein": {
+      "dry_weight": "0.0013799999999999368",
+      "dry_weight%units": "g",
+      "id": "17_mouse_13ClacTreg_rep2-cells-protein",
+      "parentID": "17_mouse_13ClacTreg_rep2-cells",
+      "project.id": "NCH_RW_Tcells",
+      "protein_weight": "0.05695879536290319",
+      "protein_weight%units": "mg",
+      "protocol.id": "protein_extraction",
+      "study.id": "Mouse-Tcells_13C-Glc-Gln-Lac-Ino-2"
+    },
+    "18_mouse_13ClacTreg_rep3-cells": {
+      "id": "18_mouse_13ClacTreg_rep3-cells",
+      "parentID": "18_mouse_13ClacTreg_rep3",
+      "project.id": "NCH_RW_Tcells",
+      "protocol.id": "cell_quench_collection",
+      "study.id": "Mouse-Tcells_13C-Glc-Gln-Lac-Ino-2"
+    },
+    "18_mouse_13ClacTreg_rep3-cells-lipid": {
+      "id": "18_mouse_13ClacTreg_rep3-cells-lipid",
+      "parentID": "18_mouse_13ClacTreg_rep3-cells",
+      "project.id": "NCH_RW_Tcells",
+      "protocol.id": "lipid_extraction",
+      "study.id": "Mouse-Tcells_13C-Glc-Gln-Lac-Ino-2",
+      "weight": "0.1914",
+      "weight%units": "g"
+    },
+    "18_mouse_13ClacTreg_rep3-cells-polar_FTMS_A": {
+      "id": "18_mouse_13ClacTreg_rep3-cells-polar_FTMS_A",
+      "parentID": "18_mouse_13ClacTreg_rep3-cells",
+      "project.id": "NCH_RW_Tcells",
+      "protocol.id": "polar_extraction",
+      "replicate": "1",
+      "replicate%type": "analytical",
+      "study.id": "Mouse-Tcells_13C-Glc-Gln-Lac-Ino-2",
+      "type": "polar",
+      "weight": "0.0483",
+      "weight%units": "g"
+    },
+    "18_mouse_13ClacTreg_rep3-cells-polar_FTMS_B": {
+      "id": "18_mouse_13ClacTreg_rep3-cells-polar_FTMS_B",
+      "parentID": "18_mouse_13ClacTreg_rep3-cells",
+      "project.id": "NCH_RW_Tcells",
+      "protocol.id": "polar_extraction",
+      "replicate": "2",
+      "replicate%type": "analytical",
+      "study.id": "Mouse-Tcells_13C-Glc-Gln-Lac-Ino-2",
+      "type": "polar",
+      "weight": "0.0495",
+      "weight%units": "g"
+    },
+    "18_mouse_13ClacTreg_rep3-cells-polar_GCMS_A": {
+      "id": "18_mouse_13ClacTreg_rep3-cells-polar_GCMS_A",
+      "parentID": "18_mouse_13ClacTreg_rep3-cells",
+      "project.id": "NCH_RW_Tcells",
+      "protocol.id": [
+        "polar_extraction",
+        "GCMS_file_storage18"
+      ],
+      "replicate": "1",
+      "replicate%type": "analytical",
+      "study.id": "Mouse-Tcells_13C-Glc-Gln-Lac-Ino-2",
+      "type": "polar",
+      "weight": "0.0986",
+      "weight%units": "g"
+    },
+    "18_mouse_13ClacTreg_rep3-cells-polar_NMR_A": {
+      "id": "18_mouse_13ClacTreg_rep3-cells-polar_NMR_A",
+      "parentID": "18_mouse_13ClacTreg_rep3-cells",
+      "project.id": "NCH_RW_Tcells",
+      "protocol.id": "polar_extraction",
+      "replicate": "1",
+      "replicate%type": "analytical",
+      "study.id": "Mouse-Tcells_13C-Glc-Gln-Lac-Ino-2",
+      "type": "polar",
+      "weight": "0.4523",
+      "weight%units": "g"
+    },
+    "18_mouse_13ClacTreg_rep3-cells-protein": {
+      "dry_weight": "0.0005300000000001415",
+      "dry_weight%units": "g",
+      "id": "18_mouse_13ClacTreg_rep3-cells-protein",
+      "parentID": "18_mouse_13ClacTreg_rep3-cells",
+      "project.id": "NCH_RW_Tcells",
+      "protein_weight": "0.08844380040322575",
+      "protein_weight%units": "mg",
+      "protocol.id": "protein_extraction",
+      "study.id": "Mouse-Tcells_13C-Glc-Gln-Lac-Ino-2"
+    },
+    "19_mouse_13CglnTreg_rep1-cells": {
+      "id": "19_mouse_13CglnTreg_rep1-cells",
+      "parentID": "19_mouse_13CglnTreg_rep1",
+      "project.id": "NCH_RW_Tcells",
+      "protocol.id": "cell_quench_collection",
+      "study.id": "Mouse-Tcells_13C-Glc-Gln-Lac-Ino-2"
+    },
+    "19_mouse_13CglnTreg_rep1-cells-lipid": {
+      "id": "19_mouse_13CglnTreg_rep1-cells-lipid",
+      "parentID": "19_mouse_13CglnTreg_rep1-cells",
+      "project.id": "NCH_RW_Tcells",
+      "protocol.id": "lipid_extraction",
+      "study.id": "Mouse-Tcells_13C-Glc-Gln-Lac-Ino-2",
+      "weight": "0.19",
+      "weight%units": "g"
+    },
+    "19_mouse_13CglnTreg_rep1-cells-polar_FTMS_A": {
+      "id": "19_mouse_13CglnTreg_rep1-cells-polar_FTMS_A",
+      "parentID": "19_mouse_13CglnTreg_rep1-cells",
+      "project.id": "NCH_RW_Tcells",
+      "protocol.id": "polar_extraction",
+      "replicate": "1",
+      "replicate%type": "analytical",
+      "study.id": "Mouse-Tcells_13C-Glc-Gln-Lac-Ino-2",
+      "type": "polar",
+      "weight": "0.0481",
+      "weight%units": "g"
+    },
+    "19_mouse_13CglnTreg_rep1-cells-polar_FTMS_B": {
+      "id": "19_mouse_13CglnTreg_rep1-cells-polar_FTMS_B",
+      "parentID": "19_mouse_13CglnTreg_rep1-cells",
+      "project.id": "NCH_RW_Tcells",
+      "protocol.id": "polar_extraction",
+      "replicate": "2",
+      "replicate%type": "analytical",
+      "study.id": "Mouse-Tcells_13C-Glc-Gln-Lac-Ino-2",
+      "type": "polar",
+      "weight": "0.0492",
+      "weight%units": "g"
+    },
+    "19_mouse_13CglnTreg_rep1-cells-polar_GCMS_A": {
+      "id": "19_mouse_13CglnTreg_rep1-cells-polar_GCMS_A",
+      "parentID": "19_mouse_13CglnTreg_rep1-cells",
+      "project.id": "NCH_RW_Tcells",
+      "protocol.id": [
+        "polar_extraction",
+        "GCMS_file_storage19"
+      ],
+      "replicate": "1",
+      "replicate%type": "analytical",
+      "study.id": "Mouse-Tcells_13C-Glc-Gln-Lac-Ino-2",
+      "type": "polar",
+      "weight": "0.0958",
+      "weight%units": "g"
+    },
+    "19_mouse_13CglnTreg_rep1-cells-polar_NMR_A": {
+      "id": "19_mouse_13CglnTreg_rep1-cells-polar_NMR_A",
+      "parentID": "19_mouse_13CglnTreg_rep1-cells",
+      "project.id": "NCH_RW_Tcells",
+      "protocol.id": "polar_extraction",
+      "replicate": "1",
+      "replicate%type": "analytical",
+      "study.id": "Mouse-Tcells_13C-Glc-Gln-Lac-Ino-2",
+      "type": "polar",
+      "weight": "0.401",
+      "weight%units": "g"
+    },
+    "19_mouse_13CglnTreg_rep1-cells-protein": {
+      "dry_weight": "0.0004300000000001525",
+      "dry_weight%units": "g",
+      "id": "19_mouse_13CglnTreg_rep1-cells-protein",
+      "parentID": "19_mouse_13CglnTreg_rep1-cells",
+      "project.id": "NCH_RW_Tcells",
+      "protein_weight": "0.11578946152553758",
+      "protein_weight%units": "mg",
+      "protocol.id": "protein_extraction",
+      "study.id": "Mouse-Tcells_13C-Glc-Gln-Lac-Ino-2"
+    },
+    "1_mouse_13CglcActive_rep1-cells": {
+      "id": "1_mouse_13CglcActive_rep1-cells",
+      "parentID": "1_mouse_13CglcActive_rep1",
+      "project.id": "NCH_RW_Tcells",
+      "protocol.id": "cell_quench_collection",
+      "study.id": "Mouse-Tcells_13C-Glc-Gln-Lac-Ino-2"
+    },
+    "1_mouse_13CglcActive_rep1-cells-lipid": {
+      "id": "1_mouse_13CglcActive_rep1-cells-lipid",
+      "parentID": "1_mouse_13CglcActive_rep1-cells",
+      "project.id": "NCH_RW_Tcells",
+      "protocol.id": "lipid_extraction",
+      "study.id": "Mouse-Tcells_13C-Glc-Gln-Lac-Ino-2",
+      "weight": "0.1773",
+      "weight%units": "g"
+    },
+    "1_mouse_13CglcActive_rep1-cells-polar_FTMS_A": {
+      "id": "1_mouse_13CglcActive_rep1-cells-polar_FTMS_A",
+      "parentID": "1_mouse_13CglcActive_rep1-cells",
+      "project.id": "NCH_RW_Tcells",
+      "protocol.id": "polar_extraction",
+      "replicate": "1",
+      "replicate%type": "analytical",
+      "study.id": "Mouse-Tcells_13C-Glc-Gln-Lac-Ino-2",
+      "type": "polar",
+      "weight": "0.0494",
+      "weight%units": "g"
+    },
+    "1_mouse_13CglcActive_rep1-cells-polar_FTMS_B": {
+      "id": "1_mouse_13CglcActive_rep1-cells-polar_FTMS_B",
+      "parentID": "1_mouse_13CglcActive_rep1-cells",
+      "project.id": "NCH_RW_Tcells",
+      "protocol.id": "polar_extraction",
+      "replicate": "2",
+      "replicate%type": "analytical",
+      "study.id": "Mouse-Tcells_13C-Glc-Gln-Lac-Ino-2",
+      "type": "polar",
+      "weight": "0.0485",
+      "weight%units": "g"
+    },
+    "1_mouse_13CglcActive_rep1-cells-polar_GCMS_A": {
+      "id": "1_mouse_13CglcActive_rep1-cells-polar_GCMS_A",
+      "parentID": "1_mouse_13CglcActive_rep1-cells",
+      "project.id": "NCH_RW_Tcells",
+      "protocol.id": [
+        "polar_extraction",
+        "GCMS_file_storage1"
+      ],
+      "replicate": "1",
+      "replicate%type": "analytical",
+      "study.id": "Mouse-Tcells_13C-Glc-Gln-Lac-Ino-2",
+      "type": "polar",
+      "weight": "0.1004",
+      "weight%units": "g"
+    },
+    "1_mouse_13CglcActive_rep1-cells-polar_NMR_A": {
+      "id": "1_mouse_13CglcActive_rep1-cells-polar_NMR_A",
+      "parentID": "1_mouse_13CglcActive_rep1-cells",
+      "project.id": "NCH_RW_Tcells",
+      "protocol.id": "polar_extraction",
+      "replicate": "1",
+      "replicate%type": "analytical",
+      "study.id": "Mouse-Tcells_13C-Glc-Gln-Lac-Ino-2",
+      "type": "polar",
+      "weight": "0.3498",
+      "weight%units": "g"
+    },
+    "1_mouse_13CglcActive_rep1-cells-protein": {
+      "dry_weight": "0.00026999999999999247",
+      "dry_weight%units": "g",
+      "id": "1_mouse_13CglcActive_rep1-cells-protein",
+      "parentID": "1_mouse_13CglcActive_rep1-cells",
+      "project.id": "NCH_RW_Tcells",
+      "protein_weight": "0.42004277374358795",
+      "protein_weight%units": "mg",
+      "protocol.id": "protein_extraction",
+      "study.id": "Mouse-Tcells_13C-Glc-Gln-Lac-Ino-2"
+    },
+    "20_mouse_13CglnTreg_rep2-cells": {
+      "id": "20_mouse_13CglnTreg_rep2-cells",
+      "parentID": "20_mouse_13CglnTreg_rep2",
+      "project.id": "NCH_RW_Tcells",
+      "protocol.id": "cell_quench_collection",
+      "study.id": "Mouse-Tcells_13C-Glc-Gln-Lac-Ino-2"
+    },
+    "20_mouse_13CglnTreg_rep2-cells-lipid": {
+      "id": "20_mouse_13CglnTreg_rep2-cells-lipid",
+      "parentID": "20_mouse_13CglnTreg_rep2-cells",
+      "project.id": "NCH_RW_Tcells",
+      "protocol.id": "lipid_extraction",
+      "study.id": "Mouse-Tcells_13C-Glc-Gln-Lac-Ino-2",
+      "weight": "0.1907",
+      "weight%units": "g"
+    },
+    "20_mouse_13CglnTreg_rep2-cells-polar_FTMS_A": {
+      "id": "20_mouse_13CglnTreg_rep2-cells-polar_FTMS_A",
+      "parentID": "20_mouse_13CglnTreg_rep2-cells",
+      "project.id": "NCH_RW_Tcells",
+      "protocol.id": "polar_extraction",
+      "replicate": "1",
+      "replicate%type": "analytical",
+      "study.id": "Mouse-Tcells_13C-Glc-Gln-Lac-Ino-2",
+      "type": "polar",
+      "weight": "0.0481",
+      "weight%units": "g"
+    },
+    "20_mouse_13CglnTreg_rep2-cells-polar_FTMS_B": {
+      "id": "20_mouse_13CglnTreg_rep2-cells-polar_FTMS_B",
+      "parentID": "20_mouse_13CglnTreg_rep2-cells",
+      "project.id": "NCH_RW_Tcells",
+      "protocol.id": "polar_extraction",
+      "replicate": "2",
+      "replicate%type": "analytical",
+      "study.id": "Mouse-Tcells_13C-Glc-Gln-Lac-Ino-2",
+      "type": "polar",
+      "weight": "0.0489",
+      "weight%units": "g"
+    },
+    "20_mouse_13CglnTreg_rep2-cells-polar_GCMS_A": {
+      "id": "20_mouse_13CglnTreg_rep2-cells-polar_GCMS_A",
+      "parentID": "20_mouse_13CglnTreg_rep2-cells",
+      "project.id": "NCH_RW_Tcells",
+      "protocol.id": [
+        "polar_extraction",
+        "GCMS_file_storage20"
+      ],
+      "replicate": "1",
+      "replicate%type": "analytical",
+      "study.id": "Mouse-Tcells_13C-Glc-Gln-Lac-Ino-2",
+      "type": "polar",
+      "weight": "0.0973",
+      "weight%units": "g"
+    },
+    "20_mouse_13CglnTreg_rep2-cells-polar_NMR_A": {
+      "id": "20_mouse_13CglnTreg_rep2-cells-polar_NMR_A",
+      "parentID": "20_mouse_13CglnTreg_rep2-cells",
+      "project.id": "NCH_RW_Tcells",
+      "protocol.id": "polar_extraction",
+      "replicate": "1",
+      "replicate%type": "analytical",
+      "study.id": "Mouse-Tcells_13C-Glc-Gln-Lac-Ino-2",
+      "type": "polar",
+      "weight": "0.4545",
+      "weight%units": "g"
+    },
+    "20_mouse_13CglnTreg_rep2-cells-protein": {
+      "dry_weight": "0.0005100000000000104",
+      "dry_weight%units": "g",
+      "id": "20_mouse_13CglnTreg_rep2-cells-protein",
+      "parentID": "20_mouse_13CglnTreg_rep2-cells",
+      "project.id": "NCH_RW_Tcells",
+      "protein_weight": "0.1013659274193548",
+      "protein_weight%units": "mg",
+      "protocol.id": "protein_extraction",
+      "study.id": "Mouse-Tcells_13C-Glc-Gln-Lac-Ino-2"
+    },
+    "21_mouse_13CglnTreg_rep3-cells": {
+      "id": "21_mouse_13CglnTreg_rep3-cells",
+      "parentID": "21_mouse_13CglnTreg_rep3",
+      "project.id": "NCH_RW_Tcells",
+      "protocol.id": "cell_quench_collection",
+      "study.id": "Mouse-Tcells_13C-Glc-Gln-Lac-Ino-2"
+    },
+    "21_mouse_13CglnTreg_rep3-cells-lipid": {
+      "id": "21_mouse_13CglnTreg_rep3-cells-lipid",
+      "parentID": "21_mouse_13CglnTreg_rep3-cells",
+      "project.id": "NCH_RW_Tcells",
+      "protocol.id": "lipid_extraction",
+      "study.id": "Mouse-Tcells_13C-Glc-Gln-Lac-Ino-2",
+      "weight": "0.1897",
+      "weight%units": "g"
+    },
+    "21_mouse_13CglnTreg_rep3-cells-polar_FTMS_A": {
+      "id": "21_mouse_13CglnTreg_rep3-cells-polar_FTMS_A",
+      "parentID": "21_mouse_13CglnTreg_rep3-cells",
+      "project.id": "NCH_RW_Tcells",
+      "protocol.id": "polar_extraction",
+      "replicate": "1",
+      "replicate%type": "analytical",
+      "study.id": "Mouse-Tcells_13C-Glc-Gln-Lac-Ino-2",
+      "type": "polar",
+      "weight": "0.0484",
+      "weight%units": "g"
+    },
+    "21_mouse_13CglnTreg_rep3-cells-polar_FTMS_B": {
+      "id": "21_mouse_13CglnTreg_rep3-cells-polar_FTMS_B",
+      "parentID": "21_mouse_13CglnTreg_rep3-cells",
+      "project.id": "NCH_RW_Tcells",
+      "protocol.id": "polar_extraction",
+      "replicate": "2",
+      "replicate%type": "analytical",
+      "study.id": "Mouse-Tcells_13C-Glc-Gln-Lac-Ino-2",
+      "type": "polar",
+      "weight": "0.0491",
+      "weight%units": "g"
+    },
+    "21_mouse_13CglnTreg_rep3-cells-polar_GCMS_A": {
+      "id": "21_mouse_13CglnTreg_rep3-cells-polar_GCMS_A",
+      "parentID": "21_mouse_13CglnTreg_rep3-cells",
+      "project.id": "NCH_RW_Tcells",
+      "protocol.id": [
+        "polar_extraction",
+        "GCMS_file_storage21"
+      ],
+      "replicate": "1",
+      "replicate%type": "analytical",
+      "study.id": "Mouse-Tcells_13C-Glc-Gln-Lac-Ino-2",
+      "type": "polar",
+      "weight": "0.0957",
+      "weight%units": "g"
+    },
+    "21_mouse_13CglnTreg_rep3-cells-polar_NMR_A": {
+      "id": "21_mouse_13CglnTreg_rep3-cells-polar_NMR_A",
+      "parentID": "21_mouse_13CglnTreg_rep3-cells",
+      "project.id": "NCH_RW_Tcells",
+      "protocol.id": "polar_extraction",
+      "replicate": "1",
+      "replicate%type": "analytical",
+      "study.id": "Mouse-Tcells_13C-Glc-Gln-Lac-Ino-2",
+      "type": "polar",
+      "weight": "0.4724",
+      "weight%units": "g"
+    },
+    "21_mouse_13CglnTreg_rep3-cells-protein": {
+      "dry_weight": "0.00048000000000003595",
+      "dry_weight%units": "g",
+      "id": "21_mouse_13CglnTreg_rep3-cells-protein",
+      "parentID": "21_mouse_13CglnTreg_rep3-cells",
+      "project.id": "NCH_RW_Tcells",
+      "protein_weight": "0.12765120967741944",
+      "protein_weight%units": "mg",
+      "protocol.id": "protein_extraction",
+      "study.id": "Mouse-Tcells_13C-Glc-Gln-Lac-Ino-2"
+    },
+    "2_mouse_13CglcActive_rep2-cells": {
+      "id": "2_mouse_13CglcActive_rep2-cells",
+      "parentID": "2_mouse_13CglcActive_rep2",
+      "project.id": "NCH_RW_Tcells",
+      "protocol.id": "cell_quench_collection",
+      "study.id": "Mouse-Tcells_13C-Glc-Gln-Lac-Ino-2"
+    },
+    "2_mouse_13CglcActive_rep2-cells-lipid": {
+      "id": "2_mouse_13CglcActive_rep2-cells-lipid",
+      "parentID": "2_mouse_13CglcActive_rep2-cells",
+      "project.id": "NCH_RW_Tcells",
+      "protocol.id": "lipid_extraction",
+      "study.id": "Mouse-Tcells_13C-Glc-Gln-Lac-Ino-2",
+      "weight": "0.1948",
+      "weight%units": "g"
+    },
+    "2_mouse_13CglcActive_rep2-cells-polar_FTMS_A": {
+      "id": "2_mouse_13CglcActive_rep2-cells-polar_FTMS_A",
+      "parentID": "2_mouse_13CglcActive_rep2-cells",
+      "project.id": "NCH_RW_Tcells",
+      "protocol.id": "polar_extraction",
+      "replicate": "1",
+      "replicate%type": "analytical",
+      "study.id": "Mouse-Tcells_13C-Glc-Gln-Lac-Ino-2",
+      "type": "polar",
+      "weight": "0.0484",
+      "weight%units": "g"
+    },
+    "2_mouse_13CglcActive_rep2-cells-polar_FTMS_B": {
+      "id": "2_mouse_13CglcActive_rep2-cells-polar_FTMS_B",
+      "parentID": "2_mouse_13CglcActive_rep2-cells",
+      "project.id": "NCH_RW_Tcells",
+      "protocol.id": "polar_extraction",
+      "replicate": "2",
+      "replicate%type": "analytical",
+      "study.id": "Mouse-Tcells_13C-Glc-Gln-Lac-Ino-2",
+      "type": "polar",
+      "weight": "0.0484",
+      "weight%units": "g"
+    },
+    "2_mouse_13CglcActive_rep2-cells-polar_GCMS_A": {
+      "id": "2_mouse_13CglcActive_rep2-cells-polar_GCMS_A",
+      "parentID": "2_mouse_13CglcActive_rep2-cells",
+      "project.id": "NCH_RW_Tcells",
+      "protocol.id": [
+        "polar_extraction",
+        "GCMS_file_storage2"
+      ],
+      "replicate": "1",
+      "replicate%type": "analytical",
+      "study.id": "Mouse-Tcells_13C-Glc-Gln-Lac-Ino-2",
+      "type": "polar",
+      "weight": "0.0963",
+      "weight%units": "g"
+    },
+    "2_mouse_13CglcActive_rep2-cells-polar_NMR_A": {
+      "id": "2_mouse_13CglcActive_rep2-cells-polar_NMR_A",
+      "parentID": "2_mouse_13CglcActive_rep2-cells",
+      "project.id": "NCH_RW_Tcells",
+      "protocol.id": "polar_extraction",
+      "replicate": "1",
+      "replicate%type": "analytical",
+      "study.id": "Mouse-Tcells_13C-Glc-Gln-Lac-Ino-2",
+      "type": "polar",
+      "weight": "0.4426",
+      "weight%units": "g"
+    },
+    "2_mouse_13CglcActive_rep2-cells-protein": {
+      "dry_weight": "0.0011499999999999844",
+      "dry_weight%units": "g",
+      "id": "2_mouse_13CglcActive_rep2-cells-protein",
+      "parentID": "2_mouse_13CglcActive_rep2-cells",
+      "project.id": "NCH_RW_Tcells",
+      "protein_weight": "0.47859541316079185",
+      "protein_weight%units": "mg",
+      "protocol.id": "protein_extraction",
+      "study.id": "Mouse-Tcells_13C-Glc-Gln-Lac-Ino-2"
+    },
+    "3_mouse_13CglcActive_rep3-cells": {
+      "id": "3_mouse_13CglcActive_rep3-cells",
+      "parentID": "3_mouse_13CglcActive_rep3",
+      "project.id": "NCH_RW_Tcells",
+      "protocol.id": "cell_quench_collection",
+      "study.id": "Mouse-Tcells_13C-Glc-Gln-Lac-Ino-2"
+    },
+    "3_mouse_13CglcActive_rep3-cells-lipid": {
+      "id": "3_mouse_13CglcActive_rep3-cells-lipid",
+      "parentID": "3_mouse_13CglcActive_rep3-cells",
+      "project.id": "NCH_RW_Tcells",
+      "protocol.id": "lipid_extraction",
+      "study.id": "Mouse-Tcells_13C-Glc-Gln-Lac-Ino-2",
+      "weight": "0.1929",
+      "weight%units": "g"
+    },
+    "3_mouse_13CglcActive_rep3-cells-polar_FTMS_A": {
+      "id": "3_mouse_13CglcActive_rep3-cells-polar_FTMS_A",
+      "parentID": "3_mouse_13CglcActive_rep3-cells",
+      "project.id": "NCH_RW_Tcells",
+      "protocol.id": "polar_extraction",
+      "replicate": "1",
+      "replicate%type": "analytical",
+      "study.id": "Mouse-Tcells_13C-Glc-Gln-Lac-Ino-2",
+      "type": "polar",
+      "weight": "0.0482",
+      "weight%units": "g"
+    },
+    "3_mouse_13CglcActive_rep3-cells-polar_FTMS_B": {
+      "id": "3_mouse_13CglcActive_rep3-cells-polar_FTMS_B",
+      "parentID": "3_mouse_13CglcActive_rep3-cells",
+      "project.id": "NCH_RW_Tcells",
+      "protocol.id": "polar_extraction",
+      "replicate": "2",
+      "replicate%type": "analytical",
+      "study.id": "Mouse-Tcells_13C-Glc-Gln-Lac-Ino-2",
+      "type": "polar",
+      "weight": "0.0472",
+      "weight%units": "g"
+    },
+    "3_mouse_13CglcActive_rep3-cells-polar_GCMS_A": {
+      "id": "3_mouse_13CglcActive_rep3-cells-polar_GCMS_A",
+      "parentID": "3_mouse_13CglcActive_rep3-cells",
+      "project.id": "NCH_RW_Tcells",
+      "protocol.id": [
+        "polar_extraction",
+        "GCMS_file_storage3"
+      ],
+      "replicate": "1",
+      "replicate%type": "analytical",
+      "study.id": "Mouse-Tcells_13C-Glc-Gln-Lac-Ino-2",
+      "type": "polar",
+      "weight": "0.095",
+      "weight%units": "g"
+    },
+    "3_mouse_13CglcActive_rep3-cells-polar_NMR_A": {
+      "id": "3_mouse_13CglcActive_rep3-cells-polar_NMR_A",
+      "parentID": "3_mouse_13CglcActive_rep3-cells",
+      "project.id": "NCH_RW_Tcells",
+      "protocol.id": "polar_extraction",
+      "replicate": "1",
+      "replicate%type": "analytical",
+      "study.id": "Mouse-Tcells_13C-Glc-Gln-Lac-Ino-2",
+      "type": "polar",
+      "weight": "0.4643",
+      "weight%units": "g"
+    },
+    "3_mouse_13CglcActive_rep3-cells-protein": {
+      "dry_weight": "0.001100000000000101",
+      "dry_weight%units": "g",
+      "id": "3_mouse_13CglcActive_rep3-cells-protein",
+      "parentID": "3_mouse_13CglcActive_rep3-cells",
+      "project.id": "NCH_RW_Tcells",
+      "protein_weight": "0.4845412736394906",
+      "protein_weight%units": "mg",
+      "protocol.id": "protein_extraction",
+      "study.id": "Mouse-Tcells_13C-Glc-Gln-Lac-Ino-2"
+    },
+    "4_mouse_13CglnActive_rep1-cells": {
+      "id": "4_mouse_13CglnActive_rep1-cells",
+      "parentID": "4_mouse_13CglnActive_rep1",
+      "project.id": "NCH_RW_Tcells",
+      "protocol.id": "cell_quench_collection",
+      "study.id": "Mouse-Tcells_13C-Glc-Gln-Lac-Ino-2"
+    },
+    "4_mouse_13CglnActive_rep1-cells-lipid": {
+      "id": "4_mouse_13CglnActive_rep1-cells-lipid",
+      "parentID": "4_mouse_13CglnActive_rep1-cells",
+      "project.id": "NCH_RW_Tcells",
+      "protocol.id": "lipid_extraction",
+      "study.id": "Mouse-Tcells_13C-Glc-Gln-Lac-Ino-2",
+      "weight": "0.1884",
+      "weight%units": "g"
+    },
+    "4_mouse_13CglnActive_rep1-cells-polar_FTMS_A": {
+      "id": "4_mouse_13CglnActive_rep1-cells-polar_FTMS_A",
+      "parentID": "4_mouse_13CglnActive_rep1-cells",
+      "project.id": "NCH_RW_Tcells",
+      "protocol.id": "polar_extraction",
+      "replicate": "1",
+      "replicate%type": "analytical",
+      "study.id": "Mouse-Tcells_13C-Glc-Gln-Lac-Ino-2",
+      "type": "polar",
+      "weight": "0.0487",
+      "weight%units": "g"
+    },
+    "4_mouse_13CglnActive_rep1-cells-polar_FTMS_B": {
+      "id": "4_mouse_13CglnActive_rep1-cells-polar_FTMS_B",
+      "parentID": "4_mouse_13CglnActive_rep1-cells",
+      "project.id": "NCH_RW_Tcells",
+      "protocol.id": "polar_extraction",
+      "replicate": "2",
+      "replicate%type": "analytical",
+      "study.id": "Mouse-Tcells_13C-Glc-Gln-Lac-Ino-2",
+      "type": "polar",
+      "weight": "0.0471",
+      "weight%units": "g"
+    },
+    "4_mouse_13CglnActive_rep1-cells-polar_GCMS_A": {
+      "id": "4_mouse_13CglnActive_rep1-cells-polar_GCMS_A",
+      "parentID": "4_mouse_13CglnActive_rep1-cells",
+      "project.id": "NCH_RW_Tcells",
+      "protocol.id": [
+        "polar_extraction",
+        "GCMS_file_storage4"
+      ],
+      "replicate": "1",
+      "replicate%type": "analytical",
+      "study.id": "Mouse-Tcells_13C-Glc-Gln-Lac-Ino-2",
+      "type": "polar",
+      "weight": "0.0987",
+      "weight%units": "g"
+    },
+    "4_mouse_13CglnActive_rep1-cells-polar_NMR_A": {
+      "id": "4_mouse_13CglnActive_rep1-cells-polar_NMR_A",
+      "parentID": "4_mouse_13CglnActive_rep1-cells",
+      "project.id": "NCH_RW_Tcells",
+      "protocol.id": "polar_extraction",
+      "replicate": "1",
+      "replicate%type": "analytical",
+      "study.id": "Mouse-Tcells_13C-Glc-Gln-Lac-Ino-2",
+      "type": "polar",
+      "weight": "0.4154",
+      "weight%units": "g"
+    },
+    "4_mouse_13CglnActive_rep1-cells-protein": {
+      "dry_weight": "0.0012599999999998168",
+      "dry_weight%units": "g",
+      "id": "4_mouse_13CglnActive_rep1-cells-protein",
+      "parentID": "4_mouse_13CglnActive_rep1-cells",
+      "project.id": "NCH_RW_Tcells",
+      "protein_weight": "0.5390229034601565",
+      "protein_weight%units": "mg",
+      "protocol.id": "protein_extraction",
+      "study.id": "Mouse-Tcells_13C-Glc-Gln-Lac-Ino-2"
+    },
+    "5_mouse_13CglnActive_rep2-cells": {
+      "id": "5_mouse_13CglnActive_rep2-cells",
+      "parentID": "5_mouse_13CglnActive_rep2",
+      "project.id": "NCH_RW_Tcells",
+      "protocol.id": "cell_quench_collection",
+      "study.id": "Mouse-Tcells_13C-Glc-Gln-Lac-Ino-2"
+    },
+    "5_mouse_13CglnActive_rep2-cells-lipid": {
+      "id": "5_mouse_13CglnActive_rep2-cells-lipid",
+      "parentID": "5_mouse_13CglnActive_rep2-cells",
+      "project.id": "NCH_RW_Tcells",
+      "protocol.id": "lipid_extraction",
+      "study.id": "Mouse-Tcells_13C-Glc-Gln-Lac-Ino-2",
+      "weight": "0.1872",
+      "weight%units": "g"
+    },
+    "5_mouse_13CglnActive_rep2-cells-polar_FTMS_A": {
+      "id": "5_mouse_13CglnActive_rep2-cells-polar_FTMS_A",
+      "parentID": "5_mouse_13CglnActive_rep2-cells",
+      "project.id": "NCH_RW_Tcells",
+      "protocol.id": "polar_extraction",
+      "replicate": "1",
+      "replicate%type": "analytical",
+      "study.id": "Mouse-Tcells_13C-Glc-Gln-Lac-Ino-2",
+      "type": "polar",
+      "weight": "0.0477",
+      "weight%units": "g"
+    },
+    "5_mouse_13CglnActive_rep2-cells-polar_FTMS_B": {
+      "id": "5_mouse_13CglnActive_rep2-cells-polar_FTMS_B",
+      "parentID": "5_mouse_13CglnActive_rep2-cells",
+      "project.id": "NCH_RW_Tcells",
+      "protocol.id": "polar_extraction",
+      "replicate": "2",
+      "replicate%type": "analytical",
+      "study.id": "Mouse-Tcells_13C-Glc-Gln-Lac-Ino-2",
+      "type": "polar",
+      "weight": "0.0462",
+      "weight%units": "g"
+    },
+    "5_mouse_13CglnActive_rep2-cells-polar_GCMS_A": {
+      "id": "5_mouse_13CglnActive_rep2-cells-polar_GCMS_A",
+      "parentID": "5_mouse_13CglnActive_rep2-cells",
+      "project.id": "NCH_RW_Tcells",
+      "protocol.id": [
+        "polar_extraction",
+        "GCMS_file_storage5"
+      ],
+      "replicate": "1",
+      "replicate%type": "analytical",
+      "study.id": "Mouse-Tcells_13C-Glc-Gln-Lac-Ino-2",
+      "type": "polar",
+      "weight": "0.0972",
+      "weight%units": "g"
+    },
+    "5_mouse_13CglnActive_rep2-cells-polar_NMR_A": {
+      "id": "5_mouse_13CglnActive_rep2-cells-polar_NMR_A",
+      "parentID": "5_mouse_13CglnActive_rep2-cells",
+      "project.id": "NCH_RW_Tcells",
+      "protocol.id": "polar_extraction",
+      "replicate": "1",
+      "replicate%type": "analytical",
+      "study.id": "Mouse-Tcells_13C-Glc-Gln-Lac-Ino-2",
+      "type": "polar",
+      "weight": "0.4054",
+      "weight%units": "g"
+    },
+    "5_mouse_13CglnActive_rep2-cells-protein": {
+      "dry_weight": "0.0009400000000001629",
+      "dry_weight%units": "g",
+      "id": "5_mouse_13CglnActive_rep2-cells-protein",
+      "parentID": "5_mouse_13CglnActive_rep2-cells",
+      "project.id": "NCH_RW_Tcells",
+      "protein_weight": "0.3936376877978587",
+      "protein_weight%units": "mg",
+      "protocol.id": "protein_extraction",
+      "study.id": "Mouse-Tcells_13C-Glc-Gln-Lac-Ino-2"
+    },
+    "6_mouse_13CglnActive_rep3-cells": {
+      "id": "6_mouse_13CglnActive_rep3-cells",
+      "parentID": "6_mouse_13CglnActive_rep3",
+      "project.id": "NCH_RW_Tcells",
+      "protocol.id": "cell_quench_collection",
+      "study.id": "Mouse-Tcells_13C-Glc-Gln-Lac-Ino-2"
+    },
+    "6_mouse_13CglnActive_rep3-cells-lipid": {
+      "id": "6_mouse_13CglnActive_rep3-cells-lipid",
+      "parentID": "6_mouse_13CglnActive_rep3-cells",
+      "project.id": "NCH_RW_Tcells",
+      "protocol.id": "lipid_extraction",
+      "study.id": "Mouse-Tcells_13C-Glc-Gln-Lac-Ino-2",
+      "weight": "0.1911",
+      "weight%units": "g"
+    },
+    "6_mouse_13CglnActive_rep3-cells-polar_FTMS_A": {
+      "id": "6_mouse_13CglnActive_rep3-cells-polar_FTMS_A",
+      "parentID": "6_mouse_13CglnActive_rep3-cells",
+      "project.id": "NCH_RW_Tcells",
+      "protocol.id": "polar_extraction",
+      "replicate": "1",
+      "replicate%type": "analytical",
+      "study.id": "Mouse-Tcells_13C-Glc-Gln-Lac-Ino-2",
+      "type": "polar",
+      "weight": "0.0487",
+      "weight%units": "g"
+    },
+    "6_mouse_13CglnActive_rep3-cells-polar_FTMS_B": {
+      "id": "6_mouse_13CglnActive_rep3-cells-polar_FTMS_B",
+      "parentID": "6_mouse_13CglnActive_rep3-cells",
+      "project.id": "NCH_RW_Tcells",
+      "protocol.id": "polar_extraction",
+      "replicate": "2",
+      "replicate%type": "analytical",
+      "study.id": "Mouse-Tcells_13C-Glc-Gln-Lac-Ino-2",
+      "type": "polar",
+      "weight": "0.0486",
+      "weight%units": "g"
+    },
+    "6_mouse_13CglnActive_rep3-cells-polar_GCMS_A": {
+      "id": "6_mouse_13CglnActive_rep3-cells-polar_GCMS_A",
+      "parentID": "6_mouse_13CglnActive_rep3-cells",
+      "project.id": "NCH_RW_Tcells",
+      "protocol.id": [
+        "polar_extraction",
+        "GCMS_file_storage6"
+      ],
+      "replicate": "1",
+      "replicate%type": "analytical",
+      "study.id": "Mouse-Tcells_13C-Glc-Gln-Lac-Ino-2",
+      "type": "polar",
+      "weight": "0.0969",
+      "weight%units": "g"
+    },
+    "6_mouse_13CglnActive_rep3-cells-polar_NMR_A": {
+      "id": "6_mouse_13CglnActive_rep3-cells-polar_NMR_A",
+      "parentID": "6_mouse_13CglnActive_rep3-cells",
+      "project.id": "NCH_RW_Tcells",
+      "protocol.id": "polar_extraction",
+      "replicate": "1",
+      "replicate%type": "analytical",
+      "study.id": "Mouse-Tcells_13C-Glc-Gln-Lac-Ino-2",
+      "type": "polar",
+      "weight": "0.4184",
+      "weight%units": "g"
+    },
+    "6_mouse_13CglnActive_rep3-cells-protein": {
+      "dry_weight": "0.0010900000000000354",
+      "dry_weight%units": "g",
+      "id": "6_mouse_13CglnActive_rep3-cells-protein",
+      "parentID": "6_mouse_13CglnActive_rep3-cells",
+      "project.id": "NCH_RW_Tcells",
+      "protein_weight": "0.5253651233330991",
+      "protein_weight%units": "mg",
+      "protocol.id": "protein_extraction",
+      "study.id": "Mouse-Tcells_13C-Glc-Gln-Lac-Ino-2"
+    },
+    "7_mouse_13CinoActive_rep1-cells": {
+      "id": "7_mouse_13CinoActive_rep1-cells",
+      "parentID": "7_mouse_13CinoActive_rep1",
+      "project.id": "NCH_RW_Tcells",
+      "protocol.id": "cell_quench_collection",
+      "study.id": "Mouse-Tcells_13C-Glc-Gln-Lac-Ino-2"
+    },
+    "7_mouse_13CinoActive_rep1-cells-lipid": {
+      "id": "7_mouse_13CinoActive_rep1-cells-lipid",
+      "parentID": "7_mouse_13CinoActive_rep1-cells",
+      "project.id": "NCH_RW_Tcells",
+      "protocol.id": "lipid_extraction",
+      "study.id": "Mouse-Tcells_13C-Glc-Gln-Lac-Ino-2",
+      "weight": "0.1906",
+      "weight%units": "g"
+    },
+    "7_mouse_13CinoActive_rep1-cells-polar_FTMS_A": {
+      "id": "7_mouse_13CinoActive_rep1-cells-polar_FTMS_A",
+      "parentID": "7_mouse_13CinoActive_rep1-cells",
+      "project.id": "NCH_RW_Tcells",
+      "protocol.id": "polar_extraction",
+      "replicate": "1",
+      "replicate%type": "analytical",
+      "study.id": "Mouse-Tcells_13C-Glc-Gln-Lac-Ino-2",
+      "type": "polar",
+      "weight": "0.0483",
+      "weight%units": "g"
+    },
+    "7_mouse_13CinoActive_rep1-cells-polar_FTMS_B": {
+      "id": "7_mouse_13CinoActive_rep1-cells-polar_FTMS_B",
+      "parentID": "7_mouse_13CinoActive_rep1-cells",
+      "project.id": "NCH_RW_Tcells",
+      "protocol.id": "polar_extraction",
+      "replicate": "2",
+      "replicate%type": "analytical",
+      "study.id": "Mouse-Tcells_13C-Glc-Gln-Lac-Ino-2",
+      "type": "polar",
+      "weight": "0.0481",
+      "weight%units": "g"
+    },
+    "7_mouse_13CinoActive_rep1-cells-polar_GCMS_A": {
+      "id": "7_mouse_13CinoActive_rep1-cells-polar_GCMS_A",
+      "parentID": "7_mouse_13CinoActive_rep1-cells",
+      "project.id": "NCH_RW_Tcells",
+      "protocol.id": [
+        "polar_extraction",
+        "GCMS_file_storage7"
+      ],
+      "replicate": "1",
+      "replicate%type": "analytical",
+      "study.id": "Mouse-Tcells_13C-Glc-Gln-Lac-Ino-2",
+      "type": "polar",
+      "weight": "0.0955",
+      "weight%units": "g"
+    },
+    "7_mouse_13CinoActive_rep1-cells-polar_NMR_A": {
+      "id": "7_mouse_13CinoActive_rep1-cells-polar_NMR_A",
+      "parentID": "7_mouse_13CinoActive_rep1-cells",
+      "project.id": "NCH_RW_Tcells",
+      "protocol.id": "polar_extraction",
+      "replicate": "1",
+      "replicate%type": "analytical",
+      "study.id": "Mouse-Tcells_13C-Glc-Gln-Lac-Ino-2",
+      "type": "polar",
+      "weight": "0.4168",
+      "weight%units": "g"
+    },
+    "7_mouse_13CinoActive_rep1-cells-protein": {
+      "dry_weight": "0.0010099999999999554",
+      "dry_weight%units": "g",
+      "id": "7_mouse_13CinoActive_rep1-cells-protein",
+      "parentID": "7_mouse_13CinoActive_rep1-cells",
+      "project.id": "NCH_RW_Tcells",
+      "protein_weight": "0.39499590407636326",
+      "protein_weight%units": "mg",
+      "protocol.id": "protein_extraction",
+      "study.id": "Mouse-Tcells_13C-Glc-Gln-Lac-Ino-2"
+    },
+    "8_mouse_13CinoActive_rep2-cells": {
+      "id": "8_mouse_13CinoActive_rep2-cells",
+      "parentID": "8_mouse_13CinoActive_rep2",
+      "project.id": "NCH_RW_Tcells",
+      "protocol.id": "cell_quench_collection",
+      "study.id": "Mouse-Tcells_13C-Glc-Gln-Lac-Ino-2"
+    },
+    "8_mouse_13CinoActive_rep2-cells-lipid": {
+      "id": "8_mouse_13CinoActive_rep2-cells-lipid",
+      "parentID": "8_mouse_13CinoActive_rep2-cells",
+      "project.id": "NCH_RW_Tcells",
+      "protocol.id": "lipid_extraction",
+      "study.id": "Mouse-Tcells_13C-Glc-Gln-Lac-Ino-2",
+      "weight": "0.1846",
+      "weight%units": "g"
+    },
+    "8_mouse_13CinoActive_rep2-cells-polar_FTMS_A": {
+      "id": "8_mouse_13CinoActive_rep2-cells-polar_FTMS_A",
+      "parentID": "8_mouse_13CinoActive_rep2-cells",
+      "project.id": "NCH_RW_Tcells",
+      "protocol.id": "polar_extraction",
+      "replicate": "1",
+      "replicate%type": "analytical",
+      "study.id": "Mouse-Tcells_13C-Glc-Gln-Lac-Ino-2",
+      "type": "polar",
+      "weight": "0.0487",
+      "weight%units": "g"
+    },
+    "8_mouse_13CinoActive_rep2-cells-polar_FTMS_B": {
+      "id": "8_mouse_13CinoActive_rep2-cells-polar_FTMS_B",
+      "parentID": "8_mouse_13CinoActive_rep2-cells",
+      "project.id": "NCH_RW_Tcells",
+      "protocol.id": "polar_extraction",
+      "replicate": "2",
+      "replicate%type": "analytical",
+      "study.id": "Mouse-Tcells_13C-Glc-Gln-Lac-Ino-2",
+      "type": "polar",
+      "weight": "0.0487",
+      "weight%units": "g"
+    },
+    "8_mouse_13CinoActive_rep2-cells-polar_GCMS_A": {
+      "id": "8_mouse_13CinoActive_rep2-cells-polar_GCMS_A",
+      "parentID": "8_mouse_13CinoActive_rep2-cells",
+      "project.id": "NCH_RW_Tcells",
+      "protocol.id": [
+        "polar_extraction",
+        "GCMS_file_storage8"
+      ],
+      "replicate": "1",
+      "replicate%type": "analytical",
+      "study.id": "Mouse-Tcells_13C-Glc-Gln-Lac-Ino-2",
+      "type": "polar",
+      "weight": "0.0962",
+      "weight%units": "g"
+    },
+    "8_mouse_13CinoActive_rep2-cells-polar_NMR_A": {
+      "id": "8_mouse_13CinoActive_rep2-cells-polar_NMR_A",
+      "parentID": "8_mouse_13CinoActive_rep2-cells",
+      "project.id": "NCH_RW_Tcells",
+      "protocol.id": "polar_extraction",
+      "replicate": "1",
+      "replicate%type": "analytical",
+      "study.id": "Mouse-Tcells_13C-Glc-Gln-Lac-Ino-2",
+      "type": "polar",
+      "weight": "0.3965",
+      "weight%units": "g"
+    },
+    "8_mouse_13CinoActive_rep2-cells-protein": {
+      "dry_weight": "0.0012299999999998423",
+      "dry_weight%units": "g",
+      "id": "8_mouse_13CinoActive_rep2-cells-protein",
+      "parentID": "8_mouse_13CinoActive_rep2-cells",
+      "project.id": "NCH_RW_Tcells",
+      "protein_weight": "0.5676772481371383",
+      "protein_weight%units": "mg",
+      "protocol.id": "protein_extraction",
+      "study.id": "Mouse-Tcells_13C-Glc-Gln-Lac-Ino-2"
+    },
+    "9_mouse_13CinoActive_rep3-cells": {
+      "id": "9_mouse_13CinoActive_rep3-cells",
+      "parentID": "9_mouse_13CinoActive_rep3",
+      "project.id": "NCH_RW_Tcells",
+      "protocol.id": "cell_quench_collection",
+      "study.id": "Mouse-Tcells_13C-Glc-Gln-Lac-Ino-2"
+    },
+    "9_mouse_13CinoActive_rep3-cells-lipid": {
+      "id": "9_mouse_13CinoActive_rep3-cells-lipid",
+      "parentID": "9_mouse_13CinoActive_rep3-cells",
+      "project.id": "NCH_RW_Tcells",
+      "protocol.id": "lipid_extraction",
+      "study.id": "Mouse-Tcells_13C-Glc-Gln-Lac-Ino-2",
+      "weight": "0.1909",
+      "weight%units": "g"
+    },
+    "9_mouse_13CinoActive_rep3-cells-polar_FTMS_A": {
+      "id": "9_mouse_13CinoActive_rep3-cells-polar_FTMS_A",
+      "parentID": "9_mouse_13CinoActive_rep3-cells",
+      "project.id": "NCH_RW_Tcells",
+      "protocol.id": "polar_extraction",
+      "replicate": "1",
+      "replicate%type": "analytical",
+      "study.id": "Mouse-Tcells_13C-Glc-Gln-Lac-Ino-2",
+      "type": "polar",
+      "weight": "0.0481",
+      "weight%units": "g"
+    },
+    "9_mouse_13CinoActive_rep3-cells-polar_FTMS_B": {
+      "id": "9_mouse_13CinoActive_rep3-cells-polar_FTMS_B",
+      "parentID": "9_mouse_13CinoActive_rep3-cells",
+      "project.id": "NCH_RW_Tcells",
+      "protocol.id": "polar_extraction",
+      "replicate": "2",
+      "replicate%type": "analytical",
+      "study.id": "Mouse-Tcells_13C-Glc-Gln-Lac-Ino-2",
+      "type": "polar",
+      "weight": "0.0489",
+      "weight%units": "g"
+    },
+    "9_mouse_13CinoActive_rep3-cells-polar_GCMS_A": {
+      "id": "9_mouse_13CinoActive_rep3-cells-polar_GCMS_A",
+      "parentID": "9_mouse_13CinoActive_rep3-cells",
+      "project.id": "NCH_RW_Tcells",
+      "protocol.id": [
+        "polar_extraction",
+        "GCMS_file_storage9"
+      ],
+      "replicate": "1",
+      "replicate%type": "analytical",
+      "study.id": "Mouse-Tcells_13C-Glc-Gln-Lac-Ino-2",
+      "type": "polar",
+      "weight": "0.0949",
+      "weight%units": "g"
+    },
+    "9_mouse_13CinoActive_rep3-cells-polar_NMR_A": {
+      "id": "9_mouse_13CinoActive_rep3-cells-polar_NMR_A",
+      "parentID": "9_mouse_13CinoActive_rep3-cells",
+      "project.id": "NCH_RW_Tcells",
+      "protocol.id": "polar_extraction",
+      "replicate": "1",
+      "replicate%type": "analytical",
+      "study.id": "Mouse-Tcells_13C-Glc-Gln-Lac-Ino-2",
+      "type": "polar",
+      "weight": "0.4405",
+      "weight%units": "g"
+    },
+    "9_mouse_13CinoActive_rep3-cells-protein": {
+      "dry_weight": "0.0012499999999999734",
+      "dry_weight%units": "g",
+      "id": "9_mouse_13CinoActive_rep3-cells-protein",
+      "parentID": "9_mouse_13CinoActive_rep3-cells",
+      "project.id": "NCH_RW_Tcells",
+      "protein_weight": "0.5313871532320215",
+      "protein_weight%units": "mg",
+      "protocol.id": "protein_extraction",
+      "study.id": "Mouse-Tcells_13C-Glc-Gln-Lac-Ino-2"
+    }
+  },
+  "study": {
+    "Mouse-Tcells_13C-Glc-Gln-Lac-Ino-2": {
+      "PI_email": "ruoning.wang@nationwidechildrens.org",
+      "PI_first_name": "Ruoning",
+      "PI_last_name": "Wang",
+      "address": "700 Children's Drive, Rm. WA5016, Columbus, OH 43205-2696",
+      "comments": "",
+      "contact_email": "ruoning.wang@nationwidechildrens.org",
+      "contact_first_name": "Ruoning",
+      "contact_last_name": "Wang",
+      "department": "Center for Childhood Cancer",
+      "description": "13C-U-glucose, 13C-glutamine, 13C-U5-inosine, and U-13C-lactate tracer used to track the metabolic changes of active T lymphocytes and Treg",
+      "id": "Mouse-Tcells_13C-Glc-Gln-Lac-Ino-2",
+      "institution": "The Research Institute at Nationwide Children's Hospital",
+      "phone": "-",
+      "title": "Systematically profiling metabolic programs of active T lymphocytes and Treg",
+      "type": "isotope tracer time point"
+    }
+  },
+  "subject": {
+    "10_mouse_13ClacActive_rep1": {
+      "cell_type": "T_active",
+      "id": "10_mouse_13ClacActive_rep1",
+      "project.id": "NCH_RW_Tcells",
+      "protocol.id": "13ClacActive",
+      "replicate": "1",
+      "replicate%type": "biological",
+      "species": "Mus musculus",
+      "species_type": "Animal",
+      "study.id": "Mouse-Tcells_13C-Glc-Gln-Lac-Ino-2",
+      "taxonomy_id": "10090"
+    },
+    "11_mouse_13ClacActive_rep2": {
+      "cell_type": "T_active",
+      "id": "11_mouse_13ClacActive_rep2",
+      "project.id": "NCH_RW_Tcells",
+      "protocol.id": "13ClacActive",
+      "replicate": "2",
+      "replicate%type": "biological",
+      "species": "Mus musculus",
+      "species_type": "Animal",
+      "study.id": "Mouse-Tcells_13C-Glc-Gln-Lac-Ino-2",
+      "taxonomy_id": "10090"
+    },
+    "12_mouse_13ClacActive_rep3": {
+      "cell_type": "T_active",
+      "id": "12_mouse_13ClacActive_rep3",
+      "project.id": "NCH_RW_Tcells",
+      "protocol.id": "13ClacActive",
+      "replicate": "3",
+      "replicate%type": "biological",
+      "species": "Mus musculus",
+      "species_type": "Animal",
+      "study.id": "Mouse-Tcells_13C-Glc-Gln-Lac-Ino-2",
+      "taxonomy_id": "10090"
+    },
+    "13_mouse_13CglcTreg_rep1": {
+      "cell_type": "T_regular",
+      "id": "13_mouse_13CglcTreg_rep1",
+      "project.id": "NCH_RW_Tcells",
+      "protocol.id": "13CglcTreg",
+      "replicate": "1",
+      "replicate%type": "biological",
+      "species": "Mus musculus",
+      "species_type": "Animal",
+      "study.id": "Mouse-Tcells_13C-Glc-Gln-Lac-Ino-2",
+      "taxonomy_id": "10090"
+    },
+    "14_mouse_13CglcTreg_rep2": {
+      "cell_type": "T_regular",
+      "id": "14_mouse_13CglcTreg_rep2",
+      "project.id": "NCH_RW_Tcells",
+      "protocol.id": "13CglcTreg",
+      "replicate": "2",
+      "replicate%type": "biological",
+      "species": "Mus musculus",
+      "species_type": "Animal",
+      "study.id": "Mouse-Tcells_13C-Glc-Gln-Lac-Ino-2",
+      "taxonomy_id": "10090"
+    },
+    "15_mouse_13CglcTreg_rep3": {
+      "cell_type": "T_regular",
+      "id": "15_mouse_13CglcTreg_rep3",
+      "project.id": "NCH_RW_Tcells",
+      "protocol.id": "13CglcTreg",
+      "replicate": "3",
+      "replicate%type": "biological",
+      "species": "Mus musculus",
+      "species_type": "Animal",
+      "study.id": "Mouse-Tcells_13C-Glc-Gln-Lac-Ino-2",
+      "taxonomy_id": "10090"
+    },
+    "16_mouse_13ClacTreg_rep1": {
+      "cell_type": "T_regular",
+      "id": "16_mouse_13ClacTreg_rep1",
+      "project.id": "NCH_RW_Tcells",
+      "protocol.id": "13ClacTreg",
+      "replicate": "1",
+      "replicate%type": "biological",
+      "species": "Mus musculus",
+      "species_type": "Animal",
+      "study.id": "Mouse-Tcells_13C-Glc-Gln-Lac-Ino-2",
+      "taxonomy_id": "10090"
+    },
+    "17_mouse_13ClacTreg_rep2": {
+      "cell_type": "T_regular",
+      "id": "17_mouse_13ClacTreg_rep2",
+      "project.id": "NCH_RW_Tcells",
+      "protocol.id": "13ClacTreg",
+      "replicate": "2",
+      "replicate%type": "biological",
+      "species": "Mus musculus",
+      "species_type": "Animal",
+      "study.id": "Mouse-Tcells_13C-Glc-Gln-Lac-Ino-2",
+      "taxonomy_id": "10090"
+    },
+    "18_mouse_13ClacTreg_rep3": {
+      "cell_type": "T_regular",
+      "id": "18_mouse_13ClacTreg_rep3",
+      "project.id": "NCH_RW_Tcells",
+      "protocol.id": "13ClacTreg",
+      "replicate": "3",
+      "replicate%type": "biological",
+      "species": "Mus musculus",
+      "species_type": "Animal",
+      "study.id": "Mouse-Tcells_13C-Glc-Gln-Lac-Ino-2",
+      "taxonomy_id": "10090"
+    },
+    "19_mouse_13CglnTreg_rep1": {
+      "cell_type": "T_regular",
+      "id": "19_mouse_13CglnTreg_rep1",
+      "project.id": "NCH_RW_Tcells",
+      "protocol.id": "13CglnTreg",
+      "replicate": "1",
+      "replicate%type": "biological",
+      "species": "Mus musculus",
+      "species_type": "Animal",
+      "study.id": "Mouse-Tcells_13C-Glc-Gln-Lac-Ino-2",
+      "taxonomy_id": "10090"
+    },
+    "1_mouse_13CglcActive_rep1": {
+      "cell_type": "T_active",
+      "id": "1_mouse_13CglcActive_rep1",
+      "project.id": "NCH_RW_Tcells",
+      "protocol.id": "13CglcActive",
+      "replicate": "1",
+      "replicate%type": "biological",
+      "species": "Mus musculus",
+      "species_type": "Animal",
+      "study.id": "Mouse-Tcells_13C-Glc-Gln-Lac-Ino-2",
+      "taxonomy_id": "10090"
+    },
+    "20_mouse_13CglnTreg_rep2": {
+      "cell_type": "T_regular",
+      "id": "20_mouse_13CglnTreg_rep2",
+      "project.id": "NCH_RW_Tcells",
+      "protocol.id": "13CglnTreg",
+      "replicate": "2",
+      "replicate%type": "biological",
+      "species": "Mus musculus",
+      "species_type": "Animal",
+      "study.id": "Mouse-Tcells_13C-Glc-Gln-Lac-Ino-2",
+      "taxonomy_id": "10090"
+    },
+    "21_mouse_13CglnTreg_rep3": {
+      "cell_type": "T_regular",
+      "id": "21_mouse_13CglnTreg_rep3",
+      "project.id": "NCH_RW_Tcells",
+      "protocol.id": "13CglnTreg",
+      "replicate": "3",
+      "replicate%type": "biological",
+      "species": "Mus musculus",
+      "species_type": "Animal",
+      "study.id": "Mouse-Tcells_13C-Glc-Gln-Lac-Ino-2",
+      "taxonomy_id": "10090"
+    },
+    "2_mouse_13CglcActive_rep2": {
+      "cell_type": "T_active",
+      "id": "2_mouse_13CglcActive_rep2",
+      "project.id": "NCH_RW_Tcells",
+      "protocol.id": "13CglcActive",
+      "replicate": "2",
+      "replicate%type": "biological",
+      "species": "Mus musculus",
+      "species_type": "Animal",
+      "study.id": "Mouse-Tcells_13C-Glc-Gln-Lac-Ino-2",
+      "taxonomy_id": "10090"
+    },
+    "3_mouse_13CglcActive_rep3": {
+      "cell_type": "T_active",
+      "id": "3_mouse_13CglcActive_rep3",
+      "project.id": "NCH_RW_Tcells",
+      "protocol.id": "13CglcActive",
+      "replicate": "3",
+      "replicate%type": "biological",
+      "species": "Mus musculus",
+      "species_type": "Animal",
+      "study.id": "Mouse-Tcells_13C-Glc-Gln-Lac-Ino-2",
+      "taxonomy_id": "10090"
+    },
+    "4_mouse_13CglnActive_rep1": {
+      "cell_type": "T_active",
+      "id": "4_mouse_13CglnActive_rep1",
+      "project.id": "NCH_RW_Tcells",
+      "protocol.id": "13CglnActive",
+      "replicate": "1",
+      "replicate%type": "biological",
+      "species": "Mus musculus",
+      "species_type": "Animal",
+      "study.id": "Mouse-Tcells_13C-Glc-Gln-Lac-Ino-2",
+      "taxonomy_id": "10090"
+    },
+    "5_mouse_13CglnActive_rep2": {
+      "cell_type": "T_active",
+      "id": "5_mouse_13CglnActive_rep2",
+      "project.id": "NCH_RW_Tcells",
+      "protocol.id": "13CglnActive",
+      "replicate": "2",
+      "replicate%type": "biological",
+      "species": "Mus musculus",
+      "species_type": "Animal",
+      "study.id": "Mouse-Tcells_13C-Glc-Gln-Lac-Ino-2",
+      "taxonomy_id": "10090"
+    },
+    "6_mouse_13CglnActive_rep3": {
+      "cell_type": "T_active",
+      "id": "6_mouse_13CglnActive_rep3",
+      "project.id": "NCH_RW_Tcells",
+      "protocol.id": "13CglnActive",
+      "replicate": "3",
+      "replicate%type": "biological",
+      "species": "Mus musculus",
+      "species_type": "Animal",
+      "study.id": "Mouse-Tcells_13C-Glc-Gln-Lac-Ino-2",
+      "taxonomy_id": "10090"
+    },
+    "7_mouse_13CinoActive_rep1": {
+      "cell_type": "T_active",
+      "id": "7_mouse_13CinoActive_rep1",
+      "project.id": "NCH_RW_Tcells",
+      "protocol.id": "13CinoActive",
+      "replicate": "1",
+      "replicate%type": "biological",
+      "species": "Mus musculus",
+      "species_type": "Animal",
+      "study.id": "Mouse-Tcells_13C-Glc-Gln-Lac-Ino-2",
+      "taxonomy_id": "10090"
+    },
+    "8_mouse_13CinoActive_rep2": {
+      "cell_type": "T_active",
+      "id": "8_mouse_13CinoActive_rep2",
+      "project.id": "NCH_RW_Tcells",
+      "protocol.id": "13CinoActive",
+      "replicate": "2",
+      "replicate%type": "biological",
+      "species": "Mus musculus",
+      "species_type": "Animal",
+      "study.id": "Mouse-Tcells_13C-Glc-Gln-Lac-Ino-2",
+      "taxonomy_id": "10090"
+    },
+    "9_mouse_13CinoActive_rep3": {
+      "cell_type": "T_active",
+      "id": "9_mouse_13CinoActive_rep3",
+      "project.id": "NCH_RW_Tcells",
+      "protocol.id": "13CinoActive",
+      "replicate": "3",
+      "replicate%type": "biological",
+      "species": "Mus musculus",
+      "species_type": "Animal",
+      "study.id": "Mouse-Tcells_13C-Glc-Gln-Lac-Ino-2",
+      "taxonomy_id": "10090"
+    }
+  },
+  "tagfield_scope": {
+    "replicate-cell_culture_experiment": {
+      "allowed_values": [
+        "1",
+        "2",
+        "3"
+      ],
+      "id": "replicate-cell_culture_experiment",
+      "max": "3",
+      "min": "1",
+      "parent_protocol.id": "cell_culture_experiment",
+      "project.id": "NCH_RW_Tcells",
+      "scope_type": [
+        "ignore"
+      ],
+      "study.id": "Mouse-Tcells_13C-Glc-Gln-Lac-Ino-2",
+      "table": [
+        "subject",
+        "sample"
+      ],
+      "tagfield.id": "replicate"
+    }
+  }
+}

@@ -1,0 +1,2211 @@
+{
+  "factor": {
+    "subject.protocol.id": {
+      "allowed_values": [
+        "Ctl",
+        "TVB"
+      ],
+      "id": "subject.protocol.id",
+      "project.id": "UKY_KZ_PDX_mouse",
+      "study.id": "161108_PDX_mouse_13CGlc"
+    }
+  },
+  "project": {
+    "UKY_KZ_PDX_mouse": {
+      "PI_email": "yyzayt2@uky.edu",
+      "PI_first_name": "Yekaterina",
+      "PI_last_name": "Zaytseva",
+      "address": "Rm 516 Biopharm Complex, 789 S. Limestone St.,Univ. of Kentucky, Lexington, KY  40536",
+      "department": "Toxicology and Cancer Biology",
+      "description": "FASN inhibition in colon cancer",
+      "id": "UKY_KZ_PDX_mouse",
+      "institution": "University of Kentucky",
+      "phone": "-",
+      "title": "TVB3664 inhibition of FASN in a PDX mouse model system"
+    }
+  },
+  "protocol": {
+    "Ctl": {
+      "description": "Patient tumor tissue slice implanted in mouse.",
+      "filename": "",
+      "id": "Ctl",
+      "parentID": "PDX_experiment",
+      "type": "treatment"
+    },
+    "FTMS_file_storage1": {
+      "data_files": [
+        "01_386_PDX_ctl_161108_UKy_KZ_lipid_neg.raw",
+        "01_386_PDX_ctl_161108_UKy_KZ_lipid_pos.raw"
+      ],
+      "id": "FTMS_file_storage1",
+      "parentID": "file_storage",
+      "sample.id": "01_pt2614_386_PDX_Ctl_161108_UKy_KZ_bulk-homogenate-lipid",
+      "type": "storage"
+    },
+    "FTMS_file_storage10": {
+      "data_files": [
+        "10_339_PDX_TVB_161108_UKy_KZ_lipid_neg.raw",
+        "10_339_PDX_TVB_161108_UKy_KZ_lipid_pos.raw"
+      ],
+      "id": "FTMS_file_storage10",
+      "parentID": "file_storage",
+      "sample.id": "10_pt2614_339_PDX_TVB_161108_UKy_KZ_bulk-homogenate-lipid",
+      "type": "storage"
+    },
+    "FTMS_file_storage2": {
+      "data_files": [
+        "02_381_PDX_ctl_161108_UKy_KZ_lipid_neg.raw",
+        "02_381_PDX_ctl_161108_UKy_KZ_lipid_pos.raw"
+      ],
+      "id": "FTMS_file_storage2",
+      "parentID": "file_storage",
+      "sample.id": "02_pt2614_381_PDX_Ctl_161108_UKy_KZ_bulk-homogenate-lipid",
+      "type": "storage"
+    },
+    "FTMS_file_storage3": {
+      "data_files": [
+        "03_29_PDX_ctl_161108_UKy_KZ_lipid_neg.raw",
+        "03_29_PDX_ctl_161108_UKy_KZ_lipid_pos.raw"
+      ],
+      "id": "FTMS_file_storage3",
+      "parentID": "file_storage",
+      "sample.id": "03_pt2614_29_PDX_Ctl_161108_UKy_KZ_bulk-homogenate-lipid",
+      "type": "storage"
+    },
+    "FTMS_file_storage4": {
+      "data_files": [
+        "04_357_PDX_ctl_161108_UKy_KZ_lipid_neg.raw",
+        "04_357_PDX_ctl_161108_UKy_KZ_lipid_pos.raw"
+      ],
+      "id": "FTMS_file_storage4",
+      "parentID": "file_storage",
+      "sample.id": "04_pt2614_357_PDX_Ctl_161108_UKy_KZ_bulk-homogenate-lipid",
+      "type": "storage"
+    },
+    "FTMS_file_storage5": {
+      "data_files": [
+        "05_6_PDX_ctl_161108_UKy_KZ_lipid_neg.raw",
+        "05_6_PDX_ctl_161108_UKy_KZ_lipid_pos.raw"
+      ],
+      "id": "FTMS_file_storage5",
+      "parentID": "file_storage",
+      "sample.id": "05_pt2614_6_PDX_Ctl_161108_UKy_KZ_bulk-homogenate-lipid",
+      "type": "storage"
+    },
+    "FTMS_file_storage6": {
+      "data_files": [
+        "06_344_PDX_TVB_161108_UKy_KZ_lipid_neg.raw",
+        "06_344_PDX_TVB_161108_UKy_KZ_lipid_pos.raw"
+      ],
+      "id": "FTMS_file_storage6",
+      "parentID": "file_storage",
+      "sample.id": "06_pt2614_344_PDX_TVB_161108_UKy_KZ_bulk-homogenate-lipid",
+      "type": "storage"
+    },
+    "FTMS_file_storage7": {
+      "data_files": [
+        "07_372_PDX_TVB_161108_UKy_KZ_lipid_neg.raw",
+        "07_372_PDX_TVB_161108_UKy_KZ_lipid_pos.raw"
+      ],
+      "id": "FTMS_file_storage7",
+      "parentID": "file_storage",
+      "sample.id": "07_pt2614_372_PDX_TVB_161108_UKy_KZ_bulk-homogenate-lipid",
+      "type": "storage"
+    },
+    "FTMS_file_storage8": {
+      "data_files": [
+        "08_331_PDX_TVB_161108_UKy_KZ_lipid_neg.raw",
+        "08_331_PDX_TVB_161108_UKy_KZ_lipid_pos.raw"
+      ],
+      "id": "FTMS_file_storage8",
+      "parentID": "file_storage",
+      "sample.id": "08_pt2614_331_PDX_TVB_161108_UKy_KZ_bulk-homogenate-lipid",
+      "type": "storage"
+    },
+    "FTMS_file_storage9": {
+      "data_files": [
+        "09_84_PDX_TVB_161108_UKy_KZ_lipid_neg.raw",
+        "09_84_PDX_TVB_161108_UKy_KZ_lipid_pos.raw"
+      ],
+      "id": "FTMS_file_storage9",
+      "parentID": "file_storage",
+      "sample.id": "09_pt2614_84_PDX_TVB_161108_UKy_KZ_bulk-homogenate-lipid",
+      "type": "storage"
+    },
+    "NMR_file_storage1": {
+      "data_files": [
+        "01_386_CA_Ctl_161108_UKy_KZ_plasma_PRESAT_01.fid"
+      ],
+      "id": "NMR_file_storage1",
+      "parentID": "file_storage",
+      "sample.id": "01_pt2614_386_PDX_Ctl_161108_UKy_KZ_bulk-plasma",
+      "type": "storage"
+    },
+    "NMR_file_storage10": {
+      "data_files": [
+        "10_339_CA_TVB_161108_UKy_KZ_plasma_PRESAT_01.fid"
+      ],
+      "id": "NMR_file_storage10",
+      "parentID": "file_storage",
+      "sample.id": "10_pt2614_339_PDX_TVB_161108_UKy_KZ_bulk-plasma",
+      "type": "storage"
+    },
+    "NMR_file_storage11": {
+      "data_files": [
+        "1_386_tumor_ctl_161108_gHSQCAD_01.fid",
+        "1_386_tumor_ctl_161108_PRESAT_01.fid"
+      ],
+      "id": "NMR_file_storage11",
+      "parentID": "file_storage",
+      "sample.id": "01_pt2614_386_PDX_Ctl_161108_UKy_KZ_bulk-homogenate-polar-NMR_A",
+      "type": "storage"
+    },
+    "NMR_file_storage12": {
+      "data_files": [
+        "2_381_tumor_ctl_161108_gHSQCAD_01.fid",
+        "2_381_tumor_ctl_161108_PRESAT_01.fid"
+      ],
+      "id": "NMR_file_storage12",
+      "parentID": "file_storage",
+      "sample.id": "02_pt2614_381_PDX_Ctl_161108_UKy_KZ_bulk-homogenate-polar-NMR_A",
+      "type": "storage"
+    },
+    "NMR_file_storage13": {
+      "data_files": [
+        "3_29_tumor_ctl_161108_gHSQCAD_01.fid",
+        "3_29_tumor_ctl_161108_PRESAT_01.fid"
+      ],
+      "id": "NMR_file_storage13",
+      "parentID": "file_storage",
+      "sample.id": "03_pt2614_29_PDX_Ctl_161108_UKy_KZ_bulk-homogenate-polar-NMR_A",
+      "type": "storage"
+    },
+    "NMR_file_storage14": {
+      "data_files": [
+        "4_357_tumor_ctl_161108_gHSQCAD_01.fid",
+        "4_357_tumor_ctl_161108_PRESAT_01.fid"
+      ],
+      "id": "NMR_file_storage14",
+      "parentID": "file_storage",
+      "sample.id": "04_pt2614_357_PDX_Ctl_161108_UKy_KZ_bulk-homogenate-polar-NMR_A",
+      "type": "storage"
+    },
+    "NMR_file_storage15": {
+      "data_files": [
+        "5_6_tumor_ctl_161108_gHSQCAD_01.fid",
+        "5_6_tumor_ctl_161108_PRESAT_01.fid"
+      ],
+      "id": "NMR_file_storage15",
+      "parentID": "file_storage",
+      "sample.id": "05_pt2614_6_PDX_Ctl_161108_UKy_KZ_bulk-homogenate-polar-NMR_A",
+      "type": "storage"
+    },
+    "NMR_file_storage16": {
+      "data_files": [
+        "6_344_tumor_TVB_161108_gHSQCAD_01.fid",
+        "6_344_tumor_TVB_161108_PRESAT_01.fid"
+      ],
+      "id": "NMR_file_storage16",
+      "parentID": "file_storage",
+      "sample.id": "06_pt2614_344_PDX_TVB_161108_UKy_KZ_bulk-homogenate-polar-NMR_A",
+      "type": "storage"
+    },
+    "NMR_file_storage17": {
+      "data_files": [
+        "7_372_tumor_TVB_161108_gHSQCAD_01.fid",
+        "7_372_tumor_TVB_161108_PRESAT_01.fid"
+      ],
+      "id": "NMR_file_storage17",
+      "parentID": "file_storage",
+      "sample.id": "07_pt2614_372_PDX_TVB_161108_UKy_KZ_bulk-homogenate-polar-NMR_A",
+      "type": "storage"
+    },
+    "NMR_file_storage18": {
+      "data_files": [
+        "8_331_tumor_TVB_161108_gHSQCAD_01.fid",
+        "8_331_tumor_TVB_161108_PRESAT_01.fid"
+      ],
+      "id": "NMR_file_storage18",
+      "parentID": "file_storage",
+      "sample.id": "08_pt2614_331_PDX_TVB_161108_UKy_KZ_bulk-homogenate-polar-NMR_A",
+      "type": "storage"
+    },
+    "NMR_file_storage19": {
+      "data_files": [
+        "9_84_tumor_TVB_161108_gHSQCAD_01.fid",
+        "9_84_tumor_TVB_161108_PRESAT_01.fid"
+      ],
+      "id": "NMR_file_storage19",
+      "parentID": "file_storage",
+      "sample.id": "09_pt2614_84_PDX_TVB_161108_UKy_KZ_bulk-homogenate-polar-NMR_A",
+      "type": "storage"
+    },
+    "NMR_file_storage2": {
+      "data_files": [
+        "02_381_CA_Ctl_161108_UKy_KZ_plasma_PRESAT_01.fid"
+      ],
+      "id": "NMR_file_storage2",
+      "parentID": "file_storage",
+      "sample.id": "02_pt2614_381_PDX_Ctl_161108_UKy_KZ_bulk-plasma",
+      "type": "storage"
+    },
+    "NMR_file_storage20": {
+      "data_files": [
+        "10_339_tumor_TVB_161108_gHSQCAD_01.fid",
+        "10_339_tumor_TVB_161108_PRESAT_01.fid"
+      ],
+      "id": "NMR_file_storage20",
+      "parentID": "file_storage",
+      "sample.id": "10_pt2614_339_PDX_TVB_161108_UKy_KZ_bulk-homogenate-polar-NMR_A",
+      "type": "storage"
+    },
+    "NMR_file_storage3": {
+      "data_files": [
+        "03_29_CA_Ctl_161108_UKy_KZ_plasma_PRESAT_01.fid"
+      ],
+      "id": "NMR_file_storage3",
+      "parentID": "file_storage",
+      "sample.id": "03_pt2614_29_PDX_Ctl_161108_UKy_KZ_bulk-plasma",
+      "type": "storage"
+    },
+    "NMR_file_storage4": {
+      "data_files": [
+        "04_357_CA_Ctl_161108_UKy_KZ_plasma_PRESAT_01.fid"
+      ],
+      "id": "NMR_file_storage4",
+      "parentID": "file_storage",
+      "sample.id": "04_pt2614_357_PDX_Ctl_161108_UKy_KZ_bulk-plasma",
+      "type": "storage"
+    },
+    "NMR_file_storage5": {
+      "data_files": [
+        "05_6_CA_Ctl_161108_UKy_KZ_plasma_PRESAT_01.fid"
+      ],
+      "id": "NMR_file_storage5",
+      "parentID": "file_storage",
+      "sample.id": "05_pt2614_6_PDX_Ctl_161108_UKy_KZ_bulk-plasma",
+      "type": "storage"
+    },
+    "NMR_file_storage6": {
+      "data_files": [
+        "06_344_CA_TVB_161108_UKy_KZ_plasma_PRESAT_01.fid"
+      ],
+      "id": "NMR_file_storage6",
+      "parentID": "file_storage",
+      "sample.id": "06_pt2614_344_PDX_TVB_161108_UKy_KZ_bulk-plasma",
+      "type": "storage"
+    },
+    "NMR_file_storage7": {
+      "data_files": [
+        "07_372_CA_TVB_161108_UKy_KZ_plasma_PRESAT_01.fid"
+      ],
+      "id": "NMR_file_storage7",
+      "parentID": "file_storage",
+      "sample.id": "07_pt2614_372_PDX_TVB_161108_UKy_KZ_bulk-plasma",
+      "type": "storage"
+    },
+    "NMR_file_storage8": {
+      "data_files": [
+        "08_331_CA_TVB_161108_UKy_KZ_plasma_PRESAT_01.fid"
+      ],
+      "id": "NMR_file_storage8",
+      "parentID": "file_storage",
+      "sample.id": "08_pt2614_331_PDX_TVB_161108_UKy_KZ_bulk-plasma",
+      "type": "storage"
+    },
+    "NMR_file_storage9": {
+      "data_files": [
+        "09_84_CA_TVB_161108_UKy_KZ_plasma_PRESAT_01.fid"
+      ],
+      "id": "NMR_file_storage9",
+      "parentID": "file_storage",
+      "sample.id": "09_pt2614_84_PDX_TVB_161108_UKy_KZ_bulk-plasma",
+      "type": "storage"
+    },
+    "PDX_tissue_collection1": {
+      "description": "Plasma collected from mouse.",
+      "filename": "",
+      "id": "PDX_tissue_collection1",
+      "parentID": "PDX_tissue_collection",
+      "sample_type": "plasma from PDX mouse",
+      "type": "collection"
+    },
+    "PDX_tissue_collection2": {
+      "description": "Mouse is sacrificed and tissues are harvested.",
+      "filename": "",
+      "id": "PDX_tissue_collection2",
+      "parentID": "PDX_tissue_collection",
+      "sample_type": "chimeric tissue",
+      "type": "collection"
+    },
+    "TVB": {
+      "description": "Patient tumor tissue slice implanted in mouse, and treated with TVB3664.",
+      "filename": "",
+      "id": "TVB",
+      "parentID": "PDX_experiment",
+      "type": "treatment"
+    },
+    "acetone_preparation": {
+      "description": "Acetone added to plasma so protein precipitates out, and supernatant is ran on NMR.",
+      "filename": "4A2_Media Extraction with acetone ppt step.pdf",
+      "id": "acetone_preparation",
+      "parentID": "master_sample_prep",
+      "type": "sample_prep"
+    },
+    "bulk_tissue": {
+      "description": "Cancerous tissue collected.",
+      "id": "bulk_tissue",
+      "sample_type": "cancerous tissue",
+      "type": "collection"
+    },
+    "cancer_surgery": {
+      "description": "Cancerous tissue removed from patient.",
+      "id": "cancer_surgery",
+      "type": "treatment"
+    },
+    "frozen_tissue_grind": {
+      "description": "Frozen tissue is ground in a SPEX grinder under liquid nitrogen to homogenize the sample.",
+      "filename": "",
+      "id": "frozen_tissue_grind",
+      "type": "sample_prep"
+    },
+    "lipid_extraction": {
+      "description": "Lipid extraction from homogenate.",
+      "filename": "4B_Extract_Polar_Lipid_Prot_Fan_070417.pdf",
+      "id": "lipid_extraction",
+      "type": "sample_prep"
+    },
+    "polar_extraction": {
+      "description": "Polar extraction from homogenate.",
+      "filename": "4B_Extract_Polar_Lipid_Prot_Fan_070417.pdf",
+      "id": "polar_extraction",
+      "type": "sample_prep"
+    },
+    "protein_extraction": {
+      "description": "Protein extraction and quantification.",
+      "filename": [
+        "4D_17Jun4_Fan_Prot_Quant.pdf",
+        "4B_Extract_Polar_Lipid_Prot_Fan_070417.pdf"
+      ],
+      "id": "protein_extraction",
+      "type": "sample_prep"
+    },
+    "tissue_quench": {
+      "description": "Tissue is frozen in liquid nitrogen to stop metabolic processes.",
+      "filename": "",
+      "id": "tissue_quench",
+      "type": "sample_prep"
+    }
+  },
+  "sample": {
+    "01_pt2614_386_PDX_Ctl_161108_UKy_KZ_bulk-homogenate": {
+      "extracted_tissue_type": "tumor",
+      "id": "01_pt2614_386_PDX_Ctl_161108_UKy_KZ_bulk-homogenate",
+      "parentID": "01_pt2614_386_PDX_Ctl_161108_UKy_KZ_bulk",
+      "project.id": "UKY_KZ_PDX_mouse",
+      "protocol.id": [
+        "PDX_tissue_collection2",
+        "tissue_quench",
+        "frozen_tissue_grind"
+      ],
+      "study.id": "161108_PDX_mouse_13CGlc"
+    },
+    "01_pt2614_386_PDX_Ctl_161108_UKy_KZ_bulk-homogenate-lipid": {
+      "id": "01_pt2614_386_PDX_Ctl_161108_UKy_KZ_bulk-homogenate-lipid",
+      "parentID": "01_pt2614_386_PDX_Ctl_161108_UKy_KZ_bulk-homogenate",
+      "project.id": "UKY_KZ_PDX_mouse",
+      "protocol.id": [
+        "lipid_extraction",
+        "FTMS_file_storage1"
+      ],
+      "study.id": "161108_PDX_mouse_13CGlc",
+      "type": "tissue_extract",
+      "weight": "0.3456",
+      "weight%units": "g"
+    },
+    "01_pt2614_386_PDX_Ctl_161108_UKy_KZ_bulk-homogenate-polar-FTMS_A": {
+      "id": "01_pt2614_386_PDX_Ctl_161108_UKy_KZ_bulk-homogenate-polar-FTMS_A",
+      "parentID": "01_pt2614_386_PDX_Ctl_161108_UKy_KZ_bulk-homogenate",
+      "project.id": "UKY_KZ_PDX_mouse",
+      "protocol.id": [
+        "polar_extraction"
+      ],
+      "replicate": "1",
+      "replicate%type": "analytical",
+      "study.id": "161108_PDX_mouse_13CGlc",
+      "type": "polar",
+      "weight": "0.1005",
+      "weight%units": "g"
+    },
+    "01_pt2614_386_PDX_Ctl_161108_UKy_KZ_bulk-homogenate-polar-FTMS_B": {
+      "id": "01_pt2614_386_PDX_Ctl_161108_UKy_KZ_bulk-homogenate-polar-FTMS_B",
+      "parentID": "01_pt2614_386_PDX_Ctl_161108_UKy_KZ_bulk-homogenate",
+      "project.id": "UKY_KZ_PDX_mouse",
+      "protocol.id": [
+        "polar_extraction"
+      ],
+      "replicate": "2",
+      "replicate%type": "analytical",
+      "study.id": "161108_PDX_mouse_13CGlc",
+      "type": "polar",
+      "weight": "0.0952",
+      "weight%units": "g"
+    },
+    "01_pt2614_386_PDX_Ctl_161108_UKy_KZ_bulk-homogenate-polar-FTMS_C": {
+      "id": "01_pt2614_386_PDX_Ctl_161108_UKy_KZ_bulk-homogenate-polar-FTMS_C",
+      "parentID": "01_pt2614_386_PDX_Ctl_161108_UKy_KZ_bulk-homogenate",
+      "project.id": "UKY_KZ_PDX_mouse",
+      "protocol.id": [
+        "polar_extraction"
+      ],
+      "replicate": "3",
+      "replicate%type": "analytical",
+      "study.id": "161108_PDX_mouse_13CGlc",
+      "type": "polar",
+      "weight": "0.1008",
+      "weight%units": "g"
+    },
+    "01_pt2614_386_PDX_Ctl_161108_UKy_KZ_bulk-homogenate-polar-ICMS_A": {
+      "id": "01_pt2614_386_PDX_Ctl_161108_UKy_KZ_bulk-homogenate-polar-ICMS_A",
+      "parentID": "01_pt2614_386_PDX_Ctl_161108_UKy_KZ_bulk-homogenate",
+      "project.id": "UKY_KZ_PDX_mouse",
+      "protocol.id": [
+        "polar_extraction"
+      ],
+      "replicate": "1",
+      "replicate%type": "analytical",
+      "study.id": "161108_PDX_mouse_13CGlc",
+      "type": "polar",
+      "weight": "0.195",
+      "weight%units": "g"
+    },
+    "01_pt2614_386_PDX_Ctl_161108_UKy_KZ_bulk-homogenate-polar-ICMS_B": {
+      "id": "01_pt2614_386_PDX_Ctl_161108_UKy_KZ_bulk-homogenate-polar-ICMS_B",
+      "parentID": "01_pt2614_386_PDX_Ctl_161108_UKy_KZ_bulk-homogenate",
+      "project.id": "UKY_KZ_PDX_mouse",
+      "protocol.id": [
+        "polar_extraction"
+      ],
+      "replicate": "2",
+      "replicate%type": "analytical",
+      "study.id": "161108_PDX_mouse_13CGlc",
+      "type": "polar",
+      "weight": "0.2063",
+      "weight%units": "g"
+    },
+    "01_pt2614_386_PDX_Ctl_161108_UKy_KZ_bulk-homogenate-polar-NMR_A": {
+      "id": "01_pt2614_386_PDX_Ctl_161108_UKy_KZ_bulk-homogenate-polar-NMR_A",
+      "parentID": "01_pt2614_386_PDX_Ctl_161108_UKy_KZ_bulk-homogenate",
+      "project.id": "UKY_KZ_PDX_mouse",
+      "protocol.id": [
+        "polar_extraction",
+        "NMR_file_storage11"
+      ],
+      "replicate": "1",
+      "replicate%type": "analytical",
+      "study.id": "161108_PDX_mouse_13CGlc",
+      "type": "polar",
+      "weight": "0.4533",
+      "weight%units": "g"
+    },
+    "01_pt2614_386_PDX_Ctl_161108_UKy_KZ_bulk-homogenate-polar-NMR_B": {
+      "id": "01_pt2614_386_PDX_Ctl_161108_UKy_KZ_bulk-homogenate-polar-NMR_B",
+      "parentID": "01_pt2614_386_PDX_Ctl_161108_UKy_KZ_bulk-homogenate",
+      "project.id": "UKY_KZ_PDX_mouse",
+      "protocol.id": [
+        "polar_extraction"
+      ],
+      "replicate": "2",
+      "replicate%type": "analytical",
+      "study.id": "161108_PDX_mouse_13CGlc",
+      "type": "polar",
+      "weight": "0.5006",
+      "weight%units": "g"
+    },
+    "01_pt2614_386_PDX_Ctl_161108_UKy_KZ_bulk-homogenate-protein": {
+      "id": "01_pt2614_386_PDX_Ctl_161108_UKy_KZ_bulk-homogenate-protein",
+      "parentID": "01_pt2614_386_PDX_Ctl_161108_UKy_KZ_bulk-homogenate",
+      "project.id": "UKY_KZ_PDX_mouse",
+      "protein_weight": "0.07894233002499994",
+      "protein_weight%units": "mg",
+      "protocol.id": [
+        "protein_extraction"
+      ],
+      "study.id": "161108_PDX_mouse_13CGlc",
+      "type": "tissue_extract",
+      "weight": "0.0016000000000000458",
+      "weight%type": "dry",
+      "weight%units": "g"
+    },
+    "01_pt2614_386_PDX_Ctl_161108_UKy_KZ_bulk-plasma": {
+      "id": "01_pt2614_386_PDX_Ctl_161108_UKy_KZ_bulk-plasma",
+      "parentID": "01_pt2614_386_PDX_Ctl_161108_UKy_KZ_bulk",
+      "project.id": "UKY_KZ_PDX_mouse",
+      "protocol.id": [
+        "PDX_tissue_collection1",
+        "acetone_preparation",
+        "NMR_file_storage1"
+      ],
+      "study.id": "161108_PDX_mouse_13CGlc",
+      "type": "plasma from PDX mouse"
+    },
+    "02_pt2614_381_PDX_Ctl_161108_UKy_KZ_bulk-homogenate": {
+      "extracted_tissue_type": "tumor",
+      "id": "02_pt2614_381_PDX_Ctl_161108_UKy_KZ_bulk-homogenate",
+      "parentID": "02_pt2614_381_PDX_Ctl_161108_UKy_KZ_bulk",
+      "project.id": "UKY_KZ_PDX_mouse",
+      "protocol.id": [
+        "PDX_tissue_collection2",
+        "tissue_quench",
+        "frozen_tissue_grind"
+      ],
+      "study.id": "161108_PDX_mouse_13CGlc"
+    },
+    "02_pt2614_381_PDX_Ctl_161108_UKy_KZ_bulk-homogenate-lipid": {
+      "id": "02_pt2614_381_PDX_Ctl_161108_UKy_KZ_bulk-homogenate-lipid",
+      "parentID": "02_pt2614_381_PDX_Ctl_161108_UKy_KZ_bulk-homogenate",
+      "project.id": "UKY_KZ_PDX_mouse",
+      "protocol.id": [
+        "lipid_extraction",
+        "FTMS_file_storage2"
+      ],
+      "study.id": "161108_PDX_mouse_13CGlc",
+      "type": "tissue_extract",
+      "weight": "0.3552",
+      "weight%units": "g"
+    },
+    "02_pt2614_381_PDX_Ctl_161108_UKy_KZ_bulk-homogenate-polar-FTMS_A": {
+      "id": "02_pt2614_381_PDX_Ctl_161108_UKy_KZ_bulk-homogenate-polar-FTMS_A",
+      "parentID": "02_pt2614_381_PDX_Ctl_161108_UKy_KZ_bulk-homogenate",
+      "project.id": "UKY_KZ_PDX_mouse",
+      "protocol.id": [
+        "polar_extraction"
+      ],
+      "replicate": "1",
+      "replicate%type": "analytical",
+      "study.id": "161108_PDX_mouse_13CGlc",
+      "type": "polar",
+      "weight": "0.1004",
+      "weight%units": "g"
+    },
+    "02_pt2614_381_PDX_Ctl_161108_UKy_KZ_bulk-homogenate-polar-FTMS_B": {
+      "id": "02_pt2614_381_PDX_Ctl_161108_UKy_KZ_bulk-homogenate-polar-FTMS_B",
+      "parentID": "02_pt2614_381_PDX_Ctl_161108_UKy_KZ_bulk-homogenate",
+      "project.id": "UKY_KZ_PDX_mouse",
+      "protocol.id": [
+        "polar_extraction"
+      ],
+      "replicate": "2",
+      "replicate%type": "analytical",
+      "study.id": "161108_PDX_mouse_13CGlc",
+      "type": "polar",
+      "weight": "0.1",
+      "weight%units": "g"
+    },
+    "02_pt2614_381_PDX_Ctl_161108_UKy_KZ_bulk-homogenate-polar-FTMS_C": {
+      "id": "02_pt2614_381_PDX_Ctl_161108_UKy_KZ_bulk-homogenate-polar-FTMS_C",
+      "parentID": "02_pt2614_381_PDX_Ctl_161108_UKy_KZ_bulk-homogenate",
+      "project.id": "UKY_KZ_PDX_mouse",
+      "protocol.id": [
+        "polar_extraction"
+      ],
+      "replicate": "3",
+      "replicate%type": "analytical",
+      "study.id": "161108_PDX_mouse_13CGlc",
+      "type": "polar",
+      "weight": "0.0987",
+      "weight%units": "g"
+    },
+    "02_pt2614_381_PDX_Ctl_161108_UKy_KZ_bulk-homogenate-polar-ICMS_A": {
+      "id": "02_pt2614_381_PDX_Ctl_161108_UKy_KZ_bulk-homogenate-polar-ICMS_A",
+      "parentID": "02_pt2614_381_PDX_Ctl_161108_UKy_KZ_bulk-homogenate",
+      "project.id": "UKY_KZ_PDX_mouse",
+      "protocol.id": [
+        "polar_extraction"
+      ],
+      "replicate": "1",
+      "replicate%type": "analytical",
+      "study.id": "161108_PDX_mouse_13CGlc",
+      "type": "polar",
+      "weight": "0.2001",
+      "weight%units": "g"
+    },
+    "02_pt2614_381_PDX_Ctl_161108_UKy_KZ_bulk-homogenate-polar-ICMS_B": {
+      "id": "02_pt2614_381_PDX_Ctl_161108_UKy_KZ_bulk-homogenate-polar-ICMS_B",
+      "parentID": "02_pt2614_381_PDX_Ctl_161108_UKy_KZ_bulk-homogenate",
+      "project.id": "UKY_KZ_PDX_mouse",
+      "protocol.id": [
+        "polar_extraction"
+      ],
+      "replicate": "2",
+      "replicate%type": "analytical",
+      "study.id": "161108_PDX_mouse_13CGlc",
+      "type": "polar",
+      "weight": "0.1987",
+      "weight%units": "g"
+    },
+    "02_pt2614_381_PDX_Ctl_161108_UKy_KZ_bulk-homogenate-polar-NMR_A": {
+      "id": "02_pt2614_381_PDX_Ctl_161108_UKy_KZ_bulk-homogenate-polar-NMR_A",
+      "parentID": "02_pt2614_381_PDX_Ctl_161108_UKy_KZ_bulk-homogenate",
+      "project.id": "UKY_KZ_PDX_mouse",
+      "protocol.id": [
+        "polar_extraction",
+        "NMR_file_storage12"
+      ],
+      "replicate": "1",
+      "replicate%type": "analytical",
+      "study.id": "161108_PDX_mouse_13CGlc",
+      "type": "polar",
+      "weight": "0.4654",
+      "weight%units": "g"
+    },
+    "02_pt2614_381_PDX_Ctl_161108_UKy_KZ_bulk-homogenate-polar-NMR_B": {
+      "id": "02_pt2614_381_PDX_Ctl_161108_UKy_KZ_bulk-homogenate-polar-NMR_B",
+      "parentID": "02_pt2614_381_PDX_Ctl_161108_UKy_KZ_bulk-homogenate",
+      "project.id": "UKY_KZ_PDX_mouse",
+      "protocol.id": [
+        "polar_extraction"
+      ],
+      "replicate": "2",
+      "replicate%type": "analytical",
+      "study.id": "161108_PDX_mouse_13CGlc",
+      "type": "polar",
+      "weight": "0.486",
+      "weight%units": "g"
+    },
+    "02_pt2614_381_PDX_Ctl_161108_UKy_KZ_bulk-homogenate-protein": {
+      "id": "02_pt2614_381_PDX_Ctl_161108_UKy_KZ_bulk-homogenate-protein",
+      "parentID": "02_pt2614_381_PDX_Ctl_161108_UKy_KZ_bulk-homogenate",
+      "project.id": "UKY_KZ_PDX_mouse",
+      "protein_weight": "0.06970248899999999",
+      "protein_weight%units": "mg",
+      "protocol.id": [
+        "protein_extraction"
+      ],
+      "study.id": "161108_PDX_mouse_13CGlc",
+      "type": "tissue_extract",
+      "weight": "0.0016899999999999693",
+      "weight%type": "dry",
+      "weight%units": "g"
+    },
+    "02_pt2614_381_PDX_Ctl_161108_UKy_KZ_bulk-plasma": {
+      "id": "02_pt2614_381_PDX_Ctl_161108_UKy_KZ_bulk-plasma",
+      "parentID": "02_pt2614_381_PDX_Ctl_161108_UKy_KZ_bulk",
+      "project.id": "UKY_KZ_PDX_mouse",
+      "protocol.id": [
+        "PDX_tissue_collection1",
+        "acetone_preparation",
+        "NMR_file_storage2"
+      ],
+      "study.id": "161108_PDX_mouse_13CGlc",
+      "type": "plasma from PDX mouse"
+    },
+    "03_pt2614_29_PDX_Ctl_161108_UKy_KZ_bulk-homogenate": {
+      "extracted_tissue_type": "tumor",
+      "id": "03_pt2614_29_PDX_Ctl_161108_UKy_KZ_bulk-homogenate",
+      "parentID": "03_pt2614_29_PDX_Ctl_161108_UKy_KZ_bulk",
+      "project.id": "UKY_KZ_PDX_mouse",
+      "protocol.id": [
+        "PDX_tissue_collection2",
+        "tissue_quench",
+        "frozen_tissue_grind"
+      ],
+      "study.id": "161108_PDX_mouse_13CGlc"
+    },
+    "03_pt2614_29_PDX_Ctl_161108_UKy_KZ_bulk-homogenate-lipid": {
+      "id": "03_pt2614_29_PDX_Ctl_161108_UKy_KZ_bulk-homogenate-lipid",
+      "parentID": "03_pt2614_29_PDX_Ctl_161108_UKy_KZ_bulk-homogenate",
+      "project.id": "UKY_KZ_PDX_mouse",
+      "protocol.id": [
+        "lipid_extraction",
+        "FTMS_file_storage3"
+      ],
+      "study.id": "161108_PDX_mouse_13CGlc",
+      "type": "tissue_extract",
+      "weight": "0.3602",
+      "weight%units": "g"
+    },
+    "03_pt2614_29_PDX_Ctl_161108_UKy_KZ_bulk-homogenate-polar-FTMS_A": {
+      "id": "03_pt2614_29_PDX_Ctl_161108_UKy_KZ_bulk-homogenate-polar-FTMS_A",
+      "parentID": "03_pt2614_29_PDX_Ctl_161108_UKy_KZ_bulk-homogenate",
+      "project.id": "UKY_KZ_PDX_mouse",
+      "protocol.id": [
+        "polar_extraction"
+      ],
+      "replicate": "1",
+      "replicate%type": "analytical",
+      "study.id": "161108_PDX_mouse_13CGlc",
+      "type": "polar",
+      "weight": "0.0987",
+      "weight%units": "g"
+    },
+    "03_pt2614_29_PDX_Ctl_161108_UKy_KZ_bulk-homogenate-polar-FTMS_B": {
+      "id": "03_pt2614_29_PDX_Ctl_161108_UKy_KZ_bulk-homogenate-polar-FTMS_B",
+      "parentID": "03_pt2614_29_PDX_Ctl_161108_UKy_KZ_bulk-homogenate",
+      "project.id": "UKY_KZ_PDX_mouse",
+      "protocol.id": [
+        "polar_extraction"
+      ],
+      "replicate": "2",
+      "replicate%type": "analytical",
+      "study.id": "161108_PDX_mouse_13CGlc",
+      "type": "polar",
+      "weight": "0.1005",
+      "weight%units": "g"
+    },
+    "03_pt2614_29_PDX_Ctl_161108_UKy_KZ_bulk-homogenate-polar-FTMS_C": {
+      "id": "03_pt2614_29_PDX_Ctl_161108_UKy_KZ_bulk-homogenate-polar-FTMS_C",
+      "parentID": "03_pt2614_29_PDX_Ctl_161108_UKy_KZ_bulk-homogenate",
+      "project.id": "UKY_KZ_PDX_mouse",
+      "protocol.id": [
+        "polar_extraction"
+      ],
+      "replicate": "3",
+      "replicate%type": "analytical",
+      "study.id": "161108_PDX_mouse_13CGlc",
+      "type": "polar",
+      "weight": "0.1001",
+      "weight%units": "g"
+    },
+    "03_pt2614_29_PDX_Ctl_161108_UKy_KZ_bulk-homogenate-polar-ICMS_A": {
+      "id": "03_pt2614_29_PDX_Ctl_161108_UKy_KZ_bulk-homogenate-polar-ICMS_A",
+      "parentID": "03_pt2614_29_PDX_Ctl_161108_UKy_KZ_bulk-homogenate",
+      "project.id": "UKY_KZ_PDX_mouse",
+      "protocol.id": [
+        "polar_extraction"
+      ],
+      "replicate": "1",
+      "replicate%type": "analytical",
+      "study.id": "161108_PDX_mouse_13CGlc",
+      "type": "polar",
+      "weight": "0.1996",
+      "weight%units": "g"
+    },
+    "03_pt2614_29_PDX_Ctl_161108_UKy_KZ_bulk-homogenate-polar-ICMS_B": {
+      "id": "03_pt2614_29_PDX_Ctl_161108_UKy_KZ_bulk-homogenate-polar-ICMS_B",
+      "parentID": "03_pt2614_29_PDX_Ctl_161108_UKy_KZ_bulk-homogenate",
+      "project.id": "UKY_KZ_PDX_mouse",
+      "protocol.id": [
+        "polar_extraction"
+      ],
+      "replicate": "2",
+      "replicate%type": "analytical",
+      "study.id": "161108_PDX_mouse_13CGlc",
+      "type": "polar",
+      "weight": "0.2047",
+      "weight%units": "g"
+    },
+    "03_pt2614_29_PDX_Ctl_161108_UKy_KZ_bulk-homogenate-polar-NMR_A": {
+      "id": "03_pt2614_29_PDX_Ctl_161108_UKy_KZ_bulk-homogenate-polar-NMR_A",
+      "parentID": "03_pt2614_29_PDX_Ctl_161108_UKy_KZ_bulk-homogenate",
+      "project.id": "UKY_KZ_PDX_mouse",
+      "protocol.id": [
+        "polar_extraction",
+        "NMR_file_storage13"
+      ],
+      "replicate": "1",
+      "replicate%type": "analytical",
+      "study.id": "161108_PDX_mouse_13CGlc",
+      "type": "polar",
+      "weight": "0.4572",
+      "weight%units": "g"
+    },
+    "03_pt2614_29_PDX_Ctl_161108_UKy_KZ_bulk-homogenate-polar-NMR_B": {
+      "id": "03_pt2614_29_PDX_Ctl_161108_UKy_KZ_bulk-homogenate-polar-NMR_B",
+      "parentID": "03_pt2614_29_PDX_Ctl_161108_UKy_KZ_bulk-homogenate",
+      "project.id": "UKY_KZ_PDX_mouse",
+      "protocol.id": [
+        "polar_extraction"
+      ],
+      "replicate": "2",
+      "replicate%type": "analytical",
+      "study.id": "161108_PDX_mouse_13CGlc",
+      "type": "polar",
+      "weight": "0.4203",
+      "weight%units": "g"
+    },
+    "03_pt2614_29_PDX_Ctl_161108_UKy_KZ_bulk-homogenate-protein": {
+      "id": "03_pt2614_29_PDX_Ctl_161108_UKy_KZ_bulk-homogenate-protein",
+      "parentID": "03_pt2614_29_PDX_Ctl_161108_UKy_KZ_bulk-homogenate",
+      "project.id": "UKY_KZ_PDX_mouse",
+      "protein_weight": "0.1510589395",
+      "protein_weight%units": "mg",
+      "protocol.id": [
+        "protein_extraction"
+      ],
+      "study.id": "161108_PDX_mouse_13CGlc",
+      "type": "tissue_extract",
+      "weight": "0.0044599999999999085",
+      "weight%type": "dry",
+      "weight%units": "g"
+    },
+    "03_pt2614_29_PDX_Ctl_161108_UKy_KZ_bulk-plasma": {
+      "id": "03_pt2614_29_PDX_Ctl_161108_UKy_KZ_bulk-plasma",
+      "parentID": "03_pt2614_29_PDX_Ctl_161108_UKy_KZ_bulk",
+      "project.id": "UKY_KZ_PDX_mouse",
+      "protocol.id": [
+        "PDX_tissue_collection1",
+        "acetone_preparation",
+        "NMR_file_storage3"
+      ],
+      "study.id": "161108_PDX_mouse_13CGlc",
+      "type": "plasma from PDX mouse"
+    },
+    "04_pt2614_357_PDX_Ctl_161108_UKy_KZ_bulk-homogenate": {
+      "extracted_tissue_type": "tumor",
+      "id": "04_pt2614_357_PDX_Ctl_161108_UKy_KZ_bulk-homogenate",
+      "parentID": "04_pt2614_357_PDX_Ctl_161108_UKy_KZ_bulk",
+      "project.id": "UKY_KZ_PDX_mouse",
+      "protocol.id": [
+        "PDX_tissue_collection2",
+        "tissue_quench",
+        "frozen_tissue_grind"
+      ],
+      "study.id": "161108_PDX_mouse_13CGlc"
+    },
+    "04_pt2614_357_PDX_Ctl_161108_UKy_KZ_bulk-homogenate-lipid": {
+      "id": "04_pt2614_357_PDX_Ctl_161108_UKy_KZ_bulk-homogenate-lipid",
+      "parentID": "04_pt2614_357_PDX_Ctl_161108_UKy_KZ_bulk-homogenate",
+      "project.id": "UKY_KZ_PDX_mouse",
+      "protocol.id": [
+        "lipid_extraction",
+        "FTMS_file_storage4"
+      ],
+      "study.id": "161108_PDX_mouse_13CGlc",
+      "type": "tissue_extract",
+      "weight": "0.3594",
+      "weight%units": "g"
+    },
+    "04_pt2614_357_PDX_Ctl_161108_UKy_KZ_bulk-homogenate-polar-FTMS_A": {
+      "id": "04_pt2614_357_PDX_Ctl_161108_UKy_KZ_bulk-homogenate-polar-FTMS_A",
+      "parentID": "04_pt2614_357_PDX_Ctl_161108_UKy_KZ_bulk-homogenate",
+      "project.id": "UKY_KZ_PDX_mouse",
+      "protocol.id": [
+        "polar_extraction"
+      ],
+      "replicate": "1",
+      "replicate%type": "analytical",
+      "study.id": "161108_PDX_mouse_13CGlc",
+      "type": "polar",
+      "weight": "0.1143",
+      "weight%units": "g"
+    },
+    "04_pt2614_357_PDX_Ctl_161108_UKy_KZ_bulk-homogenate-polar-FTMS_B": {
+      "id": "04_pt2614_357_PDX_Ctl_161108_UKy_KZ_bulk-homogenate-polar-FTMS_B",
+      "parentID": "04_pt2614_357_PDX_Ctl_161108_UKy_KZ_bulk-homogenate",
+      "project.id": "UKY_KZ_PDX_mouse",
+      "protocol.id": [
+        "polar_extraction"
+      ],
+      "replicate": "2",
+      "replicate%type": "analytical",
+      "study.id": "161108_PDX_mouse_13CGlc",
+      "type": "polar",
+      "weight": "0.1075",
+      "weight%units": "g"
+    },
+    "04_pt2614_357_PDX_Ctl_161108_UKy_KZ_bulk-homogenate-polar-FTMS_C": {
+      "id": "04_pt2614_357_PDX_Ctl_161108_UKy_KZ_bulk-homogenate-polar-FTMS_C",
+      "parentID": "04_pt2614_357_PDX_Ctl_161108_UKy_KZ_bulk-homogenate",
+      "project.id": "UKY_KZ_PDX_mouse",
+      "protocol.id": [
+        "polar_extraction"
+      ],
+      "replicate": "3",
+      "replicate%type": "analytical",
+      "study.id": "161108_PDX_mouse_13CGlc",
+      "type": "polar",
+      "weight": "0.1111",
+      "weight%units": "g"
+    },
+    "04_pt2614_357_PDX_Ctl_161108_UKy_KZ_bulk-homogenate-polar-ICMS_A": {
+      "id": "04_pt2614_357_PDX_Ctl_161108_UKy_KZ_bulk-homogenate-polar-ICMS_A",
+      "parentID": "04_pt2614_357_PDX_Ctl_161108_UKy_KZ_bulk-homogenate",
+      "project.id": "UKY_KZ_PDX_mouse",
+      "protocol.id": [
+        "polar_extraction"
+      ],
+      "replicate": "1",
+      "replicate%type": "analytical",
+      "study.id": "161108_PDX_mouse_13CGlc",
+      "type": "polar",
+      "weight": "0.2166",
+      "weight%units": "g"
+    },
+    "04_pt2614_357_PDX_Ctl_161108_UKy_KZ_bulk-homogenate-polar-ICMS_B": {
+      "id": "04_pt2614_357_PDX_Ctl_161108_UKy_KZ_bulk-homogenate-polar-ICMS_B",
+      "parentID": "04_pt2614_357_PDX_Ctl_161108_UKy_KZ_bulk-homogenate",
+      "project.id": "UKY_KZ_PDX_mouse",
+      "protocol.id": [
+        "polar_extraction"
+      ],
+      "replicate": "2",
+      "replicate%type": "analytical",
+      "study.id": "161108_PDX_mouse_13CGlc",
+      "type": "polar",
+      "weight": "0.2071",
+      "weight%units": "g"
+    },
+    "04_pt2614_357_PDX_Ctl_161108_UKy_KZ_bulk-homogenate-polar-NMR_A": {
+      "id": "04_pt2614_357_PDX_Ctl_161108_UKy_KZ_bulk-homogenate-polar-NMR_A",
+      "parentID": "04_pt2614_357_PDX_Ctl_161108_UKy_KZ_bulk-homogenate",
+      "project.id": "UKY_KZ_PDX_mouse",
+      "protocol.id": [
+        "polar_extraction",
+        "NMR_file_storage14"
+      ],
+      "replicate": "1",
+      "replicate%type": "analytical",
+      "study.id": "161108_PDX_mouse_13CGlc",
+      "type": "polar",
+      "weight": "0.4863",
+      "weight%units": "g"
+    },
+    "04_pt2614_357_PDX_Ctl_161108_UKy_KZ_bulk-homogenate-polar-NMR_B": {
+      "id": "04_pt2614_357_PDX_Ctl_161108_UKy_KZ_bulk-homogenate-polar-NMR_B",
+      "parentID": "04_pt2614_357_PDX_Ctl_161108_UKy_KZ_bulk-homogenate",
+      "project.id": "UKY_KZ_PDX_mouse",
+      "protocol.id": [
+        "polar_extraction"
+      ],
+      "replicate": "2",
+      "replicate%type": "analytical",
+      "study.id": "161108_PDX_mouse_13CGlc",
+      "type": "polar",
+      "weight": "0.4954",
+      "weight%units": "g"
+    },
+    "04_pt2614_357_PDX_Ctl_161108_UKy_KZ_bulk-homogenate-protein": {
+      "id": "04_pt2614_357_PDX_Ctl_161108_UKy_KZ_bulk-homogenate-protein",
+      "parentID": "04_pt2614_357_PDX_Ctl_161108_UKy_KZ_bulk-homogenate",
+      "project.id": "UKY_KZ_PDX_mouse",
+      "protein_weight": "0.10053485982499996",
+      "protein_weight%units": "mg",
+      "protocol.id": [
+        "protein_extraction"
+      ],
+      "study.id": "161108_PDX_mouse_13CGlc",
+      "type": "tissue_extract",
+      "weight": "0.0020199999999999108",
+      "weight%type": "dry",
+      "weight%units": "g"
+    },
+    "04_pt2614_357_PDX_Ctl_161108_UKy_KZ_bulk-plasma": {
+      "id": "04_pt2614_357_PDX_Ctl_161108_UKy_KZ_bulk-plasma",
+      "parentID": "04_pt2614_357_PDX_Ctl_161108_UKy_KZ_bulk",
+      "project.id": "UKY_KZ_PDX_mouse",
+      "protocol.id": [
+        "PDX_tissue_collection1",
+        "acetone_preparation",
+        "NMR_file_storage4"
+      ],
+      "study.id": "161108_PDX_mouse_13CGlc",
+      "type": "plasma from PDX mouse"
+    },
+    "05_pt2614_6_PDX_Ctl_161108_UKy_KZ_bulk-homogenate": {
+      "extracted_tissue_type": "tumor",
+      "id": "05_pt2614_6_PDX_Ctl_161108_UKy_KZ_bulk-homogenate",
+      "parentID": "05_pt2614_6_PDX_Ctl_161108_UKy_KZ_bulk",
+      "project.id": "UKY_KZ_PDX_mouse",
+      "protocol.id": [
+        "PDX_tissue_collection2",
+        "tissue_quench",
+        "frozen_tissue_grind"
+      ],
+      "study.id": "161108_PDX_mouse_13CGlc"
+    },
+    "05_pt2614_6_PDX_Ctl_161108_UKy_KZ_bulk-homogenate-lipid": {
+      "id": "05_pt2614_6_PDX_Ctl_161108_UKy_KZ_bulk-homogenate-lipid",
+      "parentID": "05_pt2614_6_PDX_Ctl_161108_UKy_KZ_bulk-homogenate",
+      "project.id": "UKY_KZ_PDX_mouse",
+      "protocol.id": [
+        "lipid_extraction",
+        "FTMS_file_storage5"
+      ],
+      "study.id": "161108_PDX_mouse_13CGlc",
+      "type": "tissue_extract",
+      "weight": "0.3703",
+      "weight%units": "g"
+    },
+    "05_pt2614_6_PDX_Ctl_161108_UKy_KZ_bulk-homogenate-polar-FTMS_A": {
+      "id": "05_pt2614_6_PDX_Ctl_161108_UKy_KZ_bulk-homogenate-polar-FTMS_A",
+      "parentID": "05_pt2614_6_PDX_Ctl_161108_UKy_KZ_bulk-homogenate",
+      "project.id": "UKY_KZ_PDX_mouse",
+      "protocol.id": [
+        "polar_extraction"
+      ],
+      "replicate": "1",
+      "replicate%type": "analytical",
+      "study.id": "161108_PDX_mouse_13CGlc",
+      "type": "polar",
+      "weight": "0.0924",
+      "weight%units": "g"
+    },
+    "05_pt2614_6_PDX_Ctl_161108_UKy_KZ_bulk-homogenate-polar-FTMS_B": {
+      "id": "05_pt2614_6_PDX_Ctl_161108_UKy_KZ_bulk-homogenate-polar-FTMS_B",
+      "parentID": "05_pt2614_6_PDX_Ctl_161108_UKy_KZ_bulk-homogenate",
+      "project.id": "UKY_KZ_PDX_mouse",
+      "protocol.id": [
+        "polar_extraction"
+      ],
+      "replicate": "2",
+      "replicate%type": "analytical",
+      "study.id": "161108_PDX_mouse_13CGlc",
+      "type": "polar",
+      "weight": "0.0958",
+      "weight%units": "g"
+    },
+    "05_pt2614_6_PDX_Ctl_161108_UKy_KZ_bulk-homogenate-polar-FTMS_C": {
+      "id": "05_pt2614_6_PDX_Ctl_161108_UKy_KZ_bulk-homogenate-polar-FTMS_C",
+      "parentID": "05_pt2614_6_PDX_Ctl_161108_UKy_KZ_bulk-homogenate",
+      "project.id": "UKY_KZ_PDX_mouse",
+      "protocol.id": [
+        "polar_extraction"
+      ],
+      "replicate": "3",
+      "replicate%type": "analytical",
+      "study.id": "161108_PDX_mouse_13CGlc",
+      "type": "polar",
+      "weight": "0.095",
+      "weight%units": "g"
+    },
+    "05_pt2614_6_PDX_Ctl_161108_UKy_KZ_bulk-homogenate-polar-ICMS_A": {
+      "id": "05_pt2614_6_PDX_Ctl_161108_UKy_KZ_bulk-homogenate-polar-ICMS_A",
+      "parentID": "05_pt2614_6_PDX_Ctl_161108_UKy_KZ_bulk-homogenate",
+      "project.id": "UKY_KZ_PDX_mouse",
+      "protocol.id": [
+        "polar_extraction"
+      ],
+      "replicate": "1",
+      "replicate%type": "analytical",
+      "study.id": "161108_PDX_mouse_13CGlc",
+      "type": "polar",
+      "weight": "0.2288",
+      "weight%units": "g"
+    },
+    "05_pt2614_6_PDX_Ctl_161108_UKy_KZ_bulk-homogenate-polar-ICMS_B": {
+      "id": "05_pt2614_6_PDX_Ctl_161108_UKy_KZ_bulk-homogenate-polar-ICMS_B",
+      "parentID": "05_pt2614_6_PDX_Ctl_161108_UKy_KZ_bulk-homogenate",
+      "project.id": "UKY_KZ_PDX_mouse",
+      "protocol.id": [
+        "polar_extraction"
+      ],
+      "replicate": "2",
+      "replicate%type": "analytical",
+      "study.id": "161108_PDX_mouse_13CGlc",
+      "type": "polar",
+      "weight": "0.1833",
+      "weight%units": "g"
+    },
+    "05_pt2614_6_PDX_Ctl_161108_UKy_KZ_bulk-homogenate-polar-NMR_A": {
+      "id": "05_pt2614_6_PDX_Ctl_161108_UKy_KZ_bulk-homogenate-polar-NMR_A",
+      "parentID": "05_pt2614_6_PDX_Ctl_161108_UKy_KZ_bulk-homogenate",
+      "project.id": "UKY_KZ_PDX_mouse",
+      "protocol.id": [
+        "polar_extraction",
+        "NMR_file_storage15"
+      ],
+      "replicate": "1",
+      "replicate%type": "analytical",
+      "study.id": "161108_PDX_mouse_13CGlc",
+      "type": "polar",
+      "weight": "0.446",
+      "weight%units": "g"
+    },
+    "05_pt2614_6_PDX_Ctl_161108_UKy_KZ_bulk-homogenate-polar-NMR_B": {
+      "id": "05_pt2614_6_PDX_Ctl_161108_UKy_KZ_bulk-homogenate-polar-NMR_B",
+      "parentID": "05_pt2614_6_PDX_Ctl_161108_UKy_KZ_bulk-homogenate",
+      "project.id": "UKY_KZ_PDX_mouse",
+      "protocol.id": [
+        "polar_extraction"
+      ],
+      "replicate": "2",
+      "replicate%type": "analytical",
+      "study.id": "161108_PDX_mouse_13CGlc",
+      "type": "polar",
+      "weight": "0.4347",
+      "weight%units": "g"
+    },
+    "05_pt2614_6_PDX_Ctl_161108_UKy_KZ_bulk-homogenate-protein": {
+      "id": "05_pt2614_6_PDX_Ctl_161108_UKy_KZ_bulk-homogenate-protein",
+      "parentID": "05_pt2614_6_PDX_Ctl_161108_UKy_KZ_bulk-homogenate",
+      "project.id": "UKY_KZ_PDX_mouse",
+      "protein_weight": "0.05813337524999997",
+      "protein_weight%units": "mg",
+      "protocol.id": [
+        "protein_extraction"
+      ],
+      "study.id": "161108_PDX_mouse_13CGlc",
+      "type": "tissue_extract",
+      "weight": "0.0016300000000000203",
+      "weight%type": "dry",
+      "weight%units": "g"
+    },
+    "05_pt2614_6_PDX_Ctl_161108_UKy_KZ_bulk-plasma": {
+      "id": "05_pt2614_6_PDX_Ctl_161108_UKy_KZ_bulk-plasma",
+      "parentID": "05_pt2614_6_PDX_Ctl_161108_UKy_KZ_bulk",
+      "project.id": "UKY_KZ_PDX_mouse",
+      "protocol.id": [
+        "PDX_tissue_collection1",
+        "acetone_preparation",
+        "NMR_file_storage5"
+      ],
+      "study.id": "161108_PDX_mouse_13CGlc",
+      "type": "plasma from PDX mouse"
+    },
+    "06_pt2614_344_PDX_TVB_161108_UKy_KZ_bulk-homogenate": {
+      "extracted_tissue_type": "tumor",
+      "id": "06_pt2614_344_PDX_TVB_161108_UKy_KZ_bulk-homogenate",
+      "parentID": "06_pt2614_344_PDX_TVB_161108_UKy_KZ_bulk",
+      "project.id": "UKY_KZ_PDX_mouse",
+      "protocol.id": [
+        "PDX_tissue_collection2",
+        "tissue_quench",
+        "frozen_tissue_grind"
+      ],
+      "study.id": "161108_PDX_mouse_13CGlc"
+    },
+    "06_pt2614_344_PDX_TVB_161108_UKy_KZ_bulk-homogenate-lipid": {
+      "id": "06_pt2614_344_PDX_TVB_161108_UKy_KZ_bulk-homogenate-lipid",
+      "parentID": "06_pt2614_344_PDX_TVB_161108_UKy_KZ_bulk-homogenate",
+      "project.id": "UKY_KZ_PDX_mouse",
+      "protocol.id": [
+        "lipid_extraction",
+        "FTMS_file_storage6"
+      ],
+      "study.id": "161108_PDX_mouse_13CGlc",
+      "type": "tissue_extract",
+      "weight": "0.3674",
+      "weight%units": "g"
+    },
+    "06_pt2614_344_PDX_TVB_161108_UKy_KZ_bulk-homogenate-polar-FTMS_A": {
+      "id": "06_pt2614_344_PDX_TVB_161108_UKy_KZ_bulk-homogenate-polar-FTMS_A",
+      "parentID": "06_pt2614_344_PDX_TVB_161108_UKy_KZ_bulk-homogenate",
+      "project.id": "UKY_KZ_PDX_mouse",
+      "protocol.id": [
+        "polar_extraction"
+      ],
+      "replicate": "1",
+      "replicate%type": "analytical",
+      "study.id": "161108_PDX_mouse_13CGlc",
+      "type": "polar",
+      "weight": "0.0985",
+      "weight%units": "g"
+    },
+    "06_pt2614_344_PDX_TVB_161108_UKy_KZ_bulk-homogenate-polar-FTMS_B": {
+      "id": "06_pt2614_344_PDX_TVB_161108_UKy_KZ_bulk-homogenate-polar-FTMS_B",
+      "parentID": "06_pt2614_344_PDX_TVB_161108_UKy_KZ_bulk-homogenate",
+      "project.id": "UKY_KZ_PDX_mouse",
+      "protocol.id": [
+        "polar_extraction"
+      ],
+      "replicate": "2",
+      "replicate%type": "analytical",
+      "study.id": "161108_PDX_mouse_13CGlc",
+      "type": "polar",
+      "weight": "0.0963",
+      "weight%units": "g"
+    },
+    "06_pt2614_344_PDX_TVB_161108_UKy_KZ_bulk-homogenate-polar-FTMS_C": {
+      "id": "06_pt2614_344_PDX_TVB_161108_UKy_KZ_bulk-homogenate-polar-FTMS_C",
+      "parentID": "06_pt2614_344_PDX_TVB_161108_UKy_KZ_bulk-homogenate",
+      "project.id": "UKY_KZ_PDX_mouse",
+      "protocol.id": [
+        "polar_extraction"
+      ],
+      "replicate": "3",
+      "replicate%type": "analytical",
+      "study.id": "161108_PDX_mouse_13CGlc",
+      "type": "polar",
+      "weight": "0.0961",
+      "weight%units": "g"
+    },
+    "06_pt2614_344_PDX_TVB_161108_UKy_KZ_bulk-homogenate-polar-ICMS_A": {
+      "id": "06_pt2614_344_PDX_TVB_161108_UKy_KZ_bulk-homogenate-polar-ICMS_A",
+      "parentID": "06_pt2614_344_PDX_TVB_161108_UKy_KZ_bulk-homogenate",
+      "project.id": "UKY_KZ_PDX_mouse",
+      "protocol.id": [
+        "polar_extraction"
+      ],
+      "replicate": "1",
+      "replicate%type": "analytical",
+      "study.id": "161108_PDX_mouse_13CGlc",
+      "type": "polar",
+      "weight": "0.1938",
+      "weight%units": "g"
+    },
+    "06_pt2614_344_PDX_TVB_161108_UKy_KZ_bulk-homogenate-polar-ICMS_B": {
+      "id": "06_pt2614_344_PDX_TVB_161108_UKy_KZ_bulk-homogenate-polar-ICMS_B",
+      "parentID": "06_pt2614_344_PDX_TVB_161108_UKy_KZ_bulk-homogenate",
+      "project.id": "UKY_KZ_PDX_mouse",
+      "protocol.id": [
+        "polar_extraction"
+      ],
+      "replicate": "2",
+      "replicate%type": "analytical",
+      "study.id": "161108_PDX_mouse_13CGlc",
+      "type": "polar",
+      "weight": "0.1955",
+      "weight%units": "g"
+    },
+    "06_pt2614_344_PDX_TVB_161108_UKy_KZ_bulk-homogenate-polar-NMR_A": {
+      "id": "06_pt2614_344_PDX_TVB_161108_UKy_KZ_bulk-homogenate-polar-NMR_A",
+      "parentID": "06_pt2614_344_PDX_TVB_161108_UKy_KZ_bulk-homogenate",
+      "project.id": "UKY_KZ_PDX_mouse",
+      "protocol.id": [
+        "polar_extraction",
+        "NMR_file_storage16"
+      ],
+      "replicate": "1",
+      "replicate%type": "analytical",
+      "study.id": "161108_PDX_mouse_13CGlc",
+      "type": "polar",
+      "weight": "0.4517",
+      "weight%units": "g"
+    },
+    "06_pt2614_344_PDX_TVB_161108_UKy_KZ_bulk-homogenate-polar-NMR_B": {
+      "id": "06_pt2614_344_PDX_TVB_161108_UKy_KZ_bulk-homogenate-polar-NMR_B",
+      "parentID": "06_pt2614_344_PDX_TVB_161108_UKy_KZ_bulk-homogenate",
+      "project.id": "UKY_KZ_PDX_mouse",
+      "protocol.id": [
+        "polar_extraction"
+      ],
+      "replicate": "2",
+      "replicate%type": "analytical",
+      "study.id": "161108_PDX_mouse_13CGlc",
+      "type": "polar",
+      "weight": "0.4943",
+      "weight%units": "g"
+    },
+    "06_pt2614_344_PDX_TVB_161108_UKy_KZ_bulk-homogenate-protein": {
+      "id": "06_pt2614_344_PDX_TVB_161108_UKy_KZ_bulk-homogenate-protein",
+      "parentID": "06_pt2614_344_PDX_TVB_161108_UKy_KZ_bulk-homogenate",
+      "project.id": "UKY_KZ_PDX_mouse",
+      "protein_weight": "0.10541769105000001",
+      "protein_weight%units": "mg",
+      "protocol.id": [
+        "protein_extraction"
+      ],
+      "study.id": "161108_PDX_mouse_13CGlc",
+      "type": "tissue_extract",
+      "weight": "0.0021700000000000053",
+      "weight%type": "dry",
+      "weight%units": "g"
+    },
+    "06_pt2614_344_PDX_TVB_161108_UKy_KZ_bulk-plasma": {
+      "id": "06_pt2614_344_PDX_TVB_161108_UKy_KZ_bulk-plasma",
+      "parentID": "06_pt2614_344_PDX_TVB_161108_UKy_KZ_bulk",
+      "project.id": "UKY_KZ_PDX_mouse",
+      "protocol.id": [
+        "PDX_tissue_collection1",
+        "acetone_preparation",
+        "NMR_file_storage6"
+      ],
+      "study.id": "161108_PDX_mouse_13CGlc",
+      "type": "plasma from PDX mouse"
+    },
+    "07_pt2614_372_PDX_TVB_161108_UKy_KZ_bulk-homogenate": {
+      "extracted_tissue_type": "tumor",
+      "id": "07_pt2614_372_PDX_TVB_161108_UKy_KZ_bulk-homogenate",
+      "parentID": "07_pt2614_372_PDX_TVB_161108_UKy_KZ_bulk",
+      "project.id": "UKY_KZ_PDX_mouse",
+      "protocol.id": [
+        "PDX_tissue_collection2",
+        "tissue_quench",
+        "frozen_tissue_grind"
+      ],
+      "study.id": "161108_PDX_mouse_13CGlc"
+    },
+    "07_pt2614_372_PDX_TVB_161108_UKy_KZ_bulk-homogenate-lipid": {
+      "id": "07_pt2614_372_PDX_TVB_161108_UKy_KZ_bulk-homogenate-lipid",
+      "parentID": "07_pt2614_372_PDX_TVB_161108_UKy_KZ_bulk-homogenate",
+      "project.id": "UKY_KZ_PDX_mouse",
+      "protocol.id": [
+        "lipid_extraction",
+        "FTMS_file_storage7"
+      ],
+      "study.id": "161108_PDX_mouse_13CGlc",
+      "type": "tissue_extract",
+      "weight": "0.3492",
+      "weight%units": "g"
+    },
+    "07_pt2614_372_PDX_TVB_161108_UKy_KZ_bulk-homogenate-polar-FTMS_A": {
+      "id": "07_pt2614_372_PDX_TVB_161108_UKy_KZ_bulk-homogenate-polar-FTMS_A",
+      "parentID": "07_pt2614_372_PDX_TVB_161108_UKy_KZ_bulk-homogenate",
+      "project.id": "UKY_KZ_PDX_mouse",
+      "protocol.id": [
+        "polar_extraction"
+      ],
+      "replicate": "1",
+      "replicate%type": "analytical",
+      "study.id": "161108_PDX_mouse_13CGlc",
+      "type": "polar",
+      "weight": "0.0984",
+      "weight%units": "g"
+    },
+    "07_pt2614_372_PDX_TVB_161108_UKy_KZ_bulk-homogenate-polar-FTMS_B": {
+      "id": "07_pt2614_372_PDX_TVB_161108_UKy_KZ_bulk-homogenate-polar-FTMS_B",
+      "parentID": "07_pt2614_372_PDX_TVB_161108_UKy_KZ_bulk-homogenate",
+      "project.id": "UKY_KZ_PDX_mouse",
+      "protocol.id": [
+        "polar_extraction"
+      ],
+      "replicate": "2",
+      "replicate%type": "analytical",
+      "study.id": "161108_PDX_mouse_13CGlc",
+      "type": "polar",
+      "weight": "0.0959",
+      "weight%units": "g"
+    },
+    "07_pt2614_372_PDX_TVB_161108_UKy_KZ_bulk-homogenate-polar-FTMS_C": {
+      "id": "07_pt2614_372_PDX_TVB_161108_UKy_KZ_bulk-homogenate-polar-FTMS_C",
+      "parentID": "07_pt2614_372_PDX_TVB_161108_UKy_KZ_bulk-homogenate",
+      "project.id": "UKY_KZ_PDX_mouse",
+      "protocol.id": [
+        "polar_extraction"
+      ],
+      "replicate": "3",
+      "replicate%type": "analytical",
+      "study.id": "161108_PDX_mouse_13CGlc",
+      "type": "polar",
+      "weight": "0.0954",
+      "weight%units": "g"
+    },
+    "07_pt2614_372_PDX_TVB_161108_UKy_KZ_bulk-homogenate-polar-ICMS_A": {
+      "id": "07_pt2614_372_PDX_TVB_161108_UKy_KZ_bulk-homogenate-polar-ICMS_A",
+      "parentID": "07_pt2614_372_PDX_TVB_161108_UKy_KZ_bulk-homogenate",
+      "project.id": "UKY_KZ_PDX_mouse",
+      "protocol.id": [
+        "polar_extraction"
+      ],
+      "replicate": "1",
+      "replicate%type": "analytical",
+      "study.id": "161108_PDX_mouse_13CGlc",
+      "type": "polar",
+      "weight": "0.1953",
+      "weight%units": "g"
+    },
+    "07_pt2614_372_PDX_TVB_161108_UKy_KZ_bulk-homogenate-polar-ICMS_B": {
+      "id": "07_pt2614_372_PDX_TVB_161108_UKy_KZ_bulk-homogenate-polar-ICMS_B",
+      "parentID": "07_pt2614_372_PDX_TVB_161108_UKy_KZ_bulk-homogenate",
+      "project.id": "UKY_KZ_PDX_mouse",
+      "protocol.id": [
+        "polar_extraction"
+      ],
+      "replicate": "2",
+      "replicate%type": "analytical",
+      "study.id": "161108_PDX_mouse_13CGlc",
+      "type": "polar",
+      "weight": "0.1958",
+      "weight%units": "g"
+    },
+    "07_pt2614_372_PDX_TVB_161108_UKy_KZ_bulk-homogenate-polar-NMR_A": {
+      "id": "07_pt2614_372_PDX_TVB_161108_UKy_KZ_bulk-homogenate-polar-NMR_A",
+      "parentID": "07_pt2614_372_PDX_TVB_161108_UKy_KZ_bulk-homogenate",
+      "project.id": "UKY_KZ_PDX_mouse",
+      "protocol.id": [
+        "polar_extraction",
+        "NMR_file_storage17"
+      ],
+      "replicate": "1",
+      "replicate%type": "analytical",
+      "study.id": "161108_PDX_mouse_13CGlc",
+      "type": "polar",
+      "weight": "0.4498",
+      "weight%units": "g"
+    },
+    "07_pt2614_372_PDX_TVB_161108_UKy_KZ_bulk-homogenate-polar-NMR_B": {
+      "id": "07_pt2614_372_PDX_TVB_161108_UKy_KZ_bulk-homogenate-polar-NMR_B",
+      "parentID": "07_pt2614_372_PDX_TVB_161108_UKy_KZ_bulk-homogenate",
+      "project.id": "UKY_KZ_PDX_mouse",
+      "protocol.id": [
+        "polar_extraction"
+      ],
+      "replicate": "2",
+      "replicate%type": "analytical",
+      "study.id": "161108_PDX_mouse_13CGlc",
+      "type": "polar",
+      "weight": "0.4776",
+      "weight%units": "g"
+    },
+    "07_pt2614_372_PDX_TVB_161108_UKy_KZ_bulk-homogenate-protein": {
+      "id": "07_pt2614_372_PDX_TVB_161108_UKy_KZ_bulk-homogenate-protein",
+      "parentID": "07_pt2614_372_PDX_TVB_161108_UKy_KZ_bulk-homogenate",
+      "project.id": "UKY_KZ_PDX_mouse",
+      "protein_weight": "0.12263484085000001",
+      "protein_weight%units": "mg",
+      "protocol.id": [
+        "protein_extraction"
+      ],
+      "study.id": "161108_PDX_mouse_13CGlc",
+      "type": "tissue_extract",
+      "weight": "0.00270999999999999",
+      "weight%type": "dry",
+      "weight%units": "g"
+    },
+    "07_pt2614_372_PDX_TVB_161108_UKy_KZ_bulk-plasma": {
+      "id": "07_pt2614_372_PDX_TVB_161108_UKy_KZ_bulk-plasma",
+      "parentID": "07_pt2614_372_PDX_TVB_161108_UKy_KZ_bulk",
+      "project.id": "UKY_KZ_PDX_mouse",
+      "protocol.id": [
+        "PDX_tissue_collection1",
+        "acetone_preparation",
+        "NMR_file_storage7"
+      ],
+      "study.id": "161108_PDX_mouse_13CGlc",
+      "type": "plasma from PDX mouse"
+    },
+    "08_pt2614_331_PDX_TVB_161108_UKy_KZ_bulk-homogenate": {
+      "extracted_tissue_type": "tumor",
+      "id": "08_pt2614_331_PDX_TVB_161108_UKy_KZ_bulk-homogenate",
+      "parentID": "08_pt2614_331_PDX_TVB_161108_UKy_KZ_bulk",
+      "project.id": "UKY_KZ_PDX_mouse",
+      "protocol.id": [
+        "PDX_tissue_collection2",
+        "tissue_quench",
+        "frozen_tissue_grind"
+      ],
+      "study.id": "161108_PDX_mouse_13CGlc"
+    },
+    "08_pt2614_331_PDX_TVB_161108_UKy_KZ_bulk-homogenate-lipid": {
+      "id": "08_pt2614_331_PDX_TVB_161108_UKy_KZ_bulk-homogenate-lipid",
+      "parentID": "08_pt2614_331_PDX_TVB_161108_UKy_KZ_bulk-homogenate",
+      "project.id": "UKY_KZ_PDX_mouse",
+      "protocol.id": [
+        "lipid_extraction",
+        "FTMS_file_storage8"
+      ],
+      "study.id": "161108_PDX_mouse_13CGlc",
+      "type": "tissue_extract",
+      "weight": "0.354",
+      "weight%units": "g"
+    },
+    "08_pt2614_331_PDX_TVB_161108_UKy_KZ_bulk-homogenate-polar-FTMS_A": {
+      "id": "08_pt2614_331_PDX_TVB_161108_UKy_KZ_bulk-homogenate-polar-FTMS_A",
+      "parentID": "08_pt2614_331_PDX_TVB_161108_UKy_KZ_bulk-homogenate",
+      "project.id": "UKY_KZ_PDX_mouse",
+      "protocol.id": [
+        "polar_extraction"
+      ],
+      "replicate": "1",
+      "replicate%type": "analytical",
+      "study.id": "161108_PDX_mouse_13CGlc",
+      "type": "polar",
+      "weight": "0.1041",
+      "weight%units": "g"
+    },
+    "08_pt2614_331_PDX_TVB_161108_UKy_KZ_bulk-homogenate-polar-FTMS_B": {
+      "id": "08_pt2614_331_PDX_TVB_161108_UKy_KZ_bulk-homogenate-polar-FTMS_B",
+      "parentID": "08_pt2614_331_PDX_TVB_161108_UKy_KZ_bulk-homogenate",
+      "project.id": "UKY_KZ_PDX_mouse",
+      "protocol.id": [
+        "polar_extraction"
+      ],
+      "replicate": "2",
+      "replicate%type": "analytical",
+      "study.id": "161108_PDX_mouse_13CGlc",
+      "type": "polar",
+      "weight": "0.0987",
+      "weight%units": "g"
+    },
+    "08_pt2614_331_PDX_TVB_161108_UKy_KZ_bulk-homogenate-polar-FTMS_C": {
+      "id": "08_pt2614_331_PDX_TVB_161108_UKy_KZ_bulk-homogenate-polar-FTMS_C",
+      "parentID": "08_pt2614_331_PDX_TVB_161108_UKy_KZ_bulk-homogenate",
+      "project.id": "UKY_KZ_PDX_mouse",
+      "protocol.id": [
+        "polar_extraction"
+      ],
+      "replicate": "3",
+      "replicate%type": "analytical",
+      "study.id": "161108_PDX_mouse_13CGlc",
+      "type": "polar",
+      "weight": "0.1005",
+      "weight%units": "g"
+    },
+    "08_pt2614_331_PDX_TVB_161108_UKy_KZ_bulk-homogenate-polar-ICMS_A": {
+      "id": "08_pt2614_331_PDX_TVB_161108_UKy_KZ_bulk-homogenate-polar-ICMS_A",
+      "parentID": "08_pt2614_331_PDX_TVB_161108_UKy_KZ_bulk-homogenate",
+      "project.id": "UKY_KZ_PDX_mouse",
+      "protocol.id": [
+        "polar_extraction"
+      ],
+      "replicate": "1",
+      "replicate%type": "analytical",
+      "study.id": "161108_PDX_mouse_13CGlc",
+      "type": "polar",
+      "weight": "0.2089",
+      "weight%units": "g"
+    },
+    "08_pt2614_331_PDX_TVB_161108_UKy_KZ_bulk-homogenate-polar-ICMS_B": {
+      "id": "08_pt2614_331_PDX_TVB_161108_UKy_KZ_bulk-homogenate-polar-ICMS_B",
+      "parentID": "08_pt2614_331_PDX_TVB_161108_UKy_KZ_bulk-homogenate",
+      "project.id": "UKY_KZ_PDX_mouse",
+      "protocol.id": [
+        "polar_extraction"
+      ],
+      "replicate": "2",
+      "replicate%type": "analytical",
+      "study.id": "161108_PDX_mouse_13CGlc",
+      "type": "polar",
+      "weight": "0.2043",
+      "weight%units": "g"
+    },
+    "08_pt2614_331_PDX_TVB_161108_UKy_KZ_bulk-homogenate-polar-NMR_A": {
+      "id": "08_pt2614_331_PDX_TVB_161108_UKy_KZ_bulk-homogenate-polar-NMR_A",
+      "parentID": "08_pt2614_331_PDX_TVB_161108_UKy_KZ_bulk-homogenate",
+      "project.id": "UKY_KZ_PDX_mouse",
+      "protocol.id": [
+        "polar_extraction",
+        "NMR_file_storage18"
+      ],
+      "replicate": "1",
+      "replicate%type": "analytical",
+      "study.id": "161108_PDX_mouse_13CGlc",
+      "type": "polar",
+      "weight": "0.4674",
+      "weight%units": "g"
+    },
+    "08_pt2614_331_PDX_TVB_161108_UKy_KZ_bulk-homogenate-polar-NMR_B": {
+      "id": "08_pt2614_331_PDX_TVB_161108_UKy_KZ_bulk-homogenate-polar-NMR_B",
+      "parentID": "08_pt2614_331_PDX_TVB_161108_UKy_KZ_bulk-homogenate",
+      "project.id": "UKY_KZ_PDX_mouse",
+      "protocol.id": [
+        "polar_extraction"
+      ],
+      "replicate": "2",
+      "replicate%type": "analytical",
+      "study.id": "161108_PDX_mouse_13CGlc",
+      "type": "polar",
+      "weight": "0.4847",
+      "weight%units": "g"
+    },
+    "08_pt2614_331_PDX_TVB_161108_UKy_KZ_bulk-homogenate-protein": {
+      "id": "08_pt2614_331_PDX_TVB_161108_UKy_KZ_bulk-homogenate-protein",
+      "parentID": "08_pt2614_331_PDX_TVB_161108_UKy_KZ_bulk-homogenate",
+      "project.id": "UKY_KZ_PDX_mouse",
+      "protein_weight": "0.10117937410000002",
+      "protein_weight%units": "mg",
+      "protocol.id": [
+        "protein_extraction"
+      ],
+      "study.id": "161108_PDX_mouse_13CGlc",
+      "type": "tissue_extract",
+      "weight": "0.0022599999999999287",
+      "weight%type": "dry",
+      "weight%units": "g"
+    },
+    "08_pt2614_331_PDX_TVB_161108_UKy_KZ_bulk-plasma": {
+      "id": "08_pt2614_331_PDX_TVB_161108_UKy_KZ_bulk-plasma",
+      "parentID": "08_pt2614_331_PDX_TVB_161108_UKy_KZ_bulk",
+      "project.id": "UKY_KZ_PDX_mouse",
+      "protocol.id": [
+        "PDX_tissue_collection1",
+        "acetone_preparation",
+        "NMR_file_storage8"
+      ],
+      "study.id": "161108_PDX_mouse_13CGlc",
+      "type": "plasma from PDX mouse"
+    },
+    "09_pt2614_84_PDX_TVB_161108_UKy_KZ_bulk-homogenate": {
+      "extracted_tissue_type": "tumor",
+      "id": "09_pt2614_84_PDX_TVB_161108_UKy_KZ_bulk-homogenate",
+      "parentID": "09_pt2614_84_PDX_TVB_161108_UKy_KZ_bulk",
+      "project.id": "UKY_KZ_PDX_mouse",
+      "protocol.id": [
+        "PDX_tissue_collection2",
+        "tissue_quench",
+        "frozen_tissue_grind"
+      ],
+      "study.id": "161108_PDX_mouse_13CGlc"
+    },
+    "09_pt2614_84_PDX_TVB_161108_UKy_KZ_bulk-homogenate-lipid": {
+      "id": "09_pt2614_84_PDX_TVB_161108_UKy_KZ_bulk-homogenate-lipid",
+      "parentID": "09_pt2614_84_PDX_TVB_161108_UKy_KZ_bulk-homogenate",
+      "project.id": "UKY_KZ_PDX_mouse",
+      "protocol.id": [
+        "lipid_extraction",
+        "FTMS_file_storage9"
+      ],
+      "study.id": "161108_PDX_mouse_13CGlc",
+      "type": "tissue_extract",
+      "weight": "0.3606",
+      "weight%units": "g"
+    },
+    "09_pt2614_84_PDX_TVB_161108_UKy_KZ_bulk-homogenate-polar-FTMS_A": {
+      "id": "09_pt2614_84_PDX_TVB_161108_UKy_KZ_bulk-homogenate-polar-FTMS_A",
+      "parentID": "09_pt2614_84_PDX_TVB_161108_UKy_KZ_bulk-homogenate",
+      "project.id": "UKY_KZ_PDX_mouse",
+      "protocol.id": [
+        "polar_extraction"
+      ],
+      "replicate": "1",
+      "replicate%type": "analytical",
+      "study.id": "161108_PDX_mouse_13CGlc",
+      "type": "polar",
+      "weight": "0.0952",
+      "weight%units": "g"
+    },
+    "09_pt2614_84_PDX_TVB_161108_UKy_KZ_bulk-homogenate-polar-FTMS_B": {
+      "id": "09_pt2614_84_PDX_TVB_161108_UKy_KZ_bulk-homogenate-polar-FTMS_B",
+      "parentID": "09_pt2614_84_PDX_TVB_161108_UKy_KZ_bulk-homogenate",
+      "project.id": "UKY_KZ_PDX_mouse",
+      "protocol.id": [
+        "polar_extraction"
+      ],
+      "replicate": "2",
+      "replicate%type": "analytical",
+      "study.id": "161108_PDX_mouse_13CGlc",
+      "type": "polar",
+      "weight": "0.0983",
+      "weight%units": "g"
+    },
+    "09_pt2614_84_PDX_TVB_161108_UKy_KZ_bulk-homogenate-polar-FTMS_C": {
+      "id": "09_pt2614_84_PDX_TVB_161108_UKy_KZ_bulk-homogenate-polar-FTMS_C",
+      "parentID": "09_pt2614_84_PDX_TVB_161108_UKy_KZ_bulk-homogenate",
+      "project.id": "UKY_KZ_PDX_mouse",
+      "protocol.id": [
+        "polar_extraction"
+      ],
+      "replicate": "3",
+      "replicate%type": "analytical",
+      "study.id": "161108_PDX_mouse_13CGlc",
+      "type": "polar",
+      "weight": "0.0958",
+      "weight%units": "g"
+    },
+    "09_pt2614_84_PDX_TVB_161108_UKy_KZ_bulk-homogenate-polar-ICMS_A": {
+      "id": "09_pt2614_84_PDX_TVB_161108_UKy_KZ_bulk-homogenate-polar-ICMS_A",
+      "parentID": "09_pt2614_84_PDX_TVB_161108_UKy_KZ_bulk-homogenate",
+      "project.id": "UKY_KZ_PDX_mouse",
+      "protocol.id": [
+        "polar_extraction"
+      ],
+      "replicate": "1",
+      "replicate%type": "analytical",
+      "study.id": "161108_PDX_mouse_13CGlc",
+      "type": "polar",
+      "weight": "0.1948",
+      "weight%units": "g"
+    },
+    "09_pt2614_84_PDX_TVB_161108_UKy_KZ_bulk-homogenate-polar-ICMS_B": {
+      "id": "09_pt2614_84_PDX_TVB_161108_UKy_KZ_bulk-homogenate-polar-ICMS_B",
+      "parentID": "09_pt2614_84_PDX_TVB_161108_UKy_KZ_bulk-homogenate",
+      "project.id": "UKY_KZ_PDX_mouse",
+      "protocol.id": [
+        "polar_extraction"
+      ],
+      "replicate": "2",
+      "replicate%type": "analytical",
+      "study.id": "161108_PDX_mouse_13CGlc",
+      "type": "polar",
+      "weight": "0.1918",
+      "weight%units": "g"
+    },
+    "09_pt2614_84_PDX_TVB_161108_UKy_KZ_bulk-homogenate-polar-NMR_A": {
+      "id": "09_pt2614_84_PDX_TVB_161108_UKy_KZ_bulk-homogenate-polar-NMR_A",
+      "parentID": "09_pt2614_84_PDX_TVB_161108_UKy_KZ_bulk-homogenate",
+      "project.id": "UKY_KZ_PDX_mouse",
+      "protocol.id": [
+        "polar_extraction",
+        "NMR_file_storage19"
+      ],
+      "replicate": "1",
+      "replicate%type": "analytical",
+      "study.id": "161108_PDX_mouse_13CGlc",
+      "type": "polar",
+      "weight": "0.4588",
+      "weight%units": "g"
+    },
+    "09_pt2614_84_PDX_TVB_161108_UKy_KZ_bulk-homogenate-polar-NMR_B": {
+      "id": "09_pt2614_84_PDX_TVB_161108_UKy_KZ_bulk-homogenate-polar-NMR_B",
+      "parentID": "09_pt2614_84_PDX_TVB_161108_UKy_KZ_bulk-homogenate",
+      "project.id": "UKY_KZ_PDX_mouse",
+      "protocol.id": [
+        "polar_extraction"
+      ],
+      "replicate": "2",
+      "replicate%type": "analytical",
+      "study.id": "161108_PDX_mouse_13CGlc",
+      "type": "polar",
+      "weight": "0.4569",
+      "weight%units": "g"
+    },
+    "09_pt2614_84_PDX_TVB_161108_UKy_KZ_bulk-homogenate-protein": {
+      "id": "09_pt2614_84_PDX_TVB_161108_UKy_KZ_bulk-homogenate-protein",
+      "parentID": "09_pt2614_84_PDX_TVB_161108_UKy_KZ_bulk-homogenate",
+      "project.id": "UKY_KZ_PDX_mouse",
+      "protein_weight": "0.06184152125000011",
+      "protein_weight%units": "mg",
+      "protocol.id": [
+        "protein_extraction"
+      ],
+      "study.id": "161108_PDX_mouse_13CGlc",
+      "type": "tissue_extract",
+      "weight": "0.0015999999999998238",
+      "weight%type": "dry",
+      "weight%units": "g"
+    },
+    "09_pt2614_84_PDX_TVB_161108_UKy_KZ_bulk-plasma": {
+      "id": "09_pt2614_84_PDX_TVB_161108_UKy_KZ_bulk-plasma",
+      "parentID": "09_pt2614_84_PDX_TVB_161108_UKy_KZ_bulk",
+      "project.id": "UKY_KZ_PDX_mouse",
+      "protocol.id": [
+        "PDX_tissue_collection1",
+        "acetone_preparation",
+        "NMR_file_storage9"
+      ],
+      "study.id": "161108_PDX_mouse_13CGlc",
+      "type": "plasma from PDX mouse"
+    },
+    "10_pt2614_339_PDX_TVB_161108_UKy_KZ_bulk-homogenate": {
+      "extracted_tissue_type": "tumor",
+      "id": "10_pt2614_339_PDX_TVB_161108_UKy_KZ_bulk-homogenate",
+      "parentID": "10_pt2614_339_PDX_TVB_161108_UKy_KZ_bulk",
+      "project.id": "UKY_KZ_PDX_mouse",
+      "protocol.id": [
+        "PDX_tissue_collection2",
+        "tissue_quench",
+        "frozen_tissue_grind"
+      ],
+      "study.id": "161108_PDX_mouse_13CGlc"
+    },
+    "10_pt2614_339_PDX_TVB_161108_UKy_KZ_bulk-homogenate-lipid": {
+      "id": "10_pt2614_339_PDX_TVB_161108_UKy_KZ_bulk-homogenate-lipid",
+      "parentID": "10_pt2614_339_PDX_TVB_161108_UKy_KZ_bulk-homogenate",
+      "project.id": "UKY_KZ_PDX_mouse",
+      "protocol.id": [
+        "lipid_extraction",
+        "FTMS_file_storage10"
+      ],
+      "study.id": "161108_PDX_mouse_13CGlc",
+      "type": "tissue_extract",
+      "weight": "0.3642",
+      "weight%units": "g"
+    },
+    "10_pt2614_339_PDX_TVB_161108_UKy_KZ_bulk-homogenate-polar-FTMS_A": {
+      "id": "10_pt2614_339_PDX_TVB_161108_UKy_KZ_bulk-homogenate-polar-FTMS_A",
+      "parentID": "10_pt2614_339_PDX_TVB_161108_UKy_KZ_bulk-homogenate",
+      "project.id": "UKY_KZ_PDX_mouse",
+      "protocol.id": [
+        "polar_extraction"
+      ],
+      "replicate": "1",
+      "replicate%type": "analytical",
+      "study.id": "161108_PDX_mouse_13CGlc",
+      "type": "polar",
+      "weight": "0.0988",
+      "weight%units": "g"
+    },
+    "10_pt2614_339_PDX_TVB_161108_UKy_KZ_bulk-homogenate-polar-FTMS_B": {
+      "id": "10_pt2614_339_PDX_TVB_161108_UKy_KZ_bulk-homogenate-polar-FTMS_B",
+      "parentID": "10_pt2614_339_PDX_TVB_161108_UKy_KZ_bulk-homogenate",
+      "project.id": "UKY_KZ_PDX_mouse",
+      "protocol.id": [
+        "polar_extraction"
+      ],
+      "replicate": "2",
+      "replicate%type": "analytical",
+      "study.id": "161108_PDX_mouse_13CGlc",
+      "type": "polar",
+      "weight": "0.0931",
+      "weight%units": "g"
+    },
+    "10_pt2614_339_PDX_TVB_161108_UKy_KZ_bulk-homogenate-polar-FTMS_C": {
+      "id": "10_pt2614_339_PDX_TVB_161108_UKy_KZ_bulk-homogenate-polar-FTMS_C",
+      "parentID": "10_pt2614_339_PDX_TVB_161108_UKy_KZ_bulk-homogenate",
+      "project.id": "UKY_KZ_PDX_mouse",
+      "protocol.id": [
+        "polar_extraction"
+      ],
+      "replicate": "3",
+      "replicate%type": "analytical",
+      "study.id": "161108_PDX_mouse_13CGlc",
+      "type": "polar",
+      "weight": "0.0935",
+      "weight%units": "g"
+    },
+    "10_pt2614_339_PDX_TVB_161108_UKy_KZ_bulk-homogenate-polar-ICMS_A": {
+      "id": "10_pt2614_339_PDX_TVB_161108_UKy_KZ_bulk-homogenate-polar-ICMS_A",
+      "parentID": "10_pt2614_339_PDX_TVB_161108_UKy_KZ_bulk-homogenate",
+      "project.id": "UKY_KZ_PDX_mouse",
+      "protocol.id": [
+        "polar_extraction"
+      ],
+      "replicate": "1",
+      "replicate%type": "analytical",
+      "study.id": "161108_PDX_mouse_13CGlc",
+      "type": "polar",
+      "weight": "0.1919",
+      "weight%units": "g"
+    },
+    "10_pt2614_339_PDX_TVB_161108_UKy_KZ_bulk-homogenate-polar-ICMS_B": {
+      "id": "10_pt2614_339_PDX_TVB_161108_UKy_KZ_bulk-homogenate-polar-ICMS_B",
+      "parentID": "10_pt2614_339_PDX_TVB_161108_UKy_KZ_bulk-homogenate",
+      "project.id": "UKY_KZ_PDX_mouse",
+      "protocol.id": [
+        "polar_extraction"
+      ],
+      "replicate": "2",
+      "replicate%type": "analytical",
+      "study.id": "161108_PDX_mouse_13CGlc",
+      "type": "polar",
+      "weight": "0.189",
+      "weight%units": "g"
+    },
+    "10_pt2614_339_PDX_TVB_161108_UKy_KZ_bulk-homogenate-polar-NMR_A": {
+      "id": "10_pt2614_339_PDX_TVB_161108_UKy_KZ_bulk-homogenate-polar-NMR_A",
+      "parentID": "10_pt2614_339_PDX_TVB_161108_UKy_KZ_bulk-homogenate",
+      "project.id": "UKY_KZ_PDX_mouse",
+      "protocol.id": [
+        "polar_extraction",
+        "NMR_file_storage20"
+      ],
+      "replicate": "1",
+      "replicate%type": "analytical",
+      "study.id": "161108_PDX_mouse_13CGlc",
+      "type": "polar",
+      "weight": "0.4413",
+      "weight%units": "g"
+    },
+    "10_pt2614_339_PDX_TVB_161108_UKy_KZ_bulk-homogenate-polar-NMR_B": {
+      "id": "10_pt2614_339_PDX_TVB_161108_UKy_KZ_bulk-homogenate-polar-NMR_B",
+      "parentID": "10_pt2614_339_PDX_TVB_161108_UKy_KZ_bulk-homogenate",
+      "project.id": "UKY_KZ_PDX_mouse",
+      "protocol.id": [
+        "polar_extraction"
+      ],
+      "replicate": "2",
+      "replicate%type": "analytical",
+      "study.id": "161108_PDX_mouse_13CGlc",
+      "type": "polar",
+      "weight": "0.4682",
+      "weight%units": "g"
+    },
+    "10_pt2614_339_PDX_TVB_161108_UKy_KZ_bulk-homogenate-protein": {
+      "id": "10_pt2614_339_PDX_TVB_161108_UKy_KZ_bulk-homogenate-protein",
+      "parentID": "10_pt2614_339_PDX_TVB_161108_UKy_KZ_bulk-homogenate",
+      "project.id": "UKY_KZ_PDX_mouse",
+      "protein_weight": "0.048733027000000005",
+      "protein_weight%units": "mg",
+      "protocol.id": [
+        "protein_extraction"
+      ],
+      "study.id": "161108_PDX_mouse_13CGlc",
+      "type": "tissue_extract",
+      "weight": "0.0014199999999999768",
+      "weight%type": "dry",
+      "weight%units": "g"
+    },
+    "10_pt2614_339_PDX_TVB_161108_UKy_KZ_bulk-plasma": {
+      "id": "10_pt2614_339_PDX_TVB_161108_UKy_KZ_bulk-plasma",
+      "parentID": "10_pt2614_339_PDX_TVB_161108_UKy_KZ_bulk",
+      "project.id": "UKY_KZ_PDX_mouse",
+      "protocol.id": [
+        "PDX_tissue_collection1",
+        "acetone_preparation",
+        "NMR_file_storage10"
+      ],
+      "study.id": "161108_PDX_mouse_13CGlc",
+      "type": "plasma from PDX mouse"
+    },
+    "pt2614-tumor": {
+      "id": "pt2614-tumor",
+      "parentID": "pt2614",
+      "project.id": "UKY_KZ_PDX_mouse",
+      "protocol.id": "bulk_tissue",
+      "study.id": "161108_PDX_mouse_13CGlc",
+      "tissue_type": "tumor"
+    }
+  },
+  "study": {
+    "161108_PDX_mouse_13CGlc": {
+      "PI_email": "yyzayt2@uky.edu",
+      "PI_first_name": "Yekaterina",
+      "PI_last_name": "Zaytseva",
+      "address": "Rm 516 Biopharm Complex, 789 S. Limestone St.,Univ. of Kentucky, Lexington, KY  40536",
+      "contact_email": "yyzayt2@uky.edu",
+      "contact_first_name": "Yekaterina",
+      "contact_last_name": "Zayetseva",
+      "department": "Toxicology and Cancer Biology",
+      "description": "IP injection of 13C6-Glc 1hr prior to collection",
+      "id": "161108_PDX_mouse_13CGlc",
+      "institution": "University of Kentucky",
+      "phone": "-",
+      "title": "FASN effect on cancer metabolism in PDX mouse model.",
+      "type": ""
+    }
+  },
+  "subject": {
+    "01_pt2614_386_PDX_Ctl_161108_UKy_KZ_bulk": {
+      "id": "01_pt2614_386_PDX_Ctl_161108_UKy_KZ_bulk",
+      "parentID": "pt2614-tumor",
+      "project.id": "UKY_KZ_PDX_mouse",
+      "protocol.id": [
+        "Ctl"
+      ],
+      "replicate": "1",
+      "species": [
+        "Homo sapiens",
+        "Mus musculus"
+      ],
+      "species_type": [
+        "Human",
+        "Animal"
+      ],
+      "study.id": "161108_PDX_mouse_13CGlc",
+      "taxonomy_id": [
+        "9606",
+        "10090"
+      ],
+      "treatment": "None",
+      "type": "chimeric tissue"
+    },
+    "02_pt2614_381_PDX_Ctl_161108_UKy_KZ_bulk": {
+      "id": "02_pt2614_381_PDX_Ctl_161108_UKy_KZ_bulk",
+      "parentID": "pt2614-tumor",
+      "project.id": "UKY_KZ_PDX_mouse",
+      "protocol.id": [
+        "Ctl"
+      ],
+      "replicate": "2",
+      "species": [
+        "Homo sapiens",
+        "Mus musculus"
+      ],
+      "species_type": [
+        "Human",
+        "Animal"
+      ],
+      "study.id": "161108_PDX_mouse_13CGlc",
+      "taxonomy_id": [
+        "9606",
+        "10090"
+      ],
+      "treatment": "None",
+      "type": "chimeric tissue"
+    },
+    "03_pt2614_29_PDX_Ctl_161108_UKy_KZ_bulk": {
+      "id": "03_pt2614_29_PDX_Ctl_161108_UKy_KZ_bulk",
+      "parentID": "pt2614-tumor",
+      "project.id": "UKY_KZ_PDX_mouse",
+      "protocol.id": [
+        "Ctl"
+      ],
+      "replicate": "3",
+      "species": [
+        "Homo sapiens",
+        "Mus musculus"
+      ],
+      "species_type": [
+        "Human",
+        "Animal"
+      ],
+      "study.id": "161108_PDX_mouse_13CGlc",
+      "taxonomy_id": [
+        "9606",
+        "10090"
+      ],
+      "treatment": "None",
+      "type": "chimeric tissue"
+    },
+    "04_pt2614_357_PDX_Ctl_161108_UKy_KZ_bulk": {
+      "id": "04_pt2614_357_PDX_Ctl_161108_UKy_KZ_bulk",
+      "parentID": "pt2614-tumor",
+      "project.id": "UKY_KZ_PDX_mouse",
+      "protocol.id": [
+        "Ctl"
+      ],
+      "replicate": "4",
+      "species": [
+        "Homo sapiens",
+        "Mus musculus"
+      ],
+      "species_type": [
+        "Human",
+        "Animal"
+      ],
+      "study.id": "161108_PDX_mouse_13CGlc",
+      "taxonomy_id": [
+        "9606",
+        "10090"
+      ],
+      "treatment": "None",
+      "type": "chimeric tissue"
+    },
+    "05_pt2614_6_PDX_Ctl_161108_UKy_KZ_bulk": {
+      "id": "05_pt2614_6_PDX_Ctl_161108_UKy_KZ_bulk",
+      "parentID": "pt2614-tumor",
+      "project.id": "UKY_KZ_PDX_mouse",
+      "protocol.id": [
+        "Ctl"
+      ],
+      "replicate": "5",
+      "species": [
+        "Homo sapiens",
+        "Mus musculus"
+      ],
+      "species_type": [
+        "Human",
+        "Animal"
+      ],
+      "study.id": "161108_PDX_mouse_13CGlc",
+      "taxonomy_id": [
+        "9606",
+        "10090"
+      ],
+      "treatment": "None",
+      "type": "chimeric tissue"
+    },
+    "06_pt2614_344_PDX_TVB_161108_UKy_KZ_bulk": {
+      "id": "06_pt2614_344_PDX_TVB_161108_UKy_KZ_bulk",
+      "parentID": "pt2614-tumor",
+      "project.id": "UKY_KZ_PDX_mouse",
+      "protocol.id": [
+        "TVB"
+      ],
+      "replicate": "1",
+      "species": [
+        "Homo sapiens",
+        "Mus musculus"
+      ],
+      "species_type": [
+        "Human",
+        "Animal"
+      ],
+      "study.id": "161108_PDX_mouse_13CGlc",
+      "taxonomy_id": [
+        "9606",
+        "10090"
+      ],
+      "treatment": "TVB3664",
+      "type": "chimeric tissue"
+    },
+    "07_pt2614_372_PDX_TVB_161108_UKy_KZ_bulk": {
+      "id": "07_pt2614_372_PDX_TVB_161108_UKy_KZ_bulk",
+      "parentID": "pt2614-tumor",
+      "project.id": "UKY_KZ_PDX_mouse",
+      "protocol.id": [
+        "TVB"
+      ],
+      "replicate": "2",
+      "species": [
+        "Homo sapiens",
+        "Mus musculus"
+      ],
+      "species_type": [
+        "Human",
+        "Animal"
+      ],
+      "study.id": "161108_PDX_mouse_13CGlc",
+      "taxonomy_id": [
+        "9606",
+        "10090"
+      ],
+      "treatment": "TVB3664",
+      "type": "chimeric tissue"
+    },
+    "08_pt2614_331_PDX_TVB_161108_UKy_KZ_bulk": {
+      "id": "08_pt2614_331_PDX_TVB_161108_UKy_KZ_bulk",
+      "parentID": "pt2614-tumor",
+      "project.id": "UKY_KZ_PDX_mouse",
+      "protocol.id": [
+        "TVB"
+      ],
+      "replicate": "3",
+      "species": [
+        "Homo sapiens",
+        "Mus musculus"
+      ],
+      "species_type": [
+        "Human",
+        "Animal"
+      ],
+      "study.id": "161108_PDX_mouse_13CGlc",
+      "taxonomy_id": [
+        "9606",
+        "10090"
+      ],
+      "treatment": "TVB3664",
+      "type": "chimeric tissue"
+    },
+    "09_pt2614_84_PDX_TVB_161108_UKy_KZ_bulk": {
+      "id": "09_pt2614_84_PDX_TVB_161108_UKy_KZ_bulk",
+      "parentID": "pt2614-tumor",
+      "project.id": "UKY_KZ_PDX_mouse",
+      "protocol.id": [
+        "TVB"
+      ],
+      "replicate": "4",
+      "species": [
+        "Homo sapiens",
+        "Mus musculus"
+      ],
+      "species_type": [
+        "Human",
+        "Animal"
+      ],
+      "study.id": "161108_PDX_mouse_13CGlc",
+      "taxonomy_id": [
+        "9606",
+        "10090"
+      ],
+      "treatment": "TVB3664",
+      "type": "chimeric tissue"
+    },
+    "10_pt2614_339_PDX_TVB_161108_UKy_KZ_bulk": {
+      "id": "10_pt2614_339_PDX_TVB_161108_UKy_KZ_bulk",
+      "parentID": "pt2614-tumor",
+      "project.id": "UKY_KZ_PDX_mouse",
+      "protocol.id": [
+        "TVB"
+      ],
+      "replicate": "5",
+      "species": [
+        "Homo sapiens",
+        "Mus musculus"
+      ],
+      "species_type": [
+        "Human",
+        "Animal"
+      ],
+      "study.id": "161108_PDX_mouse_13CGlc",
+      "taxonomy_id": [
+        "9606",
+        "10090"
+      ],
+      "treatment": "TVB3664",
+      "type": "chimeric tissue"
+    },
+    "pt2614": {
+      "id": "pt2614",
+      "project.id": "UKY_KZ_PDX_mouse",
+      "protocol.id": "cancer_surgery",
+      "study.id": "161108_PDX_mouse_13CGlc"
+    }
+  },
+  "tagfield_scope": {
+    "replicate-tissue_slice_experiment": {
+      "allowed_values": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5"
+      ],
+      "id": "replicate-tissue_slice_experiment",
+      "max": "5",
+      "min": "1",
+      "parent_protocol.id": "tissue_slice_experiment",
+      "project.id": "UKY_KZ_PDX_mouse",
+      "scope_type": [
+        "ignore"
+      ],
+      "study.id": "161108_PDX_mouse_13CGlc",
+      "table": [
+        "subject",
+        "sample"
+      ],
+      "tagfield.id": "replicate"
+    }
+  }
+}

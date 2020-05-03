@@ -1,0 +1,510 @@
+#METABOLOMICS WORKBENCH STUDY_ID:ST000000 ANALYSIS_ID:AN000000
+VERSION             	1
+CREATED_ON          	2019-03-06
+#PROJECT
+PR:PROJECT_TITLE                 	TVB3664 inhibition of FASN in a PDX mouse model system
+PR:PROJECT_SUMMARY               	FASN inhibition in colon cancer
+PR:INSTITUTE                     	University of Kentucky
+PR:DEPARTMENT                    	Toxicology and Cancer Biology
+PR:LAST_NAME                     	Zaytseva
+PR:FIRST_NAME                    	Yekaterina
+PR:ADDRESS                       	Rm 516 Biopharm Complex, 789 S. Limestone St.,Univ. of Kentucky, Lexington, KY  40536
+PR:EMAIL                         	yyzayt2@uky.edu
+PR:PHONE                         	000-000-0000
+#STUDY
+ST:STUDY_TITLE                   	FASN effect on cancer metabolism in PDX mouse model.
+ST:STUDY_TYPE                    	isotope tracer
+ST:STUDY_SUMMARY                 	IP injection of 13C6-Glc 1hr prior to collection
+ST:INSTITUTE                     	University of Kentucky
+ST:DEPARTMENT                    	Toxicology and Cancer Biology
+ST:LAST_NAME                     	Zayetseva
+ST:FIRST_NAME                    	Yekaterina
+ST:ADDRESS                       	Rm 516 Biopharm Complex, 789 S. Limestone St.,Univ. of Kentucky, Lexington, KY  40536
+ST:EMAIL                         	yyzayt2@uky.edu
+ST:PHONE                         	000-000-0000
+#SUBJECT
+SU:SUBJECT_TYPE                  	Animal, Human
+SU:SUBJECT_SPECIES               	Homo sapiens, Mus musculus
+SU:TAXONOMY_ID                   	9606, 10090
+#SUBJECT_SAMPLE_FACTORS:         	SUBJECT(optional)[tab]SAMPLE[tab]FACTORS(NAME:VALUE pairs separated by |)[tab]Additional sample data
+SUBJECT_SAMPLE_FACTORS           	-	01_pt2402_785_PDX-mouse_pt2402_ctl_160801_UKy_KZ-homogenate-polar-NMR_A	protocol.id:pt2402_ctl	lineage_1=pt2402; protocol.id=cancer_surgery; lineage_2=pt2402-tumor; protocol.id=bulk_tissue; tissue_type=tumor; lineage_3=01_pt2402_785_PDX-mouse_pt2402_ctl_160801_UKy_KZ; protocol.id=pt2402_ctl; replicate=1; species=['Homo sapiens', 'Mus musculus']; species_type=['Human', 'Animal']; taxonomy_id=['9606', '10090']; treatment=None; type=chimeric tissue; lineage_4=01_pt2402_785_PDX-mouse_pt2402_ctl_160801_UKy_KZ-homogenate; extracted_tissue_type=tumor; extracted_tissue_weight=21.7; extracted_tissue_weight%units=mg; protocol.id=['PDX_tissue_collection', 'tissue_quench', 'frozen_tissue_grind']; lineage_5=01_pt2402_785_PDX-mouse_pt2402_ctl_160801_UKy_KZ-homogenate-polar-NMR_A; protocol.id=['polar_extraction', 'NMR_file_storage1']; replicate=1; replicate%type=analytical; type=polar; weight=0.4782; weight%units=g; lineage_6=01_pt2402_785_PDX-mouse_pt2402_ctl_160801_UKy_KZ-homogenate-protein; protein_weight=0.20447301420000014; protein_weight%units=mg; protocol.id=['protein_extraction']; type=protein; weight=0.0026800000000000157; weight%type=dry; weight%units=g
+SUBJECT_SAMPLE_FACTORS           	-	02_pt2402_739_PDX-mouse_pt2402_ctl_160801_UKy_KZ-homogenate-polar-NMR_A	protocol.id:pt2402_ctl	lineage_1=pt2402; protocol.id=cancer_surgery; lineage_2=pt2402-tumor; protocol.id=bulk_tissue; tissue_type=tumor; lineage_3=02_pt2402_739_PDX-mouse_pt2402_ctl_160801_UKy_KZ; protocol.id=pt2402_ctl; replicate=2; species=['Homo sapiens', 'Mus musculus']; species_type=['Human', 'Animal']; taxonomy_id=['9606', '10090']; treatment=None; type=chimeric tissue; lineage_4=02_pt2402_739_PDX-mouse_pt2402_ctl_160801_UKy_KZ-homogenate; extracted_tissue_type=tumor; extracted_tissue_weight=27; extracted_tissue_weight%units=mg; protocol.id=['PDX_tissue_collection', 'tissue_quench', 'frozen_tissue_grind']; lineage_5=02_pt2402_739_PDX-mouse_pt2402_ctl_160801_UKy_KZ-homogenate-polar-NMR_A; protocol.id=['polar_extraction', 'NMR_file_storage2']; replicate=1; replicate%type=analytical; type=polar; weight=0.4928; weight%units=g; lineage_6=02_pt2402_739_PDX-mouse_pt2402_ctl_160801_UKy_KZ-homogenate-protein; protein_weight=0.18295132291928573; protein_weight%units=mg; protocol.id=['protein_extraction']; type=protein; weight=0.0030000000000001137; weight%type=dry; weight%units=g
+SUBJECT_SAMPLE_FACTORS           	-	03_pt2402_760_PDX-mouse_pt2402_ctl_160801_UKy_KZ-homogenate-polar-NMR_A	protocol.id:pt2402_ctl	lineage_1=pt2402; protocol.id=cancer_surgery; lineage_2=pt2402-tumor; protocol.id=bulk_tissue; tissue_type=tumor; lineage_3=03_pt2402_760_PDX-mouse_pt2402_ctl_160801_UKy_KZ; protocol.id=pt2402_ctl; replicate=3; species=['Homo sapiens', 'Mus musculus']; species_type=['Human', 'Animal']; taxonomy_id=['9606', '10090']; treatment=None; type=chimeric tissue; lineage_4=03_pt2402_760_PDX-mouse_pt2402_ctl_160801_UKy_KZ-homogenate; extracted_tissue_type=tumor; extracted_tissue_weight=12; extracted_tissue_weight%units=mg; protocol.id=['PDX_tissue_collection', 'tissue_quench', 'frozen_tissue_grind']; lineage_5=03_pt2402_760_PDX-mouse_pt2402_ctl_160801_UKy_KZ-homogenate-polar-NMR_A; protocol.id=['polar_extraction', 'NMR_file_storage3']; replicate=1; replicate%type=analytical; type=polar; weight=0.5286; weight%units=g; lineage_6=03_pt2402_760_PDX-mouse_pt2402_ctl_160801_UKy_KZ-homogenate-protein; protein_weight=0.10762354619428573; protein_weight%units=mg; protocol.id=['protein_extraction']; type=protein; weight=0.0010099999999999554; weight%type=dry; weight%units=g
+SUBJECT_SAMPLE_FACTORS           	-	04_pt2402_733_PDX-mouse_pt2402_ctl_160801_UKy_KZ-homogenate-polar-NMR_A	protocol.id:pt2402_ctl	lineage_1=pt2402; protocol.id=cancer_surgery; lineage_2=pt2402-tumor; protocol.id=bulk_tissue; tissue_type=tumor; lineage_3=04_pt2402_733_PDX-mouse_pt2402_ctl_160801_UKy_KZ; protocol.id=pt2402_ctl; replicate=4; species=['Homo sapiens', 'Mus musculus']; species_type=['Human', 'Animal']; taxonomy_id=['9606', '10090']; treatment=None; type=chimeric tissue; lineage_4=04_pt2402_733_PDX-mouse_pt2402_ctl_160801_UKy_KZ-homogenate; extracted_tissue_type=tumor; extracted_tissue_weight=30.1; extracted_tissue_weight%units=mg; protocol.id=['PDX_tissue_collection', 'tissue_quench', 'frozen_tissue_grind']; lineage_5=04_pt2402_733_PDX-mouse_pt2402_ctl_160801_UKy_KZ-homogenate-polar-NMR_A; protocol.id=['polar_extraction', 'NMR_file_storage4']; replicate=1; replicate%type=analytical; type=polar; weight=0.4483; weight%units=g; lineage_6=04_pt2402_733_PDX-mouse_pt2402_ctl_160801_UKy_KZ-homogenate-protein; protein_weight=0.38344880160000017; protein_weight%units=mg; protocol.id=['protein_extraction']; type=protein; weight=0.005880000000000107; weight%type=dry; weight%units=g
+SUBJECT_SAMPLE_FACTORS           	-	05_pt2402_783_PDX-mouse_pt2402_ctl_160801_UKy_KZ-homogenate-polar-NMR_A	protocol.id:pt2402_ctl	lineage_1=pt2402; protocol.id=cancer_surgery; lineage_2=pt2402-tumor; protocol.id=bulk_tissue; tissue_type=tumor; lineage_3=05_pt2402_783_PDX-mouse_pt2402_ctl_160801_UKy_KZ; protocol.id=pt2402_ctl; replicate=5; species=['Homo sapiens', 'Mus musculus']; species_type=['Human', 'Animal']; taxonomy_id=['9606', '10090']; treatment=None; type=chimeric tissue; lineage_4=05_pt2402_783_PDX-mouse_pt2402_ctl_160801_UKy_KZ-homogenate; extracted_tissue_type=tumor; extracted_tissue_weight=20.2; extracted_tissue_weight%units=mg; protocol.id=['PDX_tissue_collection', 'tissue_quench', 'frozen_tissue_grind']; lineage_5=05_pt2402_783_PDX-mouse_pt2402_ctl_160801_UKy_KZ-homogenate-polar-NMR_A; protocol.id=['polar_extraction', 'NMR_file_storage5']; replicate=1; replicate%type=analytical; type=polar; weight=0.5184; weight%units=g; lineage_6=05_pt2402_783_PDX-mouse_pt2402_ctl_160801_UKy_KZ-homogenate-protein; protein_weight=0.2262091209478573; protein_weight%units=mg; protocol.id=['protein_extraction']; type=protein; weight=0.003249999999999975; weight%type=dry; weight%units=g
+SUBJECT_SAMPLE_FACTORS           	-	06_pt2402_431_PDX-mouse_pt2402_TVB_160801_UKy_KZ-homogenate-polar-NMR_A	protocol.id:pt2402_TVB	lineage_1=pt2402; protocol.id=cancer_surgery; lineage_2=pt2402-tumor; protocol.id=bulk_tissue; tissue_type=tumor; lineage_3=06_pt2402_431_PDX-mouse_pt2402_TVB_160801_UKy_KZ; protocol.id=pt2402_TVB; replicate=1; species=['Homo sapiens', 'Mus musculus']; species_type=['Human', 'Animal']; taxonomy_id=['9606', '10090']; treatment=TVB3664; type=chimeric tissue; lineage_4=06_pt2402_431_PDX-mouse_pt2402_TVB_160801_UKy_KZ-homogenate; extracted_tissue_type=tumor; extracted_tissue_weight=20.1; extracted_tissue_weight%units=mg; protocol.id=['PDX_tissue_collection', 'tissue_quench', 'frozen_tissue_grind']; lineage_5=06_pt2402_431_PDX-mouse_pt2402_TVB_160801_UKy_KZ-homogenate-polar-NMR_A; protocol.id=['polar_extraction', 'NMR_file_storage6']; replicate=1; replicate%type=analytical; type=polar; weight=0.4432; weight%units=g; lineage_6=06_pt2402_431_PDX-mouse_pt2402_TVB_160801_UKy_KZ-homogenate-protein; protein_weight=0.27980835441428586; protein_weight%units=mg; protocol.id=['protein_extraction']; type=protein; weight=0.004170000000000007; weight%type=dry; weight%units=g
+SUBJECT_SAMPLE_FACTORS           	-	07_pt2402_732_PDX-mouse_pt2402_TVB_160801_UKy_KZ-homogenate-polar-NMR_A	protocol.id:pt2402_TVB	lineage_1=pt2402; protocol.id=cancer_surgery; lineage_2=pt2402-tumor; protocol.id=bulk_tissue; tissue_type=tumor; lineage_3=07_pt2402_732_PDX-mouse_pt2402_TVB_160801_UKy_KZ; protocol.id=pt2402_TVB; replicate=2; species=['Homo sapiens', 'Mus musculus']; species_type=['Human', 'Animal']; taxonomy_id=['9606', '10090']; treatment=TVB3664; type=chimeric tissue; lineage_4=07_pt2402_732_PDX-mouse_pt2402_TVB_160801_UKy_KZ-homogenate; extracted_tissue_type=tumor; extracted_tissue_weight=14.3; extracted_tissue_weight%units=mg; protocol.id=['PDX_tissue_collection', 'tissue_quench', 'frozen_tissue_grind']; lineage_5=07_pt2402_732_PDX-mouse_pt2402_TVB_160801_UKy_KZ-homogenate-polar-NMR_A; protocol.id=['polar_extraction', 'NMR_file_storage7']; replicate=1; replicate%type=analytical; type=polar; weight=0.4545; weight%units=g; lineage_6=07_pt2402_732_PDX-mouse_pt2402_TVB_160801_UKy_KZ-homogenate-protein; protein_weight=0.22194871273999997; protein_weight%units=mg; protocol.id=['protein_extraction']; type=protein; weight=0.003370000000000095; weight%type=dry; weight%units=g
+SUBJECT_SAMPLE_FACTORS           	-	08_pt2402_776_PDX-mouse_pt2402_TVB_160801_UKy_KZ-homogenate-polar-NMR_A	protocol.id:pt2402_TVB	lineage_1=pt2402; protocol.id=cancer_surgery; lineage_2=pt2402-tumor; protocol.id=bulk_tissue; tissue_type=tumor; lineage_3=08_pt2402_776_PDX-mouse_pt2402_TVB_160801_UKy_KZ; protocol.id=pt2402_TVB; replicate=3; species=['Homo sapiens', 'Mus musculus']; species_type=['Human', 'Animal']; taxonomy_id=['9606', '10090']; treatment=TVB3664; type=chimeric tissue; lineage_4=08_pt2402_776_PDX-mouse_pt2402_TVB_160801_UKy_KZ-homogenate; extracted_tissue_type=tumor; extracted_tissue_weight=17.3; extracted_tissue_weight%units=mg; protocol.id=['PDX_tissue_collection', 'tissue_quench', 'frozen_tissue_grind']; lineage_5=08_pt2402_776_PDX-mouse_pt2402_TVB_160801_UKy_KZ-homogenate-polar-NMR_A; protocol.id=['polar_extraction', 'NMR_file_storage8']; replicate=1; replicate%type=analytical; type=polar; weight=0.4676; weight%units=g; lineage_6=08_pt2402_776_PDX-mouse_pt2402_TVB_160801_UKy_KZ-homogenate-protein; protein_weight=0.20705798482000012; protein_weight%units=mg; protocol.id=['protein_extraction']; type=protein; weight=0.003570000000000073; weight%type=dry; weight%units=g
+SUBJECT_SAMPLE_FACTORS           	-	09_pt2449_874_PDX-mouse_pt2449_ctl_160801_UKy_KZ-homogenate-polar-NMR_A	protocol.id:pt2449_ctl	lineage_1=pt2449; protocol.id=cancer_surgery; lineage_2=pt2449-tumor; protocol.id=bulk_tissue; tissue_type=tumor; lineage_3=09_pt2449_874_PDX-mouse_pt2449_ctl_160801_UKy_KZ; protocol.id=pt2449_ctl; replicate=1; species=['Homo sapiens', 'Mus musculus']; species_type=['Human', 'Animal']; taxonomy_id=['9606', '10090']; treatment=None; type=chimeric tissue; lineage_4=09_pt2449_874_PDX-mouse_pt2449_ctl_160801_UKy_KZ-homogenate; extracted_tissue_type=tumor; extracted_tissue_weight=19.4; extracted_tissue_weight%units=mg; protocol.id=['PDX_tissue_collection', 'tissue_quench', 'frozen_tissue_grind']; lineage_5=09_pt2449_874_PDX-mouse_pt2449_ctl_160801_UKy_KZ-homogenate-polar-NMR_A; protocol.id=['polar_extraction', 'NMR_file_storage9']; replicate=1; replicate%type=analytical; type=polar; weight=0.4858; weight%units=g; lineage_6=09_pt2449_874_PDX-mouse_pt2449_ctl_160801_UKy_KZ-homogenate-protein; protein_weight=0.21880456470714296; protein_weight%units=mg; protocol.id=['protein_extraction']; type=protein; weight=0.00287000000000015; weight%type=dry; weight%units=g
+SUBJECT_SAMPLE_FACTORS           	-	10_pt2449_458_PDX-mouse_pt2449_ctl_160801_UKy_KZ-homogenate-polar-NMR_A	protocol.id:pt2449_ctl	lineage_1=pt2449; protocol.id=cancer_surgery; lineage_2=pt2449-tumor; protocol.id=bulk_tissue; tissue_type=tumor; lineage_3=10_pt2449_458_PDX-mouse_pt2449_ctl_160801_UKy_KZ; protocol.id=pt2449_ctl; replicate=2; species=['Homo sapiens', 'Mus musculus']; species_type=['Human', 'Animal']; taxonomy_id=['9606', '10090']; treatment=None; type=chimeric tissue; lineage_4=10_pt2449_458_PDX-mouse_pt2449_ctl_160801_UKy_KZ-homogenate; extracted_tissue_type=tumor; extracted_tissue_weight=14.5; extracted_tissue_weight%units=mg; protocol.id=['PDX_tissue_collection', 'tissue_quench', 'frozen_tissue_grind']; lineage_5=10_pt2449_458_PDX-mouse_pt2449_ctl_160801_UKy_KZ-homogenate-polar-NMR_A; protocol.id=['polar_extraction', 'NMR_file_storage10']; replicate=1; replicate%type=analytical; type=polar; weight=0.449; weight%units=g; lineage_6=10_pt2449_458_PDX-mouse_pt2449_ctl_160801_UKy_KZ-homogenate-protein; protein_weight=0.29101838986071416; protein_weight%units=mg; protocol.id=['protein_extraction']; type=protein; weight=0.00550000000000006; weight%type=dry; weight%units=g
+SUBJECT_SAMPLE_FACTORS           	-	11_pt2449_412_PDX-mouse_pt2449_ctl_160801_UKy_KZ-homogenate-polar-NMR_A	protocol.id:pt2449_ctl	lineage_1=pt2449; protocol.id=cancer_surgery; lineage_2=pt2449-tumor; protocol.id=bulk_tissue; tissue_type=tumor; lineage_3=11_pt2449_412_PDX-mouse_pt2449_ctl_160801_UKy_KZ; protocol.id=pt2449_ctl; replicate=3; species=['Homo sapiens', 'Mus musculus']; species_type=['Human', 'Animal']; taxonomy_id=['9606', '10090']; treatment=None; type=chimeric tissue; lineage_4=11_pt2449_412_PDX-mouse_pt2449_ctl_160801_UKy_KZ-homogenate; extracted_tissue_type=tumor; extracted_tissue_weight=14.2; extracted_tissue_weight%units=mg; protocol.id=['PDX_tissue_collection', 'tissue_quench', 'frozen_tissue_grind']; lineage_5=11_pt2449_412_PDX-mouse_pt2449_ctl_160801_UKy_KZ-homogenate-polar-NMR_A; protocol.id=['polar_extraction', 'NMR_file_storage11']; replicate=1; replicate%type=analytical; type=polar; weight=0.5044; weight%units=g; lineage_6=11_pt2449_412_PDX-mouse_pt2449_ctl_160801_UKy_KZ-homogenate-protein; protein_weight=0.08772898123785722; protein_weight%units=mg; protocol.id=['protein_extraction']; type=protein; weight=0.0007500000000000284; weight%type=dry; weight%units=g
+SUBJECT_SAMPLE_FACTORS           	-	12_pt2449_862_PDX-mouse_pt2449_ctl_160801_UKy_KZ-homogenate-polar-NMR_A	protocol.id:pt2449_ctl	lineage_1=pt2449; protocol.id=cancer_surgery; lineage_2=pt2449-tumor; protocol.id=bulk_tissue; tissue_type=tumor; lineage_3=12_pt2449_862_PDX-mouse_pt2449_ctl_160801_UKy_KZ; protocol.id=pt2449_ctl; replicate=4; species=['Homo sapiens', 'Mus musculus']; species_type=['Human', 'Animal']; taxonomy_id=['9606', '10090']; treatment=None; type=chimeric tissue; lineage_4=12_pt2449_862_PDX-mouse_pt2449_ctl_160801_UKy_KZ-homogenate; extracted_tissue_type=tumor; extracted_tissue_weight=23.6; extracted_tissue_weight%units=mg; protocol.id=['PDX_tissue_collection', 'tissue_quench', 'frozen_tissue_grind']; lineage_5=12_pt2449_862_PDX-mouse_pt2449_ctl_160801_UKy_KZ-homogenate-polar-NMR_A; protocol.id=['polar_extraction', 'NMR_file_storage12']; replicate=1; replicate%type=analytical; type=polar; weight=0.4902; weight%units=g; lineage_6=12_pt2449_862_PDX-mouse_pt2449_ctl_160801_UKy_KZ-homogenate-protein; protein_weight=0.3759893854242855; protein_weight%units=mg; protocol.id=['protein_extraction']; type=protein; weight=0.005769999999999831; weight%type=dry; weight%units=g
+SUBJECT_SAMPLE_FACTORS           	-	13_pt2449_864_PDX-mouse_pt2449_ctl_160801_UKy_KZ-homogenate-polar-NMR_A	protocol.id:pt2449_ctl	lineage_1=pt2449; protocol.id=cancer_surgery; lineage_2=pt2449-tumor; protocol.id=bulk_tissue; tissue_type=tumor; lineage_3=13_pt2449_864_PDX-mouse_pt2449_ctl_160801_UKy_KZ; protocol.id=pt2449_ctl; replicate=5; species=['Homo sapiens', 'Mus musculus']; species_type=['Human', 'Animal']; taxonomy_id=['9606', '10090']; treatment=None; type=chimeric tissue; lineage_4=13_pt2449_864_PDX-mouse_pt2449_ctl_160801_UKy_KZ-homogenate; extracted_tissue_type=tumor; extracted_tissue_weight=24.1; extracted_tissue_weight%units=mg; protocol.id=['PDX_tissue_collection', 'tissue_quench', 'frozen_tissue_grind']; lineage_5=13_pt2449_864_PDX-mouse_pt2449_ctl_160801_UKy_KZ-homogenate-polar-NMR_A; protocol.id=['polar_extraction', 'NMR_file_storage13']; replicate=1; replicate%type=analytical; type=polar; weight=0.4952; weight%units=g; lineage_6=13_pt2449_864_PDX-mouse_pt2449_ctl_160801_UKy_KZ-homogenate-protein; protein_weight=0.3260246844642856; protein_weight%units=mg; protocol.id=['protein_extraction']; type=protein; weight=0.013540000000000108; weight%type=dry; weight%units=g
+SUBJECT_SAMPLE_FACTORS           	-	14_pt2449_860_PDX-mouse_pt2449_TVB_160801_UKy_KZ-homogenate-polar-NMR_A	protocol.id:pt2449_TVB	lineage_1=pt2449; protocol.id=cancer_surgery; lineage_2=pt2449-tumor; protocol.id=bulk_tissue; tissue_type=tumor; lineage_3=14_pt2449_860_PDX-mouse_pt2449_TVB_160801_UKy_KZ; protocol.id=pt2449_TVB; replicate=1; species=['Homo sapiens', 'Mus musculus']; species_type=['Human', 'Animal']; taxonomy_id=['9606', '10090']; treatment=TVB3664; type=chimeric tissue; lineage_4=14_pt2449_860_PDX-mouse_pt2449_TVB_160801_UKy_KZ-homogenate; extracted_tissue_type=tumor; extracted_tissue_weight=16.7; extracted_tissue_weight%units=mg; protocol.id=['PDX_tissue_collection', 'tissue_quench', 'frozen_tissue_grind']; lineage_5=14_pt2449_860_PDX-mouse_pt2449_TVB_160801_UKy_KZ-homogenate-polar-NMR_A; protocol.id=['polar_extraction', 'NMR_file_storage14']; replicate=1; replicate%type=analytical; type=polar; weight=0.5314; weight%units=g; lineage_6=14_pt2449_860_PDX-mouse_pt2449_TVB_160801_UKy_KZ-homogenate-protein; protein_weight=0.2578037772142857; protein_weight%units=mg; protocol.id=['protein_extraction']; type=protein; weight=0.0040999999999999925; weight%type=dry; weight%units=g
+SUBJECT_SAMPLE_FACTORS           	-	15_pt2449_428_PDX-mouse_pt2449_TVB_160801_UKy_KZ-homogenate-polar-NMR_A	protocol.id:pt2449_TVB	lineage_1=pt2449; protocol.id=cancer_surgery; lineage_2=pt2449-tumor; protocol.id=bulk_tissue; tissue_type=tumor; lineage_3=15_pt2449_428_PDX-mouse_pt2449_TVB_160801_UKy_KZ; protocol.id=pt2449_TVB; replicate=2; species=['Homo sapiens', 'Mus musculus']; species_type=['Human', 'Animal']; taxonomy_id=['9606', '10090']; treatment=TVB3664; type=chimeric tissue; lineage_4=15_pt2449_428_PDX-mouse_pt2449_TVB_160801_UKy_KZ-homogenate; extracted_tissue_type=tumor; extracted_tissue_weight=23.3; extracted_tissue_weight%units=mg; protocol.id=['PDX_tissue_collection', 'tissue_quench', 'frozen_tissue_grind']; lineage_5=15_pt2449_428_PDX-mouse_pt2449_TVB_160801_UKy_KZ-homogenate-polar-NMR_A; protocol.id=['polar_extraction', 'NMR_file_storage15']; replicate=1; replicate%type=analytical; type=polar; weight=0.5467; weight%units=g; lineage_6=15_pt2449_428_PDX-mouse_pt2449_TVB_160801_UKy_KZ-homogenate-protein; protein_weight=0.49867407755357146; protein_weight%units=mg; protocol.id=['protein_extraction']; type=protein; weight=0.006400000000000183; weight%type=dry; weight%units=g
+SUBJECT_SAMPLE_FACTORS           	-	16_pt2449_858_PDX-mouse_pt2449_TVB_160801_UKy_KZ-homogenate-polar-NMR_A	protocol.id:pt2449_TVB	lineage_1=pt2449; protocol.id=cancer_surgery; lineage_2=pt2449-tumor; protocol.id=bulk_tissue; tissue_type=tumor; lineage_3=16_pt2449_858_PDX-mouse_pt2449_TVB_160801_UKy_KZ; protocol.id=pt2449_TVB; replicate=3; species=['Homo sapiens', 'Mus musculus']; species_type=['Human', 'Animal']; taxonomy_id=['9606', '10090']; treatment=TVB3664; type=chimeric tissue; lineage_4=16_pt2449_858_PDX-mouse_pt2449_TVB_160801_UKy_KZ-homogenate; extracted_tissue_type=tumor; extracted_tissue_weight=21.7; extracted_tissue_weight%units=mg; protocol.id=['PDX_tissue_collection', 'tissue_quench', 'frozen_tissue_grind']; lineage_5=16_pt2449_858_PDX-mouse_pt2449_TVB_160801_UKy_KZ-homogenate-polar-NMR_A; protocol.id=['polar_extraction', 'NMR_file_storage16']; replicate=1; replicate%type=analytical; type=polar; weight=0.5014; weight%units=g; lineage_6=16_pt2449_858_PDX-mouse_pt2449_TVB_160801_UKy_KZ-homogenate-protein; protein_weight=0.2882673739650001; protein_weight%units=mg; protocol.id=['protein_extraction']; type=protein; weight=0.010990000000000055; weight%type=dry; weight%units=g
+SUBJECT_SAMPLE_FACTORS           	-	17_pt2449_459_PDX-mouse_pt2449_TVB_160801_UKy_KZ-homogenate-polar-NMR_A	protocol.id:pt2449_TVB	lineage_1=pt2449; protocol.id=cancer_surgery; lineage_2=pt2449-tumor; protocol.id=bulk_tissue; tissue_type=tumor; lineage_3=17_pt2449_459_PDX-mouse_pt2449_TVB_160801_UKy_KZ; protocol.id=pt2449_TVB; replicate=4; species=['Homo sapiens', 'Mus musculus']; species_type=['Human', 'Animal']; taxonomy_id=['9606', '10090']; treatment=TVB3664; type=chimeric tissue; lineage_4=17_pt2449_459_PDX-mouse_pt2449_TVB_160801_UKy_KZ-homogenate; extracted_tissue_type=tumor; extracted_tissue_weight=13.1; extracted_tissue_weight%units=mg; protocol.id=['PDX_tissue_collection', 'tissue_quench', 'frozen_tissue_grind']; lineage_5=17_pt2449_459_PDX-mouse_pt2449_TVB_160801_UKy_KZ-homogenate-polar-NMR_A; protocol.id=['polar_extraction', 'NMR_file_storage17']; replicate=1; replicate%type=analytical; type=polar; weight=0.4948; weight%units=g; lineage_6=17_pt2449_459_PDX-mouse_pt2449_TVB_160801_UKy_KZ-homogenate-protein; protein_weight=0.5476994485714286; protein_weight%units=mg; protocol.id=['protein_extraction']; type=protein; weight=0.005390000000000006; weight%type=dry; weight%units=g
+#COLLECTION
+CO:COLLECTION_SUMMARY            	Mouse is sacrificed and tissues are harvested.
+CO:COLLECTION_PROTOCOL_ID        	PDX_tissue_collection
+CO:SAMPLE_TYPE                   	chimeric tissue
+#TREATMENT
+TR:TREATMENT_SUMMARY             	Cancerous tumor removed from patient.
+TR:TREATMENT_SUMMARY             	Patient 2402 tumor tissue slice implanted in mouse, and treated with TVB3664
+TR:TREATMENT_SUMMARY             	Patient 2402 tumor tissue slice implanted in mouse.
+TR:TREATMENT_SUMMARY             	Patient 2449 tumor tissue slice implanted in mouse, and treated with TVB3664.
+TR:TREATMENT_SUMMARY             	Patient 2449 tumor tissue slice implanted in mouse.
+TR:TREATMENT_PROTOCOL_ID         	cancer_surgery
+TR:TREATMENT_PROTOCOL_ID         	pt2402_TVB
+TR:TREATMENT_PROTOCOL_ID         	pt2402_ctl
+TR:TREATMENT_PROTOCOL_ID         	pt2449_TVB
+TR:TREATMENT_PROTOCOL_ID         	pt2449_ctl
+#SAMPLEPREP
+SP:SAMPLEPREP_SUMMARY            	Frozen tissue is ground in a SPEX grinder under liquid nitrogen to homogenize the sample.
+SP:SAMPLEPREP_SUMMARY            	Lipid extraction from homogenate.
+SP:SAMPLEPREP_SUMMARY            	Polar extraction from homogenate.
+SP:SAMPLEPREP_SUMMARY            	Protein extraction and quantification.
+SP:SAMPLEPREP_SUMMARY            	Tissue is frozen in liquid nitrogen to stop metabolic processes.
+SP:SAMPLEPREP_PROTOCOL_ID        	frozen_tissue_grind
+SP:SAMPLEPREP_PROTOCOL_ID        	lipid_extraction
+SP:SAMPLEPREP_PROTOCOL_ID        	polar_extraction
+SP:SAMPLEPREP_PROTOCOL_ID        	protein_extraction
+SP:SAMPLEPREP_PROTOCOL_ID        	tissue_quench
+SP:SAMPLEPREP_PROTOCOL_FILENAME  	4B_Extract_Polar_Lipid_Prot_Fan_070417.pdf
+SP:SAMPLEPREP_PROTOCOL_FILENAME  	4B_Extract_Polar_Lipid_Prot_Fan_070417.pdf
+SP:SAMPLEPREP_PROTOCOL_FILENAME  	['4D_17Jun4_Fan_Prot_Quant.pdf', '4B_Extract_Polar_Lipid_Prot_Fan_070417.pdf']
+#ANALYSIS
+AN:ANALYSIS_TYPE                 	NMR
+#NMR
+NM:INSTRUMENT_NAME               	Agilent 600
+NM:INSTRUMENT_TYPE               	Agilent 600
+NM:NMR_EXPERIMENT_TYPE           	HC-HSQC
+NM:STANDARD_CONCENTRATION        	0.5 mM
+NM:SPECTROMETER_FREQUENCY        	600 MHz
+NM:NMR_PROBE                     	cryogenic triple resonance HCN
+NM:NMR_SOLVENT                   	D20
+NM:NMR_TUBE_SIZE                 	1.7 mm
+NM:SHIMMING_METHOD               	gradient shimming
+NM:PULSE_SEQUENCE                	gHSQCAD
+NM:WATER_SUPPRESSION             	presaturation
+NM:CHEMICAL_SHIFT_REF_CPD        	DSS
+NM:TEMPERATURE                   	15 celsius
+NM:ACQUISITION_TIME              	2 s
+NM:RELAXATION_DELAY              	4 s
+NM:BASELINE_CORRECTION_METHOD    	Bernstein Polynomial
+#NMR_METABOLITE_DATA
+NMR_METABOLITE_DATA:UNITS	normalized peak area
+NMR_METABOLITE_DATA_START
+Samples	01_pt2402_785_PDX-mouse_pt2402_ctl_160801_UKy_KZ-homogenate-polar-NMR_A	02_pt2402_739_PDX-mouse_pt2402_ctl_160801_UKy_KZ-homogenate-polar-NMR_A	03_pt2402_760_PDX-mouse_pt2402_ctl_160801_UKy_KZ-homogenate-polar-NMR_A	04_pt2402_733_PDX-mouse_pt2402_ctl_160801_UKy_KZ-homogenate-polar-NMR_A	05_pt2402_783_PDX-mouse_pt2402_ctl_160801_UKy_KZ-homogenate-polar-NMR_A	06_pt2402_431_PDX-mouse_pt2402_TVB_160801_UKy_KZ-homogenate-polar-NMR_A	07_pt2402_732_PDX-mouse_pt2402_TVB_160801_UKy_KZ-homogenate-polar-NMR_A	08_pt2402_776_PDX-mouse_pt2402_TVB_160801_UKy_KZ-homogenate-polar-NMR_A	09_pt2449_874_PDX-mouse_pt2449_ctl_160801_UKy_KZ-homogenate-polar-NMR_A	10_pt2449_458_PDX-mouse_pt2449_ctl_160801_UKy_KZ-homogenate-polar-NMR_A	11_pt2449_412_PDX-mouse_pt2449_ctl_160801_UKy_KZ-homogenate-polar-NMR_A	12_pt2449_862_PDX-mouse_pt2449_ctl_160801_UKy_KZ-homogenate-polar-NMR_A	13_pt2449_864_PDX-mouse_pt2449_ctl_160801_UKy_KZ-homogenate-polar-NMR_A	14_pt2449_860_PDX-mouse_pt2449_TVB_160801_UKy_KZ-homogenate-polar-NMR_A	15_pt2449_428_PDX-mouse_pt2449_TVB_160801_UKy_KZ-homogenate-polar-NMR_A	16_pt2449_858_PDX-mouse_pt2449_TVB_160801_UKy_KZ-homogenate-polar-NMR_A	17_pt2449_459_PDX-mouse_pt2449_TVB_160801_UKy_KZ-homogenate-polar-NMR_A
+Factors	protocol.id:pt2402_ctl	protocol.id:pt2402_ctl	protocol.id:pt2402_ctl	protocol.id:pt2402_ctl	protocol.id:pt2402_ctl	protocol.id:pt2402_TVB	protocol.id:pt2402_TVB	protocol.id:pt2402_TVB	protocol.id:pt2449_ctl	protocol.id:pt2449_ctl	protocol.id:pt2449_ctl	protocol.id:pt2449_ctl	protocol.id:pt2449_ctl	protocol.id:pt2449_TVB	protocol.id:pt2449_TVB	protocol.id:pt2449_TVB	protocol.id:pt2449_TVB
+Ace-2_1	9.252775539691891	10.29770063160638	3.475348316765948	6.514605355587425	12.86349008118172	3.287208435293024	7.920458469794062	3.124145037617451	9.11589779666165	9.843954988748184	5.300665880264839	12.95547074614899	24.88811176574684	16.80603241316956	21.08620145912299	11.48082883285629	9.767765140101409
+Ala-3_1	32.73408599202275	23.46393168943396	10.70683328109536	32.19762408662812	37.1850508244755	1.842196921025274	21.29517830225357	33.1418916164741	58.15928197011177	55.80300325129627	18.3157954209065	80.19745177914244	86.64802216889358	79.10659101849286	104.9243698287986	29.61118590983297	53.52555292978217
+Ala-3_2	30.1520160736975	27.60709207455629		30.4132666659546	47.73310940697039	7.984958896725609	30.39696710524427	20.76519324739627	34.52273730696029	62.97697711405888	22.74212297977354	56.47253339622753	83.08445186243408	71.72225841801307	84.59500158347707	26.11052615365851	48.42284842158626
+Creat_1												5.187750976147536					
+DSS_1	3.147342441836441	3.390851047101623	3.187736372552591	3.111975284062878	3.432684958639586	3.103513440256843	3.4652584562871	3.723185445556108	3.18992864271098	3.737892649038993	3.40068843057339	3.265561561289821	3.183307208075704	2.791583087798577	3.34485105870066	3.299995077545805	3.294170650174379
+GSH+GSSG-3_1											0.9260409361217983						
+Gln+Glu-2_1	7.499806431421418	38.20683520055573	11.35191473940693	42.01528929392398			30.94546646720132	66.28782241757894		43.78634564009787	15.81938179141846	51.12781420847614	114.2508003338835	50.39765416026385	71.0096450687127		29.99329808156722
+Gln+Glu-2_2															3.431611633349777		
+Gln-3_1											6.654961757822144						
+Gln-4_1						7.322038487532688	4.668789174031469					2.695892822907362	5.444698911181225	0.4400529163379884	0.7780909253988392		0.174001350973966
+Gln-4_2														0.7557590328811561			
+Glu-3-a_1	35.92324060630376	50.94622123795573	17.89561977399611	54.84581795270177	58.64579542175194	37.13210897890848	57.70728783257915	14.9568139359645	50.35684903177238	38.79383237347289	5.901586499473244	49.84692846570111	48.87737082152832	23.35301936424993	71.55671010358722	34.59851112689699	17.00812777294724
+Glu-3-a_2								4.430869878128772			5.790224938762817						16.86613710847404
+Glu-3-a_3								8.395661219110666			3.988213366594002						
+Glu-3-b_1	42.42143399655477		21.2743219285179	50.93317402665957	68.91239225039816	26.98508040909242	17.57318446960809	46.69725704250687	8.210869438400213	27.95053672098175	17.21255253597039	52.09511834669628	31.79552326492956	6.194728122854346	67.85040197348948		22.61567990632259
+Glu-3-b_2							24.48856388493608										6.797812511141414
+Glu-4_1	27.0868440888697	17.17538817296737	25.0939075819042	23.91596014539712	45.89139643674846	31.30130612575047	25.73032152709461	36.09417933834046	26.44975491660828	22.31619728480281	10.90484697435727	19.79035637633713	41.05382254431814	31.56729934517449	71.81835344697976	39.8576412242948	23.83380389894796
+Gly_1									11.24629062044934								
+Glycogen_1	1.872335541888729	0.4136753692040637	1.204316661378312	2.620659453661958	0.1973368673133963	0.1214899740528675	2.239122798133663	0.234319871240207	1.688751342470929	0.8230279688748402	1.223263701909379	0.2660521989197647	10.77668670826191	11.88749068828467	2.190658696065127	0.1661957160165193	
+Glycogen_2			0.694866570908096														
+Lac-2_1	67.25652246199127	50.60174425397181	12.75403378754238	103.3300697898058	64.5838647713248	8.891004726089438	57.52278320176923	119.2238551901655	88.81668882949685	107.638143750959	81.59990886381495	133.054680879451	31.77020496996098	177.1307895370326	176.2958507946277	94.91411772646468	78.22938283997509
+Lac-2_2	135.1310281855859	102.5245798211949	8.62304899038771		117.3263215698517	18.61760908482822	88.08407448244321		152.8260261345138	210.3754086484849		187.7544838889743	259.7485613400539	277.2989433845702	221.8124985210227	194.3235381616917	132.8050514867919
+Lac-2_3													260.2149223097545				
+Lac-2_4													33.43512378894511				
+Lac-3_1	236.643774855011	182.427271619461	17.28237996226442	202.6130764345741	220.4421153859454	20.1845286973135	164.1956634799545	224.5541565977263	298.8017025512166	411.4649634288335	109.2314399670542	464.5033571862099	850.1166354113439	670.3935056863048	624.1691927847746	358.710393185451	263.4518130847727
+Lac-3_2	203.1033912657206	162.9081835813875	34.06601160253982	124.6860074576273	214.3369095882781	25.02724646669936	137.928537181579	136.9272810217106	242.2425874001452	320.4018083501608	94.86512502661344	328.6143091012682	646.5060113684232	494.9230256728522	425.6560051035792	278.7202493452235	228.5837842875859
+Met-CH3_1														1.768153368151098			
+P-Cho A_1	6.562859658203843	7.09266468498884	3.698339964274254	16.68676119377226	14.96393512520007	9.430093401631588	7.616379242746856	7.814496067957196		5.736547590218041	1.966651023388793	9.787142424629458	8.003965347911524	5.294759651095539	8.280819479921215	2.780914528551443	4.756241025217139
+Ser-2_1				11.25790524113404													
+Succinate-2,3_1	2.619769402475179	0.9257754451307703	4.099705661194897	4.220862620710758	5.429388262403436	3.123453810807949	1.989094761657691	2.352619146789115	3.781532981269508	2.369356468635965	0.985952082781021	2.574691262677444	3.927594059798947	2.249959459733025	5.179933756029622	1.52915146498852	2.572017558324022
+Tau-1 (SCH2)_1												6.653501321182335					
+Tris_1					30.35789919970128	6.718771497054385			8.480458610515445	4.929756802507573				5.260629632028698		17.48740356367827	
+aGlc_1	8.798872256157555	10.68490380017696	6.533081991320699	17.48556531850344	3.193567794382113	1.823857978368534	2.277665621692812	9.92515225917657		10.1934350442135	3.905193017380538	1.348559736872309	32.96350604127827	9.406237938636732	4.409561593024538	3.718600026000382	
+bGlc_1	3.623583363654884	12.34859999331124	4.498838055758076	32.07037505172138	19.24026033127852		1.069902490052893	1.535046210554586	0.1563224429662015	5.021362948000262	2.046530863327397	5.277388477971685	18.41111555643872	10.62839423150252	25.86996213709935	2.845915070988739	0.5621273361516256
+bGlc_2								0.6285375749380376	0.685004526332098							8.471551235774887	
+bOH-butyrate_1			10.36990833578079	8.806788294564887		10.18214996213652		30.84888671071841	30.64737661973784	22.20147125132443	6.523156140239366	10.74091131714703	33.57337935547941	6.323137019815676	31.66009119148992	31.4155609149702	33.5777141156359
+m-Ins-1,3_1										6.544556104726722		8.526398506963593	7.255974642464769		9.23378410141075	8.048513263859967	
+NMR_METABOLITE_DATA_END
+#METABOLITES
+METABOLITES_START
+metabolite_name	base_inchi	isotopic_inchi	peak_description	peak_pattern	proton_count	representative_inchi	transient_peak
+Ace-2_1	InChI=1S/C2H4O2/c1-2(3)4/h1H3,(H,3,4)/p-1	InChI=1/C2H4O2/c1-2(3)4/h1H3,(H,3,4)/p-1/i1+1H3/fC2H3O2/q-1	[1H5,1H6,1H7:13C1]HResonance		3	InChI=1S/C2H4O2/c1-2(3)4/h1H3,(H,3,4)/p-1	1
+Ala-3_1	InChI=1S/C3H7NO2/c1-2(4)3(5)6/h2H,4H2,1H3,(H,5,6)/t2-/m0/s1	InChI=1/C3H7NO2/c1-2(4)3(5)6/h2H,4H2,1H3,(H,5,6)/t2-/m0/s1/i1+1H3,2H/f/h4H	[1H7,1H8,1H9:13C1]HResonance + [1H7,1H8,1H9:1H10]J3HH		3	InChI=1/C3H7NO2/c1-2(4)3(5)6/h2H,4H2,1H3,(H,5,6)/t2-/m0/s1/f/h4H	1
+Ala-3_2	InChI=1S/C3H7NO2/c1-2(4)3(5)6/h2H,4H2,1H3,(H,5,6)/t2-/m0/s1	InChI=1/C3H7NO2/c1-2(4)3(5)6/h2H,4H2,1H3,(H,5,6)/t2-/m0/s1/i1+1H3,2H/f/h4H	[1H7,1H8,1H9:13C1]HResonance + [1H7,1H8,1H9:1H10]J3HH		3	InChI=1/C3H7NO2/c1-2(4)3(5)6/h2H,4H2,1H3,(H,5,6)/t2-/m0/s1/f/h4H	2
+Creat_1	InChI=1S/C4H9N3O2/c1-7(4(5)6)2-3(8)9/h2H2,1H3,(H3,5,6)(H,8,9)	InChI=1S/C4H9N3O2/c1-7(4(5)6)2-3(8)9/h2H2,1H3,(H3,5,6)(H,8,9)/i1+1H3	[1H10,1H11,1H12:13C1]HResonance		3	InChI=1S/C4H9N3O2/c1-7(4(5)6)2-3(8)9/h2H2,1H3,(H3,5,6)(H,8,9)	1
+DSS_1	InChI=1S/C6H16O3SSi/c1-11(2,3)6-4-5-10(7,8)9/h4-6H2,1-3H3,(H,7,8,9)/i4D2,5D2,6D2	InChI=1/C6H16O3SSi/c1-11(2,3)6-4-5-10(7,8)9/h4-6H2,1-3H3,(H,7,8,9)/p-1/i1+1H3,2+1H3,3+1H3,4D2,5D2,6D2/fC6H15O3SSi/q-1	[1H12,1H13,1H14:13C1+1H15,1H16,1H17:13C2+1H18,1H19,1H20:13C3]Hresonance		9	InChI=1/C6H16O3SSi/c1-11(2,3)6-4-5-10(7,8)9/h4-6H2,1-3H3,(H,7,8,9)/p-1/i4D2,5D2,6D2/fC6H15O3SSi/q-1	1
+GSH+GSSG-3_1	InChI=1S/C10H17N3O6S/c11-5(10(18)19)1-2-7(14)13-6(4-20)9(17)12-3-8(15)16/h5-6,20H,1-4,11H2,(H,12,17)(H,13,14)(H,15,16)(H,18,19)/p-1/t5-,6-/m0/s1; InChI=1S/C20H32N6O12S2/c21-9(19(35)36)1-3-13(27)25-11(17(33)23-5-15(29)30)7-39-40-8-12(18(34)24-6-16(31)32)26-14(28)4-2-10(22)20(37)38/h9-12H,1-8,21-22H2,(H,23,33)(H,24,34)(H,25,27)(H,26,28)(H,29,30)(H,31,32)(H,35,36)(H,37,38)/p-2	InChI=1/C10H17N3O6S/c11-5(10(18)19)1-2-7(14)13-6(4-20)9(17)12-3-8(15)16/h5-6,20H,1-4,11H2,(H,12,17)(H,13,14)(H,15,16)(H,18,19)/p-1/t5-,6-/m0/s1/i1+1H2,2H2,5H/fC10H16N3O6S/h11-13H/q-1; InChI=1/C20H32N6O12S2/c21-9(19(35)36)1-3-13(27)25-11(17(33)23-5-15(29)30)7-39-40-8-12(18(34)24-6-16(31)32)26-14(28)4-2-10(22)20(37)38/h9-12H,1-8,21-22H2,(H,23,33)(H,24,34)(H,25,27)(H,26,28)(H,29,30)(H,31,32)(H,35,36)(H,37,38)/p-2/t9-,10-,11-,12-/m0/s1/i1+1H2,2+1H2,3H2,4H2,9H,10H/fC20H30N6O12S2/h21-22,27-28,33-34H/q-2	[1H21,1H22:13C1]HResonance + [1H21,1H22:1H23,1H24]J3HH + [1H21,1H22:1H29]J3HH; [1H41,1H42:13C1+1H43,1H44:13C2]HResonance + [1H41,1H42:1H45,1H46]J3HH + [1H41,1H42:1H57]J3HH + [1H43,1H44:1H47,1H48]J3HH + [1H43,1H44:1H58]J3HH		2	InChI=1/C10H17N3O6S/c11-5(10(18)19)1-2-7(14)13-6(4-20)9(17)12-3-8(15)16/h5-6,20H,1-4,11H2,(H,12,17)(H,13,14)(H,15,16)(H,18,19)/p-1/t5-,6-/m0/s1/fC10H16N3O6S/h11-13H/q-1; InChI=1/C20H32N6O12S2/c21-9(19(35)36)1-3-13(27)25-11(17(33)23-5-15(29)30)7-39-40-8-12(18(34)24-6-16(31)32)26-14(28)4-2-10(22)20(37)38/h9-12H,1-8,21-22H2,(H,23,33)(H,24,34)(H,25,27)(H,26,28)(H,29,30)(H,31,32)(H,35,36)(H,37,38)/p-2/t9-,10-,11-,12-/m0/s1/fC20H30N6O12S2/h21-22,27-28,33-34H/q-2	1
+Gln+Glu-2_1	InChI=1S/C5H10N2O3/c6-3(5(9)10)1-2-4(7)8/h3H,1-2,6H2,(H2,7,8)(H,9,10)/t3-/m0/s1; InChI=1S/C5H9NO4/c6-3(5(9)10)1-2-4(7)8/h3H,1-2,6H2,(H,7,8)(H,9,10)/t3-/m0/s1	InChI=1/C5H9NO4/c6-3(5(9)10)1-2-4(7)8/h3H,1-2,6H2,(H,7,8)(H,9,10)/p-1/t3-/m0/s1/i1H2,3+1H/fC5H8NO4/h6H/q-1; InChI=1/C5H9NO4/c6-3(5(9)10)1-2-4(7)8/h3H,1-2,6H2,(H,7,8)(H,9,10)/p-1/t3-/m0/s1/i1H2,3+1H/fC5H8NO4/h6H/q-1	[1H15:13C3]HResonance + [1H15:1H11,1H12]J3HH; [1H15:13C3]HResonance + [1H15:1H11,1H12]J3HH		3	InChI=1/C5H10N2O3/c6-3(5(9)10)1-2-4(7)8/h3H,1-2,6H2,(H2,7,8)(H,9,10)/t3-/m0/s1/f/h6-8H/b7-4+; InChI=1/C5H9NO4/c6-3(5(9)10)1-2-4(7)8/h3H,1-2,6H2,(H,7,8)(H,9,10)/p-1/t3-/m0/s1/fC5H8NO4/h6H/q-1	1
+Gln+Glu-2_2	InChI=1S/C5H10N2O3/c6-3(5(9)10)1-2-4(7)8/h3H,1-2,6H2,(H2,7,8)(H,9,10)/t3-/m0/s1; InChI=1S/C5H9NO4/c6-3(5(9)10)1-2-4(7)8/h3H,1-2,6H2,(H,7,8)(H,9,10)/t3-/m0/s1	InChI=1/C5H9NO4/c6-3(5(9)10)1-2-4(7)8/h3H,1-2,6H2,(H,7,8)(H,9,10)/p-1/t3-/m0/s1/i1H2,3+1H/fC5H8NO4/h6H/q-1; InChI=1/C5H9NO4/c6-3(5(9)10)1-2-4(7)8/h3H,1-2,6H2,(H,7,8)(H,9,10)/p-1/t3-/m0/s1/i1H2,3+1H/fC5H8NO4/h6H/q-1	[1H15:13C3]HResonance + [1H15:1H11,1H12]J3HH; [1H15:13C3]HResonance + [1H15:1H11,1H12]J3HH		3	InChI=1/C5H10N2O3/c6-3(5(9)10)1-2-4(7)8/h3H,1-2,6H2,(H2,7,8)(H,9,10)/t3-/m0/s1/f/h6-8H/b7-4+; InChI=1/C5H9NO4/c6-3(5(9)10)1-2-4(7)8/h3H,1-2,6H2,(H,7,8)(H,9,10)/p-1/t3-/m0/s1/fC5H8NO4/h6H/q-1	2
+Gln-3_1	InChI=1S/C5H10N2O3/c6-3(5(9)10)1-2-4(7)8/h3H,1-2,6H2,(H2,7,8)(H,9,10)/t3-/m0/s1	InChI=1/C5H10N2O3/c6-3(5(9)10)1-2-4(7)8/h3H,1-2,6H2,(H2,7,8)(H,9,10)/t3-/m0/s1/i1+1H2,2H2,3H/f/h6-8H/b7-4+	[1H11,1H12:13C1]HResonance + [1H11,1H12:1H13,1H14]J3HH + [1H11,1H12:1H15]J3HH		2	InChI=1/C5H10N2O3/c6-3(5(9)10)1-2-4(7)8/h3H,1-2,6H2,(H2,7,8)(H,9,10)/t3-/m0/s1/f/h6-8H/b7-4+	1
+Gln-4_1	InChI=1S/C5H10N2O3/c6-3(5(9)10)1-2-4(7)8/h3H,1-2,6H2,(H2,7,8)(H,9,10)/t3-/m0/s1	InChI=1/C5H10N2O3/c6-3(5(9)10)1-2-4(7)8/h3H,1-2,6H2,(H2,7,8)(H,9,10)/t3-/m0/s1/i1H2,2H2/f/h6-8H/b7-4+	[1H13,1H14:C2]HResonance + [1H13,1H14:1H11,1H12]J3HH		2	InChI=1/C5H10N2O3/c6-3(5(9)10)1-2-4(7)8/h3H,1-2,6H2,(H2,7,8)(H,9,10)/t3-/m0/s1/f/h6-8H/b7-4+	1
+Gln-4_2	InChI=1S/C5H10N2O3/c6-3(5(9)10)1-2-4(7)8/h3H,1-2,6H2,(H2,7,8)(H,9,10)/t3-/m0/s1	InChI=1/C5H10N2O3/c6-3(5(9)10)1-2-4(7)8/h3H,1-2,6H2,(H2,7,8)(H,9,10)/t3-/m0/s1/i1H2,2H2/f/h6-8H/b7-4+	[1H13,1H14:C2]HResonance + [1H13,1H14:1H11,1H12]J3HH		2	InChI=1/C5H10N2O3/c6-3(5(9)10)1-2-4(7)8/h3H,1-2,6H2,(H2,7,8)(H,9,10)/t3-/m0/s1/f/h6-8H/b7-4+	2
+Glu-3-a_1	InChI=1S/C5H9NO4/c6-3(5(9)10)1-2-4(7)8/h3H,1-2,6H2,(H,7,8)(H,9,10)/t3-/m0/s1	InChI=1/C5H9NO4/c6-3(5(9)10)1-2-4(7)8/h3H,1-2,6H2,(H,7,8)(H,9,10)/p-1/t3-/m0/s1/i1+1H2,2H2,3H/fC5H8NO4/h6H/q-1	[1H11,1H12:13C1]HResonance + [1H11:1H12]J2HH + [1H11,1H12:1H13,1H14]J3HH + [1H11,1H12:1H15]J3HH		1	InChI=1/C5H9NO4/c6-3(5(9)10)1-2-4(7)8/h3H,1-2,6H2,(H,7,8)(H,9,10)/p-1/t3-/m0/s1/fC5H8NO4/h6H/q-1	1
+Glu-3-a_2	InChI=1S/C5H9NO4/c6-3(5(9)10)1-2-4(7)8/h3H,1-2,6H2,(H,7,8)(H,9,10)/t3-/m0/s1	InChI=1/C5H9NO4/c6-3(5(9)10)1-2-4(7)8/h3H,1-2,6H2,(H,7,8)(H,9,10)/p-1/t3-/m0/s1/i1+1H2,2H2,3H/fC5H8NO4/h6H/q-1	[1H11,1H12:13C1]HResonance + [1H11:1H12]J2HH + [1H11,1H12:1H13,1H14]J3HH + [1H11,1H12:1H15]J3HH		1	InChI=1/C5H9NO4/c6-3(5(9)10)1-2-4(7)8/h3H,1-2,6H2,(H,7,8)(H,9,10)/p-1/t3-/m0/s1/fC5H8NO4/h6H/q-1	2
+Glu-3-a_3	InChI=1S/C5H9NO4/c6-3(5(9)10)1-2-4(7)8/h3H,1-2,6H2,(H,7,8)(H,9,10)/t3-/m0/s1	InChI=1/C5H9NO4/c6-3(5(9)10)1-2-4(7)8/h3H,1-2,6H2,(H,7,8)(H,9,10)/p-1/t3-/m0/s1/i1+1H2,2H2,3H/fC5H8NO4/h6H/q-1	[1H11,1H12:13C1]HResonance + [1H11:1H12]J2HH + [1H11,1H12:1H13,1H14]J3HH + [1H11,1H12:1H15]J3HH		1	InChI=1/C5H9NO4/c6-3(5(9)10)1-2-4(7)8/h3H,1-2,6H2,(H,7,8)(H,9,10)/p-1/t3-/m0/s1/fC5H8NO4/h6H/q-1	3
+Glu-3-b_1	InChI=1S/C5H9NO4/c6-3(5(9)10)1-2-4(7)8/h3H,1-2,6H2,(H,7,8)(H,9,10)/t3-/m0/s1	InChI=1/C5H9NO4/c6-3(5(9)10)1-2-4(7)8/h3H,1-2,6H2,(H,7,8)(H,9,10)/p-1/t3-/m0/s1/i1+1H2,2H2,3H/fC5H8NO4/h6H/q-1	[1H11,1H12:13C1]HResonance + [1H11:1H12]J2HH + [1H11,1H12:1H13,1H14]J3HH + [1H11,1H12:1H15]J3HH		1	InChI=1/C5H9NO4/c6-3(5(9)10)1-2-4(7)8/h3H,1-2,6H2,(H,7,8)(H,9,10)/p-1/t3-/m0/s1/fC5H8NO4/h6H/q-1	1
+Glu-3-b_2	InChI=1S/C5H9NO4/c6-3(5(9)10)1-2-4(7)8/h3H,1-2,6H2,(H,7,8)(H,9,10)/t3-/m0/s1	InChI=1/C5H9NO4/c6-3(5(9)10)1-2-4(7)8/h3H,1-2,6H2,(H,7,8)(H,9,10)/p-1/t3-/m0/s1/i1+1H2,2H2,3H/fC5H8NO4/h6H/q-1	[1H11,1H12:13C1]HResonance + [1H11:1H12]J2HH + [1H11,1H12:1H13,1H14]J3HH + [1H11,1H12:1H15]J3HH		1	InChI=1/C5H9NO4/c6-3(5(9)10)1-2-4(7)8/h3H,1-2,6H2,(H,7,8)(H,9,10)/p-1/t3-/m0/s1/fC5H8NO4/h6H/q-1	2
+Glu-4_1	InChI=1S/C5H9NO4/c6-3(5(9)10)1-2-4(7)8/h3H,1-2,6H2,(H,7,8)(H,9,10)/t3-/m0/s1	InChI=1/C5H9NO4/c6-3(5(9)10)1-2-4(7)8/h3H,1-2,6H2,(H,7,8)(H,9,10)/p-1/t3-/m0/s1/i1H2,2+1H2/fC5H8NO4/h6H/q-1	[1H13,1H14:13C2]HResonance + [1H13:1H14]J2HH + [1H13,1H14:1H11,1H12]J3HH		2	InChI=1/C5H9NO4/c6-3(5(9)10)1-2-4(7)8/h3H,1-2,6H2,(H,7,8)(H,9,10)/p-1/t3-/m0/s1/fC5H8NO4/h6H/q-1	1
+Gly_1	InChI=1S/C2H5NO2/c3-1-2(4)5/h1,3H2,(H,4,5)	InChI=1/C2H5NO2/c3-1-2(4)5/h1,3H2,(H,4,5)/i1+1H2/f/h3H	[1H6,1H7:13C1]HResonance		2	InChI=1/C2H5NO2/c3-1-2(4)5/h1,3H2,(H,4,5)/f/h3H	1
+Glycogen_1	InChI=1S/C24H42O21/c25-1-5-9(28)11(30)16(35)22(41-5)39-4-8-20(45-23-17(36)12(31)10(29)6(2-26)42-23)14(33)18(37)24(43-8)44-19-7(3-27)40-21(38)15(34)13(19)32/h5-38H,1-4H2/t5-,6-,7-,8-,9-,10-,11+,12+,13-,14-,15-,16-,17-,18-,19-,20-,21+,22+,23-,24-/m1/s1	InChI=1S/C24H42O21/c25-1-5-9(28)11(30)16(35)22(41-5)39-4-8-20(45-23-17(36)12(31)10(29)6(2-26)42-23)14(33)18(37)24(43-8)44-19-7(3-27)40-21(38)15(34)13(19)32/h5-38H,1-4H2/t5-,6-,7-,8-,9-,10-,11+,12+,13-,14-,15-,16-,17-,18-,19-,20-,21+,22+,23-,24-/m1/s1/i17H,23+1H	[1H72:13C23]HResonance + [1H72:1H66]J3HH		1	InChI=1S/C24H42O21/c25-1-5-9(28)11(30)16(35)22(41-5)39-4-8-20(45-23-17(36)12(31)10(29)6(2-26)42-23)14(33)18(37)24(43-8)44-19-7(3-27)40-21(38)15(34)13(19)32/h5-38H,1-4H2/t5-,6-,7-,8-,9-,10-,11+,12+,13-,14-,15-,16-,17-,18-,19-,20-,21+,22+,23-,24-/m1/s1	1
+Glycogen_2	InChI=1S/C24H42O21/c25-1-5-9(28)11(30)16(35)22(41-5)39-4-8-20(45-23-17(36)12(31)10(29)6(2-26)42-23)14(33)18(37)24(43-8)44-19-7(3-27)40-21(38)15(34)13(19)32/h5-38H,1-4H2/t5-,6-,7-,8-,9-,10-,11+,12+,13-,14-,15-,16-,17-,18-,19-,20-,21+,22+,23-,24-/m1/s1	InChI=1S/C24H42O21/c25-1-5-9(28)11(30)16(35)22(41-5)39-4-8-20(45-23-17(36)12(31)10(29)6(2-26)42-23)14(33)18(37)24(43-8)44-19-7(3-27)40-21(38)15(34)13(19)32/h5-38H,1-4H2/t5-,6-,7-,8-,9-,10-,11+,12+,13-,14-,15-,16-,17-,18-,19-,20-,21+,22+,23-,24-/m1/s1/i17H,23+1H	[1H72:13C23]HResonance + [1H72:1H66]J3HH		1	InChI=1S/C24H42O21/c25-1-5-9(28)11(30)16(35)22(41-5)39-4-8-20(45-23-17(36)12(31)10(29)6(2-26)42-23)14(33)18(37)24(43-8)44-19-7(3-27)40-21(38)15(34)13(19)32/h5-38H,1-4H2/t5-,6-,7-,8-,9-,10-,11+,12+,13-,14-,15-,16-,17-,18-,19-,20-,21+,22+,23-,24-/m1/s1	2
+Lac-2_1	InChI=1S/C3H6O3/c1-2(4)3(5)6/h2,4H,1H3,(H,5,6)/p-1	InChI=1/C3H6O3/c1-2(4)3(5)6/h2,4H,1H3,(H,5,6)/p-1/t2-/m0/s1/i1H3,2+1H/fC3H5O3/q-1	[1H10:13C2]HResonance + [1H10:1H7,1H8,1H9]J3HH		1	InChI=1S/C3H6O3/c1-2(4)3(5)6/h2,4H,1H3,(H,5,6)/p-1	1
+Lac-2_2	InChI=1S/C3H6O3/c1-2(4)3(5)6/h2,4H,1H3,(H,5,6)/p-1	InChI=1/C3H6O3/c1-2(4)3(5)6/h2,4H,1H3,(H,5,6)/p-1/t2-/m0/s1/i1H3,2+1H/fC3H5O3/q-1	[1H10:13C2]HResonance + [1H10:1H7,1H8,1H9]J3HH		1	InChI=1S/C3H6O3/c1-2(4)3(5)6/h2,4H,1H3,(H,5,6)/p-1	2
+Lac-2_3	InChI=1S/C3H6O3/c1-2(4)3(5)6/h2,4H,1H3,(H,5,6)/p-1	InChI=1/C3H6O3/c1-2(4)3(5)6/h2,4H,1H3,(H,5,6)/p-1/t2-/m0/s1/i1H3,2+1H/fC3H5O3/q-1	[1H10:13C2]HResonance + [1H10:1H7,1H8,1H9]J3HH		1	InChI=1S/C3H6O3/c1-2(4)3(5)6/h2,4H,1H3,(H,5,6)/p-1	3
+Lac-2_4	InChI=1S/C3H6O3/c1-2(4)3(5)6/h2,4H,1H3,(H,5,6)/p-1	InChI=1/C3H6O3/c1-2(4)3(5)6/h2,4H,1H3,(H,5,6)/p-1/t2-/m0/s1/i1H3,2+1H/fC3H5O3/q-1	[1H10:13C2]HResonance + [1H10:1H7,1H8,1H9]J3HH		1	InChI=1S/C3H6O3/c1-2(4)3(5)6/h2,4H,1H3,(H,5,6)/p-1	4
+Lac-3_1	InChI=1S/C3H6O3/c1-2(4)3(5)6/h2,4H,1H3,(H,5,6)/p-1	InChI=1/C3H6O3/c1-2(4)3(5)6/h2,4H,1H3,(H,5,6)/p-1/t2-/m0/s1/i1+1H3,2H/fC3H5O3/q-1	[1H7,1H8,1H9:13C1]HResonance + [1H7,1H8,1H9:1H10]J3HH		3	InChI=1S/C3H6O3/c1-2(4)3(5)6/h2,4H,1H3,(H,5,6)/p-1	1
+Lac-3_2	InChI=1S/C3H6O3/c1-2(4)3(5)6/h2,4H,1H3,(H,5,6)/p-1	InChI=1/C3H6O3/c1-2(4)3(5)6/h2,4H,1H3,(H,5,6)/p-1/t2-/m0/s1/i1+1H3,2H/fC3H5O3/q-1	[1H7,1H8,1H9:13C1]HResonance + [1H7,1H8,1H9:1H10]J3HH		3	InChI=1S/C3H6O3/c1-2(4)3(5)6/h2,4H,1H3,(H,5,6)/p-1	2
+Met-CH3_1	InChI=1S/C5H11NO2S/c1-9-3-2-4(6)5(7)8/h4H,2-3,6H2,1H3,(H,7,8)/t4-/m0/s1	InChI=1/C5H11NO2S/c1-9-3-2-4(6)5(7)8/h4H,2-3,6H2,1H3,(H,7,8)/t4-/m0/s1/i1+1H3/f/h6H	[1H10,1H11,1H12:13C1]HResonance		3	InChI=1/C5H11NO2S/c1-9-3-2-4(6)5(7)8/h4H,2-3,6H2,1H3,(H,7,8)/t4-/m0/s1/f/h6H	1
+P-Cho A_1	InChI=1S/C5H14NO4P/c1-6(2,3)4-5-10-11(7,8)9/h4-5H2,1-3H3,(H-,7,8,9)/p-1	InChI=1/C5H14NO4P/c1-6(2,3)4-5-10-11(7,8)9/h4-5H2,1-3H3,(H-,7,8,9)/p-1/i1+1H3,2+1H3,3+1H3/fC5H13NO4P/q-1	[1H12,1H13,1H14:13C1+1H15,1H16,1H17:13C2+1H18,1H19,1H20:13C3]Hresonance		9	InChI=1S/C5H14NO4P/c1-6(2,3)4-5-10-11(7,8)9/h4-5H2,1-3H3,(H-,7,8,9)/p-1	1
+Ser-2_1	InChI=1S/C3H7NO3/c4-2(1-5)3(6)7/h2,5H,1,4H2,(H,6,7)/t2-/m0/s1	InChI=1/C3H7NO3/c4-2(1-5)3(6)7/h2,5H,1,4H2,(H,6,7)/t2-/m0/s1/i1+1H2,2H/f/h4H	[1H8,1H9:13C1]HResonance + [1H8:1H9]J2HH + [1H8,1H9:1H10]J3HH		2	InChI=1/C3H7NO3/c4-2(1-5)3(6)7/h2,5H,1,4H2,(H,6,7)/t2-/m0/s1/f/h4H	1
+Succinate-2,3_1	InChI=1S/C4H6O4/c5-3(6)1-2-4(7)8/h1-2H2,(H,5,6)(H,7,8)/p-2	InChI=1/C4H6O4/c5-3(6)1-2-4(7)8/h1-2H2,(H,5,6)(H,7,8)/p-2/i1+1H2,2+1H2/fC4H4O4/q-2	[1H9,1H10:13C1+1H11,1H12:13C2]Hresonance		4	InChI=1S/C4H6O4/c5-3(6)1-2-4(7)8/h1-2H2,(H,5,6)(H,7,8)/p-2	1
+Tau-1 (SCH2)_1	InChI=1S/C2H7NO3S/c3-1-2-7(4,5)6/h1-3H2,(H,4,5,6)	InChI=1/C2H7NO3S/c3-1-2-7(4,5)6/h1-3H2,(H,4,5,6)/i1H2,2+1H2/f/h3H	[1H10,1H11:13C2]HResonance + [1H10,1H11:1H8,1H9]J3HH		2	InChI=1/C2H7NO3S/c3-1-2-7(4,5)6/h1-3H2,(H,4,5,6)/f/h3H	1
+Tris_1	InChI=1S/C6H16O3SSi/c1-11(2,3)6-4-5-10(7,8)9/h4-6H2,1-3H3,(H,7,8,9)/i4D2,5D2,6D2	InChI=1/C4H11NO3/c5-4(1-6,2-7)3-8/h6-8H,1-3,5H2/p+1/i1+1H2,2+1H2,3+1H2/fC4H12NO3/h5H/q+1	[1H9,1H10:13C1+1H11,1H12:13C2+1H13,1H14:13C3]Hresonance		6	InChI=1/C6H16O3SSi/c1-11(2,3)6-4-5-10(7,8)9/h4-6H2,1-3H3,(H,7,8,9)/p-1/i4D2,5D2,6D2/fC6H15O3SSi/q-1	1
+aGlc_1	InChI=1S/C6H12O6/c7-1-2-3(8)4(9)5(10)6(11)12-2/h2-11H,1H2/t2-,3-,4+,5-,6+/m1/s1	InChI=1S/C6H12O6/c7-1-2-3(8)4(9)5(10)6(11)12-2/h2-11H,1H2/t2-,3-,4+,5-,6+/m1/s1/i5H,6+1H	[1H19:13C6]HResonance + [1H19:1H18]J3HH		0.35	InChI=1S/C6H12O6/c7-1-2-3(8)4(9)5(10)6(11)12-2/h2-11H,1H2/t2-,3-,4+,5-,6+/m1/s1	1
+bGlc_1	InChI=1S/C6H12O6/c7-1-2-3(8)4(9)5(10)6(11)12-2/h2-11H,1H2/t2-,3-,4+,5-,6-/m1/s1	InChI=1S/C6H12O6/c7-1-2-3(8)4(9)5(10)6(11)12-2/h2-11H,1H2/t2-,3-,4+,5-,6-/m1/s1/i5H,6+1H	[1H19:13C6]HResonance + [1H19:1H18]J3HH		0.65	InChI=1S/C6H12O6/c7-1-2-3(8)4(9)5(10)6(11)12-2/h2-11H,1H2/t2-,3-,4+,5-,6-/m1/s1	1
+bGlc_2	InChI=1S/C6H12O6/c7-1-2-3(8)4(9)5(10)6(11)12-2/h2-11H,1H2/t2-,3-,4+,5-,6-/m1/s1	InChI=1S/C6H12O6/c7-1-2-3(8)4(9)5(10)6(11)12-2/h2-11H,1H2/t2-,3-,4+,5-,6-/m1/s1/i5H,6+1H	[1H19:13C6]HResonance + [1H19:1H18]J3HH		0.65	InChI=1S/C6H12O6/c7-1-2-3(8)4(9)5(10)6(11)12-2/h2-11H,1H2/t2-,3-,4+,5-,6-/m1/s1	2
+bOH-butyrate_1	InChI=1S/C4H8O3/c1-3(5)2-4(6)7/h3,5H,2H2,1H3,(H,6,7)/p-1	InChI=1/C4H8O3/c1-3(5)2-4(6)7/h3,5H,2H2,1H3,(H,6,7)/p-1/t3-/m0/s1/i1+1H3,3H/fC4H7O3/q-1	[1H8,1H9,1H10:13C1]HResonance + [1H8,1H9,1H10:1H13]J3HH		3	InChI=1/C4H8O3/c1-3(5)2-4(6)7/h3,5H,2H2,1H3,(H,6,7)/p-1/t3-/m0/s1/fC4H7O3/q-1	1
+m-Ins-1,3_1	InChI=1S/C6H12O6/c7-1-2(8)4(10)6(12)5(11)3(1)9/h1-12H/t1-,2-,3-,4+,5-,6-	InChI=1S/C6H12O6/c7-1-2(8)4(10)6(12)5(11)3(1)9/h1-12H/t1-,2-,3-,4+,5-,6-/i1H,2+1H,3+1H,4H,5H/t1-,2+,3-,4-,5+,6+	[1H13:13C1+1H17:13C5]HResonance + [1H13:1H14]J3HH + [1H13:1H15]J3HH + [1H17:1H15]J3HH + [1H17:1H18]J3HH		2	InChI=1S/C6H12O6/c7-1-2(8)4(10)6(12)5(11)3(1)9/h1-12H/t1-,2-,3-,4+,5-,6-	1
+METABOLITES_END
+#EXTENDED_METABOLITE_DATA
+EXTENDED_METABOLITE_START
+metabolite_name	assignment_lower_bound	assignment_upper_bound	chemical_shift	peak_height	peak_width	sample.id
+Ace-2_1	1.895	1.915	1.904058153873985	0.4917039217273206	15.75834331356989	01_pt2402_785_PDX-mouse_pt2402_ctl_160801_UKy_KZ-homogenate-polar-NMR_A
+Ace-2_1	1.895	1.915	1.907255950861813	0.5865317002716479	14.31882115970107	02_pt2402_739_PDX-mouse_pt2402_ctl_160801_UKy_KZ-homogenate-polar-NMR_A
+Ace-2_1	1.895	1.915	1.905484916458958	0.3403463966826131	8.590768705213984	03_pt2402_760_PDX-mouse_pt2402_ctl_160801_UKy_KZ-homogenate-polar-NMR_A
+Ace-2_1	1.895	1.915	1.907813000072187	0.4001250550978898	13.63435407492229	04_pt2402_733_PDX-mouse_pt2402_ctl_160801_UKy_KZ-homogenate-polar-NMR_A
+Ace-2_1	1.895	1.915	1.90261681919499	0.4832616785993469	21.54426153415271	05_pt2402_783_PDX-mouse_pt2402_ctl_160801_UKy_KZ-homogenate-polar-NMR_A
+Ace-2_1	1.895	1.915	1.907484748558603	0.2775197957260446	9.919173315374909	06_pt2402_431_PDX-mouse_pt2402_TVB_160801_UKy_KZ-homogenate-polar-NMR_A
+Ace-2_1	1.895	1.915	1.90413043459886	0.5311911924076421	12.48652694817146	07_pt2402_732_PDX-mouse_pt2402_TVB_160801_UKy_KZ-homogenate-polar-NMR_A
+Ace-2_1	1.895	1.915	1.906930509117103	0.295270770751571	8.860391934763303	08_pt2402_776_PDX-mouse_pt2402_TVB_160801_UKy_KZ-homogenate-polar-NMR_A
+Ace-2_1	1.895	1.915	1.90610793691361	0.6123817527793973	12.46577859336298	09_pt2449_874_PDX-mouse_pt2449_ctl_160801_UKy_KZ-homogenate-polar-NMR_A
+Ace-2_1	1.895	1.915	1.90579583983094	0.7712890894126797	10.68795543889406	10_pt2449_458_PDX-mouse_pt2449_ctl_160801_UKy_KZ-homogenate-polar-NMR_A
+Ace-2_1	1.895	1.915	1.906668176598896	0.3512948379427982	12.6357453504074	11_pt2449_412_PDX-mouse_pt2449_ctl_160801_UKy_KZ-homogenate-polar-NMR_A
+Ace-2_1	1.895	1.915	1.906273508281693	0.848651396922189	12.74488694198679	12_pt2449_862_PDX-mouse_pt2449_ctl_160801_UKy_KZ-homogenate-polar-NMR_A
+Ace-2_1	1.895	1.915	1.904273508281693	1.383714879531083	15.36497901143966	13_pt2449_864_PDX-mouse_pt2449_ctl_160801_UKy_KZ-homogenate-polar-NMR_A
+Ace-2_1	1.895	1.915	1.904556282236877	0.8856594743247529	15.89061212592352	14_pt2449_860_PDX-mouse_pt2449_TVB_160801_UKy_KZ-homogenate-polar-NMR_A
+Ace-2_1	1.895	1.915	1.90374631410779	1.101968338695235	15.95940932423655	15_pt2449_428_PDX-mouse_pt2449_TVB_160801_UKy_KZ-homogenate-polar-NMR_A
+Ace-2_1	1.895	1.915	1.906004558722945	0.7366334230394389	13.05160811168008	16_pt2449_858_PDX-mouse_pt2449_TVB_160801_UKy_KZ-homogenate-polar-NMR_A
+Ace-2_1	1.895	1.915	1.905401912385344	0.6213328642678705	13.24499416525389	17_pt2449_459_PDX-mouse_pt2449_TVB_160801_UKy_KZ-homogenate-polar-NMR_A
+Ala-3_1	1.455	1.48	1.454307254298588	2.94393490950031	9.36031245450491	01_pt2402_785_PDX-mouse_pt2402_ctl_160801_UKy_KZ-homogenate-polar-NMR_A
+Ala-3_1	1.455	1.48	1.457303802787836	2.319759675641615	8.707856204498084	02_pt2402_739_PDX-mouse_pt2402_ctl_160801_UKy_KZ-homogenate-polar-NMR_A
+Ala-3_1	1.455	1.48	1.466754061436113	0.6079538557087292	17.1210352199769	03_pt2402_760_PDX-mouse_pt2402_ctl_160801_UKy_KZ-homogenate-polar-NMR_A
+Ala-3_1	1.455	1.48	1.460797230541374	3.094485899558246	8.953094181117693	04_pt2402_733_PDX-mouse_pt2402_ctl_160801_UKy_KZ-homogenate-polar-NMR_A
+Ala-3_1	1.455	1.48	1.45577152697103	3.573008740453868	8.956802733316653	05_pt2402_783_PDX-mouse_pt2402_ctl_160801_UKy_KZ-homogenate-polar-NMR_A
+Ala-3_1	1.455	1.48	1.458021173075788	0.3224254648664713	6.53950255755156	06_pt2402_431_PDX-mouse_pt2402_TVB_160801_UKy_KZ-homogenate-polar-NMR_A
+Ala-3_1	1.455	1.48	1.458570328761754	2.158077236591653	8.619793111789155	07_pt2402_732_PDX-mouse_pt2402_TVB_160801_UKy_KZ-homogenate-polar-NMR_A
+Ala-3_1	1.455	1.48	1.459266224463387	2.612794891582873	10.46864303856332	08_pt2402_776_PDX-mouse_pt2402_TVB_160801_UKy_KZ-homogenate-polar-NMR_A
+Ala-3_1	1.455	1.48	1.447401951736663	5.132442272622621	9.814529710566216	09_pt2449_874_PDX-mouse_pt2449_ctl_160801_UKy_KZ-homogenate-polar-NMR_A
+Ala-3_1	1.455	1.48	1.453804125381409	5.44181660919609	8.823715695589453	10_pt2449_458_PDX-mouse_pt2449_ctl_160801_UKy_KZ-homogenate-polar-NMR_A
+Ala-3_1	1.455	1.48	1.456993830810767	1.815441529520073	8.62067276195813	11_pt2449_412_PDX-mouse_pt2449_ctl_160801_UKy_KZ-homogenate-polar-NMR_A
+Ala-3_1	1.455	1.48	1.455717180811571	7.176466328707895	9.521737876463014	12_pt2449_862_PDX-mouse_pt2449_ctl_160801_UKy_KZ-homogenate-polar-NMR_A
+Ala-3_1	1.455	1.48	1.454284062547899	7.691702393651544	9.53171077120194	13_pt2449_864_PDX-mouse_pt2449_ctl_160801_UKy_KZ-homogenate-polar-NMR_A
+Ala-3_1	1.455	1.48	1.453910237657934	6.02441771349818	10.8578183826257	14_pt2449_860_PDX-mouse_pt2449_TVB_160801_UKy_KZ-homogenate-polar-NMR_A
+Ala-3_1	1.455	1.48	1.4568417864164	9.555491573231468	9.336311730298101	15_pt2449_428_PDX-mouse_pt2449_TVB_160801_UKy_KZ-homogenate-polar-NMR_A
+Ala-3_1	1.455	1.48	1.438429794313822	2.581406014994023	9.848225169817628	16_pt2449_858_PDX-mouse_pt2449_TVB_160801_UKy_KZ-homogenate-polar-NMR_A
+Ala-3_1	1.455	1.48	1.45352620074484	4.77839380742292	9.48610100786159	17_pt2449_459_PDX-mouse_pt2449_TVB_160801_UKy_KZ-homogenate-polar-NMR_A
+Ala-3_2	1.455	1.48	1.467311990510241	2.826065417872496	9.12565316014601	01_pt2402_785_PDX-mouse_pt2402_ctl_160801_UKy_KZ-homogenate-polar-NMR_A
+Ala-3_2	1.455	1.48	1.469631750418155	2.566714464726397	9.255096282566146	02_pt2402_739_PDX-mouse_pt2402_ctl_160801_UKy_KZ-homogenate-polar-NMR_A
+Ala-3_2	1.455	1.48	1.473619063523622	2.981227990406493	8.88958218309629	04_pt2402_733_PDX-mouse_pt2402_ctl_160801_UKy_KZ-homogenate-polar-NMR_A
+Ala-3_2	1.455	1.48	1.468503749020786	4.023927613012553	10.02790819152292	05_pt2402_783_PDX-mouse_pt2402_ctl_160801_UKy_KZ-homogenate-polar-NMR_A
+Ala-3_2	1.455	1.48	1.46994411106493	0.653169948327303	11.21173702895755	06_pt2402_431_PDX-mouse_pt2402_TVB_160801_UKy_KZ-homogenate-polar-NMR_A
+Ala-3_2	1.455	1.48	1.471182559524857	2.626195624255601	9.7437319186879	07_pt2402_732_PDX-mouse_pt2402_TVB_160801_UKy_KZ-homogenate-polar-NMR_A
+Ala-3_2	1.455	1.48	1.471544262103738	2.24714754893931	8.15568292500691	08_pt2402_776_PDX-mouse_pt2402_TVB_160801_UKy_KZ-homogenate-polar-NMR_A
+Ala-3_2	1.455	1.48	1.460153703896325	4.004708214899943	7.850013201202321	09_pt2449_874_PDX-mouse_pt2449_ctl_160801_UKy_KZ-homogenate-polar-NMR_A
+Ala-3_2	1.455	1.48	1.466748938306995	5.750269215213622	9.38660287677809	10_pt2449_458_PDX-mouse_pt2449_ctl_160801_UKy_KZ-homogenate-polar-NMR_A
+Ala-3_2	1.455	1.48	1.469889290256715	2.025714372695707	9.547528992772001	11_pt2449_412_PDX-mouse_pt2449_ctl_160801_UKy_KZ-homogenate-polar-NMR_A
+Ala-3_2	1.455	1.48	1.468492513814731	6.388283125799216	8.049875385855595	12_pt2449_862_PDX-mouse_pt2449_ctl_160801_UKy_KZ-homogenate-polar-NMR_A
+Ala-3_2	1.455	1.48	1.467248457583895	7.603956019195442	9.401951321158883	13_pt2449_864_PDX-mouse_pt2449_ctl_160801_UKy_KZ-homogenate-polar-NMR_A
+Ala-3_2	1.455	1.48	1.466887012485558	5.874594951764064	10.30645612881815	14_pt2449_860_PDX-mouse_pt2449_TVB_160801_UKy_KZ-homogenate-polar-NMR_A
+Ala-3_2	1.455	1.48	1.469574070027911	8.945562913959472	8.443094353785265	15_pt2449_428_PDX-mouse_pt2449_TVB_160801_UKy_KZ-homogenate-polar-NMR_A
+Ala-3_2	1.455	1.48	1.451052892835159	2.254473924946214	9.843292977158878	16_pt2449_858_PDX-mouse_pt2449_TVB_160801_UKy_KZ-homogenate-polar-NMR_A
+Ala-3_2	1.455	1.48	1.46633547357134	4.497313876478761	9.144717472868418	17_pt2449_459_PDX-mouse_pt2449_TVB_160801_UKy_KZ-homogenate-polar-NMR_A
+Creat_1	3.01	3.02	3.023773260393824	0.4163443280806354	9.781275040068172	12_pt2449_862_PDX-mouse_pt2449_ctl_160801_UKy_KZ-homogenate-polar-NMR_A
+DSS_1	-0.02	0.02	-0.0001925251848024293	1.028515964091414	8.206728011417994	01_pt2402_785_PDX-mouse_pt2402_ctl_160801_UKy_KZ-homogenate-polar-NMR_A
+DSS_1	-0.02	0.02	0.0001332766674434232	1.09404877099396	8.227276498817993	02_pt2402_739_PDX-mouse_pt2402_ctl_160801_UKy_KZ-homogenate-polar-NMR_A
+DSS_1	-0.02	0.02	-0.0001128911796221972	1.051452121965205	8.408216739347113	03_pt2402_760_PDX-mouse_pt2402_ctl_160801_UKy_KZ-homogenate-polar-NMR_A
+DSS_1	-0.02	0.02	-0.0002078378807192515	1.002673700899433	8.919343299786705	04_pt2402_733_PDX-mouse_pt2402_ctl_160801_UKy_KZ-homogenate-polar-NMR_A
+DSS_1	-0.02	0.02	-0.0001128911796221972	1.012880171076542	8.8904621706953	05_pt2402_783_PDX-mouse_pt2402_ctl_160801_UKy_KZ-homogenate-polar-NMR_A
+DSS_1	-0.02	0.02	-0.0003060425033780452	0.8287343409653296	9.902834198973817	06_pt2402_431_PDX-mouse_pt2402_TVB_160801_UKy_KZ-homogenate-polar-NMR_A
+DSS_1	-0.02	0.02	-2.495793685371549e-05	1.024215316626214	8.829070897303552	07_pt2402_732_PDX-mouse_pt2402_TVB_160801_UKy_KZ-homogenate-polar-NMR_A
+DSS_1	-0.02	0.02	-0.0001408850573596711	0.9847484301107791	10.29941388656377	08_pt2402_776_PDX-mouse_pt2402_TVB_160801_UKy_KZ-homogenate-polar-NMR_A
+DSS_1	-0.02	0.02	-0.0002413855955773841	1.040660332055495	8.373928813154274	09_pt2449_874_PDX-mouse_pt2449_ctl_160801_UKy_KZ-homogenate-polar-NMR_A
+DSS_1	-0.02	0.02	0.0001078485112255052	1.134384854122405	8.74682561835828	10_pt2449_458_PDX-mouse_pt2449_ctl_160801_UKy_KZ-homogenate-polar-NMR_A
+DSS_1	-0.02	0.02	-0.000104080217564891	1.028920938389703	8.557631892460481	11_pt2449_412_PDX-mouse_pt2449_ctl_160801_UKy_KZ-homogenate-polar-NMR_A
+DSS_1	-0.02	0.02	-0.0002952972984132609	0.9407408137787044	9.231293611199177	12_pt2449_862_PDX-mouse_pt2449_ctl_160801_UKy_KZ-homogenate-polar-NMR_A
+DSS_1	-0.02	0.02	-0.0001953142251516657	1.025441072839216	8.19446570008759	13_pt2449_864_PDX-mouse_pt2449_ctl_160801_UKy_KZ-homogenate-polar-NMR_A
+DSS_1	-0.02	0.02	-0.000277382367895024	0.914110222084339	8.41736455708633	14_pt2449_860_PDX-mouse_pt2449_TVB_160801_UKy_KZ-homogenate-polar-NMR_A
+DSS_1	-0.02	0.02	-0.0005706820250725042	1.04169019488322	8.63824184760882	15_pt2449_428_PDX-mouse_pt2449_TVB_160801_UKy_KZ-homogenate-polar-NMR_A
+DSS_1	-0.02	0.02	-5.411277590855315e-05	0.9426176263403437	9.243462900210432	16_pt2449_858_PDX-mouse_pt2449_TVB_160801_UKy_KZ-homogenate-polar-NMR_A
+DSS_1	-0.02	0.02	-0.0004557405560544702	1.038024052718002	8.59375302117987	17_pt2449_459_PDX-mouse_pt2449_TVB_160801_UKy_KZ-homogenate-polar-NMR_A
+GSH+GSSG-3_1	2.14	2.17	2.165534498890917	0.1082124157237171	6.529762361973491	11_pt2449_412_PDX-mouse_pt2449_ctl_160801_UKy_KZ-homogenate-polar-NMR_A
+Gln+Glu-2_1	3.73	3.81	3.759948477737876	0.5875631005802796	10.68901640619205	01_pt2402_785_PDX-mouse_pt2402_ctl_160801_UKy_KZ-homogenate-polar-NMR_A
+Gln+Glu-2_1	3.73	3.81	3.744549764403301	0.7403563824500214	45.66285366274374	02_pt2402_739_PDX-mouse_pt2402_ctl_160801_UKy_KZ-homogenate-polar-NMR_A
+Gln+Glu-2_1	3.73	3.81	3.740933292986436	0.4244606623369788	21.22281942095585	03_pt2402_760_PDX-mouse_pt2402_ctl_160801_UKy_KZ-homogenate-polar-NMR_A
+Gln+Glu-2_1	3.73	3.81	3.747545587635225	1.141792076979434	32.80619173412085	04_pt2402_733_PDX-mouse_pt2402_ctl_160801_UKy_KZ-homogenate-polar-NMR_A
+Gln+Glu-2_1	3.73	3.81	3.743784314401492	0.790486710893548	33.68529040641699	07_pt2402_732_PDX-mouse_pt2402_TVB_160801_UKy_KZ-homogenate-polar-NMR_A
+Gln+Glu-2_1	3.73	3.81	3.750021106886574	0.7137867664349735	69.4282492275962	08_pt2402_776_PDX-mouse_pt2402_TVB_160801_UKy_KZ-homogenate-polar-NMR_A
+Gln+Glu-2_1	3.73	3.81	3.745800039778279	1.117212861288762	35.84699792389587	10_pt2449_458_PDX-mouse_pt2449_ctl_160801_UKy_KZ-homogenate-polar-NMR_A
+Gln+Glu-2_1	3.73	3.81	3.740186274751944	0.3903198701485258	45.74014881407726	11_pt2449_412_PDX-mouse_pt2449_ctl_160801_UKy_KZ-homogenate-polar-NMR_A
+Gln+Glu-2_1	3.73	3.81	3.749918633861869	1.228056335625639	31.95690240887751	12_pt2449_862_PDX-mouse_pt2449_ctl_160801_UKy_KZ-homogenate-polar-NMR_A
+Gln+Glu-2_1	3.73	3.81	3.745958678411741	1.659849953991829	53.10647737396297	13_pt2449_864_PDX-mouse_pt2449_ctl_160801_UKy_KZ-homogenate-polar-NMR_A
+Gln+Glu-2_1	3.73	3.81	3.748843444630643	1.215005733251259	35.21969393299256	14_pt2449_860_PDX-mouse_pt2449_TVB_160801_UKy_KZ-homogenate-polar-NMR_A
+Gln+Glu-2_1	3.73	3.81	3.745585744416104	1.789474187220484	36.72117603379521	15_pt2449_428_PDX-mouse_pt2449_TVB_160801_UKy_KZ-homogenate-polar-NMR_A
+Gln+Glu-2_1	3.73	3.81	3.749309237474589	0.850811874119085	30.87594211441854	17_pt2449_459_PDX-mouse_pt2449_TVB_160801_UKy_KZ-homogenate-polar-NMR_A
+Gln+Glu-2_2	3.73	3.81	3.765597890791452	0.5619636774138259	5.593717510110086	15_pt2449_428_PDX-mouse_pt2449_TVB_160801_UKy_KZ-homogenate-polar-NMR_A
+Gln-3_1	2.125	2.145	2.130765244871307	0.1989187419537936	20.57694523580819	11_pt2449_412_PDX-mouse_pt2449_ctl_160801_UKy_KZ-homogenate-polar-NMR_A
+Gln-4_1	2.415	2.475	2.425604973792302	0.2888468558786391	14.15191811000387	06_pt2402_431_PDX-mouse_pt2402_TVB_160801_UKy_KZ-homogenate-polar-NMR_A
+Gln-4_1	2.415	2.475	2.422946527542324	0.192204960541336	15.66612498269549	07_pt2402_732_PDX-mouse_pt2402_TVB_160801_UKy_KZ-homogenate-polar-NMR_A
+Gln-4_1	2.415	2.475	2.425094344139121	0.2012788724313653	9.24784091831788	12_pt2449_862_PDX-mouse_pt2449_ctl_160801_UKy_KZ-homogenate-polar-NMR_A
+Gln-4_1	2.415	2.475	2.418559967655259	0.1973360854684982	17.79464283136556	13_pt2449_864_PDX-mouse_pt2449_ctl_160801_UKy_KZ-homogenate-polar-NMR_A
+Gln-4_1	2.415	2.475	2.420837872859346	0.0732178953968045	4.585988272820635	14_pt2449_860_PDX-mouse_pt2449_TVB_160801_UKy_KZ-homogenate-polar-NMR_A
+Gln-4_1	2.415	2.475	2.421270554345524	0.1138489917834574	5.214937050088344	15_pt2449_428_PDX-mouse_pt2449_TVB_160801_UKy_KZ-homogenate-polar-NMR_A
+Gln-4_1	2.415	2.475	2.422935616694168	0.02998946305699085	4.427206382416237	17_pt2449_459_PDX-mouse_pt2449_TVB_160801_UKy_KZ-homogenate-polar-NMR_A
+Gln-4_2	2.415	2.475	2.43129061837534	0.07484528735144814	7.547163958093822	14_pt2449_860_PDX-mouse_pt2449_TVB_160801_UKy_KZ-homogenate-polar-NMR_A
+Glu-3-a_1	2.01	2.08	2.044266465827219	0.5044804692588378	19.87705768749436	01_pt2402_785_PDX-mouse_pt2402_ctl_160801_UKy_KZ-homogenate-polar-NMR_A
+Glu-3-a_1	2.01	2.08	2.049622301914232	0.5034157795158758	24.91166619716245	02_pt2402_739_PDX-mouse_pt2402_ctl_160801_UKy_KZ-homogenate-polar-NMR_A
+Glu-3-a_1	2.01	2.08	2.050292812210551	0.3347334099963955	17.24009291607414	03_pt2402_760_PDX-mouse_pt2402_ctl_160801_UKy_KZ-homogenate-polar-NMR_A
+Glu-3-a_1	2.01	2.08	2.051519708155435	0.7187852938985534	26.1467960626094	04_pt2402_733_PDX-mouse_pt2402_ctl_160801_UKy_KZ-homogenate-polar-NMR_A
+Glu-3-a_1	2.01	2.08	2.044658246789	0.836431560082866	25.40736236680687	05_pt2402_783_PDX-mouse_pt2402_ctl_160801_UKy_KZ-homogenate-polar-NMR_A
+Glu-3-a_1	2.01	2.08	2.048299378757003	0.4215779193932619	24.73841752934204	06_pt2402_431_PDX-mouse_pt2402_TVB_160801_UKy_KZ-homogenate-polar-NMR_A
+Glu-3-a_1	2.01	2.08	2.052019873853912	0.5921509492507443	23.98920505732447	07_pt2402_732_PDX-mouse_pt2402_TVB_160801_UKy_KZ-homogenate-polar-NMR_A
+Glu-3-a_1	2.01	2.08	2.036553118554298	0.331043181890324	14.26373006957905	08_pt2402_776_PDX-mouse_pt2402_TVB_160801_UKy_KZ-homogenate-polar-NMR_A
+Glu-3-a_1	2.01	2.08	2.038959846893048	0.4313943193707865	34.13398837094159	09_pt2449_874_PDX-mouse_pt2449_ctl_160801_UKy_KZ-homogenate-polar-NMR_A
+Glu-3-a_1	2.01	2.08	2.042235173496949	0.4360816785135313	31.76366857021497	10_pt2449_458_PDX-mouse_pt2449_ctl_160801_UKy_KZ-homogenate-polar-NMR_A
+Glu-3-a_1	2.01	2.08	2.024460875382794	0.170362464968962	11.3791348908079	11_pt2449_412_PDX-mouse_pt2449_ctl_160801_UKy_KZ-homogenate-polar-NMR_A
+Glu-3-a_1	2.01	2.08	2.042248890354554	0.59312887945761	30.41973477852891	12_pt2449_862_PDX-mouse_pt2449_ctl_160801_UKy_KZ-homogenate-polar-NMR_A
+Glu-3-a_1	2.01	2.08	2.045765245968188	0.6430787433987725	22.67271311219136	13_pt2449_864_PDX-mouse_pt2449_ctl_160801_UKy_KZ-homogenate-polar-NMR_A
+Glu-3-a_1	2.01	2.08	2.040815293076199	0.3374564960821304	22.61990966004321	14_pt2449_860_PDX-mouse_pt2449_TVB_160801_UKy_KZ-homogenate-polar-NMR_A
+Glu-3-a_1	2.01	2.08	2.046659436531799	0.8432283489277982	23.86942450096212	15_pt2449_428_PDX-mouse_pt2449_TVB_160801_UKy_KZ-homogenate-polar-NMR_A
+Glu-3-a_1	2.01	2.08	2.026252326086382	0.5426910856549116	19.51013341627982	16_pt2449_858_PDX-mouse_pt2449_TVB_160801_UKy_KZ-homogenate-polar-NMR_A
+Glu-3-a_1	2.01	2.08	2.026473615994388	0.3057599602333992	17.3823894230053	17_pt2449_459_PDX-mouse_pt2449_TVB_160801_UKy_KZ-homogenate-polar-NMR_A
+Glu-3-a_2	2.01	2.08	2.050572820181375	0.2323719772782918	5.785832885302791	08_pt2402_776_PDX-mouse_pt2402_TVB_160801_UKy_KZ-homogenate-polar-NMR_A
+Glu-3-a_2	2.01	2.08	2.046354330650326	0.172702729062066	11.24302872460368	11_pt2449_412_PDX-mouse_pt2449_ctl_160801_UKy_KZ-homogenate-polar-NMR_A
+Glu-3-a_2	2.01	2.08	2.046576162996413	0.3345592383838869	14.97825242082389	17_pt2449_459_PDX-mouse_pt2449_TVB_160801_UKy_KZ-homogenate-polar-NMR_A
+Glu-3-a_3	2.01	2.08	2.064563145452868	0.2466772152477985	10.97533509389189	08_pt2402_776_PDX-mouse_pt2402_TVB_160801_UKy_KZ-homogenate-polar-NMR_A
+Glu-3-a_3	2.01	2.08	2.06204787121022	0.1773966834087694	7.523524533782314	11_pt2449_412_PDX-mouse_pt2449_ctl_160801_UKy_KZ-homogenate-polar-NMR_A
+Glu-3-b_1	2.09	2.125	2.103974703697127	0.4806976931908459	23.64104361640673	01_pt2402_785_PDX-mouse_pt2402_ctl_160801_UKy_KZ-homogenate-polar-NMR_A
+Glu-3-b_1	2.09	2.125	2.123966337593042	0.3423099772777833	18.89981479699514	03_pt2402_760_PDX-mouse_pt2402_ctl_160801_UKy_KZ-homogenate-polar-NMR_A
+Glu-3-b_1	2.09	2.125	2.120865764783507	0.6537642610785865	25.87302433779489	04_pt2402_733_PDX-mouse_pt2402_ctl_160801_UKy_KZ-homogenate-polar-NMR_A
+Glu-3-b_1	2.09	2.125	2.109926970762376	0.8214091619897563	28.62736784064589	05_pt2402_783_PDX-mouse_pt2402_ctl_160801_UKy_KZ-homogenate-polar-NMR_A
+Glu-3-b_1	2.09	2.125	2.116545576799058	0.3928381737019945	26.20755248802409	06_pt2402_431_PDX-mouse_pt2402_TVB_160801_UKy_KZ-homogenate-polar-NMR_A
+Glu-3-b_1	2.09	2.125	2.096352713416438	0.3074511340249041	20.21085488959978	07_pt2402_732_PDX-mouse_pt2402_TVB_160801_UKy_KZ-homogenate-polar-NMR_A
+Glu-3-b_1	2.09	2.125	2.115017480350811	0.434731701951988	26.93906932075546	08_pt2402_776_PDX-mouse_pt2402_TVB_160801_UKy_KZ-homogenate-polar-NMR_A
+Glu-3-b_1	2.09	2.125	2.11404083295078	0.1701002395043451	18.41616564484157	09_pt2449_874_PDX-mouse_pt2449_ctl_160801_UKy_KZ-homogenate-polar-NMR_A
+Glu-3-b_1	2.09	2.125	2.105788062093713	0.3558772864972624	21.92354750360107	10_pt2449_458_PDX-mouse_pt2449_ctl_160801_UKy_KZ-homogenate-polar-NMR_A
+Glu-3-b_1	2.09	2.125	2.110333165435384	0.3094613356112327	16.72473694010166	11_pt2449_412_PDX-mouse_pt2449_ctl_160801_UKy_KZ-homogenate-polar-NMR_A
+Glu-3-b_1	2.09	2.125	2.102533148766691	0.5825237465309528	25.06646717294552	12_pt2449_862_PDX-mouse_pt2449_ctl_160801_UKy_KZ-homogenate-polar-NMR_A
+Glu-3-b_1	2.09	2.125	2.105704483059148	0.5033724848823417	24.09864139415141	13_pt2449_864_PDX-mouse_pt2449_ctl_160801_UKy_KZ-homogenate-polar-NMR_A
+Glu-3-b_1	2.09	2.125	2.097434379925316	0.1688853797734195	11.99642641669903	14_pt2449_860_PDX-mouse_pt2449_TVB_160801_UKy_KZ-homogenate-polar-NMR_A
+Glu-3-b_1	2.09	2.125	2.111934733402399	0.7820521875205807	27.72139825108119	15_pt2449_428_PDX-mouse_pt2449_TVB_160801_UKy_KZ-homogenate-polar-NMR_A
+Glu-3-b_1	2.09	2.125	2.094197370167465	0.4171847476257984	19.42887271421739	17_pt2449_459_PDX-mouse_pt2449_TVB_160801_UKy_KZ-homogenate-polar-NMR_A
+Glu-3-b_2	2.09	2.125	2.124142537081497	0.3995950016147089	23.38074106360759	07_pt2402_732_PDX-mouse_pt2402_TVB_160801_UKy_KZ-homogenate-polar-NMR_A
+Glu-3-b_2	2.09	2.125	2.122286648051191	0.2275683712193348	11.3965587216635	17_pt2449_459_PDX-mouse_pt2449_TVB_160801_UKy_KZ-homogenate-polar-NMR_A
+Glu-4_1	2.315	2.37	2.332304232708786	0.7060696611953465	20.85826064586967	01_pt2402_785_PDX-mouse_pt2402_ctl_160801_UKy_KZ-homogenate-polar-NMR_A
+Glu-4_1	2.315	2.37	2.337659468795439	0.5009189638316136	18.89622935050028	02_pt2402_739_PDX-mouse_pt2402_ctl_160801_UKy_KZ-homogenate-polar-NMR_A
+Glu-4_1	2.315	2.37	2.338243161101406	0.6804446428176638	19.40598645771952	03_pt2402_760_PDX-mouse_pt2402_ctl_160801_UKy_KZ-homogenate-polar-NMR_A
+Glu-4_1	2.315	2.37	2.337131167737836	0.734958968271034	18.16668439516194	04_pt2402_733_PDX-mouse_pt2402_ctl_160801_UKy_KZ-homogenate-polar-NMR_A
+Glu-4_1	2.315	2.37	2.336324319061592	1.295007112781139	21.36813193887148	05_pt2402_783_PDX-mouse_pt2402_ctl_160801_UKy_KZ-homogenate-polar-NMR_A
+Glu-4_1	2.315	2.37	2.338274402778617	0.6789188942810911	25.80268665426967	06_pt2402_431_PDX-mouse_pt2402_TVB_160801_UKy_KZ-homogenate-polar-NMR_A
+Glu-4_1	2.315	2.37	2.337453554118334	0.5805124341881547	24.7448389052724	07_pt2402_732_PDX-mouse_pt2402_TVB_160801_UKy_KZ-homogenate-polar-NMR_A
+Glu-4_1	2.315	2.37	2.339324319061592	1.023252254337902	19.56255008013634	08_pt2402_776_PDX-mouse_pt2402_TVB_160801_UKy_KZ-homogenate-polar-NMR_A
+Glu-4_1	2.315	2.37	2.329282764207821	0.8613866944668049	17.32196281568216	09_pt2449_874_PDX-mouse_pt2449_ctl_160801_UKy_KZ-homogenate-polar-NMR_A
+Glu-4_1	2.315	2.37	2.333009690464435	0.5784359226837894	22.84673061982023	10_pt2449_458_PDX-mouse_pt2449_ctl_160801_UKy_KZ-homogenate-polar-NMR_A
+Glu-4_1	2.315	2.37	2.339899205571693	0.3736549316681319	16.29295286083444	11_pt2449_412_PDX-mouse_pt2449_ctl_160801_UKy_KZ-homogenate-polar-NMR_A
+Glu-4_1	2.315	2.37	2.336386401416505	0.5797261443151502	19.05819088287851	12_pt2449_862_PDX-mouse_pt2449_ctl_160801_UKy_KZ-homogenate-polar-NMR_A
+Glu-4_1	2.315	2.37	2.335043740484226	1.250853810770849	19.96443423975811	13_pt2449_864_PDX-mouse_pt2449_ctl_160801_UKy_KZ-homogenate-polar-NMR_A
+Glu-4_1	2.315	2.37	2.335596437483779	0.6531319250099893	26.98282769673978	14_pt2449_860_PDX-mouse_pt2449_TVB_160801_UKy_KZ-homogenate-polar-NMR_A
+Glu-4_1	2.315	2.37	2.336333352110671	1.835528614242265	21.69727815717179	15_pt2449_428_PDX-mouse_pt2449_TVB_160801_UKy_KZ-homogenate-polar-NMR_A
+Glu-4_1	2.315	2.37	2.322081929235964	0.9923156825827426	19.77467512587912	16_pt2449_858_PDX-mouse_pt2449_TVB_160801_UKy_KZ-homogenate-polar-NMR_A
+Glu-4_1	2.315	2.37	2.331422710784618	0.5542539443861694	21.17055229336608	17_pt2449_459_PDX-mouse_pt2449_TVB_160801_UKy_KZ-homogenate-polar-NMR_A
+Gly_1	3.54	3.56	3.555114848557744	0.594096595197972	10.85922458758853	09_pt2449_874_PDX-mouse_pt2449_ctl_160801_UKy_KZ-homogenate-polar-NMR_A
+Glycogen_1	5.34	5.43	5.418054975502375	0.09572912913144715	7.461981971953263	01_pt2402_785_PDX-mouse_pt2402_ctl_160801_UKy_KZ-homogenate-polar-NMR_A
+Glycogen_1	5.34	5.43	5.405342487600564	0.04259171992638015	3.705520042590785	02_pt2402_739_PDX-mouse_pt2402_ctl_160801_UKy_KZ-homogenate-polar-NMR_A
+Glycogen_1	5.34	5.43	5.411656912469502	0.05651067494048826	5.962113685509726	03_pt2402_760_PDX-mouse_pt2402_ctl_160801_UKy_KZ-homogenate-polar-NMR_A
+Glycogen_1	5.34	5.43	5.415422180685566	0.122170487454022	8.183908575671405	04_pt2402_733_PDX-mouse_pt2402_ctl_160801_UKy_KZ-homogenate-polar-NMR_A
+Glycogen_1	5.34	5.43	5.424864434728594	0.02154466790681367	3.494494195316799	05_pt2402_783_PDX-mouse_pt2402_ctl_160801_UKy_KZ-homogenate-polar-NMR_A
+Glycogen_1	5.34	5.43	5.41681191561746	0.01817670944385643	2.550013542821839	06_pt2402_431_PDX-mouse_pt2402_TVB_160801_UKy_KZ-homogenate-polar-NMR_A
+Glycogen_1	5.34	5.43	5.402217658711045	0.07238038073195212	8.791079086090129	07_pt2402_732_PDX-mouse_pt2402_TVB_160801_UKy_KZ-homogenate-polar-NMR_A
+Glycogen_1	5.34	5.43	5.413558548149799	0.01863934828003339	4.053874660757883	08_pt2402_776_PDX-mouse_pt2402_TVB_160801_UKy_KZ-homogenate-polar-NMR_A
+Glycogen_1	5.34	5.43	5.401196949947705	0.08334551425639383	7.73032259820533	09_pt2449_874_PDX-mouse_pt2449_ctl_160801_UKy_KZ-homogenate-polar-NMR_A
+Glycogen_1	5.34	5.43	5.408333122876817	0.0502735330871558	6.245821128599515	10_pt2449_458_PDX-mouse_pt2449_ctl_160801_UKy_KZ-homogenate-polar-NMR_A
+Glycogen_1	5.34	5.43	5.411094467731925	0.079204705601461	5.892295643420421	11_pt2449_412_PDX-mouse_pt2449_ctl_160801_UKy_KZ-homogenate-polar-NMR_A
+Glycogen_1	5.34	5.43	5.412602782088451	0.02475151577874894	4.10092754872331	12_pt2449_862_PDX-mouse_pt2449_ctl_160801_UKy_KZ-homogenate-polar-NMR_A
+Glycogen_1	5.34	5.43	5.407578901859424	0.2091643716356394	14.41671604021116	13_pt2449_864_PDX-mouse_pt2449_ctl_160801_UKy_KZ-homogenate-polar-NMR_A
+Glycogen_1	5.34	5.43	5.414973988934628	0.1606346132236924	23.86398558266167	14_pt2449_860_PDX-mouse_pt2449_TVB_160801_UKy_KZ-homogenate-polar-NMR_A
+Glycogen_1	5.34	5.43	5.399289936066254	0.07584423128133833	9.3141684091326	15_pt2449_428_PDX-mouse_pt2449_TVB_160801_UKy_KZ-homogenate-polar-NMR_A
+Glycogen_1	5.34	5.43	5.408136511726862	0.02184441109921796	2.902647016929127	16_pt2449_858_PDX-mouse_pt2449_TVB_160801_UKy_KZ-homogenate-polar-NMR_A
+Glycogen_2	5.34	5.43	5.420661646503437	0.04990136654578958	5.312556509982711	03_pt2402_760_PDX-mouse_pt2402_ctl_160801_UKy_KZ-homogenate-polar-NMR_A
+Lac-2_1	4.08	4.13	4.092109557598942	1.744187287037492	9.897451373586417	01_pt2402_785_PDX-mouse_pt2402_ctl_160801_UKy_KZ-homogenate-polar-NMR_A
+Lac-2_1	4.08	4.13	4.092508961464296	1.453161181678601	9.42418063448662	02_pt2402_739_PDX-mouse_pt2402_ctl_160801_UKy_KZ-homogenate-polar-NMR_A
+Lac-2_1	4.08	4.13	4.093267205710614	0.287336346088122	14.31360138641864	03_pt2402_760_PDX-mouse_pt2402_ctl_160801_UKy_KZ-homogenate-polar-NMR_A
+Lac-2_1	4.08	4.13	4.100588358877829	2.255996696891214	16.4347602616656	04_pt2402_733_PDX-mouse_pt2402_ctl_160801_UKy_KZ-homogenate-polar-NMR_A
+Lac-2_1	4.08	4.13	4.092478577201572	1.984312922982094	8.891771040220368	05_pt2402_783_PDX-mouse_pt2402_ctl_160801_UKy_KZ-homogenate-polar-NMR_A
+Lac-2_1	4.08	4.13	4.093801507971519	0.2536985035420167	11.0938824241535	06_pt2402_431_PDX-mouse_pt2402_TVB_160801_UKy_KZ-homogenate-polar-NMR_A
+Lac-2_1	4.08	4.13	4.093001204497922	1.352392749092661	10.47019283519698	07_pt2402_732_PDX-mouse_pt2402_TVB_160801_UKy_KZ-homogenate-polar-NMR_A
+Lac-2_1	4.08	4.13	4.099391460920063	2.289021880733547	19.45535864116393	08_pt2402_776_PDX-mouse_pt2402_TVB_160801_UKy_KZ-homogenate-polar-NMR_A
+Lac-2_1	4.08	4.13	4.092751424921291	2.584649422530858	9.341791524371372	09_pt2449_874_PDX-mouse_pt2449_ctl_160801_UKy_KZ-homogenate-polar-NMR_A
+Lac-2_1	4.08	4.13	4.093252065621094	3.290688389326598	8.868091676204777	10_pt2449_458_PDX-mouse_pt2449_ctl_160801_UKy_KZ-homogenate-polar-NMR_A
+Lac-2_1	4.08	4.13	4.098930583033268	1.312977801717745	20.7873511823603	11_pt2449_412_PDX-mouse_pt2449_ctl_160801_UKy_KZ-homogenate-polar-NMR_A
+Lac-2_1	4.08	4.13	4.093819116481026	3.941454308241612	9.324813531425018	12_pt2449_862_PDX-mouse_pt2449_ctl_160801_UKy_KZ-homogenate-polar-NMR_A
+Lac-2_1	4.08	4.13	4.080046811471286	1.726477487694136	6.214688795041148	13_pt2449_864_PDX-mouse_pt2449_ctl_160801_UKy_KZ-homogenate-polar-NMR_A
+Lac-2_1	4.08	4.13	4.092179375412101	4.479957791665944	10.72938644705295	14_pt2449_860_PDX-mouse_pt2449_TVB_160801_UKy_KZ-homogenate-polar-NMR_A
+Lac-2_1	4.08	4.13	4.092711049703776	5.550769498582073	8.897860913576197	15_pt2449_428_PDX-mouse_pt2449_TVB_160801_UKy_KZ-homogenate-polar-NMR_A
+Lac-2_1	4.08	4.13	4.092874667608429	2.603268152204022	9.59254886739561	16_pt2449_858_PDX-mouse_pt2449_TVB_160801_UKy_KZ-homogenate-polar-NMR_A
+Lac-2_1	4.08	4.13	4.092040968332074	2.317658022610262	9.232471748718682	17_pt2449_459_PDX-mouse_pt2449_TVB_160801_UKy_KZ-homogenate-polar-NMR_A
+Lac-2_2	4.08	4.13	4.105215590952387	2.451370797135423	13.97425015618144	01_pt2402_785_PDX-mouse_pt2402_ctl_160801_UKy_KZ-homogenate-polar-NMR_A
+Lac-2_2	4.08	4.13	4.105889036716373	2.006021917315753	12.86248797623495	02_pt2402_739_PDX-mouse_pt2402_ctl_160801_UKy_KZ-homogenate-polar-NMR_A
+Lac-2_2	4.08	4.13	4.10560068996408	0.3352597246402456	8.291715770189533	03_pt2402_760_PDX-mouse_pt2402_ctl_160801_UKy_KZ-homogenate-polar-NMR_A
+Lac-2_2	4.08	4.13	4.105956346412952	2.533456327759132	12.23799141758066	05_pt2402_783_PDX-mouse_pt2402_ctl_160801_UKy_KZ-homogenate-polar-NMR_A
+Lac-2_2	4.08	4.13	4.109651354650594	0.3885553339834546	15.45122625735478	06_pt2402_431_PDX-mouse_pt2402_TVB_160801_UKy_KZ-homogenate-polar-NMR_A
+Lac-2_2	4.08	4.13	4.106083098842885	1.804472767708896	12.52763218960598	07_pt2402_732_PDX-mouse_pt2402_TVB_160801_UKy_KZ-homogenate-polar-NMR_A
+Lac-2_2	4.08	4.13	4.106342677376989	3.084413389162772	12.62171773844516	09_pt2449_874_PDX-mouse_pt2449_ctl_160801_UKy_KZ-homogenate-polar-NMR_A
+Lac-2_2	4.08	4.13	4.106602311778569	4.209069421634445	12.72437166048234	10_pt2449_458_PDX-mouse_pt2449_ctl_160801_UKy_KZ-homogenate-polar-NMR_A
+Lac-2_2	4.08	4.13	4.107294120206742	4.403136504214542	11.29737495577558	12_pt2449_862_PDX-mouse_pt2449_ctl_160801_UKy_KZ-homogenate-polar-NMR_A
+Lac-2_2	4.08	4.13	4.093067050928686	7.651017891000345	9.447464940741307	13_pt2449_864_PDX-mouse_pt2449_ctl_160801_UKy_KZ-homogenate-polar-NMR_A
+Lac-2_2	4.08	4.13	4.105721584492035	5.586653975702539	13.0804766882355	14_pt2449_860_PDX-mouse_pt2449_TVB_160801_UKy_KZ-homogenate-polar-NMR_A
+Lac-2_2	4.08	4.13	4.105887470377656	5.899378736199739	10.21037329611521	15_pt2449_428_PDX-mouse_pt2449_TVB_160801_UKy_KZ-homogenate-polar-NMR_A
+Lac-2_2	4.08	4.13	4.106047711180829	3.557211286555694	13.70815288250808	16_pt2449_858_PDX-mouse_pt2449_TVB_160801_UKy_KZ-homogenate-polar-NMR_A
+Lac-2_2	4.08	4.13	4.105734708093604	2.834969703396973	12.10343584393858	17_pt2449_459_PDX-mouse_pt2449_TVB_160801_UKy_KZ-homogenate-polar-NMR_A
+Lac-2_3	4.08	4.13	4.106178305894177	7.657558903878927	9.561445391101977	13_pt2449_864_PDX-mouse_pt2449_ctl_160801_UKy_KZ-homogenate-polar-NMR_A
+Lac-2_4	4.08	4.13	4.118808476058272	1.722834688395547	6.557233001510395	13_pt2449_864_PDX-mouse_pt2449_ctl_160801_UKy_KZ-homogenate-polar-NMR_A
+Lac-3_1	1.3	1.34	1.310895525219542	24.11737988999912	8.935132605903961	01_pt2402_785_PDX-mouse_pt2402_ctl_160801_UKy_KZ-homogenate-polar-NMR_A
+Lac-3_1	1.3	1.34	1.311888378286964	19.3611844466474	9.116660914336181	02_pt2402_739_PDX-mouse_pt2402_ctl_160801_UKy_KZ-homogenate-polar-NMR_A
+Lac-3_1	1.3	1.34	1.310924475566623	2.123440602167734	7.721259592036993	03_pt2402_760_PDX-mouse_pt2402_ctl_160801_UKy_KZ-homogenate-polar-NMR_A
+Lac-3_1	1.3	1.34	1.313327239525715	19.25245796907502	9.513464590757774	04_pt2402_733_PDX-mouse_pt2402_ctl_160801_UKy_KZ-homogenate-polar-NMR_A
+Lac-3_1	1.3	1.34	1.311360380277985	23.10397030899885	8.853332879549335	05_pt2402_783_PDX-mouse_pt2402_ctl_160801_UKy_KZ-homogenate-polar-NMR_A
+Lac-3_1	1.3	1.34	1.312729598999817	2.521946317514066	7.385667710569057	06_pt2402_431_PDX-mouse_pt2402_TVB_160801_UKy_KZ-homogenate-polar-NMR_A
+Lac-3_1	1.3	1.34	1.31222145022497	17.55791126894218	8.77136065861325	07_pt2402_732_PDX-mouse_pt2402_TVB_160801_UKy_KZ-homogenate-polar-NMR_A
+Lac-3_1	1.3	1.34	1.312503779332246	20.83770596536069	9.660221955613043	08_pt2402_776_PDX-mouse_pt2402_TVB_160801_UKy_KZ-homogenate-polar-NMR_A
+Lac-3_1	1.3	1.34	1.311675034127407	30.30493555675787	9.008407814437714	09_pt2449_874_PDX-mouse_pt2449_ctl_160801_UKy_KZ-homogenate-polar-NMR_A
+Lac-3_1	1.3	1.34	1.31216426181769	41.16621129525117	9.199306836875545	10_pt2449_458_PDX-mouse_pt2449_ctl_160801_UKy_KZ-homogenate-polar-NMR_A
+Lac-3_1	1.3	1.34	1.311186975526086	11.44731441775271	8.751185882597676	11_pt2449_412_PDX-mouse_pt2449_ctl_160801_UKy_KZ-homogenate-polar-NMR_A
+Lac-3_1	1.3	1.34	1.312464222303549	45.73680312374172	9.170512261194789	12_pt2449_862_PDX-mouse_pt2449_ctl_160801_UKy_KZ-homogenate-polar-NMR_A
+Lac-3_1	1.3	1.34	1.311581567923629	84.51264061033127	9.26781753289986	13_pt2449_864_PDX-mouse_pt2449_ctl_160801_UKy_KZ-homogenate-polar-NMR_A
+Lac-3_1	1.3	1.34	1.311499976803537	59.99436401649799	9.968693570456047	14_pt2449_860_PDX-mouse_pt2449_TVB_160801_UKy_KZ-homogenate-polar-NMR_A
+Lac-3_1	1.3	1.34	1.311605479841606	61.85672170707018	9.103383897369099	15_pt2449_428_PDX-mouse_pt2449_TVB_160801_UKy_KZ-homogenate-polar-NMR_A
+Lac-3_1	1.3	1.34	1.311898616150559	35.65025281447441	9.321117609603332	16_pt2449_858_PDX-mouse_pt2449_TVB_160801_UKy_KZ-homogenate-polar-NMR_A
+Lac-3_1	1.3	1.34	1.311099834027802	27.31372575948857	9.046870687932019	17_pt2449_459_PDX-mouse_pt2449_TVB_160801_UKy_KZ-homogenate-polar-NMR_A
+Lac-3_2	1.3	1.34	1.32254751724405	21.77887267221408	8.76941900144043	01_pt2402_785_PDX-mouse_pt2402_ctl_160801_UKy_KZ-homogenate-polar-NMR_A
+Lac-3_2	1.3	1.34	1.32367545971179	17.53081886105037	8.532434122659588	02_pt2402_739_PDX-mouse_pt2402_ctl_160801_UKy_KZ-homogenate-polar-NMR_A
+Lac-3_2	1.3	1.34	1.322972550109882	2.825797610941135	9.991260088549554	03_pt2402_760_PDX-mouse_pt2402_ctl_160801_UKy_KZ-homogenate-polar-NMR_A
+Lac-3_2	1.3	1.34	1.325193202685612	14.63757310299662	7.941481364571747	04_pt2402_733_PDX-mouse_pt2402_ctl_160801_UKy_KZ-homogenate-polar-NMR_A
+Lac-3_2	1.3	1.34	1.323124576575445	22.21083326797589	8.748163660502225	05_pt2402_783_PDX-mouse_pt2402_ctl_160801_UKy_KZ-homogenate-polar-NMR_A
+Lac-3_2	1.3	1.34	1.324629379419672	2.638527119287872	8.384407661209826	06_pt2402_431_PDX-mouse_pt2402_TVB_160801_UKy_KZ-homogenate-polar-NMR_A
+Lac-3_2	1.3	1.34	1.323858770642085	15.67728083942281	8.031289253893675	07_pt2402_732_PDX-mouse_pt2402_TVB_160801_UKy_KZ-homogenate-polar-NMR_A
+Lac-3_2	1.3	1.34	1.324266433359402	15.3362522784888	8.092139820324647	08_pt2402_776_PDX-mouse_pt2402_TVB_160801_UKy_KZ-homogenate-polar-NMR_A
+Lac-3_2	1.3	1.34	1.323477648543305	26.07968562310255	8.422106270650756	09_pt2449_874_PDX-mouse_pt2449_ctl_160801_UKy_KZ-homogenate-polar-NMR_A
+Lac-3_2	1.3	1.34	1.32389046391769	35.3367109149738	8.341250751481192	10_pt2449_458_PDX-mouse_pt2449_ctl_160801_UKy_KZ-homogenate-polar-NMR_A
+Lac-3_2	1.3	1.34	1.322907167078287	10.43108076667753	8.281582211178844	11_pt2449_412_PDX-mouse_pt2449_ctl_160801_UKy_KZ-homogenate-polar-NMR_A
+Lac-3_2	1.3	1.34	1.324256487991722	37.59662400150694	8.093015606322988	12_pt2449_862_PDX-mouse_pt2449_ctl_160801_UKy_KZ-homogenate-polar-NMR_A
+Lac-3_2	1.3	1.34	1.323334666998016	71.23921611916643	8.373177234777497	13_pt2449_864_PDX-mouse_pt2449_ctl_160801_UKy_KZ-homogenate-polar-NMR_A
+Lac-3_2	1.3	1.34	1.323237017862538	50.4414138025823	9.020427665299248	14_pt2449_860_PDX-mouse_pt2449_TVB_160801_UKy_KZ-homogenate-polar-NMR_A
+Lac-3_2	1.3	1.34	1.323378253421721	49.8584350068384	7.959354990559784	15_pt2449_428_PDX-mouse_pt2449_TVB_160801_UKy_KZ-homogenate-polar-NMR_A
+Lac-3_2	1.3	1.34	1.323662895522024	30.1690229101603	8.47548739568196	16_pt2449_858_PDX-mouse_pt2449_TVB_160801_UKy_KZ-homogenate-polar-NMR_A
+Lac-3_2	1.3	1.34	1.322863973227739	23.91963881404464	8.553384861976463	17_pt2449_459_PDX-mouse_pt2449_TVB_160801_UKy_KZ-homogenate-polar-NMR_A
+Met-CH3_1	2.117	2.13	2.127980661649446	0.1611070620634606	12.56157671902823	14_pt2449_860_PDX-mouse_pt2449_TVB_160801_UKy_KZ-homogenate-polar-NMR_A
+P-Cho A_1	3.205	3.22	3.21296816198127	1.382383398473047	11.61567238767515	01_pt2402_785_PDX-mouse_pt2402_ctl_160801_UKy_KZ-homogenate-polar-NMR_A
+P-Cho A_1	3.205	3.22	3.215949268410274	1.024889815380256	17.38584121474838	02_pt2402_739_PDX-mouse_pt2402_ctl_160801_UKy_KZ-homogenate-polar-NMR_A
+P-Cho A_1	3.205	3.22	3.216552450872851	0.735129838573854	12.70076118442826	03_pt2402_760_PDX-mouse_pt2402_ctl_160801_UKy_KZ-homogenate-polar-NMR_A
+P-Cho A_1	3.205	3.22	3.217560443973803	1.970733306826163	21.27196707149484	04_pt2402_733_PDX-mouse_pt2402_ctl_160801_UKy_KZ-homogenate-polar-NMR_A
+P-Cho A_1	3.205	3.22	3.215046949446429	2.467258426326144	14.83921484332919	05_pt2402_783_PDX-mouse_pt2402_ctl_160801_UKy_KZ-homogenate-polar-NMR_A
+P-Cho A_1	3.205	3.22	3.217881284576612	1.286494949521368	18.75863707246308	06_pt2402_431_PDX-mouse_pt2402_TVB_160801_UKy_KZ-homogenate-polar-NMR_A
+P-Cho A_1	3.205	3.22	3.217153361987514	0.9530087437121273	17.70564727093544	07_pt2402_732_PDX-mouse_pt2402_TVB_160801_UKy_KZ-homogenate-polar-NMR_A
+P-Cho A_1	3.205	3.22	3.216355358133816	1.237860202587192	13.98587070386465	08_pt2402_776_PDX-mouse_pt2402_TVB_160801_UKy_KZ-homogenate-polar-NMR_A
+P-Cho A_1	3.205	3.22	3.214662199101644	1.175803328854895	12.14376717807498	10_pt2449_458_PDX-mouse_pt2449_ctl_160801_UKy_KZ-homogenate-polar-NMR_A
+P-Cho A_1	3.205	3.22	3.215315899005178	0.4417377540438602	10.79313107869591	11_pt2449_412_PDX-mouse_pt2449_ctl_160801_UKy_KZ-homogenate-polar-NMR_A
+P-Cho A_1	3.205	3.22	3.215810087418867	2.034935645523785	11.819936449818	12_pt2449_862_PDX-mouse_pt2449_ctl_160801_UKy_KZ-homogenate-polar-NMR_A
+P-Cho A_1	3.205	3.22	3.214724452393156	1.6163736988202	11.78485259888436	13_pt2449_864_PDX-mouse_pt2449_ctl_160801_UKy_KZ-homogenate-polar-NMR_A
+P-Cho A_1	3.205	3.22	3.215463792665663	1.033055068730274	13.60525985010851	14_pt2449_860_PDX-mouse_pt2449_TVB_160801_UKy_KZ-homogenate-polar-NMR_A
+P-Cho A_1	3.205	3.22	3.215042788509928	1.10830492161843	16.92266385927007	15_pt2449_428_PDX-mouse_pt2449_TVB_160801_UKy_KZ-homogenate-polar-NMR_A
+P-Cho A_1	3.205	3.22	3.216478312038778	0.4473916912101667	13.77082182747814	16_pt2449_858_PDX-mouse_pt2449_TVB_160801_UKy_KZ-homogenate-polar-NMR_A
+P-Cho A_1	3.205	3.22	3.214584848563926	0.8530376683335116	13.87043314531716	17_pt2449_459_PDX-mouse_pt2449_TVB_160801_UKy_KZ-homogenate-polar-NMR_A
+Ser-2_1	3.915	3.999	3.960063147317153	0.4492135535856902	13.62611251259439	04_pt2402_733_PDX-mouse_pt2402_ctl_160801_UKy_KZ-homogenate-polar-NMR_A
+Succinate-2,3_1	2.384	2.414	2.393597064458187	0.3728680836306323	8.053952043647579	01_pt2402_785_PDX-mouse_pt2402_ctl_160801_UKy_KZ-homogenate-polar-NMR_A
+Succinate-2,3_1	2.384	2.414	2.395784926110877	0.2169682427209981	6.511586962174246	02_pt2402_739_PDX-mouse_pt2402_ctl_160801_UKy_KZ-homogenate-polar-NMR_A
+Succinate-2,3_1	2.384	2.414	2.393275317451689	0.4848423985407133	10.90696697282998	03_pt2402_760_PDX-mouse_pt2402_ctl_160801_UKy_KZ-homogenate-polar-NMR_A
+Succinate-2,3_1	2.384	2.414	2.396558384474802	0.51030248416644	10.66904252337076	04_pt2402_733_PDX-mouse_pt2402_ctl_160801_UKy_KZ-homogenate-polar-NMR_A
+Succinate-2,3_1	2.384	2.414	2.394344579665091	0.6977387814131639	10.03713923625257	05_pt2402_783_PDX-mouse_pt2402_ctl_160801_UKy_KZ-homogenate-polar-NMR_A
+Succinate-2,3_1	2.384	2.414	2.395133889988247	0.3505798804645711	10.31109665983872	06_pt2402_431_PDX-mouse_pt2402_TVB_160801_UKy_KZ-homogenate-polar-NMR_A
+Succinate-2,3_1	2.384	2.414	2.394845885956994	0.3244571159463259	7.898256462698737	07_pt2402_732_PDX-mouse_pt2402_TVB_160801_UKy_KZ-homogenate-polar-NMR_A
+Succinate-2,3_1	2.384	2.414	2.394432167929568	0.3531673547623932	7.945377623443141	08_pt2402_776_PDX-mouse_pt2402_TVB_160801_UKy_KZ-homogenate-polar-NMR_A
+Succinate-2,3_1	2.384	2.414	2.390130552987606	0.3548965007176291	16.26080921900889	09_pt2449_874_PDX-mouse_pt2449_ctl_160801_UKy_KZ-homogenate-polar-NMR_A
+Succinate-2,3_1	2.384	2.414	2.393822921724534	0.29172013124427	9.856166348081063	10_pt2449_458_PDX-mouse_pt2449_ctl_160801_UKy_KZ-homogenate-polar-NMR_A
+Succinate-2,3_1	2.384	2.414	2.39506661784004	0.1875637829452056	8.021996345784586	11_pt2449_412_PDX-mouse_pt2449_ctl_160801_UKy_KZ-homogenate-polar-NMR_A
+Succinate-2,3_1	2.384	2.414	2.39576787452081	0.3874031300732128	8.234264156134259	12_pt2449_862_PDX-mouse_pt2449_ctl_160801_UKy_KZ-homogenate-polar-NMR_A
+Succinate-2,3_1	2.384	2.414	2.393356502048902	0.5752906641278448	8.044714897261208	13_pt2449_864_PDX-mouse_pt2449_ctl_160801_UKy_KZ-homogenate-polar-NMR_A
+Succinate-2,3_1	2.384	2.414	2.392875660000674	0.3259827515705911	8.658883269012536	14_pt2449_860_PDX-mouse_pt2449_TVB_160801_UKy_KZ-homogenate-polar-NMR_A
+Succinate-2,3_1	2.384	2.414	2.39348283079691	0.6945547229782794	8.41135337617769	15_pt2449_428_PDX-mouse_pt2449_TVB_160801_UKy_KZ-homogenate-polar-NMR_A
+Succinate-2,3_1	2.384	2.414	2.391199579492634	0.251731797699173	9.270145725285843	16_pt2449_858_PDX-mouse_pt2449_TVB_160801_UKy_KZ-homogenate-polar-NMR_A
+Succinate-2,3_1	2.384	2.414	2.394114942411266	0.2595236655339161	11.13347443496807	17_pt2449_459_PDX-mouse_pt2449_TVB_160801_UKy_KZ-homogenate-polar-NMR_A
+Tau-1 (SCH2)_1	3.23	3.275	3.260126121724428	0.4643084554767659	8.453084380573788	12_pt2449_862_PDX-mouse_pt2449_ctl_160801_UKy_KZ-homogenate-polar-NMR_A
+Tris_1	3.695	3.74	3.73524668873024	1.297286355364003	41.41223486955802	05_pt2402_783_PDX-mouse_pt2402_ctl_160801_UKy_KZ-homogenate-polar-NMR_A
+Tris_1	3.695	3.74	3.733984178725635	0.410353641804254	24.61060210903926	06_pt2402_431_PDX-mouse_pt2402_TVB_160801_UKy_KZ-homogenate-polar-NMR_A
+Tris_1	3.695	3.74	3.706474137567344	1.203164778950492	11.62184046474589	09_pt2449_874_PDX-mouse_pt2449_ctl_160801_UKy_KZ-homogenate-polar-NMR_A
+Tris_1	3.695	3.74	3.705985803995511	0.8663255337886331	9.81101353875002	10_pt2449_458_PDX-mouse_pt2449_ctl_160801_UKy_KZ-homogenate-polar-NMR_A
+Tris_1	3.695	3.74	3.704966897900102	0.8771801397405408	10.18065397542474	14_pt2449_860_PDX-mouse_pt2449_TVB_160801_UKy_KZ-homogenate-polar-NMR_A
+Tris_1	3.695	3.74	3.706179275540197	0.8871462011968283	30.13907377508843	16_pt2449_858_PDX-mouse_pt2449_TVB_160801_UKy_KZ-homogenate-polar-NMR_A
+aGlc_1	5.205	5.235	5.220347251796229	0.1108519481176522	10.59902679857164	01_pt2402_785_PDX-mouse_pt2402_ctl_160801_UKy_KZ-homogenate-polar-NMR_A
+aGlc_1	5.205	5.235	5.20917968016614	0.09392952250349626	15.18979171572702	02_pt2402_739_PDX-mouse_pt2402_ctl_160801_UKy_KZ-homogenate-polar-NMR_A
+aGlc_1	5.205	5.235	5.218224383834669	0.1096136378104037	7.958630015208723	03_pt2402_760_PDX-mouse_pt2402_ctl_160801_UKy_KZ-homogenate-polar-NMR_A
+aGlc_1	5.205	5.235	5.224475387358932	0.1336128801962514	13.71280789698901	04_pt2402_733_PDX-mouse_pt2402_ctl_160801_UKy_KZ-homogenate-polar-NMR_A
+aGlc_1	5.205	5.235	5.216700365155948	0.08121627758243159	5.250687634986294	05_pt2402_783_PDX-mouse_pt2402_ctl_160801_UKy_KZ-homogenate-polar-NMR_A
+aGlc_1	5.205	5.235	5.23393535481783	0.05242095623482323	4.64588731416254	06_pt2402_431_PDX-mouse_pt2402_TVB_160801_UKy_KZ-homogenate-polar-NMR_A
+aGlc_1	5.205	5.235	5.213032784925896	0.02787326469564372	9.22278516239723	07_pt2402_732_PDX-mouse_pt2402_TVB_160801_UKy_KZ-homogenate-polar-NMR_A
+aGlc_1	5.205	5.235	5.216666780862476	0.1228570760716379	10.78752733197415	08_pt2402_776_PDX-mouse_pt2402_TVB_160801_UKy_KZ-homogenate-polar-NMR_A
+aGlc_1	5.205	5.235	5.224738463071257	0.1107425469026902	12.29103457175724	10_pt2449_458_PDX-mouse_pt2449_ctl_160801_UKy_KZ-homogenate-polar-NMR_A
+aGlc_1	5.205	5.235	5.233199128035775	0.08673939388906673	6.011872655625336	11_pt2449_412_PDX-mouse_pt2449_ctl_160801_UKy_KZ-homogenate-polar-NMR_A
+aGlc_1	5.205	5.235	5.22833409182181	0.0412870722567122	4.361562197983721	12_pt2449_862_PDX-mouse_pt2449_ctl_160801_UKy_KZ-homogenate-polar-NMR_A
+aGlc_1	5.205	5.235	5.218172400842148	0.344288385054577	10.39232473037518	13_pt2449_864_PDX-mouse_pt2449_ctl_160801_UKy_KZ-homogenate-polar-NMR_A
+aGlc_1	5.205	5.235	5.210316708631623	0.1288954721565776	9.74458506320918	14_pt2449_860_PDX-mouse_pt2449_TVB_160801_UKy_KZ-homogenate-polar-NMR_A
+aGlc_1	5.205	5.235	5.222027133374048	0.07340421737806885	8.02152845659739	15_pt2449_428_PDX-mouse_pt2449_TVB_160801_UKy_KZ-homogenate-polar-NMR_A
+aGlc_1	5.205	5.235	5.219740313480703	0.1059596131390449	4.686219432349906	16_pt2449_858_PDX-mouse_pt2449_TVB_160801_UKy_KZ-homogenate-polar-NMR_A
+bGlc_1	4.625	4.655	4.632083051921549	0.0832239108983406	10.79736866992997	01_pt2402_785_PDX-mouse_pt2402_ctl_160801_UKy_KZ-homogenate-polar-NMR_A
+bGlc_1	4.625	4.655	4.63821828538631	0.1881147151257349	16.27882035532347	02_pt2402_739_PDX-mouse_pt2402_ctl_160801_UKy_KZ-homogenate-polar-NMR_A
+bGlc_1	4.625	4.655	4.637471932699521	0.09402518813766385	10.16166912182202	03_pt2402_760_PDX-mouse_pt2402_ctl_160801_UKy_KZ-homogenate-polar-NMR_A
+bGlc_1	4.625	4.655	4.626621902991126	0.2629865684154904	25.01808029875114	04_pt2402_733_PDX-mouse_pt2402_ctl_160801_UKy_KZ-homogenate-polar-NMR_A
+bGlc_1	4.625	4.655	4.637844486986952	0.2308372506298429	15.94422100207302	05_pt2402_783_PDX-mouse_pt2402_ctl_160801_UKy_KZ-homogenate-polar-NMR_A
+bGlc_1	4.625	4.655	4.646091179277851	0.02933001249414251	7.646051644503068	07_pt2402_732_PDX-mouse_pt2402_TVB_160801_UKy_KZ-homogenate-polar-NMR_A
+bGlc_1	4.625	4.655	4.627529095553133	0.04333050563642014	6.806819369362048	08_pt2402_776_PDX-mouse_pt2402_TVB_160801_UKy_KZ-homogenate-polar-NMR_A
+bGlc_1	4.625	4.655	4.638054565214066	0.01650280041414983	2.349057914101581	09_pt2449_874_PDX-mouse_pt2449_ctl_160801_UKy_KZ-homogenate-polar-NMR_A
+bGlc_1	4.625	4.655	4.632480732349858	0.09970677619247814	12.48890724149187	10_pt2449_458_PDX-mouse_pt2449_ctl_160801_UKy_KZ-homogenate-polar-NMR_A
+bGlc_1	4.625	4.655	4.641429679983101	0.08082759566868246	5.307181191417119	11_pt2449_412_PDX-mouse_pt2449_ctl_160801_UKy_KZ-homogenate-polar-NMR_A
+bGlc_1	4.625	4.655	4.632435053032189	0.1033829469839511	10.18737980813204	12_pt2449_862_PDX-mouse_pt2449_ctl_160801_UKy_KZ-homogenate-polar-NMR_A
+bGlc_1	4.625	4.655	4.640476363542844	0.3035165889280186	12.71460720237315	13_pt2449_864_PDX-mouse_pt2449_ctl_160801_UKy_KZ-homogenate-polar-NMR_A
+bGlc_1	4.625	4.655	4.625369065872317	0.1862314977190468	11.96244064238871	14_pt2449_860_PDX-mouse_pt2449_TVB_160801_UKy_KZ-homogenate-polar-NMR_A
+bGlc_1	4.625	4.655	4.631571815191886	0.229624612749104	22.64014067890686	15_pt2449_428_PDX-mouse_pt2449_TVB_160801_UKy_KZ-homogenate-polar-NMR_A
+bGlc_1	4.625	4.655	4.629198014371157	0.07861695010634336	7.587715184910747	16_pt2449_858_PDX-mouse_pt2449_TVB_160801_UKy_KZ-homogenate-polar-NMR_A
+bGlc_1	4.625	4.655	4.630506601082033	0.03650878186108337	3.81827545513242	17_pt2449_459_PDX-mouse_pt2449_TVB_160801_UKy_KZ-homogenate-polar-NMR_A
+bGlc_2	4.625	4.655	4.639841449498523	0.03896247153470179	4.000484383364572	08_pt2402_776_PDX-mouse_pt2402_TVB_160801_UKy_KZ-homogenate-polar-NMR_A
+bGlc_2	4.625	4.655	4.654432933922706	0.03026194215624583	4.642874879089052	09_pt2449_874_PDX-mouse_pt2449_ctl_160801_UKy_KZ-homogenate-polar-NMR_A
+bGlc_2	4.625	4.655	4.650671921337967	0.1460303094126604	10.78221073464504	16_pt2449_858_PDX-mouse_pt2449_TVB_160801_UKy_KZ-homogenate-polar-NMR_A
+bOH-butyrate_1	1.19	1.21	1.19247801546875	0.5681760291124112	14.88505701000276	03_pt2402_760_PDX-mouse_pt2402_ctl_160801_UKy_KZ-homogenate-polar-NMR_A
+bOH-butyrate_1	1.19	1.21	1.196477443853938	0.4972145617093945	13.72895470159159	04_pt2402_733_PDX-mouse_pt2402_ctl_160801_UKy_KZ-homogenate-polar-NMR_A
+bOH-butyrate_1	1.19	1.21	1.190767621466241	0.7831855763183901	14.8722195211391	06_pt2402_431_PDX-mouse_pt2402_TVB_160801_UKy_KZ-homogenate-polar-NMR_A
+bOH-butyrate_1	1.19	1.21	1.205475869407095	0.7736621615884176	33.3910704535021	08_pt2402_776_PDX-mouse_pt2402_TVB_160801_UKy_KZ-homogenate-polar-NMR_A
+bOH-butyrate_1	1.19	1.21	1.196004534567446	0.9902234928998425	25.91804757801048	09_pt2449_874_PDX-mouse_pt2449_ctl_160801_UKy_KZ-homogenate-polar-NMR_A
+bOH-butyrate_1	1.19	1.21	1.197670647114069	0.8325068734979969	24.2845449270658	10_pt2449_458_PDX-mouse_pt2449_ctl_160801_UKy_KZ-homogenate-polar-NMR_A
+bOH-butyrate_1	1.19	1.21	1.193230378502299	0.4519988216044293	11.95212570118676	11_pt2449_412_PDX-mouse_pt2449_ctl_160801_UKy_KZ-homogenate-polar-NMR_A
+bOH-butyrate_1	1.19	1.21	1.19597773586165	0.5828779815994267	14.59127285709356	12_pt2449_862_PDX-mouse_pt2449_ctl_160801_UKy_KZ-homogenate-polar-NMR_A
+bOH-butyrate_1	1.19	1.21	1.199102553624115	1.258340706175685	22.9936245093012	13_pt2449_864_PDX-mouse_pt2449_ctl_160801_UKy_KZ-homogenate-polar-NMR_A
+bOH-butyrate_1	1.19	1.21	1.203002983797322	0.4502205458963358	11.7611417906169	14_pt2449_860_PDX-mouse_pt2449_TVB_160801_UKy_KZ-homogenate-polar-NMR_A
+bOH-butyrate_1	1.19	1.21	1.198994218058571	1.183272705579978	23.98020404318106	15_pt2449_428_PDX-mouse_pt2449_TVB_160801_UKy_KZ-homogenate-polar-NMR_A
+bOH-butyrate_1	1.19	1.21	1.206191608535725	0.8571328816494947	30.6929665050415	16_pt2449_858_PDX-mouse_pt2449_TVB_160801_UKy_KZ-homogenate-polar-NMR_A
+bOH-butyrate_1	1.19	1.21	1.20206461701642	0.8714726354870317	32.26558737668504	17_pt2449_459_PDX-mouse_pt2449_TVB_160801_UKy_KZ-homogenate-polar-NMR_A
+m-Ins-1,3_1	3.505	3.5395	3.529825770284341	0.4663078041242074	8.170339642751182	10_pt2449_458_PDX-mouse_pt2449_ctl_160801_UKy_KZ-homogenate-polar-NMR_A
+m-Ins-1,3_1	3.505	3.5395	3.532421819408513	0.6015787315750233	8.193541885040988	12_pt2449_862_PDX-mouse_pt2449_ctl_160801_UKy_KZ-homogenate-polar-NMR_A
+m-Ins-1,3_1	3.505	3.5395	3.529829553525773	0.5420597728431078	8.0943593337827	13_pt2449_864_PDX-mouse_pt2449_ctl_160801_UKy_KZ-homogenate-polar-NMR_A
+m-Ins-1,3_1	3.505	3.5395	3.53493371180971	0.5638885842768078	8.908581121517344	15_pt2449_428_PDX-mouse_pt2449_TVB_160801_UKy_KZ-homogenate-polar-NMR_A
+m-Ins-1,3_1	3.505	3.5395	3.536094432877546	0.5859636737906277	8.138812394944951	16_pt2449_858_PDX-mouse_pt2449_TVB_160801_UKy_KZ-homogenate-polar-NMR_A
+EXTENDED_METABOLITE_END
+#END

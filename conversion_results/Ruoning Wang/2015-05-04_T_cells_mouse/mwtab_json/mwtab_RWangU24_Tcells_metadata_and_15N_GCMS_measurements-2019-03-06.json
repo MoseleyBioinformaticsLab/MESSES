@@ -1,0 +1,841 @@
+{
+    "METABOLOMICS WORKBENCH": {
+        "HEADER": "#METABOLOMICS WORKBENCH STUDY_ID:ST000000 ANALYSIS_ID:AN000000",
+        "STUDY_ID": "ST000000",
+        "ANALYSIS_ID": "AN000000",
+        "VERSION": "1",
+        "CREATED_ON": "2019-03-06"
+    },
+    "PROJECT": {
+        "PROJECT_TITLE": "mouse T cell metabolic flux",
+        "PROJECT_SUMMARY": "Mouse T-cell metabolism",
+        "INSTITUTE": "The Research Institute at Nationwide Children's Hospital",
+        "DEPARTMENT": "Center for Childhood Cancer",
+        "LAST_NAME": "Wang",
+        "FIRST_NAME": "Ruoning",
+        "ADDRESS": "700 Children's Drive, Rm. WA5016, Columbus, OH 43205-2696",
+        "EMAIL": "ruoning.wang@nationwidechildrens.org",
+        "PHONE": "000-000-0000"
+    },
+    "STUDY": {
+        "STUDY_TITLE": "Systematically profiling metabolic programs of active T lymphocytes and Treg",
+        "STUDY_TYPE": "isotope tracer time point",
+        "STUDY_SUMMARY": "13C-U-glucose, 13C-glutamine, 13C-U5-inosine, and U-13C-lactate tracer used to track the metabolic changes of active T lymphocytes and Treg",
+        "INSTITUTE": "The Research Institute at Nationwide Children's Hospital",
+        "DEPARTMENT": "Center for Childhood Cancer",
+        "LAST_NAME": "Wang",
+        "FIRST_NAME": "Ruoning",
+        "ADDRESS": "700 Children's Drive, Rm. WA5016, Columbus, OH 43205-2696",
+        "EMAIL": "ruoning.wang@nationwidechildrens.org",
+        "PHONE": "000-000-0000",
+        "STUDY_COMMENTS": ""
+    },
+    "SUBJECT": {
+        "SUBJECT_TYPE": "Animal",
+        "SUBJECT_SPECIES": "Mus musculus",
+        "TAXONOMY_ID": "10090"
+    },
+    "SUBJECT_SAMPLE_FACTORS": {
+        "SUBJECT_SAMPLE_FACTORS": [
+            {
+                "subject_type": "-",
+                "local_sample_id": "19_mouse_13CglnTreg_rep1-cells-polar_GCMS_A",
+                "factors": "protocol.id:13CglnTreg",
+                "additional_sample_data": "lineage_1=19_mouse_13CglnTreg_rep1; cell_type=T_regular; protocol.id=13CglnTreg; replicate=1; replicate%type=biological; species=Mus musculus; species_type=Animal; taxonomy_id=10090; lineage_2=19_mouse_13CglnTreg_rep1-cells; protocol.id=cell_quench_collection; lineage_3=19_mouse_13CglnTreg_rep1-cells-polar_GCMS_A; protocol.id=['polar_extraction', 'GCMS_file_storage19']; replicate=1; replicate%type=analytical; type=polar; weight=0.0958; weight%units=g; lineage_4=19_mouse_13CglnTreg_rep1-cells-protein; dry_weight=0.0004300000000001525; dry_weight%units=g; protein_weight=0.11578946152553758; protein_weight%units=mg; protocol.id=protein_extraction"
+            },
+            {
+                "subject_type": "-",
+                "local_sample_id": "20_mouse_13CglnTreg_rep2-cells-polar_GCMS_A",
+                "factors": "protocol.id:13CglnTreg",
+                "additional_sample_data": "lineage_1=20_mouse_13CglnTreg_rep2; cell_type=T_regular; protocol.id=13CglnTreg; replicate=2; replicate%type=biological; species=Mus musculus; species_type=Animal; taxonomy_id=10090; lineage_2=20_mouse_13CglnTreg_rep2-cells; protocol.id=cell_quench_collection; lineage_3=20_mouse_13CglnTreg_rep2-cells-polar_GCMS_A; protocol.id=['polar_extraction', 'GCMS_file_storage20']; replicate=1; replicate%type=analytical; type=polar; weight=0.0973; weight%units=g; lineage_4=20_mouse_13CglnTreg_rep2-cells-protein; dry_weight=0.0005100000000000104; dry_weight%units=g; protein_weight=0.1013659274193548; protein_weight%units=mg; protocol.id=protein_extraction"
+            },
+            {
+                "subject_type": "-",
+                "local_sample_id": "21_mouse_13CglnTreg_rep3-cells-polar_GCMS_A",
+                "factors": "protocol.id:13CglnTreg",
+                "additional_sample_data": "lineage_1=21_mouse_13CglnTreg_rep3; cell_type=T_regular; protocol.id=13CglnTreg; replicate=3; replicate%type=biological; species=Mus musculus; species_type=Animal; taxonomy_id=10090; lineage_2=21_mouse_13CglnTreg_rep3-cells; protocol.id=cell_quench_collection; lineage_3=21_mouse_13CglnTreg_rep3-cells-polar_GCMS_A; protocol.id=['polar_extraction', 'GCMS_file_storage21']; replicate=1; replicate%type=analytical; type=polar; weight=0.0957; weight%units=g; lineage_4=21_mouse_13CglnTreg_rep3-cells-protein; dry_weight=0.00048000000000003595; dry_weight%units=g; protein_weight=0.12765120967741944; protein_weight%units=mg; protocol.id=protein_extraction"
+            },
+            {
+                "subject_type": "-",
+                "local_sample_id": "4_mouse_13CglnActive_rep1-cells-polar_GCMS_A",
+                "factors": "protocol.id:13CglnActive",
+                "additional_sample_data": "lineage_1=4_mouse_13CglnActive_rep1; cell_type=T_active; protocol.id=13CglnActive; replicate=1; replicate%type=biological; species=Mus musculus; species_type=Animal; taxonomy_id=10090; lineage_2=4_mouse_13CglnActive_rep1-cells; protocol.id=cell_quench_collection; lineage_3=4_mouse_13CglnActive_rep1-cells-polar_GCMS_A; protocol.id=['polar_extraction', 'GCMS_file_storage4']; replicate=1; replicate%type=analytical; type=polar; weight=0.0987; weight%units=g; lineage_4=4_mouse_13CglnActive_rep1-cells-protein; dry_weight=0.0012599999999998168; dry_weight%units=g; protein_weight=0.5390229034601565; protein_weight%units=mg; protocol.id=protein_extraction"
+            },
+            {
+                "subject_type": "-",
+                "local_sample_id": "5_mouse_13CglnActive_rep2-cells-polar_GCMS_A",
+                "factors": "protocol.id:13CglnActive",
+                "additional_sample_data": "lineage_1=5_mouse_13CglnActive_rep2; cell_type=T_active; protocol.id=13CglnActive; replicate=2; replicate%type=biological; species=Mus musculus; species_type=Animal; taxonomy_id=10090; lineage_2=5_mouse_13CglnActive_rep2-cells; protocol.id=cell_quench_collection; lineage_3=5_mouse_13CglnActive_rep2-cells-polar_GCMS_A; protocol.id=['polar_extraction', 'GCMS_file_storage5']; replicate=1; replicate%type=analytical; type=polar; weight=0.0972; weight%units=g; lineage_4=5_mouse_13CglnActive_rep2-cells-protein; dry_weight=0.0009400000000001629; dry_weight%units=g; protein_weight=0.3936376877978587; protein_weight%units=mg; protocol.id=protein_extraction"
+            },
+            {
+                "subject_type": "-",
+                "local_sample_id": "6_mouse_13CglnActive_rep3-cells-polar_GCMS_A",
+                "factors": "protocol.id:13CglnActive",
+                "additional_sample_data": "lineage_1=6_mouse_13CglnActive_rep3; cell_type=T_active; protocol.id=13CglnActive; replicate=3; replicate%type=biological; species=Mus musculus; species_type=Animal; taxonomy_id=10090; lineage_2=6_mouse_13CglnActive_rep3-cells; protocol.id=cell_quench_collection; lineage_3=6_mouse_13CglnActive_rep3-cells-polar_GCMS_A; protocol.id=['polar_extraction', 'GCMS_file_storage6']; replicate=1; replicate%type=analytical; type=polar; weight=0.0969; weight%units=g; lineage_4=6_mouse_13CglnActive_rep3-cells-protein; dry_weight=0.0010900000000000354; dry_weight%units=g; protein_weight=0.5253651233330991; protein_weight%units=mg; protocol.id=protein_extraction"
+            }
+        ]
+    },
+    "COLLECTION": {
+        "COLLECTION_SUMMARY": "Collection and quench of cells in tissue culture",
+        "COLLECTION_PROTOCOL_ID": "cell_quench_collection",
+        "COLLECTION_PROTOCOL_FILENAME": "3A_Cells_Quench_Cell_Fan_20170412.pdf",
+        "SAMPLE_TYPE": "cultured cells"
+    },
+    "TREATMENT": {
+        "TREATMENT_SUMMARY": "Active T_cells grown in labeled glucose.\nRegular T_cells grown in labeled glucose.\nActive T_cells grown in labeled glutamine.\nRegular T_cells grown in labeled glutamine.\nActive T_cells grown in labeled inosine.\nActive T_cells grown in labeled lactate.\nRegular T_cells grown in labeled lactate.",
+        "TREATMENT_PROTOCOL_ID": "13CglcActive\n13CglcTreg\n13CglnActive\n13CglnTreg\n13CinoActive\n13ClacActive\n13ClacTreg"
+    },
+    "SAMPLEPREP": {
+        "SAMPLEPREP_SUMMARY": "Lipid extraction from cells.\nPolar extraction from cells.\nProtein extraction and quantification.",
+        "SAMPLEPREP_PROTOCOL_ID": "lipid_extraction\npolar_extraction\nprotein_extraction",
+        "SAMPLEPREP_PROTOCOL_FILENAME": "4B_Extract_Polar_Lipid_Prot_Fan_070417.pdf\n4B_Extract_Polar_Lipid_Prot_Fan_070417.pdf\n4D_17Jun4_Fan_Prot_Quant.pdf,4B_Extract_Polar_Lipid_Prot_Fan_070417.pdf"
+    },
+    "ANALYSIS": {
+        "ANALYSIS_TYPE": "MS"
+    },
+    "CHROMATOGRAPHY": {
+        "CHROMATOGRAPHY_SUMMARY": "Targeted GC",
+        "CHROMATOGRAPHY_TYPE": "Targeted GC",
+        "INSTRUMENT_NAME": "GC-EI-MS, Thermo ITQ",
+        "COLUMN_NAME": "SGE 0.15 mm i.d. x 50 m fused silica open-tubular column, coated with 0.25 \u03bcm BPX-5 (5% phenylmethyl- phenylsiloxane)"
+    },
+    "MS": {
+        "INSTRUMENT_NAME": "GC-EI-MS, Thermo ITQ",
+        "INSTRUMENT_TYPE": "GC-ITQ",
+        "MS_TYPE": "EI",
+        "ION_MODE": "POSITIVE",
+        "MS_COMMENTS": "GCMS Analytical Experiment with detection of compounds by comparison to standards.  Derivitization is done with MTBSTFA (N-methyl-N-[tert-butyldimethylsilyl]trifluoroacetamide)."
+    },
+    "MS_METABOLITE_DATA": {
+        "MS_METABOLITE_DATA:UNITS": "normalized peak area",
+        "MS_METABOLITE_DATA_START": {
+            "Samples": [
+                "19_mouse_13CglnTreg_rep1-cells-polar_GCMS_A",
+                "20_mouse_13CglnTreg_rep2-cells-polar_GCMS_A",
+                "21_mouse_13CglnTreg_rep3-cells-polar_GCMS_A",
+                "4_mouse_13CglnActive_rep1-cells-polar_GCMS_A",
+                "5_mouse_13CglnActive_rep2-cells-polar_GCMS_A",
+                "6_mouse_13CglnActive_rep3-cells-polar_GCMS_A"
+            ],
+            "Factors": [
+                "protocol.id:13CglnTreg",
+                "protocol.id:13CglnTreg",
+                "protocol.id:13CglnTreg",
+                "protocol.id:13CglnActive",
+                "protocol.id:13CglnActive",
+                "protocol.id:13CglnActive"
+            ],
+            "DATA": [
+                {
+                    "metabolite_name": "ASn-15N1",
+                    "19_mouse_13CglnTreg_rep1-cells-polar_GCMS_A": "0",
+                    "20_mouse_13CglnTreg_rep2-cells-polar_GCMS_A": "0",
+                    "21_mouse_13CglnTreg_rep3-cells-polar_GCMS_A": "0",
+                    "4_mouse_13CglnActive_rep1-cells-polar_GCMS_A": "0.22059753996185794",
+                    "5_mouse_13CglnActive_rep2-cells-polar_GCMS_A": "0",
+                    "6_mouse_13CglnActive_rep3-cells-polar_GCMS_A": "0"
+                },
+                {
+                    "metabolite_name": "Ala-15N1",
+                    "19_mouse_13CglnTreg_rep1-cells-polar_GCMS_A": "0",
+                    "20_mouse_13CglnTreg_rep2-cells-polar_GCMS_A": "0",
+                    "21_mouse_13CglnTreg_rep3-cells-polar_GCMS_A": "0",
+                    "4_mouse_13CglnActive_rep1-cells-polar_GCMS_A": "0",
+                    "5_mouse_13CglnActive_rep2-cells-polar_GCMS_A": "0",
+                    "6_mouse_13CglnActive_rep3-cells-polar_GCMS_A": "0.013034714516865477"
+                },
+                {
+                    "metabolite_name": "Asn-15N2",
+                    "19_mouse_13CglnTreg_rep1-cells-polar_GCMS_A": "0",
+                    "20_mouse_13CglnTreg_rep2-cells-polar_GCMS_A": "0",
+                    "21_mouse_13CglnTreg_rep3-cells-polar_GCMS_A": "0",
+                    "4_mouse_13CglnActive_rep1-cells-polar_GCMS_A": "0",
+                    "5_mouse_13CglnActive_rep2-cells-polar_GCMS_A": "0",
+                    "6_mouse_13CglnActive_rep3-cells-polar_GCMS_A": "0"
+                },
+                {
+                    "metabolite_name": "Asp-15N1",
+                    "19_mouse_13CglnTreg_rep1-cells-polar_GCMS_A": "0",
+                    "20_mouse_13CglnTreg_rep2-cells-polar_GCMS_A": "0",
+                    "21_mouse_13CglnTreg_rep3-cells-polar_GCMS_A": "0",
+                    "4_mouse_13CglnActive_rep1-cells-polar_GCMS_A": "0.7197905672124221",
+                    "5_mouse_13CglnActive_rep2-cells-polar_GCMS_A": "4.101932870498321",
+                    "6_mouse_13CglnActive_rep3-cells-polar_GCMS_A": "0"
+                },
+                {
+                    "metabolite_name": "GAB-15N1",
+                    "19_mouse_13CglnTreg_rep1-cells-polar_GCMS_A": "0",
+                    "20_mouse_13CglnTreg_rep2-cells-polar_GCMS_A": "0",
+                    "21_mouse_13CglnTreg_rep3-cells-polar_GCMS_A": "0",
+                    "4_mouse_13CglnActive_rep1-cells-polar_GCMS_A": "0",
+                    "5_mouse_13CglnActive_rep2-cells-polar_GCMS_A": "0",
+                    "6_mouse_13CglnActive_rep3-cells-polar_GCMS_A": "0"
+                },
+                {
+                    "metabolite_name": "Gln-15N1",
+                    "19_mouse_13CglnTreg_rep1-cells-polar_GCMS_A": "0",
+                    "20_mouse_13CglnTreg_rep2-cells-polar_GCMS_A": "0",
+                    "21_mouse_13CglnTreg_rep3-cells-polar_GCMS_A": "0",
+                    "4_mouse_13CglnActive_rep1-cells-polar_GCMS_A": "0.04438417595847999",
+                    "5_mouse_13CglnActive_rep2-cells-polar_GCMS_A": "0.004800542331832754",
+                    "6_mouse_13CglnActive_rep3-cells-polar_GCMS_A": "0"
+                },
+                {
+                    "metabolite_name": "Gln-15N2",
+                    "19_mouse_13CglnTreg_rep1-cells-polar_GCMS_A": "0",
+                    "20_mouse_13CglnTreg_rep2-cells-polar_GCMS_A": "0",
+                    "21_mouse_13CglnTreg_rep3-cells-polar_GCMS_A": "0",
+                    "4_mouse_13CglnActive_rep1-cells-polar_GCMS_A": "0",
+                    "5_mouse_13CglnActive_rep2-cells-polar_GCMS_A": "0",
+                    "6_mouse_13CglnActive_rep3-cells-polar_GCMS_A": "0"
+                },
+                {
+                    "metabolite_name": "Glu-15N1",
+                    "19_mouse_13CglnTreg_rep1-cells-polar_GCMS_A": "0.6973294290551815",
+                    "20_mouse_13CglnTreg_rep2-cells-polar_GCMS_A": "0.005585043305734631",
+                    "21_mouse_13CglnTreg_rep3-cells-polar_GCMS_A": "0",
+                    "4_mouse_13CglnActive_rep1-cells-polar_GCMS_A": "3.6916926956925598",
+                    "5_mouse_13CglnActive_rep2-cells-polar_GCMS_A": "3.4281683343780904",
+                    "6_mouse_13CglnActive_rep3-cells-polar_GCMS_A": "0.05471157782004994"
+                },
+                {
+                    "metabolite_name": "N-Ace-Asp-15N1",
+                    "19_mouse_13CglnTreg_rep1-cells-polar_GCMS_A": "0",
+                    "20_mouse_13CglnTreg_rep2-cells-polar_GCMS_A": "0",
+                    "21_mouse_13CglnTreg_rep3-cells-polar_GCMS_A": "0",
+                    "4_mouse_13CglnActive_rep1-cells-polar_GCMS_A": "0",
+                    "5_mouse_13CglnActive_rep2-cells-polar_GCMS_A": "0",
+                    "6_mouse_13CglnActive_rep3-cells-polar_GCMS_A": "0"
+                },
+                {
+                    "metabolite_name": "Pro-15N1",
+                    "19_mouse_13CglnTreg_rep1-cells-polar_GCMS_A": "0",
+                    "20_mouse_13CglnTreg_rep2-cells-polar_GCMS_A": "0",
+                    "21_mouse_13CglnTreg_rep3-cells-polar_GCMS_A": "0",
+                    "4_mouse_13CglnActive_rep1-cells-polar_GCMS_A": "0.11156650321674373",
+                    "5_mouse_13CglnActive_rep2-cells-polar_GCMS_A": "0.08463877653233622",
+                    "6_mouse_13CglnActive_rep3-cells-polar_GCMS_A": "0"
+                },
+                {
+                    "metabolite_name": "Ser-15N1",
+                    "19_mouse_13CglnTreg_rep1-cells-polar_GCMS_A": "0",
+                    "20_mouse_13CglnTreg_rep2-cells-polar_GCMS_A": "0",
+                    "21_mouse_13CglnTreg_rep3-cells-polar_GCMS_A": "0",
+                    "4_mouse_13CglnActive_rep1-cells-polar_GCMS_A": "0.024718360648742582",
+                    "5_mouse_13CglnActive_rep2-cells-polar_GCMS_A": "0.023778724572995263",
+                    "6_mouse_13CglnActive_rep3-cells-polar_GCMS_A": "0.003398274851015273"
+                },
+                {
+                    "metabolite_name": "pyroGlu-15N1",
+                    "19_mouse_13CglnTreg_rep1-cells-polar_GCMS_A": "0",
+                    "20_mouse_13CglnTreg_rep2-cells-polar_GCMS_A": "0",
+                    "21_mouse_13CglnTreg_rep3-cells-polar_GCMS_A": "0",
+                    "4_mouse_13CglnActive_rep1-cells-polar_GCMS_A": "0",
+                    "5_mouse_13CglnActive_rep2-cells-polar_GCMS_A": "0",
+                    "6_mouse_13CglnActive_rep3-cells-polar_GCMS_A": "0"
+                }
+            ]
+        }
+    },
+    "METABOLITES": {
+        "METABOLITES_START": {
+            "Fields": [
+                "metabolite_name",
+                "compound",
+                "isotopologue",
+                "isotopologue%type"
+            ],
+            "DATA": [
+                {
+                    "assignment": "ASn-15N1",
+                    "compound": "ASn",
+                    "isotopologue": "15N1",
+                    "isotopologue%type": "15N"
+                },
+                {
+                    "assignment": "Ala-15N1",
+                    "compound": "Ala",
+                    "isotopologue": "15N1",
+                    "isotopologue%type": "15N"
+                },
+                {
+                    "assignment": "Asn-15N2",
+                    "compound": "Asn",
+                    "isotopologue": "15N2",
+                    "isotopologue%type": "15N"
+                },
+                {
+                    "assignment": "Asp-15N1",
+                    "compound": "Asp",
+                    "isotopologue": "15N1",
+                    "isotopologue%type": "15N"
+                },
+                {
+                    "assignment": "GAB-15N1",
+                    "compound": "GAB",
+                    "isotopologue": "15N1",
+                    "isotopologue%type": "15N"
+                },
+                {
+                    "assignment": "Gln-15N1",
+                    "compound": "Gln",
+                    "isotopologue": "15N1",
+                    "isotopologue%type": "15N"
+                },
+                {
+                    "assignment": "Gln-15N2",
+                    "compound": "Gln",
+                    "isotopologue": "15N2",
+                    "isotopologue%type": "15N"
+                },
+                {
+                    "assignment": "Glu-15N1",
+                    "compound": "Glu",
+                    "isotopologue": "15N1",
+                    "isotopologue%type": "15N"
+                },
+                {
+                    "assignment": "N-Ace-Asp-15N1",
+                    "compound": "N-Ace-Asp",
+                    "isotopologue": "15N1",
+                    "isotopologue%type": "15N"
+                },
+                {
+                    "assignment": "Pro-15N1",
+                    "compound": "Pro",
+                    "isotopologue": "15N1",
+                    "isotopologue%type": "15N"
+                },
+                {
+                    "assignment": "Ser-15N1",
+                    "compound": "Ser",
+                    "isotopologue": "15N1",
+                    "isotopologue%type": "15N"
+                },
+                {
+                    "assignment": "pyroGlu-15N1",
+                    "compound": "pyroGlu",
+                    "isotopologue": "15N1",
+                    "isotopologue%type": "15N"
+                }
+            ]
+        }
+    },
+    "EXTENDED_METABOLITE_DATA": {
+        "EXTENDED_METABOLITE_START": {
+            "Fields": [
+                "metabolite_name",
+                "compound",
+                "isotopologue",
+                "isotopologue%type",
+                "sample.id"
+            ],
+            "DATA": [
+                {
+                    "assignment": "ASn-15N1",
+                    "compound": "ASn",
+                    "isotopologue": "15N1",
+                    "isotopologue%type": "15N",
+                    "sample.id": "19_mouse_13CglnTreg_rep1-cells-polar_GCMS_A"
+                },
+                {
+                    "assignment": "ASn-15N1",
+                    "compound": "ASn",
+                    "isotopologue": "15N1",
+                    "isotopologue%type": "15N",
+                    "sample.id": "20_mouse_13CglnTreg_rep2-cells-polar_GCMS_A"
+                },
+                {
+                    "assignment": "ASn-15N1",
+                    "compound": "ASn",
+                    "isotopologue": "15N1",
+                    "isotopologue%type": "15N",
+                    "sample.id": "21_mouse_13CglnTreg_rep3-cells-polar_GCMS_A"
+                },
+                {
+                    "assignment": "ASn-15N1",
+                    "compound": "ASn",
+                    "isotopologue": "15N1",
+                    "isotopologue%type": "15N",
+                    "sample.id": "4_mouse_13CglnActive_rep1-cells-polar_GCMS_A"
+                },
+                {
+                    "assignment": "ASn-15N1",
+                    "compound": "ASn",
+                    "isotopologue": "15N1",
+                    "isotopologue%type": "15N",
+                    "sample.id": "5_mouse_13CglnActive_rep2-cells-polar_GCMS_A"
+                },
+                {
+                    "assignment": "ASn-15N1",
+                    "compound": "ASn",
+                    "isotopologue": "15N1",
+                    "isotopologue%type": "15N",
+                    "sample.id": "6_mouse_13CglnActive_rep3-cells-polar_GCMS_A"
+                },
+                {
+                    "assignment": "Ala-15N1",
+                    "compound": "Ala",
+                    "isotopologue": "15N1",
+                    "isotopologue%type": "15N",
+                    "sample.id": "19_mouse_13CglnTreg_rep1-cells-polar_GCMS_A"
+                },
+                {
+                    "assignment": "Ala-15N1",
+                    "compound": "Ala",
+                    "isotopologue": "15N1",
+                    "isotopologue%type": "15N",
+                    "sample.id": "20_mouse_13CglnTreg_rep2-cells-polar_GCMS_A"
+                },
+                {
+                    "assignment": "Ala-15N1",
+                    "compound": "Ala",
+                    "isotopologue": "15N1",
+                    "isotopologue%type": "15N",
+                    "sample.id": "21_mouse_13CglnTreg_rep3-cells-polar_GCMS_A"
+                },
+                {
+                    "assignment": "Ala-15N1",
+                    "compound": "Ala",
+                    "isotopologue": "15N1",
+                    "isotopologue%type": "15N",
+                    "sample.id": "4_mouse_13CglnActive_rep1-cells-polar_GCMS_A"
+                },
+                {
+                    "assignment": "Ala-15N1",
+                    "compound": "Ala",
+                    "isotopologue": "15N1",
+                    "isotopologue%type": "15N",
+                    "sample.id": "5_mouse_13CglnActive_rep2-cells-polar_GCMS_A"
+                },
+                {
+                    "assignment": "Ala-15N1",
+                    "compound": "Ala",
+                    "isotopologue": "15N1",
+                    "isotopologue%type": "15N",
+                    "sample.id": "6_mouse_13CglnActive_rep3-cells-polar_GCMS_A"
+                },
+                {
+                    "assignment": "Asn-15N2",
+                    "compound": "Asn",
+                    "isotopologue": "15N2",
+                    "isotopologue%type": "15N",
+                    "sample.id": "19_mouse_13CglnTreg_rep1-cells-polar_GCMS_A"
+                },
+                {
+                    "assignment": "Asn-15N2",
+                    "compound": "Asn",
+                    "isotopologue": "15N2",
+                    "isotopologue%type": "15N",
+                    "sample.id": "20_mouse_13CglnTreg_rep2-cells-polar_GCMS_A"
+                },
+                {
+                    "assignment": "Asn-15N2",
+                    "compound": "Asn",
+                    "isotopologue": "15N2",
+                    "isotopologue%type": "15N",
+                    "sample.id": "21_mouse_13CglnTreg_rep3-cells-polar_GCMS_A"
+                },
+                {
+                    "assignment": "Asn-15N2",
+                    "compound": "Asn",
+                    "isotopologue": "15N2",
+                    "isotopologue%type": "15N",
+                    "sample.id": "4_mouse_13CglnActive_rep1-cells-polar_GCMS_A"
+                },
+                {
+                    "assignment": "Asn-15N2",
+                    "compound": "Asn",
+                    "isotopologue": "15N2",
+                    "isotopologue%type": "15N",
+                    "sample.id": "5_mouse_13CglnActive_rep2-cells-polar_GCMS_A"
+                },
+                {
+                    "assignment": "Asn-15N2",
+                    "compound": "Asn",
+                    "isotopologue": "15N2",
+                    "isotopologue%type": "15N",
+                    "sample.id": "6_mouse_13CglnActive_rep3-cells-polar_GCMS_A"
+                },
+                {
+                    "assignment": "Asp-15N1",
+                    "compound": "Asp",
+                    "isotopologue": "15N1",
+                    "isotopologue%type": "15N",
+                    "sample.id": "19_mouse_13CglnTreg_rep1-cells-polar_GCMS_A"
+                },
+                {
+                    "assignment": "Asp-15N1",
+                    "compound": "Asp",
+                    "isotopologue": "15N1",
+                    "isotopologue%type": "15N",
+                    "sample.id": "20_mouse_13CglnTreg_rep2-cells-polar_GCMS_A"
+                },
+                {
+                    "assignment": "Asp-15N1",
+                    "compound": "Asp",
+                    "isotopologue": "15N1",
+                    "isotopologue%type": "15N",
+                    "sample.id": "21_mouse_13CglnTreg_rep3-cells-polar_GCMS_A"
+                },
+                {
+                    "assignment": "Asp-15N1",
+                    "compound": "Asp",
+                    "isotopologue": "15N1",
+                    "isotopologue%type": "15N",
+                    "sample.id": "4_mouse_13CglnActive_rep1-cells-polar_GCMS_A"
+                },
+                {
+                    "assignment": "Asp-15N1",
+                    "compound": "Asp",
+                    "isotopologue": "15N1",
+                    "isotopologue%type": "15N",
+                    "sample.id": "5_mouse_13CglnActive_rep2-cells-polar_GCMS_A"
+                },
+                {
+                    "assignment": "Asp-15N1",
+                    "compound": "Asp",
+                    "isotopologue": "15N1",
+                    "isotopologue%type": "15N",
+                    "sample.id": "6_mouse_13CglnActive_rep3-cells-polar_GCMS_A"
+                },
+                {
+                    "assignment": "GAB-15N1",
+                    "compound": "GAB",
+                    "isotopologue": "15N1",
+                    "isotopologue%type": "15N",
+                    "sample.id": "19_mouse_13CglnTreg_rep1-cells-polar_GCMS_A"
+                },
+                {
+                    "assignment": "GAB-15N1",
+                    "compound": "GAB",
+                    "isotopologue": "15N1",
+                    "isotopologue%type": "15N",
+                    "sample.id": "20_mouse_13CglnTreg_rep2-cells-polar_GCMS_A"
+                },
+                {
+                    "assignment": "GAB-15N1",
+                    "compound": "GAB",
+                    "isotopologue": "15N1",
+                    "isotopologue%type": "15N",
+                    "sample.id": "21_mouse_13CglnTreg_rep3-cells-polar_GCMS_A"
+                },
+                {
+                    "assignment": "GAB-15N1",
+                    "compound": "GAB",
+                    "isotopologue": "15N1",
+                    "isotopologue%type": "15N",
+                    "sample.id": "4_mouse_13CglnActive_rep1-cells-polar_GCMS_A"
+                },
+                {
+                    "assignment": "GAB-15N1",
+                    "compound": "GAB",
+                    "isotopologue": "15N1",
+                    "isotopologue%type": "15N",
+                    "sample.id": "5_mouse_13CglnActive_rep2-cells-polar_GCMS_A"
+                },
+                {
+                    "assignment": "GAB-15N1",
+                    "compound": "GAB",
+                    "isotopologue": "15N1",
+                    "isotopologue%type": "15N",
+                    "sample.id": "6_mouse_13CglnActive_rep3-cells-polar_GCMS_A"
+                },
+                {
+                    "assignment": "Gln-15N1",
+                    "compound": "Gln",
+                    "isotopologue": "15N1",
+                    "isotopologue%type": "15N",
+                    "sample.id": "19_mouse_13CglnTreg_rep1-cells-polar_GCMS_A"
+                },
+                {
+                    "assignment": "Gln-15N1",
+                    "compound": "Gln",
+                    "isotopologue": "15N1",
+                    "isotopologue%type": "15N",
+                    "sample.id": "20_mouse_13CglnTreg_rep2-cells-polar_GCMS_A"
+                },
+                {
+                    "assignment": "Gln-15N1",
+                    "compound": "Gln",
+                    "isotopologue": "15N1",
+                    "isotopologue%type": "15N",
+                    "sample.id": "21_mouse_13CglnTreg_rep3-cells-polar_GCMS_A"
+                },
+                {
+                    "assignment": "Gln-15N1",
+                    "compound": "Gln",
+                    "isotopologue": "15N1",
+                    "isotopologue%type": "15N",
+                    "sample.id": "4_mouse_13CglnActive_rep1-cells-polar_GCMS_A"
+                },
+                {
+                    "assignment": "Gln-15N1",
+                    "compound": "Gln",
+                    "isotopologue": "15N1",
+                    "isotopologue%type": "15N",
+                    "sample.id": "5_mouse_13CglnActive_rep2-cells-polar_GCMS_A"
+                },
+                {
+                    "assignment": "Gln-15N1",
+                    "compound": "Gln",
+                    "isotopologue": "15N1",
+                    "isotopologue%type": "15N",
+                    "sample.id": "6_mouse_13CglnActive_rep3-cells-polar_GCMS_A"
+                },
+                {
+                    "assignment": "Gln-15N2",
+                    "compound": "Gln",
+                    "isotopologue": "15N2",
+                    "isotopologue%type": "15N",
+                    "sample.id": "19_mouse_13CglnTreg_rep1-cells-polar_GCMS_A"
+                },
+                {
+                    "assignment": "Gln-15N2",
+                    "compound": "Gln",
+                    "isotopologue": "15N2",
+                    "isotopologue%type": "15N",
+                    "sample.id": "20_mouse_13CglnTreg_rep2-cells-polar_GCMS_A"
+                },
+                {
+                    "assignment": "Gln-15N2",
+                    "compound": "Gln",
+                    "isotopologue": "15N2",
+                    "isotopologue%type": "15N",
+                    "sample.id": "21_mouse_13CglnTreg_rep3-cells-polar_GCMS_A"
+                },
+                {
+                    "assignment": "Gln-15N2",
+                    "compound": "Gln",
+                    "isotopologue": "15N2",
+                    "isotopologue%type": "15N",
+                    "sample.id": "4_mouse_13CglnActive_rep1-cells-polar_GCMS_A"
+                },
+                {
+                    "assignment": "Gln-15N2",
+                    "compound": "Gln",
+                    "isotopologue": "15N2",
+                    "isotopologue%type": "15N",
+                    "sample.id": "5_mouse_13CglnActive_rep2-cells-polar_GCMS_A"
+                },
+                {
+                    "assignment": "Gln-15N2",
+                    "compound": "Gln",
+                    "isotopologue": "15N2",
+                    "isotopologue%type": "15N",
+                    "sample.id": "6_mouse_13CglnActive_rep3-cells-polar_GCMS_A"
+                },
+                {
+                    "assignment": "Glu-15N1",
+                    "compound": "Glu",
+                    "isotopologue": "15N1",
+                    "isotopologue%type": "15N",
+                    "sample.id": "19_mouse_13CglnTreg_rep1-cells-polar_GCMS_A"
+                },
+                {
+                    "assignment": "Glu-15N1",
+                    "compound": "Glu",
+                    "isotopologue": "15N1",
+                    "isotopologue%type": "15N",
+                    "sample.id": "20_mouse_13CglnTreg_rep2-cells-polar_GCMS_A"
+                },
+                {
+                    "assignment": "Glu-15N1",
+                    "compound": "Glu",
+                    "isotopologue": "15N1",
+                    "isotopologue%type": "15N",
+                    "sample.id": "21_mouse_13CglnTreg_rep3-cells-polar_GCMS_A"
+                },
+                {
+                    "assignment": "Glu-15N1",
+                    "compound": "Glu",
+                    "isotopologue": "15N1",
+                    "isotopologue%type": "15N",
+                    "sample.id": "4_mouse_13CglnActive_rep1-cells-polar_GCMS_A"
+                },
+                {
+                    "assignment": "Glu-15N1",
+                    "compound": "Glu",
+                    "isotopologue": "15N1",
+                    "isotopologue%type": "15N",
+                    "sample.id": "5_mouse_13CglnActive_rep2-cells-polar_GCMS_A"
+                },
+                {
+                    "assignment": "Glu-15N1",
+                    "compound": "Glu",
+                    "isotopologue": "15N1",
+                    "isotopologue%type": "15N",
+                    "sample.id": "6_mouse_13CglnActive_rep3-cells-polar_GCMS_A"
+                },
+                {
+                    "assignment": "N-Ace-Asp-15N1",
+                    "compound": "N-Ace-Asp",
+                    "isotopologue": "15N1",
+                    "isotopologue%type": "15N",
+                    "sample.id": "19_mouse_13CglnTreg_rep1-cells-polar_GCMS_A"
+                },
+                {
+                    "assignment": "N-Ace-Asp-15N1",
+                    "compound": "N-Ace-Asp",
+                    "isotopologue": "15N1",
+                    "isotopologue%type": "15N",
+                    "sample.id": "20_mouse_13CglnTreg_rep2-cells-polar_GCMS_A"
+                },
+                {
+                    "assignment": "N-Ace-Asp-15N1",
+                    "compound": "N-Ace-Asp",
+                    "isotopologue": "15N1",
+                    "isotopologue%type": "15N",
+                    "sample.id": "21_mouse_13CglnTreg_rep3-cells-polar_GCMS_A"
+                },
+                {
+                    "assignment": "N-Ace-Asp-15N1",
+                    "compound": "N-Ace-Asp",
+                    "isotopologue": "15N1",
+                    "isotopologue%type": "15N",
+                    "sample.id": "4_mouse_13CglnActive_rep1-cells-polar_GCMS_A"
+                },
+                {
+                    "assignment": "N-Ace-Asp-15N1",
+                    "compound": "N-Ace-Asp",
+                    "isotopologue": "15N1",
+                    "isotopologue%type": "15N",
+                    "sample.id": "5_mouse_13CglnActive_rep2-cells-polar_GCMS_A"
+                },
+                {
+                    "assignment": "N-Ace-Asp-15N1",
+                    "compound": "N-Ace-Asp",
+                    "isotopologue": "15N1",
+                    "isotopologue%type": "15N",
+                    "sample.id": "6_mouse_13CglnActive_rep3-cells-polar_GCMS_A"
+                },
+                {
+                    "assignment": "Pro-15N1",
+                    "compound": "Pro",
+                    "isotopologue": "15N1",
+                    "isotopologue%type": "15N",
+                    "sample.id": "19_mouse_13CglnTreg_rep1-cells-polar_GCMS_A"
+                },
+                {
+                    "assignment": "Pro-15N1",
+                    "compound": "Pro",
+                    "isotopologue": "15N1",
+                    "isotopologue%type": "15N",
+                    "sample.id": "20_mouse_13CglnTreg_rep2-cells-polar_GCMS_A"
+                },
+                {
+                    "assignment": "Pro-15N1",
+                    "compound": "Pro",
+                    "isotopologue": "15N1",
+                    "isotopologue%type": "15N",
+                    "sample.id": "21_mouse_13CglnTreg_rep3-cells-polar_GCMS_A"
+                },
+                {
+                    "assignment": "Pro-15N1",
+                    "compound": "Pro",
+                    "isotopologue": "15N1",
+                    "isotopologue%type": "15N",
+                    "sample.id": "4_mouse_13CglnActive_rep1-cells-polar_GCMS_A"
+                },
+                {
+                    "assignment": "Pro-15N1",
+                    "compound": "Pro",
+                    "isotopologue": "15N1",
+                    "isotopologue%type": "15N",
+                    "sample.id": "5_mouse_13CglnActive_rep2-cells-polar_GCMS_A"
+                },
+                {
+                    "assignment": "Pro-15N1",
+                    "compound": "Pro",
+                    "isotopologue": "15N1",
+                    "isotopologue%type": "15N",
+                    "sample.id": "6_mouse_13CglnActive_rep3-cells-polar_GCMS_A"
+                },
+                {
+                    "assignment": "Ser-15N1",
+                    "compound": "Ser",
+                    "isotopologue": "15N1",
+                    "isotopologue%type": "15N",
+                    "sample.id": "19_mouse_13CglnTreg_rep1-cells-polar_GCMS_A"
+                },
+                {
+                    "assignment": "Ser-15N1",
+                    "compound": "Ser",
+                    "isotopologue": "15N1",
+                    "isotopologue%type": "15N",
+                    "sample.id": "20_mouse_13CglnTreg_rep2-cells-polar_GCMS_A"
+                },
+                {
+                    "assignment": "Ser-15N1",
+                    "compound": "Ser",
+                    "isotopologue": "15N1",
+                    "isotopologue%type": "15N",
+                    "sample.id": "21_mouse_13CglnTreg_rep3-cells-polar_GCMS_A"
+                },
+                {
+                    "assignment": "Ser-15N1",
+                    "compound": "Ser",
+                    "isotopologue": "15N1",
+                    "isotopologue%type": "15N",
+                    "sample.id": "4_mouse_13CglnActive_rep1-cells-polar_GCMS_A"
+                },
+                {
+                    "assignment": "Ser-15N1",
+                    "compound": "Ser",
+                    "isotopologue": "15N1",
+                    "isotopologue%type": "15N",
+                    "sample.id": "5_mouse_13CglnActive_rep2-cells-polar_GCMS_A"
+                },
+                {
+                    "assignment": "Ser-15N1",
+                    "compound": "Ser",
+                    "isotopologue": "15N1",
+                    "isotopologue%type": "15N",
+                    "sample.id": "6_mouse_13CglnActive_rep3-cells-polar_GCMS_A"
+                },
+                {
+                    "assignment": "pyroGlu-15N1",
+                    "compound": "pyroGlu",
+                    "isotopologue": "15N1",
+                    "isotopologue%type": "15N",
+                    "sample.id": "19_mouse_13CglnTreg_rep1-cells-polar_GCMS_A"
+                },
+                {
+                    "assignment": "pyroGlu-15N1",
+                    "compound": "pyroGlu",
+                    "isotopologue": "15N1",
+                    "isotopologue%type": "15N",
+                    "sample.id": "20_mouse_13CglnTreg_rep2-cells-polar_GCMS_A"
+                },
+                {
+                    "assignment": "pyroGlu-15N1",
+                    "compound": "pyroGlu",
+                    "isotopologue": "15N1",
+                    "isotopologue%type": "15N",
+                    "sample.id": "21_mouse_13CglnTreg_rep3-cells-polar_GCMS_A"
+                },
+                {
+                    "assignment": "pyroGlu-15N1",
+                    "compound": "pyroGlu",
+                    "isotopologue": "15N1",
+                    "isotopologue%type": "15N",
+                    "sample.id": "4_mouse_13CglnActive_rep1-cells-polar_GCMS_A"
+                },
+                {
+                    "assignment": "pyroGlu-15N1",
+                    "compound": "pyroGlu",
+                    "isotopologue": "15N1",
+                    "isotopologue%type": "15N",
+                    "sample.id": "5_mouse_13CglnActive_rep2-cells-polar_GCMS_A"
+                },
+                {
+                    "assignment": "pyroGlu-15N1",
+                    "compound": "pyroGlu",
+                    "isotopologue": "15N1",
+                    "isotopologue%type": "15N",
+                    "sample.id": "6_mouse_13CglnActive_rep3-cells-polar_GCMS_A"
+                }
+            ]
+        }
+    }
+}

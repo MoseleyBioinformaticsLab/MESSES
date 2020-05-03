@@ -1,0 +1,190 @@
+#METABOLOMICS WORKBENCH STUDY_ID:ST000000 ANALYSIS_ID:AN000000
+VERSION             	1
+CREATED_ON          	2019-03-06
+#PROJECT
+PR:PROJECT_TITLE                 	mouse T cell metabolic flux
+PR:PROJECT_SUMMARY               	Mouse T-cell metabolism
+PR:INSTITUTE                     	The Research Institute at Nationwide Children's Hospital
+PR:DEPARTMENT                    	Center for Childhood Cancer
+PR:LAST_NAME                     	Wang
+PR:FIRST_NAME                    	Ruoning
+PR:ADDRESS                       	700 Children's Drive, Rm. WA5016, Columbus, OH 43205-2696
+PR:EMAIL                         	ruoning.wang@nationwidechildrens.org
+PR:PHONE                         	000-000-0000
+#STUDY
+ST:STUDY_TITLE                   	Systematically profiling metabolic programs of active T lymphocytes and Treg
+ST:STUDY_TYPE                    	isotope tracer time point
+ST:STUDY_SUMMARY                 	13C-U-glucose, 13C-glutamine, 13C-U5-inosine, and U-13C-lactate tracer used to track the metabolic changes of active T lymphocytes and Treg
+ST:INSTITUTE                     	The Research Institute at Nationwide Children's Hospital
+ST:DEPARTMENT                    	Center for Childhood Cancer
+ST:LAST_NAME                     	Wang
+ST:FIRST_NAME                    	Ruoning
+ST:ADDRESS                       	700 Children's Drive, Rm. WA5016, Columbus, OH 43205-2696
+ST:EMAIL                         	ruoning.wang@nationwidechildrens.org
+ST:PHONE                         	000-000-0000
+ST:STUDY_COMMENTS                	
+#SUBJECT
+SU:SUBJECT_TYPE                  	Animal
+SU:SUBJECT_SPECIES               	Mus musculus
+SU:TAXONOMY_ID                   	10090
+#SUBJECT_SAMPLE_FACTORS:         	SUBJECT(optional)[tab]SAMPLE[tab]FACTORS(NAME:VALUE pairs separated by |)[tab]Additional sample data
+SUBJECT_SAMPLE_FACTORS           	-	19_mouse_13CglnTreg_rep1-cells-polar_GCMS_A	protocol.id:13CglnTreg	lineage_1=19_mouse_13CglnTreg_rep1; cell_type=T_regular; protocol.id=13CglnTreg; replicate=1; replicate%type=biological; species=Mus musculus; species_type=Animal; taxonomy_id=10090; lineage_2=19_mouse_13CglnTreg_rep1-cells; protocol.id=cell_quench_collection; lineage_3=19_mouse_13CglnTreg_rep1-cells-polar_GCMS_A; protocol.id=['polar_extraction', 'GCMS_file_storage19']; replicate=1; replicate%type=analytical; type=polar; weight=0.0958; weight%units=g; lineage_4=19_mouse_13CglnTreg_rep1-cells-protein; dry_weight=0.0004300000000001525; dry_weight%units=g; protein_weight=0.11578946152553758; protein_weight%units=mg; protocol.id=protein_extraction
+SUBJECT_SAMPLE_FACTORS           	-	20_mouse_13CglnTreg_rep2-cells-polar_GCMS_A	protocol.id:13CglnTreg	lineage_1=20_mouse_13CglnTreg_rep2; cell_type=T_regular; protocol.id=13CglnTreg; replicate=2; replicate%type=biological; species=Mus musculus; species_type=Animal; taxonomy_id=10090; lineage_2=20_mouse_13CglnTreg_rep2-cells; protocol.id=cell_quench_collection; lineage_3=20_mouse_13CglnTreg_rep2-cells-polar_GCMS_A; protocol.id=['polar_extraction', 'GCMS_file_storage20']; replicate=1; replicate%type=analytical; type=polar; weight=0.0973; weight%units=g; lineage_4=20_mouse_13CglnTreg_rep2-cells-protein; dry_weight=0.0005100000000000104; dry_weight%units=g; protein_weight=0.1013659274193548; protein_weight%units=mg; protocol.id=protein_extraction
+SUBJECT_SAMPLE_FACTORS           	-	21_mouse_13CglnTreg_rep3-cells-polar_GCMS_A	protocol.id:13CglnTreg	lineage_1=21_mouse_13CglnTreg_rep3; cell_type=T_regular; protocol.id=13CglnTreg; replicate=3; replicate%type=biological; species=Mus musculus; species_type=Animal; taxonomy_id=10090; lineage_2=21_mouse_13CglnTreg_rep3-cells; protocol.id=cell_quench_collection; lineage_3=21_mouse_13CglnTreg_rep3-cells-polar_GCMS_A; protocol.id=['polar_extraction', 'GCMS_file_storage21']; replicate=1; replicate%type=analytical; type=polar; weight=0.0957; weight%units=g; lineage_4=21_mouse_13CglnTreg_rep3-cells-protein; dry_weight=0.00048000000000003595; dry_weight%units=g; protein_weight=0.12765120967741944; protein_weight%units=mg; protocol.id=protein_extraction
+SUBJECT_SAMPLE_FACTORS           	-	4_mouse_13CglnActive_rep1-cells-polar_GCMS_A	protocol.id:13CglnActive	lineage_1=4_mouse_13CglnActive_rep1; cell_type=T_active; protocol.id=13CglnActive; replicate=1; replicate%type=biological; species=Mus musculus; species_type=Animal; taxonomy_id=10090; lineage_2=4_mouse_13CglnActive_rep1-cells; protocol.id=cell_quench_collection; lineage_3=4_mouse_13CglnActive_rep1-cells-polar_GCMS_A; protocol.id=['polar_extraction', 'GCMS_file_storage4']; replicate=1; replicate%type=analytical; type=polar; weight=0.0987; weight%units=g; lineage_4=4_mouse_13CglnActive_rep1-cells-protein; dry_weight=0.0012599999999998168; dry_weight%units=g; protein_weight=0.5390229034601565; protein_weight%units=mg; protocol.id=protein_extraction
+SUBJECT_SAMPLE_FACTORS           	-	5_mouse_13CglnActive_rep2-cells-polar_GCMS_A	protocol.id:13CglnActive	lineage_1=5_mouse_13CglnActive_rep2; cell_type=T_active; protocol.id=13CglnActive; replicate=2; replicate%type=biological; species=Mus musculus; species_type=Animal; taxonomy_id=10090; lineage_2=5_mouse_13CglnActive_rep2-cells; protocol.id=cell_quench_collection; lineage_3=5_mouse_13CglnActive_rep2-cells-polar_GCMS_A; protocol.id=['polar_extraction', 'GCMS_file_storage5']; replicate=1; replicate%type=analytical; type=polar; weight=0.0972; weight%units=g; lineage_4=5_mouse_13CglnActive_rep2-cells-protein; dry_weight=0.0009400000000001629; dry_weight%units=g; protein_weight=0.3936376877978587; protein_weight%units=mg; protocol.id=protein_extraction
+SUBJECT_SAMPLE_FACTORS           	-	6_mouse_13CglnActive_rep3-cells-polar_GCMS_A	protocol.id:13CglnActive	lineage_1=6_mouse_13CglnActive_rep3; cell_type=T_active; protocol.id=13CglnActive; replicate=3; replicate%type=biological; species=Mus musculus; species_type=Animal; taxonomy_id=10090; lineage_2=6_mouse_13CglnActive_rep3-cells; protocol.id=cell_quench_collection; lineage_3=6_mouse_13CglnActive_rep3-cells-polar_GCMS_A; protocol.id=['polar_extraction', 'GCMS_file_storage6']; replicate=1; replicate%type=analytical; type=polar; weight=0.0969; weight%units=g; lineage_4=6_mouse_13CglnActive_rep3-cells-protein; dry_weight=0.0010900000000000354; dry_weight%units=g; protein_weight=0.5253651233330991; protein_weight%units=mg; protocol.id=protein_extraction
+#COLLECTION
+CO:COLLECTION_SUMMARY            	Collection and quench of cells in tissue culture
+CO:COLLECTION_PROTOCOL_ID        	cell_quench_collection
+CO:COLLECTION_PROTOCOL_FILENAME  	3A_Cells_Quench_Cell_Fan_20170412.pdf
+CO:SAMPLE_TYPE                   	cultured cells
+#TREATMENT
+TR:TREATMENT_SUMMARY             	Active T_cells grown in labeled glucose.
+TR:TREATMENT_SUMMARY             	Regular T_cells grown in labeled glucose.
+TR:TREATMENT_SUMMARY             	Active T_cells grown in labeled glutamine.
+TR:TREATMENT_SUMMARY             	Regular T_cells grown in labeled glutamine.
+TR:TREATMENT_SUMMARY             	Active T_cells grown in labeled inosine.
+TR:TREATMENT_SUMMARY             	Active T_cells grown in labeled lactate.
+TR:TREATMENT_SUMMARY             	Regular T_cells grown in labeled lactate.
+TR:TREATMENT_PROTOCOL_ID         	13CglcActive
+TR:TREATMENT_PROTOCOL_ID         	13CglcTreg
+TR:TREATMENT_PROTOCOL_ID         	13CglnActive
+TR:TREATMENT_PROTOCOL_ID         	13CglnTreg
+TR:TREATMENT_PROTOCOL_ID         	13CinoActive
+TR:TREATMENT_PROTOCOL_ID         	13ClacActive
+TR:TREATMENT_PROTOCOL_ID         	13ClacTreg
+#SAMPLEPREP
+SP:SAMPLEPREP_SUMMARY            	Lipid extraction from cells.
+SP:SAMPLEPREP_SUMMARY            	Polar extraction from cells.
+SP:SAMPLEPREP_SUMMARY            	Protein extraction and quantification.
+SP:SAMPLEPREP_PROTOCOL_ID        	lipid_extraction
+SP:SAMPLEPREP_PROTOCOL_ID        	polar_extraction
+SP:SAMPLEPREP_PROTOCOL_ID        	protein_extraction
+SP:SAMPLEPREP_PROTOCOL_FILENAME  	4B_Extract_Polar_Lipid_Prot_Fan_070417.pdf
+SP:SAMPLEPREP_PROTOCOL_FILENAME  	4B_Extract_Polar_Lipid_Prot_Fan_070417.pdf
+SP:SAMPLEPREP_PROTOCOL_FILENAME  	4D_17Jun4_Fan_Prot_Quant.pdf,4B_Extract_Polar_Lipid_Prot_Fan_070417.pdf
+#ANALYSIS
+AN:ANALYSIS_TYPE                 	MS
+#CHROMATOGRAPHY
+CH:CHROMATOGRAPHY_SUMMARY        	Targeted GC
+CH:CHROMATOGRAPHY_TYPE           	Targeted GC
+CH:INSTRUMENT_NAME               	GC-EI-MS, Thermo ITQ
+CH:COLUMN_NAME                   	SGE 0.15 mm i.d. x 50 m fused silica open-tubular column, coated with 0.25 μm BPX-5 (5% phenylmethyl- phenylsiloxane)
+#MS
+MS:INSTRUMENT_NAME               	GC-EI-MS, Thermo ITQ
+MS:INSTRUMENT_TYPE               	GC-ITQ
+MS:MS_TYPE                       	EI
+MS:ION_MODE                      	POSITIVE
+MS:MS_COMMENTS                   	GCMS Analytical Experiment with detection of compounds by comparison to standards.  Derivitization is done with MTBSTFA (N-methyl-N-[tert-butyldimethylsilyl]trifluoroacetamide).
+#MS_METABOLITE_DATA
+MS_METABOLITE_DATA:UNITS	normalized peak area
+MS_METABOLITE_DATA_START
+Samples	19_mouse_13CglnTreg_rep1-cells-polar_GCMS_A	20_mouse_13CglnTreg_rep2-cells-polar_GCMS_A	21_mouse_13CglnTreg_rep3-cells-polar_GCMS_A	4_mouse_13CglnActive_rep1-cells-polar_GCMS_A	5_mouse_13CglnActive_rep2-cells-polar_GCMS_A	6_mouse_13CglnActive_rep3-cells-polar_GCMS_A
+Factors	protocol.id:13CglnTreg	protocol.id:13CglnTreg	protocol.id:13CglnTreg	protocol.id:13CglnActive	protocol.id:13CglnActive	protocol.id:13CglnActive
+ASn-15N1	0	0	0	0.22059753996185794	0	0
+Ala-15N1	0	0	0	0	0	0.013034714516865477
+Asn-15N2	0	0	0	0	0	0
+Asp-15N1	0	0	0	0.7197905672124221	4.101932870498321	0
+GAB-15N1	0	0	0	0	0	0
+Gln-15N1	0	0	0	0.04438417595847999	0.004800542331832754	0
+Gln-15N2	0	0	0	0	0	0
+Glu-15N1	0.6973294290551815	0.005585043305734631	0	3.6916926956925598	3.4281683343780904	0.05471157782004994
+N-Ace-Asp-15N1	0	0	0	0	0	0
+Pro-15N1	0	0	0	0.11156650321674373	0.08463877653233622	0
+Ser-15N1	0	0	0	0.024718360648742582	0.023778724572995263	0.003398274851015273
+pyroGlu-15N1	0	0	0	0	0	0
+MS_METABOLITE_DATA_END
+#METABOLITES
+METABOLITES_START
+metabolite_name	compound	isotopologue	isotopologue%type
+ASn-15N1	ASn	15N1	15N
+Ala-15N1	Ala	15N1	15N
+Asn-15N2	Asn	15N2	15N
+Asp-15N1	Asp	15N1	15N
+GAB-15N1	GAB	15N1	15N
+Gln-15N1	Gln	15N1	15N
+Gln-15N2	Gln	15N2	15N
+Glu-15N1	Glu	15N1	15N
+N-Ace-Asp-15N1	N-Ace-Asp	15N1	15N
+Pro-15N1	Pro	15N1	15N
+Ser-15N1	Ser	15N1	15N
+pyroGlu-15N1	pyroGlu	15N1	15N
+METABOLITES_END
+#EXTENDED_METABOLITE_DATA
+EXTENDED_METABOLITE_START
+metabolite_name	compound	isotopologue	isotopologue%type	sample.id
+ASn-15N1	ASn	15N1	15N	19_mouse_13CglnTreg_rep1-cells-polar_GCMS_A
+ASn-15N1	ASn	15N1	15N	20_mouse_13CglnTreg_rep2-cells-polar_GCMS_A
+ASn-15N1	ASn	15N1	15N	21_mouse_13CglnTreg_rep3-cells-polar_GCMS_A
+ASn-15N1	ASn	15N1	15N	4_mouse_13CglnActive_rep1-cells-polar_GCMS_A
+ASn-15N1	ASn	15N1	15N	5_mouse_13CglnActive_rep2-cells-polar_GCMS_A
+ASn-15N1	ASn	15N1	15N	6_mouse_13CglnActive_rep3-cells-polar_GCMS_A
+Ala-15N1	Ala	15N1	15N	19_mouse_13CglnTreg_rep1-cells-polar_GCMS_A
+Ala-15N1	Ala	15N1	15N	20_mouse_13CglnTreg_rep2-cells-polar_GCMS_A
+Ala-15N1	Ala	15N1	15N	21_mouse_13CglnTreg_rep3-cells-polar_GCMS_A
+Ala-15N1	Ala	15N1	15N	4_mouse_13CglnActive_rep1-cells-polar_GCMS_A
+Ala-15N1	Ala	15N1	15N	5_mouse_13CglnActive_rep2-cells-polar_GCMS_A
+Ala-15N1	Ala	15N1	15N	6_mouse_13CglnActive_rep3-cells-polar_GCMS_A
+Asn-15N2	Asn	15N2	15N	19_mouse_13CglnTreg_rep1-cells-polar_GCMS_A
+Asn-15N2	Asn	15N2	15N	20_mouse_13CglnTreg_rep2-cells-polar_GCMS_A
+Asn-15N2	Asn	15N2	15N	21_mouse_13CglnTreg_rep3-cells-polar_GCMS_A
+Asn-15N2	Asn	15N2	15N	4_mouse_13CglnActive_rep1-cells-polar_GCMS_A
+Asn-15N2	Asn	15N2	15N	5_mouse_13CglnActive_rep2-cells-polar_GCMS_A
+Asn-15N2	Asn	15N2	15N	6_mouse_13CglnActive_rep3-cells-polar_GCMS_A
+Asp-15N1	Asp	15N1	15N	19_mouse_13CglnTreg_rep1-cells-polar_GCMS_A
+Asp-15N1	Asp	15N1	15N	20_mouse_13CglnTreg_rep2-cells-polar_GCMS_A
+Asp-15N1	Asp	15N1	15N	21_mouse_13CglnTreg_rep3-cells-polar_GCMS_A
+Asp-15N1	Asp	15N1	15N	4_mouse_13CglnActive_rep1-cells-polar_GCMS_A
+Asp-15N1	Asp	15N1	15N	5_mouse_13CglnActive_rep2-cells-polar_GCMS_A
+Asp-15N1	Asp	15N1	15N	6_mouse_13CglnActive_rep3-cells-polar_GCMS_A
+GAB-15N1	GAB	15N1	15N	19_mouse_13CglnTreg_rep1-cells-polar_GCMS_A
+GAB-15N1	GAB	15N1	15N	20_mouse_13CglnTreg_rep2-cells-polar_GCMS_A
+GAB-15N1	GAB	15N1	15N	21_mouse_13CglnTreg_rep3-cells-polar_GCMS_A
+GAB-15N1	GAB	15N1	15N	4_mouse_13CglnActive_rep1-cells-polar_GCMS_A
+GAB-15N1	GAB	15N1	15N	5_mouse_13CglnActive_rep2-cells-polar_GCMS_A
+GAB-15N1	GAB	15N1	15N	6_mouse_13CglnActive_rep3-cells-polar_GCMS_A
+Gln-15N1	Gln	15N1	15N	19_mouse_13CglnTreg_rep1-cells-polar_GCMS_A
+Gln-15N1	Gln	15N1	15N	20_mouse_13CglnTreg_rep2-cells-polar_GCMS_A
+Gln-15N1	Gln	15N1	15N	21_mouse_13CglnTreg_rep3-cells-polar_GCMS_A
+Gln-15N1	Gln	15N1	15N	4_mouse_13CglnActive_rep1-cells-polar_GCMS_A
+Gln-15N1	Gln	15N1	15N	5_mouse_13CglnActive_rep2-cells-polar_GCMS_A
+Gln-15N1	Gln	15N1	15N	6_mouse_13CglnActive_rep3-cells-polar_GCMS_A
+Gln-15N2	Gln	15N2	15N	19_mouse_13CglnTreg_rep1-cells-polar_GCMS_A
+Gln-15N2	Gln	15N2	15N	20_mouse_13CglnTreg_rep2-cells-polar_GCMS_A
+Gln-15N2	Gln	15N2	15N	21_mouse_13CglnTreg_rep3-cells-polar_GCMS_A
+Gln-15N2	Gln	15N2	15N	4_mouse_13CglnActive_rep1-cells-polar_GCMS_A
+Gln-15N2	Gln	15N2	15N	5_mouse_13CglnActive_rep2-cells-polar_GCMS_A
+Gln-15N2	Gln	15N2	15N	6_mouse_13CglnActive_rep3-cells-polar_GCMS_A
+Glu-15N1	Glu	15N1	15N	19_mouse_13CglnTreg_rep1-cells-polar_GCMS_A
+Glu-15N1	Glu	15N1	15N	20_mouse_13CglnTreg_rep2-cells-polar_GCMS_A
+Glu-15N1	Glu	15N1	15N	21_mouse_13CglnTreg_rep3-cells-polar_GCMS_A
+Glu-15N1	Glu	15N1	15N	4_mouse_13CglnActive_rep1-cells-polar_GCMS_A
+Glu-15N1	Glu	15N1	15N	5_mouse_13CglnActive_rep2-cells-polar_GCMS_A
+Glu-15N1	Glu	15N1	15N	6_mouse_13CglnActive_rep3-cells-polar_GCMS_A
+N-Ace-Asp-15N1	N-Ace-Asp	15N1	15N	19_mouse_13CglnTreg_rep1-cells-polar_GCMS_A
+N-Ace-Asp-15N1	N-Ace-Asp	15N1	15N	20_mouse_13CglnTreg_rep2-cells-polar_GCMS_A
+N-Ace-Asp-15N1	N-Ace-Asp	15N1	15N	21_mouse_13CglnTreg_rep3-cells-polar_GCMS_A
+N-Ace-Asp-15N1	N-Ace-Asp	15N1	15N	4_mouse_13CglnActive_rep1-cells-polar_GCMS_A
+N-Ace-Asp-15N1	N-Ace-Asp	15N1	15N	5_mouse_13CglnActive_rep2-cells-polar_GCMS_A
+N-Ace-Asp-15N1	N-Ace-Asp	15N1	15N	6_mouse_13CglnActive_rep3-cells-polar_GCMS_A
+Pro-15N1	Pro	15N1	15N	19_mouse_13CglnTreg_rep1-cells-polar_GCMS_A
+Pro-15N1	Pro	15N1	15N	20_mouse_13CglnTreg_rep2-cells-polar_GCMS_A
+Pro-15N1	Pro	15N1	15N	21_mouse_13CglnTreg_rep3-cells-polar_GCMS_A
+Pro-15N1	Pro	15N1	15N	4_mouse_13CglnActive_rep1-cells-polar_GCMS_A
+Pro-15N1	Pro	15N1	15N	5_mouse_13CglnActive_rep2-cells-polar_GCMS_A
+Pro-15N1	Pro	15N1	15N	6_mouse_13CglnActive_rep3-cells-polar_GCMS_A
+Ser-15N1	Ser	15N1	15N	19_mouse_13CglnTreg_rep1-cells-polar_GCMS_A
+Ser-15N1	Ser	15N1	15N	20_mouse_13CglnTreg_rep2-cells-polar_GCMS_A
+Ser-15N1	Ser	15N1	15N	21_mouse_13CglnTreg_rep3-cells-polar_GCMS_A
+Ser-15N1	Ser	15N1	15N	4_mouse_13CglnActive_rep1-cells-polar_GCMS_A
+Ser-15N1	Ser	15N1	15N	5_mouse_13CglnActive_rep2-cells-polar_GCMS_A
+Ser-15N1	Ser	15N1	15N	6_mouse_13CglnActive_rep3-cells-polar_GCMS_A
+pyroGlu-15N1	pyroGlu	15N1	15N	19_mouse_13CglnTreg_rep1-cells-polar_GCMS_A
+pyroGlu-15N1	pyroGlu	15N1	15N	20_mouse_13CglnTreg_rep2-cells-polar_GCMS_A
+pyroGlu-15N1	pyroGlu	15N1	15N	21_mouse_13CglnTreg_rep3-cells-polar_GCMS_A
+pyroGlu-15N1	pyroGlu	15N1	15N	4_mouse_13CglnActive_rep1-cells-polar_GCMS_A
+pyroGlu-15N1	pyroGlu	15N1	15N	5_mouse_13CglnActive_rep2-cells-polar_GCMS_A
+pyroGlu-15N1	pyroGlu	15N1	15N	6_mouse_13CglnActive_rep3-cells-polar_GCMS_A
+EXTENDED_METABOLITE_END
+#END

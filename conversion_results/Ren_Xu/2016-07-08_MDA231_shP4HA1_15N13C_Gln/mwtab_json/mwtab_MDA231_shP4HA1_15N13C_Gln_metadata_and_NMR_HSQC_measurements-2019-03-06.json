@@ -1,0 +1,1594 @@
+{
+    "METABOLOMICS WORKBENCH": {
+        "HEADER": "#METABOLOMICS WORKBENCH STUDY_ID:ST000000 ANALYSIS_ID:AN000000",
+        "STUDY_ID": "ST000000",
+        "ANALYSIS_ID": "AN000000",
+        "VERSION": "1",
+        "CREATED_ON": "2019-03-06"
+    },
+    "PROJECT": {
+        "PROJECT_TITLE": "P4HA1 knockdown in the breast cell line MDA231",
+        "PROJECT_SUMMARY": "Determine the effect of knocking down P4HA1 in the MDA231 cell line (including alterations to metabolic pathways).",
+        "INSTITUTE": "University of Kentucky",
+        "DEPARTMENT": "Markey Cancer Center",
+        "LAST_NAME": "Xu",
+        "FIRST_NAME": "Ren",
+        "ADDRESS": "BBSRC361, 741 South Limestone, Lexington, KY 40536, USA",
+        "EMAIL": "ren.xu2010@uky.edu",
+        "PHONE": "000-000-0000"
+    },
+    "STUDY": {
+        "STUDY_TITLE": "P4HA1 knockdown in the breast cell line MDA231 Gln metabolism",
+        "STUDY_TYPE": "isotope tracer",
+        "STUDY_SUMMARY": "Determine the effect on glutamine metabolism of knocking down P4HA1 in the MDA231 cell line.",
+        "INSTITUTE": "University of Kentucky",
+        "DEPARTMENT": "Markey Cancer Center",
+        "LAST_NAME": "Xiong",
+        "FIRST_NAME": "Gaofeng",
+        "ADDRESS": "BBSRC361, 741 South Limestone, Lexington, KY 40536, USA",
+        "EMAIL": "gaofeng.xiong@uky.edu",
+        "PHONE": "000-000-0000",
+        "STUDY_COMMENTS": "For additional comments about the study, like listing a publication."
+    },
+    "SUBJECT": {
+        "SUBJECT_TYPE": "Human",
+        "SUBJECT_SPECIES": "Homo sapiens",
+        "TAXONOMY_ID": "9606"
+    },
+    "SUBJECT_SAMPLE_FACTORS": {
+        "SUBJECT_SAMPLE_FACTORS": [
+            {
+                "subject_type": "-",
+                "local_sample_id": "2_MDA231_13C15NGln_shCTL_rep1-cells-polar_NMR_A",
+                "factors": "protocol.id:13C15NGln_shCTL",
+                "additional_sample_data": "lineage_1=2_MDA231_13C15NGln_shCTL_rep1; cell_type=MDA231; protocol.id=13C15NGln_shCTL; replicate=1; species=Homo sapiens; species_type=Human; taxonomy_id=9606; lineage_2=2_MDA231_13C15NGln_shCTL_rep1-cells; cell_type=MDA231; protocol.id=cell_quench_collection; lineage_3=2_MDA231_13C15NGln_shCTL_rep1-cells-polar_NMR_A; protocol.id=['polar_extraction', 'NMR_file_storage2']; replicate=1; replicate%type=analytical; sample_split_ratio=0.28579888665166403; type=polar; weight=0.4825999999999999; weight%units=g; lineage_4=2_MDA231_13C15NGln_shCTL_rep1-cells-protein; dry_weight=0.0008000000000000229; dry_weight%units=g; protein_weight=0.5884; protein_weight%units=mg; protocol.id=protein_extraction; type=protein"
+            },
+            {
+                "subject_type": "-",
+                "local_sample_id": "3_MDA231_13C15NGln_shCTL_rep2-cells-polar_NMR_A",
+                "factors": "protocol.id:13C15NGln_shCTL",
+                "additional_sample_data": "lineage_1=3_MDA231_13C15NGln_shCTL_rep2; cell_type=MDA231; protocol.id=13C15NGln_shCTL; replicate=2; species=Homo sapiens; species_type=Human; taxonomy_id=9606; lineage_2=3_MDA231_13C15NGln_shCTL_rep2-cells; cell_type=MDA231; protocol.id=cell_quench_collection; lineage_3=3_MDA231_13C15NGln_shCTL_rep2-cells-polar_NMR_A; protocol.id=['polar_extraction', 'NMR_file_storage3']; replicate=1; replicate%type=analytical; sample_split_ratio=0.25640876252621786; type=polar; weight=0.44010000000000016; weight%units=g; lineage_4=3_MDA231_13C15NGln_shCTL_rep2-cells-protein; dry_weight=0.0006999999999999229; dry_weight%units=g; protein_weight=0.5808; protein_weight%units=mg; protocol.id=protein_extraction; type=protein"
+            },
+            {
+                "subject_type": "-",
+                "local_sample_id": "4_MDA231_13C15NGln_shCTL_rep3-cells-polar_NMR_A",
+                "factors": "protocol.id:13C15NGln_shCTL",
+                "additional_sample_data": "lineage_1=4_MDA231_13C15NGln_shCTL_rep3; cell_type=MDA231; protocol.id=13C15NGln_shCTL; replicate=3; species=Homo sapiens; species_type=Human; taxonomy_id=9606; lineage_2=4_MDA231_13C15NGln_shCTL_rep3-cells; cell_type=MDA231; protocol.id=cell_quench_collection; lineage_3=4_MDA231_13C15NGln_shCTL_rep3-cells-polar_NMR_A; protocol.id=['polar_extraction', 'NMR_file_storage4']; replicate=1; replicate%type=analytical; sample_split_ratio=0.2617664493183165; type=polar; weight=0.4416000000000002; weight%units=g; lineage_4=4_MDA231_13C15NGln_shCTL_rep3-cells-protein; dry_weight=0.0007000000000000339; dry_weight%units=g; protein_weight=0.5344000000000001; protein_weight%units=mg; protocol.id=protein_extraction; type=protein"
+            },
+            {
+                "subject_type": "-",
+                "local_sample_id": "6_MDA231_13C15NGln_shP4HA1_rep1-cells-polar_NMR_A",
+                "factors": "protocol.id:13C15NGln_shP4HA1",
+                "additional_sample_data": "lineage_1=6_MDA231_13C15NGln_shP4HA1_rep1; cell_type=MDA231; protocol.id=13C15NGln_shP4HA1; replicate=1; species=Homo sapiens; species_type=Human; taxonomy_id=9606; lineage_2=6_MDA231_13C15NGln_shP4HA1_rep1-cells; cell_type=MDA231; protocol.id=cell_quench_collection; lineage_3=6_MDA231_13C15NGln_shP4HA1_rep1-cells-polar_NMR_A; protocol.id=['polar_extraction', 'NMR_file_storage6']; replicate=1; replicate%type=analytical; sample_split_ratio=0.2785457645697584; type=polar; weight=0.45740000000000025; weight%units=g; lineage_4=6_MDA231_13C15NGln_shP4HA1_rep1-cells-protein; dry_weight=0.0009000000000000119; dry_weight%units=g; protein_weight=0.5952000000000001; protein_weight%units=mg; protocol.id=protein_extraction; type=protein"
+            },
+            {
+                "subject_type": "-",
+                "local_sample_id": "7_MDA231_13C15NGln_shP4HA1_rep2-cells-polar_NMR_A",
+                "factors": "protocol.id:13C15NGln_shP4HA1",
+                "additional_sample_data": "lineage_1=7_MDA231_13C15NGln_shP4HA1_rep2; cell_type=MDA231; protocol.id=13C15NGln_shP4HA1; replicate=2; species=Homo sapiens; species_type=Human; taxonomy_id=9606; lineage_2=7_MDA231_13C15NGln_shP4HA1_rep2-cells; cell_type=MDA231; protocol.id=cell_quench_collection; lineage_3=7_MDA231_13C15NGln_shP4HA1_rep2-cells-polar_NMR_A; protocol.id=['polar_extraction', 'NMR_file_storage7']; replicate=1; replicate%type=analytical; sample_split_ratio=0.2859185984148737; type=polar; weight=0.4797999999999998; weight%units=g; lineage_4=7_MDA231_13C15NGln_shP4HA1_rep2-cells-protein; dry_weight=0.0010999999999999899; dry_weight%units=g; protein_weight=0.5852; protein_weight%units=mg; protocol.id=protein_extraction; type=protein"
+            },
+            {
+                "subject_type": "-",
+                "local_sample_id": "8_MDA231_13C15NGln_shP4HA1_rep3-cells-polar_NMR_A",
+                "factors": "protocol.id:13C15NGln_shP4HA1",
+                "additional_sample_data": "lineage_1=8_MDA231_13C15NGln_shP4HA1_rep3; cell_type=MDA231; protocol.id=13C15NGln_shP4HA1; replicate=3; species=Homo sapiens; species_type=Human; taxonomy_id=9606; lineage_2=8_MDA231_13C15NGln_shP4HA1_rep3-cells; cell_type=MDA231; protocol.id=cell_quench_collection; lineage_3=8_MDA231_13C15NGln_shP4HA1_rep3-cells-polar_NMR_A; protocol.id=['polar_extraction', 'NMR_file_storage8']; replicate=1; replicate%type=analytical; sample_split_ratio=0.2918280979912975; type=polar; weight=0.48960000000000004; weight%units=g; lineage_4=8_MDA231_13C15NGln_shP4HA1_rep3-cells-protein; dry_weight=0.0008999999999999009; dry_weight%units=g; protein_weight=0.6532; protein_weight%units=mg; protocol.id=protein_extraction; type=protein"
+            }
+        ]
+    },
+    "COLLECTION": {
+        "COLLECTION_SUMMARY": "Collection and quench of cells in culture",
+        "COLLECTION_PROTOCOL_ID": "cell_quench_collection",
+        "COLLECTION_PROTOCOL_FILENAME": "3A_Cells_Quench_Cell_Fan_20170412.pdf",
+        "SAMPLE_TYPE": "cultured cells"
+    },
+    "TREATMENT": {
+        "TREATMENT_SUMMARY": "Cells grown in unlabeled glutamine and infected with empty vector.\nCells grown in unlabeled glutamine and infected with shP4HA1 lentivirus.\nCells grown in labeled glutamine and infected with empty vector.\nCells grown in labeled glutamine and infected with shP4HA1 lentivirus.",
+        "TREATMENT_PROTOCOL_ID": "12C14NGln_shCTL\n12C14NGln_shP4HA1\n13C15NGln_shCTL\n13C15NGln_shP4HA1"
+    },
+    "SAMPLEPREP": {
+        "SAMPLEPREP_SUMMARY": "Polar extraction from cells.\nProtein extraction and quantification.",
+        "SAMPLEPREP_PROTOCOL_ID": "polar_extraction\nprotein_extraction",
+        "SAMPLEPREP_PROTOCOL_FILENAME": "4B_Extract_Polar_Lipid_Prot_Fan_070417.pdf\n['4D_17Jun4_Fan_Prot_Quant.pdf', '4B_Extract_Polar_Lipid_Prot_Fan_070417.pdf']"
+    },
+    "ANALYSIS": {
+        "ANALYSIS_TYPE": "NMR"
+    },
+    "NMR": {
+        "INSTRUMENT_NAME": "Agilent 600",
+        "INSTRUMENT_TYPE": "Agilent 600",
+        "NMR_EXPERIMENT_TYPE": "HC-HSQC",
+        "STANDARD_CONCENTRATION": "0.5 mM",
+        "SPECTROMETER_FREQUENCY": "600 MHz",
+        "NMR_PROBE": "cryogenic triple resonance HCN",
+        "NMR_SOLVENT": "D20",
+        "NMR_TUBE_SIZE": "1.7 mm",
+        "SHIMMING_METHOD": "gradient shimming",
+        "PULSE_SEQUENCE": "gHSQCAD",
+        "WATER_SUPPRESSION": "presaturation",
+        "CHEMICAL_SHIFT_REF_CPD": "DSS",
+        "TEMPERATURE": "15 celsius",
+        "ACQUISITION_TIME": "2 s",
+        "RELAXATION_DELAY": "4 s",
+        "BASELINE_CORRECTION_METHOD": "Bernstein Polynomial"
+    },
+    "NMR_METABOLITE_DATA": {
+        "NMR_METABOLITE_DATA:UNITS": "normalized peak area",
+        "NMR_METABOLITE_DATA_START": {
+            "Samples": [
+                "2_MDA231_13C15NGln_shCTL_rep1-cells-polar_NMR_A",
+                "3_MDA231_13C15NGln_shCTL_rep2-cells-polar_NMR_A",
+                "4_MDA231_13C15NGln_shCTL_rep3-cells-polar_NMR_A",
+                "6_MDA231_13C15NGln_shP4HA1_rep1-cells-polar_NMR_A",
+                "7_MDA231_13C15NGln_shP4HA1_rep2-cells-polar_NMR_A",
+                "8_MDA231_13C15NGln_shP4HA1_rep3-cells-polar_NMR_A"
+            ],
+            "Factors": [
+                "protocol.id:13C15NGln_shCTL",
+                "protocol.id:13C15NGln_shCTL",
+                "protocol.id:13C15NGln_shCTL",
+                "protocol.id:13C15NGln_shP4HA1",
+                "protocol.id:13C15NGln_shP4HA1",
+                "protocol.id:13C15NGln_shP4HA1"
+            ],
+            "DATA": [
+                {
+                    "metabolite_name": "Asp-3a_1",
+                    "2_MDA231_13C15NGln_shCTL_rep1-cells-polar_NMR_A": "24.54226267353604",
+                    "3_MDA231_13C15NGln_shCTL_rep2-cells-polar_NMR_A": "29.7036833846987",
+                    "4_MDA231_13C15NGln_shCTL_rep3-cells-polar_NMR_A": "24.69028666335394",
+                    "6_MDA231_13C15NGln_shP4HA1_rep1-cells-polar_NMR_A": "30.26981500499837",
+                    "7_MDA231_13C15NGln_shP4HA1_rep2-cells-polar_NMR_A": "27.19256440960832",
+                    "8_MDA231_13C15NGln_shP4HA1_rep3-cells-polar_NMR_A": "39.03721295323924"
+                },
+                {
+                    "metabolite_name": "Asp-3a_2",
+                    "2_MDA231_13C15NGln_shCTL_rep1-cells-polar_NMR_A": "31.11444548670535",
+                    "3_MDA231_13C15NGln_shCTL_rep2-cells-polar_NMR_A": "",
+                    "4_MDA231_13C15NGln_shCTL_rep3-cells-polar_NMR_A": "34.98744464403318",
+                    "6_MDA231_13C15NGln_shP4HA1_rep1-cells-polar_NMR_A": "35.42752259801452",
+                    "7_MDA231_13C15NGln_shP4HA1_rep2-cells-polar_NMR_A": "38.31734912686806",
+                    "8_MDA231_13C15NGln_shP4HA1_rep3-cells-polar_NMR_A": "18.89208487445272"
+                },
+                {
+                    "metabolite_name": "Asp-3b_1",
+                    "2_MDA231_13C15NGln_shCTL_rep1-cells-polar_NMR_A": "16.00529563812208",
+                    "3_MDA231_13C15NGln_shCTL_rep2-cells-polar_NMR_A": "19.92333015747947",
+                    "4_MDA231_13C15NGln_shCTL_rep3-cells-polar_NMR_A": "17.71779788154917",
+                    "6_MDA231_13C15NGln_shP4HA1_rep1-cells-polar_NMR_A": "18.31357420270333",
+                    "7_MDA231_13C15NGln_shP4HA1_rep2-cells-polar_NMR_A": "26.29344115360839",
+                    "8_MDA231_13C15NGln_shP4HA1_rep3-cells-polar_NMR_A": "12.44822898685324"
+                },
+                {
+                    "metabolite_name": "Asp-3b_2",
+                    "2_MDA231_13C15NGln_shCTL_rep1-cells-polar_NMR_A": "24.02220549344224",
+                    "3_MDA231_13C15NGln_shCTL_rep2-cells-polar_NMR_A": "",
+                    "4_MDA231_13C15NGln_shCTL_rep3-cells-polar_NMR_A": "20.43470184077037",
+                    "6_MDA231_13C15NGln_shP4HA1_rep1-cells-polar_NMR_A": "18.58522078954828",
+                    "7_MDA231_13C15NGln_shP4HA1_rep2-cells-polar_NMR_A": "21.53414055786283",
+                    "8_MDA231_13C15NGln_shP4HA1_rep3-cells-polar_NMR_A": "12.10328137594007"
+                },
+                {
+                    "metabolite_name": "DSS_1",
+                    "2_MDA231_13C15NGln_shCTL_rep1-cells-polar_NMR_A": "3.708852890616958",
+                    "3_MDA231_13C15NGln_shCTL_rep2-cells-polar_NMR_A": "2.759922526942883",
+                    "4_MDA231_13C15NGln_shCTL_rep3-cells-polar_NMR_A": "3.593204365044412",
+                    "6_MDA231_13C15NGln_shP4HA1_rep1-cells-polar_NMR_A": "3.343438259784104",
+                    "7_MDA231_13C15NGln_shP4HA1_rep2-cells-polar_NMR_A": "2.832441099305372",
+                    "8_MDA231_13C15NGln_shP4HA1_rep3-cells-polar_NMR_A": "2.800162345189897"
+                },
+                {
+                    "metabolite_name": "GSH+GSSG-3_1",
+                    "2_MDA231_13C15NGln_shCTL_rep1-cells-polar_NMR_A": "97.75278110917235",
+                    "3_MDA231_13C15NGln_shCTL_rep2-cells-polar_NMR_A": "183.3768818550253",
+                    "4_MDA231_13C15NGln_shCTL_rep3-cells-polar_NMR_A": "115.8868864399566",
+                    "6_MDA231_13C15NGln_shP4HA1_rep1-cells-polar_NMR_A": "89.33999252151621",
+                    "7_MDA231_13C15NGln_shP4HA1_rep2-cells-polar_NMR_A": "104.2341489644954",
+                    "8_MDA231_13C15NGln_shP4HA1_rep3-cells-polar_NMR_A": "44.29694779149323"
+                },
+                {
+                    "metabolite_name": "GSH+GSSG-3_2",
+                    "2_MDA231_13C15NGln_shCTL_rep1-cells-polar_NMR_A": "",
+                    "3_MDA231_13C15NGln_shCTL_rep2-cells-polar_NMR_A": "65.87164397962685",
+                    "4_MDA231_13C15NGln_shCTL_rep3-cells-polar_NMR_A": "",
+                    "6_MDA231_13C15NGln_shP4HA1_rep1-cells-polar_NMR_A": "",
+                    "7_MDA231_13C15NGln_shP4HA1_rep2-cells-polar_NMR_A": "",
+                    "8_MDA231_13C15NGln_shP4HA1_rep3-cells-polar_NMR_A": ""
+                },
+                {
+                    "metabolite_name": "GSH+GSSG-4_1",
+                    "2_MDA231_13C15NGln_shCTL_rep1-cells-polar_NMR_A": "49.01772084951588",
+                    "3_MDA231_13C15NGln_shCTL_rep2-cells-polar_NMR_A": "35.57302702117915",
+                    "4_MDA231_13C15NGln_shCTL_rep3-cells-polar_NMR_A": "48.55546053243364",
+                    "6_MDA231_13C15NGln_shP4HA1_rep1-cells-polar_NMR_A": "53.69636253276929",
+                    "7_MDA231_13C15NGln_shP4HA1_rep2-cells-polar_NMR_A": "42.54249640172694",
+                    "8_MDA231_13C15NGln_shP4HA1_rep3-cells-polar_NMR_A": "42.14788251388804"
+                },
+                {
+                    "metabolite_name": "Gln+Glu-2_1",
+                    "2_MDA231_13C15NGln_shCTL_rep1-cells-polar_NMR_A": "231.4166680938396",
+                    "3_MDA231_13C15NGln_shCTL_rep2-cells-polar_NMR_A": "200.0726625495563",
+                    "4_MDA231_13C15NGln_shCTL_rep3-cells-polar_NMR_A": "209.992307863241",
+                    "6_MDA231_13C15NGln_shP4HA1_rep1-cells-polar_NMR_A": "175.1039283037494",
+                    "7_MDA231_13C15NGln_shP4HA1_rep2-cells-polar_NMR_A": "205.1692694823496",
+                    "8_MDA231_13C15NGln_shP4HA1_rep3-cells-polar_NMR_A": "197.4517966730942"
+                },
+                {
+                    "metabolite_name": "Gln-3_1",
+                    "2_MDA231_13C15NGln_shCTL_rep1-cells-polar_NMR_A": "228.329597733955",
+                    "3_MDA231_13C15NGln_shCTL_rep2-cells-polar_NMR_A": "181.851016461697",
+                    "4_MDA231_13C15NGln_shCTL_rep3-cells-polar_NMR_A": "245.8178674490869",
+                    "6_MDA231_13C15NGln_shP4HA1_rep1-cells-polar_NMR_A": "184.8079174752123",
+                    "7_MDA231_13C15NGln_shP4HA1_rep2-cells-polar_NMR_A": "182.7144755552905",
+                    "8_MDA231_13C15NGln_shP4HA1_rep3-cells-polar_NMR_A": "298.441260744752"
+                },
+                {
+                    "metabolite_name": "Gln-3_2",
+                    "2_MDA231_13C15NGln_shCTL_rep1-cells-polar_NMR_A": "201.0945856801769",
+                    "3_MDA231_13C15NGln_shCTL_rep2-cells-polar_NMR_A": "",
+                    "4_MDA231_13C15NGln_shCTL_rep3-cells-polar_NMR_A": "177.7722016133947",
+                    "6_MDA231_13C15NGln_shP4HA1_rep1-cells-polar_NMR_A": "304.1650132129287",
+                    "7_MDA231_13C15NGln_shP4HA1_rep2-cells-polar_NMR_A": "294.0866344867428",
+                    "8_MDA231_13C15NGln_shP4HA1_rep3-cells-polar_NMR_A": ""
+                },
+                {
+                    "metabolite_name": "Gln-4_1",
+                    "2_MDA231_13C15NGln_shCTL_rep1-cells-polar_NMR_A": "94.5776639727979",
+                    "3_MDA231_13C15NGln_shCTL_rep2-cells-polar_NMR_A": "51.58428254183036",
+                    "4_MDA231_13C15NGln_shCTL_rep3-cells-polar_NMR_A": "66.87966829184005",
+                    "6_MDA231_13C15NGln_shP4HA1_rep1-cells-polar_NMR_A": "75.24145331233225",
+                    "7_MDA231_13C15NGln_shP4HA1_rep2-cells-polar_NMR_A": "67.43741760754165",
+                    "8_MDA231_13C15NGln_shP4HA1_rep3-cells-polar_NMR_A": "106.0322588360015"
+                },
+                {
+                    "metabolite_name": "Gln-4_2",
+                    "2_MDA231_13C15NGln_shCTL_rep1-cells-polar_NMR_A": "86.40806063998438",
+                    "3_MDA231_13C15NGln_shCTL_rep2-cells-polar_NMR_A": "53.63945867960744",
+                    "4_MDA231_13C15NGln_shCTL_rep3-cells-polar_NMR_A": "92.76024135476443",
+                    "6_MDA231_13C15NGln_shP4HA1_rep1-cells-polar_NMR_A": "84.89030590073776",
+                    "7_MDA231_13C15NGln_shP4HA1_rep2-cells-polar_NMR_A": "99.0014809811226",
+                    "8_MDA231_13C15NGln_shP4HA1_rep3-cells-polar_NMR_A": "88.78576757812951"
+                },
+                {
+                    "metabolite_name": "Glu-3-a_1",
+                    "2_MDA231_13C15NGln_shCTL_rep1-cells-polar_NMR_A": "814.6414255390496",
+                    "3_MDA231_13C15NGln_shCTL_rep2-cells-polar_NMR_A": "592.3811959556859",
+                    "4_MDA231_13C15NGln_shCTL_rep3-cells-polar_NMR_A": "110.226945654049",
+                    "6_MDA231_13C15NGln_shP4HA1_rep1-cells-polar_NMR_A": "700.7143394458174",
+                    "7_MDA231_13C15NGln_shP4HA1_rep2-cells-polar_NMR_A": "681.2972375464915",
+                    "8_MDA231_13C15NGln_shP4HA1_rep3-cells-polar_NMR_A": "116.9320010313116"
+                },
+                {
+                    "metabolite_name": "Glu-3-a_2",
+                    "2_MDA231_13C15NGln_shCTL_rep1-cells-polar_NMR_A": "28.90673127348878",
+                    "3_MDA231_13C15NGln_shCTL_rep2-cells-polar_NMR_A": "16.81478665032745",
+                    "4_MDA231_13C15NGln_shCTL_rep3-cells-polar_NMR_A": "455.6918212706799",
+                    "6_MDA231_13C15NGln_shP4HA1_rep1-cells-polar_NMR_A": "7.36359739475456",
+                    "7_MDA231_13C15NGln_shP4HA1_rep2-cells-polar_NMR_A": "",
+                    "8_MDA231_13C15NGln_shP4HA1_rep3-cells-polar_NMR_A": "302.2953634345634"
+                },
+                {
+                    "metabolite_name": "Glu-3-a_3",
+                    "2_MDA231_13C15NGln_shCTL_rep1-cells-polar_NMR_A": "",
+                    "3_MDA231_13C15NGln_shCTL_rep2-cells-polar_NMR_A": "",
+                    "4_MDA231_13C15NGln_shCTL_rep3-cells-polar_NMR_A": "30.36847981559722",
+                    "6_MDA231_13C15NGln_shP4HA1_rep1-cells-polar_NMR_A": "",
+                    "7_MDA231_13C15NGln_shP4HA1_rep2-cells-polar_NMR_A": "",
+                    "8_MDA231_13C15NGln_shP4HA1_rep3-cells-polar_NMR_A": "381.9717256820373"
+                },
+                {
+                    "metabolite_name": "Glu-3-a_4",
+                    "2_MDA231_13C15NGln_shCTL_rep1-cells-polar_NMR_A": "",
+                    "3_MDA231_13C15NGln_shCTL_rep2-cells-polar_NMR_A": "",
+                    "4_MDA231_13C15NGln_shCTL_rep3-cells-polar_NMR_A": "",
+                    "6_MDA231_13C15NGln_shP4HA1_rep1-cells-polar_NMR_A": "",
+                    "7_MDA231_13C15NGln_shP4HA1_rep2-cells-polar_NMR_A": "",
+                    "8_MDA231_13C15NGln_shP4HA1_rep3-cells-polar_NMR_A": "36.12719644085495"
+                },
+                {
+                    "metabolite_name": "Glu-3-b_1",
+                    "2_MDA231_13C15NGln_shCTL_rep1-cells-polar_NMR_A": "207.4967179706346",
+                    "3_MDA231_13C15NGln_shCTL_rep2-cells-polar_NMR_A": "622.2894448181377",
+                    "4_MDA231_13C15NGln_shCTL_rep3-cells-polar_NMR_A": "177.5474662986643",
+                    "6_MDA231_13C15NGln_shP4HA1_rep1-cells-polar_NMR_A": "258.9825359565835",
+                    "7_MDA231_13C15NGln_shP4HA1_rep2-cells-polar_NMR_A": "178.9555485324826",
+                    "8_MDA231_13C15NGln_shP4HA1_rep3-cells-polar_NMR_A": "278.1595643522181"
+                },
+                {
+                    "metabolite_name": "Glu-3-b_2",
+                    "2_MDA231_13C15NGln_shCTL_rep1-cells-polar_NMR_A": "510.670718992131",
+                    "3_MDA231_13C15NGln_shCTL_rep2-cells-polar_NMR_A": "",
+                    "4_MDA231_13C15NGln_shCTL_rep3-cells-polar_NMR_A": "342.3489448085118",
+                    "6_MDA231_13C15NGln_shP4HA1_rep1-cells-polar_NMR_A": "360.6655374817218",
+                    "7_MDA231_13C15NGln_shP4HA1_rep2-cells-polar_NMR_A": "451.9233634930359",
+                    "8_MDA231_13C15NGln_shP4HA1_rep3-cells-polar_NMR_A": "943.613700347894"
+                },
+                {
+                    "metabolite_name": "Glu-4_1",
+                    "2_MDA231_13C15NGln_shCTL_rep1-cells-polar_NMR_A": "261.1516468904569",
+                    "3_MDA231_13C15NGln_shCTL_rep2-cells-polar_NMR_A": "231.5830974528786",
+                    "4_MDA231_13C15NGln_shCTL_rep3-cells-polar_NMR_A": "221.2427683880959",
+                    "6_MDA231_13C15NGln_shP4HA1_rep1-cells-polar_NMR_A": "255.6909339868907",
+                    "7_MDA231_13C15NGln_shP4HA1_rep2-cells-polar_NMR_A": "231.940287420738",
+                    "8_MDA231_13C15NGln_shP4HA1_rep3-cells-polar_NMR_A": "328.4374787146714"
+                },
+                {
+                    "metabolite_name": "Lac-3_1",
+                    "2_MDA231_13C15NGln_shCTL_rep1-cells-polar_NMR_A": "8.328740496988404",
+                    "3_MDA231_13C15NGln_shCTL_rep2-cells-polar_NMR_A": "4.614988895774601",
+                    "4_MDA231_13C15NGln_shCTL_rep3-cells-polar_NMR_A": "7.181665318767379",
+                    "6_MDA231_13C15NGln_shP4HA1_rep1-cells-polar_NMR_A": "8.28576804246514",
+                    "7_MDA231_13C15NGln_shP4HA1_rep2-cells-polar_NMR_A": "8.761497378842648",
+                    "8_MDA231_13C15NGln_shP4HA1_rep3-cells-polar_NMR_A": "10.27988807688694"
+                },
+                {
+                    "metabolite_name": "P-Cho A_1",
+                    "2_MDA231_13C15NGln_shCTL_rep1-cells-polar_NMR_A": "10.98000590895953",
+                    "3_MDA231_13C15NGln_shCTL_rep2-cells-polar_NMR_A": "8.042742240871172",
+                    "4_MDA231_13C15NGln_shCTL_rep3-cells-polar_NMR_A": "9.54167612510784",
+                    "6_MDA231_13C15NGln_shP4HA1_rep1-cells-polar_NMR_A": "10.09324441009113",
+                    "7_MDA231_13C15NGln_shP4HA1_rep2-cells-polar_NMR_A": "9.262212401326643",
+                    "8_MDA231_13C15NGln_shP4HA1_rep3-cells-polar_NMR_A": "10.89098765467595"
+                }
+            ]
+        }
+    },
+    "METABOLITES": {
+        "METABOLITES_START": {
+            "Fields": [
+                "metabolite_name",
+                "base_inchi",
+                "isotopic_inchi",
+                "peak_description",
+                "peak_pattern",
+                "proton_count",
+                "representative_inchi",
+                "transient_peak"
+            ],
+            "DATA": [
+                {
+                    "resonance_assignment": "Asp-3a_1",
+                    "base_inchi": "InChI=1S/C4H7NO4/c5-2(4(8)9)1-3(6)7/h2H,1,5H2,(H,6,7)(H,8,9)/p-1/t2-/m0/s1",
+                    "isotopic_inchi": "InChI=1/C4H7NO4/c5-2(4(8)9)1-3(6)7/h2H,1,5H2,(H,6,7)(H,8,9)/p-1/t2-/m0/s1/i1+1H2,2H/fC4H6NO4/h5H/q-1",
+                    "peak_description": "[1H10,1H11:13C1]HResonance + [1H10:1H11]J2HH + [1H10,1H11:1H12]J3HH",
+                    "peak_pattern": "",
+                    "proton_count": "1",
+                    "representative_inchi": "InChI=1/C4H7NO4/c5-2(4(8)9)1-3(6)7/h2H,1,5H2,(H,6,7)(H,8,9)/p-1/t2-/m0/s1/fC4H6NO4/h5H/q-1",
+                    "transient_peak": "1"
+                },
+                {
+                    "resonance_assignment": "Asp-3a_2",
+                    "base_inchi": "InChI=1S/C4H7NO4/c5-2(4(8)9)1-3(6)7/h2H,1,5H2,(H,6,7)(H,8,9)/p-1/t2-/m0/s1",
+                    "isotopic_inchi": "InChI=1/C4H7NO4/c5-2(4(8)9)1-3(6)7/h2H,1,5H2,(H,6,7)(H,8,9)/p-1/t2-/m0/s1/i1+1H2,2H/fC4H6NO4/h5H/q-1",
+                    "peak_description": "[1H10,1H11:13C1]HResonance + [1H10:1H11]J2HH + [1H10,1H11:1H12]J3HH",
+                    "peak_pattern": "",
+                    "proton_count": "1",
+                    "representative_inchi": "InChI=1/C4H7NO4/c5-2(4(8)9)1-3(6)7/h2H,1,5H2,(H,6,7)(H,8,9)/p-1/t2-/m0/s1/fC4H6NO4/h5H/q-1",
+                    "transient_peak": "2"
+                },
+                {
+                    "resonance_assignment": "Asp-3b_1",
+                    "base_inchi": "InChI=1S/C4H7NO4/c5-2(4(8)9)1-3(6)7/h2H,1,5H2,(H,6,7)(H,8,9)/p-1/t2-/m0/s1",
+                    "isotopic_inchi": "InChI=1/C4H7NO4/c5-2(4(8)9)1-3(6)7/h2H,1,5H2,(H,6,7)(H,8,9)/p-1/t2-/m0/s1/i1+1H2,2H/fC4H6NO4/h5H/q-1",
+                    "peak_description": "[1H10,1H11:13C1]HResonance + [1H10:1H11]J2HH + [1H10,1H11:1H12]J3HH",
+                    "peak_pattern": "",
+                    "proton_count": "1",
+                    "representative_inchi": "InChI=1/C4H7NO4/c5-2(4(8)9)1-3(6)7/h2H,1,5H2,(H,6,7)(H,8,9)/p-1/t2-/m0/s1/fC4H6NO4/h5H/q-1",
+                    "transient_peak": "1"
+                },
+                {
+                    "resonance_assignment": "Asp-3b_2",
+                    "base_inchi": "InChI=1S/C4H7NO4/c5-2(4(8)9)1-3(6)7/h2H,1,5H2,(H,6,7)(H,8,9)/p-1/t2-/m0/s1",
+                    "isotopic_inchi": "InChI=1/C4H7NO4/c5-2(4(8)9)1-3(6)7/h2H,1,5H2,(H,6,7)(H,8,9)/p-1/t2-/m0/s1/i1+1H2,2H/fC4H6NO4/h5H/q-1",
+                    "peak_description": "[1H10,1H11:13C1]HResonance + [1H10:1H11]J2HH + [1H10,1H11:1H12]J3HH",
+                    "peak_pattern": "",
+                    "proton_count": "1",
+                    "representative_inchi": "InChI=1/C4H7NO4/c5-2(4(8)9)1-3(6)7/h2H,1,5H2,(H,6,7)(H,8,9)/p-1/t2-/m0/s1/fC4H6NO4/h5H/q-1",
+                    "transient_peak": "2"
+                },
+                {
+                    "resonance_assignment": "DSS_1",
+                    "base_inchi": "InChI=1S/C6H16O3SSi/c1-11(2,3)6-4-5-10(7,8)9/h4-6H2,1-3H3,(H,7,8,9)/i4D2,5D2,6D2",
+                    "isotopic_inchi": "InChI=1/C6H16O3SSi/c1-11(2,3)6-4-5-10(7,8)9/h4-6H2,1-3H3,(H,7,8,9)/p-1/i1+1H3,2+1H3,3+1H3,4D2,5D2,6D2/fC6H15O3SSi/q-1",
+                    "peak_description": "[1H12,1H13,1H14:13C1+1H15,1H16,1H17:13C2+1H18,1H19,1H20:13C3]Hresonance",
+                    "peak_pattern": "",
+                    "proton_count": "9",
+                    "representative_inchi": "InChI=1/C6H16O3SSi/c1-11(2,3)6-4-5-10(7,8)9/h4-6H2,1-3H3,(H,7,8,9)/p-1/i4D2,5D2,6D2/fC6H15O3SSi/q-1",
+                    "transient_peak": "1"
+                },
+                {
+                    "resonance_assignment": "GSH+GSSG-3_1",
+                    "base_inchi": "InChI=1S/C10H17N3O6S/c11-5(10(18)19)1-2-7(14)13-6(4-20)9(17)12-3-8(15)16/h5-6,20H,1-4,11H2,(H,12,17)(H,13,14)(H,15,16)(H,18,19)/p-1/t5-,6-/m0/s1; InChI=1S/C20H32N6O12S2/c21-9(19(35)36)1-3-13(27)25-11(17(33)23-5-15(29)30)7-39-40-8-12(18(34)24-6-16(31)32)26-14(28)4-2-10(22)20(37)38/h9-12H,1-8,21-22H2,(H,23,33)(H,24,34)(H,25,27)(H,26,28)(H,29,30)(H,31,32)(H,35,36)(H,37,38)/p-2",
+                    "isotopic_inchi": "InChI=1/C10H17N3O6S/c11-5(10(18)19)1-2-7(14)13-6(4-20)9(17)12-3-8(15)16/h5-6,20H,1-4,11H2,(H,12,17)(H,13,14)(H,15,16)(H,18,19)/p-1/t5-,6-/m0/s1/i1+1H2,2H2,5H/fC10H16N3O6S/h11-13H/q-1; InChI=1/C20H32N6O12S2/c21-9(19(35)36)1-3-13(27)25-11(17(33)23-5-15(29)30)7-39-40-8-12(18(34)24-6-16(31)32)26-14(28)4-2-10(22)20(37)38/h9-12H,1-8,21-22H2,(H,23,33)(H,24,34)(H,25,27)(H,26,28)(H,29,30)(H,31,32)(H,35,36)(H,37,38)/p-2/t9-,10-,11-,12-/m0/s1/i1+1H2,2+1H2,3H2,4H2,9H,10H/fC20H30N6O12S2/h21-22,27-28,33-34H/q-2",
+                    "peak_description": "[1H21,1H22:13C1]HResonance + [1H21,1H22:1H23,1H24]J3HH + [1H21,1H22:1H29]J3HH; [1H41,1H42:13C1+1H43,1H44:13C2]HResonance + [1H41,1H42:1H45,1H46]J3HH + [1H41,1H42:1H57]J3HH + [1H43,1H44:1H47,1H48]J3HH + [1H43,1H44:1H58]J3HH",
+                    "peak_pattern": "",
+                    "proton_count": "2",
+                    "representative_inchi": "InChI=1/C10H17N3O6S/c11-5(10(18)19)1-2-7(14)13-6(4-20)9(17)12-3-8(15)16/h5-6,20H,1-4,11H2,(H,12,17)(H,13,14)(H,15,16)(H,18,19)/p-1/t5-,6-/m0/s1/fC10H16N3O6S/h11-13H/q-1; InChI=1/C20H32N6O12S2/c21-9(19(35)36)1-3-13(27)25-11(17(33)23-5-15(29)30)7-39-40-8-12(18(34)24-6-16(31)32)26-14(28)4-2-10(22)20(37)38/h9-12H,1-8,21-22H2,(H,23,33)(H,24,34)(H,25,27)(H,26,28)(H,29,30)(H,31,32)(H,35,36)(H,37,38)/p-2/t9-,10-,11-,12-/m0/s1/fC20H30N6O12S2/h21-22,27-28,33-34H/q-2",
+                    "transient_peak": "1"
+                },
+                {
+                    "resonance_assignment": "GSH+GSSG-3_2",
+                    "base_inchi": "InChI=1S/C10H17N3O6S/c11-5(10(18)19)1-2-7(14)13-6(4-20)9(17)12-3-8(15)16/h5-6,20H,1-4,11H2,(H,12,17)(H,13,14)(H,15,16)(H,18,19)/p-1/t5-,6-/m0/s1; InChI=1S/C20H32N6O12S2/c21-9(19(35)36)1-3-13(27)25-11(17(33)23-5-15(29)30)7-39-40-8-12(18(34)24-6-16(31)32)26-14(28)4-2-10(22)20(37)38/h9-12H,1-8,21-22H2,(H,23,33)(H,24,34)(H,25,27)(H,26,28)(H,29,30)(H,31,32)(H,35,36)(H,37,38)/p-2",
+                    "isotopic_inchi": "InChI=1/C10H17N3O6S/c11-5(10(18)19)1-2-7(14)13-6(4-20)9(17)12-3-8(15)16/h5-6,20H,1-4,11H2,(H,12,17)(H,13,14)(H,15,16)(H,18,19)/p-1/t5-,6-/m0/s1/i1+1H2,2H2,5H/fC10H16N3O6S/h11-13H/q-1; InChI=1/C20H32N6O12S2/c21-9(19(35)36)1-3-13(27)25-11(17(33)23-5-15(29)30)7-39-40-8-12(18(34)24-6-16(31)32)26-14(28)4-2-10(22)20(37)38/h9-12H,1-8,21-22H2,(H,23,33)(H,24,34)(H,25,27)(H,26,28)(H,29,30)(H,31,32)(H,35,36)(H,37,38)/p-2/t9-,10-,11-,12-/m0/s1/i1+1H2,2+1H2,3H2,4H2,9H,10H/fC20H30N6O12S2/h21-22,27-28,33-34H/q-2",
+                    "peak_description": "[1H21,1H22:13C1]HResonance + [1H21,1H22:1H23,1H24]J3HH + [1H21,1H22:1H29]J3HH; [1H41,1H42:13C1+1H43,1H44:13C2]HResonance + [1H41,1H42:1H45,1H46]J3HH + [1H41,1H42:1H57]J3HH + [1H43,1H44:1H47,1H48]J3HH + [1H43,1H44:1H58]J3HH",
+                    "peak_pattern": "",
+                    "proton_count": "2",
+                    "representative_inchi": "InChI=1/C10H17N3O6S/c11-5(10(18)19)1-2-7(14)13-6(4-20)9(17)12-3-8(15)16/h5-6,20H,1-4,11H2,(H,12,17)(H,13,14)(H,15,16)(H,18,19)/p-1/t5-,6-/m0/s1/fC10H16N3O6S/h11-13H/q-1; InChI=1/C20H32N6O12S2/c21-9(19(35)36)1-3-13(27)25-11(17(33)23-5-15(29)30)7-39-40-8-12(18(34)24-6-16(31)32)26-14(28)4-2-10(22)20(37)38/h9-12H,1-8,21-22H2,(H,23,33)(H,24,34)(H,25,27)(H,26,28)(H,29,30)(H,31,32)(H,35,36)(H,37,38)/p-2/t9-,10-,11-,12-/m0/s1/fC20H30N6O12S2/h21-22,27-28,33-34H/q-2",
+                    "transient_peak": "2"
+                },
+                {
+                    "resonance_assignment": "GSH+GSSG-4_1",
+                    "base_inchi": "InChI=1S/C10H17N3O6S/c11-5(10(18)19)1-2-7(14)13-6(4-20)9(17)12-3-8(15)16/h5-6,20H,1-4,11H2,(H,12,17)(H,13,14)(H,15,16)(H,18,19)/p-1/t5-,6-/m0/s1; InChI=1S/C20H32N6O12S2/c21-9(19(35)36)1-3-13(27)25-11(17(33)23-5-15(29)30)7-39-40-8-12(18(34)24-6-16(31)32)26-14(28)4-2-10(22)20(37)38/h9-12H,1-8,21-22H2,(H,23,33)(H,24,34)(H,25,27)(H,26,28)(H,29,30)(H,31,32)(H,35,36)(H,37,38)/p-2",
+                    "isotopic_inchi": "InChI=1/C10H17N3O6S/c11-5(10(18)19)1-2-7(14)13-6(4-20)9(17)12-3-8(15)16/h5-6,20H,1-4,11H2,(H,12,17)(H,13,14)(H,15,16)(H,18,19)/p-1/t5-,6-/m0/s1/i1H2,2+1H2/fC10H16N3O6S/h11-13H/q-1; InChI=1/C20H32N6O12S2/c21-9(19(35)36)1-3-13(27)25-11(17(33)23-5-15(29)30)7-39-40-8-12(18(34)24-6-16(31)32)26-14(28)4-2-10(22)20(37)38/h9-12H,1-8,21-22H2,(H,23,33)(H,24,34)(H,25,27)(H,26,28)(H,29,30)(H,31,32)(H,35,36)(H,37,38)/p-2/t9-,10-,11-,12-/m0/s1/i1H2,2H2,3+1H2,4+1H2/fC20H30N6O12S2/h21-22,27-28,33-34H/q-2",
+                    "peak_description": "[1H23,1H24:13C2]HResonance + [1H23:1H24]J2HH + [1H23,1H24:1H21,1H22]J3HH; [1H45,1H46:13C3+1H47,1H48:13C4]HResonance + [1H45:1H46]J2HH + [1H45,1H46:1H41,1H42]J3HH + [1H47:1H48]J2HH + [1H47,1H48:1H43,1H44]J3HH",
+                    "peak_pattern": "",
+                    "proton_count": "4",
+                    "representative_inchi": "InChI=1/C10H17N3O6S/c11-5(10(18)19)1-2-7(14)13-6(4-20)9(17)12-3-8(15)16/h5-6,20H,1-4,11H2,(H,12,17)(H,13,14)(H,15,16)(H,18,19)/p-1/t5-,6-/m0/s1/fC10H16N3O6S/h11-13H/q-1; InChI=1/C20H32N6O12S2/c21-9(19(35)36)1-3-13(27)25-11(17(33)23-5-15(29)30)7-39-40-8-12(18(34)24-6-16(31)32)26-14(28)4-2-10(22)20(37)38/h9-12H,1-8,21-22H2,(H,23,33)(H,24,34)(H,25,27)(H,26,28)(H,29,30)(H,31,32)(H,35,36)(H,37,38)/p-2/t9-,10-,11-,12-/m0/s1/fC20H30N6O12S2/h21-22,27-28,33-34H/q-2",
+                    "transient_peak": "1"
+                },
+                {
+                    "resonance_assignment": "Gln+Glu-2_1",
+                    "base_inchi": "InChI=1S/C5H10N2O3/c6-3(5(9)10)1-2-4(7)8/h3H,1-2,6H2,(H2,7,8)(H,9,10)/t3-/m0/s1; InChI=1S/C5H9NO4/c6-3(5(9)10)1-2-4(7)8/h3H,1-2,6H2,(H,7,8)(H,9,10)/t3-/m0/s1",
+                    "isotopic_inchi": "InChI=1/C5H9NO4/c6-3(5(9)10)1-2-4(7)8/h3H,1-2,6H2,(H,7,8)(H,9,10)/p-1/t3-/m0/s1/i1H2,3+1H/fC5H8NO4/h6H/q-1; InChI=1/C5H9NO4/c6-3(5(9)10)1-2-4(7)8/h3H,1-2,6H2,(H,7,8)(H,9,10)/p-1/t3-/m0/s1/i1H2,3+1H/fC5H8NO4/h6H/q-1",
+                    "peak_description": "[1H15:13C3]HResonance + [1H15:1H11,1H12]J3HH; [1H15:13C3]HResonance + [1H15:1H11,1H12]J3HH",
+                    "peak_pattern": "",
+                    "proton_count": "3",
+                    "representative_inchi": "InChI=1/C5H10N2O3/c6-3(5(9)10)1-2-4(7)8/h3H,1-2,6H2,(H2,7,8)(H,9,10)/t3-/m0/s1/f/h6-8H/b7-4+; InChI=1/C5H9NO4/c6-3(5(9)10)1-2-4(7)8/h3H,1-2,6H2,(H,7,8)(H,9,10)/p-1/t3-/m0/s1/fC5H8NO4/h6H/q-1",
+                    "transient_peak": "1"
+                },
+                {
+                    "resonance_assignment": "Gln-3_1",
+                    "base_inchi": "InChI=1S/C5H10N2O3/c6-3(5(9)10)1-2-4(7)8/h3H,1-2,6H2,(H2,7,8)(H,9,10)/t3-/m0/s1",
+                    "isotopic_inchi": "InChI=1/C5H10N2O3/c6-3(5(9)10)1-2-4(7)8/h3H,1-2,6H2,(H2,7,8)(H,9,10)/t3-/m0/s1/i1+1H2,2H2,3H/f/h6-8H/b7-4+",
+                    "peak_description": "[1H11,1H12:13C1]HResonance + [1H11,1H12:1H13,1H14]J3HH + [1H11,1H12:1H15]J3HH",
+                    "peak_pattern": "",
+                    "proton_count": "2",
+                    "representative_inchi": "InChI=1/C5H10N2O3/c6-3(5(9)10)1-2-4(7)8/h3H,1-2,6H2,(H2,7,8)(H,9,10)/t3-/m0/s1/f/h6-8H/b7-4+",
+                    "transient_peak": "1"
+                },
+                {
+                    "resonance_assignment": "Gln-3_2",
+                    "base_inchi": "InChI=1S/C5H10N2O3/c6-3(5(9)10)1-2-4(7)8/h3H,1-2,6H2,(H2,7,8)(H,9,10)/t3-/m0/s1",
+                    "isotopic_inchi": "InChI=1/C5H10N2O3/c6-3(5(9)10)1-2-4(7)8/h3H,1-2,6H2,(H2,7,8)(H,9,10)/t3-/m0/s1/i1+1H2,2H2,3H/f/h6-8H/b7-4+",
+                    "peak_description": "[1H11,1H12:13C1]HResonance + [1H11,1H12:1H13,1H14]J3HH + [1H11,1H12:1H15]J3HH",
+                    "peak_pattern": "",
+                    "proton_count": "2",
+                    "representative_inchi": "InChI=1/C5H10N2O3/c6-3(5(9)10)1-2-4(7)8/h3H,1-2,6H2,(H2,7,8)(H,9,10)/t3-/m0/s1/f/h6-8H/b7-4+",
+                    "transient_peak": "2"
+                },
+                {
+                    "resonance_assignment": "Gln-4_1",
+                    "base_inchi": "InChI=1S/C5H10N2O3/c6-3(5(9)10)1-2-4(7)8/h3H,1-2,6H2,(H2,7,8)(H,9,10)/t3-/m0/s1",
+                    "isotopic_inchi": "InChI=1/C5H10N2O3/c6-3(5(9)10)1-2-4(7)8/h3H,1-2,6H2,(H2,7,8)(H,9,10)/t3-/m0/s1/i1H2,2H2/f/h6-8H/b7-4+",
+                    "peak_description": "[1H13,1H14:C2]HResonance + [1H13,1H14:1H11,1H12]J3HH",
+                    "peak_pattern": "",
+                    "proton_count": "2",
+                    "representative_inchi": "InChI=1/C5H10N2O3/c6-3(5(9)10)1-2-4(7)8/h3H,1-2,6H2,(H2,7,8)(H,9,10)/t3-/m0/s1/f/h6-8H/b7-4+",
+                    "transient_peak": "1"
+                },
+                {
+                    "resonance_assignment": "Gln-4_2",
+                    "base_inchi": "InChI=1S/C5H10N2O3/c6-3(5(9)10)1-2-4(7)8/h3H,1-2,6H2,(H2,7,8)(H,9,10)/t3-/m0/s1",
+                    "isotopic_inchi": "InChI=1/C5H10N2O3/c6-3(5(9)10)1-2-4(7)8/h3H,1-2,6H2,(H2,7,8)(H,9,10)/t3-/m0/s1/i1H2,2H2/f/h6-8H/b7-4+",
+                    "peak_description": "[1H13,1H14:C2]HResonance + [1H13,1H14:1H11,1H12]J3HH",
+                    "peak_pattern": "",
+                    "proton_count": "2",
+                    "representative_inchi": "InChI=1/C5H10N2O3/c6-3(5(9)10)1-2-4(7)8/h3H,1-2,6H2,(H2,7,8)(H,9,10)/t3-/m0/s1/f/h6-8H/b7-4+",
+                    "transient_peak": "2"
+                },
+                {
+                    "resonance_assignment": "Glu-3-a_1",
+                    "base_inchi": "InChI=1S/C5H9NO4/c6-3(5(9)10)1-2-4(7)8/h3H,1-2,6H2,(H,7,8)(H,9,10)/t3-/m0/s1",
+                    "isotopic_inchi": "InChI=1/C5H9NO4/c6-3(5(9)10)1-2-4(7)8/h3H,1-2,6H2,(H,7,8)(H,9,10)/p-1/t3-/m0/s1/i1+1H2,2H2,3H/fC5H8NO4/h6H/q-1",
+                    "peak_description": "[1H11,1H12:13C1]HResonance + [1H11:1H12]J2HH + [1H11,1H12:1H13,1H14]J3HH + [1H11,1H12:1H15]J3HH",
+                    "peak_pattern": "",
+                    "proton_count": "1",
+                    "representative_inchi": "InChI=1/C5H9NO4/c6-3(5(9)10)1-2-4(7)8/h3H,1-2,6H2,(H,7,8)(H,9,10)/p-1/t3-/m0/s1/fC5H8NO4/h6H/q-1",
+                    "transient_peak": "1"
+                },
+                {
+                    "resonance_assignment": "Glu-3-a_2",
+                    "base_inchi": "InChI=1S/C5H9NO4/c6-3(5(9)10)1-2-4(7)8/h3H,1-2,6H2,(H,7,8)(H,9,10)/t3-/m0/s1",
+                    "isotopic_inchi": "InChI=1/C5H9NO4/c6-3(5(9)10)1-2-4(7)8/h3H,1-2,6H2,(H,7,8)(H,9,10)/p-1/t3-/m0/s1/i1+1H2,2H2,3H/fC5H8NO4/h6H/q-1",
+                    "peak_description": "[1H11,1H12:13C1]HResonance + [1H11:1H12]J2HH + [1H11,1H12:1H13,1H14]J3HH + [1H11,1H12:1H15]J3HH",
+                    "peak_pattern": "",
+                    "proton_count": "1",
+                    "representative_inchi": "InChI=1/C5H9NO4/c6-3(5(9)10)1-2-4(7)8/h3H,1-2,6H2,(H,7,8)(H,9,10)/p-1/t3-/m0/s1/fC5H8NO4/h6H/q-1",
+                    "transient_peak": "2"
+                },
+                {
+                    "resonance_assignment": "Glu-3-a_3",
+                    "base_inchi": "InChI=1S/C5H9NO4/c6-3(5(9)10)1-2-4(7)8/h3H,1-2,6H2,(H,7,8)(H,9,10)/t3-/m0/s1",
+                    "isotopic_inchi": "InChI=1/C5H9NO4/c6-3(5(9)10)1-2-4(7)8/h3H,1-2,6H2,(H,7,8)(H,9,10)/p-1/t3-/m0/s1/i1+1H2,2H2,3H/fC5H8NO4/h6H/q-1",
+                    "peak_description": "[1H11,1H12:13C1]HResonance + [1H11:1H12]J2HH + [1H11,1H12:1H13,1H14]J3HH + [1H11,1H12:1H15]J3HH",
+                    "peak_pattern": "",
+                    "proton_count": "1",
+                    "representative_inchi": "InChI=1/C5H9NO4/c6-3(5(9)10)1-2-4(7)8/h3H,1-2,6H2,(H,7,8)(H,9,10)/p-1/t3-/m0/s1/fC5H8NO4/h6H/q-1",
+                    "transient_peak": "3"
+                },
+                {
+                    "resonance_assignment": "Glu-3-a_4",
+                    "base_inchi": "InChI=1S/C5H9NO4/c6-3(5(9)10)1-2-4(7)8/h3H,1-2,6H2,(H,7,8)(H,9,10)/t3-/m0/s1",
+                    "isotopic_inchi": "InChI=1/C5H9NO4/c6-3(5(9)10)1-2-4(7)8/h3H,1-2,6H2,(H,7,8)(H,9,10)/p-1/t3-/m0/s1/i1+1H2,2H2,3H/fC5H8NO4/h6H/q-1",
+                    "peak_description": "[1H11,1H12:13C1]HResonance + [1H11:1H12]J2HH + [1H11,1H12:1H13,1H14]J3HH + [1H11,1H12:1H15]J3HH",
+                    "peak_pattern": "",
+                    "proton_count": "1",
+                    "representative_inchi": "InChI=1/C5H9NO4/c6-3(5(9)10)1-2-4(7)8/h3H,1-2,6H2,(H,7,8)(H,9,10)/p-1/t3-/m0/s1/fC5H8NO4/h6H/q-1",
+                    "transient_peak": "4"
+                },
+                {
+                    "resonance_assignment": "Glu-3-b_1",
+                    "base_inchi": "InChI=1S/C5H9NO4/c6-3(5(9)10)1-2-4(7)8/h3H,1-2,6H2,(H,7,8)(H,9,10)/t3-/m0/s1",
+                    "isotopic_inchi": "InChI=1/C5H9NO4/c6-3(5(9)10)1-2-4(7)8/h3H,1-2,6H2,(H,7,8)(H,9,10)/p-1/t3-/m0/s1/i1+1H2,2H2,3H/fC5H8NO4/h6H/q-1",
+                    "peak_description": "[1H11,1H12:13C1]HResonance + [1H11:1H12]J2HH + [1H11,1H12:1H13,1H14]J3HH + [1H11,1H12:1H15]J3HH",
+                    "peak_pattern": "",
+                    "proton_count": "1",
+                    "representative_inchi": "InChI=1/C5H9NO4/c6-3(5(9)10)1-2-4(7)8/h3H,1-2,6H2,(H,7,8)(H,9,10)/p-1/t3-/m0/s1/fC5H8NO4/h6H/q-1",
+                    "transient_peak": "1"
+                },
+                {
+                    "resonance_assignment": "Glu-3-b_2",
+                    "base_inchi": "InChI=1S/C5H9NO4/c6-3(5(9)10)1-2-4(7)8/h3H,1-2,6H2,(H,7,8)(H,9,10)/t3-/m0/s1",
+                    "isotopic_inchi": "InChI=1/C5H9NO4/c6-3(5(9)10)1-2-4(7)8/h3H,1-2,6H2,(H,7,8)(H,9,10)/p-1/t3-/m0/s1/i1+1H2,2H2,3H/fC5H8NO4/h6H/q-1",
+                    "peak_description": "[1H11,1H12:13C1]HResonance + [1H11:1H12]J2HH + [1H11,1H12:1H13,1H14]J3HH + [1H11,1H12:1H15]J3HH",
+                    "peak_pattern": "",
+                    "proton_count": "1",
+                    "representative_inchi": "InChI=1/C5H9NO4/c6-3(5(9)10)1-2-4(7)8/h3H,1-2,6H2,(H,7,8)(H,9,10)/p-1/t3-/m0/s1/fC5H8NO4/h6H/q-1",
+                    "transient_peak": "2"
+                },
+                {
+                    "resonance_assignment": "Glu-4_1",
+                    "base_inchi": "InChI=1S/C5H9NO4/c6-3(5(9)10)1-2-4(7)8/h3H,1-2,6H2,(H,7,8)(H,9,10)/t3-/m0/s1",
+                    "isotopic_inchi": "InChI=1/C5H9NO4/c6-3(5(9)10)1-2-4(7)8/h3H,1-2,6H2,(H,7,8)(H,9,10)/p-1/t3-/m0/s1/i1H2,2+1H2/fC5H8NO4/h6H/q-1",
+                    "peak_description": "[1H13,1H14:13C2]HResonance + [1H13:1H14]J2HH + [1H13,1H14:1H11,1H12]J3HH",
+                    "peak_pattern": "",
+                    "proton_count": "2",
+                    "representative_inchi": "InChI=1/C5H9NO4/c6-3(5(9)10)1-2-4(7)8/h3H,1-2,6H2,(H,7,8)(H,9,10)/p-1/t3-/m0/s1/fC5H8NO4/h6H/q-1",
+                    "transient_peak": "1"
+                },
+                {
+                    "resonance_assignment": "Lac-3_1",
+                    "base_inchi": "InChI=1S/C3H6O3/c1-2(4)3(5)6/h2,4H,1H3,(H,5,6)/p-1",
+                    "isotopic_inchi": "InChI=1/C3H6O3/c1-2(4)3(5)6/h2,4H,1H3,(H,5,6)/p-1/t2-/m0/s1/i1+1H3,2H/fC3H5O3/q-1",
+                    "peak_description": "[1H7,1H8,1H9:13C1]HResonance + [1H7,1H8,1H9:1H10]J3HH",
+                    "peak_pattern": "",
+                    "proton_count": "3",
+                    "representative_inchi": "InChI=1S/C3H6O3/c1-2(4)3(5)6/h2,4H,1H3,(H,5,6)/p-1",
+                    "transient_peak": "1"
+                },
+                {
+                    "resonance_assignment": "P-Cho A_1",
+                    "base_inchi": "InChI=1S/C5H14NO4P/c1-6(2,3)4-5-10-11(7,8)9/h4-5H2,1-3H3,(H-,7,8,9)/p-1",
+                    "isotopic_inchi": "InChI=1/C5H14NO4P/c1-6(2,3)4-5-10-11(7,8)9/h4-5H2,1-3H3,(H-,7,8,9)/p-1/i1+1H3,2+1H3,3+1H3/fC5H13NO4P/q-1",
+                    "peak_description": "[1H12,1H13,1H14:13C1+1H15,1H16,1H17:13C2+1H18,1H19,1H20:13C3]Hresonance",
+                    "peak_pattern": "",
+                    "proton_count": "9",
+                    "representative_inchi": "InChI=1S/C5H14NO4P/c1-6(2,3)4-5-10-11(7,8)9/h4-5H2,1-3H3,(H-,7,8,9)/p-1",
+                    "transient_peak": "1"
+                }
+            ]
+        }
+    },
+    "EXTENDED_METABOLITE_DATA": {
+        "EXTENDED_METABOLITE_START": {
+            "Fields": [
+                "metabolite_name",
+                "assignment_lower_bound",
+                "assignment_upper_bound",
+                "chemical_shift",
+                "peak_height",
+                "peak_width",
+                "sample.id"
+            ],
+            "DATA": [
+                {
+                    "resonance_assignment": "Asp-3a_1",
+                    "assignment_lower_bound": "2.635",
+                    "assignment_upper_bound": "2.695",
+                    "chemical_shift": "2.644584629521897",
+                    "peak_height": "0.5899186814528347",
+                    "peak_width": "11.24405977434722",
+                    "sample.id": "2_MDA231_13C15NGln_shCTL_rep1-cells-polar_NMR_A"
+                },
+                {
+                    "resonance_assignment": "Asp-3a_1",
+                    "assignment_lower_bound": "2.635",
+                    "assignment_upper_bound": "2.695",
+                    "chemical_shift": "2.675136372013946",
+                    "peak_height": "0.664745020122068",
+                    "peak_width": "11.83871565194458",
+                    "sample.id": "3_MDA231_13C15NGln_shCTL_rep2-cells-polar_NMR_A"
+                },
+                {
+                    "resonance_assignment": "Asp-3a_1",
+                    "assignment_lower_bound": "2.635",
+                    "assignment_upper_bound": "2.695",
+                    "chemical_shift": "2.644918638714293",
+                    "peak_height": "0.6372775422873314",
+                    "peak_width": "10.9141118792905",
+                    "sample.id": "4_MDA231_13C15NGln_shCTL_rep3-cells-polar_NMR_A"
+                },
+                {
+                    "resonance_assignment": "Asp-3a_1",
+                    "assignment_lower_bound": "2.635",
+                    "assignment_upper_bound": "2.695",
+                    "chemical_shift": "2.644015576206977",
+                    "peak_height": "0.7226469906271179",
+                    "peak_width": "11.69242295006398",
+                    "sample.id": "6_MDA231_13C15NGln_shP4HA1_rep1-cells-polar_NMR_A"
+                },
+                {
+                    "resonance_assignment": "Asp-3a_1",
+                    "assignment_lower_bound": "2.635",
+                    "assignment_upper_bound": "2.695",
+                    "chemical_shift": "2.645534498814271",
+                    "peak_height": "0.7082671355710423",
+                    "peak_width": "10.71701957102501",
+                    "sample.id": "7_MDA231_13C15NGln_shP4HA1_rep2-cells-polar_NMR_A"
+                },
+                {
+                    "resonance_assignment": "Asp-3a_1",
+                    "assignment_lower_bound": "2.635",
+                    "assignment_upper_bound": "2.695",
+                    "chemical_shift": "2.64602776126129",
+                    "peak_height": "0.8407561850539067",
+                    "peak_width": "12.62251717478576",
+                    "sample.id": "8_MDA231_13C15NGln_shP4HA1_rep3-cells-polar_NMR_A"
+                },
+                {
+                    "resonance_assignment": "Asp-3a_2",
+                    "assignment_lower_bound": "2.635",
+                    "assignment_upper_bound": "2.695",
+                    "chemical_shift": "2.674713850093188",
+                    "peak_height": "0.7651831056448517",
+                    "peak_width": "11.35056921074288",
+                    "sample.id": "2_MDA231_13C15NGln_shCTL_rep1-cells-polar_NMR_A"
+                },
+                {
+                    "resonance_assignment": "Asp-3a_2",
+                    "assignment_lower_bound": "2.635",
+                    "assignment_upper_bound": "2.695",
+                    "chemical_shift": "2.67430578048191",
+                    "peak_height": "0.8930682821820058",
+                    "peak_width": "11.06689189828277",
+                    "sample.id": "4_MDA231_13C15NGln_shCTL_rep3-cells-polar_NMR_A"
+                },
+                {
+                    "resonance_assignment": "Asp-3a_2",
+                    "assignment_lower_bound": "2.635",
+                    "assignment_upper_bound": "2.695",
+                    "chemical_shift": "2.674466353969068",
+                    "peak_height": "0.8353281989590867",
+                    "peak_width": "11.83871565194458",
+                    "sample.id": "6_MDA231_13C15NGln_shP4HA1_rep1-cells-polar_NMR_A"
+                },
+                {
+                    "resonance_assignment": "Asp-3a_2",
+                    "assignment_lower_bound": "2.635",
+                    "assignment_upper_bound": "2.695",
+                    "chemical_shift": "2.676126720852329",
+                    "peak_height": "0.8668732919068617",
+                    "peak_width": "12.33845500794795",
+                    "sample.id": "7_MDA231_13C15NGln_shP4HA1_rep2-cells-polar_NMR_A"
+                },
+                {
+                    "resonance_assignment": "Asp-3a_2",
+                    "assignment_lower_bound": "2.635",
+                    "assignment_upper_bound": "2.695",
+                    "chemical_shift": "2.675181154529039",
+                    "peak_height": "0.7485633855825021",
+                    "peak_width": "9.623455255874521",
+                    "sample.id": "8_MDA231_13C15NGln_shP4HA1_rep3-cells-polar_NMR_A"
+                },
+                {
+                    "resonance_assignment": "Asp-3b_1",
+                    "assignment_lower_bound": "2.77",
+                    "assignment_upper_bound": "2.85",
+                    "chemical_shift": "2.783127923570832",
+                    "peak_height": "0.507332624478276",
+                    "peak_width": "9.529104058954557",
+                    "sample.id": "2_MDA231_13C15NGln_shCTL_rep1-cells-polar_NMR_A"
+                },
+                {
+                    "resonance_assignment": "Asp-3b_1",
+                    "assignment_lower_bound": "2.77",
+                    "assignment_upper_bound": "2.85",
+                    "chemical_shift": "2.784587458724198",
+                    "peak_height": "0.4431374841744395",
+                    "peak_width": "12.72399049213931",
+                    "sample.id": "3_MDA231_13C15NGln_shCTL_rep2-cells-polar_NMR_A"
+                },
+                {
+                    "resonance_assignment": "Asp-3b_1",
+                    "assignment_lower_bound": "2.77",
+                    "assignment_upper_bound": "2.85",
+                    "chemical_shift": "2.783470239561959",
+                    "peak_height": "0.588487044511729",
+                    "peak_width": "9.09960756152964",
+                    "sample.id": "4_MDA231_13C15NGln_shCTL_rep3-cells-polar_NMR_A"
+                },
+                {
+                    "resonance_assignment": "Asp-3b_1",
+                    "assignment_lower_bound": "2.77",
+                    "assignment_upper_bound": "2.85",
+                    "chemical_shift": "2.783063652536376",
+                    "peak_height": "0.6377338366699488",
+                    "peak_width": "8.668226767446628",
+                    "sample.id": "6_MDA231_13C15NGln_shP4HA1_rep1-cells-polar_NMR_A"
+                },
+                {
+                    "resonance_assignment": "Asp-3b_1",
+                    "assignment_lower_bound": "2.77",
+                    "assignment_upper_bound": "2.85",
+                    "chemical_shift": "2.783546284746587",
+                    "peak_height": "0.6932334335412933",
+                    "peak_width": "10.81069228407325",
+                    "sample.id": "7_MDA231_13C15NGln_shP4HA1_rep2-cells-polar_NMR_A"
+                },
+                {
+                    "resonance_assignment": "Asp-3b_1",
+                    "assignment_lower_bound": "2.77",
+                    "assignment_upper_bound": "2.85",
+                    "chemical_shift": "2.783365889285734",
+                    "peak_height": "0.5393188210459872",
+                    "peak_width": "7.222169895342577",
+                    "sample.id": "8_MDA231_13C15NGln_shP4HA1_rep3-cells-polar_NMR_A"
+                },
+                {
+                    "resonance_assignment": "Asp-3b_2",
+                    "assignment_lower_bound": "2.77",
+                    "assignment_upper_bound": "2.85",
+                    "chemical_shift": "2.813840511611312",
+                    "peak_height": "0.5312605005540906",
+                    "peak_width": "12.17364824696354",
+                    "sample.id": "2_MDA231_13C15NGln_shCTL_rep1-cells-polar_NMR_A"
+                },
+                {
+                    "resonance_assignment": "Asp-3b_2",
+                    "assignment_lower_bound": "2.77",
+                    "assignment_upper_bound": "2.85",
+                    "chemical_shift": "2.81297308895383",
+                    "peak_height": "0.5752119631998426",
+                    "peak_width": "10.17056887309465",
+                    "sample.id": "4_MDA231_13C15NGln_shCTL_rep3-cells-polar_NMR_A"
+                },
+                {
+                    "resonance_assignment": "Asp-3b_2",
+                    "assignment_lower_bound": "2.77",
+                    "assignment_upper_bound": "2.85",
+                    "chemical_shift": "2.812961458420561",
+                    "peak_height": "0.5681731047522545",
+                    "peak_width": "9.781357111050005",
+                    "sample.id": "6_MDA231_13C15NGln_shP4HA1_rep1-cells-polar_NMR_A"
+                },
+                {
+                    "resonance_assignment": "Asp-3b_2",
+                    "assignment_lower_bound": "2.77",
+                    "assignment_upper_bound": "2.85",
+                    "chemical_shift": "2.813139312081413",
+                    "peak_height": "0.611153807427683",
+                    "peak_width": "10.10633296686437",
+                    "sample.id": "7_MDA231_13C15NGln_shP4HA1_rep2-cells-polar_NMR_A"
+                },
+                {
+                    "resonance_assignment": "Asp-3b_2",
+                    "assignment_lower_bound": "2.77",
+                    "assignment_upper_bound": "2.85",
+                    "chemical_shift": "2.812512702960966",
+                    "peak_height": "0.4839278069959728",
+                    "peak_width": "7.819508082528645",
+                    "sample.id": "8_MDA231_13C15NGln_shP4HA1_rep3-cells-polar_NMR_A"
+                },
+                {
+                    "resonance_assignment": "DSS_1",
+                    "assignment_lower_bound": "-0.02",
+                    "assignment_upper_bound": "0.02",
+                    "chemical_shift": "0.0001878319342807392",
+                    "peak_height": "1.111115881849284",
+                    "peak_width": "8.7321051841493",
+                    "sample.id": "2_MDA231_13C15NGln_shCTL_rep1-cells-polar_NMR_A"
+                },
+                {
+                    "resonance_assignment": "DSS_1",
+                    "assignment_lower_bound": "-0.02",
+                    "assignment_upper_bound": "0.02",
+                    "chemical_shift": "2.950046541393833e-05",
+                    "peak_height": "0.9146246761480393",
+                    "peak_width": "8.106739625389007",
+                    "sample.id": "3_MDA231_13C15NGln_shCTL_rep2-cells-polar_NMR_A"
+                },
+                {
+                    "resonance_assignment": "DSS_1",
+                    "assignment_lower_bound": "-0.02",
+                    "assignment_upper_bound": "0.02",
+                    "chemical_shift": "0.0003396502069031462",
+                    "peak_height": "1.133683653330421",
+                    "peak_width": "8.251895230633009",
+                    "sample.id": "4_MDA231_13C15NGln_shCTL_rep3-cells-polar_NMR_A"
+                },
+                {
+                    "resonance_assignment": "DSS_1",
+                    "assignment_lower_bound": "-0.02",
+                    "assignment_upper_bound": "0.02",
+                    "chemical_shift": "0.0003907645566531867",
+                    "peak_height": "1.099469416290209",
+                    "peak_width": "8.59819692111392",
+                    "sample.id": "6_MDA231_13C15NGln_shP4HA1_rep1-cells-polar_NMR_A"
+                },
+                {
+                    "resonance_assignment": "DSS_1",
+                    "assignment_lower_bound": "-0.02",
+                    "assignment_upper_bound": "0.02",
+                    "chemical_shift": "0.0004936153690355851",
+                    "peak_height": "0.9470425835945931",
+                    "peak_width": "8.415710170803955",
+                    "sample.id": "7_MDA231_13C15NGln_shP4HA1_rep2-cells-polar_NMR_A"
+                },
+                {
+                    "resonance_assignment": "DSS_1",
+                    "assignment_lower_bound": "-0.02",
+                    "assignment_upper_bound": "0.02",
+                    "chemical_shift": "0.0005674863968249471",
+                    "peak_height": "0.9902109457741842",
+                    "peak_width": "7.783837484229191",
+                    "sample.id": "8_MDA231_13C15NGln_shP4HA1_rep3-cells-polar_NMR_A"
+                },
+                {
+                    "resonance_assignment": "GSH+GSSG-3_1",
+                    "assignment_lower_bound": "2.14",
+                    "assignment_upper_bound": "2.17",
+                    "chemical_shift": "2.159696237574952",
+                    "peak_height": "3.709207291929839",
+                    "peak_width": "13.96456423183419",
+                    "sample.id": "2_MDA231_13C15NGln_shCTL_rep1-cells-polar_NMR_A"
+                },
+                {
+                    "resonance_assignment": "GSH+GSSG-3_1",
+                    "assignment_lower_bound": "2.14",
+                    "assignment_upper_bound": "2.17",
+                    "chemical_shift": "2.14526905762541",
+                    "peak_height": "5.693388958025714",
+                    "peak_width": "17.33387033446526",
+                    "sample.id": "3_MDA231_13C15NGln_shCTL_rep2-cells-polar_NMR_A"
+                },
+                {
+                    "resonance_assignment": "GSH+GSSG-3_1",
+                    "assignment_lower_bound": "2.14",
+                    "assignment_upper_bound": "2.17",
+                    "chemical_shift": "2.159823734977077",
+                    "peak_height": "4.16893005243849",
+                    "peak_width": "15.30268910603618",
+                    "sample.id": "4_MDA231_13C15NGln_shCTL_rep3-cells-polar_NMR_A"
+                },
+                {
+                    "resonance_assignment": "GSH+GSSG-3_1",
+                    "assignment_lower_bound": "2.14",
+                    "assignment_upper_bound": "2.17",
+                    "chemical_shift": "2.159913768014897",
+                    "peak_height": "3.517329382528412",
+                    "peak_width": "13.74058098727669",
+                    "sample.id": "6_MDA231_13C15NGln_shP4HA1_rep1-cells-polar_NMR_A"
+                },
+                {
+                    "resonance_assignment": "GSH+GSSG-3_1",
+                    "assignment_lower_bound": "2.14",
+                    "assignment_upper_bound": "2.17",
+                    "chemical_shift": "2.159899733828488",
+                    "peak_height": "3.544111771884367",
+                    "peak_width": "15.947793224668",
+                    "sample.id": "7_MDA231_13C15NGln_shP4HA1_rep2-cells-polar_NMR_A"
+                },
+                {
+                    "resonance_assignment": "GSH+GSSG-3_1",
+                    "assignment_lower_bound": "2.14",
+                    "assignment_upper_bound": "2.17",
+                    "chemical_shift": "2.161089982778504",
+                    "peak_height": "2.356199543754061",
+                    "peak_width": "10.16320380952082",
+                    "sample.id": "8_MDA231_13C15NGln_shP4HA1_rep3-cells-polar_NMR_A"
+                },
+                {
+                    "resonance_assignment": "GSH+GSSG-3_2",
+                    "assignment_lower_bound": "2.14",
+                    "assignment_upper_bound": "2.17",
+                    "chemical_shift": "2.16045928815619",
+                    "peak_height": "2.805869122126414",
+                    "peak_width": "12.88691945827951",
+                    "sample.id": "3_MDA231_13C15NGln_shCTL_rep2-cells-polar_NMR_A"
+                },
+                {
+                    "resonance_assignment": "GSH+GSSG-4_1",
+                    "assignment_lower_bound": "2.49",
+                    "assignment_upper_bound": "2.6",
+                    "chemical_shift": "2.543980064272421",
+                    "peak_height": "2.457029079201148",
+                    "peak_width": "24.22242369880541",
+                    "sample.id": "2_MDA231_13C15NGln_shCTL_rep1-cells-polar_NMR_A"
+                },
+                {
+                    "resonance_assignment": "GSH+GSSG-4_1",
+                    "assignment_lower_bound": "2.49",
+                    "assignment_upper_bound": "2.6",
+                    "chemical_shift": "2.545802134400126",
+                    "peak_height": "1.999163198096756",
+                    "peak_width": "25.29097966354432",
+                    "sample.id": "3_MDA231_13C15NGln_shCTL_rep2-cells-polar_NMR_A"
+                },
+                {
+                    "resonance_assignment": "GSH+GSSG-4_1",
+                    "assignment_lower_bound": "2.49",
+                    "assignment_upper_bound": "2.6",
+                    "chemical_shift": "2.545294041598018",
+                    "peak_height": "2.256024403134765",
+                    "peak_width": "24.69282944500187",
+                    "sample.id": "4_MDA231_13C15NGln_shCTL_rep3-cells-polar_NMR_A"
+                },
+                {
+                    "resonance_assignment": "GSH+GSSG-4_1",
+                    "assignment_lower_bound": "2.49",
+                    "assignment_upper_bound": "2.6",
+                    "chemical_shift": "2.544964177119612",
+                    "peak_height": "2.433624572685902",
+                    "peak_width": "26.68342383144344",
+                    "sample.id": "6_MDA231_13C15NGln_shP4HA1_rep1-cells-polar_NMR_A"
+                },
+                {
+                    "resonance_assignment": "GSH+GSSG-4_1",
+                    "assignment_lower_bound": "2.49",
+                    "assignment_upper_bound": "2.6",
+                    "chemical_shift": "2.546737586170497",
+                    "peak_height": "2.238004744752136",
+                    "peak_width": "25.29628686499172",
+                    "sample.id": "7_MDA231_13C15NGln_shP4HA1_rep2-cells-polar_NMR_A"
+                },
+                {
+                    "resonance_assignment": "GSH+GSSG-4_1",
+                    "assignment_lower_bound": "2.49",
+                    "assignment_upper_bound": "2.6",
+                    "chemical_shift": "2.543538746596323",
+                    "peak_height": "2.254829009807696",
+                    "peak_width": "24.51507246713783",
+                    "sample.id": "8_MDA231_13C15NGln_shP4HA1_rep3-cells-polar_NMR_A"
+                },
+                {
+                    "resonance_assignment": "Gln+Glu-2_1",
+                    "assignment_lower_bound": "3.73",
+                    "assignment_upper_bound": "3.81",
+                    "chemical_shift": "3.752677891966141",
+                    "peak_height": "11.5928028620803",
+                    "peak_width": "19.30268649069219",
+                    "sample.id": "2_MDA231_13C15NGln_shCTL_rep1-cells-polar_NMR_A"
+                },
+                {
+                    "resonance_assignment": "Gln+Glu-2_1",
+                    "assignment_lower_bound": "3.73",
+                    "assignment_upper_bound": "3.81",
+                    "chemical_shift": "3.753042177903516",
+                    "peak_height": "9.789527149553935",
+                    "peak_width": "19.31736728419299",
+                    "sample.id": "3_MDA231_13C15NGln_shCTL_rep2-cells-polar_NMR_A"
+                },
+                {
+                    "resonance_assignment": "Gln+Glu-2_1",
+                    "assignment_lower_bound": "3.73",
+                    "assignment_upper_bound": "3.81",
+                    "chemical_shift": "3.75467550618162",
+                    "peak_height": "9.631313757682335",
+                    "peak_width": "19.29215151122404",
+                    "sample.id": "4_MDA231_13C15NGln_shCTL_rep3-cells-polar_NMR_A"
+                },
+                {
+                    "resonance_assignment": "Gln+Glu-2_1",
+                    "assignment_lower_bound": "3.73",
+                    "assignment_upper_bound": "3.81",
+                    "chemical_shift": "3.757117394387284",
+                    "peak_height": "8.975873694432973",
+                    "peak_width": "19.30402006457768",
+                    "sample.id": "6_MDA231_13C15NGln_shP4HA1_rep1-cells-polar_NMR_A"
+                },
+                {
+                    "resonance_assignment": "Gln+Glu-2_1",
+                    "assignment_lower_bound": "3.73",
+                    "assignment_upper_bound": "3.81",
+                    "chemical_shift": "3.756428347345127",
+                    "peak_height": "9.782056534046381",
+                    "peak_width": "20.05277371188446",
+                    "sample.id": "7_MDA231_13C15NGln_shP4HA1_rep2-cells-polar_NMR_A"
+                },
+                {
+                    "resonance_assignment": "Gln+Glu-2_1",
+                    "assignment_lower_bound": "3.73",
+                    "assignment_upper_bound": "3.81",
+                    "chemical_shift": "3.7563053255294",
+                    "peak_height": "10.05452231199874",
+                    "peak_width": "18.6628347134088",
+                    "sample.id": "8_MDA231_13C15NGln_shP4HA1_rep3-cells-polar_NMR_A"
+                },
+                {
+                    "resonance_assignment": "Gln-3_1",
+                    "assignment_lower_bound": "2.125",
+                    "assignment_upper_bound": "2.145",
+                    "chemical_shift": "2.127558387008986",
+                    "peak_height": "8.60961202768151",
+                    "peak_width": "14.76511673851635",
+                    "sample.id": "2_MDA231_13C15NGln_shCTL_rep1-cells-polar_NMR_A"
+                },
+                {
+                    "resonance_assignment": "Gln-3_1",
+                    "assignment_lower_bound": "2.125",
+                    "assignment_upper_bound": "2.145",
+                    "chemical_shift": "2.128092266973691",
+                    "peak_height": "6.178405510589883",
+                    "peak_width": "16.40653731290517",
+                    "sample.id": "3_MDA231_13C15NGln_shCTL_rep2-cells-polar_NMR_A"
+                },
+                {
+                    "resonance_assignment": "Gln-3_1",
+                    "assignment_lower_bound": "2.125",
+                    "assignment_upper_bound": "2.145",
+                    "chemical_shift": "2.126305755515499",
+                    "peak_height": "8.566876247962815",
+                    "peak_width": "15.94578042377052",
+                    "sample.id": "4_MDA231_13C15NGln_shCTL_rep3-cells-polar_NMR_A"
+                },
+                {
+                    "resonance_assignment": "Gln-3_1",
+                    "assignment_lower_bound": "2.125",
+                    "assignment_upper_bound": "2.145",
+                    "chemical_shift": "2.126501345302501",
+                    "peak_height": "7.235628689436275",
+                    "peak_width": "14.24122670639635",
+                    "sample.id": "6_MDA231_13C15NGln_shP4HA1_rep1-cells-polar_NMR_A"
+                },
+                {
+                    "resonance_assignment": "Gln-3_1",
+                    "assignment_lower_bound": "2.125",
+                    "assignment_upper_bound": "2.145",
+                    "chemical_shift": "2.127373833955521",
+                    "peak_height": "6.616809435998938",
+                    "peak_width": "15.50736579176101",
+                    "sample.id": "7_MDA231_13C15NGln_shP4HA1_rep2-cells-polar_NMR_A"
+                },
+                {
+                    "resonance_assignment": "Gln-3_1",
+                    "assignment_lower_bound": "2.125",
+                    "assignment_upper_bound": "2.145",
+                    "chemical_shift": "2.141976091553863",
+                    "peak_height": "8.781346657689145",
+                    "peak_width": "21.80845821681395",
+                    "sample.id": "8_MDA231_13C15NGln_shP4HA1_rep3-cells-polar_NMR_A"
+                },
+                {
+                    "resonance_assignment": "Gln-3_2",
+                    "assignment_lower_bound": "2.125",
+                    "assignment_upper_bound": "2.145",
+                    "chemical_shift": "2.144305764029279",
+                    "peak_height": "7.158401673312209",
+                    "peak_width": "15.87555368910666",
+                    "sample.id": "2_MDA231_13C15NGln_shCTL_rep1-cells-polar_NMR_A"
+                },
+                {
+                    "resonance_assignment": "Gln-3_2",
+                    "assignment_lower_bound": "2.125",
+                    "assignment_upper_bound": "2.145",
+                    "chemical_shift": "2.143740144770798",
+                    "peak_height": "6.194051954375741",
+                    "peak_width": "16.10115598797804",
+                    "sample.id": "4_MDA231_13C15NGln_shCTL_rep3-cells-polar_NMR_A"
+                },
+                {
+                    "resonance_assignment": "Gln-3_2",
+                    "assignment_lower_bound": "2.125",
+                    "assignment_upper_bound": "2.145",
+                    "chemical_shift": "2.14337651929125",
+                    "peak_height": "8.310361534569461",
+                    "peak_width": "20.12637573611398",
+                    "sample.id": "6_MDA231_13C15NGln_shP4HA1_rep1-cells-polar_NMR_A"
+                },
+                {
+                    "resonance_assignment": "Gln-3_2",
+                    "assignment_lower_bound": "2.125",
+                    "assignment_upper_bound": "2.145",
+                    "chemical_shift": "2.143813931695598",
+                    "peak_height": "7.687512012382435",
+                    "peak_width": "20.87041628529755",
+                    "sample.id": "7_MDA231_13C15NGln_shP4HA1_rep2-cells-polar_NMR_A"
+                },
+                {
+                    "resonance_assignment": "Gln-4_1",
+                    "assignment_lower_bound": "2.415",
+                    "assignment_upper_bound": "2.475",
+                    "chemical_shift": "2.429701873337303",
+                    "peak_height": "3.244839271949947",
+                    "peak_width": "14.69698436183745",
+                    "sample.id": "2_MDA231_13C15NGln_shCTL_rep1-cells-polar_NMR_A"
+                },
+                {
+                    "resonance_assignment": "Gln-4_1",
+                    "assignment_lower_bound": "2.415",
+                    "assignment_upper_bound": "2.475",
+                    "chemical_shift": "2.429879233977904",
+                    "peak_height": "2.430881246001708",
+                    "peak_width": "11.28809965715622",
+                    "sample.id": "3_MDA231_13C15NGln_shCTL_rep2-cells-polar_NMR_A"
+                },
+                {
+                    "resonance_assignment": "Gln-4_1",
+                    "assignment_lower_bound": "2.415",
+                    "assignment_upper_bound": "2.475",
+                    "chemical_shift": "2.429636916657937",
+                    "peak_height": "2.508337142732042",
+                    "peak_width": "13.12670786299789",
+                    "sample.id": "4_MDA231_13C15NGln_shCTL_rep3-cells-polar_NMR_A"
+                },
+                {
+                    "resonance_assignment": "Gln-4_1",
+                    "assignment_lower_bound": "2.415",
+                    "assignment_upper_bound": "2.475",
+                    "chemical_shift": "2.429402118621593",
+                    "peak_height": "2.968741879595414",
+                    "peak_width": "13.09655985456058",
+                    "sample.id": "6_MDA231_13C15NGln_shP4HA1_rep1-cells-polar_NMR_A"
+                },
+                {
+                    "resonance_assignment": "Gln-4_1",
+                    "assignment_lower_bound": "2.415",
+                    "assignment_upper_bound": "2.475",
+                    "chemical_shift": "2.429896286522638",
+                    "peak_height": "2.603062557157901",
+                    "peak_width": "13.29576597980429",
+                    "sample.id": "7_MDA231_13C15NGln_shP4HA1_rep2-cells-polar_NMR_A"
+                },
+                {
+                    "resonance_assignment": "Gln-4_1",
+                    "assignment_lower_bound": "2.415",
+                    "assignment_upper_bound": "2.475",
+                    "chemical_shift": "2.430073921628064",
+                    "peak_height": "3.588839828048074",
+                    "peak_width": "15.26709588242773",
+                    "sample.id": "8_MDA231_13C15NGln_shP4HA1_rep3-cells-polar_NMR_A"
+                },
+                {
+                    "resonance_assignment": "Gln-4_2",
+                    "assignment_lower_bound": "2.415",
+                    "assignment_upper_bound": "2.475",
+                    "chemical_shift": "2.444569178458852",
+                    "peak_height": "3.682729543194296",
+                    "peak_width": "12.13867136708973",
+                    "sample.id": "2_MDA231_13C15NGln_shCTL_rep1-cells-polar_NMR_A"
+                },
+                {
+                    "resonance_assignment": "Gln-4_2",
+                    "assignment_lower_bound": "2.415",
+                    "assignment_upper_bound": "2.475",
+                    "chemical_shift": "2.444485540985659",
+                    "peak_height": "2.958645455551145",
+                    "peak_width": "10.12144233472963",
+                    "sample.id": "3_MDA231_13C15NGln_shCTL_rep2-cells-polar_NMR_A"
+                },
+                {
+                    "resonance_assignment": "Gln-4_2",
+                    "assignment_lower_bound": "2.415",
+                    "assignment_upper_bound": "2.475",
+                    "chemical_shift": "2.444023440103155",
+                    "peak_height": "3.616769327028884",
+                    "peak_width": "13.09811341930314",
+                    "sample.id": "4_MDA231_13C15NGln_shCTL_rep3-cells-polar_NMR_A"
+                },
+                {
+                    "resonance_assignment": "Gln-4_2",
+                    "assignment_lower_bound": "2.415",
+                    "assignment_upper_bound": "2.475",
+                    "chemical_shift": "2.444292389661903",
+                    "peak_height": "3.9181535969331",
+                    "peak_width": "11.77996159785818",
+                    "sample.id": "6_MDA231_13C15NGln_shP4HA1_rep1-cells-polar_NMR_A"
+                },
+                {
+                    "resonance_assignment": "Gln-4_2",
+                    "assignment_lower_bound": "2.415",
+                    "assignment_upper_bound": "2.475",
+                    "chemical_shift": "2.444928770753269",
+                    "peak_height": "3.788161774017746",
+                    "peak_width": "13.50058155995359",
+                    "sample.id": "7_MDA231_13C15NGln_shP4HA1_rep2-cells-polar_NMR_A"
+                },
+                {
+                    "resonance_assignment": "Gln-4_2",
+                    "assignment_lower_bound": "2.415",
+                    "assignment_upper_bound": "2.475",
+                    "chemical_shift": "2.444931236850784",
+                    "peak_height": "3.739246281740849",
+                    "peak_width": "11.9044472462142",
+                    "sample.id": "8_MDA231_13C15NGln_shP4HA1_rep3-cells-polar_NMR_A"
+                },
+                {
+                    "resonance_assignment": "Glu-3-a_1",
+                    "assignment_lower_bound": "2.01",
+                    "assignment_upper_bound": "2.08",
+                    "chemical_shift": "2.045771573713604",
+                    "peak_height": "8.10480076935065",
+                    "peak_width": "29.11811270760646",
+                    "sample.id": "2_MDA231_13C15NGln_shCTL_rep1-cells-polar_NMR_A"
+                },
+                {
+                    "resonance_assignment": "Glu-3-a_1",
+                    "assignment_lower_bound": "2.01",
+                    "assignment_upper_bound": "2.08",
+                    "chemical_shift": "2.04754372073535",
+                    "peak_height": "6.27416048851904",
+                    "peak_width": "27.77390670119813",
+                    "sample.id": "3_MDA231_13C15NGln_shCTL_rep2-cells-polar_NMR_A"
+                },
+                {
+                    "resonance_assignment": "Glu-3-a_1",
+                    "assignment_lower_bound": "2.01",
+                    "assignment_upper_bound": "2.08",
+                    "chemical_shift": "2.032104349062514",
+                    "peak_height": "2.130773769095479",
+                    "peak_width": "18.70369474100379",
+                    "sample.id": "4_MDA231_13C15NGln_shCTL_rep3-cells-polar_NMR_A"
+                },
+                {
+                    "resonance_assignment": "Glu-3-a_1",
+                    "assignment_lower_bound": "2.01",
+                    "assignment_upper_bound": "2.08",
+                    "chemical_shift": "2.046505119283898",
+                    "peak_height": "7.813656842210796",
+                    "peak_width": "27.73859899294724",
+                    "sample.id": "6_MDA231_13C15NGln_shP4HA1_rep1-cells-polar_NMR_A"
+                },
+                {
+                    "resonance_assignment": "Glu-3-a_1",
+                    "assignment_lower_bound": "2.01",
+                    "assignment_upper_bound": "2.08",
+                    "chemical_shift": "2.048323426753044",
+                    "peak_height": "7.788524820882703",
+                    "peak_width": "26.55193689034549",
+                    "sample.id": "7_MDA231_13C15NGln_shP4HA1_rep2-cells-polar_NMR_A"
+                },
+                {
+                    "resonance_assignment": "Glu-3-a_1",
+                    "assignment_lower_bound": "2.01",
+                    "assignment_upper_bound": "2.08",
+                    "chemical_shift": "2.015924238309664",
+                    "peak_height": "1.369537503375397",
+                    "peak_width": "21.01730735404115",
+                    "sample.id": "8_MDA231_13C15NGln_shP4HA1_rep3-cells-polar_NMR_A"
+                },
+                {
+                    "resonance_assignment": "Glu-3-a_2",
+                    "assignment_lower_bound": "2.01",
+                    "assignment_upper_bound": "2.08",
+                    "chemical_shift": "2.064624023179314",
+                    "peak_height": "1.199055445863472",
+                    "peak_width": "7.110518537157119",
+                    "sample.id": "2_MDA231_13C15NGln_shCTL_rep1-cells-polar_NMR_A"
+                },
+                {
+                    "resonance_assignment": "Glu-3-a_2",
+                    "assignment_lower_bound": "2.01",
+                    "assignment_upper_bound": "2.08",
+                    "chemical_shift": "2.065470195802841",
+                    "peak_height": "0.8455819425584461",
+                    "peak_width": "5.690865723575286",
+                    "sample.id": "3_MDA231_13C15NGln_shCTL_rep2-cells-polar_NMR_A"
+                },
+                {
+                    "resonance_assignment": "Glu-3-a_2",
+                    "assignment_lower_bound": "2.01",
+                    "assignment_upper_bound": "2.08",
+                    "chemical_shift": "2.051036456752389",
+                    "peak_height": "6.310842626564633",
+                    "peak_width": "19.3160844592793",
+                    "sample.id": "4_MDA231_13C15NGln_shCTL_rep3-cells-polar_NMR_A"
+                },
+                {
+                    "resonance_assignment": "Glu-3-a_2",
+                    "assignment_lower_bound": "2.01",
+                    "assignment_upper_bound": "2.08",
+                    "chemical_shift": "2.06589944476573",
+                    "peak_height": "0.4969315080940647",
+                    "peak_width": "4.776214445639383",
+                    "sample.id": "6_MDA231_13C15NGln_shP4HA1_rep1-cells-polar_NMR_A"
+                },
+                {
+                    "resonance_assignment": "Glu-3-a_2",
+                    "assignment_lower_bound": "2.01",
+                    "assignment_upper_bound": "2.08",
+                    "chemical_shift": "2.035522858401225",
+                    "peak_height": "4.866615154066294",
+                    "peak_width": "17.8164454622371",
+                    "sample.id": "8_MDA231_13C15NGln_shP4HA1_rep3-cells-polar_NMR_A"
+                },
+                {
+                    "resonance_assignment": "Glu-3-a_3",
+                    "assignment_lower_bound": "2.01",
+                    "assignment_upper_bound": "2.08",
+                    "chemical_shift": "2.065578482939078",
+                    "peak_height": "1.185194471023588",
+                    "peak_width": "7.060248466590638",
+                    "sample.id": "4_MDA231_13C15NGln_shCTL_rep3-cells-polar_NMR_A"
+                },
+                {
+                    "resonance_assignment": "Glu-3-a_3",
+                    "assignment_lower_bound": "2.01",
+                    "assignment_upper_bound": "2.08",
+                    "chemical_shift": "2.053098804940613",
+                    "peak_height": "6.971087848485726",
+                    "peak_width": "14.89593945530383",
+                    "sample.id": "8_MDA231_13C15NGln_shP4HA1_rep3-cells-polar_NMR_A"
+                },
+                {
+                    "resonance_assignment": "Glu-3-a_4",
+                    "assignment_lower_bound": "2.01",
+                    "assignment_upper_bound": "2.08",
+                    "chemical_shift": "2.067204232832924",
+                    "peak_height": "1.369271263623299",
+                    "peak_width": "6.990273074549991",
+                    "sample.id": "8_MDA231_13C15NGln_shP4HA1_rep3-cells-polar_NMR_A"
+                },
+                {
+                    "resonance_assignment": "Glu-3-b_1",
+                    "assignment_lower_bound": "2.09",
+                    "assignment_upper_bound": "2.125",
+                    "chemical_shift": "2.099391366495366",
+                    "peak_height": "4.347391718838612",
+                    "peak_width": "12.70796578836288",
+                    "sample.id": "2_MDA231_13C15NGln_shCTL_rep1-cells-polar_NMR_A"
+                },
+                {
+                    "resonance_assignment": "Glu-3-b_1",
+                    "assignment_lower_bound": "2.09",
+                    "assignment_upper_bound": "2.125",
+                    "chemical_shift": "2.112041357785948",
+                    "peak_height": "8.486808931088007",
+                    "peak_width": "20.20231479272838",
+                    "sample.id": "3_MDA231_13C15NGln_shCTL_rep2-cells-polar_NMR_A"
+                },
+                {
+                    "resonance_assignment": "Glu-3-b_1",
+                    "assignment_lower_bound": "2.09",
+                    "assignment_upper_bound": "2.125",
+                    "chemical_shift": "2.099296267256626",
+                    "peak_height": "4.058802969165124",
+                    "peak_width": "11.73041433921289",
+                    "sample.id": "4_MDA231_13C15NGln_shCTL_rep3-cells-polar_NMR_A"
+                },
+                {
+                    "resonance_assignment": "Glu-3-b_1",
+                    "assignment_lower_bound": "2.09",
+                    "assignment_upper_bound": "2.125",
+                    "chemical_shift": "2.099404107100797",
+                    "peak_height": "5.562317153231785",
+                    "peak_width": "12.35084027981372",
+                    "sample.id": "6_MDA231_13C15NGln_shP4HA1_rep1-cells-polar_NMR_A"
+                },
+                {
+                    "resonance_assignment": "Glu-3-b_1",
+                    "assignment_lower_bound": "2.09",
+                    "assignment_upper_bound": "2.125",
+                    "chemical_shift": "2.099404737712867",
+                    "peak_height": "3.847908986405566",
+                    "peak_width": "12.21384246108675",
+                    "sample.id": "7_MDA231_13C15NGln_shP4HA1_rep2-cells-polar_NMR_A"
+                },
+                {
+                    "resonance_assignment": "Glu-3-b_1",
+                    "assignment_lower_bound": "2.09",
+                    "assignment_upper_bound": "2.125",
+                    "chemical_shift": "2.098024494811949",
+                    "peak_height": "4.963978376123054",
+                    "peak_width": "13.80222951942694",
+                    "sample.id": "8_MDA231_13C15NGln_shP4HA1_rep3-cells-polar_NMR_A"
+                },
+                {
+                    "resonance_assignment": "Glu-3-b_2",
+                    "assignment_lower_bound": "2.09",
+                    "assignment_upper_bound": "2.125",
+                    "chemical_shift": "2.113303505514036",
+                    "peak_height": "9.01043493852772",
+                    "peak_width": "15.54542513930882",
+                    "sample.id": "2_MDA231_13C15NGln_shCTL_rep1-cells-polar_NMR_A"
+                },
+                {
+                    "resonance_assignment": "Glu-3-b_2",
+                    "assignment_lower_bound": "2.09",
+                    "assignment_upper_bound": "2.125",
+                    "chemical_shift": "2.112643523991028",
+                    "peak_height": "6.771349771523623",
+                    "peak_width": "13.82763322727415",
+                    "sample.id": "4_MDA231_13C15NGln_shCTL_rep3-cells-polar_NMR_A"
+                },
+                {
+                    "resonance_assignment": "Glu-3-b_2",
+                    "assignment_lower_bound": "2.09",
+                    "assignment_upper_bound": "2.125",
+                    "chemical_shift": "2.113499832901171",
+                    "peak_height": "7.390307247522836",
+                    "peak_width": "13.52705079715061",
+                    "sample.id": "6_MDA231_13C15NGln_shP4HA1_rep1-cells-polar_NMR_A"
+                },
+                {
+                    "resonance_assignment": "Glu-3-b_2",
+                    "assignment_lower_bound": "2.09",
+                    "assignment_upper_bound": "2.125",
+                    "chemical_shift": "2.113779158118972",
+                    "peak_height": "7.733276385715123",
+                    "peak_width": "16.08691861011706",
+                    "sample.id": "7_MDA231_13C15NGln_shP4HA1_rep2-cells-polar_NMR_A"
+                },
+                {
+                    "resonance_assignment": "Glu-3-b_2",
+                    "assignment_lower_bound": "2.09",
+                    "assignment_upper_bound": "2.125",
+                    "chemical_shift": "2.116842328304033",
+                    "peak_height": "12.97394816820882",
+                    "peak_width": "21.75075561191074",
+                    "sample.id": "8_MDA231_13C15NGln_shP4HA1_rep3-cells-polar_NMR_A"
+                },
+                {
+                    "resonance_assignment": "Glu-4_1",
+                    "assignment_lower_bound": "2.315",
+                    "assignment_upper_bound": "2.37",
+                    "chemical_shift": "2.3349162575751",
+                    "peak_height": "7.974360108309388",
+                    "peak_width": "21.11140986843189",
+                    "sample.id": "2_MDA231_13C15NGln_shCTL_rep1-cells-polar_NMR_A"
+                },
+                {
+                    "resonance_assignment": "Glu-4_1",
+                    "assignment_lower_bound": "2.315",
+                    "assignment_upper_bound": "2.37",
+                    "chemical_shift": "2.335532239372714",
+                    "peak_height": "6.591659178234876",
+                    "peak_width": "21.90787744201315",
+                    "sample.id": "3_MDA231_13C15NGln_shCTL_rep2-cells-polar_NMR_A"
+                },
+                {
+                    "resonance_assignment": "Glu-4_1",
+                    "assignment_lower_bound": "2.315",
+                    "assignment_upper_bound": "2.37",
+                    "chemical_shift": "2.336179054530967",
+                    "peak_height": "7.08444007858404",
+                    "peak_width": "20.73774474200263",
+                    "sample.id": "4_MDA231_13C15NGln_shCTL_rep3-cells-polar_NMR_A"
+                },
+                {
+                    "resonance_assignment": "Glu-4_1",
+                    "assignment_lower_bound": "2.315",
+                    "assignment_upper_bound": "2.37",
+                    "chemical_shift": "2.335810386633907",
+                    "peak_height": "7.939081373083385",
+                    "peak_width": "21.02590518109508",
+                    "sample.id": "6_MDA231_13C15NGln_shP4HA1_rep1-cells-polar_NMR_A"
+                },
+                {
+                    "resonance_assignment": "Glu-4_1",
+                    "assignment_lower_bound": "2.315",
+                    "assignment_upper_bound": "2.37",
+                    "chemical_shift": "2.336290075680372",
+                    "peak_height": "7.494026710305038",
+                    "peak_width": "20.81792958098255",
+                    "sample.id": "7_MDA231_13C15NGln_shP4HA1_rep2-cells-polar_NMR_A"
+                },
+                {
+                    "resonance_assignment": "Glu-4_1",
+                    "assignment_lower_bound": "2.315",
+                    "assignment_upper_bound": "2.37",
+                    "chemical_shift": "2.334650436533943",
+                    "peak_height": "9.419204583350139",
+                    "peak_width": "21.5425682709476",
+                    "sample.id": "8_MDA231_13C15NGln_shP4HA1_rep3-cells-polar_NMR_A"
+                },
+                {
+                    "resonance_assignment": "Lac-3_1",
+                    "assignment_lower_bound": "1.3",
+                    "assignment_upper_bound": "1.34",
+                    "chemical_shift": "1.318278434853039",
+                    "peak_height": "0.6314328708740761",
+                    "peak_width": "15.08874514114298",
+                    "sample.id": "2_MDA231_13C15NGln_shCTL_rep1-cells-polar_NMR_A"
+                },
+                {
+                    "resonance_assignment": "Lac-3_1",
+                    "assignment_lower_bound": "1.3",
+                    "assignment_upper_bound": "1.34",
+                    "chemical_shift": "1.322556149978198",
+                    "peak_height": "0.5209504130973677",
+                    "peak_width": "9.354983034268084",
+                    "sample.id": "3_MDA231_13C15NGln_shCTL_rep2-cells-polar_NMR_A"
+                },
+                {
+                    "resonance_assignment": "Lac-3_1",
+                    "assignment_lower_bound": "1.3",
+                    "assignment_upper_bound": "1.34",
+                    "chemical_shift": "1.321471371855852",
+                    "peak_height": "0.6849661426022996",
+                    "peak_width": "11.51453352419729",
+                    "sample.id": "4_MDA231_13C15NGln_shCTL_rep3-cells-polar_NMR_A"
+                },
+                {
+                    "resonance_assignment": "Lac-3_1",
+                    "assignment_lower_bound": "1.3",
+                    "assignment_upper_bound": "1.34",
+                    "chemical_shift": "1.316319664400977",
+                    "peak_height": "0.8013187122003913",
+                    "peak_width": "11.53387870541786",
+                    "sample.id": "6_MDA231_13C15NGln_shP4HA1_rep1-cells-polar_NMR_A"
+                },
+                {
+                    "resonance_assignment": "Lac-3_1",
+                    "assignment_lower_bound": "1.3",
+                    "assignment_upper_bound": "1.34",
+                    "chemical_shift": "1.31837894601643",
+                    "peak_height": "0.7053581278116084",
+                    "peak_width": "14.20920039062624",
+                    "sample.id": "7_MDA231_13C15NGln_shP4HA1_rep2-cells-polar_NMR_A"
+                },
+                {
+                    "resonance_assignment": "Lac-3_1",
+                    "assignment_lower_bound": "1.3",
+                    "assignment_upper_bound": "1.34",
+                    "chemical_shift": "1.318425972535041",
+                    "peak_height": "0.8043364461887874",
+                    "peak_width": "14.62014288645421",
+                    "sample.id": "8_MDA231_13C15NGln_shP4HA1_rep3-cells-polar_NMR_A"
+                },
+                {
+                    "resonance_assignment": "P-Cho A_1",
+                    "assignment_lower_bound": "3.205",
+                    "assignment_upper_bound": "3.22",
+                    "chemical_shift": "3.214808320211392",
+                    "peak_height": "3.568236116806789",
+                    "peak_width": "8.103117072259623",
+                    "sample.id": "2_MDA231_13C15NGln_shCTL_rep1-cells-polar_NMR_A"
+                },
+                {
+                    "resonance_assignment": "P-Cho A_1",
+                    "assignment_lower_bound": "3.205",
+                    "assignment_upper_bound": "3.22",
+                    "chemical_shift": "3.215012706065209",
+                    "peak_height": "2.891565436462539",
+                    "peak_width": "7.598509702249044",
+                    "sample.id": "3_MDA231_13C15NGln_shCTL_rep2-cells-polar_NMR_A"
+                },
+                {
+                    "resonance_assignment": "P-Cho A_1",
+                    "assignment_lower_bound": "3.205",
+                    "assignment_upper_bound": "3.22",
+                    "chemical_shift": "3.214859642444521",
+                    "peak_height": "3.255651695522194",
+                    "peak_width": "7.779842382944111",
+                    "sample.id": "4_MDA231_13C15NGln_shCTL_rep3-cells-polar_NMR_A"
+                },
+                {
+                    "resonance_assignment": "P-Cho A_1",
+                    "assignment_lower_bound": "3.205",
+                    "assignment_upper_bound": "3.22",
+                    "chemical_shift": "3.214875656550986",
+                    "peak_height": "3.413452017865951",
+                    "peak_width": "7.941970796570364",
+                    "sample.id": "6_MDA231_13C15NGln_shP4HA1_rep1-cells-polar_NMR_A"
+                },
+                {
+                    "resonance_assignment": "P-Cho A_1",
+                    "assignment_lower_bound": "3.205",
+                    "assignment_upper_bound": "3.22",
+                    "chemical_shift": "3.215012706065209",
+                    "peak_height": "3.214346423503332",
+                    "peak_width": "7.910183907515338",
+                    "sample.id": "7_MDA231_13C15NGln_shP4HA1_rep2-cells-polar_NMR_A"
+                },
+                {
+                    "resonance_assignment": "P-Cho A_1",
+                    "assignment_lower_bound": "3.205",
+                    "assignment_upper_bound": "3.22",
+                    "chemical_shift": "3.21533962704168",
+                    "peak_height": "3.726569772148449",
+                    "peak_width": "7.757862395062535",
+                    "sample.id": "8_MDA231_13C15NGln_shP4HA1_rep3-cells-polar_NMR_A"
+                }
+            ]
+        }
+    }
+}
