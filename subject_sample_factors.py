@@ -1,5 +1,61 @@
 from collections import OrderedDict
-from pprint import pprint
+
+def parse_sample_data(internal_data, sample_id):
+    """Method for parsing out sample data from a dictionary of internal sample data.
+
+    :param internal_data:
+    :param sample_id:
+    :return:
+    """
+    if internal_data['sample'].get(sample_id):
+        return internal_data['sample'].get(sample_id)
+    elif internal_data['subject'].get(sample_id):
+        return internal_data['subject'].get(sample_id)
+    else:
+        return
+
+
+
+def create_lineages(internal_data, sample_id):
+    """Method for parsing an dictionary of internal experimental data and creating lineages for a given sample.
+
+    lineage_1=01_A0_T03-2017_naive_UKy_GCH_rep1; protocol.id=['T03-2017_naive']; replicate=1; species=Mus musculus; species_type=Mouse; taxonomy_id=10090;
+    lineage_2=01_A0_Colon_T03-2017_naive_170427_UKy_GCH_rep1; protocol.id=['mouse_tissue_collection', 'tissue_quench', 'frozen_tissue_grind'];
+    lineage_3=01_A0_Colon_T03-2017_naive_170427_UKy_GCH_rep1-polar-ICMS_A; protocol.id=['polar_extraction', 'ICMS_file_storage46']; replicate=1; replicate%type=analytical; type=cell_extract; weight=0.2521; weight%units=g;
+    lineage_4=01_A0_Colon_T03-2017_naive_170427_UKy_GCH_rep1-protein; protein_weight=0.6181768442446792; protein_weight%units=mg; protocol.id=['protein_extraction']
+
+    :param internal_data:
+    :param sample_id:
+    :return:
+    """
+
+    while True:
+
+    pass
+
+
+def create_subject_sample_factors_section(internal_data, subject_type='-'):
+    subject_sample_factors = OrderedDict()
+    subject_sample_factors['SUBJECT_SAMPLE_FACTORS'] = []
+
+    sample_ids = list({measurement['sample.id'] for measurement in internal_data['measurement']})
+
+    # create dictionary for each sample
+    for sample_id in sample_ids:
+
+        # create top of the lineage (from subject to sample)
+        lineage = create_lineage(internal_data, sample_id)
+
+        entry = OrderedDict()
+        entry['subject_type'] = subject_type
+        entry['local_sample_id'] = sample_id
+        entry['factors'] = factors_str
+        entry['additional_sample_data'] = additional_data_str
+
+    return subject_sample_factors
+
+
+""" ANDREY'S IMPLEMENTATION """
 
 
 def create_subject_sample_factors_section(internal_data,
@@ -42,6 +98,7 @@ def create_subject_sample_factors_section(internal_data,
 def get_parent(sid, sample_section, subject_section):
     return sample_section[sid].get('parentID', None) if sid in sample_section else subject_section[sid].get('parentID', None) 
 
+
 def extract_additional_data(sid, section, additional_data_ignore=('id', 'parentID', 'project.id', 'study.id', 'description')):
     additional_data = OrderedDict()
     
@@ -70,10 +127,11 @@ def create_lineage(terminal_id, sample_section, subject_section):
     
     return lineage
 
+
 def create_sister_samples(terminal_id, sample_section, subject_section, sister_sample_types):
     sister_samples = []
     
-    pid = get_parent(terminal_id,sample_section,subject_section)
+    pid = get_parent(terminal_id, sample_section, subject_section)
 
     for sister_type in sister_sample_types:
         sid = '{}{}'.format(pid, sister_type)
@@ -86,7 +144,14 @@ def create_sister_samples(terminal_id, sample_section, subject_section, sister_s
 
     return sister_samples
 
+
 def create_local_sample_ids(internal_data):
+    """Method for parsing a list of sample ids from a given internal data dictionary.
+
+    :param internal_data: Dictionary of experimental data from MS or NMR studies.
+    :type internal_data: :py:class:`collections.OrderedDict` or dict
+    :return:
+    """
     sample_ids_from_measurement = []
     for measurement in internal_data['measurement'].values():
         sample_id = measurement['sample.id']
@@ -98,17 +163,24 @@ def create_local_sample_ids(internal_data):
 
 
 def create_lineages(internal_data, sister_sample_types=None):
+    """Method for parsing lineage chains from a given internal data dictionary.
+
+    :param internal_data: Dictionary of experimental data from MS or NMR studies.
+    :type internal_data: :py:class:`collections.OrderedDict` or dict
+    :param sister_sample_types:
+    :return:
+    """
     lineages = OrderedDict()
     sister_lineages = OrderedDict()
     sample_section = internal_data['sample']
     subject_section = internal_data['subject']
-    
+
     local_sample_ids = create_local_sample_ids(internal_data)
 
     for terminal_id in local_sample_ids:
         lineages[terminal_id] = create_lineage(terminal_id, sample_section, subject_section)
         sister_lineages[terminal_id] = create_sister_samples(terminal_id, sample_section, subject_section, sister_sample_types)
-    
+
     return lineages, sister_lineages
 
 
