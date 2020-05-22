@@ -1,5 +1,6 @@
 from collections import OrderedDict
 
+
 def parse_sample_data(internal_data, sample_id):
     """Method for parsing out sample data from a dictionary of internal sample data.
 
@@ -15,7 +16,6 @@ def parse_sample_data(internal_data, sample_id):
         return
 
 
-
 def create_lineages(internal_data, sample_id):
     """Method for parsing an dictionary of internal experimental data and creating lineages for a given sample.
 
@@ -28,31 +28,41 @@ def create_lineages(internal_data, sample_id):
     :param sample_id:
     :return:
     """
-
     while True:
+        pass
 
-    pass
 
+def create_local_sample_ids(internal_data, internal_section_key='measurement', internal_sample_id_key='sample.id'):
+    """Method for parsing a list of sample ids from a given internal data dictionary.
 
-def create_subject_sample_factors_section(internal_data, subject_type='-'):
-    subject_sample_factors = OrderedDict()
-    subject_sample_factors['SUBJECT_SAMPLE_FACTORS'] = []
+    :param internal_data: Dictionary of experimental data from MS or NMR studies.
+    :type internal_data: :py:class:`collections.OrderedDict` or dict
+    :param str internal_section_key:
+    :param str internal_sample_id_key:
+    :return: List of parsed sample id strings.
+    :rtype: list
+    """
+    return list({measurement[internal_sample_id_key] for measurement in internal_data[internal_section_key].values() if measurement[internal_sample_id_key]})
 
-    sample_ids = list({measurement['sample.id'] for measurement in internal_data['measurement']})
-
-    # create dictionary for each sample
-    for sample_id in sample_ids:
-
-        # create top of the lineage (from subject to sample)
-        lineage = create_lineage(internal_data, sample_id)
-
-        entry = OrderedDict()
-        entry['subject_type'] = subject_type
-        entry['local_sample_id'] = sample_id
-        entry['factors'] = factors_str
-        entry['additional_sample_data'] = additional_data_str
-
-    return subject_sample_factors
+# def create_subject_sample_factors_section(internal_data, subject_type='-'):
+#     subject_sample_factors = OrderedDict()
+#     subject_sample_factors['SUBJECT_SAMPLE_FACTORS'] = []
+#
+#     sample_ids = list({measurement['sample.id'] for measurement in internal_data['measurement']})
+#
+#     # create dictionary for each sample
+#     for sample_id in sample_ids:
+#
+#         # create top of the lineage (from subject to sample)
+#         lineage = create_lineage(internal_data, sample_id)
+#
+#         entry = OrderedDict()
+#         entry['subject_type'] = subject_type
+#         entry['local_sample_id'] = sample_id
+#         entry['factors'] = factors_str
+#         entry['additional_sample_data'] = additional_data_str
+#
+#     return subject_sample_factors
 
 
 """ ANDREY'S IMPLEMENTATION """
@@ -122,8 +132,6 @@ def create_lineage(terminal_id, sample_section, subject_section):
 
         sid = get_parent(sid, sample_section, subject_section)
         section = sample_section if sid in sample_section else subject_section
-
-    # print("lineage:", lineage)
     
     return lineage
 
@@ -143,23 +151,6 @@ def create_sister_samples(terminal_id, sample_section, subject_section, sister_s
             sister_samples.append(lineage_data)
 
     return sister_samples
-
-
-def create_local_sample_ids(internal_data):
-    """Method for parsing a list of sample ids from a given internal data dictionary.
-
-    :param internal_data: Dictionary of experimental data from MS or NMR studies.
-    :type internal_data: :py:class:`collections.OrderedDict` or dict
-    :return:
-    """
-    sample_ids_from_measurement = []
-    for measurement in internal_data['measurement'].values():
-        sample_id = measurement['sample.id']
-        if sample_id not in sample_ids_from_measurement:
-            sample_ids_from_measurement.append(sample_id)
-        else:
-            continue
-    return sample_ids_from_measurement
 
 
 def create_lineages(internal_data, sister_sample_types=None):

@@ -273,16 +273,16 @@ def collection_protocol_id(internal_data, protocol_type='collection'):
     return ''
 
 
-def convert_metabolite_data(internal_data,
-                            metabolite_name='metabolite_name',
-                            internal_section_key='measurement',
-                            units_type_key='corrected_raw_intensity%type',
-                            assignment='assignment',
-                            peak_measurement='corrected_raw_intensity',
-                            sample_id='sample.id',
-                            protocol_id=None,
-                            extended=False):
-    """
+def convert_metabolite_data(
+        internal_data,
+        metabolite_name='metabolite_name',
+        internal_section_key='measurement',
+        units_type_key='corrected_raw_intensity%type',
+        assignment='assignment',
+        peak_measurement='corrected_raw_intensity',
+        sample_id='sample.id',
+        protocol_id=None):
+    """Method for parsing out metabolite intensity data from an internal dictionary of MS experimental data.
 
     :param internal_data:
     :param metabolite_name:
@@ -294,12 +294,11 @@ def convert_metabolite_data(internal_data,
     :param protocol_id:
     :return:
     """
-    
     # setup the data dictionary
     metabolite_data = OrderedDict()
 
-    units_key = 'EXTENDED_METABOLITE_DATA:UNITS' if extended else 'MS_METABOLITE_DATA:UNITS'
-    data_start_key = 'EXTENDED_METABOLITE_DATA_START' if extended else 'MS_METABOLITE_DATA_START'
+    units_key = 'MS_METABOLITE_DATA:UNITS'
+    data_start_key = 'MS_METABOLITE_DATA_START'
 
     sample_ids = create_local_sample_ids(internal_data=internal_data)
 
@@ -357,8 +356,9 @@ def convert_metabolite_data(internal_data,
 
 
 def convert_metabolites(internal_data, internal_section_key='measurement', assignment='assignment',
-                        protocol_id=None, **kwargs):
-    """Method for parsing metabolite information from internal data and converting it to a mwtab "METABOLITES" section.
+                        sample_id_key='sample.id', protocol_id=None, extended=False, **kwargs):
+    """Method for parsing metabolite information or extended metabolite data from internal data and converting it to a
+    mwtab "METABOLITES" section or extended "MS_METABOLITE_DATA" block respectively.
 
     :param internal_data:
     :param internal_section_key:
@@ -369,7 +369,7 @@ def convert_metabolites(internal_data, internal_section_key='measurement', assig
     """
     # setup the data dictionary
     metabolites = OrderedDict()
-    metabolites_section_key = 'METABOLITES_START'
+    metabolites_section_key = 'METABOLITES_START' if not extended else 'EXTENDED_METABOLITE_DATA_START'
     metabolites[metabolites_section_key] = OrderedDict()
 
     # if protocol is not specified - use all measurements data, otherwise filter data based on protocol_id
@@ -379,11 +379,20 @@ def convert_metabolites(internal_data, internal_section_key='measurement', assig
         measurement_data = {k: v for k, v in internal_data[internal_section_key].items()
                             if v['protocol.id'] == protocol_id.upper()}
 
-    measurement_data = sorted(measurement_data.values(),
-                              key=lambda entry: (entry[assignment], entry['sample.id']))
+    measurement_data = sorted(measurement_data.values(), key=lambda entry: (entry[assignment], entry['sample.id']))
 
     meta_data_keys = [assignment] + sorted(kwargs.values())
-    fields = [key if key != assignment else 'metabolite_name' for key in meta_data_keys]
+    if extended:
+        meta_data_keys += [sample_id_key]
+    # replaces assignment with 'metabolite_name' and if extended replaces sample_id_key with 'sample_id'
+    fields = list()
+    for key in meta_data_keys:
+        if key == assignment:
+            fields.append('metabolite_name')
+        elif key == sample_id_key:
+            fields.append('sample_id')
+        else:
+            fields.append(key)
     metabolites[metabolites_section_key]['Fields'] = fields
     metabolites[metabolites_section_key]['DATA'] = []
 
@@ -393,11 +402,8 @@ def convert_metabolites(internal_data, internal_section_key='measurement', assig
         for key in meta_data_keys:
             meta_data_entry[key] = metabolite_entry[key]
 
-        if meta_data_entry not in metabolites[metabolites_section_key]['DATA']:
+        if meta_data_entry not in metabolites[metabolites_section_key]['DATA'] or extended:
             metabolites[metabolites_section_key]['DATA'].append(meta_data_entry)
-
-    # TODO: if has the same assignment but different content through a warning, use collections.Counter
-    # any(len([entry2 for entry2 in metabolites['METABOLITES_START']['DATA'] if entry2[assignment] == entry1[assignment]]) > 1 for entry1 in  metabolites['METABOLITES_START']['DATA'] )
 
     return metabolites
 
@@ -517,8 +523,7 @@ def convert(internal_data_fpath, analysis_type, protocol_id=None, results_dir='c
         mwtab.validator._validate_section(section=ms_section, schema=mwtab.mwschema.ms_schema)
         mwtabfile['MS'] = ms_section
 
-        # Convert "EXTENDED_METABOLITE_DATA" section
-        # "EXTENDED_METABOLITE_DATA" section is updated later to include factors
+        # Convert "MS_METABOLITE_DATA" section
         ms_metabolite_data_section = convert_metabolite_data(
             internal_data=internal_data,
             units_type_key='corrected_raw_intensity%type',
@@ -527,15 +532,15 @@ def convert(internal_data_fpath, analysis_type, protocol_id=None, results_dir='c
         mwtabfile['MS_METABOLITE_DATA'] = ms_metabolite_data_section
 
         # Convert "EXTENDED_METABOLITE_DATA" section
-        # "EXTENDED_METABOLITE_DATA" section is updated later to include factors
-        extended_metabolites_section = convert_metabolite_data(
+        extended_metabolites_section = convert_metabolites(
             internal_data=internal_data,
-            units_type_key='raw_intensity%type',
-            peak_measurement='raw_intensity',
-            extended=True
-        )
+            assignment='assignment',
+            extended=True,
+            raw_intensity='raw_intensity',
+            raw_intensity_type='raw_intensity%type')
+        print(extended_metabolites_section)
         mwtabfile['MS_METABOLITE_DATA'].update(extended_metabolites_section)
-        # mwtab.validator._validate_section(section=ms_metabolite_data_section, schema=mwtab.mwschema.ms_metabolite_data_schema)
+        #mwtab.validator._validate_section(section=ms_metabolite_data_section, schema=mwtab.mwschema.ms_metabolite_data_schema)
 
         # Convert "METABOLITES" section
         metabolites_section = convert_metabolites(
@@ -590,9 +595,9 @@ def convert(internal_data_fpath, analysis_type, protocol_id=None, results_dir='c
     with open(mwtab_json_fpath, 'w') as outfile:
         json.dump(mwtabfile, outfile, indent=4)
 
-    with open(mwtab_json_fpath, 'r') as infile, open(mwtab_txt_fpath, 'w') as outfile:
-        mwfile = next(mwtab.read_files(mwtab_json_fpath))
-        mwfile.write(outfile, file_format="mwtab")
+    # with open(mwtab_json_fpath, 'r') as infile, open(mwtab_txt_fpath, 'w') as outfile:
+    #     mwfile = next(mwtab.read_files(mwtab_json_fpath))
+    #     mwfile.write(outfile, file_format="mwtab")
 
 
 if __name__ == '__main__':
