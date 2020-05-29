@@ -358,7 +358,7 @@ def convert_metabolite_data(
 def convert_metabolites(internal_data, internal_section_key='measurement', assignment='assignment',
                         sample_id_key='sample.id', protocol_id=None, extended=False, **kwargs):
     """Method for parsing metabolite information or extended metabolite data from internal data and converting it to a
-    mwtab "METABOLITES" section or extended "MS_METABOLITE_DATA" block respectively.
+    mwtab "METABOLITES" section or "MS_METABOLITE_DATA" block "EXTENDED_METABOLITE_DATA" section respectively.
 
     :param internal_data:
     :param internal_section_key:
@@ -538,9 +538,8 @@ def convert(internal_data_fpath, analysis_type, protocol_id=None, results_dir='c
             extended=True,
             raw_intensity='raw_intensity',
             raw_intensity_type='raw_intensity%type')
-        print(extended_metabolites_section)
         mwtabfile['MS_METABOLITE_DATA'].update(extended_metabolites_section)
-        #mwtab.validator._validate_section(section=ms_metabolite_data_section, schema=mwtab.mwschema.ms_metabolite_data_schema)
+        mwtab.validator._validate_section(section=ms_metabolite_data_section, schema=mwtab.mwschema.ms_metabolite_data_schema)
 
         # Convert "METABOLITES" section
         metabolites_section = convert_metabolites(
@@ -595,9 +594,9 @@ def convert(internal_data_fpath, analysis_type, protocol_id=None, results_dir='c
     with open(mwtab_json_fpath, 'w') as outfile:
         json.dump(mwtabfile, outfile, indent=4)
 
-    # with open(mwtab_json_fpath, 'r') as infile, open(mwtab_txt_fpath, 'w') as outfile:
-    #     mwfile = next(mwtab.read_files(mwtab_json_fpath))
-    #     mwfile.write(outfile, file_format="mwtab")
+    with open(mwtab_json_fpath, 'r') as infile, open(mwtab_txt_fpath, 'w') as outfile:
+        mwfile = next(mwtab.read_files(mwtab_json_fpath))
+        mwfile.write(outfile, file_format="mwtab")
 
 
 if __name__ == '__main__':
