@@ -210,14 +210,21 @@ def convert_section(internal_data, internal_mapping):
     return section
 
 
-def convert_protocol_section(internal_data, internal_mapping, internal_section_key, internal_section_type, protocol_id=None):
-    """
+def convert_protocol_section(
+        internal_data,
+        internal_mapping,
+        internal_section_key,
+        internal_section_type,
+        protocol_id=None):
+    """Method for converting genertic sections. USed to convert COLLECTION, TREATMENT, SAMPLEPREP, ANALYSIS,
+    CHROMATOGRAPHY, MS, and NMR sections.
 
-    :param internal_data:
+    :param internal_data: Dictionary of experimental data from MS or NMR studies.
+    :type internal_data: :py:class:`collections.OrderedDict` or dict
     :param internal_mapping:
-    :param internal_section_key:
-    :param internal_section_type:
-    :param protocol_id:
+    :param str internal_section_key:
+    :param str internal_section_type:
+    :param str protocol_id:
     :return:
     """
     section = OrderedDict()
@@ -239,10 +246,17 @@ def convert_protocol_section(internal_data, internal_mapping, internal_section_k
 
             if 'units' in mapping:
                 section[mwtab_field_key] = ' '.join([data_item[internal_field_key], data_item[mapping['units']]])
+
     return section
 
 
 def collection_protocol_id(internal_data, protocol_type='collection'):
+    """
+
+    :param internal_data:
+    :param protocol_type:
+    :return:
+    """
     sample_ids = create_local_sample_ids(internal_data=internal_data)
     collection_protocol_ids = [protocol for protocol in internal_data["protocol"]
                                if internal_data["protocol"][protocol]["type"] == protocol_type]
@@ -570,8 +584,25 @@ def convert(internal_data_fpath, analysis_type, protocol_id=None, results_dir='c
         nmr_metabolite_data_section = convert_metabolite_data(
             internal_data=internal_data,
             protocol_id=protocol_id,
-            assignment='resonance_assignment')
+            assignment='resonance_assignment',
+            units_type_key='intensity%type',
+            peak_measurement='intensity')
         mwtabfile['NMR_BINNED_DATA'] = nmr_metabolite_data_section
+
+        # Convert "EXTENDED_NMR_BINNED_DATA" section
+        extended_metabolites_section = convert_metabolites(
+            internal_data=internal_data,
+            assignment='assignment',
+            extended=True,
+            assignment_lower_bound='assignment_lower_bound',
+            assignment_upper_bound='assignment_upper_bound',
+            chemical_shift='chemical_shift',
+            peak_area='peak_area',
+            peak_height='peak_height',
+            peak_width='peak_width',
+        )
+        mwtabfile['NMR_BINNED_DATA'].update(extended_metabolites_section)
+        # mwtab.validator._validate_section(section=ms_metabolite_data_section, schema=mwtab.mwschema.ms_metabolite_data_schema)
 
     else:
         raise ValueError('Unknown analysis type.')
