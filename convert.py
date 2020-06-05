@@ -592,7 +592,7 @@ def convert(internal_data_fpath, analysis_type, protocol_id=None, results_dir='c
         # Convert "EXTENDED_NMR_BINNED_DATA" section
         extended_metabolites_section = convert_metabolites(
             internal_data=internal_data,
-            assignment='assignment',
+            assignment='resonance_assignment',
             extended=True,
             assignment_lower_bound='assignment_lower_bound',
             assignment_upper_bound='assignment_upper_bound',
