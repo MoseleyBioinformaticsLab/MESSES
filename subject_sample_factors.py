@@ -17,7 +17,7 @@ def create_local_sample_ids(internal_data, internal_section_key='measurement', i
 def create_lineages(
         internal_data,
         sample_id,
-        section_keys=['sample', 'subject'],
+        section_keys=('sample', 'subject'),
         parent_id_key='parentID',
         protocol_id_key='protocol.id',
         protocol_id='protein_extraction'
@@ -54,8 +54,10 @@ def create_lineages(
     # add additional lineages (sample which do not have measurement information)
     for sample_id in internal_data['sample'].keys():
         if sample_id not in [lineage_sample['id'] for lineage_sample in lineage_list]:
-            if any(internal_data['sample'][sample_id].get(parent_id_key) == lineage_sample.get('id') for lineage_sample
-                   in lineage_list) and protocol_id in internal_data['sample'][sample_id].get(protocol_id_key):
+            # if any(internal_data['sample'][sample_id].get(parent_id_key) == lineage_sample.get('id') for lineage_sample
+            #        in lineage_list) and protocol_id in internal_data['sample'][sample_id].get(protocol_id_key):
+            if internal_data['sample'][sample_id].get(parent_id_key) == lineage_list[1].get('id') \
+                   and protocol_id in internal_data['sample'][sample_id].get(protocol_id_key):
                 lineage_list.append(internal_data['sample'][sample_id])
 
     return lineage_list

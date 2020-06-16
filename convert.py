@@ -6,121 +6,7 @@ Examples:
     # python3 convert.py Exp5_metadata_and_measurements.json NMR NMR1
     # python3 convert.py Exp5_metadata_and_measurements.json NMR NMR2
 """
-"""
-'factor', 'measurement', 'project', 'protocol', 'sample', 'study', 'subject'
 
-'factor':
-{
-    "subject.protocol.id": {
-        "allowed_values": [
-            "T03-2017_naive",
-            "T03-2017_syn",
-            "T03-2017_allo",
-            "T04-2017_syn",
-            "T04-2017_allo"
-        ],
-        "id": "subject.protocol.id",
-        "project.id": "GH_Spleen",
-        "study.id": "GH_Spleen"
-    }
-}
-
-'measurement':
-{
-    (S)-2-Acetolactate_Glutaric acid_Methylsuccinic acid_MP_NoStd-13C0-01_A0_Colon_T03-2017_naive_170427_UKy_GCH_rep1-polar-ICMS_A
-    {
-        "assignment": "(S)-2-Acetolactate_Glutaric acid_Methylsuccinic acid_MP_NoStd-13C0",
-        "assignment%method": "database",
-        "compound": "(S)-2-Acetolactate_Glutaric acid_Methylsuccinic acid_MP_NoStd",
-        "corrected_raw_intensity": "8447352.89211",
-        "corrected_raw_intensity%type": "natural abundance corrected peak area",
-        "formula": "C5H8O4",
-        "id": "(S)-2-Acetolactate_Glutaric acid_Methylsuccinic acid_MP_NoStd-13C0-01_A0_Colon_T03-2017_naive_170427_UKy_GCH_rep1-polar-ICMS_A",
-        "injection_volume": "10",
-        "injection_volume%units": "uL",
-        "isotopologue": "13C0",
-        "isotopologue%type": "13C",
-        "polar_split_ratio": "0.255757329816374",
-        "protein_weight": "0.618176844244679",
-        "protein_weight%units": "mg",
-        "protocol.id": "ICMS1",
-        "raw_intensity": "7989221.83386388",
-        "raw_intensity%type": "spectrometer peak area",
-        "reconstitution_volume": "20",
-        "reconstitution_volume%units": "uL",
-        "sample.id": "01_A0_Colon_T03-2017_naive_170427_UKy_GCH_rep1-polar-ICMS_A"
-    },
-    ...
-}
-
-'project':
-{
-    "GH_Spleen":
-    {
-        "PI_email": "gerhard.hildebrandt@uky.edu",
-        "PI_first_name": "Gerhard",
-        "address": "Gerhard C. Hildebrandt, MD, Room no. CC401A, Ben Roach Building, Markey Cancer Center University of Kentucky, Lexington, 40536",
-        ...
-    }
-}
-
-'protocol': {
-    "FTMS_file_storage1": {
-        "data_files": [
-            "Hildebrandt_Spleen01_pos.raw",
-            "Hildebrandt_Spleen01_neg.raw"
-        ],
-        "id": "FTMS_file_storage1",
-        "parentID": "file_storage",
-        "sample.id": "01_A0_Spleen_T03-2017_naive_170427_UKy_GCH_rep1-lipid",
-        "type": "storage"
-    },
-    ...
-}
-
-'sample': {
-    "01_A0_Colon_T03-2017_naive_170427_UKy_GCH_rep1": {
-        "id": "01_A0_Colon_T03-2017_naive_170427_UKy_GCH_rep1",
-        "parentID": "01_A0_T03-2017_naive_UKy_GCH_rep1",
-        "project.id": "GH_Spleen",
-        "protocol.id": [
-            "mouse_tissue_collection",
-            "tissue_quench",
-            "frozen_tissue_grind"
-        ],
-        "study.id": "GH_Spleen"
-    }, 
-    ...
-}
-
-'study': {
-    "GH_Spleen": {
-        "PI_email": "gerhard.hildebrandt@uky.edu",
-        "PI_first_name": "Gerhard",
-        "PI_last_name": "Hildebrandt",
-        "address": "CTW-453, 900 South Limestone street. UKY. Lexington, Kentucky-40536",
-        "contact_email": "gerhard.hildebrandt@uky.edu",
-        "contact_first_name": "Gerhard",
-        ...
-    }
-}
-
-'subject': {
-    "01_A0_T03-2017_naive_UKy_GCH_rep1": {
-        "id": "01_A0_T03-2017_naive_UKy_GCH_rep1",
-        "project.id": "GH_Spleen",
-        "protocol.id": [
-            "T03-2017_naive"
-        ],
-        "replicate": "1",
-        "species": "Mus musculus",
-        "species_type": "Mouse",
-        "study.id": "GH_Spleen",
-        "taxonomy_id": "10090"
-    },
-    ...
-}
-"""
 
 import sys
 import json
@@ -130,9 +16,7 @@ from collections import OrderedDict
 
 import mwtab
 import schema_mapping
-from subject_sample_factors import create_subject_sample_factors_section
-from subject_sample_factors import create_local_sample_ids
-from subject_sample_factors import get_parent
+from subject_sample_factors import create_subject_sample_factors_section, create_lineages, create_local_sample_ids, get_parent
 
 
 def main():
@@ -171,7 +55,8 @@ def create_header(study_id='ST000000', analysis_id='AN000000', created_on=str(da
 def convert_section(internal_data, internal_mapping):
     """Method for converting internal project, study, and subject section to respective mwtab section.
 
-    :param internal_data:
+    :param internal_data: Dictionary of experimental data from MS or NMR studies.
+    :type internal_data: :py:class:`collections.OrderedDict` or dict
     :param internal_mapping:
     :return: mwtab formatted section.
     :rtype: :py:class:`collections.OrderedDict`
@@ -190,9 +75,6 @@ def convert_section(internal_data, internal_mapping):
         for mapping in internal_mapping:
             mwtab_field_key = mapping['mwtab_field_key']
             internal_field_key = mapping['internal_field_key']
-
-            # if internal_field_key == 'phone':
-            #     section[mwtab_field_key] = '000-000-0000'
 
             if isinstance(entry.get(internal_field_key), list):
                 unique_list = []
@@ -289,6 +171,7 @@ def collection_protocol_id(internal_data, protocol_type='collection'):
 
 def convert_metabolite_data(
         internal_data,
+        analysis_type,
         metabolite_name='metabolite_name',
         internal_section_key='measurement',
         units_type_key='corrected_raw_intensity%type',
@@ -311,15 +194,16 @@ def convert_metabolite_data(
     # setup the data dictionary
     metabolite_data = OrderedDict()
 
-    units_key = 'MS_METABOLITE_DATA:UNITS'
-    data_start_key = 'MS_METABOLITE_DATA_START'
+    units_key = '{}_METABOLITE_DATA:UNITS'.format(analysis_type.upper())
+    data_start_key = '{}_METABOLITE_DATA_START'.format(analysis_type.upper())
 
     sample_ids = create_local_sample_ids(internal_data=internal_data)
+    factors = [str(create_lineages(internal_data, sample)[0].get('protocol.id')[0]) for sample in sample_ids]
 
     metabolite_data[units_key] = ''
     metabolite_data[data_start_key] = OrderedDict()
     metabolite_data[data_start_key]['Samples'] = sample_ids
-    metabolite_data[data_start_key]['Factors'] = []
+    metabolite_data[data_start_key]['Factors'] = factors
     metabolite_data[data_start_key]['DATA'] = []
 
     if protocol_id is None:
@@ -369,7 +253,7 @@ def convert_metabolite_data(
     return metabolite_data
 
 
-def convert_metabolites(internal_data, internal_section_key='measurement', assignment='assignment',
+def convert_metabolites(internal_data, analysis_type, internal_section_key='measurement', assignment='assignment',
                         sample_id_key='sample.id', protocol_id=None, extended=False, **kwargs):
     """Method for parsing metabolite information or extended metabolite data from internal data and converting it to a
     mwtab "METABOLITES" section or "MS_METABOLITE_DATA" block "EXTENDED_METABOLITE_DATA" section respectively.
@@ -383,7 +267,7 @@ def convert_metabolites(internal_data, internal_section_key='measurement', assig
     """
     # setup the data dictionary
     metabolites = OrderedDict()
-    metabolites_section_key = 'METABOLITES_START' if not extended else 'EXTENDED_METABOLITE_DATA_START'
+    metabolites_section_key = 'METABOLITES_START' if not extended else 'EXTENDED_{}_METABOLITE_DATA_START'.format(analysis_type.upper())
     metabolites[metabolites_section_key] = OrderedDict()
 
     # if protocol is not specified - use all measurements data, otherwise filter data based on protocol_id
@@ -414,7 +298,13 @@ def convert_metabolites(internal_data, internal_section_key='measurement', assig
         meta_data_entry = OrderedDict()
 
         for key in meta_data_keys:
-            meta_data_entry[key] = metabolite_entry[key]
+            if key == assignment:
+                meta_data_entry['metabolite_name'] = metabolite_entry[key]
+            else:
+                # if type(metabolite_entry[key]) == list:
+                #     meta_data_entry[key] = ','.join(metabolite_entry[key])
+                # else:
+                meta_data_entry[key] = str(metabolite_entry[key])
 
         if meta_data_entry not in metabolites[metabolites_section_key]['DATA'] or extended:
             metabolites[metabolites_section_key]['DATA'].append(meta_data_entry)
@@ -447,21 +337,24 @@ def convert(internal_data_fpath, analysis_type, protocol_id=None, results_dir='c
     # Create "PROJECT" section
     project_section = convert_section(
         internal_data=internal_data,
-        internal_mapping=schema_mapping.internal_project_section_mapping)
+        internal_mapping=schema_mapping.internal_project_section_mapping
+    )
     mwtab.validator._validate_section(section=project_section, schema=mwtab.mwschema.project_schema)
     mwtabfile['PROJECT'] = project_section
 
     # Convert "STUDY" section
     study_section = convert_section(
         internal_data=internal_data,
-        internal_mapping=schema_mapping.internal_study_section_mapping)
+        internal_mapping=schema_mapping.internal_study_section_mapping
+    )
     mwtab.validator._validate_section(section=study_section, schema=mwtab.mwschema.study_schema)
     mwtabfile['STUDY'] = study_section
 
     # Convert "SUBJECT" section
     subject_section = convert_section(
         internal_data=internal_data,
-        internal_mapping=schema_mapping.internal_subject_section_mapping)
+        internal_mapping=schema_mapping.internal_subject_section_mapping
+    )
     mwtab.validator._validate_section(section=subject_section, schema=mwtab.mwschema.subject_schema)
     mwtabfile['SUBJECT'] = subject_section
 
@@ -470,7 +363,8 @@ def convert(internal_data_fpath, analysis_type, protocol_id=None, results_dir='c
     subject_sample_factors_section = create_subject_sample_factors_section(
         internal_data=internal_data,
         subject_type='-',
-        mwtab_key='SUBJECT_SAMPLE_FACTORS')
+        mwtab_key='SUBJECT_SAMPLE_FACTORS'
+    )
     mwtab.validator._validate_section(section=subject_sample_factors_section, schema=mwtab.mwschema.subject_sample_factors_schema)
     mwtabfile['SUBJECT_SAMPLE_FACTORS'] = subject_sample_factors_section
 
@@ -480,7 +374,8 @@ def convert(internal_data_fpath, analysis_type, protocol_id=None, results_dir='c
         internal_mapping=schema_mapping.internal_collection_section_mapping,
         internal_section_key='protocol',
         internal_section_type='collection',
-        protocol_id=collection_protocol_id(internal_data=internal_data))
+        protocol_id=collection_protocol_id(internal_data=internal_data)
+    )
     mwtab.validator._validate_section(section=collection_section, schema=mwtab.mwschema.collection_schema)
     mwtabfile['COLLECTION'] = collection_section
 
@@ -489,7 +384,8 @@ def convert(internal_data_fpath, analysis_type, protocol_id=None, results_dir='c
         internal_data=internal_data,
         internal_mapping=schema_mapping.internal_treatment_section_mapping,
         internal_section_key='protocol',
-        internal_section_type='treatment')
+        internal_section_type='treatment'
+    )
     mwtab.validator._validate_section(section=treatment_section, schema=mwtab.mwschema.treatment_schema)
     mwtabfile['TREATMENT'] = treatment_section
 
@@ -498,7 +394,8 @@ def convert(internal_data_fpath, analysis_type, protocol_id=None, results_dir='c
         internal_data=internal_data,
         internal_mapping=schema_mapping.internal_sampleprep_section_mapping,
         internal_section_key='protocol',
-        internal_section_type='sample_prep')
+        internal_section_type='sample_prep'
+    )
     mwtab.validator._validate_section(section=sampleprep_section, schema=mwtab.mwschema.sampleprep_schema)
     mwtabfile['SAMPLEPREP'] = sampleprep_section
 
@@ -508,15 +405,18 @@ def convert(internal_data_fpath, analysis_type, protocol_id=None, results_dir='c
         internal_mapping=schema_mapping.internal_analysys_section_mapping,
         internal_section_key='protocol',
         internal_section_type=analysis_type,
-        protocol_id=protocol_id)
+        protocol_id=protocol_id
+    )
     mwtab.validator._validate_section(section=analysis_section, schema=mwtab.mwschema.analysis_schema)
     mwtabfile['ANALYSIS'] = analysis_section
 
-    # Convert Mass Spec. sections into mwtab format
-    # "CHROMATOGRAPHY"
-    # "MS"
-    # "MS_METABOLITE_DATA"
-    # "EXTENDED_METABOLITE_DATA"
+    # Convert Mass Spec. sections into mwtab format.
+    # Sections:
+    #     CHROMATOGRAPHY
+    #     MS
+    #     MS_METABOLITE_DATA
+    #     EXTENDED_METABOLITE_DATA
+    #     METABOLITES
     if analysis_type.upper() == 'MS':
 
         # Convert "CHROMATOGRAPHY" section
@@ -524,7 +424,8 @@ def convert(internal_data_fpath, analysis_type, protocol_id=None, results_dir='c
             internal_data=internal_data,
             internal_mapping=schema_mapping.internal_chromatography_section_mapping,
             internal_section_key='protocol',
-            internal_section_type=analysis_type)
+            internal_section_type=analysis_type
+        )
         mwtab.validator._validate_section(section=chromatography_section, schema=mwtab.mwschema.chromatography_schema)
         mwtabfile['CHROMATOGRAPHY'] = chromatography_section
 
@@ -533,41 +434,62 @@ def convert(internal_data_fpath, analysis_type, protocol_id=None, results_dir='c
             internal_data=internal_data,
             internal_mapping=schema_mapping.internal_ms_section_mapping,
             internal_section_key='protocol',
-            internal_section_type='MS')
+            internal_section_type='MS'
+        )
         mwtab.validator._validate_section(section=ms_section, schema=mwtab.mwschema.ms_schema)
         mwtabfile['MS'] = ms_section
 
         # Convert "MS_METABOLITE_DATA" section
         ms_metabolite_data_section = convert_metabolite_data(
             internal_data=internal_data,
-            units_type_key='corrected_raw_intensity%type',
-            peak_measurement='corrected_raw_intensity',
+            analysis_type=analysis_type,
+            units_type_key='intensity%type',
+            peak_measurement='intensity',
         )
         mwtabfile['MS_METABOLITE_DATA'] = ms_metabolite_data_section
 
-        # Convert "EXTENDED_METABOLITE_DATA" section
+        # Convert "EXTENDED_MS_METABOLITE_DATA" section
         extended_metabolites_section = convert_metabolites(
             internal_data=internal_data,
+            analysis_type=analysis_type,
             assignment='assignment',
             extended=True,
+            concentration='concentration',
+            concentration_type='concentration%type',
+            concentration_units='concentration%units',
+            normalized_concentration='normalized_concentration',
+            normalized_concentration_type='normalized_concentration%type',
+            normalized_concentration_units='normalized_concentration%units',
             raw_intensity='raw_intensity',
-            raw_intensity_type='raw_intensity%type')
+            raw_intensity_type='raw_intensity%type',
+        )
         mwtabfile['MS_METABOLITE_DATA'].update(extended_metabolites_section)
-        mwtab.validator._validate_section(section=ms_metabolite_data_section, schema=mwtab.mwschema.ms_metabolite_data_schema)
+        mwtab.validator._validate_section(section=mwtabfile['MS_METABOLITE_DATA'], schema=mwtab.mwschema.ms_metabolite_data_schema)
 
         # Convert "METABOLITES" section
         metabolites_section = convert_metabolites(
             internal_data=internal_data,
+            analysis_type=analysis_type,
             assignment='assignment',
             compound='compound',
+            formula='formula',
             isotopologue='isotopologue',
-            isotopologue_type='isotopologue%type')
-        # mwtab.validator._validate_section(section=metabolites_section, schema=mwtab.mwschema.metabolites_schema)
+            isotopologue_type='isotopologue%type'
+        )
+        mwtab.validator._validate_section(section=metabolites_section, schema=mwtab.mwschema.metabolites_schema)
         mwtabfile['METABOLITES'] = metabolites_section
 
-    # Convert NMR sections into mwtab format
-    # "NMR"
-    # "NMR_BINNED_DATA"
+    # Convert NMR sections into mwtab format.
+    # Sections:
+    #   NMR
+    #   NMR_BINNED_DATA
+    #
+    #   -or-
+    #
+    #   NMR
+    #   NMR_METABOLITE_DATA
+    #   EXTENDED_NMR_METABOLITE_DATA
+    #   METABOLITES
     elif analysis_type.upper() == 'NMR':
 
         # Convert "NMR" section
@@ -576,33 +498,52 @@ def convert(internal_data_fpath, analysis_type, protocol_id=None, results_dir='c
             internal_mapping=schema_mapping.internal_nmr_section_mapping,
             internal_section_key='protocol',
             internal_section_type=analysis_type,
-            protocol_id=protocol_id)
+            protocol_id=protocol_id
+        )
         mwtab.validator._validate_section(section=nmr_section, schema=mwtab.mwschema.nmr_schema)
         mwtabfile[analysis_type] = nmr_section
 
-        # Convert "NMR_BINNED_DATA" section
+        # Convert "NMR_METABOLITE_DATA" section
         nmr_metabolite_data_section = convert_metabolite_data(
             internal_data=internal_data,
+            analysis_type=analysis_type,
             protocol_id=protocol_id,
             assignment='resonance_assignment',
             units_type_key='intensity%type',
-            peak_measurement='intensity')
-        mwtabfile['NMR_BINNED_DATA'] = nmr_metabolite_data_section
+            peak_measurement='intensity'
+        )
+        mwtabfile['NMR_METABOLITE_DATA'] = nmr_metabolite_data_section
 
-        # Convert "EXTENDED_NMR_BINNED_DATA" section
+        # Convert "EXTENDED_NMR_METABOLITE_DATA" section
         extended_metabolites_section = convert_metabolites(
             internal_data=internal_data,
+            analysis_type=analysis_type,
             assignment='resonance_assignment',
             extended=True,
-            assignment_lower_bound='assignment_lower_bound',
-            assignment_upper_bound='assignment_upper_bound',
             chemical_shift='chemical_shift',
             peak_area='peak_area',
             peak_height='peak_height',
             peak_width='peak_width',
         )
-        mwtabfile['NMR_BINNED_DATA'].update(extended_metabolites_section)
-        # mwtab.validator._validate_section(section=ms_metabolite_data_section, schema=mwtab.mwschema.ms_metabolite_data_schema)
+        mwtabfile['NMR_METABOLITE_DATA'].update(extended_metabolites_section)
+        # mwtab.validator._validate_section(section=mwtabfile['NMR_BINNED_DATA'], schema=mwtab.mwschema.nmr_binned_data_schema)
+
+        # Convert "METABOLITES" section
+        metabolites_section = convert_metabolites(
+            internal_data=internal_data,
+            analysis_type=analysis_type,
+            assignment='resonance_assignment',
+            base_inchi='base_inchi',
+            isotopic_inchi='isotopic_inchi',
+            peak_description='peak_description',
+            peak_pattern='peak_pattern',
+            proton_count='proton_count',
+            representative_inchi='representative_inchi',
+            transient_peak='transient_peak',
+            transient_peak_type='transient_peak%type'
+        )
+        mwtab.validator._validate_section(section=metabolites_section, schema=mwtab.mwschema.metabolites_schema)
+        mwtabfile['METABOLITES'] = metabolites_section
 
     else:
         raise ValueError('Unknown analysis type.')
