@@ -9,26 +9,13 @@ Examples:
 
 
 import sys
-import json
-import os
 from datetime import date
 from collections import OrderedDict
 
 import mwtab
-import schema_mapping
-from subject_sample_factors import create_subject_sample_factors_section, create_lineages, create_local_sample_ids, get_parent
-
-
-def main():
-    """Collects commandline arguments and call convert function
-    """
-    try:
-        _, filepath, analysis_type, protocol_id = sys.argv
-    except:
-        _, filepath, analysis_type, = sys.argv
-        protocol_id = None
-
-    convert(internal_data_fpath=filepath, analysis_type=analysis_type, protocol_id=protocol_id)
+from messes import schema_mapping
+from messes.subject_sample_factors import create_subject_sample_factors_section, create_lineages, \
+    create_local_sample_ids, get_parent
 
 
 def create_header(study_id='ST000000', analysis_id='AN000000', created_on=str(date.today()), version='1'):
@@ -216,7 +203,8 @@ def convert_metabolite_data(
         protocol_id=None):
     """Method for parsing out metabolite intensity data from an internal dictionary of MS experimental data.
 
-    :param internal_data:
+    :param internal_data: Dictionary of experimental data from MS or NMR studies.
+    :type internal_data: :py:class:`collections.OrderedDict` or dict
     :param metabolite_name:
     :param internal_section_key:
     :param units_type_key:
@@ -347,21 +335,17 @@ def convert_metabolites(internal_data, analysis_type, internal_section_key='meas
     return metabolites
 
 
-def convert(internal_data_fpath, analysis_type, protocol_id=None, results_dir='conversion_results'):
+def convert(internal_data, analysis_type, protocol_id=None, config_dict={}):
     """Method for converting from internal JSON format to mwtab file format.
 
-    :param str internal_data_fpath: Filepath to data file in internal data format.
+    :param internal_data: Filepath to data file in internal data format.
+    :type internal_data: dict or :py:class:`collections.OrderedDict`
     :param str analysis_type: Experimental analysis type of the data file.
     :param str protocol_id: Analysis protocol type of the data file.
-    :param str results_dir: Directory for resulting mwtab files to be output into.
+    :param config_dict:
+    :type config_dict: dict or :py:class:`collections.OrderedDict`
     :return:
     """
-    if not os.path.exists(results_dir):
-        os.makedirs(results_dir)
-
-    with open(internal_data_fpath, 'r') as infile:
-        internal_data = json.load(infile, object_pairs_hook=OrderedDict)
-
     mwtabfile = OrderedDict()
 
     # Create Header section
@@ -601,28 +585,4 @@ def convert(internal_data_fpath, analysis_type, protocol_id=None, results_dir='c
     else:
         raise ValueError('Unknown analysis type.')
 
-    internal_data_fname = os.path.basename(internal_data_fpath)
-    internal_data_fname_parts = internal_data_fname.split('.')
-
-    if internal_data_fname_parts[-1].lower() == 'json':
-        internal_data_fname_parts.pop()  # remove extension
-        basefname = ''.join(internal_data_fname_parts)
-    else:
-        basefname = ''.join(internal_data_fname_parts)
-
-    if protocol_id is None:
-        protocol_id = ''
-
-    mwtab_json_fpath = os.path.join(results_dir, 'mwtab_{}{}.json'.format(basefname, protocol_id))
-    mwtab_txt_fpath = os.path.join(results_dir, 'mwtab_{}{}.txt'.format(basefname, protocol_id))
-
-    with open(mwtab_json_fpath, 'w') as outfile:
-        json.dump(mwtabfile, outfile, indent=4)
-
-    with open(mwtab_json_fpath, 'r') as infile, open(mwtab_txt_fpath, 'w') as outfile:
-        mwfile = next(mwtab.read_files(mwtab_json_fpath))
-        mwfile.write(outfile, file_format="mwtab")
-
-
-if __name__ == '__main__':
-    main()
+    return mwtabfile

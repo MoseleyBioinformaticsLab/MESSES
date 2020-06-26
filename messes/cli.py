@@ -1,8 +1,13 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-from os.path import exists, dirname
+from messes.convert import convert
+from messes.fileio import read_files
+from os.path import dirname, join
 from os import makedirs
+import json
+from datetime import datetime
+import mwtab
 
 """
 The messes command-line interface
@@ -11,7 +16,7 @@ The messes command-line interface
 Usage:
     messes -h | --help
     messes --version
-    messes convert (<from-path> <to-path>) <analysis-type> [--protocol-id=<id>] [--config-file=<path>]
+    messes convert <from-path> <analysis-type> [--to-path=<path>] [--protocol-id=<id>] [--config-file=<path>]
 
 
 Options:
@@ -22,39 +27,25 @@ Options:
 """
 
 
-def write(mwtabfile, results_path):
-    """Method for
-
-    :param mwtabfile:
-    :param str results_path: Directory for resulting mwtab files to be output into.
-    :return:
-    """
-    # ensure directories exist in given file path
-    if not exists(dirname(results_path)):
-        makedirs(dirname(results_path))
-
-    internal_data_fname = os.path.basename(internal_data_fpath)
-    internal_data_fname_parts = internal_data_fname.split('.')
-
-    if internal_data_fname_parts[-1].lower() == 'json':
-        internal_data_fname_parts.pop()  # remove extension
-        basefname = ''.join(internal_data_fname_parts)
-    else:
-        basefname = ''.join(internal_data_fname_parts)
-
-    mwtab_json_fpath = os.path.join(results_dir, 'mwtab_{}{}.json'.format(basefname, protocol_id))
-    mwtab_txt_fpath = os.path.join(results_dir, 'mwtab_{}{}.txt'.format(basefname, protocol_id))
-
-    with open(mwtab_json_fpath, 'w') as outfile:
-        json.dump(mwtabfile, outfile, indent=4)
-
-    with open(mwtab_json_fpath, 'r') as infile, open(mwtab_txt_fpath, 'w') as outfile:
-        mwfile = next(mwtab.read_files(mwtab_json_fpath))
-        mwfile.write(outfile, file_format="mwtab")
-
-
 def cli(cmdargs):
 
     # messes convert ...
     if cmdargs["convert"]:
-        pass
+        results_dir = cmdargs.get("--to-path")
+        if not results_dir:
+            results_dir = "conversion_results"
+            makedirs(dirname(results_dir))
+
+        for internal_data in read_files(cmdargs["<from-path>"]):
+            mwtabfile = convert(internal_data, cmdargs["<analysis-type>"], cmdargs.get("--protocol-id"))
+
+            filename = str(datetime.now()).replace(".", "_").replace(":", "_").replace(" ", "_")
+            mwtab_json_fpath = join(results_dir, 'mwtab_{}.json'.format(filename))
+            mwtab_txt_fpath = join(results_dir, 'mwtab_{}.txt'.format(filename))
+
+            with open(mwtab_json_fpath, 'w') as outfile:
+                json.dump(mwtabfile, outfile, indent=4)
+
+            with open(mwtab_txt_fpath, 'w') as outfile:
+                mwfile = next(mwtab.read_files(mwtab_json_fpath))
+                mwfile.write(outfile, file_format="mwtab")
