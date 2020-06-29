@@ -436,14 +436,14 @@ def convert(internal_data, analysis_type, protocol_id=None, config_dict={}):
     if analysis_type.upper() == 'MS':
 
         # Convert "CHROMATOGRAPHY" section
-        chromatography_section = convert_protocol_section(
-            internal_data=internal_data,
-            internal_mapping=schema_mapping.internal_chromatography_section_mapping,
-            internal_section_key='protocol',
-            internal_section_type=analysis_type
-        )
-        mwtab.validator._validate_section(section=chromatography_section, schema=mwtab.mwschema.chromatography_schema)
-        mwtabfile['CHROMATOGRAPHY'] = chromatography_section
+        # chromatography_section = convert_protocol_section(
+        #     internal_data=internal_data,
+        #     internal_mapping=schema_mapping.internal_chromatography_section_mapping,
+        #     internal_section_key='protocol',
+        #     internal_section_type=analysis_type
+        # )
+        # mwtab.validator._validate_section(section=chromatography_section, schema=mwtab.mwschema.chromatography_schema)
+        # mwtabfile['CHROMATOGRAPHY'] = chromatography_section
 
         # Convert "MS" section
         ms_section = convert_protocol_section(
@@ -471,23 +471,23 @@ def convert(internal_data, analysis_type, protocol_id=None, config_dict={}):
             assignment='assignment',
             extended=True,
 
-            concentration='concentration',
-            concentration_type='concentration%type',
-            concentration_units='concentration%units',
-            normalized_concentration='normalized_concentration',
-            normalized_concentration_type='normalized_concentration%type',
-            normalized_concentration_units='normalized_concentration%units',
-            raw_intensity='raw_intensity',
-            raw_intensity_type='raw_intensity%type',
+            # concentration='concentration',
+            # concentration_type='concentration%type',
+            # concentration_units='concentration%units',
+            # normalized_concentration='normalized_concentration',
+            # normalized_concentration_type='normalized_concentration%type',
+            # normalized_concentration_units='normalized_concentration%units',
+            # raw_intensity='raw_intensity',
+            # raw_intensity_type='raw_intensity%type',
 
-            # assigned_mass='assigned_mass',
-            # assigned_mass_type='assigned_mass%type',
-            # assigned_mass_units='assigned_mass%units',
-            # assignment_scores='assignment_scores',
-            # expectation_values='expectation_values',
-            # raw_mz='raw_mz',
-            # raw_mz_units='raw_mz%units',
-            # raw_mz_sd='raw_mz_sd',
+            assigned_mass='assigned_mass',
+            assigned_mass_type='assigned_mass%type',
+            assigned_mass_units='assigned_mass%units',
+            assignment_scores='assignment_scores',
+            expectation_values='expectation_values',
+            raw_mz='raw_mz',
+            raw_mz_units='raw_mz%units',
+            raw_mz_sd='raw_mz_sd',
         )
         mwtabfile['MS_METABOLITE_DATA'].update(extended_metabolites_section)
         mwtab.validator._validate_section(section=mwtabfile['MS_METABOLITE_DATA'], schema=mwtab.mwschema.ms_metabolite_data_schema)
@@ -498,20 +498,20 @@ def convert(internal_data, analysis_type, protocol_id=None, config_dict={}):
             analysis_type=analysis_type,
             assignment='assignment',
 
-            compound='compound',
-            formula='formula',
-            isotopologue='isotopologue',
-            isotopologue_type='isotopologue%type',
-
-            # adduct='adduct',
-            # adducted_elemental_formula='adducted_elemental_formula',
-            # adducted_isotopic_formula='adducted_isotopic_formula',
-            # assignment_type='assignment%type',
-            # charge='charge',
-            # elemental_formula='elemental_formula',
+            # compound='compound',
+            # formula='formula',
             # isotopologue='isotopologue',
             # isotopologue_type='isotopologue%type',
-            # natural_abundance_probability='natural_abundance_probability',
+
+            adduct='adduct',
+            adducted_elemental_formula='adducted_elemental_formula',
+            adducted_isotopic_formula='adducted_isotopic_formula',
+            assignment_type='assignment%type',
+            charge='charge',
+            elemental_formula='elemental_formula',
+            isotopologue='isotopologue',
+            isotopologue_type='isotopologue%type',
+            natural_abundance_probability='natural_abundance_probability',
         )
         mwtab.validator._validate_section(section=metabolites_section, schema=mwtab.mwschema.metabolites_schema)
         mwtabfile['METABOLITES'] = metabolites_section

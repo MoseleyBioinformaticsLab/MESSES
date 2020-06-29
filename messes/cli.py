@@ -20,7 +20,7 @@ Options:
 
 from messes.convert import convert
 from messes.fileio import read_files
-from os.path import dirname, join
+from os.path import dirname, exists, join
 from os import makedirs
 import json
 from datetime import datetime
@@ -35,8 +35,9 @@ def cli(cmdargs):
         # ensure an results directory exists
         results_dir = cmdargs.get("--to-path")
         if not results_dir:
-            results_dir = "conversion_results"
-            makedirs(results_dir)
+            results_dir = "conversion_results/"
+        if not exists(dirname(results_dir)):
+            makedirs(dirname(results_dir))
 
         for internal_data in read_files(cmdargs["<from-path>"]):
             mwtabfile = convert(internal_data, cmdargs["<analysis-type>"], cmdargs.get("--protocol-id"))
