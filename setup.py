@@ -11,7 +11,7 @@ def readme():
 
 
 def find_version():
-    with open('mwtab/__init__.py', 'r') as fd:
+    with open('messes/__init__.py', 'r') as fd:
         version = re.search(r'^__version__\s*=\s*[\'"]([^\'"]*)[\'"]',
                             fd.read(), re.MULTILINE).group(1)
     if not version:
@@ -20,13 +20,13 @@ def find_version():
 
 
 REQUIRES = [
-    # "docopt >= 0.6.2",
+    "docopt >= 0.6.2",
     "mwtab >= 1.0.0"
 ]
 
 
 setup(
-    name='mwtab',
+    name='messes',
     version=find_version(),
     author='Christian Powell',
     author_email='christian.david.powell@gamil.com',
