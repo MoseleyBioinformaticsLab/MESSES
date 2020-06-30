@@ -19,7 +19,7 @@ Options:
 """
 
 from messes.convert import convert
-from messes.fileio import read_files
+from messes.fileio import read_files, open_json_file
 from os.path import dirname, exists, join
 from os import makedirs
 import json
@@ -39,8 +39,14 @@ def cli(cmdargs):
         if not exists(dirname(results_dir)):
             makedirs(dirname(results_dir))
 
+        # parse configuration keyword arguments, provided they are supplied.
+        config_filepath = cmdargs.get("--config-file")
+        config_dict = {}
+        if config_filepath:
+            config_dict = open_json_file(config_filepath)
+
         for internal_data in read_files(cmdargs["<from-path>"]):
-            mwtabfile = convert(internal_data, cmdargs["<analysis-type>"], cmdargs.get("--protocol-id"))
+            mwtabfile = convert(internal_data, cmdargs["<analysis-type>"], cmdargs.get("--protocol-id"), config_dict)
 
             filename = str(datetime.now()).replace(".", "_").replace(":", "_").replace(" ", "_")
             mwtab_json_fpath = join(results_dir, 'mwtab_{}.json'.format(filename))

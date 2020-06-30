@@ -5,9 +5,6 @@ from json import loads
 from os import walk
 from os.path import exists, isdir, isfile
 
-from os.path import dirname
-from os import makedirs
-
 
 def read_files(*sources):
     """
@@ -21,24 +18,24 @@ def read_files(*sources):
         if isdir(source):
             (_, _, filenames) = next(walk(source))
             for filename in filenames:
-                yield open_internal_data_file(filename)
+                yield open_json_file(filename)
         elif isfile(source):
-            yield open_internal_data_file(source)
+            yield open_json_file(source)
         else:
             raise TypeError("Unknown file source.")
 
 
-def open_internal_data_file(internal_data_filepath):
+def open_json_file(filepath):
     """
-    Method for validating a given filepath to an internal JSON data exists and returning the
+    Method for validating a given filepath to an existing JSON file and returning the converted dictionary object.
 
-    :param str internal_data_filepath:
+    :param str filepath:
     :return:
     """
     internal_data = None
-    if exists(internal_data_filepath):
+    if exists(filepath):
         try:
-            with open(internal_data_filepath, "r") as f:
+            with open(filepath, "r") as f:
                 internal_data = loads(f.read())
         except Exception as e:
             raise e
