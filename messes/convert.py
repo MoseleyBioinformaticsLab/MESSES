@@ -10,7 +10,7 @@ from messes.subject_sample_factors import create_subject_sample_factors_section,
     create_local_sample_ids, get_parent
 
 
-def create_header(study_id='ST000000', analysis_id='AN000000', created_on=str(date.today()), version='1'):
+def create_header(study_id="ST000000", analysis_id="AN000000", created_on=str(date.today()), version="1"):
     """Method for creating fields for converting the internal format to mwtab format.
 
     :param str study_id: Study id for mwtab file (default: ST000000).
@@ -23,11 +23,11 @@ def create_header(study_id='ST000000', analysis_id='AN000000', created_on=str(da
     mwheader = OrderedDict()
     header = '#METABOLOMICS WORKBENCH STUDY_ID:{} ANALYSIS_ID:{}'.format(study_id, analysis_id)
 
-    mwheader['HEADER'] = header
-    mwheader['STUDY_ID'] = study_id
-    mwheader['ANALYSIS_ID'] = analysis_id
-    mwheader['VERSION'] = version
-    mwheader['CREATED_ON'] = created_on
+    mwheader["HEADER"] = header
+    mwheader["STUDY_ID"] = study_id
+    mwheader["ANALYSIS_ID"] = analysis_id
+    mwheader["VERSION"] = version
+    mwheader["CREATED_ON"] = created_on
     return mwheader
 
 
@@ -36,8 +36,9 @@ def convert_section(internal_data, internal_mapping):
 
     :param internal_data: Dictionary of experimental data from MS or NMR studies.
     :type internal_data: :py:class:`collections.OrderedDict` or dict
-    :param internal_mapping:
-    :return: mwtab formatted section.
+    :param internal_mapping: Dictionary mapping internal data items to mwTab items.
+    :type internal_mapping: :py:class:`collections.OrderedDict` or dict
+    :return: Dictionary of section items for mwtab format.
     :rtype: :py:class:`collections.OrderedDict`
     """
     section = OrderedDict()
@@ -77,12 +78,13 @@ def convert_protocol_section(
         internal_section_key,
         internal_section_type,
         protocol_id=None):
-    """Method for converting genertic sections. USed to convert COLLECTION, TREATMENT, SAMPLEPREP, ANALYSIS,
-    CHROMATOGRAPHY, MS, and NMR sections.
+    """Method for converting genertic sections. USed to convert COLLECTION, TREATMENT, ANALYSIS, CHROMATOGRAPHY, MS, and
+    NMR sections.
 
     :param internal_data: Dictionary of experimental data from MS or NMR studies.
     :type internal_data: :py:class:`collections.OrderedDict` or dict
-    :param internal_mapping:
+    :param internal_mapping: Dictionary mapping internal data items to mwTab items.
+    :type internal_mapping: :py:class:`collections.OrderedDict` or dict
     :param str internal_section_key:
     :param str internal_section_type:
     :param str protocol_id:
@@ -112,6 +114,13 @@ def convert_protocol_section(
 
 
 def convert_sample_prep_section(internal_data, internal_section_key='protocol'):
+    """Method for converting internal data items into SAMPLEPREP items in mwTab format.
+
+    :param internal_data: Dictionary of experimental data from MS or NMR studies.
+    :type internal_data: :py:class:`collections.OrderedDict` or dict
+    :param internal_section_key:
+    :return:
+    """
     section = OrderedDict()
 
     # create lineages to parse protocol IDs from
@@ -149,7 +158,8 @@ def convert_sample_prep_section(internal_data, internal_section_key='protocol'):
 def collection_protocol_id(internal_data, protocol_type='collection'):
     """
 
-    :param internal_data:
+    :param internal_data: Dictionary of experimental data from MS or NMR studies.
+    :type internal_data: :py:class:`collections.OrderedDict` or dict
     :param protocol_type:
     :return:
     """
@@ -197,6 +207,7 @@ def convert_metabolite_data(
 
     :param internal_data: Dictionary of experimental data from MS or NMR studies.
     :type internal_data: :py:class:`collections.OrderedDict` or dict
+    :param analysis_type:
     :param metabolite_name:
     :param internal_section_key:
     :param units_type_key:
@@ -268,12 +279,20 @@ def convert_metabolite_data(
     return metabolite_data
 
 
-def convert_metabolites(internal_data, analysis_type, internal_section_key='measurement', assignment='assignment',
-                        sample_id_key='sample.id', protocol_id=None, extended=False, **kwargs):
+def convert_metabolites(
+        internal_data,
+        analysis_type,
+        internal_section_key='measurement',
+        assignment='assignment',
+        sample_id_key='sample.id',
+        protocol_id=None,
+        extended=False,
+        **kwargs):
     """Method for parsing metabolite information or extended metabolite data from internal data and converting it to a
     mwtab "METABOLITES" section or "MS_METABOLITE_DATA" block "EXTENDED_METABOLITE_DATA" section respectively.
 
-    :param internal_data:
+    :param internal_data: Dictionary of experimental data from MS or NMR studies.
+    :type internal_data: :py:class:`collections.OrderedDict` or dict
     :param internal_section_key:
     :param assignment:
     :param protocol_id:
@@ -315,10 +334,9 @@ def convert_metabolites(internal_data, analysis_type, internal_section_key='meas
         for key in meta_data_keys:
             if key == assignment:
                 meta_data_entry['metabolite_name'] = metabolite_entry[key]
+            elif type(metabolite_entry[key]) == list and len(metabolite_entry[key]) == 1:
+                    meta_data_entry[key] = str(metabolite_entry[key][0])
             else:
-                # if type(metabolite_entry[key]) == list:
-                #     meta_data_entry[key] = ','.join(metabolite_entry[key])
-                # else:
                 meta_data_entry[key] = str(metabolite_entry[key])
 
         if meta_data_entry not in metabolites[metabolites_section_key]['DATA'] or extended:
@@ -328,7 +346,7 @@ def convert_metabolites(internal_data, analysis_type, internal_section_key='meas
 
 
 def convert(internal_data, analysis_type, protocol_id=None, config_dict={}):
-    """Method for converting from internal JSON format to mwtab file format.
+    """Method for converting internal data items into mwTab formatted items.
 
     :param internal_data: Filepath to data file in internal data format.
     :type internal_data: dict or :py:class:`collections.OrderedDict`
@@ -341,8 +359,10 @@ def convert(internal_data, analysis_type, protocol_id=None, config_dict={}):
     """
     mwtabfile = OrderedDict()
 
-    # Create Header section
-    header_section = create_header()
+    # Create Header ("METABOLOMICS WORKBENCH") section
+    header_section = create_header(
+        **config_dict.get("METABOLOMICS WORKBENCH") if config_dict.get("METABOLOMICS WORKBENCH") else dict()
+    )
     mwtab.validator._validate_section(section=header_section, schema=mwtab.mwschema.metabolomics_workbench_schema)
     mwtabfile["METABOLOMICS WORKBENCH"] = header_section
 
@@ -369,6 +389,7 @@ def convert(internal_data, analysis_type, protocol_id=None, config_dict={}):
     )
     mwtab.validator._validate_section(section=subject_section, schema=mwtab.mwschema.subject_schema)
     mwtabfile['SUBJECT'] = subject_section
+    ##
 
     # Convert "SUBJECT_SAMPLE_FACTORS" section
     # "SUBJECT_SAMPLE_FACTORS" section is updated later to include factors
@@ -429,14 +450,21 @@ def convert(internal_data, analysis_type, protocol_id=None, config_dict={}):
     if analysis_type.upper() == 'MS':
 
         # Convert "CHROMATOGRAPHY" section
-        # chromatography_section = convert_protocol_section(
-        #     internal_data=internal_data,
-        #     internal_mapping=schema_mapping.internal_chromatography_section_mapping,
-        #     internal_section_key='protocol',
-        #     internal_section_type=analysis_type
-        # )
-        # mwtab.validator._validate_section(section=chromatography_section, schema=mwtab.mwschema.chromatography_schema)
-        # mwtabfile['CHROMATOGRAPHY'] = chromatography_section
+        chromatography_section = convert_protocol_section(
+            internal_data=internal_data,
+            internal_mapping=schema_mapping.internal_chromatography_section_mapping,
+            internal_section_key='protocol',
+            internal_section_type=analysis_type
+        )
+        if not chromatography_section:
+            chromatography_section = OrderedDict({
+                "CHROMATOGRAPHY_SUMMARY": "PlaceHolder",
+                "CHROMATOGRAPHY_TYPE": "None (Direct infusion)",
+                "INSTRUMENT_NAME": "PlaceHolder",
+                "COLUMN_NAME": "PlaceHolder",
+            })
+        mwtab.validator._validate_section(section=chromatography_section, schema=mwtab.mwschema.chromatography_schema)
+        mwtabfile['CHROMATOGRAPHY'] = chromatography_section
 
         # Convert "MS" section
         ms_section = convert_protocol_section(
@@ -453,8 +481,6 @@ def convert(internal_data, analysis_type, protocol_id=None, config_dict={}):
             internal_data=internal_data,
             analysis_type=analysis_type,
             **config_dict.get("MS_METABOLITE_DATA")
-            # units_type_key='raw_intensity%type',  # 'intensity%type',
-            # peak_measurement='raw_intensity',  # 'intensity',
         )
         mwtabfile['MS_METABOLITE_DATA'] = ms_metabolite_data_section
 
@@ -462,27 +488,9 @@ def convert(internal_data, analysis_type, protocol_id=None, config_dict={}):
         extended_metabolites_section = convert_metabolites(
             internal_data=internal_data,
             analysis_type=analysis_type,
-            assignment='assignment',
+            assignment=config_dict.get("EXTENDED_MS_METABOLITE_DATA").get("assignment") if config_dict.get("EXTENDED_MS_METABOLITE_DATA").get("assignment") else "assignment",
             extended=True,
             **config_dict.get("EXTENDED_MS_METABOLITE_DATA")
-
-            # concentration='concentration',
-            # concentration_type='concentration%type',
-            # concentration_units='concentration%units',
-            # normalized_concentration='normalized_concentration',
-            # normalized_concentration_type='normalized_concentration%type',
-            # normalized_concentration_units='normalized_concentration%units',
-            # raw_intensity='raw_intensity',
-            # raw_intensity_type='raw_intensity%type',
-
-            # assigned_mass='assigned_mass',
-            # assigned_mass_type='assigned_mass%type',
-            # assigned_mass_units='assigned_mass%units',
-            # assignment_scores='assignment_scores',
-            # expectation_values='expectation_values',
-            # raw_mz='raw_mz',
-            # raw_mz_units='raw_mz%units',
-            # raw_mz_sd='raw_mz_sd',
         )
         mwtabfile["MS_METABOLITE_DATA"].update(extended_metabolites_section)
         mwtab.validator._validate_section(section=mwtabfile["MS_METABOLITE_DATA"], schema=mwtab.mwschema.ms_metabolite_data_schema)
@@ -493,21 +501,6 @@ def convert(internal_data, analysis_type, protocol_id=None, config_dict={}):
             analysis_type=analysis_type,
             assignment="assignment",
             **config_dict.get("METABOLITES"),
-
-            # compound='compound',
-            # formula='formula',
-            # isotopologue='isotopologue',
-            # isotopologue_type='isotopologue%type',
-
-            # adduct='adduct',
-            # adducted_elemental_formula='adducted_elemental_formula',
-            # adducted_isotopic_formula='adducted_isotopic_formula',
-            # assignment_type='assignment%type',
-            # charge='charge',
-            # elemental_formula='elemental_formula',
-            # isotopologue='isotopologue',
-            # isotopologue_type='isotopologue%type',
-            # natural_abundance_probability='natural_abundance_probability',
         )
         mwtab.validator._validate_section(section=metabolites_section, schema=mwtab.mwschema.metabolites_schema)
         mwtabfile['METABOLITES'] = metabolites_section

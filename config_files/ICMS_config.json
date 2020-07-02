@@ -1,0 +1,22 @@
+{
+    "MS_METABOLITE_DATA": {
+        "units_type_key": "intensity%type",
+        "peak_measurement": "intensity"
+    },
+    "EXTENDED_MS_METABOLITE_DATA": {
+        "concentration": "concentration",
+        "concentration_type": "concentration%type",
+        "concentration_units": "concentration%units",
+        "normalized_concentration": "normalized_concentration",
+        "normalized_concentration_type": "normalized_concentration%type",
+        "normalized_concentration_units": "normalized_concentration%units",
+        "raw_intensity": "raw_intensity",
+        "raw_intensity_type": "raw_intensity%type"
+    },
+    "METABOLITES": {
+        "compound": "compound",
+        "formula": "formula",
+        "isotopologue": "isotopologue",
+        "isotopologue_type": "isotopologue%type"
+    }
+}

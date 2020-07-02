@@ -1,0 +1,27 @@
+{
+    "MS_METABOLITE_DATA": {
+        "units_type_key": "raw_intensity%type",
+        "peak_measurement": "raw_intensity"
+    },
+    "EXTENDED_MS_METABOLITE_DATA": {
+        "assigned_mass": "assigned_mass",
+        "assigned_mass_type": "assigned_mass%type",
+        "assigned_mass_units": "assigned_mass%units",
+        "assignment_scores": "assignment_scores",
+        "expectation_values": "expectation_values",
+        "raw_mz": "raw_mz",
+        "raw_mz_units": "raw_mz%units",
+        "raw_mz_sd": "raw_mz_sd"
+    },
+    "METABOLITES": {
+        "adduct": "adduct",
+        "adducted_elemental_formula": "adducted_elemental_formula",
+        "adducted_isotopic_formula": "adducted_isotopic_formula",
+        "assignment_type": "assignment%type",
+        "charge": "charge",
+        "elemental_formula": "elemental_formula",
+        "isotopologue": "isotopologue",
+        "isotopologue_type": "isotopologue%type",
+        "natural_abundance_probability": "natural_abundance_probability"
+    }
+}
