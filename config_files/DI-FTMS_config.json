@@ -1,4 +1,13 @@
 {
+    "METABOLOMICS WORKBENCH": {
+        "study_id": "ST000000",
+        "analysis_id": "AN000000",
+        "version": "1"
+    },
+    "SUBJECT_SAMPLE_FACTORS": {
+        "subject_type": "-",
+        "mwtab_key": "SUBJECT_SAMPLE_FACTORS"
+    },
     "MS_METABOLITE_DATA": {
         "units_type_key": "raw_intensity%type",
         "peak_measurement": "raw_intensity"

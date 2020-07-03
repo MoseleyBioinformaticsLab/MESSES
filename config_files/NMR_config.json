@@ -1,0 +1,33 @@
+{
+    "METABOLOMICS WORKBENCH": {
+        "study_id": "ST000000",
+        "analysis_id": "AN000000",
+        "version": "1"
+    },
+    "SUBJECT_SAMPLE_FACTORS": {
+        "subject_type": "-",
+        "mwtab_key": "SUBJECT_SAMPLE_FACTORS"
+    },
+    "NMR_METABOLITE_DATA": {
+        "assignment": "resonance_assignment",
+        "units_type_key": "intensity%type",
+        "peak_measurement": "intensity"
+    },
+    "EXTENDED_NMR_METABOLITE_DATA": {
+        "chemical_shift": "chemical_shift",
+        "peak_area": "peak_area",
+        "peak_height": "peak_height",
+        "peak_width": "peak_width"
+    },
+    "METABOLITES": {
+        "assignment": "resonance_assignment",
+        "base_inchi": "base_inchi",
+        "isotopic_inchi": "isotopic_inchi",
+        "peak_description": "peak_description",
+        "peak_pattern": "peak_pattern",
+        "proton_count": "proton_count",
+        "representative_inchi": "representative_inchi",
+        "transient_peak": "transient_peak",
+        "transient_peak_type": "transient_peak%type"
+    }
+}

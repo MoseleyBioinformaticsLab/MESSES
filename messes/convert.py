@@ -389,14 +389,12 @@ def convert(internal_data, analysis_type, protocol_id=None, config_dict={}):
     )
     mwtab.validator._validate_section(section=subject_section, schema=mwtab.mwschema.subject_schema)
     mwtabfile['SUBJECT'] = subject_section
-    ##
 
     # Convert "SUBJECT_SAMPLE_FACTORS" section
     # "SUBJECT_SAMPLE_FACTORS" section is updated later to include factors
     subject_sample_factors_section = create_subject_sample_factors_section(
         internal_data=internal_data,
-        subject_type='-',
-        mwtab_key='SUBJECT_SAMPLE_FACTORS'
+        **config_dict.get("SUBJECT_SAMPLE_FACTORS") if config_dict.get("SUBJECT_SAMPLE_FACTORS") else dict()
     )
     mwtab.validator._validate_section(section=subject_sample_factors_section, schema=mwtab.mwschema.subject_sample_factors_schema)
     mwtabfile['SUBJECT_SAMPLE_FACTORS'] = subject_sample_factors_section
@@ -488,7 +486,6 @@ def convert(internal_data, analysis_type, protocol_id=None, config_dict={}):
         extended_metabolites_section = convert_metabolites(
             internal_data=internal_data,
             analysis_type=analysis_type,
-            assignment=config_dict.get("EXTENDED_MS_METABOLITE_DATA").get("assignment") if config_dict.get("EXTENDED_MS_METABOLITE_DATA").get("assignment") else "assignment",
             extended=True,
             **config_dict.get("EXTENDED_MS_METABOLITE_DATA")
         )
@@ -500,7 +497,7 @@ def convert(internal_data, analysis_type, protocol_id=None, config_dict={}):
             internal_data=internal_data,
             analysis_type=analysis_type,
             assignment="assignment",
-            **config_dict.get("METABOLITES"),
+            **config_dict.get("METABOLITES") if config_dict.get("METABOLITES") else dict(),
         )
         mwtab.validator._validate_section(section=metabolites_section, schema=mwtab.mwschema.metabolites_schema)
         mwtabfile['METABOLITES'] = metabolites_section
@@ -534,9 +531,7 @@ def convert(internal_data, analysis_type, protocol_id=None, config_dict={}):
             internal_data=internal_data,
             analysis_type=analysis_type,
             protocol_id=protocol_id,
-            assignment='resonance_assignment',
-            units_type_key='intensity%type',
-            peak_measurement='intensity'
+            **config_dict.get("NMR_METABOLITE_DATA") if config_dict.get("NMR_METABOLITE_DATA") else dict(),
         )
         mwtabfile['NMR_METABOLITE_DATA'] = nmr_metabolite_data_section
 
@@ -546,10 +541,8 @@ def convert(internal_data, analysis_type, protocol_id=None, config_dict={}):
             analysis_type=analysis_type,
             assignment='resonance_assignment',
             extended=True,
-            chemical_shift='chemical_shift',
-            peak_area='peak_area',
-            peak_height='peak_height',
-            peak_width='peak_width',
+            **config_dict.get("EXTENDED_NMR_METABOLITE_DATA") if config_dict.get(
+                "EXTENDED_NMR_METABOLITE_DATA") else dict(),
         )
         mwtabfile['NMR_METABOLITE_DATA'].update(extended_metabolites_section)
         # mwtab.validator._validate_section(section=mwtabfile['NMR_BINNED_DATA'], schema=mwtab.mwschema.nmr_binned_data_schema)
@@ -558,15 +551,7 @@ def convert(internal_data, analysis_type, protocol_id=None, config_dict={}):
         metabolites_section = convert_metabolites(
             internal_data=internal_data,
             analysis_type=analysis_type,
-            assignment='resonance_assignment',
-            base_inchi='base_inchi',
-            isotopic_inchi='isotopic_inchi',
-            peak_description='peak_description',
-            peak_pattern='peak_pattern',
-            proton_count='proton_count',
-            representative_inchi='representative_inchi',
-            transient_peak='transient_peak',
-            transient_peak_type='transient_peak%type'
+            **config_dict.get("METABOLITES") if config_dict.get("METABOLITES") else dict(),
         )
         mwtab.validator._validate_section(section=metabolites_section, schema=mwtab.mwschema.metabolites_schema)
         mwtabfile['METABOLITES'] = metabolites_section

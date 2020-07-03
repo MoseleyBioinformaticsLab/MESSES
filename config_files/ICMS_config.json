@@ -1,9 +1,19 @@
 {
+    "METABOLOMICS WORKBENCH": {
+        "study_id": "ST000000",
+        "analysis_id": "AN000000",
+        "version": "1"
+    },
+    "SUBJECT_SAMPLE_FACTORS": {
+        "subject_type": "-",
+        "mwtab_key": "SUBJECT_SAMPLE_FACTORS"
+    },
     "MS_METABOLITE_DATA": {
         "units_type_key": "intensity%type",
         "peak_measurement": "intensity"
     },
     "EXTENDED_MS_METABOLITE_DATA": {
+        "assignment": "assignment",
         "concentration": "concentration",
         "concentration_type": "concentration%type",
         "concentration_units": "concentration%units",
