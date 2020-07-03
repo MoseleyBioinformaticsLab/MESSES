@@ -79,6 +79,7 @@ Quickstart
    >>> with open("mwtab_data.txt", 'w', encoding="UTF-8") as outfile:
    ...      mwfile = next(mwtab.read_files(mwtab_json_fpath))
    ...      mwfile.write(outfile, file_format="mwtab")
+   >>>
 
 
 License
