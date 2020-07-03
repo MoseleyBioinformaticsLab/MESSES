@@ -8,44 +8,28 @@ messes
 |
 
 
-The ``mwtab`` package is a Python library that facilitates reading and writing
-files in ``mwTab`` format used by the `Metabolomics Workbench`_ for archival of
+The ``messes`` package is a Python library that facilitates the conversion of raw MS and NMR experimental data into
+``mwTab`` formatted data used by the `Metabolomics Workbench`_ for archival of
 Mass Spectrometry (MS) and Nuclear Magnetic Resonance (NMR) experimental data.
 
-The ``mwtab`` package provides facilities to convert ``mwTab`` formatted files into
-their equivalent ``JSON`` ized representation and vice versa.  ``JSON`` stands for JavaScript
-Object Notation, an open-standard format that uses human-readable text to transmit
-data objects consisting of attribute-value pairs.
+The ``messes`` package can be used in several ways:
 
-The ``mwtab`` package can be used in several ways:
-
-   * As a library for accessing and manipulating data stored in ``mwTab`` format files.
-   * As a command-line tool to convert between ``mwTab`` format and its equivalent
-     ``JSON`` representation.
-
-
-Citation
-~~~~~~~~
-
-When using ``mwtab`` package in published work, please cite the following paper:
-
-   * Smelter, Andrey and Hunter NB Moseley. "A Python library for FAIRer access and
-     deposition to the Metabolomics Workbench Data Repository."
-     *Metabolomics* 2018, 14(5): 64. doi: `10.1007/s11306-018-1356-6`_.
+   * As a library for converting raw data stored in ``excel`` formatted files into ``mwTab`` formatted files.
+   * As a command-line tool to convert raw data stored in ``excel`` formatted files into ``mwTab`` formatted files.
 
 
 Links
 ~~~~~
 
-   * mwtab @ GitHub_
-   * mwtab @ PyPI_
-   * Documentation @ ReadTheDocs_
+Coming Soon!
 
 
 Installation
 ~~~~~~~~~~~~
 
-The ``mwtab`` package runs under Python 2.7 and Python 3.4+. Use pip_ to install.
+Coming soon!
+
+The ``mwtab`` package runs under and Python 3.4+. Use pip_ to install.
 Starting with Python 3.4, pip_ is included by default.
 
 
@@ -54,7 +38,7 @@ Install on Linux, Mac OS X
 
 .. code:: bash
 
-   python3 -m pip install mwtab
+   python3 -m pip install messes
 
 
 Install on Windows
@@ -62,7 +46,7 @@ Install on Windows
 
 .. code:: bash
 
-   py -3 -m pip install mwtab
+   py -3 -m pip install messes
 
 
 Upgrade on Linux, Mac OS X
@@ -70,7 +54,7 @@ Upgrade on Linux, Mac OS X
 
 .. code:: bash
 
-   python3 -m pip install mwtab --upgrade
+   python3 -m pip install messes --upgrade
 
 
 Upgrade on Windows
@@ -78,7 +62,7 @@ Upgrade on Windows
 
 .. code:: bash
 
-   py -3 -m pip install mwtab --upgrade
+   py -3 -m pip install messes --upgrade
 
 
 Quickstart
@@ -86,23 +70,15 @@ Quickstart
 
 .. code:: python
 
-   >>> import mwtab
+   >>> import messes
    >>>
-   >>> # Here we use ANALYSIS_ID of file to fetch data from URL
-   >>> for mwfile in mwtab.read_files("1", "2"):
-   ...      print("STUDY_ID:", mwfile.study_id)
-   ...      print("ANALYSIS_ID:", mwfile.analysis_id)
-   ...      print("SOURCE:", mwfile.source)
-   ...      print("Blocks:", list(mwfile.keys()))
-   >>>
-
-.. image:: https://raw.githubusercontent.com/MoseleyBioinformaticsLab/mwtab/master/docs/_static/images/mwtab_demo.gif
-   :align: center
-
-
-.. note:: Read the User Guide and the ``mwtab`` Tutorial on ReadTheDocs_
-          to learn more and to see code examples on using the ``mwtab`` as a
-          library and as a command-line tool.
+   >>> # Here we open and convert a internal MS data JSON file into mwTab formatted data
+   >>> for internal_data in messes.read_files("data\\"):
+   ...      mwtabfile = convert(internal_data, "MS")
+   >>> # Here we save out the converted data into a mwTab file
+   >>> with open("mwtab_data.txt", 'w', encoding="UTF-8") as outfile:
+   ...      mwfile = next(mwtab.read_files(mwtab_json_fpath))
+   ...      mwfile.write(outfile, file_format="mwtab")
 
 
 License
@@ -112,9 +88,8 @@ This package is distributed under the BSD_ `license`.
 
 
 .. _Metabolomics Workbench: http://www.metabolomicsworkbench.org
-.. _GitHub: https://github.com/MoseleyBioinformaticsLab/mwtab
-.. _ReadTheDocs: http://mwtab.readthedocs.io
-.. _PyPI: https://pypi.org/project/mwtab
+.. _GitHub: https://github.com/MoseleyBioinformaticsLab/messes
+.. _ReadTheDocs: http://messes.readthedocs.io
+.. _PyPI: https://pypi.org/project/messes
 .. _pip: https://pip.pypa.io
 .. _BSD: https://choosealicense.com/licenses/bsd-3-clause-clear/
-.. _10.1007/s11306-018-1356-6: http://dx.doi.org/10.1007/s11306-018-1356-6
