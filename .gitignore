@@ -5,3 +5,4 @@ __pycache__/
 conversion_results/
 data/
 test.py
+*.zip
