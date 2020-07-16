@@ -11,17 +11,17 @@ from messes.subject_sample_factors import create_subject_sample_factors_section,
 
 
 def create_header(study_id="ST000000", analysis_id="AN000000", created_on=str(date.today()), version="1"):
-    """Method for creating fields for converting the internal format to mwtab format.
+    """Method for creating items for mwTab formatted header section.
 
-    :param str study_id: Study id for mwtab file (default: ST000000).
-    :param str analysis_id: Analysis id for mwtab file (default: AN000000).
-    :param str created_on: Date mwtab file was generated on (default: today's date).
-    :param str version: Version of mwtab file (default: 1).
-    :return: Dictionary of header items for mwtab format.
+    :param str study_id: Study id for mwTab file (default: ST000000).
+    :param str analysis_id: Analysis id for mwTab file (default: AN000000).
+    :param str created_on: Date mwTab file was generated on (default: today's date).
+    :param str version: Version of mwTab file (default: 1).
+    :return: Dictionary of header items for mwTab format.
     :rtype: :py:class:`collections.OrderedDict`
     """
     mwheader = OrderedDict()
-    header = '#METABOLOMICS WORKBENCH STUDY_ID:{} ANALYSIS_ID:{}'.format(study_id, analysis_id)
+    header = "#METABOLOMICS WORKBENCH STUDY_ID:{} ANALYSIS_ID:{}".format(study_id, analysis_id)
 
     mwheader["HEADER"] = header
     mwheader["STUDY_ID"] = study_id
@@ -32,20 +32,20 @@ def create_header(study_id="ST000000", analysis_id="AN000000", created_on=str(da
 
 
 def convert_section(internal_data, internal_mapping):
-    """Method for converting internal project, study, and subject section to respective mwtab section.
+    """Method for converting internal items into mwTab formatted PROJECT, STUDY, and SUBJECT section items.
 
     :param internal_data: Dictionary of experimental data from MS or NMR studies.
     :type internal_data: :py:class:`collections.OrderedDict` or dict
     :param internal_mapping: Dictionary mapping internal data items to mwTab items.
     :type internal_mapping: :py:class:`collections.OrderedDict` or dict
-    :return: Dictionary of section items for mwtab format.
+    :return: Dictionary of section items for mwTab format.
     :rtype: :py:class:`collections.OrderedDict`
     """
     section = OrderedDict()
-    internal_section_key = [mapping['internal_section_key'] for mapping in internal_mapping]
+    internal_section_key = [mapping["internal_section_key"] for mapping in internal_mapping]
 
     if len(set(internal_section_key)) != 1:
-        raise ValueError('"internal_section_key" must be identical.')
+        raise ValueError("\"internal_section_key\" must be identical.")
     else:
         internal_section_key = internal_section_key[0]
 
@@ -53,8 +53,8 @@ def convert_section(internal_data, internal_mapping):
 
     for entry_key, entry in internal_section.items():
         for mapping in internal_mapping:
-            mwtab_field_key = mapping['mwtab_field_key']
-            internal_field_key = mapping['internal_field_key']
+            mwtab_field_key = mapping["mwtab_field_key"]
+            internal_field_key = mapping["internal_field_key"]
 
             if isinstance(entry.get(internal_field_key), list):
                 unique_list = []
@@ -78,56 +78,58 @@ def convert_protocol_section(
         internal_section_key,
         internal_section_type,
         protocol_id=None):
-    """Method for converting genertic sections. USed to convert COLLECTION, TREATMENT, ANALYSIS, CHROMATOGRAPHY, MS, and
-    NMR sections.
+    """Method for converting internal items into mwTab formatted COLLECTION, TREATMENT, ANALYSIS, CHROMATOGRAPHY, MS,
+    and NMR sections.
 
     :param internal_data: Dictionary of experimental data from MS or NMR studies.
     :type internal_data: :py:class:`collections.OrderedDict` or dict
     :param internal_mapping: Dictionary mapping internal data items to mwTab items.
     :type internal_mapping: :py:class:`collections.OrderedDict` or dict
-    :param str internal_section_key:
-    :param str internal_section_type:
-    :param str protocol_id:
-    :return:
+    :param str internal_section_key: String identifier for internal section name.
+    :param str internal_section_type: String identifier for internal section type.
+    :param str protocol_id: String identifier for experiment protocol id.
+    :return: Dictionary of section items for mwTab format.
+    :rtype: :py:class:`collections.OrderedDict`
     """
     section = OrderedDict()
-    data = [d for d in internal_data[internal_section_key].values() if d['type'] == internal_section_type]
+    data = [d for d in internal_data[internal_section_key].values() if d["type"] == internal_section_type]
 
     if protocol_id is not None:
-        data = [d for d in data if d['id'] == protocol_id]
+        data = [d for d in data if d["id"] == protocol_id]
 
     for data_item in data:
         for mapping in internal_mapping:
-            mwtab_field_key = mapping.get('mwtab_field_key', '')
-            internal_field_key = mapping.get('internal_field_key', '')
+            mwtab_field_key = mapping.get("mwtab_field_key", "")
+            internal_field_key = mapping.get("internal_field_key", "")
 
-            if internal_field_key and data_item.get(internal_field_key, ''):
+            if internal_field_key and data_item.get(internal_field_key, ""):
                 if mwtab_field_key in section:
-                    section[mwtab_field_key] += '\n{}'.format(data_item[internal_field_key])
+                    section[mwtab_field_key] += "\n{}".format(data_item[internal_field_key])
                 else:
                     section[mwtab_field_key] = data_item[internal_field_key]
 
-            if 'units' in mapping:
-                section[mwtab_field_key] = ' '.join([data_item[internal_field_key], data_item[mapping['units']]])
+            if "units" in mapping:
+                section[mwtab_field_key] = ' '.join([data_item[internal_field_key], data_item[mapping["units"]]])
 
     return section
 
 
-def convert_sample_prep_section(internal_data, internal_section_key='protocol'):
-    """Method for converting internal data items into SAMPLEPREP items in mwTab format.
+def convert_sample_prep_section(internal_data, internal_section_key="protocol"):
+    """Method for converting internal items into SAMPLEPREP items in mwTab format.
 
     :param internal_data: Dictionary of experimental data from MS or NMR studies.
     :type internal_data: :py:class:`collections.OrderedDict` or dict
-    :param internal_section_key:
-    :return:
+    :param str internal_section_key: String identifier for internal section name (default: "protocol").
+    :return: Dictionary of section items for mwTab format.
+    :rtype: :py:class:`collections.OrderedDict`
     """
     section = OrderedDict()
 
     # create lineages to parse protocol IDs from
     sample_ids = create_local_sample_ids(
         internal_data,
-        internal_section_key='measurement',
-        internal_sample_id_key='sample.id'
+        internal_section_key="measurement",
+        internal_sample_id_key="sample.id"
     )
     sample_lineages = [create_lineages(internal_data, sample_id) for sample_id in sample_ids]
 
@@ -135,33 +137,34 @@ def convert_sample_prep_section(internal_data, internal_section_key='protocol'):
     protocol_ids = set()
     for sample_lineage in sample_lineages:
         for lineage in sample_lineage:
-            protocol_ids.update(lineage.get('protocol.id'))
+            protocol_ids.update(lineage.get("protocol.id"))
 
     data = [d for d in internal_data[internal_section_key].items() if d[0] in protocol_ids and d[1].get("type") == "sample_prep"]
 
     mapping = {
-        'SAMPLEPREP_SUMMARY': 'description',
-        'SAMPLEPREP_PROTOCOL_ID': 'id',
-        'SAMPLEPREP_PROTOCOL_FILENAME': 'filename',
+        "SAMPLEPREP_SUMMARY": "description",
+        "SAMPLEPREP_PROTOCOL_ID": "id",
+        "SAMPLEPREP_PROTOCOL_FILENAME": "filename",
     }
     for m in mapping.items():
         for data_item in data:
             if data_item[1].get(m[1]):
                 if m[0] in section:
-                    section[m[0]] += '\n{}'.format(data_item[1][m[1]])
+                    section[m[0]] += "\n{}".format(data_item[1][m[1]])
                 else:
                     section[m[0]] = data_item[1][m[1]]
 
     return section
 
 
-def collection_protocol_id(internal_data, protocol_type='collection'):
+def collection_protocol_id(internal_data, protocol_type="collection"):
     """
 
     :param internal_data: Dictionary of experimental data from MS or NMR studies.
     :type internal_data: :py:class:`collections.OrderedDict` or dict
-    :param protocol_type:
-    :return:
+    :param protocol_type: String identifier for protocol type (default: "collection").
+    :return: Dictionary of section items for mwTab format.
+    :rtype: :py:class:`collections.OrderedDict`
     """
     sample_ids = create_local_sample_ids(internal_data=internal_data)
     collection_protocol_ids = [protocol for protocol in internal_data["protocol"]
@@ -171,7 +174,7 @@ def collection_protocol_id(internal_data, protocol_type='collection'):
         return collection_protocol_ids[0]
 
     elif len(collection_protocol_ids) == 0:
-        return ''
+        return ""
 
     else:
         while True:
@@ -196,85 +199,87 @@ def collection_protocol_id(internal_data, protocol_type='collection'):
 def convert_metabolite_data(
         internal_data,
         analysis_type,
-        metabolite_name='metabolite_name',
-        internal_section_key='measurement',
-        units_type_key='corrected_raw_intensity%type',
-        assignment='assignment',
-        peak_measurement='corrected_raw_intensity',
-        sample_id='sample.id',
+        internal_section_key="measurement",
+        metabolite_name_key="metabolite_name",
+        units_type_key="corrected_raw_intensity%type",
+        assignment_key="assignment",
+        peak_measurement_key="corrected_raw_intensity",
+        sample_id="sample.id",
         protocol_id=None):
-    """Method for parsing out metabolite intensity data from an internal dictionary of MS experimental data.
+    """Method for parsing out metabolite intensity data from an internal dictionary of experimental analysis data.
 
     :param internal_data: Dictionary of experimental data from MS or NMR studies.
     :type internal_data: :py:class:`collections.OrderedDict` or dict
-    :param analysis_type:
-    :param metabolite_name:
-    :param internal_section_key:
-    :param units_type_key:
-    :param assignment:
-    :param peak_measurement:
-    :param sample_id:
-    :param protocol_id:
-    :return:
+    :param str analysis_type: String identifier of analysis type ("MS" or "NMR").
+    :param str internal_section_key: String identifier for internal section name (default: "measurement").
+    :param str metabolite_name_key: String identifier for metabolite name in internal section (default:
+    "metabolite_name").
+    :param str units_type_key: String identifier for the unit type field in internal section (default: "corrected_raw_intensity%type").
+    :param str assignment_key: String identifier for the assignment field in internal section (default: "assignment").
+    :param str peak_measurement_key: String identifier for the peak measurement field in internal section (default: "corrected_raw_intensity").
+    :param str sample_id: String identifier for the sample ID field in internal section (default: "sample.id").
+    :param str protocol_id: String identifier for experiment protocol id.
+    :return: Dictionary of section items for mwTab format.
+    :rtype: :py:class:`collections.OrderedDict`
     """
     # setup the data dictionary
     metabolite_data = OrderedDict()
 
-    units_key = '{}_METABOLITE_DATA:UNITS'.format(analysis_type.upper())
-    data_start_key = '{}_METABOLITE_DATA_START'.format(analysis_type.upper())
+    units_key = "{}_METABOLITE_DATA:UNITS".format(analysis_type.upper())
+    data_start_key = "{}_METABOLITE_DATA_START".format(analysis_type.upper())
 
     sample_ids = create_local_sample_ids(internal_data=internal_data)
-    factors = [str(create_lineages(internal_data, sample)[0].get('protocol.id')[0]) for sample in sample_ids]
+    factors = [str(create_lineages(internal_data, sample)[0].get("protocol.id")[0]) for sample in sample_ids]
 
-    metabolite_data[units_key] = ''
+    metabolite_data[units_key] = ""
     metabolite_data[data_start_key] = OrderedDict()
-    metabolite_data[data_start_key]['Samples'] = sample_ids
-    metabolite_data[data_start_key]['Factors'] = factors
-    metabolite_data[data_start_key]['DATA'] = []
+    metabolite_data[data_start_key]["Samples"] = sample_ids
+    metabolite_data[data_start_key]["Factors"] = factors
+    metabolite_data[data_start_key]["DATA"] = []
 
     if protocol_id is None:
         measurement_data = internal_data[internal_section_key]
     else:
         measurement_data = {k: v for k, v in internal_data[internal_section_key].items()
-                            if v['protocol.id'] == protocol_id.upper()}
+                            if v["protocol.id"] == protocol_id.upper()}
 
     measurement_data = sorted(measurement_data.values(),
-                              key=lambda item: (item[assignment], item[sample_id]))
+                              key=lambda item: (item[assignment_key], item[sample_id]))
 
     units = set()
     measurements_per_metabolite = OrderedDict()
 
     for metabolite_entry in measurement_data:
         units.add(metabolite_entry[units_type_key])
-        metabolite_assignment = metabolite_entry[assignment]
-        metabolite_peak_measurement = metabolite_entry[peak_measurement]
+        metabolite_assignment = metabolite_entry[assignment_key]
+        metabolite_peak_measurement = metabolite_entry[peak_measurement_key]
         metabolite_sample_id = metabolite_entry[sample_id]
 
         if metabolite_sample_id not in sample_ids:
-            raise ValueError('Unknown "sample.id" in measurement: {}'.format(metabolite_entry))
+            raise ValueError("Unknown \"sample.id\" in measurement: {}".format(metabolite_entry))
 
         measurements_per_metabolite.setdefault(metabolite_assignment, {})
         if metabolite_sample_id in measurements_per_metabolite[metabolite_assignment]:
-            raise ValueError('Metabolite "{}" already has value for sample.id "{}"'.format(metabolite_assignment,
+            raise ValueError("Metabolite \"{}\" already has value for sample.id \"{}\"".format(metabolite_assignment,
                                                                                            metabolite_sample_id))
         else:
             measurements_per_metabolite[metabolite_assignment][metabolite_sample_id] = metabolite_peak_measurement
 
     if len(units) != 1:
-        raise ValueError('Inconsistent units across measurement data: {}.'.format(units))
+        raise ValueError("Inconsistent units across measurement data: {}.".format(units))
     else:
         units = list(units)[0]
         metabolite_data[units_key] = units
 
     for metabolite, measurements in measurements_per_metabolite.items():
         entry = OrderedDict()
-        entry[metabolite_name] = metabolite
+        entry[metabolite_name_key] = metabolite
         for sample_id in sample_ids:
             if sample_id in measurements:
                 entry[sample_id] = measurements[sample_id]
             else:
-                entry[sample_id] = ''
-        metabolite_data[data_start_key]['DATA'].append(entry)
+                entry[sample_id] = ""
+        metabolite_data[data_start_key]["DATA"].append(entry)
 
     return metabolite_data
 
@@ -282,9 +287,9 @@ def convert_metabolite_data(
 def convert_metabolites(
         internal_data,
         analysis_type,
-        internal_section_key='measurement',
-        assignment='assignment',
-        sample_id_key='sample.id',
+        internal_section_key="measurement",
+        assignment="assignment",
+        sample_id_key="sample.id",
         protocol_id=None,
         extended=False,
         **kwargs):
@@ -301,7 +306,7 @@ def convert_metabolites(
     """
     # setup the data dictionary
     metabolites = OrderedDict()
-    metabolites_section_key = 'METABOLITES_START' if not extended else 'EXTENDED_{}_METABOLITE_DATA_START'.format(analysis_type.upper())
+    metabolites_section_key = "METABOLITES_START" if not extended else "EXTENDED_{}_METABOLITE_DATA_START".format(analysis_type.upper())
     metabolites[metabolites_section_key] = OrderedDict()
 
     # if protocol is not specified - use all measurements data, otherwise filter data based on protocol_id
@@ -309,9 +314,9 @@ def convert_metabolites(
         measurement_data = internal_data[internal_section_key]
     else:
         measurement_data = {k: v for k, v in internal_data[internal_section_key].items()
-                            if v['protocol.id'] == protocol_id.upper()}
+                            if v["protocol.id"] == protocol_id.upper()}
 
-    measurement_data = sorted(measurement_data.values(), key=lambda entry: (entry[assignment], entry['sample.id']))
+    measurement_data = sorted(measurement_data.values(), key=lambda entry: (entry[assignment], entry["sample.id"]))
 
     meta_data_keys = [assignment] + sorted(kwargs.values())
     if extended:
@@ -320,27 +325,27 @@ def convert_metabolites(
     fields = list()
     for key in meta_data_keys:
         if key == assignment:
-            fields.append('metabolite_name')
+            fields.append("metabolite_name")
         elif key == sample_id_key:
-            fields.append('sample_id')
+            fields.append("sample_id")
         else:
             fields.append(key)
-    metabolites[metabolites_section_key]['Fields'] = fields
-    metabolites[metabolites_section_key]['DATA'] = []
+    metabolites[metabolites_section_key]["Fields"] = fields
+    metabolites[metabolites_section_key]["DATA"] = []
 
     for metabolite_entry in measurement_data:
         meta_data_entry = OrderedDict()
 
         for key in meta_data_keys:
             if key == assignment:
-                meta_data_entry['metabolite_name'] = metabolite_entry[key]
+                meta_data_entry["metabolite_name"] = metabolite_entry[key]
             elif type(metabolite_entry[key]) == list and len(metabolite_entry[key]) == 1:
                     meta_data_entry[key] = str(metabolite_entry[key][0])
             else:
                 meta_data_entry[key] = str(metabolite_entry[key])
 
-        if meta_data_entry not in metabolites[metabolites_section_key]['DATA'] or extended:
-            metabolites[metabolites_section_key]['DATA'].append(meta_data_entry)
+        if meta_data_entry not in metabolites[metabolites_section_key]["DATA"] or extended:
+            metabolites[metabolites_section_key]["DATA"].append(meta_data_entry)
 
     return metabolites
 
@@ -372,7 +377,7 @@ def convert(internal_data, analysis_type, protocol_id=None, config_dict={}):
         internal_mapping=schema_mapping.internal_project_section_mapping
     )
     mwtab.validator._validate_section(section=project_section, schema=mwtab.mwschema.project_schema)
-    mwtabfile['PROJECT'] = project_section
+    mwtabfile["PROJECT"] = project_section
 
     # Convert "STUDY" section
     study_section = convert_section(
@@ -380,7 +385,7 @@ def convert(internal_data, analysis_type, protocol_id=None, config_dict={}):
         internal_mapping=schema_mapping.internal_study_section_mapping
     )
     mwtab.validator._validate_section(section=study_section, schema=mwtab.mwschema.study_schema)
-    mwtabfile['STUDY'] = study_section
+    mwtabfile["STUDY"] = study_section
 
     # Convert "SUBJECT" section
     subject_section = convert_section(
@@ -388,7 +393,7 @@ def convert(internal_data, analysis_type, protocol_id=None, config_dict={}):
         internal_mapping=schema_mapping.internal_subject_section_mapping
     )
     mwtab.validator._validate_section(section=subject_section, schema=mwtab.mwschema.subject_schema)
-    mwtabfile['SUBJECT'] = subject_section
+    mwtabfile["SUBJECT"] = subject_section
 
     # Convert "SUBJECT_SAMPLE_FACTORS" section
     # "SUBJECT_SAMPLE_FACTORS" section is updated later to include factors
@@ -397,46 +402,46 @@ def convert(internal_data, analysis_type, protocol_id=None, config_dict={}):
         **config_dict.get("SUBJECT_SAMPLE_FACTORS") if config_dict.get("SUBJECT_SAMPLE_FACTORS") else dict()
     )
     mwtab.validator._validate_section(section=subject_sample_factors_section, schema=mwtab.mwschema.subject_sample_factors_schema)
-    mwtabfile['SUBJECT_SAMPLE_FACTORS'] = subject_sample_factors_section
+    mwtabfile["SUBJECT_SAMPLE_FACTORS"] = subject_sample_factors_section
 
     # Convert "COLLECTION" section
     collection_section = convert_protocol_section(
         internal_data=internal_data,
         internal_mapping=schema_mapping.internal_collection_section_mapping,
-        internal_section_key='protocol',
-        internal_section_type='collection',
+        internal_section_key="protocol",
+        internal_section_type="collection",
         protocol_id=collection_protocol_id(internal_data=internal_data)
     )
     mwtab.validator._validate_section(section=collection_section, schema=mwtab.mwschema.collection_schema)
-    mwtabfile['COLLECTION'] = collection_section
+    mwtabfile["COLLECTION"] = collection_section
 
     # Convert "TREATMENT" section
     treatment_section = convert_protocol_section(
         internal_data=internal_data,
         internal_mapping=schema_mapping.internal_treatment_section_mapping,
-        internal_section_key='protocol',
-        internal_section_type='treatment'
+        internal_section_key="protocol",
+        internal_section_type="treatment"
     )
     mwtab.validator._validate_section(section=treatment_section, schema=mwtab.mwschema.treatment_schema)
-    mwtabfile['TREATMENT'] = treatment_section
+    mwtabfile["TREATMENT"] = treatment_section
 
     # Convert "SAMPLEPREP" section
     sampleprep_section = convert_sample_prep_section(
         internal_data=internal_data,
     )
     mwtab.validator._validate_section(section=sampleprep_section, schema=mwtab.mwschema.sampleprep_schema)
-    mwtabfile['SAMPLEPREP'] = sampleprep_section
+    mwtabfile["SAMPLEPREP"] = sampleprep_section
 
     # Convert "ANALYSIS" section
     analysis_section = convert_protocol_section(
         internal_data=internal_data,
         internal_mapping=schema_mapping.internal_analysys_section_mapping,
-        internal_section_key='protocol',
+        internal_section_key="protocol",
         internal_section_type=analysis_type,
         protocol_id=protocol_id
     )
     mwtab.validator._validate_section(section=analysis_section, schema=mwtab.mwschema.analysis_schema)
-    mwtabfile['ANALYSIS'] = analysis_section
+    mwtabfile["ANALYSIS"] = analysis_section
 
     # Convert Mass Spec. sections into mwtab format.
     # Sections:
@@ -445,34 +450,34 @@ def convert(internal_data, analysis_type, protocol_id=None, config_dict={}):
     #     MS_METABOLITE_DATA
     #     EXTENDED_METABOLITE_DATA
     #     METABOLITES
-    if analysis_type.upper() == 'MS':
+    if analysis_type.upper() == "MS":
 
         # Convert "CHROMATOGRAPHY" section
         chromatography_section = convert_protocol_section(
             internal_data=internal_data,
             internal_mapping=schema_mapping.internal_chromatography_section_mapping,
-            internal_section_key='protocol',
+            internal_section_key="protocol",
             internal_section_type=analysis_type
         )
         if not chromatography_section:
             chromatography_section = OrderedDict({
-                "CHROMATOGRAPHY_SUMMARY": "PlaceHolder",
+                "CHROMATOGRAPHY_SUMMARY": "None",
                 "CHROMATOGRAPHY_TYPE": "None (Direct infusion)",
-                "INSTRUMENT_NAME": "PlaceHolder",
-                "COLUMN_NAME": "PlaceHolder",
+                "INSTRUMENT_NAME": "None",
+                "COLUMN_NAME": "None",
             })
         mwtab.validator._validate_section(section=chromatography_section, schema=mwtab.mwschema.chromatography_schema)
-        mwtabfile['CHROMATOGRAPHY'] = chromatography_section
+        mwtabfile["CHROMATOGRAPHY"] = chromatography_section
 
         # Convert "MS" section
         ms_section = convert_protocol_section(
             internal_data=internal_data,
             internal_mapping=schema_mapping.internal_ms_section_mapping,
-            internal_section_key='protocol',
-            internal_section_type='MS'
+            internal_section_key="protocol",
+            internal_section_type="MS"
         )
         mwtab.validator._validate_section(section=ms_section, schema=mwtab.mwschema.ms_schema)
-        mwtabfile['MS'] = ms_section
+        mwtabfile["MS"] = ms_section
 
         # Convert "MS_METABOLITE_DATA" section
         ms_metabolite_data_section = convert_metabolite_data(
@@ -480,7 +485,7 @@ def convert(internal_data, analysis_type, protocol_id=None, config_dict={}):
             analysis_type=analysis_type,
             **config_dict.get("MS_METABOLITE_DATA")
         )
-        mwtabfile['MS_METABOLITE_DATA'] = ms_metabolite_data_section
+        mwtabfile["MS_METABOLITE_DATA"] = ms_metabolite_data_section
 
         # Convert "EXTENDED_MS_METABOLITE_DATA" section
         extended_metabolites_section = convert_metabolites(
@@ -500,7 +505,7 @@ def convert(internal_data, analysis_type, protocol_id=None, config_dict={}):
             **config_dict.get("METABOLITES") if config_dict.get("METABOLITES") else dict(),
         )
         mwtab.validator._validate_section(section=metabolites_section, schema=mwtab.mwschema.metabolites_schema)
-        mwtabfile['METABOLITES'] = metabolites_section
+        mwtabfile["METABOLITES"] = metabolites_section
 
     # Convert NMR sections into mwtab format.
     # Sections:
@@ -513,13 +518,13 @@ def convert(internal_data, analysis_type, protocol_id=None, config_dict={}):
     #   NMR_METABOLITE_DATA
     #   EXTENDED_NMR_METABOLITE_DATA
     #   METABOLITES
-    elif analysis_type.upper() == 'NMR':
+    elif analysis_type.upper() == "NMR":
 
         # Convert "NMR" section
         nmr_section = convert_protocol_section(
             internal_data=internal_data,
             internal_mapping=schema_mapping.internal_nmr_section_mapping,
-            internal_section_key='protocol',
+            internal_section_key="protocol",
             internal_section_type=analysis_type,
             protocol_id=protocol_id
         )
@@ -533,18 +538,18 @@ def convert(internal_data, analysis_type, protocol_id=None, config_dict={}):
             protocol_id=protocol_id,
             **config_dict.get("NMR_METABOLITE_DATA") if config_dict.get("NMR_METABOLITE_DATA") else dict(),
         )
-        mwtabfile['NMR_METABOLITE_DATA'] = nmr_metabolite_data_section
+        mwtabfile["NMR_METABOLITE_DATA"] = nmr_metabolite_data_section
 
         # Convert "EXTENDED_NMR_METABOLITE_DATA" section
         extended_metabolites_section = convert_metabolites(
             internal_data=internal_data,
             analysis_type=analysis_type,
-            assignment='resonance_assignment',
+            assignment="resonance_assignment",
             extended=True,
             **config_dict.get("EXTENDED_NMR_METABOLITE_DATA") if config_dict.get(
                 "EXTENDED_NMR_METABOLITE_DATA") else dict(),
         )
-        mwtabfile['NMR_METABOLITE_DATA'].update(extended_metabolites_section)
+        mwtabfile["NMR_METABOLITE_DATA"].update(extended_metabolites_section)
         # mwtab.validator._validate_section(section=mwtabfile['NMR_BINNED_DATA'], schema=mwtab.mwschema.nmr_binned_data_schema)
 
         # Convert "METABOLITES" section
@@ -554,9 +559,9 @@ def convert(internal_data, analysis_type, protocol_id=None, config_dict={}):
             **config_dict.get("METABOLITES") if config_dict.get("METABOLITES") else dict(),
         )
         mwtab.validator._validate_section(section=metabolites_section, schema=mwtab.mwschema.metabolites_schema)
-        mwtabfile['METABOLITES'] = metabolites_section
+        mwtabfile["METABOLITES"] = metabolites_section
 
     else:
-        raise ValueError('Unknown analysis type.')
+        raise ValueError("Unknown analysis type.")
 
     return mwtabfile
