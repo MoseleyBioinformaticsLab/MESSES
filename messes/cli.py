@@ -27,6 +27,11 @@ import mwtab
 
 
 def cli(cmdargs):
+    """Method uses docopt package to parse commandline arguments and perform actions accordingly.
+
+    :param cmdargs: Dictionary of parse commandline arguments.
+    :type cmdargs: dict
+    """
 
     # messes convert ...
     if cmdargs["convert"]:
@@ -53,9 +58,9 @@ def cli(cmdargs):
             mwtab_json_fpath = join(results_dir, 'mwtab_{}.json'.format(filename))
             mwtab_txt_fpath = join(results_dir, 'mwtab_{}.txt'.format(filename))
             # save JSON
-            with open(mwtab_json_fpath, 'w', encoding="UTF-8") as outfile:
+            with open(mwtab_json_fpath, 'w', encoding="utf-8") as outfile:
                 json.dump(mwtabfile, outfile, indent=4)
             # save mwTab (.txt)
-            with open(mwtab_txt_fpath, 'w', encoding="UTF-8") as outfile:
+            with open(mwtab_txt_fpath, 'w', encoding="utf-8") as outfile:
                 mwfile = next(mwtab.read_files(mwtab_json_fpath))
                 mwfile.write(outfile, file_format="mwtab")

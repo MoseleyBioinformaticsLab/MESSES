@@ -10,7 +10,7 @@
     },
     "MS_METABOLITE_DATA": {
         "units_type_key": "intensity%type",
-        "peak_measurement": "intensity"
+        "peak_measurement_key": "intensity"
     },
     "EXTENDED_MS_METABOLITE_DATA": {
         "assignment": "assignment",

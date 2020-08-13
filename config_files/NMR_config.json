@@ -9,9 +9,9 @@
         "mwtab_key": "SUBJECT_SAMPLE_FACTORS"
     },
     "NMR_METABOLITE_DATA": {
-        "assignment": "resonance_assignment",
+        "assignment_key": "resonance_assignment",
         "units_type_key": "intensity%type",
-        "peak_measurement": "intensity"
+        "peak_measurement_key": "intensity"
     },
     "EXTENDED_NMR_METABOLITE_DATA": {
         "chemical_shift": "chemical_shift",
