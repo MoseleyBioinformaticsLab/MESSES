@@ -20,7 +20,7 @@
         "peak_width": "peak_width"
     },
     "METABOLITES": {
-        "assignment": "resonance_assignment",
+        "assignment_key": "resonance_assignment",
         "base_inchi": "base_inchi",
         "isotopic_inchi": "isotopic_inchi",
         "peak_description": "peak_description",
