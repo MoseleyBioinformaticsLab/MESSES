@@ -64,6 +64,7 @@ def create_lineages(
                     and protocol_id in internal_data['sample'][parent_id].get(protocol_id_key):
                 lineage_list.append(internal_data['sample'][parent_id])
 
+    # adds data_files item at the end of the parsed lineages
     for parent_id in internal_data["sample"][sample_id].get("protocol.id"):
         if internal_data["protocol"].get(parent_id):
             if internal_data["protocol"][parent_id].get("type") == "storage":

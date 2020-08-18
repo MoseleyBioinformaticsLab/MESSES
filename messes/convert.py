@@ -544,8 +544,8 @@ def convert(internal_data, analysis_type, protocol_id=None, config_dict={}):
     #
     #   NMR
     #   NMR_METABOLITE_DATA
-    #   EXTENDED_NMR_METABOLITE_DATA
     #   METABOLITES
+    #   EXTENDED_NMR_METABOLITE_DATA
     elif analysis_type.upper() == "NMR":
 
         # Convert "NMR" section
@@ -568,6 +568,15 @@ def convert(internal_data, analysis_type, protocol_id=None, config_dict={}):
         )
         mwtabfile["NMR_METABOLITE_DATA"] = nmr_metabolite_data_section
 
+        # Convert "METABOLITES" section
+        metabolites_section = convert_metabolites(
+            internal_data=internal_data,
+            analysis_type=analysis_type,
+            **config_dict.get("METABOLITES") if config_dict.get("METABOLITES") else dict(),
+        )
+        mwtab.validator._validate_section(section=metabolites_section, schema=mwtab.mwschema.metabolites_schema)
+        mwtabfile["METABOLITES"] = metabolites_section
+
         # Convert "EXTENDED_NMR_METABOLITE_DATA" section
         extended_metabolites_section = convert_metabolites(
             internal_data=internal_data,
@@ -577,17 +586,8 @@ def convert(internal_data, analysis_type, protocol_id=None, config_dict={}):
             **config_dict.get("EXTENDED_NMR_METABOLITE_DATA") if config_dict.get(
                 "EXTENDED_NMR_METABOLITE_DATA") else dict(),
         )
-        mwtabfile["NMR_METABOLITE_DATA"].update(extended_metabolites_section)
+        mwtabfile["METABOLITES"].update(extended_metabolites_section)
         # mwtab.validator._validate_section(section=mwtabfile['NMR_BINNED_DATA'], schema=mwtab.mwschema.nmr_binned_data_schema)
-
-        # Convert "METABOLITES" section
-        metabolites_section = convert_metabolites(
-            internal_data=internal_data,
-            analysis_type=analysis_type,
-            **config_dict.get("METABOLITES") if config_dict.get("METABOLITES") else dict(),
-        )
-        mwtab.validator._validate_section(section=metabolites_section, schema=mwtab.mwschema.metabolites_schema)
-        mwtabfile["METABOLITES"] = metabolites_section
 
     else:
         raise ValueError("Unknown analysis type.")
