@@ -156,12 +156,17 @@ def convert_sample_prep_section(internal_data, internal_section_key="protocol"):
         "SAMPLEPREP_PROTOCOL_FILENAME": "filename",
     }
     for m in mapping.items():
-        for data_item in data:
-            if data_item[1].get(m[1]):
-                if m[0] in section:
-                    section[m[0]] += "\n{}".format(data_item[1][m[1]])
+        for data_item in data:  # iterate through data
+            if data_item[1].get(m[1]):  # if data item is a sample_prep description, id, or filename
+                # add item to section
+                if type(data_item[1][m[1]]) == list:
+                    section.setdefault(m[0], set()).update(data_item[1][m[1]])
                 else:
-                    section[m[0]] = data_item[1][m[1]]
+                    section.setdefault(m[0], set()).add(data_item[1][m[1]])
+
+    # converts values in section to a single string with items separated by semicolons (";")
+    for k in section.keys():
+        section[k] = "; ".join(section[k])
 
     return section
 
