@@ -166,7 +166,10 @@ def convert_sample_prep_section(internal_data, internal_section_key="protocol"):
 
     # converts values in section to a single string with items separated by semicolons (";")
     for k in section.keys():
-        section[k] = "; ".join(section[k])
+        if k == "SAMPLEPREP_SUMMARY":
+            section[k] = "\n".join(section[k])
+        else:
+            section[k] = "; ".join(section[k])
 
     return section
 
