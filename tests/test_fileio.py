@@ -17,10 +17,9 @@ def teardown_module(module):
 
 
 def test_read_files():
-    print(next(read_files("example_data/internal_data_files/")))
+    f_generator = read_files("example_data/internal_data_files/")
+    assert len(list(f_generator)) == 4
 
 
 if __name__ == "__main__":
     test_read_files()
-    (_, _, filenames) = next(walk("example_data/internal_data_files/"))
-    print(filenames)

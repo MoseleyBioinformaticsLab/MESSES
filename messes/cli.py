@@ -21,7 +21,7 @@ Options:
 from messes.convert import convert
 from messes.fileio import read_files, open_json_file
 from os.path import basename, dirname, exists, join, splitext
-from os import makedirs
+from os import makedirs, walk
 import json
 import mwtab
 
@@ -43,7 +43,7 @@ def cli(cmdargs):
             config_dict = open_json_file(config_filepath)
 
         # convert given file(s)
-        for internal_data in read_files(cmdargs["<from-path>"]):
+        for count, internal_data in enumerate(read_files(cmdargs["<from-path>"])):
             mwtabfile = convert(internal_data, cmdargs["<analysis-type>"], cmdargs.get("--protocol-id"), config_dict)
 
             # save out converted file(s)
@@ -54,7 +54,7 @@ def cli(cmdargs):
             if not exists(dirname(results_dir)):
                 makedirs(dirname(results_dir))
 
-            if basename(basename(cmdargs["--to-path"])):
+            if basename(cmdargs["--to-path"]):
                 if splitext(cmdargs["--to-path"])[0] == ".txt":
                     with open(cmdargs["--to-path"], 'w', encoding="utf-8") as outfile:
                         mwtabfile.write(outfile, file_format="mwtab")
@@ -64,7 +64,9 @@ def cli(cmdargs):
                 else:
                     raise ValueError("\"--to-path\" parameter contains invalid file extension (use either .txt or .json)")
             else:
-                filename = splitext(basename(cmdargs["<from-path>"]))[0]
+                (_, _, filenames) = next(walk(cmdargs["<from-path>"]))
+                filename = filenames[count]
+                # splitext(basename(cmdargs["<from-path>"]))[0]
                 mwtab_json_fpath = join(results_dir, 'mwtab_{}.json'.format(filename))
                 mwtab_txt_fpath = join(results_dir, 'mwtab_{}.txt'.format(filename))
                 # save JSON

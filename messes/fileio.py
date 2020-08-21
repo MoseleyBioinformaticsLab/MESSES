@@ -3,7 +3,7 @@
 
 from json import loads
 from os import walk
-from os.path import exists, isdir, isfile
+from os.path import exists, isdir, isfile, join
 
 
 def read_files(*sources):
@@ -18,7 +18,7 @@ def read_files(*sources):
         if isdir(source):
             (_, _, filenames) = next(walk(source))
             for filename in filenames:
-                yield open_json_file(filename)
+                yield open_json_file(join(source, filename))
         elif isfile(source):
             yield open_json_file(source)
         else:
