@@ -72,19 +72,12 @@ def cli(cmdargs):
                 else:  # output path is given and input is directory
                     results_path = join(results_dir, "mwtab_{}".format(filenames[count]))
 
-            if splitext(results_path)[1].lower() == ".txt":
-                with open(results_path, 'w', encoding="utf-8") as outfile:
-                    mwtabfile.write(outfile, file_format="mwtab")
-            elif splitext(results_path)[1].lower() == ".json":
-                with open(results_path, 'w', encoding="utf-8") as outfile:
-                    json.dump(mwtabfile, outfile, indent=4)
-            else:
-                mwtab_json_fpath = "{}.json".format(results_path)
-                mwtab_txt_fpath = "{}.txt".format(results_path)
-                # save JSON
-                with open(mwtab_json_fpath, 'w', encoding="utf-8") as outfile:
-                    json.dump(mwtabfile, outfile, indent=4)
-                # save mwTab (.txt)
-                with open(mwtab_txt_fpath, 'w', encoding="utf-8") as outfile:
-                    mwfile = next(mwtab.read_files(mwtab_json_fpath))
-                    mwfile.write(outfile, file_format="mwtab")
+            mwtab_json_fpath = "{}.json".format(splitext(results_path)[0])
+            mwtab_txt_fpath = "{}.txt".format(splitext(results_path)[0])
+            # save JSON
+            with open(mwtab_json_fpath, 'w', encoding="utf-8") as outfile:
+                json.dump(mwtabfile, outfile, indent=4)
+            # save mwTab (.txt)
+            with open(mwtab_txt_fpath, 'w', encoding="utf-8") as outfile:
+                mwfile = next(mwtab.read_files(mwtab_json_fpath))
+                mwfile.write(outfile, file_format="mwtab")
