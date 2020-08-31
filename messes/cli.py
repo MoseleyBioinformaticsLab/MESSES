@@ -12,15 +12,15 @@ Usage:
 
 Options:
     -h, --help                      Show this screen.
-    --version                       Show version.
-    --to-path=<path>                Path for converted file to be outputted to.
-    --protocol-id=<id>              Analysis protocol type of the data file.
-    --config-file=<path>            Path to JSON configuration file.
+    -v, --version                   Show version.
+    --t, --to-path=<path>           Path for converted file to be outputted to.
+    --p, --protocol-id=<id>         Analysis protocol type of the data file.
+    --c, --config-file=<path>       Path to JSON configuration file.
 """
 
 from messes.convert import convert
 from messes.fileio import read_files, open_json_file
-from os.path import basename, dirname, exists, join, splitext
+from os.path import basename, dirname, exists, isdir, join, splitext
 from os import makedirs, walk
 import json
 import mwtab
@@ -36,11 +36,15 @@ def cli(cmdargs):
     # messes convert ...
     if cmdargs["convert"]:
 
-        # parse configuration keyword arguments, provided they are supplied.
+        # parse configuration keyword arguments, provided they are supplied
         config_filepath = cmdargs.get("--config-file")
         config_dict = {}
         if config_filepath:
             config_dict = open_json_file(config_filepath)
+
+        # used when converting directory full of files
+        if isdir(cmdargs["<from-path>"]):
+            (_, _, filenames) = next(walk(cmdargs["<from-path>"]))
 
         # convert given file(s)
         for count, internal_data in enumerate(read_files(cmdargs["<from-path>"])):
@@ -54,21 +58,29 @@ def cli(cmdargs):
             if not exists(dirname(results_dir)):
                 makedirs(dirname(results_dir))
 
-            if basename(cmdargs["--to-path"]):
-                if splitext(cmdargs["--to-path"])[0] == ".txt":
-                    with open(cmdargs["--to-path"], 'w', encoding="utf-8") as outfile:
-                        mwtabfile.write(outfile, file_format="mwtab")
-                elif splitext(cmdargs["--to-path"])[0].lower() == ".json":
-                    with open(cmdargs["--to-path"], 'w', encoding="utf-8") as outfile:
-                        json.dump(mwtabfile, outfile, indent=4)
+            if cmdargs.get("--to-path"):
+                if basename(cmdargs["--to-path"]):  # output path and filename are given
+                    results_path = cmdargs["--to-path"]
                 else:
-                    raise ValueError("\"--to-path\" parameter contains invalid file extension (use either .txt or .json)")
+                    if basename(cmdargs["<from-path>"]):  # output path is given and input is single file
+                        results_path = join(cmdargs["--to-path"], "mwtab_{}".format(basename(cmdargs["<from-path>"])))
+                    else:  # output path is given and input is directory
+                        results_path = join(cmdargs["--to-path"], "mwtab_{}".format(filenames[count]))
             else:
-                (_, _, filenames) = next(walk(cmdargs["<from-path>"]))
-                filename = filenames[count]
-                # splitext(basename(cmdargs["<from-path>"]))[0]
-                mwtab_json_fpath = join(results_dir, 'mwtab_{}.json'.format(filename))
-                mwtab_txt_fpath = join(results_dir, 'mwtab_{}.txt'.format(filename))
+                if basename(cmdargs["<from-path>"]):  # input is single file
+                    results_path = join(results_dir, "mwtab_{}".format(basename(cmdargs["<from-path>"])))
+                else:  # output path is given and input is directory
+                    results_path = join(results_dir, "mwtab_{}".format(filenames[count]))
+
+            if splitext(results_path)[1].lower() == ".txt":
+                with open(results_path, 'w', encoding="utf-8") as outfile:
+                    mwtabfile.write(outfile, file_format="mwtab")
+            elif splitext(results_path)[1].lower() == ".json":
+                with open(results_path, 'w', encoding="utf-8") as outfile:
+                    json.dump(mwtabfile, outfile, indent=4)
+            else:
+                mwtab_json_fpath = "{}.json".format(results_path)
+                mwtab_txt_fpath = "{}.txt".format(results_path)
                 # save JSON
                 with open(mwtab_json_fpath, 'w', encoding="utf-8") as outfile:
                     json.dump(mwtabfile, outfile, indent=4)
