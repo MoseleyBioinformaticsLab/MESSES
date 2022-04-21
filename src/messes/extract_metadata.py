@@ -1634,14 +1634,14 @@ class TagParser(dinit.DictInit):
                                     usedRecordTuples.add((tableKey, fieldKey, specificValue))
                                 self.usedConversions.add((tableKey, fieldKey, comparisonType, specificValue))
                             elif isUnique and (tableKey, fieldKey, specificValue) in usedRecordTuples and specificValue in conversionDirectives[tableKey][fieldKey][comparisonType] and not silent:
-                                print("Warning: conversion directive #" + tableKey + "." + fieldKey + "." + comparisonType + "." + specificValue + " matches value already matched.", file=sys.stderr)
+                                print("Warning: conversion directive #" + tableKey + "." + fieldKey + "." + comparisonType + "." + specificValue + " matches more than one record. Only the first record will be changed. Try #unique=false if all matching records should be changed.", file=sys.stderr)
                     elif (tableKey, fieldKey, fieldValue) not in usedRecordTuples and fieldValue in conversionDirectives[tableKey][fieldKey][comparisonType]:
                         TagParser._applyConversionDirectives(record, conversionDirectives[tableKey][fieldKey][comparisonType][fieldValue])
                         if isUnique:
                             usedRecordTuples.add((tableKey, fieldKey, fieldValue))
                         self.usedConversions.add((tableKey, fieldKey, comparisonType, fieldValue))
                     elif isUnique and (tableKey, fieldKey, fieldValue) in usedRecordTuples and fieldValue in conversionDirectives[tableKey][fieldKey][comparisonType] and not silent:
-                        print("Warning: conversion directive #" + tableKey + "." + fieldKey + "." + comparisonType + "." + fieldValue + " matches value already matched.", file=sys.stderr)
+                        print("Warning: conversion directive #" + tableKey + "." + fieldKey + "." + comparisonType + "." + fieldValue + " matches more than one record. Only the first record will be changed. Try #unique=false if all matching records should be changed.", file=sys.stderr)
 
     def _applyRegexConversionDirectives(self, tableKey, fieldKey, conversionDirectives, usedRecordTuples, regexObjects, isUnique=True):
         """Tests and applies regular expression conversion directives.
@@ -1670,14 +1670,14 @@ class TagParser(dinit.DictInit):
                                         usedRecordTuples.add((tableKey, fieldKey, specificValue))
                                     self.usedConversions.add((tableKey, fieldKey, comparisonType, regexID))
                                 elif isUnique and (tableKey, fieldKey, specificValue) in usedRecordTuples and re.search(regexObjects[regexID], specificValue) and not silent:
-                                    print("Warning: conversion directive #" + tableKey + "." + fieldKey + "." + comparisonType + "." + regexID + " matches value already matched.", file=sys.stderr)
+                                    print("Warning: conversion directive #" + tableKey + "." + fieldKey + "." + comparisonType + "." + regexID + " matches more than one record. Only the first record will be changed. Try #unique=false if all matching records should be changed.", file=sys.stderr)
                         elif (tableKey, fieldKey, fieldValue) not in usedRecordTuples and re.search(regexObjects[regexID], fieldValue):
                             TagParser._applyConversionDirectives(record, regexEntry)
                             if isUnique:
                                 usedRecordTuples.add((tableKey, fieldKey, fieldValue))
                             self.usedConversions.add((tableKey, fieldKey, comparisonType, regexID))
                         elif isUnique and (tableKey, fieldKey, fieldValue) in usedRecordTuples and re.search(regexObjects[regexID], fieldValue) and not silent:
-                            print("Warning: conversion directive #" + tableKey + "." + fieldKey + "." + comparisonType + "." + regexID + " matches value already matched.", file=sys.stderr)
+                            print("Warning: conversion directive #" + tableKey + "." + fieldKey + "." + comparisonType + "." + regexID + " matches more than one record. Only the first record will be changed. Try #unique=false if all matching records should be changed.", file=sys.stderr)
 
     def _applyLevenshteinConversionDirectives(self, tableKey, fieldKey, conversionDirectives, usedRecordTuples, isUnique=True):
         """Tests and applies levenshtein conversion directives.
