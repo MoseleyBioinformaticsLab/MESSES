@@ -979,15 +979,18 @@ class TagParser(dinit.DictInit):
         if not TagParser.hasFileExtension(conversionSource) and reCopier(re.search(r"(.*\.xls[xm]?)", metadataSource)):
             conversionSource = reCopier.value.group(1) + ":" + conversionSource
         elif re.search(r"\.xls[xm]?$", conversionSource):
-            taggingSource += ":#convert"
+            conversionSource += ":#convert"
 
         if re.search(r"\.xls[xm]?$", metadataSource):
             metadataSource += ":#export"
 
         taggingDirectives = self.readDirectives(taggingSource, "tagging") if TagParser.hasFileExtension(taggingSource) else None
+        ## Structure of conversionDirectives: {table_key:{field_key:{comparison_type:{field_value:{directive:{field_key:directive_value}}}}}} 
+        ## The directive value is the new value to give the field or regex, regex is a list, assign is a string.
+        ## unique is handled by having "-unique" added to comparison type key, so there is "exact-unique" and "exact".
         conversionDirectives = self.readDirectives(conversionSource, "conversion") if TagParser.hasFileExtension(conversionSource) else None
 
-        if re.search(r"\.json$",metadataSource):
+        if re.search(r"\.json$", metadataSource):
             with open(metadataSource, 'r') as jsonFile:
                 newMetadata = json.load(jsonFile)
             currentMetadata = self.extraction
@@ -1005,6 +1008,7 @@ class TagParser(dinit.DictInit):
                 if saveExtension != None:
                     self.saveSheet(*dataFrameTuple, saveExtension)
 
+                ## Ultimately modifies self.extraction.
                 self.parseSheet(*dataFrameTuple)
 
         
@@ -1042,11 +1046,13 @@ class TagParser(dinit.DictInit):
         """
         self.taggingDirectives = taggingDirectives
         if taggingDirectives != None:
+            ## Copy so it is not the same pointer as self.taggingDirectives.
             taggingDirectives = copy.deepcopy(taggingDirectives)
             reCopier = copier.Copier()
 
             if not any(worksheet.iloc[:, 0] == '#tags') and not all(worksheet.iloc[:, 0] == ''):
                 worksheet.insert(0,"","",True) # Insert empty column for #tags cells, if it does not exist.
+                worksheet.set_axis(range(worksheet.shape[1]), axis="columns", inplace=True)
 
             usedRows = set()
             # Process each tagging group.
@@ -1054,17 +1060,22 @@ class TagParser(dinit.DictInit):
                 if "header_tag_descriptions" not in taggingGroup:
                     # Insert at the beginning of the sheet
                     if "insert" in taggingGroup and len(taggingGroup["insert"]):
-                        insertNum = len(taggingGroup["insert"])
-                        worksheet = pandas.concat([worksheet.iloc[0:insertNum+1, :], worksheet.iloc[:,:]])
-                        worksheet.iloc[0:insertNum+1, :] = ""
-                        for insertIndex in range(insertNum):
-                            while len(taggingGroup["insert"][insertIndex]) > len(worksheet.iloc[insertIndex,:]):
-                                worksheet.insert(len(worksheet.iloc[insertIndex,:]), "", "", True)
-                            worksheet.iloc[insertIndex,0:len(taggingGroup["insert"][insertIndex])] = taggingGroup["insert"][insertIndex]
-                        usedRows.update(range(insertNum+1))
+                        temp_df = pandas.DataFrame(taggingGroup["insert"], dtype=str)
+                        worksheet = pandas.concat([temp_df, worksheet]).fillna("")
+                        usedRows = set(row + len(temp_df) for row in usedRows)
+                        usedRows.update(range(len(temp_df)))
+#                        insertNum = len(taggingGroup["insert"])
+#                        worksheet = pandas.concat([worksheet.iloc[0:insertNum+1, :], worksheet.iloc[:,:]])
+#                        worksheet.iloc[0:insertNum+1, :] = ""
+#                        for insertIndex in range(insertNum):
+#                            while len(taggingGroup["insert"][insertIndex]) > len(worksheet.iloc[insertIndex,:]):
+#                                worksheet.insert(len(worksheet.iloc[insertIndex,:]), "", "", True)
+#                            worksheet.iloc[insertIndex,0:len(taggingGroup["insert"][insertIndex])] = taggingGroup["insert"][insertIndex]
+#                        usedRows.update(range(insertNum+1))
                     continue
 
                 ## Loop through the header tag descriptions and determine the required headers and tests for them.
+                ## This is just setting up some data structures to make modifying worksheet easier later.
                 headerTests = {}
                 requiredHeaders = set()
                 for headerTagDescription in taggingGroup["header_tag_descriptions"]:
@@ -1101,6 +1112,7 @@ class TagParser(dinit.DictInit):
                         if len(headerTagDescription["header_list"]) > 1 or len(headerTagDescription["header_list"]) != len(headerTagDescription["header_tests"]):
                             headerTagDescription["field_maker"] = fieldMaker
 
+                ## Actually modify worksheet.
                 insert = False
                 rowIndex = 0
                 while rowIndex < len(worksheet.iloc[:, 0]):
@@ -1452,6 +1464,9 @@ class TagParser(dinit.DictInit):
                     pass
                 elif re.match('#insert$', xstr(aColumn.iloc[self.rowIndex]).strip()):
                     parsing = False
+#                    currTaggingGroup = {}
+#                    self.taggingDirectives.append(currTaggingGroup)
+                    ## TODO delete below 3 lines and uncomment top 2.
                     if currTaggingGroup is None:
                         currTaggingGroup = {}
                         self.taggingDirectives.append(currTaggingGroup)
@@ -1784,6 +1799,7 @@ class TagParser(dinit.DictInit):
             for tableKey in conversionDirectives.keys():
                 if tableKey in self.extraction:
                     for fieldKey in conversionDirectives[tableKey].keys():
+                        ## These functions ultimately modify records in self.extraction.
                         self._applyExactConversionDirectives(tableKey, fieldKey, conversionDirectives, usedRecordTuples, True) # exact-unique conversions
                         self._applyRegexConversionDirectives(tableKey, fieldKey, conversionDirectives, usedRecordTuples, regexObjects, True) # regex-unique conversions
                         self._applyLevenshteinConversionDirectives(tableKey, fieldKey, conversionDirectives, usedRecordTuples, True) # levenshtein-unique conversions
