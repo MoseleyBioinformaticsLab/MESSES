@@ -1015,6 +1015,7 @@ class TagParser(dinit.DictInit):
         if self.extraction:
             self.convert(conversionDirectives)
 
+        newMetadata = self.extraction
         self.extraction = currentMetadata
         self.merge(newMetadata)
 
@@ -1064,14 +1065,6 @@ class TagParser(dinit.DictInit):
                         worksheet = pandas.concat([temp_df, worksheet]).fillna("")
                         usedRows = set(row + len(temp_df) for row in usedRows)
                         usedRows.update(range(len(temp_df)))
-#                        insertNum = len(taggingGroup["insert"])
-#                        worksheet = pandas.concat([worksheet.iloc[0:insertNum+1, :], worksheet.iloc[:,:]])
-#                        worksheet.iloc[0:insertNum+1, :] = ""
-#                        for insertIndex in range(insertNum):
-#                            while len(taggingGroup["insert"][insertIndex]) > len(worksheet.iloc[insertIndex,:]):
-#                                worksheet.insert(len(worksheet.iloc[insertIndex,:]), "", "", True)
-#                            worksheet.iloc[insertIndex,0:len(taggingGroup["insert"][insertIndex])] = taggingGroup["insert"][insertIndex]
-#                        usedRows.update(range(insertNum+1))
                     continue
 
                 ## Loop through the header tag descriptions and determine the required headers and tests for them.
@@ -1139,6 +1132,7 @@ class TagParser(dinit.DictInit):
                             endingRowIndex = len(worksheet.iloc[:, 0])
 
                         if endingRowIndex != rowIndex+1: # Ignore header row with empty line after it.
+                            ## TODO determine if insert can be inside of #tags and either delete or change this code.
                             if "insert" in taggingGroup and len(taggingGroup["insert"]) and (not insert or taggingGroup["insert_multiple"]):
                                 insert = True
                                 insertNum = len(taggingGroup["insert"])
@@ -1147,6 +1141,7 @@ class TagParser(dinit.DictInit):
                                 for insertIndex in range(insertNum):
                                     while len(taggingGroup["insert"][insertIndex]) > len(worksheet.iloc[rowIndex+insertIndex, :]):
                                         worksheet.insert(len(worksheet.iloc[rowIndex+insertIndex, :]), "", "", True)
+                                        worksheet.columns = range(worksheet.shape[1])
                                     worksheet.iloc[rowIndex+insertIndex, 0:len(taggingGroup["insert"][insertIndex])] = taggingGroup["insert"][insertIndex]
                                 usedRows = set(index if index < rowIndex else index+insertNum+1 for index in usedRows)
                                 usedRows.update(range(rowIndex,rowIndex+insertNum+1))
@@ -1179,6 +1174,7 @@ class TagParser(dinit.DictInit):
                                 # insert new column if needed
                                 if (newTDColumnIndeces[tdIndex] == 1001 or newTDColumnIndeces[tdIndex] < 1000) and reCopier(min(newTDColumnIndeces[tdIndex+1:]+[len(worksheet.columns)])) < newTDColumnIndeces[tdIndex]:
                                     worksheet.insert(reCopier.value, "", "", True)
+                                    worksheet.columns = range(worksheet.shape[1])
                                     header2ColumnIndex = { headerString:(index+1 if index >= reCopier.value else index) for headerString, index in header2ColumnIndex.items() } # must be done before the next if, else statement
                                     if originalTDColumnIndeces[tdIndex] != 1001: # copy normal columns
                                         worksheet.iloc[rowIndex:endingRowIndex, reCopier.value] = worksheet.iloc[rowIndex:endingRowIndex, newTDColumnIndeces[tdIndex]+1]
@@ -1464,12 +1460,12 @@ class TagParser(dinit.DictInit):
                     pass
                 elif re.match('#insert$', xstr(aColumn.iloc[self.rowIndex]).strip()):
                     parsing = False
-#                    currTaggingGroup = {}
-#                    self.taggingDirectives.append(currTaggingGroup)
+                    currTaggingGroup = {}
+                    self.taggingDirectives.append(currTaggingGroup)
                     ## TODO delete below 3 lines and uncomment top 2.
-                    if currTaggingGroup is None:
-                        currTaggingGroup = {}
-                        self.taggingDirectives.append(currTaggingGroup)
+#                    if currTaggingGroup is None:
+#                        currTaggingGroup = {}
+#                        self.taggingDirectives.append(currTaggingGroup)
                     currTaggingGroup["insert"] = []
                     currTaggingGroup["insert_multiple"] = False
                     for self.columnIndex in range(1, len(worksheet.iloc[self.rowIndex, :])):
@@ -1510,8 +1506,14 @@ class TagParser(dinit.DictInit):
 
             self.rowIndex += 1
 
-        if self.taggingDirectives and not self.taggingDirectives[-1]["header_tag_descriptions"]:
-            self.taggingDirectives.pop()
+        ## I'm not sure what this was testing for, presumably empty directives need to be removed.
+#        if self.taggingDirectives and not self.taggingDirectives[-1]["header_tag_descriptions"]:
+#            self.taggingDirectives.pop()
+        
+        ## Only keep non empty directives. Assumes only 1 keyword in directive_keywords will be in the directive dict.
+        directive_keywords = ["header_tag_descriptions", "insert"]
+        self.taggingDirectives = [directive for directive in self.taggingDirectives for keyword in directive_keywords if keyword in directive and directive[keyword]]
+        
 
         self.rowIndex = -1
 
@@ -1808,23 +1810,25 @@ class TagParser(dinit.DictInit):
                         self._applyLevenshteinConversionDirectives(tableKey, fieldKey, conversionDirectives, usedRecordTuples, False) # levenshtein conversions
 
             # Identify changed IDs.
-            idTranslation = collections.defaultdict(dict)
-            for tableKey, table in self.extraction.items():
-                idTranslation[tableKey + ".id"].update({ idKey : record["id"] for idKey, record in table.items() if idKey != record["id"] })
+#            idTranslation = collections.defaultdict(dict)
+#            for tableKey, table in self.extraction.items():
+#                idTranslation[tableKey + ".id"].update({ idKey : record["id"] for idKey, record in table.items() if idKey != record["id"] })
 
             # Translate changed IDs.
             translated = {}
             for tableKey,table in self.extraction.items() :
                 translated[tableKey] = { record["id"] : record for record in table.values() }
-                for record in table.values():
-                    for fieldKey, fieldValue in record.items() :
-                        if fieldKey in idTranslation:
-                            if type(fieldValue) == list:
-                                for index in range(len(fieldValue)):
-                                    if fieldValue[index] in idTranslation[fieldKey]:
-                                        fieldValue[index] = idTranslation[fieldKey][fieldValue[index]]
-                            elif fieldValue in idTranslation[fieldKey]:
-                                record[fieldKey] = idTranslation[fieldKey][fieldValue]
+                ## This bit of code appears to be unnecessary and useless. 
+                ## idTranslation's keys aren't fieldkeys so this will never match anything.
+#                for record in table.values():
+#                    for fieldKey, fieldValue in record.items() :
+#                        if fieldKey in idTranslation:
+#                            if type(fieldValue) == list:
+#                                for index in range(len(fieldValue)):
+#                                    if fieldValue[index] in idTranslation[fieldKey]:
+#                                        fieldValue[index] = idTranslation[fieldKey][fieldValue[index]]
+#                            elif fieldValue in idTranslation[fieldKey]:
+#                                record[fieldKey] = idTranslation[fieldKey][fieldValue]
 
             self.extraction = translated
 
