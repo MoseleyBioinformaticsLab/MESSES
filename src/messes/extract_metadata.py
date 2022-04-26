@@ -1459,21 +1459,20 @@ class TagParser(dinit.DictInit):
                 elif re.match('#ignore$', xstr(aColumn.iloc[self.rowIndex]).strip()):
                     pass
                 elif re.match('#insert$', xstr(aColumn.iloc[self.rowIndex]).strip()):
-                    parsing = False
-                    currTaggingGroup = {}
-                    self.taggingDirectives.append(currTaggingGroup)
-                    ## TODO delete below 3 lines and uncomment top 2.
-#                    if currTaggingGroup is None:
-#                        currTaggingGroup = {}
-#                        self.taggingDirectives.append(currTaggingGroup)
-                    currTaggingGroup["insert"] = []
-                    currTaggingGroup["insert_multiple"] = False
-                    for self.columnIndex in range(1, len(worksheet.iloc[self.rowIndex, :])):
-                        cellString = xstr(worksheet.iloc[self.rowIndex, self.columnIndex]).strip()
-                        if re.match('\s*#multiple\s*=\s*[Tt]rue\s*$', cellString):
-                            currTaggingGroup["insert_multiple"] = True
-                        elif re.match('\s*#multiple\s*=\s*[Ff]alse\s*$', cellString):
-                            currTaggingGroup["insert_multiple"] = False
+                    ## If #insert is found inside of #tags then it needs to be added to the current tag group, otherwise make a new one.
+                    if not parsing:
+                        currTaggingGroup = {}
+                        self.taggingDirectives.append(currTaggingGroup)
+                    ## If "insert" is already in the current tagging group then add to it and don't overwrite it.
+                    if not "insert" in currTaggingGroup:
+                        currTaggingGroup["insert"] = []
+                        currTaggingGroup["insert_multiple"] = False
+                        for self.columnIndex in range(1, len(worksheet.iloc[self.rowIndex, :])):
+                            cellString = xstr(worksheet.iloc[self.rowIndex, self.columnIndex]).strip()
+                            if re.match('\s*#multiple\s*=\s*[Tt]rue\s*$', cellString):
+                                currTaggingGroup["insert_multiple"] = True
+                            elif re.match('\s*#multiple\s*=\s*[Ff]alse\s*$', cellString):
+                                currTaggingGroup["insert_multiple"] = False
 
                     endTagFound = False
                     while self.rowIndex < len(aColumn)-1:
@@ -1510,9 +1509,8 @@ class TagParser(dinit.DictInit):
 #        if self.taggingDirectives and not self.taggingDirectives[-1]["header_tag_descriptions"]:
 #            self.taggingDirectives.pop()
         
-        ## Only keep non empty directives. Assumes only 1 keyword in directive_keywords will be in the directive dict.
-        directive_keywords = ["header_tag_descriptions", "insert"]
-        self.taggingDirectives = [directive for directive in self.taggingDirectives for keyword in directive_keywords if keyword in directive and directive[keyword]]
+        ## Only keep non empty directives.
+        self.taggingDirectives = [directive for directive in self.taggingDirectives if "header_tag_descriptions" in directive and directive["header_tag_descriptions"] or not "header_tag_descriptions" in directive]
         
 
         self.rowIndex = -1
