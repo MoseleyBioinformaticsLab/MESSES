@@ -4,10 +4,9 @@
     Extract SIRM metadata and data from excel workbook and JSON files.
     
  Usage:
-    extract_metadata.py <parser_settings> <metadata_source>... [--delete <metadata_section>...] [options]
+    extract_metadata.py <metadata_source>... [--delete <metadata_section>...] [options]
     extract_metadata.py --help
 
-    <parser_settings> - input json settings filename
     <metadata_source> - input metadata source as csv/json filename or xlsx_filename[:worksheet_name|regular_expression]. "#export" worksheet name is the default.
 
  Options:
@@ -23,6 +22,7 @@
     --delete <metadata_section>...      - delete a section of the JSONized metadata. Section format is tableKey or tableKey,IDKey or tableKey,IDKey,fieldName. These can be regular expressions.
     --keep <metadata_tables>            - only keep the selected tables.  Delete the rest.  Table format is tableKey,tableKey,... The tableKey can be a regular expression.
     --silent                            - print no warning messages.
+    --field-tracking <filename_json>    - track the latest field value for records in given table field pairs to add to records of other given tables. Adds study.id and project.id to subject, sample, and factor by default.
 
 Show Options:
   tables    - show tables in the extracted metadata.
@@ -33,12 +33,9 @@ Regular Expression Format:
   Regular expressions have the form "r'...'" on the command line.
   The re.match function is used, which matches from the beginning of a string, meaning that a regular expression matches as if it starts with a "^".
 
- Tag Parser Settings JSON Format:
+ Field Tracking JSON
    {
-   "tableHierarchy" : { table_key : order_value },
-   "knownAttributes" : { attribute_key : boolean },
-   "allowedParents" : { table_key : [ parent_table_key, ... ] },
-   "ignoreProjectStudy" : boolean
+   table : [{ field : "field_name", table_records_to_add_to : ["table_name_1", "table_name_2", ...], ...]
    }
 
  Directives JSON Format:
@@ -59,9 +56,11 @@ Regular Expression Format:
 #
 
 
-## TODO export saves where the excel file is instead of cwd.
+## TODO export saves where the excel file is instead of cwd. Change it so it saves in cwd.
 ## When creating unit tests make sure to have a check on all pandas read ins that nan values become empty strings.
 ## Possibly add a step at the end that makes sure all records id field matches the dict key value.
+## Possibly use controlled vocabulary to create field tracking JSON.
+## Make sure verify_metadata checks for project.id and study.id in subject, samples, and factors.
 
 import os.path
 import copy
@@ -87,12 +86,26 @@ def main() :
         global silent
         silent = True
 
-    # load tag parser settings JSON file
-    with open(args["<parser_settings>"],'r') as jsonFile :
-        tagParserSettings = json.loads(jsonCommentRemover.json_minify(''.join(jsonFile.readlines())))
+    if args["--field-tracking"]:
+        with open(args["--field-tracking"],'r') as jsonFile :
+            fieldTrackingDict = json.loads(jsonCommentRemover.json_minify(''.join(jsonFile.readlines())))
+    else:
+        fieldTrackingDict = {"project":[{"field" : "id", "table_records_to_add_to" : ["subject", "sample", "factor"]}],
+                             "study":[{"field" : "id", "table_records_to_add_to" : ["subject", "sample", "factor"]}]}
 
-    tagParserSettings["extraction"] = {}
-    tagParser = TagParser(tagParserSettings)
+    trackedFieldsDict = {}
+    tableRecordsToAddTo = {}
+    for table, field_list in fieldTrackingDict.items():
+        for field_dict in field_list:
+            new_field_name = table + "." + field_dict["field"]
+            trackedFieldsDict[new_field_name] = ""
+            for table_to_add_to in field_dict["table_records_to_add_to"]:
+                if table_to_add_to in tableRecordsToAddTo:
+                    tableRecordsToAddTo[table_to_add_to].append(new_field_name)
+                else:
+                    tableRecordsToAddTo[table_to_add_to] = [new_field_name]
+    
+    tagParser = TagParser({"extraction":{}, "fieldTrackingDict":fieldTrackingDict, "trackedFieldsDict":trackedFieldsDict, "tableRecordsToAddTo":tableRecordsToAddTo})
 
 
     for metadataSource in args["<metadata_source>"]:
@@ -596,7 +609,7 @@ class TagParserError(Exception):
     
 class TagParser(dinit.DictInit):
     """Creates parser objects that convert tagged .xlsx worksheets into nested dictionary structures for metadata capture."""
-    _requiredMembers = [ "tableHierarchy", "knownAttributes", "ignoreProjectStudy" ]
+    _requiredMembers = [ "extraction", "fieldTrackingDict", "trackedFieldsDict", "tableRecordsToAddTo" ]
 
     reDetector = re.compile(r"r[\"'](.*)[\"']$")
 
@@ -640,9 +653,6 @@ class TagParser(dinit.DictInit):
         else :
             self.lastTable = table
         
-        if not table in self.tableHierarchy :
-                raise TagParserError("Unknown table name \""+table+"\"", self.fileName, self.sheetName, self.rowIndex, self.columnIndex)
-
         if field == "" :
             if self.lastField == "" :
                 raise TagParserError("Undefined field name", self.fileName, self.sheetName, self.rowIndex, self.columnIndex)
@@ -651,8 +661,6 @@ class TagParser(dinit.DictInit):
             self.lastField = field
 
         if attribute != "" :
-            if not attribute in self.knownAttributes :
-                raise TagParserError("Unknown attribute name", self.fileName, self.sheetName, self.rowIndex, self.columnIndex)
             return table, field + "%" + attribute
         
         return table, field
@@ -822,21 +830,21 @@ class TagParser(dinit.DictInit):
             if not table in self.extraction :
                 self.extraction[table] = {}
 
-            if not self.ignoreProjectStudy :
-                if self.tableHierarchy[table] > self.tableHierarchy["project"] and not "project.id" in record and self.projectID != "" :
-                    record["project.id"] = self.projectID
-                elif "project.id" in record :
-                    self.projectID = record["project.id"]
-
-                if self.tableHierarchy[table] > self.tableHierarchy["study"] and not "study.id" in record and self.studyID != "" :
-                    record["study.id"] = self.studyID
-                elif "study.id" in record :
-                    self.studyID = record["study.id"]
-
-                if table == "project" :
-                    self.projectID = record["id"]
-                elif table == "study" :
-                    self.studyID = record["id"]
+            ## Keep track of ids in specified tables.
+            if table in self.fieldTrackingDict:
+                for field_dict in self.fieldTrackingDict[table]:
+                    if field_dict["field"] in record:
+                        self.trackedFieldsDict[table + "." + field_dict["field"]] = record[field_dict["field"]]
+                        
+            ## Copy tracked fields into records if applicable.
+            if table in self.tableRecordsToAddTo:
+                for fieldToAdd in self.tableRecordsToAddTo[table]:
+                    if not fieldToAdd in record and self.trackedFieldsDict[fieldToAdd] != "":
+                        record[fieldToAdd] = self.trackedFieldsDict[fieldToAdd]
+                    elif fieldToAdd in record:
+                        self.trackedFieldsDict[fieldToAdd] = record[fieldToAdd]
+            
+            
 
             if not record["id"] in self.extraction[table] :
                 self.extraction[table][record["id"]] = record
@@ -1028,10 +1036,13 @@ class TagParser(dinit.DictInit):
         :param :py:class:`pandas.dataFrame` worksheet:
         :param :py:class:`str` saveExtension: csv or xlsx
         """
-        fileName = "_export.".join(fileName.rsplit(".",1))
+        baseName = os.path.basename(fileName)
+        fileName = baseName.rsplit(".",1)[0] + "_export."
         if saveExtension == "csv":
+            fileName += "csv"
             worksheet.to_csv(fileName, header=False, index=False)
         else:
+            fileName += "xlsx"
             with pandas.ExcelWriter(fileName, engine = "xlsxwriter") as writer:
                 worksheet.to_excel(writer, sheet_name = sheetName, index=False, header=False)
 
@@ -1132,21 +1143,15 @@ class TagParser(dinit.DictInit):
                             endingRowIndex = len(worksheet.iloc[:, 0])
 
                         if endingRowIndex != rowIndex+1: # Ignore header row with empty line after it.
-                            ## TODO determine if insert can be inside of #tags and either delete or change this code.
                             if "insert" in taggingGroup and len(taggingGroup["insert"]) and (not insert or taggingGroup["insert_multiple"]):
                                 insert = True
                                 insertNum = len(taggingGroup["insert"])
-                                worksheet = pandas.concat([worksheet.iloc[0:rowIndex+insertNum+1, :], worksheet.iloc[rowIndex:, :]])
-                                worksheet.iloc[rowIndex:rowIndex+insertNum+1, :] = ""
-                                for insertIndex in range(insertNum):
-                                    while len(taggingGroup["insert"][insertIndex]) > len(worksheet.iloc[rowIndex+insertIndex, :]):
-                                        worksheet.insert(len(worksheet.iloc[rowIndex+insertIndex, :]), "", "", True)
-                                        worksheet.columns = range(worksheet.shape[1])
-                                    worksheet.iloc[rowIndex+insertIndex, 0:len(taggingGroup["insert"][insertIndex])] = taggingGroup["insert"][insertIndex]
-                                usedRows = set(index if index < rowIndex else index+insertNum+1 for index in usedRows)
-                                usedRows.update(range(rowIndex,rowIndex+insertNum+1))
-                                rowIndex += insertNum+1
-                                endingRowIndex += insertNum+1
+                                temp_df = pandas.DataFrame(taggingGroup["insert"], dtype=str)
+                                worksheet = pandas.concat([worksheet.iloc[0:rowIndex, :], temp_df, worksheet.iloc[rowIndex:, :]]).fillna("")
+                                usedRows = set(index if index < rowIndex else index+insertNum for index in usedRows)
+                                usedRows.update(range(rowIndex,rowIndex+insertNum))
+                                rowIndex += insertNum
+                                endingRowIndex += insertNum
 
                             # Insert #tags row and the #tags and #ignore tags.
                             worksheet = pandas.concat([ worksheet.iloc[0:rowIndex+1,:], worksheet.iloc[rowIndex:,:] ])
