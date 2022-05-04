@@ -22,7 +22,7 @@
     --delete <metadata_section>...      - delete a section of the JSONized metadata. Section format is tableKey or tableKey,IDKey or tableKey,IDKey,fieldName. These can be regular expressions.
     --keep <metadata_tables>            - only keep the selected tables.  Delete the rest.  Table format is tableKey,tableKey,... The tableKey can be a regular expression.
     --silent                            - print no warning messages.
-    --field-tracking <filename_json>    - track the latest field value for records in given table field pairs to add to records of other given tables. Adds study.id and project.id to subject, sample, and factor by default.
+    --cv <filename_json>                - controlled vocabulary that describes the structure of the data. Needed to utulize field tracking functionality.
 
 Show Options:
   tables    - show tables in the extracted metadata.
@@ -32,11 +32,6 @@ Show Options:
 Regular Expression Format:
   Regular expressions have the form "r'...'" on the command line.
   The re.match function is used, which matches from the beginning of a string, meaning that a regular expression matches as if it starts with a "^".
-
- Field Tracking JSON
-   {
-   table : [{ field : "field_name", table_records_to_add_to : ["table_name_1", "table_name_2", ...], ...]
-   }
 
  Directives JSON Format:
    {
@@ -56,7 +51,7 @@ Regular Expression Format:
 #
 
 
-## TODO export saves where the excel file is instead of cwd. Change it so it saves in cwd.
+## TODO 
 ## When creating unit tests make sure to have a check on all pandas read ins that nan values become empty strings.
 ## Possibly add a step at the end that makes sure all records id field matches the dict key value.
 ## Possibly use controlled vocabulary to create field tracking JSON.
@@ -73,7 +68,6 @@ import pandas
 import docopt
 import jellyfish
 
-import dinit
 import jsonCommentRemover
 import copier
 
@@ -86,27 +80,16 @@ def main() :
         global silent
         silent = True
 
-    if args["--field-tracking"]:
-        with open(args["--field-tracking"],'r') as jsonFile :
-            fieldTrackingDict = json.loads(jsonCommentRemover.json_minify(''.join(jsonFile.readlines())))
+    if args["--cv"]:
+        with open(args["--cv"],'r') as jsonFile :
+#            controlledVocabulary = json.loads(jsonCommentRemover.json_minify(''.join(jsonFile.readlines())))
+            controlledVocabulary = json.load(jsonFile)
+        ## TODO add CV validation.
+        
+        tagParser = TagParser(controlledVocabulary)
     else:
-        fieldTrackingDict = {"project":[{"field" : "id", "table_records_to_add_to" : ["subject", "sample", "factor"]}],
-                             "study":[{"field" : "id", "table_records_to_add_to" : ["subject", "sample", "factor"]}]}
-
-    trackedFieldsDict = {}
-    tableRecordsToAddTo = {}
-    for table, field_list in fieldTrackingDict.items():
-        for field_dict in field_list:
-            new_field_name = table + "." + field_dict["field"]
-            trackedFieldsDict[new_field_name] = ""
-            for table_to_add_to in field_dict["table_records_to_add_to"]:
-                if table_to_add_to in tableRecordsToAddTo:
-                    tableRecordsToAddTo[table_to_add_to].append(new_field_name)
-                else:
-                    tableRecordsToAddTo[table_to_add_to] = [new_field_name]
-    
-    tagParser = TagParser({"extraction":{}, "fieldTrackingDict":fieldTrackingDict, "trackedFieldsDict":trackedFieldsDict, "tableRecordsToAddTo":tableRecordsToAddTo})
-
+        tagParser = TagParser()
+        
 
     for metadataSource in args["<metadata_source>"]:
         tagParser.readMetadata(metadataSource, args["--tagging"], args["--convert"], args["--save-export"])
@@ -607,11 +590,46 @@ class TagParserError(Exception):
         return repr(self.value)
 
     
-class TagParser(dinit.DictInit):
+class TagParser(object):
     """Creates parser objects that convert tagged .xlsx worksheets into nested dictionary structures for metadata capture."""
-    _requiredMembers = [ "extraction", "fieldTrackingDict", "trackedFieldsDict", "tableRecordsToAddTo" ]
+    
+    def __init__(self, cv = {}):
+        self.extraction = {}
+        self._createTrackingFromCV(cv)
 
     reDetector = re.compile(r"r[\"'](.*)[\"']$")
+    
+    def _createTrackingFromCV(self, cv = {}):
+        """Creates field tracking data members from controlled vocabulary.
+        
+        :param :py:class:`dict` cv: controlled vocabulary JSON
+        """
+        
+        ## Find the tracking fields and create data structures to handle the tracking.
+        self.tablesAndFieldsToTrack = {}
+        self.tableRecordsToAddTo = {}
+        self.trackedFieldsDict = {}
+        if cv:
+            for tagfieldScopeRecordID, tagfieldScopeRecordAttributes in cv["tagfield_scope"].items():
+                if "tracking" in tagfieldScopeRecordAttributes["scope_type"]:
+                    fieldToAdd = tagfieldScopeRecordAttributes["tagfield.id"]
+                        
+                    self.trackedFieldsDict[fieldToAdd] = ""
+                    
+                    tableAndField = fieldToAdd.split(".")
+                    tableToTrack = tableAndField[0]
+                    fieldToTrack = tableAndField[1]
+                    if tableToTrack in self.tablesAndFieldsToTrack:
+                        self.tablesAndFieldsToTrack[tableToTrack].add(fieldToTrack)
+                    else:
+                        self.tablesAndFieldsToTrack[tableToTrack] = set([fieldToTrack])
+                    
+                    for table in tagfieldScopeRecordAttributes["table"]:
+                        if table in self.tableRecordsToAddTo:
+                            self.tableRecordsToAddTo[table].append(fieldToAdd)
+                        else:
+                            self.tableRecordsToAddTo[table] = [fieldToAdd]
+        
 
     @staticmethod
     def _isEmptyRow(row) :
@@ -831,10 +849,10 @@ class TagParser(dinit.DictInit):
                 self.extraction[table] = {}
 
             ## Keep track of ids in specified tables.
-            if table in self.fieldTrackingDict:
-                for field_dict in self.fieldTrackingDict[table]:
-                    if field_dict["field"] in record:
-                        self.trackedFieldsDict[table + "." + field_dict["field"]] = record[field_dict["field"]]
+            if table in self.tablesAndFieldsToTrack:
+                for field in self.tablesAndFieldsToTrack[table]:
+                    if field in record:
+                        self.trackedFieldsDict[table + "." + field] = record[field]
                         
             ## Copy tracked fields into records if applicable.
             if table in self.tableRecordsToAddTo:
@@ -1909,6 +1927,7 @@ class TagParser(dinit.DictInit):
             if tableKey in self.extraction:
                 missingIDs = [ idKey for idKey in table.keys() if idKey not in self.extraction[tableKey] ]
                 if missingIDs:
+                    different = True
                     if file is not None:
                         print("Table", tableKey, "with missing records:", file=file)
                         while missingIDs:
@@ -1919,6 +1938,7 @@ class TagParser(dinit.DictInit):
                         return True
                 extraIDs = [ idKey for idKey in self.extraction[tableKey].keys() if idKey not in otherMetadata[tableKey] ]
                 if extraIDs:
+                    different = True
                     if file is not None:
                         print("Table", tableKey, "with extra records:", file=file)
                         while extraIDs:
@@ -1933,6 +1953,7 @@ class TagParser(dinit.DictInit):
                         differentFields = [ field for field, value in record.items() if field not in self.extraction[tableKey][idKey] or not TagParser.isComparable(value, self.extraction[tableKey][idKey][field]) ]
                         differentFields.extend([ field for field in self.extraction[tableKey][idKey] if field not in record ])
                         if differentFields:
+                            different = True
                             if file is not None:
                                 print("Table", tableKey, "id", idKey, "with different fields:", ", ".join(differentFields), file=file)
                             else:
