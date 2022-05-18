@@ -159,6 +159,7 @@ def xstr(s) :
     """
     return "" if s is None else str(s)
 
+##TODO test this vs the regular eval and see if anything breaks.
 def pandasizeEvalString(evalString, headerRow, dataFrameName, rowRange=[]):
     """"""
     
@@ -928,39 +929,29 @@ class TagParser(object):
         self.fileName = fileName
         self.sheetName = sheetName
 
-        aColumn = worksheet.iloc[:, 0]
-
-
-        parsing = False
-        recordMakers = ""
-         ## Look through in each row of column A.
-        for self.rowIndex in range(len(aColumn)) :
-            try :
-                  ## Convert the cell contents to a string and strip whitespace off the ends.
-                  ## See if it contains "#tags".
-                if re.match('#tags', xstr(aColumn.iloc[self.rowIndex]).strip()) :
-                    parsing = True
-                       ## If the cell contains "#tags" then this is a header row for a table. Parse the header.
-                    recordMakers = self._parseHeaderRow(worksheet.iloc[self.rowIndex, :])
-                  ## If the call contains "#ignore" then this row should be ignored.
-                elif re.match('#ignore', xstr(aColumn.iloc[self.rowIndex]).strip()) :
-                    pass
-                  ## If "#tags" or "#ignore" could not be found then see if the entire row is empty.
-                  ## If the row is empty it is either a pass or the end of a table, either way set parsing 
-                  ## to false since we are not parsing a table in either case.
-                elif TagParser._isEmptyRow(worksheet.iloc[self.rowIndex, :]) :
-                    parsing = False
-                  ## If parsing is set then we are parsing a table of records so parse this row.
-                elif parsing :
-                    self._parseRow(recordMakers, worksheet.iloc[self.rowIndex, :])
-            except TagParserError as err:
-                print(err.value, file=sys.stderr)
-                exit(1)
-            except :
-                print(TagParserError("Internal Parser Error", self.fileName, self.sheetName, self.rowIndex, self.columnIndex), file=sys.stderr)
-                raise
-
         
+        tagRows = worksheet.iloc[:,0] == "#tags"
+        ignoreRows = worksheet.iloc[:,0] == "#ignore"
+        emptyRows = (worksheet=="").all(axis=1)
+        
+        possibleEndOfTagGroupRows = emptyRows | tagRows
+        possibleEndOfTagGroupRows.iloc[-1] = True
+        worksheetHeaderRows = worksheet[tagRows]
+        endOfTagGroupIndexes = []
+        for header_index in worksheetHeaderRows.index:
+            for index in possibleEndOfTagGroupRows[possibleEndOfTagGroupRows].index:
+                if index > header_index:
+                    endOfTagGroupIndexes.append(index)
+                    break
+            
+        for headerRow in range(worksheetHeaderRows.shape[0]):
+            headerRowIndex = worksheetHeaderRows.iloc[headerRow,:].name
+            recordMakers = self._parseHeaderRow(worksheet.loc[headerRowIndex, :])
+            rowsToParse = [index for index in range(headerRowIndex+1, endOfTagGroupIndexes[headerRow])]
+            rowsToParse = ignoreRows.iloc[rowsToParse][~ignoreRows]
+            for index in rowsToParse.index:
+                self._parseRow(recordMakers, worksheet.loc[index, :])
+
         self.rowIndex = -1
 
 
@@ -1235,7 +1226,7 @@ class TagParser(object):
                             usedRows = pandas.Series([False for i in range(worksheet.shape[0])], index=worksheet.index)
                             usedRows.loc[indexesToUpdate + temp_df.shape[0]] = True
                             usedRows.loc[indexesToKeep] = True
-                            usedRows.loc[headerRowIndex-1 : headerRowIndex-1 + temp_df.shape[0]-1] = True
+                            usedRows.loc[headerRowIndex : headerRowIndex-1 + temp_df.shape[0]] = True
                             
                             indexesToUpdate = taggingGroupLocations.iloc[headerRowIndex-1:][taggingGroupLocations].index
                             indexesToKeep = taggingGroupLocations.iloc[0:headerRowIndex-1][taggingGroupLocations].index
@@ -1252,7 +1243,7 @@ class TagParser(object):
                         usedRows = pandas.Series([False for i in range(worksheet.shape[0])], index=worksheet.index)
                         usedRows.loc[indexesToUpdate + temp_df.shape[0]] = True
                         usedRows.loc[indexesToKeep] = True
-                        usedRows.loc[headerRowIndex-1 : headerRowIndex-1 + temp_df.shape[0]-1] = True
+                        usedRows.loc[headerRowIndex : headerRowIndex-1 + temp_df.shape[0]] = True
                         
                         indexesToUpdate = taggingGroupLocations.iloc[headerRowIndex-1:][taggingGroupLocations].index
                         indexesToKeep = taggingGroupLocations.iloc[0:headerRowIndex-1][taggingGroupLocations].index
@@ -1273,7 +1264,7 @@ class TagParser(object):
                     usedRows = pandas.Series([False for i in range(worksheet.shape[0])], index=worksheet.index)
                     usedRows.loc[indexesToUpdate + 1] = True
                     usedRows.loc[indexesToKeep] = True
-                    usedRows.loc[headerRowIndex+1 : headerRowIndex+1 + 1] = True
+                    usedRows.loc[headerRowIndex : headerRowIndex+1] = True
                     
                     indexesToUpdate = taggingGroupLocations.iloc[headerRowIndex+1:][taggingGroupLocations].index
                     indexesToKeep = taggingGroupLocations.iloc[0:headerRowIndex+1][taggingGroupLocations].index
@@ -1309,19 +1300,20 @@ class TagParser(object):
                             worksheet.loc[worksheet[taggingGroupLocations].index+1, columnToAddTag] = description["tag"]
                     
                 ## Find the end of each tag block.
-                blankRows = worksheet[worksheet==""].all(axis=1)
-                tagRows = worksheet[worksheet=="#tags"].any(axis=1)
-                possibleEndOfTagGroupRows = blankRows & tagRows & usedRows
+                blankRows = (worksheet=="").all(axis=1)
+                tagRows = (worksheet=="#tags").any(axis=1)
+                possibleEndOfTagGroupRows = blankRows | tagRows | usedRows
+                possibleEndOfTagGroupRows.iloc[-1] = True
                 endOfTagGroupIndexes = []
 #                rowRange = []
-                for header_index in worksheetHeaderRows.index:
+                for header_index in worksheetHeaderRows.index+1:
                     for index in possibleEndOfTagGroupRows[possibleEndOfTagGroupRows].index:
                         if index > header_index:
 #                            rowRange += [num for num in range(header_index,index)]
                             endOfTagGroupIndexes.append(index)
                             break
-                if len(endOfTagGroupIndexes) != worksheetHeaderRows.shape[0]:
-                    endOfTagGroupIndexes.append(worksheet.shape[0]-1)
+#                if len(endOfTagGroupIndexes) != worksheetHeaderRows.shape[0]:
+#                    endOfTagGroupIndexes.append(worksheet.shape[0]-1)
                         
                 ## Add columns and tags for other descriptions.
                 for description in newColumnHeaderDescriptions:
