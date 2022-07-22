@@ -450,7 +450,7 @@ for protocol_id, protocol_fields in data["protocol"]:
         
 
 
-## A guide on some properties of the error exceoption https://python-jsonschema.readthedocs.io/en/stable/errors/        
+## A guide on some properties of the error exception https://python-jsonschema.readthedocs.io/en/stable/errors/        
 for error_generator in errors:
     for error in error_generator:
         print(error.message)

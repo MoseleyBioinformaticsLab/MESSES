@@ -56,9 +56,6 @@ Regular Expression Format:
 ## Possibly add a step at the end that makes sure all records id field matches the dict key value.
 ## Possibly use controlled vocabulary to create field tracking JSON.
 ## Make sure verify_metadata checks for project.id and study.id in subject, samples, and factors.
-## Possibly add an option to enumerate id's that aren't unique.
-## Possibly check to see if a record's id is already in use while parsing, and print warning to user that 2 records in Excel have same id.
-## Should an output filename be required? You can run the program and get nothing out as is.
 
 import os.path
 import copy
@@ -71,6 +68,7 @@ import pandas
 import docopt
 import jellyfish
 
+import jsonCommentRemover
 import copier
 
 silent = False
@@ -84,6 +82,7 @@ def main() :
 
     if args["--cv"]:
         with open(args["--cv"],'r') as jsonFile :
+#            controlledVocabulary = json.loads(jsonCommentRemover.json_minify(''.join(jsonFile.readlines())))
             controlledVocabulary = json.load(jsonFile)
         ## TODO add CV validation.
         
@@ -158,40 +157,6 @@ def xstr(s) :
     :rtype: :py:class:`str`
     """
     return "" if s is None else str(s)
-
-##TODO test this vs the regular eval and see if anything breaks.
-def pandasizeEvalString(evalString, headerRow, dataFrameName, rowRange=[]):
-    """"""
-    
-    ## If rowRange is given then convert it to a string for the eval, else set it to : to include all rows.
-    if rowRange:
-        stringRowRange = "[" + ",".join([str(num) for num in rowRange]) + "]"
-    else:
-        stringRowRange = ":"
-    
-    headersOrREGEX = re.findall(r"\#([^#]+)\#", evalString)
-    conversionDict = {string : {
-                                ## Assumes that any regular expressions or header names will only match one value in headerRow.
-                                "columnLocation":headerRow[headerRow == string].index[0] if not re.match(Evaluator.reDetector, string) else headerRow[headerRow.str.contains(re.compile(re.match(Evaluator.reDetector, string).group(1)))].index[0], 
-                                } for string in headersOrREGEX}
-    reCopier = copier.Copier()
-    for headerString in conversionDict:
-        if reCopier(re.search("\s*(\w+)\(\s*\#" + headerString + "\#\s*\)\s*", evalString)):
-            conversionDict[headerString]["typeConversion"] = reCopier.value.group(1)
-    ## Assumes that any regular expressions or header names will only match one value in headerRow.
-#    headerColumnLocations = [headerRow[headerRow == string].index[0] if not re.match(Evaluator.reDetector, string) else headerRow[headerRow.str.contains(re.compile(re.match(Evaluator.reDetector, string).group(1)))].index[0] for string in headersOrREGEX]
-    newEval = evalString
-    for headerString, conversionAttributes in conversionDict.items():
-        replacement = dataFrameName + ".loc[" + stringRowRange + "," + str(conversionAttributes["columnLocation"]) + "]"
-        if "typeConversion" in conversionAttributes:
-            replacement = replacement + ".astype(" + conversionAttributes["typeConversion"] + ")"
-            
-        newEval = re.sub("\s*\w*\(?\s*\#" + headerString + "\#\s*\)?\s*", replacement, newEval)
-                                  
-    return newEval
-                         
-    
-    
 
 class Evaluator(object) :
     """Creates object that calls eval with a given record."""
@@ -572,7 +537,7 @@ class RecordMaker(object) :
         :rtype: :class:`FieldMaker` or :class:`ListFieldMaker` or :py:obj:`None`
         """
         field = self.properField(table,field)
-        return self.shortField(field)
+        return shortField(field)
 
     def shortField(self, field) :
         """RETURNS FieldMaker for PARAMETER field.
@@ -871,7 +836,7 @@ class TagParser(object):
         
         recordMakers.pop(0)    # pop example RecordMaker used to hold global literals.    
         return recordMakers
-## TODO add check to make sure there is an id tag.
+
     def _parseRow(self, recordMakers, row) :
         """Create new records and add them to the nested extraction dictionary.
 
@@ -929,29 +894,39 @@ class TagParser(object):
         self.fileName = fileName
         self.sheetName = sheetName
 
-        
-        tagRows = worksheet.iloc[:,0] == "#tags"
-        ignoreRows = worksheet.iloc[:,0] == "#ignore"
-        emptyRows = (worksheet=="").all(axis=1)
-        
-        possibleEndOfTagGroupRows = emptyRows | tagRows
-        possibleEndOfTagGroupRows.iloc[-1] = True
-        worksheetHeaderRows = worksheet[tagRows]
-        endOfTagGroupIndexes = []
-        for header_index in worksheetHeaderRows.index:
-            for index in possibleEndOfTagGroupRows[possibleEndOfTagGroupRows].index:
-                if index > header_index:
-                    endOfTagGroupIndexes.append(index)
-                    break
-            
-        for headerRow in range(worksheetHeaderRows.shape[0]):
-            headerRowIndex = worksheetHeaderRows.iloc[headerRow,:].name
-            recordMakers = self._parseHeaderRow(worksheet.loc[headerRowIndex, :])
-            rowsToParse = [index for index in range(headerRowIndex+1, endOfTagGroupIndexes[headerRow])]
-            rowsToParse = ignoreRows.iloc[rowsToParse][~ignoreRows]
-            for index in rowsToParse.index:
-                self._parseRow(recordMakers, worksheet.loc[index, :])
+        aColumn = worksheet.iloc[:, 0]
 
+
+        parsing = False
+        recordMakers = ""
+         ## Look through in each row of column A.
+        for self.rowIndex in range(len(aColumn)) :
+            try :
+                  ## Convert the cell contents to a string and strip whitespace off the ends.
+                  ## See if it contains "#tags".
+                if re.match('#tags', xstr(aColumn.iloc[self.rowIndex]).strip()) :
+                    parsing = True
+                       ## If the cell contains "#tags" then this is a header row for a table. Parse the header.
+                    recordMakers = self._parseHeaderRow(worksheet.iloc[self.rowIndex, :])
+                  ## If the call contains "#ignore" then this row should be ignored.
+                elif re.match('#ignore', xstr(aColumn.iloc[self.rowIndex]).strip()) :
+                    pass
+                  ## If "#tags" or "#ignore" could not be found then see if the entire row is empty.
+                  ## If the row is empty it is either a pass or the end of a table, either way set parsing 
+                  ## to false since we are not parsing a table in either case.
+                elif TagParser._isEmptyRow(worksheet.iloc[self.rowIndex, :]) :
+                    parsing = False
+                  ## If parsing is set then we are parsing a table of records so parse this row.
+                elif parsing :
+                    self._parseRow(recordMakers, worksheet.iloc[self.rowIndex, :])
+            except TagParserError as err:
+                print(err.value, file=sys.stderr)
+                exit(1)
+            except :
+                print(TagParserError("Internal Parser Error", self.fileName, self.sheetName, self.rowIndex, self.columnIndex), file=sys.stderr)
+                raise
+
+        
         self.rowIndex = -1
 
 
@@ -1089,6 +1064,7 @@ class TagParser(object):
             with pandas.ExcelWriter(fileName, engine = "xlsxwriter") as writer:
                 worksheet.to_excel(writer, sheet_name = sheetName, index=False, header=False)
 
+
     headerSplitter = re.compile(r'[+]|(r?\"[^\"]*\"|r?\'[^\']*\')|\s+')
     def tagSheet(self, taggingDirectives, worksheet):
         """Add tags to the worksheet using the given tagging directives.
@@ -1098,7 +1074,6 @@ class TagParser(object):
         :return: worksheet
         :rtype: :py:class:`pandas.dataFrame`
         """
-#        worksheet = dataFrameTuple[2].copy(deep=True)
         self.taggingDirectives = taggingDirectives
         if taggingDirectives != None:
             ## Copy so it is not the same pointer as self.taggingDirectives.
@@ -1109,26 +1084,22 @@ class TagParser(object):
                 worksheet.insert(0,"","",True) # Insert empty column for #tags cells, if it does not exist.
                 worksheet.set_axis(range(worksheet.shape[1]), axis="columns", inplace=True)
 
-#            usedRows = set()
-            usedRows = pandas.Series([False for i in range(worksheet.shape[0])], index=worksheet.index)
+            usedRows = set()
             # Process each tagging group.
             for taggingGroup in taggingDirectives:
                 if "header_tag_descriptions" not in taggingGroup:
                     # Insert at the beginning of the sheet
                     if "insert" in taggingGroup and len(taggingGroup["insert"]):
                         temp_df = pandas.DataFrame(taggingGroup["insert"], dtype=str)
-                        worksheet = pandas.concat([temp_df, worksheet]).fillna("").reset_index(drop=True)
-                        indexesToUpdate = usedRows[usedRows].index
-                        usedRows = pandas.Series([False for i in range(worksheet.shape[0])], index=worksheet.index)
-                        usedRows.loc[indexesToUpdate + temp_df.shape[0]] = True
-                        usedRows.loc[0:temp_df.shape[0]-1] = True
+                        worksheet = pandas.concat([temp_df, worksheet]).fillna("")
+                        usedRows = set(row + len(temp_df) for row in usedRows)
+                        usedRows.update(range(len(temp_df)))
                     continue
 
                 ## Loop through the header tag descriptions and determine the required headers and tests for them.
                 ## This is just setting up some data structures to make modifying worksheet easier later.
                 headerTests = {}
                 requiredHeaders = set()
-                requiredHeaderTests = {}
                 for headerTagDescription in taggingGroup["header_tag_descriptions"]:
                     ## If the added tag is an eval() tag created the header test differently.
                     if reCopier(Evaluator.isEvalString(headerTagDescription["header"])):
@@ -1138,7 +1109,9 @@ class TagParser(object):
                         headerTagDescription["header_tests"] = evaluator.fieldTests.copy()
                         headerTagDescription["header_tests"].update({ headerString : re.compile("^" + headerString + "$") for headerString in evaluator.requiredFields if headerString not in evaluator.fieldTests })
                         headerTests.update(headerTagDescription["header_tests"])
-                        
+
+                        if headerTagDescription["required"]:
+                            requiredHeaders.update(headerTagDescription["header_tests"].keys())
                     else:
                         headerTagDescription["header_list"] = [ token for token in re.split(TagParser.headerSplitter, headerTagDescription["header"]) if token != "" and token != None ]
                         headerTagDescription["header_tests"] = {}
@@ -1155,190 +1128,103 @@ class TagParser(object):
                                 headerTagDescription["header_tests"][headerString] = re.compile("^" + headerString + "$")
                                 headerTests[headerString] = headerTagDescription["header_tests"][headerString]
 
+                        if headerTagDescription["required"]:
+                            requiredHeaders.update(headerTagDescription["header_tests"].keys())
+
                         if len(headerTagDescription["header_list"]) > 1 or len(headerTagDescription["header_list"]) != len(headerTagDescription["header_tests"]):
                             headerTagDescription["field_maker"] = fieldMaker
-                            
-                    if headerTagDescription["required"]:
-                        requiredHeaders.update(headerTagDescription["header_tests"].keys())
-                        requiredHeaderTests.update(headerTagDescription["header_tests"])
 
                 ## Actually modify worksheet.
-                ## Find the rows that match the required headerTests.
-                ## There is an edge case where there are no required headers, if that happens then find any row that matches any header test.
-                ## TODO test this required vs not case.
-                if requiredHeaderTests:
-                    taggingGroupLocations = pandas.Series([True for i in range(worksheet.shape[0])], index=worksheet.index)
-                    for headerString, headerTest in requiredHeaderTests.items():
-                        headerRowLocations = pandas.Series([False for i in range(worksheet.shape[0])], index=worksheet.index)
-                        for column in worksheet.columns:
-                            headerRowLocations = headerRowLocations | worksheet.loc[:, column].str.contains(headerTest)
-                        taggingGroupLocations = taggingGroupLocations & headerRowLocations
-                else:    
-                    taggingGroupLocations = pandas.Series([False for i in range(worksheet.shape[0])], index=worksheet.index)
-                    for headerString, headerTest in headerTests.items():
-                        headerRowLocations = pandas.Series([False for i in range(worksheet.shape[0])], index=worksheet.index)
-                        for column in worksheet.columns:
-                            headerRowLocations = headerRowLocations | worksheet.loc[:, column].str.contains(headerTest)
-                        taggingGroupLocations = taggingGroupLocations | headerRowLocations
-                        
-                ## Pull out only the rows from worksheet that have been identified as matching the directive.
-                worksheetHeaderRows = worksheet[taggingGroupLocations]
-                
-                ## Make sure a row exists after each header row, if not mark false.
-                worksheetHeaderRowIndexes = worksheetHeaderRows.index
-                if not worksheetHeaderRowIndexes[-1] + 1 in worksheet.index:
-                    taggingGroupLocations.loc[worksheetHeaderRowIndexes[-1]] = False
-                    worksheetHeaderRowIndexes = worksheetHeaderRowIndexes[0:-1]
-                
-                ## Look to see if the row after each header row is blank and 
-                ## if so then mark as false.
-                whichRowsAfterHeaderRowsAreBlank = worksheet.loc[worksheetHeaderRowIndexes + 1, :].isna().all(axis=1)
-                blankIndexes = whichRowsAfterHeaderRowsAreBlank[whichRowsAfterHeaderRowsAreBlank]
-                taggingGroupLocations.loc[blankIndexes.index-1] = False
-                
-                ## If a header row matches a row that has already been used then set false.
-                taggingGroupLocations.loc[usedRows] = False
-                
-                ## Check that each header is unique in the found rows, can't have a header matching multiple columns.
-                worksheetHeaderRows = worksheet[taggingGroupLocations]                   
-                ## Loop over each row and see if the header test matches more than 1 column in the row. 
-                ## If so then set that index in taggingGroupLocations to False.
-                for row in range(worksheetHeaderRows.shape[0]):
-                    for headerString, headerTest in requiredHeaderTests.items():
-                        headerColumnLocations = worksheetHeaderRows.iloc[row, :].str.contains(headerTest)
-                        if headerColumnLocations[headerColumnLocations].size > 1:
-                            taggingGroupLocations.loc[worksheetHeaderRows.index[row]] = False
-                            break
+                insert = False
+                rowIndex = 0
+                while rowIndex < len(worksheet.iloc[:, 0]):
+                    if rowIndex in usedRows:
+                        rowIndex += 1
+                        continue
 
-                            
-                ## Take care of inserts.
-                numberOfHeaderRows = worksheet[taggingGroupLocations].shape[0]
-                if "insert" in taggingGroup and len(taggingGroup["insert"]):
-                    temp_df = pandas.DataFrame(taggingGroup["insert"], dtype=str)
-                    if taggingGroup["insert_multiple"]:
-                        for row in range(numberOfHeaderRows):
-                            worksheetHeaderRows = worksheet[taggingGroupLocations] 
-                            headerRowIndex = worksheetHeaderRows.index[row]
-                            worksheet = pandas.concat([worksheet.iloc[0:headerRowIndex-1, :], temp_df, worksheet.iloc[headerRowIndex-1:, :]]).fillna("").reset_index(drop=True)
-                            
-                            indexesToUpdate = usedRows.iloc[headerRowIndex-1:][usedRows].index
-                            indexesToKeep = usedRows.iloc[0:headerRowIndex-1][usedRows].index
-                            usedRows = pandas.Series([False for i in range(worksheet.shape[0])], index=worksheet.index)
-                            usedRows.loc[indexesToUpdate + temp_df.shape[0]] = True
-                            usedRows.loc[indexesToKeep] = True
-                            usedRows.loc[headerRowIndex : headerRowIndex-1 + temp_df.shape[0]] = True
-                            
-                            indexesToUpdate = taggingGroupLocations.iloc[headerRowIndex-1:][taggingGroupLocations].index
-                            indexesToKeep = taggingGroupLocations.iloc[0:headerRowIndex-1][taggingGroupLocations].index
-                            taggingGroupLocations = pandas.Series([False for i in range(worksheet.shape[0])], index=worksheet.index)
-                            taggingGroupLocations.loc[indexesToKeep] = True
-                            taggingGroupLocations.loc[indexesToUpdate + temp_df.shape[0]] = True
+                    row = worksheet.iloc[rowIndex, :]
+                    header2ColumnIndex = {}
+                    for headerString, headerTest in headerTests.items():
+                        columnIndeces = [ columnIndex for columnIndex in range(1,len(row)) if re.search(headerTest, xstr(row.iloc[columnIndex]).strip()) ]
+                        if len(columnIndeces) == 1: # must be unique match
+                            header2ColumnIndex[headerString] = columnIndeces[0]
+
+                    if len(set(header2ColumnIndex[headerString] for headerString in requiredHeaders if headerString in header2ColumnIndex)) == len(requiredHeaders): # found header row
+                        found = False
+                        endingRowIndex = rowIndex+1
+                        for endingRowIndex in range(rowIndex+1, len(worksheet.iloc[:, 0])):
+                            if TagParser._isEmptyRow(worksheet.iloc[endingRowIndex, :]) or re.match('#tags$', xstr(worksheet.iloc[endingRowIndex,0]).strip()) or endingRowIndex in usedRows:
+                                found = True
+                                break
+
+                        if not found:
+                            endingRowIndex = len(worksheet.iloc[:, 0])
+
+                        if endingRowIndex != rowIndex+1: # Ignore header row with empty line after it.
+                            if "insert" in taggingGroup and len(taggingGroup["insert"]) and (not insert or taggingGroup["insert_multiple"]):
+                                insert = True
+                                insertNum = len(taggingGroup["insert"])
+                                temp_df = pandas.DataFrame(taggingGroup["insert"], dtype=str)
+                                worksheet = pandas.concat([worksheet.iloc[0:rowIndex, :], temp_df, worksheet.iloc[rowIndex:, :]]).fillna("")
+                                usedRows = set(index if index < rowIndex else index+insertNum for index in usedRows)
+                                usedRows.update(range(rowIndex,rowIndex+insertNum))
+                                rowIndex += insertNum
+                                endingRowIndex += insertNum
+
+                            # Insert #tags row and the #tags and #ignore tags.
+                            worksheet = pandas.concat([ worksheet.iloc[0:rowIndex+1,:], worksheet.iloc[rowIndex:,:] ])
+                            worksheet.iloc[rowIndex+1,:] = ""
+                            worksheet.iloc[rowIndex,0] = "#ignore"
+                            worksheet.iloc[rowIndex+1,0] = "#tags"
+                            endingRowIndex += 1
+
+                            usedRows = set(index if index < rowIndex+1 else index+1 for index in usedRows)
+                            usedRows.update(range(rowIndex,endingRowIndex))
+
+                            # Create correct relative column order.
+                            originalTDColumnIndeces = [ 1000 for x in range(len(taggingGroup["header_tag_descriptions"])) ]
+                            for tdIndex in range(len(taggingGroup["header_tag_descriptions"])):
+                                if "field_maker" in taggingGroup["header_tag_descriptions"][tdIndex] and \
+                                        all( headerString in header2ColumnIndex for headerString in taggingGroup["header_tag_descriptions"][tdIndex]["header_tests"] ):
+                                    originalTDColumnIndeces[tdIndex] = 1001
+                                elif "field_maker" not in taggingGroup["header_tag_descriptions"][tdIndex] and not taggingGroup["header_tag_descriptions"][tdIndex]["header_list"]:
+                                    originalTDColumnIndeces[tdIndex] = 1001
+                                elif "field_maker" not in taggingGroup["header_tag_descriptions"][tdIndex] and taggingGroup["header_tag_descriptions"][tdIndex]["header_list"][0] in header2ColumnIndex:
+                                    originalTDColumnIndeces[tdIndex] = header2ColumnIndex[taggingGroup["header_tag_descriptions"][tdIndex]["header_list"][0]]
+
+                            newTDColumnIndeces = originalTDColumnIndeces.copy()
+                            for tdIndex in range(len(taggingGroup["header_tag_descriptions"])):
+                                # insert new column if needed
+                                if (newTDColumnIndeces[tdIndex] == 1001 or newTDColumnIndeces[tdIndex] < 1000) and reCopier(min(newTDColumnIndeces[tdIndex+1:]+[len(worksheet.columns)])) < newTDColumnIndeces[tdIndex]:
+                                    worksheet.insert(reCopier.value, "", "", True)
+                                    worksheet.columns = range(worksheet.shape[1])
+                                    header2ColumnIndex = { headerString:(index+1 if index >= reCopier.value else index) for headerString, index in header2ColumnIndex.items() } # must be done before the next if, else statement
+                                    if originalTDColumnIndeces[tdIndex] != 1001: # copy normal columns
+                                        worksheet.iloc[rowIndex:endingRowIndex, reCopier.value] = worksheet.iloc[rowIndex:endingRowIndex, newTDColumnIndeces[tdIndex]+1]
+                                        header2ColumnIndex[taggingGroup["header_tag_descriptions"][tdIndex]["header_list"][0]] = reCopier.value
+
+                                    newTDColumnIndeces[tdIndex] = reCopier.value
+                                    newTDColumnIndeces[tdIndex+1:] = [ index+1 if index >= reCopier.value and index < 1000 else index for index in newTDColumnIndeces[tdIndex+1:] ]
+
+                            # Add tags.
+                            for tdIndex in range(len(taggingGroup["header_tag_descriptions"])):
+                                if originalTDColumnIndeces[tdIndex] != 1000:
+                                    worksheet.iloc[rowIndex+1, newTDColumnIndeces[tdIndex]] = taggingGroup["header_tag_descriptions"][tdIndex]["tag"]
+
+                            # Compose new columns.
+                            makerIndeces = [ tdIndex for tdIndex in range(len(taggingGroup["header_tag_descriptions"])) if originalTDColumnIndeces[tdIndex] == 1001 ]
+                            for rIndex in range(rowIndex + 2, endingRowIndex):
+                                row = worksheet.iloc[rIndex, :]
+                                record = { headerString:xstr(row.iloc[cIndex]).strip() for headerString, cIndex in header2ColumnIndex.items() }
+                                for tdIndex in makerIndeces:
+                                    if "field_maker" in taggingGroup["header_tag_descriptions"][tdIndex]:
+                                        if type(taggingGroup["header_tag_descriptions"][tdIndex]["field_maker"]) == FieldMaker:
+                                            worksheet.iloc[rIndex, newTDColumnIndeces[tdIndex]] = taggingGroup["header_tag_descriptions"][tdIndex]["field_maker"].create(record, row)
+                                        else:
+                                            worksheet.iloc[rIndex, newTDColumnIndeces[tdIndex]] = taggingGroup["header_tag_descriptions"][tdIndex]["field_maker"].evaluate(record)
                     else:
-                        worksheetHeaderRows = worksheet[taggingGroupLocations] 
-                        headerRowIndex = worksheetHeaderRows.index[0]
-                        worksheet = pandas.concat([worksheet.iloc[0:headerRowIndex-1, :], temp_df, worksheet.iloc[headerRowIndex-1:, :]]).fillna("").reset_index(drop=True)
-                        
-                        indexesToUpdate = usedRows.iloc[headerRowIndex-1:][usedRows].index
-                        indexesToKeep = usedRows.iloc[0:headerRowIndex-1][usedRows].index
-                        usedRows = pandas.Series([False for i in range(worksheet.shape[0])], index=worksheet.index)
-                        usedRows.loc[indexesToUpdate + temp_df.shape[0]] = True
-                        usedRows.loc[indexesToKeep] = True
-                        usedRows.loc[headerRowIndex : headerRowIndex-1 + temp_df.shape[0]] = True
-                        
-                        indexesToUpdate = taggingGroupLocations.iloc[headerRowIndex-1:][taggingGroupLocations].index
-                        indexesToKeep = taggingGroupLocations.iloc[0:headerRowIndex-1][taggingGroupLocations].index
-                        taggingGroupLocations = pandas.Series([False for i in range(worksheet.shape[0])], index=worksheet.index)
-                        taggingGroupLocations.loc[indexesToKeep] = True
-                        taggingGroupLocations.loc[indexesToUpdate + temp_df.shape[0]] = True
-                
-                ## Insert #tags row and #ignore tags.
-                worksheet.loc[taggingGroupLocations, 0] = "#ignore"
-                blankRow = pandas.DataFrame([["" for i in range(worksheet.shape[1])]], columns=worksheet.columns)
-                for row in range(numberOfHeaderRows):
-                    worksheetHeaderRows = worksheet[taggingGroupLocations] 
-                    headerRowIndex = worksheetHeaderRows.index[row]
-                    worksheet = pandas.concat([worksheet.iloc[0:headerRowIndex+1, :], blankRow, worksheet.iloc[headerRowIndex+1:, :]]).fillna("").reset_index(drop=True)
-                    
-                    indexesToUpdate = usedRows.iloc[headerRowIndex+1:][usedRows].index
-                    indexesToKeep = usedRows.iloc[0:headerRowIndex+1][usedRows].index
-                    usedRows = pandas.Series([False for i in range(worksheet.shape[0])], index=worksheet.index)
-                    usedRows.loc[indexesToUpdate + 1] = True
-                    usedRows.loc[indexesToKeep] = True
-                    usedRows.loc[headerRowIndex : headerRowIndex+1] = True
-                    
-                    indexesToUpdate = taggingGroupLocations.iloc[headerRowIndex+1:][taggingGroupLocations].index
-                    indexesToKeep = taggingGroupLocations.iloc[0:headerRowIndex+1][taggingGroupLocations].index
-                    taggingGroupLocations = pandas.Series([False for i in range(worksheet.shape[0])], index=worksheet.index)
-                    taggingGroupLocations.loc[indexesToKeep] = True
-                    taggingGroupLocations.loc[indexesToUpdate + 1] = True
-                    
-                worksheet.loc[worksheet[taggingGroupLocations].index+1, 0] = "#tags"
-                
-                
-                ## Separate header tag descriptions into those that just need to add tags to existing columns 
-                ## and those that need to add columns.
-                addTagHeaderDescriptions = []
-                newColumnHeaderDescriptions = []
-                for description in taggingGroup["header_tag_descriptions"]:
-                    ## Tags that add columns either make a new field or are simple additions. No header list is a simple addition.
-                    if "field_maker" in description or not description["header_list"]:
-                        newColumnHeaderDescriptions.append(description)
-                    else:
-                        addTagHeaderDescriptions.append(description)
-                        
-                ## Add tags to headers that need it.
-                worksheetHeaderRows = worksheet[taggingGroupLocations]
-                for row in range(numberOfHeaderRows):
-                    headerRow = worksheetHeaderRows.iloc[row,:]
-                    for description in addTagHeaderDescriptions:
-                        ## Since there can be non required headers you have to make sure that only 1 column is returned.
-                        ## If more than 1 is returned then assume it is a non required header since we checked for uniqueness 
-                        ## with required headers earlier.
-                        columnsThatMatchHeaderTest = headerRow[headerRow.str.contains(description["header_tests"][description["header"]])]
-                        if columnsThatMatchHeaderTest.size == 1:
-                            columnToAddTag = headerRow[headerRow.str.contains(description["header_tests"][description["header"]])].index[0]
-                            worksheet.loc[worksheet[taggingGroupLocations].index+1, columnToAddTag] = description["tag"]
-                    
-                ## Find the end of each tag block.
-                blankRows = (worksheet=="").all(axis=1)
-                tagRows = (worksheet=="#tags").any(axis=1)
-                possibleEndOfTagGroupRows = blankRows | tagRows | usedRows
-                possibleEndOfTagGroupRows.iloc[-1] = True
-                endOfTagGroupIndexes = []
-#                rowRange = []
-                for header_index in worksheetHeaderRows.index+1:
-                    for index in possibleEndOfTagGroupRows[possibleEndOfTagGroupRows].index:
-                        if index > header_index:
-#                            rowRange += [num for num in range(header_index,index)]
-                            endOfTagGroupIndexes.append(index)
-                            break
-#                if len(endOfTagGroupIndexes) != worksheetHeaderRows.shape[0]:
-#                    endOfTagGroupIndexes.append(worksheet.shape[0]-1)
-                        
-                ## Add columns and tags for other descriptions.
-                for description in newColumnHeaderDescriptions:
-                    newColumnNumber = worksheet.shape[1]
-                    worksheet.loc[:, newColumnNumber] = ""
-                    worksheet.loc[worksheetHeaderRows.index+1, newColumnNumber] = description["tag"]
-                    for row in range(numberOfHeaderRows):
-                        headerRow = worksheetHeaderRows.iloc[row,:]
-                        rowRange = [index for index in range(headerRow.name+2, endOfTagGroupIndexes[row])]
-                        if not "field_maker" in description:
-                            continue
-                        elif type(description["field_maker"]) == Evaluator:
-                            worksheet.loc[rowRange, newColumnNumber] = eval(pandasizeEvalString(Evaluator.isEvalString(description["header"]).group(1), headerRow, "worksheet", rowRange))
-                            usedRows.loc[rowRange] = True
-                        elif type(description["field_maker"]) == FieldMaker:
-                            for string in description["header_list"]:
-                                if string in description["header_tests"]:
-                                    columnToConcat = headerRow[headerRow.str.contains(description["header_tests"][string])].index[0]
-                                    worksheet.loc[rowRange, newColumnNumber] = worksheet.loc[rowRange, newColumnNumber] + worksheet.loc[rowRange, columnToConcat]
-                                else:
-                                    worksheet.loc[rowRange, newColumnNumber] = worksheet.loc[rowRange, newColumnNumber] + string.strip("\"")
-                                
-                            usedRows.loc[rowRange] = True
-                                
-#        worksheet.loc[0:10,:].to_csv('C:/Users/Sparda/Desktop/Moseley Lab/Code/MESSES/src/messes/worksheet_test.csv')
+                        rowIndex += 1
+
         return worksheet
 
     conversionComparisonTypes = [ "exact", "regex", "levenshtein" ]
@@ -2172,14 +2058,5 @@ class TagParser(object):
 # Main Execution
 #
 if __name__ == "__main__":
-    if len(sys.argv) > 1 and sys.argv[1] == "--profile":
-        sys.argv.pop(1)
-        import cProfile
-        profiler = cProfile.Profile()
-        profiler.enable()
-        main()
-        profiler.disable()
-        profiler.print_stats()
-    else:
-        main()
+    main()
     
