@@ -1,11 +1,8 @@
 # -*- coding: utf-8 -*-
-"""
-Created on Wed May 25 17:12:45 2022
 
-@author: Sparda
-"""
-
+#cython: language_level=3
 import re
+import sys
 
 import numpy
 cimport numpy
@@ -19,14 +16,17 @@ headerSplitter = re.compile(r'[+]|(r?\"[^\"]*\"|r?\'[^\']*\')|\s+')
 def tagSheet(taggingDirectives, str[:,:] worksheet):
     """Add tags to the worksheet using the given tagging directives.
 
-    :param :py:class:`dict` taggingDirectives:
-    :param :py:class:`pandas.dataFrame` worksheet:
-    :return: worksheet
-    :rtype: :py:class:`pandas.dataFrame`
+    Args:
+        taggingDirectives (list): List of dictionaries. One dictionary for each tagging group.
+        worksheet (memoryview): cython memoryview to a 2d numpy array of strings (objects).
+        
+    Returns:
+        (tuple): tuple where the first value is the worksheet memoryview turned into a numpy array and the second value is a list of bools indicating which tagging directives in taggingDirectives were used.
     """
     cdef Py_ssize_t rowIndex = 0
     cdef Py_ssize_t endingRowIndex = 0
     cdef Py_ssize_t tdIndex = 0
+    wasTaggingDirectiveUsed = [False for directive in taggingDirectives]
     if taggingDirectives != None:
         reCopier = copier.Copier()
 
@@ -35,7 +35,7 @@ def tagSheet(taggingDirectives, str[:,:] worksheet):
 
         usedRows = set()
         # Process each tagging group.
-        for taggingGroup in taggingDirectives:
+        for i, taggingGroup in enumerate(taggingDirectives):
             if "header_tag_descriptions" not in taggingGroup:
                 # Insert at the beginning of the sheet
                 if "insert" in taggingGroup and len(taggingGroup["insert"]):
@@ -51,6 +51,7 @@ def tagSheet(taggingDirectives, str[:,:] worksheet):
                     # worksheet = pandas.concat([temp_df, worksheet]).fillna("")
                     usedRows = set(row + len(temp_array) for row in usedRows)
                     usedRows.update(range(len(temp_array)))
+                    wasTaggingDirectiveUsed[i] = True
                 continue
 
             ## Loop through the header tag descriptions and determine the required headers and tests for them.
@@ -91,6 +92,16 @@ def tagSheet(taggingDirectives, str[:,:] worksheet):
                     if len(headerTagDescription["header_list"]) > 1 or len(headerTagDescription["header_list"]) != len(headerTagDescription["header_tests"]):
                         headerTagDescription["field_maker"] = fieldMaker
 
+
+            if "exclusion_test" in taggingGroup:
+                testString = taggingGroup["exclusion_test"]
+                if reCopier(re.match(TagParser.reDetector, testString)):
+                    exclusionTest = re.compile(reCopier.value.group(1))
+                else:
+                    exclusionTest = re.compile("^" + testString + "$")
+            else:
+                exclusionTest = None
+
             ## Actually modify worksheet.
             insert = False
             rowIndex = 0
@@ -100,13 +111,22 @@ def tagSheet(taggingDirectives, str[:,:] worksheet):
                     continue
 
                 row = worksheet[rowIndex, :]
+                
+                if exclusionTest:
+                    exclusionIndeces = [ columnIndex for columnIndex in range(1,len(row)) if re.search(exclusionTest, xstr(row[columnIndex]).strip()) ]
+                    if len(exclusionIndeces) > 0:
+                        rowIndex += 1
+                        continue
+                
                 header2ColumnIndex = {}
                 for headerString, headerTest in headerTests.items():
                     columnIndeces = [ columnIndex for columnIndex in range(1,len(row)) if re.search(headerTest, xstr(row[columnIndex]).strip()) ]
                     if len(columnIndeces) == 1: # must be unique match
                         header2ColumnIndex[headerString] = columnIndeces[0]
+                    elif len(columnIndeces) > 1:
+                        print("Warning: The header, " + headerString + ", in tagging group, " + str(i) + ", was matched to more than 1 column near or on row, " + str(rowIndex) + ", in the tagged export.", file=sys.stderr)
 
-                if len(set(header2ColumnIndex[headerString] for headerString in requiredHeaders if headerString in header2ColumnIndex)) == len(requiredHeaders): # found header row
+                if header2ColumnIndex and len(set(header2ColumnIndex[headerString] for headerString in requiredHeaders if headerString in header2ColumnIndex)) == len(requiredHeaders): # found header row
                     found = False
                     endingRowIndex = rowIndex+1
                     for endingRowIndex in range(rowIndex+1, len(worksheet[:, 0])):
@@ -189,10 +209,12 @@ def tagSheet(taggingDirectives, str[:,:] worksheet):
                                         worksheet[rIndex, newTDColumnIndeces[tdIndex]] = taggingGroup["header_tag_descriptions"][tdIndex]["field_maker"].create(record, row)
                                     else:
                                         worksheet[rIndex, newTDColumnIndeces[tdIndex]] = taggingGroup["header_tag_descriptions"][tdIndex]["field_maker"].evaluate(record)
+                                        
+                        wasTaggingDirectiveUsed[i] = True
                 else:
                     rowIndex += 1
 
-    return numpy.array(worksheet)
+    return numpy.array(worksheet), wasTaggingDirectiveUsed
 
 
 

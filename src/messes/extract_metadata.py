@@ -54,11 +54,14 @@ Regular Expression Format:
 ## TODO 
 ## When creating unit tests make sure to have a check on all pandas read ins that nan values become empty strings.
 ## Possibly add a step at the end that makes sure all records id field matches the dict key value.
-## Possibly use controlled vocabulary to create field tracking JSON.
+## Possibly use controlled vocabulary to create field tracking JSON. This is done, but is untested.
 ## Make sure verify_metadata checks for project.id and study.id in subject, samples, and factors.
 ## Possibly add an option to enumerate id's that aren't unique.
 ## Possibly check to see if a record's id is already in use while parsing, and print warning to user that 2 records in Excel have same id.
+## This is tricky with child tags because the parent is added with the child, so detecting an already existing record might be where the child added a placeholder parent record.
 ## Should an output filename be required? You can run the program and get nothing out as is.
+## Be sure to deal with errors in order. Something like a duplicated header can then make a conversion not match, 
+## so deal with the header and then both errors go away.
 
 import os.path
 import copy
@@ -96,6 +99,8 @@ def main() :
     for metadataSource in args["<metadata_source>"]:
         tagParser.readMetadata(metadataSource, args["--tagging"], args["--convert"], args["--save-export"])
 
+    ## --end-convert is needed so that the merged metadata files can all be converted after being merged together.
+    ## Without this each metadatasource only gets its own conversion.
     if args["--end-convert"] != None:
         conversionSource = args["--end-convert"]
         if re.search(r"\.xls[xm]?$", conversionSource):
@@ -160,38 +165,6 @@ def xstr(s) :
     """
     return "" if s is None else str(s)
 
-##TODO test this vs the regular eval and see if anything breaks.
-def pandasizeEvalString(evalString, headerRow, dataFrameName, rowRange=[]):
-    """"""
-    
-    ## If rowRange is given then convert it to a string for the eval, else set it to : to include all rows.
-    if rowRange:
-        stringRowRange = "[" + ",".join([str(num) for num in rowRange]) + "]"
-    else:
-        stringRowRange = ":"
-    
-    headersOrREGEX = re.findall(r"\#([^#]+)\#", evalString)
-    conversionDict = {string : {
-                                ## Assumes that any regular expressions or header names will only match one value in headerRow.
-                                "columnLocation":headerRow[headerRow == string].index[0] if not re.match(Evaluator.reDetector, string) else headerRow[headerRow.str.contains(re.compile(re.match(Evaluator.reDetector, string).group(1)))].index[0], 
-                                } for string in headersOrREGEX}
-    reCopier = copier.Copier()
-    for headerString in conversionDict:
-        if reCopier(re.search("\s*(\w+)\(\s*\#" + headerString + "\#\s*\)\s*", evalString)):
-            conversionDict[headerString]["typeConversion"] = reCopier.value.group(1)
-    ## Assumes that any regular expressions or header names will only match one value in headerRow.
-#    headerColumnLocations = [headerRow[headerRow == string].index[0] if not re.match(Evaluator.reDetector, string) else headerRow[headerRow.str.contains(re.compile(re.match(Evaluator.reDetector, string).group(1)))].index[0] for string in headersOrREGEX]
-    newEval = evalString
-    for headerString, conversionAttributes in conversionDict.items():
-        replacement = dataFrameName + ".loc[" + stringRowRange + "," + str(conversionAttributes["columnLocation"]) + "]"
-        if "typeConversion" in conversionAttributes:
-            replacement = replacement + ".astype(" + conversionAttributes["typeConversion"] + ")"
-            
-        newEval = re.sub("\s*\w*\(?\s*\#" + headerString + "\#\s*\)?\s*", replacement, newEval)
-                                  
-    return newEval
-                         
-    
     
 
 class Evaluator(object) :
@@ -801,7 +774,7 @@ class TagParser(object):
                 recordMakers[-1].addField(table, field, fieldMakerClass)
                 if field == "id" :
                     childWithoutID = False
-                    if     len(tokens) > 0 and tokens[0] == "=" :
+                    if len(tokens) > 0 and tokens[0] == "=" :
                         recordMakers[-1].addColumnOperand(recordMakers[1].shortField("id").operands[0].value)
                     else :                                
                         recordMakers[-1].addColumnOperand(self.columnIndex)                                
@@ -872,7 +845,8 @@ class TagParser(object):
         
         recordMakers.pop(0)    # pop example RecordMaker used to hold global literals.    
         return recordMakers
-## TODO add check to make sure there is an id tag.
+
+    
     def _parseRow(self, recordMakers, row) :
         """Create new records and add them to the nested extraction dictionary.
 
@@ -880,6 +854,8 @@ class TagParser(object):
         :param :py:class:`pandas.core.series.Series` row:
         """
         for recordMaker in recordMakers :
+            if not recordMaker.hasValidID():
+                return
             table,record = recordMaker.create(row)
             if not table in self.extraction :
                 self.extraction[table] = {}
@@ -936,23 +912,31 @@ class TagParser(object):
         emptyRows = (worksheet=="").all(axis=1)
         
         possibleEndOfTagGroupRows = emptyRows | tagRows
-        possibleEndOfTagGroupRows.iloc[-1] = True
         worksheetHeaderRows = worksheet[tagRows]
         endOfTagGroupIndexes = []
         for header_index in worksheetHeaderRows.index:
+            endingIndexFound = False
             for index in possibleEndOfTagGroupRows[possibleEndOfTagGroupRows].index:
                 if index > header_index:
                     endOfTagGroupIndexes.append(index)
+                    endingIndexFound = True
                     break
+            if not endingIndexFound:
+                endOfTagGroupIndexes.append(possibleEndOfTagGroupRows.index[-1]+1)
             
         for headerRow in range(worksheetHeaderRows.shape[0]):
             headerRowIndex = worksheetHeaderRows.iloc[headerRow,:].name
             recordMakers = self._parseHeaderRow(worksheet.loc[headerRowIndex, :])
+            ## recordMakers should only ever be either 1 or 2 in size. If 2 then 
+            ## it is a child record and the first recordMaker is just making the 
+            ## parent record using the child's indicated id.
+            if not recordMakers[-1].hasValidID():
+                print("Warning: The header row at index " + str(headerRowIndex) + " in the compiled export sheet does not have an \"id\" tag, so it will not be in the JSON output.", file=sys.stderr)
             rowsToParse = [index for index in range(headerRowIndex+1, endOfTagGroupIndexes[headerRow])]
             rowsToParse = ignoreRows.iloc[rowsToParse][~ignoreRows]
             for index in rowsToParse.index:
                 self._parseRow(recordMakers, worksheet.loc[index, :])
-
+        
         self.rowIndex = -1
 
 
@@ -1063,7 +1047,6 @@ class TagParser(object):
                 ## Ultimately modifies self.extraction.
                 self.parseSheet(*dataFrameTuple)
 
-        
         if self.extraction:
             self.convert(conversionDirectives)
 
@@ -1100,7 +1083,12 @@ class TagParser(object):
         :rtype: :py:class:`pandas.dataFrame`
         """
         
-        worksheet = cythonized_tagSheet.tagSheet(taggingDirectives, worksheet.to_numpy())
+        worksheet, wasTaggingDirectiveUsed = cythonized_tagSheet.tagSheet(taggingDirectives, worksheet.to_numpy())
+        
+        for i, directive in enumerate(wasTaggingDirectiveUsed):
+            if not directive:
+                print("Warning: Tagging directive number " + str(i) + " was never used.", file=sys.stderr)
+        
         worksheet = pandas.DataFrame(worksheet)
 
         return worksheet
@@ -1729,6 +1717,10 @@ class TagParser(object):
 #                            elif fieldValue in idTranslation[fieldKey]:
 #                                record[fieldKey] = idTranslation[fieldKey][fieldValue]
 
+            for tableKey in self.extraction:
+                if len(self.extraction[tableKey]) > len(translated[tableKey]):
+                    print("Warning: A conversion directive has set at least 2 records in the \"" + tableKey + "\" table to the same id. The output will have less records than expected.", file=sys.stderr)
+            
             self.extraction = translated
 
             # Identify used and unused conversion directives.
