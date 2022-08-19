@@ -6,3 +6,5 @@ conversion_results/
 data/
 test.py
 *.zip
+pytest_coverage_run_command.txt
+.coverage

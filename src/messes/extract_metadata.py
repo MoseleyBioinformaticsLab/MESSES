@@ -13,9 +13,9 @@
     --help                              - show this help documentation.
     --output <filename_json>            - output json filename.
     --compare <filename_json>           - compare extracted metadata to given JSONized metadata.
-    --convert <source>                  - conversion directives worksheet name, regular expression, csv/json filename, or xlsx_filename[:worksheet_name|regular_expression] [default: #convert].
-    --end-convert <source>              - apply conversion directives after all metadata merging. Requires csv/json filename or xlsx_filename:worksheet_name|regular_expression.
-    --tagging <source>                  - tagging directives worksheet name, regular expression, csv/json filename, or xlsx_filename[:worksheet_name|regular_expression] [default: #tagging].
+    --convert <source>                  - conversion directives worksheet name, regular expression, csv/json filename, or xlsx_filename:[worksheet_name|regular_expression] [default: #convert].
+    --end-convert <source>              - apply conversion directives after all metadata merging. Requires csv/json filename or xlsx_filename:[worksheet_name|regular_expression].
+    --tagging <source>                  - tagging directives worksheet name, regular expression, csv/json filename, or xlsx_filename:[worksheet_name|regular_expression] [default: #tagging].
     --save-directives <filename_json>   - output filename with conversion and tagging directives in JSON format.
     --save-export <filetype>            - output export worksheet with suffix "_export" and with the indicated xlsx/csv format extension.
     --show <show_option>                - show a part of the metadata. See options below.
@@ -62,12 +62,18 @@ Regular Expression Format:
 ## Should an output filename be required? You can run the program and get nothing out as is.
 ## Be sure to deal with errors in order. Something like a duplicated header can then make a conversion not match, 
 ## so deal with the header and then both errors go away.
+## Let metadata sources be URLs
+## Think about handling column based data, transpose rows and columns and then read in.
+## Possibly add a #max-distance tag for levenshtein comaprison to put a minimum distance that must be acheived to be considered a match.
+## Possibly add an option not to print warnings about unused conversion directives.
+## Document the conversion tag precedence, both that exact goes first, then regex, then levens, and that top most conversions go first.
 
 import os.path
 import copy
 import sys
 import re
 import collections
+import pathlib
 
 import json
 import pandas
@@ -81,7 +87,7 @@ silent = False
 
 def main() :
     args = docopt.docopt(__doc__)
-
+    
     if args["--silent"]:
         global silent
         silent = True
@@ -96,8 +102,18 @@ def main() :
         tagParser = TagParser()
         
 
+    if any([True for arg in sys.argv if arg == "--convert"]):
+        convertDefaulted = False
+    else:
+        convertDefaulted = True
+        
+    if any([True for arg in sys.argv if arg == "--tagging"]):
+        taggingDefaulted = False
+    else:
+        taggingDefaulted = True
+
     for metadataSource in args["<metadata_source>"]:
-        tagParser.readMetadata(metadataSource, args["--tagging"], args["--convert"], args["--save-export"])
+        tagParser.readMetadata(metadataSource, args["--tagging"], taggingDefaulted, args["--convert"], convertDefaulted, args["--save-export"])
 
     ## --end-convert is needed so that the merged metadata files can all be converted after being merged together.
     ## Without this each metadatasource only gets its own conversion.
@@ -118,29 +134,61 @@ def main() :
         tagParser.deleteMetadata(sections)
 
     if args["--keep"]:
-        keep = args["--keep"].split(",")
-        sections = [ [ tableKey ] for tableKey in tagParser.extraction.keys() if tableKey not in keep ]
+        keep_strings = args["--keep"].split(",")
+        keep_regexes = []
+        for string in keep_strings:
+            if re.match(TagParser.reDetector, string):
+                keep_regexes.append(re.compile(re.match(TagParser.reDetector, string)[1]))
+            else:
+                keep_regexes.append(re.compile("^" + re.escape(string) + "$"))
+        
+        tables_to_keep = []
+        for regex in keep_regexes:
+            for table in tagParser.extraction:
+                if re.search(regex, table):
+                    tables_to_keep.append(table)
+        sections = [ [ tableKey ] for tableKey in tagParser.extraction.keys() if tableKey not in tables_to_keep ]
         tagParser.deleteMetadata(sections)
 
-    if args["--show"] == "tables" or args["--show"] == "all":
-        print("Tables: "," ".join(tagParser.extraction.keys()))
-
-    if args["--show"] == "lineage" or args["--show"] == "all":
-        lineages = tagParser.generateLineages()
-        tagParser.printLineages(lineages,indentation=0, file=sys.stdout)
+    if args["--show"]:
+        
+        validShowSubOption = False
+        
+        if args["--show"] == "tables" or args["--show"] == "all":
+            print("Tables: "," ".join(tagParser.extraction.keys()))
+            validShowSubOption = True
+    
+        if args["--show"] == "lineage" or args["--show"] == "all":
+            lineages = tagParser.generateLineages()
+            tagParser.printLineages(lineages,indentation=0, file=sys.stdout)
+            validShowSubOption = True
+        
+        if not validShowSubOption:
+            print("Unknown sub option for \"--show\" option: \"" + args["--show"] + "\"", file=sys.stderr)
 
     if args["--output"]: # save to JSON
+        if pathlib.Path(args["--output"]).suffix != ".json":
+            args["--output"] = args["--output"] + ".json"
         with open(args["--output"],'w') as jsonFile :
             jsonFile.write(json.dumps(tagParser.extraction, sort_keys=True, indent=2, separators=(',', ': ')))
 
     if args["--compare"]:
-        with open(args["--compare"], 'r') as jsonFile:
-            otherMetadata = json.load(jsonFile)
-            print("Comparison", file=sys.stdout)
-            if not tagParser.compare(otherMetadata, file=sys.stdout):
-                print("No differences detected.", file=sys.stdout)
+        comparePath = pathlib.Path(args["--compare"])
+        if comparePath.exists():
+            if comparePath.suffix != ".json":
+                print("Error: The provided file for comparison is not a JSON file.", file=sys.stderr)
+            else:
+                with open(comparePath, 'r') as jsonFile:
+                    otherMetadata = json.load(jsonFile)
+                    print("Comparison", file=sys.stdout)
+                    if not tagParser.compare(otherMetadata, file=sys.stdout):
+                        print("No differences detected.", file=sys.stdout)
+        else:
+            print("Error: The provided file for comparison does not exist.", file=sys.stderr)
 
     if args["--save-directives"]:
+        if pathlib.Path(args["--save-directives"]).suffix != ".json":
+            args["--save-directives"] = args["--save-directives"] + ".json"
         if getattr(tagParser, "conversionDirectives", None) != None or getattr(tagParser, "taggingDirectives", None) != None:
             directives = {}
             if getattr(tagParser, "conversionDirectives", None) != None:
@@ -375,7 +423,9 @@ class ListFieldMaker(FieldMaker) :
 
         return value
 
-
+    ## Currently I don't think this can be called from the CLI. 
+    ## The only time shallowClone is called is when a child is created and that is 
+    ## only ever called on a FieldMaker type, not ListFieldMaker.
     def shallowClone(self) :
         """RETURNS clone with shallow copy of operands.
 
@@ -523,7 +573,7 @@ class RecordMaker(object) :
         :return: boolean
         :rtype: :py:class:`bool`
         """
-        return self.hasShortField("id") and type(self.shortField("id").operands[0]) is ColumnOperand
+        return self.hasShortField("id") and type(self.shortField("id").operands[0]) is ColumnOperand and not type(self.shortField("id")) == ListFieldMaker
 
     def properField(self, table, field) :
         """RETURNS proper field name based on given PARAMETER table and field and internal table type of record.
@@ -537,6 +587,7 @@ class RecordMaker(object) :
             field = table + "." + field
         return field
 
+    ## This is currently never called anywhere, so cannot be tested through the CLI.
     def field(self, table, field) :
         """RETURNS FieldMaker for PARAMETERS table.field.
 
@@ -562,7 +613,7 @@ class RecordMaker(object) :
 
 class TagParserError(Exception):
     """Exception class for errors thrown by TagParser."""
-    def __init__(self, message, fileName, sheetName, rowIndex, columnIndex) :
+    def __init__(self, message, fileName, sheetName, rowIndex, columnIndex, endMessage="") :
         """
         :param :py:class:`str` message:
         :param :py:class:`str` fileName:
@@ -575,7 +626,7 @@ class TagParserError(Exception):
         else:
             cellName = "col " + str(columnIndex+1) + ", row " + str(rowIndex+1)
 
-        self.value = message + " at cell \"" + fileName + ":" + sheetName + "[" + cellName + "]\""
+        self.value = message + " at cell \"" + fileName + ":" + sheetName + "[" + cellName + "]\"" + endMessage
         
     @staticmethod
     def columnName(columnIndex) :
@@ -682,6 +733,8 @@ class TagParser(object):
         
         if field == "" :
             if self.lastField == "" :
+                ## There does not appear to be a way to get to this error from the CLI.
+                ## Any tag missing a field triggers a different error.
                 raise TagParserError("Undefined field name", self.fileName, self.sheetName, self.rowIndex, self.columnIndex)
             field = self.lastField
         else :
@@ -730,6 +783,7 @@ class TagParser(object):
             token = tokens.pop(0)
             
             # check for common errors
+            ## This cannot be triggered from the CLI with #tags in assignment. It will hit another error about #tags only being on the first column first.
             if assignment and (token == '#table' or token == "#tags" or re.match(TagParser.childDetector, token)) :
                 raise TagParserError("#table, #tags, or #%child tags  in assignment", self.fileName, self.sheetName, self.rowIndex, self.columnIndex)
             if len(tokens) > 0 and re.match(TagParser.operatorDetector,token) and re.match(TagParser.operatorDetector,tokens[0]) :
@@ -769,6 +823,8 @@ class TagParser(object):
                     raise TagParserError("second explicit non-id child field specified", self.fileName, self.sheetName, self.rowIndex, self.columnIndex)
                 if not childWithoutID :
                     recordMakers.append(RecordMaker.child(recordMakers[0], table, recordMakers[1].shortField("id").operands[0].value))
+                ## As far as I can tell this error is impossible to reach from the CLI. Trying to create duplicate fields will lead to triggering one of 
+                ## second explicit errors above.
                 if recordMakers[-1].isInvalidDuplicateField(table, field, fieldMakerClass) :
                     raise TagParserError(str("field \"") + field + "\" specified twice in " + table + " record", self.fileName, self.sheetName, self.rowIndex, self.columnIndex)
                 recordMakers[-1].addField(table, field, fieldMakerClass)
@@ -777,7 +833,7 @@ class TagParser(object):
                     if len(tokens) > 0 and tokens[0] == "=" :
                         recordMakers[-1].addColumnOperand(recordMakers[1].shortField("id").operands[0].value)
                     else :                                
-                        recordMakers[-1].addColumnOperand(self.columnIndex)                                
+                        recordMakers[-1].addColumnOperand(self.columnIndex)
                 else :
                     childWithoutID = True
                     recordMakers[-1].addColumnOperand(self.columnIndex)                                
@@ -790,7 +846,7 @@ class TagParser(object):
                     recordMakers[0].addGlobalField(table, field, tokens.pop(0))                     
                 elif assignment :
                     if not recordMakers[-1].hasField(table, field, 1) or recordMakers[-1].isLastField(table,field) :
-                        raise TagParserError("assignment tag is not previously defined in record", self.fileName, self.sheetName, self.rowIndex, self.columnIndex)
+                        raise TagParserError("the field or attribute value used for assignment is not previously defined in record", self.fileName, self.sheetName, self.rowIndex, self.columnIndex)
                     recordMakers[-1].addVariableOperand(table, field)
                 else :
                     if recordMakers[-1].isInvalidDuplicateField(table, field, fieldMakerClass) :
@@ -803,9 +859,11 @@ class TagParser(object):
             elif token == "*" :
                 fieldMakerClass = ListFieldMaker
             elif token == "+" :
+                ## This check is done above, but this elif needs to be here to munch the + operator so it isn't added as a literOperand.
                 if not assignment :
                     raise TagParserError("+ operator not in an assignment", self.fileName, self.sheetName, self.rowIndex, self.columnIndex)
             elif token == "," :
+                ## This check is done above, but this elif needs to be here to munch the , operator so it isn't added as a literOperand.
                 if not assignment or fieldMakerClass != ListFieldMaker:
                     raise TagParserError(", operator not in a list field assignment", self.fileName, self.sheetName, self.rowIndex, self.columnIndex)
             elif token == ";" :
@@ -875,17 +933,20 @@ class TagParser(object):
                         self.trackedFieldsDict[fieldToAdd] = record[fieldToAdd]
             
             
-
             if not record["id"] in self.extraction[table] :
                 self.extraction[table][record["id"]] = record
             else :
                 for key in record :
                     if key == "id" :
                         pass
+                    ## For when the same record is on multiple tables in the tabular file.
                     elif not key in self.extraction[table][record["id"]] :
                         self.extraction[table][record["id"]][key] = record[key]
                     elif isinstance(self.extraction[table][record["id"]][key], list) :
-                        self.extraction[table][record["id"]][key].append(record[key])
+                        if isinstance(record[key], list):
+                            self.extraction[table][record["id"]][key] = self.extraction[table][record["id"]][key] + record[key]
+                        else:
+                            self.extraction[table][record["id"]][key].append(record[key])
                     elif self.extraction[table][record["id"]][key] != record[key] :
                         self.extraction[table][record["id"]][key] = [ self.extraction[table][record["id"]][key], record[key] ]
 
@@ -907,8 +968,8 @@ class TagParser(object):
         self.sheetName = sheetName
 
         
-        tagRows = worksheet.iloc[:,0] == "#tags"
-        ignoreRows = worksheet.iloc[:,0] == "#ignore"
+        tagRows = worksheet.iloc[:,0].str.match("#tags")
+        ignoreRows = worksheet.iloc[:,0].str.match("#ignore")
         emptyRows = (worksheet=="").all(axis=1)
         
         possibleEndOfTagGroupRows = emptyRows | tagRows
@@ -926,11 +987,12 @@ class TagParser(object):
             
         for headerRow in range(worksheetHeaderRows.shape[0]):
             headerRowIndex = worksheetHeaderRows.iloc[headerRow,:].name
+            self.rowIndex = headerRowIndex
             recordMakers = self._parseHeaderRow(worksheet.loc[headerRowIndex, :])
             ## recordMakers should only ever be either 1 or 2 in size. If 2 then 
             ## it is a child record and the first recordMaker is just making the 
             ## parent record using the child's indicated id.
-            if not recordMakers[-1].hasValidID():
+            if not recordMakers[-1].hasValidID() and not silent:
                 print("Warning: The header row at index " + str(headerRowIndex) + " in the compiled export sheet does not have an \"id\" tag, so it will not be in the JSON output.", file=sys.stderr)
             rowsToParse = [index for index in range(headerRowIndex+1, endOfTagGroupIndexes[headerRow])]
             rowsToParse = ignoreRows.iloc[rowsToParse][~ignoreRows]
@@ -941,10 +1003,11 @@ class TagParser(object):
 
 
     @staticmethod
-    def loadSheet(sheetInfo, silent=False):
+    def loadSheet(sheetInfo, isDefaultSearch=False, silent=False):
         """Load and RETURN worksheet as a pandas data frame.
 
         :param :py:class:`str` sheetInfo: filename and sheetname (if needed).
+        :param :py:class:`bool` isDefaultSearch: whether or not the sheetInfo is using default values, determines whether to print some messages
         :return: dataFrameTuple (fileName, sheetName, dataFrame).
         :rtype: :py:class:`tuple` or :py:obj:`None`
         """
@@ -959,30 +1022,41 @@ class TagParser(object):
                 if re.match(TagParser.reDetector, sheetName):
                     sheetDetector = re.compile(re.match(TagParser.reDetector, sheetName)[1])
                 else:
-                    sheetDetector = re.compile("^"+sheetName+"$")
+                    sheetDetector = re.compile("^" + re.escape(sheetName) + "$")
 
                 for sheetName in workbook.sheet_names:
                     if re.search(sheetDetector, sheetName) != None:
                         dataFrame = pandas.read_excel(workbook, sheetName, header=None, index_col=None, dtype=str)
                         if len(dataFrame) == 0:
                             print("There is no data in worksheet \"" + sheetInfo + "\".", file=sys.stderr)
+                            return None
                         else:
                             ## Empty cells are read in as nan by default, replace with empty string.
                             dataFrame = dataFrame.fillna("")
                             return (fileName, sheetName, dataFrame)
-                if not silent:
-                    print("No usable worksheet \"" + sheetInfo + "\" found.", file=sys.stderr)
+                if not isDefaultSearch:
+                    print("r'" + sheetDetector.pattern + "' did not match any sheets in \"" + fileName + "\".", file=sys.stderr)
             else:
                 print("Excel workbook \"" + reCopier.value.group(1) + "\" does not exist.", file=sys.stderr)
         elif re.search(r"\.csv$", sheetInfo):
-            dataFrame = pandas.read_csv(sheetInfo, header=None, index_col=None, dtype=str)
-            if len(dataFrame) == 0:
-                print("There is no data in worksheet \"" + sheetInfo + "\".", file=sys.stderr)
+            if pathlib.Path(sheetInfo).exists():
+                try:
+                    dataFrame = pandas.read_csv(sheetInfo, header=None, index_col=None, dtype=str)
+                except pandas.errors.EmptyDataError:
+                    print("There is no data in csv file \"" + sheetInfo + "\".", file=sys.stderr)
+                    dataFrame = pandas.DataFrame()
+                else:
+                    ## I don't think there is a way to read in a csv file with no length. All my attempts resulted in an error.
+                    ## Thus this is not testable from the CLI.
+                    if len(dataFrame) == 0:
+                        print("There is no data in csv file \"" + sheetInfo + "\".", file=sys.stderr)
+                    else:
+                        dataFrame = dataFrame.fillna("") # Empty cells are read in as nan by default. Therefore replace with empty string.
+                        fileName = sheetInfo
+                        sheetName = ""
+                        return (fileName, sheetName, dataFrame)
             else:
-                dataFrame = dataFrame.fillna("") # Empty cells are read in as nan by default. Therefore replace with empty string.
-                fileName = sheetInfo
-                sheetName = ""
-                return (fileName, sheetName, dataFrame)
+                print("The csv file \"" + sheetInfo + "\" does not exist.", file=sys.stderr)
         else:
             raise Exception("Invalid worksheet identifier \"" + sheetInfo + "\" passed into function.")
 
@@ -999,12 +1073,14 @@ class TagParser(object):
         """
         return ".xls" in string or ".xlsx" in string or ".xlsm" in string or ".csv" in string or ".json" in string
 
-    def readMetadata(self, metadataSource, taggingSource, conversionSource, saveExtension=None):
+    def readMetadata(self, metadataSource, taggingSource, taggingDefaulted, conversionSource, convertDefaulted, saveExtension=None):
         """Reads metadata from source.
 
         :param :py:class:`str` metadataSource:  metadata source given as a filename with possibly a sheetname if appropriate.
         :param :py:class:`str` taggingSource:  tagging source given as a filename and/or sheetname
+        :param :py:class:`bool` taggingDefaulted:  whether the tagging source is the default value or not, passed to readDirectives for message printing
         :param :py:class:`str` conversionSource: conversion source given as a filename and/or sheetname.
+        :param :py:class:`bool` convertDefaulted:  whether the convert source is the default value or not, passed to readDirectives for message printing
         """
         reCopier = copier.Copier()
         if not TagParser.hasFileExtension(taggingSource) and reCopier(re.search(r"(.*\.xls[xm]?)", metadataSource)):
@@ -1020,11 +1096,11 @@ class TagParser(object):
         if re.search(r"\.xls[xm]?$", metadataSource):
             metadataSource += ":#export"
 
-        taggingDirectives = self.readDirectives(taggingSource, "tagging") if TagParser.hasFileExtension(taggingSource) else None
+        taggingDirectives = self.readDirectives(taggingSource, "tagging", taggingDefaulted) if TagParser.hasFileExtension(taggingSource) else None
         ## Structure of conversionDirectives: {table_key:{field_key:{comparison_type:{field_value:{directive:{field_key:directive_value}}}}}} 
         ## The directive value is the new value to give the field or regex, regex is a list, assign is a string.
         ## unique is handled by having "-unique" added to comparison type key, so there is "exact-unique" and "exact".
-        conversionDirectives = self.readDirectives(conversionSource, "conversion") if TagParser.hasFileExtension(conversionSource) else None
+        conversionDirectives = self.readDirectives(conversionSource, "conversion", convertDefaulted) if TagParser.hasFileExtension(conversionSource) else None
 
         if re.search(r"\.json$", metadataSource):
             with open(metadataSource, 'r') as jsonFile:
@@ -1083,10 +1159,10 @@ class TagParser(object):
         :rtype: :py:class:`pandas.dataFrame`
         """
         
-        worksheet, wasTaggingDirectiveUsed = cythonized_tagSheet.tagSheet(taggingDirectives, worksheet.to_numpy())
+        worksheet, wasTaggingDirectiveUsed = cythonized_tagSheet.tagSheet(taggingDirectives, worksheet.to_numpy(), silent)
         
         for i, directive in enumerate(wasTaggingDirectiveUsed):
-            if not directive:
+            if not directive and not silent:
                 print("Warning: Tagging directive number " + str(i) + " was never used.", file=sys.stderr)
         
         worksheet = pandas.DataFrame(worksheet)
@@ -1120,7 +1196,8 @@ class TagParser(object):
                     parsing = True
                     valueIndex = -1
                     comparisonIndex = -1
-                    comparisonType = "exact"
+                    comparisonType = "regex|exact"
+                    userSpecifiedType = False
                     isUnique = "-unique"
                     uniqueIndex = -1
                     assignIndeces = []
@@ -1187,8 +1264,9 @@ class TagParser(object):
                                 raise TagParserError("Table name does not match between #table_name.field_name.value and #table_name.field_name.regex conversion tags", self.fileName, self.sheetName, self.rowIndex, self.columnIndex)
                             regexIndeces.append(self.columnIndex)
                             regexFields.append(reCopier.value.group(2))
-                        elif reCopier(re.match('\s*#comparison\s*=\s*(exact|regex|levenshtein)\s*$', cellString)):
+                        elif reCopier(re.match('\s*#comparison\s*=\s*(exact|regex|regex\|exact|levenshtein)\s*$', cellString)):
                             comparisonType=reCopier.value.group(1)
+                            userSpecifiedType = True
                         elif re.match('\s*#comparison\s*$', cellString):
                             comparisonIndex = self.columnIndex
                         elif re.match('\s*#unique\s*=\s*[Tt]rue\s*$', cellString):
@@ -1198,8 +1276,8 @@ class TagParser(object):
                         elif re.match('\s*#unique\s*$', cellString):
                             uniqueIndex = self.columnIndex
                         self.columnIndex = -1
-                    if valueIndex == -1 or (len(assignIndeces) == 0 and len(appendIndeces) == 0 and len(prependIndeces) == 0 and len(regexIndeces) == 0 and len(deletionFields) == 0):
-                        raise TagParserError("Missing #table_name.field_name.value or #.field_name.assign|append|prepend|regex|delete conversion tags", self.fileName, self.sheetName, self.rowIndex, self.columnIndex)
+                    if valueIndex == -1 or (len(assignIndeces) == 0 and len(appendIndeces) == 0 and len(prependIndeces) == 0 and len(regexIndeces) == 0 and len(deletionFields) == 0 and not renameFieldMap):
+                        raise TagParserError("Missing #table_name.field_name.value or #.field_name.assign|append|prepend|regex|delete|rename conversion tags", self.fileName, self.sheetName, self.rowIndex, self.columnIndex)
                     if "id" in deletionFields:
                         raise TagParserError("Not allowed to delete id fields", self.fileName, self.sheetName, self.rowIndex, self.columnIndex)
                     if not table in self.conversionDirectives:
@@ -1214,8 +1292,17 @@ class TagParser(object):
                     fieldValue = xstr(worksheet.iloc[self.rowIndex, valueIndex]).strip()
                     if comparisonIndex != -1 and reCopier(xstr(worksheet.iloc[self.rowIndex, comparisonIndex]).strip()) in TagParser.conversionComparisonTypes:
                         localComparisonType = reCopier.value
+                        
                     else:
-                        localComparisonType = "regex" if re.match(TagParser.reDetector, fieldValue) else comparisonType
+                        if not userSpecifiedType or comparisonType == "regex|exact":
+                            localComparisonType = "regex" if re.match(TagParser.reDetector, fieldValue) else "exact"
+                        else:
+                            localComparisonType = comparisonType
+                    
+                    if localComparisonType == "regex" and not re.match(TagParser.reDetector, fieldValue):
+                        print(TagParserError("Comparison type is indicated as regex, but comparison value is not a regex", self.fileName, self.sheetName, self.rowIndex, valueIndex, " This conversion will be skipped."), file=sys.stderr)
+                        # raise TagParserError("Comparison type is indicated as regex, but comparison value is not a regex", self.fileName, self.sheetName, self.rowIndex, valueIndex)
+                        continue
 
                     if uniqueIndex != -1 and re.match("[Tt]rue$", xstr(worksheet.iloc[self.rowIndex, uniqueIndex]).strip()):
                         localUnique = "-unique"
@@ -1229,7 +1316,7 @@ class TagParser(object):
                     assignFieldMap = {}
                     for i in range(len(assignIndeces)):
                         assignFieldValue = xstr(worksheet.iloc[self.rowIndex, assignIndeces[i]]).strip()
-                        if re.match(r"\*", assignFieldTypes[i]):
+                        if re.match(r"\*", assignFieldTypes[i]) and not Evaluator.isEvalString(assignFieldValue):
                             ## If the list field contains semicolons use it to split instead of commas.
                             if re.match(r".*;.*", assignFieldValue):
                                 assignFieldValue = assignFieldValue.strip(";").split(";")
@@ -1404,10 +1491,12 @@ class TagParser(object):
 
         self.rowIndex = -1
 
-    def readDirectives(self, source, directiveType):
+    def readDirectives(self, source, directiveType, isDefaultSearch=False):
         """Read directives source of a given directive type.
 
         :param :py:class:`str` source: filename with sheetname (optional).
+        :param :py:class:`str` directiveType: either "conversion" or "tagging" to call the correct parsing function
+        :param :py:class:`bool` isDefaultSearch: whether or not the source is using default values, passed to loadSheet for message printing
         :return: directives
         :rtype: :py:class:`dict`
         """
@@ -1415,13 +1504,14 @@ class TagParser(object):
         if re.search(r"\.json$", source):
             with open(source, 'r') as jsonFile:
                 directives = json.load(jsonFile)
-                if type(directives) == dict:
-                    if directiveType in directives:
-                        directives = directives[directiveType]
+                if type(directives) == dict and directiveType in directives:
+                    directives = directives[directiveType]
                 else:
                     directives = None
+                    if not silent:
+                        print("Warning: The input directives JSON file is either not a dict or does not contain the directive keyword \"" + directiveType + "\". This means that " + directiveType + " will not be done.", file=sys.stderr)
         elif TagParser.hasFileExtension(source):
-            dataFrameTuple = TagParser.loadSheet(source, silent=True)
+            dataFrameTuple = TagParser.loadSheet(source, isDefaultSearch)
             if dataFrameTuple != None:
                 if directiveType == "conversion":
                     self.conversionDirectives = {}
@@ -1430,15 +1520,16 @@ class TagParser(object):
                 else:
                     self.taggingDirectives = []
                     self._parseTaggingSheet(*dataFrameTuple)
-                    directives = self.taggingDirectives
+                    directives = copy.deepcopy(self.taggingDirectives)
 
         return directives
 
     @staticmethod
-    def _applyConversionDirectives(record, conversions):
+    def _applyConversionDirectives(record, record_path, conversions):
         """Apply conversion directives to the given record.
 
         :param :py:class:`dict` record: table record
+        :param :py:class: `str` record_path: record_path
         :param :py:class:`dict` conversions: nested dict of field additions and deletions.
         """
         if "assign" in conversions:
@@ -1447,7 +1538,7 @@ class TagParser(object):
                     if newValue.hasRequiredFields(record):
                         record[newField] = newValue.evaluate(record)
                     elif not silent:
-                        print("Warning: Field assignment directive \"" + newField + "\" missing required field(s) \"" + ",".join([ field for field in newValue.requiredFields if field not in record]) + "\"", file=sys.stderr)
+                        print("Warning: Field assignment directive \"" + newField + "\" missing required field(s) \"" + ",".join([ field for field in newValue.requiredFields if field not in record]) + "\", or a regular expression matched no fields or more than one.", file=sys.stderr)
                 else:
                     record[newField] = newValue
 
@@ -1559,7 +1650,7 @@ class TagParser(object):
         :param :py:class:`bool` isUnique: are the directives uniquely applied?
         """
         comparisonType = "regex" if not isUnique else "regex-unique"
-
+        
         if comparisonType in conversionDirectives[tableKey][fieldKey]:
             table = self.extraction[tableKey]
             for idKey, record in table.items():
@@ -1609,7 +1700,7 @@ class TagParser(object):
                         elif (tableKey, fieldKey, record[fieldKey]) not in usedRecordTuples:
                             levenshteinComparisons[levID][idKey] = jellyfish.levenshtein_distance(levID, record[fieldKey])
                             levenshteinComparisonValues[levID][idKey] = record[fieldKey]
-
+            
             idKeySet = set()
             for levID in levenshteinComparisons.keys():
                 idKeySet |= set(levenshteinComparisons[levID].keys())
@@ -1619,6 +1710,7 @@ class TagParser(object):
                 usableLevIDs = [levID for levID in levenshteinComparisons.keys() if idKey in levenshteinComparisons[levID]]
                 minLevID = min(levenshteinComparisons.keys(), key=(lambda k: levenshteinComparisons[k][idKey]))
                 minLevValue = levenshteinComparisons[minLevID][idKey]
+                ## Only 1 match to min value.
                 if sum(levenshteinComparisons[levKey][idKey] == minLevValue for levKey in usableLevIDs) == 1:
                     uniqueForIdKey[idKey] = minLevID
 
@@ -1718,7 +1810,7 @@ class TagParser(object):
 #                                record[fieldKey] = idTranslation[fieldKey][fieldValue]
 
             for tableKey in self.extraction:
-                if len(self.extraction[tableKey]) > len(translated[tableKey]):
+                if len(self.extraction[tableKey]) > len(translated[tableKey]) and not silent:
                     print("Warning: A conversion directive has set at least 2 records in the \"" + tableKey + "\" table to the same id. The output will have less records than expected.", file=sys.stderr)
             
             self.extraction = translated
@@ -1836,7 +1928,7 @@ class TagParser(object):
 
         :param :py:class`list` sections: list of sections that are lists of strings.
         """
-        compiled_sections = [ [ re.compile(re.match(TagParser.reDetector, keyElement)[1]) if re.match(TagParser.reDetector, keyElement) else re.compile("^" + keyElement + "$") for keyElement in section ] for section in sections ]
+        compiled_sections = [ [ re.compile(re.match(TagParser.reDetector, keyElement)[1]) if re.match(TagParser.reDetector, keyElement) else re.compile("^" + re.escape(keyElement) + "$") for keyElement in section ] for section in sections ]
 
         for section in compiled_sections:
             matched_key_levels = [ (None,None,self.extraction) ]

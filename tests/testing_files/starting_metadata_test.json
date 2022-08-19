@@ -1,6 +1,6 @@
 {
   "measurement": {
-    "(S)-2-Acetolactate_Glutaric acid_Methylsuccinic acid_MP_NoStd-13C0-01_A0_Colon_T03-2017_naive_170427_UKy_GCB_rep1-quench": {
+    "(S)-2-Acetolactate Glutaric acid Methylsuccinic acid-13C0-01_A0_Colon_T03-2017_naive_170427_UKy_GCB_rep1-quench": {
       "assignment": "(S)-2-Acetolactate_Glutaric acid_Methylsuccinic acid_MP_NoStd-13C0",
       "compound": "(S)-2-Acetolactate_Glutaric acid_Methylsuccinic acid_MP_NoStd",
       "concentration": "0",
@@ -8,8 +8,8 @@
       "concentration%units": "uM",
       "corrected_raw_intensity": "8447352.89211",
       "corrected_raw_intensity%type": "natural abundance corrected peak area",
-      "formula": "asdf",
-      "id": "(S)-2-Acetolactate_Glutaric acid_Methylsuccinic acid_MP_NoStd-13C0-01_A0_Colon_T03-2017_naive_170427_UKy_GCB_rep1-quench",
+      "formula": "C5H8O4",
+      "id": "(S)-2-Acetolactate Glutaric acid Methylsuccinic acid-13C0-01_A0_Colon_T03-2017_naive_170427_UKy_GCB_rep1-quench",
       "intensity": "13664945.509939667",
       "intensity%type": "natural abundance corrected and protein normalized peak area",
       "intensity%units": "area/g",
@@ -23,7 +23,7 @@
       "raw_intensity%type": "spectrometer peak area",
       "sample.id": "01_A0_Colon_T03-2017_naive_170427_UKy_GCB_rep1-quench"
     },
-    "(S)-2-Acetolactate_Glutaric acid_Methylsuccinic acid_MP_NoStd-13C1-01_A0_Colon_T03-2017_naive_170427_UKy_GCB_rep1-quench": {
+    "(S)-2-Acetolactate Glutaric acid Methylsuccinic acid-13C1-01_A0_Colon_T03-2017_naive_170427_UKy_GCB_rep1-quench": {
       "assignment": "(S)-2-Acetolactate_Glutaric acid_Methylsuccinic acid_MP_NoStd-13C1",
       "compound": "(S)-2-Acetolactate_Glutaric acid_Methylsuccinic acid_MP_NoStd",
       "concentration": "0",
@@ -31,8 +31,8 @@
       "concentration%units": "uM",
       "corrected_raw_intensity": "0",
       "corrected_raw_intensity%type": "natural abundance corrected peak area",
-      "formula": "asdf",
-      "id": "(S)-2-Acetolactate_Glutaric acid_Methylsuccinic acid_MP_NoStd-13C1-01_A0_Colon_T03-2017_naive_170427_UKy_GCB_rep1-quench",
+      "formula": "C5H8O4",
+      "id": "(S)-2-Acetolactate Glutaric acid Methylsuccinic acid-13C1-01_A0_Colon_T03-2017_naive_170427_UKy_GCB_rep1-quench",
       "intensity": "0.0",
       "intensity%type": "natural abundance corrected and protein normalized peak area",
       "intensity%units": "area/g",
