@@ -67,6 +67,7 @@ Regular Expression Format:
 ## Possibly add a #max-distance tag for levenshtein comaprison to put a minimum distance that must be acheived to be considered a match.
 ## Possibly add an option not to print warnings about unused conversion directives.
 ## Document the conversion tag precedence, both that exact goes first, then regex, then levens, and that top most conversions go first.
+## Try and make the field tracking a tag isntead of being in CV.
 
 import os.path
 import copy
@@ -1757,6 +1758,8 @@ class TagParser(object):
         :param :py:class:`bool` isUnique: are the directives uniquely applied?
         """
         comparisonType = "exact" if not isUnique else "exact-unique"
+        
+        usedRecordTuples = set()
 
         if comparisonType in conversionDirectives[tableKey][fieldKey]:
             table = self.extraction[tableKey]
@@ -1765,20 +1768,29 @@ class TagParser(object):
                     fieldValue = record[fieldKey]
                     if type(fieldValue) == list:
                         for specificValue in fieldValue:
-                            if (tableKey, fieldKey, specificValue) not in usedRecordTuples and specificValue in conversionDirectives[tableKey][fieldKey][comparisonType]:
-                                self._applyConversionDirectives(record, tableKey + "[" + idKey + "]", conversionDirectives[tableKey][fieldKey][comparisonType][specificValue])
-                                if isUnique:
+                            if specificValue in conversionDirectives[tableKey][fieldKey][comparisonType]:
+                                if isUnique and (tableKey, fieldKey, specificValue) not in usedRecordTuples:
+                                    self._applyConversionDirectives(record, tableKey + "[" + idKey + "]", conversionDirectives[tableKey][fieldKey][comparisonType][specificValue])
                                     usedRecordTuples.add((tableKey, fieldKey, specificValue))
-                                self.usedConversions.add((tableKey, fieldKey, comparisonType, specificValue))
-                            elif isUnique and (tableKey, fieldKey, specificValue) in usedRecordTuples and specificValue in conversionDirectives[tableKey][fieldKey][comparisonType] and not silent:
-                                print("Warning: conversion directive #" + tableKey + "." + fieldKey + "." + comparisonType + "." + specificValue + " matches more than one record. Only the first record will be changed. Try #unique=false if all matching records should be changed.", file=sys.stderr)
-                    elif (tableKey, fieldKey, fieldValue) not in usedRecordTuples and fieldValue in conversionDirectives[tableKey][fieldKey][comparisonType]:
-                        self._applyConversionDirectives(record, tableKey + "[" + idKey + "]", conversionDirectives[tableKey][fieldKey][comparisonType][fieldValue])
-                        if isUnique:
+                                    self.usedConversions.add((tableKey, fieldKey, comparisonType, specificValue))
+                                elif not isUnique:
+                                    self._applyConversionDirectives(record, tableKey + "[" + idKey + "]", conversionDirectives[tableKey][fieldKey][comparisonType][specificValue])
+                                    self.usedConversions.add((tableKey, fieldKey, comparisonType, specificValue))
+                                else:
+                                    print("Warning: conversion directive #" + tableKey + "." + fieldKey + "." + comparisonType + "." + specificValue + " matches more than one record. Only the first record will be changed. Try #unique=false if all matching records should be changed.", file=sys.stderr)
+                    
+                    elif fieldValue in conversionDirectives[tableKey][fieldKey][comparisonType]:
+                        if isUnique and (tableKey, fieldKey, fieldValue) not in usedRecordTuples:
+                            self._applyConversionDirectives(record, tableKey + "[" + idKey + "]", conversionDirectives[tableKey][fieldKey][comparisonType][fieldValue])
                             usedRecordTuples.add((tableKey, fieldKey, fieldValue))
-                        self.usedConversions.add((tableKey, fieldKey, comparisonType, fieldValue))
-                    elif isUnique and (tableKey, fieldKey, fieldValue) in usedRecordTuples and fieldValue in conversionDirectives[tableKey][fieldKey][comparisonType] and not silent:
-                        print("Warning: conversion directive #" + tableKey + "." + fieldKey + "." + comparisonType + "." + fieldValue + " matches more than one record. Only the first record will be changed. Try #unique=false if all matching records should be changed.", file=sys.stderr)
+                            self.usedConversions.add((tableKey, fieldKey, comparisonType, fieldValue))
+                        elif not isUnique:
+                            self._applyConversionDirectives(record, tableKey + "[" + idKey + "]", conversionDirectives[tableKey][fieldKey][comparisonType][fieldValue])
+                            self.usedConversions.add((tableKey, fieldKey, comparisonType, fieldValue))
+                        else:
+                            print("Warning: conversion directive #" + tableKey + "." + fieldKey + "." + comparisonType + "." + fieldValue + " matches more than one record. Only the first record will be changed. Try #unique=false if all matching records should be changed.", file=sys.stderr)
+
+
 
     def _applyRegexConversionDirectives(self, tableKey, fieldKey, conversionDirectives, usedRecordTuples, regexObjects, isUnique=True):
         """Tests and applies regular expression conversion directives.
@@ -1793,33 +1805,39 @@ class TagParser(object):
         """
         comparisonType = "regex" if not isUnique else "regex-unique"
         
+        usedRecordTuples = set()
+        
         if comparisonType in conversionDirectives[tableKey][fieldKey]:
             table = self.extraction[tableKey]
             for idKey, record in table.items():
-                # print()
-                # print(usedRecordTuples)
-                # print()
-                # print(conversionDirectives[tableKey][fieldKey][comparisonType])
-                # print()
                 if fieldKey in record:
                     fieldValue = record[fieldKey]
                     for regexID, regexEntry in conversionDirectives[tableKey][fieldKey][comparisonType].items():
                         if type(fieldValue) == list:
                             for specificValue in fieldValue:
-                                if (tableKey, fieldKey, specificValue) not in usedRecordTuples and re.search(regexObjects[regexID], specificValue):
-                                    self._applyConversionDirectives(record, tableKey + "[" + idKey + "]", regexEntry)
-                                    if isUnique:
+                                if re.search(regexObjects[regexID], specificValue):
+                                    if isUnique and (tableKey, fieldKey, specificValue) not in usedRecordTuples:
+                                        self._applyConversionDirectives(record, tableKey + "[" + idKey + "]", regexEntry)
                                         usedRecordTuples.add((tableKey, fieldKey, specificValue))
-                                    self.usedConversions.add((tableKey, fieldKey, comparisonType, regexID))
-                                elif isUnique and (tableKey, fieldKey, specificValue) in usedRecordTuples and re.search(regexObjects[regexID], specificValue) and not silent:
-                                    print("Warning: conversion directive #" + tableKey + "." + fieldKey + "." + comparisonType + "." + regexID + " matches more than one record. Only the first record will be changed. Try #unique=false if all matching records should be changed.", file=sys.stderr)
-                        elif (tableKey, fieldKey, fieldValue) not in usedRecordTuples and re.search(regexObjects[regexID], fieldValue):
-                            self._applyConversionDirectives(record, tableKey + "[" + idKey + "]", regexEntry)
-                            if isUnique:
+                                        self.usedConversions.add((tableKey, fieldKey, comparisonType, regexID))
+                                    elif not isUnique:
+                                        self._applyConversionDirectives(record, tableKey + "[" + idKey + "]", regexEntry)
+                                        self.usedConversions.add((tableKey, fieldKey, comparisonType, regexID))
+                                    else:
+                                        print("Warning: conversion directive #" + tableKey + "." + fieldKey + "." + comparisonType + "." + regexID + " matches more than one record. Only the first record will be changed. Try #unique=false if all matching records should be changed.", file=sys.stderr)                       
+                        
+                        elif re.search(regexObjects[regexID], fieldValue):
+                            if isUnique and (tableKey, fieldKey, fieldValue) not in usedRecordTuples:
+                                self._applyConversionDirectives(record, tableKey + "[" + idKey + "]", regexEntry)
                                 usedRecordTuples.add((tableKey, fieldKey, fieldValue))
-                            self.usedConversions.add((tableKey, fieldKey, comparisonType, regexID))
-                        elif isUnique and (tableKey, fieldKey, fieldValue) in usedRecordTuples and re.search(regexObjects[regexID], fieldValue) and not silent:
-                            print("Warning: conversion directive #" + tableKey + "." + fieldKey + "." + comparisonType + "." + regexID + " matches more than one record. Only the first record will be changed. Try #unique=false if all matching records should be changed.", file=sys.stderr)
+                                self.usedConversions.add((tableKey, fieldKey, comparisonType, regexID))
+                            elif not isUnique:
+                                self._applyConversionDirectives(record, tableKey + "[" + idKey + "]", regexEntry)
+                                self.usedConversions.add((tableKey, fieldKey, comparisonType, regexID))
+                            else:
+                                print("Warning: conversion directive #" + tableKey + "." + fieldKey + "." + comparisonType + "." + regexID + " matches more than one record. Only the first record will be changed. Try #unique=false if all matching records should be changed.", file=sys.stderr)
+
+
 
     def _applyLevenshteinConversionDirectives(self, tableKey, fieldKey, conversionDirectives, usedRecordTuples, isUnique=True):
         """Tests and applies levenshtein conversion directives.

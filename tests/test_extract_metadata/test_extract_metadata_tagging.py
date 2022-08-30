@@ -37,114 +37,372 @@ output_compare_path = pathlib.Path("output_compare.json")
 
 
 
-# def test_tagging_empty_tag_rows():
-#     """Test that a #tags row directly after a #tags row doesn't affect the output."""
     
-#     test_file = "tagging_empty_tag_rows.xlsx"
+def test_multiple_inserts():
+    """Test that #insert in a #tags block is inserted multiple times when #multiple=true."""
     
-#     command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
-#     command = command.split(" ")
-#     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
-#     output = subp.stderr
+    test_file = "multiple_inserts.xlsx"
+    
+    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix() + " --save-export csv"
+    os.system(command)
+    
+    assert output_path.exists()
+    test_file = pathlib.Path(test_file)
+    test_file_export = pathlib.Path(test_file.stem + "_export.csv")
+    assert test_file_export.exists()
+    
+    export = pandas.read_csv(test_file_export, header=None)
+    ## There should be 4 #tags in column 0.
+    assert export.iloc[:,0].value_counts()["#tags"] == 4
+    
+    if test_file_export.exists():
+        os.remove(test_file_export)
+        time_to_wait=10
+        time_counter = 0
+        while test_file_export.exists():
+            time.sleep(1)
+            time_counter += 1
+            if time_counter > time_to_wait:
+                raise FileExistsError(test_file_export.as_posix() + " was not deleted within " + str(time_to_wait) + " seconds, so it is assumed that it won't be and something went wrong.")
+
+
+
+def test_duplicate_headers():
+    """Test that a warning is printed when there are duplicate headers. Ex: id and compound both set to the same column."""
+    
+    test_file = "duplicate_headers.xlsx"
+    
+    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file +" --output " + output_path.as_posix()
+    command = command.split(" ")
+    subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
+    output = subp.stderr
 
     
-#     assert output_path.exists()
+    assert output_path.exists()
     
-#     with open(output_path, "r") as f:
-#         output_json = json.loads(f.read())
+    assert output == "\'Warning: duplicate header description provided in tagging directive at cell \"../duplicate_headers.xlsx:#tagging[:11]\"\'" + "\n"
+
+
+
+
+def test_missing_id_in_header():
+    """Test that a warning is printed when there is not an id tag in the header."""
+    
+    test_file = "no_id_tag.xlsx"
+    
+    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file +" --output " + output_path.as_posix()
+    command = command.split(" ")
+    subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
+    output = subp.stderr
+
+    
+    assert output_path.exists()
+    
+    assert output == "Warning: The header row at index 1 in the compiled export sheet does not have an \"id\" tag, so it will not be in the JSON output." + "\n"
+
+
+
+
+def test_unused_tag():
+    """Test that a warning is printed when there is an unused tag."""
+    
+    test_file = "unused_tag.xlsx"
+    
+    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file +" --output " + output_path.as_posix()
+    command = command.split(" ")
+    subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
+    output = subp.stderr
+
+    
+    assert output_path.exists()
+    
+    assert output == "Warning: Tagging directive number 1 was never used." + "\n"
+
+
+
+    
+def test_no_required_headers():
+    """Test that nothing is printed when no headers are required."""
+    
+    test_file = "no_required_headers.xlsx"
+    
+    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file +" --output " + output_path.as_posix()
+    command = command.split(" ")
+    subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
+    output = subp.stderr
+
+    
+    assert output_path.exists()
+    
+    with open(output_path, "r") as f:
+        output_json = json.loads(f.read())
         
-#     with open(pathlib.Path("output_compare.json"), "r") as f:
-#         output_compare_json = json.loads(f.read())
+    with open(output_compare_path, "r") as f:
+        output_compare_json = json.loads(f.read())
         
-#     assert output_json == output_compare_json
+    assert output_json == output_compare_json
     
-#     assert output == ""
-    
-    
-
-# def test_tagging_missing_header_tag_error():
-#     """Test that an error is printed when the #header tag is missing."""
-    
-#     test_file = "tagging_missing_header_tag_error.xlsx"
-    
-#     command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
-#     command = command.split(" ")
-#     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
-#     output = subp.stderr
-
-    
-#     assert not output_path.exists()
-    
-#     assert 'Missing #header tag at cell' in output
-#     assert "tagging_missing_header_tag_error.xlsx:#tagging[:8]" in output
-    
-    
-# def test_tagging_missing_add_tag_error():
-#     """Test that an error is printed when the #tag.add tag is missing."""
-    
-#     test_file = "tagging_missing_add_tag_error.xlsx"
-    
-#     command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
-#     command = command.split(" ")
-#     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
-#     output = subp.stderr
-
-    
-#     assert not output_path.exists()
-    
-#     assert 'Missing #tag.add tag at cell' in output
-#     assert "tagging_missing_add_tag_error.xlsx:#tagging[:8]" in output
+    assert output == ""
 
 
 
 
-# def test_tagging_ignore_test():
-#     """Test that a #ignore row doesn't affect the output."""
+def test_duplicate_columns():
+    """Test that a warning is printed when there are duplicate columns."""
     
-#     test_file = "tagging_ignore_test.xlsx"
+    test_file = "duplicate_columns.xlsx"
     
-#     command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
-#     command = command.split(" ")
-#     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
-#     output = subp.stderr
+    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file +" --output " + output_path.as_posix()
+    command = command.split(" ")
+    subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
+    output = subp.stderr
 
     
-#     assert output_path.exists()
+    assert output_path.exists()
     
-#     with open(output_path, "r") as f:
-#         output_json = json.loads(f.read())
+    assert output == "Warning: The header, Intensity, in tagging group, 1, was matched to more than 1 column near or on row, 3, in the tagged export.\nWarning: Tagging directive number 1 was never used." + "\n"
+
+
+
+
+def test_regex_in_eval():
+    """Test that a regex inside an eval works."""
+    
+    test_file = "regex_in_eval.xlsx"
+    
+    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file  + " --output " + output_path.as_posix()
+    command = command.split(" ")
+    subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
+    output = subp.stderr
+
+    
+    assert output_path.exists()
+    
+    with open(output_path, "r") as f:
+        output_json = json.loads(f.read())
         
-#     with open(pathlib.Path("output_compare.json"), "r") as f:
-#         output_compare_json = json.loads(f.read())
-        
-#     assert output_json == output_compare_json
+    with open(pathlib.Path("output_compare.json"), "r") as f:
+        output_compare_json = json.loads(f.read())
+                        
+    assert output_json == output_compare_json
     
-#     assert output == ""
+    assert output == ""
+
+
+
+
+def test_list_in_eval():
+    """Test that a list in eval is turned into semicolon separated string."""
     
+    test_file = "eval_list.xlsx"
     
-    
-# def test_tagging_insert_multiple_false_test():
-#     """Test that a #multiple=false is the same as default."""
-    
-#     test_file = "tagging_insert_multiple_false_test.xlsx"
-    
-#     command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
-#     command = command.split(" ")
-#     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
-#     output = subp.stderr
+    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file  + " --output " + output_path.as_posix()
+    command = command.split(" ")
+    subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
+    output = subp.stderr
 
     
-#     assert output_path.exists()
+    assert output_path.exists()
     
-#     with open(output_path, "r") as f:
-#         output_json = json.loads(f.read())
-        
-#     with open(pathlib.Path("output_compare.json"), "r") as f:
-#         output_compare_json = json.loads(f.read())
-        
-#     assert output_json == output_compare_json
+    with open(output_path, "r") as f:
+        output_json = json.loads(f.read())
+                                
+    assert output_json["measurement"]["(S)-2-Acetolactate Glutaric acid Methylsuccinic acid-13C0-01_A0_Colon_T03-2017_naive_170427_UKy_GCB_rep1-quench"]["asdf"] == "asdf;qwer"
     
-#     assert output == ""
+    assert output == ""
+
+
+
+def test_list_in_eval_list_tag():
+    """Test that a list in eval with list tag is turned into a list of strings."""
+    
+    test_file = "eval_list_list_tag.xlsx"
+    
+    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file  + " --output " + output_path.as_posix()
+    command = command.split(" ")
+    subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
+    output = subp.stderr
+
+    
+    assert output_path.exists()
+    
+    with open(output_path, "r") as f:
+        output_json = json.loads(f.read())
+                                
+    assert output_json["measurement"]["(S)-2-Acetolactate Glutaric acid Methylsuccinic acid-13C0-01_A0_Colon_T03-2017_naive_170427_UKy_GCB_rep1-quench"]["asdf"] == ["asdf", "qwer"]
+    
+    assert output == ""
+    
+
+
+
+
+def test_exclusion():
+    """Test that exclusion tag works."""
+    
+    test_file = "exclusion_test.xlsx"
+    
+    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file +" --output " + output_path.as_posix()
+    command = command.split(" ")
+    subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
+    output = subp.stderr
+
+    
+    assert output_path.exists()
+    
+    with open(output_path, "r") as f:
+        output_json = json.loads(f.read())
+        
+    with open(output_compare_path, "r") as f:
+        output_compare_json = json.loads(f.read())
+        
+    del output_compare_json["measurement"]
+        
+    assert output_json == output_compare_json
+    
+    assert output == "Warning: Tagging directive number 1 was never used." + "\n"
+  
+
+        
+    
+def test_multiple_insert_blocks():
+    """Test that all #insert blocks are added in the export."""
+    
+    test_file = "multiple_insert_blocks.xlsx"
+    
+    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix() + " --save-export csv"
+    os.system(command)
+    
+    assert output_path.exists()
+    test_file = pathlib.Path(test_file)
+    test_file_export = pathlib.Path(test_file.stem + "_export.csv")
+    assert test_file_export.exists()
+    
+    export = pandas.read_csv(test_file_export, header=None)
+    ## There should be 5 #tags in column 0.
+    assert export.iloc[:,0].value_counts()["#tags"] == 5
+    
+    if test_file_export.exists():
+        os.remove(test_file_export)
+        time_to_wait=10
+        time_counter = 0
+        while test_file_export.exists():
+            time.sleep(1)
+            time_counter += 1
+            if time_counter > time_to_wait:
+                raise FileExistsError(test_file_export.as_posix() + " was not deleted within " + str(time_to_wait) + " seconds, so it is assumed that it won't be and something went wrong.")
+
+    
+
+
+def test_tagging_empty_tag_rows():
+    """Test that a #tags row directly after a #tags row doesn't affect the output."""
+    
+    test_file = "tagging_empty_tag_rows.xlsx"
+    
+    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
+    command = command.split(" ")
+    subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
+    output = subp.stderr
+
+    
+    assert output_path.exists()
+    
+    with open(output_path, "r") as f:
+        output_json = json.loads(f.read())
+        
+    with open(pathlib.Path("output_compare.json"), "r") as f:
+        output_compare_json = json.loads(f.read())
+        
+    assert output_json == output_compare_json
+    
+    assert output == ""
+    
+    
+
+def test_tagging_missing_header_tag_error():
+    """Test that an error is printed when the #header tag is missing."""
+    
+    test_file = "tagging_missing_header_tag_error.xlsx"
+    
+    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
+    command = command.split(" ")
+    subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
+    output = subp.stderr
+
+    
+    assert not output_path.exists()
+    
+    assert 'Missing #header tag at cell' in output
+    assert "tagging_missing_header_tag_error.xlsx:#tagging[:8]" in output
+    
+    
+def test_tagging_missing_add_tag_error():
+    """Test that an error is printed when the #tag.add tag is missing."""
+    
+    test_file = "tagging_missing_add_tag_error.xlsx"
+    
+    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
+    command = command.split(" ")
+    subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
+    output = subp.stderr
+
+    
+    assert not output_path.exists()
+    
+    assert 'Missing #tag.add tag at cell' in output
+    assert "tagging_missing_add_tag_error.xlsx:#tagging[:8]" in output
+
+
+
+
+def test_tagging_ignore_test():
+    """Test that a #ignore row doesn't affect the output."""
+    
+    test_file = "tagging_ignore_test.xlsx"
+    
+    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
+    command = command.split(" ")
+    subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
+    output = subp.stderr
+
+    
+    assert output_path.exists()
+    
+    with open(output_path, "r") as f:
+        output_json = json.loads(f.read())
+        
+    with open(pathlib.Path("output_compare.json"), "r") as f:
+        output_compare_json = json.loads(f.read())
+        
+    assert output_json == output_compare_json
+    
+    assert output == ""
+    
+    
+    
+def test_tagging_insert_multiple_false_test():
+    """Test that a #multiple=false is the same as default."""
+    
+    test_file = "tagging_insert_multiple_false_test.xlsx"
+    
+    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
+    command = command.split(" ")
+    subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
+    output = subp.stderr
+
+    
+    assert output_path.exists()
+    
+    with open(output_path, "r") as f:
+        output_json = json.loads(f.read())
+        
+    with open(pathlib.Path("output_compare.json"), "r") as f:
+        output_compare_json = json.loads(f.read())
+        
+    assert output_json == output_compare_json
+    
+    assert output == ""
     
     
     
