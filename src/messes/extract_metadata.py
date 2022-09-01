@@ -68,6 +68,8 @@ Regular Expression Format:
 ## Possibly add an option not to print warnings about unused conversion directives.
 ## Document the conversion tag precedence, both that exact goes first, then regex, then levens, and that top most conversions go first.
 ## Try and make the field tracking a tag isntead of being in CV.
+## unique = 3 different names
+## Test what happens when tracking_on specifices a field that the records already have in the table. Does it overwrite? #sample%track_on.sample.id
 
 import os.path
 import copy
@@ -687,9 +689,9 @@ class TagParser(object):
                     
                     for table in tagfieldScopeRecordAttributes["table"]:
                         if table in self.tableRecordsToAddTo:
-                            self.tableRecordsToAddTo[table].append(fieldToAdd)
+                            self.tableRecordsToAddTo[table].add(fieldToAdd)
                         else:
-                            self.tableRecordsToAddTo[table] = [fieldToAdd]
+                            self.tableRecordsToAddTo[table] = set([fieldToAdd])
         
 
     @staticmethod
@@ -760,6 +762,10 @@ class TagParser(object):
     tableFieldAttributeDetector = re.compile(r'#(\w*)\.(\w+)\%(\w+)$')
     tableFieldDetector = re.compile(r'#(\w*)\.(\w+)$')
     attributeDetector = re.compile('#\%(\w+)$')
+    trackOnFieldDetector = re.compile(r'#(\w*)\%track\.(\w+\.\w+)$')
+    trackOnFieldAttributeDetector = re.compile(r'#(\w*)\%track\.(\w+\.\w+%\w+)$')
+    trackOffFieldDetector = re.compile(r'#(\w*)\%untrack\.(\w+\.\w+)$')
+    trackOffFieldAttributeDetector = re.compile(r'#(\w*)\%untrack\.(\w+\.\w+%\w+)$')
     def _parseHeaderCell(self, recordMakers, cellString, childWithoutID) :
         """Parses header cell and RETURNS current state of ID inclusion of current child record
 
@@ -855,16 +861,50 @@ class TagParser(object):
                     recordMakers[-1].addField(table, field, fieldMakerClass)
                     if len(tokens) == 0 or tokens[0] == ';' :
                         recordMakers[-1].addColumnOperand(self.columnIndex)                
+            elif reCopier(re.match(TagParser.trackOnFieldDetector, token)) or reCopier(re.match(TagParser.trackOnFieldAttributeDetector, token)) :
+                tableToAddTo, tableAndField = self._determineTableField(reCopier.value.groups())
+                split = tableAndField.split(".")
+                fieldTable = split[0]
+                field = split[1]
+                if fieldTable in self.tablesAndFieldsToTrack:
+                    self.tablesAndFieldsToTrack[fieldTable].add(field)
+                else:
+                    self.tablesAndFieldsToTrack[fieldTable] = set([field])
+                if tableToAddTo in self.tableRecordsToAddTo:
+                    self.tableRecordsToAddTo[tableToAddTo].add(tableAndField)
+                else:
+                    self.tableRecordsToAddTo[tableToAddTo] = set([tableAndField])
+                if tableAndField not in self.trackedFieldsDict:
+                    self.trackedFieldsDict[tableAndField] = ""
+            elif reCopier(re.match(TagParser.trackOffFieldDetector, token)) or reCopier(re.match(TagParser.trackOffFieldAttributeDetector, token)) :
+                tableToAddTo, tableAndField = self._determineTableField(reCopier.value.groups())
+                split = tableAndField.split(".")
+                fieldTable = split[0]
+                field = split[1]
+                if tableToAddTo in self.tableRecordsToAddTo:
+                    self.tableRecordsToAddTo[tableToAddTo].discard(tableAndField)
+                    if len(self.tableRecordsToAddTo[tableToAddTo]) == 0:
+                        del self.tableRecordsToAddTo[tableToAddTo]
+                tableAndFieldInOtherTables = False
+                for table, fields in self.tableRecordsToAddTo.items():
+                    if tableAndField in fields:
+                        tableAndFieldInOtherTables = True
+                        break
+                if not tableAndFieldInOtherTables:
+                    del self.trackedFieldsDict[tableAndField]
+                    self.tablesAndFieldsToTrack[fieldTable].discard(field)
+                    if len(self.tablesAndFieldsToTrack[fieldTable]) == 0:
+                        del self.tablesAndFieldsToTrack[fieldTable]
             elif token == "=" :
                 assignment = True
             elif token == "*" :
                 fieldMakerClass = ListFieldMaker
             elif token == "+" :
-                ## This check is done above, but this elif needs to be here to munch the + operator so it isn't added as a literOperand.
+                ## This check is done above, but this elif needs to be here to munch the + operator so it isn't added as a LiteralOperand.
                 if not assignment :
                     raise TagParserError("+ operator not in an assignment", self.fileName, self.sheetName, self.rowIndex, self.columnIndex)
             elif token == "," :
-                ## This check is done above, but this elif needs to be here to munch the , operator so it isn't added as a literOperand.
+                ## This check is done above, but this elif needs to be here to munch the , operator so it isn't added as a LiteralOperand.
                 if not assignment or fieldMakerClass != ListFieldMaker:
                     raise TagParserError(", operator not in a list field assignment", self.fileName, self.sheetName, self.rowIndex, self.columnIndex)
             elif token == ";" :
@@ -993,7 +1033,9 @@ class TagParser(object):
             ## recordMakers should only ever be either 1 or 2 in size. If 2 then 
             ## it is a child record and the first recordMaker is just making the 
             ## parent record using the child's indicated id.
-            if not recordMakers[-1].hasValidID() and not silent:
+            ## If there is not validID print a message unless there are no fieldMakers, then assume it is a control flow header row. 
+            ## For example a row that just turns tracking on or off.
+            if not recordMakers[-1].hasValidID() and recordMakers[-1].fieldMakers and not silent:
                 print("Warning: The header row at index " + str(headerRowIndex) + " in the compiled export sheet does not have an \"id\" tag, so it will not be in the JSON output.", file=sys.stderr)
             rowsToParse = [index for index in range(headerRowIndex+1, endOfTagGroupIndexes[headerRow])]
             rowsToParse = ignoreRows.iloc[rowsToParse][~ignoreRows]
