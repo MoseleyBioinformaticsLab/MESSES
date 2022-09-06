@@ -22,7 +22,6 @@
     --delete <metadata_section>...      - delete a section of the JSONized metadata. Section format is tableKey or tableKey,IDKey or tableKey,IDKey,fieldName. These can be regular expressions.
     --keep <metadata_tables>            - only keep the selected tables.  Delete the rest.  Table format is tableKey,tableKey,... The tableKey can be a regular expression.
     --silent                            - print no warning messages.
-    --cv <filename_json>                - controlled vocabulary that describes the structure of the data. Needed to utulize field tracking functionality.
 
 Show Options:
   tables    - show tables in the extracted metadata.
@@ -54,7 +53,6 @@ Regular Expression Format:
 ## TODO 
 ## When creating unit tests make sure to have a check on all pandas read ins that nan values become empty strings.
 ## Possibly add a step at the end that makes sure all records id field matches the dict key value.
-## Possibly use controlled vocabulary to create field tracking JSON. This is done, but is untested.
 ## Make sure verify_metadata checks for project.id and study.id in subject, samples, and factors.
 ## Possibly add an option to enumerate id's that aren't unique.
 ## Possibly check to see if a record's id is already in use while parsing, and print warning to user that 2 records in Excel have same id.
@@ -67,7 +65,6 @@ Regular Expression Format:
 ## Possibly add a #max-distance tag for levenshtein comaprison to put a minimum distance that must be acheived to be considered a match.
 ## Possibly add an option not to print warnings about unused conversion directives.
 ## Document the conversion tag precedence, both that exact goes first, then regex, then levens, and that top most conversions go first.
-## Try and make the field tracking a tag isntead of being in CV.
 ## unique = 3 different names
 ## Test what happens when tracking_on specifices a field that the records already have in the table. Does it overwrite? #sample%track_on.sample.id
 
@@ -95,14 +92,7 @@ def main() :
         global silent
         silent = True
 
-    if args["--cv"]:
-        with open(args["--cv"],'r') as jsonFile :
-            controlledVocabulary = json.load(jsonFile)
-        ## TODO add CV validation.
-        
-        tagParser = TagParser(controlledVocabulary)
-    else:
-        tagParser = TagParser()
+    tagParser = TagParser()
         
 
     if any([True for arg in sys.argv if arg == "--convert"]):
@@ -656,43 +646,10 @@ class TagParserError(Exception):
 class TagParser(object):
     """Creates parser objects that convert tagged .xlsx worksheets into nested dictionary structures for metadata capture."""
     
-    def __init__(self, cv = {}):
+    def __init__(self):
         self.extraction = {}
-        self._createTrackingFromCV(cv)
 
-    reDetector = re.compile(r"r[\"'](.*)[\"']$")
-    
-    def _createTrackingFromCV(self, cv = {}):
-        """Creates field tracking data members from controlled vocabulary.
-        
-        :param :py:class:`dict` cv: controlled vocabulary JSON
-        """
-        
-        ## Find the tracking fields and create data structures to handle the tracking.
-        self.tablesAndFieldsToTrack = {}
-        self.tableRecordsToAddTo = {}
-        self.trackedFieldsDict = {}
-        if cv:
-            for tagfieldScopeRecordID, tagfieldScopeRecordAttributes in cv["tagfield_scope"].items():
-                if "tracking" in tagfieldScopeRecordAttributes["scope_type"]:
-                    fieldToAdd = tagfieldScopeRecordAttributes["tagfield.id"]
-                        
-                    self.trackedFieldsDict[fieldToAdd] = ""
-                    
-                    tableAndField = fieldToAdd.split(".")
-                    tableToTrack = tableAndField[0]
-                    fieldToTrack = tableAndField[1]
-                    if tableToTrack in self.tablesAndFieldsToTrack:
-                        self.tablesAndFieldsToTrack[tableToTrack].add(fieldToTrack)
-                    else:
-                        self.tablesAndFieldsToTrack[tableToTrack] = set([fieldToTrack])
-                    
-                    for table in tagfieldScopeRecordAttributes["table"]:
-                        if table in self.tableRecordsToAddTo:
-                            self.tableRecordsToAddTo[table].add(fieldToAdd)
-                        else:
-                            self.tableRecordsToAddTo[table] = set([fieldToAdd])
-        
+    reDetector = re.compile(r"r[\"'](.*)[\"']$")        
 
     @staticmethod
     def _isEmptyRow(row) :
@@ -762,6 +719,10 @@ class TagParser(object):
     tableFieldAttributeDetector = re.compile(r'#(\w*)\.(\w+)\%(\w+)$')
     tableFieldDetector = re.compile(r'#(\w*)\.(\w+)$')
     attributeDetector = re.compile('#\%(\w+)$')
+    
+    trackFieldDetector = re.compile(r'#(\w*)\%track$')
+    untrackFieldDetector = re.compile(r'#(\w*)\%untrack$')
+    
     trackOnFieldDetector = re.compile(r'#(\w*)\%track\.(\w+\.\w+)$')
     trackOnFieldAttributeDetector = re.compile(r'#(\w*)\%track\.(\w+\.\w+%\w+)$')
     trackOffFieldDetector = re.compile(r'#(\w*)\%untrack\.(\w+\.\w+)$')
@@ -861,40 +822,78 @@ class TagParser(object):
                     recordMakers[-1].addField(table, field, fieldMakerClass)
                     if len(tokens) == 0 or tokens[0] == ';' :
                         recordMakers[-1].addColumnOperand(self.columnIndex)                
-            elif reCopier(re.match(TagParser.trackOnFieldDetector, token)) or reCopier(re.match(TagParser.trackOnFieldAttributeDetector, token)) :
-                tableToAddTo, tableAndField = self._determineTableField(reCopier.value.groups())
-                split = tableAndField.split(".")
-                fieldTable = split[0]
-                field = split[1]
-                if fieldTable in self.tablesAndFieldsToTrack:
-                    self.tablesAndFieldsToTrack[fieldTable].add(field)
-                else:
-                    self.tablesAndFieldsToTrack[fieldTable] = set([field])
-                if tableToAddTo in self.tableRecordsToAddTo:
-                    self.tableRecordsToAddTo[tableToAddTo].add(tableAndField)
-                else:
-                    self.tableRecordsToAddTo[tableToAddTo] = set([tableAndField])
-                if tableAndField not in self.trackedFieldsDict:
-                    self.trackedFieldsDict[tableAndField] = ""
-            elif reCopier(re.match(TagParser.trackOffFieldDetector, token)) or reCopier(re.match(TagParser.trackOffFieldAttributeDetector, token)) :
-                tableToAddTo, tableAndField = self._determineTableField(reCopier.value.groups())
-                split = tableAndField.split(".")
-                fieldTable = split[0]
-                field = split[1]
-                if tableToAddTo in self.tableRecordsToAddTo:
-                    self.tableRecordsToAddTo[tableToAddTo].discard(tableAndField)
-                    if len(self.tableRecordsToAddTo[tableToAddTo]) == 0:
-                        del self.tableRecordsToAddTo[tableToAddTo]
-                tableAndFieldInOtherTables = False
-                for table, fields in self.tableRecordsToAddTo.items():
-                    if tableAndField in fields:
-                        tableAndFieldInOtherTables = True
+            elif reCopier(re.match(TagParser.trackFieldDetector, token)) :
+                if len(tokens) < 2 or tokens[0] != "=":
+                    raise TagParserError("Incorrectly formatted track tag, \"=\" must follow \"track\" and \"table.field\" or \"table.field%attribute\" must follow \"=\"", self.fileName, self.sheetName, self.rowIndex, self.columnIndex)
+                ## Munch the =.
+                tokens.pop(0)
+                nextToken = tokens.pop(0)
+                while True:
+                    if not re.match(r"(\w+\.\w+)|(\w+\.\w+%\w+)", nextToken):
+                        raise TagParserError("Incorrectly formatted track tag, the field or attribute to be tracked is malformed, must be \"table.field\" or \"table.field%attribute\"", self.fileName, self.sheetName, self.rowIndex, self.columnIndex)
+                    if reCopier.value.groups()[0] == "":
+                        tableToAddTo = self.lastTable
+                    else:
+                        tableToAddTo = reCopier.value.groups()[0]
+                    split = nextToken.split(".")
+                    fieldTable = split[0]
+                    field = split[1]
+                    if fieldTable in self.tablesAndFieldsToTrack:
+                        self.tablesAndFieldsToTrack[fieldTable].add(field)
+                    else:
+                        self.tablesAndFieldsToTrack[fieldTable] = set([field])
+                    if tableToAddTo in self.tableRecordsToAddTo:
+                        self.tableRecordsToAddTo[tableToAddTo].add(nextToken)
+                    else:
+                        self.tableRecordsToAddTo[tableToAddTo] = set([nextToken])
+                    if nextToken not in self.trackedFieldsDict:
+                        self.trackedFieldsDict[nextToken] = ""
+                    if tokens:
+                        nextToken = tokens.pop(0)
+                        if nextToken == ",":
+                            nextToken = tokens.pop(0)
+                        elif nextToken == ";":
+                            break
+                    else:
                         break
-                if not tableAndFieldInOtherTables:
-                    del self.trackedFieldsDict[tableAndField]
-                    self.tablesAndFieldsToTrack[fieldTable].discard(field)
-                    if len(self.tablesAndFieldsToTrack[fieldTable]) == 0:
-                        del self.tablesAndFieldsToTrack[fieldTable]
+            elif reCopier(re.match(TagParser.untrackFieldDetector, token)) :
+                if len(tokens) < 2 or tokens[0] != "=":
+                    raise TagParserError("Incorrectly formatted untrack tag, \"=\" must follow \"track\" and \"table.field\" or \"table.field%attribute\" must follow \"=\"", self.fileName, self.sheetName, self.rowIndex, self.columnIndex)
+                ## Munch the =.
+                tokens.pop(0)
+                nextToken = tokens.pop(0)
+                while True:
+                    if not re.match(r"(\w+\.\w+)|(\w+\.\w+%\w+)", nextToken):
+                        raise TagParserError("Incorrectly formatted untrack tag, the field or attribute to be tracked is malformed, must be \"table.field\" or \"table.field%attribute\"", self.fileName, self.sheetName, self.rowIndex, self.columnIndex)
+                    if reCopier.value.groups()[0] == "":
+                        tableToAddTo = self.lastTable
+                    else:
+                        tableToAddTo = reCopier.value.groups()[0]
+                    split = nextToken.split(".")
+                    fieldTable = split[0]
+                    field = split[1]
+                    if tableToAddTo in self.tableRecordsToAddTo:
+                        self.tableRecordsToAddTo[tableToAddTo].discard(nextToken)
+                        if len(self.tableRecordsToAddTo[tableToAddTo]) == 0:
+                            del self.tableRecordsToAddTo[tableToAddTo]
+                    tableAndFieldInOtherTables = False
+                    for table, fields in self.tableRecordsToAddTo.items():
+                        if nextToken in fields:
+                            tableAndFieldInOtherTables = True
+                            break
+                    if not tableAndFieldInOtherTables:
+                        del self.trackedFieldsDict[nextToken]
+                        self.tablesAndFieldsToTrack[fieldTable].discard(field)
+                        if len(self.tablesAndFieldsToTrack[fieldTable]) == 0:
+                            del self.tablesAndFieldsToTrack[fieldTable]
+                    if tokens:
+                        nextToken = tokens.pop(0)
+                        if nextToken == ",":
+                            nextToken = tokens.pop(0)
+                        elif nextToken == ";":
+                            break
+                    else:
+                        break
             elif token == "=" :
                 assignment = True
             elif token == "*" :

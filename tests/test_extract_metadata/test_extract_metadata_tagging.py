@@ -424,9 +424,162 @@ def test_tagging_missing_end_tag_error():
 
 
 
+def test_tagging_field_tracking():
+    """Test that field tracking and untracking works."""
+    
+    test_file = "tracking_test.xlsx"
+    
+    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
+    command = command.split(" ")
+    subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
+    output = subp.stderr
+
+    
+    assert output_path.exists()
+    
+    with open(output_path, "r") as f:
+        output_json = json.loads(f.read())
+                
+    assert output_json["sample"]["01_A0_Spleen_naive_0days_170427_UKy_GCH_rep1"]["project.id"] == "Project1"
+    assert output_json["sample"]["02_A1_Spleen_naive_0days_170427_UKy_GCH_rep2"]["project.id"] == "Project1"
+    assert output_json["sample"]["01_A0_Spleen_naive_0days_170427_UKy_GCH_rep1"]["project.id%number"] == "1"
+    assert output_json["sample"]["02_A1_Spleen_naive_0days_170427_UKy_GCH_rep2"]["project.id%number"] == "1"
+    
+    assert output_json["sample"]["03_A0_Spleen_naive_0days_170427_UKy_GCH_rep1"]["project.id%number"] == "1"
+    assert output_json["sample"]["04_A1_Spleen_naive_0days_170427_UKy_GCH_rep2"]["project.id%number"] == "1"
+    assert "project.id" not in output_json["sample"]["03_A0_Spleen_naive_0days_170427_UKy_GCH_rep1"]
+    assert "project.id" not in output_json["sample"]["04_A1_Spleen_naive_0days_170427_UKy_GCH_rep2"]
+    
+    assert output == ""
 
 
+def test_tagging_tracking_not_enough_tokens_error():
+    """Test that an error is printed when there are not enough tokens in track tag."""
+    
+    test_file = "tracking_not_enough_tokens_error.xlsx"
+    
+    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
+    command = command.split(" ")
+    subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
+    output = subp.stderr
+
+    
+    assert not output_path.exists()
+    
+    assert 'Incorrectly formatted track tag, "=" must follow "track" and "table.field" or "table.field%attribute" must follow "=" at cell' in output
+    assert "tracking_not_enough_tokens_error.xlsx:#export[B1]" in output
 
 
+def test_tagging_tracking_no_equal_sign_error():
+    """Test that an error is printed when there is no = after the track tag."""
+    
+    test_file = "tracking_no_equal_sign_error.xlsx"
+    
+    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
+    command = command.split(" ")
+    subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
+    output = subp.stderr
 
+    
+    assert not output_path.exists()
+    
+    assert 'Incorrectly formatted track tag, "=" must follow "track" and "table.field" or "table.field%attribute" must follow "=" at cell' in output
+    assert "tracking_no_equal_sign_error.xlsx:#export[B1]" in output
+
+
+def test_tagging_untracking_no_equal_sign_error():
+    """Test that an error is printed when there is no = after the untrack tag."""
+    
+    test_file = "untracking_no_equal_sign_error.xlsx"
+    
+    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
+    command = command.split(" ")
+    subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
+    output = subp.stderr
+
+    
+    assert not output_path.exists()
+    
+    assert 'Incorrectly formatted untrack tag, "=" must follow "track" and "table.field" or "table.field%attribute" must follow "=" at cell' in output
+    assert "untracking_no_equal_sign_error.xlsx:#export[B14]" in output
+
+
+def test_tagging_untracking_not_enough_tokens_error():
+    """Test that an error is printed when there are not enough tokens in untrack tag."""
+    
+    test_file = "untracking_not_enough_tokens_error.xlsx"
+    
+    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
+    command = command.split(" ")
+    subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
+    output = subp.stderr
+
+    
+    assert not output_path.exists()
+    
+    assert 'Incorrectly formatted untrack tag, "=" must follow "track" and "table.field" or "table.field%attribute" must follow "=" at cell' in output
+    assert "untracking_not_enough_tokens_error.xlsx:#export[B14]" in output
+
+
+def test_tagging_tracking_malformed_field_error():
+    """Test that an error is printed when the field to track is malformed."""
+    
+    test_file = "tracking_malformed_field_error.xlsx"
+    
+    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
+    command = command.split(" ")
+    subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
+    output = subp.stderr
+
+    
+    assert not output_path.exists()
+    
+    assert 'Incorrectly formatted track tag, the field or attribute to be tracked is malformed, must be "table.field" or "table.field%attribute" at cell' in output
+    assert "tracking_malformed_field_error.xlsx:#export[B1]" in output
+    
+
+def test_tagging_untracking_malformed_field_error():
+    """Test that an error is printed when the field to untrack is malformed."""
+    
+    test_file = "untracking_malformed_field_error.xlsx"
+    
+    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
+    command = command.split(" ")
+    subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
+    output = subp.stderr
+
+    
+    assert not output_path.exists()
+    
+    assert 'Incorrectly formatted untrack tag, the field or attribute to be tracked is malformed, must be "table.field" or "table.field%attribute" at cell' in output
+    assert "untracking_malformed_field_error.xlsx:#export[B14]" in output
+
+
+def test_tagging_tracking_list_test():
+    """Test that field tracking works with a list of values."""
+    
+    test_file = "tracking_list_test.xlsx"
+    
+    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
+    command = command.split(" ")
+    subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
+    output = subp.stderr
+
+    
+    assert output_path.exists()
+    
+    with open(output_path, "r") as f:
+        output_json = json.loads(f.read())
+                
+    assert output_json["sample"]["01_A0_Spleen_naive_0days_170427_UKy_GCH_rep1"]["project.id"] == "Project1"
+    assert output_json["sample"]["02_A1_Spleen_naive_0days_170427_UKy_GCH_rep2"]["project.id"] == "Project1"
+    assert output_json["sample"]["01_A0_Spleen_naive_0days_170427_UKy_GCH_rep1"]["project.id%number"] == "1"
+    assert output_json["sample"]["02_A1_Spleen_naive_0days_170427_UKy_GCH_rep2"]["project.id%number"] == "1"
+    
+    assert output_json["sample"]["03_A0_Spleen_naive_0days_170427_UKy_GCH_rep1"]["project.id%number"] == "1"
+    assert output_json["sample"]["04_A1_Spleen_naive_0days_170427_UKy_GCH_rep2"]["project.id%number"] == "1"
+    assert "project.id" not in output_json["sample"]["03_A0_Spleen_naive_0days_170427_UKy_GCH_rep1"]
+    assert "project.id" not in output_json["sample"]["04_A1_Spleen_naive_0days_170427_UKy_GCH_rep2"]
+    
+    assert output == ""
 
