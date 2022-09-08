@@ -51,7 +51,6 @@ Regular Expression Format:
 
 
 ## TODO 
-## When creating unit tests make sure to have a check on all pandas read ins that nan values become empty strings.
 ## Possibly add a step at the end that makes sure all records id field matches the dict key value.
 ## Make sure verify_metadata checks for project.id and study.id in subject, samples, and factors.
 ## Possibly add an option to enumerate id's that aren't unique.
@@ -648,6 +647,9 @@ class TagParser(object):
     
     def __init__(self):
         self.extraction = {}
+        self.tablesAndFieldsToTrack = {}
+        self.tableRecordsToAddTo = {}
+        self.trackedFieldsDict = {}
 
     reDetector = re.compile(r"r[\"'](.*)[\"']$")        
 
@@ -719,14 +721,8 @@ class TagParser(object):
     tableFieldAttributeDetector = re.compile(r'#(\w*)\.(\w+)\%(\w+)$')
     tableFieldDetector = re.compile(r'#(\w*)\.(\w+)$')
     attributeDetector = re.compile('#\%(\w+)$')
-    
     trackFieldDetector = re.compile(r'#(\w*)\%track$')
     untrackFieldDetector = re.compile(r'#(\w*)\%untrack$')
-    
-    trackOnFieldDetector = re.compile(r'#(\w*)\%track\.(\w+\.\w+)$')
-    trackOnFieldAttributeDetector = re.compile(r'#(\w*)\%track\.(\w+\.\w+%\w+)$')
-    trackOffFieldDetector = re.compile(r'#(\w*)\%untrack\.(\w+\.\w+)$')
-    trackOffFieldAttributeDetector = re.compile(r'#(\w*)\%untrack\.(\w+\.\w+%\w+)$')
     def _parseHeaderCell(self, recordMakers, cellString, childWithoutID) :
         """Parses header cell and RETURNS current state of ID inclusion of current child record
 
@@ -805,23 +801,6 @@ class TagParser(object):
                 else :
                     childWithoutID = True
                     recordMakers[-1].addColumnOperand(self.columnIndex)                                
-            elif reCopier(re.match(TagParser.tableFieldAttributeDetector, token)) or reCopier(re.match(TagParser.tableFieldDetector, token)) or reCopier(re.match(TagParser.attributeDetector, token)) : #table.field.attribute combinations
-                table, field = self._determineTableField(reCopier.value.groups())
-                if self.columnIndex == 0 :
-                    if len(tokens) < 2 or tokens[0] != '=' or re.match(TagParser.tagDetector, tokens[1]) :
-                        raise TagParserError("tags without assignment in first column", self.fileName, self.sheetName, self.rowIndex, self.columnIndex)
-                    tokens.pop(0)
-                    recordMakers[0].addGlobalField(table, field, tokens.pop(0))                     
-                elif assignment :
-                    if not recordMakers[-1].hasField(table, field, 1) or recordMakers[-1].isLastField(table,field) :
-                        raise TagParserError("the field or attribute value used for assignment is not previously defined in record", self.fileName, self.sheetName, self.rowIndex, self.columnIndex)
-                    recordMakers[-1].addVariableOperand(table, field)
-                else :
-                    if recordMakers[-1].isInvalidDuplicateField(table, field, fieldMakerClass) :
-                        raise TagParserError(str("field \"") + field + "\" specified twice in " + table + " record", self.fileName, self.sheetName, self.rowIndex, self.columnIndex)
-                    recordMakers[-1].addField(table, field, fieldMakerClass)
-                    if len(tokens) == 0 or tokens[0] == ';' :
-                        recordMakers[-1].addColumnOperand(self.columnIndex)                
             elif reCopier(re.match(TagParser.trackFieldDetector, token)) :
                 if len(tokens) < 2 or tokens[0] != "=":
                     raise TagParserError("Incorrectly formatted track tag, \"=\" must follow \"track\" and \"table.field\" or \"table.field%attribute\" must follow \"=\"", self.fileName, self.sheetName, self.rowIndex, self.columnIndex)
@@ -835,6 +814,7 @@ class TagParser(object):
                         tableToAddTo = self.lastTable
                     else:
                         tableToAddTo = reCopier.value.groups()[0]
+                        self.lastTable = tableToAddTo
                     split = nextToken.split(".")
                     fieldTable = split[0]
                     field = split[1]
@@ -869,6 +849,7 @@ class TagParser(object):
                         tableToAddTo = self.lastTable
                     else:
                         tableToAddTo = reCopier.value.groups()[0]
+                        self.lastTable = tableToAddTo
                     split = nextToken.split(".")
                     fieldTable = split[0]
                     field = split[1]
@@ -894,6 +875,23 @@ class TagParser(object):
                             break
                     else:
                         break
+            elif reCopier(re.match(TagParser.tableFieldAttributeDetector, token)) or reCopier(re.match(TagParser.tableFieldDetector, token)) or reCopier(re.match(TagParser.attributeDetector, token)) : #table.field.attribute combinations
+                table, field = self._determineTableField(reCopier.value.groups())
+                if self.columnIndex == 0 :
+                    if len(tokens) < 2 or tokens[0] != '=' or re.match(TagParser.tagDetector, tokens[1]) :
+                        raise TagParserError("tags without assignment in first column", self.fileName, self.sheetName, self.rowIndex, self.columnIndex)
+                    tokens.pop(0)
+                    recordMakers[0].addGlobalField(table, field, tokens.pop(0))                     
+                elif assignment :
+                    if not recordMakers[-1].hasField(table, field, 1) or recordMakers[-1].isLastField(table,field) :
+                        raise TagParserError("the field or attribute value used for assignment is not previously defined in record", self.fileName, self.sheetName, self.rowIndex, self.columnIndex)
+                    recordMakers[-1].addVariableOperand(table, field)
+                else :
+                    if recordMakers[-1].isInvalidDuplicateField(table, field, fieldMakerClass) :
+                        raise TagParserError(str("field \"") + field + "\" specified twice in " + table + " record", self.fileName, self.sheetName, self.rowIndex, self.columnIndex)
+                    recordMakers[-1].addField(table, field, fieldMakerClass)
+                    if len(tokens) == 0 or tokens[0] == ';' :
+                        recordMakers[-1].addColumnOperand(self.columnIndex)                
             elif token == "=" :
                 assignment = True
             elif token == "*" :
@@ -1212,6 +1210,7 @@ class TagParser(object):
         return worksheet
 
     conversionComparisonTypes = [ "exact", "regex", "levenshtein" ]
+    matchTypes = ["first", "first-nowarn", "unique", "all"]
     def _parseConversionSheet(self, fileName, sheetName, worksheet):
         """Extracts conversion directives from a given worksheet.
 
@@ -1227,7 +1226,7 @@ class TagParser(object):
         self.rowIndex = -1
         self.fileName = fileName
         self.sheetName = sheetName
-
+        
         aColumn = worksheet.iloc[:, 0]
 
         parsing = False
@@ -1240,8 +1239,8 @@ class TagParser(object):
                     comparisonIndex = -1
                     comparisonType = "regex|exact"
                     userSpecifiedType = False
-                    isUnique = "-unique"
-                    uniqueIndex = -1
+                    matchType = "first"
+                    matchIndex = -1
                     assignIndeces = []
                     assignFields = []
                     assignFieldTypes = []
@@ -1313,12 +1312,14 @@ class TagParser(object):
                             userSpecifiedType = True
                         elif re.match('\s*#comparison\s*$', cellString):
                             comparisonIndex = self.columnIndex
-                        elif re.match('\s*#unique\s*=\s*[Tt]rue\s*$', cellString):
-                            isUnique = "-unique"
-                        elif re.match('\s*#unique\s*=\s*[Ff]alse\s*$', cellString):
-                            isUnique = ""
-                        elif re.match('\s*#unique\s*$', cellString):
-                            uniqueIndex = self.columnIndex
+                        elif re.match('\s*#match\s*=.*$', cellString):
+                            if reCopier(re.match('\s*#match\s*=\s*(first|first-nowarn|unique|all)\s*$', cellString)):
+                                matchType = reCopier.value.group(1)
+                            else:
+                                badType = re.match('\s*#match\s*=(.*)$', cellString).group(1)
+                                raise TagParserError("Unknown match type \"" + badType + "\"", self.fileName, self.sheetName, self.rowIndex, self.columnIndex)
+                        elif re.match('\s*#match\s*$', cellString):
+                            matchIndex = self.columnIndex
                         self.columnIndex = -1
                     if valueIndex == -1 or (len(assignIndeces) == 0 and len(appendIndeces) == 0 and len(prependIndeces) == 0 and len(regexIndeces) == 0 and len(deletionFields) == 0 and not renameFieldMap):
                         raise TagParserError("Missing #table_name.field_name.value or #.field_name.assign|append|prepend|regex|delete|rename conversion tags", self.fileName, self.sheetName, self.rowIndex, self.columnIndex)
@@ -1348,14 +1349,11 @@ class TagParser(object):
                         # raise TagParserError("Comparison type is indicated as regex, but comparison value is not a regex", self.fileName, self.sheetName, self.rowIndex, valueIndex)
                         continue
 
-                    if uniqueIndex != -1 and re.match("[Tt]rue$", xstr(worksheet.iloc[self.rowIndex, uniqueIndex]).strip()):
-                        localUnique = "-unique"
-                    elif uniqueIndex != -1 and re.match("[Ff]alse$", xstr(worksheet.iloc[self.rowIndex, uniqueIndex]).strip()):
-                        localUnique = ""
-                    else:
-                        localUnique = isUnique
-
-                    localComparisonType += localUnique
+                    if matchIndex != -1:
+                        matchType = xstr(worksheet.iloc[self.rowIndex, matchIndex]).strip()
+                        if matchType not in TagParser.matchTypes:
+                            raise TagParserError("Unknown match type \"" + matchType + "\"", self.fileName, self.sheetName, self.rowIndex, matchIndex)
+                    localComparisonType += "-" + matchType
 
                     assignFieldMap = {}
                     for i in range(len(assignIndeces)):
@@ -1788,156 +1786,241 @@ class TagParser(object):
                     # self.changedRecords[recordPath + oldField]["previous_conversion_value"] = record[newField]
 
 
-    def _applyExactConversionDirectives(self, tableKey, fieldKey, conversionDirectives, usedRecordTuples, isUnique=True):
+    def _applyExactConversionDirectives(self, tableKey, fieldKey, conversionDirectives):
         """Tests and applies exact conversion directives
 
         :param :py:class:`str` tableKey: table name (key)
         :param :py:class:`str` fieldKey: field name (key)
         :param :py:class:`dict` conversionDirectives: nested dict of conversion directives
-        :param :py:class:`set`  usedRecordTuples: set of used records
-        :param :py:class:`set`  usedConversions: set of used conversion directives
-        :param :py:class:`bool` isUnique: are the directives uniquely applied?
         """
-        comparisonType = "exact" if not isUnique else "exact-unique"
+        comparisonTypes = ["exact-first", "exact-first-nowarn", "exact-unique", "exact-all"]
+        firstTypes = ["exact-first", "exact-first-nowarn"]
         
-        usedRecordTuples = set()
-
-        if comparisonType in conversionDirectives[tableKey][fieldKey]:
-            table = self.extraction[tableKey]
-            for idKey, record in table.items():
-                if fieldKey in record:
-                    fieldValue = record[fieldKey]
-                    if type(fieldValue) == list:
-                        for specificValue in fieldValue:
-                            if specificValue in conversionDirectives[tableKey][fieldKey][comparisonType]:
-                                if isUnique and (tableKey, fieldKey, specificValue) not in usedRecordTuples:
-                                    self._applyConversionDirectives(record, tableKey + "[" + idKey + "]", conversionDirectives[tableKey][fieldKey][comparisonType][specificValue])
-                                    usedRecordTuples.add((tableKey, fieldKey, specificValue))
-                                    self.usedConversions.add((tableKey, fieldKey, comparisonType, specificValue))
-                                elif not isUnique:
-                                    self._applyConversionDirectives(record, tableKey + "[" + idKey + "]", conversionDirectives[tableKey][fieldKey][comparisonType][specificValue])
-                                    self.usedConversions.add((tableKey, fieldKey, comparisonType, specificValue))
+        for comparisonType in comparisonTypes:
+            if comparisonType == "exact-unique":
+                isUnique=True
+            else:
+                isUnique=False
+            if comparisonType in firstTypes:
+                isFirst=True
+            else:
+                isFirst=False
+        
+            matchedFieldValues = {}
+    
+            if comparisonType in conversionDirectives[tableKey][fieldKey]:
+                table = self.extraction[tableKey]
+                for idKey, record in table.items():
+                    if fieldKey in record:
+                        fieldValue = record[fieldKey]
+                        if type(fieldValue) == list:
+                            for specificValue in fieldValue:
+                                if specificValue in conversionDirectives[tableKey][fieldKey][comparisonType]:
+                                    if isFirst:
+                                        if specificValue not in matchedFieldValues:
+                                            self._applyConversionDirectives(record, tableKey + "[" + idKey + "]", conversionDirectives[tableKey][fieldKey][comparisonType][specificValue])
+                                            matchedFieldValues[specificValue] = {"idKey":idKey, "numberOfMatches":1}
+                                            self.usedConversions.add((tableKey, fieldKey, comparisonType, specificValue))
+                                        elif comparisonType == "exact-first":
+                                            print("Warning: conversion directive #" + tableKey + "." + fieldKey + "." + comparisonType + "." + specificValue + " matches more than one record. Only the first record will be changed. Try #match=all if all matching records should be changed, or #match=first-nowarn to silence this message.", file=sys.stderr)
+                                    
+                                    elif isUnique:
+                                        if specificValue not in matchedFieldValues:
+                                            matchedFieldValues[specificValue] = {"idKey":idKey, "numberOfMatches":1}
+                                        else:
+                                            matchedFieldValues[specificValue]["numberOfMatches"] += 1
+                                            
+                                    else:
+                                        self._applyConversionDirectives(record, tableKey + "[" + idKey + "]", conversionDirectives[tableKey][fieldKey][comparisonType][specificValue])
+                                        self.usedConversions.add((tableKey, fieldKey, comparisonType, specificValue))
+                        
+                        elif fieldValue in conversionDirectives[tableKey][fieldKey][comparisonType]:
+                            if isFirst:
+                                if fieldValue not in matchedFieldValues:
+                                    self._applyConversionDirectives(record, tableKey + "[" + idKey + "]", conversionDirectives[tableKey][fieldKey][comparisonType][fieldValue])
+                                    matchedFieldValues[fieldValue] = {"idKey":idKey, "numberOfMatches":1}
+                                    self.usedConversions.add((tableKey, fieldKey, comparisonType, fieldValue))
+                                elif comparisonType == "exact-first":
+                                    print("Warning: conversion directive #" + tableKey + "." + fieldKey + "." + comparisonType + "." + fieldValue + " matches more than one record. Only the first record will be changed. Try #match=all if all matching records should be changed, or #match=first-nowarn to silence this message.", file=sys.stderr)
+                            
+                            elif isUnique:
+                                if fieldValue not in matchedFieldValues:
+                                    matchedFieldValues[fieldValue] = {"idKey":idKey, "numberOfMatches":1}
                                 else:
-                                    print("Warning: conversion directive #" + tableKey + "." + fieldKey + "." + comparisonType + "." + specificValue + " matches more than one record. Only the first record will be changed. Try #unique=false if all matching records should be changed.", file=sys.stderr)
-                    
-                    elif fieldValue in conversionDirectives[tableKey][fieldKey][comparisonType]:
-                        if isUnique and (tableKey, fieldKey, fieldValue) not in usedRecordTuples:
-                            self._applyConversionDirectives(record, tableKey + "[" + idKey + "]", conversionDirectives[tableKey][fieldKey][comparisonType][fieldValue])
-                            usedRecordTuples.add((tableKey, fieldKey, fieldValue))
+                                    matchedFieldValues[fieldValue]["numberOfMatches"] += 1
+                                    
+                            else:
+                                self._applyConversionDirectives(record, tableKey + "[" + idKey + "]", conversionDirectives[tableKey][fieldKey][comparisonType][fieldValue])
+                                self.usedConversions.add((tableKey, fieldKey, comparisonType, fieldValue))
+
+                if isUnique:
+                    for fieldValue, attributes in matchedFieldValues.items():
+                        if attributes["numberOfMatches"] == 1:
+                            self._applyConversionDirectives(table[attributes["idKey"]], tableKey + "[" + attributes["idKey"] + "]", conversionDirectives[tableKey][fieldKey][comparisonType][fieldValue])
                             self.usedConversions.add((tableKey, fieldKey, comparisonType, fieldValue))
-                        elif not isUnique:
-                            self._applyConversionDirectives(record, tableKey + "[" + idKey + "]", conversionDirectives[tableKey][fieldKey][comparisonType][fieldValue])
-                            self.usedConversions.add((tableKey, fieldKey, comparisonType, fieldValue))
-                        else:
-                            print("Warning: conversion directive #" + tableKey + "." + fieldKey + "." + comparisonType + "." + fieldValue + " matches more than one record. Only the first record will be changed. Try #unique=false if all matching records should be changed.", file=sys.stderr)
 
 
 
-    def _applyRegexConversionDirectives(self, tableKey, fieldKey, conversionDirectives, usedRecordTuples, regexObjects, isUnique=True):
+
+    def _applyRegexConversionDirectives(self, tableKey, fieldKey, conversionDirectives, regexObjects):
         """Tests and applies regular expression conversion directives.
 
         :param :py:class:`str` tableKey: table name (key)
         :param :py:class:`str` fieldKey: field name (key)
         :param :py:class:`dict` conversionDirectives: nested dict of conversion directives
-        :param :py:class:`set`  usedRecordTuples: set of used records
-        :param :py:class:`set`  usedConversions: set of used conversion directives
         :param :py:class:`dict` regexObjects: dict of regex string to regex object
-        :param :py:class:`bool` isUnique: are the directives uniquely applied?
         """
-        comparisonType = "regex" if not isUnique else "regex-unique"
+        comparisonTypes = ["regex-first", "regex-first-nowarn", "regex-unique", "regex-all"]
+        firstTypes = ["regex-first", "regex-first-nowarn"]
         
-        usedRecordTuples = set()
+        for comparisonType in comparisonTypes:
+            if comparisonType == "regex-unique":
+                isUnique=True
+            else:
+                isUnique=False
+            if comparisonType in firstTypes:
+                isFirst=True
+            else:
+                isFirst=False
         
-        if comparisonType in conversionDirectives[tableKey][fieldKey]:
-            table = self.extraction[tableKey]
-            for idKey, record in table.items():
-                if fieldKey in record:
-                    fieldValue = record[fieldKey]
-                    for regexID, regexEntry in conversionDirectives[tableKey][fieldKey][comparisonType].items():
-                        if type(fieldValue) == list:
-                            for specificValue in fieldValue:
-                                if re.search(regexObjects[regexID], specificValue):
-                                    if isUnique and (tableKey, fieldKey, specificValue) not in usedRecordTuples:
+            matchedRegexIDs = {}
+                    
+            if comparisonType in conversionDirectives[tableKey][fieldKey]:
+                table = self.extraction[tableKey]
+                for idKey, record in table.items():
+                    if fieldKey in record:
+                        fieldValue = record[fieldKey]
+                        for regexID, regexEntry in conversionDirectives[tableKey][fieldKey][comparisonType].items():
+                            if type(fieldValue) == list:
+                                for specificValue in fieldValue:
+                                    if re.search(regexObjects[regexID], specificValue):
+                                        if isFirst:
+                                            if regexID not in matchedRegexIDs:
+                                                self._applyConversionDirectives(record, tableKey + "[" + idKey + "]", regexEntry)
+                                                matchedRegexIDs[regexID] = {"idKey":idKey, "numberOfMatches":1}
+                                                self.usedConversions.add((tableKey, fieldKey, comparisonType, regexID))
+                                            elif comparisonType == "regex-first":
+                                                print("Warning: conversion directive #" + tableKey + "." + fieldKey + "." + comparisonType + "." + regexID + " matches more than one record. Only the first record will be changed. Try #match=all if all matching records should be changed, or #match=first-nowarn to silence this message.", file=sys.stderr)
+                                        
+                                        elif isUnique:
+                                            if regexID not in matchedRegexIDs:
+                                                matchedRegexIDs[regexID] = {"idKey":idKey, "numberOfMatches":1}
+                                            else:
+                                                matchedRegexIDs[regexID]["numberOfMatches"] += 1
+                                                
+                                        else:
+                                            self._applyConversionDirectives(record, tableKey + "[" + idKey + "]", regexEntry)
+                                            self.usedConversions.add((tableKey, fieldKey, comparisonType, regexID))
+                                                                    
+                            elif re.search(regexObjects[regexID], fieldValue):
+                                if isFirst:
+                                    if regexID not in matchedRegexIDs:
                                         self._applyConversionDirectives(record, tableKey + "[" + idKey + "]", regexEntry)
-                                        usedRecordTuples.add((tableKey, fieldKey, specificValue))
+                                        matchedRegexIDs[regexID] = {"idKey":idKey, "numberOfMatches":1}
                                         self.usedConversions.add((tableKey, fieldKey, comparisonType, regexID))
-                                    elif not isUnique:
-                                        self._applyConversionDirectives(record, tableKey + "[" + idKey + "]", regexEntry)
-                                        self.usedConversions.add((tableKey, fieldKey, comparisonType, regexID))
+                                    elif comparisonType == "regex-first":
+                                        print("Warning: conversion directive #" + tableKey + "." + fieldKey + "." + comparisonType + "." + regexID + " matches more than one record. Only the first record will be changed. Try #match=all if all matching records should be changed, or #match=first-nowarn to silence this message.", file=sys.stderr)
+                                
+                                elif isUnique:
+                                    if regexID not in matchedRegexIDs:
+                                        matchedRegexIDs[regexID] = {"idKey":idKey, "numberOfMatches":1}
                                     else:
-                                        print("Warning: conversion directive #" + tableKey + "." + fieldKey + "." + comparisonType + "." + regexID + " matches more than one record. Only the first record will be changed. Try #unique=false if all matching records should be changed.", file=sys.stderr)                       
-                        
-                        elif re.search(regexObjects[regexID], fieldValue):
-                            if isUnique and (tableKey, fieldKey, fieldValue) not in usedRecordTuples:
-                                self._applyConversionDirectives(record, tableKey + "[" + idKey + "]", regexEntry)
-                                usedRecordTuples.add((tableKey, fieldKey, fieldValue))
-                                self.usedConversions.add((tableKey, fieldKey, comparisonType, regexID))
-                            elif not isUnique:
-                                self._applyConversionDirectives(record, tableKey + "[" + idKey + "]", regexEntry)
-                                self.usedConversions.add((tableKey, fieldKey, comparisonType, regexID))
-                            else:
-                                print("Warning: conversion directive #" + tableKey + "." + fieldKey + "." + comparisonType + "." + regexID + " matches more than one record. Only the first record will be changed. Try #unique=false if all matching records should be changed.", file=sys.stderr)
+                                        matchedRegexIDs[regexID]["numberOfMatches"] += 1
+                                        
+                                else:
+                                    self._applyConversionDirectives(record, tableKey + "[" + idKey + "]", regexEntry)
+                                    self.usedConversions.add((tableKey, fieldKey, comparisonType, regexID))
+                    
+                if isUnique:
+                    for regexID, attributes in matchedRegexIDs.items():
+                        if attributes["numberOfMatches"] == 1:
+                            self._applyConversionDirectives(table[attributes["idKey"]], tableKey + "[" + attributes["idKey"] + "]", conversionDirectives[tableKey][fieldKey][comparisonType][regexID])
+                            self.usedConversions.add((tableKey, fieldKey, comparisonType, regexID))
 
 
 
-    def _applyLevenshteinConversionDirectives(self, tableKey, fieldKey, conversionDirectives, usedRecordTuples, isUnique=True):
+    def _applyLevenshteinConversionDirectives(self, tableKey, fieldKey, conversionDirectives):
         """Tests and applies levenshtein conversion directives.
 
         :param :py:class:`str` tableKey: table name (key)
         :param :py:class:`str` fieldKey: field name (key)
         :param :py:class:`dict` conversionDirectives: nested dict of conversion directives
-        :param :py:class:`set`  usedRecordTuples: set of used records
-        :param :py:class:`bool` isUnique: are the directives uniquely applied?
         """
-        comparisonType = "levenshtein" if not isUnique else "levenshtein-unique"
-
-        if comparisonType in conversionDirectives[tableKey][fieldKey]:
-            levenshteinComparisons = collections.defaultdict(dict)
-            levenshteinComparisonValues = collections.defaultdict(dict)
-            for levID, levEntry in conversionDirectives[tableKey][fieldKey][comparisonType].items():
-                for idKey, record in self.extraction[tableKey].items():
-                    if fieldKey in record:
-                        ## If the comparison field is a list field then calculate the distance between all values in the list and use the smallest for comparison.
-                        if type(record[fieldKey]) == list:
-                            usableValues = [specificValue for specificValue in record[fieldKey] if (tableKey, fieldKey, specificValue) not in usedRecordTuples]
-                            if usableValues:
-                                levenshteinDistances = [jellyfish.levenshtein_distance(levID, specificValue) for specificValue in usableValues]
+        comparisonTypes = ["levenshtein-first", "levenshtein-first-nowarn", "levenshtein-unique", "levenshtein-all"]
+        firstTypes = ["levenshtein-first", "levenshtein-first-nowarn"]
+        
+        for comparisonType in comparisonTypes:
+            if comparisonType == "levenshtein-unique":
+                isUnique=True
+            else:
+                isUnique=False
+            if comparisonType in firstTypes:
+                isFirst=True
+            else:
+                isFirst=False
+        
+            if comparisonType in conversionDirectives[tableKey][fieldKey]:
+                levenshteinComparisons = collections.defaultdict(dict)
+                levenshteinComparisonValues = collections.defaultdict(dict)
+                for levID, levEntry in conversionDirectives[tableKey][fieldKey][comparisonType].items():
+                    for idKey, record in self.extraction[tableKey].items():
+                        if fieldKey in record:
+                            ## If the comparison field is a list field then calculate the distance between all values in the list and use the smallest for comparison.
+                            if type(record[fieldKey]) == list:
+                                fieldValues = record[fieldKey]
+                                levenshteinDistances = [jellyfish.levenshtein_distance(levID, specificValue) for specificValue in fieldValues]
                                 levenshteinComparisons[levID][idKey] = min(levenshteinDistances)
-                                levenshteinComparisonValues[levID][idKey] = usableValues[min(range(len(levenshteinDistances)), key=levenshteinDistances.__getitem__)]
-                        elif (tableKey, fieldKey, record[fieldKey]) not in usedRecordTuples:
-                            levenshteinComparisons[levID][idKey] = jellyfish.levenshtein_distance(levID, record[fieldKey])
-                            levenshteinComparisonValues[levID][idKey] = record[fieldKey]
-            
-            idKeySet = set()
-            for levID in levenshteinComparisons.keys():
-                idKeySet |= set(levenshteinComparisons[levID].keys())
-
-            uniqueForIdKey = collections.defaultdict(None)
-            for idKey in idKeySet:
-                usableLevIDs = [levID for levID in levenshteinComparisons.keys() if idKey in levenshteinComparisons[levID]]
-                minLevID = min(levenshteinComparisons.keys(), key=(lambda k: levenshteinComparisons[k][idKey]))
-                minLevValue = levenshteinComparisons[minLevID][idKey]
-                ## Only 1 match to min value.
-                if sum(levenshteinComparisons[levKey][idKey] == minLevValue for levKey in usableLevIDs) == 1:
-                    uniqueForIdKey[idKey] = minLevID
-
-            if isUnique:
+                                levenshteinComparisonValues[levID][idKey] = fieldValues[min(range(len(levenshteinDistances)), key=levenshteinDistances.__getitem__)]
+                            else:
+                                levenshteinComparisons[levID][idKey] = jellyfish.levenshtein_distance(levID, record[fieldKey])
+                                levenshteinComparisonValues[levID][idKey] = record[fieldKey]
+                
+                idKeySet = set()
+                for levID in levenshteinComparisons.keys():
+                    idKeySet |= set(levenshteinComparisons[levID].keys())
+    
+                uniqueForIdKey = collections.defaultdict(None)
+                for idKey in idKeySet:
+                    usableLevIDs = [levID for levID in levenshteinComparisons.keys() if idKey in levenshteinComparisons[levID]]
+                    minLevID = min(levenshteinComparisons.keys(), key=(lambda k: levenshteinComparisons[k][idKey]))
+                    minLevValue = levenshteinComparisons[minLevID][idKey]
+                    ## Only 1 match to min value.
+                    if sum(levenshteinComparisons[levKey][idKey] == minLevValue for levKey in usableLevIDs) == 1:
+                        uniqueForIdKey[idKey] = minLevID
+                        
+                
                 uniqueForLevenshteinID = collections.defaultdict(None)
                 for levID in levenshteinComparisons.keys():
                     minIDKey = min(levenshteinComparisons[levID].keys(), key=(lambda k: levenshteinComparisons[levID][k]))
                     minIDValue = levenshteinComparisons[levID][minIDKey]
-                    if sum(levenshteinComparisons[levID][idKey] == minIDValue for idKey in levenshteinComparisons[levID]) == 1:
-                        uniqueForLevenshteinID[levID] = minIDKey
+                    if isFirst:
+                        idKeysThatHaveMinValue = [idKey for idKey in levenshteinComparisons[levID] if levenshteinComparisons[levID][idKey] == minIDValue]
+                        uniqueForLevenshteinID[levID] = idKeysThatHaveMinValue[0]
+                        if comparisonType == "levenshtein-first" and len(idKeysThatHaveMinValue) > 1:
+                            print("Warning: conversion directive #" + tableKey + "." + fieldKey + "." + comparisonType + "." + levID + " matches more than one record. Only the first record will be changed. Try #match=all if all matching records should be changed, or #match=first-nowarn to silence this message.", file=sys.stderr)
+                            
+                    elif isUnique:
+                        if sum(levenshteinComparisons[levID][idKey] == minIDValue for idKey in levenshteinComparisons[levID]) == 1:
+                            uniqueForLevenshteinID[levID] = minIDKey
+                            
+                    else:
+                        idKeysThatHaveMinValue = [idKey for idKey in levenshteinComparisons[levID] if levenshteinComparisons[levID][idKey] == minIDValue]
+                        uniqueForLevenshteinID[levID] = idKeysThatHaveMinValue
 
-                for levID, levEntry in conversionDirectives[tableKey][fieldKey][comparisonType].items():
-                    if levID in uniqueForLevenshteinID and uniqueForIdKey[uniqueForLevenshteinID[levID]] == levID:
-                        self._applyConversionDirectives(self.extraction[tableKey][uniqueForLevenshteinID[levID]], tableKey + "[" + uniqueForLevenshteinID[levID] + "]", levEntry)
-                        usedRecordTuples.add((tableKey, fieldKey, levenshteinComparisonValues[levID][uniqueForLevenshteinID[levID]]))
-                        self.usedConversions.add((tableKey, fieldKey, comparisonType, levID))
-            else:
-                for idKey, levID in uniqueForIdKey.items():
-                    self._applyConversionDirectives(self.extraction[tableKey][idKey], tableKey + "[" + idKey + "]", conversionDirectives[tableKey][fieldKey][comparisonType][levID])
-                    self.usedConversions.add((tableKey, fieldKey, comparisonType, levID))
+                
+                if isFirst or isUnique:
+                    for levID, levEntry in conversionDirectives[tableKey][fieldKey][comparisonType].items():
+                        if levID in uniqueForLevenshteinID and uniqueForIdKey[uniqueForLevenshteinID[levID]] == levID:
+                            self._applyConversionDirectives(self.extraction[tableKey][uniqueForLevenshteinID[levID]], tableKey + "[" + uniqueForLevenshteinID[levID] + "]", levEntry)
+                            self.usedConversions.add((tableKey, fieldKey, comparisonType, levID))
+                else:
+                    for levID, levEntry in conversionDirectives[tableKey][fieldKey][comparisonType].items():
+                        if levID in uniqueForLevenshteinID:
+                            for idKey in uniqueForLevenshteinID[levID]:
+                                self._applyConversionDirectives(self.extraction[tableKey][idKey], tableKey + "[" + idKey + "]", levEntry)
+                                self.usedConversions.add((tableKey, fieldKey, comparisonType, levID))
+                
+                
 
     def convert(self, conversionDirectives):
         """Applies conversionDirectives to the extracted metadata.
@@ -1958,11 +2041,10 @@ class TagParser(object):
             regexObjects = {}
             for tableDict in conversionDirectives.values():
                 for fieldDict in tableDict.values():
-                    if "regex" in fieldDict:
-                        regexObjects.update({ regexString : re.compile(re.match(TagParser.reDetector, regexString)[1]) for regexString in  fieldDict["regex"].keys()})
-                    if "regex-unique" in fieldDict:
-                        regexObjects.update({ regexString : re.compile(re.match(TagParser.reDetector, regexString)[1]) for regexString in  fieldDict["regex-unique"].keys()})
-
+                    for regex_type in ["regex-first", "regex-first-nowarn", "regex-unique", "regex-all"]:
+                        if regex_type in fieldDict:
+                            regexObjects.update({ regexString : re.compile(re.match(TagParser.reDetector, regexString)[1]) for regexString in  fieldDict[regex_type].keys()})
+            
             # Compile regex objects for regex substitution directives.
             for tableDict in conversionDirectives.values():
                 for fieldDict in tableDict.values():
@@ -1984,17 +2066,13 @@ class TagParser(object):
                                         fieldValueDict["assign"][newField] = Evaluator(reCopier.value.group(1))
 
             self.changedRecords = {}
-            usedRecordTuples = set()
             for tableKey in conversionDirectives.keys():
                 if tableKey in self.extraction:
                     for fieldKey in conversionDirectives[tableKey].keys():
                         ## These functions ultimately modify records in self.extraction.
-                        self._applyExactConversionDirectives(tableKey, fieldKey, conversionDirectives, usedRecordTuples, True) # exact-unique conversions
-                        self._applyRegexConversionDirectives(tableKey, fieldKey, conversionDirectives, usedRecordTuples, regexObjects, True) # regex-unique conversions
-                        self._applyLevenshteinConversionDirectives(tableKey, fieldKey, conversionDirectives, usedRecordTuples, True) # levenshtein-unique conversions
-                        self._applyExactConversionDirectives(tableKey, fieldKey, conversionDirectives, usedRecordTuples, False) # exact conversions
-                        self._applyRegexConversionDirectives(tableKey, fieldKey, conversionDirectives, usedRecordTuples, regexObjects, False) # regex conversions
-                        self._applyLevenshteinConversionDirectives(tableKey, fieldKey, conversionDirectives, usedRecordTuples, False) # levenshtein conversions
+                        self._applyExactConversionDirectives(tableKey, fieldKey, conversionDirectives)
+                        self._applyRegexConversionDirectives(tableKey, fieldKey, conversionDirectives, regexObjects)
+                        self._applyLevenshteinConversionDirectives(tableKey, fieldKey, conversionDirectives)
 
             # Identify changed IDs.
 #            idTranslation = collections.defaultdict(dict)

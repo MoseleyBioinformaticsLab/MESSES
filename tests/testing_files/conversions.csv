@@ -1,2 +1,2 @@
-﻿#tags,#measurement.compound.value,#measurement.id.regex,#unique=false
+﻿#tags,#measurement.compound.value,#measurement.id.regex,#match=all
 ,(S)-2-Acetolactate_Glutaric acid_Methylsuccinic acid_MP_NoStd,"r'\(S\)-2-Acetolactate_Glutaric acid_Methylsuccinic acid_MP_NoStd',r'(S)-2-Acetolactate Glutaric acid Methylsuccinic acid'",

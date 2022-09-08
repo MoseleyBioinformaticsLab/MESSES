@@ -501,33 +501,8 @@ def test_conversion_comparison_type_exact():
     assert "qwer" == output_json["measurement"]["(S)-2-Acetolactate_Glutaric acid_Methylsuccinic acid_MP_NoStd-13C0-01_A0_Colon_T03-2017_naive_170427_UKy_GCB_rep1-quench"]["formula"]
     assert "qwer" == output_json["measurement"]["(S)-2-Acetolactate_Glutaric acid_Methylsuccinic acid_MP_NoStd-13C1-01_A0_Colon_T03-2017_naive_170427_UKy_GCB_rep1-quench"]["formula"]
 
-    assert "Warning: conversion directive #measurement.compound.exact.r'\\(S\\)\\-2\\-Acetolactate_Glutaric acid_Methylsuccinic acid_MP_NoStd' never matched." in output
-    assert "Warning: conversion directive #measurement.compound.exact.asdf never matched." in output
-
-
-
-def test_conversion_comparison_type_levenshtein():
-    """Test that conversion comparison=levenshtein works."""
-    
-    test_file = "conversion_comparison_type_levenshtein_test.xlsx"
-    
-    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
-    command = command.split(" ")
-    subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
-    output = subp.stderr
-
-    
-    assert output_path.exists()
-    
-    with open(output_path, "r") as f:
-        output_json = json.loads(f.read())
-        
-        
-    assert "zxcv" == output_json["measurement"]["(S)-2-Acetolactate_Glutaric acid_Methylsuccinic acid_MP_NoStd-13C0-01_A0_Colon_T03-2017_naive_170427_UKy_GCB_rep1-quench"]["formula"]
-    assert "zxcv" == output_json["measurement"]["(S)-2-Acetolactate_Glutaric acid_Methylsuccinic acid_MP_NoStd-13C1-01_A0_Colon_T03-2017_naive_170427_UKy_GCB_rep1-quench"]["formula"]
-
-    assert "Warning: conversion directive #measurement.compound.levenshtein.(S)-2-Acetolactate_Glutaric acid_Meth never matched." in output
-    assert "Warning: conversion directive #measurement.compound.levenshtein.(S)-2-Acetolactate_Glu never matched." in output
+    assert "Warning: conversion directive #measurement.compound.exact-all.r'\\(S\\)\\-2\\-Acetolactate_Glutaric acid_Methylsuccinic acid_MP_NoStd' never matched." in output
+    assert "Warning: conversion directive #measurement.compound.exact-all.asdf never matched." in output
 
 
 
@@ -551,7 +526,7 @@ def test_conversion_comparison_type_regex_or_exact():
     assert "asdf" == output_json["measurement"]["(S)-2-Acetolactate_Glutaric acid_Methylsuccinic acid_MP_NoStd-13C0-01_A0_Colon_T03-2017_naive_170427_UKy_GCB_rep1-quench"]["formula"]
     assert "asdf" == output_json["measurement"]["(S)-2-Acetolactate_Glutaric acid_Methylsuccinic acid_MP_NoStd-13C1-01_A0_Colon_T03-2017_naive_170427_UKy_GCB_rep1-quench"]["formula"]
 
-    assert "Warning: conversion directive #measurement.compound.exact.asdf never matched." in output
+    assert "Warning: conversion directive #measurement.compound.exact-all.asdf never matched." in output
 
 
 
@@ -1042,35 +1017,8 @@ def test_conversion_duplicate_rename_warning():
 
 
 
-def test_conversion_comparison_type_regex_or_exact_unique_test():
-    """Test that only 1 record is changed when unique is true for comparison type regex|exact."""
-    
-    test_file = "conversion_comparison_type_regex_or_exact_unique_test.xlsx"
-    
-    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
-    command = command.split(" ")
-    subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
-    output = subp.stderr
-
-    
-    assert output_path.exists()
-    
-    with open(output_path, "r") as f:
-        output_json = json.loads(f.read())
-        
-    assert "Warning: conversion directive #measurement.compound.regex-unique.r'\\(S\\)\\-2\\-Acetolactate_Glutaric acid_Methylsuccinic acid_MP_NoStd' matches more than one record. Only the first record will be changed. Try #unique=false if all matching records should be changed." in output
-    assert "Warning: conversion directive #measurement.compound.exact-unique.(S)-2-Acetolactate_Glutaric acid_Methylsuccinic acid_MP_NoStd matches more than one record. Only the first record will be changed. Try #unique=false if all matching records should be changed." in output
-        
-    assert output_json["measurement"]["(S)-2-Acetolactate_Glutaric acid_Methylsuccinic acid_MP_NoStd-13C0-01_A0_Colon_T03-2017_naive_170427_UKy_GCB_rep1-quench"]["formula"] == "asdf"
-    assert output_json["measurement"]["(S)-2-Acetolactate_Glutaric acid_Methylsuccinic acid_MP_NoStd-13C1-01_A0_Colon_T03-2017_naive_170427_UKy_GCB_rep1-quench"]["formula"] == "C5H8O4"
-
-    assert output_json["measurement"]["(S)-2-Acetolactate_Glutaric acid_Methylsuccinic acid_MP_NoStd-13C0-01_A0_Colon_T03-2017_naive_170427_UKy_GCB_rep1-quench"]["assignment"] == "asdf"
-    assert output_json["measurement"]["(S)-2-Acetolactate_Glutaric acid_Methylsuccinic acid_MP_NoStd-13C1-01_A0_Colon_T03-2017_naive_170427_UKy_GCB_rep1-quench"]["assignment"] == "(S)-2-Acetolactate_Glutaric acid_Methylsuccinic acid_MP_NoStd-13C1"
-
-
-
 def test_conversion_comparison_type_exact_unique_test():
-    """Test that only 1 record is changed when unique is true for cmparison type exact."""
+    """Test that values are only changed if it is unique when #match=unique."""
     
     test_file = "conversion_comparison_type_exact_unique_test.xlsx"
     
@@ -1085,18 +1033,107 @@ def test_conversion_comparison_type_exact_unique_test():
     with open(output_path, "r") as f:
         output_json = json.loads(f.read())
         
-    assert "Warning: conversion directive #measurement.compound.exact-unique.(S)-2-Acetolactate_Glutaric acid_Methylsuccinic acid_MP_NoStd matches more than one record. Only the first record will be changed. Try #unique=false if all matching records should be changed." in output
+    assert "Warning: conversion directive #measurement.formula.exact-unique.ghjk never matched." in output
+    assert "Warning: conversion directive #measurement.compound.exact-unique.(S)-2-Acetolactate_Glutaric acid_Methylsuccinic acid_MP_NoStd never matched." in output
+        
+    assert output_json["measurement"]["(S)-2-Acetolactate_Glutaric acid_Methylsuccinic acid_MP_NoStd-13C0-01_A0_Colon_T03-2017_naive_170427_UKy_GCB_rep1-quench"]["formula"] == "C5H8O4"
+    assert output_json["measurement"]["(S)-2-Acetolactate_Glutaric acid_Methylsuccinic acid_MP_NoStd-13C1-01_A0_Colon_T03-2017_naive_170427_UKy_GCB_rep1-quench"]["formula"] == "C5H8O4"
+    
+    assert output_json["measurement"]["(S)-2-Acetolactate_Glutaric acid_Methylsuccinic acid_MP_NoStd-13C0-01_A0_Colon_T03-2017_naive_170427_UKy_GCB_rep1-quench"]["assignment"] == "(S)-2-Acetolactate_Glutaric acid_Methylsuccinic acid_MP_NoStd-13C0"
+    assert output_json["measurement"]["(S)-2-Acetolactate_Glutaric acid_Methylsuccinic acid_MP_NoStd-13C1-01_A0_Colon_T03-2017_naive_170427_UKy_GCB_rep1-quench"]["assignment"] == "(S)-2-Acetolactate_Glutaric acid_Methylsuccinic acid_MP_NoStd-13C1"
+    
+    assert output_json["measurement"]["asdf-13C1-01_A0_Colon_T03-2017_naive_170427_UKy_GCB_rep1-quench"]["assignment"] == "qwer"
+    
+    assert output_json["measurement"]["zxcv-13C0-01_A0_Colon_T03-2017_naive_170427_UKy_GCB_rep1-quench"]["assignment"] == "zxcv-13C0"
+    assert output_json["measurement"]["zxcv-13C1-01_A0_Colon_T03-2017_naive_170427_UKy_GCB_rep1-quench"]["assignment"] == "zxcv-13C1"
+
+
+def test_conversion_comparison_type_exact_first_test():
+    """Test that only the first values are changed when #match=first."""
+    
+    test_file = "conversion_comparison_type_exact_first_test.xlsx"
+    
+    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
+    command = command.split(" ")
+    subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
+    output = subp.stderr
+
+    
+    assert output_path.exists()
+    
+    with open(output_path, "r") as f:
+        output_json = json.loads(f.read())
+        
+    assert "Warning: conversion directive #measurement.compound.exact-first.(S)-2-Acetolactate_Glutaric acid_Methylsuccinic acid_MP_NoStd matches more than one record. Only the first record will be changed. Try #match=all if all matching records should be changed, or #match=first-nowarn to silence this message." in output
+    assert "Warning: conversion directive #measurement.formula.exact-first.qwer matches more than one record. Only the first record will be changed. Try #match=all if all matching records should be changed, or #match=first-nowarn to silence this message." in output
         
     assert output_json["measurement"]["(S)-2-Acetolactate_Glutaric acid_Methylsuccinic acid_MP_NoStd-13C0-01_A0_Colon_T03-2017_naive_170427_UKy_GCB_rep1-quench"]["formula"] == "asdf"
     assert output_json["measurement"]["(S)-2-Acetolactate_Glutaric acid_Methylsuccinic acid_MP_NoStd-13C1-01_A0_Colon_T03-2017_naive_170427_UKy_GCB_rep1-quench"]["formula"] == "C5H8O4"
     
     assert output_json["measurement"]["(S)-2-Acetolactate_Glutaric acid_Methylsuccinic acid_MP_NoStd-13C0-01_A0_Colon_T03-2017_naive_170427_UKy_GCB_rep1-quench"]["assignment"] == "asdf"
     assert output_json["measurement"]["(S)-2-Acetolactate_Glutaric acid_Methylsuccinic acid_MP_NoStd-13C1-01_A0_Colon_T03-2017_naive_170427_UKy_GCB_rep1-quench"]["assignment"] == "(S)-2-Acetolactate_Glutaric acid_Methylsuccinic acid_MP_NoStd-13C1"
+    
+    assert output_json["measurement"]["asdf-13C0-01_A0_Colon_T03-2017_naive_170427_UKy_GCB_rep1-quench"]["assignment"] == "qwer"
+    assert output_json["measurement"]["asdf-13C1-01_A0_Colon_T03-2017_naive_170427_UKy_GCB_rep1-quench"]["assignment"] == "asdf-13C1"
+    
+    
+def test_conversion_comparison_type_exact_first_nowarn_test():
+    """Test that only the first values are changed when #match=first-nowarn and no message is printed."""
+    
+    test_file = "conversion_comparison_type_exact_first-nowarn_test.xlsx"
+    
+    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
+    command = command.split(" ")
+    subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
+    output = subp.stderr
+
+    
+    assert output_path.exists()
+    
+    with open(output_path, "r") as f:
+        output_json = json.loads(f.read())
+        
+    assert output == ""
+        
+    assert output_json["measurement"]["(S)-2-Acetolactate_Glutaric acid_Methylsuccinic acid_MP_NoStd-13C0-01_A0_Colon_T03-2017_naive_170427_UKy_GCB_rep1-quench"]["formula"] == "asdf"
+    assert output_json["measurement"]["(S)-2-Acetolactate_Glutaric acid_Methylsuccinic acid_MP_NoStd-13C1-01_A0_Colon_T03-2017_naive_170427_UKy_GCB_rep1-quench"]["formula"] == "C5H8O4"
+    
+    assert output_json["measurement"]["(S)-2-Acetolactate_Glutaric acid_Methylsuccinic acid_MP_NoStd-13C0-01_A0_Colon_T03-2017_naive_170427_UKy_GCB_rep1-quench"]["assignment"] == "asdf"
+    assert output_json["measurement"]["(S)-2-Acetolactate_Glutaric acid_Methylsuccinic acid_MP_NoStd-13C1-01_A0_Colon_T03-2017_naive_170427_UKy_GCB_rep1-quench"]["assignment"] == "(S)-2-Acetolactate_Glutaric acid_Methylsuccinic acid_MP_NoStd-13C1"
+    
+    assert output_json["measurement"]["asdf-13C1-01_A0_Colon_T03-2017_naive_170427_UKy_GCB_rep1-quench"]["assignment"] == "qwer"
+
+
+def test_conversion_comparison_type_exact_all_test():
+    """Test that all values are changed when #match=all and no message is printed."""
+    
+    test_file = "conversion_comparison_type_exact_all_test.xlsx"
+    
+    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
+    command = command.split(" ")
+    subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
+    output = subp.stderr
+
+    
+    assert output_path.exists()
+    
+    with open(output_path, "r") as f:
+        output_json = json.loads(f.read())
+        
+    assert output == ""
+        
+    assert output_json["measurement"]["(S)-2-Acetolactate_Glutaric acid_Methylsuccinic acid_MP_NoStd-13C0-01_A0_Colon_T03-2017_naive_170427_UKy_GCB_rep1-quench"]["formula"] == "asdf"
+    assert output_json["measurement"]["(S)-2-Acetolactate_Glutaric acid_Methylsuccinic acid_MP_NoStd-13C1-01_A0_Colon_T03-2017_naive_170427_UKy_GCB_rep1-quench"]["formula"] == "asdf"
+    
+    assert output_json["measurement"]["(S)-2-Acetolactate_Glutaric acid_Methylsuccinic acid_MP_NoStd-13C0-01_A0_Colon_T03-2017_naive_170427_UKy_GCB_rep1-quench"]["assignment"] == "asdf"
+    assert output_json["measurement"]["(S)-2-Acetolactate_Glutaric acid_Methylsuccinic acid_MP_NoStd-13C1-01_A0_Colon_T03-2017_naive_170427_UKy_GCB_rep1-quench"]["assignment"] == "asdf"
+    
+    assert output_json["measurement"]["asdf-13C1-01_A0_Colon_T03-2017_naive_170427_UKy_GCB_rep1-quench"]["assignment"] == "qwer"
 
 
 
 def test_conversion_comparison_type_regex_unique_test():
-    """Test that only 1 record is changed when unique is true for comparison type regex."""
+    """Test that values are only changed if it is unique when #match=unique."""
     
     test_file = "conversion_comparison_type_regex_unique_test.xlsx"
     
@@ -1111,14 +1148,271 @@ def test_conversion_comparison_type_regex_unique_test():
     with open(output_path, "r") as f:
         output_json = json.loads(f.read())
         
-    assert "Warning: conversion directive #measurement.compound.regex-unique.r'\\(S\\)\\-2\\-Acetolactate_Glutaric acid_Methylsuccinic acid_MP_NoStd' matches more than one record. Only the first record will be changed. Try #unique=false if all matching records should be changed." in output
+    assert "Warning: conversion directive #measurement.compound.regex-unique.r'\(S\)\-2\-Acetolactate_Glutaric acid_Methylsuccinic acid_MP_NoStd' never matched." in output
+    assert "Warning: conversion directive #measurement.formula.regex-unique.r'ghjk' never matched." in output
+        
+    assert output_json["measurement"]["(S)-2-Acetolactate_Glutaric acid_Methylsuccinic acid_MP_NoStd-13C0-01_A0_Colon_T03-2017_naive_170427_UKy_GCB_rep1-quench"]["formula"] == "C5H8O4"
+    assert output_json["measurement"]["(S)-2-Acetolactate_Glutaric acid_Methylsuccinic acid_MP_NoStd-13C1-01_A0_Colon_T03-2017_naive_170427_UKy_GCB_rep1-quench"]["formula"] == "C5H8O4"
+    
+    assert output_json["measurement"]["(S)-2-Acetolactate_Glutaric acid_Methylsuccinic acid_MP_NoStd-13C0-01_A0_Colon_T03-2017_naive_170427_UKy_GCB_rep1-quench"]["assignment"] == "(S)-2-Acetolactate_Glutaric acid_Methylsuccinic acid_MP_NoStd-13C0"
+    assert output_json["measurement"]["(S)-2-Acetolactate_Glutaric acid_Methylsuccinic acid_MP_NoStd-13C1-01_A0_Colon_T03-2017_naive_170427_UKy_GCB_rep1-quench"]["assignment"] == "(S)-2-Acetolactate_Glutaric acid_Methylsuccinic acid_MP_NoStd-13C1"
+    
+    assert output_json["measurement"]["asdf-13C1-01_A0_Colon_T03-2017_naive_170427_UKy_GCB_rep1-quench"]["assignment"] == "qwer"
+    
+    assert output_json["measurement"]["zxcv-13C0-01_A0_Colon_T03-2017_naive_170427_UKy_GCB_rep1-quench"]["assignment"] == "zxcv-13C0"
+    assert output_json["measurement"]["zxcv-13C1-01_A0_Colon_T03-2017_naive_170427_UKy_GCB_rep1-quench"]["assignment"] == "zxcv-13C1"
+
+
+def test_conversion_comparison_type_regex_first_test():
+    """Test that only the first values are changed when #match=first."""
+    
+    test_file = "conversion_comparison_type_regex_first_test.xlsx"
+    
+    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
+    command = command.split(" ")
+    subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
+    output = subp.stderr
+
+    
+    assert output_path.exists()
+    
+    with open(output_path, "r") as f:
+        output_json = json.loads(f.read())
+        
+    assert "Warning: conversion directive #measurement.compound.regex-first.r'\\(S\\)\\-2\\-Acetolactate_Glutaric acid_Methylsuccinic acid_MP_NoStd' matches more than one record. Only the first record will be changed. Try #match=all if all matching records should be changed, or #match=first-nowarn to silence this message." in output
+    assert "Warning: conversion directive #measurement.formula.regex-first.r'qwer' matches more than one record. Only the first record will be changed. Try #match=all if all matching records should be changed, or #match=first-nowarn to silence this message." in output
         
     assert output_json["measurement"]["(S)-2-Acetolactate_Glutaric acid_Methylsuccinic acid_MP_NoStd-13C0-01_A0_Colon_T03-2017_naive_170427_UKy_GCB_rep1-quench"]["formula"] == "asdf"
     assert output_json["measurement"]["(S)-2-Acetolactate_Glutaric acid_Methylsuccinic acid_MP_NoStd-13C1-01_A0_Colon_T03-2017_naive_170427_UKy_GCB_rep1-quench"]["formula"] == "C5H8O4"
     
     assert output_json["measurement"]["(S)-2-Acetolactate_Glutaric acid_Methylsuccinic acid_MP_NoStd-13C0-01_A0_Colon_T03-2017_naive_170427_UKy_GCB_rep1-quench"]["assignment"] == "asdf"
     assert output_json["measurement"]["(S)-2-Acetolactate_Glutaric acid_Methylsuccinic acid_MP_NoStd-13C1-01_A0_Colon_T03-2017_naive_170427_UKy_GCB_rep1-quench"]["assignment"] == "(S)-2-Acetolactate_Glutaric acid_Methylsuccinic acid_MP_NoStd-13C1"
+    
+    assert output_json["measurement"]["asdf-13C0-01_A0_Colon_T03-2017_naive_170427_UKy_GCB_rep1-quench"]["assignment"] == "qwer"
+    assert output_json["measurement"]["asdf-13C1-01_A0_Colon_T03-2017_naive_170427_UKy_GCB_rep1-quench"]["assignment"] == "asdf-13C1"
+    
+    
+def test_conversion_comparison_type_regex_first_nowarn_test():
+    """Test that only the first values are changed when #match=first-nowarn and no message is printed."""
+    
+    test_file = "conversion_comparison_type_regex_first-nowarn_test.xlsx"
+    
+    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
+    command = command.split(" ")
+    subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
+    output = subp.stderr
 
+    
+    assert output_path.exists()
+    
+    with open(output_path, "r") as f:
+        output_json = json.loads(f.read())
+        
+    assert output == ""
+        
+    assert output_json["measurement"]["(S)-2-Acetolactate_Glutaric acid_Methylsuccinic acid_MP_NoStd-13C0-01_A0_Colon_T03-2017_naive_170427_UKy_GCB_rep1-quench"]["formula"] == "asdf"
+    assert output_json["measurement"]["(S)-2-Acetolactate_Glutaric acid_Methylsuccinic acid_MP_NoStd-13C1-01_A0_Colon_T03-2017_naive_170427_UKy_GCB_rep1-quench"]["formula"] == "C5H8O4"
+    
+    assert output_json["measurement"]["(S)-2-Acetolactate_Glutaric acid_Methylsuccinic acid_MP_NoStd-13C0-01_A0_Colon_T03-2017_naive_170427_UKy_GCB_rep1-quench"]["assignment"] == "asdf"
+    assert output_json["measurement"]["(S)-2-Acetolactate_Glutaric acid_Methylsuccinic acid_MP_NoStd-13C1-01_A0_Colon_T03-2017_naive_170427_UKy_GCB_rep1-quench"]["assignment"] == "(S)-2-Acetolactate_Glutaric acid_Methylsuccinic acid_MP_NoStd-13C1"
+    
+    assert output_json["measurement"]["asdf-13C1-01_A0_Colon_T03-2017_naive_170427_UKy_GCB_rep1-quench"]["assignment"] == "qwer"
+
+
+def test_conversion_comparison_type_regex_all_test():
+    """Test that all values are changed when #match=all and no message is printed."""
+    
+    test_file = "conversion_comparison_type_regex_all_test.xlsx"
+    
+    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
+    command = command.split(" ")
+    subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
+    output = subp.stderr
+
+    
+    assert output_path.exists()
+    
+    with open(output_path, "r") as f:
+        output_json = json.loads(f.read())
+        
+    assert output == ""
+        
+    assert output_json["measurement"]["(S)-2-Acetolactate_Glutaric acid_Methylsuccinic acid_MP_NoStd-13C0-01_A0_Colon_T03-2017_naive_170427_UKy_GCB_rep1-quench"]["formula"] == "asdf"
+    assert output_json["measurement"]["(S)-2-Acetolactate_Glutaric acid_Methylsuccinic acid_MP_NoStd-13C1-01_A0_Colon_T03-2017_naive_170427_UKy_GCB_rep1-quench"]["formula"] == "asdf"
+    
+    assert output_json["measurement"]["(S)-2-Acetolactate_Glutaric acid_Methylsuccinic acid_MP_NoStd-13C0-01_A0_Colon_T03-2017_naive_170427_UKy_GCB_rep1-quench"]["assignment"] == "asdf"
+    assert output_json["measurement"]["(S)-2-Acetolactate_Glutaric acid_Methylsuccinic acid_MP_NoStd-13C1-01_A0_Colon_T03-2017_naive_170427_UKy_GCB_rep1-quench"]["assignment"] == "asdf"
+    
+    assert output_json["measurement"]["asdf-13C1-01_A0_Colon_T03-2017_naive_170427_UKy_GCB_rep1-quench"]["assignment"] == "qwer"
+
+
+
+def test_conversion_comparison_type_levenshtein_unique_test():
+    """Test that values are only changed if it is unique when #match=unique."""
+    
+    test_file = "conversion_comparison_type_levenshtein_unique_test.xlsx"
+    
+    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
+    command = command.split(" ")
+    subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
+    output = subp.stderr
+
+    
+    assert output_path.exists()
+    
+    with open(output_path, "r") as f:
+        output_json = json.loads(f.read())
+        
+    assert "Warning: conversion directive #measurement.compound.levenshtein-unique.(S)-2-Acetolactate_Glutaric acid_Methylsuccinic acid_MP_NoStd never matched." in output
+        
+    assert output_json["measurement"]["(S)-2-Acetolactate_Glutaric acid_Methylsuccinic acid_MP_NoStd-13C0-01_A0_Colon_T03-2017_naive_170427_UKy_GCB_rep1-quench"]["formula"] == "C5H8O4"
+    assert output_json["measurement"]["(S)-2-Acetolactate_Glutaric acid_Methylsuccinic acid_MP_NoStd-13C1-01_A0_Colon_T03-2017_naive_170427_UKy_GCB_rep1-quench"]["formula"] == "C5H8O4"
+    
+    assert output_json["measurement"]["(S)-2-Acetolactate_Glutaric acid_Methylsuccinic acid_MP_NoStd-13C0-01_A0_Colon_T03-2017_naive_170427_UKy_GCB_rep1-quench"]["assignment"] == "(S)-2-Acetolactate_Glutaric acid_Methylsuccinic acid_MP_NoStd-13C0"
+    assert output_json["measurement"]["(S)-2-Acetolactate_Glutaric acid_Methylsuccinic acid_MP_NoStd-13C1-01_A0_Colon_T03-2017_naive_170427_UKy_GCB_rep1-quench"]["assignment"] == "(S)-2-Acetolactate_Glutaric acid_Methylsuccinic acid_MP_NoStd-13C1"
+    
+    assert output_json["measurement"]["asdf-13C1-01_A0_Colon_T03-2017_naive_170427_UKy_GCB_rep1-quench"]["assignment"] == "qwer"
+
+
+def test_conversion_comparison_type_levenshtein_first_test():
+    """Test that only the first values are changed when #match=first."""
+    
+    test_file = "conversion_comparison_type_levenshtein_first_test.xlsx"
+    
+    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
+    command = command.split(" ")
+    subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
+    output = subp.stderr
+
+    
+    assert output_path.exists()
+    
+    with open(output_path, "r") as f:
+        output_json = json.loads(f.read())
+        
+    assert "Warning: conversion directive #measurement.compound.levenshtein-first.(S)-2-Acetolactate_Glutaric acid_Methylsuccinic acid_MP_NoStd matches more than one record. Only the first record will be changed. Try #match=all if all matching records should be changed, or #match=first-nowarn to silence this message." in output
+        
+    assert output_json["measurement"]["(S)-2-Acetolactate_Glutaric acid_Methylsuccinic acid_MP_NoStd-13C0-01_A0_Colon_T03-2017_naive_170427_UKy_GCB_rep1-quench"]["formula"] == "asdf"
+    assert output_json["measurement"]["(S)-2-Acetolactate_Glutaric acid_Methylsuccinic acid_MP_NoStd-13C1-01_A0_Colon_T03-2017_naive_170427_UKy_GCB_rep1-quench"]["formula"] == "C5H8O4"
+    
+    assert output_json["measurement"]["(S)-2-Acetolactate_Glutaric acid_Methylsuccinic acid_MP_NoStd-13C0-01_A0_Colon_T03-2017_naive_170427_UKy_GCB_rep1-quench"]["assignment"] == "asdf"
+    assert output_json["measurement"]["(S)-2-Acetolactate_Glutaric acid_Methylsuccinic acid_MP_NoStd-13C1-01_A0_Colon_T03-2017_naive_170427_UKy_GCB_rep1-quench"]["assignment"] == "(S)-2-Acetolactate_Glutaric acid_Methylsuccinic acid_MP_NoStd-13C1"
+    
+    assert output_json["measurement"]["asdf-13C1-01_A0_Colon_T03-2017_naive_170427_UKy_GCB_rep1-quench"]["assignment"] == "qwer"
+    
+    
+def test_conversion_comparison_type_levenshtein_first_nowarn_test():
+    """Test that only the first values are changed when #match=first-nowarn and no message is printed."""
+    
+    test_file = "conversion_comparison_type_levenshtein_first-nowarn_test.xlsx"
+    
+    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
+    command = command.split(" ")
+    subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
+    output = subp.stderr
+
+    
+    assert output_path.exists()
+    
+    with open(output_path, "r") as f:
+        output_json = json.loads(f.read())
+        
+    assert output == ""
+        
+    assert output_json["measurement"]["(S)-2-Acetolactate_Glutaric acid_Methylsuccinic acid_MP_NoStd-13C0-01_A0_Colon_T03-2017_naive_170427_UKy_GCB_rep1-quench"]["formula"] == "asdf"
+    assert output_json["measurement"]["(S)-2-Acetolactate_Glutaric acid_Methylsuccinic acid_MP_NoStd-13C1-01_A0_Colon_T03-2017_naive_170427_UKy_GCB_rep1-quench"]["formula"] == "C5H8O4"
+    
+    assert output_json["measurement"]["(S)-2-Acetolactate_Glutaric acid_Methylsuccinic acid_MP_NoStd-13C0-01_A0_Colon_T03-2017_naive_170427_UKy_GCB_rep1-quench"]["assignment"] == "asdf"
+    assert output_json["measurement"]["(S)-2-Acetolactate_Glutaric acid_Methylsuccinic acid_MP_NoStd-13C1-01_A0_Colon_T03-2017_naive_170427_UKy_GCB_rep1-quench"]["assignment"] == "(S)-2-Acetolactate_Glutaric acid_Methylsuccinic acid_MP_NoStd-13C1"
+    
+    assert output_json["measurement"]["asdf-13C1-01_A0_Colon_T03-2017_naive_170427_UKy_GCB_rep1-quench"]["assignment"] == "qwer"
+
+
+def test_conversion_comparison_type_levenshtein_all_test():
+    """Test that all values are changed when #match=all and no message is printed."""
+    
+    test_file = "conversion_comparison_type_levenshtein_all_test.xlsx"
+    
+    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
+    command = command.split(" ")
+    subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
+    output = subp.stderr
+
+    
+    assert output_path.exists()
+    
+    with open(output_path, "r") as f:
+        output_json = json.loads(f.read())
+        
+    assert output == ""
+        
+    assert output_json["measurement"]["(S)-2-Acetolactate_Glutaric acid_Methylsuccinic acid_MP_NoStd-13C0-01_A0_Colon_T03-2017_naive_170427_UKy_GCB_rep1-quench"]["formula"] == "asdf"
+    assert output_json["measurement"]["(S)-2-Acetolactate_Glutaric acid_Methylsuccinic acid_MP_NoStd-13C1-01_A0_Colon_T03-2017_naive_170427_UKy_GCB_rep1-quench"]["formula"] == "asdf"
+    
+    assert output_json["measurement"]["(S)-2-Acetolactate_Glutaric acid_Methylsuccinic acid_MP_NoStd-13C0-01_A0_Colon_T03-2017_naive_170427_UKy_GCB_rep1-quench"]["assignment"] == "asdf"
+    assert output_json["measurement"]["(S)-2-Acetolactate_Glutaric acid_Methylsuccinic acid_MP_NoStd-13C1-01_A0_Colon_T03-2017_naive_170427_UKy_GCB_rep1-quench"]["assignment"] == "asdf"
+    
+    assert output_json["measurement"]["asdf-13C1-01_A0_Colon_T03-2017_naive_170427_UKy_GCB_rep1-quench"]["assignment"] == "qwer"
+
+
+
+def test_conversion_match_tag_inline_error():
+    """Test that an error is printed when #match=asdf."""
+    
+    test_file = "conversion_match_tag_inline_error.xlsx"
+    
+    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
+    command = command.split(" ")
+    subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
+    output = subp.stderr
+
+    
+    assert not output_path.exists()
+    
+    assert 'Unknown match type "asdf" at cell' in output
+    assert "conversion_match_tag_inline_error.xlsx:#convert[D1]" in output
+
+
+def test_conversion_match_per_row():
+    """Test that #match with values for each line works."""
+    
+    test_file = "conversion_match_per_row.xlsx"
+    
+    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
+    command = command.split(" ")
+    subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
+    output = subp.stderr
+
+    
+    assert output_path.exists()
+    
+    with open(output_path, "r") as f:
+        output_json = json.loads(f.read())
+        
+    assert "Warning: conversion directive #measurement.compound.exact-first.(S)-2-Acetolactate_Glutaric acid_Methylsuccinic acid_MP_NoStd matches more than one record. Only the first record will be changed. Try #match=all if all matching records should be changed, or #match=first-nowarn to silence this message." in output
+        
+    assert output_json["measurement"]["(S)-2-Acetolactate_Glutaric acid_Methylsuccinic acid_MP_NoStd-13C0-01_A0_Colon_T03-2017_naive_170427_UKy_GCB_rep1-quench"]["formula"] == "asdf"
+    assert output_json["measurement"]["(S)-2-Acetolactate_Glutaric acid_Methylsuccinic acid_MP_NoStd-13C1-01_A0_Colon_T03-2017_naive_170427_UKy_GCB_rep1-quench"]["formula"] == "C5H8O4"
+    
+    assert output_json["measurement"]["asdf-13C0-01_A0_Colon_T03-2017_naive_170427_UKy_GCB_rep1-quench"]["formula"] == "zxcv"
+    assert output_json["measurement"]["asdf-13C1-01_A0_Colon_T03-2017_naive_170427_UKy_GCB_rep1-quench"]["formula"] == "zxcv"
+
+
+def test_conversion_match_per_row_error():
+    """Test that an error is printed when #match has a bad value."""
+    
+    test_file = "conversion_match_per_row_error.xlsx"
+    
+    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
+    command = command.split(" ")
+    subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
+    output = subp.stderr
+
+    
+    assert not output_path.exists()
+    
+    assert 'Unknown match type "asdf" at cell' in output
+    assert "conversion_match_per_row_error.xlsx:#convert[D2]" in output
 
 
 
@@ -1333,23 +1627,6 @@ def test_conversion_ignore_test():
 
 
 
-def test_conversion_comparison_type_levenshtein_unique_test():
-    """Test that levenshtien works with #unique=true by making sure it does not match to any records if they have the same minimum distance."""
-    
-    test_file = "conversion_comparison_type_levenshtein_unique_test.xlsx"
-    
-    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
-    command = command.split(" ")
-    subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
-    output = subp.stderr
-
-    
-    assert output_path.exists()
-    
-    assert output == "Warning: conversion directive #measurement.compound.levenshtein-unique.(S)-2-Acetolactate_Glutaric acid_Methylsuccinic acid_MP_NoStd never matched." + "\n"
-
-
-
 def test_conversion_unused_test():
     """Test that nothing is printed when there is an unused conversion in an individual metadata that is then used in end-convert."""
     
@@ -1488,7 +1765,7 @@ def test_unused_conversion():
     
     assert output_path.exists()
     
-    assert output == "Warning: conversion directive #measurement.compound.exact.asdf never matched." + "\n"
+    assert output == "Warning: conversion directive #measurement.compound.exact-all.asdf never matched." + "\n"
 
 
 

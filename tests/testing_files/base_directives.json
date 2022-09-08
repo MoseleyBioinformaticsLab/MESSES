@@ -2,7 +2,7 @@
   "conversion": {
     "measurement": {
       "compound": {
-        "exact": {
+        "exact-all": {
           "(S)-2-Acetolactate_Glutaric acid_Methylsuccinic acid_MP_NoStd": {
             "regex": {
               "id": [

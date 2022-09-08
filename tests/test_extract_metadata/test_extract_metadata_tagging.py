@@ -451,6 +451,69 @@ def test_tagging_field_tracking():
     assert "project.id" not in output_json["sample"]["04_A1_Spleen_naive_0days_170427_UKy_GCH_rep2"]
     
     assert output == ""
+    
+    
+def test_tagging_field_tracking2():
+    """Test that field tracking and untracking works."""
+    
+    test_file = "tracking_test2.xlsx"
+    
+    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
+    command = command.split(" ")
+    subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
+    output = subp.stderr
+
+    
+    assert output_path.exists()
+    
+    with open(output_path, "r") as f:
+        output_json = json.loads(f.read())
+                
+    assert output_json["sample"]["01_A0_Spleen_naive_0days_170427_UKy_GCH_rep1"]["project.id"] == "Project1"
+    assert output_json["sample"]["02_A1_Spleen_naive_0days_170427_UKy_GCH_rep2"]["project.id"] == "Project1"
+    assert output_json["sample"]["01_A0_Spleen_naive_0days_170427_UKy_GCH_rep1"]["project.id%number"] == "1"
+    assert output_json["sample"]["02_A1_Spleen_naive_0days_170427_UKy_GCH_rep2"]["project.id%number"] == "1"
+    
+    assert output_json["sample"]["03_A0_Spleen_naive_0days_170427_UKy_GCH_rep1"]["project.id%number"] == "1"
+    assert output_json["sample"]["04_A1_Spleen_naive_0days_170427_UKy_GCH_rep2"]["project.id%number"] == "1"
+    assert "project.id" not in output_json["sample"]["03_A0_Spleen_naive_0days_170427_UKy_GCH_rep1"]
+    assert "project.id" not in output_json["sample"]["04_A1_Spleen_naive_0days_170427_UKy_GCH_rep2"]
+    
+    assert output == ""
+
+
+def test_tagging_field_tracking3():
+    """Test that field tracking and untracking works."""
+    
+    test_file = "tracking_test3.xlsx"
+    
+    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
+    command = command.split(" ")
+    subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
+    output = subp.stderr
+
+    
+    assert output_path.exists()
+    
+    with open(output_path, "r") as f:
+        output_json = json.loads(f.read())
+    
+    assert output_json["factor"]["01_A0_Spleen_naive_0days_170427_UKy_GCH_rep1"]["project.id"] == "Project1"
+    assert output_json["factor"]["02_A1_Spleen_naive_0days_170427_UKy_GCH_rep2"]["project.id"] == "Project1"
+    assert output_json["factor"]["01_A0_Spleen_naive_0days_170427_UKy_GCH_rep1"]["project.id%number"] == "1"
+    assert output_json["factor"]["02_A1_Spleen_naive_0days_170427_UKy_GCH_rep2"]["project.id%number"] == "1"
+            
+    assert output_json["sample"]["01_A0_Spleen_naive_0days_170427_UKy_GCH_rep1"]["project.id"] == "Project1"
+    assert output_json["sample"]["02_A1_Spleen_naive_0days_170427_UKy_GCH_rep2"]["project.id"] == "Project1"
+    assert output_json["sample"]["01_A0_Spleen_naive_0days_170427_UKy_GCH_rep1"]["project.id%number"] == "1"
+    assert output_json["sample"]["02_A1_Spleen_naive_0days_170427_UKy_GCH_rep2"]["project.id%number"] == "1"
+    
+    assert output_json["sample"]["03_A0_Spleen_naive_0days_170427_UKy_GCH_rep1"]["project.id%number"] == "1"
+    assert output_json["sample"]["04_A1_Spleen_naive_0days_170427_UKy_GCH_rep2"]["project.id%number"] == "1"
+    assert "project.id" not in output_json["sample"]["03_A0_Spleen_naive_0days_170427_UKy_GCH_rep1"]
+    assert "project.id" not in output_json["sample"]["04_A1_Spleen_naive_0days_170427_UKy_GCH_rep2"]
+    
+    assert output == ""
 
 
 def test_tagging_tracking_not_enough_tokens_error():
@@ -576,8 +639,8 @@ def test_tagging_tracking_list_test():
     assert output_json["sample"]["01_A0_Spleen_naive_0days_170427_UKy_GCH_rep1"]["project.id%number"] == "1"
     assert output_json["sample"]["02_A1_Spleen_naive_0days_170427_UKy_GCH_rep2"]["project.id%number"] == "1"
     
-    assert output_json["sample"]["03_A0_Spleen_naive_0days_170427_UKy_GCH_rep1"]["project.id%number"] == "1"
-    assert output_json["sample"]["04_A1_Spleen_naive_0days_170427_UKy_GCH_rep2"]["project.id%number"] == "1"
+    assert "project.id%number" not in output_json["sample"]["03_A0_Spleen_naive_0days_170427_UKy_GCH_rep1"]
+    assert "project.id%number" not in output_json["sample"]["04_A1_Spleen_naive_0days_170427_UKy_GCH_rep2"]
     assert "project.id" not in output_json["sample"]["03_A0_Spleen_naive_0days_170427_UKy_GCH_rep1"]
     assert "project.id" not in output_json["sample"]["04_A1_Spleen_naive_0days_170427_UKy_GCH_rep2"]
     
