@@ -43,7 +43,7 @@ def test_conversion_delete():
     
     test_file = "conversion_delete_test.xlsx"
     
-    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
+    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -67,7 +67,7 @@ def test_conversion_delete_before_value():
     
     test_file = "conversion_delete_before_value.xlsx"
     
-    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
+    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -85,7 +85,7 @@ def test_conversion_delete_table_name_mismatch():
     
     test_file = "conversion_delete_table_name_mismatch.xlsx"
     
-    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
+    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -103,7 +103,7 @@ def test_conversion_rename():
     
     test_file = "conversion_rename_test.xlsx"
     
-    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
+    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -129,7 +129,7 @@ def test_conversion_rename_before_value():
     
     test_file = "conversion_rename_before_value.xlsx"
     
-    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
+    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -147,7 +147,7 @@ def test_conversion_rename_table_name_mismatch():
     
     test_file = "conversion_rename_table_name_mismatch.xlsx"
     
-    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
+    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -165,7 +165,7 @@ def test_conversion_rename_incorrect_format_error():
     
     test_file = "conversion_rename_incorrect_format_error.xlsx"
     
-    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
+    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -184,7 +184,7 @@ def test_conversion_assign():
     
     test_file = "conversion_assign_test.xlsx"
     
-    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
+    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -208,7 +208,7 @@ def test_conversion_assign_before_value():
     
     test_file = "conversion_assign_before_value.xlsx"
     
-    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
+    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -226,7 +226,7 @@ def test_conversion_assign_table_name_mismatch():
     
     test_file = "conversion_assign_table_name_mismatch.xlsx"
     
-    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
+    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -245,7 +245,7 @@ def test_conversion_append():
     
     test_file = "conversion_append_test.xlsx"
     
-    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
+    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -269,7 +269,7 @@ def test_conversion_append_before_value():
     
     test_file = "conversion_append_before_value.xlsx"
     
-    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
+    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -287,7 +287,7 @@ def test_conversion_append_table_name_mismatch():
     
     test_file = "conversion_append_table_name_mismatch.xlsx"
     
-    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
+    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -306,7 +306,7 @@ def test_conversion_prepend():
     
     test_file = "conversion_prepend_test.xlsx"
     
-    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
+    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -330,7 +330,7 @@ def test_conversion_prepend_before_value():
     
     test_file = "conversion_prepend_before_value.xlsx"
     
-    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
+    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -348,7 +348,7 @@ def test_conversion_prepend_table_name_mismatch():
     
     test_file = "conversion_prepend_table_name_mismatch.xlsx"
     
-    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
+    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -368,7 +368,7 @@ def test_conversion_regex():
     
     test_file = "conversion_regex_test.xlsx"
     
-    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
+    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -392,7 +392,7 @@ def test_conversion_regex_before_value():
     
     test_file = "conversion_regex_before_value.xlsx"
     
-    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
+    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -410,7 +410,7 @@ def test_conversion_regex_table_name_mismatch():
     
     test_file = "conversion_regex_table_name_mismatch.xlsx"
     
-    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
+    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -430,7 +430,7 @@ def test_conversion_comparison():
     
     test_file = "conversion_comparison_test.xlsx"
     
-    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
+    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -460,7 +460,7 @@ def test_conversion_comparison_type_regex():
     
     test_file = "conversion_comparison_type_regex_test.xlsx"
     
-    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
+    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -486,7 +486,7 @@ def test_conversion_comparison_type_exact():
     
     test_file = "conversion_comparison_type_exact_test.xlsx"
     
-    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
+    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -511,7 +511,7 @@ def test_conversion_comparison_type_regex_or_exact():
     
     test_file = "conversion_comparison_type_regex_or_exact_test.xlsx"
     
-    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
+    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -536,7 +536,7 @@ def test_conversion_assign_after_assign_warning():
     
     test_file = "conversion_assign_after_assign_warning.xlsx"
     
-    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
+    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -554,7 +554,7 @@ def test_conversion_assign_after_assign_same_value():
     
     test_file = "conversion_assign_after_assign_same_value.xlsx"
     
-    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
+    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -572,7 +572,7 @@ def test_conversion_assign_after_append_warning():
     
     test_file = "conversion_assign_after_append_warning.xlsx"
     
-    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
+    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -589,7 +589,7 @@ def test_conversion_assign_after_prepend_warning():
     
     test_file = "conversion_assign_after_prepend_warning.xlsx"
     
-    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
+    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -606,7 +606,7 @@ def test_conversion_assign_after_regex_warning():
     
     test_file = "conversion_assign_after_regex_warning.xlsx"
     
-    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
+    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -623,7 +623,7 @@ def test_conversion_assign_after_delete_warning():
     
     test_file = "conversion_assign_after_delete_warning.xlsx"
     
-    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
+    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -641,7 +641,7 @@ def test_conversion_append_after_delete_warning():
     
     test_file = "conversion_append_after_delete_warning.xlsx"
     
-    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
+    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -658,7 +658,7 @@ def test_conversion_prepend_after_delete_warning():
     
     test_file = "conversion_prepend_after_delete_warning.xlsx"
     
-    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
+    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -675,7 +675,7 @@ def test_conversion_regex_after_delete_warning():
     
     test_file = "conversion_regex_after_delete_warning.xlsx"
     
-    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
+    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -692,7 +692,7 @@ def test_conversion_regex_after_assign_warning():
     
     test_file = "conversion_regex_after_assign_warning.xlsx"
     
-    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
+    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -709,7 +709,7 @@ def test_conversion_delete_after_assign_warning():
     
     test_file = "conversion_delete_after_assign_warning.xlsx"
     
-    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
+    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -726,7 +726,7 @@ def test_conversion_delete_after_append_warning():
     
     test_file = "conversion_delete_after_append_warning.xlsx"
     
-    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
+    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -743,7 +743,7 @@ def test_conversion_delete_after_prepend_warning():
     
     test_file = "conversion_delete_after_prepend_warning.xlsx"
     
-    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
+    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -760,7 +760,7 @@ def test_conversion_delete_after_regex_warning():
     
     test_file = "conversion_delete_after_regex_warning.xlsx"
     
-    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
+    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -777,7 +777,7 @@ def test_conversion_delete_after_rename_warning():
     
     test_file = "conversion_delete_after_rename_warning.xlsx"
     
-    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
+    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -795,7 +795,7 @@ def test_conversion_rename_after_delete_oldfield_warning():
     
     test_file = "conversion_rename_after_delete_oldfield_warning.xlsx"
     
-    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
+    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -812,7 +812,7 @@ def test_conversion_rename_after_delete_newfield_warning():
     
     test_file = "conversion_rename_after_delete_newfield_warning.xlsx"
     
-    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
+    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -830,7 +830,7 @@ def test_conversion_rename_overwrite():
     
     test_file = "conversion_rename_overwrite.xlsx"
     
-    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
+    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -847,7 +847,7 @@ def test_conversion_rename_same_value():
     
     test_file = "conversion_rename_same_value.xlsx"
     
-    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
+    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -865,7 +865,7 @@ def test_conversion_missing_tags_error():
     
     test_file = "conversion_missing_tags_error.xlsx"
     
-    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
+    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -883,7 +883,7 @@ def test_conversion_delete_id_error():
     
     test_file = "conversion_delete_id_error.xlsx"
     
-    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
+    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -901,7 +901,7 @@ def test_conversion_regex_incorrect_format_error():
     
     test_file = "conversion_regex_incorrect_format_error.xlsx"
     
-    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
+    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -919,7 +919,7 @@ def test_conversion_duplicate_assign_warning():
     
     test_file = "conversion_duplicate_assign_warning.xlsx"
     
-    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
+    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -936,7 +936,7 @@ def test_conversion_duplicate_append_warning():
     
     test_file = "conversion_duplicate_append_warning.xlsx"
     
-    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
+    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -953,7 +953,7 @@ def test_conversion_duplicate_prepend_warning():
     
     test_file = "conversion_duplicate_prepend_warning.xlsx"
     
-    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
+    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -970,7 +970,7 @@ def test_conversion_duplicate_regex_warning():
     
     test_file = "conversion_duplicate_regex_warning.xlsx"
     
-    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
+    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -987,7 +987,7 @@ def test_conversion_duplicate_delete_warning():
     
     test_file = "conversion_duplicate_delete_warning.xlsx"
     
-    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
+    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -1004,7 +1004,7 @@ def test_conversion_duplicate_rename_warning():
     
     test_file = "conversion_duplicate_rename_warning.xlsx"
     
-    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
+    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -1022,7 +1022,7 @@ def test_conversion_comparison_type_exact_unique_test():
     
     test_file = "conversion_comparison_type_exact_unique_test.xlsx"
     
-    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
+    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -1053,7 +1053,7 @@ def test_conversion_comparison_type_exact_first_test():
     
     test_file = "conversion_comparison_type_exact_first_test.xlsx"
     
-    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
+    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -1082,7 +1082,7 @@ def test_conversion_comparison_type_exact_first_nowarn_test():
     
     test_file = "conversion_comparison_type_exact_first-nowarn_test.xlsx"
     
-    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
+    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -1109,7 +1109,7 @@ def test_conversion_comparison_type_exact_all_test():
     
     test_file = "conversion_comparison_type_exact_all_test.xlsx"
     
-    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
+    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -1137,7 +1137,7 @@ def test_conversion_comparison_type_regex_unique_test():
     
     test_file = "conversion_comparison_type_regex_unique_test.xlsx"
     
-    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
+    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -1168,7 +1168,7 @@ def test_conversion_comparison_type_regex_first_test():
     
     test_file = "conversion_comparison_type_regex_first_test.xlsx"
     
-    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
+    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -1197,7 +1197,7 @@ def test_conversion_comparison_type_regex_first_nowarn_test():
     
     test_file = "conversion_comparison_type_regex_first-nowarn_test.xlsx"
     
-    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
+    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -1224,7 +1224,7 @@ def test_conversion_comparison_type_regex_all_test():
     
     test_file = "conversion_comparison_type_regex_all_test.xlsx"
     
-    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
+    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -1252,7 +1252,7 @@ def test_conversion_comparison_type_levenshtein_unique_test():
     
     test_file = "conversion_comparison_type_levenshtein_unique_test.xlsx"
     
-    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
+    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -1279,7 +1279,7 @@ def test_conversion_comparison_type_levenshtein_first_test():
     
     test_file = "conversion_comparison_type_levenshtein_first_test.xlsx"
     
-    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
+    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -1306,7 +1306,7 @@ def test_conversion_comparison_type_levenshtein_first_nowarn_test():
     
     test_file = "conversion_comparison_type_levenshtein_first-nowarn_test.xlsx"
     
-    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
+    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -1333,7 +1333,7 @@ def test_conversion_comparison_type_levenshtein_all_test():
     
     test_file = "conversion_comparison_type_levenshtein_all_test.xlsx"
     
-    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
+    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -1361,7 +1361,7 @@ def test_conversion_match_tag_inline_error():
     
     test_file = "conversion_match_tag_inline_error.xlsx"
     
-    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
+    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -1378,7 +1378,7 @@ def test_conversion_match_per_row():
     
     test_file = "conversion_match_per_row.xlsx"
     
-    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
+    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -1403,7 +1403,7 @@ def test_conversion_match_per_row_error():
     
     test_file = "conversion_match_per_row_error.xlsx"
     
-    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
+    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -1421,7 +1421,7 @@ def test_conversion_field_creation():
     
     test_file = "conversion_field_creation.xlsx"
     
-    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
+    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -1451,7 +1451,7 @@ def test_conversion_assign_list_field_test():
     
     test_file = "conversion_assign_list_field_test.xlsx"
     
-    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
+    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -1477,7 +1477,7 @@ def test_conversion_append_list_field_test():
     
     test_file = "conversion_append_list_field_test.xlsx"
     
-    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
+    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -1506,7 +1506,7 @@ def test_conversion_prepend_list_field_test():
     
     test_file = "conversion_prepend_list_field_test.xlsx"
     
-    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
+    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -1534,7 +1534,7 @@ def test_conversion_regex_list_field_test():
     
     test_file = "conversion_regex_list_field_test.xlsx"
     
-    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
+    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -1558,7 +1558,7 @@ def test_conversion_levenshtein_list_field_test():
     
     test_file = "conversion_levenshtein_list_field_test.xlsx"
     
-    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
+    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -1583,7 +1583,7 @@ def test_conversion_semicolon_list_field_test():
     
     test_file = "conversion_semicolon_list_field_test.xlsx"
     
-    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
+    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -1607,7 +1607,7 @@ def test_conversion_ignore_test():
     
     test_file = "conversion_ignore_test.xlsx"
     
-    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
+    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -1632,7 +1632,7 @@ def test_conversion_unused_test():
     
     test_file = "conversion_unused_test.xlsx"
     
-    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file + " ../base_source_export.csv" + " --output " + output_path.as_posix() + " --end-convert ../" + test_file + ":#convert"
+    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file + " ../base_source_export.csv" + " --output " + output_path.as_posix() + " --end-convert ../" + test_file + ":#convert"
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -1650,7 +1650,7 @@ def test_conversion_id_change():
     
     test_file = "conversion_error.xlsx"
     
-    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file +" --output " + output_path.as_posix()
+    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file +" --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -1667,7 +1667,7 @@ def test_eval_in_conversion():
     
     test_file = "eval_in_conversion.xlsx"
     
-    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file  + " --output " + output_path.as_posix()
+    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file  + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -1690,7 +1690,7 @@ def test_eval_in_conversion_error():
     
     test_file = "eval_in_conversion_error.xlsx"
     
-    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file  + " --output " + output_path.as_posix()
+    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file  + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -1712,7 +1712,7 @@ def test_list_in_eval_list_tag_conversion():
     
     test_file = "list_eval_in_conversion_list_tag.xlsx"
     
-    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file  + " --output " + output_path.as_posix()
+    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file  + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -1734,7 +1734,7 @@ def test_list_in_eval_conversion():
     
     test_file = "list_eval_in_conversion.xlsx"
     
-    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file  + " --output " + output_path.as_posix()
+    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file  + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -1757,7 +1757,7 @@ def test_unused_conversion():
     
     test_file = "unused_conversion.xlsx"
     
-    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file +" --output " + output_path.as_posix()
+    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file +" --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr

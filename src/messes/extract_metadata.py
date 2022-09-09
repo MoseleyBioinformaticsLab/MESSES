@@ -233,15 +233,14 @@ class Evaluator(object) :
         self.requiredFields = []
         finalTokenList = []
         regexCount = 1
-        reCopier = copier.Copier()
         for token in tokenList:
-            if reCopier(re.match(Evaluator.fieldDetector, token)):
-                fieldString = reCopier.value.group(1)
-                if reCopier(re.match(Evaluator.reDetector, fieldString)):
+            if reMatch := re.match(Evaluator.fieldDetector, token):
+                fieldString = reMatch.group(1)
+                if reMatch := re.match(Evaluator.reDetector, fieldString):
                     fieldString = "REGEX" + str(regexCount)
                     regexCount += 1
                     finalTokenList.append(fieldString)
-                    self.fieldTests[fieldString] = re.compile(reCopier.value.group(1))
+                    self.fieldTests[fieldString] = re.compile(reMatch.group(1))
                 else:
                     finalTokenList.append(fieldString.replace("%", "_PERCENT_"))
                     self.requiredFields.append(fieldString)
@@ -449,10 +448,9 @@ class RecordMaker(object) :
         child = RecordMaker()
         child.table = table
         child.fieldMakers = [ maker.shallowClone() for maker in example.fieldMakers ]
-        reCopier = copier.Copier()
         for maker in child.fieldMakers :
-            if reCopier(re.match('(\w*)\.(.*)$', maker.field)) != None and reCopier.value.group(1) == table :
-                maker.field = reCopier.value.group(2)
+            if (reMatch := re.match('(\w*)\.(.*)$', maker.field)) and reMatch.group(1) == table :
+                maker.field = reMatch.group(2)
         child.addField(table,"parentID")
         child.addColumnOperand(parentIDIndex)
         
@@ -737,9 +735,8 @@ class TagParser(object):
         if self.columnIndex != 0 and re.search('#tags', cellString) :
             raise TagParserError("#tags only allowed in first column", self.fileName, self.sheetName, self.rowIndex, self.columnIndex)
             
-        reCopier = copier.Copier()
         tokens = [ x for x in re.split(TagParser.cellSplitter, cellString) if x != "" and x != None ]
-        tokens = [ x if reCopier(re.match(TagParser.stringExtractor, x)) == None else reCopier.value.group(1) for x in tokens ]
+        tokens = [ x if (reMatch := re.match(TagParser.stringExtractor, x)) == None else reMatch.group(1) for x in tokens ]
         
         assignment = False
         fieldMakerClass = FieldMaker
@@ -775,10 +772,10 @@ class TagParser(object):
                 self.lastTable = tokens.pop(0)
             elif re.match(TagParser.emptyChildDetector, token) :
                 raise TagParserError("child tag with no field", self.fileName, self.sheetName, self.rowIndex, self.columnIndex)
-            elif reCopier(re.match(TagParser.childFieldAttributeDetector, token)) or reCopier(re.match(TagParser.childFieldDetector, token)) :  # #table%child.field.attribute combinations
+            elif (reMatch := re.match(TagParser.childFieldAttributeDetector, token)) or (reMatch := re.match(TagParser.childFieldDetector, token)) :  # #table%child.field.attribute combinations
                 if not recordMakers[1].hasValidID() :
                     raise TagParserError("no id field in parent record", self.fileName, self.sheetName, self.rowIndex, self.columnIndex)
-                table, field = self._determineTableField(reCopier.value.groups())
+                table, field = self._determineTableField(reMatch.groups())
                 if field != "id" and len(tokens) > 0 and tokens[0] == "=" :
                     raise TagParserError("no assignment allowed with explicit child field", self.fileName, self.sheetName, self.rowIndex, self.columnIndex)
                 if field != "id" and childWithoutID :
@@ -801,7 +798,7 @@ class TagParser(object):
                 else :
                     childWithoutID = True
                     recordMakers[-1].addColumnOperand(self.columnIndex)                                
-            elif reCopier(re.match(TagParser.trackFieldDetector, token)) :
+            elif (reMatch := re.match(TagParser.trackFieldDetector, token)) :
                 if len(tokens) < 2 or tokens[0] != "=":
                     raise TagParserError("Incorrectly formatted track tag, \"=\" must follow \"track\" and \"table.field\" or \"table.field%attribute\" must follow \"=\"", self.fileName, self.sheetName, self.rowIndex, self.columnIndex)
                 ## Munch the =.
@@ -810,10 +807,10 @@ class TagParser(object):
                 while True:
                     if not re.match(r"(\w+\.\w+)|(\w+\.\w+%\w+)", nextToken):
                         raise TagParserError("Incorrectly formatted track tag, the field or attribute to be tracked is malformed, must be \"table.field\" or \"table.field%attribute\"", self.fileName, self.sheetName, self.rowIndex, self.columnIndex)
-                    if reCopier.value.groups()[0] == "":
+                    if reMatch.groups()[0] == "":
                         tableToAddTo = self.lastTable
                     else:
-                        tableToAddTo = reCopier.value.groups()[0]
+                        tableToAddTo = reMatch.groups()[0]
                         self.lastTable = tableToAddTo
                     split = nextToken.split(".")
                     fieldTable = split[0]
@@ -836,7 +833,7 @@ class TagParser(object):
                             break
                     else:
                         break
-            elif reCopier(re.match(TagParser.untrackFieldDetector, token)) :
+            elif (reMatch := re.match(TagParser.untrackFieldDetector, token)) :
                 if len(tokens) < 2 or tokens[0] != "=":
                     raise TagParserError("Incorrectly formatted untrack tag, \"=\" must follow \"track\" and \"table.field\" or \"table.field%attribute\" must follow \"=\"", self.fileName, self.sheetName, self.rowIndex, self.columnIndex)
                 ## Munch the =.
@@ -845,10 +842,10 @@ class TagParser(object):
                 while True:
                     if not re.match(r"(\w+\.\w+)|(\w+\.\w+%\w+)", nextToken):
                         raise TagParserError("Incorrectly formatted untrack tag, the field or attribute to be tracked is malformed, must be \"table.field\" or \"table.field%attribute\"", self.fileName, self.sheetName, self.rowIndex, self.columnIndex)
-                    if reCopier.value.groups()[0] == "":
+                    if reMatch.groups()[0] == "":
                         tableToAddTo = self.lastTable
                     else:
-                        tableToAddTo = reCopier.value.groups()[0]
+                        tableToAddTo = reMatch.groups()[0]
                         self.lastTable = tableToAddTo
                     split = nextToken.split(".")
                     fieldTable = split[0]
@@ -875,8 +872,8 @@ class TagParser(object):
                             break
                     else:
                         break
-            elif reCopier(re.match(TagParser.tableFieldAttributeDetector, token)) or reCopier(re.match(TagParser.tableFieldDetector, token)) or reCopier(re.match(TagParser.attributeDetector, token)) : #table.field.attribute combinations
-                table, field = self._determineTableField(reCopier.value.groups())
+            elif (reMatch := re.match(TagParser.tableFieldAttributeDetector, token)) or (reMatch := re.match(TagParser.tableFieldDetector, token)) or (reMatch := re.match(TagParser.attributeDetector, token)) : #table.field.attribute combinations
+                table, field = self._determineTableField(reMatch.groups())
                 if self.columnIndex == 0 :
                     if len(tokens) < 2 or tokens[0] != '=' or re.match(TagParser.tagDetector, tokens[1]) :
                         raise TagParserError("tags without assignment in first column", self.fileName, self.sheetName, self.rowIndex, self.columnIndex)
@@ -1051,11 +1048,10 @@ class TagParser(object):
         :return: dataFrameTuple (fileName, sheetName, dataFrame).
         :rtype: :py:class:`tuple` or :py:obj:`None`
         """
-        reCopier = copier.Copier()
-        if reCopier(re.search(r"^(.*\.xls[xm]?):(.*)$", sheetInfo)):
-            if os.path.isfile(reCopier.value.group(1)):
-                fileName = reCopier.value.group(1)
-                sheetName = reCopier.value.group(2)
+        if (reMatch := re.search(r"^(.*\.xls[xm]?):(.*)$", sheetInfo)):
+            if os.path.isfile(reMatch.group(1)):
+                fileName = reMatch.group(1)
+                sheetName = reMatch.group(2)
                 workbook = pandas.ExcelFile(fileName)
                 
                 ## Convert the sheetname to a regular expression pattern so users can specify a sheetname using a regular expression.
@@ -1077,7 +1073,7 @@ class TagParser(object):
                 if not isDefaultSearch:
                     print("r'" + sheetDetector.pattern + "' did not match any sheets in \"" + fileName + "\".", file=sys.stderr)
             else:
-                print("Excel workbook \"" + reCopier.value.group(1) + "\" does not exist.", file=sys.stderr)
+                print("Excel workbook \"" + reMatch.group(1) + "\" does not exist.", file=sys.stderr)
         elif re.search(r"\.csv$", sheetInfo):
             if pathlib.Path(sheetInfo).exists():
                 try:
@@ -1122,14 +1118,13 @@ class TagParser(object):
         :param :py:class:`str` conversionSource: conversion source given as a filename and/or sheetname.
         :param :py:class:`bool` convertDefaulted:  whether the convert source is the default value or not, passed to readDirectives for message printing
         """
-        reCopier = copier.Copier()
-        if not TagParser.hasFileExtension(taggingSource) and reCopier(re.search(r"(.*\.xls[xm]?)", metadataSource)):
-            taggingSource = reCopier.value.group(1) + ":" + taggingSource
+        if not TagParser.hasFileExtension(taggingSource) and (reMatch := re.search(r"(.*\.xls[xm]?)", metadataSource)):
+            taggingSource = reMatch.group(1) + ":" + taggingSource
         elif re.search(r"\.xls[xm]?$", taggingSource):
             taggingSource += ":#tagging"
 
-        if not TagParser.hasFileExtension(conversionSource) and reCopier(re.search(r"(.*\.xls[xm]?)", metadataSource)):
-            conversionSource = reCopier.value.group(1) + ":" + conversionSource
+        if not TagParser.hasFileExtension(conversionSource) and (reMatch := re.search(r"(.*\.xls[xm]?)", metadataSource)):
+            conversionSource = reMatch.group(1) + ":" + conversionSource
         elif re.search(r"\.xls[xm]?$", conversionSource):
             conversionSource += ":#convert"
 
@@ -1230,7 +1225,6 @@ class TagParser(object):
         aColumn = worksheet.iloc[:, 0]
 
         parsing = False
-        reCopier = copier.Copier()
         for self.rowIndex in range(len(aColumn)):
             try:
                 if re.match('#tags$', xstr(aColumn.iloc[self.rowIndex]).strip()):
@@ -1256,65 +1250,65 @@ class TagParser(object):
                     renameFieldMap = {}
                     for self.columnIndex in range(1, len(worksheet.iloc[self.rowIndex, :])):
                         cellString = xstr(worksheet.iloc[self.rowIndex, self.columnIndex]).strip()
-                        if reCopier(re.match('\s*#(\w+)\.(\w+|\w+%\w+|\w+\.id)\.value\s*$', cellString)):
+                        if (reMatch := re.match('\s*#(\w+)\.(\w+|\w+%\w+|\w+\.id)\.value\s*$', cellString)):
                             valueIndex = self.columnIndex
-                            table = reCopier.value.group(1)
-                            fieldID = reCopier.value.group(2)
-                        elif reCopier(re.match('\s*#(\w+)?\.(\w+|\w+%\w+|\w+\.id)\.delete\s*$', cellString)):
+                            table = reMatch.group(1)
+                            fieldID = reMatch.group(2)
+                        elif (reMatch := re.match('\s*#(\w+)?\.(\w+|\w+%\w+|\w+\.id)\.delete\s*$', cellString)):
                             if valueIndex == -1:
                                 raise TagParserError("#table_name.field_name.delete in column before #table_name.field_name.value", self.fileName, self.sheetName, self.rowIndex, self.columnIndex)
-                            if reCopier.value.group(1) is not None and reCopier.value.group(1) != table:
+                            if reMatch.group(1) is not None and reMatch.group(1) != table:
                                 raise TagParserError("Table name does not match between #table_name.field_name.value and #table_name.field_name.delete conversion tags", self.fileName, self.sheetName, self.rowIndex, self.columnIndex)
-                            deletionFields.append(reCopier.value.group(2))
-                        elif reCopier(re.match('\s*#(\w+)?\.(\w+|\w+%\w+|\w+\.id)\.rename\.(\w+|\w+%\w+|\w+\.id)\s*$', cellString)):
+                            deletionFields.append(reMatch.group(2))
+                        elif (reMatch := re.match('\s*#(\w+)?\.(\w+|\w+%\w+|\w+\.id)\.rename\.(\w+|\w+%\w+|\w+\.id)\s*$', cellString)):
                             if valueIndex == -1:
                                 raise TagParserError("#table_name.field_name.rename in column before #table_name.field_name.value", self.fileName, self.sheetName, self.rowIndex, self.columnIndex)
-                            if reCopier.value.group(1) is not None and reCopier.value.group(1) != table:
+                            if reMatch.group(1) is not None and reMatch.group(1) != table:
                                 raise TagParserError("Table name does not match between #table_name.field_name.value and #table_name.field_name.rename conversion tags", self.fileName, self.sheetName, self.rowIndex, self.columnIndex)
-                            if reCopier.value.group(2) == reCopier.value.group(3):
+                            if reMatch.group(2) == reMatch.group(3):
                                 raise TagParserError("rename conversion directive renames the field to the same name", self.fileName, self.sheetName, self.rowIndex, self.columnIndex)
-                            renameFieldMap[reCopier.value.group(2)] = reCopier.value.group(3)
-                        elif reCopier(re.match('\s*#(\w+)?\.(\w+|\w+%\w+|\w+\.id)\.rename\s*$', cellString)):
+                            renameFieldMap[reMatch.group(2)] = reMatch.group(3)
+                        elif (reMatch := re.match('\s*#(\w+)?\.(\w+|\w+%\w+|\w+\.id)\.rename\s*$', cellString)):
                             raise TagParserError("Incorrect rename directive format.  Should be #[table_name].field_name.rename.new_field_name", self.fileName, self.sheetName, self.rowIndex, self.columnIndex)
-                        elif reCopier(re.match('\s*(\*#|#)(\w+)?\.(\w+)\.assign\s*$', cellString)) or reCopier(re.match('\s*(#)(\w+)?\.(\w+|\w+%\w+|\w+\.id)\.assign\s*$', cellString)):
+                        elif (reMatch := re.match('\s*(\*#|#)(\w+)?\.(\w+)\.assign\s*$', cellString)) or (reMatch := re.match('\s*(#)(\w+)?\.(\w+|\w+%\w+|\w+\.id)\.assign\s*$', cellString)):
                             if valueIndex == -1:
                                 raise TagParserError("#table_name.field_name.assign in column before #table_name.field_name.value", self.fileName, self.sheetName, self.rowIndex, self.columnIndex)
-                            if reCopier.value.group(2) is not None and reCopier.value.group(2) != table:
+                            if reMatch.group(2) is not None and reMatch.group(2) != table:
                                 raise TagParserError("Table name does not match between #table_name.field_name.value and #table_name.field_name.assign conversion tags", self.fileName, self.sheetName, self.rowIndex, self.columnIndex)
                             assignIndeces.append(self.columnIndex)
-                            assignFieldTypes.append(reCopier.value.group(1))
-                            assignFields.append(reCopier.value.group(3))
-                        elif reCopier(re.match('\s*(\*#|#)(\w+)?\.(\w+)\.append\s*$', cellString)) or reCopier(re.match('\s*(#)(\w+)?\.(\w+|\w+%\w+|\w+\.id)\.append\s*$', cellString)):
+                            assignFieldTypes.append(reMatch.group(1))
+                            assignFields.append(reMatch.group(3))
+                        elif (reMatch := re.match('\s*(\*#|#)(\w+)?\.(\w+)\.append\s*$', cellString)) or (reMatch := re.match('\s*(#)(\w+)?\.(\w+|\w+%\w+|\w+\.id)\.append\s*$', cellString)):
                             if valueIndex == -1:
                                 raise TagParserError("#table_name.field_name.append in column before #table_name.field_name.value", self.fileName, self.sheetName, self.rowIndex, self.columnIndex)
-                            if reCopier.value.group(2) is not None and reCopier.value.group(2) != table:
+                            if reMatch.group(2) is not None and reMatch.group(2) != table:
                                 raise TagParserError("Table name does not match between #table_name.field_name.value and #table_name.field_name.append conversion tags", self.fileName, self.sheetName, self.rowIndex, self.columnIndex)
                             appendIndeces.append(self.columnIndex)
-                            appendFieldTypes.append(reCopier.value.group(1))
-                            appendFields.append(reCopier.value.group(3))
-                        elif reCopier(re.match('\s*(\*#|#)(\w+)?\.(\w+)\.prepend\s*$', cellString)) or reCopier(re.match('\s*(#)(\w+)?\.(\w+|\w+%\w+|\w+\.id)\.prepend\s*$', cellString)):
+                            appendFieldTypes.append(reMatch.group(1))
+                            appendFields.append(reMatch.group(3))
+                        elif (reMatch := re.match('\s*(\*#|#)(\w+)?\.(\w+)\.prepend\s*$', cellString)) or (reMatch := re.match('\s*(#)(\w+)?\.(\w+|\w+%\w+|\w+\.id)\.prepend\s*$', cellString)):
                             if valueIndex == -1:
                                 raise TagParserError("#table_name.field_name.prepend in column before #table_name.field_name.value", self.fileName, self.sheetName, self.rowIndex, self.columnIndex)
-                            if reCopier.value.group(2) is not None and reCopier.value.group(2) != table:
+                            if reMatch.group(2) is not None and reMatch.group(2) != table:
                                 raise TagParserError("Table name does not match between #table_name.field_name.value and #table_name.field_name.prepend conversion tags", self.fileName, self.sheetName, self.rowIndex, self.columnIndex)
                             prependIndeces.append(self.columnIndex)
-                            prependFieldTypes.append(reCopier.value.group(1))
-                            prependFields.append(reCopier.value.group(3))
-                        elif reCopier(re.match('\s*#(\w+)?\.(\w+)\.regex\s*$', cellString)) or reCopier(re.match('\s*#(\w+)?\.(\w+|\w+%\w+|\w+\.id)\.regex\s*$', cellString)):
+                            prependFieldTypes.append(reMatch.group(1))
+                            prependFields.append(reMatch.group(3))
+                        elif (reMatch := re.match('\s*#(\w+)?\.(\w+)\.regex\s*$', cellString)) or (reMatch := re.match('\s*#(\w+)?\.(\w+|\w+%\w+|\w+\.id)\.regex\s*$', cellString)):
                             if valueIndex == -1:
                                 raise TagParserError("#table_name.field_name.regex in column before #table_name.field_name.value", self.fileName, self.sheetName, self.rowIndex, self.columnIndex)
-                            if reCopier.value.group(1) is not None and reCopier.value.group(1) != table:
+                            if reMatch.group(1) is not None and reMatch.group(1) != table:
                                 raise TagParserError("Table name does not match between #table_name.field_name.value and #table_name.field_name.regex conversion tags", self.fileName, self.sheetName, self.rowIndex, self.columnIndex)
                             regexIndeces.append(self.columnIndex)
-                            regexFields.append(reCopier.value.group(2))
-                        elif reCopier(re.match('\s*#comparison\s*=\s*(exact|regex|regex\|exact|levenshtein)\s*$', cellString)):
-                            comparisonType=reCopier.value.group(1)
+                            regexFields.append(reMatch.group(2))
+                        elif (reMatch := re.match('\s*#comparison\s*=\s*(exact|regex|regex\|exact|levenshtein)\s*$', cellString)):
+                            comparisonType=reMatch.group(1)
                             userSpecifiedType = True
                         elif re.match('\s*#comparison\s*$', cellString):
                             comparisonIndex = self.columnIndex
                         elif re.match('\s*#match\s*=.*$', cellString):
-                            if reCopier(re.match('\s*#match\s*=\s*(first|first-nowarn|unique|all)\s*$', cellString)):
-                                matchType = reCopier.value.group(1)
+                            if (reMatch := re.match('\s*#match\s*=\s*(first|first-nowarn|unique|all)\s*$', cellString)):
+                                matchType = reMatch.group(1)
                             else:
                                 badType = re.match('\s*#match\s*=(.*)$', cellString).group(1)
                                 raise TagParserError("Unknown match type \"" + badType + "\"", self.fileName, self.sheetName, self.rowIndex, self.columnIndex)
@@ -1335,8 +1329,8 @@ class TagParser(object):
                     parsing = False
                 elif parsing:
                     fieldValue = xstr(worksheet.iloc[self.rowIndex, valueIndex]).strip()
-                    if comparisonIndex != -1 and reCopier(xstr(worksheet.iloc[self.rowIndex, comparisonIndex]).strip()) in TagParser.conversionComparisonTypes:
-                        localComparisonType = reCopier.value
+                    if comparisonIndex != -1 and (comparisonString := xstr(worksheet.iloc[self.rowIndex, comparisonIndex]).strip()) in TagParser.conversionComparisonTypes:
+                        localComparisonType = comparisonString
                         
                     else:
                         if not userSpecifiedType or comparisonType == "regex|exact":
@@ -1394,8 +1388,8 @@ class TagParser(object):
                     regexFieldMap = {}
                     for i in range(len(regexIndeces)):
                         regexFieldValue = xstr(worksheet.iloc[self.rowIndex, regexIndeces[i]]).strip()
-                        if reCopier(re.match(r"(r[\"'].*[\"'])\s*,\s*(r[\"'].*[\"'])$",regexFieldValue)):
-                            regexFieldMap[regexFields[i]] = [ reCopier.value.group(1), reCopier.value.group(2) ]
+                        if (reMatch := re.match(r"(r[\"'].*[\"'])\s*,\s*(r[\"'].*[\"'])$",regexFieldValue)):
+                            regexFieldMap[regexFields[i]] = [ reMatch.group(1), reMatch.group(2) ]
                         else:
                             raise TagParserError("#table_name.field_name.regex value is not of the correct format r\"...\",r\"...\".", self.fileName, self.sheetName, self.rowIndex, valueIndex)
 
@@ -1487,7 +1481,6 @@ class TagParser(object):
 
         parsing = False
 
-        reCopier = copier.Copier()
         self.rowIndex = 0
         currTaggingGroup = None
         while self.rowIndex < len(aColumn):
@@ -1511,8 +1504,8 @@ class TagParser(object):
                             tagIndex = self.columnIndex
                         elif re.match('\s*#required\s*$', cellString):
                             requiredIndex = self.columnIndex
-                        elif reCopier(re.match('\s*#exclude\s*=\s*(.+)\s*$', cellString)):
-                            currTaggingGroup["exclusion_test"]=reCopier.value.group(1)
+                        elif (reMatch := re.match('\s*#exclude\s*=\s*(.+)\s*$', cellString)):
+                            currTaggingGroup["exclusion_test"]=reMatch.group(1)
                     self.columnIndex = -1
                     if headerIndex == -1:
                         raise TagParserError("Missing #header tag", self.fileName, self.sheetName, self.rowIndex, self.columnIndex)
@@ -2055,15 +2048,14 @@ class TagParser(object):
                                                             for newField,regexPair in fieldValueDict["regex"].items() }
 
             # Create Evaluator objects for assign directives with "eval(...)" values.
-            reCopier = copier.Copier()
             for tableDict in conversionDirectives.values():
                 for fieldDict in tableDict.values():
                     for comparisonTypeDict in fieldDict.values():
                         for fieldValueDict in comparisonTypeDict.values():
                             if "assign" in fieldValueDict:
                                 for newField in fieldValueDict["assign"].keys():
-                                    if isinstance(fieldValueDict["assign"][newField], str) and reCopier(Evaluator.isEvalString(fieldValueDict["assign"][newField])):
-                                        fieldValueDict["assign"][newField] = Evaluator(reCopier.value.group(1))
+                                    if isinstance(fieldValueDict["assign"][newField], str) and (reMatch := Evaluator.isEvalString(fieldValueDict["assign"][newField])):
+                                        fieldValueDict["assign"][newField] = Evaluator(reMatch.group(1))
 
             self.changedRecords = {}
             for tableKey in conversionDirectives.keys():

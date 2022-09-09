@@ -42,7 +42,7 @@ def test_compare():
     
     test_file = "base_source.xlsx"
     
-    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file +" --output " + output_path.as_posix() + " --compare " + output_compare_path.as_posix()
+    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file +" --output " + output_path.as_posix() + " --compare " + output_compare_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stdout
@@ -59,7 +59,7 @@ def test_convert_worksheet_name():
     
     test_file = "convert_test.xlsx"
     
-    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file  + " --output " + output_path.as_posix() + " --convert convert"
+    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file  + " --output " + output_path.as_posix() + " --convert convert"
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -83,7 +83,7 @@ def test_convert_regex():
     
     test_file = "convert_test.xlsx"
     
-    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file  + " --output " + output_path.as_posix() + " --convert r'.*vert'"
+    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file  + " --output " + output_path.as_posix() + " --convert r'.*vert'"
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -107,7 +107,7 @@ def test_convert_csv():
     
     test_file = "convert_test.xlsx"
     
-    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file  + " --output " + output_path.as_posix() + " --convert ../conversions.csv"
+    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file  + " --output " + output_path.as_posix() + " --convert ../conversions.csv"
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -131,7 +131,7 @@ def test_convert_json():
     
     test_file = "convert_test.xlsx"
     
-    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file  + " --output " + output_path.as_posix() + " --convert ../base_directives.json"
+    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file  + " --output " + output_path.as_posix() + " --convert ../base_directives.json"
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -155,7 +155,7 @@ def test_convert_worksheet_name_and_sheetname():
     
     test_file = "convert_test.xlsx"
     
-    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file  + " --output " + output_path.as_posix() + " --convert ../base_source.xlsx:#convert"
+    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file  + " --output " + output_path.as_posix() + " --convert ../base_source.xlsx:#convert"
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -179,7 +179,7 @@ def test_convert_worksheet_name_and_regex():
     
     test_file = "convert_test.xlsx"
     
-    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file  + " --output " + output_path.as_posix() + " --convert ../base_source.xlsx:r'.*vert'"
+    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file  + " --output " + output_path.as_posix() + " --convert ../base_source.xlsx:r'.*vert'"
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -203,7 +203,7 @@ def test_convert_xlsx():
     
     test_file = "convert_test.xlsx"
     
-    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file  + " --output " + output_path.as_posix() + " --convert ../base_source.xlsx"
+    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file  + " --output " + output_path.as_posix() + " --convert ../base_source.xlsx"
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -231,7 +231,7 @@ def test_end_convert_csv():
     
     test_file = "convert_test.xlsx"
     
-    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file  + " --output " + output_path.as_posix() + " --end-convert ../conversions.csv"
+    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file  + " --output " + output_path.as_posix() + " --end-convert ../conversions.csv"
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -255,7 +255,7 @@ def test_end_convert_json():
     
     test_file = "convert_test.xlsx"
     
-    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file  + " --output " + output_path.as_posix() + " --end-convert ../base_directives.json"
+    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file  + " --output " + output_path.as_posix() + " --end-convert ../base_directives.json"
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -279,7 +279,7 @@ def test_end_convert_worksheet_name_and_sheetname():
     
     test_file = "convert_test.xlsx"
     
-    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file  + " --output " + output_path.as_posix() + " --end-convert ../base_source.xlsx:#convert"
+    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file  + " --output " + output_path.as_posix() + " --end-convert ../base_source.xlsx:#convert"
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -303,7 +303,7 @@ def test_end_convert_worksheet_name_and_regex():
     
     test_file = "convert_test.xlsx"
     
-    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file  + " --output " + output_path.as_posix() + " --end-convert ../base_source.xlsx:r'.*vert'"
+    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file  + " --output " + output_path.as_posix() + " --end-convert ../base_source.xlsx:r'.*vert'"
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -331,7 +331,7 @@ def test_end_convert():
     test_file_2 = "end_convert_2.xlsx"
     test_file_3 = "end_convert_3_conversion.xlsx"
     
-    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file_1 + " ../" + test_file_2 +" --output " + output_path.as_posix() + " --end-convert ../" + test_file_3
+    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file_1 + " ../" + test_file_2 +" --output " + output_path.as_posix() + " --end-convert ../" + test_file_3
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -357,7 +357,7 @@ def test_tagging_worksheet_name():
     
     test_file = "tagging_test.xlsx"
     
-    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file  + " --output " + output_path.as_posix() + " --tagging tagging"
+    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file  + " --output " + output_path.as_posix() + " --tagging tagging"
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -381,7 +381,7 @@ def test_tagging_regex():
     
     test_file = "tagging_test.xlsx"
     
-    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file  + " --output " + output_path.as_posix() + " --tagging r'.*ging'"
+    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file  + " --output " + output_path.as_posix() + " --tagging r'.*ging'"
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -405,7 +405,7 @@ def test_tagging_csv():
     
     test_file = "tagging_test.xlsx"
     
-    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file  + " --output " + output_path.as_posix() + " --tagging ../tags.csv"
+    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file  + " --output " + output_path.as_posix() + " --tagging ../tags.csv"
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -429,7 +429,7 @@ def test_tagging_json():
     
     test_file = "tagging_test.xlsx"
     
-    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file  + " --output " + output_path.as_posix() + " --tagging ../base_directives.json"
+    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file  + " --output " + output_path.as_posix() + " --tagging ../base_directives.json"
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -453,7 +453,7 @@ def test_tagging_worksheet_name_and_sheetname():
     
     test_file = "tagging_test.xlsx"
     
-    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file  + " --output " + output_path.as_posix() + " --tagging ../base_source.xlsx:#tagging"
+    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file  + " --output " + output_path.as_posix() + " --tagging ../base_source.xlsx:#tagging"
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -477,7 +477,7 @@ def test_tagging_worksheet_name_and_regex():
     
     test_file = "tagging_test.xlsx"
     
-    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file  + " --output " + output_path.as_posix() + " --tagging ../base_source.xlsx:r'.*ging'"
+    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file  + " --output " + output_path.as_posix() + " --tagging ../base_source.xlsx:r'.*ging'"
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -501,7 +501,7 @@ def test_tagging_xlsx():
     
     test_file = "tagging_test.xlsx"
     
-    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file  + " --output " + output_path.as_posix() + " --tagging ../base_source.xlsx"
+    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file  + " --output " + output_path.as_posix() + " --tagging ../base_source.xlsx"
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -529,7 +529,7 @@ def test_save_directives():
     test_file = "base_source.xlsx"
     directives_to_compare = "comparison_directives.json"
     
-    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file  + " --output " + output_path.as_posix() + " --save-directives " + directives_to_compare
+    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file  + " --output " + output_path.as_posix() + " --save-directives " + directives_to_compare
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -577,7 +577,7 @@ def test_save_directives_no_json():
     test_file = "base_source.xlsx"
     directives_to_compare = "comparison_directives"
     
-    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file  + " --output " + output_path.as_posix() + " --save-directives " + directives_to_compare
+    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file  + " --output " + output_path.as_posix() + " --save-directives " + directives_to_compare
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -628,7 +628,7 @@ def test_save_directives_none_to_save():
     test_file = "no_directives.csv"
     directives_to_compare = "comparison_directives.json"
     
-    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file  + " --output " + output_path.as_posix() + " --save-directives " + directives_to_compare
+    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file  + " --output " + output_path.as_posix() + " --save-directives " + directives_to_compare
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -646,7 +646,7 @@ def test_save_export_xlsx():
     
     test_file = "base_source.xlsx"
     
-    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file  + " --output " + output_path.as_posix() + " --save-export xlsx"
+    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file  + " --output " + output_path.as_posix() + " --save-export xlsx"
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -692,7 +692,7 @@ def test_save_export_csv():
     
     test_file = "base_source.xlsx"
     
-    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file  + " --output " + output_path.as_posix() + " --save-export csv"
+    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file  + " --output " + output_path.as_posix() + " --save-export csv"
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -738,7 +738,7 @@ def test_show_tables():
     
     test_file = "base_source.xlsx"
     
-    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file  + " --output " + output_path.as_posix() + " --show tables"
+    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file  + " --output " + output_path.as_posix() + " --show tables"
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stdout
@@ -754,7 +754,7 @@ def test_show_lineage():
     
     test_file = "base_source.xlsx"
     
-    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file  + " --output " + output_path.as_posix() + " --show lineage"
+    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file  + " --output " + output_path.as_posix() + " --show lineage"
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stdout
@@ -770,7 +770,7 @@ def test_show_lineage_with_children():
     
     test_file = "child_tag_example.xlsx"
     
-    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file  + " --output " + output_path.as_posix() + " --show lineage"
+    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file  + " --output " + output_path.as_posix() + " --show lineage"
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stdout
@@ -786,7 +786,7 @@ def test_show_all():
     
     test_file = "base_source.xlsx"
     
-    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file  + " --output " + output_path.as_posix() + " --show all"
+    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file  + " --output " + output_path.as_posix() + " --show all"
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stdout
@@ -802,7 +802,7 @@ def test_show_incorrect_sub_option():
     
     test_file = "base_source.xlsx"
     
-    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file  + " --output " + output_path.as_posix() + " --show asdf"
+    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file  + " --output " + output_path.as_posix() + " --show asdf"
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -819,7 +819,7 @@ def test_delete():
     
     test_file = "base_source.xlsx"
     
-    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file  + " --output " + output_path.as_posix() + ' --delete protocol'
+    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file  + " --output " + output_path.as_posix() + ' --delete protocol'
     command = command.split(" ")
     command.append("--delete")
     command.append("measurement,(S)-2-Acetolactate Glutaric acid Methylsuccinic acid-13C0-01_A0_Colon_T03-2017_naive_170427_UKy_GCB_rep1-quench")
@@ -852,7 +852,7 @@ def test_delete_regex():
     
     test_file = "base_source.xlsx"
     
-    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file  + " --output " + output_path.as_posix() + ' --delete r\'.*tocol\''
+    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file  + " --output " + output_path.as_posix() + ' --delete r\'.*tocol\''
     command = command.split(" ")
     command.append("--delete")
     command.append("r\'.*asurement\',r\'.*13C0-01_A0_Colon_T03-2017_naive_170427_UKy_GCB_rep1-quench\'")
@@ -885,7 +885,7 @@ def test_keep():
     
     test_file = "base_source.xlsx"
     
-    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file  + " --output " + output_path.as_posix() + ' --keep protocol'
+    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file  + " --output " + output_path.as_posix() + ' --keep protocol'
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -911,7 +911,7 @@ def test_keep_multiple_tables():
     
     test_file = "base_source.xlsx"
     
-    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file  + " --output " + output_path.as_posix() + ' --keep protocol,measurement'
+    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file  + " --output " + output_path.as_posix() + ' --keep protocol,measurement'
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -935,7 +935,7 @@ def test_keep_regex():
     
     test_file = "base_source.xlsx"
     
-    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file  + " --output " + output_path.as_posix() + ' --keep r\'.*tocol\''
+    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file  + " --output " + output_path.as_posix() + ' --keep r\'.*tocol\''
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -962,7 +962,7 @@ def test_silent():
     
     test_file = "silent_test.xlsx"
     
-    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file  + " --output " + output_path.as_posix() + ' --silent'
+    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file  + " --output " + output_path.as_posix() + ' --silent'
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -988,7 +988,7 @@ def test_metadatasource_does_not_exist():
     
     test_file = "attribute_field_test.xlsx"
     
-    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file + " fake_file.xlsx --output " + output_path.as_posix() 
+    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file + " fake_file.xlsx --output " + output_path.as_posix() 
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -1006,7 +1006,7 @@ def test_output_option_no_json_extension():
     
     test_file = "base_source.xlsx"
     
-    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file + " --output output" 
+    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file + " --output output" 
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -1023,7 +1023,7 @@ def test_compare_option_is_not_json():
     
     test_file = "base_source.xlsx"
     
-    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file + " --compare ../" + test_file + " --output " + output_path.as_posix()
+    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file + " --compare ../" + test_file + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -1040,7 +1040,7 @@ def test_compare_option_does_not_exist():
     
     test_file = "base_source.xlsx"
     
-    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file + " --compare ../asdf.asdf --output " + output_path.as_posix()
+    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file + " --compare ../asdf.asdf --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -1057,7 +1057,7 @@ def test_empty_directives_warning():
     
     test_file = "base_source.xlsx"
     
-    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix() + " --convert ../empty_directives.json"
+    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix() + " --convert ../empty_directives.json"
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -1082,7 +1082,7 @@ def test_compare_close_floats():
     
     test_file = "compare_close_floats.xlsx"
     
-    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file +" --output " + output_path.as_posix() + " --compare " + output_compare_path.as_posix()
+    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file +" --output " + output_path.as_posix() + " --compare " + output_compare_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stdout
@@ -1099,7 +1099,7 @@ def test_compare_many_differences():
     
     test_file = "compare_differences_test.xlsx"
     
-    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file +" --output " + output_path.as_posix() + " --compare " + output_compare_path.as_posix()
+    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file +" --output " + output_path.as_posix() + " --compare " + output_compare_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stdout

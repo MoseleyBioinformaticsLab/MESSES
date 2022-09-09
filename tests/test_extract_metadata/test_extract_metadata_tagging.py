@@ -43,7 +43,7 @@ def test_multiple_inserts():
     
     test_file = "multiple_inserts.xlsx"
     
-    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix() + " --save-export csv"
+    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix() + " --save-export csv"
     os.system(command)
     
     assert output_path.exists()
@@ -72,7 +72,7 @@ def test_duplicate_headers():
     
     test_file = "duplicate_headers.xlsx"
     
-    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file +" --output " + output_path.as_posix()
+    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file +" --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -90,7 +90,7 @@ def test_missing_id_in_header():
     
     test_file = "no_id_tag.xlsx"
     
-    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file +" --output " + output_path.as_posix()
+    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file +" --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -108,7 +108,7 @@ def test_unused_tag():
     
     test_file = "unused_tag.xlsx"
     
-    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file +" --output " + output_path.as_posix()
+    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file +" --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -126,7 +126,7 @@ def test_no_required_headers():
     
     test_file = "no_required_headers.xlsx"
     
-    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file +" --output " + output_path.as_posix()
+    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file +" --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -152,7 +152,7 @@ def test_duplicate_columns():
     
     test_file = "duplicate_columns.xlsx"
     
-    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file +" --output " + output_path.as_posix()
+    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file +" --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -170,7 +170,7 @@ def test_regex_in_eval():
     
     test_file = "regex_in_eval.xlsx"
     
-    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file  + " --output " + output_path.as_posix()
+    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file  + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -196,7 +196,7 @@ def test_list_in_eval():
     
     test_file = "eval_list.xlsx"
     
-    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file  + " --output " + output_path.as_posix()
+    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file  + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -218,7 +218,7 @@ def test_list_in_eval_list_tag():
     
     test_file = "eval_list_list_tag.xlsx"
     
-    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file  + " --output " + output_path.as_posix()
+    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file  + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -242,7 +242,7 @@ def test_exclusion():
     
     test_file = "exclusion_test.xlsx"
     
-    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file +" --output " + output_path.as_posix()
+    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file +" --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -270,7 +270,7 @@ def test_multiple_insert_blocks():
     
     test_file = "multiple_insert_blocks.xlsx"
     
-    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix() + " --save-export csv"
+    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix() + " --save-export csv"
     os.system(command)
     
     assert output_path.exists()
@@ -300,7 +300,7 @@ def test_tagging_empty_tag_rows():
     
     test_file = "tagging_empty_tag_rows.xlsx"
     
-    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
+    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -325,7 +325,7 @@ def test_tagging_missing_header_tag_error():
     
     test_file = "tagging_missing_header_tag_error.xlsx"
     
-    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
+    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -342,7 +342,7 @@ def test_tagging_missing_add_tag_error():
     
     test_file = "tagging_missing_add_tag_error.xlsx"
     
-    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
+    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -361,7 +361,7 @@ def test_tagging_ignore_test():
     
     test_file = "tagging_ignore_test.xlsx"
     
-    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
+    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -386,7 +386,7 @@ def test_tagging_insert_multiple_false_test():
     
     test_file = "tagging_insert_multiple_false_test.xlsx"
     
-    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
+    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -411,7 +411,7 @@ def test_tagging_missing_end_tag_error():
     
     test_file = "tagging_missing_end_tag_error.xlsx"
     
-    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
+    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -429,7 +429,7 @@ def test_tagging_field_tracking():
     
     test_file = "tracking_test.xlsx"
     
-    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
+    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -458,7 +458,7 @@ def test_tagging_field_tracking2():
     
     test_file = "tracking_test2.xlsx"
     
-    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
+    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -487,7 +487,7 @@ def test_tagging_field_tracking3():
     
     test_file = "tracking_test3.xlsx"
     
-    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
+    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -521,7 +521,7 @@ def test_tagging_tracking_not_enough_tokens_error():
     
     test_file = "tracking_not_enough_tokens_error.xlsx"
     
-    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
+    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -538,7 +538,7 @@ def test_tagging_tracking_no_equal_sign_error():
     
     test_file = "tracking_no_equal_sign_error.xlsx"
     
-    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
+    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -555,7 +555,7 @@ def test_tagging_untracking_no_equal_sign_error():
     
     test_file = "untracking_no_equal_sign_error.xlsx"
     
-    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
+    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -572,7 +572,7 @@ def test_tagging_untracking_not_enough_tokens_error():
     
     test_file = "untracking_not_enough_tokens_error.xlsx"
     
-    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
+    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -589,7 +589,7 @@ def test_tagging_tracking_malformed_field_error():
     
     test_file = "tracking_malformed_field_error.xlsx"
     
-    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
+    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -606,7 +606,7 @@ def test_tagging_untracking_malformed_field_error():
     
     test_file = "untracking_malformed_field_error.xlsx"
     
-    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
+    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -623,7 +623,7 @@ def test_tagging_tracking_list_test():
     
     test_file = "tracking_list_test.xlsx"
     
-    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
+    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr

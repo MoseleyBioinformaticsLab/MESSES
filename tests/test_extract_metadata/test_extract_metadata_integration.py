@@ -45,7 +45,7 @@ def test_child_without_parent_id():
     
     test_file = "child_tag_no_parent_id.xlsx"
     
-    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file +" --output " + output_path.as_posix()
+    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file +" --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -63,7 +63,7 @@ def test_list_field():
     
     test_file = "list_field_test.xlsx"
     
-    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix() 
+    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix() 
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -86,7 +86,7 @@ def test_list_field_inline():
     
     test_file = "list_field_test_inline.xlsx"
     
-    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix() 
+    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix() 
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -119,7 +119,7 @@ def test_attribute_field():
     
     test_file = "attribute_field_test.xlsx"
     
-    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix() 
+    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix() 
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -143,7 +143,7 @@ def test_child_tag():
     
     test_file = "child_tag_example.xlsx"
     
-    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file  + " --output " + output_path.as_posix()
+    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file  + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -168,7 +168,7 @@ def test_variable_operand():
     
     test_file = "variable_operand_test.xlsx"
     
-    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file  + " --output " + output_path.as_posix()
+    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file  + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -194,7 +194,7 @@ def test_variable_operand_error():
     
     test_file = "variable_operand_test_error.xlsx"
     
-    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file  + " --output " + output_path.as_posix()
+    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file  + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -213,7 +213,7 @@ def test_global_operand():
     
     test_file = "global_field_test.xlsx"
     
-    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file  + " --output " + output_path.as_posix()
+    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file  + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -238,7 +238,7 @@ def test_global_operand_error():
     
     test_file = "global_field_test_error.xlsx"
     
-    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file  + " --output " + output_path.as_posix()
+    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file  + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -256,7 +256,7 @@ def test_csv_error():
     
     test_file = "csv_error_test.csv"
     
-    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file  + " --output " + output_path.as_posix()
+    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file  + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -274,7 +274,7 @@ def test_undefined_table_name_error():
     
     test_file = "undefined_table_name_error.xlsx"
     
-    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file  + " --output " + output_path.as_posix()
+    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file  + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -292,7 +292,7 @@ def test_child_in_first_column_error():
     
     test_file = "child_in_first_column_error.xlsx"
     
-    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file  + " --output " + output_path.as_posix()
+    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file  + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -310,7 +310,7 @@ def test_tags_not_in_first_column_error():
     
     test_file = "tags_not_in_first_column_error.xlsx"
     
-    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file  + " --output " + output_path.as_posix()
+    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file  + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -327,7 +327,7 @@ def test_table_in_assignment_error():
     
     test_file = "table_in_assignment_error.xlsx"
     
-    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file  + " --output " + output_path.as_posix()
+    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file  + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -345,7 +345,7 @@ def test_child_in_assignment_error():
     
     test_file = "child_in_assignment_error.xlsx"
     
-    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file  + " --output " + output_path.as_posix()
+    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file  + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -363,7 +363,7 @@ def test_tandem_operators_error():
     
     test_file = "tandem_operators_error.xlsx"
     
-    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file  + " --output " + output_path.as_posix()
+    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file  + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -381,7 +381,7 @@ def test_tandem_literal_error():
     
     test_file = "tandem_literal_error.xlsx"
     
-    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file  + " --output " + output_path.as_posix()
+    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file  + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -399,7 +399,7 @@ def test_operator_no_operand_blank_error():
     
     test_file = "operator_no_operand_blank_error.xlsx"
     
-    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file  + " --output " + output_path.as_posix()
+    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file  + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -417,7 +417,7 @@ def test_operator_no_operand_semicolon_error():
     
     test_file = "operator_no_operand_semicolon_error.xlsx"
     
-    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file  + " --output " + output_path.as_posix()
+    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file  + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -435,7 +435,7 @@ def test_plus_not_in_assignment_error():
     
     test_file = "plus_not_in_assignment_error.xlsx"
     
-    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file  + " --output " + output_path.as_posix()
+    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file  + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -453,7 +453,7 @@ def test_comma_not_in_list_assignment_error():
     
     test_file = "comma_not_in_list_assignment_error.xlsx"
     
-    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file  + " --output " + output_path.as_posix()
+    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file  + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -471,7 +471,7 @@ def test_comma_not_in_list_tag_error():
     
     test_file = "comma_not_in_list_tag_error.xlsx"
     
-    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file  + " --output " + output_path.as_posix()
+    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file  + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -489,7 +489,7 @@ def test_double_equal_in_tag_error():
     
     test_file = "double_equal_in_tag_error.xlsx"
     
-    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file  + " --output " + output_path.as_posix()
+    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file  + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -507,7 +507,7 @@ def test_star_operator_not_at_beginning_assignment_error():
     
     test_file = "star_operator_not_at_beginning_assignment_error.xlsx"
     
-    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file  + " --output " + output_path.as_posix()
+    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file  + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -525,7 +525,7 @@ def test_star_operator_not_at_beginning_no_tokens_error():
     
     test_file = "star_operator_not_at_beginning_no_tokens_error.xlsx"
     
-    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file  + " --output " + output_path.as_posix()
+    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file  + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -542,7 +542,7 @@ def test_star_operator_not_at_beginning_no_tag_error():
     
     test_file = "star_operator_not_at_beginning_no_tag_error.xlsx"
     
-    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file  + " --output " + output_path.as_posix()
+    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file  + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -561,7 +561,7 @@ def test_table_tag():
     
     test_file = "table_tag_example.xlsx"
     
-    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file  + " --output " + output_path.as_posix()
+    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file  + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -582,7 +582,7 @@ def test_table_tag_without_assignment_no_tokens_error():
     
     test_file = "table_tag_without_assignment_no_tokens_error.xlsx"
     
-    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file  + " --output " + output_path.as_posix()
+    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file  + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -600,7 +600,7 @@ def test_table_tag_without_assignment_no_equal_error():
     
     test_file = "table_tag_without_assignment_no_equal_error.xlsx"
     
-    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file  + " --output " + output_path.as_posix()
+    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file  + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -618,7 +618,7 @@ def test_table_tag_without_assignment_no_word_error():
     
     test_file = "table_tag_without_assignment_no_word_error.xlsx"
     
-    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file  + " --output " + output_path.as_posix()
+    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file  + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -636,7 +636,7 @@ def test_empty_child_error():
     
     test_file = "empty_child_error.xlsx"
     
-    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file  + " --output " + output_path.as_posix()
+    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file  + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -654,7 +654,7 @@ def test_child_no_assignment_error():
     
     test_file = "child_no_assignment_error.xlsx"
     
-    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file  + " --output " + output_path.as_posix()
+    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file  + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -672,7 +672,7 @@ def test_two_child_fields_without_id_error():
     
     test_file = "two_child_fields_without_id_error.xlsx"
     
-    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file  + " --output " + output_path.as_posix()
+    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file  + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -690,7 +690,7 @@ def test_child_table_change_error():
     
     test_file = "child_table_change_error.xlsx"
     
-    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file  + " --output " + output_path.as_posix()
+    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file  + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -708,7 +708,7 @@ def test_global_field_no_assignment_error():
     
     test_file = "global_field_no_assignment_error.xlsx"
     
-    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file  + " --output " + output_path.as_posix()
+    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file  + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -726,7 +726,7 @@ def test_global_field_not_literal_error():
     
     test_file = "global_field_not_literal_error.xlsx"
     
-    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file  + " --output " + output_path.as_posix()
+    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file  + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -744,7 +744,7 @@ def test_duplicate_field_error():
     
     test_file = "duplicate_field_error.xlsx"
     
-    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file  + " --output " + output_path.as_posix()
+    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file  + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -762,7 +762,7 @@ def test_malformed_tag_error():
     
     test_file = "malformed_tag_error.xlsx"
     
-    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file  + " --output " + output_path.as_posix()
+    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file  + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -780,7 +780,7 @@ def test_bad_token_error():
     
     test_file = "bad_token_error.xlsx"
     
-    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file  + " --output " + output_path.as_posix()
+    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file  + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -798,7 +798,7 @@ def test_child_id_no_assignment():
     
     test_file = "child_id_no_assignment.xlsx"
     
-    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file  + " --output " + output_path.as_posix()
+    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file  + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -820,7 +820,7 @@ def test_child_without_id_error():
     
     test_file = "child_without_id_error.xlsx"
     
-    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file  + " --output " + output_path.as_posix()
+    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file  + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -838,7 +838,7 @@ def test_same_record_multiple_tables():
     
     test_file = "same_record_multiple_tables.xlsx"
     
-    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file  + " --output " + output_path.as_posix()
+    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file  + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -867,7 +867,7 @@ def test_no_data_message_xlsx():
     
     test_file = "no_data_message.xlsx"
     
-    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file  + " --output " + output_path.as_posix()
+    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file  + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -885,7 +885,7 @@ def test_no_sheet_message():
     
     test_file = "base_source.xlsx"
     
-    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file  + " --output " + output_path.as_posix() + " --convert asdf"
+    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file  + " --output " + output_path.as_posix() + " --convert asdf"
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -903,7 +903,7 @@ def test_no_data_message_csv():
     
     test_file = "no_data_message.csv"
     
-    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file  + " --output " + output_path.as_posix()
+    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file  + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -921,7 +921,7 @@ def test_no_csv_file():
     
     test_file = "asdf.csv"
     
-    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file  + " --output " + output_path.as_posix()
+    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file  + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -940,7 +940,7 @@ def test_invalid_worksheet_identifier():
     
     test_file = "asdf.csv:asdf"
     
-    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file  + " --output " + output_path.as_posix()
+    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file  + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -960,7 +960,7 @@ def test_metadata_json_source():
     test_file = "starting_metadata_test.json"
     test_file2 = "starting_metadata_test.xlsx"
     
-    command = "py -3.7 ../../../src/messes/extract_metadata.py ../" + test_file + " ../" + test_file2  + " --output " + output_path.as_posix()
+    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file + " ../" + test_file2  + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr

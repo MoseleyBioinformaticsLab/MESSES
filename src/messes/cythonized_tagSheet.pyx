@@ -7,7 +7,6 @@ import sys
 import numpy
 cimport numpy
 
-import copier
 from extract_metadata import Evaluator, FieldMaker, TagParser, VariableOperand, LiteralOperand, xstr
 
 
@@ -30,7 +29,6 @@ def tagSheet(taggingDirectives, str[:,:] worksheet, silent):
     wasTaggingDirectiveUsed = []
     if taggingDirectives != None:
         wasTaggingDirectiveUsed = [False for directive in taggingDirectives]
-        reCopier = copier.Copier()
 
         if not any([cell == "#tags" for cell in worksheet[:, 0]]) and not all([cell == '' for cell in worksheet[:, 0]]):
             worksheet = numpy.insert(worksheet, 0, "", axis=1)
@@ -61,8 +59,8 @@ def tagSheet(taggingDirectives, str[:,:] worksheet, silent):
             newColumnHeaders = set()
             for headerTagDescription in taggingGroup["header_tag_descriptions"]:
                 ## If the added tag is an eval() tag create the header test differently.
-                if reCopier(Evaluator.isEvalString(headerTagDescription["header"])):
-                    evaluator = Evaluator(reCopier.value.group(1), False, True)
+                if (reMatch := Evaluator.isEvalString(headerTagDescription["header"])):
+                    evaluator = Evaluator(reMatch.group(1), False, True)
                     headerTagDescription["field_maker"] = evaluator
                     headerTagDescription["header_list"] = []
                     headerTagDescription["header_tests"] = evaluator.fieldTests.copy()
@@ -77,12 +75,12 @@ def tagSheet(taggingDirectives, str[:,:] worksheet, silent):
                     headerTagDescription["header_tests"] = {}
                     fieldMaker = FieldMaker(headerTagDescription["header"])
                     for headerString in headerTagDescription["header_list"]:
-                        if reCopier(re.match(TagParser.reDetector, headerString)):
+                        if (reMatch := re.match(TagParser.reDetector, headerString)):
                             fieldMaker.operands.append(VariableOperand(headerString))
-                            headerTagDescription["header_tests"][headerString] = re.compile(reCopier.value.group(1))
+                            headerTagDescription["header_tests"][headerString] = re.compile(reMatch.group(1))
                             headerTests[headerString] = headerTagDescription["header_tests"][headerString]
-                        elif reCopier(re.match(TagParser.stringExtractor, headerString)):
-                            fieldMaker.operands.append(LiteralOperand(reCopier.value.group(1)))
+                        elif (reMatch := re.match(TagParser.stringExtractor, headerString)):
+                            fieldMaker.operands.append(LiteralOperand(reMatch.group(1)))
                         else:
                             fieldMaker.operands.append(VariableOperand(headerString))
                             headerTagDescription["header_tests"][headerString] = re.compile("^" + headerString + "$")
@@ -98,8 +96,8 @@ def tagSheet(taggingDirectives, str[:,:] worksheet, silent):
 
             if "exclusion_test" in taggingGroup:
                 testString = taggingGroup["exclusion_test"]
-                if reCopier(re.match(TagParser.reDetector, testString)):
-                    exclusionTest = re.compile(reCopier.value.group(1))
+                if (reMatch := re.match(TagParser.reDetector, testString)):
+                    exclusionTest = re.compile(reMatch.group(1))
                 else:
                     exclusionTest = re.compile("^" + testString + "$")
             else:
@@ -205,15 +203,15 @@ def tagSheet(taggingDirectives, str[:,:] worksheet, silent):
                             ## The 1001 values always need a new column for themselves, but the values less than 1000 only need a new column if they need to be reordered.
                             ## The second condition looks to see if the header tag under study needs to be reordered by seeing if there are any header tags that have a column index less than it. 
                             ## If a header tag has an index less than the one under study then it means it needs to move to the right because the other header tag needs to be before the one under study.
-                            if (newTDColumnIndeces[tdIndex] == 1001 or newTDColumnIndeces[tdIndex] < 1000) and reCopier(min(newTDColumnIndeces[tdIndex+1:]+[len(worksheet[0,:])])) < newTDColumnIndeces[tdIndex]:
-                                worksheet = numpy.insert(worksheet, reCopier.value, "", axis=1)
-                                header2ColumnIndex = { headerString:(index+1 if index >= reCopier.value else index) for headerString, index in header2ColumnIndex.items() } # must be done before the next if, else statement
+                            if (newTDColumnIndeces[tdIndex] == 1001 or newTDColumnIndeces[tdIndex] < 1000) and (minColumnIndex := min(newTDColumnIndeces[tdIndex+1:]+[len(worksheet[0,:])])) < newTDColumnIndeces[tdIndex]:
+                                worksheet = numpy.insert(worksheet, minColumnIndex, "", axis=1)
+                                header2ColumnIndex = { headerString:(index+1 if index >= minColumnIndex else index) for headerString, index in header2ColumnIndex.items() } # must be done before the next if, else statement
                                 if originalTDColumnIndeces[tdIndex] != 1001: # copy normal columns
-                                    worksheet[rowIndex:endingRowIndex, reCopier.value] = worksheet[rowIndex:endingRowIndex, newTDColumnIndeces[tdIndex]+1]
-                                    header2ColumnIndex[taggingGroup["header_tag_descriptions"][tdIndex]["header_list"][0]] = reCopier.value
+                                    worksheet[rowIndex:endingRowIndex, minColumnIndex] = worksheet[rowIndex:endingRowIndex, newTDColumnIndeces[tdIndex]+1]
+                                    header2ColumnIndex[taggingGroup["header_tag_descriptions"][tdIndex]["header_list"][0]] = minColumnIndex
 
-                                newTDColumnIndeces[tdIndex] = reCopier.value
-                                newTDColumnIndeces[tdIndex+1:] = [ index+1 if index >= reCopier.value and index < 1000 else index for index in newTDColumnIndeces[tdIndex+1:] ]
+                                newTDColumnIndeces[tdIndex] = minColumnIndex
+                                newTDColumnIndeces[tdIndex+1:] = [ index+1 if index >= minColumnIndex and index < 1000 else index for index in newTDColumnIndeces[tdIndex+1:] ]
 
                         # Add tags.
                         for tdIndex in range(len(taggingGroup["header_tag_descriptions"])):
