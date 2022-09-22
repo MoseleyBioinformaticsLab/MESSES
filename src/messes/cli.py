@@ -26,11 +26,11 @@ import json
 import mwtab
 
 
-def cli(cmdargs):
+def cli(cmdargs: dict):
     """Method uses docopt package to parse commandline arguments and perform actions accordingly.
 
-    :param cmdargs: Dictionary of parse commandline arguments.
-    :type cmdargs: dict
+    Args:
+        cmdargs: Dictionary of parse commandline arguments.
     """
 
     # messes convert ...

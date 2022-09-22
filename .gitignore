@@ -8,3 +8,12 @@ test.py
 *.zip
 pytest_coverage_run_command.txt
 .coverage
+*.pyc
+docs/_build
+data/*
+.DS_Store
+.ipynb_checkpoints
+.pytest_cache
+build/
+dist/
+coverage.xml

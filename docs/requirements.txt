@@ -1,0 +1,6 @@
+sphinxcontrib-napoleon
+sphinx_rtd_theme
+docopt >= 0.6.2
+jsonschema >= 4.4.0
+pandas >= 0.24.2
+openpyxl >= 2.6.2

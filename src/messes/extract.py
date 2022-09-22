@@ -67,19 +67,20 @@ Regular Expression Format:
 ## unique = 3 different names
 ## Test what happens when tracking_on specifices a field that the records already have in the table. Does it overwrite? #sample%track_on.sample.id
 
+from __future__ import annotations
 import os.path
 import copy
 import sys
 import re
 import collections
 import pathlib
+from typing import TextIO
 
 import json
 import pandas
 import docopt
 import jellyfish
 
-import copier
 import cythonized_tagSheet
 
 silent = False
@@ -195,13 +196,14 @@ def main() :
             print("There are no directives to save.",file=sys.stderr)
 
 
-def xstr(s) :
-    """RETURNS str(s) or a "" if PARAMETER s is None
+def xstr(s: str|None) -> str :
+    """Returns str(s) or "" if s is None.
 
-    :param s:
-    :type s: :py:class:`str` or :py:obj:`None`
-    :return: string
-    :rtype: :py:class:`str`
+    Args:
+        s: input string or None.
+        
+    Returns:
+        str(s) or "" if s is None.        
     """
     return "" if s is None else str(s)
 
@@ -215,13 +217,13 @@ class Evaluator(object) :
     reDetector = re.compile(r"r[\"'](.*)[\"']$")
     evalSplitter = re.compile(r'(\#[^#]+\#)')
 
-    def __init__(self, evalString, useFieldTests = True, listAsString = False) :
+    def __init__(self, evalString: str, useFieldTests: bool = True, listAsString: bool = False):
         """Initializer
-
-        :param :py:class:`str` evalString: stripped of the "eval(" and ")" parts.
-        :param :py:class:`str` name: name for the code object generated.
-        :param :py:class:`bool` useFieldTests: whether to use field tests in field name conversion.
-        :param :py:class:`bool` listAsString: whether to convert a list into a single string.
+        
+        Args:
+            evalString: string of the form eval(...) to deliver to eval(), "eval(" and ")" will be removed.
+            useFieldTests: whether to use field tests in field name conversion.
+            listAsString: whether to convert a list into a single string.
         """
 
         self.evalString = evalString
@@ -252,12 +254,14 @@ class Evaluator(object) :
 
         self.code = compile("".join(finalTokenList), self.evalString, "eval")
 
-    def evaluate(self, record):
-        """RETURN  eval results for the given record.
-
-        :param :py:class:`dict` record:
-        :return: value
-        :rtype: :py:class:`str` or :py:class:`list`
+    def evaluate(self, record: dict) -> str|list:
+        """Return eval results for the given record.
+        
+        Args:
+            record: record from TagParser.extraction.
+            
+        Returns:
+            The results from eval() with the record's contents.
         """
         restricted = { field.replace("%","_PERCENT_") : record[field] for field in self.requiredFields }
         if self.useFieldTests and self.fieldTests:
@@ -272,99 +276,111 @@ class Evaluator(object) :
         else:
             return xstr(eval(self.code,restricted))
 
-    def hasRequiredFields(self, record):
-        """RETURNS whether the record has all required fields.
+    def hasRequiredFields(self, record: dict) -> bool:
+        """Returns whether the record has all required fields.
 
-        :param :py:class:`dict` record:
-        :return: boolean
-        :rtype: :py:class:`bool`
+        Args:
+            record: record from TagParser.extraction.
+            
+        Returns:
+            True if the record has all required fiels, False otherwise.
         """
         return all(field in record for field in self.requiredFields) and ( not self.useFieldTests or not self.fieldTests or \
                all([ len([(fieldName, value) for field, value in record.items() if re.search(fieldTest,field)]) == 1 for fieldName, fieldTest in self.fieldTests.items() ]) )
 
     @staticmethod
-    def isEvalString(evalString):
+    def isEvalString(evalString: str) -> re.Match|None:
         """Tests whether the evalString is of the form r"^eval(...)$"
 
-        :param evalString:
-        :return: matchObject
-        :rtype: :py:class:`re.Match` or :py:obj:`None`
+        Args:
+            evalString: a string to determine whether or not it is of the eval variety.
+            
+        Returns:
+            An re.Match object if the evalString is indeed an eval string, or None if it is not.
         """
         return re.match(Evaluator.evalDetector, evalString)
 
 class Operand(object) :
     """Class of objects that create string operands for concatenation operations."""
-    def __init__(self, value) :
+    def __init__(self, value: str|int) :
         """Initializer
 
-        :param value:
-        :type value: :py:class:`str` or :py:class:`int`
+        Args:
+            value: a string or int that represents the value of the operand.
         """
         self.value = value
     
-    def __call__(self, record, row) :
-        """RETURNS a string.
+    def __call__(self, record: dict, row: pandas.core.series.Series) :
+        """Passes, exists to be overridden.
 
-        :param :py:class:`dict` record:
-        :param :py:class:`pandas.core.series.Series` row:
-        :return: string
-        :rtype: :py:class:`str`
+        Args:
+            record: record from TagParser.extraction.
+            row: pandas Series that is a row from metadata being parsed.
         """
         pass
     
 class LiteralOperand(Operand) :
     """Represents string literal operands."""
-    def __call__(self, record, row) :
-        """RETURNS string value
+    def __call__(self, record: dict, row: pandas.core.series.Series) -> str:
+        """Returns string value.
 
-        :param :py:class:`dict` record:
-        :param :py:class:`pandas.core.series.Series` row:
-        :return: string
-        :rtype: :py:class:`str`
+        Args:
+            record: record from TagParser.extraction.
+            row: pandas Series that is a row from metadata being parsed.
+            
+        Returns:
+            String value of the operand.
         """
         return self.value
 
 class VariableOperand(Operand) :
     """Represents #table.record%attribute variable operands."""
-    def __call__(self, record, row) :
-        """RETURNS record field value.
+    def __call__(self, record: dict, row: pandas.core.series.Series) -> str:
+        """Returns record field value.
 
-        :param :py:class:`dict` record:
-        :param :py:class:`pandas.core.series.Series` row:
-        :return: string
-        :rtype: :py:class:`str`
+        Args:
+            record: record from TagParser.extraction.
+            row: pandas Series that is a row from metadata being parsed.
+            
+        Returns:
+            The value of the record's field where field is the operand's value.
         """
         return record[self.value]
 
 class ColumnOperand(Operand) :
     """Represents specific worksheet cells in a given column as operands."""
-    def __call__(self, record, row) :
-        """RETURNS column value in the given row.
+    def __call__(self, record: dict, row: pandas.core.series.Series) -> str:
+        """Rerurns column value in the given row.
 
-        :param :py:class:`dict` record:
-        :param :py:class:`pandas.core.series.Series` row:
-        :return: string
-        :rtype: :py:class:`str`
+        Args:
+            record: record from TagParser.extraction.
+            row: pandas Series that is a row from metadata being parsed.
+            
+        Returns:
+            xstr(row.iloc[self.value]).strip() of a column in the row. The column returned is the index based on the operand's value.
         """
         return xstr(row.iloc[self.value]).strip()
 
 class FieldMaker(object) :
     """Creates objects that convert specific information from a worksheet row into a field via concatenation of a list of operands."""
-    def __init__(self, field) :
+    def __init__(self, field: str) :
         """Initializer
 
-        :param :py:class:`str` field:
+        Args:
+            field: name of a field in a record from TagParser.extraction.
         """
         self.field = field
         self.operands = []
 
-    def create(self, record, row) :
-        """Creates field-value and adds to record using PARAMETERS row and record.
+    def create(self, record: dict, row: pandas.core.series.Series) -> str:
+        """Creates field-value and adds to record using row and record.
 
-        :param :py:class:`dict` record:
-        :param :py:class:`pandas.core.series.Series` row:
-        :return: value
-        :rtype: :py:class:`str`
+        Args:
+            record: record from TagParser.extraction.
+            row: pandas Series that is a row from metadata being parsed.
+            
+        Returns:
+            Value created by applying all operands in self.operands and written into record[self.field].
         """
         value = ""
         for operand in self.operands :
@@ -374,11 +390,11 @@ class FieldMaker(object) :
 
         return value
 
-    def shallowClone(self) :
-        """RETURNS clone with shallow copy of operands.
+    def shallowClone(self) -> FieldMaker:
+        """Returns clone with shallow copy of operands.
 
-        :return: clone
-        :rtype: :class:`FieldMaker`
+        Returns:
+            A copy of self, but with a shallow copy of operands.
         """
         clone = FieldMaker(self.field)
         clone.operands = self.operands
@@ -388,13 +404,15 @@ class FieldMaker(object) :
 class ListFieldMaker(FieldMaker) :
     """Creates objects that convert specific information from a worksheet row into a list field via appending of a list of operands."""
 
-    def create(self, record, row) :
+    def create(self, record: dict, row: pandas.core.series.Series) -> list:
         """Creates field-value and adds to record using PARAMETERS row and record.
 
-        :param :py:class:`dict` record:
-        :param :py:class:`pandas.core.series.Series` row:
-        :return: value
-        :rtype: :py:class:`list`
+        Args:
+            record: record from TagParser.extraction.
+            row: pandas Series that is a row from metadata being parsed.
+            
+        Returns:
+            Value created by applying all operands in self.operands and written into record[self.field].
         """
         value = []
         for operand in self.operands :
@@ -417,11 +435,11 @@ class ListFieldMaker(FieldMaker) :
     ## Currently I don't think this can be called from the CLI. 
     ## The only time shallowClone is called is when a child is created and that is 
     ## only ever called on a FieldMaker type, not ListFieldMaker.
-    def shallowClone(self) :
-        """RETURNS clone with shallow copy of operands.
+    def shallowClone(self) -> ListFieldMaker:
+        """Returns clone with shallow copy of operands.
 
-        :return: clone
-        :rtype: :class:`ListFieldMaker`
+        Returns:
+            A copy of self, but with a shallow copy of operands.
         """
         clone = ListFieldMaker(self.field)
         clone.operands = self.operands
@@ -436,14 +454,16 @@ class RecordMaker(object) :
         self.fieldMakers = []
 
     @staticmethod
-    def child(example, table, parentIDIndex) :
-        """RETURNS child object derived from a example object.
-
-        :param :class:`RecordMaker` example: example object with global literal fields.
-        :param :py:class:`str` table: table type of record
-        :param :py:class`int` parentIDIndex: column index for parentID
-        :return: child
-        :rtype: :class:`RecordMaker`
+    def child(example: RecordMaker, table: str, parentIDIndex: int) -> RecordMaker:
+        """Returns child object derived from a example object.
+        
+        Args:
+            example: RecordMaker with global literal fields.
+            table: table where the child record will go.
+            parentIDIndex: column index for parentID of the child record.
+            
+        Returns:
+            RecordMaker to make a new child record.
         """
         child = RecordMaker()
         child.table = table
@@ -456,145 +476,169 @@ class RecordMaker(object) :
         
         return child
 
-    def create(self, row) :
-        """RETURNS record created from given row.
+    def create(self, row: pandas.core.series.Series) -> (str,dict):
+        """Returns record created from given row.
 
-        :param :py:class:`pandas.core.series.Series` row:
-        :return: tableRecordTuple
-        :rtype: :py:class:`tuple`
+        Args:
+            row: pandas Series that is a row from metadata being parsed.
+            
+        Returns:
+            The table string and created record in a tuple.
         """
         record = {}
         for fieldMaker in self.fieldMakers :
             fieldMaker.create(record, row) 
         return self.table, record
 
-    def addField(self, table, field, fieldMakerClass = FieldMaker) :
+    def addField(self, table: str, field: str, fieldMakerClass: FieldMaker|ListFieldMaker = FieldMaker):
         """Creates and adds new FieldMaker object.
 
-        :param :py:class:`str` table: table type of record
-        :param :py:class:`str` field: field name
-        :param fieldMakerClass: field maker class to use
-        :type fieldMakerClass: :obj:`FieldMaker` or :obj:`ListFieldMaker`
+        Args:
+            table: table name to add.
+            field: field name to add.
+            fieldMakerClass: which type of FieldMaker to add to self.fieldMakers.
         """
         if self.table == "" :
             self.table = table
         field = self.properField(table,field)
         self.fieldMakers.append(fieldMakerClass(field))
 
-    def addGlobalField(self, table, field, literal, fieldMakerClass = FieldMaker) :
+    def addGlobalField(self, table: str, field: str, literal: str, fieldMakerClass: FieldMaker|ListFieldMaker = FieldMaker) :
         """Creates and adds new FieldMaker with literal operand that will be used as global fields for all records created from a row.
 
-        :param :py:class:`str` table: table type of record
-        :param :py:class:`str` field: field name
-        :param :py:class:`str` literal: literal value of the field
-        :param fieldMakerClass: field maker class to use
-        :type fieldMakerClass: :obj:`FieldMaker` or :obj:`ListFieldMaker`
+        Args:
+            table: table name to add.
+            field: field name to add.
+            literal: value of the field to be added.
+            fieldMakerClass: which type of FieldMaker to add to self.fieldMakers.
         """
         field = table + "." + field
         self.fieldMakers.append(fieldMakerClass(field))
         self.fieldMakers[-1].operands.append(LiteralOperand(literal))
 
-    def addVariableOperand(self, table, field) :
-        """Add PARAMETER field as a variable operand to the last FieldMaker.
+    def addVariableOperand(self, table: str, field: str) :
+        """Add field as a variable operand to the last FieldMaker.
 
-        :param :py:class:`str` table: table type of record
-        :param :py:class:`str` field: field name
+        Args:
+            table: table name to add.
+            field: field name to add.
         """
         field = self.properField(table,field)
         self.fieldMakers[-1].operands.append(VariableOperand(field))
     
-    def addLiteralOperand(self, literal) :
-        """Add PARAMETER literal as an operand to the last FieldMaker.
+    def addLiteralOperand(self, literal: str) :
+        """Add literal as an operand to the last FieldMaker.
 
-        :param :py:class:`str` literal: literal value to append.
+        Args:
+            literal: value to append.
         """
         self.fieldMakers[-1].operands.append(LiteralOperand(literal))
 
-    def addColumnOperand(self, columnIndex) :
-        """Add PARAMETER columnIndex as a column variable operand to the last FieldMaker.
+    def addColumnOperand(self, columnIndex: int) :
+        """Add columnIndex as a column variable operand to the last FieldMaker.
 
-        :param :py:class:`int` columnIndex:
+        Args:
+            columnIndex: column number to add.
         """
         self.fieldMakers[-1].operands.append(ColumnOperand(columnIndex))
 
-    def isInvalidDuplicateField(self, table, field, fieldMakerClass):
-        """RETURNS whether a given table.field is an invalid duplicate in the current RecordMaker.
+    def isInvalidDuplicateField(self, table: str, field: str, fieldMakerClass: FieldMaker|ListFieldMaker) -> bool:
+        """Returns whether a given table.field is an invalid duplicate in the current RecordMaker.
 
-        :param :py:class:`str` table: table type of record
-        :param :py:class:`str` field: field name
-        :param fieldMakerClass: field maker class to use
-        :type fieldMakerClass: :obj:`FieldMaker` or :obj:`ListFieldMaker`
+        Args:
+            table: table name to look for.
+            field: field name to look for.
+            fieldMakerClass: uses this type to do the correct checks.
+            
+        Returns:
+            True if table.field is an invalid duplicate, False otherwise.
         """
         field = self.properField(table,field)
         return (fieldMakerClass == FieldMaker and self.hasShortField(field)) or len([ index for index in range(len(self.fieldMakers)) if self.fieldMakers[index].field == field and not isinstance(self.fieldMakers[index], ListFieldMaker) ]) > 0
 
-    def hasField(self, table, field, offset=0) :
-        """RETURNS whether a given table.field exists in the current RecordMaker.
+    def hasField(self, table: str, field: str, offset: int =0) -> bool:
+        """Returns whether a given table.field exists in the current RecordMaker.
 
-        :param :py:class:`str` table: table type of record
-        :param :py:class:`str` field: field name
-        :param :py:class:`int` offset: offset from end to stop looking for #table.field.
+        Args:
+            table: table name to look for.
+            field: field name to look for.
+            offset: offset from end to stop looking for #table.field.
+        
+        Returns:
+            True if table.field exists, False otherwise.
         """
         field = self.properField(table,field)
         return self.hasShortField(field, offset) 
 
-    def hasShortField(self, field, offset=0) :
-        """RETURNS whether a given field exists in the current RecordMaker.
+    def hasShortField(self, field: str, offset: int =0) -> bool:
+        """Returns whether a given field exists in the current RecordMaker.
 
-        :param :py:class:`str` field: field name
-        :param :py:class:`int` offset: offset from end to stop looking for #table.field.
+        Args:
+            field: field name to look for.
+            offset: offset from end to stop looking for #table.field.
+            
+        Returns:
+            True if field exists, False otherwise.
         """
         return len([ index for index in range(len(self.fieldMakers)-offset) if self.fieldMakers[index].field == field ]) > 0 
 
-    def isLastField(self, table, field) :
-        """RETURNS whether the last FieldMaker is for PARAMETERS table.field.
+    def isLastField(self, table: str, field: str) -> bool:
+        """Returns whether the last FieldMaker is for table.field.
 
-        :param :py:class:`str` table: table type of record
-        :param :py:class:`str` field: field name
-        :return: boolean
-        :rtype: :py:class:`bool`
+        Args:
+            table: table name to look for.
+            field: field name to look for.
+        
+        Returns:
+            True if the last FieldMaker is for table.field, False otherwise.
         """
         field = self.properField(table,field)
         return self.fieldMakers[-1].field == field
 
-    def hasValidID(self) :
-        """RETURNS whether there is a valid id field.
+    def hasValidID(self) -> bool :
+        """Returns whether there is a valid id field.
 
-        :return: boolean
-        :rtype: :py:class:`bool`
+        Returns:
+            True if there is a valid id field, False otherwise.
         """
         return self.hasShortField("id") and type(self.shortField("id").operands[0]) is ColumnOperand and not type(self.shortField("id")) == ListFieldMaker
 
-    def properField(self, table, field) :
-        """RETURNS proper field name based on given PARAMETER table and field and internal table type of record.
+    def properField(self, table: str, field: str) -> str:
+        """Returns proper field name based on given table and field and internal self.table.
 
-        :param :py:class:`str` table: table type of record
-        :param :py:class:`str` field: field name
-        :return: properName
-        :rtype: :py:class:`str`
+        Args:
+            table: table name to check against internal table name and build proper field name with.
+            field: field name to build proper field name with.
+            
+        Returns:
+            "table.field" with the appropriate table.
         """
         if table != self.table :
             field = table + "." + field
         return field
 
     ## This is currently never called anywhere, so cannot be tested through the CLI.
-    def field(self, table, field) :
-        """RETURNS FieldMaker for PARAMETERS table.field.
+    def field(self, table: str, field: str) -> FieldMaker|ListFieldMaker|None:
+        """Returns FieldMaker for table.field.
 
-        :param :py:class:`str` table: table type of record
-        :param :py:class:`str` field: field name
-        :return: fieldMaker
-        :rtype: :class:`FieldMaker` or :class:`ListFieldMaker` or :py:obj:`None`
+        Args:
+            table: table name to look for FieldMaker.
+            field: field name to look for FieldMaker.
+            
+        Returns:
+            The FieldMaker for the table.field.
         """
         field = self.properField(table,field)
         return self.shortField(field)
 
-    def shortField(self, field) :
-        """RETURNS FieldMaker for PARAMETER field.
+    def shortField(self, field: str) -> FieldMaker|ListFieldMaker|None:
+        """Returns FieldMaker for field.
 
-        :param :py:class:`str` field: field name
-        :return: fieldMaker
-        :rtype: :class:`FieldMaker` or :class:`ListFieldMaker` or :py:obj:`None`
+        Args:
+            field: field name to look for FieldMaker.
+            
+        Returns:
+            The FieldMaker for the field.
         """
         for fieldMaker in self.fieldMakers :
             if fieldMaker.field == field :
@@ -603,13 +647,15 @@ class RecordMaker(object) :
 
 class TagParserError(Exception):
     """Exception class for errors thrown by TagParser."""
-    def __init__(self, message, fileName, sheetName, rowIndex, columnIndex, endMessage="") :
+    def __init__(self, message: str, fileName: str, sheetName: str, rowIndex: int, columnIndex: int, endMessage: str =""):
         """
-        :param :py:class:`str` message:
-        :param :py:class:`str` fileName:
-        :param :py:class:`str` sheetName:
-        :param :py:class:`int` rowIndex:
-        :param :py:class:`int` columnIndex:
+        Args:
+            message: start of the message for the exception.
+            fileName: the file name where the exception happened.
+            sheetName: the sheet name in the Excel file where the exception happened.
+            rowIndex: the row index in the tabular file where the exception happened.
+            columnIndex: the column index in the tabular file where the exception happened.
+            endMessage: the optional end of the message for the exception.
         """
         if re.search(r"\.xls[xm]?$", fileName):
             cellName = TagParserError.columnName(columnIndex) + str(rowIndex+1)
@@ -619,12 +665,14 @@ class TagParserError(Exception):
         self.value = message + " at cell \"" + fileName + ":" + sheetName + "[" + cellName + "]\"" + endMessage
         
     @staticmethod
-    def columnName(columnIndex) :
-        """RETURNS Excel-style column name for PARAMETER columnIndex (integer).
+    def columnName(columnIndex: int) -> str:
+        """Returns Excel-style column name for columnIndex (integer).
 
-        :param :py:class:`int` columnIndex:
-        :return: name of column
-        :rtype: :py:class:`str`
+        Args:
+            columnIndex: index of the column in the spreadsheet.
+            
+        Returns:
+            If columnIndex is less than 0 return ":", else return the capital letter(s) of the Excel colummn, Ex: columnIndex = 3 returns "D"
         """
         if columnIndex < 0 :
             return ":"
@@ -652,12 +700,14 @@ class TagParser(object):
     reDetector = re.compile(r"r[\"'](.*)[\"']$")        
 
     @staticmethod
-    def _isEmptyRow(row) :
-        """RETURNS True if PARAMETER row is empty.
+    def _isEmptyRow(row: pandas.core.series.Series) -> bool:
+        """Returns True if row is empty.
 
-        :param :py:class:`pandas.core.series.Series` row:
-        :return: boolean
-        :rtype: :py:class:`bool`
+        Args:
+            row: row from a tabular file.
+            
+        Returns:
+            True if each value in row is the empty string after stripping, False otherwise.
         """
         for cell in row :
             if xstr(cell).strip() != "" :
@@ -665,12 +715,21 @@ class TagParser(object):
         
         return True
 
-    def _determineTableField(self, params) :
-        """RETURNS table and field based on PARAMETER params tuple and last table and field set.
+    def _determineTableField(self, params: (str)|(str,str)|(str,str,str)) -> (str,str):
+        """Returns table and field based on params tuple and last table and field set.
+        
+        If table is in params use that for table, else use self.lastTable.
+        If field is in params use that for field, else use self.lastField.
+        If attribute is in params add that to field.
 
-        :param :py:class:`tuple` params: tag parameters
-        :return: tableFieldTuple
-        :rtype: :py:class:`tuple`
+        Args:
+            params: (attribute) or (table, field) or (table, field, attribute), generally the groups from a regular expression.
+            
+        Returns:
+            (table, field) or (table, field%attribute)
+            
+        Raises:
+            TagParserError: if the table or field name are undefined.
         """
         if len(params) > 1 :
             table = params[0]
@@ -721,14 +780,21 @@ class TagParser(object):
     attributeDetector = re.compile('#\%(\w+)$')
     trackFieldDetector = re.compile(r'#(\w*)\%track$')
     untrackFieldDetector = re.compile(r'#(\w*)\%untrack$')
-    def _parseHeaderCell(self, recordMakers, cellString, childWithoutID) :
-        """Parses header cell and RETURNS current state of ID inclusion of current child record
-
-        :param :py:class`list` recordMakers: list of recordMaker objects
-        :param :py:class`str` cellString: string of worksheet cell.
-        :param :py:class:`bool` childWithoutID: entering state of ID inclusion of current child record.
-        :return: childWithoutID exiting state of ID inclusion of current child record.
-        :rtype: :py:class:`bool`
+    def _parseHeaderCell(self, recordMakers: list[RecordMaker], cellString: str, childWithoutID: bool) -> bool:
+        """Parses header cell and return the current state of ID inclusion of current child record.
+        
+        Parse cellString and modify recordMakers so they can be used later to create records.
+        
+        Args:
+            recordMakers: list of recordMaker objects.
+            cellString: contents of the header cell.
+            childWithoutID: whether the current child record has an id or not.
+            
+        Returns:
+            True if the current child record does not have an id, False if it does.
+            
+        Raises:
+            TagParserError: If any of the tags are misformed an error will be raised.
         """
         if self.columnIndex == 0 and (re.search(TagParser.childDetector, cellString)) :
             raise TagParserError("#.%child tag not allowed in first column", self.fileName, self.sheetName, self.rowIndex, self.columnIndex)
@@ -914,12 +980,17 @@ class TagParser(object):
         return childWithoutID 
 
 
-    def _parseHeaderRow(self, row) :
-        """Parses PARAMETER header row and RETURNS list of recordMakers.
-
-        :param :py:class:`pandas.core.series.Series` row:
-        :return: recordMakers - list of RecordMaker objects.
-        :rtype: :py:class:`list`
+    def _parseHeaderRow(self, row: pandas.core.series.Series) -> list[RecordMaker]:
+        """Parses header row and returns a list of RecordMakers.
+        
+        Args:
+            row: header row from metadata file.
+            
+        Returns:
+            A list of RecordMakers to be used to create records.
+            
+        Raises:
+            TagParserError: Will raise an error if a child record does not have an id.
         """
         self.lastTable = ""
         self.lastField = ""
@@ -940,11 +1011,15 @@ class TagParser(object):
         return recordMakers
 
     
-    def _parseRow(self, recordMakers, row) :
+    def _parseRow(self, recordMakers: list[RecordMaker], row: pandas.core.series.Series):
         """Create new records and add them to the nested extraction dictionary.
-
-        :param :py:class:`list` recordMakers: list of RecordMaker objects.
-        :param :py:class:`pandas.core.series.Series` row:
+        
+        Loop through the RecordMakers in recordMaker and add records to self.extraction 
+        based on the values in row.
+        
+        Args:
+            recordMakers: RecordMakers created from parsing a header row.
+            row: row of data from a metadata file.
         """
         for recordMaker in recordMakers :
             if not recordMaker.hasValidID():
@@ -986,12 +1061,13 @@ class TagParser(object):
                         self.extraction[table][record["id"]][key] = [ self.extraction[table][record["id"]][key], record[key] ]
 
 
-    def parseSheet(self, fileName, sheetName, worksheet) :
+    def parseSheet(self, fileName: str, sheetName: str, worksheet: pandas.core.frame.DataFrame):
         """Extracts useful metadata from the worksheet and puts it in the extraction dictionary.
-
-        :param :py:class:`str` fileName:
-        :param :py:class:`str` sheetName:
-        :param :py:class:`pandas.dataFrame` worksheet:
+        
+        Args:
+            fileName: name of the file, used for error messages.
+            sheetName: name of the Excel sheet, used for error messages.
+            worksheet: the data from the file name and sheet name.
         """
         self.projectID = ""
         self.studyID = ""
@@ -1040,13 +1116,19 @@ class TagParser(object):
 
 
     @staticmethod
-    def loadSheet(sheetInfo, isDefaultSearch=False, silent=False):
-        """Load and RETURN worksheet as a pandas data frame.
-
-        :param :py:class:`str` sheetInfo: filename and sheetname (if needed).
-        :param :py:class:`bool` isDefaultSearch: whether or not the sheetInfo is using default values, determines whether to print some messages
-        :return: dataFrameTuple (fileName, sheetName, dataFrame).
-        :rtype: :py:class:`tuple` or :py:obj:`None`
+    def loadSheet(sheetInfo: str, isDefaultSearch: bool =False, silent: bool =False) -> (str,str,pandas.core.frame.DataFrame)|None:
+        """Load and return worksheet as a pandas data frame.
+        
+        Args:
+            sheetInfo: filename and sheetname (if needed).
+            isDefaultSearch: whether or not the sheetInfo is using default values, determines whether to print some messages.
+            silent: If True don't print warnings.
+            
+        Returns:
+            None if the worksheet is empty, else (fileName, sheetName, dataFrame)
+            
+        Raises:
+            Exception: If sheetInfo is invalid.
         """
         if (reMatch := re.search(r"^(.*\.xls[xm]?):(.*)$", sheetInfo)):
             if os.path.isfile(reMatch.group(1)):
@@ -1100,23 +1182,27 @@ class TagParser(object):
 
 
     @staticmethod
-    def hasFileExtension(string):
+    def hasFileExtension(string: str) -> bool:
         """Tests whether the string has a file extension.
 
-        :param :py:class:`str` string:
-        :return: boolean
-        :rtype: :py:class:`bool`
+        Args:
+            string: string to test.
+            
+        Returns:
+            True if .xls, .xlsx, .xlsm, .csv, or .json is in string, False otherwise.
         """
         return ".xls" in string or ".xlsx" in string or ".xlsm" in string or ".csv" in string or ".json" in string
 
-    def readMetadata(self, metadataSource, taggingSource, taggingDefaulted, conversionSource, convertDefaulted, saveExtension=None):
+    def readMetadata(self, metadataSource: str, taggingSource: str, taggingDefaulted: bool, conversionSource: str, convertDefaulted: bool, saveExtension: str =None):
         """Reads metadata from source.
-
-        :param :py:class:`str` metadataSource:  metadata source given as a filename with possibly a sheetname if appropriate.
-        :param :py:class:`str` taggingSource:  tagging source given as a filename and/or sheetname
-        :param :py:class:`bool` taggingDefaulted:  whether the tagging source is the default value or not, passed to readDirectives for message printing
-        :param :py:class:`str` conversionSource: conversion source given as a filename and/or sheetname.
-        :param :py:class:`bool` convertDefaulted:  whether the convert source is the default value or not, passed to readDirectives for message printing
+        
+        Args:
+            metadataSource: file path to metadata file with possibly a sheetname if appropriate.
+            taggingSource: file path to tagging file or a sheetname.
+            taggingDefaulted: whether the tagging source is the default value or not, passed to readDirectives for message printing.
+            conversionSource: file path to conversion file or a sheetname.
+            conversionDefaulted: whether the conversion source is the default value or not, passed to readDirectives for message printing.
+            saveExtension: if "csv" saves the export as a csv file, else saves it as an Excel file.
         """
         if not TagParser.hasFileExtension(taggingSource) and (reMatch := re.search(r"(.*\.xls[xm]?)", metadataSource)):
             taggingSource = reMatch.group(1) + ":" + taggingSource
@@ -1166,13 +1252,14 @@ class TagParser(object):
         self.merge(newMetadata)
 
 
-    def saveSheet(self, fileName, sheetName, worksheet, saveExtension):
+    def saveSheet(self, fileName: str, sheetName: str, worksheet: pandas.core.frame.DataFrame, saveExtension: str):
         """Save given worksheet in the given format.
-
-        :param :py:class:`str` fileName: original worksheet filename
-        :param :py:class:`str` sheetName:
-        :param :py:class:`pandas.dataFrame` worksheet:
-        :param :py:class:`str` saveExtension: csv or xlsx
+        
+        Args:
+            fileName: file name or path to save to.
+            sheetName: name to give the sheet if saving as Excel.
+            worksheet: data to save.
+            saveExtension: if "csv" save as csv file, else save as Excel.
         """
         baseName = os.path.basename(fileName)
         fileName = baseName.rsplit(".",1)[0] + "_export."
@@ -1185,13 +1272,15 @@ class TagParser(object):
                 worksheet.to_excel(writer, sheet_name = sheetName, index=False, header=False)
 
     headerSplitter = re.compile(r'[+]|(r?\"[^\"]*\"|r?\'[^\']*\')|\s+')
-    def tagSheet(self, taggingDirectives, worksheet):
+    def tagSheet(self, taggingDirectives: dict, worksheet: pandas.core.frame.DataFrame) -> pandas.core.frame.DataFrame:
         """Add tags to the worksheet using the given tagging directives.
-
-        :param :py:class:`dict` taggingDirectives:
-        :param :py:class:`pandas.dataFrame` worksheet:
-        :return: worksheet
-        :rtype: :py:class:`pandas.dataFrame`
+        
+        Args:
+            taggingDirectives: a dictionary used to place the tags in the appropriate places.
+            worksheet: the DataFrame in which to place the tags.
+            
+        Returns:
+            The modified worksheet.
         """
         
         worksheet, wasTaggingDirectiveUsed = cythonized_tagSheet.tagSheet(taggingDirectives, worksheet.to_numpy(), silent)
@@ -1206,16 +1295,23 @@ class TagParser(object):
 
     conversionComparisonTypes = [ "exact", "regex", "levenshtein" ]
     matchTypes = ["first", "first-nowarn", "unique", "all"]
-    def _parseConversionSheet(self, fileName, sheetName, worksheet):
+    def _parseConversionSheet(self, fileName: str, sheetName: str, worksheet: pandas.core.frame.DataFrame):
         """Extracts conversion directives from a given worksheet.
 
-        "conversion" : { table : { field :  { "exact"|"regex"|"levenshtein"|"exact-unique"|"regex-unique"|"levenshtein-unique" :
+        "conversion" : { table : { field :  { "(exact|regex|levenshtein)\-(first|first\-nowarn|unique|all)" :
                           { field_value : { "assign" : { field : value,... }, "append" : { field : value,... }, "prepend" : { field : value,... },
                                         "regex" : { field : regex_pair,... }, "delete" : [ field,... ], "rename" : { old_field : new_field } } } } } }
-
-        :param :py:class:`str` fileName:
-        :param :py:class:`str` sheetName:
-        :param :py:class:`pandas.dataFrame` worksheet:
+        
+        Loops over worksheet and builds up self.conversionDirectives.
+        
+        Args:
+            fileName: used for printing more descriptive error messages.
+            sheetName: used for printing more descriptive error messages.
+            worksheet: data used to build the conversion directives.
+        
+        Raises:
+            TagParserError: usually raised for malformed tags, but also for other unpredicted errors
+            Exception: a catch all in case something unforeseen happens.
         """
         self.columnIndex = -1
         self.rowIndex = -1
@@ -1463,14 +1559,21 @@ class TagParser(object):
 
         self.rowIndex = -1
 
-    def _parseTaggingSheet(self, fileName, sheetName, worksheet):
+    def _parseTaggingSheet(self, fileName: str, sheetName: str, worksheet: pandas.core.series.Series):
         """Extracts tagging Directives from a given worksheet.
 
-            "tagging" : [ { "header_tag_descriptions" : [ { "header" : column_description, "tag" : tag_description, "required" : true|false } ],   "exclusion_test" : exclusion_value, "insert" : [ [ cell_content, ... ] ] } ]
+        "tagging" : [ { "header_tag_descriptions" : [ { "header" : column_description, "tag" : tag_description, "required" : true|false } ],   "exclusion_test" : exclusion_value, "insert" : [ [ cell_content, ... ] ] } ]
+            
+        Loops over worksheet and builds up self.taggingDirectives.
+        
+        Args:
+            fileName: used for printing more descriptive error messages.
+            sheetName: used for printing more descriptive error messages.
+            worksheet: data used to build the tagging directives.
 
-        :param :py:class:`str` fileName:
-        :param :py:class:`str` sheetName:
-        :param :py:class:`pandas.dataFrame` worksheet:
+        Raises:
+            TagParserError: usually raised for malformed tags, but also for other unpredicted errors
+            Exception: a catch all in case something unforeseen happens.
         """
         self.columnIndex = -1
         self.rowIndex = -1
@@ -1571,14 +1674,16 @@ class TagParser(object):
 
         self.rowIndex = -1
 
-    def readDirectives(self, source, directiveType, isDefaultSearch=False):
+    def readDirectives(self, source: str, directiveType: str, isDefaultSearch: bool =False) -> dict:
         """Read directives source of a given directive type.
-
-        :param :py:class:`str` source: filename with sheetname (optional).
-        :param :py:class:`str` directiveType: either "conversion" or "tagging" to call the correct parsing function
-        :param :py:class:`bool` isDefaultSearch: whether or not the source is using default values, passed to loadSheet for message printing
-        :return: directives
-        :rtype: :py:class:`dict`
+        
+        Args:
+            source: file path with sheetname if appropriate.
+            directiveType: either "conversion" or "tagging" to call the correct parsing function.
+            isDefaultSearch: whether or not the source is using default values, passed to loadSheet for message printing.
+        
+        Returns:
+            The directives that were read in.
         """
         directives = None
         if re.search(r"\.json$", source):
@@ -1604,13 +1709,13 @@ class TagParser(object):
 
         return directives
 
-    # @staticmethod
-    def _applyConversionDirectives(self, record, recordPath, conversions):
+    def _applyConversionDirectives(self, record: dict, recordPath: str, conversions: dict):
         """Apply conversion directives to the given record.
-
-        :param :py:class:`dict` record: table record
-        :param :py:class: `str` record_path: recordPath
-        :param :py:class:`dict` conversions: nested dict of field additions and deletions.
+        
+        Args:
+            record: a record from self.extraction extracted from metadata.
+            recordPath: the path to the record in self.extraction, used for printing warning messages.
+            conversions: the conversions to apply to the record.
         """
         if "assign" in conversions:
             for newField, newValue in conversions["assign"].items():
@@ -1779,12 +1884,13 @@ class TagParser(object):
                     # self.changedRecords[recordPath + oldField]["previous_conversion_value"] = record[newField]
 
 
-    def _applyExactConversionDirectives(self, tableKey, fieldKey, conversionDirectives):
+    def _applyExactConversionDirectives(self, tableKey: str, fieldKey: str, conversionDirectives: dict):
         """Tests and applies exact conversion directives
-
-        :param :py:class:`str` tableKey: table name (key)
-        :param :py:class:`str` fieldKey: field name (key)
-        :param :py:class:`dict` conversionDirectives: nested dict of conversion directives
+        
+        Args:
+            tableKey: table key in conversionDirectives to get to the conversion to apply.
+            fieldKey: field key in conversionDirectives to get to the conversion to apply.
+            conversionDirectives: contains the conversions to apply.
         """
         comparisonTypes = ["exact-first", "exact-first-nowarn", "exact-unique", "exact-all"]
         firstTypes = ["exact-first", "exact-first-nowarn"]
@@ -1814,7 +1920,7 @@ class TagParser(object):
                                             self._applyConversionDirectives(record, tableKey + "[" + idKey + "]", conversionDirectives[tableKey][fieldKey][comparisonType][specificValue])
                                             matchedFieldValues[specificValue] = {"idKey":idKey, "numberOfMatches":1}
                                             self.usedConversions.add((tableKey, fieldKey, comparisonType, specificValue))
-                                        elif comparisonType == "exact-first":
+                                        elif comparisonType == "exact-first" and not silent:
                                             print("Warning: conversion directive #" + tableKey + "." + fieldKey + "." + comparisonType + "." + specificValue + " matches more than one record. Only the first record will be changed. Try #match=all if all matching records should be changed, or #match=first-nowarn to silence this message.", file=sys.stderr)
                                     
                                     elif isUnique:
@@ -1833,7 +1939,7 @@ class TagParser(object):
                                     self._applyConversionDirectives(record, tableKey + "[" + idKey + "]", conversionDirectives[tableKey][fieldKey][comparisonType][fieldValue])
                                     matchedFieldValues[fieldValue] = {"idKey":idKey, "numberOfMatches":1}
                                     self.usedConversions.add((tableKey, fieldKey, comparisonType, fieldValue))
-                                elif comparisonType == "exact-first":
+                                elif comparisonType == "exact-first" and not silent:
                                     print("Warning: conversion directive #" + tableKey + "." + fieldKey + "." + comparisonType + "." + fieldValue + " matches more than one record. Only the first record will be changed. Try #match=all if all matching records should be changed, or #match=first-nowarn to silence this message.", file=sys.stderr)
                             
                             elif isUnique:
@@ -1855,13 +1961,14 @@ class TagParser(object):
 
 
 
-    def _applyRegexConversionDirectives(self, tableKey, fieldKey, conversionDirectives, regexObjects):
+    def _applyRegexConversionDirectives(self, tableKey: str, fieldKey: str, conversionDirectives: dict, regexObjects: dict):
         """Tests and applies regular expression conversion directives.
 
-        :param :py:class:`str` tableKey: table name (key)
-        :param :py:class:`str` fieldKey: field name (key)
-        :param :py:class:`dict` conversionDirectives: nested dict of conversion directives
-        :param :py:class:`dict` regexObjects: dict of regex string to regex object
+        Args:
+            tableKey: table key in conversionDirectives to get to the conversion to apply.
+            fieldKey: field key in conversionDirectives to get to the conversion to apply.
+            conversionDirectives: contains the conversions to apply.
+            regexObjects: mapping of the regex string in the directives to their compiled objects.
         """
         comparisonTypes = ["regex-first", "regex-first-nowarn", "regex-unique", "regex-all"]
         firstTypes = ["regex-first", "regex-first-nowarn"]
@@ -1892,7 +1999,7 @@ class TagParser(object):
                                                 self._applyConversionDirectives(record, tableKey + "[" + idKey + "]", regexEntry)
                                                 matchedRegexIDs[regexID] = {"idKey":idKey, "numberOfMatches":1}
                                                 self.usedConversions.add((tableKey, fieldKey, comparisonType, regexID))
-                                            elif comparisonType == "regex-first":
+                                            elif comparisonType == "regex-first" and not silent:
                                                 print("Warning: conversion directive #" + tableKey + "." + fieldKey + "." + comparisonType + "." + regexID + " matches more than one record. Only the first record will be changed. Try #match=all if all matching records should be changed, or #match=first-nowarn to silence this message.", file=sys.stderr)
                                         
                                         elif isUnique:
@@ -1911,7 +2018,7 @@ class TagParser(object):
                                         self._applyConversionDirectives(record, tableKey + "[" + idKey + "]", regexEntry)
                                         matchedRegexIDs[regexID] = {"idKey":idKey, "numberOfMatches":1}
                                         self.usedConversions.add((tableKey, fieldKey, comparisonType, regexID))
-                                    elif comparisonType == "regex-first":
+                                    elif comparisonType == "regex-first" and not silent:
                                         print("Warning: conversion directive #" + tableKey + "." + fieldKey + "." + comparisonType + "." + regexID + " matches more than one record. Only the first record will be changed. Try #match=all if all matching records should be changed, or #match=first-nowarn to silence this message.", file=sys.stderr)
                                 
                                 elif isUnique:
@@ -1932,12 +2039,13 @@ class TagParser(object):
 
 
 
-    def _applyLevenshteinConversionDirectives(self, tableKey, fieldKey, conversionDirectives):
+    def _applyLevenshteinConversionDirectives(self, tableKey: str, fieldKey: str, conversionDirectives: dict):
         """Tests and applies levenshtein conversion directives.
 
-        :param :py:class:`str` tableKey: table name (key)
-        :param :py:class:`str` fieldKey: field name (key)
-        :param :py:class:`dict` conversionDirectives: nested dict of conversion directives
+        Args:
+            tableKey: table key in conversionDirectives to get to the conversion to apply.
+            fieldKey: field key in conversionDirectives to get to the conversion to apply.
+            conversionDirectives: contains the conversions to apply.
         """
         comparisonTypes = ["levenshtein-first", "levenshtein-first-nowarn", "levenshtein-unique", "levenshtein-all"]
         firstTypes = ["levenshtein-first", "levenshtein-first-nowarn"]
@@ -1977,7 +2085,7 @@ class TagParser(object):
                     usableLevIDs = [levID for levID in levenshteinComparisons.keys() if idKey in levenshteinComparisons[levID]]
                     minLevID = min(levenshteinComparisons.keys(), key=(lambda k: levenshteinComparisons[k][idKey]))
                     minLevValue = levenshteinComparisons[minLevID][idKey]
-                    ## Only 1 match to min value.
+                    ## Assign only if there is 1 match to the minimum levenshtein distance.
                     if sum(levenshteinComparisons[levKey][idKey] == minLevValue for levKey in usableLevIDs) == 1:
                         uniqueForIdKey[idKey] = minLevID
                         
@@ -1989,7 +2097,7 @@ class TagParser(object):
                     if isFirst:
                         idKeysThatHaveMinValue = [idKey for idKey in levenshteinComparisons[levID] if levenshteinComparisons[levID][idKey] == minIDValue]
                         uniqueForLevenshteinID[levID] = idKeysThatHaveMinValue[0]
-                        if comparisonType == "levenshtein-first" and len(idKeysThatHaveMinValue) > 1:
+                        if comparisonType == "levenshtein-first" and len(idKeysThatHaveMinValue) > 1 and not silent:
                             print("Warning: conversion directive #" + tableKey + "." + fieldKey + "." + comparisonType + "." + levID + " matches more than one record. Only the first record will be changed. Try #match=all if all matching records should be changed, or #match=first-nowarn to silence this message.", file=sys.stderr)
                             
                     elif isUnique:
@@ -2015,10 +2123,11 @@ class TagParser(object):
                 
                 
 
-    def convert(self, conversionDirectives):
+    def convert(self, conversionDirectives: dict):
         """Applies conversionDirectives to the extracted metadata.
 
-        :param :py:class:`dict` conversionDirectives: nested dict structure of conversion directives
+        Args:
+            conversionDirectives: contains the conversions to apply.
         """
         self.conversionDirectives = conversionDirectives
         if conversionDirectives != None:
@@ -2103,10 +2212,11 @@ class TagParser(object):
                             elif (tableKey, fieldKey, comparisonType, conversionID) in self.unusedConversions:
                                 self.unusedConversions.remove((tableKey, fieldKey, comparisonType, conversionID))
 
-    def merge(self, newMetadata):
+    def merge(self, newMetadata: dict):
         """Merges new metadata with current metadata.
 
-        :param :py:class:`dict` newMetadata: new nested dict metadata
+        Args:
+            newMetadata: dict to merge with self.extraction dict.
         """
         for tableKey, table in newMetadata.items():
             if tableKey not in self.extraction:
@@ -2119,13 +2229,12 @@ class TagParser(object):
                         self.extraction[tableKey][idKey].update(record)
 
     @staticmethod
-    def isComparable(value1, value2):
+    def isComparable(value1: str, value2: str) -> bool:
         """Compares the two values first as strings and then as floats if convertable.
 
-        :param :py:class:`str` value1:
-        :param :py:class:`str` value2:
-        :return: boolean
-        :rtype: :py:class:`bool`
+        Args:
+            value1: first value to compare.
+            value2: second value to compare.
         """
         if value1 == value2:
             return True
@@ -2138,12 +2247,16 @@ class TagParser(object):
 
         return value1 == value2 or abs(value1 - value2) / max(abs(value1),abs(value2)) < 0.00000001
 
-    def compare(self, otherMetadata, group_size=5, file=sys.stdout):
+    def compare(self, otherMetadata: dict, groupSize: int =5, file: TextIO|None =sys.stdout) -> bool:
         """Compare current metadata to other metadata.
 
-        :param :py:class:`dict` otherMetadata: nested dict metadata
-        :return: boolean
-        :rtype: :py:class:`bool`
+        Args:
+            otherMetadata: dict to compare with self.extraction.
+            groupSize: number of record ids to print on a single line before printing more on a new line.
+            file: the IO to print messages to, if None then just return True or False instead of printing messages.
+            
+        Returns:
+            True if otherMetadata and self.extraction are different, False otherwise.
         """
         different = False
 
@@ -2171,8 +2284,8 @@ class TagParser(object):
                     if file is not None:
                         print("Table", tableKey, "with missing records:", file=file)
                         while missingIDs:
-                            group = missingIDs[0:group_size]
-                            missingIDs = missingIDs[group_size:]
+                            group = missingIDs[0:groupSize]
+                            missingIDs = missingIDs[groupSize:]
                             print("  ", " ".join(group), file=file)
                     else:
                         return True
@@ -2182,8 +2295,8 @@ class TagParser(object):
                     if file is not None:
                         print("Table", tableKey, "with extra records:", file=file)
                         while extraIDs:
-                            group = extraIDs[0:group_size]
-                            extraIDs = extraIDs[group_size:]
+                            group = extraIDs[0:groupSize]
+                            extraIDs = extraIDs[groupSize:]
                             print("  ", " ".join(group), file=file)
                     else:
                         return True
@@ -2201,10 +2314,11 @@ class TagParser(object):
 
         return different
 
-    def deleteMetadata(self, sections):
+    def deleteMetadata(self, sections: list[list[str]]):
         """Delete sections of metadata based on given section descriptions.
 
-        :param :py:class`list` sections: list of sections that are lists of strings.
+        Args:
+            sections: list of sections that are lists of strings. The strings should be regular expressions.
         """
         compiled_sections = [ [ re.compile(re.match(TagParser.reDetector, keyElement)[1]) if re.match(TagParser.reDetector, keyElement) else re.compile("^" + re.escape(keyElement) + "$") for keyElement in section ] for section in sections ]
 
@@ -2220,12 +2334,14 @@ class TagParser(object):
                 if section_level_tuple[0] != None:
                     del section_level_tuple[1][section_level_tuple[0]]
 
-    def findParent(self, parentID):
-        """RETURNS parent record for given parentID.
+    def findParent(self, parentID: str) -> (str,dict)|None:
+        """Returns parent record for given parentID.
 
-        :param :py:class`str` parentID:
-        :return: record
-        :rtype: :py:class:`dict` or :py:obj:`None`
+        Args:
+            parentID: the id to look for in the records of self.extraction.
+            
+        Returns:
+            None if the parentID was not found, (tableKey,parentRecord) if it was.
         """
         for tableKey, table in self.extraction.items():
             if parentID in table:
@@ -2234,24 +2350,26 @@ class TagParser(object):
         return None
 
     @staticmethod
-    def _generateLineage(parentID,parent2children):
-        """Generates and RETURNS a lineage structure based on the given parentID.
-
-        :param :py:class`str` parentID:
-        :param :py:class:`dict` parent2children: dictionary of parentID to list of children.
-        :return: lineageDict
-        :rtype: :py:class:`dict`
+    def _generateLineage(parentID: str, parent2children: dict) -> dict|None:
+        """Generates and returns a lineage structure based on the given parentID.
+        
+        Args:
+            parentID: key to look for in parent2children.
+            parent2children: dictionary of parentID to list of children.
+            
+        Returns:
+            None if parentID is not in parent2children, a dictionary of children for the parentID if it is.
         """
         if parentID in parent2children:
             return { child : TagParser._generateLineage(child,parent2children) for child in parent2children[parentID] }
         else:
             return None
 
-    def generateLineages(self):
-        """Generates and RETUNS parent-child record lineages.
+    def generateLineages(self) -> dict:
+        """Generates and returns parent-child record lineages.
 
-        :return: lineages - lineages by tableID
-        :rtype: :py:class`collections.defaultdict`
+        Returns:
+            lineages by tableKey.
         """
         entities_with_parentIDs = []
         for tableKey, table in self.extraction.items():
@@ -2273,20 +2391,21 @@ class TagParser(object):
         return lineages
 
     @staticmethod
-    def printLineages(lineages, indentation, group_size=5, file=sys.stdout):
+    def printLineages(lineages: collections.defaultdict, indentation: int, groupSize: int =5, file : TextIO =sys.stdout):
         """Prints the given lineages.
-
-        :param :py:class`collections.defaultdict` lineages:
-        :param :py:class`int` indentation: indentation steps
-        :param :py:class`int` group_size: number of childIDs to print per line.
+        
+        Args:
+            lineages: dictionary where the keys are table names and values are a dictionary of parentID and children.
+            indentation: number of spaces of indentation to print.
+            groupSize: number of childIDs to print per line.
         """
         for id in sorted(lineages.keys()):
             if lineages[id]:
                 print(" "*indentation,id,":", file=file)
                 terminal_children = sorted(childID for childID, children in lineages[id].items() if children == None)
                 while terminal_children:
-                    children_group = terminal_children[0:group_size]
-                    terminal_children = terminal_children[group_size:]
+                    children_group = terminal_children[0:groupSize]
+                    terminal_children = terminal_children[groupSize:]
                     print(" "*(indentation+2), ", ".join(children_group),file=file)
                 non_terminal_children = {childID : children for childID, children in lineages[id].items() if children }
                 TagParser.printLineages(non_terminal_children,indentation+2)

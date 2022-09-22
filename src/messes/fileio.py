@@ -4,15 +4,17 @@
 from json import loads
 from os import walk
 from os.path import exists, isdir, isfile, join
+from typing import Iterator
 
 
-def read_files(*sources):
-    """
-    Generator method for validating file and directory paths and yielding the dictionary objects within the given
-    file(s).
+def read_files(*sources: list[str]) -> Iterator[dict]:
+    """Generator method for validating file and directory paths and yielding the dictionary objects within the given file(s).
 
-    :param sources:
-    :return:
+    Args:
+        sources: A list of JSON filepaths.
+        
+    Returns:
+        Aniterator of file contents.
     """
     for source in sources:
         if isdir(source):
@@ -25,12 +27,14 @@ def read_files(*sources):
             raise TypeError("Unknown file source.")
 
 
-def open_json_file(filepath):
-    """
-    Method for validating a given filepath to an existing JSON file and returning the converted dictionary object.
+def open_json_file(filepath: str) -> dict:
+    """Method for validating a given filepath to an existing JSON file and returning the converted dictionary object.
 
-    :param str filepath:
-    :return:
+    Args:
+        filepath: Path to the JSON file.
+    
+    Returns:
+        File contents as a dictionary.
     """
     internal_data = None
     if exists(filepath):

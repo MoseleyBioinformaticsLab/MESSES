@@ -9,7 +9,8 @@ cimport numpy
 
 from extract_metadata import Evaluator, FieldMaker, TagParser, VariableOperand, LiteralOperand, xstr
 
-
+COLUMN_ORDER_CONSTANT = 16000
+COLUMN_ORDER_CONSTANT_PLUS = COLUMN_ORDER_CONSTANT + 1
 
 headerSplitter = re.compile(r'[+]|(r?\"[^\"]*\"|r?\'[^\']*\')|\s+')
 def tagSheet(taggingDirectives, str[:,:] worksheet, silent):
@@ -184,15 +185,15 @@ def tagSheet(taggingDirectives, str[:,:] worksheet, silent):
                         usedRows.update(range(rowIndex,endingRowIndex))
 
                         # Create correct relative column order.
-                        originalTDColumnIndeces = [ 1000 for x in range(len(taggingGroup["header_tag_descriptions"])) ]
+                        originalTDColumnIndeces = [ COLUMN_ORDER_CONSTANT for x in range(len(taggingGroup["header_tag_descriptions"])) ]
                         for tdIndex in range(len(taggingGroup["header_tag_descriptions"])):
                             ## If the header tag has a field_maker and all of the header_tests are in the header row it needs a new column.
                             if "field_maker" in taggingGroup["header_tag_descriptions"][tdIndex] and \
                                     all( headerString in header2ColumnIndex for headerString in taggingGroup["header_tag_descriptions"][tdIndex]["header_tests"] ):
-                                originalTDColumnIndeces[tdIndex] = 1001
+                                originalTDColumnIndeces[tdIndex] = COLUMN_ORDER_CONSTANT_PLUS
                             ## If the header tag does not have a field_maker and has an empty header_list it needs a new column.
                             elif "field_maker" not in taggingGroup["header_tag_descriptions"][tdIndex] and not taggingGroup["header_tag_descriptions"][tdIndex]["header_list"]:
-                                originalTDColumnIndeces[tdIndex] = 1001
+                                originalTDColumnIndeces[tdIndex] = COLUMN_ORDER_CONSTANT_PLUS
                             ## If the header tag does not have a field_maker and the first element of its header list is in the header row then it needs a new column.
                             elif "field_maker" not in taggingGroup["header_tag_descriptions"][tdIndex] and taggingGroup["header_tag_descriptions"][tdIndex]["header_list"][0] in header2ColumnIndex:
                                 originalTDColumnIndeces[tdIndex] = header2ColumnIndex[taggingGroup["header_tag_descriptions"][tdIndex]["header_list"][0]]
@@ -200,26 +201,26 @@ def tagSheet(taggingDirectives, str[:,:] worksheet, silent):
                         newTDColumnIndeces = originalTDColumnIndeces.copy()
                         for tdIndex in range(len(taggingGroup["header_tag_descriptions"])):
                             # insert new column if needed
-                            ## The 1001 values always need a new column for themselves, but the values less than 1000 only need a new column if they need to be reordered.
+                            ## The COLUMN_ORDER_CONSTANT_PLUS values always need a new column for themselves, but the values less than COLUMN_ORDER_CONSTANT only need a new column if they need to be reordered.
                             ## The second condition looks to see if the header tag under study needs to be reordered by seeing if there are any header tags that have a column index less than it. 
                             ## If a header tag has an index less than the one under study then it means it needs to move to the right because the other header tag needs to be before the one under study.
-                            if (newTDColumnIndeces[tdIndex] == 1001 or newTDColumnIndeces[tdIndex] < 1000) and (minColumnIndex := min(newTDColumnIndeces[tdIndex+1:]+[len(worksheet[0,:])])) < newTDColumnIndeces[tdIndex]:
+                            if (newTDColumnIndeces[tdIndex] == COLUMN_ORDER_CONSTANT_PLUS or newTDColumnIndeces[tdIndex] < COLUMN_ORDER_CONSTANT) and (minColumnIndex := min(newTDColumnIndeces[tdIndex+1:]+[len(worksheet[0,:])])) < newTDColumnIndeces[tdIndex]:
                                 worksheet = numpy.insert(worksheet, minColumnIndex, "", axis=1)
                                 header2ColumnIndex = { headerString:(index+1 if index >= minColumnIndex else index) for headerString, index in header2ColumnIndex.items() } # must be done before the next if, else statement
-                                if originalTDColumnIndeces[tdIndex] != 1001: # copy normal columns
+                                if originalTDColumnIndeces[tdIndex] != COLUMN_ORDER_CONSTANT_PLUS: # copy normal columns
                                     worksheet[rowIndex:endingRowIndex, minColumnIndex] = worksheet[rowIndex:endingRowIndex, newTDColumnIndeces[tdIndex]+1]
                                     header2ColumnIndex[taggingGroup["header_tag_descriptions"][tdIndex]["header_list"][0]] = minColumnIndex
 
                                 newTDColumnIndeces[tdIndex] = minColumnIndex
-                                newTDColumnIndeces[tdIndex+1:] = [ index+1 if index >= minColumnIndex and index < 1000 else index for index in newTDColumnIndeces[tdIndex+1:] ]
+                                newTDColumnIndeces[tdIndex+1:] = [ index+1 if index >= minColumnIndex and index < COLUMN_ORDER_CONSTANT else index for index in newTDColumnIndeces[tdIndex+1:] ]
 
                         # Add tags.
                         for tdIndex in range(len(taggingGroup["header_tag_descriptions"])):
-                            if originalTDColumnIndeces[tdIndex] != 1000:
+                            if originalTDColumnIndeces[tdIndex] != COLUMN_ORDER_CONSTANT:
                                 worksheet[rowIndex+1, newTDColumnIndeces[tdIndex]] = taggingGroup["header_tag_descriptions"][tdIndex]["tag"]
 
                         # Compose new columns.
-                        makerIndeces = [ tdIndex for tdIndex in range(len(taggingGroup["header_tag_descriptions"])) if originalTDColumnIndeces[tdIndex] == 1001 ]
+                        makerIndeces = [ tdIndex for tdIndex in range(len(taggingGroup["header_tag_descriptions"])) if originalTDColumnIndeces[tdIndex] == COLUMN_ORDER_CONSTANT_PLUS ]
                         for rIndex in range(rowIndex + 2, endingRowIndex):
                             row = worksheet[rIndex, :]
                             record = { headerString:xstr(row[cIndex]).strip() for headerString, cIndex in header2ColumnIndex.items() }
