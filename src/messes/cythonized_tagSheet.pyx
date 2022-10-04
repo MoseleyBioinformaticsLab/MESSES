@@ -7,7 +7,7 @@ import sys
 import numpy
 cimport numpy
 
-from extract_metadata import Evaluator, FieldMaker, TagParser, VariableOperand, LiteralOperand, xstr
+from extract import Evaluator, FieldMaker, TagParser, VariableOperand, LiteralOperand, xstr
 
 COLUMN_ORDER_CONSTANT = 16000
 COLUMN_ORDER_CONSTANT_PLUS = COLUMN_ORDER_CONSTANT + 1

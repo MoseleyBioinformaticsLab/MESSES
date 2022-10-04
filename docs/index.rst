@@ -12,6 +12,9 @@ Welcome to MESSES's documentation!
 
    guide
    tutorial
+   tagging
+   table_schema
+   supported_formats
    api
    license
    todo

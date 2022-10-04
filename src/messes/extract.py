@@ -4,8 +4,8 @@
     Extract SIRM metadata and data from excel workbook and JSON files.
     
  Usage:
-    extract_metadata.py <metadata_source>... [--delete <metadata_section>...] [options]
-    extract_metadata.py --help
+    extract <metadata_source>... [--delete <metadata_section>...] [options]
+    extract --help
 
     <metadata_source> - input metadata source as csv/json filename or xlsx_filename[:worksheet_name|regular_expression]. "#export" worksheet name is the default.
 
@@ -51,7 +51,7 @@ Regular Expression Format:
 
 
 ## TODO 
-## Possibly add a step at the end that makes sure all records id field matches the dict key value.
+## Possibly make it so the automation tags to add are ran through the parser before being exported to check for errors. Would make debugging errors easier.
 ## Make sure verify_metadata checks for project.id and study.id in subject, samples, and factors.
 ## Possibly add an option to enumerate id's that aren't unique.
 ## Possibly check to see if a record's id is already in use while parsing, and print warning to user that 2 records in Excel have same id.
@@ -65,7 +65,11 @@ Regular Expression Format:
 ## Possibly add an option not to print warnings about unused conversion directives.
 ## Document the conversion tag precedence, both that exact goes first, then regex, then levens, and that top most conversions go first.
 ## unique = 3 different names
-## Test what happens when tracking_on specifices a field that the records already have in the table. Does it overwrite? #sample%track_on.sample.id
+## Possibly add a "exact_assign" that keeps the field type (list vs non list).
+## In validate have an option to check that fields with the same name in the same table have the same type.
+## Add tests for the new warnings in assign directives line 1778 or so.
+## Add tests for exclude in automation make sure there is a regex and literal test.
+
 
 from __future__ import annotations
 import os.path
@@ -776,7 +780,7 @@ class TagParser(object):
     childFieldAttributeDetector = re.compile(r'#(\w*)\%child\.(\w+)\%(\w+)$')
     emptyChildDetector = re.compile(r'#(\w*)\%child$')
     tableFieldAttributeDetector = re.compile(r'#(\w*)\.(\w+)\%(\w+)$')
-    tableFieldDetector = re.compile(r'#(\w*)\.(\w+)$')
+    tableFieldDetector = re.compile(r'#(\w*)\.(\w+|\w+.id)$')
     attributeDetector = re.compile('#\%(\w+)$')
     trackFieldDetector = re.compile(r'#(\w*)\%track$')
     untrackFieldDetector = re.compile(r'#(\w*)\%untrack$')
@@ -940,6 +944,8 @@ class TagParser(object):
                         break
             elif (reMatch := re.match(TagParser.tableFieldAttributeDetector, token)) or (reMatch := re.match(TagParser.tableFieldDetector, token)) or (reMatch := re.match(TagParser.attributeDetector, token)) : #table.field.attribute combinations
                 table, field = self._determineTableField(reMatch.groups())
+                print(token)
+                print(table)
                 if self.columnIndex == 0 :
                     if len(tokens) < 2 or tokens[0] != '=' or re.match(TagParser.tagDetector, tokens[1]) :
                         raise TagParserError("tags without assignment in first column", self.fileName, self.sheetName, self.rowIndex, self.columnIndex)
@@ -1363,6 +1369,8 @@ class TagParser(object):
                                 raise TagParserError("Table name does not match between #table_name.field_name.value and #table_name.field_name.rename conversion tags", self.fileName, self.sheetName, self.rowIndex, self.columnIndex)
                             if reMatch.group(2) == reMatch.group(3):
                                 raise TagParserError("rename conversion directive renames the field to the same name", self.fileName, self.sheetName, self.rowIndex, self.columnIndex)
+                            if reMatch.group(2) == "id":
+                                raise TagParserError("Not allowed to rename \"id\" fields", self.fileName, self.sheetName, self.rowIndex, self.columnIndex)
                             renameFieldMap[reMatch.group(2)] = reMatch.group(3)
                         elif (reMatch := re.match('\s*#(\w+)?\.(\w+|\w+%\w+|\w+\.id)\.rename\s*$', cellString)):
                             raise TagParserError("Incorrect rename directive format.  Should be #[table_name].field_name.rename.new_field_name", self.fileName, self.sheetName, self.rowIndex, self.columnIndex)
@@ -1414,7 +1422,7 @@ class TagParser(object):
                     if valueIndex == -1 or (len(assignIndeces) == 0 and len(appendIndeces) == 0 and len(prependIndeces) == 0 and len(regexIndeces) == 0 and len(deletionFields) == 0 and not renameFieldMap):
                         raise TagParserError("Missing #table_name.field_name.value or #.field_name.assign|append|prepend|regex|delete|rename conversion tags", self.fileName, self.sheetName, self.rowIndex, self.columnIndex)
                     if "id" in deletionFields:
-                        raise TagParserError("Not allowed to delete id fields", self.fileName, self.sheetName, self.rowIndex, self.columnIndex)
+                        raise TagParserError("Not allowed to delete \"id\" fields", self.fileName, self.sheetName, self.rowIndex, self.columnIndex)
                     if not table in self.conversionDirectives:
                         self.conversionDirectives[table] = {}
                     if not fieldID in self.conversionDirectives[table]:
@@ -1721,12 +1729,27 @@ class TagParser(object):
             for newField, newValue in conversions["assign"].items():
                 if type(newValue) == Evaluator:
                     if newValue.hasRequiredFields(record):
-                        record[newField] = newValue.evaluate(record)
+                        newValueForRecord = newValue.evaluate(record)
+                        if newField in record and not silent:
+                            if isinstance(record[newField], list) and not isinstance(newValueForRecord, list):
+                                print("Warning: \"" + newField + "\" in record, " + recordPath + ", was assigned a non list type value but was originally a list type value.")
+                            elif not isinstance(record[newField], list) and isinstance(newValueForRecord, list):
+                                print("Warning: \"" + newField + "\" in record, " + recordPath + ", was assigned a list type value but was not originally a list type value.")
+                        
+                        record[newField] = newValueForRecord
+                        
                     elif not silent:
                         print("Warning: Field assignment directive \"" + newField + "\" missing required field(s) \"" + ",".join([ field for field in newValue.requiredFields if field not in record]) + "\", or a regular expression matched no fields or more than one.", file=sys.stderr)
                 else:
                     ## If this is not a copy when it is a list it has unexpected results.
-                    record[newField] = copy.deepcopy(newValue)
+                    newValueForRecord = copy.deepcopy(newValue)
+                    if newField in record and not silent:
+                        if isinstance(record[newField], list) and not isinstance(newValueForRecord, list):
+                            print("Warning: \"" + newField + "\" in record, " + recordPath + ", was assigned a non list type value but was originally a list type value.")
+                        elif not isinstance(record[newField], list) and isinstance(newValueForRecord, list):
+                            print("Warning: \"" + newField + "\" in record, " + recordPath + ", was assigned a list type value but was not originally a list type value.")
+                    
+                    record[newField] = newValueForRecord
                 
                 if newField in record:
                     fieldPath = recordPath + newField

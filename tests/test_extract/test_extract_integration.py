@@ -983,4 +983,26 @@ def test_metadata_json_source():
 
 
 
+def test_field_concatenation():
+    """Test that tags can be concated with a + sign."""
+    
+    test_file = "tag_concatenation_test.json"
+    
+    command = "py -3.10 ../../../src/messes/extract.py ../" + test_file + " ../" + " --output " + output_path.as_posix()
+    command = command.split(" ")
+    subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
+    output = subp.stderr
+
+    
+    assert output_path.exists()
+    
+    with open(output_path, "r") as f:
+        output_json = json.loads(f.read())
+        
+    assert output_json["study"]["Study 1"]["title"] == "labeled mouse study 278 Type1"
+            
+    assert output == ""
+
+
+
 

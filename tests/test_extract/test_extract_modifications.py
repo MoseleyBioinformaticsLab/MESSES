@@ -891,8 +891,25 @@ def test_conversion_delete_id_error():
     
     assert not output_path.exists()
     
-    assert "Not allowed to delete id fields at cell" in output
+    assert "Not allowed to delete \"id\" fields at cell" in output
     assert "conversion_delete_id_error.xlsx:#convert[:1]" in output
+    
+    
+def test_modification_rename_id_error():
+    """Test that an error is printed when a tag tries to rename the id field."""
+    
+    test_file = "modification_rename_id_error.xlsx"
+    
+    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
+    command = command.split(" ")
+    subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
+    output = subp.stderr
+
+    
+    assert not output_path.exists()
+    
+    assert "Not allowed to rename \"id\" fields at cell" in output
+    assert "modification_rename_id_error.xlsx:#convert[:1]" in output
 
 
 
@@ -1766,7 +1783,51 @@ def test_unused_conversion():
     assert output_path.exists()
     
     assert output == "Warning: conversion directive #measurement.compound.exact-all.asdf never matched." + "\n"
+    
 
+
+
+def test_field_name_in_eval():
+    """Test that using a field in eval works."""
+    
+    test_file = "modification_field_name_in_eval.xlsx"
+    
+    command = "py -3.10 ../../../src/messes/extract.py ../" + test_file  + " --output " + output_path.as_posix()
+    command = command.split(" ")
+    subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
+    output = subp.stderr
+
+    
+    assert output_path.exists()
+    
+    with open(output_path, "r") as f:
+        output_json = json.loads(f.read())
+                                
+    assert output_json["sample"]["01_A0_Spleen_naive_0days_170427_UKy_GCH_rep1"]["asdf"] == "zxcv cvbn"
+    
+    assert output == ""
+
+
+
+def test_regex_in_eval():
+    """Test that using a regex in eval works."""
+    
+    test_file = "modification_regex_in_eval.xlsx"
+    
+    command = "py -3.10 ../../../src/messes/extract.py ../" + test_file  + " --output " + output_path.as_posix()
+    command = command.split(" ")
+    subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
+    output = subp.stderr
+
+    
+    assert output_path.exists()
+    
+    with open(output_path, "r") as f:
+        output_json = json.loads(f.read())
+                                
+    assert output_json["sample"]["01_A0_Spleen_naive_0days_170427_UKy_GCH_rep1"]["asdf"] == "zxcv cvbn"
+    
+    assert output == ""
 
 
 
