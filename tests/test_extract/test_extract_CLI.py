@@ -42,7 +42,7 @@ def test_compare():
     
     test_file = "base_source.xlsx"
     
-    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file +" --output " + output_path.as_posix() + " --compare " + output_compare_path.as_posix()
+    command = "py -3.10 ../../../src/messes/extract.py ../" + test_file +" --output " + output_path.as_posix() + " --compare " + output_compare_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stdout
@@ -54,12 +54,12 @@ def test_compare():
     
     
 
-def test_convert_worksheet_name():
-    """Test that the convert option works with a worksheet name."""
+def test_modify_worksheet_name():
+    """Test that the modify option works with a worksheet name."""
     
-    test_file = "convert_test.xlsx"
+    test_file = "modification_test.xlsx"
     
-    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file  + " --output " + output_path.as_posix() + " --convert convert"
+    command = "py -3.10 ../../../src/messes/extract.py ../" + test_file  + " --output " + output_path.as_posix() + " --modify modify"
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -78,12 +78,12 @@ def test_convert_worksheet_name():
     assert output == ""
 
 
-def test_convert_regex():
-    """Test that the convert option works with a regex."""
+def test_modification_regex():
+    """Test that the modify option works with a regex."""
     
-    test_file = "convert_test.xlsx"
+    test_file = "modification_test.xlsx"
     
-    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file  + " --output " + output_path.as_posix() + " --convert r'.*vert'"
+    command = "py -3.10 ../../../src/messes/extract.py ../" + test_file  + " --output " + output_path.as_posix() + " --modify r'.*dify'"
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -102,12 +102,12 @@ def test_convert_regex():
     assert output == ""
 
 
-def test_convert_csv():
-    """Test that the convert option works with a csv file."""
+def test_modification_csv():
+    """Test that the modify option works with a csv file."""
     
-    test_file = "convert_test.xlsx"
+    test_file = "modification_test.xlsx"
     
-    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file  + " --output " + output_path.as_posix() + " --convert ../conversions.csv"
+    command = "py -3.10 ../../../src/messes/extract.py ../" + test_file  + " --output " + output_path.as_posix() + " --modify ../modifications.csv"
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -126,12 +126,12 @@ def test_convert_csv():
     assert output == ""
     
     
-def test_convert_json():
-    """Test that the convert option works with a JSON file."""
+def test_modification_json():
+    """Test that the modify option works with a JSON file."""
     
-    test_file = "convert_test.xlsx"
+    test_file = "modification_test.xlsx"
     
-    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file  + " --output " + output_path.as_posix() + " --convert ../base_directives.json"
+    command = "py -3.10 ../../../src/messes/extract.py ../" + test_file  + " --output " + output_path.as_posix() + " --modify ../base_directives.json"
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -150,12 +150,12 @@ def test_convert_json():
     assert output == ""
     
     
-def test_convert_worksheet_name_and_sheetname():
-    """Test that the convert option works with worksheet:sheetname."""
+def test_modification_worksheet_name_and_sheetname():
+    """Test that the modify option works with worksheet:sheetname."""
     
-    test_file = "convert_test.xlsx"
+    test_file = "modification_test.xlsx"
     
-    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file  + " --output " + output_path.as_posix() + " --convert ../base_source.xlsx:#convert"
+    command = "py -3.10 ../../../src/messes/extract.py ../" + test_file  + " --output " + output_path.as_posix() + " --modify ../base_source.xlsx:#modify"
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -174,12 +174,12 @@ def test_convert_worksheet_name_and_sheetname():
     assert output == ""
     
     
-def test_convert_worksheet_name_and_regex():
-    """Test that the convert option works with worksheet:regex."""
+def test_modification_worksheet_name_and_regex():
+    """Test that the modify option works with worksheet:regex."""
     
-    test_file = "convert_test.xlsx"
+    test_file = "modification_test.xlsx"
     
-    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file  + " --output " + output_path.as_posix() + " --convert ../base_source.xlsx:r'.*vert'"
+    command = "py -3.10 ../../../src/messes/extract.py ../" + test_file  + " --output " + output_path.as_posix() + " --modify ../base_source.xlsx:r'.*dify'"
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -198,112 +198,12 @@ def test_convert_worksheet_name_and_regex():
     assert output == ""
     
     
-def test_convert_xlsx():
-    """Test that the convert option defaults to #convert."""
+def test_modification_xlsx():
+    """Test that the modify option defaults to #modify."""
     
-    test_file = "convert_test.xlsx"
+    test_file = "modification_test.xlsx"
     
-    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file  + " --output " + output_path.as_posix() + " --convert ../base_source.xlsx"
-    command = command.split(" ")
-    subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
-    output = subp.stderr
-
-    
-    assert output_path.exists()
-    
-    with open(output_path, "r") as f:
-        output_json = json.loads(f.read())
-        
-    with open(pathlib.Path("output_compare.json"), "r") as f:
-        output_compare_json = json.loads(f.read())
-        
-    assert output_json == output_compare_json
-    
-    assert output == ""
-
-
-
-
-
-
-def test_end_convert_csv():
-    """Test that the end-convert option works with a csv file."""
-    
-    test_file = "convert_test.xlsx"
-    
-    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file  + " --output " + output_path.as_posix() + " --end-convert ../conversions.csv"
-    command = command.split(" ")
-    subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
-    output = subp.stderr
-
-    
-    assert output_path.exists()
-    
-    with open(output_path, "r") as f:
-        output_json = json.loads(f.read())
-        
-    with open(pathlib.Path("output_compare.json"), "r") as f:
-        output_compare_json = json.loads(f.read())
-        
-    assert output_json == output_compare_json
-    
-    assert output == ""
-    
-    
-def test_end_convert_json():
-    """Test that the end-convert option works with a JSON file."""
-    
-    test_file = "convert_test.xlsx"
-    
-    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file  + " --output " + output_path.as_posix() + " --end-convert ../base_directives.json"
-    command = command.split(" ")
-    subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
-    output = subp.stderr
-
-    
-    assert output_path.exists()
-    
-    with open(output_path, "r") as f:
-        output_json = json.loads(f.read())
-        
-    with open(pathlib.Path("output_compare.json"), "r") as f:
-        output_compare_json = json.loads(f.read())
-        
-    assert output_json == output_compare_json
-    
-    assert output == ""
-    
-    
-def test_end_convert_worksheet_name_and_sheetname():
-    """Test that the end-convert option works with worksheet:sheetname."""
-    
-    test_file = "convert_test.xlsx"
-    
-    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file  + " --output " + output_path.as_posix() + " --end-convert ../base_source.xlsx:#convert"
-    command = command.split(" ")
-    subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
-    output = subp.stderr
-
-    
-    assert output_path.exists()
-    
-    with open(output_path, "r") as f:
-        output_json = json.loads(f.read())
-        
-    with open(pathlib.Path("output_compare.json"), "r") as f:
-        output_compare_json = json.loads(f.read())
-        
-    assert output_json == output_compare_json
-    
-    assert output == ""
-    
-    
-def test_end_convert_worksheet_name_and_regex():
-    """Test that the end-convert option works with worksheet:regex."""
-    
-    test_file = "convert_test.xlsx"
-    
-    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file  + " --output " + output_path.as_posix() + " --end-convert ../base_source.xlsx:r'.*vert'"
+    command = "py -3.10 ../../../src/messes/extract.py ../" + test_file  + " --output " + output_path.as_posix() + " --modify ../base_source.xlsx"
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -324,88 +224,14 @@ def test_end_convert_worksheet_name_and_regex():
 
 
 
-def test_end_convert():
-    """Test that the end-convert option works."""
-    
-    test_file_1 = "end_convert_1.xlsx"
-    test_file_2 = "end_convert_2.xlsx"
-    test_file_3 = "end_convert_3_conversion.xlsx"
-    
-    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file_1 + " ../" + test_file_2 +" --output " + output_path.as_posix() + " --end-convert ../" + test_file_3
-    command = command.split(" ")
-    subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
-    output = subp.stderr
-
-    
-    assert output_path.exists()
-    
-    with open(output_path, "r") as f:
-        output_json = json.loads(f.read())
-        
-    with open(pathlib.Path("end_convert_compare.json"), "r") as f:
-        output_compare_json = json.loads(f.read())
-        
-    assert output_json == output_compare_json
-    
-    assert output == ""
 
 
-
-
-def test_tagging_worksheet_name():
-    """Test that the tagging option works with a worksheet name."""
+def test_end_modify_csv():
+    """Test that the end-modify option works with a csv file."""
     
-    test_file = "tagging_test.xlsx"
+    test_file = "modification_test.xlsx"
     
-    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file  + " --output " + output_path.as_posix() + " --tagging tagging"
-    command = command.split(" ")
-    subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
-    output = subp.stderr
-
-    
-    assert output_path.exists()
-    
-    with open(output_path, "r") as f:
-        output_json = json.loads(f.read())
-        
-    with open(pathlib.Path("output_compare.json"), "r") as f:
-        output_compare_json = json.loads(f.read())
-        
-    assert output_json == output_compare_json
-    
-    assert output == ""
-
-
-def test_tagging_regex():
-    """Test that the tagging option works with a regex."""
-    
-    test_file = "tagging_test.xlsx"
-    
-    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file  + " --output " + output_path.as_posix() + " --tagging r'.*ging'"
-    command = command.split(" ")
-    subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
-    output = subp.stderr
-
-    
-    assert output_path.exists()
-    
-    with open(output_path, "r") as f:
-        output_json = json.loads(f.read())
-        
-    with open(pathlib.Path("output_compare.json"), "r") as f:
-        output_compare_json = json.loads(f.read())
-        
-    assert output_json == output_compare_json
-    
-    assert output == ""
-
-
-def test_tagging_csv():
-    """Test that the tagging option works with a csv file."""
-    
-    test_file = "tagging_test.xlsx"
-    
-    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file  + " --output " + output_path.as_posix() + " --tagging ../tags.csv"
+    command = "py -3.10 ../../../src/messes/extract.py ../" + test_file  + " --output " + output_path.as_posix() + " --end-modify ../modifications.csv"
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -424,12 +250,12 @@ def test_tagging_csv():
     assert output == ""
     
     
-def test_tagging_json():
-    """Test that the tagging option works with a JSON file."""
+def test_end_modify_json():
+    """Test that the end-modify option works with a JSON file."""
     
-    test_file = "tagging_test.xlsx"
+    test_file = "modification_test.xlsx"
     
-    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file  + " --output " + output_path.as_posix() + " --tagging ../base_directives.json"
+    command = "py -3.10 ../../../src/messes/extract.py ../" + test_file  + " --output " + output_path.as_posix() + " --end-modify ../base_directives.json"
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -448,12 +274,12 @@ def test_tagging_json():
     assert output == ""
     
     
-def test_tagging_worksheet_name_and_sheetname():
-    """Test that the tagging option works with worksheet:sheetname."""
+def test_end_modify_worksheet_name_and_sheetname():
+    """Test that the end-modify option works with worksheet:sheetname."""
     
-    test_file = "tagging_test.xlsx"
+    test_file = "modification_test.xlsx"
     
-    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file  + " --output " + output_path.as_posix() + " --tagging ../base_source.xlsx:#tagging"
+    command = "py -3.10 ../../../src/messes/extract.py ../" + test_file  + " --output " + output_path.as_posix() + " --end-modify ../base_source.xlsx:#modify"
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -472,12 +298,114 @@ def test_tagging_worksheet_name_and_sheetname():
     assert output == ""
     
     
-def test_tagging_worksheet_name_and_regex():
-    """Test that the tagging option works with worksheet:regex."""
+def test_end_modify_worksheet_name_and_regex():
+    """Test that the end-modify option works with worksheet:regex."""
     
-    test_file = "tagging_test.xlsx"
+    test_file = "modification_test.xlsx"
     
-    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file  + " --output " + output_path.as_posix() + " --tagging ../base_source.xlsx:r'.*ging'"
+    command = "py -3.10 ../../../src/messes/extract.py ../" + test_file  + " --output " + output_path.as_posix() + " --end-modify ../base_source.xlsx:r'.*ify'"
+    command = command.split(" ")
+    subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
+    output = subp.stderr
+
+    
+    assert output_path.exists()
+    
+    with open(output_path, "r") as f:
+        output_json = json.loads(f.read())
+        
+    with open(pathlib.Path("output_compare.json"), "r") as f:
+        output_compare_json = json.loads(f.read())
+        
+    assert output_json == output_compare_json
+    
+    assert output == ""
+
+
+
+
+def test_end_modify():
+    """Test that the end-modify option works."""
+    
+    test_file_1 = "end_modify_1.xlsx"
+    test_file_2 = "end_modify_2.xlsx"
+    test_file_3 = "end_modify_3_modification.xlsx"
+    
+    command = "py -3.10 ../../../src/messes/extract.py ../" + test_file_1 + " ../" + test_file_2 +" --output " + output_path.as_posix() + " --end-modify ../" + test_file_3
+    command = command.split(" ")
+    subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
+    output = subp.stderr
+
+    
+    assert output_path.exists()
+    
+    with open(output_path, "r") as f:
+        output_json = json.loads(f.read())
+        
+    with open(pathlib.Path("end_modify_compare.json"), "r") as f:
+        output_compare_json = json.loads(f.read())
+        
+    assert output_json == output_compare_json
+    
+    assert output == ""
+
+
+
+
+def test_automate_worksheet_name():
+    """Test that the automate option works with a worksheet name."""
+    
+    test_file = "automation_test.xlsx"
+    
+    command = "py -3.10 ../../../src/messes/extract.py ../" + test_file  + " --output " + output_path.as_posix() + " --automate automate"
+    command = command.split(" ")
+    subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
+    output = subp.stderr
+
+    
+    assert output_path.exists()
+    
+    with open(output_path, "r") as f:
+        output_json = json.loads(f.read())
+        
+    with open(pathlib.Path("output_compare.json"), "r") as f:
+        output_compare_json = json.loads(f.read())
+        
+    assert output_json == output_compare_json
+    
+    assert output == ""
+
+
+def test_automation_regex():
+    """Test that the automate option works with a regex."""
+    
+    test_file = "automation_test.xlsx"
+    
+    command = "py -3.10 ../../../src/messes/extract.py ../" + test_file  + " --output " + output_path.as_posix() + " --automate r'.*mate'"
+    command = command.split(" ")
+    subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
+    output = subp.stderr
+
+    
+    assert output_path.exists()
+    
+    with open(output_path, "r") as f:
+        output_json = json.loads(f.read())
+        
+    with open(pathlib.Path("output_compare.json"), "r") as f:
+        output_compare_json = json.loads(f.read())
+        
+    assert output_json == output_compare_json
+    
+    assert output == ""
+
+
+def test_automation_csv():
+    """Test that the automate option works with a csv file."""
+    
+    test_file = "automation_test.xlsx"
+    
+    command = "py -3.10 ../../../src/messes/extract.py ../" + test_file  + " --output " + output_path.as_posix() + " --automate ../tags.csv"
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -496,12 +424,84 @@ def test_tagging_worksheet_name_and_regex():
     assert output == ""
     
     
-def test_tagging_xlsx():
-    """Test that the tagging option defaults to #tagging for just a filename."""
+def test_automation_json():
+    """Test that the automate option works with a JSON file."""
     
-    test_file = "tagging_test.xlsx"
+    test_file = "automation_test.xlsx"
     
-    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file  + " --output " + output_path.as_posix() + " --tagging ../base_source.xlsx"
+    command = "py -3.10 ../../../src/messes/extract.py ../" + test_file  + " --output " + output_path.as_posix() + " --automate ../base_directives.json"
+    command = command.split(" ")
+    subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
+    output = subp.stderr
+
+    
+    assert output_path.exists()
+    
+    with open(output_path, "r") as f:
+        output_json = json.loads(f.read())
+        
+    with open(pathlib.Path("output_compare.json"), "r") as f:
+        output_compare_json = json.loads(f.read())
+        
+    assert output_json == output_compare_json
+    
+    assert output == ""
+    
+    
+def test_automation_worksheet_name_and_sheetname():
+    """Test that the automate option works with worksheet:sheetname."""
+    
+    test_file = "automation_test.xlsx"
+    
+    command = "py -3.10 ../../../src/messes/extract.py ../" + test_file  + " --output " + output_path.as_posix() + " --automate ../base_source.xlsx:#automate"
+    command = command.split(" ")
+    subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
+    output = subp.stderr
+
+    
+    assert output_path.exists()
+    
+    with open(output_path, "r") as f:
+        output_json = json.loads(f.read())
+        
+    with open(pathlib.Path("output_compare.json"), "r") as f:
+        output_compare_json = json.loads(f.read())
+        
+    assert output_json == output_compare_json
+    
+    assert output == ""
+    
+    
+def test_automation_worksheet_name_and_regex():
+    """Test that the automate option works with worksheet:regex."""
+    
+    test_file = "automation_test.xlsx"
+    
+    command = "py -3.10 ../../../src/messes/extract.py ../" + test_file  + " --output " + output_path.as_posix() + " --automate ../base_source.xlsx:r'.*mate'"
+    command = command.split(" ")
+    subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
+    output = subp.stderr
+
+    
+    assert output_path.exists()
+    
+    with open(output_path, "r") as f:
+        output_json = json.loads(f.read())
+        
+    with open(pathlib.Path("output_compare.json"), "r") as f:
+        output_compare_json = json.loads(f.read())
+        
+    assert output_json == output_compare_json
+    
+    assert output == ""
+    
+    
+def test_automation_xlsx():
+    """Test that the automate option defaults to #automate for just a filename."""
+    
+    test_file = "automation_test.xlsx"
+    
+    command = "py -3.10 ../../../src/messes/extract.py ../" + test_file  + " --output " + output_path.as_posix() + " --automate ../base_source.xlsx"
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -529,7 +529,7 @@ def test_save_directives():
     test_file = "base_source.xlsx"
     directives_to_compare = "comparison_directives.json"
     
-    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file  + " --output " + output_path.as_posix() + " --save-directives " + directives_to_compare
+    command = "py -3.10 ../../../src/messes/extract.py ../" + test_file  + " --output " + output_path.as_posix() + " --save-directives " + directives_to_compare
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -577,7 +577,7 @@ def test_save_directives_no_json():
     test_file = "base_source.xlsx"
     directives_to_compare = "comparison_directives"
     
-    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file  + " --output " + output_path.as_posix() + " --save-directives " + directives_to_compare
+    command = "py -3.10 ../../../src/messes/extract.py ../" + test_file  + " --output " + output_path.as_posix() + " --save-directives " + directives_to_compare
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -628,7 +628,7 @@ def test_save_directives_none_to_save():
     test_file = "no_directives.csv"
     directives_to_compare = "comparison_directives.json"
     
-    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file  + " --output " + output_path.as_posix() + " --save-directives " + directives_to_compare
+    command = "py -3.10 ../../../src/messes/extract.py ../" + test_file  + " --output " + output_path.as_posix() + " --save-directives " + directives_to_compare
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -646,7 +646,7 @@ def test_save_export_xlsx():
     
     test_file = "base_source.xlsx"
     
-    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file  + " --output " + output_path.as_posix() + " --save-export xlsx"
+    command = "py -3.10 ../../../src/messes/extract.py ../" + test_file  + " --output " + output_path.as_posix() + " --save-export xlsx"
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -692,7 +692,7 @@ def test_save_export_csv():
     
     test_file = "base_source.xlsx"
     
-    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file  + " --output " + output_path.as_posix() + " --save-export csv"
+    command = "py -3.10 ../../../src/messes/extract.py ../" + test_file  + " --output " + output_path.as_posix() + " --save-export csv"
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -738,7 +738,7 @@ def test_show_tables():
     
     test_file = "base_source.xlsx"
     
-    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file  + " --output " + output_path.as_posix() + " --show tables"
+    command = "py -3.10 ../../../src/messes/extract.py ../" + test_file  + " --output " + output_path.as_posix() + " --show tables"
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stdout
@@ -754,7 +754,7 @@ def test_show_lineage():
     
     test_file = "base_source.xlsx"
     
-    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file  + " --output " + output_path.as_posix() + " --show lineage"
+    command = "py -3.10 ../../../src/messes/extract.py ../" + test_file  + " --output " + output_path.as_posix() + " --show lineage"
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stdout
@@ -770,7 +770,7 @@ def test_show_lineage_with_children():
     
     test_file = "child_tag_example.xlsx"
     
-    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file  + " --output " + output_path.as_posix() + " --show lineage"
+    command = "py -3.10 ../../../src/messes/extract.py ../" + test_file  + " --output " + output_path.as_posix() + " --show lineage"
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stdout
@@ -786,7 +786,7 @@ def test_show_all():
     
     test_file = "base_source.xlsx"
     
-    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file  + " --output " + output_path.as_posix() + " --show all"
+    command = "py -3.10 ../../../src/messes/extract.py ../" + test_file  + " --output " + output_path.as_posix() + " --show all"
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stdout
@@ -802,7 +802,7 @@ def test_show_incorrect_sub_option():
     
     test_file = "base_source.xlsx"
     
-    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file  + " --output " + output_path.as_posix() + " --show asdf"
+    command = "py -3.10 ../../../src/messes/extract.py ../" + test_file  + " --output " + output_path.as_posix() + " --show asdf"
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -819,7 +819,7 @@ def test_delete():
     
     test_file = "base_source.xlsx"
     
-    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file  + " --output " + output_path.as_posix() + ' --delete protocol'
+    command = "py -3.10 ../../../src/messes/extract.py ../" + test_file  + " --output " + output_path.as_posix() + ' --delete protocol'
     command = command.split(" ")
     command.append("--delete")
     command.append("measurement,(S)-2-Acetolactate Glutaric acid Methylsuccinic acid-13C0-01_A0_Colon_T03-2017_naive_170427_UKy_GCB_rep1-quench")
@@ -852,7 +852,7 @@ def test_delete_regex():
     
     test_file = "base_source.xlsx"
     
-    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file  + " --output " + output_path.as_posix() + ' --delete r\'.*tocol\''
+    command = "py -3.10 ../../../src/messes/extract.py ../" + test_file  + " --output " + output_path.as_posix() + ' --delete r\'.*tocol\''
     command = command.split(" ")
     command.append("--delete")
     command.append("r\'.*asurement\',r\'.*13C0-01_A0_Colon_T03-2017_naive_170427_UKy_GCB_rep1-quench\'")
@@ -885,7 +885,7 @@ def test_keep():
     
     test_file = "base_source.xlsx"
     
-    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file  + " --output " + output_path.as_posix() + ' --keep protocol'
+    command = "py -3.10 ../../../src/messes/extract.py ../" + test_file  + " --output " + output_path.as_posix() + ' --keep protocol'
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -911,7 +911,7 @@ def test_keep_multiple_tables():
     
     test_file = "base_source.xlsx"
     
-    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file  + " --output " + output_path.as_posix() + ' --keep protocol,measurement'
+    command = "py -3.10 ../../../src/messes/extract.py ../" + test_file  + " --output " + output_path.as_posix() + ' --keep protocol,measurement'
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -935,7 +935,7 @@ def test_keep_regex():
     
     test_file = "base_source.xlsx"
     
-    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file  + " --output " + output_path.as_posix() + ' --keep r\'.*tocol\''
+    command = "py -3.10 ../../../src/messes/extract.py ../" + test_file  + " --output " + output_path.as_posix() + ' --keep r\'.*tocol\''
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -962,7 +962,7 @@ def test_silent():
     
     test_file = "silent_test.xlsx"
     
-    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file  + " --output " + output_path.as_posix() + ' --silent'
+    command = "py -3.10 ../../../src/messes/extract.py ../" + test_file  + " --output " + output_path.as_posix() + ' --silent'
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -988,7 +988,7 @@ def test_metadatasource_does_not_exist():
     
     test_file = "attribute_field_test.xlsx"
     
-    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file + " fake_file.xlsx --output " + output_path.as_posix() 
+    command = "py -3.10 ../../../src/messes/extract.py ../" + test_file + " fake_file.xlsx --output " + output_path.as_posix() 
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -1006,7 +1006,7 @@ def test_output_option_no_json_extension():
     
     test_file = "base_source.xlsx"
     
-    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file + " --output output" 
+    command = "py -3.10 ../../../src/messes/extract.py ../" + test_file + " --output output" 
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -1023,7 +1023,7 @@ def test_compare_option_is_not_json():
     
     test_file = "base_source.xlsx"
     
-    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file + " --compare ../" + test_file + " --output " + output_path.as_posix()
+    command = "py -3.10 ../../../src/messes/extract.py ../" + test_file + " --compare ../" + test_file + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -1040,7 +1040,7 @@ def test_compare_option_does_not_exist():
     
     test_file = "base_source.xlsx"
     
-    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file + " --compare ../asdf.asdf --output " + output_path.as_posix()
+    command = "py -3.10 ../../../src/messes/extract.py ../" + test_file + " --compare ../asdf.asdf --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -1057,7 +1057,7 @@ def test_empty_directives_warning():
     
     test_file = "base_source.xlsx"
     
-    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix() + " --convert ../empty_directives.json"
+    command = "py -3.10 ../../../src/messes/extract.py ../" + test_file + " --output " + output_path.as_posix() + " --modify ../empty_directives.json"
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -1073,7 +1073,7 @@ def test_empty_directives_warning():
         
     assert output_json != output_compare_json
     
-    assert output == 'Warning: The input directives JSON file is either not a dict or does not contain the directive keyword "conversion". This means that conversion will not be done.' + "\n"
+    assert output == 'Warning: The input directives JSON file is either not a dict or does not contain the directive keyword "modification". This means that modification will not be done.' + "\n"
 
 
 
@@ -1082,7 +1082,7 @@ def test_compare_close_floats():
     
     test_file = "compare_close_floats.xlsx"
     
-    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file +" --output " + output_path.as_posix() + " --compare " + output_compare_path.as_posix()
+    command = "py -3.10 ../../../src/messes/extract.py ../" + test_file +" --output " + output_path.as_posix() + " --compare " + output_compare_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stdout
@@ -1099,7 +1099,7 @@ def test_compare_many_differences():
     
     test_file = "compare_differences_test.xlsx"
     
-    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file +" --output " + output_path.as_posix() + " --compare " + output_compare_path.as_posix()
+    command = "py -3.10 ../../../src/messes/extract.py ../" + test_file +" --output " + output_path.as_posix() + " --compare " + output_compare_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stdout

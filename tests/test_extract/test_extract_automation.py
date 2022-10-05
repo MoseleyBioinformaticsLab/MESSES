@@ -43,7 +43,7 @@ def test_multiple_inserts():
     
     test_file = "multiple_inserts.xlsx"
     
-    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix() + " --save-export csv"
+    command = "py -3.10 ../../../src/messes/extract.py ../" + test_file + " --output " + output_path.as_posix() + " --save-export csv"
     os.system(command)
     
     assert output_path.exists()
@@ -72,7 +72,7 @@ def test_duplicate_headers():
     
     test_file = "duplicate_headers.xlsx"
     
-    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file +" --output " + output_path.as_posix()
+    command = "py -3.10 ../../../src/messes/extract.py ../" + test_file +" --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -80,7 +80,7 @@ def test_duplicate_headers():
     
     assert output_path.exists()
     
-    assert output == "\'Warning: duplicate header description provided in tagging directive at cell \"../duplicate_headers.xlsx:#tagging[:11]\"\'" + "\n"
+    assert output == "\'Warning: duplicate header description provided in automation directive at cell \"../duplicate_headers.xlsx:#automate[:11]\"\'" + "\n"
 
 
 
@@ -90,7 +90,7 @@ def test_missing_id_in_header():
     
     test_file = "no_id_tag.xlsx"
     
-    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file +" --output " + output_path.as_posix()
+    command = "py -3.10 ../../../src/messes/extract.py ../" + test_file +" --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -108,7 +108,7 @@ def test_unused_tag():
     
     test_file = "unused_tag.xlsx"
     
-    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file +" --output " + output_path.as_posix()
+    command = "py -3.10 ../../../src/messes/extract.py ../" + test_file +" --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -116,7 +116,7 @@ def test_unused_tag():
     
     assert output_path.exists()
     
-    assert output == "Warning: Tagging directive number 1 was never used." + "\n"
+    assert output == "Warning: Automation directive number 1 was never used." + "\n"
 
 
 
@@ -126,7 +126,7 @@ def test_no_required_headers():
     
     test_file = "no_required_headers.xlsx"
     
-    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file +" --output " + output_path.as_posix()
+    command = "py -3.10 ../../../src/messes/extract.py ../" + test_file +" --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -152,7 +152,7 @@ def test_duplicate_columns():
     
     test_file = "duplicate_columns.xlsx"
     
-    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file +" --output " + output_path.as_posix()
+    command = "py -3.10 ../../../src/messes/extract.py ../" + test_file +" --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -160,7 +160,7 @@ def test_duplicate_columns():
     
     assert output_path.exists()
     
-    assert output == "Warning: The header, Intensity, in tagging group, 1, was matched to more than 1 column near or on row, 3, in the tagged export.\nWarning: Tagging directive number 1 was never used." + "\n"
+    assert output == "Warning: The header, Intensity, in automation group, 1, was matched to more than 1 column near or on row, 3, in the tagged export.\nWarning: Automation directive number 1 was never used." + "\n"
 
 
 
@@ -170,7 +170,7 @@ def test_regex_in_eval():
     
     test_file = "regex_in_eval.xlsx"
     
-    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file  + " --output " + output_path.as_posix()
+    command = "py -3.10 ../../../src/messes/extract.py ../" + test_file  + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -196,7 +196,7 @@ def test_list_in_eval():
     
     test_file = "eval_list.xlsx"
     
-    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file  + " --output " + output_path.as_posix()
+    command = "py -3.10 ../../../src/messes/extract.py ../" + test_file  + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -218,7 +218,7 @@ def test_list_in_eval_list_tag():
     
     test_file = "eval_list_list_tag.xlsx"
     
-    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file  + " --output " + output_path.as_posix()
+    command = "py -3.10 ../../../src/messes/extract.py ../" + test_file  + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -242,7 +242,7 @@ def test_exclusion():
     
     test_file = "exclusion_test.xlsx"
     
-    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file +" --output " + output_path.as_posix()
+    command = "py -3.10 ../../../src/messes/extract.py ../" + test_file +" --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -260,7 +260,7 @@ def test_exclusion():
         
     assert output_json == output_compare_json
     
-    assert output == "Warning: Tagging directive number 1 was never used." + "\n"
+    assert output == "Warning: Automation directive number 1 was never used." + "\n"
   
 
         
@@ -270,7 +270,7 @@ def test_multiple_insert_blocks():
     
     test_file = "multiple_insert_blocks.xlsx"
     
-    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix() + " --save-export csv"
+    command = "py -3.10 ../../../src/messes/extract.py ../" + test_file + " --output " + output_path.as_posix() + " --save-export csv"
     os.system(command)
     
     assert output_path.exists()
@@ -295,12 +295,12 @@ def test_multiple_insert_blocks():
     
 
 
-def test_tagging_empty_tag_rows():
+def test_automation_empty_tag_rows():
     """Test that a #tags row directly after a #tags row doesn't affect the output."""
     
-    test_file = "tagging_empty_tag_rows.xlsx"
+    test_file = "automation_empty_tag_rows.xlsx"
     
-    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
+    command = "py -3.10 ../../../src/messes/extract.py ../" + test_file + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -320,12 +320,12 @@ def test_tagging_empty_tag_rows():
     
     
 
-def test_tagging_missing_header_tag_error():
+def test_automation_missing_header_tag_error():
     """Test that an error is printed when the #header tag is missing."""
     
-    test_file = "tagging_missing_header_tag_error.xlsx"
+    test_file = "automation_missing_header_tag_error.xlsx"
     
-    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
+    command = "py -3.10 ../../../src/messes/extract.py ../" + test_file + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -334,15 +334,15 @@ def test_tagging_missing_header_tag_error():
     assert not output_path.exists()
     
     assert 'Missing #header tag at cell' in output
-    assert "tagging_missing_header_tag_error.xlsx:#tagging[:8]" in output
+    assert "automation_missing_header_tag_error.xlsx:#automate[:8]" in output
     
     
-def test_tagging_missing_add_tag_error():
+def test_automation_missing_add_tag_error():
     """Test that an error is printed when the #tag.add tag is missing."""
     
-    test_file = "tagging_missing_add_tag_error.xlsx"
+    test_file = "automation_missing_add_tag_error.xlsx"
     
-    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
+    command = "py -3.10 ../../../src/messes/extract.py ../" + test_file + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -350,18 +350,18 @@ def test_tagging_missing_add_tag_error():
     
     assert not output_path.exists()
     
-    assert 'Missing #tag.add tag at cell' in output
-    assert "tagging_missing_add_tag_error.xlsx:#tagging[:8]" in output
+    assert 'Missing #add tag at cell' in output
+    assert "automation_missing_add_tag_error.xlsx:#automate[:8]" in output
 
 
 
 
-def test_tagging_ignore_test():
+def test_automation_ignore_test():
     """Test that a #ignore row doesn't affect the output."""
     
-    test_file = "tagging_ignore_test.xlsx"
+    test_file = "automation_ignore_test.xlsx"
     
-    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
+    command = "py -3.10 ../../../src/messes/extract.py ../" + test_file + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -381,12 +381,12 @@ def test_tagging_ignore_test():
     
     
     
-def test_tagging_insert_multiple_false_test():
+def test_automation_insert_multiple_false_test():
     """Test that a #multiple=false is the same as default."""
     
-    test_file = "tagging_insert_multiple_false_test.xlsx"
+    test_file = "automation_insert_multiple_false_test.xlsx"
     
-    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
+    command = "py -3.10 ../../../src/messes/extract.py ../" + test_file + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -406,12 +406,12 @@ def test_tagging_insert_multiple_false_test():
     
     
     
-def test_tagging_missing_end_tag_error():
+def test_automation_missing_end_tag_error():
     """Test that an error is printed when the #end tag is missing."""
     
-    test_file = "tagging_missing_end_tag_error.xlsx"
+    test_file = "automation_missing_end_tag_error.xlsx"
     
-    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
+    command = "py -3.10 ../../../src/messes/extract.py ../" + test_file + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -420,16 +420,16 @@ def test_tagging_missing_end_tag_error():
     assert not output_path.exists()
     
     assert 'Missing #end tag at cell' in output
-    assert "tagging_missing_end_tag_error.xlsx:#tagging[Q21]" in output
+    assert "automation_missing_end_tag_error.xlsx:#automate[Q21]" in output
 
 
 
-def test_tagging_field_tracking():
+def test_automation_field_tracking():
     """Test that field tracking and untracking works."""
     
     test_file = "tracking_test.xlsx"
     
-    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
+    command = "py -3.10 ../../../src/messes/extract.py ../" + test_file + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -453,12 +453,12 @@ def test_tagging_field_tracking():
     assert output == ""
     
     
-def test_tagging_field_tracking2():
+def test_automation_field_tracking2():
     """Test that field tracking and untracking works."""
     
     test_file = "tracking_test2.xlsx"
     
-    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
+    command = "py -3.10 ../../../src/messes/extract.py ../" + test_file + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -482,12 +482,12 @@ def test_tagging_field_tracking2():
     assert output == ""
 
 
-def test_tagging_field_tracking3():
+def test_automation_field_tracking3():
     """Test that field tracking and untracking works."""
     
     test_file = "tracking_test3.xlsx"
     
-    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
+    command = "py -3.10 ../../../src/messes/extract.py ../" + test_file + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -516,12 +516,12 @@ def test_tagging_field_tracking3():
     assert output == ""
 
 
-def test_tagging_tracking_not_enough_tokens_error():
+def test_automation_tracking_not_enough_tokens_error():
     """Test that an error is printed when there are not enough tokens in track tag."""
     
     test_file = "tracking_not_enough_tokens_error.xlsx"
     
-    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
+    command = "py -3.10 ../../../src/messes/extract.py ../" + test_file + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -533,12 +533,12 @@ def test_tagging_tracking_not_enough_tokens_error():
     assert "tracking_not_enough_tokens_error.xlsx:#export[B1]" in output
 
 
-def test_tagging_tracking_no_equal_sign_error():
+def test_automation_tracking_no_equal_sign_error():
     """Test that an error is printed when there is no = after the track tag."""
     
     test_file = "tracking_no_equal_sign_error.xlsx"
     
-    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
+    command = "py -3.10 ../../../src/messes/extract.py ../" + test_file + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -550,12 +550,12 @@ def test_tagging_tracking_no_equal_sign_error():
     assert "tracking_no_equal_sign_error.xlsx:#export[B1]" in output
 
 
-def test_tagging_untracking_no_equal_sign_error():
+def test_automation_untracking_no_equal_sign_error():
     """Test that an error is printed when there is no = after the untrack tag."""
     
     test_file = "untracking_no_equal_sign_error.xlsx"
     
-    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
+    command = "py -3.10 ../../../src/messes/extract.py ../" + test_file + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -567,12 +567,12 @@ def test_tagging_untracking_no_equal_sign_error():
     assert "untracking_no_equal_sign_error.xlsx:#export[B14]" in output
 
 
-def test_tagging_untracking_not_enough_tokens_error():
+def test_automation_untracking_not_enough_tokens_error():
     """Test that an error is printed when there are not enough tokens in untrack tag."""
     
     test_file = "untracking_not_enough_tokens_error.xlsx"
     
-    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
+    command = "py -3.10 ../../../src/messes/extract.py ../" + test_file + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -584,12 +584,12 @@ def test_tagging_untracking_not_enough_tokens_error():
     assert "untracking_not_enough_tokens_error.xlsx:#export[B14]" in output
 
 
-def test_tagging_tracking_malformed_field_error():
+def test_automation_tracking_malformed_field_error():
     """Test that an error is printed when the field to track is malformed."""
     
     test_file = "tracking_malformed_field_error.xlsx"
     
-    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
+    command = "py -3.10 ../../../src/messes/extract.py ../" + test_file + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -601,12 +601,12 @@ def test_tagging_tracking_malformed_field_error():
     assert "tracking_malformed_field_error.xlsx:#export[B1]" in output
     
 
-def test_tagging_untracking_malformed_field_error():
+def test_automation_untracking_malformed_field_error():
     """Test that an error is printed when the field to untrack is malformed."""
     
     test_file = "untracking_malformed_field_error.xlsx"
     
-    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
+    command = "py -3.10 ../../../src/messes/extract.py ../" + test_file + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -618,12 +618,12 @@ def test_tagging_untracking_malformed_field_error():
     assert "untracking_malformed_field_error.xlsx:#export[B14]" in output
 
 
-def test_tagging_tracking_list_test():
+def test_automation_tracking_list_test():
     """Test that field tracking works with a list of values."""
     
     test_file = "tracking_list_test.xlsx"
     
-    command = "py -3.10 ../../../src/messes/extract_metadata.py ../" + test_file + " --output " + output_path.as_posix()
+    command = "py -3.10 ../../../src/messes/extract.py ../" + test_file + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr

@@ -13,10 +13,10 @@
     --help                              - show this help documentation.
     --output <filename_json>            - output json filename.
     --compare <filename_json>           - compare extracted metadata to given JSONized metadata.
-    --convert <source>                  - conversion directives worksheet name, regular expression, csv/json filename, or xlsx_filename:[worksheet_name|regular_expression] [default: #convert].
-    --end-convert <source>              - apply conversion directives after all metadata merging. Requires csv/json filename or xlsx_filename:[worksheet_name|regular_expression].
-    --tagging <source>                  - tagging directives worksheet name, regular expression, csv/json filename, or xlsx_filename:[worksheet_name|regular_expression] [default: #tagging].
-    --save-directives <filename_json>   - output filename with conversion and tagging directives in JSON format.
+    --modify <source>                   - modification directives worksheet name, regular expression, csv/json filename, or xlsx_filename:[worksheet_name|regular_expression] [default: #modify].
+    --end-modify <source>               - apply modification directives after all metadata merging. Requires csv/json filename or xlsx_filename:[worksheet_name|regular_expression].
+    --automate <source>                 - automation directives worksheet name, regular expression, csv/json filename, or xlsx_filename:[worksheet_name|regular_expression] [default: #automate].
+    --save-directives <filename_json>   - output filename with modification and automation directives in JSON format.
     --save-export <filetype>            - output export worksheet with suffix "_export" and with the indicated xlsx/csv format extension.
     --show <show_option>                - show a part of the metadata. See options below.
     --delete <metadata_section>...      - delete a section of the JSONized metadata. Section format is tableKey or tableKey,IDKey or tableKey,IDKey,fieldName. These can be regular expressions.
@@ -34,10 +34,10 @@ Regular Expression Format:
 
  Directives JSON Format:
    {
-    "conversion" : { table : { field :  { "exact"|"regex"|"levenshtein"|"exact-unique"|"regex-unique"|"levenshtein-unique" :
+    "modification" : { table : { field :  { "exact"|"regex"|"levenshtein"|"exact-unique"|"regex-unique"|"levenshtein-unique" :
                       { field_value : { "assign" : { field : value,... }, "append" : { field : value,... }, "prepend" : { field : value,... },
                                         "regex" : { field : regex_pair,... }, "delete" : [ field,... ], "rename" : { old_field : new_field } } } } } }
-    "tagging" : [ { "header_tag_descriptions" : [ { "header" : column_description, "tag" : tag_description, "required" : true|false } ],   "exclusion_test" : exclusion_value, "insert" : [ [ cell_content, ... ] ] } ]
+    "automation" : [ { "header_tag_descriptions" : [ { "header" : column_description, "tag" : tag_description, "required" : true|false } ],   "exclusion_test" : exclusion_value, "insert" : [ [ cell_content, ... ] ] } ]
    }
 
 """
@@ -57,13 +57,13 @@ Regular Expression Format:
 ## Possibly check to see if a record's id is already in use while parsing, and print warning to user that 2 records in Excel have same id.
 ## This is tricky with child tags because the parent is added with the child, so detecting an already existing record might be where the child added a placeholder parent record.
 ## Should an output filename be required? You can run the program and get nothing out as is.
-## Be sure to deal with errors in order. Something like a duplicated header can then make a conversion not match, 
+## Be sure to deal with errors in order. Something like a duplicated header can then make a modification not match, 
 ## so deal with the header and then both errors go away.
 ## Let metadata sources be URLs
 ## Think about handling column based data, transpose rows and columns and then read in.
 ## Possibly add a #max-distance tag for levenshtein comaprison to put a minimum distance that must be acheived to be considered a match.
-## Possibly add an option not to print warnings about unused conversion directives.
-## Document the conversion tag precedence, both that exact goes first, then regex, then levens, and that top most conversions go first.
+## Possibly add an option not to print warnings about unused modification directives.
+## Document the modification tag precedence, both that exact goes first, then regex, then levens, and that top most modifications go first.
 ## unique = 3 different names
 ## Possibly add a "exact_assign" that keeps the field type (list vs non list).
 ## In validate have an option to check that fields with the same name in the same table have the same type.
@@ -99,32 +99,32 @@ def main() :
     tagParser = TagParser()
         
 
-    if any([True for arg in sys.argv if arg == "--convert"]):
-        convertDefaulted = False
+    if any([True for arg in sys.argv if arg == "--modify"]):
+        modifyDefaulted = False
     else:
-        convertDefaulted = True
+        modifyDefaulted = True
         
-    if any([True for arg in sys.argv if arg == "--tagging"]):
-        taggingDefaulted = False
+    if any([True for arg in sys.argv if arg == "--automate"]):
+        automateDefaulted = False
     else:
-        taggingDefaulted = True
+        automateDefaulted = True
 
     for metadataSource in args["<metadata_source>"]:
-        tagParser.readMetadata(metadataSource, args["--tagging"], taggingDefaulted, args["--convert"], convertDefaulted, args["--save-export"])
+        tagParser.readMetadata(metadataSource, args["--automate"], automateDefaulted, args["--modify"], modifyDefaulted, args["--save-export"])
 
-    ## --end-convert is needed so that the merged metadata files can all be converted after being merged together.
-    ## Without this each metadatasource only gets its own conversion.
-    if args["--end-convert"] != None:
-        conversionSource = args["--end-convert"]
-        if re.search(r"\.xls[xm]?$", conversionSource):
-            conversionSource += ":#convert"
+    ## --end-modify is needed so that the merged metadata files can all be modified after being merged together.
+    ## Without this each metadatasource only gets its own modification.
+    if args["--end-modify"] != None:
+        modificationSource = args["--end-modify"]
+        if re.search(r"\.xls[xm]?$", modificationSource):
+            modificationSource += ":#modify"
 
-        conversionDirectives = tagParser.readDirectives(conversionSource, "conversion")
-        tagParser.convert(conversionDirectives)
+        modificationDirectives = tagParser.readDirectives(modificationSource, "modification")
+        tagParser.modify(modificationDirectives)
 
-    if getattr(tagParser, "unusedConversions", None) != None and not silent:
-        for (tableKey, fieldKey, comparisonType, conversionID) in tagParser.unusedConversions:
-            print("Warning: conversion directive #" + tableKey + "." + fieldKey + "." + comparisonType + "." + conversionID + " never matched.", file=sys.stderr)
+    if getattr(tagParser, "unusedModifications", None) != None and not silent:
+        for (tableKey, fieldKey, comparisonType, modificationID) in tagParser.unusedModifications:
+            print("Warning: modification directive #" + tableKey + "." + fieldKey + "." + comparisonType + "." + modificationID + " never matched.", file=sys.stderr)
 
     if args["--delete"]:
         sections = [ section.split(",") for section in args["--delete"] ]
@@ -186,13 +186,13 @@ def main() :
     if args["--save-directives"]:
         if pathlib.Path(args["--save-directives"]).suffix != ".json":
             args["--save-directives"] = args["--save-directives"] + ".json"
-        if getattr(tagParser, "conversionDirectives", None) != None or getattr(tagParser, "taggingDirectives", None) != None:
+        if getattr(tagParser, "modificationDirectives", None) != None or getattr(tagParser, "automationDirectives", None) != None:
             directives = {}
-            if getattr(tagParser, "conversionDirectives", None) != None:
-                directives["conversion"] = tagParser.conversionDirectives
+            if getattr(tagParser, "modificationDirectives", None) != None:
+                directives["modification"] = tagParser.modificationDirectives
 
-            if getattr(tagParser, "taggingDirectives", None) != None:
-                directives["tagging"] = tagParser.taggingDirectives
+            if getattr(tagParser, "automationDirectives", None) != None:
+                directives["automation"] = tagParser.automationDirectives
 
             with open(args["--save-directives"],'w') as jsonFile :
                 jsonFile.write(json.dumps(directives, sort_keys=True, indent=2, separators=(',', ': ')))
@@ -226,7 +226,7 @@ class Evaluator(object) :
         
         Args:
             evalString: string of the form eval(...) to deliver to eval(), "eval(" and ")" will be removed.
-            useFieldTests: whether to use field tests in field name conversion.
+            useFieldTests: whether to use field tests in field name modification.
             listAsString: whether to convert a list into a single string.
         """
 
@@ -944,8 +944,9 @@ class TagParser(object):
                         break
             elif (reMatch := re.match(TagParser.tableFieldAttributeDetector, token)) or (reMatch := re.match(TagParser.tableFieldDetector, token)) or (reMatch := re.match(TagParser.attributeDetector, token)) : #table.field.attribute combinations
                 table, field = self._determineTableField(reMatch.groups())
-                print(token)
-                print(table)
+                currentTable = recordMakers[-1].table
+                if currentTable != "" and currentTable != table:
+                    raise TagParserError("second table specified after first table, if trying to specify an id to another table use #.table.id", self.fileName, self.sheetName, self.rowIndex, self.columnIndex)
                 if self.columnIndex == 0 :
                     if len(tokens) < 2 or tokens[0] != '=' or re.match(TagParser.tagDetector, tokens[1]) :
                         raise TagParserError("tags without assignment in first column", self.fileName, self.sheetName, self.rowIndex, self.columnIndex)
@@ -1199,35 +1200,35 @@ class TagParser(object):
         """
         return ".xls" in string or ".xlsx" in string or ".xlsm" in string or ".csv" in string or ".json" in string
 
-    def readMetadata(self, metadataSource: str, taggingSource: str, taggingDefaulted: bool, conversionSource: str, convertDefaulted: bool, saveExtension: str =None):
+    def readMetadata(self, metadataSource: str, automationSource: str, automateDefaulted: bool, modificationSource: str, modifyDefaulted: bool, saveExtension: str =None):
         """Reads metadata from source.
         
         Args:
             metadataSource: file path to metadata file with possibly a sheetname if appropriate.
-            taggingSource: file path to tagging file or a sheetname.
-            taggingDefaulted: whether the tagging source is the default value or not, passed to readDirectives for message printing.
-            conversionSource: file path to conversion file or a sheetname.
-            conversionDefaulted: whether the conversion source is the default value or not, passed to readDirectives for message printing.
+            automationSource: file path to automation file or a sheetname.
+            automateDefaulted: whether the automation source is the default value or not, passed to readDirectives for message printing.
+            modificationSource: file path to modification file or a sheetname.
+            modificationDefaulted: whether the modification source is the default value or not, passed to readDirectives for message printing.
             saveExtension: if "csv" saves the export as a csv file, else saves it as an Excel file.
         """
-        if not TagParser.hasFileExtension(taggingSource) and (reMatch := re.search(r"(.*\.xls[xm]?)", metadataSource)):
-            taggingSource = reMatch.group(1) + ":" + taggingSource
-        elif re.search(r"\.xls[xm]?$", taggingSource):
-            taggingSource += ":#tagging"
+        if not TagParser.hasFileExtension(automationSource) and (reMatch := re.search(r"(.*\.xls[xm]?)", metadataSource)):
+            automationSource = reMatch.group(1) + ":" + automationSource
+        elif re.search(r"\.xls[xm]?$", automationSource):
+            automationSource += ":#automate"
 
-        if not TagParser.hasFileExtension(conversionSource) and (reMatch := re.search(r"(.*\.xls[xm]?)", metadataSource)):
-            conversionSource = reMatch.group(1) + ":" + conversionSource
-        elif re.search(r"\.xls[xm]?$", conversionSource):
-            conversionSource += ":#convert"
+        if not TagParser.hasFileExtension(modificationSource) and (reMatch := re.search(r"(.*\.xls[xm]?)", metadataSource)):
+            modificationSource = reMatch.group(1) + ":" + modificationSource
+        elif re.search(r"\.xls[xm]?$", modificationSource):
+            modificationSource += ":#modify"
 
         if re.search(r"\.xls[xm]?$", metadataSource):
             metadataSource += ":#export"
 
-        taggingDirectives = self.readDirectives(taggingSource, "tagging", taggingDefaulted) if TagParser.hasFileExtension(taggingSource) else None
-        ## Structure of conversionDirectives: {table_key:{field_key:{comparison_type:{field_value:{directive:{field_key:directive_value}}}}}} 
+        automationDirectives = self.readDirectives(automationSource, "automation", automateDefaulted) if TagParser.hasFileExtension(automationSource) else None
+        ## Structure of modificationDirectives: {table_key:{field_key:{comparison_type:{field_value:{directive:{field_key:directive_value}}}}}} 
         ## The directive value is the new value to give the field or regex, regex is a list, assign is a string.
         ## unique is handled by having "-unique" added to comparison type key, so there is "exact-unique" and "exact".
-        conversionDirectives = self.readDirectives(conversionSource, "conversion", convertDefaulted) if TagParser.hasFileExtension(conversionSource) else None
+        modificationDirectives = self.readDirectives(modificationSource, "modification", modifyDefaulted) if TagParser.hasFileExtension(modificationSource) else None
 
         if re.search(r"\.json$", metadataSource):
             with open(metadataSource, 'r') as jsonFile:
@@ -1241,7 +1242,7 @@ class TagParser(object):
             dataFrameTuple = TagParser.loadSheet(metadataSource)
 
             if dataFrameTuple:
-                dataFrame = self.tagSheet(taggingDirectives, dataFrameTuple[2])
+                dataFrame = self.tagSheet(automationDirectives, dataFrameTuple[2])
                 dataFrameTuple = (dataFrameTuple[0], dataFrameTuple[1], dataFrame)
 
                 if saveExtension != None:
@@ -1251,7 +1252,7 @@ class TagParser(object):
                 self.parseSheet(*dataFrameTuple)
 
         if self.extraction:
-            self.convert(conversionDirectives)
+            self.modify(modificationDirectives)
 
         newMetadata = self.extraction
         self.extraction = currentMetadata
@@ -1278,42 +1279,42 @@ class TagParser(object):
                 worksheet.to_excel(writer, sheet_name = sheetName, index=False, header=False)
 
     headerSplitter = re.compile(r'[+]|(r?\"[^\"]*\"|r?\'[^\']*\')|\s+')
-    def tagSheet(self, taggingDirectives: dict, worksheet: pandas.core.frame.DataFrame) -> pandas.core.frame.DataFrame:
-        """Add tags to the worksheet using the given tagging directives.
+    def tagSheet(self, automationDirectives: dict, worksheet: pandas.core.frame.DataFrame) -> pandas.core.frame.DataFrame:
+        """Add tags to the worksheet using the given automation directives.
         
         Args:
-            taggingDirectives: a dictionary used to place the tags in the appropriate places.
+            automationDirectives: a dictionary used to place the tags in the appropriate places.
             worksheet: the DataFrame in which to place the tags.
             
         Returns:
             The modified worksheet.
         """
         
-        worksheet, wasTaggingDirectiveUsed = cythonized_tagSheet.tagSheet(taggingDirectives, worksheet.to_numpy(), silent)
+        worksheet, wasAutomationDirectiveUsed = cythonized_tagSheet.tagSheet(automationDirectives, worksheet.to_numpy(), silent)
         
-        for i, directive in enumerate(wasTaggingDirectiveUsed):
+        for i, directive in enumerate(wasAutomationDirectiveUsed):
             if not directive and not silent:
-                print("Warning: Tagging directive number " + str(i) + " was never used.", file=sys.stderr)
+                print("Warning: Automation directive number " + str(i) + " was never used.", file=sys.stderr)
         
         worksheet = pandas.DataFrame(worksheet)
 
         return worksheet
 
-    conversionComparisonTypes = [ "exact", "regex", "levenshtein" ]
+    modificationComparisonTypes = [ "exact", "regex", "levenshtein" ]
     matchTypes = ["first", "first-nowarn", "unique", "all"]
-    def _parseConversionSheet(self, fileName: str, sheetName: str, worksheet: pandas.core.frame.DataFrame):
-        """Extracts conversion directives from a given worksheet.
+    def _parseModificationSheet(self, fileName: str, sheetName: str, worksheet: pandas.core.frame.DataFrame):
+        """Extracts modification directives from a given worksheet.
 
-        "conversion" : { table : { field :  { "(exact|regex|levenshtein)\-(first|first\-nowarn|unique|all)" :
+        "modification" : { table : { field :  { "(exact|regex|levenshtein)\-(first|first\-nowarn|unique|all)" :
                           { field_value : { "assign" : { field : value,... }, "append" : { field : value,... }, "prepend" : { field : value,... },
                                         "regex" : { field : regex_pair,... }, "delete" : [ field,... ], "rename" : { old_field : new_field } } } } } }
         
-        Loops over worksheet and builds up self.conversionDirectives.
+        Loops over worksheet and builds up self.modificationDirectives.
         
         Args:
             fileName: used for printing more descriptive error messages.
             sheetName: used for printing more descriptive error messages.
-            worksheet: data used to build the conversion directives.
+            worksheet: data used to build the modification directives.
         
         Raises:
             TagParserError: usually raised for malformed tags, but also for other unpredicted errors
@@ -1360,15 +1361,15 @@ class TagParser(object):
                             if valueIndex == -1:
                                 raise TagParserError("#table_name.field_name.delete in column before #table_name.field_name.value", self.fileName, self.sheetName, self.rowIndex, self.columnIndex)
                             if reMatch.group(1) is not None and reMatch.group(1) != table:
-                                raise TagParserError("Table name does not match between #table_name.field_name.value and #table_name.field_name.delete conversion tags", self.fileName, self.sheetName, self.rowIndex, self.columnIndex)
+                                raise TagParserError("Table name does not match between #table_name.field_name.value and #table_name.field_name.delete modification tags", self.fileName, self.sheetName, self.rowIndex, self.columnIndex)
                             deletionFields.append(reMatch.group(2))
                         elif (reMatch := re.match('\s*#(\w+)?\.(\w+|\w+%\w+|\w+\.id)\.rename\.(\w+|\w+%\w+|\w+\.id)\s*$', cellString)):
                             if valueIndex == -1:
                                 raise TagParserError("#table_name.field_name.rename in column before #table_name.field_name.value", self.fileName, self.sheetName, self.rowIndex, self.columnIndex)
                             if reMatch.group(1) is not None and reMatch.group(1) != table:
-                                raise TagParserError("Table name does not match between #table_name.field_name.value and #table_name.field_name.rename conversion tags", self.fileName, self.sheetName, self.rowIndex, self.columnIndex)
+                                raise TagParserError("Table name does not match between #table_name.field_name.value and #table_name.field_name.rename modification tags", self.fileName, self.sheetName, self.rowIndex, self.columnIndex)
                             if reMatch.group(2) == reMatch.group(3):
-                                raise TagParserError("rename conversion directive renames the field to the same name", self.fileName, self.sheetName, self.rowIndex, self.columnIndex)
+                                raise TagParserError("rename modification directive renames the field to the same name", self.fileName, self.sheetName, self.rowIndex, self.columnIndex)
                             if reMatch.group(2) == "id":
                                 raise TagParserError("Not allowed to rename \"id\" fields", self.fileName, self.sheetName, self.rowIndex, self.columnIndex)
                             renameFieldMap[reMatch.group(2)] = reMatch.group(3)
@@ -1378,7 +1379,7 @@ class TagParser(object):
                             if valueIndex == -1:
                                 raise TagParserError("#table_name.field_name.assign in column before #table_name.field_name.value", self.fileName, self.sheetName, self.rowIndex, self.columnIndex)
                             if reMatch.group(2) is not None and reMatch.group(2) != table:
-                                raise TagParserError("Table name does not match between #table_name.field_name.value and #table_name.field_name.assign conversion tags", self.fileName, self.sheetName, self.rowIndex, self.columnIndex)
+                                raise TagParserError("Table name does not match between #table_name.field_name.value and #table_name.field_name.assign modification tags", self.fileName, self.sheetName, self.rowIndex, self.columnIndex)
                             assignIndeces.append(self.columnIndex)
                             assignFieldTypes.append(reMatch.group(1))
                             assignFields.append(reMatch.group(3))
@@ -1386,7 +1387,7 @@ class TagParser(object):
                             if valueIndex == -1:
                                 raise TagParserError("#table_name.field_name.append in column before #table_name.field_name.value", self.fileName, self.sheetName, self.rowIndex, self.columnIndex)
                             if reMatch.group(2) is not None and reMatch.group(2) != table:
-                                raise TagParserError("Table name does not match between #table_name.field_name.value and #table_name.field_name.append conversion tags", self.fileName, self.sheetName, self.rowIndex, self.columnIndex)
+                                raise TagParserError("Table name does not match between #table_name.field_name.value and #table_name.field_name.append modification tags", self.fileName, self.sheetName, self.rowIndex, self.columnIndex)
                             appendIndeces.append(self.columnIndex)
                             appendFieldTypes.append(reMatch.group(1))
                             appendFields.append(reMatch.group(3))
@@ -1394,7 +1395,7 @@ class TagParser(object):
                             if valueIndex == -1:
                                 raise TagParserError("#table_name.field_name.prepend in column before #table_name.field_name.value", self.fileName, self.sheetName, self.rowIndex, self.columnIndex)
                             if reMatch.group(2) is not None and reMatch.group(2) != table:
-                                raise TagParserError("Table name does not match between #table_name.field_name.value and #table_name.field_name.prepend conversion tags", self.fileName, self.sheetName, self.rowIndex, self.columnIndex)
+                                raise TagParserError("Table name does not match between #table_name.field_name.value and #table_name.field_name.prepend modification tags", self.fileName, self.sheetName, self.rowIndex, self.columnIndex)
                             prependIndeces.append(self.columnIndex)
                             prependFieldTypes.append(reMatch.group(1))
                             prependFields.append(reMatch.group(3))
@@ -1402,7 +1403,7 @@ class TagParser(object):
                             if valueIndex == -1:
                                 raise TagParserError("#table_name.field_name.regex in column before #table_name.field_name.value", self.fileName, self.sheetName, self.rowIndex, self.columnIndex)
                             if reMatch.group(1) is not None and reMatch.group(1) != table:
-                                raise TagParserError("Table name does not match between #table_name.field_name.value and #table_name.field_name.regex conversion tags", self.fileName, self.sheetName, self.rowIndex, self.columnIndex)
+                                raise TagParserError("Table name does not match between #table_name.field_name.value and #table_name.field_name.regex modification tags", self.fileName, self.sheetName, self.rowIndex, self.columnIndex)
                             regexIndeces.append(self.columnIndex)
                             regexFields.append(reMatch.group(2))
                         elif (reMatch := re.match('\s*#comparison\s*=\s*(exact|regex|regex\|exact|levenshtein)\s*$', cellString)):
@@ -1420,20 +1421,20 @@ class TagParser(object):
                             matchIndex = self.columnIndex
                         self.columnIndex = -1
                     if valueIndex == -1 or (len(assignIndeces) == 0 and len(appendIndeces) == 0 and len(prependIndeces) == 0 and len(regexIndeces) == 0 and len(deletionFields) == 0 and not renameFieldMap):
-                        raise TagParserError("Missing #table_name.field_name.value or #.field_name.assign|append|prepend|regex|delete|rename conversion tags", self.fileName, self.sheetName, self.rowIndex, self.columnIndex)
+                        raise TagParserError("Missing #table_name.field_name.value or #.field_name.assign|append|prepend|regex|delete|rename modification tags", self.fileName, self.sheetName, self.rowIndex, self.columnIndex)
                     if "id" in deletionFields:
                         raise TagParserError("Not allowed to delete \"id\" fields", self.fileName, self.sheetName, self.rowIndex, self.columnIndex)
-                    if not table in self.conversionDirectives:
-                        self.conversionDirectives[table] = {}
-                    if not fieldID in self.conversionDirectives[table]:
-                        self.conversionDirectives[table][fieldID] = {}
+                    if not table in self.modificationDirectives:
+                        self.modificationDirectives[table] = {}
+                    if not fieldID in self.modificationDirectives[table]:
+                        self.modificationDirectives[table][fieldID] = {}
                 elif re.match('#ignore$', xstr(aColumn.iloc[self.rowIndex]).strip()):
                     pass
                 elif TagParser._isEmptyRow(worksheet.iloc[self.rowIndex, :]):
                     parsing = False
                 elif parsing:
                     fieldValue = xstr(worksheet.iloc[self.rowIndex, valueIndex]).strip()
-                    if comparisonIndex != -1 and (comparisonString := xstr(worksheet.iloc[self.rowIndex, comparisonIndex]).strip()) in TagParser.conversionComparisonTypes:
+                    if comparisonIndex != -1 and (comparisonString := xstr(worksheet.iloc[self.rowIndex, comparisonIndex]).strip()) in TagParser.modificationComparisonTypes:
                         localComparisonType = comparisonString
                         
                     else:
@@ -1443,7 +1444,7 @@ class TagParser(object):
                             localComparisonType = comparisonType
                     
                     if localComparisonType == "regex" and not re.match(TagParser.reDetector, fieldValue):
-                        print(TagParserError("Comparison type is indicated as regex, but comparison value is not a regex", self.fileName, self.sheetName, self.rowIndex, valueIndex, " This conversion will be skipped."), file=sys.stderr)
+                        print(TagParserError("Comparison type is indicated as regex, but comparison value is not a regex", self.fileName, self.sheetName, self.rowIndex, valueIndex, " This modification will be skipped."), file=sys.stderr)
                         # raise TagParserError("Comparison type is indicated as regex, but comparison value is not a regex", self.fileName, self.sheetName, self.rowIndex, valueIndex)
                         continue
 
@@ -1497,66 +1498,66 @@ class TagParser(object):
                         else:
                             raise TagParserError("#table_name.field_name.regex value is not of the correct format r\"...\",r\"...\".", self.fileName, self.sheetName, self.rowIndex, valueIndex)
 
-                    if not localComparisonType in self.conversionDirectives[table][fieldID]:
-                        self.conversionDirectives[table][fieldID][localComparisonType] = {}
-                    if not fieldValue in self.conversionDirectives[table][fieldID][localComparisonType]:
-                        self.conversionDirectives[table][fieldID][localComparisonType][fieldValue] = {}
+                    if not localComparisonType in self.modificationDirectives[table][fieldID]:
+                        self.modificationDirectives[table][fieldID][localComparisonType] = {}
+                    if not fieldValue in self.modificationDirectives[table][fieldID][localComparisonType]:
+                        self.modificationDirectives[table][fieldID][localComparisonType][fieldValue] = {}
                     # elif not silent:
-                    #     print(TagParserError("Warning: duplicate conversion directive given", self.fileName, self.sheetName, self.rowIndex, self.columnIndex), file=sys.stderr)
+                    #     print(TagParserError("Warning: duplicate modification directive given", self.fileName, self.sheetName, self.rowIndex, self.columnIndex), file=sys.stderr)
                     if assignFieldMap:
-                        if "assign" in self.conversionDirectives[table][fieldID][localComparisonType][fieldValue]:
-                            ## If any of the keys in assignFieldMap are already in conversionDirectives then it is a duplicate assign conversion.
-                            if any([key in self.conversionDirectives[table][fieldID][localComparisonType][fieldValue]["assign"] for key in assignFieldMap]) and not silent:
-                                print(TagParserError("Warning: duplicate assign conversion directive given", self.fileName, self.sheetName, self.rowIndex, self.columnIndex), file=sys.stderr)
+                        if "assign" in self.modificationDirectives[table][fieldID][localComparisonType][fieldValue]:
+                            ## If any of the keys in assignFieldMap are already in modificationDirectives then it is a duplicate assign modification.
+                            if any([key in self.modificationDirectives[table][fieldID][localComparisonType][fieldValue]["assign"] for key in assignFieldMap]) and not silent:
+                                print(TagParserError("Warning: duplicate assign modification directive given", self.fileName, self.sheetName, self.rowIndex, self.columnIndex), file=sys.stderr)
                             
-                            self.conversionDirectives[table][fieldID][localComparisonType][fieldValue]["assign"].update(assignFieldMap)
+                            self.modificationDirectives[table][fieldID][localComparisonType][fieldValue]["assign"].update(assignFieldMap)
                         else:
-                            self.conversionDirectives[table][fieldID][localComparisonType][fieldValue]["assign"] = assignFieldMap
+                            self.modificationDirectives[table][fieldID][localComparisonType][fieldValue]["assign"] = assignFieldMap
                     if appendFieldMap:
-                        if "append" in self.conversionDirectives[table][fieldID][localComparisonType][fieldValue]:
-                            ## If any of the keys in appendFieldMap are already in conversionDirectives then it is a duplicate append conversion.
-                            if any([key in self.conversionDirectives[table][fieldID][localComparisonType][fieldValue]["append"] for key in appendFieldMap]) and not silent:
-                                print(TagParserError("Warning: duplicate append conversion directive given", self.fileName, self.sheetName, self.rowIndex, self.columnIndex), file=sys.stderr)
+                        if "append" in self.modificationDirectives[table][fieldID][localComparisonType][fieldValue]:
+                            ## If any of the keys in appendFieldMap are already in modificationDirectives then it is a duplicate append modification.
+                            if any([key in self.modificationDirectives[table][fieldID][localComparisonType][fieldValue]["append"] for key in appendFieldMap]) and not silent:
+                                print(TagParserError("Warning: duplicate append modification directive given", self.fileName, self.sheetName, self.rowIndex, self.columnIndex), file=sys.stderr)
                             
-                            self.conversionDirectives[table][fieldID][localComparisonType][fieldValue]["append"].update(appendFieldMap)
+                            self.modificationDirectives[table][fieldID][localComparisonType][fieldValue]["append"].update(appendFieldMap)
                         else:
-                            self.conversionDirectives[table][fieldID][localComparisonType][fieldValue]["append"] = appendFieldMap
+                            self.modificationDirectives[table][fieldID][localComparisonType][fieldValue]["append"] = appendFieldMap
                     if prependFieldMap:
-                        if "prepend" in self.conversionDirectives[table][fieldID][localComparisonType][fieldValue]:
-                            ## If any of the keys in prependFieldMap are already in conversionDirectives then it is a duplicate prepend conversion.
-                            if any([key in self.conversionDirectives[table][fieldID][localComparisonType][fieldValue]["prepend"] for key in prependFieldMap]) and not silent:
-                                print(TagParserError("Warning: duplicate prepend conversion directive given", self.fileName, self.sheetName, self.rowIndex, self.columnIndex), file=sys.stderr)
+                        if "prepend" in self.modificationDirectives[table][fieldID][localComparisonType][fieldValue]:
+                            ## If any of the keys in prependFieldMap are already in modificationDirectives then it is a duplicate prepend modification.
+                            if any([key in self.modificationDirectives[table][fieldID][localComparisonType][fieldValue]["prepend"] for key in prependFieldMap]) and not silent:
+                                print(TagParserError("Warning: duplicate prepend modification directive given", self.fileName, self.sheetName, self.rowIndex, self.columnIndex), file=sys.stderr)
                             
-                            self.conversionDirectives[table][fieldID][localComparisonType][fieldValue]["prepend"].update(prependFieldMap)
+                            self.modificationDirectives[table][fieldID][localComparisonType][fieldValue]["prepend"].update(prependFieldMap)
                         else:
-                            self.conversionDirectives[table][fieldID][localComparisonType][fieldValue]["prepend"] = prependFieldMap
+                            self.modificationDirectives[table][fieldID][localComparisonType][fieldValue]["prepend"] = prependFieldMap
                     if regexFieldMap:
-                        if "regex" in self.conversionDirectives[table][fieldID][localComparisonType][fieldValue]:
-                            ## If any of the keys in regexFieldMap are already in conversionDirectives then it is a duplicate regex conversion.
-                            if any([key in self.conversionDirectives[table][fieldID][localComparisonType][fieldValue]["regex"] for key in regexFieldMap]) and not silent:
-                                print(TagParserError("Warning: duplicate regex conversion directive given", self.fileName, self.sheetName, self.rowIndex, self.columnIndex), file=sys.stderr)
+                        if "regex" in self.modificationDirectives[table][fieldID][localComparisonType][fieldValue]:
+                            ## If any of the keys in regexFieldMap are already in modificationDirectives then it is a duplicate regex modification.
+                            if any([key in self.modificationDirectives[table][fieldID][localComparisonType][fieldValue]["regex"] for key in regexFieldMap]) and not silent:
+                                print(TagParserError("Warning: duplicate regex modification directive given", self.fileName, self.sheetName, self.rowIndex, self.columnIndex), file=sys.stderr)
                             
-                            self.conversionDirectives[table][fieldID][localComparisonType][fieldValue]["regex"].update(regexFieldMap)
+                            self.modificationDirectives[table][fieldID][localComparisonType][fieldValue]["regex"].update(regexFieldMap)
                         else:
-                            self.conversionDirectives[table][fieldID][localComparisonType][fieldValue]["regex"] = regexFieldMap
+                            self.modificationDirectives[table][fieldID][localComparisonType][fieldValue]["regex"] = regexFieldMap
                     if deletionFields:
-                        if "delete" in self.conversionDirectives[table][fieldID][localComparisonType][fieldValue]:
-                            ## If any of fields in deletionFields are already in conversionDirectives then it is a duplicate delete conversion.
-                            if any([field in self.conversionDirectives[table][fieldID][localComparisonType][fieldValue]["delete"] for field in deletionFields]) and not silent:
-                                print(TagParserError("Warning: duplicate delete conversion directive given", self.fileName, self.sheetName, self.rowIndex, self.columnIndex), file=sys.stderr)
+                        if "delete" in self.modificationDirectives[table][fieldID][localComparisonType][fieldValue]:
+                            ## If any of fields in deletionFields are already in modificationDirectives then it is a duplicate delete modification.
+                            if any([field in self.modificationDirectives[table][fieldID][localComparisonType][fieldValue]["delete"] for field in deletionFields]) and not silent:
+                                print(TagParserError("Warning: duplicate delete modification directive given", self.fileName, self.sheetName, self.rowIndex, self.columnIndex), file=sys.stderr)
                             
-                            self.conversionDirectives[table][fieldID][localComparisonType][fieldValue]["delete"].extend(deletionFields)
+                            self.modificationDirectives[table][fieldID][localComparisonType][fieldValue]["delete"].extend(deletionFields)
                         else:
-                            self.conversionDirectives[table][fieldID][localComparisonType][fieldValue]["delete"] = deletionFields
+                            self.modificationDirectives[table][fieldID][localComparisonType][fieldValue]["delete"] = deletionFields
                     if renameFieldMap:
-                        if "rename" in self.conversionDirectives[table][fieldID][localComparisonType][fieldValue]:
-                            ## If any of the keys in renameFieldMap are already in conversionDirectives then it is a duplicate rename conversion.
-                            if any([key in self.conversionDirectives[table][fieldID][localComparisonType][fieldValue]["rename"] for key in renameFieldMap]) and not silent:
-                                print(TagParserError("Warning: duplicate rename conversion directive given", self.fileName, self.sheetName, self.rowIndex, self.columnIndex), file=sys.stderr)
+                        if "rename" in self.modificationDirectives[table][fieldID][localComparisonType][fieldValue]:
+                            ## If any of the keys in renameFieldMap are already in modificationDirectives then it is a duplicate rename modification.
+                            if any([key in self.modificationDirectives[table][fieldID][localComparisonType][fieldValue]["rename"] for key in renameFieldMap]) and not silent:
+                                print(TagParserError("Warning: duplicate rename modification directive given", self.fileName, self.sheetName, self.rowIndex, self.columnIndex), file=sys.stderr)
                             
-                            self.conversionDirectives[table][fieldID][localComparisonType][fieldValue]["rename"].update(renameFieldMap)
+                            self.modificationDirectives[table][fieldID][localComparisonType][fieldValue]["rename"].update(renameFieldMap)
                         else:
-                            self.conversionDirectives[table][fieldID][localComparisonType][fieldValue]["rename"] = renameFieldMap
+                            self.modificationDirectives[table][fieldID][localComparisonType][fieldValue]["rename"] = renameFieldMap
             except TagParserError as err:
                 print(err.value, file=sys.stderr)
                 exit(1)
@@ -1567,17 +1568,17 @@ class TagParser(object):
 
         self.rowIndex = -1
 
-    def _parseTaggingSheet(self, fileName: str, sheetName: str, worksheet: pandas.core.series.Series):
-        """Extracts tagging Directives from a given worksheet.
+    def _parseAutomationSheet(self, fileName: str, sheetName: str, worksheet: pandas.core.series.Series):
+        """Extracts automation directives from a given worksheet.
 
-        "tagging" : [ { "header_tag_descriptions" : [ { "header" : column_description, "tag" : tag_description, "required" : true|false } ],   "exclusion_test" : exclusion_value, "insert" : [ [ cell_content, ... ] ] } ]
+        "automation" : [ { "header_tag_descriptions" : [ { "header" : column_description, "tag" : tag_description, "required" : true|false } ],   "exclusion_test" : exclusion_value, "insert" : [ [ cell_content, ... ] ] } ]
             
-        Loops over worksheet and builds up self.taggingDirectives.
+        Loops over worksheet and builds up self.automationDirectives.
         
         Args:
             fileName: used for printing more descriptive error messages.
             sheetName: used for printing more descriptive error messages.
-            worksheet: data used to build the tagging directives.
+            worksheet: data used to build the automation directives.
 
         Raises:
             TagParserError: usually raised for malformed tags, but also for other unpredicted errors
@@ -1593,7 +1594,7 @@ class TagParser(object):
         parsing = False
 
         self.rowIndex = 0
-        currTaggingGroup = None
+        currAutomationGroup = None
         while self.rowIndex < len(aColumn):
             try:
                 if re.match('#tags$', xstr(aColumn.iloc[self.rowIndex]).strip()):
@@ -1602,43 +1603,43 @@ class TagParser(object):
                     tagIndex = -1
                     usedHeaders = set()
                     ## If #tags group is twice in a row remove it from the directives.
-                    if self.taggingDirectives and "header_tag_descriptions" in self.taggingDirectives[-1] and not self.taggingDirectives[-1]["header_tag_descriptions"]:
-                        self.taggingDirectives.pop()
-                    currTaggingGroup = { "header_tag_descriptions" : [] }
+                    if self.automationDirectives and "header_tag_descriptions" in self.automationDirectives[-1] and not self.automationDirectives[-1]["header_tag_descriptions"]:
+                        self.automationDirectives.pop()
+                    currAutomationGroup = { "header_tag_descriptions" : [] }
                     requiredIndex = -1
-                    self.taggingDirectives.append(currTaggingGroup)
+                    self.automationDirectives.append(currAutomationGroup)
                     for self.columnIndex in range(1, len(worksheet.iloc[self.rowIndex, :])):
                         cellString = xstr(worksheet.iloc[self.rowIndex, self.columnIndex]).strip()
                         if re.match('\s*#header\s*$', cellString):
                             headerIndex = self.columnIndex
-                        elif re.match('\s*#tag\.add\s*$', cellString):
+                        elif re.match('\s*#add\s*$', cellString):
                             tagIndex = self.columnIndex
                         elif re.match('\s*#required\s*$', cellString):
                             requiredIndex = self.columnIndex
                         elif (reMatch := re.match('\s*#exclude\s*=\s*(.+)\s*$', cellString)):
-                            currTaggingGroup["exclusion_test"]=reMatch.group(1)
+                            currAutomationGroup["exclusion_test"]=reMatch.group(1)
                     self.columnIndex = -1
                     if headerIndex == -1:
                         raise TagParserError("Missing #header tag", self.fileName, self.sheetName, self.rowIndex, self.columnIndex)
                     if tagIndex == -1:
-                        raise TagParserError("Missing #tag.add tag", self.fileName, self.sheetName, self.rowIndex, self.columnIndex)
+                        raise TagParserError("Missing #add tag", self.fileName, self.sheetName, self.rowIndex, self.columnIndex)
                 elif re.match('#ignore$', xstr(aColumn.iloc[self.rowIndex]).strip()):
                     pass
                 elif re.match('#insert$', xstr(aColumn.iloc[self.rowIndex]).strip()):
                     ## If #insert is found inside of #tags then it needs to be added to the current tag group, otherwise make a new one.
                     if not parsing:
-                        currTaggingGroup = {}
-                        self.taggingDirectives.append(currTaggingGroup)
-                    ## If "insert" is already in the current tagging group then add to it and don't overwrite it.
-                    if not "insert" in currTaggingGroup:
-                        currTaggingGroup["insert"] = []
-                        currTaggingGroup["insert_multiple"] = False
+                        currAutomationGroup = {}
+                        self.automationDirectives.append(currAutomationGroup)
+                    ## If "insert" is already in the current automation group then add to it and don't overwrite it.
+                    if not "insert" in currAutomationGroup:
+                        currAutomationGroup["insert"] = []
+                        currAutomationGroup["insert_multiple"] = False
                         for self.columnIndex in range(1, len(worksheet.iloc[self.rowIndex, :])):
                             cellString = xstr(worksheet.iloc[self.rowIndex, self.columnIndex]).strip()
                             if re.match('\s*#multiple\s*=\s*[Tt]rue\s*$', cellString):
-                                currTaggingGroup["insert_multiple"] = True
+                                currAutomationGroup["insert_multiple"] = True
                             elif re.match('\s*#multiple\s*=\s*[Ff]alse\s*$', cellString):
-                                currTaggingGroup["insert_multiple"] = False
+                                currAutomationGroup["insert_multiple"] = False
 
                     endTagFound = False
                     while self.rowIndex < len(aColumn)-1:
@@ -1646,7 +1647,7 @@ class TagParser(object):
                         if re.match('#end$', xstr(aColumn.iloc[self.rowIndex]).strip()):
                             endTagFound = True
                             break
-                        currTaggingGroup["insert"].append([xstr(worksheet.iloc[self.rowIndex, self.columnIndex]).strip() for self.columnIndex in range(0, len(worksheet.iloc[self.rowIndex, :]))])
+                        currAutomationGroup["insert"].append([xstr(worksheet.iloc[self.rowIndex, self.columnIndex]).strip() for self.columnIndex in range(0, len(worksheet.iloc[self.rowIndex, :]))])
 
                     if not endTagFound:
                         raise TagParserError("Missing #end tag", self.fileName, self.sheetName, self.rowIndex, self.columnIndex)
@@ -1659,9 +1660,9 @@ class TagParser(object):
 
                     if headerValue not in usedHeaders:
                         usedHeaders.add(headerValue)
-                        currTaggingGroup["header_tag_descriptions"].append({ "header" : headerValue, "tag" : newTagValue, "required" : localRequired })
+                        currAutomationGroup["header_tag_descriptions"].append({ "header" : headerValue, "tag" : newTagValue, "required" : localRequired })
                     elif not silent:
-                        print(TagParserError("Warning: duplicate header description provided in tagging directive", self.fileName, self.sheetName, self.rowIndex, self.columnIndex), file=sys.stderr)
+                        print(TagParserError("Warning: duplicate header description provided in automation directive", self.fileName, self.sheetName, self.rowIndex, self.columnIndex), file=sys.stderr)
             except TagParserError as err:
                 print(err.value, file=sys.stderr)
                 exit(1)
@@ -1673,11 +1674,11 @@ class TagParser(object):
             self.rowIndex += 1
 
         ## I'm not sure what this was testing for, presumably empty directives need to be removed.
-#        if self.taggingDirectives and not self.taggingDirectives[-1]["header_tag_descriptions"]:
-#            self.taggingDirectives.pop()
+#        if self.automationDirectives and not self.automationDirectives[-1]["header_tag_descriptions"]:
+#            self.automationDirectives.pop()
         
         ## Only keep non empty directives.
-        self.taggingDirectives = [directive for directive in self.taggingDirectives if "header_tag_descriptions" in directive and directive["header_tag_descriptions"] or not "header_tag_descriptions" in directive]
+        self.automationDirectives = [directive for directive in self.automationDirectives if "header_tag_descriptions" in directive and directive["header_tag_descriptions"] or not "header_tag_descriptions" in directive]
         
 
         self.rowIndex = -1
@@ -1687,7 +1688,7 @@ class TagParser(object):
         
         Args:
             source: file path with sheetname if appropriate.
-            directiveType: either "conversion" or "tagging" to call the correct parsing function.
+            directiveType: either "modification" or "automation" to call the correct parsing function.
             isDefaultSearch: whether or not the source is using default values, passed to loadSheet for message printing.
         
         Returns:
@@ -1706,27 +1707,27 @@ class TagParser(object):
         elif TagParser.hasFileExtension(source):
             dataFrameTuple = TagParser.loadSheet(source, isDefaultSearch)
             if dataFrameTuple != None:
-                if directiveType == "conversion":
-                    self.conversionDirectives = {}
-                    self._parseConversionSheet(*dataFrameTuple)
-                    directives = self.conversionDirectives
+                if directiveType == "modification":
+                    self.modificationDirectives = {}
+                    self._parseModificationSheet(*dataFrameTuple)
+                    directives = self.modificationDirectives
                 else:
-                    self.taggingDirectives = []
-                    self._parseTaggingSheet(*dataFrameTuple)
-                    directives = copy.deepcopy(self.taggingDirectives)
+                    self.automationDirectives = []
+                    self._parseAutomationSheet(*dataFrameTuple)
+                    directives = copy.deepcopy(self.automationDirectives)
 
         return directives
 
-    def _applyConversionDirectives(self, record: dict, recordPath: str, conversions: dict):
-        """Apply conversion directives to the given record.
+    def _applyModificationDirectives(self, record: dict, recordPath: str, modifications: dict):
+        """Apply modification directives to the given record.
         
         Args:
             record: a record from self.extraction extracted from metadata.
             recordPath: the path to the record in self.extraction, used for printing warning messages.
-            conversions: the conversions to apply to the record.
+            modifications: the modifications to apply to the record.
         """
-        if "assign" in conversions:
-            for newField, newValue in conversions["assign"].items():
+        if "assign" in modifications:
+            for newField, newValue in modifications["assign"].items():
                 if type(newValue) == Evaluator:
                     if newValue.hasRequiredFields(record):
                         newValueForRecord = newValue.evaluate(record)
@@ -1754,20 +1755,20 @@ class TagParser(object):
                 if newField in record:
                     fieldPath = recordPath + newField
                     if fieldPath in self.changedRecords:
-                        if (("assign" == self.changedRecords[fieldPath]["previous_conversion_type"] and self.changedRecords[fieldPath]["previous_conversion_value"] != record[newField]) or\
-                           "append" == self.changedRecords[fieldPath]["previous_conversion_type"] or \
-                           "prepend" == self.changedRecords[fieldPath]["previous_conversion_type"] or\
-                           "regex" == self.changedRecords[fieldPath]["previous_conversion_type"] or \
-                           "delete" == self.changedRecords[fieldPath]["previous_conversion_type"]) and not silent:
-                            print("Warning: \"" + newField + "\" in record, " + recordPath + ", was assigned a new value after previously being modified by a different conversion directive.", file=sys.stderr)
+                        if (("assign" == self.changedRecords[fieldPath]["previous_modification_type"] and self.changedRecords[fieldPath]["previous_modification_value"] != record[newField]) or\
+                           "append" == self.changedRecords[fieldPath]["previous_modification_type"] or \
+                           "prepend" == self.changedRecords[fieldPath]["previous_modification_type"] or\
+                           "regex" == self.changedRecords[fieldPath]["previous_modification_type"] or \
+                           "delete" == self.changedRecords[fieldPath]["previous_modification_type"]) and not silent:
+                            print("Warning: \"" + newField + "\" in record, " + recordPath + ", was assigned a new value after previously being modified by a different modification directive.", file=sys.stderr)
                     else:
                         self.changedRecords[fieldPath] = {}
                     
-                    self.changedRecords[fieldPath]["previous_conversion_type"] = "assign"
-                    self.changedRecords[fieldPath]["previous_conversion_value"] = record[newField]
+                    self.changedRecords[fieldPath]["previous_modification_type"] = "assign"
+                    self.changedRecords[fieldPath]["previous_modification_value"] = record[newField]
 
-        if "append" in conversions:
-            for newField, newValue in conversions["append"].items():
+        if "append" in modifications:
+            for newField, newValue in modifications["append"].items():
                 if newField not in record and type(newValue) == list:
                     record[newField] = newValue.copy()
                 elif newField not in record and type(newValue) != list:
@@ -1786,16 +1787,16 @@ class TagParser(object):
                     
                 fieldPath = recordPath + newField
                 if fieldPath in self.changedRecords:
-                    if "delete" == self.changedRecords[fieldPath]["previous_conversion_type"] and not silent:
-                        print("Warning: The field, \"" + newField + "\", in record, " + recordPath + ", was deleted before being appended to by a different conversion directive.", file=sys.stderr)
+                    if "delete" == self.changedRecords[fieldPath]["previous_modification_type"] and not silent:
+                        print("Warning: The field, \"" + newField + "\", in record, " + recordPath + ", was deleted before being appended to by a different modification directive.", file=sys.stderr)
                 else:
                     self.changedRecords[fieldPath] = {}
                 
-                self.changedRecords[fieldPath]["previous_conversion_type"] = "append"
-                self.changedRecords[fieldPath]["previous_conversion_value"] = record[newField]
+                self.changedRecords[fieldPath]["previous_modification_type"] = "append"
+                self.changedRecords[fieldPath]["previous_modification_value"] = record[newField]
 
-        if "prepend" in conversions:
-            for newField, newValue in conversions["prepend"].items():
+        if "prepend" in modifications:
+            for newField, newValue in modifications["prepend"].items():
                 if newField not in record and type(newValue) == list:
                     record[newField] = newValue.copy()
                 elif newField not in record and type(newValue) != list:
@@ -1814,16 +1815,16 @@ class TagParser(object):
                     
                 fieldPath = recordPath + newField
                 if fieldPath in self.changedRecords:
-                    if "delete" == self.changedRecords[fieldPath]["previous_conversion_type"] and not silent:
-                        print("Warning: The field, \"" + newField + "\", in record, " + recordPath + ", was deleted before being prepended to by a different conversion directive.", file=sys.stderr)
+                    if "delete" == self.changedRecords[fieldPath]["previous_modification_type"] and not silent:
+                        print("Warning: The field, \"" + newField + "\", in record, " + recordPath + ", was deleted before being prepended to by a different modification directive.", file=sys.stderr)
                 else:
                     self.changedRecords[fieldPath] = {}
                 
-                self.changedRecords[fieldPath]["previous_conversion_type"] = "prepend"
-                self.changedRecords[fieldPath]["previous_conversion_value"] = record[newField]
+                self.changedRecords[fieldPath]["previous_modification_type"] = "prepend"
+                self.changedRecords[fieldPath]["previous_modification_value"] = record[newField]
 
-        if "regex" in conversions:
-            for newField, regexPair in conversions["regex"].items():
+        if "regex" in modifications:
+            for newField, regexPair in modifications["regex"].items():
                 fieldInRecord = True
                 if newField not in record:
                     fieldInRecord = False
@@ -1841,42 +1842,42 @@ class TagParser(object):
                             
                 fieldPath = recordPath + newField
                 if fieldPath in self.changedRecords:
-                    if "delete" == self.changedRecords[fieldPath]["previous_conversion_type"] and not silent:
-                        print("Warning: The field, \"" + newField + "\", in record, " + recordPath + ", was deleted by a conversion directive before attempting to be modified by a regex conversion directive.", file=sys.stderr)
-                    if "assign" == self.changedRecords[fieldPath]["previous_conversion_type"] and not silent:
-                        print("Warning: The field, \"" + newField + "\", in record, " + recordPath + ", had a regex substitution applied after previously being assigned a new value by an assignment conversion directive.", file=sys.stderr)
+                    if "delete" == self.changedRecords[fieldPath]["previous_modification_type"] and not silent:
+                        print("Warning: The field, \"" + newField + "\", in record, " + recordPath + ", was deleted by a modification directive before attempting to be modified by a regex modification directive.", file=sys.stderr)
+                    if "assign" == self.changedRecords[fieldPath]["previous_modification_type"] and not silent:
+                        print("Warning: The field, \"" + newField + "\", in record, " + recordPath + ", had a regex substitution applied after previously being assigned a new value by an assignment modification directive.", file=sys.stderr)
                 elif fieldInRecord:
                     self.changedRecords[fieldPath] = {}
                 
                 if fieldInRecord:
-                    self.changedRecords[fieldPath]["previous_conversion_type"] = "regex"
-                    self.changedRecords[fieldPath]["previous_conversion_value"] = record[newField]
+                    self.changedRecords[fieldPath]["previous_modification_type"] = "regex"
+                    self.changedRecords[fieldPath]["previous_modification_value"] = record[newField]
 
-        if "delete" in conversions:
-            for deletedField in conversions["delete"]:
+        if "delete" in modifications:
+            for deletedField in modifications["delete"]:
                 record.pop(deletedField, None)
                 
                 fieldPath = recordPath + deletedField
                 if fieldPath in self.changedRecords:
-                    if ("assign" == self.changedRecords[fieldPath]["previous_conversion_type"] or\
-                       "append" == self.changedRecords[fieldPath]["previous_conversion_type"] or \
-                       "prepend" == self.changedRecords[fieldPath]["previous_conversion_type"] or\
-                       "regex" == self.changedRecords[fieldPath]["previous_conversion_type"] or\
-                       "rename" == self.changedRecords[fieldPath]["previous_conversion_type"]) and not silent:
-                        print("Warning: The field, \"" + deletedField + "\", in record, " + recordPath + ", was deleted after previously being modified by a different conversion directive.", file=sys.stderr)
+                    if ("assign" == self.changedRecords[fieldPath]["previous_modification_type"] or\
+                       "append" == self.changedRecords[fieldPath]["previous_modification_type"] or \
+                       "prepend" == self.changedRecords[fieldPath]["previous_modification_type"] or\
+                       "regex" == self.changedRecords[fieldPath]["previous_modification_type"] or\
+                       "rename" == self.changedRecords[fieldPath]["previous_modification_type"]) and not silent:
+                        print("Warning: The field, \"" + deletedField + "\", in record, " + recordPath + ", was deleted after previously being modified by a different modification directive.", file=sys.stderr)
                 else:
                     self.changedRecords[fieldPath] = {}
                 
-                self.changedRecords[fieldPath]["previous_conversion_type"] = "delete"
-                self.changedRecords[fieldPath]["previous_conversion_value"] = ""
+                self.changedRecords[fieldPath]["previous_modification_type"] = "delete"
+                self.changedRecords[fieldPath]["previous_modification_value"] = ""
 
-        if "rename" in conversions:
-            for oldField,newField in conversions["rename"].items():
+        if "rename" in modifications:
+            for oldField,newField in modifications["rename"].items():
                 fieldInRecord = False
                 if oldField in record:
                     
                     if newField in record:
-                        print("Warning: A conversion directive has renamed the field \"" + oldField + "\" to \"" + newField + "\" for record " + recordPath + ", but \"" + newField + "\" already existed in the record, so its value was overwritten.", file=sys.stderr)
+                        print("Warning: A modification directive has renamed the field \"" + oldField + "\" to \"" + newField + "\" for record " + recordPath + ", but \"" + newField + "\" already existed in the record, so its value was overwritten.", file=sys.stderr)
 
                     fieldInRecord = True
                     record[newField] = record[oldField]
@@ -1886,34 +1887,34 @@ class TagParser(object):
                 if not fieldInRecord:
                     fieldPath = recordPath + oldField
                     if fieldPath in self.changedRecords:
-                        if "delete" == self.changedRecords[fieldPath]["previous_conversion_type"] and not silent:
-                            print("Warning: The field, \"" + oldField + "\", in record, " + recordPath + ", was deleted by a conversion directive, and then a different conversion directive attempted to rename it, but it no longer exists.", file=sys.stderr)
+                        if "delete" == self.changedRecords[fieldPath]["previous_modification_type"] and not silent:
+                            print("Warning: The field, \"" + oldField + "\", in record, " + recordPath + ", was deleted by a modification directive, and then a different modification directive attempted to rename it, but it no longer exists.", file=sys.stderr)
                 else:
                     fieldPath = recordPath + newField
                     if fieldPath in self.changedRecords:
-                        if "delete" == self.changedRecords[fieldPath]["previous_conversion_type"] and not silent:
-                            print("Warning: The field, \"" + newField + "\", in record, " + recordPath + ", was deleted by a conversion directive, but then a rename directive created it again from a different field.", file=sys.stderr)
+                        if "delete" == self.changedRecords[fieldPath]["previous_modification_type"] and not silent:
+                            print("Warning: The field, \"" + newField + "\", in record, " + recordPath + ", was deleted by a modification directive, but then a rename directive created it again from a different field.", file=sys.stderr)
                     else:
                         self.changedRecords[fieldPath] = {}
                 
-                    self.changedRecords[fieldPath]["previous_conversion_type"] = "rename"
-                    self.changedRecords[fieldPath]["previous_conversion_value"] = record[newField]
+                    self.changedRecords[fieldPath]["previous_modification_type"] = "rename"
+                    self.changedRecords[fieldPath]["previous_modification_value"] = record[newField]
                     
                     ## not sure if the old field that was removed should be added or not.
                     # if recordPath + oldField not in self.changedRecords:
                     #     self.changedRecords[recordPath + oldField] = {}
                     
-                    # self.changedRecords[recordPath + oldField]["previous_conversion_type"] = "rename"
-                    # self.changedRecords[recordPath + oldField]["previous_conversion_value"] = record[newField]
+                    # self.changedRecords[recordPath + oldField]["previous_modification_type"] = "rename"
+                    # self.changedRecords[recordPath + oldField]["previous_modification_value"] = record[newField]
 
 
-    def _applyExactConversionDirectives(self, tableKey: str, fieldKey: str, conversionDirectives: dict):
-        """Tests and applies exact conversion directives
+    def _applyExactModificationDirectives(self, tableKey: str, fieldKey: str, modificationDirectives: dict):
+        """Tests and applies exact modification directives
         
         Args:
-            tableKey: table key in conversionDirectives to get to the conversion to apply.
-            fieldKey: field key in conversionDirectives to get to the conversion to apply.
-            conversionDirectives: contains the conversions to apply.
+            tableKey: table key in modificationDirectives to get to the modification to apply.
+            fieldKey: field key in modificationDirectives to get to the modification to apply.
+            modificationDirectives: contains the modifications to apply.
         """
         comparisonTypes = ["exact-first", "exact-first-nowarn", "exact-unique", "exact-all"]
         firstTypes = ["exact-first", "exact-first-nowarn"]
@@ -1930,21 +1931,21 @@ class TagParser(object):
         
             matchedFieldValues = {}
     
-            if comparisonType in conversionDirectives[tableKey][fieldKey]:
+            if comparisonType in modificationDirectives[tableKey][fieldKey]:
                 table = self.extraction[tableKey]
                 for idKey, record in table.items():
                     if fieldKey in record:
                         fieldValue = record[fieldKey]
                         if type(fieldValue) == list:
                             for specificValue in fieldValue:
-                                if specificValue in conversionDirectives[tableKey][fieldKey][comparisonType]:
+                                if specificValue in modificationDirectives[tableKey][fieldKey][comparisonType]:
                                     if isFirst:
                                         if specificValue not in matchedFieldValues:
-                                            self._applyConversionDirectives(record, tableKey + "[" + idKey + "]", conversionDirectives[tableKey][fieldKey][comparisonType][specificValue])
+                                            self._applyModificationDirectives(record, tableKey + "[" + idKey + "]", modificationDirectives[tableKey][fieldKey][comparisonType][specificValue])
                                             matchedFieldValues[specificValue] = {"idKey":idKey, "numberOfMatches":1}
-                                            self.usedConversions.add((tableKey, fieldKey, comparisonType, specificValue))
+                                            self.usedModifications.add((tableKey, fieldKey, comparisonType, specificValue))
                                         elif comparisonType == "exact-first" and not silent:
-                                            print("Warning: conversion directive #" + tableKey + "." + fieldKey + "." + comparisonType + "." + specificValue + " matches more than one record. Only the first record will be changed. Try #match=all if all matching records should be changed, or #match=first-nowarn to silence this message.", file=sys.stderr)
+                                            print("Warning: modification directive #" + tableKey + "." + fieldKey + "." + comparisonType + "." + specificValue + " matches more than one record. Only the first record will be changed. Try #match=all if all matching records should be changed, or #match=first-nowarn to silence this message.", file=sys.stderr)
                                     
                                     elif isUnique:
                                         if specificValue not in matchedFieldValues:
@@ -1953,17 +1954,17 @@ class TagParser(object):
                                             matchedFieldValues[specificValue]["numberOfMatches"] += 1
                                             
                                     else:
-                                        self._applyConversionDirectives(record, tableKey + "[" + idKey + "]", conversionDirectives[tableKey][fieldKey][comparisonType][specificValue])
-                                        self.usedConversions.add((tableKey, fieldKey, comparisonType, specificValue))
+                                        self._applyModificationDirectives(record, tableKey + "[" + idKey + "]", modificationDirectives[tableKey][fieldKey][comparisonType][specificValue])
+                                        self.usedModifications.add((tableKey, fieldKey, comparisonType, specificValue))
                         
-                        elif fieldValue in conversionDirectives[tableKey][fieldKey][comparisonType]:
+                        elif fieldValue in modificationDirectives[tableKey][fieldKey][comparisonType]:
                             if isFirst:
                                 if fieldValue not in matchedFieldValues:
-                                    self._applyConversionDirectives(record, tableKey + "[" + idKey + "]", conversionDirectives[tableKey][fieldKey][comparisonType][fieldValue])
+                                    self._applyModificationDirectives(record, tableKey + "[" + idKey + "]", modificationDirectives[tableKey][fieldKey][comparisonType][fieldValue])
                                     matchedFieldValues[fieldValue] = {"idKey":idKey, "numberOfMatches":1}
-                                    self.usedConversions.add((tableKey, fieldKey, comparisonType, fieldValue))
+                                    self.usedModifications.add((tableKey, fieldKey, comparisonType, fieldValue))
                                 elif comparisonType == "exact-first" and not silent:
-                                    print("Warning: conversion directive #" + tableKey + "." + fieldKey + "." + comparisonType + "." + fieldValue + " matches more than one record. Only the first record will be changed. Try #match=all if all matching records should be changed, or #match=first-nowarn to silence this message.", file=sys.stderr)
+                                    print("Warning: modification directive #" + tableKey + "." + fieldKey + "." + comparisonType + "." + fieldValue + " matches more than one record. Only the first record will be changed. Try #match=all if all matching records should be changed, or #match=first-nowarn to silence this message.", file=sys.stderr)
                             
                             elif isUnique:
                                 if fieldValue not in matchedFieldValues:
@@ -1972,25 +1973,25 @@ class TagParser(object):
                                     matchedFieldValues[fieldValue]["numberOfMatches"] += 1
                                     
                             else:
-                                self._applyConversionDirectives(record, tableKey + "[" + idKey + "]", conversionDirectives[tableKey][fieldKey][comparisonType][fieldValue])
-                                self.usedConversions.add((tableKey, fieldKey, comparisonType, fieldValue))
+                                self._applyModificationDirectives(record, tableKey + "[" + idKey + "]", modificationDirectives[tableKey][fieldKey][comparisonType][fieldValue])
+                                self.usedModifications.add((tableKey, fieldKey, comparisonType, fieldValue))
 
                 if isUnique:
                     for fieldValue, attributes in matchedFieldValues.items():
                         if attributes["numberOfMatches"] == 1:
-                            self._applyConversionDirectives(table[attributes["idKey"]], tableKey + "[" + attributes["idKey"] + "]", conversionDirectives[tableKey][fieldKey][comparisonType][fieldValue])
-                            self.usedConversions.add((tableKey, fieldKey, comparisonType, fieldValue))
+                            self._applyModificationDirectives(table[attributes["idKey"]], tableKey + "[" + attributes["idKey"] + "]", modificationDirectives[tableKey][fieldKey][comparisonType][fieldValue])
+                            self.usedModifications.add((tableKey, fieldKey, comparisonType, fieldValue))
 
 
 
 
-    def _applyRegexConversionDirectives(self, tableKey: str, fieldKey: str, conversionDirectives: dict, regexObjects: dict):
-        """Tests and applies regular expression conversion directives.
+    def _applyRegexModificationDirectives(self, tableKey: str, fieldKey: str, modificationDirectives: dict, regexObjects: dict):
+        """Tests and applies regular expression modification directives.
 
         Args:
-            tableKey: table key in conversionDirectives to get to the conversion to apply.
-            fieldKey: field key in conversionDirectives to get to the conversion to apply.
-            conversionDirectives: contains the conversions to apply.
+            tableKey: table key in modificationDirectives to get to the modification to apply.
+            fieldKey: field key in modificationDirectives to get to the modification to apply.
+            modificationDirectives: contains the modifications to apply.
             regexObjects: mapping of the regex string in the directives to their compiled objects.
         """
         comparisonTypes = ["regex-first", "regex-first-nowarn", "regex-unique", "regex-all"]
@@ -2008,22 +2009,22 @@ class TagParser(object):
         
             matchedRegexIDs = {}
                     
-            if comparisonType in conversionDirectives[tableKey][fieldKey]:
+            if comparisonType in modificationDirectives[tableKey][fieldKey]:
                 table = self.extraction[tableKey]
                 for idKey, record in table.items():
                     if fieldKey in record:
                         fieldValue = record[fieldKey]
-                        for regexID, regexEntry in conversionDirectives[tableKey][fieldKey][comparisonType].items():
+                        for regexID, regexEntry in modificationDirectives[tableKey][fieldKey][comparisonType].items():
                             if type(fieldValue) == list:
                                 for specificValue in fieldValue:
                                     if re.search(regexObjects[regexID], specificValue):
                                         if isFirst:
                                             if regexID not in matchedRegexIDs:
-                                                self._applyConversionDirectives(record, tableKey + "[" + idKey + "]", regexEntry)
+                                                self._applyModificationDirectives(record, tableKey + "[" + idKey + "]", regexEntry)
                                                 matchedRegexIDs[regexID] = {"idKey":idKey, "numberOfMatches":1}
-                                                self.usedConversions.add((tableKey, fieldKey, comparisonType, regexID))
+                                                self.usedModifications.add((tableKey, fieldKey, comparisonType, regexID))
                                             elif comparisonType == "regex-first" and not silent:
-                                                print("Warning: conversion directive #" + tableKey + "." + fieldKey + "." + comparisonType + "." + regexID + " matches more than one record. Only the first record will be changed. Try #match=all if all matching records should be changed, or #match=first-nowarn to silence this message.", file=sys.stderr)
+                                                print("Warning: modification directive #" + tableKey + "." + fieldKey + "." + comparisonType + "." + regexID + " matches more than one record. Only the first record will be changed. Try #match=all if all matching records should be changed, or #match=first-nowarn to silence this message.", file=sys.stderr)
                                         
                                         elif isUnique:
                                             if regexID not in matchedRegexIDs:
@@ -2032,17 +2033,17 @@ class TagParser(object):
                                                 matchedRegexIDs[regexID]["numberOfMatches"] += 1
                                                 
                                         else:
-                                            self._applyConversionDirectives(record, tableKey + "[" + idKey + "]", regexEntry)
-                                            self.usedConversions.add((tableKey, fieldKey, comparisonType, regexID))
+                                            self._applyModificationDirectives(record, tableKey + "[" + idKey + "]", regexEntry)
+                                            self.usedModifications.add((tableKey, fieldKey, comparisonType, regexID))
                                                                     
                             elif re.search(regexObjects[regexID], fieldValue):
                                 if isFirst:
                                     if regexID not in matchedRegexIDs:
-                                        self._applyConversionDirectives(record, tableKey + "[" + idKey + "]", regexEntry)
+                                        self._applyModificationDirectives(record, tableKey + "[" + idKey + "]", regexEntry)
                                         matchedRegexIDs[regexID] = {"idKey":idKey, "numberOfMatches":1}
-                                        self.usedConversions.add((tableKey, fieldKey, comparisonType, regexID))
+                                        self.usedModifications.add((tableKey, fieldKey, comparisonType, regexID))
                                     elif comparisonType == "regex-first" and not silent:
-                                        print("Warning: conversion directive #" + tableKey + "." + fieldKey + "." + comparisonType + "." + regexID + " matches more than one record. Only the first record will be changed. Try #match=all if all matching records should be changed, or #match=first-nowarn to silence this message.", file=sys.stderr)
+                                        print("Warning: modification directive #" + tableKey + "." + fieldKey + "." + comparisonType + "." + regexID + " matches more than one record. Only the first record will be changed. Try #match=all if all matching records should be changed, or #match=first-nowarn to silence this message.", file=sys.stderr)
                                 
                                 elif isUnique:
                                     if regexID not in matchedRegexIDs:
@@ -2051,24 +2052,24 @@ class TagParser(object):
                                         matchedRegexIDs[regexID]["numberOfMatches"] += 1
                                         
                                 else:
-                                    self._applyConversionDirectives(record, tableKey + "[" + idKey + "]", regexEntry)
-                                    self.usedConversions.add((tableKey, fieldKey, comparisonType, regexID))
+                                    self._applyModificationDirectives(record, tableKey + "[" + idKey + "]", regexEntry)
+                                    self.usedModifications.add((tableKey, fieldKey, comparisonType, regexID))
                     
                 if isUnique:
                     for regexID, attributes in matchedRegexIDs.items():
                         if attributes["numberOfMatches"] == 1:
-                            self._applyConversionDirectives(table[attributes["idKey"]], tableKey + "[" + attributes["idKey"] + "]", conversionDirectives[tableKey][fieldKey][comparisonType][regexID])
-                            self.usedConversions.add((tableKey, fieldKey, comparisonType, regexID))
+                            self._applyModificationDirectives(table[attributes["idKey"]], tableKey + "[" + attributes["idKey"] + "]", modificationDirectives[tableKey][fieldKey][comparisonType][regexID])
+                            self.usedModifications.add((tableKey, fieldKey, comparisonType, regexID))
 
 
 
-    def _applyLevenshteinConversionDirectives(self, tableKey: str, fieldKey: str, conversionDirectives: dict):
-        """Tests and applies levenshtein conversion directives.
+    def _applyLevenshteinModificationDirectives(self, tableKey: str, fieldKey: str, modificationDirectives: dict):
+        """Tests and applies levenshtein modification directives.
 
         Args:
-            tableKey: table key in conversionDirectives to get to the conversion to apply.
-            fieldKey: field key in conversionDirectives to get to the conversion to apply.
-            conversionDirectives: contains the conversions to apply.
+            tableKey: table key in modificationDirectives to get to the modification to apply.
+            fieldKey: field key in modificationDirectives to get to the modification to apply.
+            modificationDirectives: contains the modifications to apply.
         """
         comparisonTypes = ["levenshtein-first", "levenshtein-first-nowarn", "levenshtein-unique", "levenshtein-all"]
         firstTypes = ["levenshtein-first", "levenshtein-first-nowarn"]
@@ -2083,10 +2084,10 @@ class TagParser(object):
             else:
                 isFirst=False
         
-            if comparisonType in conversionDirectives[tableKey][fieldKey]:
+            if comparisonType in modificationDirectives[tableKey][fieldKey]:
                 levenshteinComparisons = collections.defaultdict(dict)
                 levenshteinComparisonValues = collections.defaultdict(dict)
-                for levID, levEntry in conversionDirectives[tableKey][fieldKey][comparisonType].items():
+                for levID, levEntry in modificationDirectives[tableKey][fieldKey][comparisonType].items():
                     for idKey, record in self.extraction[tableKey].items():
                         if fieldKey in record:
                             ## If the comparison field is a list field then calculate the distance between all values in the list and use the smallest for comparison.
@@ -2121,7 +2122,7 @@ class TagParser(object):
                         idKeysThatHaveMinValue = [idKey for idKey in levenshteinComparisons[levID] if levenshteinComparisons[levID][idKey] == minIDValue]
                         uniqueForLevenshteinID[levID] = idKeysThatHaveMinValue[0]
                         if comparisonType == "levenshtein-first" and len(idKeysThatHaveMinValue) > 1 and not silent:
-                            print("Warning: conversion directive #" + tableKey + "." + fieldKey + "." + comparisonType + "." + levID + " matches more than one record. Only the first record will be changed. Try #match=all if all matching records should be changed, or #match=first-nowarn to silence this message.", file=sys.stderr)
+                            print("Warning: modification directive #" + tableKey + "." + fieldKey + "." + comparisonType + "." + levID + " matches more than one record. Only the first record will be changed. Try #match=all if all matching records should be changed, or #match=first-nowarn to silence this message.", file=sys.stderr)
                             
                     elif isUnique:
                         if sum(levenshteinComparisons[levID][idKey] == minIDValue for idKey in levenshteinComparisons[levID]) == 1:
@@ -2133,45 +2134,45 @@ class TagParser(object):
 
                 
                 if isFirst or isUnique:
-                    for levID, levEntry in conversionDirectives[tableKey][fieldKey][comparisonType].items():
+                    for levID, levEntry in modificationDirectives[tableKey][fieldKey][comparisonType].items():
                         if levID in uniqueForLevenshteinID and uniqueForIdKey[uniqueForLevenshteinID[levID]] == levID:
-                            self._applyConversionDirectives(self.extraction[tableKey][uniqueForLevenshteinID[levID]], tableKey + "[" + uniqueForLevenshteinID[levID] + "]", levEntry)
-                            self.usedConversions.add((tableKey, fieldKey, comparisonType, levID))
+                            self._applyModificationDirectives(self.extraction[tableKey][uniqueForLevenshteinID[levID]], tableKey + "[" + uniqueForLevenshteinID[levID] + "]", levEntry)
+                            self.usedModifications.add((tableKey, fieldKey, comparisonType, levID))
                 else:
-                    for levID, levEntry in conversionDirectives[tableKey][fieldKey][comparisonType].items():
+                    for levID, levEntry in modificationDirectives[tableKey][fieldKey][comparisonType].items():
                         if levID in uniqueForLevenshteinID:
                             for idKey in uniqueForLevenshteinID[levID]:
-                                self._applyConversionDirectives(self.extraction[tableKey][idKey], tableKey + "[" + idKey + "]", levEntry)
-                                self.usedConversions.add((tableKey, fieldKey, comparisonType, levID))
+                                self._applyModificationDirectives(self.extraction[tableKey][idKey], tableKey + "[" + idKey + "]", levEntry)
+                                self.usedModifications.add((tableKey, fieldKey, comparisonType, levID))
                 
                 
 
-    def convert(self, conversionDirectives: dict):
-        """Applies conversionDirectives to the extracted metadata.
+    def modify(self, modificationDirectives: dict):
+        """Applies modificationDirectives to the extracted metadata.
 
         Args:
-            conversionDirectives: contains the conversions to apply.
+            modificationDirectives: contains the modifications to apply.
         """
-        self.conversionDirectives = conversionDirectives
-        if conversionDirectives != None:
-            conversionDirectives = copy.deepcopy(conversionDirectives) # Must make deepcopy since regex objects being embedded.
+        self.modificationDirectives = modificationDirectives
+        if modificationDirectives != None:
+            modificationDirectives = copy.deepcopy(modificationDirectives) # Must make deepcopy since regex objects being embedded.
 
-            if getattr(self,"unusedConversions", None) is None:
-                self.unusedConversions = set()
+            if getattr(self,"unusedModifications", None) is None:
+                self.unusedModifications = set()
 
-            if getattr(self,"usedConversions", None) is None:
-                self.usedConversions = set()
+            if getattr(self,"usedModifications", None) is None:
+                self.usedModifications = set()
                 
             # Compile regex objects for comparison.
             regexObjects = {}
-            for tableDict in conversionDirectives.values():
+            for tableDict in modificationDirectives.values():
                 for fieldDict in tableDict.values():
                     for regex_type in ["regex-first", "regex-first-nowarn", "regex-unique", "regex-all"]:
                         if regex_type in fieldDict:
                             regexObjects.update({ regexString : re.compile(re.match(TagParser.reDetector, regexString)[1]) for regexString in  fieldDict[regex_type].keys()})
             
             # Compile regex objects for regex substitution directives.
-            for tableDict in conversionDirectives.values():
+            for tableDict in modificationDirectives.values():
                 for fieldDict in tableDict.values():
                     for comparisonTypeDict in fieldDict.values():
                         for fieldValueDict in comparisonTypeDict.values():
@@ -2180,7 +2181,7 @@ class TagParser(object):
                                                             for newField,regexPair in fieldValueDict["regex"].items() }
 
             # Create Evaluator objects for assign directives with "eval(...)" values.
-            for tableDict in conversionDirectives.values():
+            for tableDict in modificationDirectives.values():
                 for fieldDict in tableDict.values():
                     for comparisonTypeDict in fieldDict.values():
                         for fieldValueDict in comparisonTypeDict.values():
@@ -2190,13 +2191,13 @@ class TagParser(object):
                                         fieldValueDict["assign"][newField] = Evaluator(reMatch.group(1))
 
             self.changedRecords = {}
-            for tableKey in conversionDirectives.keys():
+            for tableKey in modificationDirectives.keys():
                 if tableKey in self.extraction:
-                    for fieldKey in conversionDirectives[tableKey].keys():
+                    for fieldKey in modificationDirectives[tableKey].keys():
                         ## These functions ultimately modify records in self.extraction.
-                        self._applyExactConversionDirectives(tableKey, fieldKey, conversionDirectives)
-                        self._applyRegexConversionDirectives(tableKey, fieldKey, conversionDirectives, regexObjects)
-                        self._applyLevenshteinConversionDirectives(tableKey, fieldKey, conversionDirectives)
+                        self._applyExactModificationDirectives(tableKey, fieldKey, modificationDirectives)
+                        self._applyRegexModificationDirectives(tableKey, fieldKey, modificationDirectives, regexObjects)
+                        self._applyLevenshteinModificationDirectives(tableKey, fieldKey, modificationDirectives)
 
             # Identify changed IDs.
 #            idTranslation = collections.defaultdict(dict)
@@ -2221,19 +2222,19 @@ class TagParser(object):
 
             for tableKey in self.extraction:
                 if len(self.extraction[tableKey]) > len(translated[tableKey]) and not silent:
-                    print("Warning: A conversion directive has set at least 2 records in the \"" + tableKey + "\" table to the same id. The output will have less records than expected.", file=sys.stderr)
+                    print("Warning: A modification directive has set at least 2 records in the \"" + tableKey + "\" table to the same id. The output will have less records than expected.", file=sys.stderr)
             
             self.extraction = translated
 
-            # Identify used and unused conversion directives.
-            for tableKey in conversionDirectives.keys():
-                for fieldKey in conversionDirectives[tableKey].keys():
-                    for comparisonType in conversionDirectives[tableKey][fieldKey]:
-                        for conversionID in conversionDirectives[tableKey][fieldKey][comparisonType]:
-                            if (tableKey, fieldKey, comparisonType, conversionID) not in self.usedConversions:
-                                self.unusedConversions.add((tableKey, fieldKey, comparisonType, conversionID))
-                            elif (tableKey, fieldKey, comparisonType, conversionID) in self.unusedConversions:
-                                self.unusedConversions.remove((tableKey, fieldKey, comparisonType, conversionID))
+            # Identify used and unused modification directives.
+            for tableKey in modificationDirectives.keys():
+                for fieldKey in modificationDirectives[tableKey].keys():
+                    for comparisonType in modificationDirectives[tableKey][fieldKey]:
+                        for modificationID in modificationDirectives[tableKey][fieldKey][comparisonType]:
+                            if (tableKey, fieldKey, comparisonType, modificationID) not in self.usedModifications:
+                                self.unusedModifications.add((tableKey, fieldKey, comparisonType, modificationID))
+                            elif (tableKey, fieldKey, comparisonType, modificationID) in self.unusedModifications:
+                                self.unusedModifications.remove((tableKey, fieldKey, comparisonType, modificationID))
 
     def merge(self, newMetadata: dict):
         """Merges new metadata with current metadata.

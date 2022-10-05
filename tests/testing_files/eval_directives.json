@@ -1,5 +1,5 @@
 {
-  "conversion": {
+  "modification": {
     "measurement": {
       "compound": {
         "exact": {
@@ -15,7 +15,7 @@
       }
     }
   },
-  "tagging": [
+  "automation": [
     {
       "insert": [
         [

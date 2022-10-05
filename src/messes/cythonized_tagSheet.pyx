@@ -131,7 +131,7 @@ def tagSheet(taggingDirectives, str[:,:] worksheet, silent):
                         else:
                             columnIndex2Header[columnIndeces[0]] = [headerString]
                     elif len(columnIndeces) > 1 and not silent:
-                        print("Warning: The header, " + headerString + ", in tagging group, " + str(i) + ", was matched to more than 1 column near or on row, " + str(rowIndex) + ", in the tagged export.", file=sys.stderr)
+                        print("Warning: The header, " + headerString + ", in automation group, " + str(i) + ", was matched to more than 1 column near or on row, " + str(rowIndex) + ", in the tagged export.", file=sys.stderr)
 
                 ## If 2 tests match to the same header it is not always a collision to be skipped.
                 ## The same header is not tagged twice

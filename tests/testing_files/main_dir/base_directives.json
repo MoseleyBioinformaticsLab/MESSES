@@ -1,21 +1,5 @@
 {
-  "conversion": {
-    "measurement": {
-      "compound": {
-        "exact-all": {
-          "(S)-2-Acetolactate_Glutaric acid_Methylsuccinic acid_MP_NoStd": {
-            "regex": {
-              "id": [
-                "r'\\(S\\)-2-Acetolactate_Glutaric acid_Methylsuccinic acid_MP_NoStd'",
-                "r'(S)-2-Acetolactate Glutaric acid Methylsuccinic acid'"
-              ]
-            }
-          }
-        }
-      }
-    }
-  },
-  "tagging": [
+  "automation": [
     {
       "insert": [
         [
@@ -103,7 +87,7 @@
         {
           "header": "SamplID",
           "required": true,
-          "tag": "#sample.id"
+          "tag": "#.sample.id"
         },
         {
           "header": "\"13C\"+C_isomers",
@@ -138,9 +122,25 @@
         {
           "header": "",
           "required": true,
-          "tag": "#protocol.id=ICMS1"
+          "tag": "#.protocol.id=ICMS1"
         }
       ]
     }
-  ]
+  ],
+  "modification": {
+    "measurement": {
+      "compound": {
+        "exact-all": {
+          "(S)-2-Acetolactate_Glutaric acid_Methylsuccinic acid_MP_NoStd": {
+            "regex": {
+              "id": [
+                "r'\\(S\\)-2-Acetolactate_Glutaric acid_Methylsuccinic acid_MP_NoStd'",
+                "r'(S)-2-Acetolactate Glutaric acid Methylsuccinic acid'"
+              ]
+            }
+          }
+        }
+      }
+    }
+  }
 }
