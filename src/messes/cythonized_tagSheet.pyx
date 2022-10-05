@@ -12,7 +12,7 @@ from extract import Evaluator, FieldMaker, TagParser, VariableOperand, LiteralOp
 COLUMN_ORDER_CONSTANT = 16000
 COLUMN_ORDER_CONSTANT_PLUS = COLUMN_ORDER_CONSTANT + 1
 
-headerSplitter = re.compile(r'[+]|(r?\"[^\"]*\"|r?\'[^\']*\')|\s+')
+headerSplitter = re.compile(r'[+]|(r?\"[^\"]*\"|r?\'[^\']*\')')
 def tagSheet(taggingDirectives, str[:,:] worksheet, silent):
     """Add tags to the worksheet using the given tagging directives.
 
@@ -72,7 +72,7 @@ def tagSheet(taggingDirectives, str[:,:] worksheet, silent):
                         requiredHeaders.update(headerTagDescription["header_tests"].keys())
                     newColumnHeaders.update(headerTagDescription["header_tests"].keys())
                 else:
-                    headerTagDescription["header_list"] = [ token for token in re.split(headerSplitter, headerTagDescription["header"]) if token != "" and token != None ]
+                    headerTagDescription["header_list"] = [strippedToken for token in re.split(headerSplitter, headerTagDescription["header"]) if token != None and (strippedToken := token.strip()) != ""]
                     headerTagDescription["header_tests"] = {}
                     fieldMaker = FieldMaker(headerTagDescription["header"])
                     for headerString in headerTagDescription["header_list"]:

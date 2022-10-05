@@ -1,14 +1,89 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
+"""
+Convert data to mwTab format.
+
+Usage:
+    messes convert mwtab -h | --help
+    messes convert mwtab <from-path> <analysis-type> [--to-path=<path>] [--protocol-id=<id>] [--config-file=<path>]
+
+Options:
+    -h, --help                      Show this screen.
+    -v, --version                   Show version.
+    --t, --to-path=<path>           Path for converted file to be outputted to.
+    --p, --protocol-id=<id>         Analysis protocol type of the data file.
+    --c, --config-file=<path>       Path to JSON configuration file.
+"""
+
 
 from datetime import date
 from collections import OrderedDict
 from typing import Optional
+from os.path import basename, dirname, exists, isdir, join, splitext
+from os import makedirs, walk
+import json
+
+import docopt
 
 import mwtab
 from messes import schema_mapping
 from messes.subject_sample_factors import create_subject_sample_factors_section, create_lineages, \
     create_local_sample_ids, get_parent
+from . import __version__
+from messes.fileio import read_files, open_json_file
+
+    
+
+def main():
+    """Parse the CLI and execute appropriate actions.
+    """
+    args = docopt.docopt(__doc__, version=__version__)
+    
+    # parse configuration keyword arguments, provided they are supplied
+    config_filepath = args.get("--config-file")
+    config_dict = {}
+    if config_filepath:
+        config_dict = open_json_file(config_filepath)
+
+    # used when converting directory full of files
+    if isdir(args["<from-path>"]):
+        (_, _, filenames) = next(walk(args["<from-path>"]))
+
+    # convert given file(s)
+    for count, internal_data in enumerate(read_files(args["<from-path>"])):
+        mwtabfile = convert(internal_data, args["<analysis-type>"], args.get("--protocol-id"), config_dict)
+
+        # save out converted file(s)
+        # ensure an results directory exists
+        results_dir = args.get("--to-path")
+        if not results_dir:
+            results_dir = "conversion_results/"
+        if not exists(dirname(results_dir)):
+            makedirs(dirname(results_dir))
+
+        if args.get("--to-path"):
+            if basename(args["--to-path"]):  # output path and filename are given
+                results_path = args["--to-path"]
+            else:
+                if basename(args["<from-path>"]):  # output path is given and input is single file
+                    results_path = join(args["--to-path"], "mwtab_{}".format(basename(args["<from-path>"])))
+                else:  # output path is given and input is directory
+                    results_path = join(args["--to-path"], "mwtab_{}".format(filenames[count]))
+        else:
+            if basename(args["<from-path>"]):  # input is single file
+                results_path = join(results_dir, "mwtab_{}".format(basename(args["<from-path>"])))
+            else:  # output path is given and input is directory
+                results_path = join(results_dir, "mwtab_{}".format(filenames[count]))
+
+        mwtab_json_fpath = "{}.json".format(splitext(results_path)[0])
+        mwtab_txt_fpath = "{}.txt".format(splitext(results_path)[0])
+        # save JSON
+        with open(mwtab_json_fpath, 'w', encoding="utf-8") as outfile:
+            json.dump(mwtabfile, outfile, indent=4)
+        # save mwTab (.txt)
+        with open(mwtab_txt_fpath, 'w', encoding="utf-8") as outfile:
+            mwfile = next(mwtab.read_files(mwtab_json_fpath))
+            mwfile.write(outfile, file_format="mwtab")
 
 
 def create_header(study_id: str ="ST000000", analysis_id: str ="AN000000", version: str ="1", created_on: str =str(date.today())) -> OrderedDict:

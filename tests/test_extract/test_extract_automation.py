@@ -646,3 +646,27 @@ def test_automation_tracking_list_test():
     
     assert output == ""
 
+
+
+def test_automation_spaces_in_header():
+    """Test that headers with spaces in them are matched without regex."""
+    
+    test_file = "automation_spaces_in_header_test.xlsx"
+    
+    command = "py -3.10 ../../../src/messes/extract.py ../" + test_file + " --output " + output_path.as_posix()
+    command = command.split(" ")
+    subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
+    output = subp.stderr
+
+    
+    assert output_path.exists()
+    
+    with open(output_path, "r") as f:
+        output_json = json.loads(f.read())
+        
+    with open(pathlib.Path("output_compare.json"), "r") as f:
+        output_compare_json = json.loads(f.read())
+        
+    assert output_json == output_compare_json
+            
+    assert output == ""

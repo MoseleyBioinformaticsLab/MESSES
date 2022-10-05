@@ -1,7 +1,6 @@
 #!/usr/bin/python3
 """ 
- extract_metadata.py
-    Extract SIRM metadata and data from excel workbook and JSON files.
+Extract data from Excel workbooks, csv files, and JSON files.
     
  Usage:
     extract <metadata_source>... [--delete <metadata_section>...] [options]

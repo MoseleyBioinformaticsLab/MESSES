@@ -8,6 +8,7 @@ The messes command-line interface
 Usage:
     messes -h | --help
     messes --version
+    messes extract
     messes convert <from-path> <analysis-type> [--to-path=<path>] [--protocol-id=<id>] [--config-file=<path>]
 
 Options:
