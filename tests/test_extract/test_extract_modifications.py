@@ -43,7 +43,7 @@ def test_modification_delete():
     
     test_file = "modification_delete_test.xlsx"
     
-    command = "py -3.10 ../../../src/messes/extract.py ../" + test_file + " --output " + output_path.as_posix()
+    command = "messes extract ../" + test_file + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -67,7 +67,7 @@ def test_modification_delete_before_value():
     
     test_file = "modification_delete_before_value.xlsx"
     
-    command = "py -3.10 ../../../src/messes/extract.py ../" + test_file + " --output " + output_path.as_posix()
+    command = "messes extract ../" + test_file + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -85,7 +85,7 @@ def test_modification_delete_table_name_mismatch():
     
     test_file = "modification_delete_table_name_mismatch.xlsx"
     
-    command = "py -3.10 ../../../src/messes/extract.py ../" + test_file + " --output " + output_path.as_posix()
+    command = "messes extract ../" + test_file + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -103,7 +103,7 @@ def test_modification_rename():
     
     test_file = "modification_rename_test.xlsx"
     
-    command = "py -3.10 ../../../src/messes/extract.py ../" + test_file + " --output " + output_path.as_posix()
+    command = "messes extract ../" + test_file + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -129,7 +129,7 @@ def test_modification_rename_before_value():
     
     test_file = "modification_rename_before_value.xlsx"
     
-    command = "py -3.10 ../../../src/messes/extract.py ../" + test_file + " --output " + output_path.as_posix()
+    command = "messes extract ../" + test_file + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -147,7 +147,7 @@ def test_modification_rename_table_name_mismatch():
     
     test_file = "modification_rename_table_name_mismatch.xlsx"
     
-    command = "py -3.10 ../../../src/messes/extract.py ../" + test_file + " --output " + output_path.as_posix()
+    command = "messes extract ../" + test_file + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -165,7 +165,7 @@ def test_modification_rename_incorrect_format_error():
     
     test_file = "modification_rename_incorrect_format_error.xlsx"
     
-    command = "py -3.10 ../../../src/messes/extract.py ../" + test_file + " --output " + output_path.as_posix()
+    command = "messes extract ../" + test_file + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -184,7 +184,7 @@ def test_modification_assign():
     
     test_file = "modification_assign_test.xlsx"
     
-    command = "py -3.10 ../../../src/messes/extract.py ../" + test_file + " --output " + output_path.as_posix()
+    command = "messes extract ../" + test_file + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -208,7 +208,7 @@ def test_modification_assign_before_value():
     
     test_file = "modification_assign_before_value.xlsx"
     
-    command = "py -3.10 ../../../src/messes/extract.py ../" + test_file + " --output " + output_path.as_posix()
+    command = "messes extract ../" + test_file + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -226,7 +226,7 @@ def test_modification_assign_table_name_mismatch():
     
     test_file = "modification_assign_table_name_mismatch.xlsx"
     
-    command = "py -3.10 ../../../src/messes/extract.py ../" + test_file + " --output " + output_path.as_posix()
+    command = "messes extract ../" + test_file + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -245,7 +245,7 @@ def test_modification_append():
     
     test_file = "modification_append_test.xlsx"
     
-    command = "py -3.10 ../../../src/messes/extract.py ../" + test_file + " --output " + output_path.as_posix()
+    command = "messes extract ../" + test_file + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -269,7 +269,7 @@ def test_modification_append_before_value():
     
     test_file = "modification_append_before_value.xlsx"
     
-    command = "py -3.10 ../../../src/messes/extract.py ../" + test_file + " --output " + output_path.as_posix()
+    command = "messes extract ../" + test_file + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -287,7 +287,7 @@ def test_modification_append_table_name_mismatch():
     
     test_file = "modification_append_table_name_mismatch.xlsx"
     
-    command = "py -3.10 ../../../src/messes/extract.py ../" + test_file + " --output " + output_path.as_posix()
+    command = "messes extract ../" + test_file + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -306,7 +306,7 @@ def test_modification_prepend():
     
     test_file = "modification_prepend_test.xlsx"
     
-    command = "py -3.10 ../../../src/messes/extract.py ../" + test_file + " --output " + output_path.as_posix()
+    command = "messes extract ../" + test_file + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -330,7 +330,7 @@ def test_modification_prepend_before_value():
     
     test_file = "modification_prepend_before_value.xlsx"
     
-    command = "py -3.10 ../../../src/messes/extract.py ../" + test_file + " --output " + output_path.as_posix()
+    command = "messes extract ../" + test_file + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -348,7 +348,7 @@ def test_modification_prepend_table_name_mismatch():
     
     test_file = "modification_prepend_table_name_mismatch.xlsx"
     
-    command = "py -3.10 ../../../src/messes/extract.py ../" + test_file + " --output " + output_path.as_posix()
+    command = "messes extract ../" + test_file + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -368,7 +368,7 @@ def test_modification_regex():
     
     test_file = "modification_regex_test.xlsx"
     
-    command = "py -3.10 ../../../src/messes/extract.py ../" + test_file + " --output " + output_path.as_posix()
+    command = "messes extract ../" + test_file + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -392,7 +392,7 @@ def test_modification_regex_before_value():
     
     test_file = "modification_regex_before_value.xlsx"
     
-    command = "py -3.10 ../../../src/messes/extract.py ../" + test_file + " --output " + output_path.as_posix()
+    command = "messes extract ../" + test_file + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -410,7 +410,7 @@ def test_modification_regex_table_name_mismatch():
     
     test_file = "modification_regex_table_name_mismatch.xlsx"
     
-    command = "py -3.10 ../../../src/messes/extract.py ../" + test_file + " --output " + output_path.as_posix()
+    command = "messes extract ../" + test_file + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -430,7 +430,7 @@ def test_modification_comparison():
     
     test_file = "modification_comparison_test.xlsx"
     
-    command = "py -3.10 ../../../src/messes/extract.py ../" + test_file + " --output " + output_path.as_posix()
+    command = "messes extract ../" + test_file + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -460,7 +460,7 @@ def test_modification_comparison_type_regex():
     
     test_file = "modification_comparison_type_regex_test.xlsx"
     
-    command = "py -3.10 ../../../src/messes/extract.py ../" + test_file + " --output " + output_path.as_posix()
+    command = "messes extract ../" + test_file + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -486,7 +486,7 @@ def test_modification_comparison_type_exact():
     
     test_file = "modification_comparison_type_exact_test.xlsx"
     
-    command = "py -3.10 ../../../src/messes/extract.py ../" + test_file + " --output " + output_path.as_posix()
+    command = "messes extract ../" + test_file + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -511,7 +511,7 @@ def test_modification_comparison_type_regex_or_exact():
     
     test_file = "modification_comparison_type_regex_or_exact_test.xlsx"
     
-    command = "py -3.10 ../../../src/messes/extract.py ../" + test_file + " --output " + output_path.as_posix()
+    command = "messes extract ../" + test_file + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -536,7 +536,7 @@ def test_modification_assign_after_assign_warning():
     
     test_file = "modification_assign_after_assign_warning.xlsx"
     
-    command = "py -3.10 ../../../src/messes/extract.py ../" + test_file + " --output " + output_path.as_posix()
+    command = "messes extract ../" + test_file + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -554,7 +554,7 @@ def test_modification_assign_after_assign_same_value():
     
     test_file = "modification_assign_after_assign_same_value.xlsx"
     
-    command = "py -3.10 ../../../src/messes/extract.py ../" + test_file + " --output " + output_path.as_posix()
+    command = "messes extract ../" + test_file + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -572,7 +572,7 @@ def test_modification_assign_after_append_warning():
     
     test_file = "modification_assign_after_append_warning.xlsx"
     
-    command = "py -3.10 ../../../src/messes/extract.py ../" + test_file + " --output " + output_path.as_posix()
+    command = "messes extract ../" + test_file + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -589,7 +589,7 @@ def test_modification_assign_after_prepend_warning():
     
     test_file = "modification_assign_after_prepend_warning.xlsx"
     
-    command = "py -3.10 ../../../src/messes/extract.py ../" + test_file + " --output " + output_path.as_posix()
+    command = "messes extract ../" + test_file + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -606,7 +606,7 @@ def test_modification_assign_after_regex_warning():
     
     test_file = "modification_assign_after_regex_warning.xlsx"
     
-    command = "py -3.10 ../../../src/messes/extract.py ../" + test_file + " --output " + output_path.as_posix()
+    command = "messes extract ../" + test_file + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -623,7 +623,7 @@ def test_modification_assign_after_delete_warning():
     
     test_file = "modification_assign_after_delete_warning.xlsx"
     
-    command = "py -3.10 ../../../src/messes/extract.py ../" + test_file + " --output " + output_path.as_posix()
+    command = "messes extract ../" + test_file + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -641,7 +641,7 @@ def test_modification_append_after_delete_warning():
     
     test_file = "modification_append_after_delete_warning.xlsx"
     
-    command = "py -3.10 ../../../src/messes/extract.py ../" + test_file + " --output " + output_path.as_posix()
+    command = "messes extract ../" + test_file + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -658,7 +658,7 @@ def test_modification_prepend_after_delete_warning():
     
     test_file = "modification_prepend_after_delete_warning.xlsx"
     
-    command = "py -3.10 ../../../src/messes/extract.py ../" + test_file + " --output " + output_path.as_posix()
+    command = "messes extract ../" + test_file + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -675,7 +675,7 @@ def test_modification_regex_after_delete_warning():
     
     test_file = "modification_regex_after_delete_warning.xlsx"
     
-    command = "py -3.10 ../../../src/messes/extract.py ../" + test_file + " --output " + output_path.as_posix()
+    command = "messes extract ../" + test_file + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -692,7 +692,7 @@ def test_modification_regex_after_assign_warning():
     
     test_file = "modification_regex_after_assign_warning.xlsx"
     
-    command = "py -3.10 ../../../src/messes/extract.py ../" + test_file + " --output " + output_path.as_posix()
+    command = "messes extract ../" + test_file + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -709,7 +709,7 @@ def test_modification_delete_after_assign_warning():
     
     test_file = "modification_delete_after_assign_warning.xlsx"
     
-    command = "py -3.10 ../../../src/messes/extract.py ../" + test_file + " --output " + output_path.as_posix()
+    command = "messes extract ../" + test_file + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -726,7 +726,7 @@ def test_modification_delete_after_append_warning():
     
     test_file = "modification_delete_after_append_warning.xlsx"
     
-    command = "py -3.10 ../../../src/messes/extract.py ../" + test_file + " --output " + output_path.as_posix()
+    command = "messes extract ../" + test_file + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -743,7 +743,7 @@ def test_modification_delete_after_prepend_warning():
     
     test_file = "modification_delete_after_prepend_warning.xlsx"
     
-    command = "py -3.10 ../../../src/messes/extract.py ../" + test_file + " --output " + output_path.as_posix()
+    command = "messes extract ../" + test_file + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -760,7 +760,7 @@ def test_modification_delete_after_regex_warning():
     
     test_file = "modification_delete_after_regex_warning.xlsx"
     
-    command = "py -3.10 ../../../src/messes/extract.py ../" + test_file + " --output " + output_path.as_posix()
+    command = "messes extract ../" + test_file + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -777,7 +777,7 @@ def test_modification_delete_after_rename_warning():
     
     test_file = "modification_delete_after_rename_warning.xlsx"
     
-    command = "py -3.10 ../../../src/messes/extract.py ../" + test_file + " --output " + output_path.as_posix()
+    command = "messes extract ../" + test_file + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -795,7 +795,7 @@ def test_modification_rename_after_delete_oldfield_warning():
     
     test_file = "modification_rename_after_delete_oldfield_warning.xlsx"
     
-    command = "py -3.10 ../../../src/messes/extract.py ../" + test_file + " --output " + output_path.as_posix()
+    command = "messes extract ../" + test_file + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -812,7 +812,7 @@ def test_modification_rename_after_delete_newfield_warning():
     
     test_file = "modification_rename_after_delete_newfield_warning.xlsx"
     
-    command = "py -3.10 ../../../src/messes/extract.py ../" + test_file + " --output " + output_path.as_posix()
+    command = "messes extract ../" + test_file + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -830,7 +830,7 @@ def test_modification_rename_overwrite():
     
     test_file = "modification_rename_overwrite.xlsx"
     
-    command = "py -3.10 ../../../src/messes/extract.py ../" + test_file + " --output " + output_path.as_posix()
+    command = "messes extract ../" + test_file + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -847,7 +847,7 @@ def test_modification_rename_same_value():
     
     test_file = "modification_rename_same_value.xlsx"
     
-    command = "py -3.10 ../../../src/messes/extract.py ../" + test_file + " --output " + output_path.as_posix()
+    command = "messes extract ../" + test_file + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -865,7 +865,7 @@ def test_modification_missing_tags_error():
     
     test_file = "modification_missing_tags_error.xlsx"
     
-    command = "py -3.10 ../../../src/messes/extract.py ../" + test_file + " --output " + output_path.as_posix()
+    command = "messes extract ../" + test_file + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -883,7 +883,7 @@ def test_modification_delete_id_error():
     
     test_file = "modification_delete_id_error.xlsx"
     
-    command = "py -3.10 ../../../src/messes/extract.py ../" + test_file + " --output " + output_path.as_posix()
+    command = "messes extract ../" + test_file + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -900,7 +900,7 @@ def test_modification_rename_id_error():
     
     test_file = "modification_rename_id_error.xlsx"
     
-    command = "py -3.10 ../../../src/messes/extract.py ../" + test_file + " --output " + output_path.as_posix()
+    command = "messes extract ../" + test_file + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -918,7 +918,7 @@ def test_modification_regex_incorrect_format_error():
     
     test_file = "modification_regex_incorrect_format_error.xlsx"
     
-    command = "py -3.10 ../../../src/messes/extract.py ../" + test_file + " --output " + output_path.as_posix()
+    command = "messes extract ../" + test_file + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -936,7 +936,7 @@ def test_modification_duplicate_assign_warning():
     
     test_file = "modification_duplicate_assign_warning.xlsx"
     
-    command = "py -3.10 ../../../src/messes/extract.py ../" + test_file + " --output " + output_path.as_posix()
+    command = "messes extract ../" + test_file + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -953,7 +953,7 @@ def test_modification_duplicate_append_warning():
     
     test_file = "modification_duplicate_append_warning.xlsx"
     
-    command = "py -3.10 ../../../src/messes/extract.py ../" + test_file + " --output " + output_path.as_posix()
+    command = "messes extract ../" + test_file + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -970,7 +970,7 @@ def test_modification_duplicate_prepend_warning():
     
     test_file = "modification_duplicate_prepend_warning.xlsx"
     
-    command = "py -3.10 ../../../src/messes/extract.py ../" + test_file + " --output " + output_path.as_posix()
+    command = "messes extract ../" + test_file + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -987,7 +987,7 @@ def test_modification_duplicate_regex_warning():
     
     test_file = "modification_duplicate_regex_warning.xlsx"
     
-    command = "py -3.10 ../../../src/messes/extract.py ../" + test_file + " --output " + output_path.as_posix()
+    command = "messes extract ../" + test_file + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -1004,7 +1004,7 @@ def test_modification_duplicate_delete_warning():
     
     test_file = "modification_duplicate_delete_warning.xlsx"
     
-    command = "py -3.10 ../../../src/messes/extract.py ../" + test_file + " --output " + output_path.as_posix()
+    command = "messes extract ../" + test_file + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -1021,7 +1021,7 @@ def test_modification_duplicate_rename_warning():
     
     test_file = "modification_duplicate_rename_warning.xlsx"
     
-    command = "py -3.10 ../../../src/messes/extract.py ../" + test_file + " --output " + output_path.as_posix()
+    command = "messes extract ../" + test_file + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -1039,7 +1039,7 @@ def test_modification_comparison_type_exact_unique_test():
     
     test_file = "modification_comparison_type_exact_unique_test.xlsx"
     
-    command = "py -3.10 ../../../src/messes/extract.py ../" + test_file + " --output " + output_path.as_posix()
+    command = "messes extract ../" + test_file + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -1070,7 +1070,7 @@ def test_modification_comparison_type_exact_first_test():
     
     test_file = "modification_comparison_type_exact_first_test.xlsx"
     
-    command = "py -3.10 ../../../src/messes/extract.py ../" + test_file + " --output " + output_path.as_posix()
+    command = "messes extract ../" + test_file + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -1099,7 +1099,7 @@ def test_modification_comparison_type_exact_first_nowarn_test():
     
     test_file = "modification_comparison_type_exact_first-nowarn_test.xlsx"
     
-    command = "py -3.10 ../../../src/messes/extract.py ../" + test_file + " --output " + output_path.as_posix()
+    command = "messes extract ../" + test_file + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -1126,7 +1126,7 @@ def test_modification_comparison_type_exact_all_test():
     
     test_file = "modification_comparison_type_exact_all_test.xlsx"
     
-    command = "py -3.10 ../../../src/messes/extract.py ../" + test_file + " --output " + output_path.as_posix()
+    command = "messes extract ../" + test_file + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -1154,7 +1154,7 @@ def test_modification_comparison_type_regex_unique_test():
     
     test_file = "modification_comparison_type_regex_unique_test.xlsx"
     
-    command = "py -3.10 ../../../src/messes/extract.py ../" + test_file + " --output " + output_path.as_posix()
+    command = "messes extract ../" + test_file + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -1185,7 +1185,7 @@ def test_modification_comparison_type_regex_first_test():
     
     test_file = "modification_comparison_type_regex_first_test.xlsx"
     
-    command = "py -3.10 ../../../src/messes/extract.py ../" + test_file + " --output " + output_path.as_posix()
+    command = "messes extract ../" + test_file + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -1214,7 +1214,7 @@ def test_modification_comparison_type_regex_first_nowarn_test():
     
     test_file = "modification_comparison_type_regex_first-nowarn_test.xlsx"
     
-    command = "py -3.10 ../../../src/messes/extract.py ../" + test_file + " --output " + output_path.as_posix()
+    command = "messes extract ../" + test_file + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -1241,7 +1241,7 @@ def test_modification_comparison_type_regex_all_test():
     
     test_file = "modification_comparison_type_regex_all_test.xlsx"
     
-    command = "py -3.10 ../../../src/messes/extract.py ../" + test_file + " --output " + output_path.as_posix()
+    command = "messes extract ../" + test_file + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -1269,7 +1269,7 @@ def test_modification_comparison_type_levenshtein_unique_test():
     
     test_file = "modification_comparison_type_levenshtein_unique_test.xlsx"
     
-    command = "py -3.10 ../../../src/messes/extract.py ../" + test_file + " --output " + output_path.as_posix()
+    command = "messes extract ../" + test_file + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -1296,7 +1296,7 @@ def test_modification_comparison_type_levenshtein_first_test():
     
     test_file = "modification_comparison_type_levenshtein_first_test.xlsx"
     
-    command = "py -3.10 ../../../src/messes/extract.py ../" + test_file + " --output " + output_path.as_posix()
+    command = "messes extract ../" + test_file + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -1323,7 +1323,7 @@ def test_modification_comparison_type_levenshtein_first_nowarn_test():
     
     test_file = "modification_comparison_type_levenshtein_first-nowarn_test.xlsx"
     
-    command = "py -3.10 ../../../src/messes/extract.py ../" + test_file + " --output " + output_path.as_posix()
+    command = "messes extract ../" + test_file + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -1350,7 +1350,7 @@ def test_modification_comparison_type_levenshtein_all_test():
     
     test_file = "modification_comparison_type_levenshtein_all_test.xlsx"
     
-    command = "py -3.10 ../../../src/messes/extract.py ../" + test_file + " --output " + output_path.as_posix()
+    command = "messes extract ../" + test_file + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -1378,7 +1378,7 @@ def test_modification_match_tag_inline_error():
     
     test_file = "modification_match_tag_inline_error.xlsx"
     
-    command = "py -3.10 ../../../src/messes/extract.py ../" + test_file + " --output " + output_path.as_posix()
+    command = "messes extract ../" + test_file + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -1395,7 +1395,7 @@ def test_modification_match_per_row():
     
     test_file = "modification_match_per_row.xlsx"
     
-    command = "py -3.10 ../../../src/messes/extract.py ../" + test_file + " --output " + output_path.as_posix()
+    command = "messes extract ../" + test_file + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -1420,7 +1420,7 @@ def test_modification_match_per_row_error():
     
     test_file = "modification_match_per_row_error.xlsx"
     
-    command = "py -3.10 ../../../src/messes/extract.py ../" + test_file + " --output " + output_path.as_posix()
+    command = "messes extract ../" + test_file + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -1438,7 +1438,7 @@ def test_modification_field_creation():
     
     test_file = "modification_field_creation.xlsx"
     
-    command = "py -3.10 ../../../src/messes/extract.py ../" + test_file + " --output " + output_path.as_posix()
+    command = "messes extract ../" + test_file + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -1468,7 +1468,7 @@ def test_modification_assign_list_field_test():
     
     test_file = "modification_assign_list_field_test.xlsx"
     
-    command = "py -3.10 ../../../src/messes/extract.py ../" + test_file + " --output " + output_path.as_posix()
+    command = "messes extract ../" + test_file + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -1494,7 +1494,7 @@ def test_modification_append_list_field_test():
     
     test_file = "modification_append_list_field_test.xlsx"
     
-    command = "py -3.10 ../../../src/messes/extract.py ../" + test_file + " --output " + output_path.as_posix()
+    command = "messes extract ../" + test_file + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -1523,7 +1523,7 @@ def test_modification_prepend_list_field_test():
     
     test_file = "modification_prepend_list_field_test.xlsx"
     
-    command = "py -3.10 ../../../src/messes/extract.py ../" + test_file + " --output " + output_path.as_posix()
+    command = "messes extract ../" + test_file + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -1551,7 +1551,7 @@ def test_modification_regex_list_field_test():
     
     test_file = "modification_regex_list_field_test.xlsx"
     
-    command = "py -3.10 ../../../src/messes/extract.py ../" + test_file + " --output " + output_path.as_posix()
+    command = "messes extract ../" + test_file + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -1575,7 +1575,7 @@ def test_modification_levenshtein_list_field_test():
     
     test_file = "modification_levenshtein_list_field_test.xlsx"
     
-    command = "py -3.10 ../../../src/messes/extract.py ../" + test_file + " --output " + output_path.as_posix()
+    command = "messes extract ../" + test_file + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -1600,7 +1600,7 @@ def test_modification_semicolon_list_field_test():
     
     test_file = "modification_semicolon_list_field_test.xlsx"
     
-    command = "py -3.10 ../../../src/messes/extract.py ../" + test_file + " --output " + output_path.as_posix()
+    command = "messes extract ../" + test_file + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -1624,7 +1624,7 @@ def test_modification_ignore_test():
     
     test_file = "modification_ignore_test.xlsx"
     
-    command = "py -3.10 ../../../src/messes/extract.py ../" + test_file + " --output " + output_path.as_posix()
+    command = "messes extract ../" + test_file + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -1649,7 +1649,7 @@ def test_modification_unused_test():
     
     test_file = "modification_unused_test.xlsx"
     
-    command = "py -3.10 ../../../src/messes/extract.py ../" + test_file + " ../base_source_export.csv" + " --output " + output_path.as_posix() + " --end-modify ../" + test_file + ":#modify"
+    command = "messes extract ../" + test_file + " ../base_source_export.csv" + " --output " + output_path.as_posix() + " --end-modify ../" + test_file + ":#modify"
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -1667,7 +1667,7 @@ def test_modification_id_change():
     
     test_file = "modification_error.xlsx"
     
-    command = "py -3.10 ../../../src/messes/extract.py ../" + test_file +" --output " + output_path.as_posix()
+    command = "messes extract ../" + test_file +" --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -1684,7 +1684,7 @@ def test_eval_in_modification():
     
     test_file = "eval_in_modification.xlsx"
     
-    command = "py -3.10 ../../../src/messes/extract.py ../" + test_file  + " --output " + output_path.as_posix()
+    command = "messes extract ../" + test_file  + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -1707,7 +1707,7 @@ def test_eval_in_modification_error():
     
     test_file = "eval_in_modification_error.xlsx"
     
-    command = "py -3.10 ../../../src/messes/extract.py ../" + test_file  + " --output " + output_path.as_posix()
+    command = "messes extract ../" + test_file  + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -1729,7 +1729,7 @@ def test_list_in_eval_list_tag_modification():
     
     test_file = "list_eval_in_modification_list_tag.xlsx"
     
-    command = "py -3.10 ../../../src/messes/extract.py ../" + test_file  + " --output " + output_path.as_posix()
+    command = "messes extract ../" + test_file  + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -1751,7 +1751,7 @@ def test_list_in_eval_modification():
     
     test_file = "list_eval_in_modification.xlsx"
     
-    command = "py -3.10 ../../../src/messes/extract.py ../" + test_file  + " --output " + output_path.as_posix()
+    command = "messes extract ../" + test_file  + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -1774,7 +1774,7 @@ def test_unused_modification():
     
     test_file = "unused_modification.xlsx"
     
-    command = "py -3.10 ../../../src/messes/extract.py ../" + test_file +" --output " + output_path.as_posix()
+    command = "messes extract ../" + test_file +" --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -1792,7 +1792,7 @@ def test_field_name_in_eval():
     
     test_file = "modification_field_name_in_eval.xlsx"
     
-    command = "py -3.10 ../../../src/messes/extract.py ../" + test_file  + " --output " + output_path.as_posix()
+    command = "messes extract ../" + test_file  + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -1814,7 +1814,7 @@ def test_regex_in_eval():
     
     test_file = "modification_regex_in_eval.xlsx"
     
-    command = "py -3.10 ../../../src/messes/extract.py ../" + test_file  + " --output " + output_path.as_posix()
+    command = "messes extract ../" + test_file  + " --output " + output_path.as_posix()
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr

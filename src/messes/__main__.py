@@ -27,8 +27,8 @@ from . import validate
 from . import convert_mwtab
 
 
-if __name__ == "__main__":
-
+def main():
+    
     if len(sys.argv) > 1 and sys.argv[1] == "extract":
         extract.main()
     elif len(sys.argv) > 1 and sys.argv[1] == "validate":
@@ -48,3 +48,8 @@ if __name__ == "__main__":
         print(convert_mwtab.__doc__)
     else:
         print(__doc__)
+
+
+if __name__ == "__main__":
+    main()
+

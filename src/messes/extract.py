@@ -3,8 +3,8 @@
 Extract data from Excel workbooks, csv files, and JSON files.
     
  Usage:
-    extract <metadata_source>... [--delete <metadata_section>...] [options]
-    extract --help
+    messes extract <metadata_source>... [--delete <metadata_section>...] [options]
+    messes extract --help
 
     <metadata_source> - input metadata source as csv/json filename or xlsx_filename[:worksheet_name|regular_expression]. "#export" worksheet name is the default.
 
@@ -78,13 +78,13 @@ import re
 import collections
 import pathlib
 from typing import TextIO
-
 import json
+
 import pandas
 import docopt
 import jellyfish
 
-import cythonized_tagSheet
+from . import cythonized_tagSheet
 
 silent = False
 

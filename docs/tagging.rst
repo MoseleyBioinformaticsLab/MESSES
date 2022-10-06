@@ -688,7 +688,7 @@ Data:
 Header Tags:
 
 +-------+---------------------------------------------------+---------------------------------------------------------------------------------------------------------------+
-| #tags | #header                                           | #tag.add                                                                                                      |
+| #tags | #header                                           | #add                                                                                                          |
 +-------+---------------------------------------------------+---------------------------------------------------------------------------------------------------------------+
 |       | Compound+"-13C"+C_isomers+"-"+SamplID             | #measurement.id                                                                                               |
 +-------+---------------------------------------------------+---------------------------------------------------------------------------------------------------------------+
@@ -774,7 +774,6 @@ The Tags
        * This functionality means that certain characters can't be used for literal matching outside of a regex.
        * For example if a header name in a data table is "protein+solvent" then you can't simply put protein+solvent under **#header** because it will be interpretted as a concatenation of a "protein" header and a separate "solvent" header.
        * The easist way to solve this issue is to use a regular expression. r'protein\+solvent' will match the header correctly.
-       * This also applies to having spaces in headers. To match a header like "Parent Subject ID" you need to put it in a regex, r'Parent Subject ID'.
        * In general if you are having difficulty matching a header try using a regex.
     
     * An eval function can be used in the form "eval(...)".
@@ -787,10 +786,10 @@ The Tags
            * If the corresponding tag is a list tag then this will become a list.
 
 
-* **#tag.add** - tags to add in an inserted row below the column header row.
+* **#add** - tags to add in an inserted row below the column header row.
 
-    * All tag blocks must contain a **#tag.add** tag.
-    * The actual value under **#tag.add** does not have to be a valid tag, the value will be copied as is.
+    * All tag blocks must contain a **#add** tag.
+    * The actual value under **#add** does not have to be a valid tag, the value will be copied as is.
     * Leave this value blank to add headers that are required to match a block, but don't need tags.
 
          
@@ -799,7 +798,7 @@ The Tags
     * Example:
     
     +-------+---------------------------------------------------+-------------------------------------+
-    | #tags | #header                                           | #tag.add                | #required |
+    | #tags | #header                                           | #add                    | #required |
     +-------+---------------------------------------------------+-------------------------------------+
     |       | Compound+"-13C"+C_isomers+"-"+SamplID             | #measurement.id         | true      |
     +-------+---------------------------------------------------+-------------------------------------+
@@ -821,7 +820,7 @@ The Tags
     * Example:
     
     +-------+---------------------------------------------------+---------------------------------------------------------------+
-    | #tags | #header                                           | #tag.add                | #exclude=r'Cell Type|Mouse Species' |
+    | #tags | #header                                           | #add                    | #exclude=r'Cell Type|Mouse Species' |
     +-------+---------------------------------------------------+---------------------------------------------------------------+
     |       | Compound+"-13C"+C_isomers+"-"+SamplID             | #measurement.id         |                                     |
     +-------+---------------------------------------------------+---------------------------------------------------------------+

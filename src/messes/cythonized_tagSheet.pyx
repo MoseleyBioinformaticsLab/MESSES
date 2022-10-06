@@ -7,7 +7,7 @@ import sys
 import numpy
 cimport numpy
 
-from extract import Evaluator, FieldMaker, TagParser, VariableOperand, LiteralOperand, xstr
+from . import extract
 
 COLUMN_ORDER_CONSTANT = 16000
 COLUMN_ORDER_CONSTANT_PLUS = COLUMN_ORDER_CONSTANT + 1
@@ -60,8 +60,8 @@ def tagSheet(taggingDirectives, str[:,:] worksheet, silent):
             newColumnHeaders = set()
             for headerTagDescription in taggingGroup["header_tag_descriptions"]:
                 ## If the added tag is an eval() tag create the header test differently.
-                if (reMatch := Evaluator.isEvalString(headerTagDescription["header"])):
-                    evaluator = Evaluator(reMatch.group(1), False, True)
+                if (reMatch := extract.Evaluator.isEvalString(headerTagDescription["header"])):
+                    evaluator = extract.Evaluator(reMatch.group(1), False, True)
                     headerTagDescription["field_maker"] = evaluator
                     headerTagDescription["header_list"] = []
                     headerTagDescription["header_tests"] = evaluator.fieldTests.copy()
@@ -74,16 +74,16 @@ def tagSheet(taggingDirectives, str[:,:] worksheet, silent):
                 else:
                     headerTagDescription["header_list"] = [strippedToken for token in re.split(headerSplitter, headerTagDescription["header"]) if token != None and (strippedToken := token.strip()) != ""]
                     headerTagDescription["header_tests"] = {}
-                    fieldMaker = FieldMaker(headerTagDescription["header"])
+                    fieldMaker = extract.FieldMaker(headerTagDescription["header"])
                     for headerString in headerTagDescription["header_list"]:
-                        if (reMatch := re.match(TagParser.reDetector, headerString)):
-                            fieldMaker.operands.append(VariableOperand(headerString))
+                        if (reMatch := re.match(extract.TagParser.reDetector, headerString)):
+                            fieldMaker.operands.append(extract.VariableOperand(headerString))
                             headerTagDescription["header_tests"][headerString] = re.compile(reMatch.group(1))
                             headerTests[headerString] = headerTagDescription["header_tests"][headerString]
-                        elif (reMatch := re.match(TagParser.stringExtractor, headerString)):
-                            fieldMaker.operands.append(LiteralOperand(reMatch.group(1)))
+                        elif (reMatch := re.match(extract.TagParser.stringExtractor, headerString)):
+                            fieldMaker.operands.append(extract.LiteralOperand(reMatch.group(1)))
                         else:
-                            fieldMaker.operands.append(VariableOperand(headerString))
+                            fieldMaker.operands.append(extract.VariableOperand(headerString))
                             headerTagDescription["header_tests"][headerString] = re.compile("^" + headerString + "$")
                             headerTests[headerString] = headerTagDescription["header_tests"][headerString]
 
@@ -97,7 +97,7 @@ def tagSheet(taggingDirectives, str[:,:] worksheet, silent):
 
             if "exclusion_test" in taggingGroup:
                 testString = taggingGroup["exclusion_test"]
-                if (reMatch := re.match(TagParser.reDetector, testString)):
+                if (reMatch := re.match(extract.TagParser.reDetector, testString)):
                     exclusionTest = re.compile(reMatch.group(1))
                 else:
                     exclusionTest = re.compile("^" + testString + "$")
@@ -115,7 +115,7 @@ def tagSheet(taggingDirectives, str[:,:] worksheet, silent):
                 row = worksheet[rowIndex, :]
                 
                 if exclusionTest:
-                    exclusionIndeces = [ columnIndex for columnIndex in range(1,len(row)) if re.search(exclusionTest, xstr(row[columnIndex]).strip()) ]
+                    exclusionIndeces = [ columnIndex for columnIndex in range(1,len(row)) if re.search(exclusionTest, extract.xstr(row[columnIndex]).strip()) ]
                     if len(exclusionIndeces) > 0:
                         rowIndex += 1
                         continue
@@ -123,7 +123,7 @@ def tagSheet(taggingDirectives, str[:,:] worksheet, silent):
                 header2ColumnIndex = {}
                 columnIndex2Header = {}
                 for headerString, headerTest in headerTests.items():
-                    columnIndeces = [ columnIndex for columnIndex in range(1,len(row)) if re.search(headerTest, xstr(row[columnIndex]).strip()) ]
+                    columnIndeces = [ columnIndex for columnIndex in range(1,len(row)) if re.search(headerTest, extract.xstr(row[columnIndex]).strip()) ]
                     if len(columnIndeces) == 1: # must be unique match
                         header2ColumnIndex[headerString] = columnIndeces[0]
                         if columnIndeces[0] in columnIndex2Header:
@@ -150,7 +150,7 @@ def tagSheet(taggingDirectives, str[:,:] worksheet, silent):
                     found = False
                     endingRowIndex = rowIndex+1
                     for endingRowIndex in range(rowIndex+1, len(worksheet[:, 0])):
-                        if TagParser._isEmptyRow(worksheet[endingRowIndex, :]) or re.match('#tags$', xstr(worksheet[endingRowIndex,0]).strip()) or endingRowIndex in usedRows:
+                        if extract.TagParser._isEmptyRow(worksheet[endingRowIndex, :]) or re.match('#tags$', extract.xstr(worksheet[endingRowIndex,0]).strip()) or endingRowIndex in usedRows:
                             found = True
                             break
 
@@ -223,10 +223,10 @@ def tagSheet(taggingDirectives, str[:,:] worksheet, silent):
                         makerIndeces = [ tdIndex for tdIndex in range(len(taggingGroup["header_tag_descriptions"])) if originalTDColumnIndeces[tdIndex] == COLUMN_ORDER_CONSTANT_PLUS ]
                         for rIndex in range(rowIndex + 2, endingRowIndex):
                             row = worksheet[rIndex, :]
-                            record = { headerString:xstr(row[cIndex]).strip() for headerString, cIndex in header2ColumnIndex.items() }
+                            record = { headerString:extract.xstr(row[cIndex]).strip() for headerString, cIndex in header2ColumnIndex.items() }
                             for tdIndex in makerIndeces:
                                 if "field_maker" in taggingGroup["header_tag_descriptions"][tdIndex]:
-                                    if type(taggingGroup["header_tag_descriptions"][tdIndex]["field_maker"]) == FieldMaker:
+                                    if type(taggingGroup["header_tag_descriptions"][tdIndex]["field_maker"]) == extract.FieldMaker:
                                         worksheet[rIndex, newTDColumnIndeces[tdIndex]] = taggingGroup["header_tag_descriptions"][tdIndex]["field_maker"].create(record, row)
                                     else:
                                         worksheet[rIndex, newTDColumnIndeces[tdIndex]] = taggingGroup["header_tag_descriptions"][tdIndex]["field_maker"].evaluate(record)
