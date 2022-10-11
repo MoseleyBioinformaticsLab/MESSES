@@ -473,7 +473,7 @@ def convert(internal_data: dict|OrderedDict, analysis_type: str, protocol_id: st
     header_section = create_header(
         **config_dict.get("METABOLOMICS WORKBENCH") if config_dict.get("METABOLOMICS WORKBENCH") else dict()
     )
-    mwtab.validator._validate_section(section=header_section, schema=mwtab.mwschema.metabolomics_workbench_schema)
+    mwtab.validator.validate_section_schema(section=header_section, schema=mwtab.mwschema.metabolomics_workbench_schema, section_key="METABOLOMICS WORKBENCH")
     mwtabfile["METABOLOMICS WORKBENCH"] = header_section
 
     # Create "PROJECT" section
@@ -481,7 +481,7 @@ def convert(internal_data: dict|OrderedDict, analysis_type: str, protocol_id: st
         internal_data=internal_data,
         internal_mapping=schema_mapping.internal_project_section_mapping
     )
-    mwtab.validator._validate_section(section=project_section, schema=mwtab.mwschema.project_schema)
+    mwtab.validator.validate_section_schema(section=project_section, schema=mwtab.mwschema.project_schema, section_key="PROJECT")
     mwtabfile["PROJECT"] = project_section
 
     # Convert "STUDY" section
@@ -489,7 +489,7 @@ def convert(internal_data: dict|OrderedDict, analysis_type: str, protocol_id: st
         internal_data=internal_data,
         internal_mapping=schema_mapping.internal_study_section_mapping
     )
-    mwtab.validator._validate_section(section=study_section, schema=mwtab.mwschema.study_schema)
+    mwtab.validator.validate_section_schema(section=study_section, schema=mwtab.mwschema.study_schema, section_key="STUDY")
     mwtabfile["STUDY"] = study_section
 
     # Convert "SUBJECT" section
@@ -497,7 +497,7 @@ def convert(internal_data: dict|OrderedDict, analysis_type: str, protocol_id: st
         internal_data=internal_data,
         internal_mapping=schema_mapping.internal_subject_section_mapping
     )
-    mwtab.validator._validate_section(section=subject_section, schema=mwtab.mwschema.subject_schema)
+    mwtab.validator.validate_section_schema(section=subject_section, schema=mwtab.mwschema.subject_schema, section_key="SUBJECT")
     mwtabfile["SUBJECT"] = subject_section
 
     # Convert "SUBJECT_SAMPLE_FACTORS" section
@@ -506,7 +506,7 @@ def convert(internal_data: dict|OrderedDict, analysis_type: str, protocol_id: st
         internal_data=internal_data,
         **config_dict.get("SUBJECT_SAMPLE_FACTORS") if config_dict.get("SUBJECT_SAMPLE_FACTORS") else dict()
     )
-    mwtab.validator._validate_section(section=subject_sample_factors_section, schema=mwtab.mwschema.subject_sample_factors_schema)
+    mwtab.validator.validate_section_schema(section=subject_sample_factors_section, schema=mwtab.mwschema.subject_sample_factors_schema, section_key="SUBJECT_SAMPLE_FACTORS")
     mwtabfile["SUBJECT_SAMPLE_FACTORS"] = subject_sample_factors_section
 
     # Convert "COLLECTION" section
@@ -517,7 +517,7 @@ def convert(internal_data: dict|OrderedDict, analysis_type: str, protocol_id: st
         internal_section_type="collection",
         protocol_id=collection_protocol_id(internal_data=internal_data)
     )
-    mwtab.validator._validate_section(section=collection_section, schema=mwtab.mwschema.collection_schema)
+    mwtab.validator.validate_section_schema(section=collection_section, schema=mwtab.mwschema.collection_schema, section_key="COLLECTION")
     mwtabfile["COLLECTION"] = collection_section
 
     # Convert "TREATMENT" section
@@ -527,14 +527,14 @@ def convert(internal_data: dict|OrderedDict, analysis_type: str, protocol_id: st
         internal_section_key="protocol",
         internal_section_type="treatment"
     )
-    mwtab.validator._validate_section(section=treatment_section, schema=mwtab.mwschema.treatment_schema)
+    mwtab.validator.validate_section_schema(section=treatment_section, schema=mwtab.mwschema.treatment_schema, section_key="TREATMENT")
     mwtabfile["TREATMENT"] = treatment_section
 
     # Convert "SAMPLEPREP" section
     sampleprep_section = convert_sample_prep_section(
         internal_data=internal_data,
     )
-    mwtab.validator._validate_section(section=sampleprep_section, schema=mwtab.mwschema.sampleprep_schema)
+    mwtab.validator.validate_section_schema(section=sampleprep_section, schema=mwtab.mwschema.sampleprep_schema, section_key="SAMPLEPREP")
     mwtabfile["SAMPLEPREP"] = sampleprep_section
 
     # Convert "ANALYSIS" section
@@ -545,7 +545,7 @@ def convert(internal_data: dict|OrderedDict, analysis_type: str, protocol_id: st
         internal_section_type=analysis_type,
         protocol_id=protocol_id
     )
-    mwtab.validator._validate_section(section=analysis_section, schema=mwtab.mwschema.analysis_schema)
+    mwtab.validator.validate_section_schema(section=analysis_section, schema=mwtab.mwschema.analysis_schema, section_key="ANALYSIS")
     mwtabfile["ANALYSIS"] = analysis_section
 
     # Convert Mass Spec. sections into mwtab format.
@@ -571,7 +571,7 @@ def convert(internal_data: dict|OrderedDict, analysis_type: str, protocol_id: st
                 "INSTRUMENT_NAME": "None",
                 "COLUMN_NAME": "None",
             })
-        mwtab.validator._validate_section(section=chromatography_section, schema=mwtab.mwschema.chromatography_schema)
+        mwtab.validator.validate_section_schema(section=chromatography_section, schema=mwtab.mwschema.chromatography_schema, section_key="CHROMATOGRAPHY")
         mwtabfile["CHROMATOGRAPHY"] = chromatography_section
 
         # Convert "MS" section
@@ -581,7 +581,7 @@ def convert(internal_data: dict|OrderedDict, analysis_type: str, protocol_id: st
             internal_section_key="protocol",
             internal_section_type="MS"
         )
-        mwtab.validator._validate_section(section=ms_section, schema=mwtab.mwschema.ms_schema)
+        mwtab.validator.validate_section_schema(section=ms_section, schema=mwtab.mwschema.ms_schema, section_key="MS")
         mwtabfile["MS"] = ms_section
 
         # Convert "MS_METABOLITE_DATA" section
@@ -599,7 +599,7 @@ def convert(internal_data: dict|OrderedDict, analysis_type: str, protocol_id: st
             assignment_key="assignment",
             **config_dict.get("METABOLITES") if config_dict.get("METABOLITES") else dict(),
         )
-        mwtab.validator._validate_section(section=metabolites_section, schema=mwtab.mwschema.metabolites_schema)
+        mwtab.validator.validate_section_schema(section=metabolites_section, schema=mwtab.mwschema.metabolites_schema, section_key="METABOLITES")
         mwtabfile["METABOLITES"] = metabolites_section
 
         # Convert "EXTENDED_MS_METABOLITE_DATA" section
@@ -610,8 +610,8 @@ def convert(internal_data: dict|OrderedDict, analysis_type: str, protocol_id: st
             **config_dict.get("EXTENDED_MS_METABOLITE_DATA") if config_dict.get("EXTENDED_MS_METABOLITE_DATA") else dict(),
         )
         mwtabfile["METABOLITES"].update(extended_metabolites_section)
-        # mwtab.validator._validate_section(section=mwtabfile["MS_METABOLITE_DATA"],
-        #                                   schema=mwtab.mwschema.ms_metabolite_data_schema)
+        # mwtab.validator.validate_section_schema(section=mwtabfile["MS_METABOLITE_DATA"],
+        #                                   schema=mwtab.mwschema.ms_metabolite_data_schema, section_key="")
 
     # Convert NMR sections into mwtab format.
     # Sections:
@@ -634,7 +634,7 @@ def convert(internal_data: dict|OrderedDict, analysis_type: str, protocol_id: st
             internal_section_type=analysis_type,
             protocol_id=protocol_id
         )
-        mwtab.validator._validate_section(section=nmr_section, schema=mwtab.mwschema.nmr_schema)
+        mwtab.validator.validate_section_schema(section=nmr_section, schema=mwtab.mwschema.nmr_schema, section_key="NMR_METABOLITE_DATA")
         mwtabfile[analysis_type] = nmr_section
 
         # Convert "NMR_METABOLITE_DATA" section
@@ -652,7 +652,7 @@ def convert(internal_data: dict|OrderedDict, analysis_type: str, protocol_id: st
             analysis_type=analysis_type,
             **config_dict.get("METABOLITES") if config_dict.get("METABOLITES") else dict(),
         )
-        mwtab.validator._validate_section(section=metabolites_section, schema=mwtab.mwschema.metabolites_schema)
+        mwtab.validator.validate_section_schema(section=metabolites_section, schema=mwtab.mwschema.metabolites_schema, section_key="METABOLITES")
         mwtabfile["METABOLITES"] = metabolites_section
 
         # Convert "EXTENDED_NMR_METABOLITE_DATA" section
@@ -665,7 +665,7 @@ def convert(internal_data: dict|OrderedDict, analysis_type: str, protocol_id: st
                 "EXTENDED_NMR_METABOLITE_DATA") else dict(),
         )
         mwtabfile["METABOLITES"].update(extended_metabolites_section)
-        # mwtab.validator._validate_section(section=mwtabfile['NMR_BINNED_DATA'], schema=mwtab.mwschema.nmr_binned_data_schema)
+        # mwtab.validator.validate_section_schema(section=mwtabfile['NMR_BINNED_DATA'], schema=mwtab.mwschema.nmr_binned_data_schema, section_key="")
 
     else:
         raise ValueError("Unknown analysis type.")

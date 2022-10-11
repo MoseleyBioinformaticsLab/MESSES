@@ -65,7 +65,6 @@ measurement
 
 factor
 ------
-
 **A factor is an experimental factor of the experiment.**
    * For example, if there are different treatments done to cell lines this would be a factor. 
    * Each treatment would be a separate protocol, but the different protocols would be 1 factor. 

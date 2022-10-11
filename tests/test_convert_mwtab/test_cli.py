@@ -25,29 +25,29 @@ def test_version_command():
     :raises AssertionError: Raises AssertionError if method fails
     :return:
     """
-    command = "python -m messes --version"
+    command = "messes --version"
     returned_output = check_output(command, shell=True).decode("utf-8").strip()
-    assert returned_output == __version__
+    assert returned_output == "Version: " + __version__
 
 
 @pytest.mark.parametrize("files_source, analysis_type, etc", [
     ("tests/example_data/internal_data_files/DI-FTMS_Results_colon.json", "MS",
-     "--t=tests/example_data/tmp/ --c=config_files/DI-FTMS_config.json"),
+     "--t=tests/example_data/tmp/ --c=tests/config_files/DI-FTMS_config.json"),
     ("tests/example_data/internal_data_files/ICMS_Results_colon-2020-06-08.json", "MS",
-     "--t=tests/example_data/tmp/ --c=config_files/ICMS_config.json"),
+     "--t=tests/example_data/tmp/ --c=tests/config_files/ICMS_config.json"),
     ("tests/example_data/internal_data_files/NMR_Results_colon_1H-2020-06-10.json", "NMR",
-     "--p=NMR1 --t=tests/example_data/tmp/ --c=config_files/NMR_config.json"),
+     "--p=NMR1 --t=tests/example_data/tmp/ --c=tests/config_files/NMR_config.json"),
     ("tests/example_data/internal_data_files/NMR_Results_colon_HSQC-2020-06-10.json", "NMR",
-     "--p=NMR2 --t=tests/example_data/tmp/ --c=config_files/NMR_config.json"),
+     "--p=NMR2 --t=tests/example_data/tmp/ --c=tests/config_files/NMR_config.json"),
     ("tests/example_data/internal_data_files/test_directory/", "NMR",
-     "--p=NMR1 --t=tests/example_data/tmp/ --c=config_files/NMR_config.json"),
+     "--p=NMR1 --t=tests/example_data/tmp/ --c=tests/config_files/NMR_config.json"),
 ])
 def test_convert_command(files_source, analysis_type, etc):
     """Method to test the 'convert' commandline method.
 
     :return:
     """
-    command = "python -m messes convert {} {} {}".format(
+    command = "messes convert mwtab {} {} {}".format(
         files_source, analysis_type, etc
     )
     assert system(command) == 0

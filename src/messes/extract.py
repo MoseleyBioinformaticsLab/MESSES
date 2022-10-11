@@ -33,7 +33,7 @@ Regular Expression Format:
 
  Directives JSON Format:
    {
-    "modification" : { table : { field :  { "exact"|"regex"|"levenshtein"|"exact-unique"|"regex-unique"|"levenshtein-unique" :
+    "modification" : { table : { field :  { "(exact|regex|levenshtein)\-(first|first\-nowarn|unique|all)" :
                       { field_value : { "assign" : { field : value,... }, "append" : { field : value,... }, "prepend" : { field : value,... },
                                         "regex" : { field : regex_pair,... }, "delete" : [ field,... ], "rename" : { old_field : new_field } } } } } }
     "automation" : [ { "header_tag_descriptions" : [ { "header" : column_description, "tag" : tag_description, "required" : true|false } ],   "exclusion_test" : exclusion_value, "insert" : [ [ cell_content, ... ] ] } ]
@@ -68,6 +68,7 @@ Regular Expression Format:
 ## In validate have an option to check that fields with the same name in the same table have the same type.
 ## Add tests for the new warnings in assign directives line 1778 or so.
 ## Add tests for exclude in automation make sure there is a regex and literal test.
+## In validate make sure to check that parentID for subjects and samples only appears in one table, if a parentID matches a subject and sample there is a problem.
 
 
 from __future__ import annotations
@@ -1306,7 +1307,7 @@ class TagParser(object):
 
         "modification" : { table : { field :  { "(exact|regex|levenshtein)\-(first|first\-nowarn|unique|all)" :
                           { field_value : { "assign" : { field : value,... }, "append" : { field : value,... }, "prepend" : { field : value,... },
-                                        "regex" : { field : regex_pair,... }, "delete" : [ field,... ], "rename" : { old_field : new_field } } } } } }
+                                            "regex" : { field : regex_pair,... }, "delete" : [ field,... ], "rename" : { old_field : new_field } } } } } }
         
         Loops over worksheet and builds up self.modificationDirectives.
         

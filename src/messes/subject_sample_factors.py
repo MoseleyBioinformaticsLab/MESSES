@@ -44,7 +44,7 @@ def create_lineages(
     # create top level sample lineages
     current_id = sample_id
     while True:
-        lineage = [internal_data[section].get(current_id) for section in section_keys if internal_data[section].get(current_id)]
+        lineage = [entity_attributes for section in section_keys if (entity_attributes := internal_data[section].get(current_id))]
         if lineage:
             lineage_list = lineage + lineage_list
             current_id = lineage_list[0].get(parent_id_key)
@@ -111,7 +111,17 @@ def create_subject_sample_factors_section(
     Returns:
         Subject sample factors section.
     """
-    subject_sample_factors = OrderedDict()
+    
+    ## Are samples guaranteed to have a factor?
+    ## Is the closest subject guaranteed to have all factors?
+    ## Assuming multiple factors on multiple subjects, how to report subjects? Still use the closest?
+    ## Are factors always going to be a field in subjects and samples?
+    ## Factor id probably needs to change because multiple project and study ids will have subject.protocol.id as a factor, but this id can only be used once.
+    ## How to determine which siblings need to be added to lineage?
+    ## Can "Factors" be a dictionary? What if there are 2 treatment protocols?
+    ## Look to see if factor has units and add those to any string.
+    
+    subject_sample_factors = []
     subject_sample_factors[internal_section_key] = []
 
     sample_ids = create_local_sample_ids(internal_data)
@@ -124,13 +134,35 @@ def create_subject_sample_factors_section(
         if kwargs.get(sample_id):
             pass
 
-        entry = OrderedDict()
+
+
+        # current_id = sample_id
+        # parent_id = internal_data["sample"][current_id]["parentID"]
+        # closest_subject_id = ""
+        # while not closest_subject_id:
+        #     if parent_id in internal_data["sample"]:
+        #         current_id = parent_id
+        #         parent_id = internal_data["sample"][current_id]["parentID"]
+        #     elif parent_id in internal_data["subject"]:
+        #         closest_subject_id = parent_id
+
+
+
+        entry = {}
+        # entry["Subject ID"] = closest_subject_id
+        # entry["Sample ID"] = sample_id
+        # entry["Factors"] = {"Treatment Protocol":str(lineage_list[0].get("protocol.id")[0])}
+        
+        # entry["Additional sample data"] = {}
+        # if "data_files" in lineage_list:
+        #     entry["Additional sample data"]["RAW_FILE_NAME"] = str(lineage_list["data_files"])
+        
         entry["subject_type"] = subject_type
         entry["local_sample_id"] = sample_id
         entry["factors"] = "{}:{}".format("Treatment Protocol", str(lineage_list[0].get("protocol.id")[0]))
         entry["additional_sample_data"] = lineage_to_str(lineage_list)
 
-        subject_sample_factors[internal_section_key].append(entry)
+        subject_sample_factors.append(entry)
 
     return subject_sample_factors
 
