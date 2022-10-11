@@ -1,0 +1,903 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tutorial &mdash; MESSES 1.0.0 documentation</title><link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Tagging" href="tagging.html" />
+    <link rel="prev" title="User Guide" href="guide.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> MESSES
+          </a>
+              <div class="version">
+                1.0.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="guide.html">User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="guide.html#messes">MESSES</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Tutorial</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#extract">Extract</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#options">Options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#examples">Examples</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#basic-run">Basic Run</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#compare-option">Compare Option</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#modify-option">Modify Option</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#automate-option">Automate Option</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#save-directives-option">Save Directives Option</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#save-export-option">Save Export Option</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#show-option">Show Option</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tagging.html">Tagging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="table_schema.html">Table Schema</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="todo.html">TODO List</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">MESSES</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Tutorial</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/tutorial.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="section" id="tutorial">
+<h1>Tutorial<a class="headerlink" href="#tutorial" title="Permalink to this headline">¶</a></h1>
+<p>MESSES is intended to be used solely as a command line program. This
+tutorial describes each command and its options.</p>
+<p>Top-Level Usage
+.. literalinclude:: ../src/messes/__main__.py</p>
+<blockquote>
+<div><dl class="field-list simple">
+<dt class="field-odd">start-at</dt>
+<dd class="field-odd"><p>Usage:</p>
+</dd>
+<dt class="field-even">end-before</dt>
+<dd class="field-even"><p>“””</p>
+</dd>
+<dt class="field-odd">language</dt>
+<dd class="field-odd"><p>none</p>
+</dd>
+</dl>
+</div></blockquote>
+<p>MESSES is broken into 3 main commands, extract, validate, and convert, with convert broken up further for each supported conversion.
+The highest level usage is simply a gateway to the other commands and has very few options. You can see the version with the -v option,
+print the usage with -h option or print all of the commands usage’s with the –full-help option.</p>
+<div class="section" id="extract">
+<h2>Extract<a class="headerlink" href="#extract" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span> Usage:
+    messes extract &lt;metadata_source&gt;... [--delete &lt;metadata_section&gt;...] [options]
+    messes extract --help
+
+    &lt;metadata_source&gt; - input metadata source as csv/json filename or xlsx_filename[:worksheet_name|regular_expression]. &quot;#export&quot; worksheet name is the default.
+
+ Options:
+    --help                              - show this help documentation.
+    --output &lt;filename_json&gt;            - output json filename.
+    --compare &lt;filename_json&gt;           - compare extracted metadata to given JSONized metadata.
+    --modify &lt;source&gt;                   - modification directives worksheet name, regular expression, csv/json filename, or xlsx_filename:[worksheet_name|regular_expression] [default: #modify].
+    --end-modify &lt;source&gt;               - apply modification directives after all metadata merging. Requires csv/json filename or xlsx_filename:[worksheet_name|regular_expression].
+    --automate &lt;source&gt;                 - automation directives worksheet name, regular expression, csv/json filename, or xlsx_filename:[worksheet_name|regular_expression] [default: #automate].
+    --save-directives &lt;filename_json&gt;   - output filename with modification and automation directives in JSON format.
+    --save-export &lt;filetype&gt;            - output export worksheet with suffix &quot;_export&quot; and with the indicated xlsx/csv format extension.
+    --show &lt;show_option&gt;                - show a part of the metadata. See options below.
+    --delete &lt;metadata_section&gt;...      - delete a section of the JSONized metadata. Section format is tableKey or tableKey,IDKey or tableKey,IDKey,fieldName. These can be regular expressions.
+    --keep &lt;metadata_tables&gt;            - only keep the selected tables.  Delete the rest.  Table format is tableKey,tableKey,... The tableKey can be a regular expression.
+    --silent                            - print no warning messages.
+
+Show Options:
+  tables    - show tables in the extracted metadata.
+  lineage   - show parent-child lineages per table.
+  all       - show every option.
+
+Regular Expression Format:
+  Regular expressions have the form &quot;r&#39;...&#39;&quot; on the command line.
+  The re.match function is used, which matches from the beginning of a string, meaning that a regular expression matches as if it starts with a &quot;^&quot;.
+
+ Directives JSON Format:
+   {
+    &quot;modification&quot; : { table : { field :  { &quot;(exact|regex|levenshtein)\-(first|first\-nowarn|unique|all)&quot; :
+                      { field_value : { &quot;assign&quot; : { field : value,... }, &quot;append&quot; : { field : value,... }, &quot;prepend&quot; : { field : value,... },
+                                        &quot;regex&quot; : { field : regex_pair,... }, &quot;delete&quot; : [ field,... ], &quot;rename&quot; : { old_field : new_field } } } } } }
+    &quot;automation&quot; : [ { &quot;header_tag_descriptions&quot; : [ { &quot;header&quot; : column_description, &quot;tag&quot; : tag_description, &quot;required&quot; : true|false } ],   &quot;exclusion_test&quot; : exclusion_value, &quot;insert&quot; : [ [ cell_content, ... ] ] } ]
+   }
+
+</pre></div>
+</div>
+<p>The extract command is used to extract tabular data in an Excel workbook or CSV file to JSON. It has several hard to describe options
+and functionality.</p>
+<div class="section" id="options">
+<h3>Options<a class="headerlink" href="#options" title="Permalink to this headline">¶</a></h3>
+<p><strong>–output</strong> - This option is used to specify the name of the JSON file that will be output. If this option is not specified there will be no output file.</p>
+<p><strong>–compare</strong> - This option allows you to compare the resulting JSON file with the one provided with this option. It will show differences such as missing and extra tables and fields.</p>
+<p><strong>–modify</strong> - This option is used to specify the Excel worksheet name, the Excel file and worksheet name, or the CSV or JSON file name that contains the modification tags.
+The default assumption for MESSES is that the input file is an Excel workbook, so the default sheet name for the modify option is ‘#modify’. Be sure any input Excel
+files do not have a worksheet with this name if it does not contain modification tags. To specify a separate Excel file and sheet name as the location of modification
+tags the file name/path and sheet name need to be separated by a semicolon. Ex. Modification_tags.xlsx:sheet1. The sheet name can also be a regular expression.
+Ex. Modification_tags.xlsx:r’.*dify’  or just  r’.*dify’  to specify a regex for a sheetname in the input data file. File types other than Excel are specified as
+normal. If multiple input data files are given the specified file or sheet name given to –modify is used for all of them. Details about modification tags are
+in the doc`tagging` section.</p>
+<p><strong>–end-modify</strong> - The same as –modify, but modifications are done at the end after all input data files have been parsed and merged into one JSON file. There is
+no default value.</p>
+<p><strong>–automate</strong> - The same as –modify, but for automation tags. The default sheet name is ‘#automate’. Details about automation tags are in the doc`tagging` section.</p>
+<p><strong>–save-directives</strong> - This option allows you to save any modification or automation directives as JSON to the specified file path. Note that –end-modify directives
+will overwrite –modify directives so only –end-modify directives will be in the output if specified.</p>
+<p><strong>–save-export</strong> - This option lets you save the version of the data that has all automations applied just before parsing into JSON. It can be useful in debugging.
+The export file will be saved with the same name as the input file with ‘_export’ added to the end. Choose ‘csv’ to save as a CSV file, and ‘xlsx’ to save as
+an Excel file. Note that this file will likely not look pretty.</p>
+<p><strong>–show</strong> - This option allows you to see tables or lineages in the input data. Specify ‘tables’ to see tables, ‘lineages’ to see lineages, or ‘all’ to see both.</p>
+<p><strong>–delete</strong> - Use this option to delete tables, records, or fields from the JSONized input. Note that fields can also be deleted using modification tags. This
+option is limited and only allows the deletion of one table, record, or field at a time. Ex. –delete protocol  will delete the protocol table. Tables, records,
+and fields can also be specified with regular expressions. Ex. –delete r’.*tocol’ will delete all tables that match the regular expression.</p>
+<p><strong>–keep</strong> - Use this option to keep only the indicated tables in the JSONized output. These are tables only, but multiple tables can be specified.
+Ex. –keep protocol,measurement  will keep only the protocol and measurement tables. Tables can also specified with regular expressions Ex. –keep r’.*tocl’,r’measure.*’
+will keep all the tables that match the regular expressions.</p>
+<p><strong>–silent</strong> - This option will silence all warning messages. Errors will still be printed.</p>
+</div>
+<div class="section" id="examples">
+<h3>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="basic-run">
+<h4>Basic Run<a class="headerlink" href="#basic-run" title="Permalink to this headline">¶</a></h4>
+<p>Input File:</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 5%" />
+<col style="width: 11%" />
+<col style="width: 42%" />
+<col style="width: 42%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>#tags</p></td>
+<td><p>#sample.id</p></td>
+<td><p>#%child.id=-media-0h;#.dry_weight;#.dry_weight%units=mg</p></td>
+<td><p>#%child.id=-media-3h;#.dry_weight;#.dry_weight%units=mg</p></td>
+</tr>
+<tr class="row-even"><td></td>
+<td><p>KO labelled_1</p></td>
+<td><p>4.2</p></td>
+<td><p>8.5</p></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p>KO labelled_2</p></td>
+<td><p>4.7</p></td>
+<td><p>9.7</p></td>
+</tr>
+<tr class="row-even"><td></td>
+<td><p>…</p></td>
+<td><p>…</p></td>
+<td><p>…</p></td>
+</tr>
+</tbody>
+</table>
+<p>Command Line:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">messes extract input_file.csv --output output_file.json</span>
+</pre></div>
+</div>
+<p>Output JSON:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">{</span>
+<span class="go">  &quot;sample&quot;: {</span>
+<span class="go">    &quot;KO labelled_1&quot;: {</span>
+<span class="go">      &quot;id&quot;: &quot;KO labelled_1&quot;</span>
+<span class="go">    },</span>
+<span class="go">    &quot;KO labelled_1-media-0h&quot;: {</span>
+<span class="go">      &quot;dry_weight&quot;: &quot;4.2&quot;,</span>
+<span class="go">      &quot;dry_weight%units&quot;: &quot;mg&quot;,</span>
+<span class="go">      &quot;id&quot;: &quot;KO labelled_1-media-0h&quot;,</span>
+<span class="go">      &quot;parentID&quot;: &quot;KO labelled_1&quot;</span>
+<span class="go">    },</span>
+<span class="go">    &quot;KO labelled_1-media-3h&quot;: {</span>
+<span class="go">      &quot;dry_weight&quot;: &quot;8.5&quot;,</span>
+<span class="go">      &quot;dry_weight%units&quot;: &quot;mg&quot;,</span>
+<span class="go">      &quot;id&quot;: &quot;KO labelled_1-media-3h&quot;,</span>
+<span class="go">      &quot;parentID&quot;: &quot;KO labelled_1&quot;</span>
+<span class="go">    },</span>
+<span class="go">    &quot;KO labelled_2&quot;: {</span>
+<span class="go">      &quot;id&quot;: &quot;KO labelled_2&quot;</span>
+<span class="go">    },</span>
+<span class="go">    &quot;KO labelled_2-media-0h&quot;: {</span>
+<span class="go">      &quot;dry_weight&quot;: &quot;4.7&quot;,</span>
+<span class="go">      &quot;dry_weight%units&quot;: &quot;mg&quot;,</span>
+<span class="go">      &quot;id&quot;: &quot;KO labelled_2-media-0h&quot;,</span>
+<span class="go">      &quot;parentID&quot;: &quot;KO labelled_2&quot;</span>
+<span class="go">    },</span>
+<span class="go">    &quot;KO labelled_2-media-3h&quot;: {</span>
+<span class="go">      &quot;dry_weight&quot;: &quot;9.7&quot;,</span>
+<span class="go">      &quot;dry_weight%units&quot;: &quot;mg&quot;,</span>
+<span class="go">      &quot;id&quot;: &quot;KO labelled_2-media-3h&quot;,</span>
+<span class="go">      &quot;parentID&quot;: &quot;KO labelled_2&quot;</span>
+<span class="go">    }</span>
+<span class="go">  }</span>
+<span class="go">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="compare-option">
+<h4>Compare Option<a class="headerlink" href="#compare-option" title="Permalink to this headline">¶</a></h4>
+<p>Input File:</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 6%" />
+<col style="width: 11%" />
+<col style="width: 41%" />
+<col style="width: 41%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>#tags</p></th>
+<th class="head"><p>#sample.id</p></th>
+<th class="head"><p>#%child.id=-media-0h;#.dry_weight;#.dry_weight%units=mg</p></th>
+<th class="head"><p>#%child.id=-media-3h;#.dry_weight;#.dry_weight%units=mg</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td></td>
+<td><p>KO labelled_1</p></td>
+<td><p>4.2</p></td>
+<td><p>8.5</p></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p>KO labelled_2</p></td>
+<td><p>4.7</p></td>
+<td><p>9.7</p></td>
+</tr>
+<tr class="row-even"><td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>#tags</p></td>
+<td><p>#protocol.id</p></td>
+<td><p>#.field2</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td></td>
+<td><p>protocol_1</p></td>
+<td><p>value1</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p>protocol_2</p></td>
+<td><p>value2</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>#tags</p></td>
+<td><p>#factor.id</p></td>
+<td><p>#.field1</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td></td>
+<td><p>factor_1</p></td>
+<td><p>value1</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p>factor_2</p></td>
+<td><p>value2</p></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>Comparison JSON:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">{</span>
+<span class="go">  &quot;measurement&quot;: {</span>
+<span class="go">    &quot;measurement_1&quot;: {</span>
+<span class="go">      &quot;field1&quot;: &quot;value1&quot;,</span>
+<span class="go">      &quot;id&quot;: &quot;measurement_1&quot;</span>
+<span class="go">    },</span>
+<span class="go">    &quot;measurement_2&quot;: {</span>
+<span class="go">      &quot;field1&quot;: &quot;value2&quot;,</span>
+<span class="go">      &quot;id&quot;: &quot;measurement_2&quot;</span>
+<span class="go">    }</span>
+<span class="go">  },</span>
+<span class="go">  &quot;protocol&quot;: {</span>
+<span class="go">    &quot;protocol_1&quot;: {</span>
+<span class="go">      &quot;field1&quot;: &quot;value1&quot;,</span>
+<span class="go">      &quot;id&quot;: &quot;protocol_1&quot;</span>
+<span class="go">    },</span>
+<span class="go">    &quot;protocol_2&quot;: {</span>
+<span class="go">      &quot;field1&quot;: &quot;value2&quot;,</span>
+<span class="go">      &quot;id&quot;: &quot;protocol_2&quot;</span>
+<span class="go">    }</span>
+<span class="go">  },</span>
+<span class="go">  &quot;sample&quot;: {</span>
+<span class="go">    &quot;KO labelled_1&quot;: {</span>
+<span class="go">      &quot;id&quot;: &quot;KO labelled_1&quot;</span>
+<span class="go">    },</span>
+<span class="go">    &quot;KO labelled_1-media-0h&quot;: {</span>
+<span class="go">      &quot;dry_weight&quot;: &quot;4.2&quot;,</span>
+<span class="go">      &quot;dry_weight%units&quot;: &quot;mg&quot;,</span>
+<span class="go">      &quot;id&quot;: &quot;KO labelled_1-media-0h&quot;,</span>
+<span class="go">      &quot;parentID&quot;: &quot;KO labelled_1&quot;</span>
+<span class="go">    },</span>
+<span class="go">    &quot;KO labelled_1-media-3h&quot;: {</span>
+<span class="go">      &quot;dry_weight&quot;: &quot;8.5&quot;,</span>
+<span class="go">      &quot;dry_weight%units&quot;: &quot;mg&quot;,</span>
+<span class="go">      &quot;id&quot;: &quot;KO labelled_1-media-3h&quot;,</span>
+<span class="go">      &quot;parentID&quot;: &quot;KO labelled_1&quot;</span>
+<span class="go">    },</span>
+<span class="go">    &quot;KO labelled_3&quot;: {</span>
+<span class="go">      &quot;id&quot;: &quot;KO labelled_3&quot;</span>
+<span class="go">    },</span>
+<span class="go">    &quot;KO labelled_3-media-0h&quot;: {</span>
+<span class="go">      &quot;dry_weight&quot;: &quot;4.8&quot;,</span>
+<span class="go">      &quot;dry_weight%units&quot;: &quot;mg&quot;,</span>
+<span class="go">      &quot;id&quot;: &quot;KO labelled_3-media-0h&quot;,</span>
+<span class="go">      &quot;parentID&quot;: &quot;KO labelled_3&quot;</span>
+<span class="go">    },</span>
+<span class="go">    &quot;KO labelled_3-media-3h&quot;: {</span>
+<span class="go">      &quot;dry_weight&quot;: &quot;8.8&quot;,</span>
+<span class="go">      &quot;dry_weight%units&quot;: &quot;mg&quot;,</span>
+<span class="go">      &quot;id&quot;: &quot;KO labelled_3-media-3h&quot;,</span>
+<span class="go">      &quot;parentID&quot;: &quot;KO labelled_3&quot;</span>
+<span class="go">    }</span>
+<span class="go">  }</span>
+<span class="go">}</span>
+</pre></div>
+</div>
+<p>Command Line:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">messes extract input_file.csv --compare comparison.json</span>
+</pre></div>
+</div>
+<p>Output:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">Comparison</span>
+<span class="go">Missing Tables: measurement</span>
+<span class="go">Extra Tables: factor</span>
+<span class="go">Table protocol id protocol_1 with different fields: field1, field2</span>
+<span class="go">Table protocol id protocol_2 with different fields: field1, field2</span>
+<span class="go">Table sample with missing records:</span>
+<span class="go">   KO labelled_3 KO labelled_3-media-0h KO labelled_3-media-3h</span>
+<span class="go">Table sample with extra records:</span>
+<span class="go">   KO labelled_2 KO labelled_2-media-0h KO labelled_2-media-3h</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="modify-option">
+<h4>Modify Option<a class="headerlink" href="#modify-option" title="Permalink to this headline">¶</a></h4>
+<p>#export Sheet:</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 20%" />
+<col style="width: 71%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>#tags</p></th>
+<th class="head"><p>#sample.id</p></th>
+<th class="head"><p>#%child.id=-media-0h;#.dry_weight;#.dry_weight%units=mg</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td></td>
+<td><p>KO labelled_1</p></td>
+<td><p>4.2</p></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p>KO labelled_2</p></td>
+<td><p>4.7</p></td>
+</tr>
+</tbody>
+</table>
+<p>#modify sheet:</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 14%" />
+<col style="width: 32%" />
+<col style="width: 54%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>#tags</p></th>
+<th class="head"><p>#sample.id.value</p></th>
+<th class="head"><p>#sample.id.regex</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td></td>
+<td><p>r’KO labelled.*’</p></td>
+<td><p>r’KO labelled’,r’KO_labelled’</p></td>
+</tr>
+</tbody>
+</table>
+<p>Command Line:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">messes extract input_file.xlsx --output output.json</span>
+</pre></div>
+</div>
+<p>Output JSON:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">{</span>
+<span class="go">  &quot;sample&quot;: {</span>
+<span class="go">    &quot;KO_labelled_1&quot;: {</span>
+<span class="go">      &quot;dry_weight&quot;: &quot;4.2&quot;,</span>
+<span class="go">      &quot;dry_weight%units&quot;: &quot;mg&quot;,</span>
+<span class="go">      &quot;id&quot;: &quot;KO_labelled_1&quot;</span>
+<span class="go">    },</span>
+<span class="go">    &quot;KO_labelled_3&quot;: {</span>
+<span class="go">      &quot;dry_weight&quot;: &quot;4.8&quot;,</span>
+<span class="go">      &quot;dry_weight%units&quot;: &quot;mg&quot;,</span>
+<span class="go">      &quot;id&quot;: &quot;KO_labelled_3&quot;</span>
+<span class="go">    }</span>
+<span class="go">  }</span>
+<span class="go">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="automate-option">
+<h4>Automate Option<a class="headerlink" href="#automate-option" title="Permalink to this headline">¶</a></h4>
+<p>#export Sheet:</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 64%" />
+<col style="width: 36%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Sample ID</p></th>
+<th class="head"><p>Weight</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>KO labelled_1</p></td>
+<td><p>4.2</p></td>
+</tr>
+<tr class="row-odd"><td><p>KO labelled_3</p></td>
+<td><p>4.8</p></td>
+</tr>
+</tbody>
+</table>
+<p>#automate Sheet:</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 14%" />
+<col style="width: 21%" />
+<col style="width: 65%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>#tags</p></th>
+<th class="head"><p>#header</p></th>
+<th class="head"><p>#add</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td></td>
+<td><p>Sample ID</p></td>
+<td><p>#sample.id</p></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p>Weight</p></td>
+<td><p>#.dry_weight;#.dry_weight%units=mg</p></td>
+</tr>
+</tbody>
+</table>
+<p>Command Line:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">messes extract input_file.xlsx --output output.json</span>
+</pre></div>
+</div>
+<p>Output JSON:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">{</span>
+<span class="go">  &quot;sample&quot;: {</span>
+<span class="go">    &quot;KO labelled_1&quot;: {</span>
+<span class="go">      &quot;dry_weight&quot;: &quot;4.2&quot;,</span>
+<span class="go">      &quot;dry_weight%units&quot;: &quot;mg&quot;,</span>
+<span class="go">      &quot;id&quot;: &quot;KO labelled_1&quot;</span>
+<span class="go">    },</span>
+<span class="go">    &quot;KO labelled_3&quot;: {</span>
+<span class="go">      &quot;dry_weight&quot;: &quot;4.8&quot;,</span>
+<span class="go">      &quot;dry_weight%units&quot;: &quot;mg&quot;,</span>
+<span class="go">      &quot;id&quot;: &quot;KO labelled_3&quot;</span>
+<span class="go">    }</span>
+<span class="go">  }</span>
+<span class="go">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="save-directives-option">
+<h4>Save Directives Option<a class="headerlink" href="#save-directives-option" title="Permalink to this headline">¶</a></h4>
+<p>#export Sheet:</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 64%" />
+<col style="width: 36%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Sample ID</p></th>
+<th class="head"><p>Weight</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>KO labelled_1</p></td>
+<td><p>4.2</p></td>
+</tr>
+<tr class="row-odd"><td><p>KO labelled_3</p></td>
+<td><p>4.8</p></td>
+</tr>
+</tbody>
+</table>
+<p>#automate Sheet:</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 14%" />
+<col style="width: 21%" />
+<col style="width: 65%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>#tags</p></th>
+<th class="head"><p>#header</p></th>
+<th class="head"><p>#add</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td></td>
+<td><p>Sample ID</p></td>
+<td><p>#sample.id</p></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p>Weight</p></td>
+<td><p>#.dry_weight;#.dry_weight%units=mg</p></td>
+</tr>
+</tbody>
+</table>
+<p>#modify Sheet:</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 14%" />
+<col style="width: 32%" />
+<col style="width: 54%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>#tags</p></th>
+<th class="head"><p>#sample.id.value</p></th>
+<th class="head"><p>#sample.id.regex</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td></td>
+<td><p>r’KO labelled.*’</p></td>
+<td><p>r’KO labelled’,r’KO_labelled’</p></td>
+</tr>
+</tbody>
+</table>
+<p>Command Line:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">messes extract input_file.xlsx --output output.json --save-directives directives.json</span>
+</pre></div>
+</div>
+<p>Output JSON:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">{</span>
+<span class="go">  &quot;sample&quot;: {</span>
+<span class="go">    &quot;KO_labelled_1&quot;: {</span>
+<span class="go">      &quot;dry_weight&quot;: &quot;4.2&quot;,</span>
+<span class="go">      &quot;dry_weight%units&quot;: &quot;mg&quot;,</span>
+<span class="go">      &quot;id&quot;: &quot;KO_labelled_1&quot;</span>
+<span class="go">    },</span>
+<span class="go">    &quot;KO_labelled_3&quot;: {</span>
+<span class="go">      &quot;dry_weight&quot;: &quot;4.8&quot;,</span>
+<span class="go">      &quot;dry_weight%units&quot;: &quot;mg&quot;,</span>
+<span class="go">      &quot;id&quot;: &quot;KO_labelled_3&quot;</span>
+<span class="go">    }</span>
+<span class="go">  }</span>
+<span class="go">}</span>
+</pre></div>
+</div>
+<p>Output Directives:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">{</span>
+<span class="go">  &quot;automation&quot;: [</span>
+<span class="go">    {</span>
+<span class="go">      &quot;header_tag_descriptions&quot;: [</span>
+<span class="go">        {</span>
+<span class="go">          &quot;header&quot;: &quot;Sample ID&quot;,</span>
+<span class="go">          &quot;required&quot;: true,</span>
+<span class="go">          &quot;tag&quot;: &quot;#sample.id&quot;</span>
+<span class="go">        },</span>
+<span class="go">        {</span>
+<span class="go">          &quot;header&quot;: &quot;Weight&quot;,</span>
+<span class="go">          &quot;required&quot;: true,</span>
+<span class="go">          &quot;tag&quot;: &quot;#.dry_weight;#.dry_weight%units=mg&quot;</span>
+<span class="go">        }</span>
+<span class="go">      ]</span>
+<span class="go">    }</span>
+<span class="go">  ],</span>
+<span class="go">  &quot;modification&quot;: {</span>
+<span class="go">    &quot;sample&quot;: {</span>
+<span class="go">      &quot;id&quot;: {</span>
+<span class="go">        &quot;regex-all&quot;: {</span>
+<span class="go">          &quot;r&#39;KO labelled.*&#39;&quot;: {</span>
+<span class="go">            &quot;regex&quot;: {</span>
+<span class="go">              &quot;id&quot;: [</span>
+<span class="go">                &quot;r&#39;KO labelled&#39;&quot;,</span>
+<span class="go">                &quot;r&#39;KO_labelled&#39;&quot;</span>
+<span class="go">              ]</span>
+<span class="go">            }</span>
+<span class="go">          }</span>
+<span class="go">        }</span>
+<span class="go">      }</span>
+<span class="go">    }</span>
+<span class="go">  }</span>
+<span class="go">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="save-export-option">
+<h4>Save Export Option<a class="headerlink" href="#save-export-option" title="Permalink to this headline">¶</a></h4>
+<p>#export Sheet:</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 64%" />
+<col style="width: 36%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Sample ID</p></th>
+<th class="head"><p>Weight</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>KO labelled_1</p></td>
+<td><p>4.2</p></td>
+</tr>
+<tr class="row-odd"><td><p>KO labelled_3</p></td>
+<td><p>4.8</p></td>
+</tr>
+</tbody>
+</table>
+<p>#automate Sheet:</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 14%" />
+<col style="width: 21%" />
+<col style="width: 65%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>#tags</p></th>
+<th class="head"><p>#header</p></th>
+<th class="head"><p>#add</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td></td>
+<td><p>Sample ID</p></td>
+<td><p>#sample.id</p></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p>Weight</p></td>
+<td><p>#.dry_weight;#.dry_weight%units=mg</p></td>
+</tr>
+</tbody>
+</table>
+<p>Command Line:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">messes extract input_file.xlsx --output output.json --save-export csv</span>
+</pre></div>
+</div>
+<p>Output JSON:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">{</span>
+<span class="go">  &quot;sample&quot;: {</span>
+<span class="go">    &quot;KO labelled_1&quot;: {</span>
+<span class="go">      &quot;dry_weight&quot;: &quot;4.2&quot;,</span>
+<span class="go">      &quot;dry_weight%units&quot;: &quot;mg&quot;,</span>
+<span class="go">      &quot;id&quot;: &quot;KO labelled_1&quot;</span>
+<span class="go">    },</span>
+<span class="go">    &quot;KO labelled_3&quot;: {</span>
+<span class="go">      &quot;dry_weight&quot;: &quot;4.8&quot;,</span>
+<span class="go">      &quot;dry_weight%units&quot;: &quot;mg&quot;,</span>
+<span class="go">      &quot;id&quot;: &quot;KO labelled_3&quot;</span>
+<span class="go">    }</span>
+<span class="go">  }</span>
+<span class="go">}</span>
+</pre></div>
+</div>
+<p>Export Output:</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 16%" />
+<col style="width: 25%" />
+<col style="width: 59%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>#ignore</p></th>
+<th class="head"><p>Sample ID</p></th>
+<th class="head"><p>Weight</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>#tags</p></td>
+<td><p>#sample.id</p></td>
+<td><p>#.dry_weight;#.dry_weight%units=mg</p></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p>KO labelled_1</p></td>
+<td><p>4.2</p></td>
+</tr>
+<tr class="row-even"><td></td>
+<td><p>KO labelled_3</p></td>
+<td><p>4.8</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="show-option">
+<h4>Show Option<a class="headerlink" href="#show-option" title="Permalink to this headline">¶</a></h4>
+<p>Input File:</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 6%" />
+<col style="width: 11%" />
+<col style="width: 41%" />
+<col style="width: 41%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>#tags</p></th>
+<th class="head"><p>#sample.id</p></th>
+<th class="head"><p>#%child.id=-media-0h;#.dry_weight;#.dry_weight%units=mg</p></th>
+<th class="head"><p>#%child.id=-media-3h;#.dry_weight;#.dry_weight%units=mg</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td></td>
+<td><p>KO labelled_1</p></td>
+<td><p>4.2</p></td>
+<td><p>8.5</p></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p>KO labelled_2</p></td>
+<td><p>4.7</p></td>
+<td><p>9.7</p></td>
+</tr>
+<tr class="row-even"><td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>#tags</p></td>
+<td><p>#protocol.id</p></td>
+<td><p>#.field2</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td></td>
+<td><p>protocol_1</p></td>
+<td><p>value1</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p>protocol_2</p></td>
+<td><p>value2</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>#tags</p></td>
+<td><p>#factor.id</p></td>
+<td><p>#.field1</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td></td>
+<td><p>factor_1</p></td>
+<td><p>value1</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p>factor_2</p></td>
+<td><p>value2</p></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>Command Line:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">messes extract input_file.csv --show tables</span>
+</pre></div>
+</div>
+<p>Output:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">Tables:  sample protocol factor</span>
+</pre></div>
+</div>
+<p>Command Line:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">messes extract input_file.csv --show lineage</span>
+</pre></div>
+</div>
+<p>Output:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">sample :</span>
+<span class="go">  KO labelled_1 :</span>
+<span class="go">    KO labelled_1-media-0h, KO labelled_1-media-3h</span>
+<span class="go">  KO labelled_2 :</span>
+<span class="go">    KO labelled_2-media-0h, KO labelled_2-media-3h</span>
+</pre></div>
+</div>
+<p>Command Line:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">messes extract input_file.csv --show all</span>
+</pre></div>
+</div>
+<p>Output:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">Tables:  sample protocol factor</span>
+<span class="go"> sample :</span>
+<span class="go">   KO labelled_1 :</span>
+<span class="go">     KO labelled_1-media-0h, KO labelled_1-media-3h</span>
+<span class="go">   KO labelled_2 :</span>
+<span class="go">     KO labelled_2-media-0h, KO labelled_2-media-3h</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="guide.html" class="btn btn-neutral float-left" title="User Guide" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="tagging.html" class="btn btn-neutral float-right" title="Tagging" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Hunter Moseley, Travis Thompson.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

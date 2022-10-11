@@ -1,0 +1,1592 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tagging &mdash; MESSES 1.0.0 documentation</title><link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Table Schema" href="table_schema.html" />
+    <link rel="prev" title="Tutorial" href="tutorial.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> MESSES
+          </a>
+              <div class="version">
+                1.0.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="guide.html">User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="guide.html#messes">MESSES</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial.html">Tutorial</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Tagging</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#terminology">Terminology</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#introduction">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#export-tags">Export Tags</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#keyword-tags">Keyword Tags</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#column-field-format">Column Field Format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#value-field-format">Value Field Format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id-field-format">ID Field Format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#list-field-format">List Field Format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#child-tag-format">Child Tag Format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#field-tracking-tags">Field Tracking Tags</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#modification-tags">Modification Tags</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#value-tag">Value Tag</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#comparison-type">Comparison Type</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#match-type">Match Type</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#modifications">Modifications</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#automation-tags">Automation Tags</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#insert">Insert</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#header-tagging">Header Tagging</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#example">Example:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#the-tags">The Tags</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#common-use-case-examples">Common Use Case Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="table_schema.html">Table Schema</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="todo.html">TODO List</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">MESSES</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Tagging</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/tagging.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="section" id="tagging">
+<h1>Tagging<a class="headerlink" href="#tagging" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="terminology">
+<h2>Terminology<a class="headerlink" href="#terminology" title="Permalink to this headline">¶</a></h2>
+<ul>
+<li><p><strong>header</strong> - a descriptive label at the top of a column in a table of data.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Example: SampleID</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p><strong>tag</strong> - used to describe fields in a record of data. They are a semantic descriptive header used to parse a column (field) of data from a table.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Example: #measurement.compound</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p><strong>table</strong> - in this section table can refer to either a table in a data file or a SQL style table in the output. Often there are many small tables in a data file that are combined into a larger one in the extract output.</p></li>
+</ul>
+</div>
+<div class="section" id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<p>In order to extract data from arbitrary tables programmatically, some kind of system has to be devised.
+This could be something as simple as requiring a table be on the very first row and for the starting
+row to have column names for every column, but a system such as that would then be fragile. We decided
+to create a more robust system that could handle more complicated data arrangements and reduce the
+verbosity to a minimum. The system that was devised was an extra layer of tags added on top of existing
+tables that tell the extract command how to transform the tabular data into key based record data similar
+to JSON or SQL databases. The specific table schema this system was designed for is covered in the
+<a class="reference internal" href="table_schema.html"><span class="doc">Table Schema</span></a> section, but it is general enough that it can be used with most table schema.</p>
+<p>This initial system served its function well, but it became clear that more functionality was sorely needed.
+Namely, both a way to add tags programmatically to data and a way to modify record values was needed, so the
+system was expanded to give facilities to both. Ultimately there are 3 parts to the tagging system that are
+distinct from one another but have similar syntax and ideas. The “export” part is the system used to add
+directly on top of existing tabular data. It is the base system that must be used for the extraction to
+work at all. The “automation” part that is used to automate adding “export” tags to tabular data. Based on
+the header values in your data you can use “automation” tags to add the “export” tags automatically. A good
+use case for this is when you have data output by a program in a consistent way. Instead of manually adding
+export tags to the program output each time you can create an “automation” page that will add the “export”
+tags for you. The last part is the “modification” part which is the system used to modify record values.
+It can be used to prepend, append, delete, overwrite, or regex substitute values. An example use case would
+be to update old naming conventions.</p>
+<p>Each of the 3 tagging systems are explained below with examples. Examples using them with the extract
+command are in the <a class="reference internal" href="tutorial.html"><span class="doc">Tutorial</span></a> section and there are full run examples in the “examples” folder of the
+<a class="reference external" href="https://github.com/MoseleyBioinformaticsLab/messes">GitHub</a>.</p>
+</div>
+<div class="section" id="export-tags">
+<h2>Export Tags<a class="headerlink" href="#export-tags" title="Permalink to this headline">¶</a></h2>
+<ul>
+<li><p>Tag rows are identified by putting <strong>‘#tags’</strong> in the left most column of the data file.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Typically, there will be nothing underneath of <strong>‘#tags’</strong> except <strong>‘#ignore’</strong> for rows to ignore.</p></li>
+<li><p>You may need to add a blank column to the left of your data to accomodate this.</p></li>
+<li><p><strong>‘#tags’</strong> always needs to be on the very left most column, even if your table has several blank columns before it starts.</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>Cells on this row will have tags over the columns to be exported.</p></li>
+<li><p>Subsequent non-blank rows are interpreted as data unless the tag <strong>‘#ignore’</strong> is used in the left most column.</p></li>
+</ul>
+<p>Basic Example:</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 15%" />
+<col style="width: 23%" />
+<col style="width: 37%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>#tags</p></th>
+<th class="head"><p>#sample.id</p></th>
+<th class="head"><p>#.weight;#%units=”g”</p></th>
+<th class="head"><p>#.protocol.id</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>#ignore</p></td>
+<td><p>Sample ID</p></td>
+<td><p>Weight</p></td>
+<td><p>Treatment</p></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p>…</p></td>
+<td><p>…</p></td>
+<td><p>…</p></td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="keyword-tags">
+<h3>Keyword Tags<a class="headerlink" href="#keyword-tags" title="Permalink to this headline">¶</a></h3>
+<ul>
+<li><p><strong>#tags</strong> - identifies tag header rows. Must be in the first column of a row.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Additional tag-value pairs in a cell with #tags are applied to all child records in this section, but are ignored for non child records.</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p><strong>#ignore</strong> - ignore this row. Must be put in the first column of a row.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Use this to ignore additional header explanation rows and unused data records within a block of records.</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p><strong>#table</strong> - change the working table to the indicated table name.</p></li>
+</ul>
+</div>
+<div class="section" id="column-field-format">
+<h3>Column Field Format<a class="headerlink" href="#column-field-format" title="Permalink to this headline">¶</a></h3>
+<ul>
+<li><p>Tags begin with a ‘#’ symbol and identify a specific relational database table, field, and optionally a field-attribute.</p>
+<blockquote>
+<div><ul>
+<li><p>Format: <strong>#table_name.field_name</strong></p>
+<blockquote>
+<div><ul>
+<li><p>Example: #sample.dry_weight</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>sample - the sample data relational table (workbench worksheet)</p></li>
+<li><p>dry_weight - the field name.</p></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>Format: <strong>#table</strong></p>
+<blockquote>
+<div><ul>
+<li><p>Example: #sample</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>sample - the sample data relational table (workbench worksheet)</p></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>Format: <strong>#.field_name</strong></p>
+<blockquote>
+<div><ul>
+<li><p>Example: #.dry_weight</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>dry_weight - the field name, for the table last identified.</p></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>Format: <strong>#table_name.field_name%attribute_name</strong></p>
+<blockquote>
+<div><ul>
+<li><p>Example: #sample.dry_weight%units</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>sample - the sample data relational table (workbench worksheet)</p></li>
+<li><p>dry_weight - the field name.</p></li>
+<li><p>units - units attribute for the field.</p></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>Format: <strong>#.field_name%attribute_name</strong></p>
+<blockquote>
+<div><ul>
+<li><p>Example: #.dry_weight%units</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>dry_weight - the field name, for the last table identified.</p></li>
+<li><p>units - units attribute for the field.</p></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>Format: <strong>#%attribute_name</strong></p>
+<blockquote>
+<div><ul>
+<li><p>Example: #%units</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>units - units attribute for a field previously identified in a table previously identified.</p></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div>
+<div class="section" id="value-field-format">
+<h3>Value Field Format<a class="headerlink" href="#value-field-format" title="Permalink to this headline">¶</a></h3>
+<ul>
+<li><p>Values for a tag field can be specified directly using an equal sign “=”.</p>
+<blockquote>
+<div><ul>
+<li><p>Format: <strong>#table_name.field_name=field_value</strong></p>
+<blockquote>
+<div><ul>
+<li><p>Example: #study.title=”labeled mouse study 278”</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>study - the study table.</p></li>
+<li><p>“labeled mouse study 278” - value for the study title field.</p></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>Note that there is a special case for “id” fields. “id” fields cannot be set with an “=”.</p></li>
+<li><p>Format: <strong>#table_name.field_name%attribute_name=attribute_value</strong></p>
+<blockquote>
+<div><ul>
+<li><p>Example: #sample.dry_weight%units=g</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>sample - sample table</p></li>
+<li><p>dry_weight - dry_weight field</p></li>
+<li><p>units - attribute for dry weight with a value of “g”.</p></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>Multiple tags can be specified in a single cell using a semicolon “;”.</p>
+<blockquote>
+<div><ul>
+<li><p>However, only one tag can be left without a direct value for unambiguous interpretation of a column.</p></li>
+<li><p>Format: <strong>#table_name.field_name;#table_name.field_name=field_value;…</strong></p>
+<blockquote>
+<div><ul>
+<li><p>Example: #sample.dry_weight;#.dry_weight%units=mg</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>sample - the sample data table.</p></li>
+<li><p>dry_weight - field for the column interpretation</p></li>
+<li><p>units - field with a direct value of “mg”.</p></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>Values can be combined into a single value using a plus sign “+”.</p>
+<blockquote>
+<div><ul>
+<li><p>Format: <strong>#table_name.field_name;#table_name.field_name=field_value+field_value</strong></p>
+<blockquote>
+<div><ul>
+<li><p>Example: #study.title=”labeled mouse study 278 “+#.type</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>study - the study table.</p></li>
+<li><p>“labeled mouse study 278 ” - part of value for the study title field.</p></li>
+<li><p>#.type - part of value of the study title field taken from the study type field.</p></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div>
+<div class="section" id="id-field-format">
+<h3>ID Field Format<a class="headerlink" href="#id-field-format" title="Permalink to this headline">¶</a></h3>
+<ul>
+<li><p>ID tags indicate an identifier for a record in a table.</p></li>
+<li><p>The ID must uniquely identify a record.</p></li>
+<li><p>There must be an ID tag in every tag row.</p></li>
+<li><p>Using the same ID in multiple tag rows will add to the existing record.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Fields with the same name for the same ID across multiple tag rows will automatically become list fields, and new values will be added to the list.</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>Records can have record IDs from other tables or the same table as fields.</p>
+<blockquote>
+<div><ul>
+<li><p>Format: <strong>#table.id</strong></p>
+<blockquote>
+<div><ul>
+<li><p>Example: #sample.id</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>sample - type of id tag. This often is a table name.</p></li>
+<li><p>id - indicates that this is an id tag.</p></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>Format: <strong>#.id</strong></p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Short format can be used when the table is already specified.</p></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div>
+<div class="section" id="list-field-format">
+<h3>List Field Format<a class="headerlink" href="#list-field-format" title="Permalink to this headline">¶</a></h3>
+<ul>
+<li><p>List field tags begin with <strong>‘*#’</strong> (<strong>asterisk followed by the pound sign</strong>) and identify a specific relational database table, field, and optionally a field-attribute that has multiple values.</p></li>
+<li><p>They have the same format as normal column field tags.</p>
+<blockquote>
+<div><ul>
+<li><p>Format: <strong>*#table_name.field_name</strong></p>
+<blockquote>
+<div><ul>
+<li><p>Example: *#sample.dry_weight</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>sample - the sample data relational table (workbench worksheet)</p></li>
+<li><p>dry_weight - the field name.</p></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>Individual values are separated by commas “,” both in the column cells or in the column tag value.</p>
+<blockquote>
+<div><ul>
+<li><p>Format: <strong>*#table_name.field_name=field_value,field_value,…</strong></p>
+<blockquote>
+<div><ul>
+<li><p>Example: *#study.labeling=13C,15N</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>study - the study table.</p></li>
+<li><p>13C,15N - two values for the study labeling field.</p></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>List field tags can be listed multiple times in a record, with each value(s) appended.</p></li>
+</ul>
+</div>
+<div class="section" id="child-tag-format">
+<h3>Child Tag Format<a class="headerlink" href="#child-tag-format" title="Permalink to this headline">¶</a></h3>
+<ul>
+<li><p>Child record tags provides a mechanism for indicating parent-child relationships between records in the same table or between tables.</p>
+<blockquote>
+<div><ul>
+<li><p>The child tag indicates the creation of a new record.</p></li>
+<li><p>Subsequent normal tags identify fields in the new child record.</p></li>
+<li><p>A special parentID field is added using the first ID tag indicated in the header row.</p></li>
+<li><p>Format: <strong>#%child.id=id_sub_string</strong></p>
+<blockquote>
+<div><ul class="simple">
+<li><p>The value for id_sub_string will be appended to the ID of the child’s parent (parentID) to create the child ID.</p></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+<p>Example:</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 5%" />
+<col style="width: 11%" />
+<col style="width: 42%" />
+<col style="width: 42%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>#tags</p></td>
+<td><p>#sample.id</p></td>
+<td><p>#%child.id=-media-0h;#.dry_weight;#.dry_weight%units=mg</p></td>
+<td><p>#%child.id=-media-3h;#.dry_weight;#.dry_weight%units=mg</p></td>
+</tr>
+<tr class="row-even"><td></td>
+<td><p>KO labelled_1</p></td>
+<td><p>4.2</p></td>
+<td><p>8.5</p></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p>KO labelled_2</p></td>
+<td><p>4.7</p></td>
+<td><p>9.7</p></td>
+</tr>
+<tr class="row-even"><td></td>
+<td><p>…</p></td>
+<td><p>…</p></td>
+<td><p>…</p></td>
+</tr>
+</tbody>
+</table>
+<p>Output JSON:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">{</span>
+<span class="go">  &quot;sample&quot;: {</span>
+<span class="go">    &quot;KO labelled_1&quot;: {</span>
+<span class="go">      &quot;id&quot;: &quot;KO labelled_1&quot;</span>
+<span class="go">    },</span>
+<span class="go">    &quot;KO labelled_1-media-0h&quot;: {</span>
+<span class="go">      &quot;dry_weight&quot;: &quot;4.2&quot;,</span>
+<span class="go">      &quot;dry_weight%units&quot;: &quot;mg&quot;,</span>
+<span class="go">      &quot;id&quot;: &quot;KO labelled_1-media-0h&quot;,</span>
+<span class="go">      &quot;parentID&quot;: &quot;KO labelled_1&quot;</span>
+<span class="go">    },</span>
+<span class="go">    &quot;KO labelled_1-media-3h&quot;: {</span>
+<span class="go">      &quot;dry_weight&quot;: &quot;8.5&quot;,</span>
+<span class="go">      &quot;dry_weight%units&quot;: &quot;mg&quot;,</span>
+<span class="go">      &quot;id&quot;: &quot;KO labelled_1-media-3h&quot;,</span>
+<span class="go">      &quot;parentID&quot;: &quot;KO labelled_1&quot;</span>
+<span class="go">    },</span>
+<span class="go">    &quot;KO labelled_2&quot;: {</span>
+<span class="go">      &quot;id&quot;: &quot;KO labelled_2&quot;</span>
+<span class="go">    },</span>
+<span class="go">    &quot;KO labelled_2-media-0h&quot;: {</span>
+<span class="go">      &quot;dry_weight&quot;: &quot;4.7&quot;,</span>
+<span class="go">      &quot;dry_weight%units&quot;: &quot;mg&quot;,</span>
+<span class="go">      &quot;id&quot;: &quot;KO labelled_2-media-0h&quot;,</span>
+<span class="go">      &quot;parentID&quot;: &quot;KO labelled_2&quot;</span>
+<span class="go">    },</span>
+<span class="go">    &quot;KO labelled_2-media-3h&quot;: {</span>
+<span class="go">      &quot;dry_weight&quot;: &quot;9.7&quot;,</span>
+<span class="go">      &quot;dry_weight%units&quot;: &quot;mg&quot;,</span>
+<span class="go">      &quot;id&quot;: &quot;KO labelled_2-media-3h&quot;,</span>
+<span class="go">      &quot;parentID&quot;: &quot;KO labelled_2&quot;</span>
+<span class="go">    }</span>
+<span class="go">  }</span>
+<span class="go">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="field-tracking-tags">
+<h3>Field Tracking Tags<a class="headerlink" href="#field-tracking-tags" title="Permalink to this headline">¶</a></h3>
+<ul>
+<li><p>Field tracking tags provide a mechanism for copying the latest field value from one table into the records of another.</p>
+<blockquote>
+<div><ul>
+<li><p>The tag indicates which table’s records to add to and which field to track from another table.</p></li>
+<li><p>The latest value for the field seen while parsing will be added.</p></li>
+<li><p>Useful for adding project and study ids to records in a document with multiple projects or studies.</p></li>
+<li><p>Format: <strong>#table%track=table.field</strong></p></li>
+<li><p>Example: <strong>#sample%track=project.id</strong></p>
+<blockquote>
+<div><ul class="simple">
+<li><p>will add the project.id field to every sample record.</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>A list format can also be used:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><strong>#table%track=table.field1,table.field2,…</strong></p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>Example: <strong>#sample%track=project.id,study.id</strong></p></li>
+<li><p>Fields can also be untracked after tracking to stop adding the field to records.</p></li>
+<li><p>Format: <strong>#table%untrack=table.field</strong></p></li>
+<li><p>The list format also works for untrack.</p></li>
+<li><p>If a tracked field is specifically given in a table the given value is used over the tracked value.</p></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+<p>Example:</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 16%" />
+<col style="width: 84%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>#tags</p></td>
+<td><p>#sample%track=project.id</p></td>
+</tr>
+<tr class="row-even"><td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>#tags</p></td>
+<td><p>#project.id</p></td>
+</tr>
+<tr class="row-even"><td></td>
+<td><p>Project 1</p></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>#tags</p></td>
+<td><p>#sample.id</p></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p>01_A0_Spleen_naive_0days_170427_UKy_GCH_rep1</p></td>
+</tr>
+<tr class="row-even"><td></td>
+<td><p>02_A1_Spleen_naive_0days_170427_UKy_GCH_rep2</p></td>
+</tr>
+</tbody>
+</table>
+<p>Output JSON:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">{</span>
+<span class="go">  &quot;project&quot;: {</span>
+<span class="go">    &quot;Project 1&quot;: {</span>
+<span class="go">      &quot;id&quot;: &quot;Project 1&quot;</span>
+<span class="go">    }</span>
+<span class="go">  },</span>
+<span class="go">  &quot;sample&quot;: {</span>
+<span class="go">    &quot;01_A0_Spleen_naive_0days_170427_UKy_GCH_rep1&quot;: {</span>
+<span class="go">      &quot;id&quot;: &quot;01_A0_Spleen_naive_0days_170427_UKy_GCH_rep1&quot;,</span>
+<span class="go">      &quot;project.id&quot;: &quot;Project 1&quot;,</span>
+<span class="go">    },</span>
+<span class="go">    &quot;02_A1_Spleen_naive_0days_170427_UKy_GCH_rep2&quot;: {</span>
+<span class="go">      &quot;id&quot;: &quot;02_A1_Spleen_naive_0days_170427_UKy_GCH_rep2&quot;,</span>
+<span class="go">      &quot;project.id&quot;: &quot;Project 1&quot;,</span>
+<span class="go">    }</span>
+<span class="go">  }</span>
+<span class="go">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="modification-tags">
+<h2>Modification Tags<a class="headerlink" href="#modification-tags" title="Permalink to this headline">¶</a></h2>
+<p>Similar to export tags the modification tag rows are indicated by <strong>#tags</strong> in the left most column, and
+<strong>#ignore</strong> can be used to ignore rows. The general idea behind the modification system is that you
+first indicate a field in a table to match to using tags. Then underneath that tag indicate the value in
+that field to match to. Then another tag in the same row will indicate both what field to modify in the
+record that has the matching field and what modification to do. Underneath that tag will have the value
+to do the modification with.</p>
+<p>Basic Examples:</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 7%" />
+<col style="width: 46%" />
+<col style="width: 39%" />
+<col style="width: 9%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>#tags</p></th>
+<th class="head"><p>#measurement.compound.value</p></th>
+<th class="head"><p>#measurement.compound.assign</p></th>
+<th class="head"><p>#match=all</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td></td>
+<td><p>(S)-2-Acetolactate_Glutaric acid_Methylsuccinic acid_MP_NoStd</p></td>
+<td><p>(S)-2-Acetolactate Glutaric acid Methylsuccinic acid</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p>…</p></td>
+<td><p>…</p></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>This example replaces the “compound” field with value “(S)-2-Acetolactate_Glutaric acid_Methylsuccinic acid_MP_NoStd” in “measurement” table records with “(S)-2-Acetolactate Glutaric acid Methylsuccinic acid”.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 4%" />
+<col style="width: 30%" />
+<col style="width: 60%" />
+<col style="width: 6%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>#tags</p></th>
+<th class="head"><p>#measurement.compound.value</p></th>
+<th class="head"><p>#measurement.id.regex</p></th>
+<th class="head"><p>#match=all</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td></td>
+<td><p>(S)-2-Acetolactate_Glutaric acid_Methylsuccinic acid_MP_NoStd</p></td>
+<td><p>r’(S)-2-Acetolactate_Glutaric acid_Methylsuccinic acid_MP_NoStd’,r’(S)-2-Acetolactate Glutaric acid Methylsuccinic acid’</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p>…</p></td>
+<td><p>…</p></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>This example does a regex substitution on the “id” field of records in the “measurement” table if their “compound” field matches “(S)-2-Acetolactate_Glutaric acid_Methylsuccinic acid_MP_NoStd”.
+In the “id” field “(S)-2-Acetolactate_Glutaric acid_Methylsuccinic acid_MP_NoStd” is substituted with “(S)-2-Acetolactate Glutaric acid Methylsuccinic acid”.</p>
+<div class="section" id="value-tag">
+<h3>Value Tag<a class="headerlink" href="#value-tag" title="Permalink to this headline">¶</a></h3>
+<ul>
+<li><p>All modification tag rows must start with a value tag after <strong>#tags</strong>.</p></li>
+<li><p>This tag indicates which table and field to compare with.</p></li>
+<li><p>The value underneath the tag will be compared with the value in indicated field for all of the records in the indicated table to determine if a match is made.</p>
+<blockquote>
+<div><ul>
+<li><p>Signature:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><strong>#[table_name].field_name[%attribute].value</strong></p></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div>
+<div class="section" id="comparison-type">
+<h3>Comparison Type<a class="headerlink" href="#comparison-type" title="Permalink to this headline">¶</a></h3>
+<p>The comparison type is controlled through the <strong>#comparison</strong> tag. It can be used to specify the type for
+each row individually, or for the whole column by using the = sign. Ex. <strong>#comparison=exact</strong></p>
+<p>There are 4 comparison types, “exact”, “regex”, “levenshtein”, and “regex|exact”.</p>
+<blockquote>
+<div><ul>
+<li><p>exact is a simple exact comparison between the comparison value and field value. The given comparison value must be exactly what is in the field value (i.e. a “==” comparison).</p></li>
+<li><p>regex expects a regex to be in the comparison value and will print a message if it is not. The given regex will be delivered to re.search() for matching with field values.</p></li>
+<li><p>levenshtein calculates the levenshtein distance between the comparison value and record field values and matches to the field values with the minimum distance.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>This means it always matches to something even if the values seem wildly different, so be aware of possible unexpected results.</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>regex|exact is an intelligent combination of regex and exact. If a regex is specified for the comparison value it will be detected and the type will be regex for that comparison value only, otherwise the comparison type will be exact.</p></li>
+<li><p>If a type is specified then that type is used regardless of the comparison value, so a regex string with an exact comparison type will try to match exactly.</p></li>
+<li><p>If the comparison tag is not specified then the type defaults to “regex|exact”.</p></li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="match-type">
+<h3>Match Type<a class="headerlink" href="#match-type" title="Permalink to this headline">¶</a></h3>
+<p>Match behavior can be altered further using the <strong>#match</strong> tag. It can be used to specify the type for
+each row individually, or for the whole column by using the = sign. Ex. <strong>#match=all</strong></p>
+<p>There are 4 match types, “first”, “first-nowarn”, “unique”, and “all”.</p>
+<blockquote>
+<div><ul>
+<li><p>“first” - the modification is performed only for the first record matched, additional matches beyond the first will print a warning.</p></li>
+<li><p>“first-nowarn” - the same as first, but won’t print warnings.</p></li>
+<li><p>“unique” - the modification is only performed if 1 and only 1 record matched.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>For levenshtein this means that only 1 field value can have the minimum distance, if 2 values share the minimum distance then the action won’t take place.</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>“all” - the modification is done to every record that matches.</p></li>
+<li><p>If the match tag is not specified then the type defaults to “first”.</p></li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="modifications">
+<h3>Modifications<a class="headerlink" href="#modifications" title="Permalink to this headline">¶</a></h3>
+<p>There are 6 modifications that can be done, “assign”, “append”, “prepend”, “regex”, “delete”, and “rename”.</p>
+<ul>
+<li><p><strong>assign</strong> - will overwrite whatever value is in the field with the indicated assignment value.</p>
+<blockquote>
+<div><ul>
+<li><p>Signatures:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><strong>#[table_name].field_name[%attribute].assign</strong></p></li>
+<li><p><strong>*#[table_name].field_name[%attribute].assign</strong></p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>If the indicated assignment field does not exist in the record then it will be added to the record.</p></li>
+<li><p>An eval function can be used in the form “eval(…)”.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>“#field_name#” and “#r’…’#” can be used to construct the assignment value for the record.</p></li>
+<li><p>All Python language operators can be used.  But remember to use “float(#field_name#)” to convert strings to floating point numbers.</p></li>
+<li><p>Example: eval(float(#intensity#) / float(#normalization#) * 5)</p></li>
+<li><p>evals that return a list of strings will convert the field to a list field.</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>Add an asterisk, ‘*’, to the front of the tag to interpret the assignment value as a list and assign that list value to the field.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>An eval function can be used, but it must return a list of strings.</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>The assign modification can be used to change list types to non list types and vice versa.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>This can lead to an issue where some records have a list type for the field and some do not.</p></li>
+<li><p>If that is not intended then be sure to construct the assign tag such that it matches the type of the field.</p></li>
+<li><p>For instance make sure evals return a list if the field should be a list type.</p></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+<p>Example:</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 7%" />
+<col style="width: 50%" />
+<col style="width: 43%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>#tags</p></th>
+<th class="head"><p>#measurement.compound.value</p></th>
+<th class="head"><p>#measurement.compound.assign</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td></td>
+<td><p>(S)-2-Acetolactate_Glutaric acid_Methylsuccinic acid_MP_NoStd</p></td>
+<td><p>(S)-2-Acetolactate Glutaric acid Methylsuccinic acid</p></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p>…</p></td>
+<td><p>…</p></td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+</li>
+<li><p><strong>append</strong> - will append the indicated value to the value in the indicated field.</p>
+<blockquote>
+<div><ul>
+<li><p>Signatures:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><strong>#[table_name].field_name[%attribute].append</strong></p></li>
+<li><p><strong>*#[table_name].field_name[%attribute].append</strong></p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>If the indicated append field does not exist in the record then it will be added to the record.</p></li>
+<li><p>If the field value is a list and the append value is not a list then the append value will be appended to each value in the list.</p></li>
+<li><p>Add an asterisk, ‘*’, to the front of the tag to interpret the append value as a list.</p>
+<blockquote>
+<div><ul>
+<li><p>When the append value is a list the behavior is more complicated.</p></li>
+<li><p>For each value in the field value list the append value in the append list at the same index will be appended to the field value.</p></li>
+<li><p>Examples:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>field_value = [“a”, “b”]  append_value = [“c”, “d”]  result = [“ac”, “bd”]</p></li>
+<li><p>field_value = [“a”, “b”]  append_value = [“c”, “d”, “e”]  result = [“ac”, “bd”]</p></li>
+<li><p>field_value = [“a”, “b”, “e”]  append_value = [“c”, “d”]  result = [“ac”, “bd”, “e”]</p></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+<p>Example:</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 7%" />
+<col style="width: 50%" />
+<col style="width: 43%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>#tags</p></th>
+<th class="head"><p>#measurement.compound.value</p></th>
+<th class="head"><p>#measurement.sample.id.append</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td></td>
+<td><p>(S)-2-Acetolactate_Glutaric acid_Methylsuccinic acid_MP_NoStd</p></td>
+<td><p>(S)-2-Acetolactate Glutaric acid Methylsuccinic acid</p></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p>…</p></td>
+<td><p>…</p></td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+</li>
+<li><p><strong>prepend</strong> - will prepend the indicated value to the value in the indicated field.</p>
+<blockquote>
+<div><ul>
+<li><p>Signatures:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><strong>#[table_name].field_name[%attribute].prepend</strong></p></li>
+<li><p><strong>*#[table_name].field_name[%attribute].prepend</strong></p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>If the indicated prepend field does not exist in the record then it will be added to the record.</p></li>
+<li><p>If the field value is a list and the prepend value is not a list then the prepend value will be prepended to each value in the list.</p></li>
+<li><p>Add an asterisk, ‘*’, to the front of the tag to interpret the prepend value as a list.</p>
+<blockquote>
+<div><ul>
+<li><p>When the prepend value is a list the behavior is more complicated.</p></li>
+<li><p>For each value in the field value list the prepend value in the prepend list at the same index will be prepended to the field value.</p></li>
+<li><p>Examples:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>field_value = [“a”, “b”]  prepend_value = [“c”, “d”]  result = [“ca”, “db”]</p></li>
+<li><p>field_value = [“a”, “b”]  prepend_value = [“c”, “d”, “e”]  result = [“ca”, “db”]</p></li>
+<li><p>field_value = [“a”, “b”, “e”]  prepend_value = [“c”, “d”]  result = [“ca”, “db”, “e”]</p></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+<p>Example:</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 7%" />
+<col style="width: 50%" />
+<col style="width: 43%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>#tags</p></th>
+<th class="head"><p>#measurement.compound.value</p></th>
+<th class="head"><p>#measurement.sample.id.prepend</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td></td>
+<td><p>(S)-2-Acetolactate_Glutaric acid_Methylsuccinic acid_MP_NoStd</p></td>
+<td><p>(S)-2-Acetolactate Glutaric acid Methylsuccinic acid</p></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p>…</p></td>
+<td><p>…</p></td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+</li>
+<li><p><strong>regex</strong> - will do a regex substitution on the indicated field using the indicated values.</p>
+<blockquote>
+<div><ul>
+<li><p>Signatures:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><strong>#[table_name].field_name[%attribute].regex</strong></p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>If the indicated regex field does not exist in the record then a warning will be printed.</p></li>
+<li><p>If the field value is a list then the regex substitution will be done on each element in the list.</p></li>
+</ul>
+<p>Example:</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 5%" />
+<col style="width: 32%" />
+<col style="width: 63%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>#tags</p></th>
+<th class="head"><p>#measurement.compound.value</p></th>
+<th class="head"><p>#measurement.id.regex</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td></td>
+<td><p>(S)-2-Acetolactate_Glutaric acid_Methylsuccinic acid_MP_NoStd</p></td>
+<td><p>r’(S)-2-Acetolactate_Glutaric acid_Methylsuccinic acid_MP_NoStd’,r’(S)-2-Acetolactate Glutaric acid Methylsuccinic acid’</p></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p>…</p></td>
+<td><p>…</p></td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+</li>
+<li><p><strong>delete</strong> - will remove the field from the record.</p>
+<blockquote>
+<div><ul>
+<li><p>Signatures:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><strong>#[table_name].field_name[%attribute].delete</strong></p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>“id” fields cannot be deleted. An error will be raised during parsing if it is attempted.</p></li>
+<li><p>No value is needed under the tag.</p></li>
+</ul>
+<p>Example:</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 9%" />
+<col style="width: 60%" />
+<col style="width: 31%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>#tags</p></th>
+<th class="head"><p>#measurement.compound.value</p></th>
+<th class="head"><p>#measurement.mol_formula.delete</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td></td>
+<td><p>(S)-2-Acetolactate_Glutaric acid_Methylsuccinic acid_MP_NoStd</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p>…</p></td>
+<td><p>…</p></td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+</li>
+<li><p><strong>rename</strong> - will remove the field from the record.</p>
+<blockquote>
+<div><ul>
+<li><p>Signatures:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><strong>#[table_name].field_name[%attribute].rename.field_name[%attribute]</strong></p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>“id” fields cannot be renamed. An error will be raised during parsing if it is attempted.</p></li>
+<li><p>Fields cannot be renamed to the same name. An error will be raised during parsing if it is attempted.</p></li>
+<li><p>No value is needed under the tag.</p></li>
+</ul>
+<p>Example:</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 7%" />
+<col style="width: 51%" />
+<col style="width: 41%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>#tags</p></th>
+<th class="head"><p>#measurement.compound.value</p></th>
+<th class="head"><p>#measurement.mol_formula.rename.molecular_formula</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td></td>
+<td><p>(S)-2-Acetolactate_Glutaric acid_Methylsuccinic acid_MP_NoStd</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p>…</p></td>
+<td><p>…</p></td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+</li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>ID fields are special.</p>
+<ul>
+<li><p>Modifications to id fields will be propogated to the table key of that record.</p></li>
+<li><p>They cannot be deleted or renamed.</p></li>
+<li><p>They are the only time a period, ‘.’, can appear in the field_name.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Ex. <strong>#measurement.intensity.units.assign</strong> is malformed, but <strong>#measurement.sample.id.assign</strong> is not.</p></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div>
+<p>Important Points:</p>
+<ul>
+<li><p>Tags in the same row must have the same table. An error will be raised during parsing if they don’t.</p></li>
+<li><p>The value tag must be before the modification tags.</p></li>
+<li><p>Modifications are confined to the matched record, it is not possible to modify a record based on another record’s fields or values.</p></li>
+<li><p>Modifications can be chained together, so that the same field can have multiple modifications.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>This can be utilized effectively, but can also cause hard to diagnose unexpected output.</p></li>
+<li><p>Some warnings are printed when fields are modified twice in a way that doesn’t make sense, such as a delete modification after an assign modification, but all other chained modifications are assumed to be intended.</p></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+<p>Tag Format Reference:</p>
+<ul class="simple">
+<li><p><strong>#table_name.field_name[%attribute].value</strong> - identifies table_name containing field_name (with possible attribute name) and associated column with value to match. A regular expression can be given with r’…’.</p></li>
+<li><p><strong>#comparison</strong> - identifies column with type of comparison (exact, regex, levenshtein, regex|exact). Default regex|exact.</p></li>
+<li><p><strong>#comparison=type</strong> - type of comparison (exact, regex, levenshtein, regex|exact).</p></li>
+<li><p><strong>#match</strong> - identifies column with type of match (first, first-nowarn, unique, all). Default first.</p></li>
+<li><p><strong>#match=type</strong> - type of match (first, first-nowarn, unique, all).</p></li>
+<li><p><strong>#[table_name].field_name[%attribute].assign</strong> identifies field to assign and associated column with its value.</p></li>
+<li><p><strong>*#[table_name].field_name[%attribute].assign</strong> identifies field to assign and that the associated column values are a list type.</p></li>
+<li><p><strong>#[table_name].field_name[%attribute].append</strong> identifies field to append to and associated column with its value.</p></li>
+<li><p><strong>*#[table_name].field_name[%attribute].append</strong> identifies field to append to and that the associated column values are a list type.</p></li>
+<li><p><strong>*#[table_name].field_name[%attribute].prepend</strong> identifies field to prepend to and associated column with its value.</p></li>
+<li><p><strong>*#[table_name].field_name[%attribute].prepend</strong> identifies field to prepend to and that the associated column values are a list type.</p></li>
+<li><p><strong>#[table_name].field_name[%attribute].regex</strong> identifies field to apply regex substitution to and associated column with the pair of regex strings of the form r”…”,r”…”.</p></li>
+<li><p><strong>#[table_name].field_name[%attribute].delete</strong> identifies field to delete.</p></li>
+<li><p><strong>#[table_name].field_name[%attribute].rename.field_name[%attribute]</strong> identifies field to rename.</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="automation-tags">
+<h2>Automation Tags<a class="headerlink" href="#automation-tags" title="Permalink to this headline">¶</a></h2>
+<p>Automation tag rows, like the other tag rows, are indicated by <strong>#tags</strong> in the left most column with
+<strong>#ignore</strong> used to ignore rows, but <strong>#insert</strong> and <strong>#end</strong> tags are also introduced. There are 2
+main functions in the automation system. One is to specify a table of header-tag pairs that will be used
+to automatically add the tags associated with the headers underneath of the headers when it finds them
+in the data. The other is to specify a block of rows to add to the data exactly as is. This is what
+introduces the <strong>#insert</strong> and <strong>#end</strong> tags.</p>
+<div class="section" id="insert">
+<h3>Insert<a class="headerlink" href="#insert" title="Permalink to this headline">¶</a></h3>
+<p>The insertion functionality is easy to understand. You simply write whatever you want to add into the
+data and add <strong>#insert</strong> above it in the left most column and <strong>#end</strong> below it in the left most column.
+Everything in between <strong>#insert</strong> and <strong>#end</strong> is simply added as is into the data before it is parsed
+by the export tagging system. A good use case for this is when you have a standard protocol that always
+needs to be added to some data. Instead of copying it in manually you can add it to an automation
+sheet/file and deliver it to extract so it can add it for you. The thing to be careful of is to make
+sure everything in the insert block is valid under the export tag system. It can be tricky to debug
+a tagging error here because extract won’t be able to tell you that the issue is in the insert block.</p>
+<p>Example:</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 15%" />
+<col style="width: 9%" />
+<col style="width: 18%" />
+<col style="width: 13%" />
+<col style="width: 15%" />
+<col style="width: 20%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>#insert</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>#tags</p></td>
+<td><p>#protocol.id</p></td>
+<td><p>#.type</p></td>
+<td><p>#.instrument</p></td>
+<td><p>#.ion_mode</p></td>
+<td><p>#.ionization</p></td>
+<td><p>#.instrument_type</p></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p>ICMS1</p></td>
+<td><p>MS</p></td>
+<td><p>Orbitrap Fusion</p></td>
+<td><p>NEGATIVE</p></td>
+<td><p>ESI</p></td>
+<td><p>IC-FTMS</p></td>
+</tr>
+<tr class="row-even"><td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>#end</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="header-tagging">
+<h3>Header Tagging<a class="headerlink" href="#header-tagging" title="Permalink to this headline">¶</a></h3>
+<p>The header tagging allows you to automatically put export tags under a cell in tabular data based on
+the value in the cell. Typically, a table will already have descriptive human readable headers to identify
+what type of data is in the column. These headers are used to match to and put the associated export tags
+under them. Any row that has a header match where export tags are added is automatically ignored with the
+<strong>#ignore</strong> tag. Just like modification tags and export tags <strong>#tags</strong> is used to denote the start of a tag
+block. An entire block is matched as a whole to a row in the data, so if you have multiple tables to add
+tags to you should created multiple tag blocks. There are additional tags to help control how a black is
+matched, detailed below.</p>
+<div class="section" id="example">
+<h4>Example:<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h4>
+<p>Data:</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 36%" />
+<col style="width: 7%" />
+<col style="width: 6%" />
+<col style="width: 32%" />
+<col style="width: 7%" />
+<col style="width: 11%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>Compound</p></td>
+<td><p>Mol_Formula</p></td>
+<td><p>C_isomers</p></td>
+<td><p>SamplID</p></td>
+<td><p>Intensity</p></td>
+<td><p>protein_mg</p></td>
+</tr>
+<tr class="row-even"><td><p>(S)-2-Acetolactate_Glutaric acid_Methylsuccinic acid_MP_NoStd</p></td>
+<td><p>C5H8O4</p></td>
+<td><p>0</p></td>
+<td><p>01_A0_Colon_T03-2017_naive_170427_UKy_GCB_rep1-quench</p></td>
+<td><p>7989221.834</p></td>
+<td><p>0.618176844244679</p></td>
+</tr>
+<tr class="row-odd"><td><p>(S)-2-Acetolactate_Glutaric acid_Methylsuccinic acid_MP_NoStd</p></td>
+<td><p>C5H8O4</p></td>
+<td><p>1</p></td>
+<td><p>01_A0_Colon_T03-2017_naive_170427_UKy_GCB_rep1-quench</p></td>
+<td><p>289287.7334</p></td>
+<td><p>0.618176844244679</p></td>
+</tr>
+</tbody>
+</table>
+<p>Header Tags:</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 4%" />
+<col style="width: 30%" />
+<col style="width: 66%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>#tags</p></td>
+<td><p>#header</p></td>
+<td><p>#add</p></td>
+</tr>
+<tr class="row-even"><td></td>
+<td><p>Compound+”-13C”+C_isomers+”-“+SamplID</p></td>
+<td><p>#measurement.id</p></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p>Compound+”-13C”+C_isomers</p></td>
+<td><p>#measurement.assignment</p></td>
+</tr>
+<tr class="row-even"><td></td>
+<td><p>Compound</p></td>
+<td><p>#measurement.compound</p></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p>Mol_Formula</p></td>
+<td><p>#measurement.formula</p></td>
+</tr>
+<tr class="row-even"><td></td>
+<td><p>SamplID</p></td>
+<td><p>#sample.id</p></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p>“13C”+C_isomers</p></td>
+<td><p>#measurement.isotopologue;#%type=”13C”</p></td>
+</tr>
+<tr class="row-even"><td></td>
+<td><p>Intensity</p></td>
+<td><p>#measurement.raw_intensity;#%type=”spectrometer peak area”</p></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p>eval(float(#Intensity#) / float(#protein_mg#))</p></td>
+<td><p>#measurement.intensity;#%type=”natural abundance corrected and protein normalized peak area”;#%units=”area/g”</p></td>
+</tr>
+<tr class="row-even"><td></td>
+<td></td>
+<td><p>#protocol.id=ICMS1</p></td>
+</tr>
+</tbody>
+</table>
+<p>After Automation:</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 2%" />
+<col style="width: 21%" />
+<col style="width: 12%" />
+<col style="width: 11%" />
+<col style="width: 4%" />
+<col style="width: 2%" />
+<col style="width: 9%" />
+<col style="width: 7%" />
+<col style="width: 10%" />
+<col style="width: 19%" />
+<col style="width: 3%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>#ignore</p></td>
+<td></td>
+<td></td>
+<td><p>Compound</p></td>
+<td><p>Mol_Formula</p></td>
+<td><p>C_isomers</p></td>
+<td><p>SamplID</p></td>
+<td></td>
+<td><p>Intensity</p></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>#tags</p></td>
+<td><p>#measurement.id</p></td>
+<td><p>#measurement.assignment</p></td>
+<td><p>#measurement.compound</p></td>
+<td><p>#measurement.formula</p></td>
+<td></td>
+<td><p>#sample.id</p></td>
+<td><p>#measurement.isotopologue;#%type=”13C”</p></td>
+<td><p>#measurement.raw_intensity;#%type=”spectrometer peak area”</p></td>
+<td><p>#measurement.intensity;#%type=”natural abundance corrected and protein normalized peak area”;#%units=”area/g”</p></td>
+<td><p>#protocol.id=ICMS1</p></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p>(S)-2-Acetolactate_Glutaric acid_Methylsuccinic acid_MP_NoStd-13C0-01_A0_Colon_T03-2017_naive_170427_UKy_GCB_rep1-quench</p></td>
+<td><p>(S)-2-Acetolactate_Glutaric acid_Methylsuccinic acid_MP_NoStd-13C0</p></td>
+<td><p>(S)-2-Acetolactate_Glutaric acid_Methylsuccinic acid_MP_NoStd</p></td>
+<td><p>C5H8O4</p></td>
+<td><p>0</p></td>
+<td><p>01_A0_Colon_T03-2017_naive_170427_UKy_GCB_rep1-quench</p></td>
+<td><p>13C0</p></td>
+<td><p>7989221.834</p></td>
+<td><p>12923845.19</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td></td>
+<td><p>(S)-2-Acetolactate_Glutaric acid_Methylsuccinic acid_MP_NoStd-13C1-01_A0_Colon_T03-2017_naive_170427_UKy_GCB_rep1-quench</p></td>
+<td><p>(S)-2-Acetolactate_Glutaric acid_Methylsuccinic acid_MP_NoStd-13C1</p></td>
+<td><p>(S)-2-Acetolactate_Glutaric acid_Methylsuccinic acid_MP_NoStd</p></td>
+<td><p>C5H8O4</p></td>
+<td><p>1</p></td>
+<td><p>01_A0_Colon_T03-2017_naive_170427_UKy_GCB_rep1-quench</p></td>
+<td><p>13C1</p></td>
+<td><p>289287.7334</p></td>
+<td><p>467969.2165</p></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>JSON Output:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">{</span>
+<span class="go">  &quot;measurement&quot;: {</span>
+<span class="go">    &quot;(S)-2-Acetolactate Glutaric acid Methylsuccinic acid-13C0-01_A0_Colon_T03-2017_naive_170427_UKy_GCB_rep1-quench&quot;: {</span>
+<span class="go">      &quot;assignment&quot;: &quot;(S)-2-Acetolactate_Glutaric acid_Methylsuccinic acid_MP_NoStd-13C0&quot;,</span>
+<span class="go">      &quot;compound&quot;: &quot;(S)-2-Acetolactate_Glutaric acid_Methylsuccinic acid_MP_NoStd&quot;,</span>
+<span class="go">      &quot;formula&quot;: &quot;C5H8O4&quot;,</span>
+<span class="go">      &quot;id&quot;: &quot;(S)-2-Acetolactate Glutaric acid Methylsuccinic acid-13C0-01_A0_Colon_T03-2017_naive_170427_UKy_GCB_rep1-quench&quot;,</span>
+<span class="go">      &quot;intensity&quot;: &quot;12923845.19&quot;,</span>
+<span class="go">      &quot;intensity%type&quot;: &quot;natural abundance corrected and protein normalized peak area&quot;,</span>
+<span class="go">      &quot;intensity%units&quot;: &quot;area/g&quot;,</span>
+<span class="go">      &quot;isotopologue&quot;: &quot;13C0&quot;,</span>
+<span class="go">      &quot;isotopologue%type&quot;: &quot;13C&quot;,</span>
+<span class="go">      &quot;protocol.id&quot;: &quot;ICMS1&quot;,</span>
+<span class="go">      &quot;raw_intensity&quot;: &quot;7989221.83386388&quot;,</span>
+<span class="go">      &quot;raw_intensity%type&quot;: &quot;spectrometer peak area&quot;,</span>
+<span class="go">      &quot;sample.id&quot;: &quot;01_A0_Colon_T03-2017_naive_170427_UKy_GCB_rep1-quench&quot;</span>
+<span class="go">    },</span>
+<span class="go">    &quot;(S)-2-Acetolactate Glutaric acid Methylsuccinic acid-13C1-01_A0_Colon_T03-2017_naive_170427_UKy_GCB_rep1-quench&quot;: {</span>
+<span class="go">      &quot;assignment&quot;: &quot;(S)-2-Acetolactate_Glutaric acid_Methylsuccinic acid_MP_NoStd-13C1&quot;,</span>
+<span class="go">      &quot;compound&quot;: &quot;(S)-2-Acetolactate_Glutaric acid_Methylsuccinic acid_MP_NoStd&quot;,</span>
+<span class="go">      &quot;formula&quot;: &quot;C5H8O4&quot;,</span>
+<span class="go">      &quot;id&quot;: &quot;(S)-2-Acetolactate Glutaric acid Methylsuccinic acid-13C1-01_A0_Colon_T03-2017_naive_170427_UKy_GCB_rep1-quench&quot;,</span>
+<span class="go">      &quot;intensity&quot;: &quot;467969.2165&quot;,</span>
+<span class="go">      &quot;intensity%type&quot;: &quot;natural abundance corrected and protein normalized peak area&quot;,</span>
+<span class="go">      &quot;intensity%units&quot;: &quot;area/g&quot;,</span>
+<span class="go">      &quot;isotopologue&quot;: &quot;13C1&quot;,</span>
+<span class="go">      &quot;isotopologue%type&quot;: &quot;13C&quot;,</span>
+<span class="go">      &quot;protocol.id&quot;: &quot;ICMS1&quot;,</span>
+<span class="go">      &quot;raw_intensity&quot;: &quot;289287.733437356&quot;,</span>
+<span class="go">      &quot;raw_intensity%type&quot;: &quot;spectrometer peak area&quot;,</span>
+<span class="go">      &quot;sample.id&quot;: &quot;01_A0_Colon_T03-2017_naive_170427_UKy_GCB_rep1-quench&quot;</span>
+<span class="go">    }</span>
+<span class="go">  }</span>
+<span class="go">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="the-tags">
+<h4>The Tags<a class="headerlink" href="#the-tags" title="Permalink to this headline">¶</a></h4>
+<ul>
+<li><p><strong>#header</strong> - header value to match to. Can be a regular expression of the form r’…’.</p>
+<blockquote>
+<div><ul>
+<li><p>All tag blocks must contain a <strong>#header</strong> tag.</p></li>
+<li><p>Additional column headers can be included with blank corresponding tags to help make header row identification unique.</p></li>
+<li><p>Cell contents are stripped of leading and trailing white space before comparison with the header value.</p></li>
+<li><p>A new column will be created if the headers and literals in quotes are combined with plus signs.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Example: Name+”-“+Isopotologue+”-“+r’^d+w+ Isotope$’</p></li>
+<li><p>This functionality means that certain characters can’t be used for literal matching outside of a regex.</p></li>
+<li><p>For example if a header name in a data table is “protein+solvent” then you can’t simply put protein+solvent under <strong>#header</strong> because it will be interpretted as a concatenation of a “protein” header and a separate “solvent” header.</p></li>
+<li><p>The easist way to solve this issue is to use a regular expression. r’protein+solvent’ will match the header correctly.</p></li>
+<li><p>In general if you are having difficulty matching a header try using a regex.</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>An eval function can be used in the form “eval(…)”.</p>
+<blockquote>
+<div><ul>
+<li><p>“#header_name#” and “#r’…’#” can be used to indicate specific columns in the row.</p></li>
+<li><p>All Python language operators can be used.  But remember to use “float(#field_name#)” to convert strings to floating point numbers.</p></li>
+<li><p>Example: eval(float(#Intensity#) / float(#r’.*Normalization’#) * 5)</p></li>
+<li><p>If the eval returns a list of items it is converted into a string separated by semicolons.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>If the corresponding tag is a list tag then this will become a list.</p></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p><strong>#add</strong> - tags to add in an inserted row below the column header row.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>All tag blocks must contain a <strong>#add</strong> tag.</p></li>
+<li><p>The actual value under <strong>#add</strong> does not have to be a valid tag, the value will be copied as is.</p></li>
+<li><p>Leave this value blank to add headers that are required to match a block, but don’t need tags.</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p><strong>#required</strong> - true|false whether this header description is required. The default is that all header descriptions are required.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Example:</p></li>
+</ul>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 7%" />
+<col style="width: 54%" />
+<col style="width: 39%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>#tags</p></td>
+<td><p>#header</p></td>
+<td><p>#add                    | #required</p></td>
+</tr>
+<tr class="row-even"><td></td>
+<td><p>Compound+”-13C”+C_isomers+”-“+SamplID</p></td>
+<td><p>#measurement.id         | true</p></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p>Compound+”-13C”+C_isomers</p></td>
+<td><p>#measurement.assignment | true</p></td>
+</tr>
+<tr class="row-even"><td></td>
+<td><p>Compound</p></td>
+<td><p>#measurement.compound   | true</p></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p>Mol_Formula</p></td>
+<td><p>#measurement.formula    | false</p></td>
+</tr>
+<tr class="row-even"><td></td>
+<td><p>SamplID</p></td>
+<td><p>#sample.id              | true</p></td>
+</tr>
+</tbody>
+</table>
+<p>If the Mol_Formula header is not found the tags will still be added, but without the Mol_Formula ones.</p>
+</div></blockquote>
+</li>
+<li><p><strong>#exclude=test_string</strong> - test string or regular expression to use for excluding a given header row.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>If a header matches the exclude string or regex then the tags are not inserted regardless of whether the headers match.</p></li>
+<li><p>Example:</p></li>
+</ul>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 6%" />
+<col style="width: 42%" />
+<col style="width: 52%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>#tags</p></td>
+<td><p>#header</p></td>
+<td><p>#add                    | #exclude=r’Cell Type|Mouse Species’</p></td>
+</tr>
+<tr class="row-even"><td></td>
+<td><p>Compound+”-13C”+C_isomers+”-“+SamplID</p></td>
+<td><p>#measurement.id         |</p></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p>Compound+”-13C”+C_isomers</p></td>
+<td><p>#measurement.assignment |</p></td>
+</tr>
+<tr class="row-even"><td></td>
+<td><p>Compound</p></td>
+<td><p>#measurement.compound   |</p></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p>Mol_Formula</p></td>
+<td><p>#measurement.formula    |</p></td>
+</tr>
+<tr class="row-even"><td></td>
+<td><p>SamplID</p></td>
+<td><p>#sample.id              |</p></td>
+</tr>
+</tbody>
+</table>
+<p>If the “Cell Type” or “Mouse Species” headers are in the row then don’t add the tags.</p>
+</div></blockquote>
+</li>
+</ul>
+<p>Insertions can be inside of header tag blocks, so they are inserted only when a match is made to the header rows.
+They function just like when they are on their own, except that there is an additional <strong>#multiple</strong> tag that
+can be used to control whether the insert happens every time the tag block matches or only the first time.</p>
+<ul class="simple">
+<li><p><strong>#multiple=true</strong> - will insert on every match.</p></li>
+<li><p><strong>#multiple=false* - will only insert on the first match, this is the default behavior if **#multiple</strong> is not specified.</p></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="section" id="common-use-case-examples">
+<h2>Common Use Case Examples<a class="headerlink" href="#common-use-case-examples" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="tutorial.html" class="btn btn-neutral float-left" title="Tutorial" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="table_schema.html" class="btn btn-neutral float-right" title="Table Schema" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Hunter Moseley, Travis Thompson.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

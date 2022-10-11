@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Extract CLI &mdash; MESSES 1.0.0 documentation</title><link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> MESSES
+          </a>
+              <div class="version">
+                1.0.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="guide.html">User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="guide.html#messes">MESSES</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tagging.html">Tagging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="table_schema.html">Table Schema</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="todo.html">TODO List</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">MESSES</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Extract CLI</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/cli.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="section" id="extract-cli">
+<h1>Extract CLI<a class="headerlink" href="#extract-cli" title="Permalink to this headline">¶</a></h1>
+<p>The extract command of MESSES supports turning tabular data into JSON.
+This is done by adding a layer of tags on top of the data. These tags tell
+extract how to construct the JSON tables and records. There are features
+for automatically applying tags to untagged data and features for modifying
+the names and values of data. extract can also be used to modify already
+JSONized data. There is also support for viewing the data in different ways, such
+as viewing the record lineages. For a more detailed explanation of the options
+with examples as to how they might be used see the <a class="reference internal" href="tutorial.html"><span class="doc">Tutorial</span></a> page.</p>
+<div class="section" id="usage">
+<h2>Usage<a class="headerlink" href="#usage" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span> Usage:
+    messes extract &lt;metadata_source&gt;... [--delete &lt;metadata_section&gt;...] [options]
+    messes extract --help
+
+    &lt;metadata_source&gt; - input metadata source as csv/json filename or xlsx_filename[:worksheet_name|regular_expression]. &quot;#export&quot; worksheet name is the default.
+
+ Options:
+    --help                              - show this help documentation.
+    --output &lt;filename_json&gt;            - output json filename.
+    --compare &lt;filename_json&gt;           - compare extracted metadata to given JSONized metadata.
+    --modify &lt;source&gt;                   - modification directives worksheet name, regular expression, csv/json filename, or xlsx_filename:[worksheet_name|regular_expression] [default: #modify].
+    --end-modify &lt;source&gt;               - apply modification directives after all metadata merging. Requires csv/json filename or xlsx_filename:[worksheet_name|regular_expression].
+    --automate &lt;source&gt;                 - automation directives worksheet name, regular expression, csv/json filename, or xlsx_filename:[worksheet_name|regular_expression] [default: #automate].
+    --save-directives &lt;filename_json&gt;   - output filename with modification and automation directives in JSON format.
+    --save-export &lt;filetype&gt;            - output export worksheet with suffix &quot;_export&quot; and with the indicated xlsx/csv format extension.
+    --show &lt;show_option&gt;                - show a part of the metadata. See options below.
+    --delete &lt;metadata_section&gt;...      - delete a section of the JSONized metadata. Section format is tableKey or tableKey,IDKey or tableKey,IDKey,fieldName. These can be regular expressions.
+    --keep &lt;metadata_tables&gt;            - only keep the selected tables.  Delete the rest.  Table format is tableKey,tableKey,... The tableKey can be a regular expression.
+    --silent                            - print no warning messages.
+
+Show Options:
+  tables    - show tables in the extracted metadata.
+  lineage   - show parent-child lineages per table.
+  all       - show every option.
+
+Regular Expression Format:
+  Regular expressions have the form &quot;r&#39;...&#39;&quot; on the command line.
+  The re.match function is used, which matches from the beginning of a string, meaning that a regular expression matches as if it starts with a &quot;^&quot;.
+
+ Directives JSON Format:
+   {
+    &quot;modification&quot; : { table : { field :  { &quot;(exact|regex|levenshtein)\-(first|first\-nowarn|unique|all)&quot; :
+                      { field_value : { &quot;assign&quot; : { field : value,... }, &quot;append&quot; : { field : value,... }, &quot;prepend&quot; : { field : value,... },
+                                        &quot;regex&quot; : { field : regex_pair,... }, &quot;delete&quot; : [ field,... ], &quot;rename&quot; : { old_field : new_field } } } } } }
+    &quot;automation&quot; : [ { &quot;header_tag_descriptions&quot; : [ { &quot;header&quot; : column_description, &quot;tag&quot; : tag_description, &quot;required&quot; : true|false } ],   &quot;exclusion_test&quot; : exclusion_value, &quot;insert&quot; : [ [ cell_content, ... ] ] } ]
+   }
+
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Hunter Moseley, Travis Thompson.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
