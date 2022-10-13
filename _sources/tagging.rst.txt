@@ -37,6 +37,14 @@ tags for you. The last part is the "modification" part which is the system used 
 It can be used to prepend, append, delete, overwrite, or regex substitute values. An example use case would 
 be to update old naming conventions.
 
+Each of the 3 tagging systems has to be in their own sheet or file for the extract command. By default 
+export tags are expected to be in a sheet named '#export' if given an Excel file without specifying a sheet 
+name. If given a CSV file then it is expected to have export tags. Modification tags are expected to be in 
+a sheet named '#modify' by default, but can be specified using the --modify option. The option can be used 
+to specify either a different sheet name in the given Excel file, a different Excel file, a different Excel 
+file with a different sheet name, a JSON file, or a CSV file. Automation tags are similarly specified, but 
+using the --automate option.
+
 Each of the 3 tagging systems are explained below with examples. Examples using them with the extract 
 command are in the :doc:`tutorial` section and there are full run examples in the "examples" folder of the 
 GitHub_.
@@ -350,7 +358,7 @@ Similar to export tags the modification tag rows are indicated by **#tags** in t
 first indicate a field in a table to match to using tags. Then underneath that tag indicate the value in 
 that field to match to. Then another tag in the same row will indicate both what field to modify in the 
 record that has the matching field and what modification to do. Underneath that tag will have the value 
-to do the modification with.
+to do the modification with. 
 
 Basic Examples:
 
@@ -632,7 +640,7 @@ Automation tag rows, like the other tag rows, are indicated by **#tags** in the 
 main functions in the automation system. One is to specify a table of header-tag pairs that will be used 
 to automatically add the tags associated with the headers underneath of the headers when it finds them 
 in the data. The other is to specify a block of rows to add to the data exactly as is. This is what 
-introduces the **#insert** and **#end** tags.
+introduces the **#insert** and **#end** tags. 
 
 
 Insert
