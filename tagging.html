@@ -94,8 +94,8 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>Tagging</li>
+      <li><a href="index.html" class="icon icon-home"></a></li>
+      <li class="breadcrumb-item active">Tagging</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/tagging.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -771,6 +771,7 @@ each row individually, or for the whole column by using the = sign. Ex. <strong>
 <li><p>regex|exact is an intelligent combination of regex and exact. If a regex is specified for the comparison value it will be detected and the type will be regex for that comparison value only, otherwise the comparison type will be exact.</p></li>
 <li><p>If a type is specified then that type is used regardless of the comparison value, so a regex string with an exact comparison type will try to match exactly.</p></li>
 <li><p>If the comparison tag is not specified then the type defaults to “regex|exact”.</p></li>
+<li><p>exact type modifications are executed first, then regex type, and lastly levenshtein type. Within those types modifications are executed in order from first to last.</p></li>
 </ul>
 </div></blockquote>
 </div>

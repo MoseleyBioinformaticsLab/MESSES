@@ -411,6 +411,7 @@ There are 4 comparison types, "exact", "regex", "levenshtein", and "regex|exact"
     * regex|exact is an intelligent combination of regex and exact. If a regex is specified for the comparison value it will be detected and the type will be regex for that comparison value only, otherwise the comparison type will be exact.
     * If a type is specified then that type is used regardless of the comparison value, so a regex string with an exact comparison type will try to match exactly.
     * If the comparison tag is not specified then the type defaults to "regex|exact".
+    * exact type modifications are executed first, then regex type, and lastly levenshtein type. Within those types modifications are executed in order from first to last.
 
 
 Match Type

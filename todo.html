@@ -46,7 +46,10 @@
 <li class="toctree-l1"><a class="reference internal" href="table_schema.html">Table Schema</a></li>
 <li class="toctree-l1"><a class="reference internal" href="api.html">API</a></li>
 <li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">TODO List</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">TODO List</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#possible-improvements-to-extract">Possible Improvements to Extract</a></li>
+</ul>
+</li>
 </ul>
 
         </div>
@@ -62,8 +65,8 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>TODO List</li>
+      <li><a href="index.html" class="icon icon-home"></a></li>
+      <li class="breadcrumb-item active">TODO List</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/todo.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -75,6 +78,26 @@
              
   <div class="section" id="todo-list">
 <h1>TODO List<a class="headerlink" href="#todo-list" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="possible-improvements-to-extract">
+<h2>Possible Improvements to Extract<a class="headerlink" href="#possible-improvements-to-extract" title="Permalink to this headline">¶</a></h2>
+<p>Make it so the automation tags to add are ran through the parser before being exported to check for errors. If tags to add were validated
+as valid tags before being applied you might catch an error earlier and make it easier for the user to understand that the problem is in
+the automation and not in the export.</p>
+<p>Either expand export tags to be able to pull in tables without an id for each record, or enumerate based on a base id name. Somehow enable the
+tags to let id be a base name and then increment a number at the end of the base name for each record. Simply allowing a table without ids
+might be better though. The result would be a list of dictionaries instead of a dictionary of dictionaries. This goes against best practice
+for SQL like tables, but it is possible to create SQL tables that have a ‘rowid’ or ‘index’ as the primary key.</p>
+<p>Check to see if a record’s id is already in use while parsing, and print warning to user that 2 records in Excel have same id. Currently if
+this happens fields are just updated with no warning. There are legitimate reasons to do this, so would warnings would be useful or mostly
+ignored? This is also complicated by the fact that child tags can add placeholder parents that will be updated later. The bottom of
+TagParser._parseRow is where this warning would go.</p>
+<p>Allow input files to be URLs and fetch them from the internet.</p>
+<p>Handle column based data. Most likely this will be a tag directly after #tags that indicates the data is in column format and it will be
+transposed and then processed as normal.</p>
+<p>Add a #max-distance tag for levenshtein comaprison to put a minimum distance that must be acheived to be considered a match.</p>
+<p>Add an option not to print warnings about unused modification directives.</p>
+<p>Add a “exact_assign” tag to modification tags that keeps the field type (list vs non list).</p>
+</div>
 </div>
 
 
