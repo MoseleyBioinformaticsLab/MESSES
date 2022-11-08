@@ -15,6 +15,8 @@ Options:
     --c, --config-file=<path>       Path to JSON configuration file.
 """
 
+## Add an option to filter other tables by sample lineage? For example remove factors or protocols if they aren't in any measurement sample lineages.
+
 
 from datetime import date
 from collections import OrderedDict
@@ -452,6 +454,17 @@ def convert_metabolites(
     return metabolites
 
 
+def check_internal_data(internal_data: dict|OrderedDict) -> None:
+    """"""
+    ## Check that there is at least 1 factor and it is on at least 1 measurement.
+    pass
+
+
+def check_config_dict(config_dict: dict|None) -> None:
+    """"""
+    pass
+
+
 def convert(internal_data: dict|OrderedDict, analysis_type: str, protocol_id: str|None =None, config_dict: dict|None =None) -> OrderedDict:
     """Method for converting internal data items into mwTab formatted items.
 
@@ -464,6 +477,9 @@ def convert(internal_data: dict|OrderedDict, analysis_type: str, protocol_id: st
     Returns: 
         Dictionary of mwTab formatted items.
     """
+    check_internal_data(internal_data)
+    check_config_dict(config_dict)
+    
     mwtabfile = OrderedDict()
     
     if not config_dict:

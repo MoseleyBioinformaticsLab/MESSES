@@ -116,11 +116,10 @@ def create_subject_sample_factors_section(
     ## Is the closest subject guaranteed to have all factors?
     ## Assuming multiple factors on multiple subjects, how to report subjects? Still use the closest?
     ## Are factors always going to be a field in subjects and samples?
-    ## Factor id probably needs to change because multiple project and study ids will have subject.protocol.id as a factor, but this id can only be used once.
     ## How to determine which siblings need to be added to lineage?
     ## Can "Factors" be a dictionary? What if there are 2 treatment protocols?
     ## Look to see if factor has units and add those to any string.
-    
+        
     subject_sample_factors = []
     subject_sample_factors[internal_section_key] = []
 

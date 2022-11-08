@@ -17,3 +17,5 @@ data/*
 build/
 dist/
 coverage.xml
+*.xlsx
+*.json

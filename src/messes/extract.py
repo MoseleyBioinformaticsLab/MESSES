@@ -50,25 +50,16 @@ Regular Expression Format:
 
 
 ## TODO 
-## Possibly make it so the automation tags to add are ran through the parser before being exported to check for errors. Would make debugging errors easier.
 ## Make sure verify_metadata checks for project.id and study.id in subject, samples, and factors.
-## Possibly add an option to enumerate id's that aren't unique.
-## Possibly check to see if a record's id is already in use while parsing, and print warning to user that 2 records in Excel have same id.
-## This is tricky with child tags because the parent is added with the child, so detecting an already existing record might be where the child added a placeholder parent record.
-## Should an output filename be required? You can run the program and get nothing out as is.
-## Be sure to deal with errors in order. Something like a duplicated header can then make a modification not match, 
-## so deal with the header and then both errors go away.
-## Let metadata sources be URLs
-## Think about handling column based data, transpose rows and columns and then read in.
-## Possibly add a #max-distance tag for levenshtein comaprison to put a minimum distance that must be acheived to be considered a match.
-## Possibly add an option not to print warnings about unused modification directives.
-## Document the modification tag precedence, both that exact goes first, then regex, then levens, and that top most modifications go first.
-## unique = 3 different names
-## Possibly add a "exact_assign" that keeps the field type (list vs non list).
 ## In validate have an option to check that fields with the same name in the same table have the same type.
-## Add tests for the new warnings in assign directives line 1778 or so.
-## Add tests for exclude in automation make sure there is a regex and literal test.
 ## In validate make sure to check that parentID for subjects and samples only appears in one table, if a parentID matches a subject and sample there is a problem.
+## In validate make sure factors have to have more than 1 allowed_value.
+## Should it be required to have at least 1 treatment protocol?
+## Validate that all protocols are in lineages from measurement samples? Currently convert gets all the sample ids from measurements table and 
+## pulls protocols from that lineage instead of trusting what is in the protocol table. Should this be a validation check so convert can just pull from the protocol table?
+## Could filter protocols down using lineage at start of convert instead of doing it over and over again.
+## mwtab does not check or warn the user if additional data keys are not unique.
+## isa-tab format
 
 
 from __future__ import annotations
@@ -1076,8 +1067,6 @@ class TagParser(object):
             sheetName: name of the Excel sheet, used for error messages.
             worksheet: the data from the file name and sheet name.
         """
-        self.projectID = ""
-        self.studyID = ""
         self.lastTable = ""
         self.lastField = ""
         self.columnIndex = -1

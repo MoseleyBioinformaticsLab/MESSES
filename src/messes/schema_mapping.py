@@ -333,3 +333,19 @@ internal_nmr_section_mapping = [
     {'mwtab_section_key': 'NMR', 'internal_section_key': 'protocol', 'internal_type': 'NMR', 'mwtab_field_key': 'BINNED_DATA_EXCLUDED_RANGE',       'internal_field_key': ''}
 ]
 
+
+
+
+
+SS_factors = {
+    "entity_table":"entity",
+    "measurement_table":"measurement",
+    "factor_table":"factor",
+    "parent_id_key":"parentID",
+    "include_lineage":True,
+    "sibling_inclusion":"protocol.id=protein_extraction",
+    "field_inclusion":["id", "protocol.id", "replicate", "species", "species_type", "taxonomy_id"], # Should this just be all fields on sample? Current code excludes study.id and project.id.
+    
+    }
+
+
