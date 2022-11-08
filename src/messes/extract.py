@@ -760,7 +760,7 @@ class TagParser(object):
         return table, field
 
 
-    cellSplitter = re.compile(r'([*=+;,]|\"[^\"]*\")|\s+')
+    cellSplitter = re.compile(r'([*=+;,]|\"[^\"]*\"|#.*\.id)|\s+')
     stringExtractor = re.compile(r'\"(.*)\"$')
     operatorDetector = re.compile(r'[=+]')
     wordDetector = re.compile(r'\w+')
