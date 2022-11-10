@@ -15,7 +15,7 @@ Options:
 
 """
 
-import operator.itemgetter
+import operator
 import re
 import sys
 import pathlib
@@ -32,6 +32,7 @@ from . import extract
 ## Should all protocol types loop over all protocols and concat them or only certain ones? collection does not and treatment does currently.
 ## Should the MS metabolite Data be intensity or corrected_raw_intensity? There are submitted data using intensity, but the convert code is corrected_raw.
 ## natural abundance corrected and protein normalized peak area for intensity vs natural abundance corrected peak area for corrected_raw
+## Currently the Treatment factor in SSF is a list, make sure this converts into mwTab text correctly.
 
 def main() :
     args = docopt.docopt(__doc__)
@@ -67,9 +68,9 @@ def main() :
         for record_name, attributes in records.items():
             if required := attributes.get("required"):
                 if required.lower() == "false":
-                    required == False
+                    required = False
                 else:
-                    required == True
+                    required = True
             
             if attributes["value_type"] == "section":
                 value = handle_code_tag(internal_data, record_table, record_name, attributes)
@@ -81,26 +82,19 @@ def main() :
                 value = compute_string_value(internal_data, record_table, record_name, attributes)
                 keys = [record_table, record_name]
             else:
-                print("Warning: Unknown value_type for the conversion " + record_name + " in the " + record_table + " table. It will be skipped.")
+                print("Warning: Unknown value_type for the conversion \"" + record_name + "\" in the \"" + record_table + "\" table. It will be skipped.")
                 
             if value is None and required:
-                print("Error: The conversion tag to create the " + record_name + " record in the " + record_table + " table did not return a value.")
+                print("Error: The conversion tag to create the \"" + record_name + "\" record in the \"" + record_table + "\" table did not return a value.")
                 sys.exit()
             elif value is None and not required:
                 if not args["--silent"]:
-                    print("Warning: The non-required conversion tag to create the " + record_name + " record in the " + record_table + " table could not be created.")
+                    print("Warning: The non-required conversion tag to create the \"" + record_name + "\" record in the \"" + record_table + "\" table could not be created.")
                 continue
             
             nested_set(output_json, keys, value)
-                
-    mwtab.validator.validate_file(output_json, verbose=True)
     
-    with open(args["<output-name>"],'w') as jsonFile :
-        jsonFile.write(json.dumps(output_json, indent=2))
-        
-    
-    
-    
+    ## Optional way to do things compared to the code block below this.
     # with tempfile.TemporaryFile(mode="w+", encoding="utf-8") as tp:
     #     tp.write(json.dumps(output_json))
     #     tp.seek(0)
@@ -108,16 +102,21 @@ def main() :
     #     mwfile.read(tp)
     # with open(args["<output-name>"], 'w', encoding="utf-8") as outfile:
     #     mwfile.write(outfile, file_format="mwtab")
-        
-    
-    
     
     mwtabfile = mwtab.mwtab.MWTabFile("")
     mwtabfile.update(output_json)
     mwtabfile.header = " ".join(
         ["#METABOLOMICS WORKBENCH"]
         + [item[0] + ":" + item[1] for item in mwtabfile["METABOLOMICS WORKBENCH"].items() if item[0] not in ["VERSION", "CREATED_ON"]]
-    )
+    )            
+    
+    mwtabfile.source = args["<output-name>"]
+    mwtab.validator.validate_file(mwtabfile, verbose=True)
+    
+    with open(args["<output-name>"],'w') as jsonFile :
+        jsonFile.write(json.dumps(output_json, indent=2))
+        
+        
     with open(args["<output-name>"], 'w', encoding='utf-8') as outfile:
         mwtabfile.write(outfile, file_format="mwtab")
 
@@ -142,7 +141,7 @@ def handle_code_tag(internal_data, record_table, record_name, attributes):
         try:
             value = eval(code)
         except Exception as error:
-            print("Error: The code conversion tag to create the " + record_name + " record in the " + record_table + " table encountered an error while executing.")
+            print("Error: The code conversion tag to create the \"" + record_name + "\" record in the \"" + record_table + "\" table encountered an error while executing.")
             raise error
         
         return value
@@ -151,15 +150,15 @@ def handle_code_tag(internal_data, record_table, record_name, attributes):
 
 
 
-def compute_string_value(internal_data, record_table, record_name, attributes):
+def compute_string_value(internal_data, record_table, record_name, attributes, silent=False):
     """"""
     
     ## required
     if required := attributes.get("required"):
         if required.lower() == "false":
-            required == False
+            required = False
         else:
-            required == True
+            required = True
     
     ## override
     if value := attributes.get("override"):
@@ -170,7 +169,7 @@ def compute_string_value(internal_data, record_table, record_name, attributes):
             
     if value is not None:
         if not isinstance(value, str):
-            print("Error: The code conversion tag to create the " + record_name + " record in the " + record_table + " table did not return a string type value.")
+            print("Error: The code conversion tag to create the \"" + record_name + "\" record in the \"" + record_table + "\" table did not return a string type value.")
             sys.exit()
         
         return value
@@ -187,17 +186,17 @@ def compute_string_value(internal_data, record_table, record_name, attributes):
     ## for_each
     if for_each := attributes.get("for_each"):
         if for_each.lower() == "true":
-            for_each == True
+            for_each = True
         else:
-            for_each == False
+            for_each = False
     
     if for_each:
         delimiter = attributes.get("delimiter", "")
         
-        records = [record_attributes for record, record_attributes in internal_data[attributes["table"]] if has_test and test_field in record_attributes and record_attributes[test_field] == test_value]
+        records = [record_attributes for record, record_attributes in internal_data[attributes["table"]].items() if has_test and test_field in record_attributes and record_attributes[test_field] == test_value]
         if not records:
             if required:
-                print("Error: The conversion tag to create the " + record_name + " record in the " + record_table + " table did not match any records in the input data.")
+                print("Error: The conversion tag to create the \"" + record_name + "\" record in the \"" + record_table + "\" table did not match any records in the input data.")
                 sys.exit()
             else:
                 return None
@@ -213,8 +212,12 @@ def compute_string_value(internal_data, record_table, record_name, attributes):
                 if not field[1]:
                     ## If the field is not a literal value and it's not in the record print an error.
                     if field[0] not in record_attributes:
-                        print("Error: The conversion tag to create the " + record_name + " record in the " + record_table + " table matched a record in the input data that did not contain the " + field[0] + " field.")
-                        sys.exit()
+                        if required:
+                            print("Error: The conversion tag to create the \"" + record_name + "\" record in the \"" + record_table + "\" table matched a record in the input data that did not contain the \"" + field[0] + "\" field.")
+                            sys.exit()
+                        elif not silent:
+                            print("Warning: The conversion tag to create the \"" + record_name + "\" record in the \"" + record_table + "\" table matched a record in the input data that did not contain the \"" + field[0] + "\" field.")
+                            continue
                 
                     value += str(record_attributes[field[0]])
                 else:
@@ -240,8 +243,12 @@ def compute_string_value(internal_data, record_table, record_name, attributes):
         if not field[1]:
             ## If the field is not a literal value and it's not in the record print an error.
             if field[0] not in record_attributes:
-                print("Error: The indicated record_id for the conversion tag to create the " + record_name + " record in the " + record_table + " table does not contain the " + field[0] + " field.")
-                sys.exit()
+                if required:
+                    print("Error: The indicated record_id for the conversion tag to create the \"" + record_name + "\" record in the \"" + record_table + "\" table does not contain the \"" + field[0] + "\" field.")
+                    sys.exit()
+                elif not silent:
+                    print("Warning: The indicated record_id for the conversion tag to create the \"" + record_name + "\" record in the \"" + record_table + "\" table does not contain the \"" + field[0] + "\" field.")
+                    continue
         
             value += str(record_attributes[field[0]])
         else:
@@ -259,7 +266,7 @@ def compute_matrix_value(internal_data, record_table, record_name, attributes):
             
     if value is not None:
         if not isinstance(value, list) or not all([isinstance(record, dict) for record in value]):
-            print("Error: The code conversion tag to create the " + record_name + " record in the " + record_table + " table did not return a matrix type value.")
+            print("Error: The code conversion tag to create the \"" + record_name + "\" record in the \"" + record_table + "\" table did not return a matrix type value.")
             sys.exit()
         
         return value
@@ -268,9 +275,9 @@ def compute_matrix_value(internal_data, record_table, record_name, attributes):
     ## fields_to_headers
     if fields_to_headers := attributes.get("fields_to_headers"):
         if fields_to_headers.lower() == "true":
-            fields_to_headers == True
+            fields_to_headers = True
         else:
-            fields_to_headers == False
+            fields_to_headers = False
     
     exclusion_headers = attributes.get("optional_headers", [])
     
@@ -281,16 +288,35 @@ def compute_matrix_value(internal_data, record_table, record_name, attributes):
             split = pair.split("=")
             output_key = split[0].strip()
             input_key = split[1].strip()
-            headers.append({"output_key":output_key, "output_key_is_literal": True if re.match(r"^\"(.*)\"$", output_key) else False, 
-                            "input_key":input_key, "input_key_is_literal": True if re.match(r"^\"(.*)\"$", input_key) else False})
+            
+            if new_output_key := re.match(r"^\"(.*)\"$", output_key):
+                output_key = new_output_key.group(1)
+                output_key_is_literal = True
+            else:
+                output_key_is_literal = False
+            
+            if new_input_key := re.match(r"^\"(.*)\"$", input_key):
+                input_key = new_input_key.group(1)
+                input_key_is_literal = True
+            else:
+                input_key_is_literal = False
+            
+            headers.append({"output_key":output_key, "output_key_is_literal": output_key_is_literal, 
+                            "input_key":input_key, "input_key_is_literal": input_key_is_literal})
     
     ## TODO think about changing optional_headers to inclusion_headers and having an option about printing warnings if the headers aren't there.
     optional_headers = attributes.get("optional_headers", [])
         
     if collate := attributes.get("collate"):
+        ## TODO think about whether to do collate.strip() here to remove spaces.
+        if new_collate := re.match(r"^\"(.*)\"$", collate):
+            collate_is_literal = True
+            collate = new_collate.group(1)
+        else:
+            collate_is_literal = False
         ## collate has to match an output_key in the headers, and the corresponding input_key cannot be literal.
         ## TODO make sure there is validation that checks that headers are unique, that collate exists in it, and it's input key is not literal.
-        collate_input_header = [header["input_key"] for header in headers if header["output_key"] == collate][0]
+        collate_input_header = [header["input_key"] for header in headers if header["output_key"] == collate and header["output_key_is_literal"] == collate_is_literal][0]
             
         records = {}
         for record, record_attributes in internal_data[attributes["table"]].items():
@@ -304,25 +330,25 @@ def compute_matrix_value(internal_data, record_table, record_name, attributes):
                     records[collate_key][header["output_key"]] = header["input_key"]
                 elif header["output_key_is_literal"] and not header["input_key_is_literal"]:
                     if header["input_key"] not in record_attributes:
-                        print("Error: The headers conversion tag to create the " + record_name + " matrix in the " + record_table + " table has an input key, " + header["input_key"] + ", that does not exist in the record, " + record + ", of the input table, " + attributes["table"] + ".")
+                        print("Error: The headers conversion tag to create the \"" + record_name + "\" matrix in the \"" + record_table + "\" table has an input key, \"" + header["input_key"] + "\", that does not exist in the record, \"" + record + "\", of the input table, \"" + attributes["table"] + "\".")
                         sys.exit()
                     if header["output_key"] in records[collate_key] and record_attributes[header["input_key"]] != records[collate_key][header["output_key"]]:
-                        print("Warning: When creating the " + record_name + " matrix for the " + record_table + " table different values for the output key, " + header["output_key"] + ", were found. Only the last value will be used.")
+                        print("Warning: When creating the \"" + record_name + "\" matrix for the \"" + record_table + "\" table different values for the output key, \"" + header["output_key"] + "\", were found. Only the last value will be used.")
                     records[collate_key][header["output_key"]] = record_attributes[header["input_key"]]
                 elif not header["output_key_is_literal"] and header["input_key_is_literal"]:
                     if header["output_key"] not in record_attributes:
-                        print("Error: The headers conversion tag to create the " + record_name + " matrix in the " + record_table + " table has an output key, " + header["output_key"] + ", that does not exist in the record, " + record + ", of the input table, " + attributes["table"] + ".")
+                        print("Error: The headers conversion tag to create the \"" + record_name + "\" matrix in the \"" + record_table + "\" table has an output key, \"" + header["output_key"] + "\", that does not exist in the record, \"" + record + "\", of the input table, \"" + attributes["table"] + "\".")
                         sys.exit()
                     records[collate_key][record_attributes[header["output_key"]]] = header["input_key"]
                 elif not header["output_key_is_literal"] and not header["input_key_is_literal"]:
                     if header["input_key"] not in record_attributes:
-                        print("Error: The headers conversion tag to create the " + record_name + " matrix in the " + record_table + " table has an input key, " + header["input_key"] + ", that does not exist in the record, " + record + ", of the input table, " + attributes["table"] + ".")
+                        print("Error: The headers conversion tag to create the \"" + record_name + "\" matrix in the \"" + record_table + "\" table has an input key, \"" + header["input_key"] + "\", that does not exist in the record, \"" + record + "\", of the input table, \"" + attributes["table"] + "\".")
                         sys.exit()
                     if header["output_key"] not in record_attributes:
-                        print("Error: The headers conversion tag to create the " + record_name + " matrix in the " + record_table + " table has an output key, " + header["output_key"] + ", that does not exist in the record, " + record + ", of the input table, " + attributes["table"] + ".")
+                        print("Error: The headers conversion tag to create the \"" + record_name + "\" matrix in the \"" + record_table + "\" table has an output key, \"" + header["output_key"] + "\", that does not exist in the record, \"" + record + "\", of the input table, \"" + attributes["table"] + "\".")
                         sys.exit()
                     if record_attributes[header["output_key"]] in records[collate_key] and record_attributes[header["input_key"]] != records[collate_key][record_attributes[header["output_key"]]]:
-                        print("Warning: When creating the " + record_name + " matrix for the " + record_table + " table different values for the output key, " + record_attributes[header["output_key"]] + ", were found. Only the last value will be used.")
+                        print("Warning: When creating the \"" + record_name + "\" matrix for the \"" + record_table + "\" table different values for the output key, \"" + record_attributes[header["output_key"]] + "\", were found. Only the last value will be used.")
                     records[collate_key][record_attributes[header["output_key"]]] = record_attributes[header["input_key"]]
             
             if fields_to_headers:
@@ -343,20 +369,20 @@ def compute_matrix_value(internal_data, record_table, record_name, attributes):
                     temp_dict[header["output_key"]] = header["input_key"]
                 elif header["output_key_is_literal"] and not header["input_key_is_literal"]:
                     if header["input_key"] not in record_attributes:
-                        print("Error: The headers conversion tag to create the " + record_name + " matrix in the " + record_table + " table has an input key, " + header["input_key"] + ", that does not exist in the record, " + record + ", of the input table, " + attributes["table"] + ".")
+                        print("Error: The headers conversion tag to create the \"" + record_name + "\" matrix in the \"" + record_table + "\" table has an input key, \"" + header["input_key"] + "\", that does not exist in the record, \"" + record + "\", of the input table, \"" + attributes["table"] + "\".")
                         sys.exit()
                     temp_dict[header["output_key"]] = record_attributes[header["input_key"]]
                 elif not header["output_key_is_literal"] and header["input_key_is_literal"]:
                     if header["output_key"] not in record_attributes:
-                        print("Error: The headers conversion tag to create the " + record_name + " matrix in the " + record_table + " table has an output key, " + header["output_key"] + ", that does not exist in the record, " + record + ", of the input table, " + attributes["table"] + ".")
+                        print("Error: The headers conversion tag to create the \"" + record_name + "\" matrix in the \"" + record_table + "\" table has an output key, \"" + header["output_key"] + "\", that does not exist in the record, \"" + record + "\", of the input table, \"" + attributes["table"] + "\".")
                         sys.exit()
                     temp_dict[record_attributes[header["output_key"]]] = header["input_key"]
                 elif not header["output_key_is_literal"] and not header["input_key_is_literal"]:
                     if header["input_key"] not in record_attributes:
-                        print("Error: The headers conversion tag to create the " + record_name + " matrix in the " + record_table + " table has an input key, " + header["input_key"] + ", that does not exist in the record, " + record + ", of the input table, " + attributes["table"] + ".")
+                        print("Error: The headers conversion tag to create the \"" + record_name + "\" matrix in the \"" + record_table + "\" table has an input key, \"" + header["input_key"] + "\", that does not exist in the record, \"" + record + "\", of the input table, \"" + attributes["table"] + "\".")
                         sys.exit()
                     if header["output_key"] not in record_attributes:
-                        print("Error: The headers conversion tag to create the " + record_name + " matrix in the " + record_table + " table has an output key, " + header["output_key"] + ", that does not exist in the record, " + record + ", of the input table, " + attributes["table"] + ".")
+                        print("Error: The headers conversion tag to create the \"" + record_name + "\" matrix in the \"" + record_table + "\" table has an output key, \"" + header["output_key"] + "\", that does not exist in the record, \"" + record + "\", of the input table, \"" + attributes["table"] + "\".")
                         sys.exit()
                     temp_dict[record_attributes[header["output_key"]]] = record_attributes[header["input_key"]]
             
@@ -395,10 +421,13 @@ def create_sample_lineages(internal_data, entity_table_name="entity", parent_key
         while parent_name := entity_attributes.get(parent_key):
             ancestors.append(parent_name)
             entity_attributes = internal_data[entity_table_name][parent_name]
+        ancestors.reverse()
         lineages[entity_name] = {"ancestors":ancestors}
         
     for entity_name in lineages:
         siblings = []
+        if not lineages[entity_name]["ancestors"]:
+            continue
         parent_name = lineages[entity_name]["ancestors"][0]
         for sibling_name, entity_attributes in internal_data[entity_table_name].items():
             if (sibling_parent_name := entity_attributes.get(parent_key)) and sibling_parent_name == parent_name:
@@ -421,6 +450,7 @@ def create_subject_sample_factors(internal_data,
                                   parent_key="parentID",
                                   factor_table_name="factor",
                                   factor_field_key="field",
+                                  factor_allowed_values_key="allowed_values",
                                   lineage_field_exclusion_list: list[str]|tuple[str] =("study.id", "project.id", "parentID")) -> dict:
     """"""
     
@@ -431,12 +461,12 @@ def create_subject_sample_factors(internal_data,
             
     lineages = create_sample_lineages(internal_data, entity_table_name=entity_table_name, parent_key=parent_key)
     
-    factor_fields = {factor_attributes[factor_field_key]:factor for factor, factor_attributes in internal_data[factor_table_name].items()}
+    factor_fields = {factor_attributes[factor_field_key]:{"name":factor, "allowed_values":factor_attributes[factor_allowed_values_key]} for factor, factor_attributes in internal_data[factor_table_name].items()}
     
     ss_factors = []
     for sample in samples:
         if sample not in lineages:
-            print("Error: The sample, " + sample + ", pulled from the " + measurement_table_name + " table is not in the " + entity_table_name + ". Thus the subject-sample-factors cannot be determined.")
+            print("Error: The sample, \"" + sample + "\", pulled from the \"" + measurement_table_name + "\" table is not in the \"" + entity_table_name + "\". Thus the subject-sample-factors cannot be determined.")
             sys.exit()
         
         additional_sample_data = {}
@@ -450,16 +480,19 @@ def create_subject_sample_factors(internal_data,
                     continue
                 additional_sample_data["lineage" + str(lineage_count) + "_" + field] = field_value
                 
-                if field in factor_fields:
-                    factors[factor_fields[field]] = field_value
+                if field in factor_fields and factor_fields[field]["name"] not in factors:
+                    if isinstance(field_value,str) and field_value in factor_fields[field]["allowed_values"]:
+                        factors[factor_fields[field]["name"]] = field_value
+                    elif isinstance(field_value,list) and (field_values := [value for value in field_value if value in factor_fields[field]["allowed_values"]]):
+                        factors[factor_fields[field]["name"]] = field_values
                     
                 if not subject_id and field == entity_type_key and field_value == subject_type_value:
                     subject_id = ancestor
                     
             lineage_count += 1
-                    
+        
         ## Look for siblings to add to additional data if sibling_match_field is given.
-        if sibling_match_field:
+        if sibling_match_field and sibling_match_value:
             for sibling in lineages[sample]["siblings"]:
                 if sibling_match_field in internal_data[entity_table_name][sibling] and \
                    sibling_match_value == internal_data[entity_table_name][sibling][sibling_match_field]:
@@ -469,35 +502,53 @@ def create_subject_sample_factors(internal_data,
                            additional_sample_data["lineage" + str(lineage_count) + "_" + field] = field_value
                 
                 lineage_count += 1
-                
+        
         ## Look for factors on the sample itself.
         for field, field_value in internal_data[entity_table_name][sample].items():            
-            if field in factor_fields:
-                factors[factor_fields[field]] = field_value
+            if field in factor_fields and factor_fields[field]["name"] not in factors:
+                if isinstance(field_value,str) and field_value in factor_fields[field]["allowed_values"]:
+                    factors[factor_fields[field]["name"]] = field_value
+                elif isinstance(field_value,list) and (field_values := [value for value in field_value if value in factor_fields[field]["allowed_values"]]):
+                    factors[factor_fields[field]["name"]] = field_values
         
         ss_factors.append({"Subject ID":subject_id, "Sample ID":sample, "Factors":factors, "Additional sample data":additional_sample_data})
         
-        ## Run some error checking on factors found.
-        found_factors = {factor for ss_factor in ss_factors for factor in ss_factor["Factors"]}
-        missing_factors = found_factors - set(internal_data[factor_table_name])
-        if missing_factors:
-            print("Warning: There are factors in the " + factor_table_name + " table that were not factors when determining the subject-sample-factors. These factors are: " + ", ".join(missing_factors))
-        
-        samples_without_all_factors = [ss_factor["Sample ID"] for ss_factor in ss_factors if found_factors - set(ss_factors["Factors"])]
-        if samples_without_all_factors:
-           print("Warning: The following samples do not have the full set of factors:" + "\n".join(samples_without_all_factors))
+    ## Run some error checking on factors found.
+    found_factors = {factor for ss_factor in ss_factors for factor in ss_factor["Factors"]}
+    missing_factors = found_factors - set(internal_data[factor_table_name])
+    if missing_factors:
+        print("Warning: There are factors in the \"" + factor_table_name + "\" table that were not found when determining the subject-sample-factors. These factors are: " + ", ".join(missing_factors))
+    
+    samples_without_all_factors = [ss_factor["Sample ID"] for ss_factor in ss_factors if found_factors - set(ss_factor["Factors"])]
+    if samples_without_all_factors:
+       print("Warning: The following samples do not have the full set of factors:" + "\n".join(samples_without_all_factors))
         
     return ss_factors
 
 
 
 
+# internal_data["entity"] = {}
+# for sample_name, sample_attributes in internal_data["sample"].items():
+#     internal_data["entity"][sample_name] = sample_attributes
+#     internal_data["entity"][sample_name]["type"] = "sample"
+# for subject_name, subject_attributes in internal_data["subject"].items():
+#     internal_data["entity"][subject_name] = subject_attributes
+#     internal_data["entity"][subject_name]["type"] = "subject"
 
-
-
-
-
-
+# internal_data["factor"] = \
+# {'Treatment': {
+#   'allowed_values': ['naive', 'syngenic', 'allogenic'],
+#   'id': 'Treatment',
+#   'field': 'protocol.id',
+#   'project.id': 'GH_Spleen',
+#   'study.id': 'GH_Spleen'},
+#  'Time Point': {
+#   'allowed_values': ['0', '7', '42'],
+#   'id': 'Time Point',
+#   'field': 'time_point',
+#   'project.id': 'GH_Spleen',
+#   'study.id': 'GH_Spleen'}}
 
 
 
