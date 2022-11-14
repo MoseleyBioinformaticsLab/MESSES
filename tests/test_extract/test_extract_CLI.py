@@ -1111,5 +1111,97 @@ def test_compare_many_differences():
     
 
 
+def test_file_processing_csv():
+    """Test that --file_processing removes characters it's supposed to be default for csv files."""
+    
+    test_file = "bad_endlines.csv"
+    
+    command = "messes extract ../" + test_file + " --output " + output_path.as_posix()
+    command = command.split(" ")
+    subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
+    output = subp.stderr
+
+    
+    assert output_path.exists()
+    
+    with open(output_path, "r") as f:
+        output_json = json.loads(f.read())
+        
+    with open(pathlib.Path("bad_endlines_compare.json"), "r") as f:
+        output_compare_json = json.loads(f.read())
+        
+    assert output_json == output_compare_json
+    
+    assert output == ''
+    
+
+def test_file_processing_xlsx():
+    """Test that --file_processing removes characters it's supposed to be default for xlsx files."""
+    
+    test_file = "bad_endlines.xlsx"
+    
+    command = "messes extract ../" + test_file + " --output " + output_path.as_posix()
+    command = command.split(" ")
+    subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
+    output = subp.stderr
+
+    
+    assert output_path.exists()
+    
+    with open(output_path, "r") as f:
+        output_json = json.loads(f.read())
+        
+    with open(pathlib.Path("bad_endlines_compare.json"), "r") as f:
+        output_compare_json = json.loads(f.read())
+        
+    assert output_json == output_compare_json
+    
+    assert output == ''
+    
+
+def test_file_processing_None():
+    """Test that --file_processing is disabled when set to None."""
+    
+    test_file = "bad_endlines.xlsx"
+    
+    command = "messes extract ../" + test_file + " --output " + output_path.as_posix() + " --file-processing None"
+    command = command.split(" ")
+    subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
+    output = subp.stderr
+
+    
+    assert output_path.exists()
+    
+    with open(output_path, "r") as f:
+        output_json = json.loads(f.read())
+        
+    with open(pathlib.Path("bad_endlines_compare.json"), "r") as f:
+        output_compare_json = json.loads(f.read())
+        
+    assert output_json != output_compare_json
+    
+    assert output == ''
+    
+
+def test_file_processing_not_default():
+    """Test that --file_processing removes characters it's supposed to when manually specified."""
+    
+    test_file = "base_source.xlsx"
+    
+    command = "messes extract ../" + test_file + " --output " + output_path.as_posix() + " --file-processing C5"
+    command = command.split(" ")
+    subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
+    output = subp.stderr
+
+    
+    assert output_path.exists()
+    
+    with open(output_path, "r") as f:
+        output_json = json.loads(f.read())
+                
+    assert output_json["measurement"]["(S)-2-Acetolactate Glutaric acid Methylsuccinic acid-13C0-01_A0_Colon_T03-2017_naive_170427_UKy_GCB_rep1-quench"]["formula"] == "H8O4"
+    
+    assert output == ''
+
 
 

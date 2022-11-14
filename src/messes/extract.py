@@ -20,6 +20,7 @@ Extract data from Excel workbooks, csv files, and JSON files.
     --show <show_option>                - show a part of the metadata. See options below.
     --delete <metadata_section>...      - delete a section of the JSONized metadata. Section format is tableKey or tableKey,IDKey or tableKey,IDKey,fieldName. These can be regular expressions.
     --keep <metadata_tables>            - only keep the selected tables.  Delete the rest.  Table format is tableKey,tableKey,... The tableKey can be a regular expression.
+    --file-processing <remove_regex>    - a string or regular expression to remove characters in input files, removes unicode and \r characters by default, enter "None" to disable [default: _x([0-9a-fA-F]{4})_|\r].
     --silent                            - print no warning messages.
 
 Show Options:
@@ -60,6 +61,7 @@ Regular Expression Format:
 ## Could filter protocols down using lineage at start of convert instead of doing it over and over again.
 ## mwtab does not check or warn the user if additional data keys are not unique.
 ## isa-tab format
+## Create an option to sanitize cell string ine terminators. replace \r\n with \n for example. Probably let the user give a regex for this, but default to something that makes sense.
 
 
 from __future__ import annotations
@@ -86,7 +88,11 @@ def main() :
     if args["--silent"]:
         global silent
         silent = True
-
+        
+    if args["--file-processing"] == "None":
+        args["--file-processing"] = None
+        
+    
     tagParser = TagParser()
         
 
@@ -101,7 +107,7 @@ def main() :
         automateDefaulted = True
 
     for metadataSource in args["<metadata_source>"]:
-        tagParser.readMetadata(metadataSource, args["--automate"], automateDefaulted, args["--modify"], modifyDefaulted, args["--save-export"])
+        tagParser.readMetadata(metadataSource, args["--automate"], automateDefaulted, args["--modify"], modifyDefaulted, args["--file-processing"], args["--save-export"])
 
     ## --end-modify is needed so that the merged metadata files can all be modified after being merged together.
     ## Without this each metadatasource only gets its own modification.
@@ -110,7 +116,7 @@ def main() :
         if re.search(r"\.xls[xm]?$", modificationSource):
             modificationSource += ":#modify"
 
-        modificationDirectives = tagParser.readDirectives(modificationSource, "modification")
+        modificationDirectives = tagParser.readDirectives(modificationSource, "modification", args["--file-processing"])
         tagParser.modify(modificationDirectives)
 
     if getattr(tagParser, "unusedModifications", None) != None and not silent:
@@ -1112,13 +1118,14 @@ class TagParser(object):
 
 
     @staticmethod
-    def loadSheet(sheetInfo: str, isDefaultSearch: bool =False, silent: bool =False) -> (str,str,pandas.core.frame.DataFrame)|None:
+    def loadSheet(sheetInfo: str, removeRegex: str|None = None, isDefaultSearch: bool =False) -> (str,str,pandas.core.frame.DataFrame)|None:
         """Load and return worksheet as a pandas data frame.
         
         Args:
             sheetInfo: filename and sheetname (if needed).
+            removeRegex: a string to pass to DataFrame.replace() to replace characters with an empty string in the dataframe that is read in. 
+                         Can be a regex. Set to None to not replace anything.
             isDefaultSearch: whether or not the sheetInfo is using default values, determines whether to print some messages.
-            silent: If True don't print warnings.
             
         Returns:
             None if the worksheet is empty, else (fileName, sheetName, dataFrame)
@@ -1147,6 +1154,8 @@ class TagParser(object):
                         else:
                             ## Empty cells are read in as nan by default, replace with empty string.
                             dataFrame = dataFrame.fillna("")
+                            if removeRegex:
+                                dataFrame.replace(removeRegex, "", regex=True, inplace=True)
                             return (fileName, sheetName, dataFrame)
                 if not isDefaultSearch:
                     print("r'" + sheetDetector.pattern + "' did not match any sheets in \"" + fileName + "\".", file=sys.stderr)
@@ -1166,6 +1175,8 @@ class TagParser(object):
                         print("There is no data in csv file \"" + sheetInfo + "\".", file=sys.stderr)
                     else:
                         dataFrame = dataFrame.fillna("") # Empty cells are read in as nan by default. Therefore replace with empty string.
+                        if removeRegex:
+                            dataFrame.replace(removeRegex, "", regex=True, inplace=True)
                         fileName = sheetInfo
                         sheetName = ""
                         return (fileName, sheetName, dataFrame)
@@ -1189,7 +1200,7 @@ class TagParser(object):
         """
         return ".xls" in string or ".xlsx" in string or ".xlsm" in string or ".csv" in string or ".json" in string
 
-    def readMetadata(self, metadataSource: str, automationSource: str, automateDefaulted: bool, modificationSource: str, modifyDefaulted: bool, saveExtension: str =None):
+    def readMetadata(self, metadataSource: str, automationSource: str, automateDefaulted: bool, modificationSource: str, modifyDefaulted: bool, removeRegex: str|None, saveExtension: str =None):
         """Reads metadata from source.
         
         Args:
@@ -1198,6 +1209,8 @@ class TagParser(object):
             automateDefaulted: whether the automation source is the default value or not, passed to readDirectives for message printing.
             modificationSource: file path to modification file or a sheetname.
             modificationDefaulted: whether the modification source is the default value or not, passed to readDirectives for message printing.
+            removeRegex: a string to pass to DataFrame.replace() to replace characters with an empty string in the dataframe that is read in. 
+                         Can be a regex. Set to None to not replace anything. Passed to loadSheet and readDirectives.
             saveExtension: if "csv" saves the export as a csv file, else saves it as an Excel file.
         """
         if not TagParser.hasFileExtension(automationSource) and (reMatch := re.search(r"(.*\.xls[xm]?)", metadataSource)):
@@ -1213,11 +1226,11 @@ class TagParser(object):
         if re.search(r"\.xls[xm]?$", metadataSource):
             metadataSource += ":#export"
 
-        automationDirectives = self.readDirectives(automationSource, "automation", automateDefaulted) if TagParser.hasFileExtension(automationSource) else None
+        automationDirectives = self.readDirectives(automationSource, "automation", removeRegex, automateDefaulted) if TagParser.hasFileExtension(automationSource) else None
         ## Structure of modificationDirectives: {table_key:{field_key:{comparison_type:{field_value:{directive:{field_key:directive_value}}}}}} 
         ## The directive value is the new value to give the field or regex, regex is a list, assign is a string.
         ## unique is handled by having "-unique" added to comparison type key, so there is "exact-unique" and "exact".
-        modificationDirectives = self.readDirectives(modificationSource, "modification", modifyDefaulted) if TagParser.hasFileExtension(modificationSource) else None
+        modificationDirectives = self.readDirectives(modificationSource, "modification", removeRegex, modifyDefaulted) if TagParser.hasFileExtension(modificationSource) else None
 
         if re.search(r"\.json$", metadataSource):
             with open(metadataSource, 'r') as jsonFile:
@@ -1228,7 +1241,7 @@ class TagParser(object):
             currentMetadata = self.extraction
             newMetadata = {}
             self.extraction = newMetadata
-            dataFrameTuple = TagParser.loadSheet(metadataSource)
+            dataFrameTuple = TagParser.loadSheet(metadataSource, removeRegex)
 
             if dataFrameTuple:
                 dataFrame = self.tagSheet(automationDirectives, dataFrameTuple[2])
@@ -1672,12 +1685,14 @@ class TagParser(object):
 
         self.rowIndex = -1
 
-    def readDirectives(self, source: str, directiveType: str, isDefaultSearch: bool =False) -> dict:
+    def readDirectives(self, source: str, directiveType: str, removeRegex: str|None, isDefaultSearch: bool =False) -> dict:
         """Read directives source of a given directive type.
         
         Args:
             source: file path with sheetname if appropriate.
             directiveType: either "modification" or "automation" to call the correct parsing function.
+            removeRegex: a string to pass to DataFrame.replace() to replace characters with an empty string in the dataframe that is read in. 
+                         Can be a regex. Set to None to not replace anything. Passed to loadSheet.
             isDefaultSearch: whether or not the source is using default values, passed to loadSheet for message printing.
         
         Returns:
@@ -1694,7 +1709,7 @@ class TagParser(object):
                     if not silent:
                         print("Warning: The input directives JSON file is either not a dict or does not contain the directive keyword \"" + directiveType + "\". This means that " + directiveType + " will not be done.", file=sys.stderr)
         elif TagParser.hasFileExtension(source):
-            dataFrameTuple = TagParser.loadSheet(source, isDefaultSearch)
+            dataFrameTuple = TagParser.loadSheet(source, removeRegex, isDefaultSearch)
             if dataFrameTuple != None:
                 if directiveType == "modification":
                     self.modificationDirectives = {}
