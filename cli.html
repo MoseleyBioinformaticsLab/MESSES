@@ -102,6 +102,7 @@ with examples as to how they might be used see the <a class="reference internal"
     --show &lt;show_option&gt;                - show a part of the metadata. See options below.
     --delete &lt;metadata_section&gt;...      - delete a section of the JSONized metadata. Section format is tableKey or tableKey,IDKey or tableKey,IDKey,fieldName. These can be regular expressions.
     --keep &lt;metadata_tables&gt;            - only keep the selected tables.  Delete the rest.  Table format is tableKey,tableKey,... The tableKey can be a regular expression.
+    --file-processing &lt;remove_regex&gt;    - a string or regular expression to remove characters in input files, removes unicode and \r characters by default, enter &quot;None&quot; to disable [default: _x([0-9a-fA-F]{4})_|\r].
     --silent                            - print no warning messages.
 
 Show Options:
