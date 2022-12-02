@@ -20,7 +20,7 @@ Extract data from Excel workbooks, csv files, and JSON files.
     --show <show_option>                - show a part of the metadata. See options below.
     --delete <metadata_section>...      - delete a section of the JSONized metadata. Section format is tableKey or tableKey,IDKey or tableKey,IDKey,fieldName. These can be regular expressions.
     --keep <metadata_tables>            - only keep the selected tables.  Delete the rest.  Table format is tableKey,tableKey,... The tableKey can be a regular expression.
-    --file-processing <remove_regex>    - a string or regular expression to remove characters in input files, removes unicode and \r characters by default, enter "None" to disable [default: _x([0-9a-fA-F]{4})_|\r].
+    --file-cleaning <remove_regex>      - a string or regular expression to remove characters in input files, removes unicode and \r characters by default, enter "None" to disable [default: _x([0-9a-fA-F]{4})_|\r].
     --silent                            - print no warning messages.
 
 Show Options:
@@ -61,7 +61,7 @@ Regular Expression Format:
 ## Could filter protocols down using lineage at start of convert instead of doing it over and over again.
 ## mwtab does not check or warn the user if additional data keys are not unique.
 ## isa-tab format
-## Create an option to sanitize cell string ine terminators. replace \r\n with \n for example. Probably let the user give a regex for this, but default to something that makes sense.
+## Add an option to not sort json output keys.
 
 
 from __future__ import annotations
@@ -89,8 +89,8 @@ def main() :
         global silent
         silent = True
         
-    if args["--file-processing"] == "None":
-        args["--file-processing"] = None
+    if args["--file-cleaning"] == "None":
+        args["--file-cleaning"] = None
         
     
     tagParser = TagParser()
@@ -107,7 +107,7 @@ def main() :
         automateDefaulted = True
 
     for metadataSource in args["<metadata_source>"]:
-        tagParser.readMetadata(metadataSource, args["--automate"], automateDefaulted, args["--modify"], modifyDefaulted, args["--file-processing"], args["--save-export"])
+        tagParser.readMetadata(metadataSource, args["--automate"], automateDefaulted, args["--modify"], modifyDefaulted, args["--file-cleaning"], args["--save-export"])
 
     ## --end-modify is needed so that the merged metadata files can all be modified after being merged together.
     ## Without this each metadatasource only gets its own modification.
@@ -116,7 +116,7 @@ def main() :
         if re.search(r"\.xls[xm]?$", modificationSource):
             modificationSource += ":#modify"
 
-        modificationDirectives = tagParser.readDirectives(modificationSource, "modification", args["--file-processing"])
+        modificationDirectives = tagParser.readDirectives(modificationSource, "modification", args["--file-cleaning"])
         tagParser.modify(modificationDirectives)
 
     if getattr(tagParser, "unusedModifications", None) != None and not silent:

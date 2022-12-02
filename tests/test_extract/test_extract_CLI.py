@@ -1164,7 +1164,7 @@ def test_file_processing_None():
     
     test_file = "bad_endlines.xlsx"
     
-    command = "messes extract ../" + test_file + " --output " + output_path.as_posix() + " --file-processing None"
+    command = "messes extract ../" + test_file + " --output " + output_path.as_posix() + " --file-cleaning None"
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -1188,7 +1188,7 @@ def test_file_processing_not_default():
     
     test_file = "base_source.xlsx"
     
-    command = "messes extract ../" + test_file + " --output " + output_path.as_posix() + " --file-processing C5"
+    command = "messes extract ../" + test_file + " --output " + output_path.as_posix() + " --file-cleaning C5"
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr

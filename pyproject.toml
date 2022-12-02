@@ -1,0 +1,40 @@
+[build-system]
+requires = ["setuptools", "wheel", "setuptools_scm[toml]>=6.2", "numpy>=1.22.4", "Cython>=3.0.0a11"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "messes"
+description = "Extract, validate, and convert tabular data for deposition into repositories."
+readme = "README.rst"
+requires-python = ">=3.10"
+keywords = ["mwtab", "metabolomics workbench"]
+license = {file = "LICENSE"}
+classifiers = [
+	'Environment :: Console',
+        'Intended Audience :: Developers',
+        'Intended Audience :: Science/Research',
+        'License :: OSI Approved :: BSD License',
+        'Operating System :: OS Independent',
+        'Programming Language :: Python :: 3.10',
+        'Topic :: Scientific/Engineering :: Bio-Informatics',
+        'Topic :: Software Development :: Libraries :: Python Modules',
+]
+dynamic = ["version", "dependencies"]
+
+[project.urls]
+"Homepage" = "https://github.com/MoseleyBioinformaticsLab/MESSES"
+"Documentation" = "https://moseleybioinformaticslab.github.io/MESSES/"
+"GitHub" = "https://github.com/MoseleyBioinformaticsLab/MESSES"
+"Issues" = "https://github.com/MoseleyBioinformaticsLab/MESSES/issues"
+
+[tool.setuptools.dynamic]
+dependencies = {file = "requirements.txt"}
+
+[project.scripts]
+messes = "messes.__main__:main"
+
+[tool.setuptools_scm]
+write_to = "src/messes/_version.py"
+
+[tool.setuptools.cmdclass]
+build_py = "_custom_build.build_py"

@@ -26,13 +26,15 @@ import datetime
 import docopt
 import mwtab
 
-from . import extract
+from ..extract import extract
 
 
 ## Should all protocol types loop over all protocols and concat them or only certain ones? collection does not and treatment does currently.
 ## Should the MS metabolite Data be intensity or corrected_raw_intensity? There are submitted data using intensity, but the convert code is corrected_raw.
 ## natural abundance corrected and protein normalized peak area for intensity vs natural abundance corrected peak area for corrected_raw
 ## Currently the Treatment factor in SSF is a list, make sure this converts into mwTab text correctly.
+## Optionally put non required fields as empty strings instead of not including them. This is done with default value.
+## Should default value work if code is given but fails? Right now only works if field is not found.
 
 def main() :
     args = docopt.docopt(__doc__)
@@ -71,6 +73,10 @@ def main() :
                     required = False
                 else:
                     required = True
+                    
+            default = conversion_attributes.get("default")
+            if default and (literal_match := re.match(literal_regex, default)):
+                default = literal_match.group(1)
             
             if conversion_attributes["value_type"] == "section":
                 value = handle_code_tag(input_json, conversion_table, conversion_record_name, conversion_attributes)
@@ -83,14 +89,27 @@ def main() :
                 keys = [conversion_table, conversion_record_name]
             else:
                 print("Warning: Unknown value_type for the conversion \"" + conversion_record_name + "\" in the \"" + conversion_table + "\" table. It will be skipped.")
-                
-            if value is None and required:
-                print("Error: The conversion tag to create the \"" + conversion_record_name + "\" record in the \"" + conversion_table + "\" table did not return a value.")
-                sys.exit()
-            elif value is None and not required:
-                if not args["--silent"]:
-                    print("Warning: The non-required conversion tag to create the \"" + conversion_record_name + "\" record in the \"" + conversion_table + "\" table could not be created.")
-                continue
+            
+            if value is None:
+                if default is None:
+                    if required:
+                        print("Error: The conversion tag to create the \"" + conversion_record_name + "\" record in the \"" + conversion_table + "\" table did not return a value.")
+                        sys.exit()
+                    elif not args["--silent"]:
+                        print("Warning: The non-required conversion tag to create the \"" + conversion_record_name + "\" record in the \"" + conversion_table + "\" table could not be created.")
+                        continue
+                else:
+                    value = default
+                    if not args["--silent"]:
+                        print("The conversion tag to create the \"" + conversion_record_name + "\" record in the \"" + conversion_table + "\" table could not be created, and reverted to its given default value, \"" + default + "\".")
+            
+            # if value is None and required:
+            #     print("Error: The conversion tag to create the \"" + conversion_record_name + "\" record in the \"" + conversion_table + "\" table did not return a value.")
+            #     sys.exit()
+            # elif value is None and not required:
+            #     if not args["--silent"]:
+            #         print("Warning: The non-required conversion tag to create the \"" + conversion_record_name + "\" record in the \"" + conversion_table + "\" table could not be created.")
+            #     continue
             
             _nested_set(output_json, keys, value)
     
@@ -110,16 +129,21 @@ def main() :
         + [item[0] + ":" + item[1] for item in mwtabfile["METABOLOMICS WORKBENCH"].items() if item[0] not in ["VERSION", "CREATED_ON"]]
     )            
     
-    mwtabfile.source = args["<output-name>"]
+    mwtabfile.source = args["<input-JSON>"]
     validated_file, errors = mwtab.validator.validate_file(mwtabfile, verbose=True)
     
-    with open(args["<output-name>"],'w') as jsonFile :
+    json_save_name = args["<output-name>"] + ".json"
+    with open(json_save_name,'w') as jsonFile:
         jsonFile.write(json.dumps(output_json, indent=2))
         
-        
-    with open(args["<output-name>"], 'w', encoding='utf-8') as outfile:
-        validated_file.write(outfile, file_format="mwtab")
+    mwtab_save_name = args["<output-name>"] + ".txt"
+    with open(mwtab_save_name, 'w', encoding='utf-8') as outfile:
+        mwtabfile.write(outfile, file_format="mwtab")
 
+
+
+
+literal_regex = r"^\"(.*)\"$"
 
 
 def _nested_set(dic, keys, value):
@@ -154,7 +178,7 @@ def handle_code_tag(input_json, conversion_table, conversion_record_name, conver
 
 
 def _build_string_value(fields, conversion_table, conversion_record_name, record_name, record_attributes, required, silent):
-    value = ""
+    value = None
     for field in fields:
         ## Is the field a literal?
         if not field[1]:
@@ -167,9 +191,15 @@ def _build_string_value(fields, conversion_table, conversion_record_name, record
                     print("Warning: The conversion tag to create the \"" + conversion_record_name + "\" record in the \"" + conversion_table + "\" table matched a record in the input data, \"" + record_name + "\", that did not contain the \"" + field[0] + "\" field indicated by the tag.")
                     continue
         
-            value += str(record_attributes[field[0]])
+            if value:
+                value += str(record_attributes[field[0]])
+            else:
+                value = str(record_attributes[field[0]])
         else:
-            value += field[0]
+            if value:
+                value += field[0]
+            else:
+                value = field[0]
             
     return value
 
@@ -178,16 +208,22 @@ def _build_string_value(fields, conversion_table, conversion_record_name, record
 
 def compute_string_value(input_json, conversion_table, conversion_record_name, conversion_attributes, silent=False):
     """"""
-    
     ## required
     if required := conversion_attributes.get("required"):
         if required.lower() == "false":
             required = False
         else:
             required = True
+            
+    ## default
+    # default = conversion_attributes.get("default")
+    # if default and (literal_match := re.match(literal_regex, default)):
+    #     default = literal_match.group(1)
     
     ## override
     if value := conversion_attributes.get("override"):
+        if literal_match := re.match(literal_regex, value):
+            value = literal_match.group(1)
         return value
     
     ## code
@@ -201,7 +237,7 @@ def compute_string_value(input_json, conversion_table, conversion_record_name, c
         return value
     
     ## fields
-    fields = [(field, True if re.match(r"^\"(.*)\"$", field) else False) for field in conversion_attributes["fields"]]
+    fields = [(field, True if re.match(literal_regex, field) else False) for field in conversion_attributes["fields"]]
     has_test = False
     if test := conversion_attributes.get("test"):
         has_test = True
@@ -218,6 +254,8 @@ def compute_string_value(input_json, conversion_table, conversion_record_name, c
     
     if for_each:
         delimiter = conversion_attributes.get("delimiter", "")
+        if delimiter and (literal_match := re.match(literal_regex, delimiter)):
+            delimiter = literal_match.group(1)
         
         if has_test:
             table_records = {record:record_attributes for record, record_attributes in input_json[conversion_attributes["table"]].items() if test_field in record_attributes and record_attributes[test_field] == test_value}
@@ -239,9 +277,14 @@ def compute_string_value(input_json, conversion_table, conversion_record_name, c
         value_for_each_record = []
         for record_name, record_attributes in table_records.items():
             value = _build_string_value(fields, conversion_table, conversion_record_name, record_name, record_attributes, required, silent)
-            value_for_each_record.append(value)
-            
-        return delimiter.join(value_for_each_record)
+            if value:
+                value_for_each_record.append(value)
+        
+        joined_string = delimiter.join(value_for_each_record)
+        if joined_string:
+            return joined_string
+        else:
+            return None
     
     ## record_id
     if conversion_attributes.get("record_id"):
@@ -272,8 +315,7 @@ def compute_matrix_value(input_json, conversion_table, conversion_record_name, c
             sys.exit()
         
         return value
-    
-    
+        
     ## fields_to_headers
     if fields_to_headers := conversion_attributes.get("fields_to_headers"):
         if fields_to_headers.lower() == "true":
@@ -298,13 +340,13 @@ def compute_matrix_value(input_json, conversion_table, conversion_record_name, c
             output_key = split[0].strip()
             input_key = split[1].strip()
             
-            if new_output_key := re.match(r"^\"(.*)\"$", output_key):
+            if new_output_key := re.match(literal_regex, output_key):
                 output_key = new_output_key.group(1)
                 output_key_is_literal = True
             else:
                 output_key_is_literal = False
             
-            if new_input_key := re.match(r"^\"(.*)\"$", input_key):
+            if new_input_key := re.match(literal_regex, input_key):
                 input_key = new_input_key.group(1)
                 input_key_is_literal = True
             else:
@@ -405,6 +447,8 @@ def compute_matrix_value(input_json, conversion_table, conversion_record_name, c
                     
             records.append(temp_dict)
     
+    if not records:
+        return None
     return records
 
 

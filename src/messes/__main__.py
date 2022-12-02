@@ -22,9 +22,9 @@ For example:
 import sys
 
 from . import __version__
-from . import extract
-from . import validate
-from . import convert_mwtab
+from .extract import extract
+from .validate import validate
+from .convert import convert
 
 
 def main():
@@ -35,7 +35,7 @@ def main():
         validate.main()
     elif len(sys.argv) > 2 and sys.argv[1] == "convert":
         if sys.argv[2] == "mwtab":
-            convert_mwtab.main()
+            convert.main()
     elif len(sys.argv) > 1 and (sys.argv[1] == "--version" or sys.argv[1] == "-v") :
         print("Version: ",__version__)
     elif len(sys.argv) > 1 and sys.argv[1] == "--full-help":
@@ -45,7 +45,7 @@ def main():
         print("-"*80)
         print(validate.__doc__)
         print("-"*80)
-        print(convert_mwtab.__doc__)
+        print(convert.__doc__)
     else:
         print(__doc__)
 
