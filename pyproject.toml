@@ -34,7 +34,7 @@ dependencies = {file = "requirements.txt"}
 messes = "messes.__main__:main"
 
 [tool.setuptools_scm]
-#write_to = "src/messes/_version.py"
+write_to = "src/messes/_version.py"
 
 [tool.setuptools.cmdclass]
 build_py = "_custom_build.build_py"
