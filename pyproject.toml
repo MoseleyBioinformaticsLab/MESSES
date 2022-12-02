@@ -33,7 +33,7 @@ dependencies = {file = "requirements.txt"}
 [project.scripts]
 messes = "messes.__main__:main"
 
-#[tool.setuptools_scm]
+[tool.setuptools_scm]
 #write_to = "src/messes/_version.py"
 
 [tool.setuptools.cmdclass]
