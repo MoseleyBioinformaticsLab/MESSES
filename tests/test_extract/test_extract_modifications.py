@@ -15,7 +15,7 @@ import pandas
 @pytest.fixture(scope="module", autouse=True)
 def change_cwd():
     cwd = pathlib.Path.cwd()
-    os.chdir(pathlib.Path("tests", "testing_files", "main_dir"))
+    os.chdir(pathlib.Path("tests", "test_extract", "testing_files", "main_dir"))
     yield
     os.chdir(cwd)
     

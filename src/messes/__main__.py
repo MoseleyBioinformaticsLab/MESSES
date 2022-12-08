@@ -34,8 +34,7 @@ def main():
     elif len(sys.argv) > 1 and sys.argv[1] == "validate":
         validate.main()
     elif len(sys.argv) > 2 and sys.argv[1] == "convert":
-        if sys.argv[2] == "mwtab":
-            convert.main()
+        convert.main()
     elif len(sys.argv) > 1 and (sys.argv[1] == "--version" or sys.argv[1] == "-v") :
         print("Version: ",__version__)
     elif len(sys.argv) > 1 and sys.argv[1] == "--full-help":

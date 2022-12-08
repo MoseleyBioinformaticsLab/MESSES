@@ -1,0 +1,11 @@
+﻿#tags;#sample.asdf,,"#sample.id;*#protocol.id=mouse_tissue_collection,tissue_quench,frozen_tissue_grind",,,,,
+#ignore,,,,,,,
+#ignore,Slice #,Parent Subject ID,,,,,
+,01,01_A0_Spleen_naive_0days_170427_UKy_GCH_rep1,,,,,
+,02,02_A1_Spleen_naive_0days_170427_UKy_GCH_rep2,,,,,
+,,,,,,,
+,,,,,,,
+#tags;#sample.asdf=qwer;#.asdf%attribute=zxcv;#.qwer=asdf;#%attribute=fghj,#sample.id,#sample%child.id=-protein;#.protein_weight;#%units=mg;*#protocol.id=protein_extraction,,,,,
+#ignore,Parent Sample ID,mg protein,,BoxID,status,Comment,% extracted
+,01_A0_Spleen_naive_0days_170427_UKy_GCH_rep1,0,,analytical_box2,,,0
+,02_A1_Spleen_naive_0days_170427_UKy_GCH_rep2,0,,analytical_box2,,,0

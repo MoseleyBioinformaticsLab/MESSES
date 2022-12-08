@@ -9,7 +9,8 @@ Extract data from Excel workbooks, csv files, and JSON files.
     <metadata_source> - input metadata source as csv/json filename or xlsx_filename[:worksheet_name|regular_expression]. "#export" worksheet name is the default.
 
  Options:
-    --help                              - show this help documentation.
+    -h, --help                          - show this help documentation.
+    -v, --version                       - show the version.
     --output <filename_json>            - output json filename.
     --compare <filename_json>           - compare extracted metadata to given JSONized metadata.
     --modify <source>                   - modification directives worksheet name, regular expression, csv/json filename, or xlsx_filename:[worksheet_name|regular_expression] [default: #modify].
@@ -79,11 +80,12 @@ import docopt
 import jellyfish
 
 from . import cythonized_tagSheet
+from .. import __version__
 
 silent = False
 
 def main() :
-    args = docopt.docopt(__doc__)
+    args = docopt.docopt(__doc__, version = __version__)
     
     if args["--silent"]:
         global silent
@@ -2445,15 +2447,15 @@ class TagParser(object):
 #
 # Main Execution
 #
-if __name__ == "__main__":
-    if len(sys.argv) > 1 and sys.argv[1] == "--profile":
-        sys.argv.pop(1)
-        import cProfile
-        profiler = cProfile.Profile()
-        profiler.enable()
-        main()
-        profiler.disable()
-        profiler.print_stats()
-    else:
-        main()
+# if __name__ == "__main__":
+#     if len(sys.argv) > 1 and sys.argv[1] == "--profile":
+#         sys.argv.pop(1)
+#         import cProfile
+#         profiler = cProfile.Profile()
+#         profiler.enable()
+#         main()
+#         profiler.disable()
+#         profiler.print_stats()
+#     else:
+#         main()
     
