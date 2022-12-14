@@ -3,10 +3,13 @@
 Convert JSON data to another JSON format.
 
 Usage:
-    messes convert mwtab (ms | nmr | nmr-binned) <input_JSON> <output_name> [--update <conversion_tags>] [--override <conversion_tags>] [--silent]
-    messes convert print-tags mwtab (ms | nmr | nmr-binned) <output_filetype> [<output_name>]
+    messes convert mwtab (ms | nmr | nmr_binned) <input_JSON> <output_name> [--update <conversion_tags>] [--override <conversion_tags>] [--silent]
+    messes convert print-tags mwtab (ms | nmr | nmr_binned) <output_filetype> [<output_name>]
     messes convert generic <input_JSON> <output_name> <conversion_tags> [--silent]
     messes convert --help
+    
+    <conversion_tags> - can be a JSON, csv, or xlsx file. If xlsx the default sheet name to read in is #convert, 
+                        to specify a different sheet name separate it from the file name with a colon ex: file_name.xlsx:sheet_name.
 
 Options:
     -h, --help                           - show this screen.
@@ -14,6 +17,7 @@ Options:
     --silent                             - silence all warnings.
     --update <conversion_tags>           - conversion tags that will be used to update the built-in tags for the format.
     --override <conversion_tags>         - conversion tags that will be used to override the built-in tags for the format.
+    
     
 
 The general command structure for convert is convert <format> which will convert an input JSON file over to the supported format. 
@@ -34,6 +38,7 @@ from importlib.machinery import SourceFileLoader
 import json
 import datetime
 import collections.abc
+import traceback
 
 import pandas
 import docopt
@@ -51,7 +56,7 @@ from . import mwtab_tag_functions
 ## Optionally put non required fields as empty strings instead of not including them. This is done with default value.
 ## Should default value work if code is given but fails? Right now only works if field is not found.
 
-supported_formats_and_sub_commands = {"mwtab":["ms", "nmr", "nmr-binned"]}
+supported_formats_and_sub_commands = {"mwtab":["ms", "nmr", "nmr_binned"]}
 
 def main() :
     args = docopt.docopt(__doc__, version=__version__)
@@ -141,29 +146,35 @@ def main() :
                 default = literal_match.group(1)
             
             if conversion_attributes["value_type"] == "section":
-                value = handle_code_tag(input_json, conversion_table, conversion_record_name, conversion_attributes)
+                value = handle_code_tag(input_json, conversion_table, conversion_record_name, conversion_attributes, required, args["--silent"])
                 keys = [conversion_table]
             elif conversion_attributes["value_type"] == "matrix":
-                value = compute_matrix_value(input_json, conversion_table, conversion_record_name, conversion_attributes)
+                value = compute_matrix_value(input_json, conversion_table, conversion_record_name, conversion_attributes, args["--silent"])
                 keys = [conversion_table, conversion_record_name]
             elif conversion_attributes["value_type"] == "str":
-                value = compute_string_value(input_json, conversion_table, conversion_record_name, conversion_attributes)
+                value = compute_string_value(input_json, conversion_table, conversion_record_name, conversion_attributes, required, args["--silent"])
                 keys = [conversion_table, conversion_record_name]
             else:
-                print("Warning: Unknown value_type for the conversion \"" + conversion_record_name + "\" in the \"" + conversion_table + "\" table. It will be skipped.")
+                print("Warning: Unknown value_type for the conversion \"" + conversion_record_name + \
+                      "\" in the \"" + conversion_table + "\" table. It will be skipped.")
             
             if value is None:
                 if default is None:
                     if required:
-                        print("Error: The conversion tag to create the \"" + conversion_record_name + "\" record in the \"" + conversion_table + "\" table did not return a value.")
+                        print("Error: The conversion tag to create the \"" + conversion_record_name + \
+                              "\" record in the \"" + conversion_table + "\" table did not return a value.")
                         sys.exit()
-                    elif not args["--silent"]:
-                        print("Warning: The non-required conversion tag to create the \"" + conversion_record_name + "\" record in the \"" + conversion_table + "\" table could not be created.")
+                    else:
+                        if not args["--silent"]:
+                            print("Warning: The non-required conversion tag to create the \"" + \
+                                  conversion_record_name + "\" record in the \"" + conversion_table + "\" table could not be created.")
                         continue
                 else:
                     value = default
                     if not args["--silent"]:
-                        print("The conversion tag to create the \"" + conversion_record_name + "\" record in the \"" + conversion_table + "\" table could not be created, and reverted to its given default value, \"" + default + "\".")
+                        print("The conversion tag to create the \"" + conversion_record_name + \
+                              "\" record in the \"" + conversion_table + \
+                              "\" table could not be created, and reverted to its given default value, \"" + default + "\".")
             
             # if value is None and required:
             #     print("Error: The conversion tag to create the \"" + conversion_record_name + "\" record in the \"" + conversion_table + "\" table did not return a value.")
@@ -200,16 +211,31 @@ def main() :
         )            
         
         mwtabfile.source = args["<input_JSON>"]
-        validated_file, errors = mwtab.validator.validate_file(mwtabfile, verbose=True)
+        validated_file, errors = mwtab.validator.validate_file(mwtabfile)
         
-        mwtab_save_name = args["<output_name>"] + ".txt"
-        with open(mwtab_save_name, 'w', encoding='utf-8') as outfile:
-            mwtabfile.write(outfile, file_format="mwtab")
+        if "Status: Passing" in errors:
+            mwtab_save_name = args["<output_name>"] + ".txt"
+            with open(mwtab_save_name, 'w', encoding='utf-8') as outfile:
+                mwtabfile.write(outfile, file_format="mwtab")
+        else:
+            print("Error: An error occured when validating the mwtab file.")
+            print(errors)
+            sys.exit()
 
 
 
 
 literal_regex = r"^\"(.*)\"$"
+
+def _handle_errors(required, silent, message):
+    if required:
+        print("Error: " + message)
+        sys.exit()
+    else:
+        if not silent:
+            print("Warning: " + message)
+        return None
+
 
 def update(original_dict, upgrade_dict):
     for key, value in upgrade_dict.items():
@@ -227,10 +253,61 @@ def _nested_set(dic, keys, value):
 
 
 def _sort_by_getter(pair, keys):
-    return [pair[1][key] for key in keys]
+    try:
+        return [pair[1][key] for key in keys]
+    except KeyError as e:
+        e.pair = pair
+        raise e
+
+def _sort_table_records(sort_by, table_records, reverse, conversion_record_name, conversion_table, input_table, required, silent):
+    try:
+        table_records = dict(sorted(table_records.items(), key = lambda pair: _sort_by_getter(pair, sort_by), reverse = reverse))
+        ## table_records used to be a list of dicts and this was the sort, leaving it here in case it is needed.
+        # table_records = sorted(table_records, key = operator.itemgetter(*sort_by), reverse = conversion_attributes["sort_order"] == "descending")
+    except KeyError as e:
+        message = "The \"sort_by\" conversion tag to create the \"" + conversion_record_name + \
+                  "\" matrix in the \"" + conversion_table + "\" table has an input key, " + str(e) + \
+                  ", that was not in the \"" + e.pair[0] + "\" record of the \"" + input_table + "\"."
+        return _handle_errors(required, silent, message)
+    
+    return table_records
+
+def _build_table_records(has_test, conversion_record_name, conversion_table, conversion_attributes, 
+                         input_table, input_json, required, silent, test_field="", test_value=""):
+    if has_test:
+        table_records = {record:record_attributes for record, record_attributes in input_json[conversion_attributes["table"]].items() if test_field in record_attributes and record_attributes[test_field] == test_value}
+    else:
+        table_records = input_json[conversion_attributes["table"]]
+        
+    if not table_records:
+        if has_test:
+            message = "When creating the \"" + conversion_record_name + \
+                      "\" string for the \"" + conversion_table + "\" table, no records in the \"" + \
+                      conversion_attributes["table"] + "\" matched the \"" + test_value + "\" for test field \"" + \
+                      test_field + "\" indicated in the \"test\" tag. " +\
+                      "This could be from no records containing the test field or no records matching the test value for that field."
+        else:
+            message = "When creating the \"" + conversion_record_name + \
+                      "\" string for the \"" + conversion_table + "\" table, there were no records in the indicated \"" + \
+                      conversion_attributes["table"] + "\"."
+        
+        return _handle_errors(required, silent, message)
+    
+    if sort_by := conversion_attributes.get("sort_by"):
+        try:
+            table_records = dict(sorted(table_records.items(), key = lambda pair: _sort_by_getter(pair, sort_by), reverse = conversion_attributes.get("sort_order", "") == "descending"))
+            ## table_records used to be a list of dicts and this was the sort, leaving it here in case it is needed.
+            # table_records = sorted(table_records, key = operator.itemgetter(*sort_by), reverse = conversion_attributes["sort_order"] == "descending")
+        except KeyError as e:
+            message = "The \"sort_by\" conversion tag to create the \"" + conversion_record_name + \
+                      "\" matrix in the \"" + conversion_table + "\" table has an input key, " + str(e) + \
+                      ", that was not in the \"" + e.pair[0] + "\" record of the \"" + input_table + "\"."
+            return _handle_errors(required, silent, message)
+        
+    return table_records
 
 
-def handle_code_tag(input_json, conversion_table, conversion_record_name, conversion_attributes):
+def handle_code_tag(input_json, conversion_table, conversion_record_name, conversion_attributes, required, silent=False):
     """"""
     
     if import_path := conversion_attributes.get("import"):
@@ -241,9 +318,11 @@ def handle_code_tag(input_json, conversion_table, conversion_record_name, conver
     if code := conversion_attributes.get("code"):
         try:
             value = eval(code)
-        except Exception as error:
-            print("Error: The code conversion tag to create the \"" + conversion_record_name + "\" record in the \"" + conversion_table + "\" table encountered an error while executing.")
-            raise error
+        except Exception:
+            message = "The code conversion tag to create the \"" + conversion_record_name + \
+                      "\" record in the \"" + conversion_table + "\" table encountered an error while executing.\n"
+            message += traceback.format_exc()
+            return _handle_errors(required, silent, message)
         
         return value
     else:
@@ -251,19 +330,19 @@ def handle_code_tag(input_json, conversion_table, conversion_record_name, conver
 
 
 
-def _build_string_value(fields, conversion_table, conversion_record_name, record_name, record_attributes, required, silent):
+def _build_string_value(fields, conversion_table, conversion_record_name, record_table, record_name, record_attributes, required, silent):
     value = None
     for field in fields:
         ## Is the field a literal?
         if not field[1]:
             ## If the field is not a literal value and it's not in the record print an error.
             if field[0] not in record_attributes:
-                if required:
-                    print("Error: The conversion tag to create the \"" + conversion_record_name + "\" record in the \"" + conversion_table + "\" table matched a record in the input data, \"" + record_name + "\", that did not contain the \"" + field[0] + "\" field indicated by the tag.")
-                    sys.exit()
-                elif not silent:
-                    print("Warning: The conversion tag to create the \"" + conversion_record_name + "\" record in the \"" + conversion_table + "\" table matched a record in the input data, \"" + record_name + "\", that did not contain the \"" + field[0] + "\" field indicated by the tag.")
-                    continue
+                message = "The conversion tag to create the \"" + conversion_record_name + \
+                          "\" record in the \"" + conversion_table + "\" table matched a record in the input \"" + \
+                          record_table + "\" table, \"" + record_name + "\", that did not contain the \"" + \
+                          field[0] + "\" field indicated by the tag."
+                _handle_errors(required, silent, message)
+                continue
         
             if value:
                 value += str(record_attributes[field[0]])
@@ -280,19 +359,8 @@ def _build_string_value(fields, conversion_table, conversion_record_name, record
 
 
 
-def compute_string_value(input_json, conversion_table, conversion_record_name, conversion_attributes, silent=False):
-    """"""
-    ## required
-    if required := conversion_attributes.get("required"):
-        if required.lower() == "false":
-            required = False
-        else:
-            required = True
-            
-    ## default
-    # default = conversion_attributes.get("default")
-    # if default and (literal_match := re.match(literal_regex, default)):
-    #     default = literal_match.group(1)
+def compute_string_value(input_json, conversion_table, conversion_record_name, conversion_attributes, required, silent=False):
+    """"""            
     
     ## override
     if value := conversion_attributes.get("override"):
@@ -301,14 +369,18 @@ def compute_string_value(input_json, conversion_table, conversion_record_name, c
         return value
     
     ## code
-    value = handle_code_tag(input_json, conversion_table, conversion_record_name, conversion_attributes)
+    value = handle_code_tag(input_json, conversion_table, conversion_record_name, conversion_attributes, required, silent)
             
     if value is not None:
         if not isinstance(value, str):
-            print("Error: The code conversion tag to create the \"" + conversion_record_name + "\" record in the \"" + conversion_table + "\" table did not return a string type value.")
+            print("Error: The code conversion tag to create the \"" + conversion_record_name + \
+                  "\" record in the \"" + conversion_table + "\" table did not return a string type value.")
             sys.exit()
         
         return value
+    
+    elif value is None and conversion_attributes.get("code") is not None:
+        return None
     
     ## fields
     fields = [(field, True if re.match(literal_regex, field) else False) for field in conversion_attributes["fields"]]
@@ -337,20 +409,27 @@ def compute_string_value(input_json, conversion_table, conversion_record_name, c
             table_records = input_json[conversion_attributes["table"]]
             
         if not table_records:
-            if required:
-                print("Error: The conversion tag to create the \"" + conversion_record_name + "\" record in the \"" + conversion_table + "\" table did not match any records in the input data.")
-                sys.exit()
+            if has_test:
+                message = "When creating the \"" + conversion_record_name + \
+                          "\" string for the \"" + conversion_table + "\" table, no records in the \"" + \
+                          conversion_attributes["table"] + "\" matched the \"" + test_value + "\" for test field \"" + \
+                          test_field + "\" indicated in the \"test\" tag. " +\
+                          "This could be from no records containing the test field or no records matching the test value for that field."
             else:
-                return None
+                message = "When creating the \"" + conversion_record_name + \
+                          "\" string for the \"" + conversion_table + "\" table, there were no records in the indicated \"" + \
+                          conversion_attributes["table"] + "\"."
+            
+            return _handle_errors(required, silent, message)
         
         if sort_by := conversion_attributes.get("sort_by"):
-            table_records = dict(sorted(table_records.items(), key = lambda pair: _sort_by_getter(pair, sort_by), reverse = conversion_attributes["sort_order"] == "descending"))
-            ## table_records used to be a list of dicts and this was the sort, leaving it here in case it is needed.
-            # table_records = sorted(table_records, key = operator.itemgetter(*sort_by), reverse = conversion_attributes["sort_order"] == "descending")
+            _sort_table_records(sort_by, table_records, conversion_attributes.get("sort_order", "") == "descending", 
+                                conversion_record_name, conversion_table, conversion_attributes["table"], required, silent)
+            
         
         value_for_each_record = []
         for record_name, record_attributes in table_records.items():
-            value = _build_string_value(fields, conversion_table, conversion_record_name, record_name, record_attributes, required, silent)
+            value = _build_string_value(fields, conversion_table, conversion_record_name, conversion_attributes["table"], record_name, record_attributes, required, silent)
             if value:
                 value_for_each_record.append(value)
         
@@ -371,24 +450,28 @@ def compute_string_value(input_json, conversion_table, conversion_record_name, c
     else:
         record_name, record_attributes = list(input_json[conversion_attributes["table"]].items())[0]
     
-    value = _build_string_value(fields, conversion_table, conversion_record_name, record_name, record_attributes, required, silent)
+    value = _build_string_value(fields, conversion_table, conversion_record_name, conversion_attributes["table"], record_name, record_attributes, required, silent)
             
     return value
 
                 
                 
     
-def compute_matrix_value(input_json, conversion_table, conversion_record_name, conversion_attributes):
+def compute_matrix_value(input_json, conversion_table, conversion_record_name, conversion_attributes, required, silent=False):
     """"""
     
-    value = handle_code_tag(input_json, conversion_table, conversion_record_name, conversion_attributes)
+    value = handle_code_tag(input_json, conversion_table, conversion_record_name, conversion_attributes, required, silent)
             
     if value is not None:
         if not isinstance(value, list) or not all([isinstance(record, dict) for record in value]):
-            print("Error: The code conversion tag to create the \"" + conversion_record_name + "\" record in the \"" + conversion_table + "\" table did not return a matrix type value.")
+            print("Error: The code conversion tag to create the \"" + conversion_record_name + \
+                  "\" record in the \"" + conversion_table + "\" table did not return a matrix type value.")
             sys.exit()
         
         return value
+    
+    elif value is None and conversion_attributes.get("code") is not None:
+        return None
         
     ## fields_to_headers
     if fields_to_headers := conversion_attributes.get("fields_to_headers"):
@@ -396,6 +479,13 @@ def compute_matrix_value(input_json, conversion_table, conversion_record_name, c
             fields_to_headers = True
         else:
             fields_to_headers = False
+    
+    ## values_to_str
+    if values_to_str := conversion_attributes.get("values_to_str"):
+        if values_to_str.lower() == "true":
+            values_to_str = True
+        else:
+            values_to_str = False
             
     has_test = False
     if test := conversion_attributes.get("test"):
@@ -437,8 +527,23 @@ def compute_matrix_value(input_json, conversion_table, conversion_record_name, c
     else:
         table_records = input_json[conversion_attributes["table"]]
         
-    if sort_by := conversion_attributes.get("sort_by"):                
-        table_records = dict(sorted(table_records.items(), key = lambda pair: _sort_by_getter(pair, sort_by), reverse = conversion_attributes["sort_order"] == "descending"))
+    if not table_records:
+        if has_test:
+            message = "When creating the \"" + conversion_record_name + \
+                      "\" matrix for the \"" + conversion_table + "\" table, no records in the \"" + \
+                      conversion_attributes["table"] + "\" matched the \"" + test_value + "\" for test field \"" + \
+                      test_field + "\" indicated in the \"test\" tag. " +\
+                      "This could be from no records containing the test field or no records matching the test value for that field."
+        else:
+            message = "When creating the \"" + conversion_record_name + \
+                      "\" matrix for the \"" + conversion_table + "\" table, there were no records in the indicated \"" + \
+                      conversion_attributes["table"] + "\"."
+        
+        return _handle_errors(required, silent, message)
+        
+    if sort_by := conversion_attributes.get("sort_by"):
+        _sort_table_records(sort_by, table_records, conversion_attributes.get("sort_order", "") == "descending", 
+                            conversion_record_name, conversion_table, conversion_attributes["table"], required, silent)
 
         
     if collate := conversion_attributes.get("collate"):
@@ -454,35 +559,62 @@ def compute_matrix_value(input_json, conversion_table, conversion_record_name, c
             for header in headers:
                 if header["output_key_is_literal"] and header["input_key_is_literal"]:
                     records[collate_key][header["output_key"]] = header["input_key"]
+                
                 elif header["output_key_is_literal"] and not header["input_key_is_literal"]:
                     if header["input_key"] not in record_attributes:
-                        print("Error: The headers conversion tag to create the \"" + conversion_record_name + "\" matrix in the \"" + conversion_table + "\" table has an input key, \"" + header["input_key"] + "\", that does not exist in the record, \"" + record + "\", of the input table, \"" + conversion_attributes["table"] + "\".")
-                        sys.exit()
-                    if header["output_key"] in records[collate_key] and record_attributes[header["input_key"]] != records[collate_key][header["output_key"]]:
-                        print("Warning: When creating the \"" + conversion_record_name + "\" matrix for the \"" + conversion_table + "\" table different values for the output key, \"" + header["output_key"] + "\", were found. Only the last value will be used.")
-                    records[collate_key][header["output_key"]] = record_attributes[header["input_key"]]
+                        message = "The \"headers\" conversion tag to create the \"" + \
+                                  conversion_record_name + "\" matrix in the \"" + conversion_table + \
+                                  "\" table has an input key, \"" + header["input_key"] + "\", that does not exist in the record, \"" + \
+                                  record + "\", of the input table, \"" + conversion_attributes["table"] + "\"."
+                        return _handle_errors(required, silent, message)
+                    
+                    output_key_value = str(record_attributes[header["input_key"]]) if values_to_str else record_attributes[header["input_key"]]
+                    if header["output_key"] in records[collate_key] and output_key_value != records[collate_key][header["output_key"]]:
+                        print("Warning: When creating the \"" + conversion_record_name + \
+                              "\" matrix for the \"" + conversion_table + "\" table different values for the output key, \"" + \
+                              header["output_key"] + "\", were found for the collate key \"" + collate_key + \
+                              "\". Only the last value will be used.")
+                    records[collate_key][header["output_key"]] = output_key_value
+                
                 elif not header["output_key_is_literal"] and header["input_key_is_literal"]:
                     if header["output_key"] not in record_attributes:
-                        print("Error: The headers conversion tag to create the \"" + conversion_record_name + "\" matrix in the \"" + conversion_table + "\" table has an output key, \"" + header["output_key"] + "\", that does not exist in the record, \"" + record + "\", of the input table, \"" + conversion_attributes["table"] + "\".")
+                        print("Error: The \"headers\" conversion tag to create the \"" + conversion_record_name + \
+                              "\" matrix in the \"" + conversion_table + "\" table has an output key, \"" + \
+                              header["output_key"] + "\", that does not exist in the record, \"" + record + \
+                              "\", of the input table, \"" + conversion_attributes["table"] + "\".")
                         sys.exit()
                     records[collate_key][record_attributes[header["output_key"]]] = header["input_key"]
+                
                 elif not header["output_key_is_literal"] and not header["input_key_is_literal"]:
+                    output_key_value = str(record_attributes[header["input_key"]]) if values_to_str else record_attributes[header["input_key"]]
                     if header["input_key"] not in record_attributes:
-                        print("Error: The headers conversion tag to create the \"" + conversion_record_name + "\" matrix in the \"" + conversion_table + "\" table has an input key, \"" + header["input_key"] + "\", that does not exist in the record, \"" + record + "\", of the input table, \"" + conversion_attributes["table"] + "\".")
+                        print("Error: The \"headers\" conversion tag to create the \"" + conversion_record_name + \
+                              "\" matrix in the \"" + conversion_table + "\" table has an input key, \"" + \
+                              header["input_key"] + "\", that does not exist in the record, \"" + record + \
+                              "\", of the input table, \"" + conversion_attributes["table"] + "\".")
                         sys.exit()
                     if header["output_key"] not in record_attributes:
-                        print("Error: The headers conversion tag to create the \"" + conversion_record_name + "\" matrix in the \"" + conversion_table + "\" table has an output key, \"" + header["output_key"] + "\", that does not exist in the record, \"" + record + "\", of the input table, \"" + conversion_attributes["table"] + "\".")
+                        print("Error: The \"headers\" conversion tag to create the \"" + conversion_record_name + \
+                              "\" matrix in the \"" + conversion_table + "\" table has an output key, \"" + \
+                              header["output_key"] + "\", that does not exist in the record, \"" + record + \
+                              "\", of the input table, \"" + conversion_attributes["table"] + "\".")
                         sys.exit()
-                    if record_attributes[header["output_key"]] in records[collate_key] and record_attributes[header["input_key"]] != records[collate_key][record_attributes[header["output_key"]]]:
-                        print("Warning: When creating the \"" + conversion_record_name + "\" matrix for the \"" + conversion_table + "\" table different values for the output key, \"" + record_attributes[header["output_key"]] + "\", were found. Only the last value will be used.")
-                    records[collate_key][record_attributes[header["output_key"]]] = record_attributes[header["input_key"]]
+                    if record_attributes[header["output_key"]] in records[collate_key] and output_key_value != records[collate_key][record_attributes[header["output_key"]]]:
+                        print("Warning: When creating the \"" + conversion_record_name + \
+                              "\" matrix for the \"" + conversion_table + "\" table different values for the output key, \"" + \
+                              record_attributes[header["output_key"]] + "\", were found for the collate key \"" + collate_key + \
+                              "\". Only the last value will be used.")
+                    records[collate_key][record_attributes[header["output_key"]]] = output_key_value
             
             if fields_to_headers:
-                records[collate_key].update({field:value for field, value in record_attributes.items() if field not in exclusion_headers})
+                if values_to_str:
+                    records[collate_key].update({field:str(value) for field, value in record_attributes.items() if field not in exclusion_headers})
+                else:
+                    records[collate_key].update({field:value for field, value in record_attributes.items() if field not in exclusion_headers})
             else:
                 for header in optional_headers:
                     if header in record_attributes:
-                        records[collate_key][header] = record_attributes[header]
+                        records[collate_key][header] = str(record_attributes[header]) if values_to_str else record_attributes[header]
                     
         records = list(records.values())
     
@@ -495,29 +627,47 @@ def compute_matrix_value(input_json, conversion_table, conversion_record_name, c
                     temp_dict[header["output_key"]] = header["input_key"]
                 elif header["output_key_is_literal"] and not header["input_key_is_literal"]:
                     if header["input_key"] not in record_attributes:
-                        print("Error: The headers conversion tag to create the \"" + conversion_record_name + "\" matrix in the \"" + conversion_table + "\" table has an input key, \"" + header["input_key"] + "\", that does not exist in the record, \"" + record + "\", of the input table, \"" + conversion_attributes["table"] + "\".")
+                        print("Error: The \"headers\" conversion tag to create the \"" + \
+                              conversion_record_name + "\" matrix in the \"" + conversion_table + \
+                              "\" table has an input key, \"" + header["input_key"] + \
+                              "\", that does not exist in the record, \"" + record + \
+                              "\", of the input table, \"" + conversion_attributes["table"] + "\".")
                         sys.exit()
-                    temp_dict[header["output_key"]] = record_attributes[header["input_key"]]
+                    temp_dict[header["output_key"]] = str(record_attributes[header["input_key"]]) if values_to_str else record_attributes[header["input_key"]]
                 elif not header["output_key_is_literal"] and header["input_key_is_literal"]:
                     if header["output_key"] not in record_attributes:
-                        print("Error: The headers conversion tag to create the \"" + conversion_record_name + "\" matrix in the \"" + conversion_table + "\" table has an output key, \"" + header["output_key"] + "\", that does not exist in the record, \"" + record + "\", of the input table, \"" + conversion_attributes["table"] + "\".")
+                        print("Error: The \"headers\" conversion tag to create the \"" + \
+                              conversion_record_name + "\" matrix in the \"" + conversion_table + \
+                              "\" table has an output key, \"" + header["output_key"] + \
+                              "\", that does not exist in the record, \"" + record + "\", of the input table, \"" + \
+                              conversion_attributes["table"] + "\".")
                         sys.exit()
                     temp_dict[record_attributes[header["output_key"]]] = header["input_key"]
                 elif not header["output_key_is_literal"] and not header["input_key_is_literal"]:
                     if header["input_key"] not in record_attributes:
-                        print("Error: The headers conversion tag to create the \"" + conversion_record_name + "\" matrix in the \"" + conversion_table + "\" table has an input key, \"" + header["input_key"] + "\", that does not exist in the record, \"" + record + "\", of the input table, \"" + conversion_attributes["table"] + "\".")
+                        print("Error: The \"headers\" conversion tag to create the \"" + \
+                              conversion_record_name + "\" matrix in the \"" + conversion_table + \
+                              "\" table has an input key, \"" + header["input_key"] + \
+                              "\", that does not exist in the record, \"" + record + "\", of the input table, \"" + \
+                              conversion_attributes["table"] + "\".")
                         sys.exit()
                     if header["output_key"] not in record_attributes:
-                        print("Error: The headers conversion tag to create the \"" + conversion_record_name + "\" matrix in the \"" + conversion_table + "\" table has an output key, \"" + header["output_key"] + "\", that does not exist in the record, \"" + record + "\", of the input table, \"" + conversion_attributes["table"] + "\".")
+                        print("Error: The \"headers\" conversion tag to create the \"" + \
+                              conversion_record_name + "\" matrix in the \"" + conversion_table + \
+                              "\" table has an output key, \"" + header["output_key"] + "\", that does not exist in the record, \"" + \
+                              record + "\", of the input table, \"" + conversion_attributes["table"] + "\".")
                         sys.exit()
-                    temp_dict[record_attributes[header["output_key"]]] = record_attributes[header["input_key"]]
+                    temp_dict[record_attributes[header["output_key"]]] = str(record_attributes[header["input_key"]]) if values_to_str else record_attributes[header["input_key"]]
             
             if fields_to_headers:
-                temp_dict.update({field:value for field, value in record_attributes.items() if field not in exclusion_headers})
+                if values_to_str:
+                    temp_dict.update({field:str(value) for field, value in record_attributes.items() if field not in exclusion_headers})
+                else:
+                    temp_dict.update({field:value for field, value in record_attributes.items() if field not in exclusion_headers})
             else:
                 for header in optional_headers:
                     if header in record_attributes:
-                        temp_dict[header] = record_attributes[header]
+                        temp_dict[header] = str(record_attributes[header]) if values_to_str else record_attributes[header]
                     
             records.append(temp_dict)
     
@@ -598,5 +748,24 @@ def tags_to_table(conversion_tags: dict) -> pandas.core.frame.DataFrame:
 #   'project.id': 'GH_Spleen',
 #   'study.id': 'GH_Spleen'}}
 
+
+## Create binned nmr
+# from random import uniform
+
+# temp = {}
+# for measurement, measurement_attributes in input_json["measurement"].items():
+#     bottom_range = uniform(0, 1000)
+#     top_range = uniform(bottom_range, 1000)
+    
+#     assignment = str(bottom_range) + "-" + str(top_range)
+#     intensity = measurement_attributes["intensity"]
+#     units = measurement_attributes["intensity%type"]
+    
+#     temp[assignment] = {"intensity": intensity, "intensity%type":units, "assignment":assignment, "sample.id":measurement_attributes["sample.id"]}
+    
+# input_json["measurement"] = temp
+
+# with open('C:/Users/Sparda/Desktop/Moseley Lab/Code/MESSES/tests/test_convert/testing_files/NMR_binned_base_input.json','w') as jsonFile:
+#     jsonFile.write(json.dumps(input_json, indent=2))
 
 

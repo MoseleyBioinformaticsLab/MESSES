@@ -2,6 +2,10 @@
 """
 conversion tags for the mwtab format
 """
+
+import copy
+
+
 ms_tags = \
 {
   "ANALYSIS": {
@@ -185,7 +189,7 @@ ms_tags = \
       "value_type": "matrix"
     },
     "Extended": {
-      "exclude_headers": [
+      "exclusion_headers": [
         "id",
         "intensity",
         "intensity%type",
@@ -208,7 +212,8 @@ ms_tags = \
       ],
       "sort_order": "ascending",
       "table": "measurement",
-      "value_type": "matrix"
+      "value_type": "matrix",
+      "values_to_str": "True"
     },
     "Metabolites": {
       "collate": "assignment",
@@ -521,3 +526,292 @@ ms_tags = \
     }
   }
 }
+
+
+
+nmr_tags = copy.deepcopy(ms_tags)
+del nmr_tags["CHROMATOGRAPHY"]
+del nmr_tags["MS"]
+del nmr_tags["MS_METABOLITE_DATA"]
+
+nmr_tags["ANALYSIS"]["ANALYSIS_TYPE"]["override"] = "NM"
+nmr_tags["NM"] = {
+    "ACQUISITION_TIME": {
+      "fields": [
+        "acquisition_time",
+        "\" \"",
+        "acquisition_time%units"
+      ],
+      "id": "ACQUISITION_TIME",
+      "required": "False",
+      "table": "protocol",
+      "test": "type=NMR",
+      "value_type": "str"
+    },
+    "BASELINE_CORRECTION_METHOD": {
+      "fields": [
+        "baseline_correction_method"
+      ],
+      "id": "BASELINE_CORRECTION_METHOD",
+      "required": "False",
+      "table": "protocol",
+      "test": "type=NMR",
+      "value_type": "str"
+    },
+    "CHEMICAL_SHIFT_REF_CPD": {
+      "fields": [
+        "chemical_shift_ref_cpd"
+      ],
+      "id": "CHEMICAL_SHIFT_REF_CPD",
+      "required": "False",
+      "table": "protocol",
+      "test": "type=NMR",
+      "value_type": "str"
+    },
+    "INSTRUMENT_NAME": {
+      "fields": [
+        "instrument"
+      ],
+      "id": "INSTRUMENT_NAME",
+      "required": "",
+      "table": "protocol",
+      "test": "type=NMR",
+      "value_type": "str"
+    },
+    "INSTRUMENT_TYPE": {
+      "fields": [
+        "instrument_type"
+      ],
+      "id": "INSTRUMENT_TYPE",
+      "required": "",
+      "table": "protocol",
+      "test": "type=NMR",
+      "value_type": "str"
+    },
+    "NMR_EXPERIMENT_TYPE": {
+      "fields": [
+        "NMR_experiment_type"
+      ],
+      "id": "NMR_EXPERIMENT_TYPE",
+      "required": "",
+      "table": "protocol",
+      "test": "type=NMR",
+      "value_type": "str"
+    },
+    "NMR_PROBE": {
+      "fields": [
+        "NMR_probe"
+      ],
+      "id": "NMR_PROBE",
+      "required": "False",
+      "table": "protocol",
+      "test": "type=NMR",
+      "value_type": "str"
+    },
+    "NMR_SOLVENT": {
+      "fields": [
+        "NMR_solvent"
+      ],
+      "id": "NMR_SOLVENT",
+      "required": "False",
+      "table": "protocol",
+      "test": "type=NMR",
+      "value_type": "str"
+    },
+    "NMR_TUBE_SIZE": {
+      "fields": [
+        "NMR_tube_size",
+        "\" \"",
+        "NMR_tube_size%units"
+      ],
+      "id": "NMR_TUBE_SIZE",
+      "required": "False",
+      "table": "protocol",
+      "test": "type=NMR",
+      "value_type": "str"
+    },
+    "PULSE_SEQUENCE": {
+      "fields": [
+        "pulse_sequence"
+      ],
+      "id": "PULSE_SEQUENCE",
+      "required": "False",
+      "table": "protocol",
+      "test": "type=NMR",
+      "value_type": "str"
+    },
+    "RELAXATION_DELAY": {
+      "fields": [
+        "relaxation_delay",
+        "\" \"",
+        "relaxation_delay%units"
+      ],
+      "id": "RELAXATION_DELAY",
+      "required": "False",
+      "table": "protocol",
+      "test": "type=NMR",
+      "value_type": "str"
+    },
+    "SHIMMING_METHOD": {
+      "fields": [
+        "shimming_method"
+      ],
+      "id": "SHIMMING_METHOD",
+      "required": "False",
+      "table": "protocol",
+      "test": "type=NMR",
+      "value_type": "str"
+    },
+    "SPECTROMETER_FREQUENCY": {
+      "fields": [
+        "spectrometer_frequency",
+        "\" \"",
+        "spectrometer_frequency%units"
+      ],
+      "id": "SPECTROMETER_FREQUENCY",
+      "required": "",
+      "table": "protocol",
+      "test": "type=NMR",
+      "value_type": "str"
+    },
+    "STANDARD_CONCENTRATION": {
+      "fields": [
+        "standard_concentration",
+        "\" \"",
+        "standard_concentration%units"
+      ],
+      "id": "STANDARD_CONCENTRATION",
+      "required": "False",
+      "table": "protocol",
+      "test": "type=NMR",
+      "value_type": "str"
+    },
+    "TEMPERATURE": {
+      "fields": [
+        "temperature",
+        "\" \"",
+        "temperature%units"
+      ],
+      "id": "TEMPERATURE",
+      "required": "False",
+      "table": "protocol",
+      "test": "type=NMR",
+      "value_type": "str"
+    },
+    "WATER_SUPPRESSION": {
+      "fields": [
+        "water_suppression"
+      ],
+      "id": "WATER_SUPPRESSION",
+      "required": "False",
+      "table": "protocol",
+      "test": "type=NMR",
+      "value_type": "str"
+    }
+  }
+
+nmr_tags["NMR_METABOLITE_DATA"] = {
+    "Data": {
+      "collate": "resonance_assignment",
+      "headers": [
+        "\"Metabolite\"=resonance_assignment",
+        "sample.id=intensity"
+      ],
+      "id": "Data",
+      "sort_by": [
+        "resonance_assignment"
+      ],
+      "sort_order": "ascending",
+      "table": "measurement",
+      "value_type": "matrix",
+      "values_to_str": "True"
+    },
+    "Extended": {
+      "exclusion_headers": [
+        "id",
+        "intensity",
+        "intensity%type",
+        "intensity%units",
+        "resonance_assignment",
+        "sample.id",
+        "base_inchi",
+        "representative_inchi",
+        "isotopic_inchi",
+        "peak_description",
+        "peak_pattern",
+        "proton_count",
+        "transient_peak",
+        "transient_peak%type"
+      ],
+      "fields_to_headers": "True",
+      "headers": [
+        "\"Metabolite\"=resonance_assignment",
+        "\"sample_id\"=sample.id"
+      ],
+      "id": "Extended",
+      "sort_by": [
+        "resonance_assignment"
+      ],
+      "sort_order": "ascending",
+      "table": "measurement",
+      "value_type": "matrix",
+      "values_to_str": "True"
+    },
+    "Metabolites": {
+      "collate": "resonance_assignment",
+      "headers": [
+        "\"Metabolite\"=resonance_assignment",
+        "\"base_inchi\"=base_inchi",
+        "\"representative_inchi\"=representative_inchi",
+        "\"isotopic_inchi\"=isotopic_inchi",
+        "\"peak_description\"=peak_description",
+        "\"peak_pattern\"=peak_pattern",
+        "\"proton_count\"=proton_count",
+        "\"transient_peak\"=transient_peak",
+        "\"transient_peak_type\"=transient_peak%type"
+      ],
+      "id": "Metabolites",
+      "sort_by": [
+        "resonance_assignment"
+      ],
+      "sort_order": "ascending",
+      "table": "measurement",
+      "value_type": "matrix",
+      "values_to_str": "True"
+    },
+    "Units": {
+      "fields": [
+        "intensity%type"
+      ],
+      "id": "Units",
+      "table": "measurement",
+      "value_type": "str"
+    }
+  }
+
+nmr_binned_tags = copy.deepcopy(nmr_tags)
+del nmr_binned_tags["NMR_METABOLITE_DATA"]
+nmr_binned_tags["NMR_BINNED_DATA"] = {
+    "Data": {
+      "collate": "assignment",
+      "headers": [
+        "\"Bin range(ppm)\"=assignment",
+        "sample.id=intensity"
+      ],
+      "id": "Data",
+      "sort_by": [
+        "assignment"
+      ],
+      "sort_order": "ascending",
+      "table": "measurement",
+      "value_type": "matrix"
+    },
+    "Units": {
+      "fields": [
+        "intensity%type"
+      ],
+      "id": "Units",
+      "table": "measurement",
+      "value_type": "str"
+    }
+  }

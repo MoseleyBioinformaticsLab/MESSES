@@ -83,13 +83,13 @@ def create_subject_sample_factors(input_json,
             for field, field_value in input_json[entity_table_name][ancestor].items():
                 if field in lineage_field_exclusion_list:
                     continue
-                additional_sample_data["lineage" + str(lineage_count) + "_" + field] = str(field_value[0]) if isinstance(field_value, list) and len(field_value) == 1 else str(field_value)
+                additional_sample_data["lineage" + str(lineage_count) + "_" + field] = str(field_value)
                 
                 if field in factor_fields and factor_fields[field]["name"] not in factors:
                     if isinstance(field_value,str) and field_value in factor_fields[field]["allowed_values"]:
                         factors[factor_fields[field]["name"]] = field_value
                     elif isinstance(field_value,list) and (field_values := [value for value in field_value if value in factor_fields[field]["allowed_values"]]):
-                        factors[factor_fields[field]["name"]] = field_values
+                        factors[factor_fields[field]["name"]] = field_values[0] if len(field_values) == 1 else str(field_values)
                     
                 if not subject_id and field == entity_type_key and field_value == subject_type_value:
                     subject_id = ancestor
@@ -113,7 +113,7 @@ def create_subject_sample_factors(input_json,
                        for field, field_value in input_json[entity_table_name][sibling].items():
                            if field in lineage_field_exclusion_list:
                                continue
-                           additional_sample_data["lineage" + str(lineage_count) + "_" + field] = str(field_value[0]) if isinstance(field_value, list) and len(field_value) == 1 else str(field_value)
+                           additional_sample_data["lineage" + str(lineage_count) + "_" + field] = str(field_value)
                        
                        ## Look for storage protocols on siblings that have data files associated with them.
                        for protocol_id in input_json[entity_table_name][sibling][protocol_field]:
@@ -132,7 +132,7 @@ def create_subject_sample_factors(input_json,
                 if isinstance(field_value,str) and field_value in factor_fields[field]["allowed_values"]:
                     factors[factor_fields[field]["name"]] = field_value
                 elif isinstance(field_value,list) and (field_values := [value for value in field_value if value in factor_fields[field]["allowed_values"]]):
-                    factors[factor_fields[field]["name"]] = field_values
+                    factors[factor_fields[field]["name"]] = field_values[0] if len(field_values) == 1 else str(field_values)
                     
         ## Look for storage protocol on sample itself.
         for protocol_id in input_json[entity_table_name][sample][protocol_field]:
