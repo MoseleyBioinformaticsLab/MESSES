@@ -479,7 +479,7 @@ class RecordMaker(object) :
         
         return child
 
-    def create(self, row: pandas.core.series.Series) -> (str,dict):
+    def create(self, row: pandas.core.series.Series) -> tuple[str,dict]:
         """Returns record created from given row.
 
         Args:
@@ -718,7 +718,7 @@ class TagParser(object):
         
         return True
 
-    def _determineTableField(self, params: (str)|(str,str)|(str,str,str)) -> (str,str):
+    def _determineTableField(self, params: tuple[str]|tuple[str,str]|tuple[str,str,str]) -> tuple[str,str]:
         """Returns table and field based on params tuple and last table and field set.
         
         If table is in params use that for table, else use self.lastTable.
@@ -779,7 +779,7 @@ class TagParser(object):
     childFieldAttributeDetector = re.compile(r'#(\w*)\%child\.(\w+)\%(\w+)$')
     emptyChildDetector = re.compile(r'#(\w*)\%child$')
     tableFieldAttributeDetector = re.compile(r'#(\w*)\.(\w+)\%(\w+)$')
-    tableFieldDetector = re.compile(r'#(\w*)\.(\w+|\w+.id)$')
+    tableFieldDetector = re.compile(r'#([\w\s]*)\.(\w+|\w+\.id)$')
     attributeDetector = re.compile('#\%(\w+)$')
     trackFieldDetector = re.compile(r'#(\w*)\%track$')
     untrackFieldDetector = re.compile(r'#(\w*)\%untrack$')
@@ -1120,7 +1120,7 @@ class TagParser(object):
 
 
     @staticmethod
-    def loadSheet(sheetInfo: str, removeRegex: str|None = None, isDefaultSearch: bool =False) -> (str,str,pandas.core.frame.DataFrame)|None:
+    def loadSheet(sheetInfo: str, removeRegex: str|None = None, isDefaultSearch: bool =False) -> tuple[str,str,pandas.core.frame.DataFrame]|None:
         """Load and return worksheet as a pandas data frame.
         
         Args:
@@ -2364,7 +2364,7 @@ class TagParser(object):
                 if section_level_tuple[0] != None:
                     del section_level_tuple[1][section_level_tuple[0]]
 
-    def findParent(self, parentID: str) -> (str,dict)|None:
+    def findParent(self, parentID: str) -> tuple[str,dict]|None:
         """Returns parent record for given parentID.
 
         Args:
