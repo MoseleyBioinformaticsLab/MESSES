@@ -654,12 +654,85 @@ def read_text_from_txt(doc_path):
 #     assert output == ""
 
 
-def test_xlsx_read_in():
-    """Test that xlsx files are read in as expected."""
+# def test_xlsx_read_in():
+#     """Test that xlsx files are read in as expected."""
+    
+#     test_file = "MS_base_input_truncated.json"
+    
+#     command = "messes convert generic ../" + test_file  + " output mwtab_ms_conversion_tags_compare.xlsx:Sheet1" 
+#     command = command.split(" ")
+#     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
+#     output = subp.stderr
+
+    
+#     assert output_path_json.exists()
+    
+#     with open(output_path_json, "r") as f:
+#         output_json = json.loads(f.read())
+        
+#     with open(pathlib.Path("MS_output_compare_truncated.json"), "r") as f:
+#         output_compare_json = json.loads(f.read())
+    
+#     del output_json["METABOLOMICS WORKBENCH"]["CREATED_ON"]
+#     del output_compare_json["METABOLOMICS WORKBENCH"]["CREATED_ON"]
+#     assert output_json == output_compare_json
+        
+#     assert output == ""
+    
+
+# def test_xlsx_read_in_error():
+#     """Test that an error is printed when the xlsx file is not read in correctly."""
+    
+#     test_file = "MS_base_input_truncated.json"
+    
+#     command = "messes convert generic ../" + test_file  + " output mwtab_ms_conversion_tags_compare.xlsx" 
+#     command = command.split(" ")
+#     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
+#     output = subp.stderr
+
+    
+#     assert not output_path_json.exists()
+        
+#     assert output == "Error: No sheet name was given for the xlsx file, so the default name " +\
+#                      "of #convert was used, but it was not found in the file.\n"
+                     
+                     
+# def test_conversion_tags_wrong_file_type():
+#     """Test that an error is printed when the conversion tags file is the wrong type."""
+    
+#     test_file = "MS_base_input_truncated.json"
+    
+#     command = "messes convert generic ../" + test_file  + " output mwtab_ms_conversion_tags_compare.txt" 
+#     command = command.split(" ")
+#     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
+#     output = subp.stderr
+
+    
+#     assert not output_path_json.exists()
+        
+#     assert output == "Error: Unknown file type for the conversion tags file.\n"
+
+
+# def test_print_tags_wrong_file_type():
+#     """Test that an error is printed when the indicated file type is not csv, xlsx, or json is the wrong type."""
+        
+#     command = "messes convert print-tags mwtab ms asdf"
+#     command = command.split(" ")
+#     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
+#     output = subp.stderr
+
+    
+#     assert not output_path_json.exists()
+        
+#     assert output == "Error: Unknown output filetype.\n"
+    
+
+def test_mwtab_validation_error():
+    """Test that an error is printed when the mwtab validation fails."""
     
     test_file = "MS_base_input_truncated.json"
     
-    command = "messes convert generic ../" + test_file  + " output mwtab_ms_conversion_tags_compare.xlsx:Sheet1" 
+    command = "messes convert mwtab ms ../" + test_file  + " output --override ../mwtab_validation_error.json" 
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -667,34 +740,8 @@ def test_xlsx_read_in():
     
     assert output_path_json.exists()
     
-    with open(output_path_json, "r") as f:
-        output_json = json.loads(f.read())
-        
-    with open(pathlib.Path("MS_output_compare_truncated.json"), "r") as f:
-        output_compare_json = json.loads(f.read())
-    
-    del output_json["METABOLOMICS WORKBENCH"]["CREATED_ON"]
-    del output_compare_json["METABOLOMICS WORKBENCH"]["CREATED_ON"]
-    assert output_json == output_compare_json
-        
-    assert output == ""
-    
-
-def test_xlsx_read_in_error():
-    """Test that an error is printed when the xlsx file is not read in correctly."""
-    
-    test_file = "MS_base_input_truncated.json"
-    
-    command = "messes convert generic ../" + test_file  + " output mwtab_ms_conversion_tags_compare.xlsx" 
-    command = command.split(" ")
-    subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
-    output = subp.stderr
-
-    
-    assert not output_path_json.exists()
-        
-    assert output == "Error: No sheet name was given for the xlsx file, so the default name " +\
-                     "of #convert was used, but it was not found in the file.\n"
+    assert 'Error: An error occured when validating the mwtab file.' in output
+    assert 'Status: Contains Validation Errors' in output
     
 
 

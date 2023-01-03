@@ -136,6 +136,7 @@ def main() :
         
     
     ## Validate conversion tags.
+    ## Make sure fields tag has a requirement for at least 1 value.
     
     
     ## Read in files.
@@ -168,6 +169,7 @@ def main() :
             else:
                 print("Warning: Unknown value_type for the conversion \"" + conversion_record_name + \
                       "\" in the \"" + conversion_table + "\" table. It will be skipped.", file=sys.stderr)
+                continue
             
             if value is None:
                 if default is None:
@@ -289,6 +291,12 @@ def _sort_by_getter(pair, keys):
 
 def _build_table_records(has_test, conversion_record_name, conversion_table, conversion_attributes, 
                          input_json, required, silent, test_field="", test_value=""):
+    
+    if not conversion_attributes["table"] in input_json:
+        message = "The \"table\" field value, \"" + conversion_attributes["table"] + "\", for conversion, \"" + conversion_record_name + \
+                  "\", in conversion table, \"" + conversion_table + "\", does not exist in the input JSON."
+        return _handle_errors(required, silent, message)
+    
     if has_test:
         table_records = {record:record_attributes for record, record_attributes in input_json[conversion_attributes["table"]].items() if test_field in record_attributes and record_attributes[test_field] == test_value}
     else:
@@ -328,7 +336,13 @@ def handle_code_tag(input_json, conversion_table, conversion_record_name, conver
     """"""
     
     if import_path := conversion_attributes.get("import"):
-        import_name = pathlib.Path(import_path).stem
+        import_pathlib = pathlib.Path(import_path)
+        if not import_pathlib.exists():
+            message = "The path given to import a Python file in the \"import\" field of the conversion record \"" + \
+                      conversion_record_name + "\" in the \"" + conversion_table + "\" table does not exist."
+            return _handle_errors(required, silent, message)
+        
+        import_name = import_pathlib.stem
         global_variables = globals()
         global_variables[import_name] = SourceFileLoader(import_name, import_path).load_module()
     
@@ -374,6 +388,54 @@ def _build_string_value(fields, conversion_table, conversion_record_name, record
     return value
 
 
+
+def _build_matrix_record_dict(matrix_dict, 
+                              collate_key, 
+                              headers, 
+                              record, 
+                              record_attributes, 
+                              conversion_table, 
+                              conversion_record_name, 
+                              conversion_attributes, 
+                              fields_to_headers,
+                              exclusion_headers,
+                              optional_headers,
+                              values_to_str, 
+                              required, 
+                              silent):
+    for header in headers:
+        input_key_value, output_key_value = _determine_header_input_keys(header, 
+                                                                         record, 
+                                                                         record_attributes, 
+                                                                         conversion_table, 
+                                                                         conversion_record_name, 
+                                                                         conversion_attributes, 
+                                                                         values_to_str, 
+                                                                         required, 
+                                                                         silent)
+        
+        if collate_key is not None and input_key_value in matrix_dict and output_key_value != matrix_dict[input_key_value]:
+            print("Warning: When creating the \"" + conversion_record_name + \
+                  "\" matrix for the \"" + conversion_table + "\" table different values for the output key, \"" + \
+                  header["output_key"] + "\", were found for the collate key \"" + collate_key + \
+                  "\". Only the last value will be used.", 
+                  file=sys.stderr)
+        
+        matrix_dict[input_key_value] = output_key_value
+    
+    if fields_to_headers:
+        if values_to_str:
+            matrix_dict.update({field:str(value) for field, value in record_attributes.items() if field not in exclusion_headers})
+        else:
+            matrix_dict.update({field:value for field, value in record_attributes.items() if field not in exclusion_headers})
+    else:
+        for header in optional_headers:
+            if header in record_attributes:
+                matrix_dict[header] = str(record_attributes[header]) if values_to_str else record_attributes[header]
+                
+    return matrix_dict
+
+
 def _determine_header_input_keys(header, record, record_attributes, conversion_table, conversion_record_name, conversion_attributes, values_to_str, required, silent):
     if not header["input_key_is_literal"]:
         if header["input_key"] not in record_attributes:
@@ -409,8 +471,9 @@ def compute_string_value(input_json, conversion_table, conversion_record_name, c
     
     ## override
     if value := conversion_attributes.get("override"):
-        if literal_match := re.match(literal_regex, value):
-            value = literal_match.group(1)
+        ## Not sure why I put this here. override should always be interpreted as literal and just copy whatever is in the field.
+        # if literal_match := re.match(literal_regex, value):
+        #     value = literal_match.group(1)
         return value
     
     ## code
@@ -429,7 +492,7 @@ def compute_string_value(input_json, conversion_table, conversion_record_name, c
         return None
     
     ## fields
-    fields = [(field, True if re.match(literal_regex, field) else False) for field in conversion_attributes["fields"]]
+    fields = [((re_match.group(1), True) if (re_match := re.match(literal_regex, field)) else (field, False)) for field in conversion_attributes["fields"]]
     has_test = False
     test_field = ""
     test_value = ""
@@ -440,47 +503,62 @@ def compute_string_value(input_json, conversion_table, conversion_record_name, c
         test_value = split[1].strip()
     
     ## for_each
-    if for_each := conversion_attributes.get("for_each"):
-        if for_each.lower() == "true":
+    for_each = False
+    if for_each_temp := conversion_attributes.get("for_each"):
+        if for_each_temp.lower() == "true":
             for_each = True
-        else:
-            for_each = False
+    
+    table_records = _build_table_records(has_test, conversion_record_name, conversion_table, conversion_attributes, 
+                                         input_json, required, silent, test_field=test_field, test_value=test_value)
+    if table_records is None:
+        return None
     
     if for_each:
         delimiter = conversion_attributes.get("delimiter", "")
         if delimiter and (literal_match := re.match(literal_regex, delimiter)):
             delimiter = literal_match.group(1)
         
-        table_records = _build_table_records(has_test, conversion_record_name, conversion_table, conversion_attributes, 
-                                             input_json, required, silent, test_field=test_field, test_value=test_value)
-        if table_records is None:
-            return None
-                    
-        
         value_for_each_record = []
         for record_name, record_attributes in table_records.items():
-            value = _build_string_value(fields, conversion_table, conversion_record_name, conversion_attributes["table"], record_name, record_attributes, required, silent)
-            if value:
-                value_for_each_record.append(value)
+            value = _build_string_value(fields, 
+                                        conversion_table, 
+                                        conversion_record_name, 
+                                        conversion_attributes["table"], 
+                                        record_name, 
+                                        record_attributes, 
+                                        required, 
+                                        silent)
+            value_for_each_record.append(value)
         
         joined_string = delimiter.join(value_for_each_record)
-        if joined_string:
-            return joined_string
-        else:
-            return None
+        return joined_string
     
     ## record_id
     if conversion_attributes.get("record_id"):
-        record_attributes = input_json[conversion_attributes["table"]][conversion_attributes["record_id"]]
+        if not conversion_attributes["record_id"] in table_records:
+            message = "The \"record_id\" field value, \"" + conversion_attributes["record_id"] + \
+                      "\", for conversion, \"" + conversion_record_name + \
+                      "\", in conversion table, \"" + conversion_table + "\", does not exist in the \"" + \
+                      conversion_attributes["table"] + "\" table of the input JSON."
+            return _handle_errors(required, silent, message)
+        record_attributes = table_records[conversion_attributes["record_id"]]
         record_name = conversion_attributes["record_id"]
-    elif has_test:
-        for record_name, record_attributes in input_json[conversion_attributes["table"]].items():
-            if test_field in record_attributes and record_attributes[test_field] == test_value:
-                break
+    # elif has_test:
+    #     for record_name, record_attributes in input_json[conversion_attributes["table"]].items():
+    #         if test_field in record_attributes and record_attributes[test_field] == test_value:
+    #             break
     else:
-        record_name, record_attributes = list(input_json[conversion_attributes["table"]].items())[0]
+        record_name, record_attributes = list(table_records.items())[0]
+        # record_name, record_attributes = list(input_json[conversion_attributes["table"]].items())[0]
     
-    value = _build_string_value(fields, conversion_table, conversion_record_name, conversion_attributes["table"], record_name, record_attributes, required, silent)
+    value = _build_string_value(fields, 
+                                conversion_table, 
+                                conversion_record_name, 
+                                conversion_attributes["table"], 
+                                record_name, 
+                                record_attributes, 
+                                required, 
+                                silent)
             
     return value
 
@@ -505,18 +583,17 @@ def compute_matrix_value(input_json, conversion_table, conversion_record_name, c
         return None
         
     ## fields_to_headers
-    if fields_to_headers := conversion_attributes.get("fields_to_headers"):
-        if fields_to_headers.lower() == "true":
+    fields_to_headers = False
+    if fields_to_headers_temp := conversion_attributes.get("fields_to_headers"):
+        if fields_to_headers_temp.lower() == "true":
             fields_to_headers = True
-        else:
-            fields_to_headers = False
     
     ## values_to_str
-    if values_to_str := conversion_attributes.get("values_to_str"):
-        if values_to_str.lower() == "true":
+    values_to_str = False
+    if values_to_str_temp := conversion_attributes.get("values_to_str"):
+        if values_to_str_temp.lower() == "true":
             values_to_str = True
-        else:
-            values_to_str = False
+            
             
     has_test = False
     test_field = ""
@@ -577,64 +654,94 @@ def compute_matrix_value(input_json, conversion_table, conversion_record_name, c
             if collate_key not in records:
                 records[collate_key] = {}
             
-            for header in headers:
-                input_key_value, output_key_value = _determine_header_input_keys(header, 
-                                                                                 record, 
-                                                                                 record_attributes, 
-                                                                                 conversion_table, 
-                                                                                 conversion_record_name, 
-                                                                                 conversion_attributes, 
-                                                                                 values_to_str, 
-                                                                                 required, 
-                                                                                 silent)
-                
-                if input_key_value in records[collate_key] and output_key_value != records[collate_key][input_key_value]:
-                    print("Warning: When creating the \"" + conversion_record_name + \
-                          "\" matrix for the \"" + conversion_table + "\" table different values for the output key, \"" + \
-                          header["output_key"] + "\", were found for the collate key \"" + collate_key + \
-                          "\". Only the last value will be used.", 
-                          file=sys.stderr)
-                
-                records[collate_key][input_key_value] = output_key_value
+            records[collate_key] = _build_matrix_record_dict(records[collate_key], 
+                                                             collate_key, 
+                                                             headers, 
+                                                             record, 
+                                                             record_attributes, 
+                                                             conversion_table, 
+                                                             conversion_record_name, 
+                                                             conversion_attributes, 
+                                                             fields_to_headers,
+                                                             exclusion_headers,
+                                                             optional_headers,
+                                                             values_to_str, 
+                                                             required, 
+                                                             silent)
             
-            if fields_to_headers:
-                if values_to_str:
-                    records[collate_key].update({field:str(value) for field, value in record_attributes.items() if field not in exclusion_headers})
-                else:
-                    records[collate_key].update({field:value for field, value in record_attributes.items() if field not in exclusion_headers})
-            else:
-                for header in optional_headers:
-                    if header in record_attributes:
-                        records[collate_key][header] = str(record_attributes[header]) if values_to_str else record_attributes[header]
+            ## TODO pull this for loop into a function and replace here and below.
+            # for header in headers:
+            #     input_key_value, output_key_value = _determine_header_input_keys(header, 
+            #                                                                      record, 
+            #                                                                      record_attributes, 
+            #                                                                      conversion_table, 
+            #                                                                      conversion_record_name, 
+            #                                                                      conversion_attributes, 
+            #                                                                      values_to_str, 
+            #                                                                      required, 
+            #                                                                      silent)
+                
+            #     if input_key_value in records[collate_key] and output_key_value != records[collate_key][input_key_value]:
+            #         print("Warning: When creating the \"" + conversion_record_name + \
+            #               "\" matrix for the \"" + conversion_table + "\" table different values for the output key, \"" + \
+            #               header["output_key"] + "\", were found for the collate key \"" + collate_key + \
+            #               "\". Only the last value will be used.", 
+            #               file=sys.stderr)
+                
+            #     records[collate_key][input_key_value] = output_key_value
+            
+            # if fields_to_headers:
+            #     if values_to_str:
+            #         records[collate_key].update({field:str(value) for field, value in record_attributes.items() if field not in exclusion_headers})
+            #     else:
+            #         records[collate_key].update({field:value for field, value in record_attributes.items() if field not in exclusion_headers})
+            # else:
+            #     for header in optional_headers:
+            #         if header in record_attributes:
+            #             records[collate_key][header] = str(record_attributes[header]) if values_to_str else record_attributes[header]
                     
         records = list(records.values())
     
     else:
         records = []
         for record, record_attributes in table_records.items():
-            temp_dict = {}            
-            for header in headers:
-                input_key_value, output_key_value = _determine_header_input_keys(header, 
-                                                                                 record, 
-                                                                                 record_attributes, 
-                                                                                 conversion_table, 
-                                                                                 conversion_record_name, 
-                                                                                 conversion_attributes, 
-                                                                                 values_to_str, 
-                                                                                 required, 
-                                                                                 silent)
+            temp_dict =  _build_matrix_record_dict({}, 
+                                                   None, 
+                                                   headers, 
+                                                   record, 
+                                                   record_attributes, 
+                                                   conversion_table, 
+                                                   conversion_record_name, 
+                                                   conversion_attributes, 
+                                                   fields_to_headers,
+                                                   exclusion_headers,
+                                                   optional_headers,
+                                                   values_to_str, 
+                                                   required, 
+                                                   silent)
+            
+            # for header in headers:
+            #     input_key_value, output_key_value = _determine_header_input_keys(header, 
+            #                                                                      record, 
+            #                                                                      record_attributes, 
+            #                                                                      conversion_table, 
+            #                                                                      conversion_record_name, 
+            #                                                                      conversion_attributes, 
+            #                                                                      values_to_str, 
+            #                                                                      required, 
+            #                                                                      silent)
                 
-                temp_dict[input_key_value] = output_key_value
+            #     temp_dict[input_key_value] = output_key_value
                 
-            if fields_to_headers:
-                if values_to_str:
-                    temp_dict.update({field:str(value) for field, value in record_attributes.items() if field not in exclusion_headers})
-                else:
-                    temp_dict.update({field:value for field, value in record_attributes.items() if field not in exclusion_headers})
-            else:
-                for header in optional_headers:
-                    if header in record_attributes:
-                        temp_dict[header] = str(record_attributes[header]) if values_to_str else record_attributes[header]
+            # if fields_to_headers:
+            #     if values_to_str:
+            #         temp_dict.update({field:str(value) for field, value in record_attributes.items() if field not in exclusion_headers})
+            #     else:
+            #         temp_dict.update({field:value for field, value in record_attributes.items() if field not in exclusion_headers})
+            # else:
+            #     for header in optional_headers:
+            #         if header in record_attributes:
+            #             temp_dict[header] = str(record_attributes[header]) if values_to_str else record_attributes[header]
                     
             records.append(temp_dict)
     
@@ -687,9 +794,9 @@ def tags_to_table(conversion_tags: dict) -> pandas.core.frame.DataFrame:
                     
                 
                 
-str_tag_fields = ["id", "value_type", "override", "code", "table", "for_each", "fields", "test", "required", "delimiter", "sort_by", "sort_order", "record_id"]
-matrix_tag_fields = ["id", "value_type", "code", "table",  "test", "required", "sort_by", "sort_order", "headers", "collate", "exclusion_headers", "optional_headers", "fields_to_headers", "values_to_str"]
-section_tag_fields = ["code"]
+str_tag_fields = ["id", "value_type", "override", "code", "import", "table", "for_each", "fields", "test", "required", "delimiter", "sort_by", "sort_order", "record_id"]
+matrix_tag_fields = ["id", "value_type", "code", "import", "table",  "test", "required", "sort_by", "sort_order", "headers", "collate", "exclusion_headers", "optional_headers", "fields_to_headers", "values_to_str"]
+section_tag_fields = ["code", "import"]
 
 
 
