@@ -1169,7 +1169,6 @@ class TagParser(object):
                     dataFrame = pandas.read_csv(sheetInfo, header=None, index_col=None, dtype=str)
                 except pandas.errors.EmptyDataError:
                     print("There is no data in csv file \"" + sheetInfo + "\".", file=sys.stderr)
-                    dataFrame = pandas.DataFrame()
                 else:
                     ## I don't think there is a way to read in a csv file with no length. All my attempts resulted in an error.
                     ## Thus this is not testable from the CLI.

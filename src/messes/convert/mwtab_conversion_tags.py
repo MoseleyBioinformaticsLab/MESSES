@@ -31,7 +31,7 @@ ms_tags = \
         "chromatography_type"
       ],
       "id": "CHROMATOGRAPHY_TYPE",
-      "required": "",
+      "required": "True",
       "table": "protocol",
       "test": "type=MS",
       "value_type": "str"
@@ -41,7 +41,7 @@ ms_tags = \
         "column_name"
       ],
       "id": "COLUMN_NAME",
-      "required": "",
+      "required": "True",
       "table": "protocol",
       "test": "type=MS",
       "value_type": "str"
@@ -51,7 +51,7 @@ ms_tags = \
         "chromatography_instrument_name"
       ],
       "id": "INSTRUMENT_NAME",
-      "required": "",
+      "required": "True",
       "table": "protocol",
       "test": "type=MS",
       "value_type": "str"
@@ -73,7 +73,7 @@ ms_tags = \
         "id"
       ],
       "id": "COLLECTION_PROTOCOL_ID",
-      "required": "",
+      "required": "True",
       "table": "protocol",
       "test": "type=collection",
       "value_type": "str"
@@ -83,7 +83,7 @@ ms_tags = \
         "description"
       ],
       "id": "COLLECTION_SUMMARY",
-      "required": "",
+      "required": "True",
       "table": "protocol",
       "test": "type=collection",
       "value_type": "str"
@@ -93,7 +93,7 @@ ms_tags = \
         "sample_type"
       ],
       "id": "SAMPLE_TYPE",
-      "required": "",
+      "required": "True",
       "table": "protocol",
       "test": "type=collection",
       "value_type": "str"
@@ -127,7 +127,7 @@ ms_tags = \
         "instrument"
       ],
       "id": "INSTRUMENT_NAME",
-      "required": "",
+      "required": "True",
       "table": "protocol",
       "test": "type=MS",
       "value_type": "str"
@@ -137,7 +137,7 @@ ms_tags = \
         "instrument_type"
       ],
       "id": "INSTRUMENT_TYPE",
-      "required": "",
+      "required": "True",
       "table": "protocol",
       "test": "type=MS",
       "value_type": "str"
@@ -147,7 +147,7 @@ ms_tags = \
         "ion_mode"
       ],
       "id": "ION_MODE",
-      "required": "",
+      "required": "True",
       "table": "protocol",
       "test": "type=MS",
       "value_type": "str"
@@ -167,7 +167,7 @@ ms_tags = \
         "ionization"
       ],
       "id": "MS_TYPE",
-      "required": "",
+      "required": "True",
       "table": "protocol",
       "test": "type=MS",
       "value_type": "str"
@@ -339,7 +339,7 @@ ms_tags = \
       ],
       "for_each": "True",
       "id": "SAMPLEPREP_PROTOCOL_ID",
-      "required": "",
+      "required": "True",
       "sort_by": [
         "id"
       ],
@@ -355,7 +355,7 @@ ms_tags = \
       ],
       "for_each": "True",
       "id": "SAMPLEPREP_SUMMARY",
-      "required": "",
+      "required": "True",
       "sort_by": [
         "id"
       ],
@@ -499,7 +499,7 @@ ms_tags = \
       ],
       "for_each": "True",
       "id": "TREATMENT_PROTOCOL_ID",
-      "required": "",
+      "required": "True",
       "sort_by": [
         "id"
       ],
@@ -515,7 +515,7 @@ ms_tags = \
       ],
       "for_each": "True",
       "id": "TREATMENT_SUMMARY",
-      "required": "",
+      "required": "True",
       "sort_by": [
         "id"
       ],
@@ -573,7 +573,7 @@ nmr_tags["NM"] = {
         "instrument"
       ],
       "id": "INSTRUMENT_NAME",
-      "required": "",
+      "required": "True",
       "table": "protocol",
       "test": "type=NMR",
       "value_type": "str"
@@ -583,7 +583,7 @@ nmr_tags["NM"] = {
         "instrument_type"
       ],
       "id": "INSTRUMENT_TYPE",
-      "required": "",
+      "required": "True",
       "table": "protocol",
       "test": "type=NMR",
       "value_type": "str"
@@ -593,7 +593,7 @@ nmr_tags["NM"] = {
         "NMR_experiment_type"
       ],
       "id": "NMR_EXPERIMENT_TYPE",
-      "required": "",
+      "required": "True",
       "table": "protocol",
       "test": "type=NMR",
       "value_type": "str"
@@ -669,7 +669,7 @@ nmr_tags["NM"] = {
         "spectrometer_frequency%units"
       ],
       "id": "SPECTROMETER_FREQUENCY",
-      "required": "",
+      "required": "True",
       "table": "protocol",
       "test": "type=NMR",
       "value_type": "str"

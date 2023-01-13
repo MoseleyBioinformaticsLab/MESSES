@@ -19,6 +19,11 @@ def create_sample_lineages(input_json, entity_table_name="entity", parent_key="p
         ancestors = []
         while parent_name := entity_attributes.get(parent_key):
             ancestors.append(parent_name)
+            if parent_name not in input_json[entity_table_name]:
+                print("Error: The parent entity, \"" + parent_name + "\", pulled from the entity \"" + entity_name + \
+                      "\" in the \"" + entity_table_name + "\" table is not in the \"" + entity_table_name + "\". " +\
+                      "Parent entities must be in the table with thier children.", file=sys.stderr)
+                sys.exit()
             entity_attributes = input_json[entity_table_name][parent_name]
         ancestors.reverse()
         lineages[entity_name] = {"ancestors":ancestors}
@@ -26,8 +31,9 @@ def create_sample_lineages(input_json, entity_table_name="entity", parent_key="p
     for entity_name in lineages:
         siblings = []
         if not lineages[entity_name]["ancestors"]:
+            lineages[entity_name]["siblings"] = []
             continue
-        parent_name = lineages[entity_name]["ancestors"][0]
+        parent_name = lineages[entity_name]["ancestors"][-1]
         for sibling_name, entity_attributes in input_json[entity_table_name].items():
             if (sibling_parent_name := entity_attributes.get(parent_key)) and sibling_parent_name == parent_name:
                 siblings.append(sibling_name)
@@ -70,7 +76,8 @@ def create_subject_sample_factors(input_json,
     ss_factors = []
     for sample in samples:
         if sample not in lineages:
-            print("Error: The sample, \"" + sample + "\", pulled from the \"" + measurement_table_name + "\" table is not in the \"" + entity_table_name + "\". Thus the subject-sample-factors cannot be determined.")
+            print("Error: The sample, \"" + sample + "\", pulled from the \"" + measurement_table_name + \
+                  "\" table is not in the \"" + entity_table_name + "\". Thus the subject-sample-factors cannot be determined.", file=sys.stderr)
             sys.exit()
         
         additional_sample_data = {}
@@ -108,8 +115,10 @@ def create_subject_sample_factors(input_json,
         ## Look for siblings to add to additional data if sibling_match_field is given.
         if sibling_match_field and sibling_match_value:
             for sibling in lineages[sample]["siblings"]:
+                match_field_value = input_json[entity_table_name][sibling][sibling_match_field]
                 if sibling_match_field in input_json[entity_table_name][sibling] and \
-                   sibling_match_value == input_json[entity_table_name][sibling][sibling_match_field]:
+                   ((isinstance(match_field_value, str) and sibling_match_value == match_field_value) or\
+                   (isinstance(match_field_value, list) and sibling_match_value in match_field_value)):
                        for field, field_value in input_json[entity_table_name][sibling].items():
                            if field in lineage_field_exclusion_list:
                                continue
@@ -124,7 +133,7 @@ def create_subject_sample_factors(input_json,
                                else:
                                    raw_files.append(str(data_files))
                 
-                lineage_count += 1
+                       lineage_count += 1
         
         ## Look for factors on the sample itself.
         for field, field_value in input_json[entity_table_name][sample].items():            
@@ -154,12 +163,14 @@ def create_subject_sample_factors(input_json,
         
     ## Run some error checking on factors found.
     found_factors = {factor for ss_factor in ss_factors for factor in ss_factor["Factors"]}
-    missing_factors = found_factors - set(input_json[factor_table_name])
+    missing_factors = set(input_json[factor_table_name]) - found_factors
     if missing_factors:
-        print("Warning: There are factors in the \"" + factor_table_name + "\" table that were not found when determining the subject-sample-factors. These factors are: " + ", ".join(missing_factors))
+        print("Warning: There are factors in the \"" + factor_table_name +\
+              "\" table that were not found when determining the subject-sample-factors. These factors are: " +\
+              ", ".join(missing_factors), file=sys.stderr)
     
     samples_without_all_factors = [ss_factor["Sample ID"] for ss_factor in ss_factors if found_factors - set(ss_factor["Factors"])]
     if samples_without_all_factors:
-       print("Warning: The following samples do not have the full set of factors:" + "\n".join(samples_without_all_factors))
+       print("Warning: The following samples do not have the full set of factors: \n" + "\n".join(samples_without_all_factors), file=sys.stderr)
         
     return ss_factors

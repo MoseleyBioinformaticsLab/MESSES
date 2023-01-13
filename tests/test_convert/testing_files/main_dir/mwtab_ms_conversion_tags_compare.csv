@@ -3,15 +3,15 @@
 ,,,,,,,,,,
 #tags,#CHROMATOGRAPHY.id,*#.fields,#.required,#.table,#.test,#.value_type,,,,
 ,CHROMATOGRAPHY_SUMMARY,chromatography_description,False,protocol,type=MS,str,,,,
-,CHROMATOGRAPHY_TYPE,chromatography_type,,protocol,type=MS,str,,,,
-,COLUMN_NAME,column_name,,protocol,type=MS,str,,,,
-,INSTRUMENT_NAME,chromatography_instrument_name,,protocol,type=MS,str,,,,
+,CHROMATOGRAPHY_TYPE,chromatography_type,True,protocol,type=MS,str,,,,
+,COLUMN_NAME,column_name,True,protocol,type=MS,str,,,,
+,INSTRUMENT_NAME,chromatography_instrument_name,True,protocol,type=MS,str,,,,
 ,,,,,,,,,,
 #tags,#COLLECTION.id,*#.fields,#.required,#.table,#.test,#.value_type,,,,
 ,COLLECTION_PROTOCOL_FILENAME,filename,False,protocol,type=collection,str,,,,
-,COLLECTION_PROTOCOL_ID,id,,protocol,type=collection,str,,,,
-,COLLECTION_SUMMARY,description,,protocol,type=collection,str,,,,
-,SAMPLE_TYPE,sample_type,,protocol,type=collection,str,,,,
+,COLLECTION_PROTOCOL_ID,id,True,protocol,type=collection,str,,,,
+,COLLECTION_SUMMARY,description,True,protocol,type=collection,str,,,,
+,SAMPLE_TYPE,sample_type,True,protocol,type=collection,str,,,,
 ,,,,,,,,,,
 #tags,#METABOLOMICS WORKBENCH.id,#.override,#.value_type,,,,,,,
 ,ANALYSIS_ID,AN000000,str,,,,,,,
@@ -22,11 +22,11 @@
 ,CREATED_ON,str(datetime.datetime.now().date()),str,,,,,,,
 ,,,,,,,,,,
 #tags,#MS.id,*#.fields,#.required,#.table,#.test,#.value_type,,,,
-,INSTRUMENT_NAME,instrument,,protocol,type=MS,str,,,,
-,INSTRUMENT_TYPE,instrument_type,,protocol,type=MS,str,,,,
-,ION_MODE,ion_mode,,protocol,type=MS,str,,,,
+,INSTRUMENT_NAME,instrument,True,protocol,type=MS,str,,,,
+,INSTRUMENT_TYPE,instrument_type,True,protocol,type=MS,str,,,,
+,ION_MODE,ion_mode,True,protocol,type=MS,str,,,,
 ,MS_COMMENTS,description,False,protocol,type=MS,str,,,,
-,MS_TYPE,ionization,,protocol,type=MS,str,,,,
+,MS_TYPE,ionization,True,protocol,type=MS,str,,,,
 ,,,,,,,,,,
 #tags,#MS_METABOLITE_DATA.id,#.collate,*#.headers,*#.sort_by,#.sort_order,#.table,#.value_type,,,
 ,Data,assignment,"""Metabolite""=assignment,sample.id=intensity",assignment,ascending,measurement,matrix,,,
@@ -51,8 +51,8 @@
 ,,,,,,,,,,
 #tags,#SAMPLEPREP.id,#.delimiter,*#.fields,#.for_each,#.required,*#.sort_by,#.sort_order,#.table,#.test,#.value_type
 ,SAMPLEPREP_PROTOCOL_FILENAME,;,filename,True,False,id,ascending,protocol,type=treatment,str
-,SAMPLEPREP_PROTOCOL_ID,;,id,True,,id,ascending,protocol,type=sample_prep,str
-,SAMPLEPREP_SUMMARY,""" """,description,True,,id,ascending,protocol,type=sample_prep,str
+,SAMPLEPREP_PROTOCOL_ID,;,id,True,True,id,ascending,protocol,type=sample_prep,str
+,SAMPLEPREP_SUMMARY,""" """,description,True,True,id,ascending,protocol,type=sample_prep,str
 ,,,,,,,,,,
 #tags,#STUDY.id,*#.fields,#.table,#.value_type,,,,,,
 ,ADDRESS,address,study,str,,,,,,
@@ -75,6 +75,6 @@
 ,,,,,,,,,,
 #tags,#TREATMENT.id,#.delimiter,*#.fields,#.for_each,#.required,*#.sort_by,#.sort_order,#.table,#.test,#.value_type
 ,TREATMENT_PROTOCOL_FILENAME,;,filename,True,False,id,ascending,protocol,type=treatment,str
-,TREATMENT_PROTOCOL_ID,;,id,True,,id,ascending,protocol,type=treatment,str
-,TREATMENT_SUMMARY,""" """,description,True,,id,ascending,protocol,type=treatment,str
+,TREATMENT_PROTOCOL_ID,;,id,True,True,id,ascending,protocol,type=treatment,str
+,TREATMENT_SUMMARY,""" """,description,True,True,id,ascending,protocol,type=treatment,str
 ,,,,,,,,,,
