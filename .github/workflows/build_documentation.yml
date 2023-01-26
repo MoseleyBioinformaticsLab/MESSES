@@ -18,7 +18,9 @@ jobs:
     # Standard drop-in approach that should work for most people.
     - uses: ammaraskar/sphinx-action@master
       with:
+        python-version: 3.10
         docs-folder: "docs/"
+        pre-build-command: "pip install --upgrade pip && pip install ."
     # Create an artifact of the html output.
     - uses: actions/upload-artifact@v1
       with:
