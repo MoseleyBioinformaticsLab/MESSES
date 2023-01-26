@@ -225,7 +225,7 @@ def test_str_for_each_bool():
 
 
 def test_str_code_wrong_value():
-    """Test that when a code tag returns the wrong type an error is printed."""
+    """Test that when a code directive returns the wrong type an error is printed."""
     
     test_file = "MS_base_input_truncated.json"
     
@@ -236,7 +236,7 @@ def test_str_code_wrong_value():
 
     assert not output_path_json.exists()
             
-    assert output == 'Error: The code conversion tag to create the "TREATMENT_SUMMARY" record in the "TREATMENT" table did not return a string type value.\n'
+    assert output == 'Error: The code conversion directive to create the "TREATMENT_SUMMARY" record in the "TREATMENT" table did not return a string type value.\n'
 
 
 def test_str_no_field_error():
@@ -251,11 +251,11 @@ def test_str_no_field_error():
 
     assert not output_path_json.exists()
             
-    assert output == 'Error: The conversion tag to create the "CHROMATOGRAPHY_SUMMARY" record in the "CHROMATOGRAPHY" table matched a record in the input "protocol" table, "ICMS1", that did not contain the "asdf" field indicated by the tag.\n'
+    assert output == 'Error: The conversion directive to create the "CHROMATOGRAPHY_SUMMARY" record in the "CHROMATOGRAPHY" table matched a record in the input "protocol" table, "ICMS1", that did not contain the "asdf" field indicated by the directive.\n'
 
 
 def test_str_code_error():
-    """Test that when a code tag encouners an error during execution an error is printed."""
+    """Test that when a code directive encouners an error during execution an error is printed."""
     
     test_file = "MS_base_input_truncated.json"
     
@@ -266,7 +266,7 @@ def test_str_code_error():
 
     assert not output_path_json.exists()
             
-    assert 'Error: The code conversion tag to create the "TREATMENT_SUMMARY" record in the "TREATMENT" table encountered an error while executing.' in output
+    assert 'Error: The code conversion directive to create the "TREATMENT_SUMMARY" record in the "TREATMENT" table encountered an error while executing.' in output
     assert 'Traceback (most recent call last):' in output
     assert "SyntaxError: '(' was never closed" in output
 
@@ -290,7 +290,7 @@ def test_str_no_matching_table_records():
 
 
 def test_str_no_matching_table_records_warning():
-    """Test that when there is no matching records and the tag is not required a warning is printed."""
+    """Test that when there is no matching records and the directive is not required a warning is printed."""
     
     test_file = "MS_base_input_truncated.json"
     
@@ -308,7 +308,7 @@ def test_str_no_matching_table_records_warning():
 
 
 def test_str_no_matching_table_records_bool_warning():
-    """Test that when there is no matching records and the tag is not required a warning is printed, and that required field can be a bool."""
+    """Test that when there is no matching records and the directive is not required a warning is printed, and that required field can be a bool."""
     
     test_file = "MS_base_input_truncated.json"
     
@@ -357,9 +357,9 @@ def test_str_no_sort_by_field():
     assert '"TREATMENT_SUMMARY", in the conversion table, "TREATMENT".' in output
 
 
-# matrix tags
+# matrix directives
 def test_matrix_base_case():
-    """Test that a simple matrix tag works as expceted."""
+    """Test that a simple matrix directive works as expceted."""
     
     test_file = "MS_base_input_truncated.json"
     
@@ -394,7 +394,7 @@ def test_matrix_base_case():
     
 
 def test_matrix_collate():
-    """Test that collate field for matrix tag works as expceted."""
+    """Test that collate field for matrix directive works as expceted."""
     
     test_file = "MS_base_input_truncated.json"
     
@@ -417,7 +417,7 @@ def test_matrix_collate():
     
 
 def test_matrix_fields_to_headers():
-    """Test that fields_to_headers field for matrix tag works as expceted."""
+    """Test that fields_to_headers field for matrix directive works as expceted."""
     
     test_file = "MS_base_input_truncated.json"
     
@@ -440,7 +440,7 @@ def test_matrix_fields_to_headers():
     
 
 def test_matrix_fields_to_headers_bool():
-    """Test that fields_to_headers field for matrix tag works as expceted if it is a bool."""
+    """Test that fields_to_headers field for matrix directive works as expceted if it is a bool."""
     
     test_file = "MS_base_input_truncated.json"
     
@@ -463,7 +463,7 @@ def test_matrix_fields_to_headers_bool():
     
 
 def test_matrix_fields_to_headers_exclusion():
-    """Test that exclusion_headers field for matrix tag works as expceted."""
+    """Test that exclusion_headers field for matrix directive works as expceted."""
     
     test_file = "MS_base_input_truncated.json"
     
@@ -486,7 +486,7 @@ def test_matrix_fields_to_headers_exclusion():
 
 
 def test_matrix_values_to_str():
-    """Test that values_to_str field for matrix tag works as expceted."""
+    """Test that values_to_str field for matrix directive works as expceted."""
     
     test_file = "NMR_base_input.json"
     
@@ -509,7 +509,7 @@ def test_matrix_values_to_str():
 
 
 def test_matrix_values_to_str_bool():
-    """Test that values_to_str field for matrix tag works as expceted when it is a bool."""
+    """Test that values_to_str field for matrix directive works as expceted when it is a bool."""
     
     test_file = "NMR_base_input.json"
     
@@ -563,7 +563,7 @@ def test_matrix_code_error():
     
     assert not output_path_json.exists()
     
-    assert output == 'Error: The code conversion tag to create the "TREATMENT_SUMMARY" record in the "TREATMENT" table did not return a matrix type value.\n'
+    assert output == 'Error: The code conversion directive to create the "TREATMENT_SUMMARY" record in the "TREATMENT" table did not return a matrix type value.\n'
 
 
 def test_matrix_test():
@@ -709,7 +709,7 @@ def test_matrix_collate_collision_warning():
             ' for the collate key "GH_Spleen". Only the last value will be used.\n'
 
 
-def test_default_tag():
+def test_default_directive():
     """Test that default field works as expected."""
     
     test_file = "MS_base_input_truncated.json"
@@ -730,11 +730,11 @@ def test_default_tag():
                           }
                         }
     
-    assert 'The conversion tag to create the "TREATMENT_SUMMARY" record in the ' +\
+    assert 'The conversion directive to create the "TREATMENT_SUMMARY" record in the ' +\
             '"TREATMENT" table could not be created, and reverted to its given default value, "qwer".' in output
 
 
-def test_default_literal_tag():
+def test_default_literal_directive():
     """Test that default field works as expected when it is a literal value."""
     
     test_file = "MS_base_input_truncated.json"
@@ -755,12 +755,12 @@ def test_default_literal_tag():
                           }
                         }
     
-    assert 'The conversion tag to create the "TREATMENT_SUMMARY" record in the ' +\
+    assert 'The conversion directive to create the "TREATMENT_SUMMARY" record in the ' +\
             '"TREATMENT" table could not be created, and reverted to its given default value, "qwer".' in output
 
 
 def test_table_not_in_input_error():
-    """Test that an error is printed when a tag indicates a table that isn't in the input."""
+    """Test that an error is printed when a directive indicates a table that isn't in the input."""
     
     test_file = "MS_base_input_truncated.json"
     
@@ -777,7 +777,7 @@ def test_table_not_in_input_error():
 
 
 def test_table_not_in_input_warning():
-    """Test that a warning is printed when a tag indicates a table that isn't in the input and the tag is not required."""
+    """Test that a warning is printed when a directive indicates a table that isn't in the input and the directive is not required."""
     
     test_file = "MS_base_input_truncated.json"
     
@@ -794,7 +794,7 @@ def test_table_not_in_input_warning():
 
 
 def test_matrix_conversion_returns_none_error():
-    """Test that an error is printed when a matrix conversion tag returns None."""
+    """Test that an error is printed when a matrix conversion directive returns None."""
     
     test_file = "MS_base_input_truncated.json"
     
@@ -805,11 +805,11 @@ def test_matrix_conversion_returns_none_error():
     
     assert not output_path_json.exists()
     
-    assert output == 'Error: The conversion tag to create the "TREATMENT_SUMMARY" record in the "TREATMENT" table did not return a value.\n'
+    assert output == 'Error: The conversion directive to create the "TREATMENT_SUMMARY" record in the "TREATMENT" table did not return a value.\n'
     
 
 def test_conversion_returns_none_warning():
-    """Test that a warning is printed when a conversion tag returns None and is not required."""
+    """Test that a warning is printed when a conversion directive returns None and is not required."""
     
     test_file = "MS_base_input_truncated.json"
     
@@ -820,7 +820,7 @@ def test_conversion_returns_none_warning():
     
     assert output_path_json.exists()
     
-    assert output == 'Warning: The non-required conversion tag to create the "TREATMENT_SUMMARY" record in the "TREATMENT" table could not be created.\n'
+    assert output == 'Warning: The non-required conversion directive to create the "TREATMENT_SUMMARY" record in the "TREATMENT" table could not be created.\n'
     
 
 def test_code_import():
@@ -890,7 +890,7 @@ def test_str_literal_field_test():
 
 
 def test_str_conversion_returns_none_error():
-    """Test that an error is printed when a str conversion tag returns None."""
+    """Test that an error is printed when a str conversion directive returns None."""
     
     test_file = "MS_base_input_truncated.json"
     
@@ -901,7 +901,7 @@ def test_str_conversion_returns_none_error():
     
     assert not output_path_json.exists()
     
-    assert output == 'Error: The conversion tag to create the "TREATMENT_SUMMARY" record in the "TREATMENT" table did not return a value.\n'
+    assert output == 'Error: The conversion directive to create the "TREATMENT_SUMMARY" record in the "TREATMENT" table did not return a value.\n'
 
 
 

@@ -11,7 +11,7 @@ import copy
 
 from contextlib import nullcontext as does_not_raise
 
-from messes.convert.mwtab_tag_functions import create_subject_sample_factors
+from messes.convert.mwtab_functions import create_subject_sample_factors
 
 
 @pytest.fixture(scope="module", autouse=True)

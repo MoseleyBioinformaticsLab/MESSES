@@ -7,7 +7,7 @@ import sys
 import numpy
 cimport numpy
 
-from . import extract
+from messes.extract import extract
 
 COLUMN_ORDER_CONSTANT = 16000
 COLUMN_ORDER_CONSTANT_PLUS = COLUMN_ORDER_CONSTANT + 1

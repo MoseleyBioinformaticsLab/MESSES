@@ -8,10 +8,10 @@ import pathlib
 from jsonschema import ValidationError
 from contextlib import nullcontext as does_not_raise
 
-from messes.convert.user_input_checking import validate_conversion_tags 
+from messes.convert.user_input_checking import validate_conversion_directives 
 # from messes.convert.user_input_checking import additional_args_checks
-from messes.convert.convert_schema import tag_schema
-from messes.convert.mwtab_conversion_tags import ms_tags, nmr_tags, nmr_binned_tags
+from messes.convert.convert_schema import directives_schema
+from messes.convert.mwtab_conversion_directives import ms_directives, nmr_directives, nmr_binned_directives
 
 
 ## Commenting $schema out because the jsonschema package produces warnings if left in. It is a known issue in their package. 10-18-2021
@@ -56,38 +56,38 @@ def test_schema():
         ])
 
 
-def test_validate_conversion_tags(instance, test_schema, error_message, capsys):
+def test_validate_conversion_directives(instance, test_schema, error_message, capsys):
         
     with pytest.raises(SystemExit):
-        validate_conversion_tags(instance, test_schema)
+        validate_conversion_directives(instance, test_schema)
     captured = capsys.readouterr()
     assert captured.err == error_message + "\n"
 
 
-def test_validate_conversion_tags_other_errors(test_schema, capsys):
+def test_validate_conversion_directives_other_errors(test_schema, capsys):
     
     instance = {"required_test":{"required_test":""}, "other_error_type":1000}
     
     with pytest.raises(ValidationError):
-        validate_conversion_tags(instance, test_schema)
+        validate_conversion_directives(instance, test_schema)
         
 
-def test_validate_conversion_tags_no_error(test_schema):
+def test_validate_conversion_directives_no_error(test_schema):
     with does_not_raise():
-        validate_conversion_tags({"required_test":{"required_test":""}}, test_schema)
+        validate_conversion_directives({"required_test":{"required_test":""}}, test_schema)
         
 
 
-malformed_str_message = "ValidationError: An error was found in the Conversion Tags.\n" +\
-                        "'str' type tags have 3 valid configurations:\n" +\
+malformed_str_message = "ValidationError: An error was found in the Conversion Directives.\n" +\
+                        "'str' type directives have 3 valid configurations:\n" +\
                         "\t1. They have an 'override' property.\n" +\
                         "\t2. They have a 'code' property.\n" +\
                         "\t3. They have the 'table' and 'fields' properties.\n" +\
                         "The entry ['ANALYSIS']['ANALYSIS_TYPE']" +\
                         " is not one of the valid configurations."
                         
-malformed_matrix_message = "ValidationError: An error was found in the Conversion Tags.\n" +\
-                           "'matrix' type tags must either have a 'code' property or 'headers' and 'table' properties.\n" +\
+malformed_matrix_message = "ValidationError: An error was found in the Conversion Directives.\n" +\
+                           "'matrix' type directives must either have a 'code' property or 'headers' and 'table' properties.\n" +\
                            "The entry ['ANALYSIS']['ANALYSIS_TYPE']" +\
                            " is missing one of these properties."
 
@@ -102,7 +102,7 @@ malformed_matrix_message = "ValidationError: An error was found in the Conversio
         ({"ANALYSIS": {
             "ANALYSIS_TYPE": {
               "id": "ANALYSIS_TYPE",
-            }}}, "ValidationError: An error was found in the Conversion Tags.\nThe entry ['ANALYSIS']['ANALYSIS_TYPE'] is missing the required property 'value_type'."),
+            }}}, "ValidationError: An error was found in the Conversion Directives.\nThe entry ['ANALYSIS']['ANALYSIS_TYPE'] is missing the required property 'value_type'."),
         ({"ANALYSIS": {
             "ANALYSIS_TYPE": {
               "id": "ANALYSIS_TYPE",
@@ -112,14 +112,14 @@ malformed_matrix_message = "ValidationError: An error was found in the Conversio
             "ANALYSIS_TYPE": {
               "id": "ANALYSIS_TYPE",
               "value_type":"section"
-            }}}, "ValidationError: An error was found in the Conversion Tags.\nThe entry ['ANALYSIS']['ANALYSIS_TYPE'] is missing the required property 'code'."),
+            }}}, "ValidationError: An error was found in the Conversion Directives.\nThe entry ['ANALYSIS']['ANALYSIS_TYPE'] is missing the required property 'code'."),
         ({"ANALYSIS": {
             "ANALYSIS_TYPE": {
               "id": "ANALYSIS_TYPE",
               "value_type":"matrix",
               "table":"qwer",
               "headers":["asdf"]
-            }}}, "ValidationError: An error was found in the Conversion Tags.\nEach element in the 'headers' property for entry ['ANALYSIS']['ANALYSIS_TYPE'] must have an '=' in the middle. Ex. type=MS"),
+            }}}, "ValidationError: An error was found in the Conversion Directives.\nEach element in the 'headers' property for entry ['ANALYSIS']['ANALYSIS_TYPE'] must have an '=' in the middle. Ex. type=MS"),
         ({"ANALYSIS": {
             "ANALYSIS_TYPE": {
               "id": "ANALYSIS_TYPE",
@@ -128,7 +128,7 @@ malformed_matrix_message = "ValidationError: An error was found in the Conversio
               "fields":["asdf"],
               "for_each":"True",
               "test":"asdf"
-            }}}, "ValidationError: An error was found in the Conversion Tags.\nThe 'test' property for entry ['ANALYSIS']['ANALYSIS_TYPE'] must have an '=' in the middle. Ex. type=MS"),
+            }}}, "ValidationError: An error was found in the Conversion Directives.\nThe 'test' property for entry ['ANALYSIS']['ANALYSIS_TYPE'] must have an '=' in the middle. Ex. type=MS"),
         ({"ANALYSIS": {
             "ANALYSIS_TYPE": {
               "id": "ANALYSIS_TYPE",
@@ -137,7 +137,7 @@ malformed_matrix_message = "ValidationError: An error was found in the Conversio
               "fields":["asdf"],
               "for_each":"True",
               "sort_order":"asdf"
-            }}}, "ValidationError: An error was found in the Conversion Tags.\nThe 'sort_order' property for entry ['ANALYSIS']['ANALYSIS_TYPE'] must be 'ascending' or 'descending'"),
+            }}}, "ValidationError: An error was found in the Conversion Directives.\nThe 'sort_order' property for entry ['ANALYSIS']['ANALYSIS_TYPE'] must be 'ascending' or 'descending'"),
         ({"ANALYSIS": {
             "ANALYSIS_TYPE": {
               "id": "ANALYSIS_TYPE",
@@ -146,7 +146,7 @@ malformed_matrix_message = "ValidationError: An error was found in the Conversio
               "fields":["asdf"],
               "for_each":"True",
               "required":"asdf"
-            }}}, "ValidationError: An error was found in the Conversion Tags.\nThe 'required' property for entry ['ANALYSIS']['ANALYSIS_TYPE'] must be 'True' or 'False'."),
+            }}}, "ValidationError: An error was found in the Conversion Directives.\nThe 'required' property for entry ['ANALYSIS']['ANALYSIS_TYPE'] must be 'True' or 'False'."),
         ({"ANALYSIS": {
             "ANALYSIS_TYPE": {
               "id": "ANALYSIS_TYPE",
@@ -155,7 +155,7 @@ malformed_matrix_message = "ValidationError: An error was found in the Conversio
               "fields":["asdf"],
               "for_each":"asdf",
               "record_id":"asdf"
-            }}}, "ValidationError: An error was found in the Conversion Tags.\nThe 'for_each' property for entry ['ANALYSIS']['ANALYSIS_TYPE'] must be 'True' or 'False'."),
+            }}}, "ValidationError: An error was found in the Conversion Directives.\nThe 'for_each' property for entry ['ANALYSIS']['ANALYSIS_TYPE'] must be 'True' or 'False'."),
         ({"ANALYSIS": {
             "ANALYSIS_TYPE": {
               "id": "ANALYSIS_TYPE",
@@ -163,7 +163,7 @@ malformed_matrix_message = "ValidationError: An error was found in the Conversio
               "table":"qwer",
               "headers":["asdf=qwer"],
               "fields_to_headers":"asdf"
-            }}}, "ValidationError: An error was found in the Conversion Tags.\nThe 'fields_to_headers' property for entry ['ANALYSIS']['ANALYSIS_TYPE'] must be 'True' or 'False'."),
+            }}}, "ValidationError: An error was found in the Conversion Directives.\nThe 'fields_to_headers' property for entry ['ANALYSIS']['ANALYSIS_TYPE'] must be 'True' or 'False'."),
         ({"ANALYSIS": {
             "ANALYSIS_TYPE": {
               "id": "ANALYSIS_TYPE",
@@ -171,7 +171,7 @@ malformed_matrix_message = "ValidationError: An error was found in the Conversio
               "table":"qwer",
               "headers":["asdf=qwer"],
               "values_to_str":"asdf"
-            }}}, "ValidationError: An error was found in the Conversion Tags.\nThe 'values_to_str' property for entry ['ANALYSIS']['ANALYSIS_TYPE'] must be 'True' or 'False'."),
+            }}}, "ValidationError: An error was found in the Conversion Directives.\nThe 'values_to_str' property for entry ['ANALYSIS']['ANALYSIS_TYPE'] must be 'True' or 'False'."),
         ({"ANALYSIS": {
             "ANALYSIS_TYPE": {
               "id": "ANALYSIS_TYPE",
@@ -179,14 +179,14 @@ malformed_matrix_message = "ValidationError: An error was found in the Conversio
               "table":"qwer",
               "headers":["asdf=qwer"],
               "values_to_str":"asdf"
-            }}}, "ValidationError: An error was found in the Conversion Tags.\nThe value for ['ANALYSIS']['ANALYSIS_TYPE']['value_type'] is not one of ['str', 'section', 'matrix']."),
+            }}}, "ValidationError: An error was found in the Conversion Directives.\nThe value for ['ANALYSIS']['ANALYSIS_TYPE']['value_type'] is not one of ['str', 'section', 'matrix']."),
         ])
 
-def test_validate_conversion_tags_malformed_tag_errors(instance, error_message, capsys):
-    """Test that some certain kinds of malformed tags error."""
+def test_validate_conversion_directives_malformed_directives_errors(instance, error_message, capsys):
+    """Test that some certain kinds of malformed directives error."""
         
     with pytest.raises(SystemExit):
-        validate_conversion_tags(instance, tag_schema)
+        validate_conversion_directives(instance, directives_schema)
     captured = capsys.readouterr()
     assert captured.err == error_message + "\n"
     
@@ -242,36 +242,36 @@ def test_validate_conversion_tags_malformed_tag_errors(instance, error_message, 
             }}}),
         ])
 
-def test_validate_conversion_tags_passing(instance):
-    """Test that certain tags pass without error."""
+def test_validate_conversion_directives_passing(instance):
+    """Test that certain directives pass without error."""
     with does_not_raise():
-        validate_conversion_tags(instance, tag_schema)
+        validate_conversion_directives(instance, directives_schema)
 
 
-def test_validate_conversion_tags_MS_tags():
-    """Test that the mass spec tags pass."""
+def test_validate_conversion_directives_MS_directives():
+    """Test that the mass spec directives pass."""
     with does_not_raise():
-        validate_conversion_tags(ms_tags, tag_schema)
+        validate_conversion_directives(ms_directives, directives_schema)
 
 
-def test_validate_conversion_tags_NMR_tags():
-    """Test that the NMR tags pass."""
+def test_validate_conversion_directives_NMR_directives():
+    """Test that the NMR directives pass."""
     with does_not_raise():
-        validate_conversion_tags(nmr_tags, tag_schema)
+        validate_conversion_directives(nmr_directives, directives_schema)
 
-def test_validate_conversion_tags_NMR_binned_tags():
-    """Test that the NMR binned tags pass."""
+def test_validate_conversion_directives_NMR_binned_directives():
+    """Test that the NMR binned directives pass."""
     with does_not_raise():
-        validate_conversion_tags(nmr_binned_tags, tag_schema)
+        validate_conversion_directives(nmr_binned_directives, directives_schema)
 
 
 
 # @pytest.mark.parametrize("args, error_message", [
         
-#         ({"--update":"asdf", "--override":"", "<conversion_tags>":"", "<input_JSON>":""}, "Error: The value entered for --update is not a valid file path or does not exist."),
-#         ({"--update":"", "--override":"asdf", "<conversion_tags>":"", "<input_JSON>":""}, "Error: The value entered for --override is not a valid file path or does not exist."),
-#         ({"--update":"", "--override":"", "<conversion_tags>":"asdf", "<input_JSON>":""}, "Error: The value entered for <conversion_tags> is not a valid file path or does not exist."),
-#         ({"--update":"", "--override":"", "<conversion_tags>":"", "<input_JSON>":"asdf"}, "Error: The value entered for <input_JSON> is not a valid file path or does not exist."),
+#         ({"--update":"asdf", "--override":"", "<conversion_directives>":"", "<input_JSON>":""}, "Error: The value entered for --update is not a valid file path or does not exist."),
+#         ({"--update":"", "--override":"asdf", "<conversion_directives>":"", "<input_JSON>":""}, "Error: The value entered for --override is not a valid file path or does not exist."),
+#         ({"--update":"", "--override":"", "<conversion_directives>":"asdf", "<input_JSON>":""}, "Error: The value entered for <conversion_directives> is not a valid file path or does not exist."),
+#         ({"--update":"", "--override":"", "<conversion_directives>":"", "<input_JSON>":"asdf"}, "Error: The value entered for <input_JSON> is not a valid file path or does not exist."),
 #         ])
 
 
@@ -282,7 +282,7 @@ def test_validate_conversion_tags_NMR_binned_tags():
 #     assert captured.err == error_message + "\n"
 
 # def test_additional_args_checks_passing():
-#     additional_args_checks({"--update":"", "--override":"", "<conversion_tags>":"", "<input_JSON>":""})
+#     additional_args_checks({"--update":"", "--override":"", "<conversion_directives>":"", "<input_JSON>":""})
 
 
 

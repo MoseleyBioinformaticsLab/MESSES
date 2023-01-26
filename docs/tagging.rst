@@ -11,7 +11,9 @@ Terminology
 
     * Example: #measurement.compound
     
-* **table** - in this section table can refer to either a table in a data file or a SQL style table in the output. Often there are many small tables in a data file that are combined into a larger one in the extract output.
+* **table** - in this section, table can refer to either a table in a data file or a SQL style table in the output. Often there are many small tables in a data file that are combined into a larger one in the extract output.
+
+* **directives** - directions given to MESSES commands using tagged files or their JSONized forms. A table and its tags taken as a whole. 
 
 Introduction
 ~~~~~~~~~~~~
@@ -35,7 +37,10 @@ use case for this is when you have data output by a program in a consistent way.
 export tags to the program output each time you can create an "automation" page that will add the "export" 
 tags for you. The last part is the "modification" part which is the system used to modify record values. 
 It can be used to prepend, append, delete, overwrite, or regex substitute values. An example use case would 
-be to update old naming conventions.
+be to update old naming conventions. Validly tagged files in their tabular or JSON form can be referred to 
+as directives as they direct the actions of the program. To reduce confusion between tags and directives 
+"tags" should generally refer to the extra text added above tables while "directives" are the tables and 
+tags taken as a whole. Each row of a tagged table is an individual directive.
 
 Each of the 3 tagging systems has to be in their own sheet or file for the extract command. By default 
 export tags are expected to be in a sheet named '#export' if given an Excel file without specifying a sheet 
@@ -850,7 +855,7 @@ They function just like when they are on their own, except that there is an addi
 can be used to control whether the insert happens every time the tag block matches or only the first time.
 
 * **#multiple=true** - will insert on every match.
-* **#multiple=false* - will only insert on the first match, this is the default behavior if **#multiple** is not specified.
+* **#multiple=false** - will only insert on the first match, this is the default behavior if **#multiple** is not specified.
 
 
 

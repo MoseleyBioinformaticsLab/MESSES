@@ -5,10 +5,11 @@ JSON schema for convert validation.
 
 
 
-tag_schema = {
+directives_schema = \
+{
  "$schema": "https://json-schema.org/draft/2020-12/schema",
- "title": "Conversion Tags",
- "description": "Schema to check that the conversion tags are valid.",
+ "title": "Conversion Directives",
+ "description": "Schema to check that the conversion directives are valid.",
 
  "type": "object",
  "additionalProperties": {
@@ -120,7 +121,7 @@ tag_schema = {
          }
      }
 }
-
+# Marking the end for Sphinx documentation.
 
 # temp = {"ANALYSIS": {
 #           "ANALYSIS_TYPE": {
@@ -128,7 +129,7 @@ tag_schema = {
 #             "table":"asdf",
 #             "value_type":"section"
 #           }}}
-# validate_conversion_tags(temp, tag_schema)
+# validate_conversion_directives(temp, tag_schema)
 # validate_arbitrary_schema(temp, tag_schema)
 # jsonschema.validate(temp, tag_schema)
 

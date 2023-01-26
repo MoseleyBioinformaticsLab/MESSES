@@ -46,18 +46,18 @@ def delete_txt():
             if time_counter > time_to_wait:
                 raise FileExistsError(output_path_txt + " was not deleted within " + str(time_to_wait) + " seconds, so it is assumed that it won't be and something went wrong.")
 
-output_path_print_tags = pathlib.Path("mwtab_ms_conversion_tags.json")
+output_path_print_directives = pathlib.Path("mwtab_ms_conversion_directives.json")
 @pytest.fixture(autouse=True)
-def delete_print_tags():                
-    if output_path_print_tags.exists():
-        os.remove(output_path_print_tags)
+def delete_print_directives():                
+    if output_path_print_directives.exists():
+        os.remove(output_path_print_directives)
         time_to_wait=10
         time_counter = 0
-        while output_path_print_tags.exists():
+        while output_path_print_directives.exists():
             time.sleep(1)
             time_counter += 1
             if time_counter > time_to_wait:
-                raise FileExistsError(output_path_print_tags + " was not deleted within " + str(time_to_wait) + " seconds, so it is assumed that it won't be and something went wrong.")
+                raise FileExistsError(output_path_print_directives + " was not deleted within " + str(time_to_wait) + " seconds, so it is assumed that it won't be and something went wrong.")
 
 output_path_csv = pathlib.Path("output.csv")
 @pytest.fixture(autouse=True)
@@ -216,7 +216,7 @@ def test_mwtab_MS_update_command():
     
     test_file = "MS_base_input_truncated.json"
     
-    command = "messes convert mwtab ms ../" + test_file  + " output --update ../mwtab_ms_conversion_tags_update.json" 
+    command = "messes convert mwtab ms ../" + test_file  + " output --update ../mwtab_ms_conversion_directives_update.json" 
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -256,7 +256,7 @@ def test_mwtab_MS_override_command():
     
     test_file = "MS_base_input_truncated.json"
     
-    command = "messes convert mwtab ms ../" + test_file  + " output --override ../mwtab_ms_conversion_tags_override.json" 
+    command = "messes convert mwtab ms ../" + test_file  + " output --override ../mwtab_ms_conversion_directives_override.json" 
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -313,10 +313,10 @@ def test_mwtab_MS_silent_command():
     assert output == ""
 
 
-def test_printtags_mwtab_MS_json():
-    """Test that the print-tags mwtab ms command creates the expected json file."""
+def test_printdirectives_mwtab_MS_json():
+    """Test that the save-directives mwtab ms command creates the expected json file."""
     
-    command = "messes convert print-tags mwtab ms json output" 
+    command = "messes convert save-directives mwtab ms json output" 
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -327,7 +327,7 @@ def test_printtags_mwtab_MS_json():
     with open(output_path_json, "r") as f:
         output_json = json.loads(f.read())
         
-    with open(pathlib.Path("mwtab_ms_conversion_tags_compare.json"), "r") as f:
+    with open(pathlib.Path("mwtab_ms_conversion_directives_compare.json"), "r") as f:
         output_compare_json = json.loads(f.read())
     
     assert output_json == output_compare_json
@@ -335,10 +335,10 @@ def test_printtags_mwtab_MS_json():
     assert output == ""
     
 
-def test_printtags_mwtab_MS_xlsx():
-    """Test that the print-tags mwtab ms command creates the expected xlsx file."""
+def test_printdirectives_mwtab_MS_xlsx():
+    """Test that the save-directives mwtab ms command creates the expected xlsx file."""
     
-    command = "messes convert print-tags mwtab ms xlsx output" 
+    command = "messes convert save-directives mwtab ms xlsx output" 
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -356,17 +356,17 @@ def test_printtags_mwtab_MS_xlsx():
     
     output_df = pandas.read_excel(output_path)
         
-    output_compare_df = pandas.read_excel("mwtab_ms_conversion_tags_compare.xlsx")
+    output_compare_df = pandas.read_excel("mwtab_ms_conversion_directives_compare.xlsx")
     
     assert output_df.equals(output_compare_df)
         
     assert output == ""
     
 
-def test_printtags_mwtab_MS_csv():
-    """Test that the print-tags mwtab ms command creates the expected csv file."""
+def test_printdirectives_mwtab_MS_csv():
+    """Test that the save-directives mwtab ms command creates the expected csv file."""
     
-    command = "messes convert print-tags mwtab ms csv output" 
+    command = "messes convert save-directives mwtab ms csv output" 
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -384,22 +384,22 @@ def test_printtags_mwtab_MS_csv():
     
     output_df = pandas.read_csv(output_path)
         
-    output_compare_df = pandas.read_csv("mwtab_ms_conversion_tags_compare.csv")
+    output_compare_df = pandas.read_csv("mwtab_ms_conversion_directives_compare.csv")
     
     assert output_df.equals(output_compare_df)
         
     assert output == ""
     
 
-def test_printtags_mwtab_MS_autoname():
-    """Test that the print-tags mwtab ms command autonames the output file."""
+def test_printdirectives_mwtab_MS_autoname():
+    """Test that the save-directives mwtab ms command autonames the output file."""
     
-    command = "messes convert print-tags mwtab ms json" 
+    command = "messes convert save-directives mwtab ms json" 
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
 
-    output_path = pathlib.Path("mwtab_ms_conversion_tags.json")
+    output_path = pathlib.Path("mwtab_ms_conversion_directives.json")
     time_to_wait=10
     time_counter = 0
     while not output_path.exists():
@@ -413,7 +413,7 @@ def test_printtags_mwtab_MS_autoname():
     with open(output_path, "r") as f:
         output_json = json.loads(f.read())
         
-    with open(pathlib.Path("mwtab_ms_conversion_tags_compare.json"), "r") as f:
+    with open(pathlib.Path("mwtab_ms_conversion_directives_compare.json"), "r") as f:
         output_compare_json = json.loads(f.read())
     
     assert output_json == output_compare_json
@@ -422,10 +422,10 @@ def test_printtags_mwtab_MS_autoname():
     
                 
 
-def test_printtags_mwtab_MS_json_extension():
-    """Test that the print-tags mwtab ms command won't add the filetype extension if it is already present."""
+def test_printdirectives_mwtab_MS_json_extension():
+    """Test that the save-directives mwtab ms command won't add the filetype extension if it is already present."""
     
-    command = "messes convert print-tags mwtab ms json output.json" 
+    command = "messes convert save-directives mwtab ms json output.json" 
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -436,7 +436,7 @@ def test_printtags_mwtab_MS_json_extension():
     with open(output_path_json, "r") as f:
         output_json = json.loads(f.read())
         
-    with open(pathlib.Path("mwtab_ms_conversion_tags_compare.json"), "r") as f:
+    with open(pathlib.Path("mwtab_ms_conversion_directives_compare.json"), "r") as f:
         output_compare_json = json.loads(f.read())
     
     assert output_json == output_compare_json
@@ -444,10 +444,10 @@ def test_printtags_mwtab_MS_json_extension():
     assert output == ""
 
 
-def test_printtags_mwtab_NMR_json():
-    """Test that the print-tags mwtab nmr command creates the expected json file."""
+def test_printdirectives_mwtab_NMR_json():
+    """Test that the save-directives mwtab nmr command creates the expected json file."""
     
-    command = "messes convert print-tags mwtab nmr json output" 
+    command = "messes convert save-directives mwtab nmr json output" 
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -458,7 +458,7 @@ def test_printtags_mwtab_NMR_json():
     with open(output_path_json, "r") as f:
         output_json = json.loads(f.read())
         
-    with open(pathlib.Path("mwtab_nmr_conversion_tags_compare.json"), "r") as f:
+    with open(pathlib.Path("mwtab_nmr_conversion_directives_compare.json"), "r") as f:
         output_compare_json = json.loads(f.read())
     
     assert output_json == output_compare_json
@@ -466,10 +466,10 @@ def test_printtags_mwtab_NMR_json():
     assert output == ""
     
 
-def test_printtags_mwtab_NMR_xlsx():
-    """Test that the print-tags mwtab nmr command creates the expected xlsx file."""
+def test_printdirectives_mwtab_NMR_xlsx():
+    """Test that the save-directives mwtab nmr command creates the expected xlsx file."""
     
-    command = "messes convert print-tags mwtab nmr xlsx output" 
+    command = "messes convert save-directives mwtab nmr xlsx output" 
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -487,17 +487,17 @@ def test_printtags_mwtab_NMR_xlsx():
     
     output_df = pandas.read_excel(output_path)
         
-    output_compare_df = pandas.read_excel("mwtab_nmr_conversion_tags_compare.xlsx")
+    output_compare_df = pandas.read_excel("mwtab_nmr_conversion_directives_compare.xlsx")
     
     assert output_df.equals(output_compare_df)
         
     assert output == ""
     
 
-def test_printtags_mwtab_NMR_csv():
-    """Test that the print-tags mwtab nmr command creates the expected csv file."""
+def test_printdirectives_mwtab_NMR_csv():
+    """Test that the save-directives mwtab nmr command creates the expected csv file."""
     
-    command = "messes convert print-tags mwtab nmr csv output" 
+    command = "messes convert save-directives mwtab nmr csv output" 
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -515,17 +515,17 @@ def test_printtags_mwtab_NMR_csv():
     
     output_df = pandas.read_csv(output_path)
         
-    output_compare_df = pandas.read_csv("mwtab_nmr_conversion_tags_compare.csv")
+    output_compare_df = pandas.read_csv("mwtab_nmr_conversion_directives_compare.csv")
     
     assert output_df.equals(output_compare_df)
         
     assert output == ""
     
 
-def test_printtags_mwtab_NMR_binned_json():
-    """Test that the print-tags mwtab nmr_binned command creates the expected json file."""
+def test_printdirectives_mwtab_NMR_binned_json():
+    """Test that the save-directives mwtab nmr_binned command creates the expected json file."""
     
-    command = "messes convert print-tags mwtab nmr_binned json output" 
+    command = "messes convert save-directives mwtab nmr_binned json output" 
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -535,7 +535,7 @@ def test_printtags_mwtab_NMR_binned_json():
     with open(output_path_json, "r") as f:
         output_json = json.loads(f.read())
         
-    with open(pathlib.Path("mwtab_nmr_binned_conversion_tags_compare.json"), "r") as f:
+    with open(pathlib.Path("mwtab_nmr_binned_conversion_directives_compare.json"), "r") as f:
         output_compare_json = json.loads(f.read())
     
     assert output_json == output_compare_json
@@ -543,10 +543,10 @@ def test_printtags_mwtab_NMR_binned_json():
     assert output == ""
     
 
-def test_printtags_mwtab_NMR_binned_xlsx():
-    """Test that the print-tags mwtab nmr_binned command creates the expected xlsx file."""
+def test_printdirectives_mwtab_NMR_binned_xlsx():
+    """Test that the save-directives mwtab nmr_binned command creates the expected xlsx file."""
     
-    command = "messes convert print-tags mwtab nmr_binned xlsx output" 
+    command = "messes convert save-directives mwtab nmr_binned xlsx output" 
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -564,17 +564,17 @@ def test_printtags_mwtab_NMR_binned_xlsx():
     
     output_df = pandas.read_excel(output_path)
         
-    output_compare_df = pandas.read_excel("mwtab_nmr_binned_conversion_tags_compare.xlsx")
+    output_compare_df = pandas.read_excel("mwtab_nmr_binned_conversion_directives_compare.xlsx")
     
     assert output_df.equals(output_compare_df)
         
     assert output == ""
     
 
-def test_printtags_mwtab_NMR_binned_csv():
-    """Test that the print-tags mwtab nmr_binned command creates the expected csv file."""
+def test_printdirectives_mwtab_NMR_binned_csv():
+    """Test that the save-directives mwtab nmr_binned command creates the expected csv file."""
     
-    command = "messes convert print-tags mwtab nmr_binned csv output" 
+    command = "messes convert save-directives mwtab nmr_binned csv output" 
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -592,7 +592,7 @@ def test_printtags_mwtab_NMR_binned_csv():
     
     output_df = pandas.read_csv(output_path)
         
-    output_compare_df = pandas.read_csv("mwtab_nmr_binned_conversion_tags_compare.csv")
+    output_compare_df = pandas.read_csv("mwtab_nmr_binned_conversion_directives_compare.csv")
     
     assert output_df.equals(output_compare_df)
         
@@ -604,7 +604,7 @@ def test_mwtab_generic_command():
     
     test_file = "MS_base_input_truncated.json"
     
-    command = "messes convert generic ../" + test_file  + " output mwtab_ms_conversion_tags_compare.json" 
+    command = "messes convert generic ../" + test_file  + " output mwtab_ms_conversion_directives_compare.json" 
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -629,7 +629,7 @@ def test_mwtab_generic_silent_command():
     
     test_file = "MS_base_input_truncated_no_field_warning.json"
     
-    command = "messes convert generic ../" + test_file  + " output mwtab_ms_conversion_tags_compare.json --silent" 
+    command = "messes convert generic ../" + test_file  + " output mwtab_ms_conversion_directives_compare.json --silent" 
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -655,7 +655,7 @@ def test_xlsx_read_in():
     
     test_file = "MS_base_input_truncated.json"
     
-    command = "messes convert generic ../" + test_file  + " output mwtab_ms_conversion_tags_compare.xlsx:Sheet1" 
+    command = "messes convert generic ../" + test_file  + " output mwtab_ms_conversion_directives_compare.xlsx:Sheet1" 
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -681,7 +681,7 @@ def test_xlsx_no_default_sheetname_error():
     
     test_file = "MS_base_input_truncated.json"
     
-    command = "messes convert generic ../" + test_file  + " output mwtab_ms_conversion_tags_compare.xlsx" 
+    command = "messes convert generic ../" + test_file  + " output mwtab_ms_conversion_directives_compare.xlsx" 
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -697,14 +697,14 @@ def test_xlsx_does_not_exist_error():
     
     test_file = "MS_base_input_truncated.json"
     
-    command = "messes convert generic ../" + test_file  + " output mwtab_ms_conversion_tags_compa.xlsx" 
+    command = "messes convert generic ../" + test_file  + " output mwtab_ms_conversion_directives_compa.xlsx" 
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
 
     assert not output_path_json.exists()
         
-    assert output == "Excel workbook \"mwtab_ms_conversion_tags_compa.xlsx\" does not exist.\n"
+    assert output == "Excel workbook \"mwtab_ms_conversion_directives_compa.xlsx\" does not exist.\n"
     
     
 def test_xlsx_does_not_have_given_sheetname():
@@ -712,35 +712,35 @@ def test_xlsx_does_not_have_given_sheetname():
     
     test_file = "MS_base_input_truncated.json"
     
-    command = "messes convert generic ../" + test_file  + " output mwtab_ms_conversion_tags_compare.xlsx:asdf" 
+    command = "messes convert generic ../" + test_file  + " output mwtab_ms_conversion_directives_compare.xlsx:asdf" 
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
 
     assert not output_path_json.exists()
         
-    assert output == "r'^asdf$' did not match any sheets in \"mwtab_ms_conversion_tags_compare.xlsx\".\n"
+    assert output == "r'^asdf$' did not match any sheets in \"mwtab_ms_conversion_directives_compare.xlsx\".\n"
                      
                      
-def test_conversion_tags_wrong_file_type():
-    """Test that an error is printed when the conversion tags file is the wrong type."""
+def test_conversion_directives_wrong_file_type():
+    """Test that an error is printed when the conversion directives file is the wrong type."""
     
     test_file = "MS_base_input_truncated.json"
     
-    command = "messes convert generic ../" + test_file  + " output mwtab_ms_conversion_tags_compare.txt" 
+    command = "messes convert generic ../" + test_file  + " output mwtab_ms_conversion_directives_compare.txt" 
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
 
     assert not output_path_json.exists()
         
-    assert output == "Error: Unknown file type for the conversion tags file.\n"
+    assert output == "Error: Unknown file type for the conversion directives file.\n"
 
 
-def test_print_tags_wrong_file_type():
+def test_print_directives_wrong_file_type():
     """Test that an error is printed when the indicated file type is not csv, xlsx, or json is the wrong type."""
         
-    command = "messes convert print-tags mwtab ms asdf"
+    command = "messes convert save-directives mwtab ms asdf"
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -769,7 +769,7 @@ def test_mwtab_validation_error():
 def test_input_json_does_not_exist_error():
     """Test that an error is printed when the input json does not exist."""
     
-    command = "messes convert generic ../asdf.json output mwtab_ms_conversion_tags_compare.json"
+    command = "messes convert generic ../asdf.json output mwtab_ms_conversion_directives_compare.json"
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -782,7 +782,7 @@ def test_input_json_does_not_exist_error():
 def test_input_json_is_not_json_error():
     """Test that an error is printed when the input json is not a json file."""
     
-    command = "messes convert generic ../import_test.py output mwtab_ms_conversion_tags_compare.json"
+    command = "messes convert generic ../import_test.py output mwtab_ms_conversion_directives_compare.json"
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr

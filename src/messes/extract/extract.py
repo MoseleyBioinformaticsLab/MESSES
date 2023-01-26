@@ -6,7 +6,7 @@ Extract data from Excel workbooks, csv files, and JSON files.
     messes extract <metadata_source>... [--delete <metadata_section>...] [options]
     messes extract --help
 
-    <metadata_source> - input metadata source as csv/json filename or xlsx_filename[:worksheet_name|regular_expression]. "#export" worksheet name is the default.
+    <metadata_source> - tagged input metadata source as csv/json filename or xlsx_filename[:worksheet_name|regular_expression]. "#export" worksheet name is the default.
 
  Options:
     -h, --help                          - show this help documentation.
@@ -79,8 +79,8 @@ import pandas
 import docopt
 import jellyfish
 
-from . import cythonized_tagSheet
-from .. import __version__
+from messes.extract import cythonized_tagSheet
+from messes import __version__
 
 silent = False
 
@@ -1245,7 +1245,7 @@ class TagParser(object):
             dataFrameTuple = TagParser.loadSheet(metadataSource, removeRegex)
 
             if dataFrameTuple:
-                dataFrame = self.tagSheet(automationDirectives, dataFrameTuple[2])
+                dataFrame = self.tagSheet(automationDirectives, dataFrameTuple[2], silent)
                 dataFrameTuple = (dataFrameTuple[0], dataFrameTuple[1], dataFrame)
 
                 if saveExtension != None:
@@ -1282,12 +1282,13 @@ class TagParser(object):
                 worksheet.to_excel(writer, sheet_name = sheetName, index=False, header=False)
 
     headerSplitter = re.compile(r'[+]|(r?\"[^\"]*\"|r?\'[^\']*\')|\s+')
-    def tagSheet(self, automationDirectives: dict, worksheet: pandas.core.frame.DataFrame) -> pandas.core.frame.DataFrame:
+    def tagSheet(self, automationDirectives: dict, worksheet: pandas.core.frame.DataFrame, silent: bool) -> pandas.core.frame.DataFrame:
         """Add tags to the worksheet using the given automation directives.
         
         Args:
             automationDirectives: a dictionary used to place the tags in the appropriate places.
             worksheet: the DataFrame in which to place the tags.
+            silent: if True don't print warnings.
             
         Returns:
             The modified worksheet.

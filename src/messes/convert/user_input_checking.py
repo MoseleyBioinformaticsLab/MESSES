@@ -10,8 +10,8 @@ import pathlib
 import jsonschema
 
 
-def validate_conversion_tags(conversion_tags: dict, schema: dict):
-    """Validate conversion tags.
+def validate_conversion_directives(conversion_directives: dict, schema: dict):
+    """Validate conversion directives.
     
     Wraps around jsonschema.validate() to give more human readable errors 
     for most validation errors.
@@ -25,7 +25,7 @@ def validate_conversion_tags(conversion_tags: dict, schema: dict):
     """
         
     try:
-        jsonschema.validate(conversion_tags, schema)
+        jsonschema.validate(conversion_directives, schema)
     except jsonschema.ValidationError as e:
         
         message = "ValidationError: An error was found in the " + schema["title"] + ".\n"
@@ -42,7 +42,7 @@ def validate_conversion_tags(conversion_tags: dict, schema: dict):
                 value_type = value_type_map[e.schema_path[3]]
                 
                 if value_type == "str":
-                    message += "'str' type tags have 3 valid configurations:\n" +\
+                    message += "'str' type directives have 3 valid configurations:\n" +\
                                "\t1. They have an 'override' property.\n" +\
                                "\t2. They have a 'code' property.\n" +\
                                "\t3. They have the 'table' and 'fields' properties.\n" +\
@@ -50,7 +50,7 @@ def validate_conversion_tags(conversion_tags: dict, schema: dict):
                                " is not one of the valid configurations."
                 
                 if value_type == "matrix":
-                    message += "'matrix' type tags must either have a 'code' property or 'headers' and 'table' properties.\n" +\
+                    message += "'matrix' type directives must either have a 'code' property or 'headers' and 'table' properties.\n" +\
                                "The entry "+ "[%s]" % "][".join(repr(index) for index in e.relative_path) +\
                                " is missing one of these properties."
                 
@@ -128,7 +128,7 @@ def validate_conversion_tags(conversion_tags: dict, schema: dict):
 #     Args:
 #         args: the arguments entered into the program by the user.
 #     """
-#     file_path_properties = ["--update", "--override", "<conversion_tags>", "<input_JSON>"]
+#     file_path_properties = ["--update", "--override", "<conversion_directives>", "<input_JSON>"]
 #     for path in file_path_properties:
 #         if args[path] and not pathlib.Path(args[path]).exists():
 #             print("Error: The value entered for " + path + " is not a valid file path or does not exist.", file=sys.stderr)
