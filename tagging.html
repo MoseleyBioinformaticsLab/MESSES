@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Tagging &mdash; MESSES 0.1.dev1+gebeb725 documentation</title>
+  <title>Tagging &mdash; MESSES 0.1.dev1+g3881243 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -12,6 +12,9 @@
   <![endif]-->
   
         <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="_static/doctools.js"></script>
         <script src="_static/sphinx_highlight.js"></script>
     <script src="_static/js/theme.js"></script>
@@ -29,7 +32,7 @@
             <a href="index.html" class="icon icon-home"> MESSES
           </a>
               <div class="version">
-                0.1.dev1+gebeb725
+                0.1.dev1+g3881243
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -98,8 +101,8 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="index.html" class="icon icon-home"></a></li>
-      <li class="breadcrumb-item active">Tagging</li>
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Tagging</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/tagging.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -185,6 +188,12 @@ command are in the <a class="reference internal" href="tutorial.html"><span clas
 </ul>
 <p>Basic Example:</p>
 <table class="docutils align-default">
+<colgroup>
+<col style="width: 15%" />
+<col style="width: 23%" />
+<col style="width: 37%" />
+<col style="width: 25%" />
+</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>#tags</p></th>
 <th class="head"><p>#sample.id</p></th>
@@ -389,7 +398,7 @@ command are in the <a class="reference internal" href="tutorial.html"><span clas
 <blockquote>
 <div><ul class="simple">
 <li><p>study - the study table.</p></li>
-<li><p>“labeled mouse study 278 “ - part of value for the study title field.</p></li>
+<li><p>“labeled mouse study 278 ” - part of value for the study title field.</p></li>
 <li><p>#.type - part of value of the study title field taken from the study type field.</p></li>
 </ul>
 </div></blockquote>
@@ -513,6 +522,12 @@ command are in the <a class="reference internal" href="tutorial.html"><span clas
 </ul>
 <p>Example:</p>
 <table class="docutils align-default">
+<colgroup>
+<col style="width: 5%" />
+<col style="width: 11%" />
+<col style="width: 42%" />
+<col style="width: 42%" />
+</colgroup>
 <tbody>
 <tr class="row-odd"><td><p>#tags</p></td>
 <td><p>#sample.id</p></td>
@@ -609,6 +624,10 @@ command are in the <a class="reference internal" href="tutorial.html"><span clas
 </ul>
 <p>Example:</p>
 <table class="docutils align-default">
+<colgroup>
+<col style="width: 16%" />
+<col style="width: 84%" />
+</colgroup>
 <tbody>
 <tr class="row-odd"><td><p>#tags</p></td>
 <td><p>#sample%track=project.id</p></td>
@@ -668,6 +687,12 @@ record that has the matching field and what modification to do. Underneath that 
 to do the modification with.</p>
 <p>Basic Examples:</p>
 <table class="docutils align-default">
+<colgroup>
+<col style="width: 7%" />
+<col style="width: 46%" />
+<col style="width: 39%" />
+<col style="width: 9%" />
+</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>#tags</p></th>
 <th class="head"><p>#measurement.compound.value</p></th>
@@ -690,6 +715,12 @@ to do the modification with.</p>
 </table>
 <p>This example replaces the “compound” field with value “(S)-2-Acetolactate_Glutaric acid_Methylsuccinic acid_MP_NoStd” in “measurement” table records with “(S)-2-Acetolactate Glutaric acid Methylsuccinic acid”.</p>
 <table class="docutils align-default">
+<colgroup>
+<col style="width: 4%" />
+<col style="width: 30%" />
+<col style="width: 60%" />
+<col style="width: 6%" />
+</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>#tags</p></th>
 <th class="head"><p>#measurement.compound.value</p></th>
@@ -821,6 +852,11 @@ each row individually, or for the whole column by using the = sign. Ex. <strong>
 </ul>
 <p>Example:</p>
 <table class="docutils align-default">
+<colgroup>
+<col style="width: 7%" />
+<col style="width: 50%" />
+<col style="width: 43%" />
+</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>#tags</p></th>
 <th class="head"><p>#measurement.compound.value</p></th>
@@ -873,6 +909,11 @@ each row individually, or for the whole column by using the = sign. Ex. <strong>
 </ul>
 <p>Example:</p>
 <table class="docutils align-default">
+<colgroup>
+<col style="width: 7%" />
+<col style="width: 50%" />
+<col style="width: 43%" />
+</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>#tags</p></th>
 <th class="head"><p>#measurement.compound.value</p></th>
@@ -925,6 +966,11 @@ each row individually, or for the whole column by using the = sign. Ex. <strong>
 </ul>
 <p>Example:</p>
 <table class="docutils align-default">
+<colgroup>
+<col style="width: 7%" />
+<col style="width: 50%" />
+<col style="width: 43%" />
+</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>#tags</p></th>
 <th class="head"><p>#measurement.compound.value</p></th>
@@ -959,6 +1005,11 @@ each row individually, or for the whole column by using the = sign. Ex. <strong>
 </ul>
 <p>Example:</p>
 <table class="docutils align-default">
+<colgroup>
+<col style="width: 5%" />
+<col style="width: 32%" />
+<col style="width: 63%" />
+</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>#tags</p></th>
 <th class="head"><p>#measurement.compound.value</p></th>
@@ -993,6 +1044,11 @@ each row individually, or for the whole column by using the = sign. Ex. <strong>
 </ul>
 <p>Example:</p>
 <table class="docutils align-default">
+<colgroup>
+<col style="width: 9%" />
+<col style="width: 60%" />
+<col style="width: 31%" />
+</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>#tags</p></th>
 <th class="head"><p>#measurement.compound.value</p></th>
@@ -1028,6 +1084,11 @@ each row individually, or for the whole column by using the = sign. Ex. <strong>
 </ul>
 <p>Example:</p>
 <table class="docutils align-default">
+<colgroup>
+<col style="width: 7%" />
+<col style="width: 51%" />
+<col style="width: 41%" />
+</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>#tags</p></th>
 <th class="head"><p>#measurement.compound.value</p></th>
@@ -1116,6 +1177,15 @@ sure everything in the insert block is valid under the export tag system. It can
 a tagging error here because extract won’t be able to tell you that the issue is in the insert block.</p>
 <p>Example:</p>
 <table class="docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 15%" />
+<col style="width: 9%" />
+<col style="width: 18%" />
+<col style="width: 13%" />
+<col style="width: 15%" />
+<col style="width: 20%" />
+</colgroup>
 <tbody>
 <tr class="row-odd"><td><p>#insert</p></td>
 <td></td>
@@ -1174,6 +1244,14 @@ matched, detailed below.</p>
 <h4>Example:<a class="headerlink" href="#example" title="Permalink to this heading"></a></h4>
 <p>Data:</p>
 <table class="docutils align-default">
+<colgroup>
+<col style="width: 36%" />
+<col style="width: 7%" />
+<col style="width: 6%" />
+<col style="width: 32%" />
+<col style="width: 7%" />
+<col style="width: 11%" />
+</colgroup>
 <tbody>
 <tr class="row-odd"><td><p>Compound</p></td>
 <td><p>Mol_Formula</p></td>
@@ -1200,6 +1278,11 @@ matched, detailed below.</p>
 </table>
 <p>Header Tags:</p>
 <table class="docutils align-default">
+<colgroup>
+<col style="width: 4%" />
+<col style="width: 30%" />
+<col style="width: 66%" />
+</colgroup>
 <tbody>
 <tr class="row-odd"><td><p>#tags</p></td>
 <td><p>#header</p></td>
@@ -1245,6 +1328,19 @@ matched, detailed below.</p>
 </table>
 <p>After Automation:</p>
 <table class="docutils align-default">
+<colgroup>
+<col style="width: 2%" />
+<col style="width: 21%" />
+<col style="width: 12%" />
+<col style="width: 11%" />
+<col style="width: 4%" />
+<col style="width: 2%" />
+<col style="width: 9%" />
+<col style="width: 7%" />
+<col style="width: 10%" />
+<col style="width: 19%" />
+<col style="width: 3%" />
+</colgroup>
 <tbody>
 <tr class="row-odd"><td><p>#ignore</p></td>
 <td></td>
@@ -1388,6 +1484,11 @@ matched, detailed below.</p>
 <li><p>Example:</p></li>
 </ul>
 <table class="docutils align-default">
+<colgroup>
+<col style="width: 7%" />
+<col style="width: 54%" />
+<col style="width: 39%" />
+</colgroup>
 <tbody>
 <tr class="row-odd"><td><p>#tags</p></td>
 <td><p>#header</p></td>
@@ -1425,6 +1526,11 @@ matched, detailed below.</p>
 <li><p>Example:</p></li>
 </ul>
 <table class="docutils align-default">
+<colgroup>
+<col style="width: 6%" />
+<col style="width: 42%" />
+<col style="width: 52%" />
+</colgroup>
 <tbody>
 <tr class="row-odd"><td><p>#tags</p></td>
 <td><p>#header</p></td>
