@@ -1,6 +1,7 @@
 sphinx>=5.1.1
 sphinxcontrib-napoleon
 sphinx_rtd_theme
+sphinx-immaterial
 docopt >= 0.6.2
 jsonschema >= 4.4.0
 pandas >= 0.24.2
