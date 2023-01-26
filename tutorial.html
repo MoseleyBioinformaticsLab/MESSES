@@ -1,23 +1,24 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Tutorial &mdash; MESSES 1.0.0 documentation</title><link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <title>Tutorial &mdash; MESSES 0.1.dev1+gebeb725 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
-  <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-        <script src="_static/jquery.js"></script>
-        <script src="_static/underscore.js"></script>
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
         <script src="_static/doctools.js"></script>
-        <script src="_static/language_data.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Tagging" href="tagging.html" />
-    <link rel="prev" title="User Guide" href="guide.html" /> 
+    <link rel="prev" title="CLI" href="cli.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -28,7 +29,7 @@
             <a href="index.html" class="icon icon-home"> MESSES
           </a>
               <div class="version">
-                1.0.0
+                0.1.dev1+gebeb725
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -38,10 +39,11 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption"><span class="caption-text">Contents:</span></p>
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="guide.html">User Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="guide.html#messes">MESSES</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cli.html">CLI</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Tutorial</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#extract">Extract</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#options">Options</a></li>
@@ -57,10 +59,24 @@
 </li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="#convert">Convert</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id1">Options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id2">Examples</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#basic-supported-format-run">Basic Supported Format Run</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#updating-built-in-directives-for-supported-format-run">Updating Built-In Directives For Supported Format Run</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#overriding-built-in-directives-for-supported-format-run">Overriding Built-In Directives For Supported Format Run</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#save-built-in-directives-for-supported-formats">Save Built-In Directives For Supported Formats</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#basic-generic-run">Basic Generic Run</a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="tagging.html">Tagging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="conversion_directives.html">Conversion Directives</a></li>
 <li class="toctree-l1"><a class="reference internal" href="table_schema.html">Table Schema</a></li>
+<li class="toctree-l1"><a class="reference internal" href="supported_formats.html">Supported Formats</a></li>
 <li class="toctree-l1"><a class="reference internal" href="api.html">API</a></li>
 <li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
 <li class="toctree-l1"><a class="reference internal" href="todo.html">TODO List</a></li>
@@ -90,38 +106,38 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <div class="section" id="tutorial">
-<h1>Tutorial<a class="headerlink" href="#tutorial" title="Permalink to this headline">¶</a></h1>
+  <section id="tutorial">
+<h1>Tutorial<a class="headerlink" href="#tutorial" title="Permalink to this heading"></a></h1>
 <p>MESSES is intended to be used solely as a command line program. This
 tutorial describes each command and its options.</p>
-<p>Top-Level Usage
-.. literalinclude:: ../src/messes/__main__.py</p>
-<blockquote>
-<div><dl class="field-list simple">
-<dt class="field-odd">start-at</dt>
-<dd class="field-odd"><p>Usage:</p>
-</dd>
-<dt class="field-even">end-before</dt>
-<dd class="field-even"><p>“””</p>
-</dd>
-<dt class="field-odd">language</dt>
-<dd class="field-odd"><p>none</p>
-</dd>
-</dl>
-</div></blockquote>
+<p>Top-Level Usage</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Usage:
+    messes -h | --help     print this screen.
+    messes --full-help     help documentation on all commands.
+    messes --version       print the version.
+    messes extract ...     extract data from Excel workbooks, csv files, and JSON.
+    messes validate ...    validate JSON files.
+    messes convert ...     convert JSON to other file formats.
+
+For help on a specific command, use the command option -h or --help.
+For example:
+    messes extract --help   for help documentation about the extract command.
+</pre></div>
+</div>
 <p>MESSES is broken into 3 main commands, extract, validate, and convert, with convert broken up further for each supported conversion.
 The highest level usage is simply a gateway to the other commands and has very few options. You can see the version with the -v option,
 print the usage with -h option or print all of the commands usage’s with the –full-help option.</p>
-<div class="section" id="extract">
-<h2>Extract<a class="headerlink" href="#extract" title="Permalink to this headline">¶</a></h2>
+<section id="extract">
+<h2>Extract<a class="headerlink" href="#extract" title="Permalink to this heading"></a></h2>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span> Usage:
     messes extract &lt;metadata_source&gt;... [--delete &lt;metadata_section&gt;...] [options]
     messes extract --help
 
-    &lt;metadata_source&gt; - input metadata source as csv/json filename or xlsx_filename[:worksheet_name|regular_expression]. &quot;#export&quot; worksheet name is the default.
+    &lt;metadata_source&gt; - tagged input metadata source as csv/json filename or xlsx_filename[:worksheet_name|regular_expression]. &quot;#export&quot; worksheet name is the default.
 
  Options:
-    --help                              - show this help documentation.
+    -h, --help                          - show this help documentation.
+    -v, --version                       - show the version.
     --output &lt;filename_json&gt;            - output json filename.
     --compare &lt;filename_json&gt;           - compare extracted metadata to given JSONized metadata.
     --modify &lt;source&gt;                   - modification directives worksheet name, regular expression, csv/json filename, or xlsx_filename:[worksheet_name|regular_expression] [default: #modify].
@@ -132,7 +148,7 @@ print the usage with -h option or print all of the commands usage’s with the �
     --show &lt;show_option&gt;                - show a part of the metadata. See options below.
     --delete &lt;metadata_section&gt;...      - delete a section of the JSONized metadata. Section format is tableKey or tableKey,IDKey or tableKey,IDKey,fieldName. These can be regular expressions.
     --keep &lt;metadata_tables&gt;            - only keep the selected tables.  Delete the rest.  Table format is tableKey,tableKey,... The tableKey can be a regular expression.
-    --file-processing &lt;remove_regex&gt;    - a string or regular expression to remove characters in input files, removes unicode and \r characters by default, enter &quot;None&quot; to disable [default: _x([0-9a-fA-F]{4})_|\r].
+    --file-cleaning &lt;remove_regex&gt;      - a string or regular expression to remove characters in input files, removes unicode and \r characters by default, enter &quot;None&quot; to disable [default: _x([0-9a-fA-F]{4})_|\r].
     --silent                            - print no warning messages.
 
 Show Options:
@@ -156,8 +172,8 @@ Regular Expression Format:
 </div>
 <p>The extract command is used to extract tabular data in an Excel workbook or CSV file to JSON. It has several hard to describe options
 and functionality.</p>
-<div class="section" id="options">
-<h3>Options<a class="headerlink" href="#options" title="Permalink to this headline">¶</a></h3>
+<section id="options">
+<h3>Options<a class="headerlink" href="#options" title="Permalink to this heading"></a></h3>
 <p><strong>–output</strong> - This option is used to specify the name of the JSON file that will be output. If this option is not specified there will be no output file.</p>
 <p><strong>–compare</strong> - This option allows you to compare the resulting JSON file with the one provided with this option. It will show differences such as missing and extra tables and fields.</p>
 <p><strong>–modify</strong> - This option is used to specify the Excel worksheet name, the Excel file and worksheet name, or the CSV or JSON file name that contains the modification tags.
@@ -166,10 +182,10 @@ files do not have a worksheet with this name if it does not contain modification
 tags the file name/path and sheet name need to be separated by a semicolon. Ex. Modification_tags.xlsx:sheet1. The sheet name can also be a regular expression.
 Ex. Modification_tags.xlsx:r’.*dify’  or just  r’.*dify’  to specify a regex for a sheetname in the input data file. File types other than Excel are specified as
 normal. If multiple input data files are given the specified file or sheet name given to –modify is used for all of them. Details about modification tags are
-in the doc`tagging` section.</p>
+in the <a class="reference internal" href="tagging.html"><span class="doc">Tagging</span></a> section.</p>
 <p><strong>–end-modify</strong> - The same as –modify, but modifications are done at the end after all input data files have been parsed and merged into one JSON file. There is
 no default value.</p>
-<p><strong>–automate</strong> - The same as –modify, but for automation tags. The default sheet name is ‘#automate’. Details about automation tags are in the doc`tagging` section.</p>
+<p><strong>–automate</strong> - The same as –modify, but for automation tags. The default sheet name is ‘#automate’. Details about automation tags are in the <a class="reference internal" href="tagging.html"><span class="doc">Tagging</span></a> section.</p>
 <p><strong>–save-directives</strong> - This option allows you to save any modification or automation directives as JSON to the specified file path. Note that –end-modify directives
 will overwrite –modify directives so only –end-modify directives will be in the output if specified.</p>
 <p><strong>–save-export</strong> - This option lets you save the version of the data that has all automations applied just before parsing into JSON. It can be useful in debugging.
@@ -183,19 +199,13 @@ and fields can also be specified with regular expressions. Ex. –delete r’.*t
 Ex. –keep protocol,measurement  will keep only the protocol and measurement tables. Tables can also specified with regular expressions Ex. –keep r’.*tocl’,r’measure.*’
 will keep all the tables that match the regular expressions.</p>
 <p><strong>–silent</strong> - This option will silence all warning messages. Errors will still be printed.</p>
-</div>
-<div class="section" id="examples">
-<h3>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h3>
-<div class="section" id="basic-run">
-<h4>Basic Run<a class="headerlink" href="#basic-run" title="Permalink to this headline">¶</a></h4>
+</section>
+<section id="examples">
+<h3>Examples<a class="headerlink" href="#examples" title="Permalink to this heading"></a></h3>
+<section id="basic-run">
+<h4>Basic Run<a class="headerlink" href="#basic-run" title="Permalink to this heading"></a></h4>
 <p>Input File:</p>
 <table class="docutils align-default">
-<colgroup>
-<col style="width: 5%" />
-<col style="width: 11%" />
-<col style="width: 42%" />
-<col style="width: 42%" />
-</colgroup>
 <tbody>
 <tr class="row-odd"><td><p>#tags</p></td>
 <td><p>#sample.id</p></td>
@@ -260,17 +270,11 @@ will keep all the tables that match the regular expressions.</p>
 <span class="go">}</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="compare-option">
-<h4>Compare Option<a class="headerlink" href="#compare-option" title="Permalink to this headline">¶</a></h4>
+</section>
+<section id="compare-option">
+<h4>Compare Option<a class="headerlink" href="#compare-option" title="Permalink to this heading"></a></h4>
 <p>Input File:</p>
 <table class="docutils align-default">
-<colgroup>
-<col style="width: 6%" />
-<col style="width: 11%" />
-<col style="width: 41%" />
-<col style="width: 41%" />
-</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>#tags</p></th>
 <th class="head"><p>#sample.id</p></th>
@@ -404,16 +408,11 @@ will keep all the tables that match the regular expressions.</p>
 <span class="go">   KO labelled_2 KO labelled_2-media-0h KO labelled_2-media-3h</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="modify-option">
-<h4>Modify Option<a class="headerlink" href="#modify-option" title="Permalink to this headline">¶</a></h4>
+</section>
+<section id="modify-option">
+<h4>Modify Option<a class="headerlink" href="#modify-option" title="Permalink to this heading"></a></h4>
 <p>#export Sheet:</p>
 <table class="docutils align-default">
-<colgroup>
-<col style="width: 10%" />
-<col style="width: 20%" />
-<col style="width: 71%" />
-</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>#tags</p></th>
 <th class="head"><p>#sample.id</p></th>
@@ -433,11 +432,6 @@ will keep all the tables that match the regular expressions.</p>
 </table>
 <p>#modify sheet:</p>
 <table class="docutils align-default">
-<colgroup>
-<col style="width: 14%" />
-<col style="width: 32%" />
-<col style="width: 54%" />
-</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>#tags</p></th>
 <th class="head"><p>#sample.id.value</p></th>
@@ -472,15 +466,11 @@ will keep all the tables that match the regular expressions.</p>
 <span class="go">}</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="automate-option">
-<h4>Automate Option<a class="headerlink" href="#automate-option" title="Permalink to this headline">¶</a></h4>
+</section>
+<section id="automate-option">
+<h4>Automate Option<a class="headerlink" href="#automate-option" title="Permalink to this heading"></a></h4>
 <p>#export Sheet:</p>
 <table class="docutils align-default">
-<colgroup>
-<col style="width: 64%" />
-<col style="width: 36%" />
-</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Sample ID</p></th>
 <th class="head"><p>Weight</p></th>
@@ -497,11 +487,6 @@ will keep all the tables that match the regular expressions.</p>
 </table>
 <p>#automate Sheet:</p>
 <table class="docutils align-default">
-<colgroup>
-<col style="width: 14%" />
-<col style="width: 21%" />
-<col style="width: 65%" />
-</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>#tags</p></th>
 <th class="head"><p>#header</p></th>
@@ -540,15 +525,11 @@ will keep all the tables that match the regular expressions.</p>
 <span class="go">}</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="save-directives-option">
-<h4>Save Directives Option<a class="headerlink" href="#save-directives-option" title="Permalink to this headline">¶</a></h4>
+</section>
+<section id="save-directives-option">
+<h4>Save Directives Option<a class="headerlink" href="#save-directives-option" title="Permalink to this heading"></a></h4>
 <p>#export Sheet:</p>
 <table class="docutils align-default">
-<colgroup>
-<col style="width: 64%" />
-<col style="width: 36%" />
-</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Sample ID</p></th>
 <th class="head"><p>Weight</p></th>
@@ -565,11 +546,6 @@ will keep all the tables that match the regular expressions.</p>
 </table>
 <p>#automate Sheet:</p>
 <table class="docutils align-default">
-<colgroup>
-<col style="width: 14%" />
-<col style="width: 21%" />
-<col style="width: 65%" />
-</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>#tags</p></th>
 <th class="head"><p>#header</p></th>
@@ -589,11 +565,6 @@ will keep all the tables that match the regular expressions.</p>
 </table>
 <p>#modify Sheet:</p>
 <table class="docutils align-default">
-<colgroup>
-<col style="width: 14%" />
-<col style="width: 32%" />
-<col style="width: 54%" />
-</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>#tags</p></th>
 <th class="head"><p>#sample.id.value</p></th>
@@ -665,15 +636,11 @@ will keep all the tables that match the regular expressions.</p>
 <span class="go">}</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="save-export-option">
-<h4>Save Export Option<a class="headerlink" href="#save-export-option" title="Permalink to this headline">¶</a></h4>
+</section>
+<section id="save-export-option">
+<h4>Save Export Option<a class="headerlink" href="#save-export-option" title="Permalink to this heading"></a></h4>
 <p>#export Sheet:</p>
 <table class="docutils align-default">
-<colgroup>
-<col style="width: 64%" />
-<col style="width: 36%" />
-</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Sample ID</p></th>
 <th class="head"><p>Weight</p></th>
@@ -690,11 +657,6 @@ will keep all the tables that match the regular expressions.</p>
 </table>
 <p>#automate Sheet:</p>
 <table class="docutils align-default">
-<colgroup>
-<col style="width: 14%" />
-<col style="width: 21%" />
-<col style="width: 65%" />
-</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>#tags</p></th>
 <th class="head"><p>#header</p></th>
@@ -735,11 +697,6 @@ will keep all the tables that match the regular expressions.</p>
 </div>
 <p>Export Output:</p>
 <table class="docutils align-default">
-<colgroup>
-<col style="width: 16%" />
-<col style="width: 25%" />
-<col style="width: 59%" />
-</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>#ignore</p></th>
 <th class="head"><p>Sample ID</p></th>
@@ -761,17 +718,11 @@ will keep all the tables that match the regular expressions.</p>
 </tr>
 </tbody>
 </table>
-</div>
-<div class="section" id="show-option">
-<h4>Show Option<a class="headerlink" href="#show-option" title="Permalink to this headline">¶</a></h4>
+</section>
+<section id="show-option">
+<h4>Show Option<a class="headerlink" href="#show-option" title="Permalink to this heading"></a></h4>
 <p>Input File:</p>
 <table class="docutils align-default">
-<colgroup>
-<col style="width: 6%" />
-<col style="width: 11%" />
-<col style="width: 41%" />
-<col style="width: 41%" />
-</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>#tags</p></th>
 <th class="head"><p>#sample.id</p></th>
@@ -865,16 +816,107 @@ will keep all the tables that match the regular expressions.</p>
 <span class="go">     KO labelled_2-media-0h, KO labelled_2-media-3h</span>
 </pre></div>
 </div>
+</section>
+</section>
+</section>
+<section id="convert">
+<h2>Convert<a class="headerlink" href="#convert" title="Permalink to this heading"></a></h2>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Usage:
+    messes convert mwtab (ms | nmr | nmr_binned) &lt;input_JSON&gt; &lt;output_name&gt; [--update &lt;conversion_directives&gt; | --override &lt;conversion_directives&gt;] [--silent]
+    messes convert save-directives mwtab (ms | nmr | nmr_binned) &lt;output_filetype&gt; [&lt;output_name&gt;]
+    messes convert generic &lt;input_JSON&gt; &lt;output_name&gt; &lt;conversion_directives&gt; [--silent]
+    messes convert --help
+    
+    &lt;conversion_directives&gt; - can be a JSON, csv, or xlsx file. If xlsx the default sheet name to read in is #convert, 
+                        to specify a different sheet name separate it from the file name with a colon ex: file_name.xlsx:sheet_name.
+
+Options:
+    -h, --help                           - show this screen.
+    -v, --version                        - show version.
+    --silent                             - silence all warnings.
+    --update &lt;conversion_directives&gt;     - conversion directives that will be used to update the built-in directives for the format.
+                                           This is intended to be used for simple changes such as updating the value of 
+                                           the analysis ID. You only have to specify what needs to change, any values 
+                                           that are left out of the update directives won&#39;t be changed. If you need to remove 
+                                           directives then use the override option.
+    --override &lt;conversion_directives&gt;   - conversion directives that will be used to override the built-in directives for the format.
+                                           The entire JSON must be specified, any directives that are not in the override JSON 
+                                           will be removed.
+    
+    
+
+The general command structure for convert is convert &lt;format&gt; which will convert an input JSON file over to the supported format. 
+The outputs of these commands will save both the JSON conversion and the final format file.
+The generic command is the same as the supported formats except the user is required to input conversion directives specifying how to 
+convert the input JSON to the desired output JSON. Only an output JSON is saved.
+The save-directives command is used to print the default conversion directives used by convert for any of the supported formats. &lt;output-filetype&gt; 
+can be one of &quot;json&quot;, &quot;xlsx&quot;, or &quot;csv&quot;. The file is saved as &quot;format_conversion_directives.ext&quot; where &quot;.ext&quot; is replaced with &quot;.json&quot;, &quot;.xlsx&quot;, 
+or &quot;.csv&quot; depending on the value of &lt;output-format&gt;, unless &lt;output_name&gt; is given.
+
+</pre></div>
 </div>
+<p>The convert command is used to convert extracted and validated data from it’s arbitrary JSON form to the final desired format. There are commands for
+each supported format, detailed in the <a class="reference internal" href="supported_formats.html"><span class="doc">Supported Formats</span></a> section, that use built in conversion directives, and the “generic” command that requires
+the user supply conversion directives. The supported formats may have additional sub-commands depending on the complexity of the format. Details about
+each supported format are in the <a class="reference internal" href="supported_formats.html"><span class="doc">Supported Formats</span></a> section, and it is HIGHLY recommended to read through that section and look at examples before
+attempting a conversion.</p>
+<section id="id1">
+<h3>Options<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h3>
+<p><strong>–update</strong> - For supported formats allows the user to specify a file of conversion directives that will be used to update the built-in directives for the format.
+This is intended to be used for simple changes such as updating the value of the analysis ID. You only have to specify what
+needs to change, any values that are left out of the update directives won’t be changed. If you need to remove directives
+then use the override option.</p>
+<p><strong>–override</strong> - For supported formats allows the user to override the built-in directives for the format. The entire tag JSON must be specified,
+any directives that are not in the override JSON will be removed.</p>
+<p><strong>–silent</strong> - This option will silence all warning messages. Errors will still be printed.</p>
+</section>
+<section id="id2">
+<h3>Examples<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h3>
+<p>The inputs and outputs are too large to demonstrate readily inline, but there are examples on the GitHub repo at PUT_LINK_HERE.</p>
+<section id="basic-supported-format-run">
+<h4>Basic Supported Format Run<a class="headerlink" href="#basic-supported-format-run" title="Permalink to this heading"></a></h4>
+<p>Command Line:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">messes convert mwtab ms input_file.json my_output_name</span>
+</pre></div>
 </div>
+</section>
+<section id="updating-built-in-directives-for-supported-format-run">
+<h4>Updating Built-In Directives For Supported Format Run<a class="headerlink" href="#updating-built-in-directives-for-supported-format-run" title="Permalink to this heading"></a></h4>
+<p>Command Line:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">messes convert mwtab ms input_file.json my_output_name --update directive_changes.json</span>
+</pre></div>
 </div>
+</section>
+<section id="overriding-built-in-directives-for-supported-format-run">
+<h4>Overriding Built-In Directives For Supported Format Run<a class="headerlink" href="#overriding-built-in-directives-for-supported-format-run" title="Permalink to this heading"></a></h4>
+<p>Command Line:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">messes convert mwtab ms input_file.json my_output_name --override new_directives.json</span>
+</pre></div>
 </div>
+</section>
+<section id="save-built-in-directives-for-supported-formats">
+<h4>Save Built-In Directives For Supported Formats<a class="headerlink" href="#save-built-in-directives-for-supported-formats" title="Permalink to this heading"></a></h4>
+<p>Command Line:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">messes convert save-directives ms json</span>
+</pre></div>
+</div>
+</section>
+<section id="basic-generic-run">
+<h4>Basic Generic Run<a class="headerlink" href="#basic-generic-run" title="Permalink to this heading"></a></h4>
+<p>Command Line:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">messes convert generic input_file.json my_output_name my_conversion_directives.json</span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+</section>
 
 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="guide.html" class="btn btn-neutral float-left" title="User Guide" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="cli.html" class="btn btn-neutral float-left" title="CLI" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="tagging.html" class="btn btn-neutral float-right" title="Tagging" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 

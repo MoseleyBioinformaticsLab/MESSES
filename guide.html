@@ -1,22 +1,23 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>User Guide &mdash; MESSES 1.0.0 documentation</title><link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <title>User Guide &mdash; MESSES 0.1.dev1+gebeb725 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
-  <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-        <script src="_static/jquery.js"></script>
-        <script src="_static/underscore.js"></script>
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
         <script src="_static/doctools.js"></script>
-        <script src="_static/language_data.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Tutorial" href="tutorial.html" />
+    <link rel="next" title="CLI" href="cli.html" />
     <link rel="prev" title="Welcome to MESSES’s documentation!" href="index.html" /> 
 </head>
 
@@ -28,7 +29,7 @@
             <a href="index.html" class="icon icon-home"> MESSES
           </a>
               <div class="version">
-                1.0.0
+                0.1.dev1+gebeb725
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -38,7 +39,7 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption"><span class="caption-text">Contents:</span></p>
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">User Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="#messes">MESSES</a><ul>
@@ -58,9 +59,12 @@
 <li class="toctree-l2"><a class="reference internal" href="#developers">Developers</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="cli.html">CLI</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tutorial.html">Tutorial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tagging.html">Tagging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="conversion_directives.html">Conversion Directives</a></li>
 <li class="toctree-l1"><a class="reference internal" href="table_schema.html">Table Schema</a></li>
+<li class="toctree-l1"><a class="reference internal" href="supported_formats.html">Supported Formats</a></li>
 <li class="toctree-l1"><a class="reference internal" href="api.html">API</a></li>
 <li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
 <li class="toctree-l1"><a class="reference internal" href="todo.html">TODO List</a></li>
@@ -90,11 +94,11 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <div class="section" id="user-guide">
-<h1>User Guide<a class="headerlink" href="#user-guide" title="Permalink to this headline">¶</a></h1>
-</div>
-<div class="section" id="messes">
-<h1>MESSES<a class="headerlink" href="#messes" title="Permalink to this headline">¶</a></h1>
+  <section id="user-guide">
+<h1>User Guide<a class="headerlink" href="#user-guide" title="Permalink to this heading"></a></h1>
+</section>
+<section id="messes">
+<h1>MESSES<a class="headerlink" href="#messes" title="Permalink to this heading"></a></h1>
 <a class="reference external image-reference" href="https://pypi.org/project/messes"><img alt="Current library version" src="https://img.shields.io/pypi/v/messes.svg" /></a>
 <a class="reference external image-reference" href="https://pypi.org/project/messes"><img alt="Supported Python versions" src="https://img.shields.io/pypi/pyversions/messes.svg" /></a>
 <a class="reference external image-reference" href="https://github.com/MoseleyBioinformaticsLab/messes/actions/workflows/build.yml"><img alt="Build status" src="https://github.com/MoseleyBioinformaticsLab/messes/actions/workflows/build.yml/badge.svg" /></a>
@@ -137,8 +141,8 @@ your data is in line with your project parameters and table schema.</p>
 <li><p>As a command-line tool to convert raw data stored in Excel or CSV files into other formats.</p></li>
 </ul>
 </div></blockquote>
-<div class="section" id="links">
-<h2>Links<a class="headerlink" href="#links" title="Permalink to this headline">¶</a></h2>
+<section id="links">
+<h2>Links<a class="headerlink" href="#links" title="Permalink to this heading"></a></h2>
 <blockquote>
 <div><ul class="simple">
 <li><p>MESSES &#64; <a class="reference external" href="https://github.com/MoseleyBioinformaticsLab/messes">GitHub</a></p></li>
@@ -146,39 +150,39 @@ your data is in line with your project parameters and table schema.</p>
 <li><p>Documentation &#64; <a class="reference external" href="https://moseleybioinformaticslab.github.io/messes/">Pages</a></p></li>
 </ul>
 </div></blockquote>
-</div>
-<div class="section" id="installation">
-<h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="installation">
+<h2>Installation<a class="headerlink" href="#installation" title="Permalink to this heading"></a></h2>
 <p>The MESSES package runs under Python 3.10+. Use <a class="reference external" href="https://pip.pypa.io">pip</a> to install.
 Starting with Python 3.4, <a class="reference external" href="https://pip.pypa.io">pip</a> is included by default. Be sure to use the latest
 version of pip as older versions are known to have issues grabbing all dependencies.</p>
-<div class="section" id="install-on-linux-mac-os-x">
-<h3>Install on Linux, Mac OS X<a class="headerlink" href="#install-on-linux-mac-os-x" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python3 -m pip install messes
+<section id="install-on-linux-mac-os-x">
+<h3>Install on Linux, Mac OS X<a class="headerlink" href="#install-on-linux-mac-os-x" title="Permalink to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python3<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>messes
 </pre></div>
 </div>
-</div>
-<div class="section" id="install-on-windows">
-<h3>Install on Windows<a class="headerlink" href="#install-on-windows" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>py -3 -m pip install messes
+</section>
+<section id="install-on-windows">
+<h3>Install on Windows<a class="headerlink" href="#install-on-windows" title="Permalink to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>py<span class="w"> </span>-3<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>messes
 </pre></div>
 </div>
-</div>
-<div class="section" id="upgrade-on-linux-mac-os-x">
-<h3>Upgrade on Linux, Mac OS X<a class="headerlink" href="#upgrade-on-linux-mac-os-x" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python3 -m pip install messes --upgrade
+</section>
+<section id="upgrade-on-linux-mac-os-x">
+<h3>Upgrade on Linux, Mac OS X<a class="headerlink" href="#upgrade-on-linux-mac-os-x" title="Permalink to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python3<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>messes<span class="w"> </span>--upgrade
 </pre></div>
 </div>
-</div>
-<div class="section" id="upgrade-on-windows">
-<h3>Upgrade on Windows<a class="headerlink" href="#upgrade-on-windows" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>py -3 -m pip install messes --upgrade
+</section>
+<section id="upgrade-on-windows">
+<h3>Upgrade on Windows<a class="headerlink" href="#upgrade-on-windows" title="Permalink to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>py<span class="w"> </span>-3<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>messes<span class="w"> </span>--upgrade
 </pre></div>
 </div>
-</div>
-</div>
-<div class="section" id="quickstart">
-<h2>Quickstart<a class="headerlink" href="#quickstart" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+<section id="quickstart">
+<h2>Quickstart<a class="headerlink" href="#quickstart" title="Permalink to this heading"></a></h2>
 <p>It is unlikely that you will have data that is tagged and ready to be converted, so
 it is highly recommended to first read the documentation on <a class="reference external" href="https://moseleybioinformaticslab.github.io/messes/tagging.html">tagging</a>
 and the <a class="reference external" href="https://moseleybioinformaticslab.github.io/messes/table_schema.html">table schema</a> so
@@ -189,17 +193,17 @@ project schema, fix errors and warnings in the original data, repeat steps 1-3 u
 there are no more errors, then to use the “convert” command to transform the validated JSON into
 your final preferred data format. The validate command can be skipped, but it is not recommended.</p>
 <p>A basic error free run may look like:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>messes extract your_data.csv --output your_data.json
-messes validate your_data.json your_schema.json
-messes convert mwtab your_data.json --to-path your_mwtab_data.txt
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>messes<span class="w"> </span>extract<span class="w"> </span>your_data.csv<span class="w"> </span>--output<span class="w"> </span>your_data.json
+messes<span class="w"> </span>validate<span class="w"> </span>your_data.json<span class="w"> </span>your_schema.json
+messes<span class="w"> </span>convert<span class="w"> </span>mwtab<span class="w"> </span>your_data.json<span class="w"> </span>--to-path<span class="w"> </span>your_mwtab_data.txt
 </pre></div>
 </div>
 <p>MESSES’s behavior can be quite complex, so it is highly encouraged to read the
 <a class="reference external" href="https://moseleybioinformaticslab.github.io/messes/guide.html">guide</a> and <a class="reference external" href="https://moseleybioinformaticslab.github.io/messes/tutorial.html">tutorial</a>.
 There are also examples available in the examples folder on the <a class="reference external" href="https://github.com/MoseleyBioinformaticsLab/messes">GitHub</a> repo.</p>
-</div>
-<div class="section" id="mac-os-note">
-<h2>Mac OS Note<a class="headerlink" href="#mac-os-note" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="mac-os-note">
+<h2>Mac OS Note<a class="headerlink" href="#mac-os-note" title="Permalink to this heading"></a></h2>
 <p>When you try to run the program on Mac OS you may get an SSL error.</p>
 <blockquote>
 <div><p>certificate verify failed: unable to get local issuer certificate</p>
@@ -207,32 +211,32 @@ There are also examples available in the examples folder on the <a class="refere
 <p>This is due to a change in Mac OS and Python. To fix it go to to your Python
 folder in Applications and run the Install Certificates.command shell command
 in the /Applications/Python 3.x folder. This should fix the issue.</p>
-</div>
-<div class="section" id="license">
-<h2>License<a class="headerlink" href="#license" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="license">
+<h2>License<a class="headerlink" href="#license" title="Permalink to this heading"></a></h2>
 <p>This package is distributed under the BSD <a class="reference external" href="https://moseleybioinformaticslab.github.io/messes/license.html">license</a>.</p>
-</div>
-<div class="section" id="get-the-source-code">
-<h2>Get the source code<a class="headerlink" href="#get-the-source-code" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="get-the-source-code">
+<h2>Get the source code<a class="headerlink" href="#get-the-source-code" title="Permalink to this heading"></a></h2>
 <p>Code is available on GitHub: <a class="reference external" href="https://github.com/MoseleyBioinformaticsLab/messes">https://github.com/MoseleyBioinformaticsLab/messes</a></p>
 <p>You can either clone the public repository:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ https://github.com/MoseleyBioinformaticsLab/messes.git
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>https://github.com/MoseleyBioinformaticsLab/messes.git
 </pre></div>
 </div>
 <p>Or, download the tarball and/or zipball:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ curl -OL https://github.com/MoseleyBioinformaticsLab/messes/tarball/main
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>curl<span class="w"> </span>-OL<span class="w"> </span>https://github.com/MoseleyBioinformaticsLab/messes/tarball/main
 
-$ curl -OL https://github.com/MoseleyBioinformaticsLab/messes/zipball/main
+$<span class="w"> </span>curl<span class="w"> </span>-OL<span class="w"> </span>https://github.com/MoseleyBioinformaticsLab/messes/zipball/main
 </pre></div>
 </div>
 <p>Once you have a copy of the source, you can embed it in your own Python package,
 or install it into your system site-packages easily:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ python3 setup.py install
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>python3<span class="w"> </span>setup.py<span class="w"> </span>install
 </pre></div>
 </div>
-</div>
-<div class="section" id="dependencies">
-<h2>Dependencies<a class="headerlink" href="#dependencies" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="dependencies">
+<h2>Dependencies<a class="headerlink" href="#dependencies" title="Permalink to this heading"></a></h2>
 <p>The MESSES package depends on several Python libraries. The <code class="docutils literal notranslate"><span class="pre">pip</span></code> command
 will install all dependencies automatically, but if you wish to install them manually,
 run the following commands:</p>
@@ -241,8 +245,8 @@ run the following commands:</p>
 <li><dl>
 <dt><a class="reference external" href="https://pypi.org/project/docopt/">docopt</a> for creating the command-line interface.</dt><dd><ul>
 <li><p>To install <a class="reference external" href="https://pypi.org/project/docopt/">docopt</a> run the following:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python3 -m pip install docopt  <span class="c1"># On Linux, Mac OS X</span>
-py -3 -m pip install docopt    <span class="c1"># On Windows</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python3<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>docopt<span class="w">  </span><span class="c1"># On Linux, Mac OS X</span>
+py<span class="w"> </span>-3<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>docopt<span class="w">    </span><span class="c1"># On Windows</span>
 </pre></div>
 </div>
 </li>
@@ -253,8 +257,8 @@ py -3 -m pip install docopt    <span class="c1"># On Windows</span>
 <li><dl>
 <dt><a class="reference external" href="https://pypi.org/project/jsonschema/">jsonschema</a> for validating JSON.</dt><dd><ul>
 <li><p>To install the <a class="reference external" href="https://pypi.org/project/jsonschema/">jsonschema</a> Python library run the following:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python3 -m pip install jsonschema  <span class="c1"># On Linux, Mac OS X</span>
-py -3 -m pip install jsonschema    <span class="c1"># On Windows</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python3<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>jsonschema<span class="w">  </span><span class="c1"># On Linux, Mac OS X</span>
+py<span class="w"> </span>-3<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>jsonschema<span class="w">    </span><span class="c1"># On Windows</span>
 </pre></div>
 </div>
 </li>
@@ -265,8 +269,8 @@ py -3 -m pip install jsonschema    <span class="c1"># On Windows</span>
 <li><dl>
 <dt><a class="reference external" href="https://pypi.org/project/pandas/">pandas</a> for easy data manipulation.</dt><dd><ul>
 <li><p>To install the <a class="reference external" href="https://pypi.org/project/pandas/">pandas</a> Python library run the following:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python3 -m pip install pandas  <span class="c1"># On Linux, Mac OS X</span>
-py -3 -m pip install pandas    <span class="c1"># On Windows</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python3<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>pandas<span class="w">  </span><span class="c1"># On Linux, Mac OS X</span>
+py<span class="w"> </span>-3<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>pandas<span class="w">    </span><span class="c1"># On Windows</span>
 </pre></div>
 </div>
 </li>
@@ -277,8 +281,8 @@ py -3 -m pip install pandas    <span class="c1"># On Windows</span>
 <li><dl>
 <dt><a class="reference external" href="https://pypi.org/project/openpyxl/">openpyxl</a> for saving Excel files in pandas.</dt><dd><ul>
 <li><p>To install the <a class="reference external" href="https://pypi.org/project/openpyxl/">openpyxl</a> Python library run the following:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python3 -m pip install openpyxl  <span class="c1"># On Linux, Mac OS X</span>
-py -3 -m pip install openpyxl    <span class="c1"># On Windows</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python3<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>openpyxl<span class="w">  </span><span class="c1"># On Linux, Mac OS X</span>
+py<span class="w"> </span>-3<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>openpyxl<span class="w">    </span><span class="c1"># On Windows</span>
 </pre></div>
 </div>
 </li>
@@ -292,8 +296,8 @@ py -3 -m pip install openpyxl    <span class="c1"># On Windows</span>
 <li><dl>
 <dt><a class="reference external" href="https://pypi.org/project/jellyfish/">jellyfish</a> for saving Excel files in pandas.</dt><dd><ul>
 <li><p>To install the <a class="reference external" href="https://pypi.org/project/jellyfish/">jellyfish</a> Python library run the following:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python3 -m pip install jellyfish  <span class="c1"># On Linux, Mac OS X</span>
-py -3 -m pip install jellyfish    <span class="c1"># On Windows</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python3<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>jellyfish<span class="w">  </span><span class="c1"># On Linux, Mac OS X</span>
+py<span class="w"> </span>-3<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>jellyfish<span class="w">    </span><span class="c1"># On Windows</span>
 </pre></div>
 </div>
 </li>
@@ -304,8 +308,8 @@ py -3 -m pip install jellyfish    <span class="c1"># On Windows</span>
 <li><dl>
 <dt><a class="reference external" href="https://pypi.org/project/mwtab/">mwtab</a> for saving Excel files in pandas.</dt><dd><ul>
 <li><p>To install the <a class="reference external" href="https://pypi.org/project/mwtab/">mwtab</a> Python library run the following:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python3 -m pip install mwtab  <span class="c1"># On Linux, Mac OS X</span>
-py -3 -m pip install mwtab    <span class="c1"># On Windows</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python3<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>mwtab<span class="w">  </span><span class="c1"># On Linux, Mac OS X</span>
+py<span class="w"> </span>-3<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>mwtab<span class="w">    </span><span class="c1"># On Windows</span>
 </pre></div>
 </div>
 </li>
@@ -316,20 +320,20 @@ py -3 -m pip install mwtab    <span class="c1"># On Windows</span>
 </ul>
 </div></blockquote>
 </div></blockquote>
-</div>
-<div class="section" id="developers">
-<h2>Developers<a class="headerlink" href="#developers" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="developers">
+<h2>Developers<a class="headerlink" href="#developers" title="Permalink to this heading"></a></h2>
 <p>Any developers that wish to contribute should do so through <a class="reference external" href="https://github.com/MoseleyBioinformaticsLab/MESSES/issues">GitHub Issues</a>
 and pull requests.</p>
-</div>
-</div>
+</section>
+</section>
 
 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="index.html" class="btn btn-neutral float-left" title="Welcome to MESSES’s documentation!" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="tutorial.html" class="btn btn-neutral float-right" title="Tutorial" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="cli.html" class="btn btn-neutral float-right" title="CLI" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

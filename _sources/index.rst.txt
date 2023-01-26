@@ -11,8 +11,10 @@ Welcome to MESSES's documentation!
    :caption: Contents:
 
    guide
+   cli
    tutorial
    tagging
+   conversion_directives
    table_schema
    supported_formats
    api

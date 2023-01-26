@@ -1,22 +1,23 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Tagging &mdash; MESSES 1.0.0 documentation</title><link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <title>Tagging &mdash; MESSES 0.1.dev1+gebeb725 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
-  <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-        <script src="_static/jquery.js"></script>
-        <script src="_static/underscore.js"></script>
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
         <script src="_static/doctools.js"></script>
-        <script src="_static/language_data.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Table Schema" href="table_schema.html" />
+    <link rel="next" title="Conversion Directives" href="conversion_directives.html" />
     <link rel="prev" title="Tutorial" href="tutorial.html" /> 
 </head>
 
@@ -28,7 +29,7 @@
             <a href="index.html" class="icon icon-home"> MESSES
           </a>
               <div class="version">
-                1.0.0
+                0.1.dev1+gebeb725
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -38,10 +39,11 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption"><span class="caption-text">Contents:</span></p>
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="guide.html">User Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="guide.html#messes">MESSES</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cli.html">CLI</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tutorial.html">Tutorial</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Tagging</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#terminology">Terminology</a></li>
@@ -75,7 +77,9 @@
 <li class="toctree-l2"><a class="reference internal" href="#common-use-case-examples">Common Use Case Examples</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="conversion_directives.html">Conversion Directives</a></li>
 <li class="toctree-l1"><a class="reference internal" href="table_schema.html">Table Schema</a></li>
+<li class="toctree-l1"><a class="reference internal" href="supported_formats.html">Supported Formats</a></li>
 <li class="toctree-l1"><a class="reference internal" href="api.html">API</a></li>
 <li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
 <li class="toctree-l1"><a class="reference internal" href="todo.html">TODO List</a></li>
@@ -105,10 +109,10 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <div class="section" id="tagging">
-<h1>Tagging<a class="headerlink" href="#tagging" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="terminology">
-<h2>Terminology<a class="headerlink" href="#terminology" title="Permalink to this headline">¶</a></h2>
+  <section id="tagging">
+<h1>Tagging<a class="headerlink" href="#tagging" title="Permalink to this heading"></a></h1>
+<section id="terminology">
+<h2>Terminology<a class="headerlink" href="#terminology" title="Permalink to this heading"></a></h2>
 <ul>
 <li><p><strong>header</strong> - a descriptive label at the top of a column in a table of data.</p>
 <blockquote>
@@ -124,11 +128,12 @@
 </ul>
 </div></blockquote>
 </li>
-<li><p><strong>table</strong> - in this section table can refer to either a table in a data file or a SQL style table in the output. Often there are many small tables in a data file that are combined into a larger one in the extract output.</p></li>
+<li><p><strong>table</strong> - in this section, table can refer to either a table in a data file or a SQL style table in the output. Often there are many small tables in a data file that are combined into a larger one in the extract output.</p></li>
+<li><p><strong>directives</strong> - directions given to MESSES commands using tagged files or their JSONized forms. A table and its tags taken as a whole.</p></li>
 </ul>
-</div>
-<div class="section" id="introduction">
-<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading"></a></h2>
 <p>In order to extract data from arbitrary tables programmatically, some kind of system has to be devised.
 This could be something as simple as requiring a table be on the very first row and for the starting
 row to have column names for every column, but a system such as that would then be fragile. We decided
@@ -148,7 +153,10 @@ use case for this is when you have data output by a program in a consistent way.
 export tags to the program output each time you can create an “automation” page that will add the “export”
 tags for you. The last part is the “modification” part which is the system used to modify record values.
 It can be used to prepend, append, delete, overwrite, or regex substitute values. An example use case would
-be to update old naming conventions.</p>
+be to update old naming conventions. Validly tagged files in their tabular or JSON form can be referred to
+as directives as they direct the actions of the program. To reduce confusion between tags and directives
+“tags” should generally refer to the extra text added above tables while “directives” are the tables and
+tags taken as a whole. Each row of a tagged table is an individual directive.</p>
 <p>Each of the 3 tagging systems has to be in their own sheet or file for the extract command. By default
 export tags are expected to be in a sheet named ‘#export’ if given an Excel file without specifying a sheet
 name. If given a CSV file then it is expected to have export tags. Modification tags are expected to be in
@@ -159,9 +167,9 @@ using the –automate option.</p>
 <p>Each of the 3 tagging systems are explained below with examples. Examples using them with the extract
 command are in the <a class="reference internal" href="tutorial.html"><span class="doc">Tutorial</span></a> section and there are full run examples in the “examples” folder of the
 <a class="reference external" href="https://github.com/MoseleyBioinformaticsLab/messes">GitHub</a>.</p>
-</div>
-<div class="section" id="export-tags">
-<h2>Export Tags<a class="headerlink" href="#export-tags" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="export-tags">
+<h2>Export Tags<a class="headerlink" href="#export-tags" title="Permalink to this heading"></a></h2>
 <ul>
 <li><p>Tag rows are identified by putting <strong>‘#tags’</strong> in the left most column of the data file.</p>
 <blockquote>
@@ -177,12 +185,6 @@ command are in the <a class="reference internal" href="tutorial.html"><span clas
 </ul>
 <p>Basic Example:</p>
 <table class="docutils align-default">
-<colgroup>
-<col style="width: 15%" />
-<col style="width: 23%" />
-<col style="width: 37%" />
-<col style="width: 25%" />
-</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>#tags</p></th>
 <th class="head"><p>#sample.id</p></th>
@@ -203,8 +205,8 @@ command are in the <a class="reference internal" href="tutorial.html"><span clas
 </tr>
 </tbody>
 </table>
-<div class="section" id="keyword-tags">
-<h3>Keyword Tags<a class="headerlink" href="#keyword-tags" title="Permalink to this headline">¶</a></h3>
+<section id="keyword-tags">
+<h3>Keyword Tags<a class="headerlink" href="#keyword-tags" title="Permalink to this heading"></a></h3>
 <ul>
 <li><p><strong>#tags</strong> - identifies tag header rows. Must be in the first column of a row.</p>
 <blockquote>
@@ -222,9 +224,9 @@ command are in the <a class="reference internal" href="tutorial.html"><span clas
 </li>
 <li><p><strong>#table</strong> - change the working table to the indicated table name.</p></li>
 </ul>
-</div>
-<div class="section" id="column-field-format">
-<h3>Column Field Format<a class="headerlink" href="#column-field-format" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="column-field-format">
+<h3>Column Field Format<a class="headerlink" href="#column-field-format" title="Permalink to this heading"></a></h3>
 <ul>
 <li><p>Tags begin with a ‘#’ symbol and identify a specific relational database table, field, and optionally a field-attribute.</p>
 <blockquote>
@@ -315,9 +317,9 @@ command are in the <a class="reference internal" href="tutorial.html"><span clas
 </div></blockquote>
 </li>
 </ul>
-</div>
-<div class="section" id="value-field-format">
-<h3>Value Field Format<a class="headerlink" href="#value-field-format" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="value-field-format">
+<h3>Value Field Format<a class="headerlink" href="#value-field-format" title="Permalink to this heading"></a></h3>
 <ul>
 <li><p>Values for a tag field can be specified directly using an equal sign “=”.</p>
 <blockquote>
@@ -387,7 +389,7 @@ command are in the <a class="reference internal" href="tutorial.html"><span clas
 <blockquote>
 <div><ul class="simple">
 <li><p>study - the study table.</p></li>
-<li><p>“labeled mouse study 278 ” - part of value for the study title field.</p></li>
+<li><p>“labeled mouse study 278 “ - part of value for the study title field.</p></li>
 <li><p>#.type - part of value of the study title field taken from the study type field.</p></li>
 </ul>
 </div></blockquote>
@@ -399,9 +401,9 @@ command are in the <a class="reference internal" href="tutorial.html"><span clas
 </div></blockquote>
 </li>
 </ul>
-</div>
-<div class="section" id="id-field-format">
-<h3>ID Field Format<a class="headerlink" href="#id-field-format" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="id-field-format">
+<h3>ID Field Format<a class="headerlink" href="#id-field-format" title="Permalink to this heading"></a></h3>
 <ul>
 <li><p>ID tags indicate an identifier for a record in a table.</p></li>
 <li><p>The ID must uniquely identify a record.</p></li>
@@ -441,9 +443,9 @@ command are in the <a class="reference internal" href="tutorial.html"><span clas
 </div></blockquote>
 </li>
 </ul>
-</div>
-<div class="section" id="list-field-format">
-<h3>List Field Format<a class="headerlink" href="#list-field-format" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="list-field-format">
+<h3>List Field Format<a class="headerlink" href="#list-field-format" title="Permalink to this heading"></a></h3>
 <ul>
 <li><p>List field tags begin with <strong>‘*#’</strong> (<strong>asterisk followed by the pound sign</strong>) and identify a specific relational database table, field, and optionally a field-attribute that has multiple values.</p></li>
 <li><p>They have the same format as normal column field tags.</p>
@@ -488,9 +490,9 @@ command are in the <a class="reference internal" href="tutorial.html"><span clas
 </li>
 <li><p>List field tags can be listed multiple times in a record, with each value(s) appended.</p></li>
 </ul>
-</div>
-<div class="section" id="child-tag-format">
-<h3>Child Tag Format<a class="headerlink" href="#child-tag-format" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="child-tag-format">
+<h3>Child Tag Format<a class="headerlink" href="#child-tag-format" title="Permalink to this heading"></a></h3>
 <ul>
 <li><p>Child record tags provides a mechanism for indicating parent-child relationships between records in the same table or between tables.</p>
 <blockquote>
@@ -511,12 +513,6 @@ command are in the <a class="reference internal" href="tutorial.html"><span clas
 </ul>
 <p>Example:</p>
 <table class="docutils align-default">
-<colgroup>
-<col style="width: 5%" />
-<col style="width: 11%" />
-<col style="width: 42%" />
-<col style="width: 42%" />
-</colgroup>
 <tbody>
 <tr class="row-odd"><td><p>#tags</p></td>
 <td><p>#sample.id</p></td>
@@ -577,9 +573,9 @@ command are in the <a class="reference internal" href="tutorial.html"><span clas
 <span class="go">}</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="field-tracking-tags">
-<h3>Field Tracking Tags<a class="headerlink" href="#field-tracking-tags" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="field-tracking-tags">
+<h3>Field Tracking Tags<a class="headerlink" href="#field-tracking-tags" title="Permalink to this heading"></a></h3>
 <ul>
 <li><p>Field tracking tags provide a mechanism for copying the latest field value from one table into the records of another.</p>
 <blockquote>
@@ -613,10 +609,6 @@ command are in the <a class="reference internal" href="tutorial.html"><span clas
 </ul>
 <p>Example:</p>
 <table class="docutils align-default">
-<colgroup>
-<col style="width: 16%" />
-<col style="width: 84%" />
-</colgroup>
 <tbody>
 <tr class="row-odd"><td><p>#tags</p></td>
 <td><p>#sample%track=project.id</p></td>
@@ -664,10 +656,10 @@ command are in the <a class="reference internal" href="tutorial.html"><span clas
 <span class="go">}</span>
 </pre></div>
 </div>
-</div>
-</div>
-<div class="section" id="modification-tags">
-<h2>Modification Tags<a class="headerlink" href="#modification-tags" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+<section id="modification-tags">
+<h2>Modification Tags<a class="headerlink" href="#modification-tags" title="Permalink to this heading"></a></h2>
 <p>Similar to export tags the modification tag rows are indicated by <strong>#tags</strong> in the left most column, and
 <strong>#ignore</strong> can be used to ignore rows. The general idea behind the modification system is that you
 first indicate a field in a table to match to using tags. Then underneath that tag indicate the value in
@@ -676,12 +668,6 @@ record that has the matching field and what modification to do. Underneath that 
 to do the modification with.</p>
 <p>Basic Examples:</p>
 <table class="docutils align-default">
-<colgroup>
-<col style="width: 7%" />
-<col style="width: 46%" />
-<col style="width: 39%" />
-<col style="width: 9%" />
-</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>#tags</p></th>
 <th class="head"><p>#measurement.compound.value</p></th>
@@ -704,12 +690,6 @@ to do the modification with.</p>
 </table>
 <p>This example replaces the “compound” field with value “(S)-2-Acetolactate_Glutaric acid_Methylsuccinic acid_MP_NoStd” in “measurement” table records with “(S)-2-Acetolactate Glutaric acid Methylsuccinic acid”.</p>
 <table class="docutils align-default">
-<colgroup>
-<col style="width: 4%" />
-<col style="width: 30%" />
-<col style="width: 60%" />
-<col style="width: 6%" />
-</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>#tags</p></th>
 <th class="head"><p>#measurement.compound.value</p></th>
@@ -732,8 +712,8 @@ to do the modification with.</p>
 </table>
 <p>This example does a regex substitution on the “id” field of records in the “measurement” table if their “compound” field matches “(S)-2-Acetolactate_Glutaric acid_Methylsuccinic acid_MP_NoStd”.
 In the “id” field “(S)-2-Acetolactate_Glutaric acid_Methylsuccinic acid_MP_NoStd” is substituted with “(S)-2-Acetolactate Glutaric acid Methylsuccinic acid”.</p>
-<div class="section" id="value-tag">
-<h3>Value Tag<a class="headerlink" href="#value-tag" title="Permalink to this headline">¶</a></h3>
+<section id="value-tag">
+<h3>Value Tag<a class="headerlink" href="#value-tag" title="Permalink to this heading"></a></h3>
 <ul>
 <li><p>All modification tag rows must start with a value tag after <strong>#tags</strong>.</p></li>
 <li><p>This tag indicates which table and field to compare with.</p></li>
@@ -751,9 +731,9 @@ In the “id” field “(S)-2-Acetolactate_Glutaric acid_Methylsuccinic acid_MP
 </div></blockquote>
 </li>
 </ul>
-</div>
-<div class="section" id="comparison-type">
-<h3>Comparison Type<a class="headerlink" href="#comparison-type" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="comparison-type">
+<h3>Comparison Type<a class="headerlink" href="#comparison-type" title="Permalink to this heading"></a></h3>
 <p>The comparison type is controlled through the <strong>#comparison</strong> tag. It can be used to specify the type for
 each row individually, or for the whole column by using the = sign. Ex. <strong>#comparison=exact</strong></p>
 <p>There are 4 comparison types, “exact”, “regex”, “levenshtein”, and “regex|exact”.</p>
@@ -774,9 +754,9 @@ each row individually, or for the whole column by using the = sign. Ex. <strong>
 <li><p>exact type modifications are executed first, then regex type, and lastly levenshtein type. Within those types modifications are executed in order from first to last.</p></li>
 </ul>
 </div></blockquote>
-</div>
-<div class="section" id="match-type">
-<h3>Match Type<a class="headerlink" href="#match-type" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="match-type">
+<h3>Match Type<a class="headerlink" href="#match-type" title="Permalink to this heading"></a></h3>
 <p>Match behavior can be altered further using the <strong>#match</strong> tag. It can be used to specify the type for
 each row individually, or for the whole column by using the = sign. Ex. <strong>#match=all</strong></p>
 <p>There are 4 match types, “first”, “first-nowarn”, “unique”, and “all”.</p>
@@ -795,9 +775,9 @@ each row individually, or for the whole column by using the = sign. Ex. <strong>
 <li><p>If the match tag is not specified then the type defaults to “first”.</p></li>
 </ul>
 </div></blockquote>
-</div>
-<div class="section" id="modifications">
-<h3>Modifications<a class="headerlink" href="#modifications" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="modifications">
+<h3>Modifications<a class="headerlink" href="#modifications" title="Permalink to this heading"></a></h3>
 <p>There are 6 modifications that can be done, “assign”, “append”, “prepend”, “regex”, “delete”, and “rename”.</p>
 <ul>
 <li><p><strong>assign</strong> - will overwrite whatever value is in the field with the indicated assignment value.</p>
@@ -841,11 +821,6 @@ each row individually, or for the whole column by using the = sign. Ex. <strong>
 </ul>
 <p>Example:</p>
 <table class="docutils align-default">
-<colgroup>
-<col style="width: 7%" />
-<col style="width: 50%" />
-<col style="width: 43%" />
-</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>#tags</p></th>
 <th class="head"><p>#measurement.compound.value</p></th>
@@ -898,11 +873,6 @@ each row individually, or for the whole column by using the = sign. Ex. <strong>
 </ul>
 <p>Example:</p>
 <table class="docutils align-default">
-<colgroup>
-<col style="width: 7%" />
-<col style="width: 50%" />
-<col style="width: 43%" />
-</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>#tags</p></th>
 <th class="head"><p>#measurement.compound.value</p></th>
@@ -955,11 +925,6 @@ each row individually, or for the whole column by using the = sign. Ex. <strong>
 </ul>
 <p>Example:</p>
 <table class="docutils align-default">
-<colgroup>
-<col style="width: 7%" />
-<col style="width: 50%" />
-<col style="width: 43%" />
-</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>#tags</p></th>
 <th class="head"><p>#measurement.compound.value</p></th>
@@ -994,11 +959,6 @@ each row individually, or for the whole column by using the = sign. Ex. <strong>
 </ul>
 <p>Example:</p>
 <table class="docutils align-default">
-<colgroup>
-<col style="width: 5%" />
-<col style="width: 32%" />
-<col style="width: 63%" />
-</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>#tags</p></th>
 <th class="head"><p>#measurement.compound.value</p></th>
@@ -1033,11 +993,6 @@ each row individually, or for the whole column by using the = sign. Ex. <strong>
 </ul>
 <p>Example:</p>
 <table class="docutils align-default">
-<colgroup>
-<col style="width: 9%" />
-<col style="width: 60%" />
-<col style="width: 31%" />
-</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>#tags</p></th>
 <th class="head"><p>#measurement.compound.value</p></th>
@@ -1073,11 +1028,6 @@ each row individually, or for the whole column by using the = sign. Ex. <strong>
 </ul>
 <p>Example:</p>
 <table class="docutils align-default">
-<colgroup>
-<col style="width: 7%" />
-<col style="width: 51%" />
-<col style="width: 41%" />
-</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>#tags</p></th>
 <th class="head"><p>#measurement.compound.value</p></th>
@@ -1144,18 +1094,18 @@ each row individually, or for the whole column by using the = sign. Ex. <strong>
 <li><p><strong>#[table_name].field_name[%attribute].delete</strong> identifies field to delete.</p></li>
 <li><p><strong>#[table_name].field_name[%attribute].rename.field_name[%attribute]</strong> identifies field to rename.</p></li>
 </ul>
-</div>
-</div>
-<div class="section" id="automation-tags">
-<h2>Automation Tags<a class="headerlink" href="#automation-tags" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+<section id="automation-tags">
+<h2>Automation Tags<a class="headerlink" href="#automation-tags" title="Permalink to this heading"></a></h2>
 <p>Automation tag rows, like the other tag rows, are indicated by <strong>#tags</strong> in the left most column with
 <strong>#ignore</strong> used to ignore rows, but <strong>#insert</strong> and <strong>#end</strong> tags are also introduced. There are 2
 main functions in the automation system. One is to specify a table of header-tag pairs that will be used
 to automatically add the tags associated with the headers underneath of the headers when it finds them
 in the data. The other is to specify a block of rows to add to the data exactly as is. This is what
 introduces the <strong>#insert</strong> and <strong>#end</strong> tags.</p>
-<div class="section" id="insert">
-<h3>Insert<a class="headerlink" href="#insert" title="Permalink to this headline">¶</a></h3>
+<section id="insert">
+<h3>Insert<a class="headerlink" href="#insert" title="Permalink to this heading"></a></h3>
 <p>The insertion functionality is easy to understand. You simply write whatever you want to add into the
 data and add <strong>#insert</strong> above it in the left most column and <strong>#end</strong> below it in the left most column.
 Everything in between <strong>#insert</strong> and <strong>#end</strong> is simply added as is into the data before it is parsed
@@ -1166,15 +1116,6 @@ sure everything in the insert block is valid under the export tag system. It can
 a tagging error here because extract won’t be able to tell you that the issue is in the insert block.</p>
 <p>Example:</p>
 <table class="docutils align-default">
-<colgroup>
-<col style="width: 10%" />
-<col style="width: 15%" />
-<col style="width: 9%" />
-<col style="width: 18%" />
-<col style="width: 13%" />
-<col style="width: 15%" />
-<col style="width: 20%" />
-</colgroup>
 <tbody>
 <tr class="row-odd"><td><p>#insert</p></td>
 <td></td>
@@ -1218,9 +1159,9 @@ a tagging error here because extract won’t be able to tell you that the issue 
 </tr>
 </tbody>
 </table>
-</div>
-<div class="section" id="header-tagging">
-<h3>Header Tagging<a class="headerlink" href="#header-tagging" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="header-tagging">
+<h3>Header Tagging<a class="headerlink" href="#header-tagging" title="Permalink to this heading"></a></h3>
 <p>The header tagging allows you to automatically put export tags under a cell in tabular data based on
 the value in the cell. Typically, a table will already have descriptive human readable headers to identify
 what type of data is in the column. These headers are used to match to and put the associated export tags
@@ -1229,18 +1170,10 @@ under them. Any row that has a header match where export tags are added is autom
 block. An entire block is matched as a whole to a row in the data, so if you have multiple tables to add
 tags to you should created multiple tag blocks. There are additional tags to help control how a black is
 matched, detailed below.</p>
-<div class="section" id="example">
-<h4>Example:<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h4>
+<section id="example">
+<h4>Example:<a class="headerlink" href="#example" title="Permalink to this heading"></a></h4>
 <p>Data:</p>
 <table class="docutils align-default">
-<colgroup>
-<col style="width: 36%" />
-<col style="width: 7%" />
-<col style="width: 6%" />
-<col style="width: 32%" />
-<col style="width: 7%" />
-<col style="width: 11%" />
-</colgroup>
 <tbody>
 <tr class="row-odd"><td><p>Compound</p></td>
 <td><p>Mol_Formula</p></td>
@@ -1267,11 +1200,6 @@ matched, detailed below.</p>
 </table>
 <p>Header Tags:</p>
 <table class="docutils align-default">
-<colgroup>
-<col style="width: 4%" />
-<col style="width: 30%" />
-<col style="width: 66%" />
-</colgroup>
 <tbody>
 <tr class="row-odd"><td><p>#tags</p></td>
 <td><p>#header</p></td>
@@ -1317,19 +1245,6 @@ matched, detailed below.</p>
 </table>
 <p>After Automation:</p>
 <table class="docutils align-default">
-<colgroup>
-<col style="width: 2%" />
-<col style="width: 21%" />
-<col style="width: 12%" />
-<col style="width: 11%" />
-<col style="width: 4%" />
-<col style="width: 2%" />
-<col style="width: 9%" />
-<col style="width: 7%" />
-<col style="width: 10%" />
-<col style="width: 19%" />
-<col style="width: 3%" />
-</colgroup>
 <tbody>
 <tr class="row-odd"><td><p>#ignore</p></td>
 <td></td>
@@ -1418,9 +1333,9 @@ matched, detailed below.</p>
 <span class="go">}</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="the-tags">
-<h4>The Tags<a class="headerlink" href="#the-tags" title="Permalink to this headline">¶</a></h4>
+</section>
+<section id="the-tags">
+<h4>The Tags<a class="headerlink" href="#the-tags" title="Permalink to this heading"></a></h4>
 <ul>
 <li><p><strong>#header</strong> - header value to match to. Can be a regular expression of the form r’…’.</p>
 <blockquote>
@@ -1473,11 +1388,6 @@ matched, detailed below.</p>
 <li><p>Example:</p></li>
 </ul>
 <table class="docutils align-default">
-<colgroup>
-<col style="width: 7%" />
-<col style="width: 54%" />
-<col style="width: 39%" />
-</colgroup>
 <tbody>
 <tr class="row-odd"><td><p>#tags</p></td>
 <td><p>#header</p></td>
@@ -1515,11 +1425,6 @@ matched, detailed below.</p>
 <li><p>Example:</p></li>
 </ul>
 <table class="docutils align-default">
-<colgroup>
-<col style="width: 6%" />
-<col style="width: 42%" />
-<col style="width: 52%" />
-</colgroup>
 <tbody>
 <tr class="row-odd"><td><p>#tags</p></td>
 <td><p>#header</p></td>
@@ -1556,22 +1461,22 @@ They function just like when they are on their own, except that there is an addi
 can be used to control whether the insert happens every time the tag block matches or only the first time.</p>
 <ul class="simple">
 <li><p><strong>#multiple=true</strong> - will insert on every match.</p></li>
-<li><p><strong>#multiple=false* - will only insert on the first match, this is the default behavior if **#multiple</strong> is not specified.</p></li>
+<li><p><strong>#multiple=false</strong> - will only insert on the first match, this is the default behavior if <strong>#multiple</strong> is not specified.</p></li>
 </ul>
-</div>
-</div>
-</div>
-<div class="section" id="common-use-case-examples">
-<h2>Common Use Case Examples<a class="headerlink" href="#common-use-case-examples" title="Permalink to this headline">¶</a></h2>
-</div>
-</div>
+</section>
+</section>
+</section>
+<section id="common-use-case-examples">
+<h2>Common Use Case Examples<a class="headerlink" href="#common-use-case-examples" title="Permalink to this heading"></a></h2>
+</section>
+</section>
 
 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="tutorial.html" class="btn btn-neutral float-left" title="Tutorial" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="table_schema.html" class="btn btn-neutral float-right" title="Table Schema" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="conversion_directives.html" class="btn btn-neutral float-right" title="Conversion Directives" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

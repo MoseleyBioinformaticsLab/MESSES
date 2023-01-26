@@ -1,0 +1,1673 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Conversion Directives &mdash; MESSES 0.1.dev1+gebeb725 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Table Schema" href="table_schema.html" />
+    <link rel="prev" title="Tagging" href="tagging.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> MESSES
+          </a>
+              <div class="version">
+                0.1.dev1+gebeb725
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="guide.html">User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="guide.html#messes">MESSES</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cli.html">CLI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tagging.html">Tagging</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Conversion Directives</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#introduction">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#str-directives">str Directives</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#override">Override</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#directive-as-json">Directive as JSON</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tagged-equivalent">Tagged Equivalent</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#output-json">Output JSON</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#code">Code</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id1">Directive as JSON</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id2">Tagged Equivalent</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id3">Output JSON</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#record-id">Record ID</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id4">Directive as JSON</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id5">Tagged Equivalent</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#input-json">Input JSON</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id8">Output JSON</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#first-record">First Record</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id9">Directive as JSON</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id10">Tagged Equivalent</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id17">Input JSON</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id18">Output JSON</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#for-each">For Each</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id19">Directive as JSON</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id20">Tagged Equivalent</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id25">Input JSON</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id26">Output JSON</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#general-output-format">General Output Format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#meaningful-fields">Meaningful Fields</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#matrix-directives">matrix Directives</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id27">Code</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id28">Directive as JSON</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id29">Tagged Equivalent</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id30">Output JSON</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#headers">Headers</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id31">Directive as JSON</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id32">Tagged Equivalent</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id37">Input JSON</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id38">Output JSON</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#collate">Collate</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id39">Directive as JSON</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id40">Tagged Equivalent</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id45">Input JSON</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id46">Output JSON</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#fields-to-headers">Fields to Headers</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id47">Directive as JSON</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id48">Tagged Equivalent</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id55">Input JSON</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id56">Output JSON</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id57">General Output Format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id58">Meaningful Fields</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#section-directives">section Directives</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#example">Example</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id59">Directive as JSON</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id60">Tagged Equivalent</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id61">Output JSON</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id62">General Output Format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id63">Meaningful Fields</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#validation">Validation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="table_schema.html">Table Schema</a></li>
+<li class="toctree-l1"><a class="reference internal" href="supported_formats.html">Supported Formats</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="todo.html">TODO List</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">MESSES</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a></li>
+      <li class="breadcrumb-item active">Conversion Directives</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/conversion_directives.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="conversion-directives">
+<h1>Conversion Directives<a class="headerlink" href="#conversion-directives" title="Permalink to this heading"></a></h1>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading"></a></h2>
+<p>The convert command is used to convert extracted and validated data from it’s arbitrary JSON form to
+the final desired format. The command was largely created with the goal of putting data into its
+preferred format for deposition into an online data repository such as <a class="reference external" href="http://www.metabolomicsworkbench.org">Metabolomics Workbench</a>.
+Many popular data formats have a unique text format specialized to thier niche, but also have a
+JSON version of the format as well. It is often easier to go from the JSON version of the format
+to the specialized format and vice versa. It is also easier to go from one arbitrary JSON format
+to another, so the convert command was designed to transform the JSON format described in
+<a class="reference internal" href="table_schema.html"><span class="doc">Table Schema</span></a> to the JSON version of any of the supported formats and then to the final
+niche format. The convert command also supports simple JSON to JSON conversion through the
+“generic” sub-command.</p>
+<p>To support the JSON to JSON conversion a relatively simple set of directives were developed. The
+conversion directives file is expected to be a JSON or tagged tabular file with a certain structure.
+The general JSON structure is shown below.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">{</span>
+<span class="go">&lt;table_name_1&gt;: {</span>
+<span class="go">    &lt;record_name_1&gt;:{</span>
+<span class="go">        &lt;field_name_1&gt;: &lt;field_value_1&gt;,</span>
+<span class="go">        &lt;field_name_2&gt;: &lt;field_value_2&gt;,</span>
+<span class="go">        ...</span>
+<span class="go">        },</span>
+<span class="go">    ...</span>
+<span class="go">    },</span>
+<span class="go">...</span>
+<span class="go">}</span>
+</pre></div>
+</div>
+<p>This structure can be mimicked using the export tagging system mentioned in the <a class="reference internal" href="tagging.html"><span class="doc">Tagging</span></a>
+section of this documentation, and tagged tabular files are acceptable input for the
+conversion directives of the convert command. The JSON structure above is shown below using
+export tags.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>#tags</p></th>
+<th class="head"><p>#&lt;table_name_1&gt;.id</p></th>
+<th class="head"><p>#.&lt;field_name_1&gt;</p></th>
+<th class="head"><p>#.&lt;field_name_2&gt;</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td></td>
+<td><p>&lt;record_name_1&gt;</p></td>
+<td><p>&lt;field_value_1&gt;</p></td>
+<td><p>&lt;field_value_2&gt;</p></td>
+</tr>
+</tbody>
+</table>
+<p>Each table in the directives translates to a table of the same name in the converted JSON,
+and each record name translates to a record of the same name. The fields for each
+record control how each record is created from the input JSON. Only certain field names
+have any meaning. Every record must have a “value_type” field, and the value of this
+field determines the other required and meaningful fields the record can have. The
+allowed values for the “value_type” field are “str”, “matrix”, and “section”. The “str”
+type produces a single string value for the record. The “matrix” type produces a list
+of dictionaries (aka an array of objects) for the record. The “section” type can produce
+anything, but what is produced is for the whole table. Examples and more detail for each
+value_type are given below.</p>
+</section>
+<section id="str-directives">
+<h2>str Directives<a class="headerlink" href="#str-directives" title="Permalink to this heading"></a></h2>
+<p>The str directive assumes that you want to create a string value from information in the
+input JSON, and that that information is contained within a single table. The value can
+be built from a single record in the table or by iterating over all of them, and the
+records can be sorted and filtered before building. There are a few common patterns to
+building a str directive.</p>
+<section id="override">
+<h3>Override<a class="headerlink" href="#override" title="Permalink to this heading"></a></h3>
+<p>To simply specify the string value directly use the “override” field.</p>
+<section id="directive-as-json">
+<h4>Directive as JSON<a class="headerlink" href="#directive-as-json" title="Permalink to this heading"></a></h4>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">{</span>
+<span class="go">&quot;ANALYSIS&quot;: {</span>
+<span class="go">    &quot;ANALYSIS_TYPE&quot;: {</span>
+<span class="go">        &quot;value_type&quot;: &quot;str&quot;,</span>
+<span class="go">        &quot;override&quot;: &quot;MS&quot;</span>
+<span class="go">        }</span>
+<span class="go">    }</span>
+<span class="go">}</span>
+</pre></div>
+</div>
+</section>
+<section id="tagged-equivalent">
+<h4>Tagged Equivalent<a class="headerlink" href="#tagged-equivalent" title="Permalink to this heading"></a></h4>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>#tags</p></th>
+<th class="head"><p>#ANALYSIS.id</p></th>
+<th class="head"><p>#.override</p></th>
+<th class="head"><p>#.value_type</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td></td>
+<td><p>ANALYSIS_TYPE</p></td>
+<td><p>MS</p></td>
+<td><p>str</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="output-json">
+<h4>Output JSON<a class="headerlink" href="#output-json" title="Permalink to this heading"></a></h4>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">{</span>
+<span class="go">&quot;ANALYSIS&quot;: {</span>
+<span class="go">    &quot;ANALYSIS_TYPE&quot;: &quot;MS&quot;</span>
+<span class="go">    }</span>
+<span class="go">}</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="code">
+<h3>Code<a class="headerlink" href="#code" title="Permalink to this heading"></a></h3>
+<p>If you need to generate a string value from the input JSON in a more complex way
+than can be done with the current supported directives you can use the “code” field
+to give the program Python code directly to run. What is in the code field will
+be delivered directly to eval(), and the name of the internal variable for the input
+JSON is “input_json”. You can also use the “import” field to import any user created
+libraries into the program. The “import” value should be a path to the file to import.</p>
+<section id="id1">
+<h4>Directive as JSON<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h4>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">{</span>
+<span class="go">&quot;METABOLOMICS WORKBENCH&quot;: {</span>
+<span class="go">    &quot;CREATED_ON&quot;: {</span>
+<span class="go">        &quot;value_type&quot;: &quot;str&quot;,</span>
+<span class="go">        &quot;code&quot;: &quot;str(datetime.datetime.now().date())&quot;</span>
+<span class="go">        }</span>
+<span class="go">    }</span>
+<span class="go">}</span>
+</pre></div>
+</div>
+</section>
+<section id="id2">
+<h4>Tagged Equivalent<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h4>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>#tags</p></th>
+<th class="head"><p>#METABOLOMICS WORKBENCH.id</p></th>
+<th class="head"><p>#.code</p></th>
+<th class="head"><p>#.value_type</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td></td>
+<td><p>CREATED_ON</p></td>
+<td><p>str(datetime.datetime.now().date())</p></td>
+<td><p>str</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="id3">
+<h4>Output JSON<a class="headerlink" href="#id3" title="Permalink to this heading"></a></h4>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">{</span>
+<span class="go">&quot;METABOLOMICS WORKBENCH&quot;: {</span>
+<span class="go">    &quot;CREATED_ON&quot;: &quot;2023-01-04&quot;    # Will change to be date when the program is ran.</span>
+<span class="go">    }</span>
+<span class="go">}</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="record-id">
+<h3>Record ID<a class="headerlink" href="#record-id" title="Permalink to this heading"></a></h3>
+<p>If the value is simply in a field or combination of fields in a record of the input
+JSON, use the “record_id” field to point to that record directly and build the value
+from its fields.</p>
+<section id="id4">
+<h4>Directive as JSON<a class="headerlink" href="#id4" title="Permalink to this heading"></a></h4>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">{</span>
+<span class="go">&quot;ANALYSIS&quot;: {</span>
+<span class="go">    &quot;ANALYSIS_TYPE&quot;: {</span>
+<span class="go">        &quot;value_type&quot;: &quot;str&quot;,</span>
+<span class="go">        &quot;table&quot;: &quot;study&quot;,</span>
+<span class="go">        &quot;record_id&quot;: &quot;Study 1&quot;,</span>
+<span class="go">        &quot;fields&quot;: [&quot;analysis_type&quot;]</span>
+<span class="go">        }</span>
+<span class="go">    }</span>
+<span class="go">}</span>
+</pre></div>
+</div>
+</section>
+<section id="id5">
+<h4>Tagged Equivalent<a class="headerlink" href="#id5" title="Permalink to this heading"></a></h4>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>#tags</p></th>
+<th class="head"><p>#ANALYSIS.id</p></th>
+<th class="head"><p>#.value_type</p></th>
+<th class="head"><p>#.table</p></th>
+<th class="head"><p><a href="#id6"><span class="problematic" id="id7">*</span></a>#.fields</p></th>
+<th class="head"><p>#.record_id</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td></td>
+<td><p>ANALYSIS_TYPE</p></td>
+<td><p>str</p></td>
+<td><p>study</p></td>
+<td><p>analysis_type</p></td>
+<td><p>Study 1</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="input-json">
+<h4>Input JSON<a class="headerlink" href="#input-json" title="Permalink to this heading"></a></h4>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">{</span>
+<span class="go">&quot;study&quot;: {</span>
+<span class="go">    &quot;Study 1&quot;: {</span>
+<span class="go">        &quot;analysis_type&quot;: &quot;MS&quot;,</span>
+<span class="go">        &quot;species&quot;: &quot;mus musculus&quot;,</span>
+<span class="go">        &quot;instrument&quot;: &quot;Orbitrap&quot;,</span>
+<span class="go">        &quot;ion_mode&quot;: &quot;negative&quot;</span>
+<span class="go">        }</span>
+<span class="go">    }</span>
+<span class="go">}</span>
+</pre></div>
+</div>
+</section>
+<section id="id8">
+<h4>Output JSON<a class="headerlink" href="#id8" title="Permalink to this heading"></a></h4>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">{</span>
+<span class="go">&quot;ANALYSIS&quot;: {</span>
+<span class="go">    &quot;ANALYSIS_TYPE&quot;: &quot;MS&quot;</span>
+<span class="go">    }</span>
+<span class="go">}</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="first-record">
+<h3>First Record<a class="headerlink" href="#first-record" title="Permalink to this heading"></a></h3>
+<p>Similar to specifying a record ID if you want to build the string value from a record
+but do not know its ID you can omit the “record_id” field and the first record in
+the specified table will be used. This alone is generally not enough though and it
+is recommended to either use the “sort_by” and “sort_order” fields to first sort the
+records before selecting the first one, or use the “test” field to select the first
+record that matches the test.</p>
+<section id="id9">
+<h4>Directive as JSON<a class="headerlink" href="#id9" title="Permalink to this heading"></a></h4>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp"># </span>Using<span class="w"> </span>test.
+<span class="go">{</span>
+<span class="go">&quot;ANALYSIS&quot;: {</span>
+<span class="go">    &quot;INSTRUMENT&quot;: {</span>
+<span class="go">        &quot;value_type&quot;: &quot;str&quot;,</span>
+<span class="go">        &quot;table&quot;: &quot;study&quot;,</span>
+<span class="go">        &quot;fields&quot;: [&quot;instrument&quot;],</span>
+<span class="go">        &quot;test&quot;: &quot;analysis_type=MS&quot;</span>
+<span class="go">        }</span>
+<span class="go">    }</span>
+<span class="go">}</span>
+
+<span class="gp"># </span>Using<span class="w"> </span>sort.
+<span class="go">{</span>
+<span class="go">&quot;ANALYSIS&quot;: {</span>
+<span class="go">    &quot;INSTRUMENT&quot;: {</span>
+<span class="go">        &quot;value_type&quot;: &quot;str&quot;,</span>
+<span class="go">        &quot;table&quot;: &quot;study&quot;,</span>
+<span class="go">        &quot;fields&quot;: [&quot;instrument&quot;],</span>
+<span class="go">        &quot;sort_by&quot;: &quot;analysis_type&quot;,</span>
+<span class="go">        &quot;sort_order&quot;: &quot;ascending&quot;</span>
+<span class="go">        }</span>
+<span class="go">    }</span>
+<span class="go">}</span>
+</pre></div>
+</div>
+</section>
+<section id="id10">
+<h4>Tagged Equivalent<a class="headerlink" href="#id10" title="Permalink to this heading"></a></h4>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>#tags</p></th>
+<th class="head"><p>#ANALYSIS.id</p></th>
+<th class="head"><p>#.value_type</p></th>
+<th class="head"><p>#.table</p></th>
+<th class="head"><p><a href="#id11"><span class="problematic" id="id12">*</span></a>#.fields</p></th>
+<th class="head"><p>#.test</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td></td>
+<td><p>INSTRUMENT</p></td>
+<td><p>str</p></td>
+<td><p>study</p></td>
+<td><p>instrument</p></td>
+<td><p>analysis_type=MS</p></td>
+</tr>
+</tbody>
+</table>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>#tags</p></th>
+<th class="head"><p>#ANALYSIS.id</p></th>
+<th class="head"><p>#.value_type</p></th>
+<th class="head"><p>#.table</p></th>
+<th class="head"><p><a href="#id13"><span class="problematic" id="id14">*</span></a>#.fields</p></th>
+<th class="head"><p><a href="#id15"><span class="problematic" id="id16">*</span></a>#.sort_by</p></th>
+<th class="head"><p>#.sort_order</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td></td>
+<td><p>INSTRUMENT</p></td>
+<td><p>str</p></td>
+<td><p>study</p></td>
+<td><p>instrument</p></td>
+<td><p>analysis_type</p></td>
+<td><p>ascending</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="id17">
+<h4>Input JSON<a class="headerlink" href="#id17" title="Permalink to this heading"></a></h4>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">{</span>
+<span class="go">&quot;study&quot;: {</span>
+<span class="go">    &quot;Study 1&quot;: {</span>
+<span class="go">        &quot;analysis_type&quot;: &quot;NMR&quot;,</span>
+<span class="go">        &quot;species&quot;: &quot;mus musculus&quot;,</span>
+<span class="go">        &quot;instrument&quot;: &quot;Agilent&quot;</span>
+<span class="go">        },</span>
+<span class="go">    &quot;Study 2&quot;: {</span>
+<span class="go">        &quot;analysis_type&quot;: &quot;MS&quot;,</span>
+<span class="go">        &quot;species&quot;: &quot;mus musculus&quot;,</span>
+<span class="go">        &quot;instrument&quot;: &quot;Orbitrap&quot;,</span>
+<span class="go">        &quot;ion_mode&quot;: &quot;negative&quot;</span>
+<span class="go">        }</span>
+<span class="go">    }</span>
+<span class="go">}</span>
+
+<span class="gp"># </span>After<span class="w"> </span>sorting.
+<span class="go">{</span>
+<span class="go">&quot;study&quot;: {</span>
+<span class="go">    &quot;Study 2&quot;: {</span>
+<span class="go">        &quot;analysis_type&quot;: &quot;MS&quot;,</span>
+<span class="go">        &quot;species&quot;: &quot;mus musculus&quot;,</span>
+<span class="go">        &quot;instrument&quot;: &quot;Orbitrap&quot;,</span>
+<span class="go">        &quot;ion_mode&quot;: &quot;negative&quot;</span>
+<span class="go">        },</span>
+<span class="go">    &quot;Study 1&quot;: {</span>
+<span class="go">        &quot;analysis_type&quot;: &quot;NMR&quot;,</span>
+<span class="go">        &quot;species&quot;: &quot;mus musculus&quot;,</span>
+<span class="go">        &quot;instrument&quot;: &quot;Agilent&quot;</span>
+<span class="go">        }</span>
+<span class="go">    }</span>
+<span class="go">}</span>
+</pre></div>
+</div>
+</section>
+<section id="id18">
+<h4>Output JSON<a class="headerlink" href="#id18" title="Permalink to this heading"></a></h4>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">{</span>
+<span class="go">&quot;ANALYSIS&quot;: {</span>
+<span class="go">    &quot;Instrument&quot;: &quot;Orbitrap&quot;</span>
+<span class="go">    }</span>
+<span class="go">}</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="for-each">
+<h3>For Each<a class="headerlink" href="#for-each" title="Permalink to this heading"></a></h3>
+<p>If the information to build the value is spread across several records then use the
+“for_each” field to loop over all the records in the table and build the value by
+concatenating the values with a delimiter. Use the “delimiter” field to specify the
+delimiter to use, the default is no delimiter aka the empty string. Generally, simply
+looping over all records is not enough, so use the “test” field to only use the records
+matching some test.</p>
+<section id="id19">
+<h4>Directive as JSON<a class="headerlink" href="#id19" title="Permalink to this heading"></a></h4>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">{</span>
+<span class="go">&quot;SAMPLEPREP&quot;: {</span>
+<span class="go">    &quot;SAMPLEPREP_SUMMARY&quot;: {</span>
+<span class="go">        &quot;delimiter&quot;: &quot;\&quot; \&quot;&quot;,</span>
+<span class="go">        &quot;fields&quot;: [</span>
+<span class="go">          &quot;description&quot;</span>
+<span class="go">        ],</span>
+<span class="go">        &quot;for_each&quot;: &quot;True&quot;,</span>
+<span class="go">        &quot;id&quot;: &quot;SAMPLEPREP_SUMMARY&quot;,</span>
+<span class="go">        &quot;required&quot;: &quot;True&quot;,</span>
+<span class="go">        &quot;sort_by&quot;: [</span>
+<span class="go">          &quot;id&quot;</span>
+<span class="go">        ],</span>
+<span class="go">        &quot;sort_order&quot;: &quot;ascending&quot;,</span>
+<span class="go">        &quot;table&quot;: &quot;protocol&quot;,</span>
+<span class="go">        &quot;test&quot;: &quot;type=sample_prep&quot;,</span>
+<span class="go">        &quot;value_type&quot;: &quot;str&quot;</span>
+<span class="go">        }</span>
+<span class="go">    }</span>
+<span class="go">}</span>
+</pre></div>
+</div>
+</section>
+<section id="id20">
+<h4>Tagged Equivalent<a class="headerlink" href="#id20" title="Permalink to this heading"></a></h4>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>#tags</p></th>
+<th class="head"><p>#SAMPLEPREP.id</p></th>
+<th class="head"><p>#.delimiter</p></th>
+<th class="head"><p><a href="#id21"><span class="problematic" id="id22">*</span></a>#.fields</p></th>
+<th class="head"><p>#.for_each</p></th>
+<th class="head"><p>#.required</p></th>
+<th class="head"><p><a href="#id23"><span class="problematic" id="id24">*</span></a>#.sort_by</p></th>
+<th class="head"><p>#.sort_order</p></th>
+<th class="head"><p>#.table</p></th>
+<th class="head"><p>#.test</p></th>
+<th class="head"><p>#.value_type</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td></td>
+<td><p>SAMPLEPREP_SUMMARY</p></td>
+<td><p>“ “</p></td>
+<td><p>description</p></td>
+<td><p>True</p></td>
+<td></td>
+<td><p>id</p></td>
+<td><p>ascending</p></td>
+<td><p>protocol</p></td>
+<td><p>type=sample_prep</p></td>
+<td><p>str</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="id25">
+<h4>Input JSON<a class="headerlink" href="#id25" title="Permalink to this heading"></a></h4>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">{</span>
+<span class="go">&quot;protocol&quot;: {</span>
+<span class="go">    &quot;3_IC-FTMS_preparation&quot;: {</span>
+<span class="go">      &quot;description&quot;: &quot;Before going into the IC-FTMS the frozen sample is reconstituted in water.&quot;,</span>
+<span class="go">      &quot;filename&quot;: &quot;&quot;,</span>
+<span class="go">      &quot;id&quot;: &quot;3_IC-FTMS_preparation&quot;,</span>
+<span class="go">      &quot;type&quot;: &quot;sample_prep&quot;</span>
+<span class="go">      },</span>
+<span class="go">    &quot;ICMS1&quot;: {</span>
+<span class="go">      &quot;chromatography_description&quot;: &quot;Targeted IC&quot;,</span>
+<span class="go">      &quot;chromatography_instrument_name&quot;: &quot;Thermo Dionex ICS-5000+&quot;,</span>
+<span class="go">      &quot;chromatography_type&quot;: &quot;Targeted IC&quot;,</span>
+<span class="go">      &quot;column_name&quot;: &quot;Dionex IonPac AS11-HC-4um 2 mm i.d. x 250 mm&quot;,</span>
+<span class="go">      &quot;description&quot;: &quot;ICMS Analytical Experiment with detection of compounds by comparison to standards. \nThermo RAW files are loaded into TraceFinder and peaks are manually curated. The area under the chromatograms is then exported to an Excel file. The area is then corrected for natural abundance. The natural abundance corrected area is then used to calculate the concentration of each compound for each sample. This calculation is done using standards. The first sample ran on the ICMS is a standard that has known concentrations of certain compounds. Then a number of samples are ran (typically 3-4) followed by another standard. The equation to calculate the concentration is \&quot;intensity in sample\&quot;/(\&quot;intensity in first standard\&quot; + ((\&quot;intensity in second standard\&quot; - \&quot;intensity in first standard\&quot;)/# of samples) * \&quot;known concentration in standard\&quot;, where the \&quot;intensity\&quot; is the aforementioned natural abundance corrected area, and the unlabeled intensity from the standard is used for all isotopologues of the compound. The reconstitution volume is simply the volume that the polar part of the sample was reconstituted to before going into the ICMS. The injection volume is how much of the reconstitution volume was injected into the ICMS. The protein is how much protein was in the entire sample (not only the small portion that was aliquoted for the ICMS). The polar split ratio is the fraction of the polar part of the sample that was aliquoted for the ICMS. This is calculated by dividing the weight of the polar aliquot for ICMS by the total weight of the polar portion of the sample. The protein normalized concentration is calculated using the equation, concentration * (reconstitution volume / 1000 / polar split ratio / protein).&quot;,</span>
+<span class="go">      &quot;id&quot;: &quot;ICMS1&quot;,</span>
+<span class="go">      &quot;instrument&quot;: &quot;Orbitrap Fusion&quot;,</span>
+<span class="go">      &quot;instrument_type&quot;: &quot;IC-FTMS&quot;,</span>
+<span class="go">      &quot;ion_mode&quot;: &quot;NEGATIVE&quot;,</span>
+<span class="go">      &quot;ionization&quot;: &quot;ESI&quot;,</span>
+<span class="go">      &quot;parentID&quot;: &quot;IC-FTMS_measurement&quot;,</span>
+<span class="go">      &quot;type&quot;: &quot;MS&quot;</span>
+<span class="go">      },</span>
+<span class="go">    &quot;4a_acetone_extraction&quot;: {</span>
+<span class="go">      &quot;description&quot;: &quot;acetone extraction of polar metabolites&quot;,</span>
+<span class="go">      &quot;filename&quot;: &quot;4A2_Media Extraction with acetone ppt step.pdf&quot;,</span>
+<span class="go">      &quot;id&quot;: &quot;4a_acetone_extraction&quot;,</span>
+<span class="go">      &quot;type&quot;: &quot;sample_prep&quot;</span>
+<span class="go">      },</span>
+<span class="go">    &quot;allogenic&quot;: {</span>
+<span class="go">      &quot;description&quot;: &quot;Mouse with allogenic bone marrow transplant. Fed with semi-liquid diet supplemented with fully labeled glucose for 24 hours before harvest.&quot;,</span>
+<span class="go">      &quot;id&quot;: &quot;allogenic&quot;,</span>
+<span class="go">      &quot;parentID&quot;: &quot;mouse_experiment&quot;,</span>
+<span class="go">      &quot;type&quot;: &quot;treatment&quot;,</span>
+<span class="go">      &quot;filename&quot;: &quot;study_treatments.pdf&quot;</span>
+<span class="go">      },</span>
+<span class="go">    &quot;2_frozen_tissue_grind&quot;: {</span>
+<span class="go">      &quot;description&quot;: &quot;Frozen tissue is ground in a SPEX grinder under liquid nitrogen to homogenize the sample.&quot;,</span>
+<span class="go">      &quot;id&quot;: &quot;2_frozen_tissue_grind&quot;,</span>
+<span class="go">      &quot;type&quot;: &quot;sample_prep&quot;</span>
+<span class="go">      },</span>
+<span class="go">    &quot;4b_lipid_extraction&quot;: {</span>
+<span class="go">      &quot;description&quot;: &quot;Lipid extraction from homogenate.&quot;,</span>
+<span class="go">      &quot;filename&quot;: &quot;4B_Extract_Polar_Lipid_Prot_Fan_070417.pdf&quot;,</span>
+<span class="go">      &quot;id&quot;: &quot;4b_lipid_extraction&quot;,</span>
+<span class="go">      &quot;type&quot;: &quot;sample_prep&quot;</span>
+<span class="go">      },</span>
+<span class="go">    &quot;mouse_tissue_collection&quot;: {</span>
+<span class="go">      &quot;description&quot;: &quot;Mouse is sacrificed and tissues are harvested.&quot;,</span>
+<span class="go">      &quot;id&quot;: &quot;mouse_tissue_collection&quot;,</span>
+<span class="go">      &quot;sample_type&quot;: &quot;mouse&quot;,</span>
+<span class="go">      &quot;type&quot;: &quot;collection&quot;,</span>
+<span class="go">      &quot;filename&quot;: &quot;mouse_tissue_procedure.pdf&quot;</span>
+<span class="go">      },</span>
+<span class="go">    &quot;naive&quot;: {</span>
+<span class="go">      &quot;description&quot;: &quot;Mouse with no treatment. Fed with semi-liquid diet supplemented with fully labeled glucose for 24 hours before harvest.&quot;,</span>
+<span class="go">      &quot;id&quot;: &quot;naive&quot;,</span>
+<span class="go">      &quot;parentID&quot;: &quot;mouse_experiment&quot;,</span>
+<span class="go">      &quot;type&quot;: &quot;treatment&quot;,</span>
+<span class="go">      &quot;filename&quot;: &quot;study_treatments.pdf&quot;</span>
+<span class="go">      },</span>
+<span class="go">    &quot;4c_polar_extraction&quot;: {</span>
+<span class="go">      &quot;description&quot;: &quot;Polar extraction from homogenate, lypholized, and frozen.&quot;,</span>
+<span class="go">      &quot;filename&quot;: &quot;4B_Extract_Polar_Lipid_Prot_Fan_070417.pdf&quot;,</span>
+<span class="go">      &quot;id&quot;: &quot;4c_polar_extraction&quot;,</span>
+<span class="go">      &quot;type&quot;: &quot;sample_prep&quot;</span>
+<span class="go">      },</span>
+<span class="go">    &quot;4d_protein_extraction&quot;: {</span>
+<span class="go">      &quot;description&quot;: &quot;Protein extraction and quantification.&quot;,</span>
+<span class="go">      &quot;filename&quot;: [</span>
+<span class="go">        &quot;4D_17Jun4_Fan_Prot_Quant.pdf&quot;,</span>
+<span class="go">        &quot;4B_Extract_Polar_Lipid_Prot_Fan_070417.pdf&quot;</span>
+<span class="go">      ],</span>
+<span class="go">      &quot;id&quot;: &quot;4d_protein_extraction&quot;,</span>
+<span class="go">      &quot;type&quot;: &quot;sample_prep&quot;</span>
+<span class="go">      },</span>
+<span class="go">    &quot;syngenic&quot;: {</span>
+<span class="go">      &quot;description&quot;: &quot;Mouse with syngenic bone marrow transplant. Fed with semi-liquid diet supplemented with fully labeled glucose for 24 hours before harvest.&quot;,</span>
+<span class="go">      &quot;id&quot;: &quot;syngenic&quot;,</span>
+<span class="go">      &quot;parentID&quot;: &quot;mouse_experiment&quot;,</span>
+<span class="go">      &quot;type&quot;: &quot;treatment&quot;,</span>
+<span class="go">      &quot;filename&quot;: &quot;study_treatments.pdf&quot;</span>
+<span class="go">      },</span>
+<span class="go">    &quot;1_tissue_quench&quot;: {</span>
+<span class="go">      &quot;description&quot;: &quot;Tissue is frozen in liquid nitrogen to stop metabolic processes.&quot;,</span>
+<span class="go">      &quot;id&quot;: &quot;1_tissue_quench&quot;,</span>
+<span class="go">      &quot;type&quot;: &quot;sample_prep&quot;</span>
+<span class="go">      }</span>
+<span class="go">    }</span>
+<span class="go">}</span>
+</pre></div>
+</div>
+</section>
+<section id="id26">
+<h4>Output JSON<a class="headerlink" href="#id26" title="Permalink to this heading"></a></h4>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">{</span>
+<span class="go">&quot;SAMPLEPREP&quot;: {</span>
+<span class="go">    &quot;SAMPLEPREP_SUMMARY&quot;: &quot;Tissue is frozen in liquid nitrogen to stop metabolic processes. Frozen tissue is ground in a SPEX grinder under liquid nitrogen to homogenize the sample. Before going into the IC-FTMS the frozen sample is reconstituted in water. acetone extraction of polar metabolites Lipid extraction from homogenate. Polar extraction from homogenate, lypholized, and frozen. Protein extraction and quantification.&quot;</span>
+<span class="go">    }</span>
+<span class="go">}</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="general-output-format">
+<h3>General Output Format<a class="headerlink" href="#general-output-format" title="Permalink to this heading"></a></h3>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">{</span>
+<span class="go">&lt;table_name&gt;: {</span>
+<span class="go">    &lt;record_name&gt;: &lt;string_value&gt;</span>
+<span class="go">    }</span>
+<span class="go">}</span>
+</pre></div>
+</div>
+</section>
+<section id="meaningful-fields">
+<h3>Meaningful Fields<a class="headerlink" href="#meaningful-fields" title="Permalink to this heading"></a></h3>
+<p><strong>override</strong> - a string value that will be used as the value for the record directly.
+Takes priority over other fields. You can put the value between double quotes if it
+is difficult to get certain sequences in the table software used to construct the directive.
+Ex. “ “ will be a single space and “asdf” will be asdf.</p>
+<p><strong>code</strong> - a string of valid Python code to be delivered to eval(), must return a string type
+value. Takes priority after override.</p>
+<p><strong>import</strong> - a string that is a filepath to a Python file to be imported. Typically to be used
+to import functions to run with the code field.</p>
+<p><strong>table</strong> - a string that is the name of the table in the input JSON to pull from to build the
+string value for the record.</p>
+<p><strong>fields</strong> - a list of literals and fields in the input JSON records to concatenate together to
+build the string value for the record. It is assumed that all records in the input JSON will have
+these fields and an error will occur if one does not. To interpret a value in the list as a literal
+value and not a field surround it in double quotes. Ex. [field1,”literal_value”,field2]</p>
+<p><strong>for_each</strong> - a boolean or string value (“True” or “False”) that indicates the string value is to be
+built by iterating over each record in the indicated table in the input JSON. Takes priority over
+record_id.</p>
+<p><strong>test</strong> - a string of the form “field=value” where field is a field in the records being
+iterated over and value is what the field must be equal to in order to be used to build the
+string value. Use this as a filter to filter out records that should not be used to build
+the string value. If for_each is false this is used to find the first record that matches.</p>
+<p><strong>delimiter</strong> - a string value used to separate the strings built from each record when
+for_each is true. You can put the value between double quotes if it is difficult to get certain
+sequences in the table software used to construct the directive. Ex. “ “ will be a single
+space and “asdf” will be asdf.</p>
+<p><strong>sort_by</strong> - a list of fields to sort the input JSON records by before building the value from them.</p>
+<p><strong>sort_order</strong> - a string value that is either “ascending” or “descending” to indicate how to sort
+the input JSON records.</p>
+<p><strong>record_id</strong> - a string value that is the specific record name in the indicated input JSON table
+to build the value from.</p>
+<p><strong>required</strong> - a boolean or string value (“True” or “False”) that indicates if the directive is
+required. If true then errors encounterd will stop the program, but if false a warning will be
+printed and the directive will either use a default value or be skipped.</p>
+<p><strong>default</strong> - a string value to default to if the directive cannot be built and is not required.
+You can put the value between double quotes if it is difficult to get certain sequences in the
+table software used to construct the directive. Ex. “ “ will be a single space and “asdf” will be asdf.</p>
+</section>
+</section>
+<section id="matrix-directives">
+<h2>matrix Directives<a class="headerlink" href="#matrix-directives" title="Permalink to this heading"></a></h2>
+<p>The matrix directive assumes that you want to create a list of dictionaries (aka array of
+objects) from information in the input JSON, and that that information is contained within
+a single table. By default this directive will loop over all records in the indicated table
+and build a dictionary for each one. The records can be sorted and filtered before iteration
+in the same way that str directives can be, using the “sort_by”, “sort_order”, and “test” fields.
+The “collate” field can also be used to group data together across records. The below
+examples illustrate some common uses.</p>
+<section id="id27">
+<h3>Code<a class="headerlink" href="#id27" title="Permalink to this heading"></a></h3>
+<p>If you need to generate a list of dictionaries from the input JSON in a more complex way
+than can be done with the current supported directives you can use the “code” field
+to give the program Python code directly to run. What is in the code field will
+be delivered directly to eval(), and the name of the internal variable for the input
+JSON is “input_json”. You can also use the “import” field to import any user created
+libraries into the program. The “import” value should be a path to the file to import.
+For the matrix directive specifically the “code” field is a good way to supply the
+value directly.</p>
+<section id="id28">
+<h4>Directive as JSON<a class="headerlink" href="#id28" title="Permalink to this heading"></a></h4>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">{</span>
+<span class="go">&quot;MS_METABOLITE_DATA&quot;: {</span>
+<span class="go">    &quot;Data&quot;: {</span>
+<span class="go">        &quot;value_type&quot;: &quot;matrix&quot;,</span>
+<span class="go">        &quot;code&quot;: &quot;[{\&quot;Metabolite\&quot;:\&quot;Glucose\&quot;, \&quot;Sample 1\&quot;:\&quot;1234.5\&quot;}]&quot;</span>
+<span class="go">        }</span>
+<span class="go">    }</span>
+<span class="go">}</span>
+</pre></div>
+</div>
+</section>
+<section id="id29">
+<h4>Tagged Equivalent<a class="headerlink" href="#id29" title="Permalink to this heading"></a></h4>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>#tags</p></th>
+<th class="head"><p>#MS_METABOLITE_DATA.id</p></th>
+<th class="head"><p>#.value_type</p></th>
+<th class="head"><p>#.code</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td></td>
+<td><p>Data</p></td>
+<td><p>matrix</p></td>
+<td><p>[{“Metabolite”:”Glucose”, “Sample 1”:”1234.5”}]</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="id30">
+<h4>Output JSON<a class="headerlink" href="#id30" title="Permalink to this heading"></a></h4>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">{</span>
+<span class="go">&quot;MS_METABOLITE_DATA&quot;: {</span>
+<span class="go">    &quot;Data&quot;: [{&quot;Metabolite&quot;:&quot;Glucose&quot;, &quot;Sample 1&quot;:&quot;1234.5&quot;}]</span>
+<span class="go">    }</span>
+<span class="go">}</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="headers">
+<h3>Headers<a class="headerlink" href="#headers" title="Permalink to this heading"></a></h3>
+<p>Similar to the “fields” field for str directives the “headers” field is the backbone
+of most matrix directives. Use this field to specify how to build the dictionaries by
+supplying key-value pairs. The value should be a list of strings, “key=value”, where
+the keys and values can be either the names of fields in the input records or literal
+values. Literal values need to be surrounded with double quotes.</p>
+<section id="id31">
+<h4>Directive as JSON<a class="headerlink" href="#id31" title="Permalink to this heading"></a></h4>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">{</span>
+<span class="go">&quot;MS_METABOLITE_DATA&quot;: {</span>
+<span class="go">    &quot;Data&quot;: {</span>
+<span class="go">        &quot;value_type&quot;: &quot;matrix&quot;,</span>
+<span class="go">        &quot;table&quot;: &quot;measurement&quot;,</span>
+<span class="go">        &quot;headers&quot;: [\&quot;Metabolite\&quot;=assignment,sample.id=intensity],</span>
+<span class="go">        &quot;sort_by&quot;: [&quot;assignment&quot;],</span>
+<span class="go">        &quot;sort_order&quot;: &quot;ascending&quot;</span>
+<span class="go">        }</span>
+<span class="go">    }</span>
+<span class="go">}</span>
+</pre></div>
+</div>
+</section>
+<section id="id32">
+<h4>Tagged Equivalent<a class="headerlink" href="#id32" title="Permalink to this heading"></a></h4>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>#tags</p></th>
+<th class="head"><p>#MS_METABOLITE_DATA.id</p></th>
+<th class="head"><p>#.value_type</p></th>
+<th class="head"><p>#.table</p></th>
+<th class="head"><p><a href="#id33"><span class="problematic" id="id34">*</span></a>#.headers</p></th>
+<th class="head"><p><a href="#id35"><span class="problematic" id="id36">*</span></a>#.sort_by</p></th>
+<th class="head"><p>#.sort_order</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td></td>
+<td><p>Data</p></td>
+<td><p>matrix</p></td>
+<td><p>measurement</p></td>
+<td><p>“Metabolite”=assignment,sample.id=intensity</p></td>
+<td><p>assignment</p></td>
+<td><p>ascending</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="id37">
+<h4>Input JSON<a class="headerlink" href="#id37" title="Permalink to this heading"></a></h4>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">{</span>
+<span class="go">&quot;measurement&quot;: {</span>
+<span class="go">    &quot;(S)-2-Acetolactate Glutaric acid Methylsuccinic acid-13C0-16_A0_Lung_naive_0days_170427_UKy_GCH_rep1-polar-ICMS_A&quot;: {</span>
+<span class="go">          &quot;assignment&quot;: &quot;(S)-2-Acetolactate Glutaric acid Methylsuccinic acid-13C0&quot;,</span>
+<span class="go">          &quot;assignment%method&quot;: &quot;database&quot;,</span>
+<span class="go">          &quot;compound&quot;: &quot;(S)-2-Acetolactate Glutaric acid Methylsuccinic acid&quot;,</span>
+<span class="go">          &quot;concentration&quot;: &quot;0&quot;,</span>
+<span class="go">          &quot;concentration%type&quot;: &quot;calculated from standard&quot;,</span>
+<span class="go">          &quot;concentration%units&quot;: &quot;uM&quot;,</span>
+<span class="go">          &quot;corrected_raw_intensity&quot;: &quot;10882632.3918&quot;,</span>
+<span class="go">          &quot;corrected_raw_intensity%type&quot;: &quot;natural abundance corrected peak area&quot;,</span>
+<span class="go">          &quot;formula&quot;: &quot;C5H8O4&quot;,</span>
+<span class="go">          &quot;id&quot;: &quot;(S)-2-Acetolactate Glutaric acid Methylsuccinic acid-13C0-16_A0_Lung_naive_0days_170427_UKy_GCH_rep1-polar-ICMS_A&quot;,</span>
+<span class="go">          &quot;intensity&quot;: &quot;16103434.00085152&quot;,</span>
+<span class="go">          &quot;intensity%type&quot;: &quot;natural abundance corrected and protein normalized peak area&quot;,</span>
+<span class="go">          &quot;intensity%units&quot;: &quot;area/g&quot;,</span>
+<span class="go">          &quot;isotopologue&quot;: &quot;13C0&quot;,</span>
+<span class="go">          &quot;isotopologue%type&quot;: &quot;13C&quot;,</span>
+<span class="go">          &quot;normalized_concentration&quot;: &quot;0&quot;,</span>
+<span class="go">          &quot;normalized_concentration%type&quot;: &quot;protein normalized&quot;,</span>
+<span class="go">          &quot;normalized_concentration%units&quot;: &quot;uMol/g&quot;,</span>
+<span class="go">          &quot;protocol.id&quot;: &quot;ICMS1&quot;,</span>
+<span class="go">          &quot;raw_intensity&quot;: &quot;10292474.4912643&quot;,</span>
+<span class="go">          &quot;raw_intensity%type&quot;: &quot;spectrometer peak area&quot;,</span>
+<span class="go">          &quot;sample.id&quot;: &quot;16_A0_Lung_naive_0days_170427_UKy_GCH_rep1-polar-ICMS_A&quot;</span>
+<span class="go">          },</span>
+<span class="go">    &quot;(S)-3-Sulfonatolactate-13C0-16_A0_Lung_naive_0days_170427_UKy_GCH_rep1-polar-ICMS_A&quot;: {</span>
+<span class="go">          &quot;assignment&quot;: &quot;(S)-3-Sulfonatolactate-13C0&quot;,</span>
+<span class="go">          &quot;assignment%method&quot;: &quot;database&quot;,</span>
+<span class="go">          &quot;compound&quot;: &quot;(S)-3-Sulfonatolactate&quot;,</span>
+<span class="go">          &quot;concentration&quot;: &quot;0&quot;,</span>
+<span class="go">          &quot;concentration%type&quot;: &quot;calculated from standard&quot;,</span>
+<span class="go">          &quot;concentration%units&quot;: &quot;uM&quot;,</span>
+<span class="go">          &quot;corrected_raw_intensity&quot;: &quot;29258.2204515&quot;,</span>
+<span class="go">          &quot;corrected_raw_intensity%type&quot;: &quot;natural abundance corrected peak area&quot;,</span>
+<span class="go">          &quot;formula&quot;: &quot;C3H6O6S1&quot;,</span>
+<span class="go">          &quot;id&quot;: &quot;(S)-3-Sulfonatolactate-13C0-16_A0_Lung_naive_0days_170427_UKy_GCH_rep1-polar-ICMS_A&quot;,</span>
+<span class="go">          &quot;intensity&quot;: &quot;43294.47187595062&quot;,</span>
+<span class="go">          &quot;intensity%type&quot;: &quot;natural abundance corrected and protein normalized peak area&quot;,</span>
+<span class="go">          &quot;intensity%units&quot;: &quot;area/g&quot;,</span>
+<span class="go">          &quot;isotopologue&quot;: &quot;13C0&quot;,</span>
+<span class="go">          &quot;isotopologue%type&quot;: &quot;13C&quot;,</span>
+<span class="go">          &quot;normalized_concentration&quot;: &quot;0&quot;,</span>
+<span class="go">          &quot;normalized_concentration%type&quot;: &quot;protein normalized&quot;,</span>
+<span class="go">          &quot;normalized_concentration%units&quot;: &quot;uMol/g&quot;,</span>
+<span class="go">          &quot;protocol.id&quot;: &quot;ICMS1&quot;,</span>
+<span class="go">          &quot;raw_intensity&quot;: &quot;28305.550843869&quot;,</span>
+<span class="go">          &quot;raw_intensity%type&quot;: &quot;spectrometer peak area&quot;,</span>
+<span class="go">          &quot;sample.id&quot;: &quot;16_A0_Lung_naive_0days_170427_UKy_GCH_rep1-polar-ICMS_A&quot;</span>
+<span class="go">          }</span>
+<span class="go">    }</span>
+<span class="go">}</span>
+</pre></div>
+</div>
+</section>
+<section id="id38">
+<h4>Output JSON<a class="headerlink" href="#id38" title="Permalink to this heading"></a></h4>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">{</span>
+<span class="go">&quot;MS_METABOLITE_DATA&quot;: {</span>
+<span class="go">    &quot;Data&quot;: [</span>
+<span class="go">             {</span>
+<span class="go">             &quot;Metabolite&quot;: &quot;(S)-2-Acetolactate Glutaric acid Methylsuccinic acid-13C0&quot;,</span>
+<span class="go">             &quot;16_A0_Lung_naive_0days_170427_UKy_GCH_rep1-polar-ICMS_A&quot;: &quot;16103434.00085152&quot;</span>
+<span class="go">             },</span>
+<span class="go">             {</span>
+<span class="go">             &quot;Metabolite&quot;: &quot;(S)-3-Sulfonatolactate-13C0&quot;,</span>
+<span class="go">             &quot;16_A0_Lung_naive_0days_170427_UKy_GCH_rep1-polar-ICMS_A&quot;: &quot;43294.47187595062&quot;</span>
+<span class="go">             }]</span>
+<span class="go">    }</span>
+<span class="go">}</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="collate">
+<h3>Collate<a class="headerlink" href="#collate" title="Permalink to this heading"></a></h3>
+<p>The “headers” field will create a new dictionary for every record in the indicated table,
+but sometimes you might need to pull data from multiple records into a single new
+dictionary, and the “collate” field gives a mechanism for this. The value of the field
+is a string that needs to be one of the fields in the input records. If given, the
+record data will be grouped into dictionaries based on their field value.</p>
+<section id="id39">
+<h4>Directive as JSON<a class="headerlink" href="#id39" title="Permalink to this heading"></a></h4>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">{</span>
+<span class="go">&quot;MS_METABOLITE_DATA&quot;: {</span>
+<span class="go">    &quot;Data&quot;: {</span>
+<span class="go">        &quot;value_type&quot;: &quot;matrix&quot;,</span>
+<span class="go">        &quot;table&quot;: &quot;measurement&quot;,</span>
+<span class="go">        &quot;headers&quot;: [\&quot;Metabolite\&quot;=assignment,sample.id=intensity],</span>
+<span class="go">        &quot;sort_by&quot;: [&quot;assignment&quot;],</span>
+<span class="go">        &quot;sort_order&quot;: &quot;ascending&quot;,</span>
+<span class="go">        &quot;collate&quot;: &quot;assignment&quot;</span>
+<span class="go">        }</span>
+<span class="go">    }</span>
+<span class="go">}</span>
+</pre></div>
+</div>
+</section>
+<section id="id40">
+<h4>Tagged Equivalent<a class="headerlink" href="#id40" title="Permalink to this heading"></a></h4>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>#tags</p></th>
+<th class="head"><p>#MS_METABOLITE_DATA.id</p></th>
+<th class="head"><p>#.value_type</p></th>
+<th class="head"><p>#.table</p></th>
+<th class="head"><p><a href="#id41"><span class="problematic" id="id42">*</span></a>#.headers</p></th>
+<th class="head"><p><a href="#id43"><span class="problematic" id="id44">*</span></a>#.sort_by</p></th>
+<th class="head"><p>#.sort_order</p></th>
+<th class="head"><p>#.collate</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td></td>
+<td><p>Data</p></td>
+<td><p>matrix</p></td>
+<td><p>measurement</p></td>
+<td><p>“Metabolite”=assignment,sample.id=intensity</p></td>
+<td><p>assignment</p></td>
+<td><p>ascending</p></td>
+<td><p>assignment</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="id45">
+<h4>Input JSON<a class="headerlink" href="#id45" title="Permalink to this heading"></a></h4>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">{</span>
+<span class="go">&quot;measurement&quot;: {</span>
+<span class="go">    &quot;(S)-2-Acetolactate Glutaric acid Methylsuccinic acid-13C0-16_A0_Lung_naive_0days_170427_UKy_GCH_rep1-polar-ICMS_A&quot;: {</span>
+<span class="go">          &quot;assignment&quot;: &quot;(S)-2-Acetolactate Glutaric acid Methylsuccinic acid-13C0&quot;,</span>
+<span class="go">          &quot;assignment%method&quot;: &quot;database&quot;,</span>
+<span class="go">          &quot;compound&quot;: &quot;(S)-2-Acetolactate Glutaric acid Methylsuccinic acid&quot;,</span>
+<span class="go">          &quot;concentration&quot;: &quot;0&quot;,</span>
+<span class="go">          &quot;concentration%type&quot;: &quot;calculated from standard&quot;,</span>
+<span class="go">          &quot;concentration%units&quot;: &quot;uM&quot;,</span>
+<span class="go">          &quot;corrected_raw_intensity&quot;: &quot;10882632.3918&quot;,</span>
+<span class="go">          &quot;corrected_raw_intensity%type&quot;: &quot;natural abundance corrected peak area&quot;,</span>
+<span class="go">          &quot;formula&quot;: &quot;C5H8O4&quot;,</span>
+<span class="go">          &quot;id&quot;: &quot;(S)-2-Acetolactate Glutaric acid Methylsuccinic acid-13C0-16_A0_Lung_naive_0days_170427_UKy_GCH_rep1-polar-ICMS_A&quot;,</span>
+<span class="go">          &quot;intensity&quot;: &quot;16103434.00085152&quot;,</span>
+<span class="go">          &quot;intensity%type&quot;: &quot;natural abundance corrected and protein normalized peak area&quot;,</span>
+<span class="go">          &quot;intensity%units&quot;: &quot;area/g&quot;,</span>
+<span class="go">          &quot;isotopologue&quot;: &quot;13C0&quot;,</span>
+<span class="go">          &quot;isotopologue%type&quot;: &quot;13C&quot;,</span>
+<span class="go">          &quot;normalized_concentration&quot;: &quot;0&quot;,</span>
+<span class="go">          &quot;normalized_concentration%type&quot;: &quot;protein normalized&quot;,</span>
+<span class="go">          &quot;normalized_concentration%units&quot;: &quot;uMol/g&quot;,</span>
+<span class="go">          &quot;protocol.id&quot;: &quot;ICMS1&quot;,</span>
+<span class="go">          &quot;raw_intensity&quot;: &quot;10292474.4912643&quot;,</span>
+<span class="go">          &quot;raw_intensity%type&quot;: &quot;spectrometer peak area&quot;,</span>
+<span class="go">          &quot;sample.id&quot;: &quot;16_A0_Lung_naive_0days_170427_UKy_GCH_rep1-polar-ICMS_A&quot;</span>
+<span class="go">          },</span>
+<span class="go">    &quot;(S)-2-Acetolactate Glutaric acid Methylsuccinic acid-13C0-17_A1_Lung_naive_0days_170427_UKy_GCH_rep2-polar-ICMS_A&quot;: {</span>
+<span class="go">          &quot;assignment&quot;: &quot;(S)-2-Acetolactate Glutaric acid Methylsuccinic acid-13C0&quot;,</span>
+<span class="go">          &quot;assignment%method&quot;: &quot;database&quot;,</span>
+<span class="go">          &quot;compound&quot;: &quot;(S)-2-Acetolactate Glutaric acid Methylsuccinic acid&quot;,</span>
+<span class="go">          &quot;concentration&quot;: &quot;0&quot;,</span>
+<span class="go">          &quot;concentration%type&quot;: &quot;calculated from standard&quot;,</span>
+<span class="go">          &quot;concentration%units&quot;: &quot;uM&quot;,</span>
+<span class="go">          &quot;corrected_raw_intensity&quot;: &quot;6408243.70722&quot;,</span>
+<span class="go">          &quot;corrected_raw_intensity%type&quot;: &quot;natural abundance corrected peak area&quot;,</span>
+<span class="go">          &quot;formula&quot;: &quot;C5H8O4&quot;,</span>
+<span class="go">          &quot;id&quot;: &quot;(S)-2-Acetolactate Glutaric acid Methylsuccinic acid-13C0-17_A1_Lung_naive_0days_170427_UKy_GCH_rep2-polar-ICMS_A&quot;,</span>
+<span class="go">          &quot;intensity&quot;: &quot;10483483.72051263&quot;,</span>
+<span class="go">          &quot;intensity%type&quot;: &quot;natural abundance corrected and protein normalized peak area&quot;,</span>
+<span class="go">          &quot;intensity%units&quot;: &quot;area/g&quot;,</span>
+<span class="go">          &quot;isotopologue&quot;: &quot;13C0&quot;,</span>
+<span class="go">          &quot;isotopologue%type&quot;: &quot;13C&quot;,</span>
+<span class="go">          &quot;normalized_concentration&quot;: &quot;0&quot;,</span>
+<span class="go">          &quot;normalized_concentration%type&quot;: &quot;protein normalized&quot;,</span>
+<span class="go">          &quot;normalized_concentration%units&quot;: &quot;uMol/g&quot;,</span>
+<span class="go">          &quot;protocol.id&quot;: &quot;ICMS1&quot;,</span>
+<span class="go">          &quot;raw_intensity&quot;: &quot;6060770.18227202&quot;,</span>
+<span class="go">          &quot;raw_intensity%type&quot;: &quot;spectrometer peak area&quot;,</span>
+<span class="go">          &quot;sample.id&quot;: &quot;17_A1_Lung_naive_0days_170427_UKy_GCH_rep2-polar-ICMS_A&quot;</span>
+<span class="go">        },</span>
+<span class="go">    &quot;(S)-3-Sulfonatolactate-13C0-16_A0_Lung_naive_0days_170427_UKy_GCH_rep1-polar-ICMS_A&quot;: {</span>
+<span class="go">          &quot;assignment&quot;: &quot;(S)-3-Sulfonatolactate-13C0&quot;,</span>
+<span class="go">          &quot;assignment%method&quot;: &quot;database&quot;,</span>
+<span class="go">          &quot;compound&quot;: &quot;(S)-3-Sulfonatolactate&quot;,</span>
+<span class="go">          &quot;concentration&quot;: &quot;0&quot;,</span>
+<span class="go">          &quot;concentration%type&quot;: &quot;calculated from standard&quot;,</span>
+<span class="go">          &quot;concentration%units&quot;: &quot;uM&quot;,</span>
+<span class="go">          &quot;corrected_raw_intensity&quot;: &quot;29258.2204515&quot;,</span>
+<span class="go">          &quot;corrected_raw_intensity%type&quot;: &quot;natural abundance corrected peak area&quot;,</span>
+<span class="go">          &quot;formula&quot;: &quot;C3H6O6S1&quot;,</span>
+<span class="go">          &quot;id&quot;: &quot;(S)-3-Sulfonatolactate-13C0-16_A0_Lung_naive_0days_170427_UKy_GCH_rep1-polar-ICMS_A&quot;,</span>
+<span class="go">          &quot;intensity&quot;: &quot;43294.47187595062&quot;,</span>
+<span class="go">          &quot;intensity%type&quot;: &quot;natural abundance corrected and protein normalized peak area&quot;,</span>
+<span class="go">          &quot;intensity%units&quot;: &quot;area/g&quot;,</span>
+<span class="go">          &quot;isotopologue&quot;: &quot;13C0&quot;,</span>
+<span class="go">          &quot;isotopologue%type&quot;: &quot;13C&quot;,</span>
+<span class="go">          &quot;normalized_concentration&quot;: &quot;0&quot;,</span>
+<span class="go">          &quot;normalized_concentration%type&quot;: &quot;protein normalized&quot;,</span>
+<span class="go">          &quot;normalized_concentration%units&quot;: &quot;uMol/g&quot;,</span>
+<span class="go">          &quot;protocol.id&quot;: &quot;ICMS1&quot;,</span>
+<span class="go">          &quot;raw_intensity&quot;: &quot;28305.550843869&quot;,</span>
+<span class="go">          &quot;raw_intensity%type&quot;: &quot;spectrometer peak area&quot;,</span>
+<span class="go">          &quot;sample.id&quot;: &quot;16_A0_Lung_naive_0days_170427_UKy_GCH_rep1-polar-ICMS_A&quot;</span>
+<span class="go">          },</span>
+<span class="go">    &quot;(S)-3-Sulfonatolactate-13C0-17_A1_Lung_naive_0days_170427_UKy_GCH_rep2-polar-ICMS_A&quot;: {</span>
+<span class="go">          &quot;assignment&quot;: &quot;(S)-3-Sulfonatolactate-13C0&quot;,</span>
+<span class="go">          &quot;assignment%method&quot;: &quot;database&quot;,</span>
+<span class="go">          &quot;compound&quot;: &quot;(S)-3-Sulfonatolactate&quot;,</span>
+<span class="go">          &quot;concentration&quot;: &quot;0&quot;,</span>
+<span class="go">          &quot;concentration%type&quot;: &quot;calculated from standard&quot;,</span>
+<span class="go">          &quot;concentration%units&quot;: &quot;uM&quot;,</span>
+<span class="go">          &quot;corrected_raw_intensity&quot;: &quot;12975.6343755&quot;,</span>
+<span class="go">          &quot;corrected_raw_intensity%type&quot;: &quot;natural abundance corrected peak area&quot;,</span>
+<span class="go">          &quot;formula&quot;: &quot;C3H6O6S1&quot;,</span>
+<span class="go">          &quot;id&quot;: &quot;(S)-3-Sulfonatolactate-13C0-17_A1_Lung_naive_0days_170427_UKy_GCH_rep2-polar-ICMS_A&quot;,</span>
+<span class="go">          &quot;intensity&quot;: &quot;21227.32186131077&quot;,</span>
+<span class="go">          &quot;intensity%type&quot;: &quot;natural abundance corrected and protein normalized peak area&quot;,</span>
+<span class="go">          &quot;intensity%units&quot;: &quot;area/g&quot;,</span>
+<span class="go">          &quot;isotopologue&quot;: &quot;13C0&quot;,</span>
+<span class="go">          &quot;isotopologue%type&quot;: &quot;13C&quot;,</span>
+<span class="go">          &quot;normalized_concentration&quot;: &quot;0&quot;,</span>
+<span class="go">          &quot;normalized_concentration%type&quot;: &quot;protein normalized&quot;,</span>
+<span class="go">          &quot;normalized_concentration%units&quot;: &quot;uMol/g&quot;,</span>
+<span class="go">          &quot;protocol.id&quot;: &quot;ICMS1&quot;,</span>
+<span class="go">          &quot;raw_intensity&quot;: &quot;12551.8799866885&quot;,</span>
+<span class="go">          &quot;raw_intensity%type&quot;: &quot;spectrometer peak area&quot;,</span>
+<span class="go">          &quot;sample.id&quot;: &quot;17_A1_Lung_naive_0days_170427_UKy_GCH_rep2-polar-ICMS_A&quot;</span>
+<span class="go">        }</span>
+<span class="go">    }</span>
+<span class="go">}</span>
+</pre></div>
+</div>
+</section>
+<section id="id46">
+<h4>Output JSON<a class="headerlink" href="#id46" title="Permalink to this heading"></a></h4>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">{</span>
+<span class="go">&quot;MS_METABOLITE_DATA&quot;: {</span>
+<span class="go">    &quot;Data&quot;: [</span>
+<span class="go">             {</span>
+<span class="go">             &quot;Metabolite&quot;: &quot;(S)-2-Acetolactate Glutaric acid Methylsuccinic acid-13C0&quot;,</span>
+<span class="go">             &quot;16_A0_Lung_naive_0days_170427_UKy_GCH_rep1-polar-ICMS_A&quot;: &quot;16103434.00085152&quot;,</span>
+<span class="go">             &quot;17_A1_Lung_naive_0days_170427_UKy_GCH_rep2-polar-ICMS_A&quot;: &quot;10483483.72051263&quot;</span>
+<span class="go">             },</span>
+<span class="go">             {</span>
+<span class="go">             &quot;Metabolite&quot;: &quot;(S)-3-Sulfonatolactate-13C0&quot;,</span>
+<span class="go">             &quot;16_A0_Lung_naive_0days_170427_UKy_GCH_rep1-polar-ICMS_A&quot;: &quot;43294.47187595062&quot;,</span>
+<span class="go">             &quot;17_A1_Lung_naive_0days_170427_UKy_GCH_rep2-polar-ICMS_A&quot;: &quot;21227.32186131077&quot;</span>
+<span class="go">             }]</span>
+<span class="go">    }</span>
+<span class="go">}</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="fields-to-headers">
+<h3>Fields to Headers<a class="headerlink" href="#fields-to-headers" title="Permalink to this heading"></a></h3>
+<p>The “fields_to_headers” field changes the behavior of the matrix directive so that
+by default all fields from input records are copied as is into the dictionary. The
+“exclusion_headers” field can then be used to to exclude fields from being added.
+The “values_to_str” field can also be used to cast all of the field values to strings.</p>
+<section id="id47">
+<h4>Directive as JSON<a class="headerlink" href="#id47" title="Permalink to this heading"></a></h4>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">{</span>
+<span class="go">&quot;MS_METABOLITE_DATA&quot;: {</span>
+<span class="go">    &quot;Extended&quot;: {</span>
+<span class="go">        &quot;value_type&quot;: &quot;matrix&quot;,</span>
+<span class="go">        &quot;table&quot;: &quot;measurement&quot;,</span>
+<span class="go">        &quot;headers&quot;: [\&quot;Metabolite\&quot;=assignment,\&quot;sample.id\&quot;=sample.id],</span>
+<span class="go">        &quot;sort_by&quot;: [&quot;assignment&quot;],</span>
+<span class="go">        &quot;sort_order&quot;: &quot;ascending&quot;,</span>
+<span class="go">        &quot;fields_to_headers&quot;: &quot;True&quot;,</span>
+<span class="go">        &quot;values_to_str&quot;: &quot;True&quot;,</span>
+<span class="go">        &quot;exclusion_headers&quot;: [id,intensity,intensity%type,intensity%units,assignment,sample.id,formula,compound,isotopologue,isotopologue%type]</span>
+<span class="go">        }</span>
+<span class="go">    }</span>
+<span class="go">}</span>
+</pre></div>
+</div>
+</section>
+<section id="id48">
+<h4>Tagged Equivalent<a class="headerlink" href="#id48" title="Permalink to this heading"></a></h4>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>#tags</p></th>
+<th class="head"><p>#MS_METABOLITE_DATA.id</p></th>
+<th class="head"><p>#.value_type</p></th>
+<th class="head"><p>#.table</p></th>
+<th class="head"><p><a href="#id49"><span class="problematic" id="id50">*</span></a>#.headers</p></th>
+<th class="head"><p><a href="#id51"><span class="problematic" id="id52">*</span></a>#.sort_by</p></th>
+<th class="head"><p>#.sort_order</p></th>
+<th class="head"><p>#.fields_to_headers</p></th>
+<th class="head"><p>#.values_to_str</p></th>
+<th class="head"><p><a href="#id53"><span class="problematic" id="id54">*</span></a>#.exclusion_headers</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td></td>
+<td><p>Extended</p></td>
+<td><p>matrix</p></td>
+<td><p>measurement</p></td>
+<td><p>“Metabolite”=assignment,”sample_id”=sample.id</p></td>
+<td><p>assignment</p></td>
+<td><p>ascending</p></td>
+<td><p>True</p></td>
+<td><p>True</p></td>
+<td><p>id,intensity,intensity%type,intensity%units,assignment,sample.id,formula,compound,isotopologue,isotopologue%type</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="id55">
+<h4>Input JSON<a class="headerlink" href="#id55" title="Permalink to this heading"></a></h4>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">{</span>
+<span class="go">&quot;measurement&quot;: {</span>
+<span class="go">    &quot;(S)-2-Acetolactate Glutaric acid Methylsuccinic acid-13C0-16_A0_Lung_naive_0days_170427_UKy_GCH_rep1-polar-ICMS_A&quot;: {</span>
+<span class="go">          &quot;assignment&quot;: &quot;(S)-2-Acetolactate Glutaric acid Methylsuccinic acid-13C0&quot;,</span>
+<span class="go">          &quot;assignment%method&quot;: &quot;database&quot;,</span>
+<span class="go">          &quot;compound&quot;: &quot;(S)-2-Acetolactate Glutaric acid Methylsuccinic acid&quot;,</span>
+<span class="go">          &quot;concentration&quot;: &quot;0&quot;,</span>
+<span class="go">          &quot;concentration%type&quot;: &quot;calculated from standard&quot;,</span>
+<span class="go">          &quot;concentration%units&quot;: &quot;uM&quot;,</span>
+<span class="go">          &quot;corrected_raw_intensity&quot;: &quot;10882632.3918&quot;,</span>
+<span class="go">          &quot;corrected_raw_intensity%type&quot;: &quot;natural abundance corrected peak area&quot;,</span>
+<span class="go">          &quot;formula&quot;: &quot;C5H8O4&quot;,</span>
+<span class="go">          &quot;id&quot;: &quot;(S)-2-Acetolactate Glutaric acid Methylsuccinic acid-13C0-16_A0_Lung_naive_0days_170427_UKy_GCH_rep1-polar-ICMS_A&quot;,</span>
+<span class="go">          &quot;intensity&quot;: &quot;16103434.00085152&quot;,</span>
+<span class="go">          &quot;intensity%type&quot;: &quot;natural abundance corrected and protein normalized peak area&quot;,</span>
+<span class="go">          &quot;intensity%units&quot;: &quot;area/g&quot;,</span>
+<span class="go">          &quot;isotopologue&quot;: &quot;13C0&quot;,</span>
+<span class="go">          &quot;isotopologue%type&quot;: &quot;13C&quot;,</span>
+<span class="go">          &quot;normalized_concentration&quot;: &quot;0&quot;,</span>
+<span class="go">          &quot;normalized_concentration%type&quot;: &quot;protein normalized&quot;,</span>
+<span class="go">          &quot;normalized_concentration%units&quot;: &quot;uMol/g&quot;,</span>
+<span class="go">          &quot;protocol.id&quot;: &quot;ICMS1&quot;,</span>
+<span class="go">          &quot;raw_intensity&quot;: &quot;10292474.4912643&quot;,</span>
+<span class="go">          &quot;raw_intensity%type&quot;: &quot;spectrometer peak area&quot;,</span>
+<span class="go">          &quot;sample.id&quot;: &quot;16_A0_Lung_naive_0days_170427_UKy_GCH_rep1-polar-ICMS_A&quot;</span>
+<span class="go">          },</span>
+<span class="go">    &quot;(S)-2-Acetolactate Glutaric acid Methylsuccinic acid-13C0-17_A1_Lung_naive_0days_170427_UKy_GCH_rep2-polar-ICMS_A&quot;: {</span>
+<span class="go">          &quot;assignment&quot;: &quot;(S)-2-Acetolactate Glutaric acid Methylsuccinic acid-13C0&quot;,</span>
+<span class="go">          &quot;assignment%method&quot;: &quot;database&quot;,</span>
+<span class="go">          &quot;compound&quot;: &quot;(S)-2-Acetolactate Glutaric acid Methylsuccinic acid&quot;,</span>
+<span class="go">          &quot;concentration&quot;: &quot;0&quot;,</span>
+<span class="go">          &quot;concentration%type&quot;: &quot;calculated from standard&quot;,</span>
+<span class="go">          &quot;concentration%units&quot;: &quot;uM&quot;,</span>
+<span class="go">          &quot;corrected_raw_intensity&quot;: &quot;6408243.70722&quot;,</span>
+<span class="go">          &quot;corrected_raw_intensity%type&quot;: &quot;natural abundance corrected peak area&quot;,</span>
+<span class="go">          &quot;formula&quot;: &quot;C5H8O4&quot;,</span>
+<span class="go">          &quot;id&quot;: &quot;(S)-2-Acetolactate Glutaric acid Methylsuccinic acid-13C0-17_A1_Lung_naive_0days_170427_UKy_GCH_rep2-polar-ICMS_A&quot;,</span>
+<span class="go">          &quot;intensity&quot;: &quot;10483483.72051263&quot;,</span>
+<span class="go">          &quot;intensity%type&quot;: &quot;natural abundance corrected and protein normalized peak area&quot;,</span>
+<span class="go">          &quot;intensity%units&quot;: &quot;area/g&quot;,</span>
+<span class="go">          &quot;isotopologue&quot;: &quot;13C0&quot;,</span>
+<span class="go">          &quot;isotopologue%type&quot;: &quot;13C&quot;,</span>
+<span class="go">          &quot;normalized_concentration&quot;: &quot;0&quot;,</span>
+<span class="go">          &quot;normalized_concentration%type&quot;: &quot;protein normalized&quot;,</span>
+<span class="go">          &quot;normalized_concentration%units&quot;: &quot;uMol/g&quot;,</span>
+<span class="go">          &quot;protocol.id&quot;: &quot;ICMS1&quot;,</span>
+<span class="go">          &quot;raw_intensity&quot;: &quot;6060770.18227202&quot;,</span>
+<span class="go">          &quot;raw_intensity%type&quot;: &quot;spectrometer peak area&quot;,</span>
+<span class="go">          &quot;sample.id&quot;: &quot;17_A1_Lung_naive_0days_170427_UKy_GCH_rep2-polar-ICMS_A&quot;</span>
+<span class="go">        },</span>
+<span class="go">    &quot;(S)-3-Sulfonatolactate-13C0-16_A0_Lung_naive_0days_170427_UKy_GCH_rep1-polar-ICMS_A&quot;: {</span>
+<span class="go">          &quot;assignment&quot;: &quot;(S)-3-Sulfonatolactate-13C0&quot;,</span>
+<span class="go">          &quot;assignment%method&quot;: &quot;database&quot;,</span>
+<span class="go">          &quot;compound&quot;: &quot;(S)-3-Sulfonatolactate&quot;,</span>
+<span class="go">          &quot;concentration&quot;: &quot;0&quot;,</span>
+<span class="go">          &quot;concentration%type&quot;: &quot;calculated from standard&quot;,</span>
+<span class="go">          &quot;concentration%units&quot;: &quot;uM&quot;,</span>
+<span class="go">          &quot;corrected_raw_intensity&quot;: &quot;29258.2204515&quot;,</span>
+<span class="go">          &quot;corrected_raw_intensity%type&quot;: &quot;natural abundance corrected peak area&quot;,</span>
+<span class="go">          &quot;formula&quot;: &quot;C3H6O6S1&quot;,</span>
+<span class="go">          &quot;id&quot;: &quot;(S)-3-Sulfonatolactate-13C0-16_A0_Lung_naive_0days_170427_UKy_GCH_rep1-polar-ICMS_A&quot;,</span>
+<span class="go">          &quot;intensity&quot;: &quot;43294.47187595062&quot;,</span>
+<span class="go">          &quot;intensity%type&quot;: &quot;natural abundance corrected and protein normalized peak area&quot;,</span>
+<span class="go">          &quot;intensity%units&quot;: &quot;area/g&quot;,</span>
+<span class="go">          &quot;isotopologue&quot;: &quot;13C0&quot;,</span>
+<span class="go">          &quot;isotopologue%type&quot;: &quot;13C&quot;,</span>
+<span class="go">          &quot;normalized_concentration&quot;: &quot;0&quot;,</span>
+<span class="go">          &quot;normalized_concentration%type&quot;: &quot;protein normalized&quot;,</span>
+<span class="go">          &quot;normalized_concentration%units&quot;: &quot;uMol/g&quot;,</span>
+<span class="go">          &quot;protocol.id&quot;: &quot;ICMS1&quot;,</span>
+<span class="go">          &quot;raw_intensity&quot;: &quot;28305.550843869&quot;,</span>
+<span class="go">          &quot;raw_intensity%type&quot;: &quot;spectrometer peak area&quot;,</span>
+<span class="go">          &quot;sample.id&quot;: &quot;16_A0_Lung_naive_0days_170427_UKy_GCH_rep1-polar-ICMS_A&quot;</span>
+<span class="go">          },</span>
+<span class="go">    &quot;(S)-3-Sulfonatolactate-13C0-17_A1_Lung_naive_0days_170427_UKy_GCH_rep2-polar-ICMS_A&quot;: {</span>
+<span class="go">          &quot;assignment&quot;: &quot;(S)-3-Sulfonatolactate-13C0&quot;,</span>
+<span class="go">          &quot;assignment%method&quot;: &quot;database&quot;,</span>
+<span class="go">          &quot;compound&quot;: &quot;(S)-3-Sulfonatolactate&quot;,</span>
+<span class="go">          &quot;concentration&quot;: &quot;0&quot;,</span>
+<span class="go">          &quot;concentration%type&quot;: &quot;calculated from standard&quot;,</span>
+<span class="go">          &quot;concentration%units&quot;: &quot;uM&quot;,</span>
+<span class="go">          &quot;corrected_raw_intensity&quot;: &quot;12975.6343755&quot;,</span>
+<span class="go">          &quot;corrected_raw_intensity%type&quot;: &quot;natural abundance corrected peak area&quot;,</span>
+<span class="go">          &quot;formula&quot;: &quot;C3H6O6S1&quot;,</span>
+<span class="go">          &quot;id&quot;: &quot;(S)-3-Sulfonatolactate-13C0-17_A1_Lung_naive_0days_170427_UKy_GCH_rep2-polar-ICMS_A&quot;,</span>
+<span class="go">          &quot;intensity&quot;: &quot;21227.32186131077&quot;,</span>
+<span class="go">          &quot;intensity%type&quot;: &quot;natural abundance corrected and protein normalized peak area&quot;,</span>
+<span class="go">          &quot;intensity%units&quot;: &quot;area/g&quot;,</span>
+<span class="go">          &quot;isotopologue&quot;: &quot;13C0&quot;,</span>
+<span class="go">          &quot;isotopologue%type&quot;: &quot;13C&quot;,</span>
+<span class="go">          &quot;normalized_concentration&quot;: &quot;0&quot;,</span>
+<span class="go">          &quot;normalized_concentration%type&quot;: &quot;protein normalized&quot;,</span>
+<span class="go">          &quot;normalized_concentration%units&quot;: &quot;uMol/g&quot;,</span>
+<span class="go">          &quot;protocol.id&quot;: &quot;ICMS1&quot;,</span>
+<span class="go">          &quot;raw_intensity&quot;: &quot;12551.8799866885&quot;,</span>
+<span class="go">          &quot;raw_intensity%type&quot;: &quot;spectrometer peak area&quot;,</span>
+<span class="go">          &quot;sample.id&quot;: &quot;17_A1_Lung_naive_0days_170427_UKy_GCH_rep2-polar-ICMS_A&quot;</span>
+<span class="go">        }</span>
+<span class="go">    }</span>
+<span class="go">}</span>
+</pre></div>
+</div>
+</section>
+<section id="id56">
+<h4>Output JSON<a class="headerlink" href="#id56" title="Permalink to this heading"></a></h4>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">{</span>
+<span class="go">&quot;MS_METABOLITE_DATA&quot;: {</span>
+<span class="go">    &quot;Extended&quot;: [</span>
+<span class="go">              {</span>
+<span class="go">                &quot;Metabolite&quot;: &quot;(S)-2-Acetolactate Glutaric acid Methylsuccinic acid-13C0&quot;,</span>
+<span class="go">                &quot;sample_id&quot;: &quot;16_A0_Lung_naive_0days_170427_UKy_GCH_rep1-polar-ICMS_A&quot;,</span>
+<span class="go">                &quot;assignment%method&quot;: &quot;database&quot;,</span>
+<span class="go">                &quot;concentration&quot;: &quot;0&quot;,</span>
+<span class="go">                &quot;concentration%type&quot;: &quot;calculated from standard&quot;,</span>
+<span class="go">                &quot;concentration%units&quot;: &quot;uM&quot;,</span>
+<span class="go">                &quot;corrected_raw_intensity&quot;: &quot;10882632.3918&quot;,</span>
+<span class="go">                &quot;corrected_raw_intensity%type&quot;: &quot;natural abundance corrected peak area&quot;,</span>
+<span class="go">                &quot;normalized_concentration&quot;: &quot;0&quot;,</span>
+<span class="go">                &quot;normalized_concentration%type&quot;: &quot;protein normalized&quot;,</span>
+<span class="go">                &quot;normalized_concentration%units&quot;: &quot;uMol/g&quot;,</span>
+<span class="go">                &quot;protocol.id&quot;: &quot;ICMS1&quot;,</span>
+<span class="go">                &quot;raw_intensity&quot;: &quot;10292474.4912643&quot;,</span>
+<span class="go">                &quot;raw_intensity%type&quot;: &quot;spectrometer peak area&quot;</span>
+<span class="go">              },</span>
+<span class="go">              {</span>
+<span class="go">                &quot;Metabolite&quot;: &quot;(S)-2-Acetolactate Glutaric acid Methylsuccinic acid-13C0&quot;,</span>
+<span class="go">                &quot;sample_id&quot;: &quot;17_A1_Lung_naive_0days_170427_UKy_GCH_rep2-polar-ICMS_A&quot;,</span>
+<span class="go">                &quot;assignment%method&quot;: &quot;database&quot;,</span>
+<span class="go">                &quot;concentration&quot;: &quot;0&quot;,</span>
+<span class="go">                &quot;concentration%type&quot;: &quot;calculated from standard&quot;,</span>
+<span class="go">                &quot;concentration%units&quot;: &quot;uM&quot;,</span>
+<span class="go">                &quot;corrected_raw_intensity&quot;: &quot;6408243.70722&quot;,</span>
+<span class="go">                &quot;corrected_raw_intensity%type&quot;: &quot;natural abundance corrected peak area&quot;,</span>
+<span class="go">                &quot;normalized_concentration&quot;: &quot;0&quot;,</span>
+<span class="go">                &quot;normalized_concentration%type&quot;: &quot;protein normalized&quot;,</span>
+<span class="go">                &quot;normalized_concentration%units&quot;: &quot;uMol/g&quot;,</span>
+<span class="go">                &quot;protocol.id&quot;: &quot;ICMS1&quot;,</span>
+<span class="go">                &quot;raw_intensity&quot;: &quot;6060770.18227202&quot;,</span>
+<span class="go">                &quot;raw_intensity%type&quot;: &quot;spectrometer peak area&quot;</span>
+<span class="go">              },</span>
+<span class="go">              {</span>
+<span class="go">                &quot;Metabolite&quot;: &quot;(S)-3-Sulfonatolactate-13C0&quot;,</span>
+<span class="go">                &quot;sample_id&quot;: &quot;16_A0_Lung_naive_0days_170427_UKy_GCH_rep1-polar-ICMS_A&quot;,</span>
+<span class="go">                &quot;assignment%method&quot;: &quot;database&quot;,</span>
+<span class="go">                &quot;concentration&quot;: &quot;0&quot;,</span>
+<span class="go">                &quot;concentration%type&quot;: &quot;calculated from standard&quot;,</span>
+<span class="go">                &quot;concentration%units&quot;: &quot;uM&quot;,</span>
+<span class="go">                &quot;corrected_raw_intensity&quot;: &quot;29258.2204515&quot;,</span>
+<span class="go">                &quot;corrected_raw_intensity%type&quot;: &quot;natural abundance corrected peak area&quot;,</span>
+<span class="go">                &quot;normalized_concentration&quot;: &quot;0&quot;,</span>
+<span class="go">                &quot;normalized_concentration%type&quot;: &quot;protein normalized&quot;,</span>
+<span class="go">                &quot;normalized_concentration%units&quot;: &quot;uMol/g&quot;,</span>
+<span class="go">                &quot;protocol.id&quot;: &quot;ICMS1&quot;,</span>
+<span class="go">                &quot;raw_intensity&quot;: &quot;28305.550843869&quot;,</span>
+<span class="go">                &quot;raw_intensity%type&quot;: &quot;spectrometer peak area&quot;</span>
+<span class="go">              },</span>
+<span class="go">              {</span>
+<span class="go">                &quot;Metabolite&quot;: &quot;(S)-3-Sulfonatolactate-13C0&quot;,</span>
+<span class="go">                &quot;sample_id&quot;: &quot;17_A1_Lung_naive_0days_170427_UKy_GCH_rep2-polar-ICMS_A&quot;,</span>
+<span class="go">                &quot;assignment%method&quot;: &quot;database&quot;,</span>
+<span class="go">                &quot;concentration&quot;: &quot;0&quot;,</span>
+<span class="go">                &quot;concentration%type&quot;: &quot;calculated from standard&quot;,</span>
+<span class="go">                &quot;concentration%units&quot;: &quot;uM&quot;,</span>
+<span class="go">                &quot;corrected_raw_intensity&quot;: &quot;12975.6343755&quot;,</span>
+<span class="go">                &quot;corrected_raw_intensity%type&quot;: &quot;natural abundance corrected peak area&quot;,</span>
+<span class="go">                &quot;normalized_concentration&quot;: &quot;0&quot;,</span>
+<span class="go">                &quot;normalized_concentration%type&quot;: &quot;protein normalized&quot;,</span>
+<span class="go">                &quot;normalized_concentration%units&quot;: &quot;uMol/g&quot;,</span>
+<span class="go">                &quot;protocol.id&quot;: &quot;ICMS1&quot;,</span>
+<span class="go">                &quot;raw_intensity&quot;: &quot;12551.8799866885&quot;,</span>
+<span class="go">                &quot;raw_intensity%type&quot;: &quot;spectrometer peak area&quot;</span>
+<span class="go">              }]</span>
+<span class="go">    }</span>
+<span class="go">}</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="id57">
+<h3>General Output Format<a class="headerlink" href="#id57" title="Permalink to this heading"></a></h3>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">{</span>
+<span class="go">&lt;table_name&gt;: {</span>
+<span class="go">    &lt;record_name&gt;: [{&lt;field_name&gt;:&lt;field_value&gt;, ...}, ...]</span>
+<span class="go">    }</span>
+<span class="go">}</span>
+</pre></div>
+</div>
+</section>
+<section id="id58">
+<h3>Meaningful Fields<a class="headerlink" href="#id58" title="Permalink to this heading"></a></h3>
+<p><strong>code</strong> - a string of valid Python code to be delivered to eval(), must return a list of
+dictionaries. Takes priority over headers.</p>
+<p><strong>import</strong> - a string that is a filepath to a Python file to be imported. Typically to be used
+to import functions to run with the code field.</p>
+<p><strong>table</strong> - a string that is the name of the table in the input JSON to pull from to build the
+string value for the record.</p>
+<p><strong>headers</strong> - a list of key-value pairs in the form “key=value” where keys and values can be
+field names or literal values. Literal values must be surrounded by double quotes.
+Ex. [“Metabolite”=assignment,”sample.id”=sample.id]</p>
+<p><strong>test</strong> - a string of the form “field=value” where field is a field in the records being
+iterated over and value is what the field must be equal to in order to be used to build the
+value. Use this as a filter to filter out records that should not be used to build the value.</p>
+<p><strong>sort_by</strong> - a list of fields to sort the input JSON records by before building the value from them.</p>
+<p><strong>sort_order</strong> - a string value that is either “ascending” or “descending” to indicate how to sort
+the input JSON records.</p>
+<p><strong>collate</strong> - a string value that must be a field name in the input records. Used to group data
+across records.</p>
+<p><strong>fields_to_headers</strong> - a boolean or string value (“True” or “False”) that indicates whether to
+copy all fields in the input records into the output.</p>
+<p><strong>exclusion_headers</strong> - a list of field names not to put in the output data when the “fields_to_headers”
+field is True.</p>
+<p><strong>optional_headers</strong> - a list of field names that will be copied into the output if they exist in the
+record. Use “values_to_str” to cast the values to a string.</p>
+<p><strong>values_to_str</strong> - a boolean or string value (“True” or “False”) that makes it so field values are
+cast to a string type in the output.</p>
+<p><strong>required</strong> - a boolean or string value (“True” or “False”) that indicates if the directive is
+required. If true then errors encounterd will stop the program, but if false a warning will be
+printed and the directive will either use a default value or be skipped.</p>
+<p><strong>default</strong> - a string value to default to if the directive cannot be built and is not required.
+You can put the value between double quotes if it is difficult to get certain sequences in the
+table software used to construct the directive. Ex. “ “ will be a single space and “asdf” will be asdf.</p>
+</section>
+</section>
+<section id="section-directives">
+<h2>section Directives<a class="headerlink" href="#section-directives" title="Permalink to this heading"></a></h2>
+<p>When you need a more complex structure than is available through the other directives,
+or if you need to specify the entire table at once the section type directive is
+what you need. It only has the “code” and “import” fields because you have to supply
+Python code to tell MESSES how to build the section. One quirk of the directive is
+that you do still have to specify a record name for the directive, but it is ignored
+since whatever the code generates will be what the table’s value is set to. There is
+currently one module built into MESSES that contains functions for building a part of
+the mwTab file, and that is used as the example here.</p>
+<section id="example">
+<h3>Example<a class="headerlink" href="#example" title="Permalink to this heading"></a></h3>
+<section id="id59">
+<h4>Directive as JSON<a class="headerlink" href="#id59" title="Permalink to this heading"></a></h4>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">{</span>
+<span class="go">&quot;SUBJECT_SAMPLE_FACTORS&quot;: {</span>
+<span class="go">  &quot;no_id_needed&quot;: {</span>
+<span class="go">    &quot;code&quot;: &quot;mwtab_tag_functions.create_subject_sample_factors(input_json)&quot;,</span>
+<span class="go">    &quot;id&quot;: &quot;no_id_needed&quot;,</span>
+<span class="go">    &quot;value_type&quot;: &quot;section&quot;</span>
+<span class="go">    }</span>
+<span class="go">  }</span>
+<span class="go">}</span>
+</pre></div>
+</div>
+</section>
+<section id="id60">
+<h4>Tagged Equivalent<a class="headerlink" href="#id60" title="Permalink to this heading"></a></h4>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>#tags</p></th>
+<th class="head"><p>#SUBJECT_SAMPLE_FACTORS.id</p></th>
+<th class="head"><p>#.code</p></th>
+<th class="head"><p>#.value_type</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td></td>
+<td><p>no_id_needed</p></td>
+<td><p>mwtab_tag_functions.create_subject_sample_factors(input_json)</p></td>
+<td><p>section</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="id61">
+<h4>Output JSON<a class="headerlink" href="#id61" title="Permalink to this heading"></a></h4>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">{</span>
+<span class="go">&quot;ANALYSIS&quot;: [</span>
+<span class="go">    {</span>
+<span class="go">      &quot;Subject ID&quot;: &quot;01_A0_naive_0days_UKy_GCH_rep1&quot;,</span>
+<span class="go">      &quot;Sample ID&quot;: &quot;16_A0_Lung_naive_0days_170427_UKy_GCH_rep1-polar-ICMS_A&quot;,</span>
+<span class="go">      &quot;Factors&quot;: {</span>
+<span class="go">        &quot;Treatment&quot;: &quot;naive&quot;,</span>
+<span class="go">        &quot;Time Point&quot;: &quot;0&quot;</span>
+<span class="go">      },</span>
+<span class="go">      &quot;Additional sample data&quot;: {</span>
+<span class="go">        &quot;lineage0_id&quot;: &quot;01_A0_naive_0days_UKy_GCH_rep1&quot;,</span>
+<span class="go">        &quot;lineage0_protocol.id&quot;: &quot;[&#39;naive&#39;]&quot;,</span>
+<span class="go">        &quot;lineage0_replicate&quot;: &quot;1&quot;,</span>
+<span class="go">        &quot;lineage0_species&quot;: &quot;Mus musculus&quot;,</span>
+<span class="go">        &quot;lineage0_species_type&quot;: &quot;Mouse&quot;,</span>
+<span class="go">        &quot;lineage0_taxonomy_id&quot;: &quot;10090&quot;,</span>
+<span class="go">        &quot;lineage0_time_point&quot;: &quot;0&quot;,</span>
+<span class="go">        &quot;lineage0_type&quot;: &quot;subject&quot;,</span>
+<span class="go">        &quot;lineage1_id&quot;: &quot;16_A0_Lung_naive_0days_170427_UKy_GCH_rep1&quot;,</span>
+<span class="go">        &quot;lineage1_protocol.id&quot;: &quot;[&#39;mouse_tissue_collection&#39;, &#39;tissue_quench&#39;, &#39;frozen_tissue_grind&#39;]&quot;,</span>
+<span class="go">        &quot;lineage1_type&quot;: &quot;sample&quot;,</span>
+<span class="go">        &quot;lineage2_id&quot;: &quot;16_A0_Lung_naive_0days_170427_UKy_GCH_rep1-protein&quot;,</span>
+<span class="go">        &quot;lineage2_protein_weight&quot;: &quot;0.6757957582975501&quot;,</span>
+<span class="go">        &quot;lineage2_protein_weight%units&quot;: &quot;mg&quot;,</span>
+<span class="go">        &quot;lineage2_protocol.id&quot;: &quot;[&#39;protein_extraction&#39;]&quot;,</span>
+<span class="go">        &quot;lineage2_type&quot;: &quot;sample&quot;,</span>
+<span class="go">        &quot;RAW_FILE_NAME&quot;: &quot;16_A0_Lung_T032017_naive_ICMSA.raw&quot;</span>
+<span class="go">      }</span>
+<span class="go">    },</span>
+<span class="go">    {</span>
+<span class="go">      &quot;Subject ID&quot;: &quot;02_A1_naive_0days_UKy_GCH_rep2&quot;,</span>
+<span class="go">      &quot;Sample ID&quot;: &quot;17_A1_Lung_naive_0days_170427_UKy_GCH_rep2-polar-ICMS_A&quot;,</span>
+<span class="go">      &quot;Factors&quot;: {</span>
+<span class="go">        &quot;Treatment&quot;: &quot;naive&quot;,</span>
+<span class="go">        &quot;Time Point&quot;: &quot;0&quot;</span>
+<span class="go">      },</span>
+<span class="go">      &quot;Additional sample data&quot;: {</span>
+<span class="go">        &quot;lineage0_id&quot;: &quot;02_A1_naive_0days_UKy_GCH_rep2&quot;,</span>
+<span class="go">        &quot;lineage0_protocol.id&quot;: &quot;[&#39;naive&#39;]&quot;,</span>
+<span class="go">        &quot;lineage0_replicate&quot;: &quot;2&quot;,</span>
+<span class="go">        &quot;lineage0_species&quot;: &quot;Mus musculus&quot;,</span>
+<span class="go">        &quot;lineage0_species_type&quot;: &quot;Mouse&quot;,</span>
+<span class="go">        &quot;lineage0_taxonomy_id&quot;: &quot;10090&quot;,</span>
+<span class="go">        &quot;lineage0_time_point&quot;: &quot;0&quot;,</span>
+<span class="go">        &quot;lineage0_type&quot;: &quot;subject&quot;,</span>
+<span class="go">        &quot;lineage1_id&quot;: &quot;17_A1_Lung_naive_0days_170427_UKy_GCH_rep2&quot;,</span>
+<span class="go">        &quot;lineage1_protocol.id&quot;: &quot;[&#39;mouse_tissue_collection&#39;, &#39;tissue_quench&#39;, &#39;frozen_tissue_grind&#39;]&quot;,</span>
+<span class="go">        &quot;lineage1_type&quot;: &quot;sample&quot;,</span>
+<span class="go">        &quot;lineage2_id&quot;: &quot;17_A1_Lung_naive_0days_170427_UKy_GCH_rep2-protein&quot;,</span>
+<span class="go">        &quot;lineage2_protein_weight&quot;: &quot;0.6112704400619461&quot;,</span>
+<span class="go">        &quot;lineage2_protein_weight%units&quot;: &quot;mg&quot;,</span>
+<span class="go">        &quot;lineage2_protocol.id&quot;: &quot;[&#39;protein_extraction&#39;]&quot;,</span>
+<span class="go">        &quot;lineage2_type&quot;: &quot;sample&quot;,</span>
+<span class="go">        &quot;RAW_FILE_NAME&quot;: &quot;17_A1_Lung_T032017_naive_ICMSA.raw&quot;</span>
+<span class="go">      }</span>
+<span class="go">    }</span>
+<span class="go">}</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="id62">
+<h3>General Output Format<a class="headerlink" href="#id62" title="Permalink to this heading"></a></h3>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">{</span>
+<span class="go">&lt;table_name&gt;: &lt;code_result&gt;</span>
+<span class="go">}</span>
+</pre></div>
+</div>
+</section>
+<section id="id63">
+<h3>Meaningful Fields<a class="headerlink" href="#id63" title="Permalink to this heading"></a></h3>
+<p><strong>code</strong> - a string of valid Python code to be delivered to eval().</p>
+<p><strong>import</strong> - a string that is a filepath to a Python file to be imported. Typically to be used
+to import functions to run with the code field.</p>
+</section>
+</section>
+<section id="validation">
+<h2>Validation<a class="headerlink" href="#validation" title="Permalink to this heading"></a></h2>
+<p>Conversion directives are validated before use in convert using JSON Schema.</p>
+<p>Validation Schema:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>{
+ &quot;$schema&quot;: &quot;https://json-schema.org/draft/2020-12/schema&quot;,
+ &quot;title&quot;: &quot;Conversion Directives&quot;,
+ &quot;description&quot;: &quot;Schema to check that the conversion directives are valid.&quot;,
+
+ &quot;type&quot;: &quot;object&quot;,
+ &quot;additionalProperties&quot;: {
+     &quot;type&quot;: &quot;object&quot;,
+     &quot;additionalProperties&quot;:{
+         &quot;type&quot;:&quot;object&quot;,
+         &quot;properties&quot;:{
+             &quot;value_type&quot;:{&quot;type&quot;:&quot;string&quot;, &quot;enum&quot;:[&quot;str&quot;, &quot;section&quot;, &quot;matrix&quot;]}
+             },
+         &quot;required&quot;:[&quot;value_type&quot;],
+         &quot;allOf&quot;:[
+             {
+             &quot;if&quot;:{
+                 &quot;properties&quot;:{&quot;value_type&quot;:{&quot;const&quot;:&quot;str&quot;}},
+                 &quot;required&quot;:[&quot;value_type&quot;]
+               },
+             &quot;then&quot;:{
+                 &quot;properties&quot;:{
+                     &quot;override&quot;:{&quot;type&quot;:[&quot;string&quot;, &quot;null&quot;], &quot;minLength&quot;:1},
+                     &quot;code&quot;:{&quot;type&quot;:[&quot;string&quot;, &quot;null&quot;], &quot;minLength&quot;:1},
+                     &quot;import&quot;:{&quot;type&quot;:[&quot;string&quot;, &quot;null&quot;], &quot;minLength&quot;:1},
+                     &quot;table&quot;:{&quot;type&quot;:[&quot;string&quot;, &quot;null&quot;], &quot;minLength&quot;:1},
+                     &quot;for_each&quot;:{&quot;type&quot;:[&quot;string&quot;, &quot;null&quot;, &quot;boolean&quot;], &quot;minLength&quot;:1, &quot;pattern&quot;:&quot;(?i)^true|false$&quot;},
+                     &quot;fields&quot;:{&quot;type&quot;:[&quot;array&quot;, &quot;null&quot;], &quot;minItems&quot;:1, &quot;items&quot;:{&quot;type&quot;:&quot;string&quot;, &quot;minLength&quot;:1}},
+                     &quot;test&quot;:{&quot;type&quot;:[&quot;string&quot;, &quot;null&quot;], &quot;minLength&quot;:1, &quot;pattern&quot;:&quot;^.+=.+$&quot;},
+                     &quot;required&quot;:{&quot;type&quot;:[&quot;string&quot;, &quot;null&quot;, &quot;boolean&quot;], &quot;minLength&quot;:1, &quot;pattern&quot;:&quot;(?i)^true|false$&quot;},
+                     &quot;delimiter&quot;:{&quot;type&quot;:[&quot;string&quot;, &quot;null&quot;]},
+                     &quot;sort_by&quot;:{&quot;type&quot;:[&quot;array&quot;, &quot;null&quot;], &quot;minItems&quot;:1, &quot;items&quot;:{&quot;type&quot;:&quot;string&quot;, &quot;minLength&quot;:1}},
+                     &quot;sort_order&quot;:{&quot;type&quot;:[&quot;string&quot;, &quot;null&quot;], &quot;minLength&quot;:1, &quot;pattern&quot;:&quot;(?i)^descending|ascending$&quot;},
+                     &quot;record_id&quot;:{&quot;type&quot;:[&quot;string&quot;, &quot;null&quot;], &quot;minLength&quot;:1}
+                     },
+                 &quot;allOf&quot;:[
+                     {
+                         &quot;if&quot;:{&quot;allOf&quot;:[
+                             {&quot;properties&quot;:{&quot;override&quot;:{&quot;not&quot;:{&quot;type&quot;:&quot;string&quot;, &quot;minLength&quot;:1}}}},
+                             {&quot;properties&quot;:{&quot;code&quot;:{&quot;not&quot;:{&quot;type&quot;:&quot;string&quot;, &quot;minLength&quot;:1}}}},
+                             ]},
+                         &quot;then&quot;:{&quot;required&quot;:[&quot;fields&quot;, &quot;table&quot;]}
+                         },
+                      {
+                          &quot;if&quot;:{&quot;allOf&quot;:[
+                              {&quot;properties&quot;:{&quot;code&quot;:{&quot;not&quot;:{&quot;type&quot;:&quot;string&quot;, &quot;minLength&quot;:1}}}},
+                              {&quot;properties&quot;:{&quot;table&quot;:{&quot;not&quot;:{&quot;type&quot;:&quot;string&quot;, &quot;minLength&quot;:1}}}},
+                              {&quot;properties&quot;:{&quot;fields&quot;:{&quot;not&quot;:{&quot;type&quot;:&quot;string&quot;, &quot;minLength&quot;:1}}}}
+                              ]},
+                          &quot;then&quot;:{&quot;required&quot;:[&quot;override&quot;]}
+                          },
+                      {
+                          &quot;if&quot;:{&quot;allOf&quot;:[
+                              {&quot;properties&quot;:{&quot;override&quot;:{&quot;not&quot;:{&quot;type&quot;:&quot;string&quot;, &quot;minLength&quot;:1}}}},
+                              {&quot;properties&quot;:{&quot;table&quot;:{&quot;not&quot;:{&quot;type&quot;:&quot;string&quot;, &quot;minLength&quot;:1}}}},
+                              {&quot;properties&quot;:{&quot;fields&quot;:{&quot;not&quot;:{&quot;type&quot;:&quot;string&quot;, &quot;minLength&quot;:1}}}}
+                              ]},
+                          &quot;then&quot;:{&quot;required&quot;:[&quot;code&quot;]}
+                          }
+                     ]
+                 }
+             },
+             {
+             &quot;if&quot;:{
+                 &quot;properties&quot;:{&quot;value_type&quot;:{&quot;const&quot;:&quot;matrix&quot;}},
+                 &quot;required&quot;:[&quot;value_type&quot;]
+               },
+             &quot;then&quot;:{
+                 &quot;properties&quot;:{
+                     &quot;code&quot;:{&quot;type&quot;:[&quot;string&quot;, &quot;null&quot;], &quot;minLength&quot;:1},
+                     &quot;import&quot;:{&quot;type&quot;:[&quot;string&quot;, &quot;null&quot;], &quot;minLength&quot;:1},
+                     &quot;table&quot;:{&quot;type&quot;:[&quot;string&quot;, &quot;null&quot;], &quot;minLength&quot;:1},
+                     &quot;test&quot;:{&quot;type&quot;:[&quot;string&quot;, &quot;null&quot;], &quot;minLength&quot;:1, &quot;pattern&quot;:&quot;^.+=.+$&quot;},
+                     &quot;required&quot;:{&quot;type&quot;:[&quot;string&quot;, &quot;null&quot;, &quot;boolean&quot;], &quot;minLength&quot;:1, &quot;pattern&quot;:&quot;(?i)^true|false$&quot;},
+                     &quot;sort_by&quot;:{&quot;type&quot;:[&quot;array&quot;, &quot;null&quot;], &quot;minItems&quot;:1, &quot;items&quot;:{&quot;type&quot;:&quot;string&quot;, &quot;minLength&quot;:1}},
+                     &quot;sort_order&quot;:{&quot;type&quot;:[&quot;string&quot;, &quot;null&quot;], &quot;minLength&quot;:1, &quot;pattern&quot;:&quot;(?i)^descending|ascending$&quot;},
+                     &quot;headers&quot;:{&quot;type&quot;:[&quot;array&quot;, &quot;null&quot;], &quot;minItems&quot;:1, &quot;items&quot;:{&quot;type&quot;:&quot;string&quot;, &quot;minLength&quot;:1, &quot;pattern&quot;:&quot;^.+=.+$&quot;}},
+                     &quot;collate&quot;:{&quot;type&quot;:[&quot;string&quot;, &quot;null&quot;], &quot;minLength&quot;:1},
+                     &quot;exclusion_headers&quot;:{&quot;type&quot;:[&quot;array&quot;, &quot;null&quot;], &quot;minItems&quot;:1, &quot;items&quot;:{&quot;type&quot;:&quot;string&quot;, &quot;minLength&quot;:1}},
+                     &quot;optional_headers&quot;:{&quot;type&quot;:[&quot;array&quot;, &quot;null&quot;], &quot;minItems&quot;:1, &quot;items&quot;:{&quot;type&quot;:&quot;string&quot;, &quot;minLength&quot;:1}},
+                     &quot;fields_to_headers&quot;:{&quot;type&quot;:[&quot;string&quot;, &quot;null&quot;, &quot;boolean&quot;], &quot;minLength&quot;:1, &quot;pattern&quot;:&quot;(?i)^true|false$&quot;},
+                     &quot;values_to_str&quot;:{&quot;type&quot;:[&quot;string&quot;, &quot;null&quot;, &quot;boolean&quot;], &quot;minLength&quot;:1, &quot;pattern&quot;:&quot;(?i)^true|false$&quot;}
+                     },
+                 &quot;allOf&quot;:[
+                     {
+                         &quot;if&quot;:{&quot;properties&quot;:{&quot;code&quot;:{&quot;not&quot;:{&quot;type&quot;:&quot;string&quot;, &quot;minLength&quot;:1}}},},
+                         &quot;then&quot;:{&quot;required&quot;:[&quot;headers&quot;, &quot;table&quot;]}
+                         },
+                      {
+                          &quot;if&quot;:{&quot;allOf&quot;:[
+                              {&quot;properties&quot;:{&quot;headers&quot;:{&quot;not&quot;:{&quot;type&quot;:&quot;array&quot;, &quot;minItems&quot;:1}}}},
+                              {&quot;properties&quot;:{&quot;table&quot;:{&quot;not&quot;:{&quot;type&quot;:&quot;string&quot;, &quot;minLength&quot;:1}}}},
+                              ]},
+                          &quot;then&quot;:{&quot;required&quot;:[&quot;code&quot;]}
+                          }
+                     ]
+                 }
+             },
+             {
+             &quot;if&quot;:{
+                 &quot;properties&quot;:{&quot;value_type&quot;:{&quot;const&quot;:&quot;section&quot;}},
+                 &quot;required&quot;:[&quot;value_type&quot;]
+               },
+             &quot;then&quot;:{
+                 &quot;properties&quot;:{
+                     &quot;code&quot;:{&quot;type&quot;:[&quot;string&quot;, &quot;null&quot;], &quot;minLength&quot;:1},
+                     &quot;import&quot;:{&quot;type&quot;:[&quot;string&quot;, &quot;null&quot;], &quot;minLength&quot;:1},
+                     },
+                 &quot;required&quot;:[&quot;code&quot;]
+                 }
+             }
+             ]
+         }
+     }
+}
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="tagging.html" class="btn btn-neutral float-left" title="Tagging" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="table_schema.html" class="btn btn-neutral float-right" title="Table Schema" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Hunter Moseley, Travis Thompson.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

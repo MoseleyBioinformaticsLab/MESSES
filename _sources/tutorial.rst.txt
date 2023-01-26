@@ -4,6 +4,7 @@ MESSES is intended to be used solely as a command line program. This
 tutorial describes each command and its options.
 
 Top-Level Usage
+
 .. literalinclude:: ../src/messes/__main__.py
     :start-at: Usage:
     :end-before: """
@@ -17,7 +18,7 @@ print the usage with -h option or print all of the commands usage's with the --f
 
 Extract
 ~~~~~~~
-.. literalinclude:: ../src/messes/extract.py
+.. literalinclude:: ../src/messes/extract/extract.py
     :start-at: Usage:
     :end-before: """
     :language: none
@@ -37,12 +38,12 @@ files do not have a worksheet with this name if it does not contain modification
 tags the file name/path and sheet name need to be separated by a semicolon. Ex. Modification_tags.xlsx:sheet1. The sheet name can also be a regular expression. 
 Ex. Modification_tags.xlsx:r'.*dify'  or just  r'.*dify'  to specify a regex for a sheetname in the input data file. File types other than Excel are specified as 
 normal. If multiple input data files are given the specified file or sheet name given to --modify is used for all of them. Details about modification tags are 
-in the doc`tagging` section.
+in the :doc:`tagging` section.
 
 **--end-modify** - The same as --modify, but modifications are done at the end after all input data files have been parsed and merged into one JSON file. There is 
 no default value.
 
-**--automate** - The same as --modify, but for automation tags. The default sheet name is '#automate'. Details about automation tags are in the doc`tagging` section.
+**--automate** - The same as --modify, but for automation tags. The default sheet name is '#automate'. Details about automation tags are in the :doc:`tagging` section.
 
 **--save-directives** - This option allows you to save any modification or automation directives as JSON to the specified file path. Note that --end-modify directives 
 will overwrite --modify directives so only --end-modify directives will be in the output if specified.
@@ -557,4 +558,82 @@ Output:
          KO labelled_1-media-0h, KO labelled_1-media-3h
        KO labelled_2 :
          KO labelled_2-media-0h, KO labelled_2-media-3h
+
+
+
+Convert
+~~~~~~~
+.. literalinclude:: ../src/messes/convert/convert.py
+    :start-at: Usage:
+    :end-before: """
+    :language: none
+
+The convert command is used to convert extracted and validated data from it's arbitrary JSON form to the final desired format. There are commands for 
+each supported format, detailed in the :doc:`supported_formats` section, that use built in conversion directives, and the "generic" command that requires 
+the user supply conversion directives. The supported formats may have additional sub-commands depending on the complexity of the format. Details about 
+each supported format are in the :doc:`supported_formats` section, and it is HIGHLY recommended to read through that section and look at examples before 
+attempting a conversion.
+
+Options
+-------
+**--update** - For supported formats allows the user to specify a file of conversion directives that will be used to update the built-in directives for the format. 
+This is intended to be used for simple changes such as updating the value of the analysis ID. You only have to specify what 
+needs to change, any values that are left out of the update directives won't be changed. If you need to remove directives 
+then use the override option.
+
+**--override** - For supported formats allows the user to override the built-in directives for the format. The entire tag JSON must be specified, 
+any directives that are not in the override JSON will be removed.
+
+**--silent** - This option will silence all warning messages. Errors will still be printed.
+
+
+Examples
+--------
+The inputs and outputs are too large to demonstrate readily inline, but there are examples on the GitHub repo at PUT_LINK_HERE.
+
+Basic Supported Format Run
+++++++++++++++++++++++++++
+Command Line:
+
+.. code:: console
+
+    messes convert mwtab ms input_file.json my_output_name
+
+
+Updating Built-In Directives For Supported Format Run 
++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Command Line:
+
+.. code:: console
+
+    messes convert mwtab ms input_file.json my_output_name --update directive_changes.json
+
+
+Overriding Built-In Directives For Supported Format Run 
++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Command Line:
+
+.. code:: console
+
+    messes convert mwtab ms input_file.json my_output_name --override new_directives.json
+
+
+Save Built-In Directives For Supported Formats
+++++++++++++++++++++++++++++++++++++++++++++++
+Command Line:
+
+.. code:: console
+
+    messes convert save-directives ms json
+
+
+Basic Generic Run
++++++++++++++++++
+Command Line:
+
+.. code:: console
+
+    messes convert generic input_file.json my_output_name my_conversion_directives.json
+
+
 

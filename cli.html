@@ -1,21 +1,24 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Extract CLI &mdash; MESSES 1.0.0 documentation</title><link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <title>CLI &mdash; MESSES 0.1.dev1+gebeb725 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
-  <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-        <script src="_static/jquery.js"></script>
-        <script src="_static/underscore.js"></script>
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
         <script src="_static/doctools.js"></script>
-        <script src="_static/language_data.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" /> 
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Tutorial" href="tutorial.html" />
+    <link rel="prev" title="User Guide" href="guide.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -26,7 +29,7 @@
             <a href="index.html" class="icon icon-home"> MESSES
           </a>
               <div class="version">
-                1.0.0
+                0.1.dev1+gebeb725
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -36,13 +39,26 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption"><span class="caption-text">Contents:</span></p>
-<ul>
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="guide.html">User Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="guide.html#messes">MESSES</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">CLI</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#extract">Extract</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#usage">Usage</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#convert">Convert</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id1">Usage</a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="tutorial.html">Tutorial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tagging.html">Tagging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="conversion_directives.html">Conversion Directives</a></li>
 <li class="toctree-l1"><a class="reference internal" href="table_schema.html">Table Schema</a></li>
+<li class="toctree-l1"><a class="reference internal" href="supported_formats.html">Supported Formats</a></li>
 <li class="toctree-l1"><a class="reference internal" href="api.html">API</a></li>
 <li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
 <li class="toctree-l1"><a class="reference internal" href="todo.html">TODO List</a></li>
@@ -62,7 +78,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home"></a></li>
-      <li class="breadcrumb-item active">Extract CLI</li>
+      <li class="breadcrumb-item active">CLI</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/cli.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -72,8 +88,10 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <div class="section" id="extract-cli">
-<h1>Extract CLI<a class="headerlink" href="#extract-cli" title="Permalink to this headline">¶</a></h1>
+  <section id="cli">
+<h1>CLI<a class="headerlink" href="#cli" title="Permalink to this heading"></a></h1>
+<section id="extract">
+<h2>Extract<a class="headerlink" href="#extract" title="Permalink to this heading"></a></h2>
 <p>The extract command of MESSES supports turning tabular data into JSON.
 This is done by adding a layer of tags on top of the data. These tags tell
 extract how to construct the JSON tables and records. There are features
@@ -82,16 +100,17 @@ the names and values of data. extract can also be used to modify already
 JSONized data. There is also support for viewing the data in different ways, such
 as viewing the record lineages. For a more detailed explanation of the options
 with examples as to how they might be used see the <a class="reference internal" href="tutorial.html"><span class="doc">Tutorial</span></a> page.</p>
-<div class="section" id="usage">
-<h2>Usage<a class="headerlink" href="#usage" title="Permalink to this headline">¶</a></h2>
+<section id="usage">
+<h3>Usage<a class="headerlink" href="#usage" title="Permalink to this heading"></a></h3>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span> Usage:
     messes extract &lt;metadata_source&gt;... [--delete &lt;metadata_section&gt;...] [options]
     messes extract --help
 
-    &lt;metadata_source&gt; - input metadata source as csv/json filename or xlsx_filename[:worksheet_name|regular_expression]. &quot;#export&quot; worksheet name is the default.
+    &lt;metadata_source&gt; - tagged input metadata source as csv/json filename or xlsx_filename[:worksheet_name|regular_expression]. &quot;#export&quot; worksheet name is the default.
 
  Options:
-    --help                              - show this help documentation.
+    -h, --help                          - show this help documentation.
+    -v, --version                       - show the version.
     --output &lt;filename_json&gt;            - output json filename.
     --compare &lt;filename_json&gt;           - compare extracted metadata to given JSONized metadata.
     --modify &lt;source&gt;                   - modification directives worksheet name, regular expression, csv/json filename, or xlsx_filename:[worksheet_name|regular_expression] [default: #modify].
@@ -102,7 +121,7 @@ with examples as to how they might be used see the <a class="reference internal"
     --show &lt;show_option&gt;                - show a part of the metadata. See options below.
     --delete &lt;metadata_section&gt;...      - delete a section of the JSONized metadata. Section format is tableKey or tableKey,IDKey or tableKey,IDKey,fieldName. These can be regular expressions.
     --keep &lt;metadata_tables&gt;            - only keep the selected tables.  Delete the rest.  Table format is tableKey,tableKey,... The tableKey can be a regular expression.
-    --file-processing &lt;remove_regex&gt;    - a string or regular expression to remove characters in input files, removes unicode and \r characters by default, enter &quot;None&quot; to disable [default: _x([0-9a-fA-F]{4})_|\r].
+    --file-cleaning &lt;remove_regex&gt;      - a string or regular expression to remove characters in input files, removes unicode and \r characters by default, enter &quot;None&quot; to disable [default: _x([0-9a-fA-F]{4})_|\r].
     --silent                            - print no warning messages.
 
 Show Options:
@@ -124,13 +143,64 @@ Regular Expression Format:
 
 </pre></div>
 </div>
+</section>
+</section>
+<section id="convert">
+<h2>Convert<a class="headerlink" href="#convert" title="Permalink to this heading"></a></h2>
+<p>The convert command of MESSES supports converting JSON data to another JSON format
+or another supported format. This is done by using conversion directives, which
+are detailed in the <a class="reference internal" href="conversion_directives.html"><span class="doc">Conversion Directives</span></a> section. Arbitrary JSON to JSON
+conversions are supported through the “generic” command and all supported formats
+are converted using commands that match thier namesake. All supported formats are
+detailed in the <a class="reference internal" href="supported_formats.html"><span class="doc">Supported Formats</span></a> section. More details and examples for
+the convert command are in the <a class="reference internal" href="tutorial.html"><span class="doc">Tutorial</span></a>.</p>
+<section id="id1">
+<h3>Usage<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h3>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Usage:
+    messes convert mwtab (ms | nmr | nmr_binned) &lt;input_JSON&gt; &lt;output_name&gt; [--update &lt;conversion_directives&gt; | --override &lt;conversion_directives&gt;] [--silent]
+    messes convert save-directives mwtab (ms | nmr | nmr_binned) &lt;output_filetype&gt; [&lt;output_name&gt;]
+    messes convert generic &lt;input_JSON&gt; &lt;output_name&gt; &lt;conversion_directives&gt; [--silent]
+    messes convert --help
+    
+    &lt;conversion_directives&gt; - can be a JSON, csv, or xlsx file. If xlsx the default sheet name to read in is #convert, 
+                        to specify a different sheet name separate it from the file name with a colon ex: file_name.xlsx:sheet_name.
+
+Options:
+    -h, --help                           - show this screen.
+    -v, --version                        - show version.
+    --silent                             - silence all warnings.
+    --update &lt;conversion_directives&gt;     - conversion directives that will be used to update the built-in directives for the format.
+                                           This is intended to be used for simple changes such as updating the value of 
+                                           the analysis ID. You only have to specify what needs to change, any values 
+                                           that are left out of the update directives won&#39;t be changed. If you need to remove 
+                                           directives then use the override option.
+    --override &lt;conversion_directives&gt;   - conversion directives that will be used to override the built-in directives for the format.
+                                           The entire JSON must be specified, any directives that are not in the override JSON 
+                                           will be removed.
+    
+    
+
+The general command structure for convert is convert &lt;format&gt; which will convert an input JSON file over to the supported format. 
+The outputs of these commands will save both the JSON conversion and the final format file.
+The generic command is the same as the supported formats except the user is required to input conversion directives specifying how to 
+convert the input JSON to the desired output JSON. Only an output JSON is saved.
+The save-directives command is used to print the default conversion directives used by convert for any of the supported formats. &lt;output-filetype&gt; 
+can be one of &quot;json&quot;, &quot;xlsx&quot;, or &quot;csv&quot;. The file is saved as &quot;format_conversion_directives.ext&quot; where &quot;.ext&quot; is replaced with &quot;.json&quot;, &quot;.xlsx&quot;, 
+or &quot;.csv&quot; depending on the value of &lt;output-format&gt;, unless &lt;output_name&gt; is given.
+
+</pre></div>
 </div>
-</div>
+</section>
+</section>
+</section>
 
 
            </div>
           </div>
-          <footer>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="guide.html" class="btn btn-neutral float-left" title="User Guide" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="tutorial.html" class="btn btn-neutral float-right" title="Tutorial" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
 
   <hr/>
 

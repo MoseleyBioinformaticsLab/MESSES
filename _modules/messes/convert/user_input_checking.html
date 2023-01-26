@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>messes.convert.user_input_checking &mdash; MESSES 0.1.dev1+gebeb725 documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../index.html" class="icon icon-home"> MESSES
+          </a>
+              <div class="version">
+                0.1.dev1+gebeb725
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../guide.html">User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../guide.html#messes">MESSES</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../cli.html">CLI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorial.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tagging.html">Tagging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../conversion_directives.html">Conversion Directives</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../table_schema.html">Table Schema</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../supported_formats.html">Supported Formats</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../api.html">API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../todo.html">TODO List</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">MESSES</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">messes.convert.user_input_checking</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for messes.convert.user_input_checking</h1><div class="highlight"><pre>
+<span></span><span class="c1"># -*- coding: utf-8 -*-</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Validates user input to error early and allow the rest of the program to assume inputs are sanitized.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">re</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">pathlib</span>
+
+<span class="kn">import</span> <span class="nn">jsonschema</span>
+
+
+<div class="viewcode-block" id="validate_conversion_directives"><a class="viewcode-back" href="../../../api.html#messes.convert.user_input_checking.validate_conversion_directives">[docs]</a><span class="k">def</span> <span class="nf">validate_conversion_directives</span><span class="p">(</span><span class="n">conversion_directives</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span> <span class="n">schema</span><span class="p">:</span> <span class="nb">dict</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Validate conversion directives.</span>
+<span class="sd">    </span>
+<span class="sd">    Wraps around jsonschema.validate() to give more human readable errors </span>
+<span class="sd">    for most validation errors.</span>
+<span class="sd">    </span>
+<span class="sd">    Args:</span>
+<span class="sd">        dict_to_validate: instance to validate.</span>
+<span class="sd">        schema: JSON Schema to validate the instance with.</span>
+<span class="sd">        </span>
+<span class="sd">    Raises:</span>
+<span class="sd">        jsonschema.ValidationError: any validation errors that aren&#39;t handled reraise the original.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+        
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">jsonschema</span><span class="o">.</span><span class="n">validate</span><span class="p">(</span><span class="n">conversion_directives</span><span class="p">,</span> <span class="n">schema</span><span class="p">)</span>
+    <span class="k">except</span> <span class="n">jsonschema</span><span class="o">.</span><span class="n">ValidationError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        
+        <span class="n">message</span> <span class="o">=</span> <span class="s2">&quot;ValidationError: An error was found in the &quot;</span> <span class="o">+</span> <span class="n">schema</span><span class="p">[</span><span class="s2">&quot;title&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot;.</span><span class="se">\n</span><span class="s2">&quot;</span>
+        <span class="n">custom_message</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+        
+        <span class="k">if</span> <span class="n">e</span><span class="o">.</span><span class="n">validator</span> <span class="o">==</span> <span class="s2">&quot;minProperties&quot;</span><span class="p">:</span>
+            <span class="n">message</span> <span class="o">+=</span> <span class="s2">&quot;The entry &quot;</span> <span class="o">+</span> <span class="s2">&quot;[</span><span class="si">%s</span><span class="s2">]&quot;</span> <span class="o">%</span> <span class="s2">&quot;][&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">repr</span><span class="p">(</span><span class="n">index</span><span class="p">)</span> <span class="k">for</span> <span class="n">index</span> <span class="ow">in</span> <span class="n">e</span><span class="o">.</span><span class="n">relative_path</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot; cannot be empty.&quot;</span>
+        <span class="k">elif</span> <span class="n">e</span><span class="o">.</span><span class="n">validator</span> <span class="o">==</span> <span class="s2">&quot;required&quot;</span><span class="p">:</span>
+            <span class="n">required_property</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;(\&#39;.*\&#39;)&quot;</span><span class="p">,</span> <span class="n">e</span><span class="o">.</span><span class="n">message</span><span class="p">)</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+            <span class="n">special_names</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;&#39;code&#39;&quot;</span><span class="p">,</span> <span class="s2">&quot;&#39;table&#39;&quot;</span><span class="p">,</span> <span class="s2">&quot;&#39;fields&#39;&quot;</span><span class="p">,</span> <span class="s2">&quot;&#39;headers&#39;&quot;</span><span class="p">,</span> <span class="s2">&quot;&#39;record_id&#39;&quot;</span><span class="p">,</span> <span class="s2">&quot;&#39;for_each&#39;&quot;</span><span class="p">,</span> <span class="s2">&quot;&#39;override&#39;&quot;</span><span class="p">]</span>
+            
+            <span class="k">if</span> <span class="n">required_property</span> <span class="ow">in</span> <span class="n">special_names</span><span class="p">:</span>
+                <span class="n">value_type_map</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;str&quot;</span><span class="p">,</span> <span class="s2">&quot;matrix&quot;</span><span class="p">,</span> <span class="s2">&quot;section&quot;</span><span class="p">]</span>
+                <span class="n">value_type</span> <span class="o">=</span> <span class="n">value_type_map</span><span class="p">[</span><span class="n">e</span><span class="o">.</span><span class="n">schema_path</span><span class="p">[</span><span class="mi">3</span><span class="p">]]</span>
+                
+                <span class="k">if</span> <span class="n">value_type</span> <span class="o">==</span> <span class="s2">&quot;str&quot;</span><span class="p">:</span>
+                    <span class="n">message</span> <span class="o">+=</span> <span class="s2">&quot;&#39;str&#39; type directives have 3 valid configurations:</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span>\
+                               <span class="s2">&quot;</span><span class="se">\t</span><span class="s2">1. They have an &#39;override&#39; property.</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span>\
+                               <span class="s2">&quot;</span><span class="se">\t</span><span class="s2">2. They have a &#39;code&#39; property.</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span>\
+                               <span class="s2">&quot;</span><span class="se">\t</span><span class="s2">3. They have the &#39;table&#39; and &#39;fields&#39; properties.</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span>\
+                               <span class="s2">&quot;The entry &quot;</span><span class="o">+</span> <span class="s2">&quot;[</span><span class="si">%s</span><span class="s2">]&quot;</span> <span class="o">%</span> <span class="s2">&quot;][&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">repr</span><span class="p">(</span><span class="n">index</span><span class="p">)</span> <span class="k">for</span> <span class="n">index</span> <span class="ow">in</span> <span class="n">e</span><span class="o">.</span><span class="n">relative_path</span><span class="p">)</span> <span class="o">+</span>\
+                               <span class="s2">&quot; is not one of the valid configurations.&quot;</span>
+                
+                <span class="k">if</span> <span class="n">value_type</span> <span class="o">==</span> <span class="s2">&quot;matrix&quot;</span><span class="p">:</span>
+                    <span class="n">message</span> <span class="o">+=</span> <span class="s2">&quot;&#39;matrix&#39; type directives must either have a &#39;code&#39; property or &#39;headers&#39; and &#39;table&#39; properties.</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span>\
+                               <span class="s2">&quot;The entry &quot;</span><span class="o">+</span> <span class="s2">&quot;[</span><span class="si">%s</span><span class="s2">]&quot;</span> <span class="o">%</span> <span class="s2">&quot;][&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">repr</span><span class="p">(</span><span class="n">index</span><span class="p">)</span> <span class="k">for</span> <span class="n">index</span> <span class="ow">in</span> <span class="n">e</span><span class="o">.</span><span class="n">relative_path</span><span class="p">)</span> <span class="o">+</span>\
+                               <span class="s2">&quot; is missing one of these properties.&quot;</span>
+                
+                <span class="k">if</span> <span class="n">value_type</span> <span class="o">==</span> <span class="s2">&quot;section&quot;</span><span class="p">:</span>
+                    <span class="n">message</span> <span class="o">+=</span> <span class="s2">&quot;The entry &quot;</span> <span class="o">+</span> <span class="s2">&quot;[</span><span class="si">%s</span><span class="s2">]&quot;</span> <span class="o">%</span> <span class="s2">&quot;][&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">repr</span><span class="p">(</span><span class="n">index</span><span class="p">)</span> <span class="k">for</span> <span class="n">index</span> <span class="ow">in</span> <span class="n">e</span><span class="o">.</span><span class="n">relative_path</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot; is missing the required property &quot;</span> <span class="o">+</span> <span class="n">required_property</span> <span class="o">+</span> <span class="s2">&quot;.&quot;</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">relative_path</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                    <span class="n">message</span> <span class="o">+=</span> <span class="s2">&quot;The required property &quot;</span> <span class="o">+</span> <span class="n">required_property</span> <span class="o">+</span> <span class="s2">&quot; is missing.&quot;</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">message</span> <span class="o">+=</span> <span class="s2">&quot;The entry &quot;</span> <span class="o">+</span> <span class="s2">&quot;[</span><span class="si">%s</span><span class="s2">]&quot;</span> <span class="o">%</span> <span class="s2">&quot;][&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">repr</span><span class="p">(</span><span class="n">index</span><span class="p">)</span> <span class="k">for</span> <span class="n">index</span> <span class="ow">in</span> <span class="n">e</span><span class="o">.</span><span class="n">relative_path</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot; is missing the required property &quot;</span> <span class="o">+</span> <span class="n">required_property</span> <span class="o">+</span> <span class="s2">&quot;.&quot;</span>
+                               
+        <span class="k">elif</span> <span class="n">e</span><span class="o">.</span><span class="n">validator</span> <span class="o">==</span> <span class="s2">&quot;minLength&quot;</span><span class="p">:</span>
+            <span class="n">custom_message</span> <span class="o">=</span> <span class="s2">&quot; cannot be an empty string.&quot;</span>
+        <span class="k">elif</span> <span class="n">e</span><span class="o">.</span><span class="n">validator</span> <span class="o">==</span> <span class="s2">&quot;maxLength&quot;</span><span class="p">:</span>
+            <span class="n">custom_message</span> <span class="o">=</span> <span class="s2">&quot; is too long.&quot;</span>
+        <span class="k">elif</span> <span class="n">e</span><span class="o">.</span><span class="n">validator</span> <span class="o">==</span> <span class="s2">&quot;minItems&quot;</span><span class="p">:</span>
+            <span class="n">custom_message</span> <span class="o">=</span> <span class="s2">&quot; cannot be empty.&quot;</span>
+        <span class="k">elif</span> <span class="n">e</span><span class="o">.</span><span class="n">validator</span> <span class="o">==</span> <span class="s2">&quot;type&quot;</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">validator_value</span><span class="p">)</span> <span class="o">==</span> <span class="nb">list</span><span class="p">:</span>
+                <span class="n">custom_message</span> <span class="o">=</span> <span class="s2">&quot; is not any of the allowed types: [&quot;</span>
+                <span class="k">for</span> <span class="n">allowed_type</span> <span class="ow">in</span> <span class="n">e</span><span class="o">.</span><span class="n">validator_value</span><span class="p">:</span>
+                    <span class="n">custom_message</span> <span class="o">+=</span> <span class="s2">&quot;</span><span class="se">\&#39;</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="n">allowed_type</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\&#39;</span><span class="s2">, &quot;</span>
+                <span class="n">custom_message</span> <span class="o">=</span> <span class="n">custom_message</span><span class="p">[:</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span>
+                <span class="n">custom_message</span> <span class="o">+=</span> <span class="s2">&quot;].&quot;</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">custom_message</span> <span class="o">=</span> <span class="s2">&quot; is not of type </span><span class="se">\&quot;</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="n">e</span><span class="o">.</span><span class="n">validator_value</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\&quot;</span><span class="s2">.&quot;</span>
+        <span class="k">elif</span> <span class="n">e</span><span class="o">.</span><span class="n">validator</span> <span class="o">==</span> <span class="s2">&quot;enum&quot;</span><span class="p">:</span>
+            <span class="n">custom_message</span> <span class="o">=</span> <span class="s2">&quot; is not one of [&quot;</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">repr</span><span class="p">(</span><span class="n">index</span><span class="p">)</span> <span class="k">for</span> <span class="n">index</span> <span class="ow">in</span> <span class="n">e</span><span class="o">.</span><span class="n">validator_value</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;].&quot;</span>
+        <span class="k">elif</span> <span class="n">e</span><span class="o">.</span><span class="n">validator</span> <span class="o">==</span> <span class="s2">&quot;format&quot;</span><span class="p">:</span>
+            <span class="n">custom_message</span> <span class="o">=</span> <span class="s2">&quot; is not a valid &quot;</span> <span class="o">+</span> <span class="n">e</span><span class="o">.</span><span class="n">validator_value</span> <span class="o">+</span> <span class="s2">&quot;.&quot;</span>
+        <span class="k">elif</span> <span class="n">e</span><span class="o">.</span><span class="n">validator</span> <span class="o">==</span> <span class="s2">&quot;minimum&quot;</span><span class="p">:</span>
+            <span class="n">custom_message</span> <span class="o">=</span> <span class="s2">&quot; must be greater than or equal to &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">validator_value</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;.&quot;</span>
+        <span class="k">elif</span> <span class="n">e</span><span class="o">.</span><span class="n">validator</span> <span class="o">==</span> <span class="s2">&quot;maximum&quot;</span><span class="p">:</span>
+            <span class="n">custom_message</span> <span class="o">=</span> <span class="s2">&quot; must be less than or equal to &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">validator_value</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;.&quot;</span>
+        <span class="k">elif</span> <span class="n">e</span><span class="o">.</span><span class="n">validator</span> <span class="o">==</span> <span class="s2">&quot;pattern&quot;</span><span class="p">:</span>
+            <span class="c1">## All of the properties except &#39;headers&#39; are strings, so path will be 3, but headers is a list so path will be 4.</span>
+            <span class="n">property_name</span> <span class="o">=</span> <span class="n">e</span><span class="o">.</span><span class="n">relative_path</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">relative_path</span><span class="p">)</span> <span class="o">==</span> <span class="mi">4</span> <span class="k">else</span> <span class="n">e</span><span class="o">.</span><span class="n">relative_path</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+            <span class="n">properties_with_patterns</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;for_each&quot;</span><span class="p">,</span> <span class="s2">&quot;required&quot;</span><span class="p">,</span> <span class="s2">&quot;fields_to_headers&quot;</span><span class="p">,</span> <span class="s2">&quot;values_to_str&quot;</span><span class="p">]</span>
+            <span class="k">if</span> <span class="n">property_name</span> <span class="ow">in</span> <span class="n">properties_with_patterns</span><span class="p">:</span>
+                <span class="n">message</span> <span class="o">+=</span> <span class="s2">&quot;The &#39;&quot;</span> <span class="o">+</span> <span class="n">property_name</span> <span class="o">+</span> <span class="s2">&quot;&#39; property for entry &quot;</span> <span class="o">+</span> \
+                           <span class="s2">&quot;[</span><span class="si">%s</span><span class="s2">]&quot;</span> <span class="o">%</span> <span class="s2">&quot;][&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">repr</span><span class="p">(</span><span class="n">index</span><span class="p">)</span> <span class="k">for</span> <span class="n">index</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">relative_path</span><span class="p">)[</span><span class="mi">0</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span> <span class="o">+</span> \
+                           <span class="s2">&quot; must be &#39;True&#39; or &#39;False&#39;.&quot;</span>
+            <span class="k">elif</span> <span class="n">property_name</span> <span class="o">==</span> <span class="s2">&quot;test&quot;</span><span class="p">:</span>
+                <span class="n">message</span> <span class="o">+=</span> <span class="s2">&quot;The &#39;&quot;</span> <span class="o">+</span> <span class="n">property_name</span> <span class="o">+</span> <span class="s2">&quot;&#39; property for entry &quot;</span> <span class="o">+</span> \
+                           <span class="s2">&quot;[</span><span class="si">%s</span><span class="s2">]&quot;</span> <span class="o">%</span> <span class="s2">&quot;][&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">repr</span><span class="p">(</span><span class="n">index</span><span class="p">)</span> <span class="k">for</span> <span class="n">index</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">relative_path</span><span class="p">)[</span><span class="mi">0</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span> <span class="o">+</span> \
+                           <span class="s2">&quot; must have an &#39;=&#39; in the middle. Ex. type=MS&quot;</span>
+            <span class="k">elif</span> <span class="n">property_name</span> <span class="o">==</span> <span class="s2">&quot;headers&quot;</span><span class="p">:</span>
+                <span class="n">message</span> <span class="o">+=</span> <span class="s2">&quot;Each element in the &#39;&quot;</span> <span class="o">+</span> <span class="n">property_name</span> <span class="o">+</span> <span class="s2">&quot;&#39; property for entry &quot;</span> <span class="o">+</span> \
+                           <span class="s2">&quot;[</span><span class="si">%s</span><span class="s2">]&quot;</span> <span class="o">%</span> <span class="s2">&quot;][&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">repr</span><span class="p">(</span><span class="n">index</span><span class="p">)</span> <span class="k">for</span> <span class="n">index</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">relative_path</span><span class="p">)[</span><span class="mi">0</span><span class="p">:</span><span class="o">-</span><span class="mi">2</span><span class="p">])</span> <span class="o">+</span> \
+                           <span class="s2">&quot; must have an &#39;=&#39; in the middle. Ex. type=MS&quot;</span>
+            <span class="k">elif</span> <span class="n">property_name</span> <span class="o">==</span> <span class="s2">&quot;sort_order&quot;</span><span class="p">:</span>
+                <span class="n">message</span> <span class="o">+=</span> <span class="s2">&quot;The &#39;&quot;</span> <span class="o">+</span> <span class="n">property_name</span> <span class="o">+</span> <span class="s2">&quot;&#39; property for entry &quot;</span> <span class="o">+</span> \
+                           <span class="s2">&quot;[</span><span class="si">%s</span><span class="s2">]&quot;</span> <span class="o">%</span> <span class="s2">&quot;][&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">repr</span><span class="p">(</span><span class="n">index</span><span class="p">)</span> <span class="k">for</span> <span class="n">index</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">relative_path</span><span class="p">)[</span><span class="mi">0</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span> <span class="o">+</span> \
+                           <span class="s2">&quot; must be &#39;ascending&#39; or &#39;descending&#39;&quot;</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="n">e</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">e</span>
+        
+        
+        <span class="k">if</span> <span class="n">custom_message</span><span class="p">:</span>
+            <span class="n">message</span> <span class="o">=</span> <span class="n">message</span> <span class="o">+</span> <span class="s2">&quot;The value for &quot;</span> <span class="o">+</span> <span class="s2">&quot;[</span><span class="si">%s</span><span class="s2">]&quot;</span> <span class="o">%</span> <span class="s2">&quot;][&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">repr</span><span class="p">(</span><span class="n">index</span><span class="p">)</span> <span class="k">for</span> <span class="n">index</span> <span class="ow">in</span> <span class="n">e</span><span class="o">.</span><span class="n">relative_path</span><span class="p">)</span> <span class="o">+</span> <span class="n">custom_message</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">message</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="p">)</span>
+        <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">()</span></div>
+
+
+
+<span class="c1"># def additional_args_checks(args: dict):</span>
+<span class="c1">#     &quot;&quot;&quot;Run some checks on args that jsonschema can&#39;t do.</span>
+    
+<span class="c1">#     This assumes that args has been validated with a JSON schema and does some </span>
+<span class="c1">#     further checking to make sure the values entered by the user make sense. </span>
+<span class="c1">#     Prints a message and exits the program if problems are found.</span>
+    
+<span class="c1">#     Args:</span>
+<span class="c1">#         args: the arguments entered into the program by the user.</span>
+<span class="c1">#     &quot;&quot;&quot;</span>
+<span class="c1">#     file_path_properties = [&quot;--update&quot;, &quot;--override&quot;, &quot;&lt;conversion_directives&gt;&quot;, &quot;&lt;input_JSON&gt;&quot;]</span>
+<span class="c1">#     for path in file_path_properties:</span>
+<span class="c1">#         if args[path] and not pathlib.Path(args[path]).exists():</span>
+<span class="c1">#             print(&quot;Error: The value entered for &quot; + path + &quot; is not a valid file path or does not exist.&quot;, file=sys.stderr)</span>
+<span class="c1">#             sys.exit()</span>
+                
+        
+
+
+
+
+
+
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Hunter Moseley, Travis Thompson.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

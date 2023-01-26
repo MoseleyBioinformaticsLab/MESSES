@@ -1,18 +1,19 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>&lt;no title&gt; &mdash; MESSES 1.0.0 documentation</title><link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <title>Supported Formats &mdash; MESSES 0.1.dev1+gebeb725 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
-  <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-        <script src="_static/jquery.js"></script>
-        <script src="_static/underscore.js"></script>
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
         <script src="_static/doctools.js"></script>
-        <script src="_static/language_data.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -28,7 +29,7 @@
             <a href="index.html" class="icon icon-home"> MESSES
           </a>
               <div class="version">
-                1.0.0
+                0.1.dev1+gebeb725
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -38,13 +39,22 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption"><span class="caption-text">Contents:</span></p>
-<ul>
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="guide.html">User Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="guide.html#messes">MESSES</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cli.html">CLI</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tutorial.html">Tutorial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tagging.html">Tagging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="conversion_directives.html">Conversion Directives</a></li>
 <li class="toctree-l1"><a class="reference internal" href="table_schema.html">Table Schema</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Supported Formats</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#mwtab">mwTab</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#how-subject-sample-factors-ssf-are-determined">How SUBJECT_SAMPLE_FACTORS (SSF) Are Determined</a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="api.html">API</a></li>
 <li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
 <li class="toctree-l1"><a class="reference internal" href="todo.html">TODO List</a></li>
@@ -64,7 +74,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home"></a></li>
-      <li class="breadcrumb-item active">&lt;no title&gt;</li>
+      <li class="breadcrumb-item active">Supported Formats</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/supported_formats.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -74,7 +84,97 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  
+  <section id="supported-formats">
+<h1>Supported Formats<a class="headerlink" href="#supported-formats" title="Permalink to this heading"></a></h1>
+<section id="mwtab">
+<h2>mwTab<a class="headerlink" href="#mwtab" title="Permalink to this heading"></a></h2>
+<p>mwTab is the name of the format used by the <a class="reference external" href="http://www.metabolomicsworkbench.org">Metabolomics Workbench</a>, and there are some slight differences depending on what
+type of data you wish to upload. Metabolomics Workbench accepts 3 kinds of data, mass spec (MS), binned nuclear magnetic resonance (NMR binned),
+and labeled NMR (will be referred to as just NMR). Accordingly, MESSES convert has a sub-command for each type (ms, nmr, and nmr_binned).
+Simply use the appropriate sub-command for whatever type of data you are trying to upload to the Metabolomics Workbench.</p>
+<p>There are a few things to be aware of. First, the default value for the analysis ID and study ID are AN000000 and ST000000, respectively.
+You will need to change these to the correct values that the Metabolomics Workbench gives you. You can do this manually after creating
+the files, or by using the update option:</p>
+<p>update_directives.json:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">{</span>
+<span class="go">&quot;METABOLOMICS WORKBENCH&quot;: {</span>
+<span class="go">    &quot;ANALYSIS_ID&quot;: {</span>
+<span class="go">      &quot;id&quot;: &quot;ANALYSIS_ID&quot;,</span>
+<span class="go">      &quot;override&quot;: &quot;AN001234&quot;,</span>
+<span class="go">      &quot;value_type&quot;: &quot;str&quot;</span>
+<span class="go">    },</span>
+<span class="go">    &quot;STUDY_ID&quot;: {</span>
+<span class="go">      &quot;id&quot;: &quot;STUDY_ID&quot;,</span>
+<span class="go">      &quot;override&quot;: &quot;ST005678&quot;,</span>
+<span class="go">      &quot;value_type&quot;: &quot;str&quot;</span>
+<span class="go">    }</span>
+<span class="go">  }</span>
+<span class="go">}</span>
+</pre></div>
+</div>
+<p>Command Line:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">messes convert mwtab ms input_file.json my_output_name --update update_directives.json</span>
+</pre></div>
+</div>
+<p>The next is that convert assumes the input JSON is following the table schema as described in the <a class="reference internal" href="table_schema.html"><span class="doc">Table Schema</span></a> section,
+so if your JSON has different table names or a different structure then you will need to override the directives. You may also
+need to change the SUBJECT_SAMPLE_FACTORS directive. The SUBJECT_SAMPLE_FACTORS are built using a function that has the same
+assumptions as convert, but also some additional ones. It assumes when building lineages for a sample that some siblings will
+also want to be included, and to find these siblings it looks for a specific field and value for that field in the entity records.
+The default field and value are “protocol.id” and “protein_extraction”, respectively. You may need to change these values if you
+want to identify siblings in a different way or leave them out.</p>
+<p>Changing SUBJECT_SAMPLE_FACTORS Example:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span># Change the value to look for in protocol.id.
+{
+&quot;SUBJECT_SAMPLE_FACTORS&quot;: {
+    &quot;no_id_needed&quot;: {
+      &quot;code&quot;: &quot;mwtab_functions.create_subject_sample_factors(input_json, sibling_match_value=&quot;some_protocol_id&quot;)&quot;,
+      &quot;id&quot;: &quot;no_id_needed&quot;,
+      &quot;value_type&quot;: &quot;section&quot;
+    }
+  }
+}
+
+# Change the value and field.
+{
+&quot;SUBJECT_SAMPLE_FACTORS&quot;: {
+    &quot;no_id_needed&quot;: {
+      &quot;code&quot;: &quot;mwtab_functions.create_subject_sample_factors(input_json, sibling_match_field=&quot;some_field&quot;, sibling_match_value=&quot;some_value&quot;)&quot;,
+      &quot;id&quot;: &quot;no_id_needed&quot;,
+      &quot;value_type&quot;: &quot;section&quot;
+    }
+  }
+}
+
+# Don&#39;t look for siblings.
+{
+&quot;SUBJECT_SAMPLE_FACTORS&quot;: {
+    &quot;no_id_needed&quot;: {
+      &quot;code&quot;: &quot;mwtab_functions.create_subject_sample_factors(input_json, sibling_match_value=None)&quot;,
+      &quot;id&quot;: &quot;no_id_needed&quot;,
+      &quot;value_type&quot;: &quot;section&quot;
+    }
+  }
+}
+</pre></div>
+</div>
+<p>Lastly, the built-in directives for the mwTab format only construct a minimum required version. There are more records that can
+be added to the tables, and you can use the same update method as previously shown to add them in if desired. You can view the
+full specification for the format here: <a class="reference external" href="https://www.metabolomicsworkbench.org/data/tutorials.php">https://www.metabolomicsworkbench.org/data/tutorials.php</a></p>
+<section id="how-subject-sample-factors-ssf-are-determined">
+<h3>How SUBJECT_SAMPLE_FACTORS (SSF) Are Determined<a class="headerlink" href="#how-subject-sample-factors-ssf-are-determined" title="Permalink to this heading"></a></h3>
+<p>The SUBJECT_SAMPLE_FACTORS section is created by first finding all of the samples associated with measurement records. Then
+lineages for each sample are determined. Siblings are added to the lineages if they meet the right user determined conditions.
+By default it is if the “protocol.id” field is “protein_extraction”. Then for each sample associated with a measurement record
+the factors and nearest subject ancestor are determined. All ancestors, the sample itself, and any siblings that were added
+to the lineages are searched for raw files and are added into the SSF if found. The function used to create this section is
+called create_subject_sample_factors and it can be found in the <a class="reference internal" href="api.html"><span class="doc">API</span></a> section of the documentation. If the preferred
+table schema and controlled vocabulary are followed then there is likely very little you might need to change here, but if you
+do all of the parameters for the function are in the API documentation.</p>
+</section>
+</section>
+</section>
+
 
            </div>
           </div>
