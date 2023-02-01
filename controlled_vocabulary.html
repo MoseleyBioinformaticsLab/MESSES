@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Controlled Vocabulary &mdash; MESSES 0.1.dev1+gcc2e9a9 documentation</title>
+  <title>Controlled Vocabulary &mdash; MESSES 0.1.dev1+g580c644 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -32,7 +32,7 @@
             <a href="index.html" class="icon icon-home"> MESSES
           </a>
               <div class="version">
-                0.1.dev1+gcc2e9a9
+                0.1.dev1+g580c644
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -92,15 +92,6 @@
              
   <section id="controlled-vocabulary">
 <h1>Controlled Vocabulary<a class="headerlink" href="#controlled-vocabulary" title="Permalink to this heading"></a></h1>
-<p>The process of going from your raw experimental data to submission to an online repository
-is not an easy one, but MESSES was created to make it easier. MESSES breaks up the process
-into 3 steps, extract, validate, and convert. The extraction step adds a layer of tags
-to your raw data so that it is in a form that is more interoperable and more standardized.
-The validation step ensures the data that was extracted is valid against the <a class="reference internal" href="table_schema.html"><span class="doc">Table Schema</span></a>
-and <a class="reference internal" href="#"><span class="doc">Controlled Vocabulary</span></a>. The conversion step converts the extracted data to the
-form that is accepted by the online repository. Initially getting started will likely be
-difficult, but once things are worked out the first time this process can be easily added
-to your workflows.</p>
 <p>Validation can be broken down into layers. The first layer is making sure the data is valid
 against the <a class="reference internal" href="table_schema.html"><span class="doc">Table Schema</span></a>. This includes things such as making sure every protocol
 has one of the 5 types, making sure every sample has a parent, and all records have the
@@ -447,8 +438,219 @@ is done to support the tabular form of the controlled vocabulary as described be
 <h2>Controlled Vocabulary (Second Layer) - Table<a class="headerlink" href="#controlled-vocabulary-second-layer-table" title="Permalink to this heading"></a></h2>
 <p>The above JSON representation can be specified in tabular form using the export tags
 described in <a class="reference internal" href="tagging.html"><span class="doc">Tagging</span></a>. The general format is shown below:</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 6%" />
+<col style="width: 22%" />
+<col style="width: 34%" />
+<col style="width: 20%" />
+<col style="width: 18%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>#tags</p></th>
+<th class="head"><p>#parent_protocol.id</p></th>
+<th class="head"><p>#.type</p></th>
+<th class="head"><p>#.description</p></th>
+<th class="head"><p>#.parentID</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>#tags</p></td>
+<td><p>&lt;protocol_name&gt;</p>
+<p>#&lt;protocol_name&gt;.id
+&lt;field_name_for_protocol&gt;</p>
+</td>
+<td><p>&lt;protocol_type&gt;</p>
+<p>#.table
+&lt;”protocol”, “measurement”, or “entity”&gt;</p>
+</td>
+<td><p>&lt;protocol_description&gt;</p>
+<p>#.&lt;field_1&gt;
+&lt;field_value&gt;</p>
+</td>
+<td><p>&lt;protocol_parent_id&gt;</p></td>
+</tr>
+</tbody>
+</table>
 <p>An extended example that includes the “master_measurement” as well as some additional
 protocols to illustrate inheritance is shown below:</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 5%" />
+<col style="width: 23%" />
+<col style="width: 9%" />
+<col style="width: 13%" />
+<col style="width: 8%" />
+<col style="width: 35%" />
+<col style="width: 7%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>#tags</p></th>
+<th class="head"><p>#parent_protocol.id</p></th>
+<th class="head"><p>#.type</p></th>
+<th class="head"><p>#.parentID</p></th>
+<th class="head"><p>#.filename</p></th>
+<th class="head"><p>#.description</p></th>
+<th class="head"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>#tags</p>
+<p>#tags</p>
+<p>#tags</p>
+<p>#tags</p>
+<p>#tags</p>
+<p>#tags</p>
+</td>
+<td><p>master_measurement
+MS_measurement
+Chromatography_MS_measurement</p>
+<p>#master_measurement.id
+instrument
+instrument_type</p>
+<p>#master_measurement.id
+sample.id</p>
+<p>#MS_measurement.id
+ion_mode
+ionization</p>
+<p>#MS_measurement.id
+assignment
+assignment%method
+compound
+intensity
+intensity%type
+intensity%units
+isotopologue
+isotopologue%type</p>
+<p>#Chromatography_MS_measurement.id
+chromatography_description
+chromatography_instrument_name
+chromatography_type
+column_name</p>
+<p>#Chromatography_MS_measurement.id
+retention_time
+retention_time%units</p>
+</td>
+<td><p>measurement
+measurement
+measurement</p>
+<p>#.type
+string
+string</p>
+<p>#.type
+string</p>
+<p>#.type
+string
+string</p>
+<p>#.type
+string
+string
+string
+string
+string
+string
+string
+string</p>
+<p>#.type
+string
+string
+string
+string</p>
+<p>#.type
+string
+string</p>
+</td>
+<td><p>master_measurement
+MS_measurement</p>
+<p>#.minLength
+1
+1</p>
+<p>#.minLength
+1</p>
+<p>#.minLength
+1
+1</p>
+<p>#.minLength
+1
+1
+1
+1
+1
+1
+1
+1</p>
+<p>#.minLength
+1
+1
+1
+1</p>
+<p>#.minLength
+1
+1</p>
+</td>
+<td><p>#.required
+TRUE
+FALSE</p>
+<p>#.required
+TRUE</p>
+<p>#.required
+TRUE
+TRUE</p>
+<p>#.required
+TRUE
+TRUE
+FALSE
+TRUE
+FALSE
+FALSE
+FALSE
+FALSE</p>
+<p>#.required
+FALSE
+TRUE
+TRUE
+TRUE</p>
+<p>#.required
+FALSE
+FALSE</p>
+</td>
+<td><p>master measurement protocol
+Measurements made using mass spec
+Measurements made using mass spec with chromatography</p>
+<p>#.table
+protocol
+protocol</p>
+<p>#.table
+measurement</p>
+<p>#.table
+protocol
+protocol</p>
+<p>#.table
+measurement
+measurement
+measurement
+measurement
+measurement
+measurement
+measurement
+measurement</p>
+<p>#.table
+protocol
+protocol
+protocol
+protocol</p>
+<p>#.table
+measurement
+measurement</p>
+</td>
+<td><p>#.format</p>
+<p>numeric</p>
+<p>#.format
+numeric</p>
+</td>
+</tr>
+</tbody>
+</table>
 <p>The above table then translates to JSON:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">{</span>
 <span class="go">  &quot;Chromatography_MS_measurement&quot;: {</span>
