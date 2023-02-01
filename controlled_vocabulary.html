@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Controlled Vocabulary &mdash; MESSES 0.1.dev1+g091c430 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> MESSES
+          </a>
+              <div class="version">
+                0.1.dev1+g091c430
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="guide.html">User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="guide.html#messes">MESSES</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cli.html">CLI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tagging.html">Tagging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="conversion_directives.html">Conversion Directives</a></li>
+<li class="toctree-l1"><a class="reference internal" href="table_schema.html">Table Schema</a></li>
+<li class="toctree-l1"><a class="reference internal" href="supported_formats.html">Supported Formats</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="todo.html">TODO List</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">MESSES</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Controlled Vocabulary</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/controlled_vocabulary.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="controlled-vocabulary">
+<h1>Controlled Vocabulary<a class="headerlink" href="#controlled-vocabulary" title="Permalink to this heading"></a></h1>
+<p>The process of going from your raw experimental data to submission to an online repository
+is not an easy one, but MESSES was created to make it easier. MESSES breaks up the process
+into 3 steps, extract, validate, and convert. The extraction step adds a layer of tags
+to your raw data so that it is in a form that is more interoperable and more standardized.
+The validation step ensures the data that was extracted is valid against the <a class="reference internal" href="table_schema.html"><span class="doc">Table Schema</span></a>
+and <a class="reference internal" href="#"><span class="doc">Controlled Vocabulary</span></a>. The conversion step converts the extracted data to the
+form that is accepted by the online repository. Initially getting started will likely be
+difficult, but once things are worked out the first time this process can be easily added
+to your workflows.</p>
+<p>Validation can be broken down into layers. The first layer is making sure the data is valid
+against the <a class="reference internal" href="table_schema.html"><span class="doc">Table Schema</span></a>. This includes things such as making sure every protocol
+has one of the 5 types, making sure every sample has a parent, and all records have the
+required fields. This layer is built into the validate command and does not require any
+user input. The second layer is a layer that validates fields in table records based on
+their protocol. This layer does require the user to generate what is called a controlled
+vocabulary (CV) that defines what fields are required for records with the protocols that in it.
+The controlled vocabulary can be a JSON file or a tagged tabular file detailed below. The
+controlled vocabulary is not required, but it is highly recommended to minimize problems in
+the conversion step.</p>
+<p>An additional layer of validation can be optionally specified by the user using their own
+custom <a class="reference external" href="https://json-schema.org/understanding-json-schema/">JSON schema</a>. If this is
+utilized the provided JSON schema will be validated against the input JSON as is after
+the first and second layers of vlaidation have been done.</p>
+<section id="base-json-schema">
+<h2>Base JSON Schema<a class="headerlink" href="#base-json-schema" title="Permalink to this heading"></a></h2>
+<p>The first layer of validation is done largely through a JSON schema. The specific schema
+is shown below.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">{</span>
+<span class="go">&quot;type&quot;:&quot;object&quot;,</span>
+<span class="go">&quot;properties&quot;:{</span>
+<span class="go">    &quot;protocol&quot;:{</span>
+<span class="go">        &quot;type&quot;:&quot;object&quot;,</span>
+<span class="go">        &quot;additionalProperties&quot;:{</span>
+<span class="go">            &quot;type&quot;:&quot;object&quot;,</span>
+<span class="go">            &quot;properties&quot;:{</span>
+<span class="go">                &quot;id&quot;: {&quot;type&quot;:&quot;string&quot;, &quot;minLength&quot;:1},</span>
+<span class="go">                &quot;parentID&quot;: {&quot;type&quot;:[&quot;string&quot;, &quot;array&quot;]},</span>
+<span class="go">                &quot;type&quot;: {&quot;type&quot;:&quot;string&quot;, &quot;enum&quot;:[&quot;sample_prep&quot;, &quot;treatment&quot;, &quot;collection&quot;, &quot;storage&quot;, &quot;measurement&quot;]},</span>
+<span class="go">                &quot;description&quot;: {&quot;type&quot;:&quot;string&quot;},</span>
+<span class="go">                &quot;filename&quot;: {&quot;type&quot;:&quot;string&quot;}</span>
+<span class="go">                },</span>
+<span class="go">            &quot;required&quot;: [&quot;id&quot;],</span>
+<span class="go">            &quot;allOf&quot;:[</span>
+<span class="go">                {</span>
+<span class="go">                &quot;if&quot;:{</span>
+<span class="go">                      &quot;anyOf&quot;:[</span>
+<span class="go">                          {&quot;properties&quot;:{&quot;id&quot;:{&quot;const&quot;:&quot;Chromatography_MS_measurement&quot;}},</span>
+<span class="go">                          &quot;required&quot;:[&quot;id&quot;]},</span>
+<span class="go">                          {&quot;properties&quot;:{&quot;parentID&quot;:{&quot;anyOf&quot;:[</span>
+<span class="go">                                                      {&quot;const&quot;:&quot;Chromatography_MS_measurement&quot;},</span>
+<span class="go">                                                      {&quot;contains&quot;:{&quot;const&quot;:&quot;Chromatography_MS_measurement&quot;}}</span>
+<span class="go">                                                      ]}},</span>
+<span class="go">                          &quot;required&quot;:[&quot;parentID&quot;]}</span>
+<span class="go">                          ]</span>
+<span class="go">                    },</span>
+<span class="go">                &quot;then&quot;:{</span>
+<span class="go">                    &quot;properties&quot;:{</span>
+<span class="go">                        &quot;chromatography_description&quot;: {&quot;type&quot;:&quot;string&quot;, &quot;minLength&quot;:1},</span>
+<span class="go">                        &quot;chromatography_instrument_name&quot;: {&quot;type&quot;:&quot;string&quot;, &quot;minLength&quot;:1},</span>
+<span class="go">                        &quot;chromatography_type&quot;: {&quot;type&quot;:&quot;string&quot;, &quot;minLength&quot;:1},</span>
+<span class="go">                        &quot;column_name&quot;: {&quot;type&quot;:&quot;string&quot;, &quot;minLength&quot;:1},</span>
+<span class="go">                        &quot;instrument&quot;: {&quot;type&quot;:&quot;string&quot;, &quot;minLength&quot;:1},</span>
+<span class="go">                        &quot;instrument_type&quot;: {&quot;type&quot;:&quot;string&quot;, &quot;minLength&quot;:1},</span>
+<span class="go">                        &quot;ion_mode&quot;: {&quot;type&quot;:&quot;string&quot;, &quot;minLength&quot;:1},</span>
+<span class="go">                        &quot;ionization&quot;: {&quot;type&quot;:&quot;string&quot;, &quot;minLength&quot;:1},</span>
+<span class="go">                      },</span>
+<span class="go">                      &quot;required&quot;: [</span>
+<span class="go">                        &quot;chromatography_instrument_name&quot;,</span>
+<span class="go">                        &quot;chromatography_type&quot;,</span>
+<span class="go">                        &quot;column_name&quot;,</span>
+<span class="go">                        &quot;ion_mode&quot;,</span>
+<span class="go">                        &quot;ionization&quot;,</span>
+<span class="go">                        &quot;instrument&quot;</span>
+<span class="go">                      ]</span>
+<span class="go">                    }</span>
+<span class="go">                },</span>
+<span class="go">                ]</span>
+<span class="go">            }</span>
+<span class="go">        },</span>
+<span class="go">    &quot;entity&quot;:{</span>
+<span class="go">        &quot;type&quot;: &quot;object&quot;,</span>
+<span class="go">        &quot;minProperties&quot;:1,</span>
+<span class="go">        &quot;additionalProperties&quot;:{</span>
+<span class="go">                &quot;type&quot;:&quot;object&quot;,</span>
+<span class="go">                &quot;properties&quot;:{</span>
+<span class="go">                    &quot;id&quot;: {&quot;type&quot;:&quot;string&quot;, &quot;minLength&quot;:1},</span>
+<span class="go">                    &quot;parentID&quot;: {&quot;type&quot;:&quot;string&quot;},</span>
+<span class="go">                    &quot;project.id&quot;: {&quot;type&quot;:&quot;string&quot;, &quot;minLength&quot;:1},</span>
+<span class="go">                    &quot;study.id&quot;: {&quot;type&quot;:&quot;string&quot;, &quot;minLength&quot;:1},</span>
+<span class="go">                    &quot;protocol.id&quot;: {&quot;type&quot;:[&quot;string&quot;, &quot;array&quot;], &quot;minItems&quot;:1, &quot;items&quot;:{&quot;type&quot;:&quot;string&quot;, &quot;minLength&quot;:1}, &quot;minLength&quot;:1},</span>
+<span class="go">                    &quot;status&quot;: {&quot;type&quot;:&quot;string&quot;},</span>
+<span class="go">                    &quot;type&quot;: {&quot;type&quot;:&quot;string&quot;, &quot;enum&quot;:[&quot;sample&quot;, &quot;subject&quot;]}</span>
+<span class="go">                    },</span>
+<span class="go">                &quot;required&quot;: [&quot;id&quot;, &quot;type&quot;, &quot;project.id&quot;, &quot;study.id&quot;, &quot;protocol.id&quot;],</span>
+<span class="go">                &quot;if&quot;:{&quot;properties&quot;:{&quot;type&quot;:{&quot;const&quot;:&quot;sample&quot;}}},</span>
+<span class="go">                &quot;then&quot;:{&quot;required&quot;:[&quot;parentID&quot;]},</span>
+<span class="go">                &quot;allOf&quot;:[</span>
+<span class="go">                    {</span>
+<span class="go">                    &quot;if&quot;:{</span>
+<span class="go">                        &quot;properties&quot;:{&quot;protocol.id&quot;:{&quot;anyOf&quot;:[</span>
+<span class="go">                                                    {&quot;const&quot;:&quot;Chromatography_MS_measurement&quot;},</span>
+<span class="go">                                                    {&quot;contains&quot;:{&quot;const&quot;:&quot;Chromatography_MS_measurement&quot;}}</span>
+<span class="go">                                                    ]}}</span>
+<span class="go">                        },</span>
+<span class="go">                    &quot;then&quot;:{</span>
+<span class="go">                        &quot;properties&quot;:{</span>
+<span class="go">                            &quot;assignment&quot;: {&quot;type&quot;:&quot;string&quot;, &quot;minLength&quot;:1},</span>
+<span class="go">                            &quot;assignment%method&quot;: {&quot;type&quot;:&quot;string&quot;, &quot;minLength&quot;:1},</span>
+<span class="go">                            &quot;compound&quot;: {&quot;type&quot;:&quot;string&quot;, &quot;minLength&quot;:1},</span>
+<span class="go">                            &quot;intensity&quot;: {&quot;type&quot;:&quot;string&quot;, &quot;minLength&quot;:1, &quot;format&quot;:&quot;is_num&quot;},</span>
+<span class="go">                            &quot;intensity%type&quot;: {&quot;type&quot;:&quot;string&quot;, &quot;minLength&quot;:1},</span>
+<span class="go">                            &quot;intensity%units&quot;: {&quot;type&quot;:&quot;string&quot;, &quot;minLength&quot;:1},</span>
+<span class="go">                            &quot;isotopologue&quot;: {&quot;type&quot;:&quot;string&quot;, &quot;minLength&quot;:1},</span>
+<span class="go">                            &quot;isotopologue%type&quot;: {&quot;type&quot;:&quot;string&quot;, &quot;minLength&quot;:1},</span>
+<span class="go">                            &quot;retention_time&quot;: {&quot;type&quot;:&quot;string&quot;, &quot;minLength&quot;:1},</span>
+<span class="go">                            &quot;retention_time%units&quot;: {&quot;type&quot;:&quot;string&quot;, &quot;minLength&quot;:1},</span>
+<span class="go">                            &quot;sample.id&quot;: {&quot;type&quot;:&quot;string&quot;, &quot;minLength&quot;:1}</span>
+<span class="go">                          },</span>
+<span class="go">                          &quot;required&quot;: [</span>
+<span class="go">                            &quot;assignment%method&quot;,</span>
+<span class="go">                            &quot;assignment&quot;,</span>
+<span class="go">                            &quot;intensity&quot;,</span>
+<span class="go">                            &quot;sample.id&quot;</span>
+<span class="go">                          ]</span>
+<span class="go">                        }</span>
+<span class="go">                    },</span>
+<span class="go">                    ]</span>
+<span class="go">                }</span>
+<span class="go">        }</span>
+<span class="go">    }</span>
+<span class="go">}</span>
+</pre></div>
+</div>
+</section>
+<section id="controlled-vocabulary-second-layer-json">
+<h2>Controlled Vocabulary (Second Layer) - JSON<a class="headerlink" href="#controlled-vocabulary-second-layer-json" title="Permalink to this heading"></a></h2>
+<p>If the controlled vocabulary is given in the form of a JSON file it is expected to follow a certain
+schema. The general format is shown below:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">{</span>
+<span class="go">&quot;parent_protocol&quot;:{</span>
+<span class="go">    &quot;protocol_1&quot;:{</span>
+<span class="go">        &quot;type&quot;:&quot;&lt;protocol_type&gt;&quot;,</span>
+<span class="go">        &quot;description&quot;:&quot;&lt;protocol_description&gt;&quot;,</span>
+<span class="go">        &quot;parentID&quot;:&quot;&lt;protocol_parent_id&gt;&quot;</span>
+<span class="go">        }</span>
+<span class="go">    ...</span>
+<span class="go">    },</span>
+<span class="go">&quot;protocol_1&quot;:{</span>
+<span class="go">    &quot;field_1&quot;:{</span>
+<span class="go">        &quot;type&quot;:&quot;&lt;field_type&gt;&quot;,</span>
+<span class="go">        &quot;required&quot;:&quot;True&quot;,</span>
+<span class="go">        &quot;table&quot;:&quot;&lt;table_field_is_applied_to&gt;&quot;</span>
+<span class="go">        }</span>
+<span class="go">    ...</span>
+<span class="go">    }</span>
+<span class="go">...</span>
+<span class="go">}</span>
+</pre></div>
+</div>
+<p>The first table shown is the “parent_protocol” table, named so it will not be confused with the “protocol” table in <a class="reference internal" href="table_schema.html"><span class="doc">Table Schema</span></a>.
+The parent_protocol is required to specify the types of the protocols in the JSON, but
+also allows you to specify inheritance of protocols. The children of a protocol
+inherit all of the required fields of not only its parent, but all of its ancestors.
+This makes it so that you don’t have to specify the same field multiple times for
+each protocol.</p>
+<p>All other tables in the JSON should be protocols with specifications for their fields.
+The table name is the name of the protocol, and each record of the table is the name
+of a field associated with the protocol. The fields in each record describe the requirements
+the record must meet. Most fields are taken from <a class="reference external" href="https://json-schema.org/understanding-json-schema/">JSON Schema</a>,
+and will be directly translated into the JSON schema that is built from the controlled
+vocabulary. Let’s look at an example.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">{</span>
+<span class="go">&quot;master_measurement&quot;: {</span>
+<span class="go">    &quot;instrument&quot;: {</span>
+<span class="go">      &quot;minLength&quot;: &quot;1&quot;,</span>
+<span class="go">      &quot;required&quot;: &quot;True&quot;,</span>
+<span class="go">      &quot;table&quot;: &quot;protocol&quot;,</span>
+<span class="go">      &quot;type&quot;: &quot;string&quot;</span>
+<span class="go">    },</span>
+<span class="go">    &quot;instrument_type&quot;: {</span>
+<span class="go">      &quot;minLength&quot;: &quot;1&quot;,</span>
+<span class="go">      &quot;required&quot;: &quot;False&quot;,</span>
+<span class="go">      &quot;table&quot;: &quot;protocol&quot;,</span>
+<span class="go">      &quot;type&quot;: &quot;string&quot;</span>
+<span class="go">    },</span>
+<span class="go">    &quot;sample.id&quot;: {</span>
+<span class="go">      &quot;minLength&quot;: &quot;1&quot;,</span>
+<span class="go">      &quot;required&quot;: &quot;True&quot;,</span>
+<span class="go">      &quot;table&quot;: &quot;measurement&quot;,</span>
+<span class="go">      &quot;type&quot;: &quot;string&quot;</span>
+<span class="go">    }</span>
+<span class="go">  }</span>
+<span class="go">}</span>
+</pre></div>
+</div>
+<p>The “instrument” record has the fields “minLength”, “required”, “table”, and “type”.
+“minLength”, “required”, and “type” are all keywords in <a class="reference external" href="https://json-schema.org/understanding-json-schema/">JSON Schema</a>.
+“minLength” and “type” will be copied as is into the JSON schema for the “instrument” property,
+but “required” will be used to build the “required” attribute for “master_measurement”.
+The “table” field should be one of “protocol”, “measurement”, or “entity” and indicates which
+table the record is associated with. For “instrument” and “instrument_type” the table is
+“protocol”, which means that records in the “protocol” table of the input JSON that
+have the same name as “master_measurement” or inherit from it must comply with the
+“instrument” and “instrument_type” specifications. For example, a protocol that inherits
+from “master_measurement” must have a field called “instrument” that has a string value
+that is at least 1 character long, but is not required to have a “instrument_type” field
+since its “required” field is “False”. The “measurement” and “entity” tables are similar,
+but a record in those tables has to have a “protocol.id” field with the protocol or
+one that inherits from it. For example, if a measurement record had the “master_measurement”
+protocol it would be required to have a “sample.id” field that is a string with at least
+one character.</p>
+<section id="cv-json-to-json-schema">
+<h3>CV JSON to JSON Schema<a class="headerlink" href="#cv-json-to-json-schema" title="Permalink to this heading"></a></h3>
+<p>The above example would translate to JSON Schema as shown below:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp"># </span>protocol<span class="w"> </span>table<span class="w"> </span>properties
+<span class="go">{</span>
+<span class="go">&quot;properties&quot;:{</span>
+<span class="go">    &quot;instrument&quot;: {&quot;type&quot;:&quot;string&quot;, &quot;minLength&quot;:1},</span>
+<span class="go">    &quot;instrument_type&quot;: {&quot;type&quot;:&quot;string&quot;, &quot;minLength&quot;:1},</span>
+<span class="go">  },</span>
+<span class="go">  &quot;required&quot;: [</span>
+<span class="go">    &quot;instrument&quot;</span>
+<span class="go">  ]</span>
+<span class="go">}</span>
+
+<span class="gp"># </span>entity<span class="w"> </span>table<span class="w"> </span>properties
+<span class="go">{</span>
+<span class="go">&quot;properties&quot;:{</span>
+<span class="go">    &quot;sample.id&quot;: {&quot;type&quot;:&quot;string&quot;, &quot;minLength&quot;:1},</span>
+<span class="go">  },</span>
+<span class="go">  &quot;required&quot;: [</span>
+<span class="go">    &quot;sample.id&quot;</span>
+<span class="go">  ]</span>
+<span class="go">}</span>
+</pre></div>
+</div>
+<p>These are then placed in larger conditional schema as follows:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">{</span>
+<span class="go">&quot;type&quot;:&quot;object&quot;,</span>
+<span class="go">&quot;properties&quot;:{</span>
+<span class="go">    &quot;protocol&quot;:{</span>
+<span class="go">        &quot;type&quot;:&quot;object&quot;,</span>
+<span class="go">        &quot;additionalProperties&quot;:{</span>
+<span class="go">            &quot;type&quot;:&quot;object&quot;,</span>
+<span class="go">            &quot;properties&quot;:{</span>
+<span class="go">                &quot;id&quot;: {&quot;type&quot;:&quot;string&quot;, &quot;minLength&quot;:1},</span>
+<span class="go">                &quot;parentID&quot;: {&quot;type&quot;:[&quot;string&quot;, &quot;array&quot;]},</span>
+<span class="go">                &quot;type&quot;: {&quot;type&quot;:&quot;string&quot;, &quot;enum&quot;:[&quot;sample_prep&quot;, &quot;treatment&quot;, &quot;collection&quot;, &quot;storage&quot;, &quot;measurement&quot;]},</span>
+<span class="go">                &quot;description&quot;: {&quot;type&quot;:&quot;string&quot;},</span>
+<span class="go">                &quot;filename&quot;: {&quot;type&quot;:&quot;string&quot;}</span>
+<span class="go">                },</span>
+<span class="go">            &quot;required&quot;: [&quot;id&quot;],</span>
+<span class="go">            &quot;allOf&quot;:[</span>
+<span class="go">                {</span>
+<span class="go">                &quot;if&quot;:{</span>
+<span class="go">                      &quot;anyOf&quot;:[</span>
+<span class="go">                          {&quot;properties&quot;:{&quot;id&quot;:{&quot;const&quot;:&quot;master_measurement&quot;}},</span>
+<span class="go">                          &quot;required&quot;:[&quot;id&quot;]},</span>
+<span class="go">                          {&quot;properties&quot;:{&quot;parentID&quot;:{&quot;anyOf&quot;:[</span>
+<span class="go">                                                      {&quot;const&quot;:&quot;master_measurement&quot;},</span>
+<span class="go">                                                      {&quot;contains&quot;:{&quot;const&quot;:&quot;master_measurement&quot;}}</span>
+<span class="go">                                                      ]}},</span>
+<span class="go">                          &quot;required&quot;:[&quot;parentID&quot;]}</span>
+<span class="go">                          ]</span>
+<span class="go">                    },</span>
+<span class="go">                &quot;then&quot;:{</span>
+<span class="go">                    &quot;properties&quot;:{</span>
+<span class="go">                        &quot;instrument&quot;: {&quot;type&quot;:&quot;string&quot;, &quot;minLength&quot;:1},</span>
+<span class="go">                        &quot;instrument_type&quot;: {&quot;type&quot;:&quot;string&quot;, &quot;minLength&quot;:1},</span>
+<span class="go">                      },</span>
+<span class="go">                      &quot;required&quot;: [</span>
+<span class="go">                        &quot;instrument&quot;</span>
+<span class="go">                      ]</span>
+<span class="go">                    }</span>
+<span class="go">                },</span>
+<span class="go">                ]</span>
+<span class="go">            }</span>
+<span class="go">        },</span>
+<span class="go">    &quot;measurement&quot;:{</span>
+<span class="go">             &quot;type&quot;: &quot;object&quot;,</span>
+<span class="go">             &quot;minProperties&quot;:1,</span>
+<span class="go">             &quot;additionalProperties&quot;:{</span>
+<span class="go">                     &quot;type&quot;:&quot;object&quot;,</span>
+<span class="go">                     &quot;properties&quot;:{</span>
+<span class="go">                         &quot;id&quot;: {&quot;type&quot;:&quot;string&quot;, &quot;minLength&quot;:1},</span>
+<span class="go">                         &quot;sample.id&quot;: {&quot;type&quot;:&quot;string&quot;, &quot;minLength&quot;:1},</span>
+<span class="go">                         &quot;protocol.id&quot;: {&quot;type&quot;:[&quot;string&quot;, &quot;array&quot;], &quot;minItems&quot;:1, &quot;items&quot;:{&quot;type&quot;:&quot;string&quot;, &quot;minLength&quot;:1}, &quot;minLength&quot;:1}</span>
+<span class="go">                         },</span>
+<span class="go">                     &quot;required&quot;: [&quot;id&quot;, &quot;sample.id&quot;, &quot;protocol.id&quot;],</span>
+<span class="go">                     &quot;allOf&quot;:[</span>
+<span class="go">                         {</span>
+<span class="go">                         &quot;if&quot;:{</span>
+<span class="go">                             &quot;properties&quot;:{&quot;protocol.id&quot;:{&quot;anyOf&quot;:[</span>
+<span class="go">                                                         {&quot;const&quot;:&quot;master_measurement&quot;},</span>
+<span class="go">                                                         {&quot;contains&quot;:{&quot;const&quot;:&quot;master_measurement&quot;}}</span>
+<span class="go">                                                         ]}}</span>
+<span class="go">                             },</span>
+<span class="go">                         &quot;then&quot;:{</span>
+<span class="go">                             &quot;properties&quot;:{</span>
+<span class="go">                                 &quot;sample.id&quot;: {&quot;type&quot;:&quot;string&quot;, &quot;minLength&quot;:1}</span>
+<span class="go">                               },</span>
+<span class="go">                               &quot;required&quot;: [</span>
+<span class="go">                                 &quot;sample.id&quot;</span>
+<span class="go">                               ]</span>
+<span class="go">                             }</span>
+<span class="go">                         },</span>
+<span class="go">                         ]</span>
+<span class="go">                     }</span>
+<span class="go">            }</span>
+<span class="go">    }</span>
+<span class="go">}</span>
+</pre></div>
+</div>
+<p>The protocol name is used inside the “if” subschema of the “allOf” properties to
+conditionally apply the “properties” in the “then” subschema to records in the “protocol”
+and “measurement” tables.</p>
+<p>Attributes such as “type”, which correspond to keywords in <a class="reference external" href="https://json-schema.org/understanding-json-schema/">JSON Schema</a>
+will be copied as is into the JSON schema that will be used to validate the field
+for the protocol, but with some caveats. It has already been mentioned that the
+“required” property will be used to build the “required” array in the JSON schema,
+but there are some other keywords in <a class="reference external" href="https://json-schema.org/understanding-json-schema/">JSON Schema</a>
+that have special translations as well. For example, the “items” keyword must be an
+object type or boolean type to be valid in <a class="reference external" href="https://json-schema.org/understanding-json-schema/">JSON Schema</a>,
+but due to the limitations of the export tagging system there is not a way to specify
+an “items” property of this type. To get around this limitation if properties such
+as “items” are a string type they will first be put through the eval() function before
+being copied into the JSON schema. Let’s see an example.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">{</span>
+<span class="go">&quot;master_measurement&quot;: {</span>
+<span class="go">    &quot;filenames&quot;: {</span>
+<span class="go">      &quot;type&quot;: &quot;array&quot;,</span>
+<span class="go">      &quot;items&quot;:&quot;{\&quot;type\&quot;:\&quot;string\&quot;, \&quot;minLength\&quot;:1}&quot;</span>
+<span class="go">      &quot;table&quot;: &quot;protocol&quot;,</span>
+<span class="go">    }</span>
+<span class="go">  }</span>
+<span class="go">}</span>
+</pre></div>
+</div>
+<p>This translates to JSON Schema properties as:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">{</span>
+<span class="go">&quot;properties&quot;:{</span>
+<span class="go">    &quot;filenames&quot;: {&quot;type&quot;:&quot;array&quot;, &quot;items&quot;:{&quot;type&quot;:&quot;string&quot;, &quot;minLength&quot;:1}},</span>
+<span class="go">  }</span>
+<span class="go">}</span>
+</pre></div>
+</div>
+<p>Just know that for most keywords in <a class="reference external" href="https://json-schema.org/understanding-json-schema/">JSON Schema</a>
+it is acceptable to put a string value in place of the proper type, and that this
+is done to support the tabular form of the controlled vocabulary as described below.</p>
+</section>
+</section>
+<section id="controlled-vocabulary-second-layer-table">
+<h2>Controlled Vocabulary (Second Layer) - Table<a class="headerlink" href="#controlled-vocabulary-second-layer-table" title="Permalink to this heading"></a></h2>
+<p>The above JSON representation can be specified in tabular form using the export tags
+described in <a class="reference internal" href="tagging.html"><span class="doc">Tagging</span></a>. The general format is shown below:</p>
+<p>An extended example that includes the “master_measurement” as well as some additional
+protocols to illustrate inheritance is shown below:</p>
+<p>The above table then translates to JSON:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">{</span>
+<span class="go">  &quot;Chromatography_MS_measurement&quot;: {</span>
+<span class="go">    &quot;chromatography_description&quot;: {</span>
+<span class="go">      &quot;id&quot;: &quot;chromatography_description&quot;,</span>
+<span class="go">      &quot;minLength&quot;: &quot;1&quot;,</span>
+<span class="go">      &quot;required&quot;: &quot;False&quot;,</span>
+<span class="go">      &quot;table&quot;: &quot;protocol&quot;,</span>
+<span class="go">      &quot;type&quot;: &quot;string&quot;</span>
+<span class="go">    },</span>
+<span class="go">    &quot;chromatography_instrument_name&quot;: {</span>
+<span class="go">      &quot;id&quot;: &quot;chromatography_instrument_name&quot;,</span>
+<span class="go">      &quot;minLength&quot;: &quot;1&quot;,</span>
+<span class="go">      &quot;required&quot;: &quot;True&quot;,</span>
+<span class="go">      &quot;table&quot;: &quot;protocol&quot;,</span>
+<span class="go">      &quot;type&quot;: &quot;string&quot;</span>
+<span class="go">    },</span>
+<span class="go">    &quot;chromatography_type&quot;: {</span>
+<span class="go">      &quot;id&quot;: &quot;chromatography_type&quot;,</span>
+<span class="go">      &quot;minLength&quot;: &quot;1&quot;,</span>
+<span class="go">      &quot;required&quot;: &quot;True&quot;,</span>
+<span class="go">      &quot;table&quot;: &quot;protocol&quot;,</span>
+<span class="go">      &quot;type&quot;: &quot;string&quot;</span>
+<span class="go">    },</span>
+<span class="go">    &quot;column_name&quot;: {</span>
+<span class="go">      &quot;id&quot;: &quot;column_name&quot;,</span>
+<span class="go">      &quot;minLength&quot;: &quot;1&quot;,</span>
+<span class="go">      &quot;required&quot;: &quot;True&quot;,</span>
+<span class="go">      &quot;table&quot;: &quot;protocol&quot;,</span>
+<span class="go">      &quot;type&quot;: &quot;string&quot;</span>
+<span class="go">    },</span>
+<span class="go">    &quot;retention_time&quot;: {</span>
+<span class="go">      &quot;format&quot;: &quot;numeric&quot;,</span>
+<span class="go">      &quot;id&quot;: &quot;retention_time&quot;,</span>
+<span class="go">      &quot;minLength&quot;: &quot;1&quot;,</span>
+<span class="go">      &quot;required&quot;: &quot;False&quot;,</span>
+<span class="go">      &quot;table&quot;: &quot;measurement&quot;,</span>
+<span class="go">      &quot;type&quot;: &quot;string&quot;</span>
+<span class="go">    },</span>
+<span class="go">    &quot;retention_time%units&quot;: {</span>
+<span class="go">      &quot;format&quot;: &quot;&quot;,</span>
+<span class="go">      &quot;id&quot;: &quot;retention_time%units&quot;,</span>
+<span class="go">      &quot;minLength&quot;: &quot;1&quot;,</span>
+<span class="go">      &quot;required&quot;: &quot;False&quot;,</span>
+<span class="go">      &quot;table&quot;: &quot;measurement&quot;,</span>
+<span class="go">      &quot;type&quot;: &quot;string&quot;</span>
+<span class="go">    }</span>
+<span class="go">  },</span>
+<span class="go">  &quot;MS_measurement&quot;: {</span>
+<span class="go">    &quot;assignment&quot;: {</span>
+<span class="go">      &quot;format&quot;: &quot;&quot;,</span>
+<span class="go">      &quot;id&quot;: &quot;assignment&quot;,</span>
+<span class="go">      &quot;minLength&quot;: &quot;1&quot;,</span>
+<span class="go">      &quot;required&quot;: &quot;True&quot;,</span>
+<span class="go">      &quot;table&quot;: &quot;measurement&quot;,</span>
+<span class="go">      &quot;type&quot;: &quot;string&quot;</span>
+<span class="go">    },</span>
+<span class="go">    &quot;assignment%method&quot;: {</span>
+<span class="go">      &quot;format&quot;: &quot;&quot;,</span>
+<span class="go">      &quot;id&quot;: &quot;assignment%method&quot;,</span>
+<span class="go">      &quot;minLength&quot;: &quot;1&quot;,</span>
+<span class="go">      &quot;required&quot;: &quot;True&quot;,</span>
+<span class="go">      &quot;table&quot;: &quot;measurement&quot;,</span>
+<span class="go">      &quot;type&quot;: &quot;string&quot;</span>
+<span class="go">    },</span>
+<span class="go">    &quot;compound&quot;: {</span>
+<span class="go">      &quot;format&quot;: &quot;&quot;,</span>
+<span class="go">      &quot;id&quot;: &quot;compound&quot;,</span>
+<span class="go">      &quot;minLength&quot;: &quot;1&quot;,</span>
+<span class="go">      &quot;required&quot;: &quot;False&quot;,</span>
+<span class="go">      &quot;table&quot;: &quot;measurement&quot;,</span>
+<span class="go">      &quot;type&quot;: &quot;string&quot;</span>
+<span class="go">    },</span>
+<span class="go">    &quot;intensity&quot;: {</span>
+<span class="go">      &quot;format&quot;: &quot;numeric&quot;,</span>
+<span class="go">      &quot;id&quot;: &quot;intensity&quot;,</span>
+<span class="go">      &quot;minLength&quot;: &quot;1&quot;,</span>
+<span class="go">      &quot;required&quot;: &quot;True&quot;,</span>
+<span class="go">      &quot;table&quot;: &quot;measurement&quot;,</span>
+<span class="go">      &quot;type&quot;: &quot;string&quot;</span>
+<span class="go">    },</span>
+<span class="go">    &quot;intensity%type&quot;: {</span>
+<span class="go">      &quot;format&quot;: &quot;&quot;,</span>
+<span class="go">      &quot;id&quot;: &quot;intensity%type&quot;,</span>
+<span class="go">      &quot;minLength&quot;: &quot;1&quot;,</span>
+<span class="go">      &quot;required&quot;: &quot;False&quot;,</span>
+<span class="go">      &quot;table&quot;: &quot;measurement&quot;,</span>
+<span class="go">      &quot;type&quot;: &quot;string&quot;</span>
+<span class="go">    },</span>
+<span class="go">    &quot;intensity%units&quot;: {</span>
+<span class="go">      &quot;format&quot;: &quot;&quot;,</span>
+<span class="go">      &quot;id&quot;: &quot;intensity%units&quot;,</span>
+<span class="go">      &quot;minLength&quot;: &quot;1&quot;,</span>
+<span class="go">      &quot;required&quot;: &quot;False&quot;,</span>
+<span class="go">      &quot;table&quot;: &quot;measurement&quot;,</span>
+<span class="go">      &quot;type&quot;: &quot;string&quot;</span>
+<span class="go">    },</span>
+<span class="go">    &quot;ion_mode&quot;: {</span>
+<span class="go">      &quot;id&quot;: &quot;ion_mode&quot;,</span>
+<span class="go">      &quot;minLength&quot;: &quot;1&quot;,</span>
+<span class="go">      &quot;required&quot;: &quot;True&quot;,</span>
+<span class="go">      &quot;table&quot;: &quot;protocol&quot;,</span>
+<span class="go">      &quot;type&quot;: &quot;string&quot;</span>
+<span class="go">    },</span>
+<span class="go">    &quot;ionization&quot;: {</span>
+<span class="go">      &quot;id&quot;: &quot;ionization&quot;,</span>
+<span class="go">      &quot;minLength&quot;: &quot;1&quot;,</span>
+<span class="go">      &quot;required&quot;: &quot;True&quot;,</span>
+<span class="go">      &quot;table&quot;: &quot;protocol&quot;,</span>
+<span class="go">      &quot;type&quot;: &quot;string&quot;</span>
+<span class="go">    },</span>
+<span class="go">    &quot;isotopologue&quot;: {</span>
+<span class="go">      &quot;format&quot;: &quot;&quot;,</span>
+<span class="go">      &quot;id&quot;: &quot;isotopologue&quot;,</span>
+<span class="go">      &quot;minLength&quot;: &quot;1&quot;,</span>
+<span class="go">      &quot;required&quot;: &quot;False&quot;,</span>
+<span class="go">      &quot;table&quot;: &quot;measurement&quot;,</span>
+<span class="go">      &quot;type&quot;: &quot;string&quot;</span>
+<span class="go">    },</span>
+<span class="go">    &quot;isotopologue%type&quot;: {</span>
+<span class="go">      &quot;format&quot;: &quot;&quot;,</span>
+<span class="go">      &quot;id&quot;: &quot;isotopologue%type&quot;,</span>
+<span class="go">      &quot;minLength&quot;: &quot;1&quot;,</span>
+<span class="go">      &quot;required&quot;: &quot;False&quot;,</span>
+<span class="go">      &quot;table&quot;: &quot;measurement&quot;,</span>
+<span class="go">      &quot;type&quot;: &quot;string&quot;</span>
+<span class="go">    }</span>
+<span class="go">  },</span>
+<span class="go">  &quot;master_measurement&quot;: {</span>
+<span class="go">    &quot;instrument&quot;: {</span>
+<span class="go">      &quot;id&quot;: &quot;instrument&quot;,</span>
+<span class="go">      &quot;minLength&quot;: &quot;1&quot;,</span>
+<span class="go">      &quot;required&quot;: &quot;True&quot;,</span>
+<span class="go">      &quot;table&quot;: &quot;protocol&quot;,</span>
+<span class="go">      &quot;type&quot;: &quot;string&quot;</span>
+<span class="go">    },</span>
+<span class="go">    &quot;instrument_type&quot;: {</span>
+<span class="go">      &quot;id&quot;: &quot;instrument_type&quot;,</span>
+<span class="go">      &quot;minLength&quot;: &quot;1&quot;,</span>
+<span class="go">      &quot;required&quot;: &quot;False&quot;,</span>
+<span class="go">      &quot;table&quot;: &quot;protocol&quot;,</span>
+<span class="go">      &quot;type&quot;: &quot;string&quot;</span>
+<span class="go">    },</span>
+<span class="go">    &quot;sample.id&quot;: {</span>
+<span class="go">      &quot;id&quot;: &quot;sample.id&quot;,</span>
+<span class="go">      &quot;minLength&quot;: &quot;1&quot;,</span>
+<span class="go">      &quot;required&quot;: &quot;True&quot;,</span>
+<span class="go">      &quot;table&quot;: &quot;measurement&quot;,</span>
+<span class="go">      &quot;type&quot;: &quot;string&quot;</span>
+<span class="go">    }</span>
+<span class="go">  },</span>
+<span class="go">  &quot;parent_protocol&quot;: {</span>
+<span class="go">    &quot;Chromatography_MS_measurement&quot;: {</span>
+<span class="go">      &quot;description&quot;: &quot;Measurements made using mass spec with chromatography&quot;,</span>
+<span class="go">      &quot;filename&quot;: &quot;&quot;,</span>
+<span class="go">      &quot;id&quot;: &quot;Chromatography_MS_measurement&quot;,</span>
+<span class="go">      &quot;parentID&quot;: &quot;MS_measurement&quot;,</span>
+<span class="go">      &quot;type&quot;: &quot;measurement&quot;</span>
+<span class="go">    },</span>
+<span class="go">    &quot;MS_measurement&quot;: {</span>
+<span class="go">      &quot;description&quot;: &quot;Measurements made using mass spec&quot;,</span>
+<span class="go">      &quot;filename&quot;: &quot;&quot;,</span>
+<span class="go">      &quot;id&quot;: &quot;MS_measurement&quot;,</span>
+<span class="go">      &quot;parentID&quot;: &quot;master_measurement&quot;,</span>
+<span class="go">      &quot;type&quot;: &quot;measurement&quot;</span>
+<span class="go">    },</span>
+<span class="go">    &quot;master_measurement&quot;: {</span>
+<span class="go">      &quot;description&quot;: &quot;master measurement protocol&quot;,</span>
+<span class="go">      &quot;filename&quot;: &quot;&quot;,</span>
+<span class="go">      &quot;id&quot;: &quot;master_measurement&quot;,</span>
+<span class="go">      &quot;parentID&quot;: &quot;&quot;,</span>
+<span class="go">      &quot;type&quot;: &quot;measurement&quot;</span>
+<span class="go">    }</span>
+<span class="go">  }</span>
+<span class="go">}</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Hunter Moseley, Travis Thompson.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

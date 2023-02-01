@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Table Schema &mdash; MESSES 0.1.dev1+g3881243 documentation</title>
+  <title>Table Schema &mdash; MESSES 0.1.dev1+g091c430 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -32,7 +32,7 @@
             <a href="index.html" class="icon icon-home"> MESSES
           </a>
               <div class="version">
-                0.1.dev1+g3881243
+                0.1.dev1+g091c430
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -56,7 +56,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#project">project</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#study">study</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#protocol">protocol</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#subject-sample">subject/sample</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#entity">entity</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#measurement">measurement</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#factor">factor</a></li>
 </ul>
@@ -135,8 +135,7 @@
 <li><p>It is an <a class="reference external" href="https://en.wikipedia.org/wiki/Entity%E2%80%93attribute%E2%80%93value_model">entity-attribute-value model</a>, and almost all experimental data should be able to be comprehensively described using this model.</p></li>
 <li><dl class="simple">
 <dt>This model has the following tables:</dt><dd><ul>
-<li><p>subject</p></li>
-<li><p>sample</p></li>
+<li><p>entity</p></li>
 <li><p>protocol</p></li>
 <li><p>measurement</p></li>
 <li><p>factor</p></li>
@@ -180,10 +179,10 @@
 </dd>
 </dl>
 </section>
-<section id="subject-sample">
-<h3>subject/sample<a class="headerlink" href="#subject-sample" title="Permalink to this heading"></a></h3>
+<section id="entity">
+<h3>entity<a class="headerlink" href="#entity" title="Permalink to this heading"></a></h3>
 <dl class="simple">
-<dt><strong>Subjects and samples are similar to each other and interconnected.</strong></dt><dd><ul class="simple">
+<dt><strong>Entities are either subjects or samples which are similar to each other and interconnected.</strong></dt><dd><ul class="simple">
 <li><dl class="simple">
 <dt>A subject is something that receives a treatment, or is subjected to different experimental factors.</dt><dd><ul>
 <li><p>For example, if you are testing a treatment on a cell line with a line in 6 different dishes (1 treatment with 3 replicates and 1 null with 3 replicates), the line in each dish would be a separate subject.</p></li>

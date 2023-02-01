@@ -18,8 +18,7 @@ Overview of (Relational) Tables
 The data model that was developed for LIMS was designed to capture generalized experimental data in an abstract way. 
    * It is an `entity-attribute-value model <https://en.wikipedia.org/wiki/Entity%E2%80%93attribute%E2%80%93value_model>`__, and almost all experimental data should be able to be comprehensively described using this model.
    * This model has the following tables:
-      * subject
-      * sample
+      * entity
       * protocol
       * measurement
       * factor
@@ -46,9 +45,9 @@ protocol
    * How to break operations up can be an arbitrary decision, but some good rules of thumb are to make operations with significant time between them separate protocols, or if there are measurements associated with an operation. 
    * For example, if the tissue is weighed before and after freezing and before and after grinding it might be a good idea to have the operations in separate protocols so the weights are clearly associated with each operation.
 
-subject/sample
---------------
-**Subjects and samples are similar to each other and interconnected.**
+entity
+------
+**Entities are either subjects or samples which are similar to each other and interconnected.**
    * A subject is something that receives a treatment, or is subjected to different experimental factors. 
       * For example, if you are testing a treatment on a cell line with a line in 6 different dishes (1 treatment with 3 replicates and 1 null with 3 replicates), the line in each dish would be a separate subject. 
    * Samples are collected from subjects. 
