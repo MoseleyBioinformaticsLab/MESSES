@@ -1,18 +1,15 @@
 Controlled Vocabulary
 =====================
-
-
-
-
-The process of going from your raw experimental data to submission to an online repository 
-is not an easy one, but MESSES was created to make it easier. MESSES breaks up the process 
-into 3 steps, extract, validate, and convert. The extraction step adds a layer of tags 
-to your raw data so that it is in a form that is more interoperable and more standardized. 
-The validation step ensures the data that was extracted is valid against the :doc:`table_schema` 
-and :doc:`controlled_vocabulary`. The conversion step converts the extracted data to the 
-form that is accepted by the online repository. Initially getting started will likely be 
-difficult, but once things are worked out the first time this process can be easily added 
-to your workflows.
+..
+    The process of going from your raw experimental data to submission to an online repository 
+    is not an easy one, but MESSES was created to make it easier. MESSES breaks up the process 
+    into 3 steps, extract, validate, and convert. The extraction step adds a layer of tags 
+    to your raw data so that it is in a form that is more interoperable and more standardized. 
+    The validation step ensures the data that was extracted is valid against the :doc:`table_schema` 
+    and :doc:`controlled_vocabulary`. The conversion step converts the extracted data to the 
+    form that is accepted by the online repository. Initially getting started will likely be 
+    difficult, but once things are worked out the first time this process can be easily added 
+    to your workflows.
 
 
 Validation can be broken down into layers. The first layer is making sure the data is valid 
@@ -387,8 +384,8 @@ described in :doc:`tagging`. The general format is shown below:
 |        | <protocol_name>            | <protocol_type>                           | <protocol_description>  | <protocol_parent_id>  |
 |        |                            |                                           |                         |                       |
 | #tags  | #<protocol_name>.id        | #.table                                   | #.<field_1>             |                       |
-|        | <field_name_for_protocol>  | <"protocol", "measurement", or "entity">  | <field_value>           |
-+--------+----------------------------+-------------------------------------------+-------------------------+
+|        | <field_name_for_protocol>  | <"protocol", "measurement", or "entity">  | <field_value>           |                       |
++--------+----------------------------+-------------------------------------------+-------------------------+-----------------------+
 
 An extended example that includes the "master_measurement" as well as some additional 
 protocols to illustrate inheritance is shown below:
@@ -429,8 +426,8 @@ protocols to illustrate inheritance is shown below:
 |        |                                    |              |                     |             |                                                        |           |
 | #tags  | #Chromatography_MS_measurement.id  | #.type       | #.minLength         | #.required  | #.table                                                | #.format  |
 |        | retention_time                     | string       | 1                   | FALSE       | measurement                                            | numeric   |
-|        | retention_time%units               | string       | 1                   | FALSE       | measurement                                            |
-+--------+------------------------------------+--------------+---------------------+-------------+--------------------------------------------------------+
+|        | retention_time%units               | string       | 1                   | FALSE       | measurement                                            |           |
++--------+------------------------------------+--------------+---------------------+-------------+--------------------------------------------------------+-----------+
 
 The above table then translates to JSON:
 
