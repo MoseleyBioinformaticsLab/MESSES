@@ -16,6 +16,7 @@ Welcome to MESSES's documentation!
    tagging
    conversion_directives
    table_schema
+   controlled_vocabulary
    supported_formats
    api
    license
