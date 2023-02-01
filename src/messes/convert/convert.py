@@ -824,7 +824,6 @@ def compute_matrix_value(input_json: dict, conversion_table: str, conversion_rec
         
     if collate := conversion_attributes.get("collate"):
         ## TODO think about whether to do collate.strip() here to remove spaces.
-        ## TODO make sure there is validation that checks that headers are unique.
         records = {}
         for record_name, record_attributes in table_records.items():
             if collate not in record_attributes:

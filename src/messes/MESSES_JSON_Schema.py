@@ -97,7 +97,43 @@ CV_as_JSON_Schema = {
                      "required": ["id"]
                      }
             },
-    "subject":{
+    # "subject":{
+    #          "type": "object",
+    #          "minProperties":1,
+    #          "additionalProperties":{
+    #                  "type":"object",
+    #                  "properties":{
+    #                      "id": {"type":"string", "minLength":1},
+    #                      "parentID": {"type":"string"},
+    #                      "project.id": {"type":"string", "minLength":1},
+    #                      "study.id": {"type":"string", "minLength":1},
+    #                      ## TODO possibly change protocol.id to enum all the possible protocols which would be a variable list defined elsewhere.
+    #                      "protocol.id": {"type":"string", "minLength":1},
+    #                      "status": {"type":"string"},
+    #                      "type": {"type":"string"}
+    #                      },
+    #                  "required": ["id", "project.id", "study.id", "protocol.id"]
+    #                  }
+    #         },
+    # "sample":{
+    #          "type": "object",
+    #          "minProperties":1,
+    #          "additionalProperties":{
+    #                  "type":"object",
+    #                  "properties":{
+    #                      "id": {"type":"string", "minLength":1},
+    #                      "parentID": {"type":"string", "minLength":1},
+    #                      "project.id": {"type":"string", "minLength":1},
+    #                      "study.id": {"type":"string", "minLength":1},
+    #                      ## TODO possibly change protocol.id to enum all the possible protocols which would be a variable list defined elsewhere.
+    #                      "protocol.id": {"type":"string", "minLength":1},
+    #                      "status": {"type":"string"},
+    #                      "type": {"type":"string"}
+    #                      },
+    #                  "required": ["id", "project.id", "study.id", "protocol.id", "parentID"]
+    #                  }
+    #         },
+    "entity":{
              "type": "object",
              "minProperties":1,
              "additionalProperties":{
@@ -108,31 +144,15 @@ CV_as_JSON_Schema = {
                          "project.id": {"type":"string", "minLength":1},
                          "study.id": {"type":"string", "minLength":1},
                          ## TODO possibly change protocol.id to enum all the possible protocols which would be a variable list defined elsewhere.
-                         "protocol.id": {"type":"string", "minLength":1},
+                         "protocol.id": {"type":["string", "array"], "minItems":1, "items":{"type":"string", "minLength":1}, "minLength":1},
                          "status": {"type":"string"},
-                         "type": {"type":"string"}
+                         "type": {"type":"string", "enum":["sample", "subject"]}
                          },
-                     "required": ["id", "project.id", "study.id", "protocol.id"]
+                     "required": ["id", "type", "project.id", "study.id", "protocol.id"],
+                     "if":{"properties":{"type":{"const":"sample"}}},
+                     "then":{"required":["parentID"]}
                      }
-            },
-    "sample":{
-             "type": "object",
-             "minProperties":1,
-             "additionalProperties":{
-                     "type":"object",
-                     "properties":{
-                         "id": {"type":"string", "minLength":1},
-                         "parentID": {"type":"string", "minLength":1},
-                         "project.id": {"type":"string", "minLength":1},
-                         "study.id": {"type":"string", "minLength":1},
-                         ## TODO possibly change protocol.id to enum all the possible protocols which would be a variable list defined elsewhere.
-                         "protocol.id": {"type":"string", "minLength":1},
-                         "status": {"type":"string"},
-                         "type": {"type":"string"}
-                         },
-                     "required": ["id", "project.id", "study.id", "protocol.id", "parentID"]
-                     }
-            },
+             },
     "measurement":{
              "type": "object",
              "minProperties":1,
@@ -141,7 +161,7 @@ CV_as_JSON_Schema = {
                      "properties":{
                          "id": {"type":"string", "minLength":1},
                          "sample.id": {"type":"string", "minLength":1},
-                         "protocol.id": {"type":"string", "minLength":1}
+                         "protocol.id": {"type":["string", "array"], "minItems":1, "items":{"type":"string", "minLength":1}, "minLength":1}
                          },
                      "required": ["id", "sample.id", "protocol.id"]
                      }
@@ -155,7 +175,7 @@ CV_as_JSON_Schema = {
                          "id": {"type":"string", "minLength":1},
                          "project.id": {"type":"string", "minLength":1},
                          "study.id": {"type":"string", "minLength":1},
-                         "allowed_values": {"type":"array", "minItems":1}
+                         "allowed_values": {"type":"array", "minItems":1, "items":{"type":"string", "minLength":1}}
                          },
                      "required": ["id", "project.id", "study.id", "allowed_values"]
                      }
@@ -199,6 +219,213 @@ CV_as_JSON_Schema = {
     },
  "required": ["subject", "sample", "protocol", "measurement", "factor", "project", "study"]
  }
+
+
+
+
+## Example for adding in checking based on id, parentid, etc.
+CV =\
+{
+"type":"object",
+"properties":{
+    "protocol":{
+        "type":"object",
+        "additionalProperties":{
+            "type":"object",
+            "properties":{
+                "id": {"type":"string", "minLength":1},
+                "parentID": {"type":["string", "array"]},
+                "type": {"type":"string", "enum":["sample_prep", "treatment", "collection", "storage", "measurement"]},
+                "description": {"type":"string"},
+                "filename": {"type":"string"}
+                },
+            "required": ["id"],
+            "allOf":[
+                {
+                "if":{
+                      "anyOf":[
+                          {"properties":{"id":{"const":"Chromatography_MS_measurement"}},
+                          "required":["id"]},
+                          {"properties":{"parentID":{"anyOf":[
+                                                      {"const":"Chromatography_MS_measurement"}, 
+                                                      {"contains":{"const":"Chromatography_MS_measurement"}}
+                                                      ]}},
+                          "required":["parentID"]}
+                          ]
+                    },
+                "then":{
+                    "properties":{
+                        "chromatography_description": {"type":"string", "minLength":1},
+                        "chromatography_instrument_name": {"type":"string", "minLength":1},
+                        "chromatography_type": {"type":"string", "minLength":1},
+                        "column_name": {"type":"string", "minLength":1},
+                        "instrument": {"type":"string", "minLength":1},
+                        "instrument_type": {"type":"string", "minLength":1},
+                        "ion_mode": {"type":"string", "minLength":1},
+                        "ionization": {"type":"string", "minLength":1},
+                      },
+                      "required": [
+                        "chromatography_instrument_name",
+                        "chromatography_type",
+                        "column_name",
+                        "ion_mode",
+                        "ionization",
+                        "instrument"
+                      ]
+                    }
+                },
+                ]
+            }
+        },
+    "entity":{
+        "type": "object",
+        "minProperties":1,
+        "additionalProperties":{
+                "type":"object",
+                "properties":{
+                    "id": {"type":"string", "minLength":1},
+                    "parentID": {"type":"string"},
+                    "project.id": {"type":"string", "minLength":1},
+                    "study.id": {"type":"string", "minLength":1},
+                    ## TODO possibly change protocol.id to enum all the possible protocols which would be a variable list defined elsewhere.
+                    "protocol.id": {"type":["string", "array"], "minItems":1, "items":{"type":"string", "minLength":1}, "minLength":1},
+                    "status": {"type":"string"},
+                    "type": {"type":"string", "enum":["sample", "subject"]}
+                    },
+                "required": ["id", "type", "project.id", "study.id", "protocol.id"],
+                "if":{"properties":{"type":{"const":"sample"}}},
+                "then":{"required":["parentID"]},
+                "allOf":[
+                    {
+                    "if":{
+                        "properties":{"protocol.id":{"anyOf":[
+                                                    {"const":"Chromatography_MS_measurement"}, 
+                                                    {"contains":{"const":"Chromatography_MS_measurement"}}
+                                                    ]}}
+                        },
+                    "then":{
+                        "properties":{
+                            "assignment": {"type":"string", "minLength":1},
+                            "assignment%method": {"type":"string", "minLength":1},
+                            "compound": {"type":"string", "minLength":1},
+                            "intensity": {"type":"string", "minLength":1, "format":"is_num"},
+                            "intensity%type": {"type":"string", "minLength":1},
+                            "intensity%units": {"type":"string", "minLength":1},
+                            "isotopologue": {"type":"string", "minLength":1},
+                            "isotopologue%type": {"type":"string", "minLength":1},
+                            "retention_time": {"type":"string", "minLength":1},
+                            "retention_time%units": {"type":"string", "minLength":1},
+                            "sample.id": {"type":"string", "minLength":1}
+                          },
+                          "required": [
+                            "assignment%method",
+                            "assignment",
+                            "intensity",
+                            "sample.id"
+                          ]
+                        }
+                    },
+                    ]
+                }
+        }
+    }
+}
+
+
+
+temp = {"protocol": {
+    "ICMS1": {
+      "chromatography_description": "Targeted IC",
+      "chromatography_instrument_name": "Thermo Dionex ICS-5000+",
+      "chromatography_type": "Targeted IC",
+      "column_name": "Dionex IonPac AS11-HC-4um 2 mm i.d. x 250 mm",
+      "description": "ICMS Analytical Experiment with detection of compounds by comparison to standards. \nThermo RAW files are loaded into TraceFinder and peaks are manually curated. The area under the chromatograms is then exported to an Excel file. The area is then corrected for natural abundance. The natural abundance corrected area is then used to calculate the concentration of each compound for each sample. This calculation is done using standards. The first sample ran on the ICMS is a standard that has known concentrations of certain compounds. Then a number of samples are ran (typically 3-4) followed by another standard. The equation to calculate the concentration is \"intensity in sample\"/(\"intensity in first standard\" + ((\"intensity in second standard\" - \"intensity in first standard\")/# of samples) * \"known concentration in standard\", where the \"intensity\" is the aforementioned natural abundance corrected area, and the unlabeled intensity from the standard is used for all isotopologues of the compound. The reconstitution volume is simply the volume that the polar part of the sample was reconstituted to before going into the ICMS. The injection volume is how much of the reconstitution volume was injected into the ICMS. The protein is how much protein was in the entire sample (not only the small portion that was aliquoted for the ICMS). The polar split ratio is the fraction of the polar part of the sample that was aliquoted for the ICMS. This is calculated by dividing the weight of the polar aliquot for ICMS by the total weight of the polar portion of the sample. The protein normalized concentration is calculated using the equation, concentration * (reconstitution volume / 1000 / polar split ratio / protein).",
+      "id": "ICMS1",
+      # "instrument": "Orbitrap Fusion",
+      "instrument_type": "IC-FTMS",
+      "ion_mode": "NEGATIVE",
+      "ionization": "ESI",
+      "parentID": ["Chromatography_MS_measurement"],
+      "type": "measurement"
+    },
+    "IC-FTMS_preparation": {
+      "description": "Before going into the IC-FTMS the frozen sample is reconstituted in water.",
+      "filename": "",
+      "id": "IC-FTMS_preparation",
+      "type": "sample_prep"
+    }}}
+
+format_checker = jsonschema.FormatChecker()
+@format_checker.checks('is_num') 
+def is_numeric(value):
+    try:
+        float(value)
+    except ValueError:
+        return False
+    return True
+jsonschema.validate(temp, CV, format_checker=format_checker)
+
+
+
+
+
+test = {
+"type": "object",
+"properties": {
+   "entity":{
+            "type": "object",
+            "minProperties":1,
+            "additionalProperties":{
+                    "type":"object",
+                    "properties":{
+                        "id": {"type":"string", "minLength":1},
+                        "parentID": {"type":"string"},
+                        "project.id": {"type":"string", "minLength":1},
+                        "study.id": {"type":"string", "minLength":1},
+                        ## TODO possibly change protocol.id to enum all the possible protocols which would be a variable list defined elsewhere.
+                        "protocol.id": {"type":["string", "array"], "minItems":1, "items":{"type":"string", "minLength":1}, "minLength":1},
+                        "status": {"type":"string"},
+                        "type": {"type":"string", "enum":["sample", "subject"]}
+                        },
+                    "required": ["id", "type", "project.id", "study.id", "protocol.id"],
+                    "if":{"properties":{"type":{"const":"sample"}}},
+                    "then":{"required":["parentID"]}
+                    }
+            }
+   }
+}
+
+temp = {"entity":{
+    "01_A0_Colon_naive_0days_170427_UKy_GCH_rep1": {
+      "intensity":"123",
+      "assignment": "asf",
+      "assignment%method": "ljhjkh",
+      "compound": "yuyiu",
+      ## TODO come up with a format that checks that these types are numeric when cast from string.
+      "intensity%type": "kjlkj",
+      "intensity%units": "kljlkj",
+      "isotopologue": "uyiuy",
+      "isotopologue%type": "wert",
+      "retention_time": "ytiyut",
+      "retention_time%units": "iouoiuo",
+      "sample.id": "vgvgvg",
+      "id": "01_A0_Colon_naive_0days_170427_UKy_GCH_rep1",
+       "parentID": "01_A0_naive_0days_UKy_GCH_rep1",
+      "project.id": "GH_Spleen",
+      "protocol.id": [
+        "mouse_tissue_collection",
+        "tissue_quench",
+        "frozen_tissue_grind",
+        "Chromatography_MS_measurement"
+      ],
+      "study.id": "GH_Spleen",
+      "type": "sample"
+    }
+    }}
+
+jsonschema.validate(temp, test)
+
+
 
 
 
