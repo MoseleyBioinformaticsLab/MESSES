@@ -28,18 +28,18 @@ directives_schema = \
                },
              "then":{
                  "properties":{
-                     "override":{"type":["string", "null"], "minLength":1},
-                     "code":{"type":["string", "null"], "minLength":1},
-                     "import":{"type":["string", "null"], "minLength":1},
-                     "table":{"type":["string", "null"], "minLength":1},
-                     "for_each":{"type":["string", "null", "boolean"], "minLength":1, "pattern":"(?i)^true|false$"},
+                     "override":{"type":["string", "null"]},
+                     "code":{"type":["string", "null"]},
+                     "import":{"type":["string", "null"]},
+                     "table":{"type":["string", "null"]},
+                     "for_each":{"type":["string", "null", "boolean"], "pattern":"(?i)^true|false$"},
                      "fields":{"type":["array", "null"], "minItems":1, "items":{"type":"string", "minLength":1}},
-                     "test":{"type":["string", "null"], "minLength":1, "pattern":"^.+=.+$"},
-                     "required":{"type":["string", "null", "boolean"], "minLength":1, "pattern":"(?i)^true|false$"},
+                     "test":{"type":["string", "null"], "pattern":"^.+=.+$"},
+                     "required":{"type":["string", "null", "boolean"], "pattern":"(?i)^true|false$"},
                      "delimiter":{"type":["string", "null"]},
                      "sort_by":{"type":["array", "null"], "minItems":1, "items":{"type":"string", "minLength":1}},
-                     "sort_order":{"type":["string", "null"], "minLength":1, "pattern":"(?i)^descending|ascending$"},
-                     "record_id":{"type":["string", "null"], "minLength":1}
+                     "sort_order":{"type":["string", "null"], "pattern":"(?i)^descending|ascending$"},
+                     "record_id":{"type":["string", "null"]}
                      },
                  "allOf":[
                      {
@@ -75,19 +75,19 @@ directives_schema = \
                },
              "then":{
                  "properties":{
-                     "code":{"type":["string", "null"], "minLength":1},
-                     "import":{"type":["string", "null"], "minLength":1},
-                     "table":{"type":["string", "null"], "minLength":1},
-                     "test":{"type":["string", "null"], "minLength":1, "pattern":"^.+=.+$"},
-                     "required":{"type":["string", "null", "boolean"], "minLength":1, "pattern":"(?i)^true|false$"},
+                     "code":{"type":["string", "null"]},
+                     "import":{"type":["string", "null"]},
+                     "table":{"type":["string", "null"]},
+                     "test":{"type":["string", "null"], "pattern":"^.+=.+$"},
+                     "required":{"type":["string", "null", "boolean"], "pattern":"(?i)^true|false$"},
                      "sort_by":{"type":["array", "null"], "minItems":1, "items":{"type":"string", "minLength":1}},
-                     "sort_order":{"type":["string", "null"], "minLength":1, "pattern":"(?i)^descending|ascending$"},
+                     "sort_order":{"type":["string", "null"], "pattern":"(?i)^descending|ascending$"},
                      "headers":{"type":["array", "null"], "minItems":1, "items":{"type":"string", "minLength":1, "pattern":"^.+=.+$"}},
-                     "collate":{"type":["string", "null"], "minLength":1},
+                     "collate":{"type":["string", "null"]},
                      "exclusion_headers":{"type":["array", "null"], "minItems":1, "items":{"type":"string", "minLength":1}},
                      "optional_headers":{"type":["array", "null"], "minItems":1, "items":{"type":"string", "minLength":1}},
-                     "fields_to_headers":{"type":["string", "null", "boolean"], "minLength":1, "pattern":"(?i)^true|false$"},
-                     "values_to_str":{"type":["string", "null", "boolean"], "minLength":1, "pattern":"(?i)^true|false$"}
+                     "fields_to_headers":{"type":["string", "null", "boolean"], "pattern":"(?i)^true|false$"},
+                     "values_to_str":{"type":["string", "null", "boolean"], "pattern":"(?i)^true|false$"}
                      },
                  "allOf":[
                      {
@@ -111,8 +111,8 @@ directives_schema = \
                },
              "then":{
                  "properties":{
-                     "code":{"type":["string", "null"], "minLength":1},
-                     "import":{"type":["string", "null"], "minLength":1},
+                     "code":{"type":["string", "null"]},
+                     "import":{"type":["string", "null"]},
                      },
                  "required":["code"]
                  }
