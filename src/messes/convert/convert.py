@@ -9,7 +9,7 @@ Usage:
     messes convert --help
     
     <conversion_directives> - can be a JSON, csv, or xlsx file. If xlsx the default sheet name to read in is #convert, 
-                        to specify a different sheet name separate it from the file name with a colon ex: file_name.xlsx:sheet_name.
+                              to specify a different sheet name separate it from the file name with a colon ex: file_name.xlsx:sheet_name.
 
 Options:
     -h, --help                           - show this screen.

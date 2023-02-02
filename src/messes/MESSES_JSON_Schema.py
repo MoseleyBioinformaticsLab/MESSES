@@ -367,8 +367,6 @@ jsonschema.validate(temp, CV, format_checker=format_checker)
 
 
 
-
-
 test = {
 "type": "object",
 "properties": {
