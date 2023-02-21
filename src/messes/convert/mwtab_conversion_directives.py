@@ -178,7 +178,7 @@ ms_directives = \
       "collate": "assignment",
       "headers": [
         "\"Metabolite\"=assignment",
-        "sample.id=intensity"
+        "entity.id=intensity"
       ],
       "id": "Data",
       "sort_by": [
@@ -195,7 +195,7 @@ ms_directives = \
         "intensity%type",
         "intensity%units",
         "assignment",
-        "sample.id",
+        "entity.id",
         "formula",
         "compound",
         "isotopologue",
@@ -204,7 +204,7 @@ ms_directives = \
       "fields_to_headers": "True",
       "headers": [
         "\"Metabolite\"=assignment",
-        "\"sample_id\"=sample.id"
+        "\"sample_id\"=entity.id"
       ],
       "id": "Extended",
       "sort_by": [
@@ -715,7 +715,7 @@ nmr_directives["NMR_METABOLITE_DATA"] = {
       "collate": "resonance_assignment",
       "headers": [
         "\"Metabolite\"=resonance_assignment",
-        "sample.id=intensity"
+        "entity.id=intensity"
       ],
       "id": "Data",
       "sort_by": [
@@ -733,7 +733,7 @@ nmr_directives["NMR_METABOLITE_DATA"] = {
         "intensity%type",
         "intensity%units",
         "resonance_assignment",
-        "sample.id",
+        "entity.id",
         "base_inchi",
         "representative_inchi",
         "isotopic_inchi",
@@ -746,7 +746,7 @@ nmr_directives["NMR_METABOLITE_DATA"] = {
       "fields_to_headers": "True",
       "headers": [
         "\"Metabolite\"=resonance_assignment",
-        "\"sample_id\"=sample.id"
+        "\"sample_id\"=entity.id"
       ],
       "id": "Extended",
       "sort_by": [
@@ -796,7 +796,7 @@ nmr_binned_directives["NMR_BINNED_DATA"] = {
       "collate": "assignment",
       "headers": [
         "\"Bin range(ppm)\"=assignment",
-        "sample.id=intensity"
+        "entity.id=intensity"
       ],
       "id": "Data",
       "sort_by": [

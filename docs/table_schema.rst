@@ -86,7 +86,7 @@ ID Fields
 ---------
 **Any field for any record that ends in ".id" must be an id to an existing record in that field's table.**
    * For instance, if the field "protocol.id" : "tissue_extraction" is in a sample record then the protocol table must contain a record with the id "tissue_extraction". 
-   * Similarly, if a record has the "parentID" field the value must be an existing id in the same table as that record. For example, if "parentID" : "tissue_extraction" is in a record in the protocol table then the protocol table must containe a record with the id "tissue_extraction". 
+   * Similarly, if a record has the "parent_id" field the value must be an existing id in the same table as that record. For example, if "parent_id" : "tissue_extraction" is in a record in the protocol table then the protocol table must containe a record with the id "tissue_extraction". 
    * The exception to this rule is the subject and sample tables. Subject records must have a parent in the sample table, and sample records could have a parent in either the subject or sample tables. 
 
 Subject/Sample Inheritance Rules

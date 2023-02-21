@@ -65,6 +65,7 @@ from messes.convert import convert_schema
 ## Currently the Treatment factor in SSF is a list, make sure this converts into mwTab text correctly.
 ## Optionally put non required fields as empty strings instead of not including them. This is done with default value.
 ## Should default value work if code is given but fails? Right now only works if field is not found.
+## TODO change mwtab functions so they use entity.id instead of sample.id.
 
 supported_formats_and_sub_commands = {"mwtab":["ms", "nmr", "nmr_binned"]}
 
@@ -89,14 +90,17 @@ def main() :
     if filepath := next((arg for arg in [args["<conversion_directives>"], args["--update"], args["--override"]] if arg is not None), False):
         if re.search(r".*(\.xls[xm]?|\.csv)", filepath):
             default_sheet_name = False
-            if re.search(r"\.xls[xm]?$", filepath):
-                filepath += ":#convert"
+            if (reMatch := re.search(r"^(.*\.xls[xm]?):(.*)$", filepath)):
+                filepath = reMatch.group(1)
+                sheet_name = reMatch.group(2)
+            elif re.search(r"\.xls[xm]?$", filepath):
+                sheet_name = "#convert"
                 default_sheet_name = True
             tagParser = extract.TagParser()
             ## In order to print error messages correctly we have to know if loadSheet printed a message or not, so temporarily replace stderr.
             old_stderr = sys.stderr
             sys.stderr = buffer = io.StringIO()
-            if worksheet_tuple := tagParser.loadSheet(filepath, isDefaultSearch=default_sheet_name):
+            if worksheet_tuple := tagParser.loadSheet(filepath, sheet_name, isDefaultSearch=default_sheet_name):
                 tagParser.parseSheet(*worksheet_tuple)
                 update_conversion_directives = tagParser.extraction
                 sys.stderr = old_stderr

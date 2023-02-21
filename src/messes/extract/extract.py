@@ -115,10 +115,21 @@ def main() :
     ## Without this each metadatasource only gets its own modification.
     if args["--end-modify"] != None:
         modificationSource = args["--end-modify"]
-        if re.search(r"\.xls[xm]?$", modificationSource):
-            modificationSource += ":#modify"
+            
+        if not TagParser.hasFileExtension(modificationSource) and (reMatch := re.search(r"(.*\.xls[xm]?)", metadataSource)):
+            modificationFilePath = reMatch.group(1) 
+            modificationSheetName = modificationSource
+        elif re.search(r"\.xls[xm]?$", modificationSource):
+            modificationFilePath = modificationSource
+            modificationSheetName = "#modify"
+        elif (reMatch := re.search(r"^(.*\.xls[xm]?):(.*)$", modificationSource)):
+            modificationFilePath = reMatch.group(1)
+            modificationSheetName = reMatch.group(2)
+        else:
+            modificationFilePath = modificationSource
+            modificationSheetName = None
 
-        modificationDirectives = tagParser.readDirectives(modificationSource, "modification", args["--file-cleaning"])
+        modificationDirectives = tagParser.readDirectives(modificationFilePath, modificationSheetName, "modification", args["--file-cleaning"])
         tagParser.modify(modificationDirectives)
 
     if getattr(tagParser, "unusedModifications", None) != None and not silent:
@@ -779,7 +790,7 @@ class TagParser(object):
     childFieldAttributeDetector = re.compile(r'#(\w*)\%child\.(\w+)\%(\w+)$')
     emptyChildDetector = re.compile(r'#(\w*)\%child$')
     tableFieldAttributeDetector = re.compile(r'#(\w*)\.(\w+)\%(\w+)$')
-    tableFieldDetector = re.compile(r'#([\w\s]*)\.(\w+|\w+\.id)$')
+    tableFieldDetector = re.compile(r'#([\w\s-]*)\.(\w+|\w+\.id)$')
     attributeDetector = re.compile('#\%(\w+)$')
     trackFieldDetector = re.compile(r'#(\w*)\%track$')
     untrackFieldDetector = re.compile(r'#(\w*)\%untrack$')
@@ -1120,25 +1131,24 @@ class TagParser(object):
 
 
     @staticmethod
-    def loadSheet(sheetInfo: str, removeRegex: str|None = None, isDefaultSearch: bool =False) -> tuple[str,str,pandas.core.frame.DataFrame]|None:
+    def loadSheet(fileName: str|TextIO, sheetName: str, removeRegex: str|None = None, isDefaultSearch: bool = False) -> tuple[str,str,pandas.core.frame.DataFrame]|None:
         """Load and return worksheet as a pandas data frame.
         
         Args:
-            sheetInfo: filename and sheetname (if needed).
+            fileName: filename or sys.stdin to read a csv from stdin.
+            sheeName: sheet name for an Excel file, ignored if not an Excel file. Can be a regular expression to search for a sheet.
             removeRegex: a string to pass to DataFrame.replace() to replace characters with an empty string in the dataframe that is read in. 
                          Can be a regex. Set to None to not replace anything.
-            isDefaultSearch: whether or not the sheetInfo is using default values, determines whether to print some messages.
+            isDefaultSearch: whether or not the sheetName is using default values, determines whether to print some messages.
             
         Returns:
             None if the worksheet is empty, else (fileName, sheetName, dataFrame)
             
         Raises:
-            Exception: If sheetInfo is invalid.
+            Exception: If fileName is invalid.
         """
-        if (reMatch := re.search(r"^(.*\.xls[xm]?):(.*)$", sheetInfo)):
-            if os.path.isfile(reMatch.group(1)):
-                fileName = reMatch.group(1)
-                sheetName = reMatch.group(2)
+        if isinstance(fileName, str) and (reMatch := re.search(r"^(.*\.xls[xm]?)$", fileName)):
+            if os.path.isfile(fileName):
                 workbook = pandas.ExcelFile(fileName)
                 
                 ## Convert the sheetname to a regular expression pattern so users can specify a sheetname using a regular expression.
@@ -1146,12 +1156,14 @@ class TagParser(object):
                     sheetDetector = re.compile(re.match(TagParser.reDetector, sheetName)[1])
                 else:
                     sheetDetector = re.compile("^" + re.escape(sheetName) + "$")
-
+                
                 for sheetName in workbook.sheet_names:
                     if re.search(sheetDetector, sheetName) != None:
-                        dataFrame = pandas.read_excel(workbook, sheetName, header=None, index_col=None, dtype=str)
+                        dataFrame = pandas.read_excel(workbook, sheetName, header=None, index_col=None, nrows=0)
+                        converters = {column:str for column in dataFrame.columns}
+                        dataFrame = pandas.read_excel(workbook, sheetName, header=None, index_col=None, converters=converters)
                         if len(dataFrame) == 0:
-                            print("There is no data in worksheet \"" + sheetInfo + "\".", file=sys.stderr)
+                            print("There is no data in worksheet \"" + fileName + ":" + sheetName + "\".", file=sys.stderr)
                             return None
                         else:
                             ## Empty cells are read in as nan by default, replace with empty string.
@@ -1163,28 +1175,27 @@ class TagParser(object):
                     print("r'" + sheetDetector.pattern + "' did not match any sheets in \"" + fileName + "\".", file=sys.stderr)
             else:
                 print("Excel workbook \"" + reMatch.group(1) + "\" does not exist.", file=sys.stderr)
-        elif re.search(r"\.csv$", sheetInfo):
-            if pathlib.Path(sheetInfo).exists():
+        elif not isinstance(fileName, str) or re.search(r"\.csv$", fileName):
+            if not isinstance(fileName, str) or pathlib.Path(fileName).exists():
                 try:
-                    dataFrame = pandas.read_csv(sheetInfo, header=None, index_col=None, dtype=str)
+                    dataFrame = pandas.read_csv(fileName, header=None, index_col=None, dtype=str)
                 except pandas.errors.EmptyDataError:
-                    print("There is no data in csv file \"" + sheetInfo + "\".", file=sys.stderr)
+                    print("There is no data in csv file \"" + fileName + "\".", file=sys.stderr)
                 else:
                     ## I don't think there is a way to read in a csv file with no length. All my attempts resulted in an error.
                     ## Thus this is not testable from the CLI.
                     if len(dataFrame) == 0:
-                        print("There is no data in csv file \"" + sheetInfo + "\".", file=sys.stderr)
+                        print("There is no data in csv file \"" + fileName + "\".", file=sys.stderr)
                     else:
                         dataFrame = dataFrame.fillna("") # Empty cells are read in as nan by default. Therefore replace with empty string.
                         if removeRegex:
                             dataFrame.replace(removeRegex, "", regex=True, inplace=True)
-                        fileName = sheetInfo
                         sheetName = ""
                         return (fileName, sheetName, dataFrame)
             else:
-                print("The csv file \"" + sheetInfo + "\" does not exist.", file=sys.stderr)
+                print("The csv file \"" + fileName + "\" does not exist.", file=sys.stderr)
         else:
-            raise Exception("Invalid worksheet identifier \"" + sheetInfo + "\" passed into function.")
+            raise Exception("Invalid worksheet identifier \"" + fileName + "\" passed into function.")
 
         return None
 
@@ -1215,26 +1226,55 @@ class TagParser(object):
             saveExtension: if "csv" saves the export as a csv file, else saves it as an Excel file.
         """
         if not TagParser.hasFileExtension(automationSource) and (reMatch := re.search(r"(.*\.xls[xm]?)", metadataSource)):
-            automationSource = reMatch.group(1) + ":" + automationSource
+            automationFilePath = reMatch.group(1) 
+            automationSheetName = automationSource
         elif re.search(r"\.xls[xm]?$", automationSource):
-            automationSource += ":#automate"
-
+            automationFilePath = automationSource
+            automationSheetName = "#automate"
+        elif (reMatch := re.search(r"^(.*\.xls[xm]?):(.*)$", automationSource)):
+            automationFilePath = reMatch.group(1)
+            automationSheetName = reMatch.group(2)
+        else:
+            automationFilePath = automationSource
+            automationSheetName = None
+                    
         if not TagParser.hasFileExtension(modificationSource) and (reMatch := re.search(r"(.*\.xls[xm]?)", metadataSource)):
-            modificationSource = reMatch.group(1) + ":" + modificationSource
+            modificationFilePath = reMatch.group(1) 
+            modificationSheetName = modificationSource
         elif re.search(r"\.xls[xm]?$", modificationSource):
-            modificationSource += ":#modify"
+            modificationFilePath = modificationSource
+            modificationSheetName = "#modify"
+        elif (reMatch := re.search(r"^(.*\.xls[xm]?):(.*)$", modificationSource)):
+            modificationFilePath = reMatch.group(1)
+            modificationSheetName = reMatch.group(2)
+        else:
+            modificationFilePath = modificationSource
+            modificationSheetName = None
 
         if re.search(r"\.xls[xm]?$", metadataSource):
-            metadataSource += ":#export"
+            metadataFilePath = metadataSource
+            metadataSheetName = "#export"
+        elif (reMatch := re.search(r"^(.*\.xls[xm]?):(.*)$", metadataSource)):
+            metadataFilePath = reMatch.group(1)
+            metadataSheetName = reMatch.group(2)
+        else:
+            metadataFilePath = metadataSource
+            metadataSheetName = None
 
-        automationDirectives = self.readDirectives(automationSource, "automation", removeRegex, automateDefaulted) if TagParser.hasFileExtension(automationSource) else None
+        if TagParser.hasFileExtension(automationFilePath):
+            automationDirectives = self.readDirectives(automationFilePath, automationSheetName, "automation", removeRegex, automateDefaulted) 
+        else:
+            automationDirectives = None
         ## Structure of modificationDirectives: {table_key:{field_key:{comparison_type:{field_value:{directive:{field_key:directive_value}}}}}} 
         ## The directive value is the new value to give the field or regex, regex is a list, assign is a string.
         ## unique is handled by having "-unique" added to comparison type key, so there is "exact-unique" and "exact".
-        modificationDirectives = self.readDirectives(modificationSource, "modification", removeRegex, modifyDefaulted) if TagParser.hasFileExtension(modificationSource) else None
+        if TagParser.hasFileExtension(metadataFilePath):
+            modificationDirectives = self.readDirectives(modificationFilePath, modificationSheetName, "modification", removeRegex, modifyDefaulted) 
+        else:
+            modificationDirectives = None
 
-        if re.search(r"\.json$", metadataSource):
-            with open(metadataSource, 'r') as jsonFile:
+        if re.search(r"\.json$", metadataFilePath):
+            with open(metadataFilePath, 'r') as jsonFile:
                 newMetadata = json.load(jsonFile)
             currentMetadata = self.extraction
             self.extraction = newMetadata
@@ -1242,7 +1282,7 @@ class TagParser(object):
             currentMetadata = self.extraction
             newMetadata = {}
             self.extraction = newMetadata
-            dataFrameTuple = TagParser.loadSheet(metadataSource, removeRegex)
+            dataFrameTuple = TagParser.loadSheet(metadataFilePath, metadataSheetName, removeRegex=removeRegex)
 
             if dataFrameTuple:
                 dataFrame = self.tagSheet(automationDirectives, dataFrameTuple[2], silent)
@@ -1687,11 +1727,12 @@ class TagParser(object):
 
         self.rowIndex = -1
 
-    def readDirectives(self, source: str, directiveType: str, removeRegex: str|None, isDefaultSearch: bool =False) -> dict:
+    def readDirectives(self, source: str, sheetName: str, directiveType: str, removeRegex: str|None, isDefaultSearch: bool =False) -> dict:
         """Read directives source of a given directive type.
         
         Args:
-            source: file path with sheetname if appropriate.
+            source: file path.
+            sheetName: sheet name for an Excel file, ignored if not an Excel file.
             directiveType: either "modification" or "automation" to call the correct parsing function.
             removeRegex: a string to pass to DataFrame.replace() to replace characters with an empty string in the dataframe that is read in. 
                          Can be a regex. Set to None to not replace anything. Passed to loadSheet.
@@ -1711,7 +1752,7 @@ class TagParser(object):
                     if not silent:
                         print("Warning: The input directives JSON file is either not a dict or does not contain the directive keyword \"" + directiveType + "\". This means that " + directiveType + " will not be done.", file=sys.stderr)
         elif TagParser.hasFileExtension(source):
-            dataFrameTuple = TagParser.loadSheet(source, removeRegex, isDefaultSearch)
+            dataFrameTuple = TagParser.loadSheet(source, sheetName, removeRegex=removeRegex, isDefaultSearch=isDefaultSearch)
             if dataFrameTuple != None:
                 if directiveType == "modification":
                     self.modificationDirectives = {}

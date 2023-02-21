@@ -94,6 +94,7 @@ CV_as_JSON_Schema = {
                          "description": {"type":"string"},
                          "filename": {"type":"string"}
                          },
+                     "patternProperties":{"^.*\.id$":{"format":"id_checker"}},
                      "required": ["id"]
                      }
             },
@@ -248,7 +249,7 @@ CV =\
                           "required":["id"]},
                           {"properties":{"parentID":{"anyOf":[
                                                       {"const":"Chromatography_MS_measurement"}, 
-                                                      {"contains":{"const":"Chromatography_MS_measurement"}}
+                                                      {"type":"array", "contains":{"const":"Chromatography_MS_measurement"}}
                                                       ]}},
                           "required":["parentID"]}
                           ]
@@ -282,26 +283,102 @@ CV =\
         "minProperties":1,
         "additionalProperties":{
                 "type":"object",
-                "properties":{
-                    "id": {"type":"string", "minLength":1},
-                    "parentID": {"type":"string"},
-                    "project.id": {"type":"string", "minLength":1},
-                    "study.id": {"type":"string", "minLength":1},
-                    ## TODO possibly change protocol.id to enum all the possible protocols which would be a variable list defined elsewhere.
-                    "protocol.id": {"type":["string", "array"], "minItems":1, "items":{"type":"string", "minLength":1}, "minLength":1},
-                    "status": {"type":"string"},
-                    "type": {"type":"string", "enum":["sample", "subject"]}
-                    },
-                "required": ["id", "type", "project.id", "study.id", "protocol.id"],
-                "if":{"properties":{"type":{"const":"sample"}}},
-                "then":{"required":["parentID"]},
+                # "properties":{
+                #     "id": {"type":"string", "minLength":1},
+                #     "parentID": {"type":"string"},
+                #     "project.id": {"type":"string", "minLength":1},
+                #     "study.id": {"type":"string", "minLength":1},
+                #     "protocol.id": {"type":["string", "array"], "minItems":1, "items":{"type":"string", "minLength":1}, "minLength":1},
+                #     "status": {"type":"string"},
+                #     "type": {"type":"string", "enum":["sample", "subject"]}
+                #     },
+                # "required": ["id", "type", "project.id", "study.id", "protocol.id"],
+                # "if":{"properties":{"type":{"const":"sample"}},
+                #       "required":["type"]},
+                # "then":{"required":["parentID"]},
                 "allOf":[
                     {
                     "if":{
-                        "properties":{"protocol.id":{"anyOf":[
+                        "anyOf":[
+                            {"properties":{"protocol.id":{"const":"Chromatography_MS_measurement"}
+                                                        },
+                            "required":["protocol.id"]},
+                            {"properties":{"protocol.id":{"contains":{"const":"Chromatography_MS_measurement"}}
+                                                        },
+                            "required":["protocol.id"]}
+                            ]
+                        },
+                    # "if":{
+                    #     "properties":{"protocol.id":{
+                    #                             "anyOf":[
+                    #                                 {"const":"Chromatography_MS_measurement"}, 
+                    #                                 {"contains":{"const":"Chromatography_MS_measurement"}}
+                    #                                 ]}},
+                    #     # "properties":{"protocol.id":{
+                    #     #                             "const":"Chromatography_MS_measurement" 
+                    #     #                             }},
+                    #     "required":["protocol.id"]
+                    #     },
+                    "then":{
+                        "properties":{
+                            "assignment": {"type":"string", "minLength":1},
+                            "assignment%method": {"type":"string", "minLength":1},
+                            "compound": {"type":"string", "minLength":1},
+                            "intensity": {"type":"string", "minLength":1, "format":"is_num"},
+                            "intensity%type": {"type":"string", "minLength":1},
+                            "intensity%units": {"type":"string", "minLength":1},
+                            "isotopologue": {"type":"string", "minLength":1},
+                            "isotopologue%type": {"type":"string", "minLength":1},
+                            "retention_time": {"type":"string", "minLength":1},
+                            "retention_time%units": {"type":"string", "minLength":1},
+                            "sample.id": {"type":"string", "minLength":1}
+                          },
+                          "required": [
+                            "assignment%method",
+                            "assignment",
+                            "intensity",
+                            "sample.id"
+                          ]
+                        }
+                    },
+                    ]
+                }
+        }
+    }
+}
+
+
+CV =\
+{
+"type":"object",
+"properties":{
+    "entity":{
+        "type": "object",
+        "minProperties":1,
+        "additionalProperties":{
+                "type":"object",
+                "allOf":[
+                    {
+                    # "if":{
+                    #     "anyOf":[
+                    #         {"properties":{"protocol.id":{"const":"Chromatography_MS_measurement"}
+                    #                                     },
+                    #         "required":["protocol.id"]},
+                    #         {"properties":{"protocol.id":{"type":"array","contains":{"const":"Chromatography_MS_measurement"}}
+                    #                                     },
+                    #         "required":["protocol.id"]}
+                    #         ]
+                    #     },
+                    "if":{
+                        "properties":{"protocol.id":{
+                                                "anyOf":[
                                                     {"const":"Chromatography_MS_measurement"}, 
-                                                    {"contains":{"const":"Chromatography_MS_measurement"}}
-                                                    ]}}
+                                                    {"type":"array","contains":{"const":"Chromatography_MS_measurement"}}
+                                                    ]}},
+                        # "properties":{"protocol.id":{
+                        #                             "const":"Chromatography_MS_measurement" 
+                        #                             }},
+                        "required":["protocol.id"]
                         },
                     "then":{
                         "properties":{
@@ -330,6 +407,12 @@ CV =\
         }
     }
 }
+
+
+temp = {"entity":{"asdf":{"field1":"qwer", "protocol.id":"Chromatography_MS_measurement"}}}
+
+
+jsonschema.validate(temp, CV)
 
 
 
@@ -363,69 +446,57 @@ def is_numeric(value):
     except ValueError:
         return False
     return True
+
+@format_checker.checks('integer') 
+def is_integer(value):
+    if value:
+        try:
+            int(value)
+        except ValueError:
+            return False
+        return True
+    return True
+
 jsonschema.validate(temp, CV, format_checker=format_checker)
 
 
-
-test = {
-"type": "object",
-"properties": {
-   "entity":{
-            "type": "object",
-            "minProperties":1,
-            "additionalProperties":{
-                    "type":"object",
-                    "properties":{
-                        "id": {"type":"string", "minLength":1},
-                        "parentID": {"type":"string"},
-                        "project.id": {"type":"string", "minLength":1},
-                        "study.id": {"type":"string", "minLength":1},
-                        ## TODO possibly change protocol.id to enum all the possible protocols which would be a variable list defined elsewhere.
-                        "protocol.id": {"type":["string", "array"], "minItems":1, "items":{"type":"string", "minLength":1}, "minLength":1},
-                        "status": {"type":"string"},
-                        "type": {"type":"string", "enum":["sample", "subject"]}
-                        },
-                    "required": ["id", "type", "project.id", "study.id", "protocol.id"],
-                    "if":{"properties":{"type":{"const":"sample"}}},
-                    "then":{"required":["parentID"]}
-                    }
-            }
-   }
-}
-
-temp = {"entity":{
-    "01_A0_Colon_naive_0days_170427_UKy_GCH_rep1": {
-      "intensity":"123",
-      "assignment": "asf",
-      "assignment%method": "ljhjkh",
-      "compound": "yuyiu",
-      ## TODO come up with a format that checks that these types are numeric when cast from string.
-      "intensity%type": "kjlkj",
-      "intensity%units": "kljlkj",
-      "isotopologue": "uyiuy",
-      "isotopologue%type": "wert",
-      "retention_time": "ytiyut",
-      "retention_time%units": "iouoiuo",
-      "sample.id": "vgvgvg",
-      "id": "01_A0_Colon_naive_0days_170427_UKy_GCH_rep1",
-       "parentID": "01_A0_naive_0days_UKy_GCH_rep1",
-      "project.id": "GH_Spleen",
-      "protocol.id": [
-        "mouse_tissue_collection",
-        "tissue_quench",
-        "frozen_tissue_grind",
-        "Chromatography_MS_measurement"
-      ],
-      "study.id": "GH_Spleen",
-      "type": "sample"
-    }
-    }}
-
-jsonschema.validate(temp, test)
+schema =\
+{
+  "type": "object",
+ "properties": {
+     "protocol":{
+             "type": "object",
+             "minProperties":1,
+             "additionalProperties":{
+                     "type":"object",
+                     "properties":{
+                         "id": {"type":"string", "minLength":1},
+                         "parentID": {"type":"string"},
+                         ## TODO add an analysis type protocol?
+                         "type": {"type":"string", "enum":["sample_prep", "treatment", "collection", "storage", "measurement"]},
+                         "description": {"type":"string"},
+                         "filename": {"type":"string"}
+                         },
+                     "patternProperties":{"^.*\.id$":{"format":"id_checker"}},
+                     "required": ["id"]
+                     }
+            }}}
 
 
+temp =\
+    {
+     "protocol":{"test":{"id":"test",
+                         "sample.id":"qwer"}}
+     }
 
 
+format_checker = jsonschema.FormatChecker()
+@format_checker.checks('id_checker') 
+def id_exists(value):
+    table = re.match(r'(.*)\.id', value).group(1)
+    return table in instance
+
+jsonschema.validate(temp, schema, format_checker=format_checker)
 
 
 
@@ -692,7 +763,203 @@ for error_generator in errors:
 #errors = validator.iter_errors(instance)
 
 
+with open('C:/Users/Sparda/Desktop/Moseley Lab/Code/CESB.LIMS/templates_and_CV/controlled_vocabulary/controlled_vocabulary_2022-05-03_hnbm_TT.json','r') as jsonFile :
+        cv = json.load(jsonFile)
 
+new_cv = {}
+new_cv["parent_protocol"] = cv["parent_protocol"]
+for protocol, attributes in new_cv["parent_protocol"].items():
+    if "parentID" in attributes:
+        new_cv["parent_protocol"][protocol]["parent_id"] = attributes["parentID"]
+        del new_cv["parent_protocol"][protocol]["parentID"]
+    
+    fields_dict = {}
+    for tagfield_scope, scope_attributes in cv["tagfield_scope"].items():
+        if protocol in scope_attributes["parent_protocol.id"]:
+            tagfield_dict = {}
+            
+            table = scope_attributes["table"]
+            if "project" in table or "study" in table or "factor" in table:
+                continue
+            if "measurement" in table:
+                tagfield_dict["table"] = "measurement"
+            if "subject" in table or "sample" in table:
+                tagfield_dict["table"] = "entity"
+            if "protocol" in table:
+                tagfield_dict["table"] = "protocol"
+            
+            tagfield = scope_attributes["tagfield.id"]
+            validation_code = cv["tagfield"][tagfield]["validationCode"]
+            
+            tagfield_dict["type"] = []
+            if "text" in validation_code:
+                tagfield_dict["type"].append("string")
+                tagfield_dict["minLength"] = "1"
+            if "numeric" in validation_code:
+                tagfield_dict["format"] = "numeric"
+                tagfield_dict["type"].append("number")
+            if "list" in validation_code:
+                tagfield_dict["type"].append("array")
+                tagfield_dict["minItems"] = "1"
+                tagfield_dict["items"] = {"type":"string", "minLength":1}
+            if "list_optional" in validation_code:
+                tagfield_dict["type"].append("array")
+                tagfield_dict["type"].append("null")
+                tagfield_dict["items"] = {"type":"string", "minLength":1}
+            
+            if not tagfield_dict["type"]:
+                tagfield_dict["type"] = "string"
+                tagfield_dict["minLength"] = "1"
+            
+            scope_type = scope_attributes["scope_type"]
+            if "ignore" in scope_type:
+                tagfield_dict["required"] = "True"
+            
+            if len(tagfield_dict["type"]) == 1:
+                tagfield_dict["type"] = tagfield_dict["type"][0]
+                
+            fields_dict[tagfield] = tagfield_dict
+    new_cv[protocol] = fields_dict
+
+
+with open('C:/Users/Sparda/Desktop/Moseley Lab/Code/MESSES/new_CV.json','w') as jsonFile :
+    jsonFile.write(json.dumps(new_cv, sort_keys=True, indent=2, separators=(',', ': ')))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+def check(self, instance: object, format: str) -> None:
+    """
+    Check whether the instance conforms to the given format.
+
+    Arguments:
+
+        instance (*any primitive type*, i.e. str, number, bool):
+
+            The instance to check
+
+        format:
+
+            The format that instance should conform to
+
+    Raises:
+
+        FormatError:
+
+            if the instance does not conform to ``format``
+    """
+
+    if format not in self.checkers:
+        return
+
+    func, raises = self.checkers[format]
+    result, cause = None, None
+    try:
+        result = func(instance)
+    except raises as e:
+        cause = e
+    if not result:
+        raise jsonschema.exceptions.FormatError(f"{instance!r} is not a {format!r}", cause=cause)
+    elif format == "integer" and isinstance(instance, str):
+        raise jsonschema.exceptions.FormatError("safe to convert to int", cause=None)
+        
+
+## Assumes value is nested in a dict or list.
+# def convert_formats(errors_generator, instance) -> bool:
+#     for error in errors_generator:
+#         # print("[%s]" % "][".join(repr(index) for index in error.relative_path))
+#         # for key, value in error._contents().items():
+#         #     print(key, value)
+#         #     print()
+#         if error.message == "safe to convert to float":
+#             path = "[%s]" % "][".join(repr(index) for index in error.relative_path)
+#             exec("instance" + path + "=int(" + "instance" + path + ")")
+
+def convert_formats(validator, instance) -> bool:
+    ## Get old check to save and restore.
+    original_check = jsonschema.FormatChecker.check
+    ## Replace check in FormatChecker.
+    jsonschema.FormatChecker.check = check
+    
+    for error in validator.iter_errors(instance):
+        if error.message == "safe to convert to float":
+            path = "[%s]" % "][".join(repr(index) for index in error.relative_path)
+            exec("instance" + path + "=float(" + "instance" + path + ")")
+        elif error.message == "safe to convert to int":
+            path = "[%s]" % "][".join(repr(index) for index in error.relative_path)
+            exec("instance" + path + "=int(" + "instance" + path + ")")
+            
+    jsonschema.FormatChecker.check = original_check
+    
+
+def create_validator(schema) -> jsonschema.protocols.Validator:
+    validator = jsonschema.validators.validator_for(schema)
+    format_checker = jsonschema.FormatChecker()
+    @format_checker.checks('integer') 
+    def is_integer(value):
+        if value and isinstance(value, str):
+            try:
+                int(value)
+            except ValueError:
+                return False
+            return True
+        return True
+    @format_checker.checks('numeric') 
+    def is_float(value):
+        if value and isinstance(value, str):
+            try:
+                float(value)
+            except ValueError:
+                return False
+            return True
+        return True
+    return validator(schema=schema, format_checker=format_checker)
+
+
+# jsonschema.FormatChecker.check = check
+# format_checker = jsonschema.FormatChecker()
+# # format_checker.check = check
+
+# @format_checker.checks('integer') 
+# def is_integer(value):
+#     if value and isinstance(value, str):
+#         try:
+#             int(value)
+#         except ValueError:
+#             return False
+#         return True
+#     return True
+
+schema = {'type': 'object', 'properties': {'asdf': {"type":"array", "items":{'format': 'integer'}}}}
+# schema = {'format': 'integer'}
+instance = {"asdf":["123", 12.5]}
+# instance = "123"
+validator = jsonschema.validators.validator_for(schema)
+# validator = validator(schema=schema, format_checker=format_checker)
+validator = create_validator(schema)
+convert_formats(validator, instance)
+# errors_generator = validator.iter_errors(instance=instance)
+# convert_formats(errors_generator, instance)
+
+
+for error in validator.iter_errors(instance):
+    print(error)
+
+
+jsonschema.validate(instance, schema)
 
 
 

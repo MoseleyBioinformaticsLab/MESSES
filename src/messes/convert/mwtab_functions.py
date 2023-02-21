@@ -6,7 +6,7 @@ functions for mwtab format
 import sys
 
 
-def create_sample_lineages(input_json: dict, entity_table_name: str="entity", parent_key: str="parentID") -> dict:
+def create_sample_lineages(input_json: dict, entity_table_name: str="entity", parent_key: str="parent_id") -> dict:
     """Determine all the ancestors and siblings for each entity in the entity table.
     
     The returned dictionary is of the form:
@@ -60,11 +60,11 @@ def create_subject_sample_factors(input_json: dict,
                                   measurement_table_name: str="measurement", 
                                   sibling_match_field: str="protocol.id", 
                                   sibling_match_value: str="protein_extraction",
-                                  sample_id_key: str="sample.id",
+                                  sample_id_key: str="entity.id",
                                   entity_table_name: str="entity", 
                                   entity_type_key: str="type",
                                   subject_type_value: str="subject",
-                                  parent_key: str="parentID",
+                                  parent_key: str="parent_id",
                                   factor_table_name: str="factor",
                                   factor_field_key: str="field",
                                   factor_allowed_values_key: str="allowed_values",
@@ -73,7 +73,7 @@ def create_subject_sample_factors(input_json: dict,
                                   protocol_type_field: str="type",
                                   storage_type_value: str="storage",
                                   storage_files_key: str="data_files",
-                                  lineage_field_exclusion_list: list[str]|tuple[str] =("study.id", "project.id", "parentID")) -> dict:
+                                  lineage_field_exclusion_list: list[str]|tuple[str] =("study.id", "project.id", "parent_id")) -> dict:
     """Create the SUBJECT_SAMPLE_FACTORS section of the mwTab JSON.
     
     Args:

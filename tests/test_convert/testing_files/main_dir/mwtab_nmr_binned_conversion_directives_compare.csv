@@ -74,7 +74,7 @@
 ,WATER_SUPPRESSION,water_suppression,False,protocol,type=NMR,str,,,,
 ,,,,,,,,,,
 #tags,#NMR_BINNED_DATA.id,#.collate,*#.headers,*#.sort_by,#.sort_order,#.table,#.value_type,,,
-,Data,assignment,"""Bin range(ppm)""=assignment,sample.id=intensity",assignment,ascending,measurement,matrix,,,
+,Data,assignment,"""Bin range(ppm)""=assignment,entity.id=intensity",assignment,ascending,measurement,matrix,,,
 ,,,,,,,,,,
 #tags,#NMR_BINNED_DATA.id,*#.fields,#.table,#.value_type,,,,,,
 ,Units,intensity%type,measurement,str,,,,,,

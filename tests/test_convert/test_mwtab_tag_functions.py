@@ -62,7 +62,7 @@ def test_ancestor_has_storage_protocol_list(mwtab_json, capsys):
     working_json["protocol"]["test_storage"] = {"description":"test storage", 
                                                 "id":"test_storage", 
                                                 "type":"storage",
-                                                "parentID":"file_storage",
+                                                "parent_id":"file_storage",
                                                 "data_files":["test_file.raw"]}
     working_json["entity"]['16_A0_Lung_naive_0days_170427_UKy_GCH_rep1']["protocol.id"].append("test_storage")
     
@@ -88,7 +88,7 @@ def test_ancestor_has_storage_protocol_str(mwtab_json, capsys):
     working_json["protocol"]["test_storage"] = {"description":"test storage", 
                                                 "id":"test_storage", 
                                                 "type":"storage",
-                                                "parentID":"file_storage",
+                                                "parent_id":"file_storage",
                                                 "data_files":"test_file.raw"}
     working_json["entity"]['16_A0_Lung_naive_0days_170427_UKy_GCH_rep1']["protocol.id"].append("test_storage")
     
@@ -114,7 +114,7 @@ def test_sibling_has_storage_protocol_str(mwtab_json, capsys):
     working_json["protocol"]["test_storage"] = {"description":"test storage", 
                                                 "id":"test_storage", 
                                                 "type":"storage",
-                                                "parentID":"file_storage",
+                                                "parent_id":"file_storage",
                                                 "data_files":"test_file.raw"}
     working_json["entity"]['16_A0_Lung_naive_0days_170427_UKy_GCH_rep1-protein']["protocol.id"].append("test_storage")
     
@@ -140,7 +140,7 @@ def test_sibling_has_storage_protocol_list(mwtab_json, capsys):
     working_json["protocol"]["test_storage"] = {"description":"test storage", 
                                                 "id":"test_storage", 
                                                 "type":"storage",
-                                                "parentID":"file_storage",
+                                                "parent_id":"file_storage",
                                                 "data_files":["test_file.raw"]}
     working_json["entity"]['16_A0_Lung_naive_0days_170427_UKy_GCH_rep1-protein']["protocol.id"].append("test_storage")
     
@@ -171,7 +171,7 @@ def test_sample_has_factors_str(mwtab_json, capsys):
                                                             "naive"
                                                             ]
                                               }
-    working_json["measurement"]["test_measurement"] = {"id":"test_measurement", "sample.id":"test_sample"}
+    working_json["measurement"]["test_measurement"] = {"id":"test_measurement", "entity.id":"test_sample"}
     
     with does_not_raise():
         ss_factors = create_subject_sample_factors(working_json)
@@ -207,7 +207,7 @@ def test_sample_has_factors_list(mwtab_json, capsys):
                                                             "naive"
                                                             ]
                                               }
-    working_json["measurement"]["test_measurement"] = {"id":"test_measurement", "sample.id":"test_sample"}
+    working_json["measurement"]["test_measurement"] = {"id":"test_measurement", "entity.id":"test_sample"}
     
     with does_not_raise():
         ss_factors = create_subject_sample_factors(working_json)
@@ -283,7 +283,7 @@ def test_sample_missing_factor(mwtab_json, capsys):
                                                             "ICMS_file_storage16"
                                                             ]
                                               }
-    working_json["measurement"]["test_measurement"] = {"id":"test_measurement", "sample.id":"test_sample"}
+    working_json["measurement"]["test_measurement"] = {"id":"test_measurement", "entity.id":"test_sample"}
     
     with does_not_raise():
         ss_factors = create_subject_sample_factors(working_json)
