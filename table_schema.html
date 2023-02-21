@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Table Schema &mdash; MESSES 0.1.dev1+g580c644 documentation</title>
+  <title>Table Schema &mdash; MESSES 0.1.dev1+gfd456c8 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -32,7 +32,7 @@
             <a href="index.html" class="icon icon-home"> MESSES
           </a>
               <div class="version">
-                0.1.dev1+g580c644
+                0.1.dev1+gfd456c8
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -256,7 +256,7 @@
 <dl class="simple">
 <dt><strong>Any field for any record that ends in “.id” must be an id to an existing record in that field’s table.</strong></dt><dd><ul class="simple">
 <li><p>For instance, if the field “protocol.id” : “tissue_extraction” is in a sample record then the protocol table must contain a record with the id “tissue_extraction”.</p></li>
-<li><p>Similarly, if a record has the “parentID” field the value must be an existing id in the same table as that record. For example, if “parentID” : “tissue_extraction” is in a record in the protocol table then the protocol table must containe a record with the id “tissue_extraction”.</p></li>
+<li><p>Similarly, if a record has the “parent_id” field the value must be an existing id in the same table as that record. For example, if “parent_id” : “tissue_extraction” is in a record in the protocol table then the protocol table must containe a record with the id “tissue_extraction”.</p></li>
 <li><p>The exception to this rule is the subject and sample tables. Subject records must have a parent in the sample table, and sample records could have a parent in either the subject or sample tables.</p></li>
 </ul>
 </dd>

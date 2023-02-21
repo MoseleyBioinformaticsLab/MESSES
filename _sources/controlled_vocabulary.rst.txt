@@ -371,7 +371,10 @@ This translates to JSON Schema properties as:
 
 Just know that for most keywords in `JSON Schema <https://json-schema.org/understanding-json-schema/>`_ 
 it is acceptable to put a string value in place of the proper type, and that this 
-is done to support the tabular form of the controlled vocabulary as described below.
+is done to support the tabular form of the controlled vocabulary as described below. 
+A best attempt has been made to support most of the features of JSON Schema, but 
+not everything has been tested or is guarenteed to work. If you find an error or 
+something you would like to be added then please open an `issue <https://github.com/MoseleyBioinformaticsLab/MESSES/issues>`_ on GitHub.
 
 Controlled Vocabulary (Second Layer) - Table
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
