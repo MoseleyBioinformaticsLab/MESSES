@@ -145,12 +145,12 @@ def test_json_command_additional_schema_option_no_base_schema():
     assert output == "Error:  The entry ['factor']['Time Point'] is missing the required property 'allowed_values'." + "\n"
 
 
-def test_json_command_cv_option_json():
-    """Test that the --cv option applies cv checking with JSON cv."""
+def test_json_command_pds_option_json():
+    """Test that the --pds option applies pds checking with JSON pds."""
     
-    test_file = "simplified_base_input_cv_error.json"
+    test_file = "simplified_base_input_pds_error.json"
     
-    command = "messes validate json ../" + test_file + " --cv ../controlled_vocabulary_base.json"
+    command = "messes validate json ../" + test_file + " --pds ../PDS_base.json --silent nuisance"
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -159,40 +159,12 @@ def test_json_command_cv_option_json():
                       "is missing the required property 'concentration'." + "\n"
 
 
-def test_json_command_cv_option_csv():
-    """Test that the --cv option applies cv checking with csv cv."""
+def test_json_command_pds_option_csv():
+    """Test that the --pds option applies pds checking with csv pds."""
     
-    test_file = "simplified_base_input_cv_error.json"
+    test_file = "simplified_base_input_pds_error.json"
     
-    command = "messes validate json ../" + test_file + " --cv ../controlled_vocabulary_base.csv --silent nuisance"
-    command = command.split(" ")
-    subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
-    output = subp.stderr
-    
-    assert output == "Error:  The entry ['measurement']['dUMP-13C0-29_C1-2_Lung_allogenic_7days_170427_UKy_GCH_rep2-polar-ICMS_A'] " +\
-                      "is missing the required property 'concentration'." + "\n"
-                     
-
-def test_json_command_cv_option_xlsx():
-    """Test that the --cv option applies cv checking with xlsx cv."""
-    
-    test_file = "simplified_base_input_cv_error.json"
-    
-    command = "messes validate json ../" + test_file + " --cv ../controlled_vocabulary_base.xlsx:Sheet1 --silent nuisance"
-    command = command.split(" ")
-    subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
-    output = subp.stderr
-    
-    assert output == "Error:  The entry ['measurement']['dUMP-13C0-29_C1-2_Lung_allogenic_7days_170427_UKy_GCH_rep2-polar-ICMS_A'] " +\
-                      "is missing the required property 'concentration'." + "\n"
-
-
-def test_json_command_cv_option_xlsx_default_sheet_name():
-    """Test that the --cv option applies cv checking with xlsx cv where the sheet name is not specified."""
-    
-    test_file = "simplified_base_input_cv_error.json"
-    
-    command = "messes validate json ../" + test_file + " --cv ../controlled_vocabulary_base.xlsx --silent nuisance"
+    command = "messes validate json ../" + test_file + " --pds ../PDS_base.csv --silent nuisance"
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -201,15 +173,43 @@ def test_json_command_cv_option_xlsx_default_sheet_name():
                       "is missing the required property 'concentration'." + "\n"
                      
 
-def test_json_command_cv_option_stdin_csv():
-    """Test that the --cv option applies cv checking with csv read from stdin."""
+def test_json_command_pds_option_xlsx():
+    """Test that the --pds option applies pds checking with xlsx pds."""
     
-    test_file = "simplified_base_input_cv_error.json"
+    test_file = "simplified_base_input_pds_error.json"
+    
+    command = "messes validate json ../" + test_file + " --pds ../PDS_base.xlsx:Sheet1 --silent nuisance"
+    command = command.split(" ")
+    subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
+    output = subp.stderr
+    
+    assert output == "Error:  The entry ['measurement']['dUMP-13C0-29_C1-2_Lung_allogenic_7days_170427_UKy_GCH_rep2-polar-ICMS_A'] " +\
+                      "is missing the required property 'concentration'." + "\n"
+
+
+def test_json_command_pds_option_xlsx_default_sheet_name():
+    """Test that the --pds option applies pds checking with xlsx pds where the sheet name is not specified."""
+    
+    test_file = "simplified_base_input_pds_error.json"
+    
+    command = "messes validate json ../" + test_file + " --pds ../PDS_base.xlsx --silent nuisance"
+    command = command.split(" ")
+    subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
+    output = subp.stderr
+    
+    assert output == "Error:  The entry ['measurement']['dUMP-13C0-29_C1-2_Lung_allogenic_7days_170427_UKy_GCH_rep2-polar-ICMS_A'] " +\
+                      "is missing the required property 'concentration'." + "\n"
+                     
+
+def test_json_command_pds_option_stdin_csv():
+    """Test that the --pds option applies pds checking with csv read from stdin."""
+    
+    test_file = "simplified_base_input_pds_error.json"
     
     if platform.system() == "Windows":
-        command = "TYPE ..\\controlled_vocabulary_base.csv | messes validate json ../" + test_file + " --cv - --csv --silent nuisance"
+        command = "TYPE ..\\PDS_base.csv | messes validate json ../" + test_file + " --pds - --csv --silent nuisance"
     else:
-        command = "cat ../controlled_vocabulary_base.csv | messes validate json ../" + test_file + " --cv - --csv --silent nuisance"
+        command = "cat ../PDS_base.csv | messes validate json ../" + test_file + " --pds - --csv --silent nuisance"
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8", shell=True)
     output = subp.stderr
@@ -218,15 +218,15 @@ def test_json_command_cv_option_stdin_csv():
                       "is missing the required property 'concentration'." + "\n"
 
 
-def test_json_command_cv_option_stdin_json():
-    """Test that the --cv option applies cv checking with json read from stdin."""
+def test_json_command_pds_option_stdin_json():
+    """Test that the --pds option applies pds checking with json read from stdin."""
     
-    test_file = "simplified_base_input_cv_error.json"
+    test_file = "simplified_base_input_pds_error.json"
     
     if platform.system() == "Windows":
-        command = "TYPE ..\\controlled_vocabulary_base.json | messes validate json ../" + test_file + " --cv - --json --silent nuisance"
+        command = "TYPE ..\\PDS_base.json | messes validate json ../" + test_file + " --pds - --json --silent nuisance"
     else:
-        command = "cat ../controlled_vocabulary_base.json | messes validate json ../" + test_file + " --cv - --json --silent nuisance"
+        command = "cat ../PDS_base.json | messes validate json ../" + test_file + " --pds - --json --silent nuisance"
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8", shell=True)
     output = subp.stderr
@@ -235,54 +235,54 @@ def test_json_command_cv_option_stdin_json():
                       "is missing the required property 'concentration'." + "\n"
 
 
-def test_json_command_cv_option_stdin_wrong_type():
+def test_json_command_pds_option_stdin_wrong_type():
     """Test that an error is printed when the filetype is mismatched reading from stdin."""
     
-    test_file = "simplified_base_input_cv_error.json"
+    test_file = "simplified_base_input_pds_error.json"
     
     if platform.system() == "Windows":
-        command = "TYPE ..\\controlled_vocabulary_base.json | messes validate json ../" + test_file + " --cv - --csv --silent nuisance"
+        command = "TYPE ..\\PDS_base.json | messes validate json ../" + test_file + " --pds - --csv --silent nuisance"
     else:
-        command = "cat ../controlled_vocabulary_base.json | messes validate json ../" + test_file + " --cv - --csv --silent nuisance"
+        command = "cat ../PDS_base.json | messes validate json ../" + test_file + " --pds - --csv --silent nuisance"
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8", shell=True)
     output = subp.stderr
     
-    assert output == "Error:  A problem was encountered trying to read the controlled vocabulary from stdin. " +\
+    assert output == "Error:  A problem was encountered when trying to read the protocol-dependent schema from stdin. " +\
                       "Make sure the indicated file type is correct." + "\n"
 
 
-def test_json_command_cv_option_stdin_wrong_type2():
+def test_json_command_pds_option_stdin_wrong_type2():
     """Test that an error is printed when the filetype is mismatched reading from stdin."""
     
-    test_file = "simplified_base_input_cv_error.json"
+    test_file = "simplified_base_input_pds_error.json"
     
     if platform.system() == "Windows":
-        command = "TYPE ..\\controlled_vocabulary_base.csv | messes validate json ../" + test_file + " --cv - --json --silent nuisance"
+        command = "TYPE ..\\PDS_base.csv | messes validate json ../" + test_file + " --pds - --json --silent nuisance"
     else:
-        command = "cat ../controlled_vocabulary_base.csv | messes validate json ../" + test_file + " --cv - --json --silent nuisance"
+        command = "cat ../PDS_base.csv | messes validate json ../" + test_file + " --pds - --json --silent nuisance"
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8", shell=True)
     output = subp.stderr
     
-    assert output == "Error:  A problem was encountered trying to read the controlled vocabulary from stdin. " +\
+    assert output == "Error:  A problem was encountered when trying to read the protocol-dependent schema from stdin. " +\
                       "Make sure the indicated file type is correct." + "\n"
 
 
-def test_json_command_cv_option_stdin_no_type_given():
+def test_json_command_pds_option_stdin_no_type_given():
     """Test that an error is printed when the filetype is not given when reading from stdin."""
     
-    test_file = "simplified_base_input_cv_error.json"
+    test_file = "simplified_base_input_pds_error.json"
     
     if platform.system() == "Windows":
-        command = "TYPE ..\\controlled_vocabulary_base.csv | messes validate json ../" + test_file + " --cv - --silent nuisance"
+        command = "TYPE ..\\PDS_base.csv | messes validate json ../" + test_file + " --pds - --silent nuisance"
     else:
-        command = "cat ../controlled_vocabulary_base.csv | messes validate json ../" + test_file + " --cv - --silent nuisance"
+        command = "cat ../PDS_base.csv | messes validate json ../" + test_file + " --pds - --silent nuisance"
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8", shell=True)
     output = subp.stderr
     
-    assert output == "Error:  When reading the controlled vocabulary from standard input you must specify that it is '--csv' or '--json'." + "\n"
+    assert output == "Error:  When reading the protocol-dependent schema from standard input you must specify that it is '--csv' or '--json'." + "\n"
     
 
 def test_json_command_read_input_from_stdin():
@@ -346,11 +346,83 @@ def test_json_command_silent_nuisance():
                       "not used by any of the entities or measurements." + "\n"
 
 
+def test_json_command_format_mwtab_MS():
+    """Test that --format mwtab_MS works."""
+    
+    test_file = "MS_base_input_truncated_mwtab_error.json"
+    
+    command = "messes validate json ../" + test_file + " --silent nuisance --format mwtab_MS"
+    command = command.split(" ")
+    subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
+    output = subp.stderr
+    
+    errors = [
+        "Error:  The entry ['protocol']['ICMS1'] is missing the required property 'column_name'.",
+        "Error:  The entry ['protocol']['mouse_tissue_collection'] is missing the required property 'description'.",
+        "Error:  The entry ['protocol']['naive'] is missing the required property 'description'.",
+        "Error:  The entry ['protocol']['polar_extraction'] is missing the required property 'description'.",
+        "Error:  The entry ['measurement']['(S)-2-Acetolactate Glutaric acid Methylsuccinic acid-13C0-16_A0_Lung_naive_0days_170427_UKy_GCH_rep1-polar-ICMS_A'] " + \
+        "is missing the required property 'formula'."
+        ]
+    for error in errors:
+        assert error in output
+        
+
+def test_json_command_format_mwtab_NMR():
+    """Test that --format mwtab_NMR works."""
+    
+    test_file = "NMR_base_input_mwtab_error.json"
+    
+    command = "messes validate json ../" + test_file + " --silent nuisance --format mwtab_NMR"
+    command = command.split(" ")
+    subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
+    output = subp.stderr
+    
+    errors = [
+        "Error:  The value for ['measurement'][\"AXP-1'_1-16_A0_Lung_naive_0days_170427_UKy_GCH_rep1-polar-NMR_A-NMR2\"]['base_inchi'] " +\
+        "cannot be empty.",
+        
+        "Error:  The entry ['measurement'][\"AXP-1'_1-16_A0_Lung_naive_0days_170427_UKy_GCH_rep1-polar-NMR_A-NMR2\"] " +\
+        "is missing the required property 'intensity'."
+        ]
+    for error in errors:
+        assert error in output
+        
+
+def test_json_command_format_mwtab_NMR_bin():
+    """Test that --format mwtab_NMR_bin works."""
+    
+    test_file = "NMR_binned_base_input_mwtab_error.json"
+    
+    command = "messes validate json ../" + test_file + " --silent nuisance --format mwtab_NMR_bin"
+    command = command.split(" ")
+    subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
+    output = subp.stderr
+    
+    assert output == "Error:  The entry ['measurement']['224.71133001281973-976.6723646467382'] is missing the required property 'intensity'.\n"
 
 
-##############
-## save-schema
-##############
+def test_json_command_format_bad_format():
+    """Test that an unknown format prints an error."""
+    
+    test_file = "NMR_binned_base_input_mwtab_error.json"
+    
+    command = "messes validate json ../" + test_file + " --silent nuisance --format asdf"
+    command = command.split(" ")
+    subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
+    output = subp.stderr
+    
+    from messes.validate.validate import supported_formats
+    extra_message = '\n   '.join(['"' + supported_format + '"' for supported_format in supported_formats])
+    
+    assert "Error:  Unknown format, asdf." in output
+    assert extra_message in output
+
+
+
+#############
+# save-schema
+#############
 
 def test_save_schema_command_no_options():
     """Test that the save_schema commmand produces expected file with no options."""
@@ -371,10 +443,10 @@ def test_save_schema_command_no_options():
     assert output_schema == base_schema
 
 
-def test_save_schema_command_cv():
-    """Test that the save_schema commmand produces expected file with cv option."""
+def test_save_schema_command_pds():
+    """Test that the save_schema commmand produces expected file with pds option."""
     
-    command = "messes validate save-schema output --cv ../controlled_vocabulary_base.json"
+    command = "messes validate save-schema output --pds ../PDS_base.json --silent nuisance"
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -384,16 +456,16 @@ def test_save_schema_command_cv():
     with open(output_path_json, 'r') as jsonFile:
         output_schema = json.load(jsonFile)
     
-    with open("base_schema_plus_cv.json", 'r') as jsonFile:
+    with open("base_schema_plus_pds.json", 'r') as jsonFile:
         base_schema = json.load(jsonFile)
         
     assert output_schema == base_schema
     
 
-def test_save_schema_command_cv_and_input():
-    """Test that the save_schema commmand produces expected file with cv option and input JSON."""
+def test_save_schema_command_pds_and_input():
+    """Test that the save_schema commmand produces expected file with pds option and input JSON."""
     
-    command = "messes validate save-schema output.json --input ../simplified_base_input.json --cv ../controlled_vocabulary_base.json"
+    command = "messes validate save-schema output.json --input ../simplified_base_input.json --pds ../PDS_base.json --silent nuisance"
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -403,19 +475,19 @@ def test_save_schema_command_cv_and_input():
     with open(output_path_json, 'r') as jsonFile:
         output_schema = json.load(jsonFile)
     
-    with open("base_schema_plus_cv_plus_input.json", 'r') as jsonFile:
+    with open("base_schema_plus_pds_plus_input.json", 'r') as jsonFile:
         base_schema = json.load(jsonFile)
         
     assert output_schema == base_schema
     
 
-def test_save_schema_command_cv_from_stdin_csv():
-    """Test that the save_schema commmand produces expected file with cv option reading from stdin csv."""
+def test_save_schema_command_pds_from_stdin_csv():
+    """Test that the save_schema commmand produces expected file with pds option reading from stdin csv."""
     
     if platform.system() == "Windows":
-        command = "TYPE ..\\controlled_vocabulary_base.csv | messes validate save-schema output --input ../simplified_base_input.json --cv - --csv --silent nuisance"
+        command = "TYPE ..\\PDS_base.csv | messes validate save-schema output --input ../simplified_base_input.json --pds - --csv --silent nuisance"
     else:
-        command = "cat ../controlled_vocabulary_base.csv | messes validate save-schema output --input ../simplified_base_input.json --cv - --csv --silent nuisance"
+        command = "cat ../PDS_base.csv | messes validate save-schema output --input ../simplified_base_input.json --pds - --csv --silent nuisance"
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8", shell=True)
     output = subp.stderr
@@ -425,19 +497,19 @@ def test_save_schema_command_cv_from_stdin_csv():
     with open(output_path_json, 'r') as jsonFile:
         output_schema = json.load(jsonFile)
     
-    with open("base_schema_plus_cv_plus_input2.json", 'r') as jsonFile:
+    with open("base_schema_plus_pds_plus_input2.json", 'r') as jsonFile:
         base_schema = json.load(jsonFile)
         
     assert output_schema == base_schema
 
 
-def test_save_schema_command_cv_from_stdin_json():
-    """Test that the save_schema commmand produces expected file with cv option reading from stdin json."""
+def test_save_schema_command_pds_from_stdin_json():
+    """Test that the save_schema commmand produces expected file with pds option reading from stdin json."""
     
     if platform.system() == "Windows":
-        command = "TYPE ..\\controlled_vocabulary_base.json | messes validate save-schema output --input ../simplified_base_input.json --cv - --json --silent nuisance"
+        command = "TYPE ..\\PDS_base.json | messes validate save-schema output --input ../simplified_base_input.json --pds - --json --silent nuisance"
     else:
-        command = "cat ../controlled_vocabulary_base.json | messes validate save-schema output --input ../simplified_base_input.json --cv - --json --silent nuisance"
+        command = "cat ../PDS_base.json | messes validate save-schema output --input ../simplified_base_input.json --pds - --json --silent nuisance"
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8", shell=True)
     output = subp.stderr
@@ -447,7 +519,7 @@ def test_save_schema_command_cv_from_stdin_json():
     with open(output_path_json, 'r') as jsonFile:
         output_schema = json.load(jsonFile)
     
-    with open("base_schema_plus_cv_plus_input.json", 'r') as jsonFile:
+    with open("base_schema_plus_pds_plus_input.json", 'r') as jsonFile:
         base_schema = json.load(jsonFile)
         
     assert output_schema == base_schema
@@ -457,9 +529,9 @@ def test_save_schema_command_input_from_stdin():
     """Test that the save_schema commmand produces expected file with input option reading from stdin."""
     
     if platform.system() == "Windows":
-        command = "TYPE ..\\simplified_base_input.json | messes validate save-schema output --input - --cv ../controlled_vocabulary_base.json"
+        command = "TYPE ..\\simplified_base_input.json | messes validate save-schema output --input - --pds ../PDS_base.json --silent nuisance"
     else:
-        command = "cat ../simplified_base_input.json | messes validate save-schema output --input - --cv ../controlled_vocabulary_base.json"
+        command = "cat ../simplified_base_input.json | messes validate save-schema output --input - --pds ../PDS_base.json --silent nuisance"
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8", shell=True)
     output = subp.stderr
@@ -469,7 +541,7 @@ def test_save_schema_command_input_from_stdin():
     with open(output_path_json, 'r') as jsonFile:
         output_schema = json.load(jsonFile)
     
-    with open("base_schema_plus_cv_plus_input.json", 'r') as jsonFile:
+    with open("base_schema_plus_pds_plus_input.json", 'r') as jsonFile:
         base_schema = json.load(jsonFile)
         
     assert output_schema == base_schema
@@ -478,7 +550,7 @@ def test_save_schema_command_input_from_stdin():
 def test_save_schema_command_silent_nuisance():
     """Test that the --silent nuisance option silences nuisance warnings."""
     
-    command = "messes validate save-schema output --input ../simplified_base_input.json --cv ../controlled_vocabulary_base.csv --silent nuisance"
+    command = "messes validate save-schema output --input ../simplified_base_input.json --pds ../PDS_base.csv --silent nuisance"
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -488,7 +560,7 @@ def test_save_schema_command_silent_nuisance():
     with open(output_path_json, 'r') as jsonFile:
         output_schema = json.load(jsonFile)
     
-    with open("base_schema_plus_cv_plus_input2.json", 'r') as jsonFile:
+    with open("base_schema_plus_pds_plus_input2.json", 'r') as jsonFile:
         base_schema = json.load(jsonFile)
         
     assert output_schema == base_schema
@@ -497,7 +569,7 @@ def test_save_schema_command_silent_nuisance():
 def test_save_schema_command_silent_full():
     """Test that the --silent nuisance option silences nuisance warnings."""
     
-    command = "messes validate save-schema output --input ../simplified_base_input_protocol_cv_warning.json --cv ../controlled_vocabulary_base.csv --silent full"
+    command = "messes validate save-schema output --input ../simplified_base_input_protocol_pds_warning.json --pds ../PDS_base.csv --silent full"
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -507,7 +579,7 @@ def test_save_schema_command_silent_full():
     with open(output_path_json, 'r') as jsonFile:
         output_schema = json.load(jsonFile)
     
-    with open("base_schema_plus_cv_plus_input2.json", 'r') as jsonFile:
+    with open("base_schema_plus_pds_plus_input2.json", 'r') as jsonFile:
         base_schema = json.load(jsonFile)
         
     assert output_schema == base_schema
@@ -526,6 +598,63 @@ def test_save_schema_command_stdout():
     output_schema = json.loads(subp.stdout)
     
     with open("base_schema.json", 'r') as jsonFile:
+        base_schema = json.load(jsonFile)
+        
+    assert output_schema == base_schema
+
+
+def test_save_schema_command_format_mwtab_MS():
+    """Test that the save_schema commmand produces expected file for the mwtab_MS format."""
+    
+    command = "messes validate save-schema output --format mwtab_MS --silent nuisance"
+    command = command.split(" ")
+    subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
+    output = subp.stderr
+    
+    assert output == ""
+    
+    with open(output_path_json, 'r') as jsonFile:
+        output_schema = json.load(jsonFile)
+    
+    with open("mwtab_MS_schema.json", 'r') as jsonFile:
+        base_schema = json.load(jsonFile)
+        
+    assert output_schema == base_schema
+    
+
+def test_save_schema_command_format_mwtab_NMR():
+    """Test that the save_schema commmand produces expected file for the mwtab_NMR format."""
+    
+    command = "messes validate save-schema output --format mwtab_NMR --silent nuisance"
+    command = command.split(" ")
+    subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
+    output = subp.stderr
+    
+    assert output == ""
+    
+    with open(output_path_json, 'r') as jsonFile:
+        output_schema = json.load(jsonFile)
+    
+    with open("mwtab_NMR_schema.json", 'r') as jsonFile:
+        base_schema = json.load(jsonFile)
+        
+    assert output_schema == base_schema
+    
+
+def test_save_schema_command_format_mwtab_NMR_bin():
+    """Test that the save_schema commmand produces expected file for the mwtab_NMR_bin format."""
+    
+    command = "messes validate save-schema output --format mwtab_NMR_bin --silent nuisance"
+    command = command.split(" ")
+    subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
+    output = subp.stderr
+    
+    assert output == ""
+    
+    with open(output_path_json, 'r') as jsonFile:
+        output_schema = json.load(jsonFile)
+    
+    with open("mwtab_NMR_bin_schema.json", 'r') as jsonFile:
         base_schema = json.load(jsonFile)
         
     assert output_schema == base_schema
@@ -562,15 +691,15 @@ def test_schema_command_success():
 
 
 #############
-## cv
+## pds
 #############
 
-def test_cv_command_no_errors():
-    """Test the cv command."""
+def test_pds_command_no_errors():
+    """Test the pds command."""
     
-    test_file = "controlled_vocabulary_base.json"
+    test_file = "PDS_base.json"
     
-    command = "messes validate cv ../" + test_file
+    command = "messes validate pds ../" + test_file + " --silent nuisance"
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -578,13 +707,13 @@ def test_cv_command_no_errors():
     assert output == ""
 
 
-def test_cv_command_read_from_stdin_csv():
-    """Test the cv command can read from stdin."""
+def test_pds_command_read_from_stdin_csv():
+    """Test the pds command can read from stdin."""
     
     if platform.system() == "Windows":
-        command = "TYPE ..\\controlled_vocabulary_base.csv | messes validate cv - --csv --silent nuisance"
+        command = "TYPE ..\\PDS_base.csv | messes validate pds - --csv --silent nuisance"
     else:
-        command = "cat ../controlled_vocabulary_base.csv | messes validate cv - --csv --silent nuisance"
+        command = "cat ../PDS_base.csv | messes validate pds - --csv --silent nuisance"
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8", shell=True)
     output = subp.stderr
@@ -592,13 +721,13 @@ def test_cv_command_read_from_stdin_csv():
     assert output == ""
 
 
-def test_cv_command_read_from_stdin_json():
-    """Test the cv command can read from stdin."""
+def test_pds_command_read_from_stdin_json():
+    """Test the pds command can read from stdin."""
     
     if platform.system() == "Windows":
-        command = "TYPE ..\\controlled_vocabulary_base.json | messes validate cv - --json"
+        command = "TYPE ..\\PDS_base.json | messes validate pds - --json --silent nuisance"
     else:
-        command = "cat ../controlled_vocabulary_base.json | messes validate cv - --json"
+        command = "cat ../PDS_base.json | messes validate pds - --json --silent nuisance"
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8", shell=True)
     output = subp.stderr
@@ -606,10 +735,10 @@ def test_cv_command_read_from_stdin_json():
     assert output == ""
     
 
-def test_cv_command_silent_full():
-    """Test the cv command warnings are silenced with silent full."""
+def test_pds_command_silent_full():
+    """Test the pds command warnings are silenced with silent full."""
     
-    command = "messes validate cv ../controlled_vocabulary_base.csv --csv --silent full"
+    command = "messes validate pds ../PDS_base.csv --csv --silent full"
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8", shell=True)
     output = subp.stderr

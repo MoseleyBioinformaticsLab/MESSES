@@ -33,3 +33,11 @@ Example Update Directives:
 To run with these new settings:
 
    messes convert mwtab nmr_binned NMR_binned_base_input.json NMR_binned_output --update update_directives.json
+
+
+Input Files:
+NMR_binned_base_input.json
+
+Output Files:
+NMR_binned_output.json
+NMR_binned_output.txt

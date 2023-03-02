@@ -21,10 +21,10 @@ For example:
 
 import sys
 
-from . import __version__
-from .extract import extract
-from .validate import validate
-from .convert import convert
+from messes import __version__
+from messes.extract import extract
+from messes.validate import validate
+from messes.convert import convert
 
 
 def main():

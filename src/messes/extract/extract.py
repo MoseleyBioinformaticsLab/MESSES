@@ -54,7 +54,7 @@ Regular Expression Format:
 ## TODO 
 ## Make sure verify_metadata checks for project.id and study.id in subject, samples, and factors.
 ## In validate have an option to check that fields with the same name in the same table have the same type.
-## In validate make sure to check that parentID for subjects and samples only appears in one table, if a parentID matches a subject and sample there is a problem.
+## In validate make sure to check that parent_id for subjects and samples only appears in one table, if a parent_id matches a subject and sample there is a problem.
 ## In validate make sure factors have to have more than 1 allowed_value.
 ## Should it be required to have at least 1 treatment protocol?
 ## Validate that all protocols are in lineages from measurement samples? Currently convert gets all the sample ids from measurements table and 
@@ -485,7 +485,7 @@ class RecordMaker(object) :
         for maker in child.fieldMakers :
             if (reMatch := re.match('(\w*)\.(.*)$', maker.field)) and reMatch.group(1) == table :
                 maker.field = reMatch.group(2)
-        child.addField(table,"parentID")
+        child.addField(table,"parent_id")
         child.addColumnOperand(parentIDIndex)
         
         return child
@@ -2444,16 +2444,16 @@ class TagParser(object):
         """
         entities_with_parentIDs = []
         for tableKey, table in self.extraction.items():
-            entities_with_parentIDs.extend((entity, tableKey, self.findParent(entity["parentID"])) for entity in table.values() if "parentID" in entity)
+            entities_with_parentIDs.extend((entity, tableKey, self.findParent(entity["parent_id"])) for entity in table.values() if "parent_id" in entity)
 
         parent2children = collections.defaultdict(list)
         terminalParentsByTable = collections.defaultdict(list)
         for entity_tuple in entities_with_parentIDs:
-            parent2children[entity_tuple[0]["parentID"]].append(entity_tuple[0]["id"])
+            parent2children[entity_tuple[0]["parent_id"]].append(entity_tuple[0]["id"])
             if entity_tuple[2] == None:
-                terminalParentsByTable[entity_tuple[1]].append(entity_tuple[0]["parentID"])
-            elif "parentID" not in entity_tuple[2][1]:
-                terminalParentsByTable[entity_tuple[2][0]].append(entity_tuple[0]["parentID"])
+                terminalParentsByTable[entity_tuple[1]].append(entity_tuple[0]["parent_id"])
+            elif "parent_id" not in entity_tuple[2][1]:
+                terminalParentsByTable[entity_tuple[2][0]].append(entity_tuple[0]["parent_id"])
 
         lineages = collections.defaultdict(list)
         for tableKey in  terminalParentsByTable:

@@ -698,9 +698,10 @@ def compute_string_value(input_json: dict, conversion_table: str, conversion_rec
                                         record_attributes, 
                                         required, 
                                         silent)
-            value_for_each_record.append(value)
+            if value is not None:
+                value_for_each_record.append(value)
         
-        joined_string = delimiter.join(value_for_each_record)
+        joined_string = delimiter.join(value_for_each_record) if value_for_each_record else None
         return joined_string
     
     ## record_id

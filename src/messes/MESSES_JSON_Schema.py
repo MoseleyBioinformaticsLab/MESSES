@@ -964,3 +964,35 @@ jsonschema.validate(instance, schema)
 
 
 
+
+
+mwtab_schema = \
+{
+ "type": "object",
+ "properties": {
+    "protocol":{
+        "type": "object",
+        "additionalProperties":{
+            "type":"object",
+            "if":{"properties":{"machine_type":{"const":"MS"}}},
+            "then":{
+                "properties":{
+                    "chromatography_description":{"type":"string", "minLength":1}
+                    },
+                "required":["chromatography_description"]}
+            }}}}
+
+
+
+instance = {"protocol":{"ICMS1":{'description': 'Mouse is sacrificed and tissues are harvested.',
+                                 'filename': 'mouse_tissue_procedure.pdf',
+                                 'id': 'mouse_tissue_collection',
+                                 'sample_type': 'mouse',
+                                 'type': 'collection'}}}
+
+for error in create_validator(mwtab_schema_MS).iter_errors(instance):
+    print(error)
+
+jsonschema.validate(instance, mwtab_schema)
+
+

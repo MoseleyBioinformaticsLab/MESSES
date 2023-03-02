@@ -6,7 +6,7 @@ CO:COLLECTION_PROTOCOL_ID        	mouse_tissue_collection
 CO:COLLECTION_SUMMARY            	Mouse is sacrificed and tissues are harvested.
 CO:SAMPLE_TYPE                   	mouse
 #METABOLOMICS WORKBENCH ANALYSIS_ID:AN000000 STUDY_ID:ST000000
-CREATED_ON          	2023-01-04
+CREATED_ON          	2023-03-02
 VERSION             	1
 #PROJECT
 PR:ADDRESS                       	Gerhard C. Hildebrandt, MD, Room no. CC401A, Ben Roach Building, Markey Cancer
@@ -44,14 +44,16 @@ PR:PROJECT_SUMMARY               	will potentially identify different metabolic 
 PR:PROJECT_SUMMARY               	organs.
 PR:PROJECT_TITLE                 	Metabolomics of lung injury after allogeneic hematopoietic cell transplantation
 #SAMPLEPREP
-SP:SAMPLEPREP_PROTOCOL_FILENAME  	study_treatments.pdf;study_treatments.pdf;study_treatments.pdf
+SP:SAMPLEPREP_PROTOCOL_FILENAME  	No tissue_quench file.;No frozen_tissue_grind
+SP:SAMPLEPREP_PROTOCOL_FILENAME  	file.;4B_Extract_Polar_Lipid_Prot_Fan_070417.pdf;['4D_17Jun4_Fan_Prot_Quant.pdf',
+SP:SAMPLEPREP_PROTOCOL_FILENAME  	'4B_Extract_Polar_Lipid_Prot_Fan_070417.pdf'];4A2_Media Extraction with acetone
+SP:SAMPLEPREP_PROTOCOL_FILENAME  	ppt step.pdf
 SP:SAMPLEPREP_PROTOCOL_ID        	
-SP:SAMPLEPREP_PROTOCOL_ID        	IC-FTMS_preparation;acetone_extraction;frozen_tissue_grind;lipid_extraction;polar_extraction;protein_extraction;tissue_quench
-SP:SAMPLEPREP_SUMMARY            	Before going into the IC-FTMS the frozen sample is reconstituted in water.
-SP:SAMPLEPREP_SUMMARY            	acetone extraction of polar metabolites Frozen tissue is ground in a SPEX grinder
-SP:SAMPLEPREP_SUMMARY            	under liquid nitrogen to homogenize the sample. Lipid extraction from homogenate.
-SP:SAMPLEPREP_SUMMARY            	Polar extraction from homogenate, lypholized, and frozen. Protein extraction and
-SP:SAMPLEPREP_SUMMARY            	quantification. Tissue is frozen in liquid nitrogen to stop metabolic processes.
+SP:SAMPLEPREP_PROTOCOL_ID        	tissue_quench;frozen_tissue_grind;polar_extraction;protein_extraction;acetone_extraction
+SP:SAMPLEPREP_SUMMARY            	Tissue is frozen in liquid nitrogen to stop metabolic processes.;Frozen tissue is
+SP:SAMPLEPREP_SUMMARY            	ground in a SPEX grinder under liquid nitrogen to homogenize the sample.;Polar
+SP:SAMPLEPREP_SUMMARY            	extraction from homogenate, lypholized, and frozen.;Protein extraction and
+SP:SAMPLEPREP_SUMMARY            	quantification.;acetone extraction of polar metabolites
 #STUDY
 ST:ADDRESS                       	CTW-453, 900 South Limestone street. UKY. Lexington, Kentucky-40536
 ST:DEPARTMENT                    	MCC
@@ -656,9 +658,9 @@ SUBJECT_SAMPLE_FACTORS                                 	11_B1-1_syngenic_7days_U
 TR:TREATMENT_PROTOCOL_FILENAME   	study_treatments.pdf;study_treatments.pdf;study_treatments.pdf
 TR:TREATMENT_PROTOCOL_ID         	allogenic;naive;syngenic
 TR:TREATMENT_SUMMARY             	Mouse with allogenic bone marrow transplant. Fed with semi-liquid diet
-TR:TREATMENT_SUMMARY             	supplemented with fully labeled glucose for 24 hours before harvest. Mouse with
+TR:TREATMENT_SUMMARY             	supplemented with fully labeled glucose for 24 hours before harvest.;Mouse with
 TR:TREATMENT_SUMMARY             	no treatment. Fed with semi-liquid diet supplemented with fully labeled glucose
-TR:TREATMENT_SUMMARY             	for 24 hours before harvest. Mouse with syngenic bone marrow transplant. Fed with
+TR:TREATMENT_SUMMARY             	for 24 hours before harvest.;Mouse with syngenic bone marrow transplant. Fed with
 TR:TREATMENT_SUMMARY             	semi-liquid diet supplemented with fully labeled glucose for 24 hours before
 TR:TREATMENT_SUMMARY             	harvest.
 #NMR

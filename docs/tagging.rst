@@ -604,7 +604,7 @@ There are 6 modifications that can be done, "assign", "append", "prepend", "rege
     * They cannot be deleted or renamed.
     * They are the only time a period, '.', can appear in the field_name.
     
-        * Ex. **#measurement.intensity.units.assign** is malformed, but **#measurement.sample.id.assign** is not.
+        * Ex. **#measurement.intensity.units.assign** is malformed, but **#measurement.entity.id.assign** is not.
 
     
 Important Points:

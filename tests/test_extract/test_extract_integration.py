@@ -154,7 +154,7 @@ def test_child_tag():
     with open(output_path, "r") as f:
         output_json = json.loads(f.read())
                                 
-    assert output_json["sample"]["01_A0_Spleen_naive_0days_170427_UKy_GCH_rep1-protein"]["parentID"] == "01_A0_Spleen_naive_0days_170427_UKy_GCH_rep1"
+    assert output_json["sample"]["01_A0_Spleen_naive_0days_170427_UKy_GCH_rep1-protein"]["parent_id"] == "01_A0_Spleen_naive_0days_170427_UKy_GCH_rep1"
     assert output_json["sample"]["01_A0_Spleen_naive_0days_170427_UKy_GCH_rep1-protein"]["protein_weight"] == "0"
     assert output_json["sample"]["01_A0_Spleen_naive_0days_170427_UKy_GCH_rep1-protein"]["protein_weight%units"] == "mg"
     assert output_json["sample"]["01_A0_Spleen_naive_0days_170427_UKy_GCH_rep1-protein"]["protocol.id"] == ["protein_extraction"]

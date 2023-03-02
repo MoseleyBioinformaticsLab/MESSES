@@ -3,17 +3,21 @@
 Validate JSON files.
 
 Usage:
-    messes validate json <input_JSON> [--cv=<cv> [--csv | --xlsx | --json] | --no_base_schema] 
+    messes validate json <input_JSON> [--pds=<pds> [--csv | --xlsx | --json] | --no_base_schema] 
                                       [--no_extra_checks]
                                       [--additional=<add_schema>] 
+                                      [--format=<format>]
                                       [--silent=<level>]
-    messes validate save-schema <output_schema> [--input=<input_JSON>] [--cv=<cv> [--csv | --xlsx | --json]] [--silent=<level>]
+    messes validate save-schema <output_schema> [--input=<input_JSON>] 
+                                                [--pds=<pds> [--csv | --xlsx | --json]] 
+                                                [--format=<format>]
+                                                [--silent=<level>]
     messes validate schema <input_schema>
-    messes validate cv <cv> [--csv | --xlsx | --json] [--silent=<level>]
+    messes validate pds <pds> [--csv | --xlsx | --json] [--silent=<level>]
     messes validate --help
     
     <input_JSON> - if '-' read from standard input.
-    <cv> - can be a JSON, csv, or xlsx file. If xlsx the default sheet name to read in is #validate, 
+    <pds> - can be a JSON, csv, or xlsx file. If xlsx the default sheet name to read in is #validate, 
            to specify a different sheet name separate it from the file name with a colon ex: file_name.xlsx:sheet_name.
            If '-' read from standard input.
     <input_schema> - must be a valid JSON Schema file. If '-' read from standard input.
@@ -25,15 +29,20 @@ Options:
     --silent <level>                     - if "full" silence all warnings, 
                                            if "nuisance" silence warnings that are more likely to be a nuisance,
                                            if "none" do not silence warnings [default: none].
-    --cv <cv>                            - a controlled vocabulary file, can be a JSON, csv, or xlsx file. 
+    --pds <pds>                            - a protocol-dependent schema file, can be a JSON, csv, or xlsx file. 
                                            If xlsx the default sheet name to read in is #validate, to specify 
                                            a different sheet name separate it from the file name with a colon 
                                            ex: file_name.xlsx:sheet_name.
-    --csv                                - indicates that the controlled vocabulary file is a csv (comma delimited) file.
-    --xlsx                               - indicates that the controlled vocabulary file is an xlsx (Excel) file.
-    --json                               - indicates that the controlled vocabulary file is a JSON file.
+    --csv                                - indicates that the protocol-dependent schema file is a csv (comma delimited) file.
+    --xlsx                               - indicates that the protocol-dependent schema file is an xlsx (Excel) file.
+    --json                               - indicates that the protocol-dependent schema file is a JSON file.
                                            If a file type is not given then it will be guessed from the file extension.
     --additional <add_schema>            - an additional JSON Schema file that will be used to validate <input_JSON>.
+    --format <format>                    - additional validation done for the desired supported format. 
+                                           Current supported formats: 
+                                               mwtab_MS, 
+                                               mwtab_NMR, 
+                                               mwtab_NMR_bin
     --no_base_schema                     - don't validate with the base JSON schema.
     --no_extra_checks                    - only do JSON Schema validation and nothing else.
     --input <input_JSON>                 - optionally give an input JSON file to save-schema to reproduce the 
@@ -41,17 +50,18 @@ Options:
     
 
 The "json" command will validate the <input_JSON> against the internal base_schema, and optional schema provided 
-by the --cv and --additional options. To validate only against a provided schema, use the --additional and --no_base_schema options.
+by the --pds and --additional options. To validate only against a provided schema, use the --additional and --no_base_schema options.
 
-The "save-schema" command will save the internal base_schema to the <output_schema> location. If --cv is given 
+The "save-schema" command will save the internal base_schema to the <output_schema> location. If --pds is given 
 then it will be parsed and placed into the base_schema. If --input is given the protocols table will be added 
-in with the CV to reproduce what happens in the json command.
+in with the PDS to reproduce what happens in the json command.
 
 The "schema" command will validate the <input_schema> against the JSON Schema meta schema.
 
-The "cv" command will validate that the <cv> file is a valid controlled vocabulary file.
+The "pds" command will validate that the <pds> file is a valid protocol-dependent schema file.
 """
 ## TODO take the MS_base_truncated and MS_base files from validate and redo convert tests and examples.
+## Go through all documentation and make sure all links of table_schema and controlled voabulary are updated.
 
 import re
 import sys
@@ -59,15 +69,17 @@ import io
 import json
 import pathlib
 import itertools
-from typing import TextIO
+from typing import Any
+from collections.abc import Iterable
 
 import docopt
 import jsonschema
 
 from messes import __version__
 from messes.extract import extract
-from messes.validate.validate_schema import base_schema, CV_schema
+from messes.validate.validate_schema import base_schema, PD_schema, mwtab_schema_MS, mwtab_schema_NMR, mwtab_schema_NMR_bin
 
+supported_formats = ["mwtab_MS", "mwtab_NMR", "mwtab_NMR_bin"]
 
 def main() :
     args = docopt.docopt(__doc__, version=__version__)
@@ -81,17 +93,18 @@ def main() :
     ## Handle json command.
     #######################
     if args["json"]:            
-        run_json_command(args["<input_JSON>"], args["--cv"], args["--additional"], 
+        run_json_command(args["<input_JSON>"], args["--pds"], args["--additional"], 
                          args["--no_base_schema"], args["--no_extra_checks"], args["--csv"], 
-                         args["--xlsx"], args["--json"], args["--silent"])
+                         args["--xlsx"], args["--json"], args["--silent"], args["--format"])
     
     
     #############################    
     ## Handle save-schema command
     #############################
     if args["save-schema"]:
-        run_save_schema_command(args["--cv"], args["<output_schema>"], args["--input"],
-                                args["--csv"], args["--xlsx"], args["--json"], args["--silent"])
+        run_save_schema_command(args["--pds"], args["<output_schema>"], args["--input"],
+                                args["--csv"], args["--xlsx"], args["--json"], args["--silent"],
+                                args["--format"])
     
     
     #########################
@@ -102,14 +115,15 @@ def main() :
         
     
     #####################
-    ## Handle cv command.
+    ## Handle pds command.
     #####################
-    if args["cv"]:
-        run_cv_command(args["<cv>"], args["--csv"], args["--xlsx"], args["--json"], args["--silent"])
+    if args["pds"]:
+        run_pds_command(args["<pds>"], args["--csv"], args["--xlsx"], args["--json"], args["--silent"])
     
     
     
-        
+## User defined types.
+JSON = dict[str, Any]|list|str|int|float|None
     
 def check(self, instance: object, format: str) -> None:
     """Check whether the instance conforms to the given format.
@@ -145,7 +159,20 @@ def check(self, instance: object, format: str) -> None:
         raise jsonschema.exceptions.FormatError("safe to convert to float", cause=None) 
 
 
-def convert_formats(validator, instance) -> bool:
+def convert_formats(validator: jsonschema.protocols.Validator, instance: dict|str|list) -> dict|str|list:
+    """Convert "integer" and "numeric" formats to int and float.
+    
+    Special function to iterate over JSON schema errors and if the custom "integer" 
+    or "numeric" formats are found converts that value in the instance to the 
+    appropriate type.
+    
+    Args:
+        validator: Validator from the jsonschema library to run iter_errors() on.
+        instance: the instance to have its values converted.
+        
+    Returns:
+        The modified instance.
+    """
     ## Get old check to save and restore.
     original_check = jsonschema.FormatChecker.check
     ## Replace check in FormatChecker.
@@ -161,8 +188,18 @@ def convert_formats(validator, instance) -> bool:
             
     jsonschema.FormatChecker.check = original_check
     
+    return instance
     
-def print_better_error_messages(errors_generator) -> bool:
+    
+def print_better_error_messages(errors_generator: Iterable[jsonschema.exceptions.ValidationError]) -> bool:
+    """Print better error messages for jsonschema validation errors.
+    
+    Args:
+        errors_generator: the generator returned from validator.iter_errors().
+    
+    Returns:
+        True if there were errors, False otherwise.
+    """
     has_errors = False
     for error in errors_generator:
         has_errors = True
@@ -185,7 +222,10 @@ def print_better_error_messages(errors_generator) -> bool:
             message += "The entry " + "[%s]" % "][".join(repr(index) for index in error.relative_path) + " is missing a dependent property.\n"
             message += error.message
         elif error.validator == "minLength":
-            custom_message = " cannot be an empty string."
+            if error.validator_value == 1 and isinstance(error.instance, str):
+                custom_message = " cannot be an empty string."
+            else:
+                custom_message = " is too short."
         elif error.validator == "maxLength":
             custom_message = " is too long."
         elif error.validator == "minItems":
@@ -221,15 +261,31 @@ def print_better_error_messages(errors_generator) -> bool:
     return has_errors
     
     
+def read_and_validate_PDS(filepath: str, is_csv: bool, is_xlsx: bool, 
+                                            is_json: bool, no_last_message: bool, silent: str) -> JSON:
+    """Read in the protocol-dependent schema from filepath and validate it.
     
-def read_and_validate_controlled_vocabulary(filepath, is_csv, is_xlsx, is_json, no_last_message, silent) -> dict:
+    Args:
+        filepath: the path to the protocol-dependent schema or "-" meaning to read from stdin.
+        is_csv: whether the protocol-dependent schema is a csv file, used for reading from stdin.
+        is_xlsx: whether the protocol-dependent schema is a xlsx file.
+        is_json: whether the protocol-dependent schema is a json file, used for reading from stdin.
+        no_last_message: if True do not print a message about the protocol-dependent schema being invalid and execution stopping.
+        silent: if "full" do not print any warnings, if "nuisance" do not print nuisance warnings.
+    
+    Returns:
+        The protocol-dependent schema.
+    
+    Raises:
+        SystemExit: Will raise errors if filepath does not exist or there is a read in error.
+    """
     
     from_stdin = False
     if filepath == "-":
         if not is_csv and not is_json:
             ## Have to clear the input or the system prints an extra error.
             sys.stdin.readlines()
-            print("Error:  When reading the controlled vocabulary from standard input you must specify that it is '--csv' or '--json'.", file=sys.stderr)
+            print("Error:  When reading the protocol-dependent schema from standard input you must specify that it is '--csv' or '--json'.", file=sys.stderr)
             sys.exit()
         filepath = sys.stdin
         from_stdin = True
@@ -253,7 +309,7 @@ def read_and_validate_controlled_vocabulary(filepath, is_csv, is_xlsx, is_json, 
         try:
             if worksheet_tuple := tagParser.loadSheet(filepath, sheet_name, isDefaultSearch=default_sheet_name):
                 tagParser.parseSheet(*worksheet_tuple)
-                controlled_vocabulary = tagParser.extraction
+                PDS = tagParser.extraction
                 sys.stderr = old_stderr
             else:
                 sys.stderr = old_stderr
@@ -267,7 +323,7 @@ def read_and_validate_controlled_vocabulary(filepath, is_csv, is_xlsx, is_json, 
         except Exception as e:
             sys.stderr = old_stderr
             if from_stdin:
-                print("Error:  A problem was encountered trying to read the controlled vocabulary from stdin. " +\
+                print("Error:  A problem was encountered when trying to read the protocol-dependent schema from stdin. " +\
                       "Make sure the indicated file type is correct.", file=sys.stderr)
                 sys.exit()
             raise e
@@ -275,35 +331,47 @@ def read_and_validate_controlled_vocabulary(filepath, is_csv, is_xlsx, is_json, 
     elif is_json or (not from_stdin and re.match(r".*\.json$", filepath)):
         if from_stdin:
             try:
-                controlled_vocabulary = json.load(filepath)
+                PDS = json.load(filepath)
             except Exception:
-                print("Error:  A problem was encountered trying to read the controlled vocabulary from stdin. " +\
+                print("Error:  A problem was encountered when trying to read the protocol-dependent schema from stdin. " +\
                       "Make sure the indicated file type is correct.", file=sys.stderr)
                 sys.exit()
         elif not pathlib.Path(filepath).exists():
-            print("Error:  The value entered for the controlled vocabulary, " + filepath + ", is not a valid file path or does not exist.", file=sys.stderr)
+            print("Error:  The value entered for the protocol-dependent schema, " + filepath + ", is not a valid file path or does not exist.", file=sys.stderr)
             sys.exit()
         else:
             with open(filepath, 'r') as jsonFile:
-                controlled_vocabulary = json.load(jsonFile)
+                PDS = json.load(jsonFile)
     
     else:
-        print("Error:  Unknown file type for the controlled vocabulary file.", file=sys.stderr)
+        print("Error:  Unknown file type for the protocol-dependent schema file.", file=sys.stderr)
         sys.exit()
         
-    # if (validate_CV_parent_protocols(controlled_vocabulary) or validate_with_arbitrary_schema(controlled_vocabulary, CV_schema)) \
+    # if (validate_PDS_parent_protocols(PDS) or validate_with_arbitrary_schema(PDS, PD_schema)) \
     #    and not no_last_message:
-    has_errors = validate_CV_parent_protocols(controlled_vocabulary, silent)
-    has_errors = has_errors | print_better_error_messages(create_validator(CV_schema).iter_errors(controlled_vocabulary))
-    if has_errors and not no_last_message:
-        print("Error:  The provided controlled vocabulary is not valid, so execution stops here.", file=sys.stderr)
+    has_errors = validate_PDS_parent_protocols(PDS, silent)
+    has_errors = has_errors | print_better_error_messages(create_validator(PD_schema).iter_errors(PDS))
+    if has_errors:
+        if not no_last_message:
+            print("Error:  The provided protocol-dependent schema is not valid, so execution stops here.", file=sys.stderr)
         sys.exit()
         
-    return controlled_vocabulary
+    return PDS
             
+       
+def read_in_JSON_file(filepath: str, description: str) -> JSON:
+    """Read in a JSON file from filepath.
     
+    Args:
+        filepath: the path to the JSON file or "-" meaning to read from stdin.
+        description: a name for the JSON file to print more specific error messages.
+        
+    Returns:
+        The JSON file.
     
-def read_in_JSON_file(filepath: str, description: str) -> dict:
+    Raises:
+        SystemExit: Will raise errors if filepath does not exist or there is a read in error.
+    """
     from_stdin = False
     if filepath == "-":
         filepath = sys.stdin
@@ -326,11 +394,18 @@ def read_in_JSON_file(filepath: str, description: str) -> dict:
             print("Error:  An error was encountered when trying to read in the " + description + ", from the path " + filepath + ".", file=sys.stderr)
         sys.exit()
         
-    return user_json
+    return user_json  
+
+
+def validate_JSON_schema(user_json_schema: JSON) -> bool:
+    """Validate an arbitrary JSON schema.
     
-
-
-def validate_JSON_schema(user_json_schema) -> bool:
+    Args:
+        user_json_schema: JSON schema to validate.
+        
+    Returns:
+        True if there were validation errors, False otherwise.
+    """
     validator_for_user_schema = jsonschema.validators.validator_for(user_json_schema)
     validator_for_meta_schema = jsonschema.validators.validator_for(validator_for_user_schema.META_SCHEMA)
     validator = validator_for_meta_schema(validator_for_meta_schema.META_SCHEMA)
@@ -342,7 +417,16 @@ def validate_JSON_schema(user_json_schema) -> bool:
     return has_errors
 
 
-def create_validator(schema) -> jsonschema.protocols.Validator:
+def create_validator(schema: JSON) -> jsonschema.protocols.Validator:
+    """Create a validator for the given schema.
+    
+    Args:
+        schema: the JSON schema to create a validator for.
+        
+    Returns:
+        A jsonschema.protocols.Validator to validate the schema with an added format checker 
+        that is aware of the custom formats "integer" and "numeric".
+    """
     validator = jsonschema.validators.validator_for(schema)
     format_checker = jsonschema.FormatChecker()
     @format_checker.checks('integer') 
@@ -366,45 +450,28 @@ def create_validator(schema) -> jsonschema.protocols.Validator:
     return validator(schema=schema, format_checker=format_checker)
 
 
-# def validate_with_arbitrary_schema(instance, schema) -> bool:
-#     validator = jsonschema.validators.validator_for(schema)
-#     format_checker = jsonschema.FormatChecker()
-#     @format_checker.checks('integer') 
-#     def is_integer(value):
-#         if value and isinstance(value, str):
-#             try:
-#                 int(value)
-#             except ValueError:
-#                 return False
-#             return True
-#         return True
-#     @format_checker.checks('numeric') 
-#     def is_float(value):
-#         if value and isinstance(value, str):
-#             try:
-#                 float(value)
-#             except ValueError:
-#                 return False
-#             return True
-#         return True
-#     validator = validator(schema=schema, format_checker=format_checker)
-#     errors_generator = validator.iter_errors(instance=instance)
-#     return print_better_error_messages(errors_generator)
-
-
-def validate_CV_parent_protocols(cv, silent):
-    if not "parent_protocol" in cv:
+def validate_PDS_parent_protocols(pds: JSON, silent: str) -> bool:
+    """Validate the parent_protocols table of the protocol-dependent schema.
+    
+    Args:
+        pds: the protocol-dependent schema in JSON form.
+        silent: if "full" do not print any warnings, if "nuisance" do not print nuisance warnings.
+    
+    Returns:
+        True if there were errors (warnings don't count), False otherwise.
+    """
+    if not "parent_protocol" in pds:
         return True
     
     has_errors = False
-    for protocol, attributes in cv["parent_protocol"].items():
-        has_fields = True if (fields := cv.get(protocol)) else False
+    for protocol, attributes in pds["parent_protocol"].items():
+        has_fields = True if pds.get(protocol) else False
         if parent_name := attributes.get("parent_id"):
             ancestors = []
             parent_attributes = attributes
-            has_fields = True if (fields := cv.get(parent_name)) else has_fields
+            has_fields = True if pds.get(parent_name) else has_fields
             while (parent_name := parent_attributes.get("parent_id")):
-                has_fields = True if (fields := cv.get(parent_name)) else has_fields
+                has_fields = True if pds.get(parent_name) else has_fields
                 if parent_name in ancestors:
                     print("Error:  The protocol, \"" + protocol + "\", in the \"parent_protocol\" table " + \
                           "has a circular ancestry, i.e., somewhere in the lineage a protocol has a " +\
@@ -412,9 +479,9 @@ def validate_CV_parent_protocols(cv, silent):
                     has_errors = True
                     break
                 ancestors.append(parent_name)
-                if not parent_name in cv["parent_protocol"]:
+                if not parent_name in pds["parent_protocol"]:
                     break
-                parent_attributes = cv["parent_protocol"][parent_name]
+                parent_attributes = pds["parent_protocol"][parent_name]
             
             if not has_fields and not (silent == "nuisance" or silent == "full"):
                 print("Warning:  The protocol, \"" + protocol + "\"," + \
@@ -427,81 +494,100 @@ def validate_CV_parent_protocols(cv, silent):
                       "has itself listed for its parent_id. Protocols cannot be their own parents.", file=sys.stderr)
                 has_errors = True
             
-            if parent_name not in cv["parent_protocol"]:
+            if parent_name not in pds["parent_protocol"]:
                 print("Error:  The parent protocol, \"" + parent_name + "\", for the protocol \"" + protocol + \
                       "\" in the \"parent_protocol\" table is not itself in the \"parent_protocol\" table. " +\
                       "Parent entities must be in the table as well.", file=sys.stderr)
                 has_errors = True
-            elif (type_to_check := attributes.get("type")) and (parent_type := cv["parent_protocol"][parent_name].get("type")) and \
+            
+            elif (type_to_check := attributes.get("type")) and (parent_type := pds["parent_protocol"][parent_name].get("type")) and \
                type_to_check != parent_type:
                 print("Error:  The protocol, \"" + protocol + "\", does not have the same type as its parent \"" + \
                       parent_name + "\".", file=sys.stderr)
                 has_errors = True
             
-            if parent_name not in cv and not (silent == "nuisance" or silent == "full"):
+            if parent_name not in pds and not (silent == "nuisance" or silent == "full"):
                 print("Warning:  The parent protocol, \"" + parent_name + "\", for the protocol \"" + protocol + \
-                      "\" in the \"parent_protocol\" table is not itself in the controlled vocabulary. " +\
-                      "Parent entities must be in the controlled vocabulary as well.", file=sys.stderr)
+                      "\" in the \"parent_protocol\" table is not itself in the protocol-dependent schema. " +\
+                      "Parent entities must be in the protocol-dependent schema as well.", file=sys.stderr)
             
-        if protocol not in cv and not (silent == "nuisance" or silent == "full"):
+        if protocol not in pds and not (silent == "nuisance" or silent == "full"):
             print("Warning:  The protocol, \"" + protocol + \
-                  "\" in the \"parent_protocol\" table is not in the controlled vocabulary.", file=sys.stderr)
+                  "\" in the \"parent_protocol\" table is not in the protocol-dependent schema.", file=sys.stderr)
     return has_errors
 
 
 
-def add_protocols_to_CV(protocol_table: dict, cv: dict, silent: str) -> dict:
+def add_protocols_to_PDS(protocol_table: dict, pds: JSON, silent: str) -> JSON:
+    """Add the protocols from the table to the protocol-dependent schema.
+    
+    Args:
+        protocol_table: the protocol table from the input JSON.
+        pds: the protocol-dependent schema in JSON form.
+        silent: if "full" do not print any warnings, if "nuisance" do not print nuisance warnings.
+        
+    Returns:
+        The updated protocol-dependent schema.
+    """
     protocols_to_add = {}
     for protocol, attributes in protocol_table.items():
         if (parent := attributes.get("parent_protocol")) :
             if isinstance(parent, str):
-                if parent in cv["parent_protocol"]:
+                if parent in pds["parent_protocol"]:
                     protocols_to_add[protocol] = parent
                     if (protocol_type := attributes.get("type")) and \
-                        protocol_type != cv["parent_protocol"][parent]["type"] and not silent == "full":
+                        protocol_type != pds["parent_protocol"][parent]["type"] and not silent == "full":
                         print("Warning:  The protocol from the input JSON, " + protocol + \
                               ", does not have the same type as its parent_protocol, " + parent + \
-                              ", in the controlled vocabulary.", file=sys.stderr)
-                elif protocol not in cv["parent_protocol"] and not silent == "full":
+                              ", in the protocol-dependent schema.", file=sys.stderr)
+                elif protocol not in pds["parent_protocol"] and not silent == "full":
                     print("Warning:  The protocol from the input JSON, " + protocol + \
-                          ", is not in the parent_protocol table of the controlled vocabulary, " +\
-                          "nor does it have a parent_protocol in the controlled vocabulary." +\
+                          ", is not in the parent_protocol table of the protocol-dependent schema, " +\
+                          "nor does it have a parent_protocol in the protocol-dependent schema." +\
                           " Records with this protocol cannot have thier fields validated.", file=sys.stderr)
             ## Type is enforced by the base_schema.
             # elif not silent == "full":
             #     print("Warning:  The parent_protocol field of the protocol, " + protocol + \
             #           ", from the input JSON is not a string value." +\
             #           " Records with this protocol cannot have thier fields validated.", file=sys.stderr)
-        elif protocol not in cv["parent_protocol"] and not silent == "full":
+        elif protocol not in pds["parent_protocol"] and not silent == "full":
             print("Warning:  The protocol from the input JSON, " + protocol + \
-                  ", is not in the parent_protocol table of the controlled vocabulary, " +\
+                  ", is not in the parent_protocol table of the protocol-dependent schema, " +\
                   "nor does it have a parent_protocol field." +\
                   " Records with this protocol cannot have thier fields validated.", file=sys.stderr)
     
     for protocol, parent in protocols_to_add.items():
-        cv[protocol] = {}
-        cv["parent_protocol"][protocol] = {"parent_id":parent}
-    return cv
+        pds[protocol] = {}
+        pds["parent_protocol"][protocol] = {"parent_id":parent}
+    return pds
 
 
-def build_CV_schema(cv):
+def build_PD_schema(pds: JSON) -> JSON:
+    """Build a JSON schema from the protocol-dependent schema.
+    
+    Args:
+        pds: the protocol-dependent schema in JSON form.
+    
+    Returns:
+        A JSON schema created by combining the base schema and a schema created from the protocol-dependent schema.
+    """
     protocol_fields = {}
-    for protocol, attributes in cv["parent_protocol"].items():
+    for protocol, attributes in pds["parent_protocol"].items():
         ancestors = []
-        while (parent_name := attributes.get("parent_id")):
+        while (parent_name := attributes.get("parent_id")) and parent_name not in ancestors:
             ancestors.append(parent_name)
-            if not parent_name in cv["parent_protocol"]:
+            if not parent_name in pds["parent_protocol"]:
                 break
-            attributes = cv["parent_protocol"][parent_name]
+            attributes = pds["parent_protocol"][parent_name]
         ancestors.reverse()
         
         fields = {}
         for ancestor in ancestors:
-            if ancestor in cv:
-                fields.update(cv[ancestor])
+            if ancestor in pds:
+                fields.update(pds[ancestor])
         
-        if protocol in cv:
-            fields.update(cv[protocol])
+        if protocol in pds:
+            fields.update(pds[protocol])
         if fields:
             protocol_fields[protocol] = fields
         
@@ -595,14 +681,18 @@ def build_CV_schema(cv):
     return base_schema
 
 
-def id_check(JSON_file):
-    """
+def id_check(JSON_file: JSON) -> None:
+    """Validate id fields for records in JSON_file.
+    
     Loops over JSON_file and makes sure each field with a period in the name is an id, that each id points to an 
     existing id in another table that exists in JSON_file, that each "parent_id" field points to another record that exists 
     in the same table, and that each "id" field  has a value that is the same as the name of the record.
     
-    There are special cases for the subject and sample tables. Their parent_id's can point to other tables, so they are 
-    handled special. As of now protocol.id is also handled special since it can be a list."""
+    There is a special check for the "entity" table that checks that subject types have a sample type parent. 
+    
+    Args:
+        JSON_file: the JSON to validate ids for.
+    """
     
     
     for table_name, table_records in JSON_file.items():
@@ -661,8 +751,19 @@ def id_check(JSON_file):
                           ", but this is not the same as its own name.", file=sys.stderr)
 
 
-
-def validate_parent_id(table, table_name, entity_name, check_type, type_keyword="type"):    
+def validate_parent_id(table: dict, table_name: str, entity_name: str, check_type: bool, type_keyword: str = "type") -> bool:    
+    """Validate the "parent_id" fields for the table.
+    
+    Args:
+        table: the table to validate {record_name:{attribute1:value1, ...}, ...}.
+        table_name: the name of the table, used for printing better error messages.
+        entity_name: name of the entities of the table, used for printing better error messages.
+        check_type: if True check that the type of the parent is the same as the child.
+        type_keyword: the keyword to use to check the types of the parent and child.
+    
+    Returns:
+        True if there were errors, False otherwise.
+    """
     has_errors = False
     for entity, attributes in table.items():
         if parent_name := attributes.get("parent_id"):
@@ -706,21 +807,35 @@ def validate_parent_id(table, table_name, entity_name, check_type, type_keyword=
     return has_errors
 
 
-def iterate_string_or_list(str_or_list):
-    """If str_or_list is a string then make it into a list and return the items for looping. 
-    If str_or_list is a list then return the items for looping."""
+def iterate_string_or_list(str_or_list: str|list) -> list:
+    """If str_or_list is a string then make it into a list and return the items for looping.
+    
+    If str_or_list is a list then return it as is.
+    
+    Args:
+        str_or_list: a string to return as a list containing that string or a list to return as is.
+    
+    Returns:
+        str_or_list as a list.
+    """
     if isinstance(str_or_list, list):
         return str_or_list
     else:
         return [str_or_list]
     
     
-def SS_protocol_check(input_json):
-    """Loops over the sample or subject table in input_json depending on the value of sample_or_subject
-    and makes sure that each sample/subject has protocols of the correct type depending on its inheritance. 
+def SS_protocol_check(input_json: JSON) -> None:
+    """Validates the subjects and samples protocols.
+    
+    Loops over the entity table in input_json and makes sure that each sample/subject 
+    has protocols of the correct type depending on its inheritance. 
     Samples that have a sample parent must have a sample_prep type protocol.
     Samples that have a subject parent must have a collection type protocol.
-    Subjects must have a treatment type protocol."""
+    Subjects must have a treatment type protocol.
+    
+    Args:
+        input_json: the JSON to validate.
+    """
         
     if "protocol" not in input_json or "entity" not in input_json:
         return
@@ -763,9 +878,13 @@ def SS_protocol_check(input_json):
                     print("Error:  Subject " + entity_name + " does not have a treatment type protocol.", file=sys.stderr)
 
 
-def measurement_protocol_check(input_json):
+def measurement_protocol_check(input_json: JSON) -> None:
     """Loops over the measurement table in input_json and makes sure that each measurement 
-    has at least one measurement type protocol."""
+    has at least one measurement type protocol.
+    
+    Args:
+        input_json: the JSON to validate.
+    """
         
     if "measurement" not in input_json or "protocol" not in input_json:
         return
@@ -786,10 +905,17 @@ def measurement_protocol_check(input_json):
                       " does not have a measurement type protocol.", file=sys.stderr)
 
 
-def protocol_all_used_check(input_json, tables_with_protocols):
-    """Compiles a list of all of the protocols used by the subjects, samples, and measurements in the subject and sample table 
-    of the input_json and checks that every protocol in the protocol table is in that list. For any protocols 
-    that appear in the protocol table, but are not used by a subject, sample, or measurement a warning is printed."""
+def protocol_all_used_check(input_json: JSON, tables_with_protocols: list[str]) -> None:
+    """Validates that all protocols in the protocol table are used at least once.
+    
+    Compiles a list of all of the protocols used by the records in tables_with_protocols 
+    and checks that every protocol in the protocol table is in that list. For any protocols 
+    that appear in the protocol table, but are not used by any records a warning is printed.
+    
+    Args:
+        input_json: the JSON to validate.
+        tables_with_protocols: the tables in input_json that have records with "protocol.id" fields.
+    """
     
     if not "protocol" in input_json:
         return
@@ -810,8 +936,16 @@ def protocol_all_used_check(input_json, tables_with_protocols):
               ", in the protocol table of the input JSON is not used by any of the entities or measurements.", file=sys.stderr)
 
 
-def indexes_of_duplicates_in_list(list_of_interest, value_to_find):
-    """Returns a list of all of the indexes in list_of_interest where the value equals value_to_find."""
+def indexes_of_duplicates_in_list(list_of_interest: list, value_to_find: Any) -> list[int]:
+    """Returns a list of all of the indexes in list_of_interest where the value equals value_to_find.
+    
+    Args:
+        list_of_interest: list to find indexes in.
+        value_to_find: value to look for in list_of_interest and find its index.
+        
+    Returns:
+        A list of all the indexes where value_to_find is in list_of_interest.
+    """
 
     current_index = 0
     indexes = []
@@ -828,8 +962,12 @@ def indexes_of_duplicates_in_list(list_of_interest, value_to_find):
     return indexes
 
 
-def protocol_description_check(input_json):
-    """Checks that every description field for the protocols in the protocol table of the metadata are unique."""
+def protocol_description_check(input_json: JSON) -> None:
+    """Checks that every description field for the protocols in the protocol table of the metadata are unique.
+    
+    Args:
+        input_json: the JSON to validate.
+    """
     
     if not "protocol" in input_json:
         return
@@ -847,8 +985,18 @@ def protocol_description_check(input_json):
             print("Warning: The protocols: \n\n" + "\n".join(protocols_to_print) + "\n\nhave the exact same descriptions.", file=sys.stderr)
                 
 
-def factors_checks(input_json, silent):
-    """Checks that every factor in the factor table is used at least once by a an entity and other checks."""
+def factors_checks(input_json: JSON, silent: str) -> None:
+    """Validates some logic about the factors.
+    
+    Checks that every factor in the factor table is used at least once by an entity. 
+    Whether or not values in the factor field are allowed values.
+    If there are more than 1 allowed values in the factor field.
+    That factor fields are str or list types.
+    
+    Args:
+        input_json: the JSON to validate.
+        silent: if "full" do not print any warnings, if "nuisance" do not print nuisance warnings.
+    """
 
     if "factor" not in input_json or "entity" not in input_json:
         return
@@ -905,16 +1053,43 @@ def factors_checks(input_json, silent):
                           ", in the factor table of the input JSON is not used by any of the entities.", file=sys.stderr)
 
 
+def _check_format(format_check: str|None) -> None:
+    """Check that format_check is a supported format.
+    
+    If format_check is not in supported_formats then print an error and close the program.
+    
+    Args:
+        format_check: format to check if it is supported.
+    """
+    
+    if format_check:
+        if format_check not in supported_formats:
+            extra_message = '\n   '.join(['"' + supported_format + '"' for supported_format in supported_formats])
+            print("Error:  Unknown format, " + format_check + ". Must be one of:\n   " + extra_message, file=sys.stderr)
+            sys.exit()
 
 
-
-def run_json_command(input_json_source:str, cv_source: str|None, additional_schema_source: str|None, 
+def run_json_command(input_json_source: str, pds_source: str|None, additional_schema_source: str|None, 
                      no_base_schema: bool = False, no_extra_checks: bool = False, is_csv: bool = False, 
-                     is_xlsx: bool = False, is_json: bool = False, silent: str = "none") -> None:
+                     is_xlsx: bool = False, is_json: bool = False, silent: str = "none", format_check: str|None = None) -> None:
+    """Run the json command.
+    
+    Args:
+        input_json_source: either a filepath or "-" to read from stdin.
+        pds_source: either a filepath or "-" to read from stdin, if not None.
+        additional_schema_source: either a filepath or "-" to read from stdin, if not None.
+        no_base_schema: if True do not validate with the base_schema, ignored if pds_source is given.
+        no_extra_checks: if True only do JSON Schema validations.
+        is_csv: if True the pds_source is a csv file.
+        is_xlsx: if True the pds_source is an xlsx file.
+        is_json: if True the pds_source is a JSON file.
+        silent: if "full" do not print any warnings, if "nuisance" do not print nuisance warnings.
     """
-    """
-    if cv_source:
-        controlled_vocabulary = read_and_validate_controlled_vocabulary(cv_source, is_csv, is_xlsx, is_json, False, silent)
+    
+    _check_format(format_check)
+    
+    if pds_source:
+        PDS = read_and_validate_PDS(pds_source, is_csv, is_xlsx, is_json, False, silent)
     ## Read in JSON_schema if given.
     if additional_schema_source:
         user_json_schema = read_in_JSON_file(additional_schema_source, "additional schema")
@@ -927,13 +1102,13 @@ def run_json_command(input_json_source:str, cv_source: str|None, additional_sche
     ## Read in input_JSON.
     input_json = read_in_JSON_file(input_json_source, "input JSON")
     
-    ## Build CV and combine with base_schema depending on options and validate.
-    if cv_source:
+    ## Build PDS and combine with base_schema depending on options and validate.
+    if pds_source:
         if "protocol" in input_json:
-            add_protocols_to_CV(input_json["protocol"], controlled_vocabulary, silent)
-        composite_schema = build_CV_schema(controlled_vocabulary)
+            add_protocols_to_PDS(input_json["protocol"], PDS, silent)
+        composite_schema = build_PD_schema(PDS)
         if validate_JSON_schema(composite_schema):
-            print("Error:  The schema created from the controlled vocabulary is not valid. " +\
+            print("Error:  The schema created from the protocol-dependent schema is not valid. " +\
                   "Please look at the errors and fix them to validate the input JSON. " +\
                   "The save-schema command can be used to save the created schema.", file=sys.stderr)
             sys.exit()
@@ -972,22 +1147,51 @@ def run_json_command(input_json_source:str, cv_source: str|None, additional_sche
         
         # validate_with_arbitrary_schema(input_json, user_json_schema)
         print_better_error_messages(validator.iter_errors(input_json))
+        
+    match format_check:
+        case "mwtab_MS":
+            print_better_error_messages(create_validator(mwtab_schema_MS).iter_errors(input_json))
+        case "mwtab_NMR":
+            print_better_error_messages(create_validator(mwtab_schema_NMR).iter_errors(input_json))
+        case "mwtab_NMR_bin":
+            print_better_error_messages(create_validator(mwtab_schema_NMR_bin).iter_errors(input_json))
 
 
-def run_save_schema_command(cv_source: str|None, output_schema_path: str|None, input_json_path: str|None,
+def run_save_schema_command(pds_source: str|None, output_schema_path: str, input_json_path: str|None,
                             is_csv: bool = False, is_xlsx: bool = False, is_json: bool = False, 
-                            silent: str = "none") -> None:
+                            silent: str = "none", format_check: str|None = None) -> None:
+    """Run the save-schema command.
+    
+    Args:
+        pds_source: either a filepath or "-" to read from stdin, if not None.
+        output_schema_path: the path to save the output JSON to.
+        input_json_path: either a filepath or "-" to read from stdin, if not None.
+        is_csv: if True the pds_source is a csv file.
+        is_xlsx: if True the pds_source is an xlsx file.
+        is_json: if True the pds_source is a JSON file.
+        silent: if "full" do not print any warnings, if "nuisance" do not print nuisance warnings.
     """
-    """
-    if cv_source:
-        controlled_vocabulary = read_and_validate_controlled_vocabulary(cv_source, is_csv, is_xlsx, is_json, False, silent)
+    
+    _check_format(format_check)
+    
+    if format_check:
+        match format_check:
+            case "mwtab_MS":
+                composite_schema = mwtab_schema_MS
+            case "mwtab_NMR":
+                composite_schema = mwtab_schema_NMR
+            case "mwtab_NMR_bin":
+                composite_schema = mwtab_schema_NMR_bin
+    
+    elif pds_source:
+        PDS = read_and_validate_PDS(pds_source, is_csv, is_xlsx, is_json, False, silent)
         if input_json_path:
             input_json = read_in_JSON_file(input_json_path, "input JSON")
             if "protocol" in input_json:
-                add_protocols_to_CV(input_json["protocol"], controlled_vocabulary, silent)
-        composite_schema = build_CV_schema(controlled_vocabulary)
+                add_protocols_to_PDS(input_json["protocol"], PDS, silent)
+        composite_schema = build_PD_schema(PDS)
         if validate_JSON_schema(composite_schema) and not silent == "full":
-            print("Warning:  The schema created from the controlled vocabulary is not valid.", file=sys.stderr)
+            print("Warning:  The schema created from the protocol-dependent schema is not valid.", file=sys.stderr)
     else:
         composite_schema = base_schema
     
@@ -1004,21 +1208,31 @@ def run_save_schema_command(cv_source: str|None, output_schema_path: str|None, i
 
 
 def run_schema_command(input_schema_source: str) -> None:
-    """
+    """Run the schema command.
+    
+    Args:
+        input_schema_source: the path to the JSON Schema file to read and validate.
     """
     user_json_schema = read_in_JSON_file(input_schema_source, "input schema")
     if not validate_JSON_schema(user_json_schema):
         print("No errors. This is a valid JSON schema.")
 
 
-def run_cv_command(cv_source: str|None, is_csv: bool = False, is_xlsx: bool = False, 
+def run_pds_command(pds_source: str, is_csv: bool = False, is_xlsx: bool = False, 
                    is_json: bool = False, silent: str = "none") -> None:
+    """Run the pds command.
+    
+    Args:
+        pds_source: either a filepath or "-" to read from stdin.
+        is_csv: if True the pds_source is a csv file.
+        is_xlsx: if True the pds_source is an xlsx file.
+        is_json: if True the pds_source is a JSON file.
+        silent: if "full" do not print any warnings, if "nuisance" do not print nuisance warnings.
     """
-    """
-    controlled_vocabulary = read_and_validate_controlled_vocabulary(cv_source, is_csv, is_xlsx, is_json, True, silent)
-    composite_schema = build_CV_schema(controlled_vocabulary)
+    PDS = read_and_validate_PDS(pds_source, is_csv, is_xlsx, is_json, True, silent)
+    composite_schema = build_PD_schema(PDS)
     if validate_JSON_schema(composite_schema) and not silent == "full":
-        print("Warning:  The schema created from the controlled vocabulary is not valid.", file=sys.stderr)
+        print("Warning:  The schema created from the protocol-dependent schema is not valid.", file=sys.stderr)
 
 
 

@@ -33,3 +33,11 @@ Example Update Directives:
 To run with these new settings:
 
    messes convert mwtab ms MS_base_input.json MS_output --update update_directives.json
+
+
+Input Files:
+MS_base_input.json
+
+Output Files:
+MS_output.json
+MS_output.txt

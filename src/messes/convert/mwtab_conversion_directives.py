@@ -23,7 +23,7 @@ ms_directives = \
       "id": "CHROMATOGRAPHY_SUMMARY",
       "required": "False",
       "table": "protocol",
-      "test": "type=MS",
+      "test": "machine_type=MS",
       "value_type": "str"
     },
     "CHROMATOGRAPHY_TYPE": {
@@ -33,7 +33,7 @@ ms_directives = \
       "id": "CHROMATOGRAPHY_TYPE",
       "required": "True",
       "table": "protocol",
-      "test": "type=MS",
+      "test": "machine_type=MS",
       "value_type": "str"
     },
     "COLUMN_NAME": {
@@ -43,7 +43,7 @@ ms_directives = \
       "id": "COLUMN_NAME",
       "required": "True",
       "table": "protocol",
-      "test": "type=MS",
+      "test": "machine_type=MS",
       "value_type": "str"
     },
     "INSTRUMENT_NAME": {
@@ -53,7 +53,7 @@ ms_directives = \
       "id": "INSTRUMENT_NAME",
       "required": "True",
       "table": "protocol",
-      "test": "type=MS",
+      "test": "machine_type=MS",
       "value_type": "str"
     }
   },
@@ -129,7 +129,7 @@ ms_directives = \
       "id": "INSTRUMENT_NAME",
       "required": "True",
       "table": "protocol",
-      "test": "type=MS",
+      "test": "machine_type=MS",
       "value_type": "str"
     },
     "INSTRUMENT_TYPE": {
@@ -139,7 +139,7 @@ ms_directives = \
       "id": "INSTRUMENT_TYPE",
       "required": "True",
       "table": "protocol",
-      "test": "type=MS",
+      "test": "machine_type=MS",
       "value_type": "str"
     },
     "ION_MODE": {
@@ -149,7 +149,7 @@ ms_directives = \
       "id": "ION_MODE",
       "required": "True",
       "table": "protocol",
-      "test": "type=MS",
+      "test": "machine_type=MS",
       "value_type": "str"
     },
     "MS_COMMENTS": {
@@ -159,7 +159,7 @@ ms_directives = \
       "id": "MS_COMMENTS",
       "required": "False",
       "table": "protocol",
-      "test": "type=MS",
+      "test": "machine_type=MS",
       "value_type": "str"
     },
     "MS_TYPE": {
@@ -169,12 +169,13 @@ ms_directives = \
       "id": "MS_TYPE",
       "required": "True",
       "table": "protocol",
-      "test": "type=MS",
+      "test": "machine_type=MS",
       "value_type": "str"
     }
   },
   "MS_METABOLITE_DATA": {
     "Data": {
+      "required": "True",
       "collate": "assignment",
       "headers": [
         "\"Metabolite\"=assignment",
@@ -189,6 +190,7 @@ ms_directives = \
       "value_type": "matrix"
     },
     "Extended": {
+      "required": "False",
       "exclusion_headers": [
         "id",
         "intensity",
@@ -216,6 +218,7 @@ ms_directives = \
       "values_to_str": "True"
     },
     "Metabolites": {
+      "required": "True",
       "collate": "assignment",
       "headers": [
         "\"Metabolite\"=assignment",
@@ -233,6 +236,7 @@ ms_directives = \
       "value_type": "matrix"
     },
     "Units": {
+      "required": "True",
       "fields": [
         "intensity%type"
       ],
@@ -243,6 +247,7 @@ ms_directives = \
   },
   "PROJECT": {
     "ADDRESS": {
+      "required": "True",
       "fields": [
         "address"
       ],
@@ -251,6 +256,7 @@ ms_directives = \
       "value_type": "str"
     },
     "DEPARTMENT": {
+      "required": "True",
       "fields": [
         "department"
       ],
@@ -259,6 +265,7 @@ ms_directives = \
       "value_type": "str"
     },
     "EMAIL": {
+      "required": "True",
       "fields": [
         "PI_email"
       ],
@@ -267,6 +274,7 @@ ms_directives = \
       "value_type": "str"
     },
     "FIRST_NAME": {
+      "required": "True",
       "fields": [
         "PI_first_name"
       ],
@@ -275,6 +283,7 @@ ms_directives = \
       "value_type": "str"
     },
     "INSTITUTE": {
+      "required": "True",
       "fields": [
         "institution"
       ],
@@ -283,6 +292,7 @@ ms_directives = \
       "value_type": "str"
     },
     "LAST_NAME": {
+      "required": "True",
       "fields": [
         "PI_last_name"
       ],
@@ -291,6 +301,7 @@ ms_directives = \
       "value_type": "str"
     },
     "PHONE": {
+      "required": "True",
       "fields": [
         "phone"
       ],
@@ -299,6 +310,7 @@ ms_directives = \
       "value_type": "str"
     },
     "PROJECT_SUMMARY": {
+      "required": "True",
       "fields": [
         "description"
       ],
@@ -307,6 +319,7 @@ ms_directives = \
       "value_type": "str"
     },
     "PROJECT_TITLE": {
+      "required": "True",
       "fields": [
         "title"
       ],
@@ -325,11 +338,11 @@ ms_directives = \
       "id": "SAMPLEPREP_PROTOCOL_FILENAME",
       "required": "False",
       "sort_by": [
-        "id"
+        "order"
       ],
       "sort_order": "ascending",
       "table": "protocol",
-      "test": "type=treatment",
+      "test": "type=sample_prep",
       "value_type": "str"
     },
     "SAMPLEPREP_PROTOCOL_ID": {
@@ -341,7 +354,7 @@ ms_directives = \
       "id": "SAMPLEPREP_PROTOCOL_ID",
       "required": "True",
       "sort_by": [
-        "id"
+        "order"
       ],
       "sort_order": "ascending",
       "table": "protocol",
@@ -349,7 +362,7 @@ ms_directives = \
       "value_type": "str"
     },
     "SAMPLEPREP_SUMMARY": {
-      "delimiter": "\" \"",
+      "delimiter": ";",
       "fields": [
         "description"
       ],
@@ -357,7 +370,7 @@ ms_directives = \
       "id": "SAMPLEPREP_SUMMARY",
       "required": "True",
       "sort_by": [
-        "id"
+        "order"
       ],
       "sort_order": "ascending",
       "table": "protocol",
@@ -367,6 +380,7 @@ ms_directives = \
   },
   "STUDY": {
     "ADDRESS": {
+      "required": "True",
       "fields": [
         "address"
       ],
@@ -375,6 +389,7 @@ ms_directives = \
       "value_type": "str"
     },
     "DEPARTMENT": {
+      "required": "True",
       "fields": [
         "department"
       ],
@@ -383,6 +398,7 @@ ms_directives = \
       "value_type": "str"
     },
     "EMAIL": {
+      "required": "True",
       "fields": [
         "PI_email"
       ],
@@ -391,6 +407,7 @@ ms_directives = \
       "value_type": "str"
     },
     "FIRST_NAME": {
+      "required": "True",
       "fields": [
         "PI_first_name"
       ],
@@ -399,6 +416,7 @@ ms_directives = \
       "value_type": "str"
     },
     "INSTITUTE": {
+      "required": "True",
       "fields": [
         "institution"
       ],
@@ -407,6 +425,7 @@ ms_directives = \
       "value_type": "str"
     },
     "LAST_NAME": {
+      "required": "True",
       "fields": [
         "PI_last_name"
       ],
@@ -415,6 +434,7 @@ ms_directives = \
       "value_type": "str"
     },
     "PHONE": {
+      "required": "True",
       "fields": [
         "phone"
       ],
@@ -423,6 +443,7 @@ ms_directives = \
       "value_type": "str"
     },
     "STUDY_SUMMARY": {
+      "required": "True",
       "fields": [
         "description"
       ],
@@ -431,6 +452,7 @@ ms_directives = \
       "value_type": "str"
     },
     "STUDY_TITLE": {
+      "required": "True",
       "fields": [
         "title"
       ],
@@ -441,6 +463,7 @@ ms_directives = \
   },
   "SUBJECT": {
     "SUBJECT_SPECIES": {
+      "required": "True",
       "fields": [
         "species"
       ],
@@ -450,6 +473,7 @@ ms_directives = \
       "value_type": "str"
     },
     "SUBJECT_TYPE": {
+      "required": "True",
       "fields": [
         "species_type"
       ],
@@ -459,6 +483,7 @@ ms_directives = \
       "value_type": "str"
     },
     "TAXONOMY_ID": {
+      "required": "True",
       "fields": [
         "taxonomy_id"
       ],
@@ -472,7 +497,8 @@ ms_directives = \
     "no_id_needed": {
       "code": "mwtab_functions.create_subject_sample_factors(input_json)",
       "id": "no_id_needed",
-      "value_type": "section"
+      "value_type": "section",
+      "required": "True",
     }
   },
   "TREATMENT": {
@@ -509,7 +535,7 @@ ms_directives = \
       "value_type": "str"
     },
     "TREATMENT_SUMMARY": {
-      "delimiter": "\" \"",
+      "delimiter": ";",
       "fields": [
         "description"
       ],
@@ -545,7 +571,7 @@ nmr_directives["NM"] = {
       "id": "ACQUISITION_TIME",
       "required": "False",
       "table": "protocol",
-      "test": "type=NMR",
+      "test": "machine_type=NMR",
       "value_type": "str"
     },
     "BASELINE_CORRECTION_METHOD": {
@@ -555,7 +581,7 @@ nmr_directives["NM"] = {
       "id": "BASELINE_CORRECTION_METHOD",
       "required": "False",
       "table": "protocol",
-      "test": "type=NMR",
+      "test": "machine_type=NMR",
       "value_type": "str"
     },
     "CHEMICAL_SHIFT_REF_CPD": {
@@ -565,7 +591,7 @@ nmr_directives["NM"] = {
       "id": "CHEMICAL_SHIFT_REF_CPD",
       "required": "False",
       "table": "protocol",
-      "test": "type=NMR",
+      "test": "machine_type=NMR",
       "value_type": "str"
     },
     "INSTRUMENT_NAME": {
@@ -575,7 +601,7 @@ nmr_directives["NM"] = {
       "id": "INSTRUMENT_NAME",
       "required": "True",
       "table": "protocol",
-      "test": "type=NMR",
+      "test": "machine_type=NMR",
       "value_type": "str"
     },
     "INSTRUMENT_TYPE": {
@@ -585,7 +611,7 @@ nmr_directives["NM"] = {
       "id": "INSTRUMENT_TYPE",
       "required": "True",
       "table": "protocol",
-      "test": "type=NMR",
+      "test": "machine_type=NMR",
       "value_type": "str"
     },
     "NMR_EXPERIMENT_TYPE": {
@@ -595,7 +621,7 @@ nmr_directives["NM"] = {
       "id": "NMR_EXPERIMENT_TYPE",
       "required": "True",
       "table": "protocol",
-      "test": "type=NMR",
+      "test": "machine_type=NMR",
       "value_type": "str"
     },
     "NMR_PROBE": {
@@ -605,7 +631,7 @@ nmr_directives["NM"] = {
       "id": "NMR_PROBE",
       "required": "False",
       "table": "protocol",
-      "test": "type=NMR",
+      "test": "machine_type=NMR",
       "value_type": "str"
     },
     "NMR_SOLVENT": {
@@ -615,7 +641,7 @@ nmr_directives["NM"] = {
       "id": "NMR_SOLVENT",
       "required": "False",
       "table": "protocol",
-      "test": "type=NMR",
+      "test": "machine_type=NMR",
       "value_type": "str"
     },
     "NMR_TUBE_SIZE": {
@@ -627,7 +653,7 @@ nmr_directives["NM"] = {
       "id": "NMR_TUBE_SIZE",
       "required": "False",
       "table": "protocol",
-      "test": "type=NMR",
+      "test": "machine_type=NMR",
       "value_type": "str"
     },
     "PULSE_SEQUENCE": {
@@ -637,7 +663,7 @@ nmr_directives["NM"] = {
       "id": "PULSE_SEQUENCE",
       "required": "False",
       "table": "protocol",
-      "test": "type=NMR",
+      "test": "machine_type=NMR",
       "value_type": "str"
     },
     "RELAXATION_DELAY": {
@@ -649,7 +675,7 @@ nmr_directives["NM"] = {
       "id": "RELAXATION_DELAY",
       "required": "False",
       "table": "protocol",
-      "test": "type=NMR",
+      "test": "machine_type=NMR",
       "value_type": "str"
     },
     "SHIMMING_METHOD": {
@@ -659,7 +685,7 @@ nmr_directives["NM"] = {
       "id": "SHIMMING_METHOD",
       "required": "False",
       "table": "protocol",
-      "test": "type=NMR",
+      "test": "machine_type=NMR",
       "value_type": "str"
     },
     "SPECTROMETER_FREQUENCY": {
@@ -671,7 +697,7 @@ nmr_directives["NM"] = {
       "id": "SPECTROMETER_FREQUENCY",
       "required": "True",
       "table": "protocol",
-      "test": "type=NMR",
+      "test": "machine_type=NMR",
       "value_type": "str"
     },
     "STANDARD_CONCENTRATION": {
@@ -683,7 +709,7 @@ nmr_directives["NM"] = {
       "id": "STANDARD_CONCENTRATION",
       "required": "False",
       "table": "protocol",
-      "test": "type=NMR",
+      "test": "machine_type=NMR",
       "value_type": "str"
     },
     "TEMPERATURE": {
@@ -695,7 +721,7 @@ nmr_directives["NM"] = {
       "id": "TEMPERATURE",
       "required": "False",
       "table": "protocol",
-      "test": "type=NMR",
+      "test": "machine_type=NMR",
       "value_type": "str"
     },
     "WATER_SUPPRESSION": {
@@ -705,13 +731,14 @@ nmr_directives["NM"] = {
       "id": "WATER_SUPPRESSION",
       "required": "False",
       "table": "protocol",
-      "test": "type=NMR",
+      "test": "machine_type=NMR",
       "value_type": "str"
     }
   }
 
 nmr_directives["NMR_METABOLITE_DATA"] = {
     "Data": {
+      "required": "True",
       "collate": "resonance_assignment",
       "headers": [
         "\"Metabolite\"=resonance_assignment",
@@ -727,6 +754,7 @@ nmr_directives["NMR_METABOLITE_DATA"] = {
       "values_to_str": "True"
     },
     "Extended": {
+      "required": "False",
       "exclusion_headers": [
         "id",
         "intensity",
@@ -758,6 +786,7 @@ nmr_directives["NMR_METABOLITE_DATA"] = {
       "values_to_str": "True"
     },
     "Metabolites": {
+      "required": "True",
       "collate": "resonance_assignment",
       "headers": [
         "\"Metabolite\"=resonance_assignment",
@@ -780,6 +809,7 @@ nmr_directives["NMR_METABOLITE_DATA"] = {
       "values_to_str": "True"
     },
     "Units": {
+      "required": "True",
       "fields": [
         "intensity%type"
       ],
@@ -793,6 +823,7 @@ nmr_binned_directives = copy.deepcopy(nmr_directives)
 del nmr_binned_directives["NMR_METABOLITE_DATA"]
 nmr_binned_directives["NMR_BINNED_DATA"] = {
     "Data": {
+      "required": "True",
       "collate": "assignment",
       "headers": [
         "\"Bin range(ppm)\"=assignment",
@@ -807,6 +838,7 @@ nmr_binned_directives["NMR_BINNED_DATA"] = {
       "value_type": "matrix"
     },
     "Units": {
+      "required": "True",
       "fields": [
         "intensity%type"
       ],

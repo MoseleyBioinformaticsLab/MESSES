@@ -40,7 +40,7 @@ def test_parent_not_in_entity_table_error(mwtab_json, capsys):
         create_subject_sample_factors(working_json)
     captured = capsys.readouterr()
     assert captured.err == 'Error: The parent entity, "01_A0_Colon_naive_0days_170427_UKy_GCH_rep1", ' +\
-                            'pulled from the entity "01_A0_Colon_naive_0days_170427_UKy_GCH_rep1-lipid" ' +\
+                            'pulled from the entity "01_A0_Colon_naive_0days_170427_UKy_GCH_rep1-polar-FTMS_A" ' +\
                             'in the "entity" table is not in the "entity". Parent entities must be in the table with thier children.' + "\n"
 
 
