@@ -28,6 +28,8 @@ and functionality.
 
 Options
 -------
+**--silent** - This option will silence all warning messages. Errors will still be printed.
+
 **--output** - This option is used to specify the name of the JSON file that will be output. If this option is not specified there will be no output file.
 
 **--compare** - This option allows you to compare the resulting JSON file with the one provided with this option. It will show differences such as missing and extra tables and fields.
@@ -61,8 +63,6 @@ and fields can also be specified with regular expressions. Ex. --delete r'.*toco
 **--keep** - Use this option to keep only the indicated tables in the JSONized output. These are tables only, but multiple tables can be specified. 
 Ex. --keep protocol,measurement  will keep only the protocol and measurement tables. Tables can also specified with regular expressions Ex. --keep r'.*tocl',r'measure.*'  
 will keep all the tables that match the regular expressions.
-
-**--silent** - This option will silence all warning messages. Errors will still be printed.
 
 
 Examples
@@ -561,6 +561,194 @@ Output:
 
 
 
+
+
+
+
+
+Validate
+~~~~~~~~
+.. literalinclude:: ../src/messes/validate/validate.py
+    :start-at: Usage:
+    :end-before: """
+    :language: none
+
+Validation can be broken down into layers. The first layer is making sure the data is valid 
+against the :doc:`experiment_description_schema`. This includes things such as making sure every protocol 
+is one of the 5 types, making sure every sample entity has a parent, and all records have the 
+required fields. This layer is built into the validate command and does not require any 
+user input. The second layer is a layer that validates fields in table records based on 
+their protocol(s). This layer does require the user to generate what is called a :doc:`protocol_dependent_schema` 
+(PDS) that defines what fields are required for records with the protocols that are in it. 
+The protocol-dependent schema can be a JSON file or a tagged tabular file detailed below. The 
+protocol-dependent schema is not required, but it is highly recommended to minimize problems in 
+the conversion step.
+
+The validate command is used to validate extracted data. It is not guarenteed to catch everything wrong, but it makes a best attempt to check for 
+common issues. This can be highly influenced by the user through the --pds and --additional options, which allow the user to specify a protocol-dependent 
+schema and additional JSON schema, respectively. The protocol-dependent schema (PDS) is detailed in :doc:`protocol_dependent_schema`, and allows 
+users to specify additional validation based on the protocols of records. The additional JSON schema is any arbitrary valid `JSON schema <https://json-schema.org/understanding-json-schema/>`_ and it is 
+simply used as is as additional validation.
+
+While the "json" command is the reason validate was created the other commands were added to support it. The "save-schema" command was added so 
+that users can see the JSON schema being created and used by the "json" command and possibly modify it for use with the --additional option. 
+The "schema" command was added as an easy way for users to check that any JSON schema they create are valid. Similarly the "pds" command was 
+added so users can check that and protocol-dependent schema they create are valid.
+
+Options
+-------
+**--silent** - This option specifies what warnings should be printed. "full" will silence all warnings, "nuisance" will only silence warnings that 
+have been deemed to be a nuisance in some cirumstances, and "none" will silence no warnings which is the default.
+
+**--pds** - This option specifies that a protocol-dependent schema should be used with the command and where to read the file from. If "-" is given 
+the PDS will be read from stdin, anything else is interpretted as a filepath. If the PDS is an Excel file the default sheet name to read in is 
+#validate, to specify a different sheet name separate it from the file name with a colon ex: file_name.xlsx:sheet_name.
+
+**--csv** - This option specifies that the PDS file is a CSV (comma delimited) file. If the PDS file is read from stdin it is required to indicate 
+what type of file it is, otherwise it will be determined from the file extension if not specified.
+
+**--xlsx** - This option specifies that the PDS file is an Excel file. This type of file cannot be read from stdin, but can still be specified to 
+indicate that the PDS file is an Excel file.
+
+**--json** - This option specifies that the PDS file is a JSON file. If the PDS file is read from stdin it is required to indicate what type of 
+file it is, otherwise it will be determined from the file extension if not specified.
+
+**--additional** - This option specifies that an additional JSON schema file should be used with the command and where to read the file from. 
+If "-" is given the file will be read from stdin, anything else is interpretted as a filepath.
+
+**--format** - This option specifies that additional validation should be done with the assumption that the input JSON is going to be converted 
+into the given format.
+
+**--no_base_schema** - This option specifies that validation against the base schema should not be done. Use this along with the 
+--no_extra_checks option to validate against only your own schema supplied with the --additional option.
+
+**--no_extra_checks** - This option specifies that extra validation beyond the base schema should not be done. Use this along with the 
+--no_base_schema option to validate against only your own schema supplied with the --additional option.
+
+**--input** - This option specifies that an input JSON file should be used with the "save-schema" command and where to read the file from. 
+If "-" is given the file will be read from stdin, anything else is interpretted as a filepath. If a PDS is given, protocols from the input 
+protocol table are added to the parent_protocol table in the PDS which changes the final schema used for validation, so you may need to specify 
+an input JSON file to reproduce the schema from the "json" command exactly.
+
+
+Examples
+--------
+The inputs and outputs are too large to demonstrate readily inline, but there are examples available in the examples folder on the GitHub_ repo.
+
+Basic JSON Validation
++++++++++++++++++++++
+Command Line:
+
+.. code:: console
+
+    messes validate json input.json
+
+
+JSON Validation Against A Supported Format
+++++++++++++++++++++++++++++++++++++++++++
+Command Line:
+
+.. code:: console
+
+    messes validate json input.json --format mwtab_MS
+
+
+JSON Validation With A Protocol-Dependent Schema
+++++++++++++++++++++++++++++++++++++++++++++++++
+Command Line:
+
+.. code:: console
+
+    messes validate json input.json --pds PDS_file.json
+
+
+JSON Validation With Added User Schema
+++++++++++++++++++++++++++++++++++++++
+Command Line:
+
+.. code:: console
+
+    messes validate json input.json --additional user_schema.json
+
+
+JSON Validation With Only Added User Schema
++++++++++++++++++++++++++++++++++++++++++++
+Command Line:
+
+.. code:: console
+
+    messes validate json input.json --additional user_schema.json --no_base_schema --no_extra_checks
+    
+
+Read Input JSON From STDIN
+++++++++++++++++++++++++++
+Command Line:
+
+.. code:: console
+
+    messes validate json -
+
+
+Read Protocol-Dependent Schema From STDIN
++++++++++++++++++++++++++++++++++++++++++
+Command Line:
+
+.. code:: console
+
+    messes validate json input.json --pds - --json
+
+
+Save Base Schema
+++++++++++++++++
+Command Line:
+
+.. code:: console
+
+    messes validate save-schema output_name.json
+
+
+Save Composite Schema
++++++++++++++++++++++
+Command Line:
+
+.. code:: console
+
+    messes validate save-schema output_name.json --pds PDS_file.json --input input.json
+
+
+Save Format Schema
+++++++++++++++++++
+Command Line:
+
+.. code:: console
+
+    messes validate save-schema output_name.json --format mwtab_MS
+    
+
+Validate A JSON Schema
+++++++++++++++++++++++
+Command Line:
+
+.. code:: console
+
+    messes validate schema input_schema.json
+    
+
+Validate A Protocol-Dependent Schema
+++++++++++++++++++++++++++++++++++++
+Command Line:
+
+.. code:: console
+
+    messes validate pds PDS_file.json
+
+
+
+
+
+
+
+
 Convert
 ~~~~~~~
 .. literalinclude:: ../src/messes/convert/convert.py
@@ -589,7 +777,7 @@ any directives that are not in the override JSON will be removed.
 
 Examples
 --------
-The inputs and outputs are too large to demonstrate readily inline, but there are examples on the GitHub repo at PUT_LINK_HERE.
+The inputs and outputs are too large to demonstrate readily inline, but there are examples available in the examples folder on the GitHub_ repo.
 
 Basic Supported Format Run
 ++++++++++++++++++++++++++
@@ -637,3 +825,4 @@ Command Line:
 
 
 
+.. _GitHub: https://github.com/MoseleyBioinformaticsLab/messes

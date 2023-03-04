@@ -36,7 +36,7 @@ Command Line:
 
     messes convert mwtab ms input_file.json my_output_name --update update_directives.json
     
-The next is that convert assumes the input JSON is following the table schema as described in the :doc:`table_schema` section, 
+The next is that convert assumes the input JSON is following the table schema as described in the :doc:`experiment_description_schema` section, 
 so if your JSON has different table names or a different structure then you will need to override the directives. You may also 
 need to change the SUBJECT_SAMPLE_FACTORS directive. The SUBJECT_SAMPLE_FACTORS are built using a function that has the same 
 assumptions as convert, but also some additional ones. It assumes when building lineages for a sample that some siblings will 
@@ -48,7 +48,7 @@ Changing SUBJECT_SAMPLE_FACTORS Example:
 
 .. code:: console
     
-    # Change the value to look for in protocol.id.
+    * Change the value to look for in protocol.id.
     {
     "SUBJECT_SAMPLE_FACTORS": {
         "no_id_needed": {
@@ -59,7 +59,7 @@ Changing SUBJECT_SAMPLE_FACTORS Example:
       }
     }
     
-    # Change the value and field.
+    * Change the value and field.
     {
     "SUBJECT_SAMPLE_FACTORS": {
         "no_id_needed": {
@@ -70,7 +70,7 @@ Changing SUBJECT_SAMPLE_FACTORS Example:
       }
     }
     
-    # Don't look for siblings.
+    * Don't look for siblings.
     {
     "SUBJECT_SAMPLE_FACTORS": {
         "no_id_needed": {

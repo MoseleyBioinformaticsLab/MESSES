@@ -11,6 +11,7 @@ Extract data from Excel workbooks, csv files, and JSON files.
  Options:
     -h, --help                          - show this help documentation.
     -v, --version                       - show the version.
+    --silent                            - print no warning messages.
     --output <filename_json>            - output json filename.
     --compare <filename_json>           - compare extracted metadata to given JSONized metadata.
     --modify <source>                   - modification directives worksheet name, regular expression, csv/json filename, or xlsx_filename:[worksheet_name|regular_expression] [default: #modify].
@@ -22,7 +23,6 @@ Extract data from Excel workbooks, csv files, and JSON files.
     --delete <metadata_section>...      - delete a section of the JSONized metadata. Section format is tableKey or tableKey,IDKey or tableKey,IDKey,fieldName. These can be regular expressions.
     --keep <metadata_tables>            - only keep the selected tables.  Delete the rest.  Table format is tableKey,tableKey,... The tableKey can be a regular expression.
     --file-cleaning <remove_regex>      - a string or regular expression to remove characters in input files, removes unicode and \r characters by default, enter "None" to disable [default: _x([0-9a-fA-F]{4})_|\r].
-    --silent                            - print no warning messages.
 
 Show Options:
   tables    - show tables in the extracted metadata.
@@ -49,20 +49,8 @@ Regular Expression Format:
 #   Hugely Revised (Over 75%) by Hunter Moseley, 08/29/2020
 #   Copyright Hunter Moseley, 08/29/2020. All rights reserved.
 #
+#   Revised significantly by Travis Thompson, 03/03/2023
 
-
-## TODO 
-## Make sure verify_metadata checks for project.id and study.id in subject, samples, and factors.
-## In validate have an option to check that fields with the same name in the same table have the same type.
-## In validate make sure to check that parent_id for subjects and samples only appears in one table, if a parent_id matches a subject and sample there is a problem.
-## In validate make sure factors have to have more than 1 allowed_value.
-## Should it be required to have at least 1 treatment protocol?
-## Validate that all protocols are in lineages from measurement samples? Currently convert gets all the sample ids from measurements table and 
-## pulls protocols from that lineage instead of trusting what is in the protocol table. Should this be a validation check so convert can just pull from the protocol table?
-## Could filter protocols down using lineage at start of convert instead of doing it over and over again.
-## mwtab does not check or warn the user if additional data keys are not unique.
-## isa-tab format
-## Add an option to not sort json output keys.
 
 
 from __future__ import annotations

@@ -75,13 +75,15 @@ factor
 Additional Rules
 ~~~~~~~~~~~~~~~~
 
-Table-Specific Rules
---------------------
-   * The project, study, and factor tables are straightforward and records will generally have the same fields regardless of the experiment, but records in the entity, measurement, and protocol tables may have different fields depending on the experiment. 
-   * The way this schema handles that is through the use of inheritance and context. 
-   * Records in the entity and measurement tables have different fields based on the protocol id the record has. 
-      * In other words, the records have different fields based on the context of the protocol. 
-   * Records in the protocol table have the fields set in the protocol plus the fields of their ancestors.
+..
+    Table-Specific Rules
+    --------------------
+       * The project, study, and factor tables are straightforward and records will generally have the same fields regardless of the experiment, but records in the entity, measurement, and protocol tables may have different fields depending on the experiment. 
+       * The way this schema handles that is through the use of inheritance and context. 
+       * Records in the entity and measurement tables have different fields based on the protocol id the record has. 
+          * In other words, the records have different fields based on the context of the protocol. 
+       * Records in the protocol table have the fields set in the protocol plus the fields of their ancestors.
+       * This is implemented using the :doc:`protocol_dependent_schema`.
 
 ID Fields
 ---------

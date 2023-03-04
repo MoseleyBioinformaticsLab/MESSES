@@ -120,7 +120,7 @@ base_schema = \
                          "id": {"type":"string", "minLength":1},
                          "parent_id": {"type":"string"},
                          "field": {"type":"string", "minLength":1},
-                         "allowed_values": {"type":"array", "minItems":1, "items":{"type":"string", "minLength":1}}
+                         "allowed_values": {"type":"array", "minItems":2, "items":{"type":"string", "minLength":1}}
                          },
                      "required": ["id", "field", "allowed_values"]
                      }

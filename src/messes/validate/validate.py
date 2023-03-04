@@ -54,14 +54,13 @@ by the --pds and --additional options. To validate only against a provided schem
 
 The "save-schema" command will save the internal base_schema to the <output_schema> location. If --pds is given 
 then it will be parsed and placed into the base_schema. If --input is given the protocols table will be added 
-in with the PDS to reproduce what happens in the json command.
+in with the PDS to reproduce what happens in the json command. If --format is used then that format schema is 
+saved instead of the base_schema.
 
 The "schema" command will validate the <input_schema> against the JSON Schema meta schema.
 
 The "pds" command will validate that the <pds> file is a valid protocol-dependent schema file.
 """
-## TODO take the MS_base_truncated and MS_base files from validate and redo convert tests and examples.
-## Go through all documentation and make sure all links of table_schema and controlled voabulary are updated.
 
 import re
 import sys
@@ -229,7 +228,10 @@ def print_better_error_messages(errors_generator: Iterable[jsonschema.exceptions
         elif error.validator == "maxLength":
             custom_message = " is too long."
         elif error.validator == "minItems":
-            custom_message = " cannot be empty."
+            if error.validator_value == 1:
+                custom_message = " cannot be empty."
+            else:
+                custom_message = " must have at least " + str(error.validator_value) + " items."
         elif error.validator == "type":
             if type(error.validator_value) == list:
                 custom_message = " is not any of the allowed types: ["
@@ -607,7 +609,6 @@ def build_PD_schema(pds: JSON) -> JSON:
 
     json_schema_boolean_keywords = ["uniqueItems"]
     
-    ## TODO dependentRequired could be done the same as required, but with a list value instead of boolean. Look at other keywords and see if want to add support.
     allOf = {}
     for protocol, fields in protocol_fields.items():
         

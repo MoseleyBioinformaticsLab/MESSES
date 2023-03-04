@@ -1,149 +1,8 @@
 Protocol-Dependent Schema
 =========================
-..
-    The process of going from your raw experimental data to submission to an online repository 
-    is not an easy one, but MESSES was created to make it easier. MESSES breaks up the process 
-    into 3 steps, extract, validate, and convert. The extraction step adds a layer of tags 
-    to your raw data so that it is in a form that is more interoperable and more standardized. 
-    The validation step ensures the data that was extracted is valid against the :doc:`experiment_description_schema` 
-    and :doc:`protocol_dependent_schema`. The conversion step converts the extracted data to the 
-    form that is accepted by the online repository. Initially getting started will likely be 
-    difficult, but once things are worked out the first time this process can be easily added 
-    to your workflows.
 
-
-Validation can be broken down into layers. The first layer is making sure the data is valid 
-against the :doc:`experiment_description_schema`. This includes things such as making sure every protocol 
-is one of the 5 types, making sure every sample entity has a parent, and all records have the 
-required fields. This layer is built into the validate command and does not require any 
-user input. The second layer is a layer that validates fields in table records based on 
-their protocol. This layer does require the user to generate what is called a protocol-dependent 
-schema (PDS) that defines what fields are required for records with the protocols that in it. 
-The protocol-dependent schema can be a JSON file or a tagged tabular file detailed below. The 
-protocol-dependent schema is not required, but it is highly recommended to minimize problems in 
-the conversion step.
-
-An additional layer of validation can be optionally specified by the user using their own 
-custom `JSON schema <https://json-schema.org/understanding-json-schema/>`_. If this is 
-utilized the provided JSON schema will be validated against the input JSON as is after 
-the first and second layers of vlaidation have been done.
-
-
-Base JSON Schema
-~~~~~~~~~~~~~~~~
-The first layer of validation is done largely through a JSON schema. The specific schema 
-is shown below.
-
-.. code:: console
-
-    {
-    "type":"object",
-    "properties":{
-        "protocol":{
-            "type":"object",
-            "additionalProperties":{
-                "type":"object",
-                "properties":{
-                    "id": {"type":"string", "minLength":1},
-                    "parentID": {"type":["string", "array"]},
-                    "type": {"type":"string", "enum":["sample_prep", "treatment", "collection", "storage", "measurement"]},
-                    "description": {"type":"string"},
-                    "filename": {"type":"string"}
-                    },
-                "required": ["id"],
-                "allOf":[
-                    {
-                    "if":{
-                          "anyOf":[
-                              {"properties":{"id":{"const":"Chromatography_MS_measurement"}},
-                              "required":["id"]},
-                              {"properties":{"parentID":{"anyOf":[
-                                                          {"const":"Chromatography_MS_measurement"}, 
-                                                          {"contains":{"const":"Chromatography_MS_measurement"}}
-                                                          ]}},
-                              "required":["parentID"]}
-                              ]
-                        },
-                    "then":{
-                        "properties":{
-                            "chromatography_description": {"type":"string", "minLength":1},
-                            "chromatography_instrument_name": {"type":"string", "minLength":1},
-                            "chromatography_type": {"type":"string", "minLength":1},
-                            "column_name": {"type":"string", "minLength":1},
-                            "instrument": {"type":"string", "minLength":1},
-                            "instrument_type": {"type":"string", "minLength":1},
-                            "ion_mode": {"type":"string", "minLength":1},
-                            "ionization": {"type":"string", "minLength":1},
-                          },
-                          "required": [
-                            "chromatography_instrument_name",
-                            "chromatography_type",
-                            "column_name",
-                            "ion_mode",
-                            "ionization",
-                            "instrument"
-                          ]
-                        }
-                    },
-                    ]
-                }
-            },
-        "entity":{
-            "type": "object",
-            "minProperties":1,
-            "additionalProperties":{
-                    "type":"object",
-                    "properties":{
-                        "id": {"type":"string", "minLength":1},
-                        "parentID": {"type":"string"},
-                        "project.id": {"type":"string", "minLength":1},
-                        "study.id": {"type":"string", "minLength":1},
-                        "protocol.id": {"type":["string", "array"], "minItems":1, "items":{"type":"string", "minLength":1}, "minLength":1},
-                        "status": {"type":"string"},
-                        "type": {"type":"string", "enum":["sample", "subject"]}
-                        },
-                    "required": ["id", "type", "project.id", "study.id", "protocol.id"],
-                    "if":{"properties":{"type":{"const":"sample"}}},
-                    "then":{"required":["parentID"]},
-                    "allOf":[
-                        {
-                        "if":{
-                            "properties":{"protocol.id":{"anyOf":[
-                                                        {"const":"Chromatography_MS_measurement"}, 
-                                                        {"contains":{"const":"Chromatography_MS_measurement"}}
-                                                        ]}}
-                            },
-                        "then":{
-                            "properties":{
-                                "assignment": {"type":"string", "minLength":1},
-                                "assignment%method": {"type":"string", "minLength":1},
-                                "compound": {"type":"string", "minLength":1},
-                                "intensity": {"type":"string", "minLength":1, "format":"is_num"},
-                                "intensity%type": {"type":"string", "minLength":1},
-                                "intensity%units": {"type":"string", "minLength":1},
-                                "isotopologue": {"type":"string", "minLength":1},
-                                "isotopologue%type": {"type":"string", "minLength":1},
-                                "retention_time": {"type":"string", "minLength":1},
-                                "retention_time%units": {"type":"string", "minLength":1},
-                                "sample.id": {"type":"string", "minLength":1}
-                              },
-                              "required": [
-                                "assignment%method",
-                                "assignment",
-                                "intensity",
-                                "sample.id"
-                              ]
-                            }
-                        },
-                        ]
-                    }
-            }
-        }
-    }
-
-
-Protocol-Dependent Schema (Second Layer) - JSON
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Protocol-Dependent Schema - JSON
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 If the protocol-dependent schema is given in the form of a JSON file it is expected to follow a certain 
 schema. The general format is shown below:
 
@@ -169,7 +28,7 @@ schema. The general format is shown below:
     ...
     }
 
-The first table shown is the "parent_protocol" table, named so it will not be confused with the "protocol" table in :doc:`table_schema`. 
+The first table shown is the "parent_protocol" table, named so it will not be confused with the "protocol" table in :doc:`experiment_description_schema`. 
 The parent_protocol is required to specify the types of the protocols in the JSON, but 
 also allows you to specify inheritance of protocols. The children of a protocol 
 inherit all of the required fields of not only its parent, but all of its ancestors. 
@@ -199,7 +58,7 @@ schema. Let's look at an example.
           "table": "protocol",
           "type": "string"
         },
-        "sample.id": {
+        "entity.id": {
           "minLength": "1",
           "required": "True",
           "table": "measurement",
@@ -222,11 +81,11 @@ that is at least 1 character long, but is not required to have a "instrument_typ
 since its "required" field is "False". The "measurement" and "entity" tables are similar, 
 but a record in those tables has to have a "protocol.id" field with the protocol or 
 one that inherits from it. For example, if a measurement record had the "master_measurement" 
-protocol it would be required to have a "sample.id" field that is a string with at least 
+protocol it would be required to have a "entity.id" field that is a string with at least 
 one character.
 
-CV JSON to JSON Schema
-----------------------
+PDS JSON to JSON Schema
+-----------------------
 The above example would translate to JSON Schema as shown below:
 
 .. code:: console
@@ -245,10 +104,10 @@ The above example would translate to JSON Schema as shown below:
     # entity table properties
     {
     "properties":{
-        "sample.id": {"type":"string", "minLength":1},
+        "entity.id": {"type":"string", "minLength":1},
       },
       "required": [
-        "sample.id"
+        "entity.id"
       ]
     }
     
@@ -279,7 +138,7 @@ These are then placed in larger conditional schema as follows:
                               "required":["id"]},
                               {"properties":{"parentID":{"anyOf":[
                                                           {"const":"master_measurement"}, 
-                                                          {"contains":{"const":"master_measurement"}}
+                                                          {"type":"array", "contains":{"const":"master_measurement"}}
                                                           ]}},
                               "required":["parentID"]}
                               ]
@@ -304,24 +163,24 @@ These are then placed in larger conditional schema as follows:
                          "type":"object",
                          "properties":{
                              "id": {"type":"string", "minLength":1},
-                             "sample.id": {"type":"string", "minLength":1},
+                             "entity.id": {"type":"string", "minLength":1},
                              "protocol.id": {"type":["string", "array"], "minItems":1, "items":{"type":"string", "minLength":1}, "minLength":1}
                              },
-                         "required": ["id", "sample.id", "protocol.id"],
+                         "required": ["id", "entity.id", "protocol.id"],
                          "allOf":[
                              {
                              "if":{
                                  "properties":{"protocol.id":{"anyOf":[
                                                              {"const":"master_measurement"}, 
-                                                             {"contains":{"const":"master_measurement"}}
+                                                             {"type":"array", "contains":{"const":"master_measurement"}}
                                                              ]}}
                                  },
                              "then":{
                                  "properties":{
-                                     "sample.id": {"type":"string", "minLength":1}
+                                     "entity.id": {"type":"string", "minLength":1}
                                    },
                                    "required": [
-                                     "sample.id"
+                                     "entity.id"
                                    ]
                                  }
                              },
@@ -376,8 +235,8 @@ A best attempt has been made to support most of the features of JSON Schema, but
 not everything has been tested or is guarenteed to work. If you find an error or 
 something you would like to be added then please open an `issue <https://github.com/MoseleyBioinformaticsLab/MESSES/issues>`_ on GitHub.
 
-Protocol-Dependent Schema (Second Layer) - Table
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Protocol-Dependent Schema - Table
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 The above JSON representation can be specified in tabular form using the export tags 
 described in :doc:`tagging`. The general format is shown below:
 
@@ -385,8 +244,11 @@ described in :doc:`tagging`. The general format is shown below:
 | #tags  | #parent_protocol.id        | #.type                                    | #.description           | #.parentID            |
 +========+============================+===========================================+=========================+=======================+
 |        | <protocol_name>            | <protocol_type>                           | <protocol_description>  | <protocol_parent_id>  |
++--------+----------------------------+-------------------------------------------+-------------------------+-----------------------+
 |        |                            |                                           |                         |                       |
++--------+----------------------------+-------------------------------------------+-------------------------+-----------------------+
 | #tags  | #<protocol_name>.id        | #.table                                   | #.<field_1>             |                       |
++--------+----------------------------+-------------------------------------------+-------------------------+-----------------------+
 |        | <field_name_for_protocol>  | <"protocol", "measurement", or "entity">  | <field_value>           |                       |
 +--------+----------------------------+-------------------------------------------+-------------------------+-----------------------+
 
@@ -397,38 +259,71 @@ protocols to illustrate inheritance is shown below:
 | #tags  | #parent_protocol.id                | #.type       | #.parentID          | #.filename  | #.description                                          |           |
 +========+====================================+==============+=====================+=============+========================================================+===========+
 |        | master_measurement                 | measurement  |                     |             | master measurement protocol                            |           |
++--------+------------------------------------+--------------+---------------------+-------------+--------------------------------------------------------+-----------+
 |        | MS_measurement                     | measurement  | master_measurement  |             | Measurements made using mass spec                      |           |
++--------+------------------------------------+--------------+---------------------+-------------+--------------------------------------------------------+-----------+
 |        | Chromatography_MS_measurement      | measurement  | MS_measurement      |             | Measurements made using mass spec with chromatography  |           |
++--------+------------------------------------+--------------+---------------------+-------------+--------------------------------------------------------+-----------+
 |        |                                    |              |                     |             |                                                        |           |
++--------+------------------------------------+--------------+---------------------+-------------+--------------------------------------------------------+-----------+
 | #tags  | #master_measurement.id             | #.type       | #.minLength         | #.required  | #.table                                                |           |
++--------+------------------------------------+--------------+---------------------+-------------+--------------------------------------------------------+-----------+
 |        | instrument                         | string       | 1                   | TRUE        | protocol                                               |           |
++--------+------------------------------------+--------------+---------------------+-------------+--------------------------------------------------------+-----------+
 |        | instrument_type                    | string       | 1                   | FALSE       | protocol                                               |           |
++--------+------------------------------------+--------------+---------------------+-------------+--------------------------------------------------------+-----------+
 |        |                                    |              |                     |             |                                                        |           |
++--------+------------------------------------+--------------+---------------------+-------------+--------------------------------------------------------+-----------+
 | #tags  | #master_measurement.id             | #.type       | #.minLength         | #.required  | #.table                                                |           |
-|        | sample.id                          | string       | 1                   | TRUE        | measurement                                            |           |
++--------+------------------------------------+--------------+---------------------+-------------+--------------------------------------------------------+-----------+
+|        | entity.id                          | string       | 1                   | TRUE        | measurement                                            |           |
++--------+------------------------------------+--------------+---------------------+-------------+--------------------------------------------------------+-----------+
 |        |                                    |              |                     |             |                                                        |           |
++--------+------------------------------------+--------------+---------------------+-------------+--------------------------------------------------------+-----------+
 | #tags  | #MS_measurement.id                 | #.type       | #.minLength         | #.required  | #.table                                                |           |
++--------+------------------------------------+--------------+---------------------+-------------+--------------------------------------------------------+-----------+
 |        | ion_mode                           | string       | 1                   | TRUE        | protocol                                               |           |
++--------+------------------------------------+--------------+---------------------+-------------+--------------------------------------------------------+-----------+
 |        | ionization                         | string       | 1                   | TRUE        | protocol                                               |           |
++--------+------------------------------------+--------------+---------------------+-------------+--------------------------------------------------------+-----------+
 |        |                                    |              |                     |             |                                                        |           |
++--------+------------------------------------+--------------+---------------------+-------------+--------------------------------------------------------+-----------+
 | #tags  | #MS_measurement.id                 | #.type       | #.minLength         | #.required  | #.table                                                | #.format  |
++--------+------------------------------------+--------------+---------------------+-------------+--------------------------------------------------------+-----------+
 |        | assignment                         | string       | 1                   | TRUE        | measurement                                            |           |
++--------+------------------------------------+--------------+---------------------+-------------+--------------------------------------------------------+-----------+
 |        | assignment%method                  | string       | 1                   | TRUE        | measurement                                            |           |
++--------+------------------------------------+--------------+---------------------+-------------+--------------------------------------------------------+-----------+
 |        | compound                           | string       | 1                   | FALSE       | measurement                                            |           |
++--------+------------------------------------+--------------+---------------------+-------------+--------------------------------------------------------+-----------+
 |        | intensity                          | string       | 1                   | TRUE        | measurement                                            | numeric   |
++--------+------------------------------------+--------------+---------------------+-------------+--------------------------------------------------------+-----------+
 |        | intensity%type                     | string       | 1                   | FALSE       | measurement                                            |           |
++--------+------------------------------------+--------------+---------------------+-------------+--------------------------------------------------------+-----------+
 |        | intensity%units                    | string       | 1                   | FALSE       | measurement                                            |           |
++--------+------------------------------------+--------------+---------------------+-------------+--------------------------------------------------------+-----------+
 |        | isotopologue                       | string       | 1                   | FALSE       | measurement                                            |           |
++--------+------------------------------------+--------------+---------------------+-------------+--------------------------------------------------------+-----------+
 |        | isotopologue%type                  | string       | 1                   | FALSE       | measurement                                            |           |
++--------+------------------------------------+--------------+---------------------+-------------+--------------------------------------------------------+-----------+
 |        |                                    |              |                     |             |                                                        |           |
++--------+------------------------------------+--------------+---------------------+-------------+--------------------------------------------------------+-----------+
 | #tags  | #Chromatography_MS_measurement.id  | #.type       | #.minLength         | #.required  | #.table                                                |           |
++--------+------------------------------------+--------------+---------------------+-------------+--------------------------------------------------------+-----------+
 |        | chromatography_description         | string       | 1                   | FALSE       | protocol                                               |           |
++--------+------------------------------------+--------------+---------------------+-------------+--------------------------------------------------------+-----------+
 |        | chromatography_instrument_name     | string       | 1                   | TRUE        | protocol                                               |           |
++--------+------------------------------------+--------------+---------------------+-------------+--------------------------------------------------------+-----------+
 |        | chromatography_type                | string       | 1                   | TRUE        | protocol                                               |           |
++--------+------------------------------------+--------------+---------------------+-------------+--------------------------------------------------------+-----------+
 |        | column_name                        | string       | 1                   | TRUE        | protocol                                               |           |
++--------+------------------------------------+--------------+---------------------+-------------+--------------------------------------------------------+-----------+
 |        |                                    |              |                     |             |                                                        |           |
++--------+------------------------------------+--------------+---------------------+-------------+--------------------------------------------------------+-----------+
 | #tags  | #Chromatography_MS_measurement.id  | #.type       | #.minLength         | #.required  | #.table                                                | #.format  |
++--------+------------------------------------+--------------+---------------------+-------------+--------------------------------------------------------+-----------+
 |        | retention_time                     | string       | 1                   | FALSE       | measurement                                            | numeric   |
++--------+------------------------------------+--------------+---------------------+-------------+--------------------------------------------------------+-----------+
 |        | retention_time%units               | string       | 1                   | FALSE       | measurement                                            |           |
 +--------+------------------------------------+--------------+---------------------+-------------+--------------------------------------------------------+-----------+
 
@@ -578,8 +473,8 @@ The above table then translates to JSON:
           "table": "protocol",
           "type": "string"
         },
-        "sample.id": {
-          "id": "sample.id",
+        "entity.id": {
+          "id": "entity.id",
           "minLength": "1",
           "required": "True",
           "table": "measurement",

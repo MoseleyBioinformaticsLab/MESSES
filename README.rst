@@ -1,5 +1,5 @@
 MESSES
-======
+~~~~~~
 
 .. image:: https://img.shields.io/pypi/v/messes.svg
    :target: https://pypi.org/project/messes
@@ -39,16 +39,27 @@ Currently Supported Formats:
     * mwTab
         * Used by the `Metabolomics Workbench`_.
 
-Although any kind of table schema can be used for extraction into JSON conversion 
+The process of going from your raw experimental data to submission to an online repository 
+is not an easy one, but MESSES was created to make it easier. MESSES breaks up the process 
+into 3 steps, extract, validate, and convert. The extraction step adds a layer of tags 
+to your raw data so that it is in a form that is more interoperable and more standardized. 
+The validation step ensures the data that was extracted is valid against the `Experiment Description Schema <https://moseleybioinformaticslab.github.io/messes/experiment_description_schema.html>`__, 
+`Protocol Dependent Schema <https://moseleybioinformaticslab.github.io/messes/protocol_dependent_schema.html>`__, any additional JSON schema you wish to provide, and a built 
+in schema specific for the format you wish to convert to. The conversion step converts the 
+extracted data to the form that is accepted by the online repository. Initially getting started 
+will likely be difficult, but once things are worked out the first time this process can be 
+easily added to your workflows.
+
+Although any kind of data schema can be used for extraction into JSON. Conversion 
 to another format from the extracted JSON does rely on the data being in a specific 
 schema. A generalized schema was developed for MESSES that should be able to comprehensivley 
-describe most experimental data. This schema is described in the `Table Schema <https://moseleybioinformaticslab.github.io/messes/table_schema.html>`__ section 
+describe most experimental data. This schema is described in the `Experiment Description Schema <https://moseleybioinformaticslab.github.io/messes/experiment_description_schema.html>`__ section 
 of the documentation. If MESSES is used as a library it may be possible to use a 
-different table schema, but the details would be left to the user.
+different data schema, but the details would be left to the user.
 
 Tagging and initial data entry are error prone due to being done by hand, so to 
 help catch mistakes MESSES includes a validate command that will help make sure 
-your data is in line with your project parameters and table schema.
+your data is in line with your project parameters and data schema.
 
 The MESSES package can be used in two ways:
 
@@ -102,19 +113,26 @@ Upgrade on Windows
 .. code:: bash
 
    py -3 -m pip install messes --upgrade
+   
+**Note:** If ``py`` is not installed on Windows (e.g. Python was installed via the Windows store rather than from the official Python website), the installation command is the same as Linux and Mac OS X.
+
+**Note:** If the ``messes`` console script is not found on Windows, the CLI can be used via ``python3 -m messes`` or ``py -3.10 -m messes`` or ``path\to\console\script\messes.exe``. Alternatively, the directory where the console script is located can be added to the Path environment variable. For example, the console script may be installed at:
+
+.. parsed-literal::
+   c:\\users\\<username>\\appdata\\local\\programs\\python\\python310\\Scripts\\
 
 
 Quickstart
 ~~~~~~~~~~
 It is unlikely that you will have data that is tagged and ready to be converted, so 
 it is highly recommended to first read the documentation on `tagging <https://moseleybioinformaticslab.github.io/messes/tagging.html>`__ 
-and the `table schema <https://moseleybioinformaticslab.github.io/messes/table_schema.html>`__ so 
+and the `Experiment Description Schema <https://moseleybioinformaticslab.github.io/messes/experiment_description_schema.html>`__ so 
 that you can properly tag your data first.
 
 The expected workflow is to use the "extract" command to transform your tabular data 
 into JSON, then use the "validate" command to validate the JSON based on your specific 
 project schema, fix errors and warnings in the original data, repeat steps 1-3 until 
-there are no more errors, then to use the "convert" command to transform the validated JSON into 
+there are no more errors, and then use the "convert" command to transform the validated JSON into 
 your final preferred data format. The validate command can be skipped, but it is not recommended.
 
 A basic error free run may look like:
@@ -122,8 +140,8 @@ A basic error free run may look like:
 .. code:: bash
 
    messes extract your_data.csv --output your_data.json
-   messes validate your_data.json your_schema.json
-   messes convert mwtab your_data.json --to-path your_mwtab_data.txt
+   messes validate json your_data.json --pds your_schema.json --format desired_format
+   messes convert desired_format your_data.json your_format_data
    
 MESSES's behavior can be quite complex, so it is highly encouraged to read the 
 `guide <https://moseleybioinformaticslab.github.io/messes/guide.html>`_ and `tutorial <https://moseleybioinformaticslab.github.io/messes/tutorial.html>`_.

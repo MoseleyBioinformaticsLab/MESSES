@@ -28,8 +28,10 @@ Options:
 
 The general command structure for convert is convert <format> which will convert an input JSON file over to the supported format. 
 The outputs of these commands will save both the JSON conversion and the final format file.
+
 The generic command is the same as the supported formats except the user is required to input conversion directives specifying how to 
 convert the input JSON to the desired output JSON. Only an output JSON is saved.
+
 The save-directives command is used to print the default conversion directives used by convert for any of the supported formats. <output-filetype> 
 can be one of "json", "xlsx", or "csv". The file is saved as "format_conversion_directives.ext" where ".ext" is replaced with ".json", ".xlsx", 
 or ".csv" depending on the value of <output-format>, unless <output_name> is given.
@@ -59,13 +61,6 @@ from messes.convert import mwtab_functions
 from messes.convert import user_input_checking
 from messes.convert import convert_schema
 
-## Should all protocol types loop over all protocols and concat them or only certain ones? collection does not and treatment does currently.
-## Should the MS metabolite Data be intensity or corrected_raw_intensity? There are submitted data using intensity, but the convert code is corrected_raw.
-## natural abundance corrected and protein normalized peak area for intensity vs natural abundance corrected peak area for corrected_raw
-## Currently the Treatment factor in SSF is a list, make sure this converts into mwTab text correctly.
-## Optionally put non required fields as empty strings instead of not including them. This is done with default value.
-## Should default value work if code is given but fails? Right now only works if field is not found.
-## TODO change mwtab functions so they use entity.id instead of sample.id.
 
 supported_formats_and_sub_commands = {"mwtab":["ms", "nmr", "nmr_binned"]}
 
@@ -130,7 +125,6 @@ def main() :
     ##########################
     ## Handle save-directives command.
     ##########################
-    ## TODO add an option so it prints to screen instead of saving.
     if args["save-directives"]:
         if args["<output_name>"]:
             if re.match(r".*\." + args["<output_filetype>"] + "$", args["<output_name>"]):
@@ -795,7 +789,6 @@ def compute_matrix_value(input_json: dict, conversion_table: str, conversion_rec
     
     exclusion_headers = conversion_attributes.get("exclusion_headers", [])
     
-    ## TODO Should there be an option so that headers are not required to be in the input data?
     headers = []
     if conversion_attributes.get("headers"):
         for pair in conversion_attributes["headers"]:
@@ -818,7 +811,6 @@ def compute_matrix_value(input_json: dict, conversion_table: str, conversion_rec
             headers.append({"output_key":output_key, "output_key_is_literal": output_key_is_literal, 
                             "input_key":input_key, "input_key_is_literal": input_key_is_literal})
     
-    ## TODO think about changing optional_headers to inclusion_headers and having an option about printing warnings if the headers aren't there.
     optional_headers = conversion_attributes.get("optional_headers", [])
     
     table_records = _build_table_records(has_test, conversion_record_name, conversion_table, conversion_attributes, 

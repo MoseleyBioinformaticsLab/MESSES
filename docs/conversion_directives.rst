@@ -10,7 +10,7 @@ Many popular data formats have a unique text format specialized to thier niche, 
 JSON version of the format as well. It is often easier to go from the JSON version of the format 
 to the specialized format and vice versa. It is also easier to go from one arbitrary JSON format 
 to another, so the convert command was designed to transform the JSON format described in 
-:doc:`table_schema` to the JSON version of any of the supported formats and then to the final 
+:doc:`experiment_description_schema` to the JSON version of any of the supported formats and then to the final 
 niche format. The convert command also supports simple JSON to JSON conversion through the 
 "generic" sub-command.
 

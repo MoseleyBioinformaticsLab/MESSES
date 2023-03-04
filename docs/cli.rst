@@ -22,9 +22,28 @@ Usage
        
 
 
+Validate
+~~~~~~~~
+The validate command of MESSES supports validating JSON data. This is done largely 
+through utilizing `JSON Schema <https://json-schema.org/understanding-json-schema/>`_, 
+but validation beyond the capabilities of JSON Schema is also done. By default 
+JSON files are validated against the :doc:`experiment_description_schema`, but this 
+can be turned off with options. Users can also provide additional validation in 
+the form of their own JSON schema and :doc:`protocol_dependent_schema`. More details 
+and examples for the validate command are in the :doc:`tutorial`.
+
+Usage
+-----
+
+.. literalinclude:: ../src/messes/validate/validate.py
+    :start-at: Usage:
+    :end-before: """
+    :language: none
+
+
+
 Convert
 ~~~~~~~
-
 The convert command of MESSES supports converting JSON data to another JSON format 
 or another supported format. This is done by using conversion directives, which 
 are detailed in the :doc:`conversion_directives` section. Arbitrary JSON to JSON 
