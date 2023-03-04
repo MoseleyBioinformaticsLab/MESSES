@@ -1,0 +1,10 @@
+@import 'theme.css';
+
+.rst-content div[class^=highlight] pre {
+    white-space: pre;
+    margin: 0;
+    padding: 12px;
+    display: block;
+    max-height: 300px;
+    overflow: auto;
+}

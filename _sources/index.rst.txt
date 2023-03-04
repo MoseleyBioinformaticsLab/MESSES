@@ -15,8 +15,8 @@ Welcome to MESSES's documentation!
    tutorial
    tagging
    conversion_directives
-   table_schema
-   controlled_vocabulary
+   experiment_description_schema
+   protocol_dependent_schema
    supported_formats
    api
    license

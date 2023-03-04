@@ -4,9 +4,9 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>TODO List &mdash; MESSES 0.1.dev1+gfd456c8 documentation</title>
+  <title>TODO List &mdash; MESSES 0.1.dev1+g64db5f6 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/custom_css.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
@@ -31,7 +31,7 @@
             <a href="index.html" class="icon icon-home"> MESSES
           </a>
               <div class="version">
-                0.1.dev1+gfd456c8
+                0.1.dev1+g64db5f6
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -44,18 +44,20 @@
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="guide.html">User Guide</a></li>
-<li class="toctree-l1"><a class="reference internal" href="guide.html#messes">MESSES</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cli.html">CLI</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tutorial.html">Tutorial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tagging.html">Tagging</a></li>
 <li class="toctree-l1"><a class="reference internal" href="conversion_directives.html">Conversion Directives</a></li>
-<li class="toctree-l1"><a class="reference internal" href="table_schema.html">Table Schema</a></li>
-<li class="toctree-l1"><a class="reference internal" href="controlled_vocabulary.html">Controlled Vocabulary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="experiment_description_schema.html">Experiment Description Schema</a></li>
+<li class="toctree-l1"><a class="reference internal" href="protocol_dependent_schema.html">Protocol-Dependent Schema</a></li>
 <li class="toctree-l1"><a class="reference internal" href="supported_formats.html">Supported Formats</a></li>
 <li class="toctree-l1"><a class="reference internal" href="api.html">API</a></li>
 <li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">TODO List</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#possible-improvements-to-messes">Possible Improvements to MESSES</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#possible-improvements-to-extract">Possible Improvements to Extract</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#possible-improvements-to-validate">Possible Improvements to Validate</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#possible-improvements-to-convert">Possible Improvements to Convert</a></li>
 </ul>
 </li>
 </ul>
@@ -86,6 +88,10 @@
              
   <section id="todo-list">
 <h1>TODO List<a class="headerlink" href="#todo-list" title="Permalink to this heading"></a></h1>
+<section id="possible-improvements-to-messes">
+<h2>Possible Improvements to MESSES<a class="headerlink" href="#possible-improvements-to-messes" title="Permalink to this heading"></a></h2>
+<p>Support the ISA-Tab format.</p>
+</section>
 <section id="possible-improvements-to-extract">
 <h2>Possible Improvements to Extract<a class="headerlink" href="#possible-improvements-to-extract" title="Permalink to this heading"></a></h2>
 <p>Make it so the automation tags to add are ran through the parser before being exported to check for errors. If tags to add were validated
@@ -105,6 +111,18 @@ transposed and then processed as normal.</p>
 <p>Add a #max-distance tag for levenshtein comaprison to put a minimum distance that must be acheived to be considered a match.</p>
 <p>Add an option not to print warnings about unused modification directives.</p>
 <p>Add a “exact_assign” tag to modification tags that keeps the field type (list vs non list).</p>
+<p>Add an option to not sort JSON output keys.</p>
+</section>
+<section id="possible-improvements-to-validate">
+<h2>Possible Improvements to Validate<a class="headerlink" href="#possible-improvements-to-validate" title="Permalink to this heading"></a></h2>
+<p>Improve build_PD_schema function by supporting more JSON Schema keywords. dependentRequired could be done the same as required,
+but with a list value instead of boolean.</p>
+<p>Have an option to check that fields with the same name in the same table have the same type.</p>
+</section>
+<section id="possible-improvements-to-convert">
+<h2>Possible Improvements to Convert<a class="headerlink" href="#possible-improvements-to-convert" title="Permalink to this heading"></a></h2>
+<p>Make it so save-directives can output to stdout if user supplies “-” for filename.</p>
+<p>For matrix directives add an option so that fields in “headers” don’t have to be in the records.</p>
 </section>
 </section>
 

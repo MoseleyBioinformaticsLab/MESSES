@@ -4,9 +4,9 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Conversion Directives &mdash; MESSES 0.1.dev1+gfd456c8 documentation</title>
+  <title>Conversion Directives &mdash; MESSES 0.1.dev1+g64db5f6 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/custom_css.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
@@ -20,7 +20,7 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Table Schema" href="table_schema.html" />
+    <link rel="next" title="Experiment Description Schema" href="experiment_description_schema.html" />
     <link rel="prev" title="Tagging" href="tagging.html" /> 
 </head>
 
@@ -32,7 +32,7 @@
             <a href="index.html" class="icon icon-home"> MESSES
           </a>
               <div class="version">
-                0.1.dev1+gfd456c8
+                0.1.dev1+g64db5f6
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -45,7 +45,6 @@
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="guide.html">User Guide</a></li>
-<li class="toctree-l1"><a class="reference internal" href="guide.html#messes">MESSES</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cli.html">CLI</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tutorial.html">Tutorial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tagging.html">Tagging</a></li>
@@ -135,8 +134,8 @@
 <li class="toctree-l2"><a class="reference internal" href="#validation">Validation</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="table_schema.html">Table Schema</a></li>
-<li class="toctree-l1"><a class="reference internal" href="controlled_vocabulary.html">Controlled Vocabulary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="experiment_description_schema.html">Experiment Description Schema</a></li>
+<li class="toctree-l1"><a class="reference internal" href="protocol_dependent_schema.html">Protocol-Dependent Schema</a></li>
 <li class="toctree-l1"><a class="reference internal" href="supported_formats.html">Supported Formats</a></li>
 <li class="toctree-l1"><a class="reference internal" href="api.html">API</a></li>
 <li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
@@ -178,7 +177,7 @@ Many popular data formats have a unique text format specialized to thier niche, 
 JSON version of the format as well. It is often easier to go from the JSON version of the format
 to the specialized format and vice versa. It is also easier to go from one arbitrary JSON format
 to another, so the convert command was designed to transform the JSON format described in
-<a class="reference internal" href="table_schema.html"><span class="doc">Table Schema</span></a> to the JSON version of any of the supported formats and then to the final
+<a class="reference internal" href="experiment_description_schema.html"><span class="doc">Experiment Description Schema</span></a> to the JSON version of any of the supported formats and then to the final
 niche format. The convert command also supports simple JSON to JSON conversion through the
 “generic” sub-command.</p>
 <p>To support the JSON to JSON conversion a relatively simple set of directives were developed. The
@@ -1747,7 +1746,7 @@ to import functions to run with the code field.</p>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="tagging.html" class="btn btn-neutral float-left" title="Tagging" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="table_schema.html" class="btn btn-neutral float-right" title="Table Schema" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="experiment_description_schema.html" class="btn btn-neutral float-right" title="Experiment Description Schema" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

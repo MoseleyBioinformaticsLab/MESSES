@@ -4,9 +4,9 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>CLI &mdash; MESSES 0.1.dev1+gfd456c8 documentation</title>
+  <title>CLI &mdash; MESSES 0.1.dev1+g64db5f6 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/custom_css.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
@@ -32,7 +32,7 @@
             <a href="index.html" class="icon icon-home"> MESSES
           </a>
               <div class="version">
-                0.1.dev1+gfd456c8
+                0.1.dev1+g64db5f6
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -45,14 +45,17 @@
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="guide.html">User Guide</a></li>
-<li class="toctree-l1"><a class="reference internal" href="guide.html#messes">MESSES</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">CLI</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#extract">Extract</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#usage">Usage</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#convert">Convert</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#validate">Validate</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#id1">Usage</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#convert">Convert</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id2">Usage</a></li>
 </ul>
 </li>
 </ul>
@@ -60,8 +63,8 @@
 <li class="toctree-l1"><a class="reference internal" href="tutorial.html">Tutorial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tagging.html">Tagging</a></li>
 <li class="toctree-l1"><a class="reference internal" href="conversion_directives.html">Conversion Directives</a></li>
-<li class="toctree-l1"><a class="reference internal" href="table_schema.html">Table Schema</a></li>
-<li class="toctree-l1"><a class="reference internal" href="controlled_vocabulary.html">Controlled Vocabulary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="experiment_description_schema.html">Experiment Description Schema</a></li>
+<li class="toctree-l1"><a class="reference internal" href="protocol_dependent_schema.html">Protocol-Dependent Schema</a></li>
 <li class="toctree-l1"><a class="reference internal" href="supported_formats.html">Supported Formats</a></li>
 <li class="toctree-l1"><a class="reference internal" href="api.html">API</a></li>
 <li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
@@ -115,6 +118,7 @@ with examples as to how they might be used see the <a class="reference internal"
  Options:
     -h, --help                          - show this help documentation.
     -v, --version                       - show the version.
+    --silent                            - print no warning messages.
     --output &lt;filename_json&gt;            - output json filename.
     --compare &lt;filename_json&gt;           - compare extracted metadata to given JSONized metadata.
     --modify &lt;source&gt;                   - modification directives worksheet name, regular expression, csv/json filename, or xlsx_filename:[worksheet_name|regular_expression] [default: #modify].
@@ -126,7 +130,6 @@ with examples as to how they might be used see the <a class="reference internal"
     --delete &lt;metadata_section&gt;...      - delete a section of the JSONized metadata. Section format is tableKey or tableKey,IDKey or tableKey,IDKey,fieldName. These can be regular expressions.
     --keep &lt;metadata_tables&gt;            - only keep the selected tables.  Delete the rest.  Table format is tableKey,tableKey,... The tableKey can be a regular expression.
     --file-cleaning &lt;remove_regex&gt;      - a string or regular expression to remove characters in input files, removes unicode and \r characters by default, enter &quot;None&quot; to disable [default: _x([0-9a-fA-F]{4})_|\r].
-    --silent                            - print no warning messages.
 
 Show Options:
   tables    - show tables in the extracted metadata.
@@ -149,6 +152,79 @@ Regular Expression Format:
 </div>
 </section>
 </section>
+<section id="validate">
+<h2>Validate<a class="headerlink" href="#validate" title="Permalink to this heading"></a></h2>
+<p>The validate command of MESSES supports validating JSON data. This is done largely
+through utilizing <a class="reference external" href="https://json-schema.org/understanding-json-schema/">JSON Schema</a>,
+but validation beyond the capabilities of JSON Schema is also done. By default
+JSON files are validated against the <a class="reference internal" href="experiment_description_schema.html"><span class="doc">Experiment Description Schema</span></a>, but this
+can be turned off with options. Users can also provide additional validation in
+the form of their own JSON schema and <a class="reference internal" href="protocol_dependent_schema.html"><span class="doc">Protocol-Dependent Schema</span></a>. More details
+and examples for the validate command are in the <a class="reference internal" href="tutorial.html"><span class="doc">Tutorial</span></a>.</p>
+<section id="id1">
+<h3>Usage<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h3>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Usage:
+    messes validate json &lt;input_JSON&gt; [--pds=&lt;pds&gt; [--csv | --xlsx | --json] | --no_base_schema] 
+                                      [--no_extra_checks]
+                                      [--additional=&lt;add_schema&gt;] 
+                                      [--format=&lt;format&gt;]
+                                      [--silent=&lt;level&gt;]
+    messes validate save-schema &lt;output_schema&gt; [--input=&lt;input_JSON&gt;] 
+                                                [--pds=&lt;pds&gt; [--csv | --xlsx | --json]] 
+                                                [--format=&lt;format&gt;]
+                                                [--silent=&lt;level&gt;]
+    messes validate schema &lt;input_schema&gt;
+    messes validate pds &lt;pds&gt; [--csv | --xlsx | --json] [--silent=&lt;level&gt;]
+    messes validate --help
+    
+    &lt;input_JSON&gt; - if &#39;-&#39; read from standard input.
+    &lt;pds&gt; - can be a JSON, csv, or xlsx file. If xlsx the default sheet name to read in is #validate, 
+           to specify a different sheet name separate it from the file name with a colon ex: file_name.xlsx:sheet_name.
+           If &#39;-&#39; read from standard input.
+    &lt;input_schema&gt; - must be a valid JSON Schema file. If &#39;-&#39; read from standard input.
+    &lt;output_schema&gt; - if &#39;-&#39; save to standard output.
+
+Options:
+    -h, --help                           - show this screen.
+    -v, --version                        - show version.
+    --silent &lt;level&gt;                     - if &quot;full&quot; silence all warnings, 
+                                           if &quot;nuisance&quot; silence warnings that are more likely to be a nuisance,
+                                           if &quot;none&quot; do not silence warnings [default: none].
+    --pds &lt;pds&gt;                            - a protocol-dependent schema file, can be a JSON, csv, or xlsx file. 
+                                           If xlsx the default sheet name to read in is #validate, to specify 
+                                           a different sheet name separate it from the file name with a colon 
+                                           ex: file_name.xlsx:sheet_name.
+    --csv                                - indicates that the protocol-dependent schema file is a csv (comma delimited) file.
+    --xlsx                               - indicates that the protocol-dependent schema file is an xlsx (Excel) file.
+    --json                               - indicates that the protocol-dependent schema file is a JSON file.
+                                           If a file type is not given then it will be guessed from the file extension.
+    --additional &lt;add_schema&gt;            - an additional JSON Schema file that will be used to validate &lt;input_JSON&gt;.
+    --format &lt;format&gt;                    - additional validation done for the desired supported format. 
+                                           Current supported formats: 
+                                               mwtab_MS, 
+                                               mwtab_NMR, 
+                                               mwtab_NMR_bin
+    --no_base_schema                     - don&#39;t validate with the base JSON schema.
+    --no_extra_checks                    - only do JSON Schema validation and nothing else.
+    --input &lt;input_JSON&gt;                 - optionally give an input JSON file to save-schema to reproduce the 
+                                           schema used to validate in the json command.
+    
+
+The &quot;json&quot; command will validate the &lt;input_JSON&gt; against the internal base_schema, and optional schema provided 
+by the --pds and --additional options. To validate only against a provided schema, use the --additional and --no_base_schema options.
+
+The &quot;save-schema&quot; command will save the internal base_schema to the &lt;output_schema&gt; location. If --pds is given 
+then it will be parsed and placed into the base_schema. If --input is given the protocols table will be added 
+in with the PDS to reproduce what happens in the json command. If --format is used then that format schema is 
+saved instead of the base_schema.
+
+The &quot;schema&quot; command will validate the &lt;input_schema&gt; against the JSON Schema meta schema.
+
+The &quot;pds&quot; command will validate that the &lt;pds&gt; file is a valid protocol-dependent schema file.
+</pre></div>
+</div>
+</section>
+</section>
 <section id="convert">
 <h2>Convert<a class="headerlink" href="#convert" title="Permalink to this heading"></a></h2>
 <p>The convert command of MESSES supports converting JSON data to another JSON format
@@ -158,8 +234,8 @@ conversions are supported through the “generic” command and all supported fo
 are converted using commands that match thier namesake. All supported formats are
 detailed in the <a class="reference internal" href="supported_formats.html"><span class="doc">Supported Formats</span></a> section. More details and examples for
 the convert command are in the <a class="reference internal" href="tutorial.html"><span class="doc">Tutorial</span></a>.</p>
-<section id="id1">
-<h3>Usage<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h3>
+<section id="id2">
+<h3>Usage<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h3>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Usage:
     messes convert mwtab (ms | nmr | nmr_binned) &lt;input_JSON&gt; &lt;output_name&gt; [--update &lt;conversion_directives&gt; | --override &lt;conversion_directives&gt;] [--silent]
     messes convert save-directives mwtab (ms | nmr | nmr_binned) &lt;output_filetype&gt; [&lt;output_name&gt;]
@@ -186,8 +262,10 @@ Options:
 
 The general command structure for convert is convert &lt;format&gt; which will convert an input JSON file over to the supported format. 
 The outputs of these commands will save both the JSON conversion and the final format file.
+
 The generic command is the same as the supported formats except the user is required to input conversion directives specifying how to 
 convert the input JSON to the desired output JSON. Only an output JSON is saved.
+
 The save-directives command is used to print the default conversion directives used by convert for any of the supported formats. &lt;output-filetype&gt; 
 can be one of &quot;json&quot;, &quot;xlsx&quot;, or &quot;csv&quot;. The file is saved as &quot;format_conversion_directives.ext&quot; where &quot;.ext&quot; is replaced with &quot;.json&quot;, &quot;.xlsx&quot;, 
 or &quot;.csv&quot; depending on the value of &lt;output-format&gt;, unless &lt;output_name&gt; is given.

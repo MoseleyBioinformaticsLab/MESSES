@@ -5,6 +5,10 @@ TODO List
 .. todolist::
 
 
+Possible Improvements to MESSES
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Support the ISA-Tab format.
+
 
 Possible Improvements to Extract
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -33,8 +37,19 @@ Add an option not to print warnings about unused modification directives.
 
 Add a "exact_assign" tag to modification tags that keeps the field type (list vs non list).
 
+Add an option to not sort JSON output keys.
 
 
+Possible Improvements to Validate
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Improve build_PD_schema function by supporting more JSON Schema keywords. dependentRequired could be done the same as required, 
+but with a list value instead of boolean.
+
+Have an option to check that fields with the same name in the same table have the same type.
 
 
+Possible Improvements to Convert
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Make it so save-directives can output to stdout if user supplies "-" for filename.
 
+For matrix directives add an option so that fields in "headers" don't have to be in the records.

@@ -4,9 +4,9 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>User Guide &mdash; MESSES 0.1.dev1+gfd456c8 documentation</title>
+  <title>User Guide &mdash; MESSES 0.1.dev1+g64db5f6 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/custom_css.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
@@ -32,7 +32,7 @@
             <a href="index.html" class="icon icon-home"> MESSES
           </a>
               <div class="version">
-                0.1.dev1+gfd456c8
+                0.1.dev1+g64db5f6
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -44,8 +44,8 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">User Guide</a></li>
-<li class="toctree-l1"><a class="reference internal" href="#messes">MESSES</a><ul>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">User Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#messes">MESSES</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#links">Links</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#installation">Installation</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#install-on-linux-mac-os-x">Install on Linux, Mac OS X</a></li>
@@ -66,8 +66,8 @@
 <li class="toctree-l1"><a class="reference internal" href="tutorial.html">Tutorial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tagging.html">Tagging</a></li>
 <li class="toctree-l1"><a class="reference internal" href="conversion_directives.html">Conversion Directives</a></li>
-<li class="toctree-l1"><a class="reference internal" href="table_schema.html">Table Schema</a></li>
-<li class="toctree-l1"><a class="reference internal" href="controlled_vocabulary.html">Controlled Vocabulary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="experiment_description_schema.html">Experiment Description Schema</a></li>
+<li class="toctree-l1"><a class="reference internal" href="protocol_dependent_schema.html">Protocol-Dependent Schema</a></li>
 <li class="toctree-l1"><a class="reference internal" href="supported_formats.html">Supported Formats</a></li>
 <li class="toctree-l1"><a class="reference internal" href="api.html">API</a></li>
 <li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
@@ -100,9 +100,8 @@
              
   <section id="user-guide">
 <h1>User Guide<a class="headerlink" href="#user-guide" title="Permalink to this heading"></a></h1>
-</section>
 <section id="messes">
-<h1>MESSES<a class="headerlink" href="#messes" title="Permalink to this heading"></a></h1>
+<h2>MESSES<a class="headerlink" href="#messes" title="Permalink to this heading"></a></h2>
 <a class="reference external image-reference" href="https://pypi.org/project/messes"><img alt="Current library version" src="https://img.shields.io/pypi/v/messes.svg" /></a>
 <a class="reference external image-reference" href="https://pypi.org/project/messes"><img alt="Supported Python versions" src="https://img.shields.io/pypi/pyversions/messes.svg" /></a>
 <a class="reference external image-reference" href="https://github.com/MoseleyBioinformaticsLab/messes/actions/workflows/build.yml"><img alt="Build status" src="https://github.com/MoseleyBioinformaticsLab/messes/actions/workflows/build.yml/badge.svg" /></a>
@@ -129,15 +128,25 @@ MESSES can transform it into JSON and then convert it to any of the <a class="re
 </li>
 </ul>
 </div></blockquote>
-<p>Although any kind of table schema can be used for extraction into JSON conversion
+<p>The process of going from your raw experimental data to submission to an online repository
+is not an easy one, but MESSES was created to make it easier. MESSES breaks up the process
+into 3 steps, extract, validate, and convert. The extraction step adds a layer of tags
+to your raw data so that it is in a form that is more interoperable and more standardized.
+The validation step ensures the data that was extracted is valid against the <a class="reference external" href="https://moseleybioinformaticslab.github.io/messes/experiment_description_schema.html">Experiment Description Schema</a>,
+<a class="reference external" href="https://moseleybioinformaticslab.github.io/messes/protocol_dependent_schema.html">Protocol Dependent Schema</a>, any additional JSON schema you wish to provide, and a built
+in schema specific for the format you wish to convert to. The conversion step converts the
+extracted data to the form that is accepted by the online repository. Initially getting started
+will likely be difficult, but once things are worked out the first time this process can be
+easily added to your workflows.</p>
+<p>Although any kind of data schema can be used for extraction into JSON. Conversion
 to another format from the extracted JSON does rely on the data being in a specific
 schema. A generalized schema was developed for MESSES that should be able to comprehensivley
-describe most experimental data. This schema is described in the <a class="reference external" href="https://moseleybioinformaticslab.github.io/messes/table_schema.html">Table Schema</a> section
+describe most experimental data. This schema is described in the <a class="reference external" href="https://moseleybioinformaticslab.github.io/messes/experiment_description_schema.html">Experiment Description Schema</a> section
 of the documentation. If MESSES is used as a library it may be possible to use a
-different table schema, but the details would be left to the user.</p>
+different data schema, but the details would be left to the user.</p>
 <p>Tagging and initial data entry are error prone due to being done by hand, so to
 help catch mistakes MESSES includes a validate command that will help make sure
-your data is in line with your project parameters and table schema.</p>
+your data is in line with your project parameters and data schema.</p>
 <p>The MESSES package can be used in two ways:</p>
 <blockquote>
 <div><ul class="simple">
@@ -145,6 +154,7 @@ your data is in line with your project parameters and table schema.</p>
 <li><p>As a command-line tool to convert raw data stored in Excel or CSV files into other formats.</p></li>
 </ul>
 </div></blockquote>
+</section>
 <section id="links">
 <h2>Links<a class="headerlink" href="#links" title="Permalink to this heading"></a></h2>
 <blockquote>
@@ -183,23 +193,26 @@ version of pip as older versions are known to have issues grabbing all dependenc
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>py<span class="w"> </span>-3<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>messes<span class="w"> </span>--upgrade
 </pre></div>
 </div>
+<p><strong>Note:</strong> If <code class="docutils literal notranslate"><span class="pre">py</span></code> is not installed on Windows (e.g. Python was installed via the Windows store rather than from the official Python website), the installation command is the same as Linux and Mac OS X.</p>
+<p><strong>Note:</strong> If the <code class="docutils literal notranslate"><span class="pre">messes</span></code> console script is not found on Windows, the CLI can be used via <code class="docutils literal notranslate"><span class="pre">python3</span> <span class="pre">-m</span> <span class="pre">messes</span></code> or <code class="docutils literal notranslate"><span class="pre">py</span> <span class="pre">-3.10</span> <span class="pre">-m</span> <span class="pre">messes</span></code> or <code class="docutils literal notranslate"><span class="pre">path\to\console\script\messes.exe</span></code>. Alternatively, the directory where the console script is located can be added to the Path environment variable. For example, the console script may be installed at:</p>
+<pre class="literal-block">c:\users\&lt;username&gt;\appdata\local\programs\python\python310\Scripts\</pre>
 </section>
 </section>
 <section id="quickstart">
 <h2>Quickstart<a class="headerlink" href="#quickstart" title="Permalink to this heading"></a></h2>
 <p>It is unlikely that you will have data that is tagged and ready to be converted, so
 it is highly recommended to first read the documentation on <a class="reference external" href="https://moseleybioinformaticslab.github.io/messes/tagging.html">tagging</a>
-and the <a class="reference external" href="https://moseleybioinformaticslab.github.io/messes/table_schema.html">table schema</a> so
+and the <a class="reference external" href="https://moseleybioinformaticslab.github.io/messes/experiment_description_schema.html">Experiment Description Schema</a> so
 that you can properly tag your data first.</p>
 <p>The expected workflow is to use the “extract” command to transform your tabular data
 into JSON, then use the “validate” command to validate the JSON based on your specific
 project schema, fix errors and warnings in the original data, repeat steps 1-3 until
-there are no more errors, then to use the “convert” command to transform the validated JSON into
+there are no more errors, and then use the “convert” command to transform the validated JSON into
 your final preferred data format. The validate command can be skipped, but it is not recommended.</p>
 <p>A basic error free run may look like:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>messes<span class="w"> </span>extract<span class="w"> </span>your_data.csv<span class="w"> </span>--output<span class="w"> </span>your_data.json
-messes<span class="w"> </span>validate<span class="w"> </span>your_data.json<span class="w"> </span>your_schema.json
-messes<span class="w"> </span>convert<span class="w"> </span>mwtab<span class="w"> </span>your_data.json<span class="w"> </span>--to-path<span class="w"> </span>your_mwtab_data.txt
+messes<span class="w"> </span>validate<span class="w"> </span>json<span class="w"> </span>your_data.json<span class="w"> </span>--pds<span class="w"> </span>your_schema.json<span class="w"> </span>--format<span class="w"> </span>desired_format
+messes<span class="w"> </span>convert<span class="w"> </span>desired_format<span class="w"> </span>your_data.json<span class="w"> </span>your_format_data
 </pre></div>
 </div>
 <p>MESSES’s behavior can be quite complex, so it is highly encouraged to read the

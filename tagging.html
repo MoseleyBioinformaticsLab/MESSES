@@ -4,9 +4,9 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Tagging &mdash; MESSES 0.1.dev1+gfd456c8 documentation</title>
+  <title>Tagging &mdash; MESSES 0.1.dev1+g64db5f6 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/custom_css.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
@@ -32,7 +32,7 @@
             <a href="index.html" class="icon icon-home"> MESSES
           </a>
               <div class="version">
-                0.1.dev1+gfd456c8
+                0.1.dev1+g64db5f6
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -45,7 +45,6 @@
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="guide.html">User Guide</a></li>
-<li class="toctree-l1"><a class="reference internal" href="guide.html#messes">MESSES</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cli.html">CLI</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tutorial.html">Tutorial</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Tagging</a><ul>
@@ -81,8 +80,8 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="conversion_directives.html">Conversion Directives</a></li>
-<li class="toctree-l1"><a class="reference internal" href="table_schema.html">Table Schema</a></li>
-<li class="toctree-l1"><a class="reference internal" href="controlled_vocabulary.html">Controlled Vocabulary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="experiment_description_schema.html">Experiment Description Schema</a></li>
+<li class="toctree-l1"><a class="reference internal" href="protocol_dependent_schema.html">Protocol-Dependent Schema</a></li>
 <li class="toctree-l1"><a class="reference internal" href="supported_formats.html">Supported Formats</a></li>
 <li class="toctree-l1"><a class="reference internal" href="api.html">API</a></li>
 <li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
@@ -145,7 +144,7 @@ to create a more robust system that could handle more complicated data arrangeme
 verbosity to a minimum. The system that was devised was an extra layer of tags added on top of existing
 tables that tell the extract command how to transform the tabular data into key based record data similar
 to JSON or SQL databases. The specific table schema this system was designed for is covered in the
-<a class="reference internal" href="table_schema.html"><span class="doc">Table Schema</span></a> section, but it is general enough that it can be used with most table schema.</p>
+<a class="reference internal" href="experiment_description_schema.html"><span class="doc">Experiment Description Schema</span></a> section, but it is general enough that it can be used with most table schema.</p>
 <p>This initial system served its function well, but it became clear that more functionality was sorely needed.
 Namely, both a way to add tags programmatically to data and a way to modify record values was needed, so the
 system was expanded to give facilities to both. Ultimately there are 3 parts to the tagging system that are
@@ -1119,7 +1118,7 @@ each row individually, or for the whole column by using the = sign. Ex. <strong>
 <li><p>They are the only time a period, ‘.’, can appear in the field_name.</p>
 <blockquote>
 <div><ul class="simple">
-<li><p>Ex. <strong>#measurement.intensity.units.assign</strong> is malformed, but <strong>#measurement.sample.id.assign</strong> is not.</p></li>
+<li><p>Ex. <strong>#measurement.intensity.units.assign</strong> is malformed, but <strong>#measurement.entity.id.assign</strong> is not.</p></li>
 </ul>
 </div></blockquote>
 </li>
