@@ -29,10 +29,10 @@ MESSES
 
 
 MESSES (Metadata from Experimental SpreadSheets Extraction System) is a Python package that facilitates the conversion of tabular data into
-other formats. We called it MESSES because we try to convert other people’s metadata messes into clean, well-structured, JSONized metadata. 
-It was initially created to pull MS and NMR experimental data into a database, but has been generalized to work with all tabular data. The key to this 
+other formats. We call it MESSES because we try to convert other people’s metadata messes into clean, well-structured, JSONized metadata. 
+It was initially created to pull mass spectrometry (MS) and nuclear magnetic resonance (NMR) experimental data into a database, but has been generalized to work with all tabular data. The key to this 
 is the `tagging <https://moseleybioinformaticslab.github.io/messes/tagging.html>`__ system. Simply add a layer of tags to any tabular data and 
-MESSES can transform it into JSON and then convert it to any of the `supported formats <https://moseleybioinformaticslab.github.io/messes/supported_formats.html>`__. 
+MESSES can transform it into an intermediate JSON representation and then convert it to any of the `supported formats <https://moseleybioinformaticslab.github.io/messes/supported_formats.html>`__. 
 
 Currently Supported Formats:
     
@@ -41,36 +41,35 @@ Currently Supported Formats:
 
 The process of going from your raw experimental data to submission to an online repository 
 is not an easy one, but MESSES was created to make it easier. MESSES breaks up the process 
-into 3 steps, extract, validate, and convert. The extraction step adds a layer of tags 
-to your raw data so that it is in a form that is more interoperable and more standardized. 
+into 3 steps: extract, validate, and convert. The extraction step adds a layer of tags 
+to your raw tabular data, which may be automatable, and then extracts it into a JSONized form 
+that it is more interoperable and more standardized. 
 The validation step ensures the data that was extracted is valid against the `Experiment Description Schema <https://moseleybioinformaticslab.github.io/messes/experiment_description_schema.html>`__, 
-`Protocol Dependent Schema <https://moseleybioinformaticslab.github.io/messes/protocol_dependent_schema.html>`__, any additional JSON schema you wish to provide, and a built 
+the `Protocol Dependent Schema <https://moseleybioinformaticslab.github.io/messes/protocol_dependent_schema.html>`__, any additional JSON schema you wish to provide, and a built 
 in schema specific for the format you wish to convert to. The conversion step converts the 
-extracted data to the form that is accepted by the online repository. Initially getting started 
-will likely be difficult, but once things are worked out the first time this process can be 
-easily added to your workflows.
+extracted data to the form that is accepted by the online repository. There is an intial 
+steep learning curve. But once the extraction, validation, and conversion settings are 
+worked out, this process can be easily added to our data generation and analysis workflows.
 
-Although any kind of data schema can be used for extraction into JSON. Conversion 
+Although any kind of data schema can be used for extraction into JSON, conversion 
 to another format from the extracted JSON does rely on the data being in a specific 
 schema. A generalized schema was developed for MESSES that should be able to comprehensivley 
-describe most experimental data. This schema is described in the `Experiment Description Schema <https://moseleybioinformaticslab.github.io/messes/experiment_description_schema.html>`__ section 
-of the documentation. If MESSES is used as a library it may be possible to use a 
-different data schema, but the details would be left to the user.
+describe most experimental designs and data. This schema is described in the `Experiment Description Schema <https://moseleybioinformaticslab.github.io/messes/experiment_description_schema.html>`__ section 
+of the documentation. But original data entry, manual tagging of tabular data, and even 
+automated tagging facilities can be messy, generating errors in the extracted JSONized 
+representation. So MESSES includes a validate command to help make sure your data is in 
+line with your project parameters and data schema.
 
-Tagging and initial data entry are error prone due to being done by hand, so to 
-help catch mistakes MESSES includes a validate command that will help make sure 
-your data is in line with your project parameters and data schema.
-
-The MESSES package can be used in two ways:
-
-   * As a library for converting raw data stored in Excel or CSV files into other formats.
-   * As a command-line tool to convert raw data stored in Excel or CSV files into other formats.
+The MESSES package is primarily designed as a command-line tool to convert raw tabular data 
+(Excel or CSV formatted) into other well-structured data formats. But the package can be 
+used as a library and extended to handle additional data conversion use-cases.
 
 
 Links
 ~~~~~
 
     * MESSES @ GitHub_
+    * Issues_
     * MESSES @ PyPI_
     * Documentation @ Pages_
 
@@ -145,17 +144,17 @@ A basic error free run may look like:
    
 MESSES's behavior can be quite complex, so it is highly encouraged to read the 
 `guide <https://moseleybioinformaticslab.github.io/messes/guide.html>`_ and `tutorial <https://moseleybioinformaticslab.github.io/messes/tutorial.html>`_.
-There are also examples available in the examples folder on the GitHub_ repo.
+There are also examples available in the examples folder on the GitHub_ repository.
 
 
 
 Mac OS Note
 ~~~~~~~~~~~
-When you try to run the program on Mac OS you may get an SSL error.
+When you try to run the program on Mac OS, you may get an SSL error.
 
     certificate verify failed: unable to get local issuer certificate
     
-This is due to a change in Mac OS and Python. To fix it go to to your Python 
+This is due to a change in Mac OS and Python. To fix it, go to to your Python 
 folder in Applications and run the Install Certificates.command shell command 
 in the /Applications/Python 3.x folder. This should fix the issue.
 
@@ -168,6 +167,7 @@ This package is distributed under the BSD `license <https://moseleybioinformatic
 
 .. _Metabolomics Workbench: http://www.metabolomicsworkbench.org
 .. _GitHub: https://github.com/MoseleyBioinformaticsLab/messes
+.. _Issues: https://github.com/MoseleyBioinformaticsLab/messes/issues
 .. _Pages: https://moseleybioinformaticslab.github.io/messes/
 .. _ReadTheDocs: http://messes.readthedocs.io
 .. _PyPI: https://pypi.org/project/messes

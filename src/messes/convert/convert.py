@@ -21,8 +21,7 @@ Options:
                                            that are left out of the update directives won't be changed. If you need to remove 
                                            directives then use the override option.
     --override <conversion_directives>   - conversion directives that will be used to override the built-in directives for the format.
-                                           The entire JSON must be specified, any directives that are not in the override JSON 
-                                           will be removed.
+                                           The built-in directives will not be used and these will be used instead.
     
     
 

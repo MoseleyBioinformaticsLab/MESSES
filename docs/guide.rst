@@ -37,7 +37,7 @@ will install all dependencies automatically, but if you wish to install them man
 run the following commands:
 
    * docopt_ for creating the command-line interface.
-      * To install docopt_ run the following:
+      * To install docopt_, run the following:
 
         .. code:: bash
 
@@ -45,7 +45,7 @@ run the following commands:
            py -3 -m pip install docopt    # On Windows
            
    * jsonschema_ for validating JSON.
-      * To install the jsonschema_ Python library run the following:
+      * To install the jsonschema_ Python library, run the following:
 
         .. code:: bash
 
@@ -53,7 +53,7 @@ run the following commands:
            py -3 -m pip install jsonschema    # On Windows
                      
    * pandas_ for easy data manipulation.
-      * To install the pandas_ Python library run the following:
+      * To install the pandas_ Python library, run the following:
 
         .. code:: bash
 
@@ -61,7 +61,7 @@ run the following commands:
            py -3 -m pip install pandas    # On Windows
            
    * openpyxl_ for saving Excel files in pandas.
-      * To install the openpyxl_ Python library run the following:
+      * To install the openpyxl_ Python library, run the following:
 
         .. code:: bash
 
@@ -69,7 +69,7 @@ run the following commands:
            py -3 -m pip install openpyxl    # On Windows
            
     * jellyfish_ for saving Excel files in pandas.
-       * To install the jellyfish_ Python library run the following:
+       * To install the jellyfish_ Python library, run the following:
 
          .. code:: bash
 
@@ -77,7 +77,7 @@ run the following commands:
             py -3 -m pip install jellyfish    # On Windows
             
     * mwtab_ for saving Excel files in pandas.
-       * To install the mwtab_ Python library run the following:
+       * To install the mwtab_ Python library, run the following:
 
          .. code:: bash
 
