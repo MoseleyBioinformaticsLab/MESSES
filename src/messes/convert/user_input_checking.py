@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-Validates user input to error early and allow the rest of the program to assume inputs are sanitized.
+Validates user input, erroring early and allowing the rest of the program to assume inputs are sanitized.
 """
 
 import re

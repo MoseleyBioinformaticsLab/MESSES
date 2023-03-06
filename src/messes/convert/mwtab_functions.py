@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-functions for mwtab format
+Functions for mwtab format.
 """
 
 import sys

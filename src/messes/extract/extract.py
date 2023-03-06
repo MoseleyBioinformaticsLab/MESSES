@@ -67,7 +67,10 @@ import pandas
 import docopt
 import jellyfish
 
-from messes.extract import cythonized_tagSheet
+try:
+    from messes.extract import cythonized_tagSheet
+except ImportError:
+    from messes.extract import tagSheet as cythonized_tagSheet
 from messes import __version__
 
 silent = False
