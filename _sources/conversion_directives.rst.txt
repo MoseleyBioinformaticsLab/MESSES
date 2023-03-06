@@ -3,18 +3,18 @@ Conversion Directives
 
 Introduction
 ~~~~~~~~~~~~
-The convert command is used to convert extracted and validated data from it's arbitrary JSON form to 
+The convert command is used to convert extracted and validated data from it's intermediate JSON form to 
 the final desired format. The command was largely created with the goal of putting data into its 
 preferred format for deposition into an online data repository such as `Metabolomics Workbench`_. 
-Many popular data formats have a unique text format specialized to thier niche, but also have a 
+Many popular data formats have a unique text format specialized to their niche, but also have a 
 JSON version of the format as well. It is often easier to go from the JSON version of the format 
-to the specialized format and vice versa. It is also easier to go from one arbitrary JSON format 
-to another, so the convert command was designed to transform the JSON format described in 
+to the specialized format and vice versa. It is also easier to go from one JSON format 
+to another JSON format, so the convert command was designed to transform the JSON format described in the 
 :doc:`experiment_description_schema` to the JSON version of any of the supported formats and then to the final 
-niche format. The convert command also supports simple JSON to JSON conversion through the 
+niche format. The convert command also supports simple JSON-to-JSON conversion through the 
 "generic" sub-command.
 
-To support the JSON to JSON conversion a relatively simple set of directives were developed. The 
+To support the JSON-to-JSON conversion a relatively simple set of directives were developed. The 
 conversion directives file is expected to be a JSON or tagged tabular file with a certain structure. 
 The general JSON structure is shown below.
 
@@ -32,7 +32,7 @@ The general JSON structure is shown below.
     ...
     }
 
-This structure can be mimicked using the export tagging system mentioned in the :doc:`tagging` 
+This structure can be mimicked using the export part of the tagging system mentioned in the :doc:`tagging` 
 section of this documentation, and tagged tabular files are acceptable input for the 
 conversion directives of the convert command. The JSON structure above is shown below using 
 export tags.
@@ -105,8 +105,8 @@ Output JSON
 Code
 ----
 If you need to generate a string value from the input JSON in a more complex way 
-than can be done with the current supported directives you can use the "code" field 
-to give the program Python code directly to run. What is in the code field will 
+than can be done with the current supported directives, you can use the "code" field 
+to give the program Python code directly to evaluate. What is in the code field will 
 be delivered directly to eval(), and the name of the internal variable for the input 
 JSON is "input_json". You can also use the "import" field to import any user created 
 libraries into the program. The "import" value should be a path to the file to import.
@@ -207,8 +207,8 @@ Output JSON
 
 First Record
 ------------
-Similar to specifying a record ID if you want to build the string value from a record 
-but do not know its ID you can omit the "record_id" field and the first record in 
+Similar to specifying a record ID, if you want to build the string value from a record 
+but do not know its ID, you can omit the "record_id" field and the first record in 
 the specified table will be used. This alone is generally not enough though and it 
 is recommended to either use the "sort_by" and "sort_order" fields to first sort the 
 records before selecting the first one, or use the "test" field to select the first 
@@ -311,10 +311,10 @@ Output JSON
 
 For Each
 --------
-If the information to build the value is spread across several records then use the 
+If the information to build the value is spread across several records, then use the 
 "for_each" field to loop over all the records in the table and build the value by 
 concatenating the values with a delimiter. Use the "delimiter" field to specify the 
-delimiter to use, the default is no delimiter aka the empty string. Generally, simply 
+delimiter to use. The default is no delimiter aka the empty string. Generally, simply 
 looping over all records is not enough, so use the "test" field to only use the records 
 matching some test.
 
@@ -479,7 +479,7 @@ Takes priority over other fields. You can put the value between double quotes if
 is difficult to get certain sequences in the table software used to construct the directive. 
 Ex. " " will be a single space and "asdf" will be asdf.
 
-**code** - a string of valid Python code to be delivered to eval(), must return a string type 
+**code** - a string of valid Python code to be delivered to eval() that must return a string type 
 value. Takes priority after override.
 
 **import** - a string that is a filepath to a Python file to be imported. Typically to be used 
@@ -491,7 +491,7 @@ string value for the record.
 **fields** - a list of literals and fields in the input JSON records to concatenate together to 
 build the string value for the record. It is assumed that all records in the input JSON will have 
 these fields and an error will occur if one does not. To interpret a value in the list as a literal 
-value and not a field surround it in double quotes. Ex. [field1,"literal_value",field2]
+value and not a field, surround it in double quotes. Ex. [field1,"literal_value",field2]
 
 **for_each** - a boolean or string value ("True" or "False") that indicates the string value is to be 
 built by iterating over each record in the indicated table in the input JSON. Takes priority over 
@@ -500,7 +500,7 @@ record_id.
 **test** - a string of the form "field=value" where field is a field in the records being 
 iterated over and value is what the field must be equal to in order to be used to build the 
 string value. Use this as a filter to filter out records that should not be used to build 
-the string value. If for_each is false this is used to find the first record that matches.
+the string value. If for_each is false, this is used to find the first record that matches.
 
 **delimiter** - a string value used to separate the strings built from each record when 
 for_each is true. You can put the value between double quotes if it is difficult to get certain 
@@ -516,12 +516,12 @@ the input JSON records.
 to build the value from.
 
 **required** - a boolean or string value ("True" or "False") that indicates if the directive is 
-required. If true then errors encounterd will stop the program, but if false a warning will be 
+required. If true, then errors encountered will stop the program. If false, a warning will be 
 printed and the directive will either use a default value or be skipped.
 
 **default** - a string value to default to if the directive cannot be built and is not required. 
-You can put the value between double quotes if it is difficult to get certain sequences in the 
-table software used to construct the directive. Ex. " " will be a single space and "asdf" will be asdf.
+If getting specific sequences in the table software used to construct the directive is difficult, 
+you can put the value between double quotes. Ex. " " will be a single space and "asdf" will be asdf.
 
 
 
@@ -529,21 +529,21 @@ matrix Directives
 ~~~~~~~~~~~~~~~~~
 The matrix directive assumes that you want to create a list of dictionaries (aka array of 
 objects) from information in the input JSON, and that that information is contained within 
-a single table. By default this directive will loop over all records in the indicated table 
-and build a dictionary for each one. The records can be sorted and filtered before iteration 
-in the same way that str directives can be, using the "sort_by", "sort_order", and "test" fields. 
+a single table. By default, this directive will loop over all records in the indicated table 
+and build a dictionary for each record. The records can be sorted and filtered before iteration 
+in the same way that the str directives can be, using the "sort_by", "sort_order", and "test" fields. 
 The "collate" field can also be used to group data together across records. The below 
 examples illustrate some common uses.
 
 Code
 ----
 If you need to generate a list of dictionaries from the input JSON in a more complex way 
-than can be done with the current supported directives you can use the "code" field 
-to give the program Python code directly to run. What is in the code field will 
+than what is currently possible with the supported directives, you can use the "code" field 
+to give the program Python code directly to evaluate. What is in the code field will 
 be delivered directly to eval(), and the name of the internal variable for the input 
 JSON is "input_json". You can also use the "import" field to import any user created 
 libraries into the program. The "import" value should be a path to the file to import. 
-For the matrix directive specifically the "code" field is a good way to supply the 
+For the matrix directive specifically, the "code" field is a good way to supply the 
 value directly.
 
 Directive as JSON
@@ -583,7 +583,7 @@ Output JSON
 
 Headers
 -------
-Similar to the "fields" field for str directives the "headers" field is the backbone 
+Similar to the "fields" field for str directives, the "headers" field is the backbone 
 of most matrix directives. Use this field to specify how to build the dictionaries by 
 supplying key-value pairs. The value should be a list of strings, "key=value", where 
 the keys and values can be either the names of fields in the input records or literal 
@@ -860,8 +860,8 @@ Fields to Headers
 -----------------
 The "fields_to_headers" field changes the behavior of the matrix directive so that 
 by default all fields from input records are copied as is into the dictionary. The 
-"exclusion_headers" field can then be used to to exclude fields from being added. 
-The "values_to_str" field can also be used to cast all of the field values to strings.
+"exclusion_headers" field can then be used to exclude fields from being added. 
+The "values_to_str" field can also be used to convert all of the field values to strings.
 
 Directive as JSON
 +++++++++++++++++
@@ -1088,10 +1088,10 @@ General Output Format
 
 Meaningful Fields
 -----------------
-**code** - a string of valid Python code to be delivered to eval(), must return a list of 
+**code** - a string of valid Python code to be delivered to eval() that must return a list of 
 dictionaries. Takes priority over headers.
 
-**import** - a string that is a filepath to a Python file to be imported. Typically to be used 
+**import** - a string that is a filepath to a Python library to be imported. Typically to be used 
 to import functions to run with the code field.
 
 **table** - a string that is the name of the table in the input JSON to pull from to build the 
@@ -1116,29 +1116,29 @@ across records.
 **fields_to_headers** - a boolean or string value ("True" or "False") that indicates whether to 
 copy all fields in the input records into the output.
 
-**exclusion_headers** - a list of field names not to put in the output data when the "fields_to_headers" 
+**exclusion_headers** - a list of field names not to put into the output data when the "fields_to_headers" 
 field is True.
 
 **optional_headers** - a list of field names that will be copied into the output if they exist in the 
 record. Use "values_to_str" to cast the values to a string.
 
-**values_to_str** - a boolean or string value ("True" or "False") that makes it so field values are 
-cast to a string type in the output.
+**values_to_str** - a boolean or string value ("True" or "False") that causes field values to be converted 
+into a string type in the output.
 
 **required** - a boolean or string value ("True" or "False") that indicates if the directive is 
-required. If true then errors encounterd will stop the program, but if false a warning will be 
+required. If true, then errors encountered will stop the program. If false, a warning will be 
 printed and the directive will either use a default value or be skipped.
 
 **default** - a string value to default to if the directive cannot be built and is not required. 
-You can put the value between double quotes if it is difficult to get certain sequences in the 
-table software used to construct the directive. Ex. " " will be a single space and "asdf" will be asdf.
+If getting specific sequences in the table software used to construct the directive is difficult, 
+you can put the value between double quotes. Ex. " " will be a single space and "asdf" will be asdf.
 
 
 
 section Directives
 ~~~~~~~~~~~~~~~~~~
-When you need a more complex structure than is available through the other directives, 
-or if you need to specify the entire table at once the section type directive is 
+When you need a more complex structure than is available through the other directives 
+or if you need to specify the entire table at once, the section type directive is 
 what you need. It only has the "code" and "import" fields because you have to supply 
 Python code to tell MESSES how to build the section. One quirk of the directive is 
 that you do still have to specify a record name for the directive, but it is ignored 
@@ -1249,7 +1249,9 @@ General Output Format
 
 Meaningful Fields
 -----------------
-**code** - a string of valid Python code to be delivered to eval().
+**code** - a string of valid Python code to be delivered to eval(). The entire table is assigned 
+the value returned by eval() with no type checking, unlike the other directives which are type 
+checked.
 
 **import** - a string that is a filepath to a Python file to be imported. Typically to be used 
 to import functions to run with the code field.
@@ -1257,7 +1259,7 @@ to import functions to run with the code field.
 
 Validation
 ~~~~~~~~~~
-Conversion directives are validated before use in convert using JSON Schema.
+Conversion directives are validated before use in the convert command using JSON Schema.
 
 Validation Schema:
 

@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Protocol-Dependent Schema &mdash; MESSES 0.1.dev1+g2e9d733 documentation</title>
+  <title>Protocol-Dependent Schema &mdash; MESSES 0.1.dev1+ga3d861d documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/custom_css.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -20,7 +20,7 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Supported Formats" href="supported_formats.html" />
+    <link rel="next" title="Supported Conversion Formats" href="supported_formats.html" />
     <link rel="prev" title="Experiment Description Schema" href="experiment_description_schema.html" /> 
 </head>
 
@@ -32,7 +32,7 @@
             <a href="index.html" class="icon icon-home"> MESSES
           </a>
               <div class="version">
-                0.1.dev1+g2e9d733
+                0.1.dev1+ga3d861d
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -58,7 +58,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#protocol-dependent-schema-table">Protocol-Dependent Schema - Table</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="supported_formats.html">Supported Formats</a></li>
+<li class="toctree-l1"><a class="reference internal" href="supported_formats.html">Supported Conversion Formats</a></li>
 <li class="toctree-l1"><a class="reference internal" href="api.html">API</a></li>
 <li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
 <li class="toctree-l1"><a class="reference internal" href="todo.html">TODO List</a></li>
@@ -90,9 +90,10 @@
              
   <section id="protocol-dependent-schema">
 <h1>Protocol-Dependent Schema<a class="headerlink" href="#protocol-dependent-schema" title="Permalink to this heading"></a></h1>
+<p>The protocol-dependent schema (PDS) represents an entity-attribute-value model used to validate the intermediate JSON based on the protocols present.</p>
 <section id="protocol-dependent-schema-json">
 <h2>Protocol-Dependent Schema - JSON<a class="headerlink" href="#protocol-dependent-schema-json" title="Permalink to this heading"></a></h2>
-<p>If the protocol-dependent schema is given in the form of a JSON file it is expected to follow a certain
+<p>If the protocol-dependent schema is given in the form of a JSON file, it is expected to follow a certain
 schema. The general format is shown below:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">{</span>
 <span class="go">&quot;parent_protocol&quot;:{</span>
@@ -156,7 +157,7 @@ schema. Let’s look at an example.</p>
 “minLength” and “type” will be copied as is into the JSON schema for the “instrument” property,
 but “required” will be used to build the “required” attribute for “master_measurement”.
 The “table” field should be one of “protocol”, “measurement”, or “entity” and indicates which
-table the record is associated with. For “instrument” and “instrument_type” the table is
+table the record is associated with. For “instrument” and “instrument_type”, the table is
 “protocol”, which means that records in the “protocol” table of the input JSON that
 have the same name as “master_measurement” or inherit from it must comply with the
 “instrument” and “instrument_type” specifications. For example, a protocol that inherits
@@ -278,10 +279,10 @@ for the protocol, but with some caveats. It has already been mentioned that the
 “required” property will be used to build the “required” array in the JSON schema,
 but there are some other keywords in <a class="reference external" href="https://json-schema.org/understanding-json-schema/">JSON Schema</a>
 that have special translations as well. For example, the “items” keyword must be an
-object type or boolean type to be valid in <a class="reference external" href="https://json-schema.org/understanding-json-schema/">JSON Schema</a>,
-but due to the limitations of the export tagging system there is not a way to specify
-an “items” property of this type. To get around this limitation if properties such
-as “items” are a string type they will first be put through the eval() function before
+object type or boolean type to be valid in <a class="reference external" href="https://json-schema.org/understanding-json-schema/">JSON Schema</a>.
+But due to the limitations of the export part of the tagging system, there is not a way to specify
+an “items” property of this type. To get around this limitation, if properties such
+as “items” are a string type, they will first be put through the eval() function before
 being copied into the JSON schema. Let’s see an example.</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">{</span>
 <span class="go">&quot;master_measurement&quot;: {</span>
@@ -302,12 +303,12 @@ being copied into the JSON schema. Let’s see an example.</p>
 <span class="go">}</span>
 </pre></div>
 </div>
-<p>Just know that for most keywords in <a class="reference external" href="https://json-schema.org/understanding-json-schema/">JSON Schema</a>
-it is acceptable to put a string value in place of the proper type, and that this
+<p>Just know that for most keywords in <a class="reference external" href="https://json-schema.org/understanding-json-schema/">JSON Schema</a>,
+it is acceptable to put a string value in place of the proper type. This
 is done to support the tabular form of the protocol-dependent schema as described below.
 A best attempt has been made to support most of the features of JSON Schema, but
 not everything has been tested or is guarenteed to work. If you find an error or
-something you would like to be added then please open an <a class="reference external" href="https://github.com/MoseleyBioinformaticsLab/MESSES/issues">issue</a> on GitHub.</p>
+something you would like to be added, then please open an <a class="reference external" href="https://github.com/MoseleyBioinformaticsLab/MESSES/issues">issue</a> on GitHub.</p>
 </section>
 </section>
 <section id="protocol-dependent-schema-table">
@@ -839,7 +840,7 @@ protocols to illustrate inheritance is shown below:</p>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="experiment_description_schema.html" class="btn btn-neutral float-left" title="Experiment Description Schema" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="supported_formats.html" class="btn btn-neutral float-right" title="Supported Formats" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="supported_formats.html" class="btn btn-neutral float-right" title="Supported Conversion Formats" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

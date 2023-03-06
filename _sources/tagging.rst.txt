@@ -22,37 +22,37 @@ This could be something as simple as requiring a table be on the very first row 
 row to have column names for every column, but a system such as that would then be fragile. We decided 
 to create a more robust system that could handle more complicated data arrangements and reduce the 
 verbosity to a minimum. The system that was devised was an extra layer of tags added on top of existing 
-tables that tell the extract command how to transform the tabular data into key based record data similar 
+tables that tell the extract command how to transform the tabular data into key-based record data similar 
 to JSON or SQL databases. The specific table schema this system was designed for is covered in the 
 :doc:`experiment_description_schema` section, but it is general enough that it can be used with most table schema.
 
 This initial system served its function well, but it became clear that more functionality was sorely needed. 
 Namely, both a way to add tags programmatically to data and a way to modify record values was needed, so the 
-system was expanded to give facilities to both. Ultimately there are 3 parts to the tagging system that are 
+system was expanded to provide facilities to do both. Ultimately there are 3 parts to the tagging system that are 
 distinct from one another but have similar syntax and ideas. The "export" part is the system used to add 
 directly on top of existing tabular data. It is the base system that must be used for the extraction to 
 work at all. The "automation" part that is used to automate adding "export" tags to tabular data. Based on 
-the header values in your data you can use "automation" tags to add the "export" tags automatically. A good 
+the header values in your data, you can use "automation" tags to add the "export" tags automatically. A good 
 use case for this is when you have data output by a program in a consistent way. Instead of manually adding 
-export tags to the program output each time you can create an "automation" page that will add the "export" 
-tags for you. The last part is the "modification" part which is the system used to modify record values. 
-It can be used to prepend, append, delete, overwrite, or regex substitute values. An example use case would 
+export tags to the program output each time, you can create an "automation" page that will add the "export" 
+tags for you. The last "modification" part is the system to modify record values. 
+It can be used to prepend, append, delete, overwrite, or regex substitute values. An example use-case would 
 be to update old naming conventions. Validly tagged files in their tabular or JSON form can be referred to 
 as directives as they direct the actions of the program. To reduce confusion between tags and directives 
-"tags" should generally refer to the extra text added above tables while "directives" are the tables and 
+"tags" should generally refer to the extra text added above tables, while "directives" are the tables and 
 tags taken as a whole. Each row of a tagged table is an individual directive.
 
-Each of the 3 tagging systems has to be in their own sheet or file for the extract command. By default 
-export tags are expected to be in a sheet named '#export' if given an Excel file without specifying a sheet 
-name. If given a CSV file then it is expected to have export tags. Modification tags are expected to be in 
+Each part of the tagging system has to be in their own sheet or file for the extract command. By default, 
+export tags are expected to be in a sheet named '#export', if given an Excel file without specifying a sheet 
+name. If given a CSV file, then this file is expected to have export tags. Modification tags are expected to be in 
 a sheet named '#modify' by default, but can be specified using the --modify option. The option can be used 
 to specify either a different sheet name in the given Excel file, a different Excel file, a different Excel 
 file with a different sheet name, a JSON file, or a CSV file. Automation tags are similarly specified, but 
 using the --automate option.
 
-Each of the 3 tagging systems are explained below with examples. Examples using them with the extract 
+Each part of the tagging system are explained below with examples. Examples using them with the extract 
 command are in the :doc:`tutorial` section and there are full run examples in the "examples" folder of the 
-GitHub_.
+GitHub_ repository.
 
 
 Export Tags
@@ -81,7 +81,7 @@ Keyword Tags
 ------------
 * **#tags** - identifies tag header rows. Must be in the first column of a row.
 
-   * Additional tag-value pairs in a cell with #tags are applied to all child records in this section, but are ignored for non child records.
+   * Additional tag-value pairs in a cell with #tags are applied to all child records in this section, but are ignored for non-child records.
 
 * **#ignore** - ignore this row. Must be put in the first column of a row.
 
@@ -358,9 +358,9 @@ Output JSON:
 
 Modification Tags
 ~~~~~~~~~~~~~~~~~
-Similar to export tags the modification tag rows are indicated by **#tags** in the left most column, and 
+Similar to export tags, the modification tag rows are indicated by **#tags** in the left most column, and 
 **#ignore** can be used to ignore rows. The general idea behind the modification system is that you 
-first indicate a field in a table to match to using tags. Then underneath that tag indicate the value in 
+first use tags to indicate a field in a table to match to. Then underneath that tag indicate the value in 
 that field to match to. Then another tag in the same row will indicate both what field to modify in the 
 record that has the matching field and what modification to do. Underneath that tag will have the value 
 to do the modification with. 
@@ -393,7 +393,7 @@ Value Tag
 ---------
 * All modification tag rows must start with a value tag after **#tags**. 
 * This tag indicates which table and field to compare with. 
-* The value underneath the tag will be compared with the value in indicated field for all of the records in the indicated table to determine if a match is made.
+* The value underneath the tag will be compared with the value in the indicated field for all of the records in the indicated table to determine if a match is made.
 
     * Signature: 
     
@@ -415,8 +415,8 @@ There are 4 comparison types, "exact", "regex", "levenshtein", and "regex|exact"
    
     * regex|exact is an intelligent combination of regex and exact. If a regex is specified for the comparison value it will be detected and the type will be regex for that comparison value only, otherwise the comparison type will be exact.
     * If a type is specified then that type is used regardless of the comparison value, so a regex string with an exact comparison type will try to match exactly.
-    * If the comparison tag is not specified then the type defaults to "regex|exact".
-    * exact type modifications are executed first, then regex type, and lastly levenshtein type. Within those types modifications are executed in order from first to last.
+    * If the comparison tag is not specified, then the type defaults to "regex|exact".
+    * exact type modifications are executed first, then regex type, and lastly levenshtein type. Within each type, modifications are executed in order from first to last.
 
 
 Match Type
@@ -430,10 +430,10 @@ There are 4 match types, "first", "first-nowarn", "unique", and "all".
     * "first-nowarn" - the same as first, but won't print warnings.
     * "unique" - the modification is only performed if 1 and only 1 record matched.
    
-        * For levenshtein this means that only 1 field value can have the minimum distance, if 2 values share the minimum distance then the action won't take place.
+        * For levenshtein, this means that only 1 field value can have the minimum distance, if 2 values share the minimum distance then the action won't take place.
    
     * "all" - the modification is done to every record that matches.
-    * If the match tag is not specified then the type defaults to "first".
+    * If the match tag is not specified, then the type defaults to "first".
    
 
 Modifications
@@ -462,8 +462,8 @@ There are 6 modifications that can be done, "assign", "append", "prepend", "rege
     * The assign modification can be used to change list types to non list types and vice versa.
         
         * This can lead to an issue where some records have a list type for the field and some do not.
-        * If that is not intended then be sure to construct the assign tag such that it matches the type of the field.
-        * For instance make sure evals return a list if the field should be a list type.
+        * If that is not intended, then be sure to construct the assign tag such that it matches the type of the field.
+        * For instance, make sure evals return a list if the field should be a list type.
         
     Example:
     
@@ -483,12 +483,12 @@ There are 6 modifications that can be done, "assign", "append", "prepend", "rege
         * **#[table_name].field_name[%attribute].append**
         * ***#[table_name].field_name[%attribute].append**
         
-    * If the indicated append field does not exist in the record then it will be added to the record.
-    * If the field value is a list and the append value is not a list then the append value will be appended to each value in the list.
+    * If the indicated append field does not exist in the record, then it will be added to the record.
+    * If the field value is a list and the append value is not a list, then the append value will be appended to each value in the list.
     * Add an asterisk, '*', to the front of the tag to interpret the append value as a list.
     
-        * When the append value is a list the behavior is more complicated.
-        * For each value in the field value list the append value in the append list at the same index will be appended to the field value.
+        * When the append value is a list, the behavior is more complicated.
+        * For each value in the field value list, the append value in the append list at the same index will be appended to the field value.
         * Examples:
             
             * field_value = ["a", "b"]  append_value = ["c", "d"]  result = ["ac", "bd"]
@@ -513,12 +513,12 @@ There are 6 modifications that can be done, "assign", "append", "prepend", "rege
         * **#[table_name].field_name[%attribute].prepend**
         * ***#[table_name].field_name[%attribute].prepend**
         
-    * If the indicated prepend field does not exist in the record then it will be added to the record.
-    * If the field value is a list and the prepend value is not a list then the prepend value will be prepended to each value in the list.
+    * If the indicated prepend field does not exist in the record, then it will be added to the record.
+    * If the field value is a list and the prepend value is not a list, then the prepend value will be prepended to each value in the list.
     * Add an asterisk, '*', to the front of the tag to interpret the prepend value as a list.
     
-        * When the prepend value is a list the behavior is more complicated.
-        * For each value in the field value list the prepend value in the prepend list at the same index will be prepended to the field value.
+        * When the prepend value is a list, the behavior is more complicated.
+        * For each value in the field value list, the prepend value in the prepend list at the same index will be prepended to the field value.
         * Examples:
             
             * field_value = ["a", "b"]  prepend_value = ["c", "d"]  result = ["ca", "db"]
@@ -542,8 +542,8 @@ There are 6 modifications that can be done, "assign", "append", "prepend", "rege
     
         * **#[table_name].field_name[%attribute].regex**
         
-    * If the indicated regex field does not exist in the record then a warning will be printed.
-    * If the field value is a list then the regex substitution will be done on each element in the list.
+    * If the indicated regex field does not exist in the record, then a warning will be printed.
+    * If the field value is a list, then the regex substitution will be done on each element in the list.
 
     Example:
     
@@ -576,7 +576,7 @@ There are 6 modifications that can be done, "assign", "append", "prepend", "rege
     +---------+---------------------------------------------------------------+---------------------------------+
     
     
-* **rename** - will remove the field from the record.
+* **rename** - will rename the field in the record.
 
     * Signatures: 
     
@@ -611,7 +611,7 @@ Important Points:
 
 * Tags in the same row must have the same table. An error will be raised during parsing if they don't.
 * The value tag must be before the modification tags.
-* Modifications are confined to the matched record, it is not possible to modify a record based on another record's fields or values.
+* Modifications are confined to the matched record. It is not possible to modify a record based on another record's fields or values.
 * Modifications can be chained together, so that the same field can have multiple modifications.
     
     * This can be utilized effectively, but can also cause hard to diagnose unexpected output.
@@ -654,10 +654,10 @@ Insert
 The insertion functionality is easy to understand. You simply write whatever you want to add into the 
 data and add **#insert** above it in the left most column and **#end** below it in the left most column. 
 Everything in between **#insert** and **#end** is simply added as is into the data before it is parsed 
-by the export tagging system. A good use case for this is when you have a standard protocol that always 
-needs to be added to some data. Instead of copying it in manually you can add it to an automation 
-sheet/file and deliver it to extract so it can add it for you. The thing to be careful of is to make 
-sure everything in the insert block is valid under the export tag system. It can be tricky to debug 
+by the export tagging. A good use case for this is when you have a standard protocol that always 
+needs to be added to some data. Instead of copying it in manually, you can add it to an automation 
+sheet/file and deliver it to the extract command so it can add it for you. The thing to be careful of is to make 
+sure everything in the insert block is valid under the export tagging. It can be tricky to debug 
 a tagging error here because extract won't be able to tell you that the issue is in the insert block.
 
 Example:
@@ -681,9 +681,9 @@ The header tagging allows you to automatically put export tags under a cell in t
 the value in the cell. Typically, a table will already have descriptive human readable headers to identify 
 what type of data is in the column. These headers are used to match to and put the associated export tags 
 under them. Any row that has a header match where export tags are added is automatically ignored with the 
-**#ignore** tag. Just like modification tags and export tags **#tags** is used to denote the start of a tag 
+**#ignore** tag. Just like modification tags and export tags, **#tags** is used to denote the start of a tag 
 block. An entire block is matched as a whole to a row in the data, so if you have multiple tables to add 
-tags to you should created multiple tag blocks. There are additional tags to help control how a black is 
+tags to you should created multiple tag blocks. There are additional tags to help control how a blank is 
 matched, detailed below.
 
 Example:
@@ -786,18 +786,18 @@ The Tags
        
        * Example: Name+"-"+Isopotologue+"-"+r'^\d+\w+ Isotope$'
        * This functionality means that certain characters can't be used for literal matching outside of a regex.
-       * For example if a header name in a data table is "protein+solvent" then you can't simply put protein+solvent under **#header** because it will be interpretted as a concatenation of a "protein" header and a separate "solvent" header.
+       * For example, if a header name in a data table is "protein+solvent", then you can't simply put protein+solvent under **#header** because it will be interpreted as a concatenation of a "protein" header and a separate "solvent" header.
        * The easist way to solve this issue is to use a regular expression. r'protein\+solvent' will match the header correctly.
-       * In general if you are having difficulty matching a header try using a regex.
+       * In general, if you are having difficulty matching a header, try using a regex.
     
     * An eval function can be used in the form "eval(...)".
        
        * "#header_name#" and "#r'...'#" can be used to indicate specific columns in the row.
        * All Python language operators can be used.  But remember to use "float(#field_name#)" to convert strings to floating point numbers. 
        * Example: eval(float(#Intensity#) / float(#r'.*Normalization'#) * 5)
-       * If the eval returns a list of items it is converted into a string separated by semicolons.
+       * If the eval returns a list of items, it is converted into a string separated by semicolons.
        
-           * If the corresponding tag is a list tag then this will become a list.
+           * If the corresponding tag is a list tag, then this will become a list.
 
 
 * **#add** - tags to add in an inserted row below the column header row.
@@ -825,12 +825,12 @@ The Tags
     |       | SamplID                                           | #sample.id              | true      |
     +-------+---------------------------------------------------+-------------------------------------+
     
-    If the Mol_Formula header is not found the tags will still be added, but without the Mol_Formula ones.
+    If the Mol_Formula header is not found, the tags will still be added, but without the Mol_Formula ones.
 
 
 * **#exclude=test_string** - test string or regular expression to use for excluding a given header row.
 
-    * If a header matches the exclude string or regex then the tags are not inserted regardless of whether the headers match.
+    * If a header matches the exclude string or regex, then the tags are not inserted regardless of whether the headers match.
     * Example:
     
     +-------+---------------------------------------------------+---------------------------------------------------------------+
@@ -847,7 +847,7 @@ The Tags
     |       | SamplID                                           | #sample.id              |                                     |
     +-------+---------------------------------------------------+---------------------------------------------------------------+
     
-    If the "Cell Type" or "Mouse Species" headers are in the row then don't add the tags.
+    If the "Cell Type" or "Mouse Species" headers are in the row, then don't add the tags.
 
 
 Insertions can be inside of header tag blocks, so they are inserted only when a match is made to the header rows. 
@@ -863,7 +863,7 @@ can be used to control whether the insert happens every time the tag block match
 
 Common Use Case Examples
 ~~~~~~~~~~~~~~~~~~~~~~~~
-
+For a real example you can see some in the examples folder of the GitHub_ repository under the extract folder.
 
 
 

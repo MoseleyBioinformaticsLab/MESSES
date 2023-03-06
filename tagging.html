@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Tagging &mdash; MESSES 0.1.dev1+g2e9d733 documentation</title>
+  <title>Tagging &mdash; MESSES 0.1.dev1+ga3d861d documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/custom_css.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -32,7 +32,7 @@
             <a href="index.html" class="icon icon-home"> MESSES
           </a>
               <div class="version">
-                0.1.dev1+g2e9d733
+                0.1.dev1+ga3d861d
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -82,7 +82,7 @@
 <li class="toctree-l1"><a class="reference internal" href="conversion_directives.html">Conversion Directives</a></li>
 <li class="toctree-l1"><a class="reference internal" href="experiment_description_schema.html">Experiment Description Schema</a></li>
 <li class="toctree-l1"><a class="reference internal" href="protocol_dependent_schema.html">Protocol-Dependent Schema</a></li>
-<li class="toctree-l1"><a class="reference internal" href="supported_formats.html">Supported Formats</a></li>
+<li class="toctree-l1"><a class="reference internal" href="supported_formats.html">Supported Conversion Formats</a></li>
 <li class="toctree-l1"><a class="reference internal" href="api.html">API</a></li>
 <li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
 <li class="toctree-l1"><a class="reference internal" href="todo.html">TODO List</a></li>
@@ -142,34 +142,34 @@ This could be something as simple as requiring a table be on the very first row 
 row to have column names for every column, but a system such as that would then be fragile. We decided
 to create a more robust system that could handle more complicated data arrangements and reduce the
 verbosity to a minimum. The system that was devised was an extra layer of tags added on top of existing
-tables that tell the extract command how to transform the tabular data into key based record data similar
+tables that tell the extract command how to transform the tabular data into key-based record data similar
 to JSON or SQL databases. The specific table schema this system was designed for is covered in the
 <a class="reference internal" href="experiment_description_schema.html"><span class="doc">Experiment Description Schema</span></a> section, but it is general enough that it can be used with most table schema.</p>
 <p>This initial system served its function well, but it became clear that more functionality was sorely needed.
 Namely, both a way to add tags programmatically to data and a way to modify record values was needed, so the
-system was expanded to give facilities to both. Ultimately there are 3 parts to the tagging system that are
+system was expanded to provide facilities to do both. Ultimately there are 3 parts to the tagging system that are
 distinct from one another but have similar syntax and ideas. The “export” part is the system used to add
 directly on top of existing tabular data. It is the base system that must be used for the extraction to
 work at all. The “automation” part that is used to automate adding “export” tags to tabular data. Based on
-the header values in your data you can use “automation” tags to add the “export” tags automatically. A good
+the header values in your data, you can use “automation” tags to add the “export” tags automatically. A good
 use case for this is when you have data output by a program in a consistent way. Instead of manually adding
-export tags to the program output each time you can create an “automation” page that will add the “export”
-tags for you. The last part is the “modification” part which is the system used to modify record values.
-It can be used to prepend, append, delete, overwrite, or regex substitute values. An example use case would
+export tags to the program output each time, you can create an “automation” page that will add the “export”
+tags for you. The last “modification” part is the system to modify record values.
+It can be used to prepend, append, delete, overwrite, or regex substitute values. An example use-case would
 be to update old naming conventions. Validly tagged files in their tabular or JSON form can be referred to
 as directives as they direct the actions of the program. To reduce confusion between tags and directives
-“tags” should generally refer to the extra text added above tables while “directives” are the tables and
+“tags” should generally refer to the extra text added above tables, while “directives” are the tables and
 tags taken as a whole. Each row of a tagged table is an individual directive.</p>
-<p>Each of the 3 tagging systems has to be in their own sheet or file for the extract command. By default
-export tags are expected to be in a sheet named ‘#export’ if given an Excel file without specifying a sheet
-name. If given a CSV file then it is expected to have export tags. Modification tags are expected to be in
+<p>Each part of the tagging system has to be in their own sheet or file for the extract command. By default,
+export tags are expected to be in a sheet named ‘#export’, if given an Excel file without specifying a sheet
+name. If given a CSV file, then this file is expected to have export tags. Modification tags are expected to be in
 a sheet named ‘#modify’ by default, but can be specified using the –modify option. The option can be used
 to specify either a different sheet name in the given Excel file, a different Excel file, a different Excel
 file with a different sheet name, a JSON file, or a CSV file. Automation tags are similarly specified, but
 using the –automate option.</p>
-<p>Each of the 3 tagging systems are explained below with examples. Examples using them with the extract
+<p>Each part of the tagging system are explained below with examples. Examples using them with the extract
 command are in the <a class="reference internal" href="tutorial.html"><span class="doc">Tutorial</span></a> section and there are full run examples in the “examples” folder of the
-<a class="reference external" href="https://github.com/MoseleyBioinformaticsLab/messes">GitHub</a>.</p>
+<a class="reference external" href="https://github.com/MoseleyBioinformaticsLab/messes">GitHub</a> repository.</p>
 </section>
 <section id="export-tags">
 <h2>Export Tags<a class="headerlink" href="#export-tags" title="Permalink to this heading"></a></h2>
@@ -220,7 +220,7 @@ command are in the <a class="reference internal" href="tutorial.html"><span clas
 <li><p><strong>#tags</strong> - identifies tag header rows. Must be in the first column of a row.</p>
 <blockquote>
 <div><ul class="simple">
-<li><p>Additional tag-value pairs in a cell with #tags are applied to all child records in this section, but are ignored for non child records.</p></li>
+<li><p>Additional tag-value pairs in a cell with #tags are applied to all child records in this section, but are ignored for non-child records.</p></li>
 </ul>
 </div></blockquote>
 </li>
@@ -679,9 +679,9 @@ command are in the <a class="reference internal" href="tutorial.html"><span clas
 </section>
 <section id="modification-tags">
 <h2>Modification Tags<a class="headerlink" href="#modification-tags" title="Permalink to this heading"></a></h2>
-<p>Similar to export tags the modification tag rows are indicated by <strong>#tags</strong> in the left most column, and
+<p>Similar to export tags, the modification tag rows are indicated by <strong>#tags</strong> in the left most column, and
 <strong>#ignore</strong> can be used to ignore rows. The general idea behind the modification system is that you
-first indicate a field in a table to match to using tags. Then underneath that tag indicate the value in
+first use tags to indicate a field in a table to match to. Then underneath that tag indicate the value in
 that field to match to. Then another tag in the same row will indicate both what field to modify in the
 record that has the matching field and what modification to do. Underneath that tag will have the value
 to do the modification with.</p>
@@ -748,7 +748,7 @@ In the “id” field “(S)-2-Acetolactate_Glutaric acid_Methylsuccinic acid_MP
 <ul>
 <li><p>All modification tag rows must start with a value tag after <strong>#tags</strong>.</p></li>
 <li><p>This tag indicates which table and field to compare with.</p></li>
-<li><p>The value underneath the tag will be compared with the value in indicated field for all of the records in the indicated table to determine if a match is made.</p>
+<li><p>The value underneath the tag will be compared with the value in the indicated field for all of the records in the indicated table to determine if a match is made.</p>
 <blockquote>
 <div><ul>
 <li><p>Signature:</p>
@@ -781,8 +781,8 @@ each row individually, or for the whole column by using the = sign. Ex. <strong>
 </li>
 <li><p>regex|exact is an intelligent combination of regex and exact. If a regex is specified for the comparison value it will be detected and the type will be regex for that comparison value only, otherwise the comparison type will be exact.</p></li>
 <li><p>If a type is specified then that type is used regardless of the comparison value, so a regex string with an exact comparison type will try to match exactly.</p></li>
-<li><p>If the comparison tag is not specified then the type defaults to “regex|exact”.</p></li>
-<li><p>exact type modifications are executed first, then regex type, and lastly levenshtein type. Within those types modifications are executed in order from first to last.</p></li>
+<li><p>If the comparison tag is not specified, then the type defaults to “regex|exact”.</p></li>
+<li><p>exact type modifications are executed first, then regex type, and lastly levenshtein type. Within each type, modifications are executed in order from first to last.</p></li>
 </ul>
 </div></blockquote>
 </section>
@@ -798,12 +798,12 @@ each row individually, or for the whole column by using the = sign. Ex. <strong>
 <li><p>“unique” - the modification is only performed if 1 and only 1 record matched.</p>
 <blockquote>
 <div><ul class="simple">
-<li><p>For levenshtein this means that only 1 field value can have the minimum distance, if 2 values share the minimum distance then the action won’t take place.</p></li>
+<li><p>For levenshtein, this means that only 1 field value can have the minimum distance, if 2 values share the minimum distance then the action won’t take place.</p></li>
 </ul>
 </div></blockquote>
 </li>
 <li><p>“all” - the modification is done to every record that matches.</p></li>
-<li><p>If the match tag is not specified then the type defaults to “first”.</p></li>
+<li><p>If the match tag is not specified, then the type defaults to “first”.</p></li>
 </ul>
 </div></blockquote>
 </section>
@@ -844,8 +844,8 @@ each row individually, or for the whole column by using the = sign. Ex. <strong>
 <blockquote>
 <div><ul class="simple">
 <li><p>This can lead to an issue where some records have a list type for the field and some do not.</p></li>
-<li><p>If that is not intended then be sure to construct the assign tag such that it matches the type of the field.</p></li>
-<li><p>For instance make sure evals return a list if the field should be a list type.</p></li>
+<li><p>If that is not intended, then be sure to construct the assign tag such that it matches the type of the field.</p></li>
+<li><p>For instance, make sure evals return a list if the field should be a list type.</p></li>
 </ul>
 </div></blockquote>
 </li>
@@ -887,13 +887,13 @@ each row individually, or for the whole column by using the = sign. Ex. <strong>
 </ul>
 </div></blockquote>
 </li>
-<li><p>If the indicated append field does not exist in the record then it will be added to the record.</p></li>
-<li><p>If the field value is a list and the append value is not a list then the append value will be appended to each value in the list.</p></li>
+<li><p>If the indicated append field does not exist in the record, then it will be added to the record.</p></li>
+<li><p>If the field value is a list and the append value is not a list, then the append value will be appended to each value in the list.</p></li>
 <li><p>Add an asterisk, ‘*’, to the front of the tag to interpret the append value as a list.</p>
 <blockquote>
 <div><ul>
-<li><p>When the append value is a list the behavior is more complicated.</p></li>
-<li><p>For each value in the field value list the append value in the append list at the same index will be appended to the field value.</p></li>
+<li><p>When the append value is a list, the behavior is more complicated.</p></li>
+<li><p>For each value in the field value list, the append value in the append list at the same index will be appended to the field value.</p></li>
 <li><p>Examples:</p>
 <blockquote>
 <div><ul class="simple">
@@ -944,13 +944,13 @@ each row individually, or for the whole column by using the = sign. Ex. <strong>
 </ul>
 </div></blockquote>
 </li>
-<li><p>If the indicated prepend field does not exist in the record then it will be added to the record.</p></li>
-<li><p>If the field value is a list and the prepend value is not a list then the prepend value will be prepended to each value in the list.</p></li>
+<li><p>If the indicated prepend field does not exist in the record, then it will be added to the record.</p></li>
+<li><p>If the field value is a list and the prepend value is not a list, then the prepend value will be prepended to each value in the list.</p></li>
 <li><p>Add an asterisk, ‘*’, to the front of the tag to interpret the prepend value as a list.</p>
 <blockquote>
 <div><ul>
-<li><p>When the prepend value is a list the behavior is more complicated.</p></li>
-<li><p>For each value in the field value list the prepend value in the prepend list at the same index will be prepended to the field value.</p></li>
+<li><p>When the prepend value is a list, the behavior is more complicated.</p></li>
+<li><p>For each value in the field value list, the prepend value in the prepend list at the same index will be prepended to the field value.</p></li>
 <li><p>Examples:</p>
 <blockquote>
 <div><ul class="simple">
@@ -1000,8 +1000,8 @@ each row individually, or for the whole column by using the = sign. Ex. <strong>
 </ul>
 </div></blockquote>
 </li>
-<li><p>If the indicated regex field does not exist in the record then a warning will be printed.</p></li>
-<li><p>If the field value is a list then the regex substitution will be done on each element in the list.</p></li>
+<li><p>If the indicated regex field does not exist in the record, then a warning will be printed.</p></li>
+<li><p>If the field value is a list, then the regex substitution will be done on each element in the list.</p></li>
 </ul>
 <p>Example:</p>
 <table class="docutils align-default">
@@ -1068,7 +1068,7 @@ each row individually, or for the whole column by using the = sign. Ex. <strong>
 </table>
 </div></blockquote>
 </li>
-<li><p><strong>rename</strong> - will remove the field from the record.</p>
+<li><p><strong>rename</strong> - will rename the field in the record.</p>
 <blockquote>
 <div><ul>
 <li><p>Signatures:</p>
@@ -1128,7 +1128,7 @@ each row individually, or for the whole column by using the = sign. Ex. <strong>
 <ul>
 <li><p>Tags in the same row must have the same table. An error will be raised during parsing if they don’t.</p></li>
 <li><p>The value tag must be before the modification tags.</p></li>
-<li><p>Modifications are confined to the matched record, it is not possible to modify a record based on another record’s fields or values.</p></li>
+<li><p>Modifications are confined to the matched record. It is not possible to modify a record based on another record’s fields or values.</p></li>
 <li><p>Modifications can be chained together, so that the same field can have multiple modifications.</p>
 <blockquote>
 <div><ul class="simple">
@@ -1170,10 +1170,10 @@ introduces the <strong>#insert</strong> and <strong>#end</strong> tags.</p>
 <p>The insertion functionality is easy to understand. You simply write whatever you want to add into the
 data and add <strong>#insert</strong> above it in the left most column and <strong>#end</strong> below it in the left most column.
 Everything in between <strong>#insert</strong> and <strong>#end</strong> is simply added as is into the data before it is parsed
-by the export tagging system. A good use case for this is when you have a standard protocol that always
-needs to be added to some data. Instead of copying it in manually you can add it to an automation
-sheet/file and deliver it to extract so it can add it for you. The thing to be careful of is to make
-sure everything in the insert block is valid under the export tag system. It can be tricky to debug
+by the export tagging. A good use case for this is when you have a standard protocol that always
+needs to be added to some data. Instead of copying it in manually, you can add it to an automation
+sheet/file and deliver it to the extract command so it can add it for you. The thing to be careful of is to make
+sure everything in the insert block is valid under the export tagging. It can be tricky to debug
 a tagging error here because extract won’t be able to tell you that the issue is in the insert block.</p>
 <p>Example:</p>
 <table class="docutils align-default">
@@ -1236,9 +1236,9 @@ a tagging error here because extract won’t be able to tell you that the issue 
 the value in the cell. Typically, a table will already have descriptive human readable headers to identify
 what type of data is in the column. These headers are used to match to and put the associated export tags
 under them. Any row that has a header match where export tags are added is automatically ignored with the
-<strong>#ignore</strong> tag. Just like modification tags and export tags <strong>#tags</strong> is used to denote the start of a tag
+<strong>#ignore</strong> tag. Just like modification tags and export tags, <strong>#tags</strong> is used to denote the start of a tag
 block. An entire block is matched as a whole to a row in the data, so if you have multiple tables to add
-tags to you should created multiple tag blocks. There are additional tags to help control how a black is
+tags to you should created multiple tag blocks. There are additional tags to help control how a blank is
 matched, detailed below.</p>
 <section id="example">
 <h4>Example:<a class="headerlink" href="#example" title="Permalink to this heading"></a></h4>
@@ -1444,9 +1444,9 @@ matched, detailed below.</p>
 <div><ul class="simple">
 <li><p>Example: Name+”-“+Isopotologue+”-“+r’^d+w+ Isotope$’</p></li>
 <li><p>This functionality means that certain characters can’t be used for literal matching outside of a regex.</p></li>
-<li><p>For example if a header name in a data table is “protein+solvent” then you can’t simply put protein+solvent under <strong>#header</strong> because it will be interpretted as a concatenation of a “protein” header and a separate “solvent” header.</p></li>
+<li><p>For example, if a header name in a data table is “protein+solvent”, then you can’t simply put protein+solvent under <strong>#header</strong> because it will be interpreted as a concatenation of a “protein” header and a separate “solvent” header.</p></li>
 <li><p>The easist way to solve this issue is to use a regular expression. r’protein+solvent’ will match the header correctly.</p></li>
-<li><p>In general if you are having difficulty matching a header try using a regex.</p></li>
+<li><p>In general, if you are having difficulty matching a header, try using a regex.</p></li>
 </ul>
 </div></blockquote>
 </li>
@@ -1456,10 +1456,10 @@ matched, detailed below.</p>
 <li><p>“#header_name#” and “#r’…’#” can be used to indicate specific columns in the row.</p></li>
 <li><p>All Python language operators can be used.  But remember to use “float(#field_name#)” to convert strings to floating point numbers.</p></li>
 <li><p>Example: eval(float(#Intensity#) / float(#r’.*Normalization’#) * 5)</p></li>
-<li><p>If the eval returns a list of items it is converted into a string separated by semicolons.</p>
+<li><p>If the eval returns a list of items, it is converted into a string separated by semicolons.</p>
 <blockquote>
 <div><ul class="simple">
-<li><p>If the corresponding tag is a list tag then this will become a list.</p></li>
+<li><p>If the corresponding tag is a list tag, then this will become a list.</p></li>
 </ul>
 </div></blockquote>
 </li>
@@ -1516,13 +1516,13 @@ matched, detailed below.</p>
 </tr>
 </tbody>
 </table>
-<p>If the Mol_Formula header is not found the tags will still be added, but without the Mol_Formula ones.</p>
+<p>If the Mol_Formula header is not found, the tags will still be added, but without the Mol_Formula ones.</p>
 </div></blockquote>
 </li>
 <li><p><strong>#exclude=test_string</strong> - test string or regular expression to use for excluding a given header row.</p>
 <blockquote>
 <div><ul class="simple">
-<li><p>If a header matches the exclude string or regex then the tags are not inserted regardless of whether the headers match.</p></li>
+<li><p>If a header matches the exclude string or regex, then the tags are not inserted regardless of whether the headers match.</p></li>
 <li><p>Example:</p></li>
 </ul>
 <table class="docutils align-default">
@@ -1558,7 +1558,7 @@ matched, detailed below.</p>
 </tr>
 </tbody>
 </table>
-<p>If the “Cell Type” or “Mouse Species” headers are in the row then don’t add the tags.</p>
+<p>If the “Cell Type” or “Mouse Species” headers are in the row, then don’t add the tags.</p>
 </div></blockquote>
 </li>
 </ul>
@@ -1574,6 +1574,7 @@ can be used to control whether the insert happens every time the tag block match
 </section>
 <section id="common-use-case-examples">
 <h2>Common Use Case Examples<a class="headerlink" href="#common-use-case-examples" title="Permalink to this heading"></a></h2>
+<p>For a real example you can see some in the examples folder of the <a class="reference external" href="https://github.com/MoseleyBioinformaticsLab/messes">GitHub</a> repository under the extract folder.</p>
 </section>
 </section>
 

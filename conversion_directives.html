@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Conversion Directives &mdash; MESSES 0.1.dev1+g2e9d733 documentation</title>
+  <title>Conversion Directives &mdash; MESSES 0.1.dev1+ga3d861d documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/custom_css.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -32,7 +32,7 @@
             <a href="index.html" class="icon icon-home"> MESSES
           </a>
               <div class="version">
-                0.1.dev1+g2e9d733
+                0.1.dev1+ga3d861d
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -136,7 +136,7 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="experiment_description_schema.html">Experiment Description Schema</a></li>
 <li class="toctree-l1"><a class="reference internal" href="protocol_dependent_schema.html">Protocol-Dependent Schema</a></li>
-<li class="toctree-l1"><a class="reference internal" href="supported_formats.html">Supported Formats</a></li>
+<li class="toctree-l1"><a class="reference internal" href="supported_formats.html">Supported Conversion Formats</a></li>
 <li class="toctree-l1"><a class="reference internal" href="api.html">API</a></li>
 <li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
 <li class="toctree-l1"><a class="reference internal" href="todo.html">TODO List</a></li>
@@ -170,17 +170,17 @@
 <h1>Conversion Directives<a class="headerlink" href="#conversion-directives" title="Permalink to this heading"></a></h1>
 <section id="introduction">
 <h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading"></a></h2>
-<p>The convert command is used to convert extracted and validated data from it’s arbitrary JSON form to
+<p>The convert command is used to convert extracted and validated data from it’s intermediate JSON form to
 the final desired format. The command was largely created with the goal of putting data into its
 preferred format for deposition into an online data repository such as <a class="reference external" href="http://www.metabolomicsworkbench.org">Metabolomics Workbench</a>.
-Many popular data formats have a unique text format specialized to thier niche, but also have a
+Many popular data formats have a unique text format specialized to their niche, but also have a
 JSON version of the format as well. It is often easier to go from the JSON version of the format
-to the specialized format and vice versa. It is also easier to go from one arbitrary JSON format
-to another, so the convert command was designed to transform the JSON format described in
+to the specialized format and vice versa. It is also easier to go from one JSON format
+to another JSON format, so the convert command was designed to transform the JSON format described in the
 <a class="reference internal" href="experiment_description_schema.html"><span class="doc">Experiment Description Schema</span></a> to the JSON version of any of the supported formats and then to the final
-niche format. The convert command also supports simple JSON to JSON conversion through the
+niche format. The convert command also supports simple JSON-to-JSON conversion through the
 “generic” sub-command.</p>
-<p>To support the JSON to JSON conversion a relatively simple set of directives were developed. The
+<p>To support the JSON-to-JSON conversion a relatively simple set of directives were developed. The
 conversion directives file is expected to be a JSON or tagged tabular file with a certain structure.
 The general JSON structure is shown below.</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">{</span>
@@ -196,7 +196,7 @@ The general JSON structure is shown below.</p>
 <span class="go">}</span>
 </pre></div>
 </div>
-<p>This structure can be mimicked using the export tagging system mentioned in the <a class="reference internal" href="tagging.html"><span class="doc">Tagging</span></a>
+<p>This structure can be mimicked using the export part of the tagging system mentioned in the <a class="reference internal" href="tagging.html"><span class="doc">Tagging</span></a>
 section of this documentation, and tagged tabular files are acceptable input for the
 conversion directives of the convert command. The JSON structure above is shown below using
 export tags.</p>
@@ -295,8 +295,8 @@ building a str directive.</p>
 <section id="code">
 <h3>Code<a class="headerlink" href="#code" title="Permalink to this heading"></a></h3>
 <p>If you need to generate a string value from the input JSON in a more complex way
-than can be done with the current supported directives you can use the “code” field
-to give the program Python code directly to run. What is in the code field will
+than can be done with the current supported directives, you can use the “code” field
+to give the program Python code directly to evaluate. What is in the code field will
 be delivered directly to eval(), and the name of the internal variable for the input
 JSON is “input_json”. You can also use the “import” field to import any user created
 libraries into the program. The “import” value should be a path to the file to import.</p>
@@ -428,8 +428,8 @@ from its fields.</p>
 </section>
 <section id="first-record">
 <h3>First Record<a class="headerlink" href="#first-record" title="Permalink to this heading"></a></h3>
-<p>Similar to specifying a record ID if you want to build the string value from a record
-but do not know its ID you can omit the “record_id” field and the first record in
+<p>Similar to specifying a record ID, if you want to build the string value from a record
+but do not know its ID, you can omit the “record_id” field and the first record in
 the specified table will be used. This alone is generally not enough though and it
 is recommended to either use the “sort_by” and “sort_order” fields to first sort the
 records before selecting the first one, or use the “test” field to select the first
@@ -575,10 +575,10 @@ record that matches the test.</p>
 </section>
 <section id="for-each">
 <h3>For Each<a class="headerlink" href="#for-each" title="Permalink to this heading"></a></h3>
-<p>If the information to build the value is spread across several records then use the
+<p>If the information to build the value is spread across several records, then use the
 “for_each” field to loop over all the records in the table and build the value by
 concatenating the values with a delimiter. Use the “delimiter” field to specify the
-delimiter to use, the default is no delimiter aka the empty string. Generally, simply
+delimiter to use. The default is no delimiter aka the empty string. Generally, simply
 looping over all records is not enough, so use the “test” field to only use the records
 matching some test.</p>
 <section id="id19">
@@ -773,7 +773,7 @@ matching some test.</p>
 Takes priority over other fields. You can put the value between double quotes if it
 is difficult to get certain sequences in the table software used to construct the directive.
 Ex. ” ” will be a single space and “asdf” will be asdf.</p>
-<p><strong>code</strong> - a string of valid Python code to be delivered to eval(), must return a string type
+<p><strong>code</strong> - a string of valid Python code to be delivered to eval() that must return a string type
 value. Takes priority after override.</p>
 <p><strong>import</strong> - a string that is a filepath to a Python file to be imported. Typically to be used
 to import functions to run with the code field.</p>
@@ -782,14 +782,14 @@ string value for the record.</p>
 <p><strong>fields</strong> - a list of literals and fields in the input JSON records to concatenate together to
 build the string value for the record. It is assumed that all records in the input JSON will have
 these fields and an error will occur if one does not. To interpret a value in the list as a literal
-value and not a field surround it in double quotes. Ex. [field1,”literal_value”,field2]</p>
+value and not a field, surround it in double quotes. Ex. [field1,”literal_value”,field2]</p>
 <p><strong>for_each</strong> - a boolean or string value (“True” or “False”) that indicates the string value is to be
 built by iterating over each record in the indicated table in the input JSON. Takes priority over
 record_id.</p>
 <p><strong>test</strong> - a string of the form “field=value” where field is a field in the records being
 iterated over and value is what the field must be equal to in order to be used to build the
 string value. Use this as a filter to filter out records that should not be used to build
-the string value. If for_each is false this is used to find the first record that matches.</p>
+the string value. If for_each is false, this is used to find the first record that matches.</p>
 <p><strong>delimiter</strong> - a string value used to separate the strings built from each record when
 for_each is true. You can put the value between double quotes if it is difficult to get certain
 sequences in the table software used to construct the directive. Ex. ” ” will be a single
@@ -800,31 +800,31 @@ the input JSON records.</p>
 <p><strong>record_id</strong> - a string value that is the specific record name in the indicated input JSON table
 to build the value from.</p>
 <p><strong>required</strong> - a boolean or string value (“True” or “False”) that indicates if the directive is
-required. If true then errors encounterd will stop the program, but if false a warning will be
+required. If true, then errors encountered will stop the program. If false, a warning will be
 printed and the directive will either use a default value or be skipped.</p>
 <p><strong>default</strong> - a string value to default to if the directive cannot be built and is not required.
-You can put the value between double quotes if it is difficult to get certain sequences in the
-table software used to construct the directive. Ex. ” ” will be a single space and “asdf” will be asdf.</p>
+If getting specific sequences in the table software used to construct the directive is difficult,
+you can put the value between double quotes. Ex. ” ” will be a single space and “asdf” will be asdf.</p>
 </section>
 </section>
 <section id="matrix-directives">
 <h2>matrix Directives<a class="headerlink" href="#matrix-directives" title="Permalink to this heading"></a></h2>
 <p>The matrix directive assumes that you want to create a list of dictionaries (aka array of
 objects) from information in the input JSON, and that that information is contained within
-a single table. By default this directive will loop over all records in the indicated table
-and build a dictionary for each one. The records can be sorted and filtered before iteration
-in the same way that str directives can be, using the “sort_by”, “sort_order”, and “test” fields.
+a single table. By default, this directive will loop over all records in the indicated table
+and build a dictionary for each record. The records can be sorted and filtered before iteration
+in the same way that the str directives can be, using the “sort_by”, “sort_order”, and “test” fields.
 The “collate” field can also be used to group data together across records. The below
 examples illustrate some common uses.</p>
 <section id="id27">
 <h3>Code<a class="headerlink" href="#id27" title="Permalink to this heading"></a></h3>
 <p>If you need to generate a list of dictionaries from the input JSON in a more complex way
-than can be done with the current supported directives you can use the “code” field
-to give the program Python code directly to run. What is in the code field will
+than what is currently possible with the supported directives, you can use the “code” field
+to give the program Python code directly to evaluate. What is in the code field will
 be delivered directly to eval(), and the name of the internal variable for the input
 JSON is “input_json”. You can also use the “import” field to import any user created
 libraries into the program. The “import” value should be a path to the file to import.
-For the matrix directive specifically the “code” field is a good way to supply the
+For the matrix directive specifically, the “code” field is a good way to supply the
 value directly.</p>
 <section id="id28">
 <h4>Directive as JSON<a class="headerlink" href="#id28" title="Permalink to this heading"></a></h4>
@@ -877,7 +877,7 @@ value directly.</p>
 </section>
 <section id="headers">
 <h3>Headers<a class="headerlink" href="#headers" title="Permalink to this heading"></a></h3>
-<p>Similar to the “fields” field for str directives the “headers” field is the backbone
+<p>Similar to the “fields” field for str directives, the “headers” field is the backbone
 of most matrix directives. Use this field to specify how to build the dictionaries by
 supplying key-value pairs. The value should be a list of strings, “key=value”, where
 the keys and values can be either the names of fields in the input records or literal
@@ -1199,8 +1199,8 @@ record data will be grouped into dictionaries based on their field value.</p>
 <h3>Fields to Headers<a class="headerlink" href="#fields-to-headers" title="Permalink to this heading"></a></h3>
 <p>The “fields_to_headers” field changes the behavior of the matrix directive so that
 by default all fields from input records are copied as is into the dictionary. The
-“exclusion_headers” field can then be used to to exclude fields from being added.
-The “values_to_str” field can also be used to cast all of the field values to strings.</p>
+“exclusion_headers” field can then be used to exclude fields from being added.
+The “values_to_str” field can also be used to convert all of the field values to strings.</p>
 <section id="id47">
 <h4>Directive as JSON<a class="headerlink" href="#id47" title="Permalink to this heading"></a></h4>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">{</span>
@@ -1455,9 +1455,9 @@ The “values_to_str” field can also be used to cast all of the field values t
 </section>
 <section id="id58">
 <h3>Meaningful Fields<a class="headerlink" href="#id58" title="Permalink to this heading"></a></h3>
-<p><strong>code</strong> - a string of valid Python code to be delivered to eval(), must return a list of
+<p><strong>code</strong> - a string of valid Python code to be delivered to eval() that must return a list of
 dictionaries. Takes priority over headers.</p>
-<p><strong>import</strong> - a string that is a filepath to a Python file to be imported. Typically to be used
+<p><strong>import</strong> - a string that is a filepath to a Python library to be imported. Typically to be used
 to import functions to run with the code field.</p>
 <p><strong>table</strong> - a string that is the name of the table in the input JSON to pull from to build the
 string value for the record.</p>
@@ -1474,24 +1474,24 @@ the input JSON records.</p>
 across records.</p>
 <p><strong>fields_to_headers</strong> - a boolean or string value (“True” or “False”) that indicates whether to
 copy all fields in the input records into the output.</p>
-<p><strong>exclusion_headers</strong> - a list of field names not to put in the output data when the “fields_to_headers”
+<p><strong>exclusion_headers</strong> - a list of field names not to put into the output data when the “fields_to_headers”
 field is True.</p>
 <p><strong>optional_headers</strong> - a list of field names that will be copied into the output if they exist in the
 record. Use “values_to_str” to cast the values to a string.</p>
-<p><strong>values_to_str</strong> - a boolean or string value (“True” or “False”) that makes it so field values are
-cast to a string type in the output.</p>
+<p><strong>values_to_str</strong> - a boolean or string value (“True” or “False”) that causes field values to be converted
+into a string type in the output.</p>
 <p><strong>required</strong> - a boolean or string value (“True” or “False”) that indicates if the directive is
-required. If true then errors encounterd will stop the program, but if false a warning will be
+required. If true, then errors encountered will stop the program. If false, a warning will be
 printed and the directive will either use a default value or be skipped.</p>
 <p><strong>default</strong> - a string value to default to if the directive cannot be built and is not required.
-You can put the value between double quotes if it is difficult to get certain sequences in the
-table software used to construct the directive. Ex. ” ” will be a single space and “asdf” will be asdf.</p>
+If getting specific sequences in the table software used to construct the directive is difficult,
+you can put the value between double quotes. Ex. ” ” will be a single space and “asdf” will be asdf.</p>
 </section>
 </section>
 <section id="section-directives">
 <h2>section Directives<a class="headerlink" href="#section-directives" title="Permalink to this heading"></a></h2>
-<p>When you need a more complex structure than is available through the other directives,
-or if you need to specify the entire table at once the section type directive is
+<p>When you need a more complex structure than is available through the other directives
+or if you need to specify the entire table at once, the section type directive is
 what you need. It only has the “code” and “import” fields because you have to supply
 Python code to tell MESSES how to build the section. One quirk of the directive is
 that you do still have to specify a record name for the directive, but it is ignored
@@ -1612,14 +1612,16 @@ the mwTab file, and that is used as the example here.</p>
 </section>
 <section id="id63">
 <h3>Meaningful Fields<a class="headerlink" href="#id63" title="Permalink to this heading"></a></h3>
-<p><strong>code</strong> - a string of valid Python code to be delivered to eval().</p>
+<p><strong>code</strong> - a string of valid Python code to be delivered to eval(). The entire table is assigned
+the value returned by eval() with no type checking, unlike the other directives which are type
+checked.</p>
 <p><strong>import</strong> - a string that is a filepath to a Python file to be imported. Typically to be used
 to import functions to run with the code field.</p>
 </section>
 </section>
 <section id="validation">
 <h2>Validation<a class="headerlink" href="#validation" title="Permalink to this heading"></a></h2>
-<p>Conversion directives are validated before use in convert using JSON Schema.</p>
+<p>Conversion directives are validated before use in the convert command using JSON Schema.</p>
 <p>Validation Schema:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>{
  &quot;$schema&quot;: &quot;https://json-schema.org/draft/2020-12/schema&quot;,

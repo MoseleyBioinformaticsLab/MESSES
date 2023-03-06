@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>messes.convert.convert &mdash; MESSES 0.1.dev1+g2e9d733 documentation</title>
+  <title>messes.convert.convert &mdash; MESSES 0.1.dev1+ga3d861d documentation</title>
       <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/css/custom_css.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -29,7 +29,7 @@
             <a href="../../../index.html" class="icon icon-home"> MESSES
           </a>
               <div class="version">
-                0.1.dev1+g2e9d733
+                0.1.dev1+ga3d861d
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
@@ -48,7 +48,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../conversion_directives.html">Conversion Directives</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../experiment_description_schema.html">Experiment Description Schema</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../protocol_dependent_schema.html">Protocol-Dependent Schema</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../supported_formats.html">Supported Formats</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../supported_formats.html">Supported Conversion Formats</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../api.html">API</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../license.html">License</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../todo.html">TODO List</a></li>
@@ -102,8 +102,7 @@
 <span class="sd">                                           that are left out of the update directives won&#39;t be changed. If you need to remove </span>
 <span class="sd">                                           directives then use the override option.</span>
 <span class="sd">    --override &lt;conversion_directives&gt;   - conversion directives that will be used to override the built-in directives for the format.</span>
-<span class="sd">                                           The entire JSON must be specified, any directives that are not in the override JSON </span>
-<span class="sd">                                           will be removed.</span>
+<span class="sd">                                           The built-in directives will not be used and these will be used instead.</span>
 <span class="sd">    </span>
 <span class="sd">    </span>
 

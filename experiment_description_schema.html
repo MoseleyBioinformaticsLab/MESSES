@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Experiment Description Schema &mdash; MESSES 0.1.dev1+g2e9d733 documentation</title>
+  <title>Experiment Description Schema &mdash; MESSES 0.1.dev1+ga3d861d documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/custom_css.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -32,7 +32,7 @@
             <a href="index.html" class="icon icon-home"> MESSES
           </a>
               <div class="version">
-                0.1.dev1+g2e9d733
+                0.1.dev1+ga3d861d
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -51,7 +51,7 @@
 <li class="toctree-l1"><a class="reference internal" href="conversion_directives.html">Conversion Directives</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Experiment Description Schema</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#terminology">Terminology</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#overview-of-relational-tables">Overview of (Relational) Tables</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#overview-of-tables">Overview of Tables</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#project">project</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#study">study</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#protocol">protocol</a></li>
@@ -76,7 +76,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="protocol_dependent_schema.html">Protocol-Dependent Schema</a></li>
-<li class="toctree-l1"><a class="reference internal" href="supported_formats.html">Supported Formats</a></li>
+<li class="toctree-l1"><a class="reference internal" href="supported_formats.html">Supported Conversion Formats</a></li>
 <li class="toctree-l1"><a class="reference internal" href="api.html">API</a></li>
 <li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
 <li class="toctree-l1"><a class="reference internal" href="todo.html">TODO List</a></li>
@@ -111,7 +111,7 @@
 <section id="terminology">
 <h2>Terminology<a class="headerlink" href="#terminology" title="Permalink to this heading"></a></h2>
 <ul>
-<li><p><strong>record/entry</strong> - collection of data points with a unique identifer organized together.</p>
+<li><p><strong>record/entry</strong> - collection of fields and attributes with a unique identifer organized together.</p>
 <blockquote>
 <div><ul class="simple">
 <li><p>Example: “sample_01”: {“type”:”tissue”, “weight”:”30”, “units”:”grams”}</p></li>
@@ -127,11 +127,11 @@
 </li>
 </ul>
 </section>
-<section id="overview-of-relational-tables">
-<h2>Overview of (Relational) Tables<a class="headerlink" href="#overview-of-relational-tables" title="Permalink to this heading"></a></h2>
+<section id="overview-of-tables">
+<h2>Overview of Tables<a class="headerlink" href="#overview-of-tables" title="Permalink to this heading"></a></h2>
 <dl class="simple">
-<dt>The data schema that was developed for MESSES was designed to capture generalized experimental data in an abstract way.</dt><dd><ul class="simple">
-<li><p>It is an <a class="reference external" href="https://en.wikipedia.org/wiki/Entity%E2%80%93attribute%E2%80%93value_model">entity-attribute-value model</a>, and almost all experimental data should be able to be comprehensively described using this model.</p></li>
+<dt>The data schema developed for MESSES was designed to capture generalized experimental descriptions and data in an abstract way.</dt><dd><ul class="simple">
+<li><p>The data schema is organized into several tables with a unique record identifier and a flexible collection of fields.</p></li>
 <li><dl class="simple">
 <dt>This schema has the following tables:</dt><dd><ul>
 <li><p>entity</p></li>
@@ -151,9 +151,8 @@
 <section id="project">
 <h3>project<a class="headerlink" href="#project" title="Permalink to this heading"></a></h3>
 <dl class="simple">
-<dt><strong>A project generally describes the hypothesis being tested, or the information being sought.</strong></dt><dd><ul class="simple">
-<li><p>Generally there is one project per published paper, but a project can cover multiple publications.</p></li>
-<li><p>It is somewhat arbitrary how to categorize a project, but defining one project per paper is a good start.</p></li>
+<dt><strong>A project generally refers to a research project with multiple analytical datasets derived from one or more experimental designs.</strong></dt><dd><ul class="simple">
+<li><p>It is somewhat arbitrary how to categorize a project, but defining one project per group of related analytical datasets derived from a single experiment is a good start.</p></li>
 </ul>
 </dd>
 </dl>
@@ -161,8 +160,8 @@
 <section id="study">
 <h3>study<a class="headerlink" href="#study" title="Permalink to this heading"></a></h3>
 <dl class="simple">
-<dt><strong>A study is generally one experiment inside of the project.</strong></dt><dd><ul class="simple">
-<li><p>For instance, if you are testing the effectiveness of a treatment on lung cancer and you try the treatment on both cell lines and mice, the cell line would be one study and the mouse another.</p></li>
+<dt><strong>A study is generally one experimental design or analytical experiment inside of the project.</strong></dt><dd><ul class="simple">
+<li><p>For instance, if you are testing the effectiveness of a treatment on lung cancer and you try the treatment on both cell lines and mice, the cell line experiment would be one study and the mouse experiment another.</p></li>
 </ul>
 </dd>
 </dl>
@@ -171,9 +170,9 @@
 <h3>protocol<a class="headerlink" href="#protocol" title="Permalink to this heading"></a></h3>
 <dl class="simple">
 <dt><strong>A protocol describes an operation or set of operations done on a subject or sample entity.</strong></dt><dd><ul class="simple">
-<li><p>For example, if mouse organs are frozen in liquid nitrogen and then ground into powder this could be either 1 protocol to describe both operations or 2 to separate the freezing step and grinding step.</p></li>
+<li><p>For example, if mouse organs are frozen in liquid nitrogen and then ground into powder, this could be either 1 protocol to describe both operations or 2 to separate the freezing step and grinding step.</p></li>
 <li><p>How to break operations up can be an arbitrary decision, but some good rules of thumb are to make operations with significant time between them separate protocols, or if there are measurements associated with an operation.</p></li>
-<li><p>For example, if the tissue is weighed before and after freezing and before and after grinding it might be a good idea to have the operations in separate protocols so the weights are clearly associated with each operation.</p></li>
+<li><p>For example, if the tissue is weighed before and after freezing and before and after grinding, it might be a good idea to have the operations in separate protocols so the weights are clearly associated with each operation.</p></li>
 </ul>
 </dd>
 </dl>
@@ -184,18 +183,18 @@
 <dt><strong>Entities are either subjects or samples which are similar to each other and interconnected.</strong></dt><dd><ul class="simple">
 <li><dl class="simple">
 <dt>A subject is something that receives a treatment, or is subjected to different experimental factors.</dt><dd><ul>
-<li><p>For example, if you are testing a treatment on a cell line with a line in 6 different dishes (1 treatment with 3 replicates and 1 null with 3 replicates), the line in each dish would be a separate subject.</p></li>
+<li><p>For example, if you are testing a treatment on a cell line in 6 different petri dishes (1 treatment with 3 replicates and 1 null with 3 replicates), each petri dish would be a separate subject.</p></li>
 </ul>
 </dd>
 </dl>
 </li>
 <li><dl class="simple">
 <dt>Samples are collected from subjects.</dt><dd><ul>
-<li><p>For example, if we revisit the previous example and assume that media is collected from the lines every so often each media collection would be a separate sample.</p></li>
+<li><p>For example, if we revisit the previous example and assume that media is collected from each petri dish, the collected media from each petir dish would be a separate sample.</p></li>
 <li><p>Samples can also come from other samples. For example, if you take the media samples from the previous example and then perform several steps before measuring something, such as adding a solvent or some other preparation step then the sample technically becomes a new sample that was derived from the original sample.</p></li>
 <li><dl class="simple">
 <dt>Samples can also become subjects if they are subjected to a treatment.</dt><dd><ul>
-<li><p>For example, when a cancer sample is extracted from a person and then pieces are implanted in mice for treatment testing the mice are subjects with sample parents.</p></li>
+<li><p>For example, when a cancer sample is extracted from a person and then pieces are implanted in mice for testing with specific treatments, the mice are subjects with sample parents.</p></li>
 </ul>
 </dd>
 </dl>
@@ -213,8 +212,8 @@
 <section id="measurement">
 <h3>measurement<a class="headerlink" href="#measurement" title="Permalink to this heading"></a></h3>
 <dl class="simple">
-<dt><strong>A measurement is typically the results acquired after putting a sample through a sophisticated machine such as a mass spec or NMR, as well as any calculations on these results that is used for analysis.</strong></dt><dd><ul class="simple">
-<li><p>This is what people will typically think of as data while the information in the other tables would be metadata.</p></li>
+<dt><strong>A measurement is typically the results acquired after putting a sample through an assay or a sophisticated machine such as a mass spec or NMR, as well as any calculations on these results that is used for analysis.</strong></dt><dd><ul class="simple">
+<li><p>This is what people will typically think of as data while the information in the other tables would be experimental metadata.</p></li>
 </ul>
 </dd>
 </dl>
@@ -222,7 +221,7 @@
 <section id="factor">
 <h3>factor<a class="headerlink" href="#factor" title="Permalink to this heading"></a></h3>
 <dl class="simple">
-<dt><strong>A factor is an experimental factor of the experiment.</strong></dt><dd><ul class="simple">
+<dt><strong>A factor is a controlled independent variable of the experimental design. Experimental factors are conditions set in the experiment. Other factors may be other classifications such as male or female gender.</strong></dt><dd><ul class="simple">
 <li><p>For example, if there are different treatments done to cell lines this would be a factor.</p></li>
 <li><p>Each treatment would be a separate protocol, but the different protocols would be 1 factor.</p></li>
 <li><p>If an experiment also looks at age, race, gender, etc. then these would each be separate factors.</p></li>
@@ -238,8 +237,7 @@
 <dl class="simple">
 <dt><strong>Any field for any record that ends in “.id” must be an id to an existing record in that field’s table.</strong></dt><dd><ul class="simple">
 <li><p>For instance, if the field “protocol.id” : “tissue_extraction” is in a sample record then the protocol table must contain a record with the id “tissue_extraction”.</p></li>
-<li><p>Similarly, if a record has the “parent_id” field the value must be an existing id in the same table as that record. For example, if “parent_id” : “tissue_extraction” is in a record in the protocol table then the protocol table must containe a record with the id “tissue_extraction”.</p></li>
-<li><p>The exception to this rule is the subject and sample tables. Subject records must have a parent in the sample table, and sample records could have a parent in either the subject or sample tables.</p></li>
+<li><p>Similarly, if a record has the “parent_id” field the value must be an existing id in the same table as that record. For example, if “parent_id” : “tissue_extraction” is in a record in the protocol table then the protocol table must contain a record with the id “tissue_extraction”.</p></li>
 </ul>
 </dd>
 </dl>
@@ -248,8 +246,8 @@
 <h3>Subject/Sample Inheritance Rules<a class="headerlink" href="#subject-sample-inheritance-rules" title="Permalink to this heading"></a></h3>
 <blockquote>
 <div><ul class="simple">
-<li><p>If a sample comes from a sample it must have a sample_prep type protocol.</p></li>
-<li><p>If a sample comes from a subject it must have a collection type protocol.</p></li>
+<li><p>If a sample comes from a sample, it must have a sample_prep type protocol.</p></li>
+<li><p>If a sample comes from a subject, it must have a collection type protocol.</p></li>
 <li><p>Subjects should have a treatment type protocol.</p></li>
 </ul>
 </div></blockquote>
@@ -271,7 +269,7 @@
 <h3>treatment<a class="headerlink" href="#treatment" title="Permalink to this heading"></a></h3>
 <dl class="simple">
 <dt><strong>A treatment protocol is used to describe the experimental factors done to subject entities.</strong></dt><dd><ul class="simple">
-<li><p>For example, if a cell line is given 2 different media solutions to observe the different growth behavior between the 2 then this would be a treatment type protocol.</p></li>
+<li><p>For example, if a cell line is given 2 different media solutions to observe the different growth behavior between the 2, then this would be a treatment type protocol.</p></li>
 <li><p>Each treatment would be a separate protocol that describes the specifics of the solution or other factors.</p></li>
 </ul>
 </dd>
@@ -281,7 +279,7 @@
 <h3>collection<a class="headerlink" href="#collection" title="Permalink to this heading"></a></h3>
 <dl class="simple">
 <dt><strong>A collection protocol is used to describe how samples are collected from subject entities.</strong></dt><dd><ul class="simple">
-<li><p>For example, if media is taken out of a cell culture at various time points this would be a collection protocol.</p></li>
+<li><p>For example, if media is taken out of a cell culture at various time points, this would be a collection protocol.</p></li>
 <li><p>Details such as the time of collection and the weight or volume of collection may be some of the attributes associated with the protocol.</p></li>
 </ul>
 </dd>
@@ -292,7 +290,7 @@
 <dl class="simple">
 <dt><strong>A sample_prep protocol is used to describe operations done to sample entities.</strong></dt><dd><ul class="simple">
 <li><p>Typically, these operations would be done or are necessary in preparation for going into a measuring device.</p></li>
-<li><p>For example, once the cells in a culture are collected they may be spun in a centrifuge or have solvents added to separate out protein, lipids, etc.</p></li>
+<li><p>For example, once the cells in a culture are collected, they may be spun in a centrifuge or have solvents added to separate out protein, lipids, etc.</p></li>
 <li><p>These steps would be a sample_prep protocol.</p></li>
 <li><p>How to organize such operations into protocols can be arbitrary and is left to the discretion of the creator.</p></li>
 <li><p>Details such as the concentration of solvents, speed of the centrifuge, or weight of the spearated parts may be some attributes associated with the protocol.</p></li>
@@ -306,7 +304,7 @@
 <dt><strong>A measurement protocol is used to describe operations done on samples to measure features about them.</strong></dt><dd><ul class="simple">
 <li><p>For example, if a sample is put through a mass spectrometer or into an NMR.</p></li>
 <li><p>Typically, the results of the measurement will be attributes associated with the protocol.</p></li>
-<li><p>This is also the protocol type used for any analysis or calculations done on the data generated by instruments such as a mass spec.</p></li>
+<li><p>This is also the protocol type used for any analysis or calculations done on the data generated by instruments such as a mass spectrometer.</p></li>
 </ul>
 </dd>
 </dl>

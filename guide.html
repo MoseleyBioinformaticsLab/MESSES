@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>User Guide &mdash; MESSES 0.1.dev1+g2e9d733 documentation</title>
+  <title>User Guide &mdash; MESSES 0.1.dev1+ga3d861d documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/custom_css.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -32,7 +32,7 @@
             <a href="index.html" class="icon icon-home"> MESSES
           </a>
               <div class="version">
-                0.1.dev1+g2e9d733
+                0.1.dev1+ga3d861d
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -68,7 +68,7 @@
 <li class="toctree-l1"><a class="reference internal" href="conversion_directives.html">Conversion Directives</a></li>
 <li class="toctree-l1"><a class="reference internal" href="experiment_description_schema.html">Experiment Description Schema</a></li>
 <li class="toctree-l1"><a class="reference internal" href="protocol_dependent_schema.html">Protocol-Dependent Schema</a></li>
-<li class="toctree-l1"><a class="reference internal" href="supported_formats.html">Supported Formats</a></li>
+<li class="toctree-l1"><a class="reference internal" href="supported_formats.html">Supported Conversion Formats</a></li>
 <li class="toctree-l1"><a class="reference internal" href="api.html">API</a></li>
 <li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
 <li class="toctree-l1"><a class="reference internal" href="todo.html">TODO List</a></li>
@@ -112,10 +112,10 @@
 <div class="line"><br /></div>
 </div>
 <p>MESSES (Metadata from Experimental SpreadSheets Extraction System) is a Python package that facilitates the conversion of tabular data into
-other formats. We called it MESSES because we try to convert other people’s metadata messes into clean, well-structured, JSONized metadata.
-It was initially created to pull MS and NMR experimental data into a database, but has been generalized to work with all tabular data. The key to this
+other formats. We call it MESSES because we try to convert other people’s metadata messes into clean, well-structured, JSONized metadata.
+It was initially created to pull mass spectrometry (MS) and nuclear magnetic resonance (NMR) experimental data into a database, but has been generalized to work with all tabular data. The key to this
 is the <a class="reference external" href="https://moseleybioinformaticslab.github.io/messes/tagging.html">tagging</a> system. Simply add a layer of tags to any tabular data and
-MESSES can transform it into JSON and then convert it to any of the <a class="reference external" href="https://moseleybioinformaticslab.github.io/messes/supported_formats.html">supported formats</a>.</p>
+MESSES can transform it into an intermediate JSON representation and then convert it to any of the <a class="reference external" href="https://moseleybioinformaticslab.github.io/messes/supported_formats.html">supported formats</a>.</p>
 <p>Currently Supported Formats:</p>
 <blockquote>
 <div><ul class="simple">
@@ -130,36 +130,33 @@ MESSES can transform it into JSON and then convert it to any of the <a class="re
 </div></blockquote>
 <p>The process of going from your raw experimental data to submission to an online repository
 is not an easy one, but MESSES was created to make it easier. MESSES breaks up the process
-into 3 steps, extract, validate, and convert. The extraction step adds a layer of tags
-to your raw data so that it is in a form that is more interoperable and more standardized.
+into 3 steps: extract, validate, and convert. The extraction step adds a layer of tags
+to your raw tabular data, which may be automatable, and then extracts it into a JSONized form
+that it is more interoperable and more standardized.
 The validation step ensures the data that was extracted is valid against the <a class="reference external" href="https://moseleybioinformaticslab.github.io/messes/experiment_description_schema.html">Experiment Description Schema</a>,
-<a class="reference external" href="https://moseleybioinformaticslab.github.io/messes/protocol_dependent_schema.html">Protocol Dependent Schema</a>, any additional JSON schema you wish to provide, and a built
+the <a class="reference external" href="https://moseleybioinformaticslab.github.io/messes/protocol_dependent_schema.html">Protocol Dependent Schema</a>, any additional JSON schema you wish to provide, and a built
 in schema specific for the format you wish to convert to. The conversion step converts the
-extracted data to the form that is accepted by the online repository. Initially getting started
-will likely be difficult, but once things are worked out the first time this process can be
-easily added to your workflows.</p>
-<p>Although any kind of data schema can be used for extraction into JSON. Conversion
+extracted data to the form that is accepted by the online repository. There is an intial
+steep learning curve. But once the extraction, validation, and conversion settings are
+worked out, this process can be easily added to our data generation and analysis workflows.</p>
+<p>Although any kind of data schema can be used for extraction into JSON, conversion
 to another format from the extracted JSON does rely on the data being in a specific
 schema. A generalized schema was developed for MESSES that should be able to comprehensivley
-describe most experimental data. This schema is described in the <a class="reference external" href="https://moseleybioinformaticslab.github.io/messes/experiment_description_schema.html">Experiment Description Schema</a> section
-of the documentation. If MESSES is used as a library it may be possible to use a
-different data schema, but the details would be left to the user.</p>
-<p>Tagging and initial data entry are error prone due to being done by hand, so to
-help catch mistakes MESSES includes a validate command that will help make sure
-your data is in line with your project parameters and data schema.</p>
-<p>The MESSES package can be used in two ways:</p>
-<blockquote>
-<div><ul class="simple">
-<li><p>As a library for converting raw data stored in Excel or CSV files into other formats.</p></li>
-<li><p>As a command-line tool to convert raw data stored in Excel or CSV files into other formats.</p></li>
-</ul>
-</div></blockquote>
+describe most experimental designs and data. This schema is described in the <a class="reference external" href="https://moseleybioinformaticslab.github.io/messes/experiment_description_schema.html">Experiment Description Schema</a> section
+of the documentation. But original data entry, manual tagging of tabular data, and even
+automated tagging facilities can be messy, generating errors in the extracted JSONized
+representation. So MESSES includes a validate command to help make sure your data is in
+line with your project parameters and data schema.</p>
+<p>The MESSES package is primarily designed as a command-line tool to convert raw tabular data
+(Excel or CSV formatted) into other well-structured data formats. But the package can be
+used as a library and extended to handle additional data conversion use-cases.</p>
 </section>
 <section id="links">
 <h2>Links<a class="headerlink" href="#links" title="Permalink to this heading"></a></h2>
 <blockquote>
 <div><ul class="simple">
 <li><p>MESSES &#64; <a class="reference external" href="https://github.com/MoseleyBioinformaticsLab/messes">GitHub</a></p></li>
+<li><p><a class="reference external" href="https://github.com/MoseleyBioinformaticsLab/messes/issues">Issues</a></p></li>
 <li><p>MESSES &#64; <a class="reference external" href="https://pypi.org/project/messes">PyPI</a></p></li>
 <li><p>Documentation &#64; <a class="reference external" href="https://moseleybioinformaticslab.github.io/messes/">Pages</a></p></li>
 </ul>
@@ -217,15 +214,15 @@ messes<span class="w"> </span>convert<span class="w"> </span>desired_format<span
 </div>
 <p>MESSES’s behavior can be quite complex, so it is highly encouraged to read the
 <a class="reference external" href="https://moseleybioinformaticslab.github.io/messes/guide.html">guide</a> and <a class="reference external" href="https://moseleybioinformaticslab.github.io/messes/tutorial.html">tutorial</a>.
-There are also examples available in the examples folder on the <a class="reference external" href="https://github.com/MoseleyBioinformaticsLab/messes">GitHub</a> repo.</p>
+There are also examples available in the examples folder on the <a class="reference external" href="https://github.com/MoseleyBioinformaticsLab/messes">GitHub</a> repository.</p>
 </section>
 <section id="mac-os-note">
 <h2>Mac OS Note<a class="headerlink" href="#mac-os-note" title="Permalink to this heading"></a></h2>
-<p>When you try to run the program on Mac OS you may get an SSL error.</p>
+<p>When you try to run the program on Mac OS, you may get an SSL error.</p>
 <blockquote>
 <div><p>certificate verify failed: unable to get local issuer certificate</p>
 </div></blockquote>
-<p>This is due to a change in Mac OS and Python. To fix it go to to your Python
+<p>This is due to a change in Mac OS and Python. To fix it, go to to your Python
 folder in Applications and run the Install Certificates.command shell command
 in the /Applications/Python 3.x folder. This should fix the issue.</p>
 </section>
@@ -261,7 +258,7 @@ run the following commands:</p>
 <div><ul>
 <li><dl>
 <dt><a class="reference external" href="https://pypi.org/project/docopt/">docopt</a> for creating the command-line interface.</dt><dd><ul>
-<li><p>To install <a class="reference external" href="https://pypi.org/project/docopt/">docopt</a> run the following:</p>
+<li><p>To install <a class="reference external" href="https://pypi.org/project/docopt/">docopt</a>, run the following:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python3<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>docopt<span class="w">  </span><span class="c1"># On Linux, Mac OS X</span>
 py<span class="w"> </span>-3<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>docopt<span class="w">    </span><span class="c1"># On Windows</span>
 </pre></div>
@@ -273,7 +270,7 @@ py<span class="w"> </span>-3<span class="w"> </span>-m<span class="w"> </span>pi
 </li>
 <li><dl>
 <dt><a class="reference external" href="https://pypi.org/project/jsonschema/">jsonschema</a> for validating JSON.</dt><dd><ul>
-<li><p>To install the <a class="reference external" href="https://pypi.org/project/jsonschema/">jsonschema</a> Python library run the following:</p>
+<li><p>To install the <a class="reference external" href="https://pypi.org/project/jsonschema/">jsonschema</a> Python library, run the following:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python3<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>jsonschema<span class="w">  </span><span class="c1"># On Linux, Mac OS X</span>
 py<span class="w"> </span>-3<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>jsonschema<span class="w">    </span><span class="c1"># On Windows</span>
 </pre></div>
@@ -285,7 +282,7 @@ py<span class="w"> </span>-3<span class="w"> </span>-m<span class="w"> </span>pi
 </li>
 <li><dl>
 <dt><a class="reference external" href="https://pypi.org/project/pandas/">pandas</a> for easy data manipulation.</dt><dd><ul>
-<li><p>To install the <a class="reference external" href="https://pypi.org/project/pandas/">pandas</a> Python library run the following:</p>
+<li><p>To install the <a class="reference external" href="https://pypi.org/project/pandas/">pandas</a> Python library, run the following:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python3<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>pandas<span class="w">  </span><span class="c1"># On Linux, Mac OS X</span>
 py<span class="w"> </span>-3<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>pandas<span class="w">    </span><span class="c1"># On Windows</span>
 </pre></div>
@@ -297,7 +294,7 @@ py<span class="w"> </span>-3<span class="w"> </span>-m<span class="w"> </span>pi
 </li>
 <li><dl>
 <dt><a class="reference external" href="https://pypi.org/project/openpyxl/">openpyxl</a> for saving Excel files in pandas.</dt><dd><ul>
-<li><p>To install the <a class="reference external" href="https://pypi.org/project/openpyxl/">openpyxl</a> Python library run the following:</p>
+<li><p>To install the <a class="reference external" href="https://pypi.org/project/openpyxl/">openpyxl</a> Python library, run the following:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python3<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>openpyxl<span class="w">  </span><span class="c1"># On Linux, Mac OS X</span>
 py<span class="w"> </span>-3<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>openpyxl<span class="w">    </span><span class="c1"># On Windows</span>
 </pre></div>
@@ -312,7 +309,7 @@ py<span class="w"> </span>-3<span class="w"> </span>-m<span class="w"> </span>pi
 <div><ul>
 <li><dl>
 <dt><a class="reference external" href="https://pypi.org/project/jellyfish/">jellyfish</a> for saving Excel files in pandas.</dt><dd><ul>
-<li><p>To install the <a class="reference external" href="https://pypi.org/project/jellyfish/">jellyfish</a> Python library run the following:</p>
+<li><p>To install the <a class="reference external" href="https://pypi.org/project/jellyfish/">jellyfish</a> Python library, run the following:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python3<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>jellyfish<span class="w">  </span><span class="c1"># On Linux, Mac OS X</span>
 py<span class="w"> </span>-3<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>jellyfish<span class="w">    </span><span class="c1"># On Windows</span>
 </pre></div>
@@ -324,7 +321,7 @@ py<span class="w"> </span>-3<span class="w"> </span>-m<span class="w"> </span>pi
 </li>
 <li><dl>
 <dt><a class="reference external" href="https://pypi.org/project/mwtab/">mwtab</a> for saving Excel files in pandas.</dt><dd><ul>
-<li><p>To install the <a class="reference external" href="https://pypi.org/project/mwtab/">mwtab</a> Python library run the following:</p>
+<li><p>To install the <a class="reference external" href="https://pypi.org/project/mwtab/">mwtab</a> Python library, run the following:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python3<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>mwtab<span class="w">  </span><span class="c1"># On Linux, Mac OS X</span>
 py<span class="w"> </span>-3<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>mwtab<span class="w">    </span><span class="c1"># On Windows</span>
 </pre></div>

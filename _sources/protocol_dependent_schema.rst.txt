@@ -1,9 +1,10 @@
 Protocol-Dependent Schema
 =========================
+The protocol-dependent schema (PDS) represents an entity-attribute-value model used to validate the intermediate JSON based on the protocols present.
 
 Protocol-Dependent Schema - JSON
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-If the protocol-dependent schema is given in the form of a JSON file it is expected to follow a certain 
+If the protocol-dependent schema is given in the form of a JSON file, it is expected to follow a certain 
 schema. The general format is shown below:
 
 .. code:: console
@@ -72,7 +73,7 @@ The "instrument" record has the fields "minLength", "required", "table", and "ty
 "minLength" and "type" will be copied as is into the JSON schema for the "instrument" property, 
 but "required" will be used to build the "required" attribute for "master_measurement". 
 The "table" field should be one of "protocol", "measurement", or "entity" and indicates which 
-table the record is associated with. For "instrument" and "instrument_type" the table is 
+table the record is associated with. For "instrument" and "instrument_type", the table is 
 "protocol", which means that records in the "protocol" table of the input JSON that 
 have the same name as "master_measurement" or inherit from it must comply with the 
 "instrument" and "instrument_type" specifications. For example, a protocol that inherits 
@@ -200,10 +201,10 @@ for the protocol, but with some caveats. It has already been mentioned that the
 "required" property will be used to build the "required" array in the JSON schema, 
 but there are some other keywords in `JSON Schema <https://json-schema.org/understanding-json-schema/>`_ 
 that have special translations as well. For example, the "items" keyword must be an 
-object type or boolean type to be valid in `JSON Schema <https://json-schema.org/understanding-json-schema/>`_, 
-but due to the limitations of the export tagging system there is not a way to specify 
-an "items" property of this type. To get around this limitation if properties such 
-as "items" are a string type they will first be put through the eval() function before 
+object type or boolean type to be valid in `JSON Schema <https://json-schema.org/understanding-json-schema/>`_. 
+But due to the limitations of the export part of the tagging system, there is not a way to specify 
+an "items" property of this type. To get around this limitation, if properties such 
+as "items" are a string type, they will first be put through the eval() function before 
 being copied into the JSON schema. Let's see an example.
 
 .. code:: console
@@ -228,12 +229,12 @@ This translates to JSON Schema properties as:
       }
     }
 
-Just know that for most keywords in `JSON Schema <https://json-schema.org/understanding-json-schema/>`_ 
-it is acceptable to put a string value in place of the proper type, and that this 
+Just know that for most keywords in `JSON Schema <https://json-schema.org/understanding-json-schema/>`_, 
+it is acceptable to put a string value in place of the proper type. This 
 is done to support the tabular form of the protocol-dependent schema as described below. 
 A best attempt has been made to support most of the features of JSON Schema, but 
 not everything has been tested or is guarenteed to work. If you find an error or 
-something you would like to be added then please open an `issue <https://github.com/MoseleyBioinformaticsLab/MESSES/issues>`_ on GitHub.
+something you would like to be added, then please open an `issue <https://github.com/MoseleyBioinformaticsLab/MESSES/issues>`_ on GitHub.
 
 Protocol-Dependent Schema - Table
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
