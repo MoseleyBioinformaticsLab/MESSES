@@ -1,0 +1,1102 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>messes.convert.convert &mdash; MESSES 0.1.dev1+g2e9d733 documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/custom_css.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../index.html" class="icon icon-home"> MESSES
+          </a>
+              <div class="version">
+                0.1.dev1+g2e9d733
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../guide.html">User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../cli.html">CLI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorial.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tagging.html">Tagging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../conversion_directives.html">Conversion Directives</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../experiment_description_schema.html">Experiment Description Schema</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../protocol_dependent_schema.html">Protocol-Dependent Schema</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../supported_formats.html">Supported Formats</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../api.html">API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../todo.html">TODO List</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">MESSES</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+      <li>messes.convert.convert</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for messes.convert.convert</h1><div class="highlight"><pre>
+<span></span><span class="c1"># -*- coding: utf-8 -*-</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Convert JSON data to another JSON format.</span>
+
+<span class="sd">Usage:</span>
+<span class="sd">    messes convert mwtab (ms | nmr | nmr_binned) &lt;input_JSON&gt; &lt;output_name&gt; [--update &lt;conversion_directives&gt; | --override &lt;conversion_directives&gt;] [--silent]</span>
+<span class="sd">    messes convert save-directives mwtab (ms | nmr | nmr_binned) &lt;output_filetype&gt; [&lt;output_name&gt;]</span>
+<span class="sd">    messes convert generic &lt;input_JSON&gt; &lt;output_name&gt; &lt;conversion_directives&gt; [--silent]</span>
+<span class="sd">    messes convert --help</span>
+<span class="sd">    </span>
+<span class="sd">    &lt;conversion_directives&gt; - can be a JSON, csv, or xlsx file. If xlsx the default sheet name to read in is #convert, </span>
+<span class="sd">                              to specify a different sheet name separate it from the file name with a colon ex: file_name.xlsx:sheet_name.</span>
+
+<span class="sd">Options:</span>
+<span class="sd">    -h, --help                           - show this screen.</span>
+<span class="sd">    -v, --version                        - show version.</span>
+<span class="sd">    --silent                             - silence all warnings.</span>
+<span class="sd">    --update &lt;conversion_directives&gt;     - conversion directives that will be used to update the built-in directives for the format.</span>
+<span class="sd">                                           This is intended to be used for simple changes such as updating the value of </span>
+<span class="sd">                                           the analysis ID. You only have to specify what needs to change, any values </span>
+<span class="sd">                                           that are left out of the update directives won&#39;t be changed. If you need to remove </span>
+<span class="sd">                                           directives then use the override option.</span>
+<span class="sd">    --override &lt;conversion_directives&gt;   - conversion directives that will be used to override the built-in directives for the format.</span>
+<span class="sd">                                           The entire JSON must be specified, any directives that are not in the override JSON </span>
+<span class="sd">                                           will be removed.</span>
+<span class="sd">    </span>
+<span class="sd">    </span>
+
+<span class="sd">The general command structure for convert is convert &lt;format&gt; which will convert an input JSON file over to the supported format. </span>
+<span class="sd">The outputs of these commands will save both the JSON conversion and the final format file.</span>
+
+<span class="sd">The generic command is the same as the supported formats except the user is required to input conversion directives specifying how to </span>
+<span class="sd">convert the input JSON to the desired output JSON. Only an output JSON is saved.</span>
+
+<span class="sd">The save-directives command is used to print the default conversion directives used by convert for any of the supported formats. &lt;output-filetype&gt; </span>
+<span class="sd">can be one of &quot;json&quot;, &quot;xlsx&quot;, or &quot;csv&quot;. The file is saved as &quot;format_conversion_directives.ext&quot; where &quot;.ext&quot; is replaced with &quot;.json&quot;, &quot;.xlsx&quot;, </span>
+<span class="sd">or &quot;.csv&quot; depending on the value of &lt;output-format&gt;, unless &lt;output_name&gt; is given.</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">operator</span>
+<span class="kn">import</span> <span class="nn">re</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">pathlib</span>
+<span class="kn">from</span> <span class="nn">importlib.machinery</span> <span class="kn">import</span> <span class="n">SourceFileLoader</span>
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">import</span> <span class="nn">datetime</span>
+<span class="kn">import</span> <span class="nn">collections.abc</span>
+<span class="kn">import</span> <span class="nn">traceback</span>
+<span class="kn">import</span> <span class="nn">io</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span>
+
+<span class="kn">import</span> <span class="nn">pandas</span>
+<span class="kn">import</span> <span class="nn">docopt</span>
+<span class="kn">import</span> <span class="nn">mwtab</span>
+
+<span class="kn">from</span> <span class="nn">messes.extract</span> <span class="kn">import</span> <span class="n">extract</span>
+<span class="kn">from</span> <span class="nn">messes</span> <span class="kn">import</span> <span class="n">__version__</span>
+<span class="kn">from</span> <span class="nn">messes.convert</span> <span class="kn">import</span> <span class="n">mwtab_conversion_directives</span>
+<span class="kn">from</span> <span class="nn">messes.convert</span> <span class="kn">import</span> <span class="n">mwtab_functions</span>
+<span class="kn">from</span> <span class="nn">messes.convert</span> <span class="kn">import</span> <span class="n">user_input_checking</span>
+<span class="kn">from</span> <span class="nn">messes.convert</span> <span class="kn">import</span> <span class="n">convert_schema</span>
+
+
+<span class="n">supported_formats_and_sub_commands</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;mwtab&quot;</span><span class="p">:[</span><span class="s2">&quot;ms&quot;</span><span class="p">,</span> <span class="s2">&quot;nmr&quot;</span><span class="p">,</span> <span class="s2">&quot;nmr_binned&quot;</span><span class="p">]}</span>
+
+<span class="k">def</span> <span class="nf">main</span><span class="p">()</span> <span class="p">:</span>
+    <span class="n">args</span> <span class="o">=</span> <span class="n">docopt</span><span class="o">.</span><span class="n">docopt</span><span class="p">(</span><span class="vm">__doc__</span><span class="p">,</span> <span class="n">version</span><span class="o">=</span><span class="n">__version__</span><span class="p">)</span>
+    
+    <span class="c1">## Validate args.</span>
+    <span class="c1"># user_input_checking.additional_args_checks(args)</span>
+    
+    <span class="c1">#####################</span>
+    <span class="c1">## Determine conversion_directives.</span>
+    <span class="c1">#####################</span>
+    <span class="n">conversion_directives</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">format_under_operation</span> <span class="o">=</span> <span class="s2">&quot;generic&quot;</span>
+    <span class="k">for</span> <span class="n">supported_format</span><span class="p">,</span> <span class="n">sub_commands</span> <span class="ow">in</span> <span class="n">supported_formats_and_sub_commands</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="k">if</span> <span class="n">args</span><span class="p">[</span><span class="n">supported_format</span><span class="p">]:</span>
+            <span class="n">format_under_operation</span> <span class="o">=</span> <span class="n">supported_format</span>
+            <span class="n">sub_command</span> <span class="o">=</span> <span class="p">[</span><span class="n">sub_command</span> <span class="k">for</span> <span class="n">sub_command</span> <span class="ow">in</span> <span class="n">supported_formats_and_sub_commands</span><span class="p">[</span><span class="n">supported_format</span><span class="p">]</span> <span class="k">if</span> <span class="n">args</span><span class="p">[</span><span class="n">sub_command</span><span class="p">]][</span><span class="mi">0</span><span class="p">]</span>
+            <span class="n">conversion_directives</span> <span class="o">=</span> <span class="nb">eval</span><span class="p">(</span><span class="n">supported_format</span> <span class="o">+</span> <span class="s2">&quot;_conversion_directives.&quot;</span> <span class="o">+</span> <span class="n">sub_command</span> <span class="o">+</span> <span class="s2">&quot;_directives&quot;</span><span class="p">)</span>
+            <span class="k">break</span>
+        
+    <span class="k">if</span> <span class="n">filepath</span> <span class="o">:=</span> <span class="nb">next</span><span class="p">((</span><span class="n">arg</span> <span class="k">for</span> <span class="n">arg</span> <span class="ow">in</span> <span class="p">[</span><span class="n">args</span><span class="p">[</span><span class="s2">&quot;&lt;conversion_directives&gt;&quot;</span><span class="p">],</span> <span class="n">args</span><span class="p">[</span><span class="s2">&quot;--update&quot;</span><span class="p">],</span> <span class="n">args</span><span class="p">[</span><span class="s2">&quot;--override&quot;</span><span class="p">]]</span> <span class="k">if</span> <span class="n">arg</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">),</span> <span class="kc">False</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;.*(\.xls[xm]?|\.csv)&quot;</span><span class="p">,</span> <span class="n">filepath</span><span class="p">):</span>
+            <span class="n">default_sheet_name</span> <span class="o">=</span> <span class="kc">False</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">reMatch</span> <span class="o">:=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;^(.*\.xls[xm]?):(.*)$&quot;</span><span class="p">,</span> <span class="n">filepath</span><span class="p">)):</span>
+                <span class="n">filepath</span> <span class="o">=</span> <span class="n">reMatch</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+                <span class="n">sheet_name</span> <span class="o">=</span> <span class="n">reMatch</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;\.xls[xm]?$&quot;</span><span class="p">,</span> <span class="n">filepath</span><span class="p">):</span>
+                <span class="n">sheet_name</span> <span class="o">=</span> <span class="s2">&quot;#convert&quot;</span>
+                <span class="n">default_sheet_name</span> <span class="o">=</span> <span class="kc">True</span>
+            <span class="n">tagParser</span> <span class="o">=</span> <span class="n">extract</span><span class="o">.</span><span class="n">TagParser</span><span class="p">()</span>
+            <span class="c1">## In order to print error messages correctly we have to know if loadSheet printed a message or not, so temporarily replace stderr.</span>
+            <span class="n">old_stderr</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">stderr</span>
+            <span class="n">sys</span><span class="o">.</span><span class="n">stderr</span> <span class="o">=</span> <span class="n">buffer</span> <span class="o">=</span> <span class="n">io</span><span class="o">.</span><span class="n">StringIO</span><span class="p">()</span>
+            <span class="k">if</span> <span class="n">worksheet_tuple</span> <span class="o">:=</span> <span class="n">tagParser</span><span class="o">.</span><span class="n">loadSheet</span><span class="p">(</span><span class="n">filepath</span><span class="p">,</span> <span class="n">sheet_name</span><span class="p">,</span> <span class="n">isDefaultSearch</span><span class="o">=</span><span class="n">default_sheet_name</span><span class="p">):</span>
+                <span class="n">tagParser</span><span class="o">.</span><span class="n">parseSheet</span><span class="p">(</span><span class="o">*</span><span class="n">worksheet_tuple</span><span class="p">)</span>
+                <span class="n">update_conversion_directives</span> <span class="o">=</span> <span class="n">tagParser</span><span class="o">.</span><span class="n">extraction</span>
+                <span class="n">sys</span><span class="o">.</span><span class="n">stderr</span> <span class="o">=</span> <span class="n">old_stderr</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">sys</span><span class="o">.</span><span class="n">stderr</span> <span class="o">=</span> <span class="n">old_stderr</span>
+                <span class="k">if</span> <span class="n">buffer</span><span class="o">.</span><span class="n">getvalue</span><span class="p">():</span>
+                    <span class="c1">## Have to trim the extra newline off the end of buffer.</span>
+                    <span class="nb">print</span><span class="p">(</span><span class="n">buffer</span><span class="o">.</span><span class="n">getvalue</span><span class="p">()[</span><span class="mi">0</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">file</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="p">)</span>
+                <span class="k">elif</span> <span class="n">default_sheet_name</span><span class="p">:</span>
+                    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Error: No sheet name was given for the xlsx file, so the default name &quot;</span> <span class="o">+</span>\
+                          <span class="s2">&quot;of #convert was used, but it was not found in the file.&quot;</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="p">)</span>
+                <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">()</span>
+        
+        <span class="k">elif</span> <span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;.*\.json$&quot;</span><span class="p">,</span> <span class="n">filepath</span><span class="p">):</span>
+            <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filepath</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">jsonFile</span><span class="p">:</span>
+                <span class="n">update_conversion_directives</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">jsonFile</span><span class="p">)</span>
+        
+        <span class="k">else</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Error: Unknown file type for the conversion directives file.&quot;</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="p">)</span>
+            <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">()</span>
+            
+        <span class="k">if</span> <span class="n">args</span><span class="p">[</span><span class="s2">&quot;--update&quot;</span><span class="p">]:</span>
+            <span class="n">update</span><span class="p">(</span><span class="n">conversion_directives</span><span class="p">,</span> <span class="n">update_conversion_directives</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">conversion_directives</span> <span class="o">=</span> <span class="n">update_conversion_directives</span>
+    
+    <span class="c1">##########################</span>
+    <span class="c1">## Handle save-directives command.</span>
+    <span class="c1">##########################</span>
+    <span class="k">if</span> <span class="n">args</span><span class="p">[</span><span class="s2">&quot;save-directives&quot;</span><span class="p">]:</span>
+        <span class="k">if</span> <span class="n">args</span><span class="p">[</span><span class="s2">&quot;&lt;output_name&gt;&quot;</span><span class="p">]:</span>
+            <span class="k">if</span> <span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;.*\.&quot;</span> <span class="o">+</span> <span class="n">args</span><span class="p">[</span><span class="s2">&quot;&lt;output_filetype&gt;&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot;$&quot;</span><span class="p">,</span> <span class="n">args</span><span class="p">[</span><span class="s2">&quot;&lt;output_name&gt;&quot;</span><span class="p">]):</span>
+                <span class="n">save_name</span> <span class="o">=</span> <span class="n">args</span><span class="p">[</span><span class="s2">&quot;&lt;output_name&gt;&quot;</span><span class="p">]</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">save_name</span> <span class="o">=</span> <span class="n">args</span><span class="p">[</span><span class="s2">&quot;&lt;output_name&gt;&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot;.&quot;</span> <span class="o">+</span> <span class="n">args</span><span class="p">[</span><span class="s2">&quot;&lt;output_filetype&gt;&quot;</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">save_name</span> <span class="o">=</span> <span class="n">format_under_operation</span> <span class="o">+</span> <span class="s2">&quot;_&quot;</span> <span class="o">+</span> <span class="n">sub_command</span> <span class="o">+</span> <span class="s2">&quot;_conversion_directives.&quot;</span> <span class="o">+</span> <span class="n">args</span><span class="p">[</span><span class="s2">&quot;&lt;output_filetype&gt;&quot;</span><span class="p">]</span>
+        
+        <span class="k">if</span> <span class="n">args</span><span class="p">[</span><span class="s2">&quot;&lt;output_filetype&gt;&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;json&quot;</span><span class="p">:</span>
+            <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">save_name</span><span class="p">,</span><span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">jsonFile</span><span class="p">:</span>
+                <span class="n">jsonFile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">conversion_directives</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">2</span><span class="p">))</span>
+        <span class="k">elif</span> <span class="n">args</span><span class="p">[</span><span class="s2">&quot;&lt;output_filetype&gt;&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;xlsx&quot;</span><span class="p">:</span>
+            <span class="n">table_to_save</span> <span class="o">=</span> <span class="n">directives_to_table</span><span class="p">(</span><span class="n">conversion_directives</span><span class="p">)</span>
+            <span class="n">table_to_save</span><span class="o">.</span><span class="n">to_excel</span><span class="p">(</span><span class="n">save_name</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">args</span><span class="p">[</span><span class="s2">&quot;&lt;output_filetype&gt;&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;csv&quot;</span><span class="p">:</span>
+            <span class="n">table_to_save</span> <span class="o">=</span> <span class="n">directives_to_table</span><span class="p">(</span><span class="n">conversion_directives</span><span class="p">)</span>
+            <span class="n">table_to_save</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">save_name</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Error: Unknown output filetype.&quot;</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="p">)</span>
+            
+        <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">()</span>
+        
+    
+    <span class="c1">#######################</span>
+    <span class="c1">## Validate conversion directives.</span>
+    <span class="c1">#######################</span>
+    <span class="n">user_input_checking</span><span class="o">.</span><span class="n">validate_conversion_directives</span><span class="p">(</span><span class="n">conversion_directives</span><span class="p">,</span> <span class="n">convert_schema</span><span class="o">.</span><span class="n">directives_schema</span><span class="p">)</span>
+    
+    
+    <span class="c1">## Read in files.</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">(</span><span class="n">args</span><span class="p">[</span><span class="s2">&quot;&lt;input_JSON&gt;&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Error: The value entered for &lt;input_JSON&gt;, &quot;</span> <span class="o">+</span> <span class="n">args</span><span class="p">[</span><span class="s2">&quot;&lt;input_JSON&gt;&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot;, is not a valid file path or does not exist.&quot;</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="p">)</span>
+        <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">()</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">args</span><span class="p">[</span><span class="s2">&quot;&lt;input_JSON&gt;&quot;</span><span class="p">],</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">jsonFile</span><span class="p">:</span>
+            <span class="n">input_json</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">jsonFile</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Error: An error was encountered when trying to read in the &lt;input_JSON&gt;, &quot;</span> <span class="o">+</span> <span class="n">args</span><span class="p">[</span><span class="s2">&quot;&lt;input_JSON&gt;&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot;.</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="n">e</span>
+    
+    <span class="c1">#####################</span>
+    <span class="c1">## Generate new JSON.</span>
+    <span class="c1">#####################</span>
+    <span class="n">output_json</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="n">conversion_table</span><span class="p">,</span> <span class="n">conversion_records</span> <span class="ow">in</span> <span class="n">conversion_directives</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="k">for</span> <span class="n">conversion_record_name</span><span class="p">,</span> <span class="n">conversion_attributes</span> <span class="ow">in</span> <span class="n">conversion_records</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="n">required</span> <span class="o">=</span> <span class="kc">True</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">required_attr</span> <span class="o">:=</span> <span class="n">conversion_attributes</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;required&quot;</span><span class="p">))</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">required_attr</span><span class="p">,</span> <span class="nb">bool</span><span class="p">):</span>
+                    <span class="n">required</span> <span class="o">=</span> <span class="n">required_attr</span>
+                <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">required_attr</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span> <span class="ow">and</span> <span class="n">required_attr</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="s2">&quot;false&quot;</span><span class="p">:</span>
+                    <span class="n">required</span> <span class="o">=</span> <span class="kc">False</span>
+                
+                    
+            <span class="n">default</span> <span class="o">=</span> <span class="n">conversion_attributes</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;default&quot;</span><span class="p">)</span>
+            <span class="c1">## Literal check needs to be here if the user wants to use a space.</span>
+            <span class="k">if</span> <span class="n">default</span> <span class="ow">and</span> <span class="p">(</span><span class="n">literal_match</span> <span class="o">:=</span> <span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="n">literal_regex</span><span class="p">,</span> <span class="n">default</span><span class="p">)):</span>
+                <span class="n">default</span> <span class="o">=</span> <span class="n">literal_match</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+            
+            <span class="k">if</span> <span class="n">conversion_attributes</span><span class="p">[</span><span class="s2">&quot;value_type&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;section&quot;</span><span class="p">:</span>
+                <span class="n">value</span> <span class="o">=</span> <span class="n">handle_code_field</span><span class="p">(</span><span class="n">input_json</span><span class="p">,</span> <span class="n">conversion_table</span><span class="p">,</span> <span class="n">conversion_record_name</span><span class="p">,</span> <span class="n">conversion_attributes</span><span class="p">,</span> <span class="n">required</span><span class="p">,</span> <span class="n">args</span><span class="p">[</span><span class="s2">&quot;--silent&quot;</span><span class="p">])</span>
+                <span class="n">keys</span> <span class="o">=</span> <span class="p">[</span><span class="n">conversion_table</span><span class="p">]</span>
+            <span class="k">elif</span> <span class="n">conversion_attributes</span><span class="p">[</span><span class="s2">&quot;value_type&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;matrix&quot;</span><span class="p">:</span>
+                <span class="n">value</span> <span class="o">=</span> <span class="n">compute_matrix_value</span><span class="p">(</span><span class="n">input_json</span><span class="p">,</span> <span class="n">conversion_table</span><span class="p">,</span> <span class="n">conversion_record_name</span><span class="p">,</span> <span class="n">conversion_attributes</span><span class="p">,</span> <span class="n">required</span><span class="p">,</span> <span class="n">args</span><span class="p">[</span><span class="s2">&quot;--silent&quot;</span><span class="p">])</span>
+                <span class="n">keys</span> <span class="o">=</span> <span class="p">[</span><span class="n">conversion_table</span><span class="p">,</span> <span class="n">conversion_record_name</span><span class="p">]</span>
+            <span class="k">elif</span> <span class="n">conversion_attributes</span><span class="p">[</span><span class="s2">&quot;value_type&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;str&quot;</span><span class="p">:</span>
+                <span class="n">value</span> <span class="o">=</span> <span class="n">compute_string_value</span><span class="p">(</span><span class="n">input_json</span><span class="p">,</span> <span class="n">conversion_table</span><span class="p">,</span> <span class="n">conversion_record_name</span><span class="p">,</span> <span class="n">conversion_attributes</span><span class="p">,</span> <span class="n">required</span><span class="p">,</span> <span class="n">args</span><span class="p">[</span><span class="s2">&quot;--silent&quot;</span><span class="p">])</span>
+                <span class="n">keys</span> <span class="o">=</span> <span class="p">[</span><span class="n">conversion_table</span><span class="p">,</span> <span class="n">conversion_record_name</span><span class="p">]</span>
+            
+            <span class="k">if</span> <span class="n">value</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">default</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="n">required</span><span class="p">:</span>
+                        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Error: The conversion directive to create the </span><span class="se">\&quot;</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="n">conversion_record_name</span> <span class="o">+</span> \
+                              <span class="s2">&quot;</span><span class="se">\&quot;</span><span class="s2"> record in the </span><span class="se">\&quot;</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="n">conversion_table</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\&quot;</span><span class="s2"> table did not return a value.&quot;</span><span class="p">,</span> 
+                              <span class="n">file</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="p">)</span>
+                        <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">()</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="k">if</span> <span class="ow">not</span> <span class="n">args</span><span class="p">[</span><span class="s2">&quot;--silent&quot;</span><span class="p">]:</span>
+                            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Warning: The non-required conversion directive to create the </span><span class="se">\&quot;</span><span class="s2">&quot;</span> <span class="o">+</span> \
+                                  <span class="n">conversion_record_name</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\&quot;</span><span class="s2"> record in the </span><span class="se">\&quot;</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="n">conversion_table</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\&quot;</span><span class="s2"> table could not be created.&quot;</span><span class="p">,</span> 
+                                  <span class="n">file</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="p">)</span>
+                        <span class="k">continue</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">value</span> <span class="o">=</span> <span class="n">default</span>
+                    <span class="k">if</span> <span class="ow">not</span> <span class="n">args</span><span class="p">[</span><span class="s2">&quot;--silent&quot;</span><span class="p">]:</span>
+                        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The conversion directive to create the </span><span class="se">\&quot;</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="n">conversion_record_name</span> <span class="o">+</span> \
+                              <span class="s2">&quot;</span><span class="se">\&quot;</span><span class="s2"> record in the </span><span class="se">\&quot;</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="n">conversion_table</span> <span class="o">+</span> \
+                              <span class="s2">&quot;</span><span class="se">\&quot;</span><span class="s2"> table could not be created, and reverted to its given default value, </span><span class="se">\&quot;</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="n">default</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\&quot;</span><span class="s2">.&quot;</span><span class="p">,</span> 
+                              <span class="n">file</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="p">)</span>
+            
+            <span class="c1"># if value is None and required:</span>
+            <span class="c1">#     print(&quot;Error: The conversion directive to create the \&quot;&quot; + conversion_record_name + &quot;\&quot; record in the \&quot;&quot; + conversion_table + &quot;\&quot; table did not return a value.&quot;)</span>
+            <span class="c1">#     sys.exit()</span>
+            <span class="c1"># elif value is None and not required:</span>
+            <span class="c1">#     if not args[&quot;--silent&quot;]:</span>
+            <span class="c1">#         print(&quot;Warning: The non-required conversion directive to create the \&quot;&quot; + conversion_record_name + &quot;\&quot; record in the \&quot;&quot; + conversion_table + &quot;\&quot; table could not be created.&quot;)</span>
+            <span class="c1">#     continue</span>
+            
+            <span class="n">_nested_set</span><span class="p">(</span><span class="n">output_json</span><span class="p">,</span> <span class="n">keys</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+    
+    
+    <span class="c1">#########################</span>
+    <span class="c1">## Save the generated json.</span>
+    <span class="c1">#########################</span>
+    <span class="n">json_save_name</span> <span class="o">=</span> <span class="n">args</span><span class="p">[</span><span class="s2">&quot;&lt;output_name&gt;&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot;.json&quot;</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">json_save_name</span><span class="p">,</span><span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">jsonFile</span><span class="p">:</span>
+        <span class="n">jsonFile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">output_json</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">2</span><span class="p">))</span>
+    
+    <span class="k">if</span> <span class="n">args</span><span class="p">[</span><span class="s2">&quot;mwtab&quot;</span><span class="p">]:</span>
+        <span class="c1">## Optional way to do things compared to the code block below this.</span>
+        <span class="c1"># with tempfile.TemporaryFile(mode=&quot;w+&quot;, encoding=&quot;utf-8&quot;) as tp:</span>
+        <span class="c1">#     tp.write(json.dumps(output_json))</span>
+        <span class="c1">#     tp.seek(0)</span>
+        <span class="c1">#     mwfile = mwtab.mwtab.MWTabFile(&quot;&quot;)</span>
+        <span class="c1">#     mwfile.read(tp)</span>
+        <span class="c1"># with open(args[&quot;&lt;output-name&gt;&quot;], &#39;w&#39;, encoding=&quot;utf-8&quot;) as outfile:</span>
+        <span class="c1">#     mwfile.write(outfile, file_format=&quot;mwtab&quot;)</span>
+        
+        <span class="n">mwtabfile</span> <span class="o">=</span> <span class="n">mwtab</span><span class="o">.</span><span class="n">mwtab</span><span class="o">.</span><span class="n">MWTabFile</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+        <span class="n">mwtabfile</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">output_json</span><span class="p">)</span>
+        <span class="n">mwtabfile</span><span class="o">.</span><span class="n">header</span> <span class="o">=</span> <span class="s2">&quot; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
+            <span class="p">[</span><span class="s2">&quot;#METABOLOMICS WORKBENCH&quot;</span><span class="p">]</span>
+            <span class="o">+</span> <span class="p">[</span><span class="n">item</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot;:&quot;</span> <span class="o">+</span> <span class="n">item</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">mwtabfile</span><span class="p">[</span><span class="s2">&quot;METABOLOMICS WORKBENCH&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="n">item</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;VERSION&quot;</span><span class="p">,</span> <span class="s2">&quot;CREATED_ON&quot;</span><span class="p">]]</span>
+        <span class="p">)</span>            
+        
+        <span class="n">mwtabfile</span><span class="o">.</span><span class="n">source</span> <span class="o">=</span> <span class="n">args</span><span class="p">[</span><span class="s2">&quot;&lt;input_JSON&gt;&quot;</span><span class="p">]</span>
+        <span class="n">validated_file</span><span class="p">,</span> <span class="n">errors</span> <span class="o">=</span> <span class="n">mwtab</span><span class="o">.</span><span class="n">validator</span><span class="o">.</span><span class="n">validate_file</span><span class="p">(</span><span class="n">mwtabfile</span><span class="p">)</span>
+        
+        <span class="k">if</span> <span class="s2">&quot;Status: Passing&quot;</span> <span class="ow">in</span> <span class="n">errors</span><span class="p">:</span>
+            <span class="n">mwtab_save_name</span> <span class="o">=</span> <span class="n">args</span><span class="p">[</span><span class="s2">&quot;&lt;output_name&gt;&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot;.txt&quot;</span>
+            <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">mwtab_save_name</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">outfile</span><span class="p">:</span>
+                <span class="n">mwtabfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">outfile</span><span class="p">,</span> <span class="n">file_format</span><span class="o">=</span><span class="s2">&quot;mwtab&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Error: An error occured when validating the mwtab file.&quot;</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">errors</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="p">)</span>
+            <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">()</span>
+
+
+
+
+<span class="n">literal_regex</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;^</span><span class="se">\&quot;</span><span class="s2">(.*)</span><span class="se">\&quot;</span><span class="s2">$&quot;</span>
+
+<span class="k">def</span> <span class="nf">_handle_errors</span><span class="p">(</span><span class="n">required</span><span class="p">:</span> <span class="nb">bool</span><span class="p">,</span> <span class="n">silent</span><span class="p">:</span> <span class="nb">bool</span><span class="p">,</span> <span class="n">message</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;If required is True print message as error and exit, else print message as warning if silent is False.</span>
+<span class="sd">    </span>
+<span class="sd">    Args:</span>
+<span class="sd">        required: if the directive is required or not, if True then an error has occurred and we need to exit.</span>
+<span class="sd">        silent: whether to print a warning message or not.</span>
+<span class="sd">        message: the message to be printed.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">required</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Error: &quot;</span> <span class="o">+</span> <span class="n">message</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="p">)</span>
+        <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">()</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">silent</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Warning: &quot;</span> <span class="o">+</span> <span class="n">message</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="update"><a class="viewcode-back" href="../../../api.html#messes.convert.convert.update">[docs]</a><span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="n">original_dict</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span> <span class="n">upgrade_dict</span><span class="p">:</span> <span class="nb">dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Update a dictionary in a nested fashion.</span>
+<span class="sd">    </span>
+<span class="sd">    Args:</span>
+<span class="sd">        original_dict: the dictionary to update.</span>
+<span class="sd">        upgrade_dict: the dictionary to update values from.</span>
+<span class="sd">        </span>
+<span class="sd">    Returns:</span>
+<span class="sd">        original_dict, the updated original_dict</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">upgrade_dict</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">collections</span><span class="o">.</span><span class="n">abc</span><span class="o">.</span><span class="n">Mapping</span><span class="p">):</span>
+            <span class="n">original_dict</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">update</span><span class="p">(</span><span class="n">original_dict</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="p">{}),</span> <span class="n">value</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">original_dict</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
+    <span class="k">return</span> <span class="n">original_dict</span></div>
+
+
+<span class="k">def</span> <span class="nf">_nested_set</span><span class="p">(</span><span class="n">dic</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span> <span class="n">keys</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">value</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Creates nested dictionaries in dic for all but the last key and creates a key value pair in the last dictionary.</span>
+<span class="sd">    </span>
+<span class="sd">    Args:</span>
+<span class="sd">        dic: the dictionary to set the value in.</span>
+<span class="sd">        keys: the keys to nest in the dictionaries.</span>
+<span class="sd">        value: the value to set the last key to in the deepest dicitonary.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">keys</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]:</span>
+        <span class="n">dic</span> <span class="o">=</span> <span class="n">dic</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="p">{})</span>
+    <span class="n">dic</span><span class="p">[</span><span class="n">keys</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]]</span> <span class="o">=</span> <span class="n">value</span>
+
+
+<span class="k">def</span> <span class="nf">_sort_by_getter</span><span class="p">(</span><span class="n">pair</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span><span class="nb">dict</span><span class="p">],</span> <span class="n">keys</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Piece of a sorted call to return the values of certain keys in a dictionary.</span>
+<span class="sd">    </span>
+<span class="sd">    Args:</span>
+<span class="sd">        pair: the tuple from calling items() on a dict.</span>
+<span class="sd">        keys: a list of keys to retrieve values from the second element in pair.</span>
+<span class="sd">        </span>
+<span class="sd">    Returns:</span>
+<span class="sd">        a list of the field values from the dict in the tuple based on keys.</span>
+<span class="sd">        </span>
+<span class="sd">    Raises:</span>
+<span class="sd">        KeyError: if any key in keys is not in the second element of pair.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">[</span><span class="n">pair</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="n">key</span><span class="p">]</span> <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">keys</span><span class="p">]</span>
+    <span class="k">except</span> <span class="ne">KeyError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="n">e</span><span class="o">.</span><span class="n">pair</span> <span class="o">=</span> <span class="n">pair</span>
+        <span class="k">raise</span> <span class="n">e</span>
+
+<span class="c1"># def _sort_table_records(sort_by, table_records, reverse, conversion_record_name, conversion_table, input_table, required, silent):</span>
+<span class="c1">#     try:</span>
+<span class="c1">#         table_records = dict(sorted(table_records.items(), key = lambda pair: _sort_by_getter(pair, sort_by), reverse = reverse))</span>
+<span class="c1">#         ## table_records used to be a list of dicts and this was the sort, leaving it here in case it is needed.</span>
+<span class="c1">#         # table_records = sorted(table_records, key = operator.itemgetter(*sort_by), reverse = conversion_attributes[&quot;sort_order&quot;] == &quot;descending&quot;)</span>
+<span class="c1">#     except KeyError as e:</span>
+<span class="c1">#         message = &quot;The \&quot;sort_by\&quot; conversion directive to create the \&quot;&quot; + conversion_record_name + \</span>
+<span class="c1">#                   &quot;\&quot; conversion in the \&quot;&quot; + conversion_table + &quot;\&quot; table has an input key, &quot; + str(e) + \</span>
+<span class="c1">#                   &quot;, that was not in the \&quot;&quot; + e.pair[0] + &quot;\&quot; record of the \&quot;&quot; + input_table + &quot;\&quot;.&quot;</span>
+<span class="c1">#         return _handle_errors(required, silent, message)</span>
+    
+<span class="c1">#     return table_records</span>
+
+
+<span class="k">def</span> <span class="nf">_build_table_records</span><span class="p">(</span><span class="n">has_test</span><span class="p">:</span> <span class="nb">bool</span><span class="p">,</span> <span class="n">conversion_record_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">conversion_table</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">conversion_attributes</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span> 
+                         <span class="n">input_json</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span> <span class="n">required</span><span class="p">:</span> <span class="nb">bool</span><span class="p">,</span> <span class="n">silent</span><span class="p">:</span> <span class="nb">bool</span><span class="p">,</span> <span class="n">test_field</span><span class="p">:</span> <span class="nb">str</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">test_value</span><span class="p">:</span> <span class="nb">str</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Loop over a table in the input_json and pull the correct records and sort if necessary.</span>
+<span class="sd">    </span>
+<span class="sd">    Args:</span>
+<span class="sd">        has_test: if True the records need to be filtered by a test.</span>
+<span class="sd">        conversion_record_name: the name of the conversion record, used for good error messaging.</span>
+<span class="sd">        conversion_table: the name of the table the conversion record came from, used for good error messaging.</span>
+<span class="sd">        conversion_attributes: the fields and values of the conversion record.</span>
+<span class="sd">        input_json: the data to build the records from.</span>
+<span class="sd">        required: if True then any problems during execution are errors and the program should exit, else it&#39;s just a warning.</span>
+<span class="sd">        silent: if True don&#39;t print warning messages.</span>
+<span class="sd">        test_field: if has_test is True this is the field compare with in the records.</span>
+<span class="sd">        test_value: if has_test is True this is the value the field must be equal to in the record to be added to the output.</span>
+<span class="sd">        </span>
+<span class="sd">    Returns:</span>
+<span class="sd">        the filtered and sorted records from a table in input_json.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">conversion_attributes</span><span class="p">[</span><span class="s2">&quot;table&quot;</span><span class="p">]</span> <span class="ow">in</span> <span class="n">input_json</span><span class="p">:</span>
+        <span class="n">message</span> <span class="o">=</span> <span class="s2">&quot;The </span><span class="se">\&quot;</span><span class="s2">table</span><span class="se">\&quot;</span><span class="s2"> field value, </span><span class="se">\&quot;</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="n">conversion_attributes</span><span class="p">[</span><span class="s2">&quot;table&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\&quot;</span><span class="s2">, for conversion, </span><span class="se">\&quot;</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="n">conversion_record_name</span> <span class="o">+</span> \
+                  <span class="s2">&quot;</span><span class="se">\&quot;</span><span class="s2">, in conversion table, </span><span class="se">\&quot;</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="n">conversion_table</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\&quot;</span><span class="s2">, does not exist in the input JSON.&quot;</span>
+        <span class="k">return</span> <span class="n">_handle_errors</span><span class="p">(</span><span class="n">required</span><span class="p">,</span> <span class="n">silent</span><span class="p">,</span> <span class="n">message</span><span class="p">)</span>
+    
+    <span class="k">if</span> <span class="n">has_test</span><span class="p">:</span>
+        <span class="n">table_records</span> <span class="o">=</span> <span class="p">{</span><span class="n">record_name</span><span class="p">:</span><span class="n">record_attributes</span> <span class="k">for</span> <span class="n">record_name</span><span class="p">,</span> <span class="n">record_attributes</span> <span class="ow">in</span> <span class="n">input_json</span><span class="p">[</span><span class="n">conversion_attributes</span><span class="p">[</span><span class="s2">&quot;table&quot;</span><span class="p">]]</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="n">test_field</span> <span class="ow">in</span> <span class="n">record_attributes</span> <span class="ow">and</span> <span class="n">record_attributes</span><span class="p">[</span><span class="n">test_field</span><span class="p">]</span> <span class="o">==</span> <span class="n">test_value</span><span class="p">}</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">table_records</span> <span class="o">=</span> <span class="n">input_json</span><span class="p">[</span><span class="n">conversion_attributes</span><span class="p">[</span><span class="s2">&quot;table&quot;</span><span class="p">]]</span>
+        
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">table_records</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">has_test</span><span class="p">:</span>
+            <span class="n">message</span> <span class="o">=</span> <span class="s2">&quot;When creating the </span><span class="se">\&quot;</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="n">conversion_record_name</span> <span class="o">+</span> \
+                      <span class="s2">&quot;</span><span class="se">\&quot;</span><span class="s2"> conversion for the </span><span class="se">\&quot;</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="n">conversion_table</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\&quot;</span><span class="s2"> table, no records in the </span><span class="se">\&quot;</span><span class="s2">&quot;</span> <span class="o">+</span> \
+                      <span class="n">conversion_attributes</span><span class="p">[</span><span class="s2">&quot;table&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\&quot;</span><span class="s2"> table matched the test value, </span><span class="se">\&quot;</span><span class="s2">&quot;</span> <span class="o">+</span> \
+                      <span class="n">test_value</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\&quot;</span><span class="s2">, for the test field, </span><span class="se">\&quot;</span><span class="s2">&quot;</span> <span class="o">+</span> \
+                      <span class="n">test_field</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\&quot;</span><span class="s2">, indicated in the </span><span class="se">\&quot;</span><span class="s2">test</span><span class="se">\&quot;</span><span class="s2"> field of the conversion. &quot;</span> <span class="o">+</span>\
+                      <span class="s2">&quot;This could be from no records containing the test field or no records matching the test value for that field.&quot;</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">message</span> <span class="o">=</span> <span class="s2">&quot;When creating the </span><span class="se">\&quot;</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="n">conversion_record_name</span> <span class="o">+</span> \
+                      <span class="s2">&quot;</span><span class="se">\&quot;</span><span class="s2"> conversion for the </span><span class="se">\&quot;</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="n">conversion_table</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\&quot;</span><span class="s2"> table, there were no records in the indicated </span><span class="se">\&quot;</span><span class="s2">&quot;</span> <span class="o">+</span> \
+                      <span class="n">conversion_attributes</span><span class="p">[</span><span class="s2">&quot;table&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\&quot;</span><span class="s2"> table.&quot;</span>
+        
+        <span class="k">return</span> <span class="n">_handle_errors</span><span class="p">(</span><span class="n">required</span><span class="p">,</span> <span class="n">silent</span><span class="p">,</span> <span class="n">message</span><span class="p">)</span>
+    
+    <span class="k">if</span> <span class="n">sort_by</span> <span class="o">:=</span> <span class="n">conversion_attributes</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;sort_by&quot;</span><span class="p">):</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">table_records</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="n">table_records</span><span class="o">.</span><span class="n">items</span><span class="p">(),</span> <span class="n">key</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">pair</span><span class="p">:</span> <span class="n">_sort_by_getter</span><span class="p">(</span><span class="n">pair</span><span class="p">,</span> <span class="n">sort_by</span><span class="p">),</span> <span class="n">reverse</span> <span class="o">=</span> <span class="n">conversion_attributes</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;sort_order&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="s2">&quot;descending&quot;</span><span class="p">))</span>
+            <span class="c1">## table_records used to be a list of dicts and this was the sort, leaving it here in case it is needed.</span>
+            <span class="c1"># table_records = sorted(table_records, key = operator.itemgetter(*sort_by), reverse = conversion_attributes[&quot;sort_order&quot;] == &quot;descending&quot;)</span>
+        <span class="k">except</span> <span class="ne">KeyError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="n">message</span> <span class="o">=</span> <span class="s2">&quot;The record, </span><span class="se">\&quot;</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="n">e</span><span class="o">.</span><span class="n">pair</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\&quot;</span><span class="s2">, in the </span><span class="se">\&quot;</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="n">conversion_attributes</span><span class="p">[</span><span class="s2">&quot;table&quot;</span><span class="p">]</span> <span class="o">+</span> \
+                      <span class="s2">&quot;</span><span class="se">\&quot;</span><span class="s2"> table does not have the field, &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)</span> <span class="o">+</span> \
+                      <span class="s2">&quot;, required by the </span><span class="se">\&quot;</span><span class="s2">sort_by</span><span class="se">\&quot;</span><span class="s2"> field for the conversion, </span><span class="se">\&quot;</span><span class="s2">&quot;</span> <span class="o">+</span> \
+                      <span class="n">conversion_record_name</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\&quot;</span><span class="s2">, in the conversion table, </span><span class="se">\&quot;</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="n">conversion_table</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\&quot;</span><span class="s2">.&quot;</span>
+            <span class="k">return</span> <span class="n">_handle_errors</span><span class="p">(</span><span class="n">required</span><span class="p">,</span> <span class="n">silent</span><span class="p">,</span> <span class="n">message</span><span class="p">)</span>
+        
+    <span class="k">return</span> <span class="n">table_records</span>
+
+
+<div class="viewcode-block" id="handle_code_field"><a class="viewcode-back" href="../../../api.html#messes.convert.convert.handle_code_field">[docs]</a><span class="k">def</span> <span class="nf">handle_code_field</span><span class="p">(</span><span class="n">input_json</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span> <span class="n">conversion_table</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">conversion_record_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> 
+                      <span class="n">conversion_attributes</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span> <span class="n">required</span><span class="p">:</span> <span class="nb">bool</span><span class="p">,</span> <span class="n">silent</span><span class="p">:</span> <span class="nb">bool</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;If conversion_attributes has code and/or import fields then import and run the code appropriately.</span>
+<span class="sd">    </span>
+<span class="sd">    Args:</span>
+<span class="sd">        input_json: dict that the code is likely to operate on.</span>
+<span class="sd">        conversion_table: the name of the table the conversion record came from, used for good error messaging.</span>
+<span class="sd">        conversion_record_name: the name of the conversion record, used for good error messaging.</span>
+<span class="sd">        conversion_attributes: the fields and values of the conversion record.</span>
+<span class="sd">        required: if True then any problems during execution are errors and the program should exit, else it&#39;s just a warning.</span>
+<span class="sd">        silent: if True don&#39;t print warning messages.</span>
+<span class="sd">        </span>
+<span class="sd">    Returns:</span>
+<span class="sd">        the result of eval() or None if there was no &quot;code&quot; field in conversion_attributes.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    
+    <span class="k">if</span> <span class="n">import_path</span> <span class="o">:=</span> <span class="n">conversion_attributes</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;import&quot;</span><span class="p">):</span>
+        <span class="n">import_pathlib</span> <span class="o">=</span> <span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">(</span><span class="n">import_path</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">import_pathlib</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
+            <span class="n">message</span> <span class="o">=</span> <span class="s2">&quot;The path given to import a Python file in the </span><span class="se">\&quot;</span><span class="s2">import</span><span class="se">\&quot;</span><span class="s2"> field of the conversion record </span><span class="se">\&quot;</span><span class="s2">&quot;</span> <span class="o">+</span> \
+                      <span class="n">conversion_record_name</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\&quot;</span><span class="s2"> in the </span><span class="se">\&quot;</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="n">conversion_table</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\&quot;</span><span class="s2"> table does not exist.&quot;</span>
+            <span class="k">return</span> <span class="n">_handle_errors</span><span class="p">(</span><span class="n">required</span><span class="p">,</span> <span class="n">silent</span><span class="p">,</span> <span class="n">message</span><span class="p">)</span>
+        
+        <span class="n">import_name</span> <span class="o">=</span> <span class="n">import_pathlib</span><span class="o">.</span><span class="n">stem</span>
+        <span class="n">global_variables</span> <span class="o">=</span> <span class="nb">globals</span><span class="p">()</span>
+        <span class="n">global_variables</span><span class="p">[</span><span class="n">import_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">SourceFileLoader</span><span class="p">(</span><span class="n">import_name</span><span class="p">,</span> <span class="n">import_path</span><span class="p">)</span><span class="o">.</span><span class="n">load_module</span><span class="p">()</span>
+    
+    <span class="k">if</span> <span class="n">code</span> <span class="o">:=</span> <span class="n">conversion_attributes</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;code&quot;</span><span class="p">):</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">value</span> <span class="o">=</span> <span class="nb">eval</span><span class="p">(</span><span class="n">code</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+            <span class="n">message</span> <span class="o">=</span> <span class="s2">&quot;The code conversion directive to create the </span><span class="se">\&quot;</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="n">conversion_record_name</span> <span class="o">+</span> \
+                      <span class="s2">&quot;</span><span class="se">\&quot;</span><span class="s2"> record in the </span><span class="se">\&quot;</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="n">conversion_table</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\&quot;</span><span class="s2"> table encountered an error while executing.</span><span class="se">\n</span><span class="s2">&quot;</span>
+            <span class="n">message</span> <span class="o">+=</span> <span class="n">traceback</span><span class="o">.</span><span class="n">format_exc</span><span class="p">()</span>
+            <span class="k">return</span> <span class="n">_handle_errors</span><span class="p">(</span><span class="n">required</span><span class="p">,</span> <span class="n">silent</span><span class="p">,</span> <span class="n">message</span><span class="p">)</span>
+        
+        <span class="k">return</span> <span class="n">value</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">None</span></div>
+
+
+
+<span class="k">def</span> <span class="nf">_build_string_value</span><span class="p">(</span><span class="n">fields</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span><span class="nb">bool</span><span class="p">]],</span> <span class="n">conversion_table</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">conversion_record_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> 
+                        <span class="n">record_table</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">record_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">record_attributes</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span> <span class="n">required</span><span class="p">:</span> <span class="nb">bool</span><span class="p">,</span> <span class="n">silent</span><span class="p">:</span> <span class="nb">bool</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="o">|</span><span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Build a single string value from the input record and conversion record.</span>
+<span class="sd">    </span>
+<span class="sd">    Args:</span>
+<span class="sd">        fields: a list of tuples where the first value in the tuple is the possible </span>
+<span class="sd">                field name and the second is a bool that if True means the first value </span>
+<span class="sd">                is a literal and not a field to be accessed in the record.</span>
+<span class="sd">        conversion_table: the name of the table the conversion record came from, used for good error messaging.</span>
+<span class="sd">        conversion_record_name: the name of the conversion record, used for good error messaging.</span>
+<span class="sd">        record_table: the name of the table the record came from, used for good error messaging.</span>
+<span class="sd">        record_name: the name of the record, used for good error messaging.</span>
+<span class="sd">        record_attributes: the fields and values of the record.</span>
+<span class="sd">        required: if True then any problems during execution are errors and the program should exit, else it&#39;s just a warning.</span>
+<span class="sd">        silent: if True don&#39;t print warning messages.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    
+    <span class="n">value</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="k">for</span> <span class="n">field</span> <span class="ow">in</span> <span class="n">fields</span><span class="p">:</span>
+        <span class="c1">## Is the field a literal?</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">field</span><span class="p">[</span><span class="mi">1</span><span class="p">]:</span>
+            <span class="c1">## If the field is not a literal value and it&#39;s not in the record print an error.</span>
+            <span class="k">if</span> <span class="n">field</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">record_attributes</span><span class="p">:</span>
+                <span class="n">message</span> <span class="o">=</span> <span class="s2">&quot;The conversion directive to create the </span><span class="se">\&quot;</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="n">conversion_record_name</span> <span class="o">+</span> \
+                          <span class="s2">&quot;</span><span class="se">\&quot;</span><span class="s2"> record in the </span><span class="se">\&quot;</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="n">conversion_table</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\&quot;</span><span class="s2"> table matched a record in the input </span><span class="se">\&quot;</span><span class="s2">&quot;</span> <span class="o">+</span> \
+                          <span class="n">record_table</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\&quot;</span><span class="s2"> table, </span><span class="se">\&quot;</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="n">record_name</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\&quot;</span><span class="s2">, that did not contain the </span><span class="se">\&quot;</span><span class="s2">&quot;</span> <span class="o">+</span> \
+                          <span class="n">field</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\&quot;</span><span class="s2"> field indicated by the directive.&quot;</span>
+                <span class="n">_handle_errors</span><span class="p">(</span><span class="n">required</span><span class="p">,</span> <span class="n">silent</span><span class="p">,</span> <span class="n">message</span><span class="p">)</span>
+                <span class="k">continue</span>
+        
+            <span class="k">if</span> <span class="n">value</span><span class="p">:</span>
+                <span class="n">value</span> <span class="o">+=</span> <span class="nb">str</span><span class="p">(</span><span class="n">record_attributes</span><span class="p">[</span><span class="n">field</span><span class="p">[</span><span class="mi">0</span><span class="p">]])</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">value</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">record_attributes</span><span class="p">[</span><span class="n">field</span><span class="p">[</span><span class="mi">0</span><span class="p">]])</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">value</span><span class="p">:</span>
+                <span class="n">value</span> <span class="o">+=</span> <span class="n">field</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">value</span> <span class="o">=</span> <span class="n">field</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+            
+    <span class="k">return</span> <span class="n">value</span>
+
+
+
+<span class="k">def</span> <span class="nf">_build_matrix_record_dict</span><span class="p">(</span><span class="n">matrix_dict</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span> 
+                              <span class="n">collate_key</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> 
+                              <span class="n">headers</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">dict</span><span class="p">],</span> 
+                              <span class="n">record_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> 
+                              <span class="n">record_attributes</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span> 
+                              <span class="n">conversion_table</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> 
+                              <span class="n">conversion_record_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> 
+                              <span class="n">conversion_attributes</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span> 
+                              <span class="n">fields_to_headers</span><span class="p">:</span> <span class="nb">bool</span><span class="p">,</span>
+                              <span class="n">exclusion_headers</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span>
+                              <span class="n">optional_headers</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span>
+                              <span class="n">values_to_str</span><span class="p">:</span> <span class="nb">bool</span><span class="p">,</span> 
+                              <span class="n">required</span><span class="p">:</span> <span class="nb">bool</span><span class="p">,</span> 
+                              <span class="n">silent</span><span class="p">:</span> <span class="nb">bool</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Build the dictionary to go in the matrix from the record.</span>
+<span class="sd">    </span>
+<span class="sd">    Args:</span>
+<span class="sd">        matrix_dict: a dictionary already started to add to. If collate is being </span>
+<span class="sd">                     used this will have initial values, otherwise it is an empty dict.</span>
+<span class="sd">        collate_key: a key to group record values around, used to print a warning if </span>
+<span class="sd">                     values get overwritten in matrix_dict.</span>
+<span class="sd">        headers: a list of dicts that is used to add keys and values to matrix_dict,</span>
+<span class="sd">                 gives an indication if the keys and values to add are literals or should </span>
+<span class="sd">                 be fields from the record.</span>
+<span class="sd">        record_name: the name of the record, used for good error messaging.</span>
+<span class="sd">        record_attributes: the fields and values of the record.</span>
+<span class="sd">        conversion_table: the name of the table the conversion record came from, used for good error messaging.</span>
+<span class="sd">        conversion_record_name: the name of the conversion record, used for good error messaging.</span>
+<span class="sd">        conversion_attributes: the fields and values of the conversion record.</span>
+<span class="sd">        fields_to_headers: if True all fields in record_attributes are to be added to matrix_dict.</span>
+<span class="sd">        exclusion_headers: any fields in this list are not added to matrix_dict.</span>
+<span class="sd">        optional_headers: fields in this list are added to matrix_dict if they exist.</span>
+<span class="sd">        values_to_str: cast record values to str before adding to matrix_dict.</span>
+<span class="sd">        required: if True then any problems during execution are errors and the program should exit, else it&#39;s just a warning.</span>
+<span class="sd">        silent: if True don&#39;t print warning messages.</span>
+<span class="sd">        </span>
+<span class="sd">    Returns:</span>
+<span class="sd">        matrix_dict with values filled in from the record.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    
+    <span class="k">for</span> <span class="n">header</span> <span class="ow">in</span> <span class="n">headers</span><span class="p">:</span>
+        <span class="n">input_key_value</span><span class="p">,</span> <span class="n">output_key_value</span> <span class="o">=</span> <span class="n">_determine_header_input_keys</span><span class="p">(</span><span class="n">header</span><span class="p">,</span> 
+                                                                         <span class="n">record_name</span><span class="p">,</span> 
+                                                                         <span class="n">record_attributes</span><span class="p">,</span> 
+                                                                         <span class="n">conversion_table</span><span class="p">,</span> 
+                                                                         <span class="n">conversion_record_name</span><span class="p">,</span> 
+                                                                         <span class="n">conversion_attributes</span><span class="p">,</span> 
+                                                                         <span class="n">values_to_str</span><span class="p">,</span> 
+                                                                         <span class="n">required</span><span class="p">,</span> 
+                                                                         <span class="n">silent</span><span class="p">)</span>
+        
+        <span class="k">if</span> <span class="n">collate_key</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">input_key_value</span> <span class="ow">in</span> <span class="n">matrix_dict</span> <span class="ow">and</span> <span class="n">output_key_value</span> <span class="o">!=</span> <span class="n">matrix_dict</span><span class="p">[</span><span class="n">input_key_value</span><span class="p">]:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Warning: When creating the </span><span class="se">\&quot;</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="n">conversion_record_name</span> <span class="o">+</span> \
+                  <span class="s2">&quot;</span><span class="se">\&quot;</span><span class="s2"> matrix for the </span><span class="se">\&quot;</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="n">conversion_table</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\&quot;</span><span class="s2"> table different values for the output key, </span><span class="se">\&quot;</span><span class="s2">&quot;</span> <span class="o">+</span> \
+                  <span class="n">header</span><span class="p">[</span><span class="s2">&quot;output_key&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\&quot;</span><span class="s2">, were found for the collate key </span><span class="se">\&quot;</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="n">collate_key</span> <span class="o">+</span> \
+                  <span class="s2">&quot;</span><span class="se">\&quot;</span><span class="s2">. Only the last value will be used.&quot;</span><span class="p">,</span> 
+                  <span class="n">file</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="p">)</span>
+        
+        <span class="n">matrix_dict</span><span class="p">[</span><span class="n">input_key_value</span><span class="p">]</span> <span class="o">=</span> <span class="n">output_key_value</span>
+    
+    <span class="k">if</span> <span class="n">fields_to_headers</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">values_to_str</span><span class="p">:</span>
+            <span class="n">matrix_dict</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="n">field</span><span class="p">:</span><span class="nb">str</span><span class="p">(</span><span class="n">value</span><span class="p">)</span> <span class="k">for</span> <span class="n">field</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">record_attributes</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="n">field</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">exclusion_headers</span><span class="p">})</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">matrix_dict</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="n">field</span><span class="p">:</span><span class="n">value</span> <span class="k">for</span> <span class="n">field</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">record_attributes</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="n">field</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">exclusion_headers</span><span class="p">})</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">header</span> <span class="ow">in</span> <span class="n">optional_headers</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">header</span> <span class="ow">in</span> <span class="n">record_attributes</span><span class="p">:</span>
+                <span class="n">matrix_dict</span><span class="p">[</span><span class="n">header</span><span class="p">]</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">record_attributes</span><span class="p">[</span><span class="n">header</span><span class="p">])</span> <span class="k">if</span> <span class="n">values_to_str</span> <span class="k">else</span> <span class="n">record_attributes</span><span class="p">[</span><span class="n">header</span><span class="p">]</span>
+                
+    <span class="k">return</span> <span class="n">matrix_dict</span>
+
+
+<span class="k">def</span> <span class="nf">_determine_header_input_keys</span><span class="p">(</span><span class="n">header</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span> <span class="n">record_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">record_attributes</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span> <span class="n">conversion_table</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> 
+                                 <span class="n">conversion_record_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">conversion_attributes</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span> <span class="n">values_to_str</span><span class="p">:</span> <span class="nb">bool</span><span class="p">,</span> 
+                                 <span class="n">required</span><span class="p">:</span> <span class="nb">bool</span><span class="p">,</span> <span class="n">silent</span><span class="p">:</span> <span class="nb">bool</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Based on the header dict pull the correct values from the record_attributes.</span>
+<span class="sd">    </span>
+<span class="sd">    Args:</span>
+<span class="sd">        header: a dict of the form {&quot;input_key&quot;: str, &quot;input_key_is_literal&quot;: bool, &quot;output_key&quot;: str, &quot;output_key_is_literal&quot;: bool}.</span>
+<span class="sd">                If the keys are literal then they should be returned as is, if not they are fields in record_attributes.</span>
+<span class="sd">        record_name: the name of the record, used for good error messaging.</span>
+<span class="sd">        record_attributes: the fields and values of the record.</span>
+<span class="sd">        conversion_table: the name of the table the conversion record came from, used for good error messaging.</span>
+<span class="sd">        conversion_record_name: the name of the conversion record, used for good error messaging.</span>
+<span class="sd">        conversion_attributes: the fields and values of the conversion record.</span>
+<span class="sd">        values_to_str: cast record values to str.</span>
+<span class="sd">        required: if True then any problems during execution are errors and the program should exit, else it&#39;s just a warning.</span>
+<span class="sd">        silent: if True don&#39;t print warning messages.</span>
+<span class="sd">        </span>
+<span class="sd">    Returns:</span>
+<span class="sd">        the appropriate key-value pair for the header.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">header</span><span class="p">[</span><span class="s2">&quot;input_key_is_literal&quot;</span><span class="p">]:</span>
+        <span class="k">if</span> <span class="n">header</span><span class="p">[</span><span class="s2">&quot;input_key&quot;</span><span class="p">]</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">record_attributes</span><span class="p">:</span>
+            <span class="n">message</span> <span class="o">=</span> <span class="s2">&quot;The record, </span><span class="se">\&quot;</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="n">record_name</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\&quot;</span><span class="s2">, in the </span><span class="se">\&quot;</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="n">conversion_attributes</span><span class="p">[</span><span class="s2">&quot;table&quot;</span><span class="p">]</span> <span class="o">+</span> \
+                      <span class="s2">&quot;</span><span class="se">\&quot;</span><span class="s2"> table does not have the field, </span><span class="se">\&quot;</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="n">header</span><span class="p">[</span><span class="s2">&quot;input_key&quot;</span><span class="p">]</span> <span class="o">+</span> \
+                      <span class="s2">&quot;</span><span class="se">\&quot;</span><span class="s2">, required by the </span><span class="se">\&quot;</span><span class="s2">headers</span><span class="se">\&quot;</span><span class="s2"> field for the conversion, </span><span class="se">\&quot;</span><span class="s2">&quot;</span> <span class="o">+</span> \
+                      <span class="n">conversion_record_name</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\&quot;</span><span class="s2">, in the conversion table, </span><span class="se">\&quot;</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="n">conversion_table</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\&quot;</span><span class="s2">.&quot;</span>
+            <span class="k">return</span> <span class="n">_handle_errors</span><span class="p">(</span><span class="n">required</span><span class="p">,</span> <span class="n">silent</span><span class="p">,</span> <span class="n">message</span><span class="p">)</span>
+        
+        <span class="n">output_key_value</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">record_attributes</span><span class="p">[</span><span class="n">header</span><span class="p">[</span><span class="s2">&quot;input_key&quot;</span><span class="p">]])</span> <span class="k">if</span> <span class="n">values_to_str</span> <span class="k">else</span> <span class="n">record_attributes</span><span class="p">[</span><span class="n">header</span><span class="p">[</span><span class="s2">&quot;input_key&quot;</span><span class="p">]]</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">output_key_value</span> <span class="o">=</span> <span class="n">header</span><span class="p">[</span><span class="s2">&quot;input_key&quot;</span><span class="p">]</span>
+    
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">header</span><span class="p">[</span><span class="s2">&quot;output_key_is_literal&quot;</span><span class="p">]:</span>
+        <span class="k">if</span> <span class="n">header</span><span class="p">[</span><span class="s2">&quot;output_key&quot;</span><span class="p">]</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">record_attributes</span><span class="p">:</span>
+            <span class="n">message</span> <span class="o">=</span> <span class="s2">&quot;The record, </span><span class="se">\&quot;</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="n">record_name</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\&quot;</span><span class="s2">, in the </span><span class="se">\&quot;</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="n">conversion_attributes</span><span class="p">[</span><span class="s2">&quot;table&quot;</span><span class="p">]</span> <span class="o">+</span> \
+                      <span class="s2">&quot;</span><span class="se">\&quot;</span><span class="s2"> table does not have the field, </span><span class="se">\&quot;</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="n">header</span><span class="p">[</span><span class="s2">&quot;output_key&quot;</span><span class="p">]</span> <span class="o">+</span> \
+                      <span class="s2">&quot;</span><span class="se">\&quot;</span><span class="s2">, required by the </span><span class="se">\&quot;</span><span class="s2">headers</span><span class="se">\&quot;</span><span class="s2"> field for the conversion, </span><span class="se">\&quot;</span><span class="s2">&quot;</span> <span class="o">+</span> \
+                      <span class="n">conversion_record_name</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\&quot;</span><span class="s2">, in the conversion table, </span><span class="se">\&quot;</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="n">conversion_table</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\&quot;</span><span class="s2">.&quot;</span>
+            <span class="k">return</span> <span class="n">_handle_errors</span><span class="p">(</span><span class="n">required</span><span class="p">,</span> <span class="n">silent</span><span class="p">,</span> <span class="n">message</span><span class="p">)</span>
+        
+        <span class="n">input_key_value</span> <span class="o">=</span> <span class="n">record_attributes</span><span class="p">[</span><span class="n">header</span><span class="p">[</span><span class="s2">&quot;output_key&quot;</span><span class="p">]]</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">input_key_value</span> <span class="o">=</span> <span class="n">header</span><span class="p">[</span><span class="s2">&quot;output_key&quot;</span><span class="p">]</span>
+        
+    <span class="k">return</span> <span class="n">input_key_value</span><span class="p">,</span> <span class="n">output_key_value</span>
+
+
+
+
+<div class="viewcode-block" id="compute_string_value"><a class="viewcode-back" href="../../../api.html#messes.convert.convert.compute_string_value">[docs]</a><span class="k">def</span> <span class="nf">compute_string_value</span><span class="p">(</span><span class="n">input_json</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span> <span class="n">conversion_table</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">conversion_record_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> 
+                         <span class="n">conversion_attributes</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span> <span class="n">required</span><span class="p">:</span> <span class="nb">bool</span><span class="p">,</span> <span class="n">silent</span><span class="p">:</span> <span class="nb">bool</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="o">|</span><span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Determine the string value for the conversion directive.</span>
+<span class="sd">    </span>
+<span class="sd">    Args:</span>
+<span class="sd">        input_json: the data to build the value from.</span>
+<span class="sd">        conversion_table: the name of the table the conversion record came from, used for good error messaging.</span>
+<span class="sd">        conversion_record_name: the name of the conversion record, used for good error messaging.</span>
+<span class="sd">        conversion_attributes: the fields and values of the conversion record.</span>
+<span class="sd">        required: if True then any problems during execution are errors and the program should exit, else it&#39;s just a warning.</span>
+<span class="sd">        silent: if True don&#39;t print warning messages.</span>
+<span class="sd">    </span>
+<span class="sd">    Returns:</span>
+<span class="sd">        the str value for the directive or None if there was a problem and the directive is not required.</span>
+<span class="sd">    &quot;&quot;&quot;</span>            
+    
+    <span class="c1">## override</span>
+    <span class="k">if</span> <span class="n">value</span> <span class="o">:=</span> <span class="n">conversion_attributes</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;override&quot;</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">literal_match</span> <span class="o">:=</span> <span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="n">literal_regex</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+            <span class="n">value</span> <span class="o">=</span> <span class="n">literal_match</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">value</span>
+    
+    <span class="c1">## code</span>
+    <span class="n">value</span> <span class="o">=</span> <span class="n">handle_code_field</span><span class="p">(</span><span class="n">input_json</span><span class="p">,</span> <span class="n">conversion_table</span><span class="p">,</span> <span class="n">conversion_record_name</span><span class="p">,</span> <span class="n">conversion_attributes</span><span class="p">,</span> <span class="n">required</span><span class="p">,</span> <span class="n">silent</span><span class="p">)</span>
+            
+    <span class="k">if</span> <span class="n">value</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Error: The code conversion directive to create the </span><span class="se">\&quot;</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="n">conversion_record_name</span> <span class="o">+</span> \
+                  <span class="s2">&quot;</span><span class="se">\&quot;</span><span class="s2"> record in the </span><span class="se">\&quot;</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="n">conversion_table</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\&quot;</span><span class="s2"> table did not return a string type value.&quot;</span><span class="p">,</span> 
+                  <span class="n">file</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="p">)</span>
+            <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">()</span>
+        
+        <span class="k">return</span> <span class="n">value</span>
+    
+    <span class="k">elif</span> <span class="n">value</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">conversion_attributes</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;code&quot;</span><span class="p">)</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">None</span>
+    
+    <span class="c1">## fields</span>
+    <span class="n">fields</span> <span class="o">=</span> <span class="p">[((</span><span class="n">re_match</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="kc">True</span><span class="p">)</span> <span class="k">if</span> <span class="p">(</span><span class="n">re_match</span> <span class="o">:=</span> <span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="n">literal_regex</span><span class="p">,</span> <span class="n">field</span><span class="p">))</span> <span class="k">else</span> <span class="p">(</span><span class="n">field</span><span class="p">,</span> <span class="kc">False</span><span class="p">))</span> <span class="k">for</span> <span class="n">field</span> <span class="ow">in</span> <span class="n">conversion_attributes</span><span class="p">[</span><span class="s2">&quot;fields&quot;</span><span class="p">]]</span>
+    <span class="n">has_test</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="n">test_field</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+    <span class="n">test_value</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">test</span> <span class="o">:=</span> <span class="n">conversion_attributes</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;test&quot;</span><span class="p">):</span>
+        <span class="n">has_test</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="n">split</span> <span class="o">=</span> <span class="n">test</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;=&quot;</span><span class="p">)</span>
+        <span class="n">test_field</span> <span class="o">=</span> <span class="n">split</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+        <span class="n">test_value</span> <span class="o">=</span> <span class="n">split</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+    
+    <span class="c1">## for_each</span>
+    <span class="n">for_each</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">for_each_temp</span> <span class="o">:=</span> <span class="n">conversion_attributes</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;for_each&quot;</span><span class="p">))</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">for_each_temp</span><span class="p">,</span> <span class="nb">bool</span><span class="p">):</span>
+            <span class="n">for_each</span> <span class="o">=</span> <span class="n">for_each_temp</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">for_each_temp</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span> <span class="ow">and</span> <span class="n">for_each_temp</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="s2">&quot;true&quot;</span><span class="p">:</span>
+            <span class="n">for_each</span> <span class="o">=</span> <span class="kc">True</span>
+    
+    <span class="n">table_records</span> <span class="o">=</span> <span class="n">_build_table_records</span><span class="p">(</span><span class="n">has_test</span><span class="p">,</span> <span class="n">conversion_record_name</span><span class="p">,</span> <span class="n">conversion_table</span><span class="p">,</span> <span class="n">conversion_attributes</span><span class="p">,</span> 
+                                         <span class="n">input_json</span><span class="p">,</span> <span class="n">required</span><span class="p">,</span> <span class="n">silent</span><span class="p">,</span> <span class="n">test_field</span><span class="o">=</span><span class="n">test_field</span><span class="p">,</span> <span class="n">test_value</span><span class="o">=</span><span class="n">test_value</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">table_records</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">None</span>
+    
+    <span class="k">if</span> <span class="n">for_each</span><span class="p">:</span>
+        <span class="n">delimiter</span> <span class="o">=</span> <span class="n">conversion_attributes</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;delimiter&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">delimiter</span> <span class="ow">and</span> <span class="p">(</span><span class="n">literal_match</span> <span class="o">:=</span> <span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="n">literal_regex</span><span class="p">,</span> <span class="n">delimiter</span><span class="p">)):</span>
+            <span class="n">delimiter</span> <span class="o">=</span> <span class="n">literal_match</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+        
+        <span class="n">value_for_each_record</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">record_name</span><span class="p">,</span> <span class="n">record_attributes</span> <span class="ow">in</span> <span class="n">table_records</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="n">value</span> <span class="o">=</span> <span class="n">_build_string_value</span><span class="p">(</span><span class="n">fields</span><span class="p">,</span> 
+                                        <span class="n">conversion_table</span><span class="p">,</span> 
+                                        <span class="n">conversion_record_name</span><span class="p">,</span> 
+                                        <span class="n">conversion_attributes</span><span class="p">[</span><span class="s2">&quot;table&quot;</span><span class="p">],</span> 
+                                        <span class="n">record_name</span><span class="p">,</span> 
+                                        <span class="n">record_attributes</span><span class="p">,</span> 
+                                        <span class="n">required</span><span class="p">,</span> 
+                                        <span class="n">silent</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">value</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">value_for_each_record</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+        
+        <span class="n">joined_string</span> <span class="o">=</span> <span class="n">delimiter</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">value_for_each_record</span><span class="p">)</span> <span class="k">if</span> <span class="n">value_for_each_record</span> <span class="k">else</span> <span class="kc">None</span>
+        <span class="k">return</span> <span class="n">joined_string</span>
+    
+    <span class="c1">## record_id</span>
+    <span class="k">if</span> <span class="n">conversion_attributes</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;record_id&quot;</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">conversion_attributes</span><span class="p">[</span><span class="s2">&quot;record_id&quot;</span><span class="p">]</span> <span class="ow">in</span> <span class="n">table_records</span><span class="p">:</span>
+            <span class="n">message</span> <span class="o">=</span> <span class="s2">&quot;The </span><span class="se">\&quot;</span><span class="s2">record_id</span><span class="se">\&quot;</span><span class="s2"> field value, </span><span class="se">\&quot;</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="n">conversion_attributes</span><span class="p">[</span><span class="s2">&quot;record_id&quot;</span><span class="p">]</span> <span class="o">+</span> \
+                      <span class="s2">&quot;</span><span class="se">\&quot;</span><span class="s2">, for conversion, </span><span class="se">\&quot;</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="n">conversion_record_name</span> <span class="o">+</span> \
+                      <span class="s2">&quot;</span><span class="se">\&quot;</span><span class="s2">, in conversion table, </span><span class="se">\&quot;</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="n">conversion_table</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\&quot;</span><span class="s2">, does not exist in the </span><span class="se">\&quot;</span><span class="s2">&quot;</span> <span class="o">+</span> \
+                      <span class="n">conversion_attributes</span><span class="p">[</span><span class="s2">&quot;table&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\&quot;</span><span class="s2"> table of the input JSON.&quot;</span>
+            <span class="k">return</span> <span class="n">_handle_errors</span><span class="p">(</span><span class="n">required</span><span class="p">,</span> <span class="n">silent</span><span class="p">,</span> <span class="n">message</span><span class="p">)</span>
+        <span class="n">record_attributes</span> <span class="o">=</span> <span class="n">table_records</span><span class="p">[</span><span class="n">conversion_attributes</span><span class="p">[</span><span class="s2">&quot;record_id&quot;</span><span class="p">]]</span>
+        <span class="n">record_name</span> <span class="o">=</span> <span class="n">conversion_attributes</span><span class="p">[</span><span class="s2">&quot;record_id&quot;</span><span class="p">]</span>
+    <span class="c1"># elif has_test:</span>
+    <span class="c1">#     for record_name, record_attributes in input_json[conversion_attributes[&quot;table&quot;]].items():</span>
+    <span class="c1">#         if test_field in record_attributes and record_attributes[test_field] == test_value:</span>
+    <span class="c1">#             break</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">record_name</span><span class="p">,</span> <span class="n">record_attributes</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">table_records</span><span class="o">.</span><span class="n">items</span><span class="p">())[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="c1"># record_name, record_attributes = list(input_json[conversion_attributes[&quot;table&quot;]].items())[0]</span>
+    
+    <span class="n">value</span> <span class="o">=</span> <span class="n">_build_string_value</span><span class="p">(</span><span class="n">fields</span><span class="p">,</span> 
+                                <span class="n">conversion_table</span><span class="p">,</span> 
+                                <span class="n">conversion_record_name</span><span class="p">,</span> 
+                                <span class="n">conversion_attributes</span><span class="p">[</span><span class="s2">&quot;table&quot;</span><span class="p">],</span> 
+                                <span class="n">record_name</span><span class="p">,</span> 
+                                <span class="n">record_attributes</span><span class="p">,</span> 
+                                <span class="n">required</span><span class="p">,</span> 
+                                <span class="n">silent</span><span class="p">)</span>
+            
+    <span class="k">return</span> <span class="n">value</span></div>
+
+                
+                
+    
+<div class="viewcode-block" id="compute_matrix_value"><a class="viewcode-back" href="../../../api.html#messes.convert.convert.compute_matrix_value">[docs]</a><span class="k">def</span> <span class="nf">compute_matrix_value</span><span class="p">(</span><span class="n">input_json</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span> <span class="n">conversion_table</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">conversion_record_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> 
+                         <span class="n">conversion_attributes</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span> <span class="n">required</span><span class="p">:</span> <span class="nb">bool</span><span class="p">,</span> <span class="n">silent</span><span class="p">:</span> <span class="nb">bool</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">dict</span><span class="p">]</span><span class="o">|</span><span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Determine the matrix value for the conversion directive.</span>
+<span class="sd">    </span>
+<span class="sd">    Args:</span>
+<span class="sd">        input_json: the data to build the matrix from.</span>
+<span class="sd">        conversion_table: the name of the table the conversion record came from, used for good error messaging.</span>
+<span class="sd">        conversion_record_name: the name of the conversion record, used for good error messaging.</span>
+<span class="sd">        conversion_attributes: the fields and values of the conversion record.</span>
+<span class="sd">        required: if True then any problems during execution are errors and the program should exit, else it&#39;s just a warning.</span>
+<span class="sd">        silent: if True don&#39;t print warning messages.</span>
+<span class="sd">    </span>
+<span class="sd">    Returns:</span>
+<span class="sd">        the list of dicts for the directive or None if there was a problem and the directive is not required.</span>
+<span class="sd">    &quot;&quot;&quot;</span> 
+    
+    <span class="n">value</span> <span class="o">=</span> <span class="n">handle_code_field</span><span class="p">(</span><span class="n">input_json</span><span class="p">,</span> <span class="n">conversion_table</span><span class="p">,</span> <span class="n">conversion_record_name</span><span class="p">,</span> <span class="n">conversion_attributes</span><span class="p">,</span> <span class="n">required</span><span class="p">,</span> <span class="n">silent</span><span class="p">)</span>
+            
+    <span class="k">if</span> <span class="n">value</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="nb">list</span><span class="p">)</span> <span class="ow">or</span> <span class="ow">not</span> <span class="nb">all</span><span class="p">([</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">record</span><span class="p">,</span> <span class="nb">dict</span><span class="p">)</span> <span class="k">for</span> <span class="n">record</span> <span class="ow">in</span> <span class="n">value</span><span class="p">]):</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Error: The code conversion directive to create the </span><span class="se">\&quot;</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="n">conversion_record_name</span> <span class="o">+</span> \
+                  <span class="s2">&quot;</span><span class="se">\&quot;</span><span class="s2"> record in the </span><span class="se">\&quot;</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="n">conversion_table</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\&quot;</span><span class="s2"> table did not return a matrix type value.&quot;</span><span class="p">,</span> 
+                  <span class="n">file</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="p">)</span>
+            <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">()</span>
+        
+        <span class="k">return</span> <span class="n">value</span>
+    
+    <span class="k">elif</span> <span class="n">value</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">conversion_attributes</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;code&quot;</span><span class="p">)</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">None</span>
+        
+    <span class="c1">## fields_to_headers</span>
+    <span class="n">fields_to_headers</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">fields_to_headers_temp</span> <span class="o">:=</span> <span class="n">conversion_attributes</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;fields_to_headers&quot;</span><span class="p">))</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">fields_to_headers_temp</span><span class="p">,</span> <span class="nb">bool</span><span class="p">):</span>
+            <span class="n">fields_to_headers</span> <span class="o">=</span> <span class="n">fields_to_headers_temp</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">fields_to_headers_temp</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span> <span class="ow">and</span> <span class="n">fields_to_headers_temp</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="s2">&quot;true&quot;</span><span class="p">:</span>
+            <span class="n">fields_to_headers</span> <span class="o">=</span> <span class="kc">True</span>
+        
+    
+    <span class="c1">## values_to_str</span>
+    <span class="n">values_to_str</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">values_to_str_temp</span> <span class="o">:=</span> <span class="n">conversion_attributes</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;values_to_str&quot;</span><span class="p">))</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">values_to_str_temp</span><span class="p">,</span> <span class="nb">bool</span><span class="p">):</span>
+            <span class="n">values_to_str</span> <span class="o">=</span> <span class="n">values_to_str_temp</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">values_to_str_temp</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span> <span class="ow">and</span> <span class="n">values_to_str_temp</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="s2">&quot;true&quot;</span><span class="p">:</span>
+            <span class="n">values_to_str</span> <span class="o">=</span> <span class="kc">True</span>
+        
+            
+    <span class="n">has_test</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="n">test_field</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+    <span class="n">test_value</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">test</span> <span class="o">:=</span> <span class="n">conversion_attributes</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;test&quot;</span><span class="p">):</span>
+        <span class="n">has_test</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="n">split</span> <span class="o">=</span> <span class="n">test</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;=&quot;</span><span class="p">)</span>
+        <span class="n">test_field</span> <span class="o">=</span> <span class="n">split</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+        <span class="n">test_value</span> <span class="o">=</span> <span class="n">split</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+    
+    <span class="n">exclusion_headers</span> <span class="o">=</span> <span class="n">conversion_attributes</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;exclusion_headers&quot;</span><span class="p">,</span> <span class="p">[])</span>
+    
+    <span class="n">headers</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">if</span> <span class="n">conversion_attributes</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;headers&quot;</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">pair</span> <span class="ow">in</span> <span class="n">conversion_attributes</span><span class="p">[</span><span class="s2">&quot;headers&quot;</span><span class="p">]:</span>
+            <span class="n">split</span> <span class="o">=</span> <span class="n">pair</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;=&quot;</span><span class="p">)</span>
+            <span class="n">output_key</span> <span class="o">=</span> <span class="n">split</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+            <span class="n">input_key</span> <span class="o">=</span> <span class="n">split</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+            
+            <span class="k">if</span> <span class="n">new_output_key</span> <span class="o">:=</span> <span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="n">literal_regex</span><span class="p">,</span> <span class="n">output_key</span><span class="p">):</span>
+                <span class="n">output_key</span> <span class="o">=</span> <span class="n">new_output_key</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+                <span class="n">output_key_is_literal</span> <span class="o">=</span> <span class="kc">True</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">output_key_is_literal</span> <span class="o">=</span> <span class="kc">False</span>
+            
+            <span class="k">if</span> <span class="n">new_input_key</span> <span class="o">:=</span> <span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="n">literal_regex</span><span class="p">,</span> <span class="n">input_key</span><span class="p">):</span>
+                <span class="n">input_key</span> <span class="o">=</span> <span class="n">new_input_key</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+                <span class="n">input_key_is_literal</span> <span class="o">=</span> <span class="kc">True</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">input_key_is_literal</span> <span class="o">=</span> <span class="kc">False</span>
+            
+            <span class="n">headers</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s2">&quot;output_key&quot;</span><span class="p">:</span><span class="n">output_key</span><span class="p">,</span> <span class="s2">&quot;output_key_is_literal&quot;</span><span class="p">:</span> <span class="n">output_key_is_literal</span><span class="p">,</span> 
+                            <span class="s2">&quot;input_key&quot;</span><span class="p">:</span><span class="n">input_key</span><span class="p">,</span> <span class="s2">&quot;input_key_is_literal&quot;</span><span class="p">:</span> <span class="n">input_key_is_literal</span><span class="p">})</span>
+    
+    <span class="n">optional_headers</span> <span class="o">=</span> <span class="n">conversion_attributes</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;optional_headers&quot;</span><span class="p">,</span> <span class="p">[])</span>
+    
+    <span class="n">table_records</span> <span class="o">=</span> <span class="n">_build_table_records</span><span class="p">(</span><span class="n">has_test</span><span class="p">,</span> <span class="n">conversion_record_name</span><span class="p">,</span> <span class="n">conversion_table</span><span class="p">,</span> <span class="n">conversion_attributes</span><span class="p">,</span> 
+                                         <span class="n">input_json</span><span class="p">,</span> <span class="n">required</span><span class="p">,</span> <span class="n">silent</span><span class="p">,</span> <span class="n">test_field</span><span class="o">=</span><span class="n">test_field</span><span class="p">,</span> <span class="n">test_value</span><span class="o">=</span><span class="n">test_value</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">table_records</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">None</span>
+    
+        
+    <span class="k">if</span> <span class="n">collate</span> <span class="o">:=</span> <span class="n">conversion_attributes</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;collate&quot;</span><span class="p">):</span>
+        <span class="c1">## TODO think about whether to do collate.strip() here to remove spaces.</span>
+        <span class="n">records</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">for</span> <span class="n">record_name</span><span class="p">,</span> <span class="n">record_attributes</span> <span class="ow">in</span> <span class="n">table_records</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">if</span> <span class="n">collate</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">record_attributes</span><span class="p">:</span>
+                <span class="n">message</span> <span class="o">=</span> <span class="s2">&quot;The record, </span><span class="se">\&quot;</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="n">record_name</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\&quot;</span><span class="s2">, in the </span><span class="se">\&quot;</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="n">conversion_attributes</span><span class="p">[</span><span class="s2">&quot;table&quot;</span><span class="p">]</span> <span class="o">+</span> \
+                          <span class="s2">&quot;</span><span class="se">\&quot;</span><span class="s2"> table does not have the field, </span><span class="se">\&quot;</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="n">collate</span> <span class="o">+</span> \
+                          <span class="s2">&quot;</span><span class="se">\&quot;</span><span class="s2">, required by the </span><span class="se">\&quot;</span><span class="s2">collate</span><span class="se">\&quot;</span><span class="s2"> field for the conversion, </span><span class="se">\&quot;</span><span class="s2">&quot;</span> <span class="o">+</span> \
+                          <span class="n">conversion_record_name</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\&quot;</span><span class="s2">, in the conversion table, </span><span class="se">\&quot;</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="n">conversion_table</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\&quot;</span><span class="s2">.&quot;</span>
+                <span class="k">return</span> <span class="n">_handle_errors</span><span class="p">(</span><span class="n">required</span><span class="p">,</span> <span class="n">silent</span><span class="p">,</span> <span class="n">message</span><span class="p">)</span>
+            <span class="n">collate_key</span> <span class="o">=</span> <span class="n">record_attributes</span><span class="p">[</span><span class="n">collate</span><span class="p">]</span>
+            
+            <span class="k">if</span> <span class="n">collate_key</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">records</span><span class="p">:</span>
+                <span class="n">records</span><span class="p">[</span><span class="n">collate_key</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
+            
+            <span class="n">records</span><span class="p">[</span><span class="n">collate_key</span><span class="p">]</span> <span class="o">=</span> <span class="n">_build_matrix_record_dict</span><span class="p">(</span><span class="n">records</span><span class="p">[</span><span class="n">collate_key</span><span class="p">],</span> 
+                                                             <span class="n">collate_key</span><span class="p">,</span> 
+                                                             <span class="n">headers</span><span class="p">,</span> 
+                                                             <span class="n">record_name</span><span class="p">,</span> 
+                                                             <span class="n">record_attributes</span><span class="p">,</span> 
+                                                             <span class="n">conversion_table</span><span class="p">,</span> 
+                                                             <span class="n">conversion_record_name</span><span class="p">,</span> 
+                                                             <span class="n">conversion_attributes</span><span class="p">,</span> 
+                                                             <span class="n">fields_to_headers</span><span class="p">,</span>
+                                                             <span class="n">exclusion_headers</span><span class="p">,</span>
+                                                             <span class="n">optional_headers</span><span class="p">,</span>
+                                                             <span class="n">values_to_str</span><span class="p">,</span> 
+                                                             <span class="n">required</span><span class="p">,</span> 
+                                                             <span class="n">silent</span><span class="p">)</span>
+                                
+        <span class="n">records</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">records</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
+    
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">records</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">record_name</span><span class="p">,</span> <span class="n">record_attributes</span> <span class="ow">in</span> <span class="n">table_records</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="n">temp_dict</span> <span class="o">=</span>  <span class="n">_build_matrix_record_dict</span><span class="p">({},</span> 
+                                                   <span class="kc">None</span><span class="p">,</span> 
+                                                   <span class="n">headers</span><span class="p">,</span> 
+                                                   <span class="n">record_name</span><span class="p">,</span> 
+                                                   <span class="n">record_attributes</span><span class="p">,</span> 
+                                                   <span class="n">conversion_table</span><span class="p">,</span> 
+                                                   <span class="n">conversion_record_name</span><span class="p">,</span> 
+                                                   <span class="n">conversion_attributes</span><span class="p">,</span> 
+                                                   <span class="n">fields_to_headers</span><span class="p">,</span>
+                                                   <span class="n">exclusion_headers</span><span class="p">,</span>
+                                                   <span class="n">optional_headers</span><span class="p">,</span>
+                                                   <span class="n">values_to_str</span><span class="p">,</span> 
+                                                   <span class="n">required</span><span class="p">,</span> 
+                                                   <span class="n">silent</span><span class="p">)</span>
+            
+            <span class="n">records</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">temp_dict</span><span class="p">)</span>
+    
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">records</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">None</span>
+    <span class="k">return</span> <span class="n">records</span></div>
+
+
+
+    
+<div class="viewcode-block" id="directives_to_table"><a class="viewcode-back" href="../../../api.html#messes.convert.convert.directives_to_table">[docs]</a><span class="k">def</span> <span class="nf">directives_to_table</span><span class="p">(</span><span class="n">conversion_directives</span><span class="p">:</span> <span class="nb">dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pandas</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">frame</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Convert conversion directives to a tagged table form.</span>
+<span class="sd">    </span>
+<span class="sd">    Args:</span>
+<span class="sd">        conversion_directives: the conversion directives to transform.</span>
+<span class="sd">        </span>
+<span class="sd">    Returns:</span>
+<span class="sd">        a pandas DataFrame that can be saved to csv or xlsx.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    
+    <span class="n">df_list</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">table</span><span class="p">,</span> <span class="n">records</span> <span class="ow">in</span> <span class="n">conversion_directives</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="n">matched_keys</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">record_name</span><span class="p">,</span> <span class="n">record_fields</span> <span class="ow">in</span> <span class="n">records</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">if</span> <span class="n">record_name</span> <span class="ow">in</span> <span class="n">matched_keys</span><span class="p">:</span>
+                <span class="k">continue</span>
+            <span class="n">records_with_matching_fields</span> <span class="o">=</span> <span class="p">[</span><span class="n">record_name2</span> <span class="k">for</span> <span class="n">record_name2</span><span class="p">,</span> <span class="n">record_fields2</span> <span class="ow">in</span> <span class="n">records</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="n">record_fields</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span> <span class="o">==</span> <span class="n">record_fields2</span><span class="o">.</span><span class="n">keys</span><span class="p">()]</span>
+            <span class="n">matched_keys</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">records_with_matching_fields</span><span class="p">)</span>
+            
+            <span class="n">filtered_fields</span> <span class="o">=</span> <span class="n">record_fields</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span> <span class="o">-</span> <span class="p">[</span><span class="s2">&quot;id&quot;</span><span class="p">]</span>
+            <span class="n">filtered_fields</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">filtered_fields</span><span class="p">)</span>
+            <span class="n">rows</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="n">rows</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="s2">&quot;#tags&quot;</span><span class="p">,</span> <span class="s2">&quot;#&quot;</span> <span class="o">+</span> <span class="n">table</span> <span class="o">+</span> <span class="s2">&quot;.id&quot;</span><span class="p">])</span>
+            <span class="n">blank_row</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;&quot;</span><span class="p">,</span><span class="s2">&quot;&quot;</span><span class="p">]</span>
+            <span class="k">for</span> <span class="n">field</span> <span class="ow">in</span> <span class="n">filtered_fields</span><span class="p">:</span>
+                <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">record_fields</span><span class="p">[</span><span class="n">field</span><span class="p">],</span> <span class="nb">list</span><span class="p">):</span>
+                    <span class="n">rows</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;*#.&quot;</span> <span class="o">+</span> <span class="n">field</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">rows</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;#.&quot;</span> <span class="o">+</span> <span class="n">field</span><span class="p">)</span>
+                <span class="n">blank_row</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+                    
+            <span class="k">for</span> <span class="n">matched_record_name</span> <span class="ow">in</span> <span class="n">records_with_matching_fields</span><span class="p">:</span>
+                <span class="n">row</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">matched_record_name</span><span class="p">]</span>
+                <span class="k">for</span> <span class="n">field</span> <span class="ow">in</span> <span class="n">filtered_fields</span><span class="p">:</span>
+                    <span class="n">value</span> <span class="o">=</span> <span class="n">records</span><span class="p">[</span><span class="n">matched_record_name</span><span class="p">][</span><span class="n">field</span><span class="p">]</span>
+                    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
+                        <span class="n">row</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;,&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">value</span><span class="p">))</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="n">row</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+                        
+                <span class="n">rows</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>
+            <span class="n">rows</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">blank_row</span><span class="p">)</span>
+            <span class="n">df_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">pandas</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">rows</span><span class="p">))</span>
+            
+    <span class="k">return</span> <span class="n">pandas</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">df_list</span><span class="p">)</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span></div>
+            
+                    
+                
+                
+<span class="c1"># str_directive_fields = [&quot;id&quot;, &quot;value_type&quot;, &quot;override&quot;, &quot;code&quot;, &quot;import&quot;, &quot;table&quot;, &quot;for_each&quot;, &quot;fields&quot;, &quot;test&quot;, &quot;required&quot;, &quot;delimiter&quot;, &quot;sort_by&quot;, &quot;sort_order&quot;, &quot;record_id&quot;, &quot;default&quot;]</span>
+<span class="c1"># matrix_directive_fields = [&quot;id&quot;, &quot;value_type&quot;, &quot;code&quot;, &quot;import&quot;, &quot;table&quot;,  &quot;test&quot;, &quot;required&quot;, &quot;sort_by&quot;, &quot;sort_order&quot;, &quot;headers&quot;, &quot;collate&quot;, &quot;exclusion_headers&quot;, &quot;optional_headers&quot;, &quot;fields_to_headers&quot;, &quot;values_to_str&quot;, &quot;default&quot;]</span>
+<span class="c1"># section_directive_fields = [&quot;code&quot;, &quot;import&quot;]</span>
+
+
+
+
+
+<span class="c1"># input_json[&quot;entity&quot;] = {}</span>
+<span class="c1"># for sample_name, sample_attributes in input_json[&quot;sample&quot;].items():</span>
+<span class="c1">#     input_json[&quot;entity&quot;][sample_name] = sample_attributes</span>
+<span class="c1">#     input_json[&quot;entity&quot;][sample_name][&quot;type&quot;] = &quot;sample&quot;</span>
+<span class="c1"># for subject_name, subject_attributes in input_json[&quot;subject&quot;].items():</span>
+<span class="c1">#     input_json[&quot;entity&quot;][subject_name] = subject_attributes</span>
+<span class="c1">#     input_json[&quot;entity&quot;][subject_name][&quot;type&quot;] = &quot;subject&quot;</span>
+
+<span class="c1"># input_json[&quot;factor&quot;] = \</span>
+<span class="c1"># {&#39;Treatment&#39;: {</span>
+<span class="c1">#   &#39;allowed_values&#39;: [&#39;naive&#39;, &#39;syngenic&#39;, &#39;allogenic&#39;],</span>
+<span class="c1">#   &#39;id&#39;: &#39;Treatment&#39;,</span>
+<span class="c1">#   &#39;field&#39;: &#39;protocol.id&#39;,</span>
+<span class="c1">#   &#39;project.id&#39;: &#39;GH_Spleen&#39;,</span>
+<span class="c1">#   &#39;study.id&#39;: &#39;GH_Spleen&#39;},</span>
+<span class="c1">#  &#39;Time Point&#39;: {</span>
+<span class="c1">#   &#39;allowed_values&#39;: [&#39;0&#39;, &#39;7&#39;, &#39;42&#39;],</span>
+<span class="c1">#   &#39;id&#39;: &#39;Time Point&#39;,</span>
+<span class="c1">#   &#39;field&#39;: &#39;time_point&#39;,</span>
+<span class="c1">#   &#39;project.id&#39;: &#39;GH_Spleen&#39;,</span>
+<span class="c1">#   &#39;study.id&#39;: &#39;GH_Spleen&#39;}}</span>
+
+
+<span class="c1">## Create binned nmr</span>
+<span class="c1"># from random import uniform</span>
+
+<span class="c1"># temp = {}</span>
+<span class="c1"># for measurement, measurement_attributes in input_json[&quot;measurement&quot;].items():</span>
+<span class="c1">#     bottom_range = uniform(0, 1000)</span>
+<span class="c1">#     top_range = uniform(bottom_range, 1000)</span>
+    
+<span class="c1">#     assignment = str(bottom_range) + &quot;-&quot; + str(top_range)</span>
+<span class="c1">#     intensity = measurement_attributes[&quot;intensity&quot;]</span>
+<span class="c1">#     units = measurement_attributes[&quot;intensity%type&quot;]</span>
+    
+<span class="c1">#     temp[assignment] = {&quot;intensity&quot;: intensity, &quot;intensity%type&quot;:units, &quot;assignment&quot;:assignment, &quot;sample.id&quot;:measurement_attributes[&quot;sample.id&quot;]}</span>
+    
+<span class="c1"># input_json[&quot;measurement&quot;] = temp</span>
+
+<span class="c1"># with open(&#39;C:/Users/Sparda/Desktop/Moseley Lab/Code/MESSES/tests/test_convert/testing_files/NMR_binned_base_input.json&#39;,&#39;w&#39;) as jsonFile:</span>
+<span class="c1">#     jsonFile.write(json.dumps(input_json, indent=2))</span>
+
+
+<span class="c1">## Remove isotopologues from MS data</span>
+<span class="c1"># keys_to_delete = []</span>
+<span class="c1"># for measurement, measurement_attributes in input_json[&quot;measurement&quot;].items():</span>
+<span class="c1">#     if measurement_attributes[&quot;isotopologue&quot;] != &quot;13C0&quot;:</span>
+<span class="c1">#         keys_to_delete.append(measurement)</span>
+        
+<span class="c1"># for key in keys_to_delete:</span>
+<span class="c1">#     del input_json[&quot;measurement&quot;][key]</span>
+
+<span class="c1"># with open(&#39;C:/Users/Sparda/Desktop/Moseley Lab/Code/MESSES/tests/test_convert/testing_files/MS_base_input_truncated.json&#39;,&#39;w&#39;) as jsonFile:</span>
+<span class="c1">#     jsonFile.write(json.dumps(input_json, indent=2))</span>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Hunter Moseley, Travis Thompson.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
