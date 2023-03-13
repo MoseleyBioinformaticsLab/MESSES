@@ -1,0 +1,18 @@
+{
+  "MS_METABOLITE_DATA": {
+    "Data": {
+      "collate": "asdf",
+      "headers": [
+        "\"Metabolite\"=assignment",
+        "entity.id=intensity"
+      ],
+      "id": "Data",
+      "sort_by": [
+        "assignment"
+      ],
+      "sort_order": "ascending",
+      "table": "measurement",
+      "value_type": "matrix"
+    }
+  }
+}

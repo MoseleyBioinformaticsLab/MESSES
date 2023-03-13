@@ -1,0 +1,18 @@
+{
+  "TREATMENT": {
+    "TREATMENT_SUMMARY": {
+      "fields": [
+        "id"
+      ],
+      "for_each": "True",
+      "id": "TREATMENT_SUMMARY",
+      "required": "True",
+      "sort_by": [
+        "id"
+      ],
+      "sort_order": "ascending",
+      "table": "factor",
+      "value_type": "str"
+    }
+  }
+}

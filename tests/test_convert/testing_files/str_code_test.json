@@ -1,0 +1,15 @@
+{
+  "CHROMATOGRAPHY": {
+    "CHROMATOGRAPHY_SUMMARY": {
+      "fields": [
+        "chromatography_description"
+      ],
+      "id": "CHROMATOGRAPHY_SUMMARY",
+      "required": "True",
+      "table": "protocol",
+      "test": "type=MS",
+      "value_type": "str",
+      "code":"\"test_value\""
+    }
+  }
+}

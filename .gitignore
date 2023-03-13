@@ -17,7 +17,7 @@ data/*
 build/
 dist/
 coverage.xml
-*.xlsx
-*.json
+/*.xlsx
+/*.json
 src/messes/_version.py
-*.png
+/*.png

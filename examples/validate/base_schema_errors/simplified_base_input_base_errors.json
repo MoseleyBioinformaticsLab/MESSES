@@ -1,0 +1,238 @@
+{
+  "factor": {
+    "Time Point": {
+      "id": "Time Point",
+      "field": "time_point",
+      "project.id": "GH_Spleen",
+      "study.id": "GH_Spleen"
+    }
+  },
+  "measurement": {
+    "dUMP-13C0-29_C1-2_Lung_allogenic_7days_170427_UKy_GCH_rep2-polar-ICMS_A": {
+      "assignment": "dUMP-13C0",
+      "assignment%method": "direct_to_standard",
+      "compound": "dUMP",
+      "concentration": "0.000136197208588145",
+      "concentration%type": "calculated from standard",
+      "concentration%units": "uM",
+      "corrected_raw_intensity": "1111.6787982",
+      "corrected_raw_intensity%type": "natural abundance corrected peak area",
+      "formula": "C9H13N2O8P1",
+      "id": "dUMP-13C0-29_C1-2_Lung_allogenic_7days_170427_UKy_GCH_rep2-polar-ICMS_",
+      "intensity": "3475.532501491584",
+      "intensity%type": "natural abundance corrected and protein normalized peak area",
+      "intensity%units": "area/g",
+      "isotopologue": "13C0",
+      "isotopologue%type": "13C",
+      "normalized_concentration": "6.95603212008907e-05",
+      "normalized_concentration%type": "protein normalized",
+      "normalized_concentration%units": "uMol/g",
+      "protocol.id": "ICMS1",
+      "raw_intensity": "1086.46403726284",
+      "raw_intensity%type": "spectrometer peak area",
+      "entity.id": "29_C1-2_Lung_allogenic_7days_170427_UKy_GCH_rep2-polar-ICMS_"
+    },
+    "dUMP-13C0-30_C1-20_Lung_allogenic_7days_170427_UKy_GCH_rep3-polar-ICMS_A": {
+      "assignment": "dUMP-13C0",
+      "assignment%method": "direct_to_standard",
+      "compound": "dUMP",
+      "concentration": "0.000240660802914513",
+      "concentration%type": "calculated from standard",
+      "concentration%units": "uM",
+      "corrected_raw_intensity": "1964.33917355",
+      "corrected_raw_intensity%type": "natural abundance corrected peak area",
+      "formula": "C9H13N2O8P1",
+      "id": "dUMP-13C0-30_C1-20_Lung_allogenic_7days_170427_UKy_GCH_rep3-polar-ICMS_A",
+      "intensity": "3984.382952630184",
+      "intensity%type": "natural abundance corrected and protein normalized peak area",
+      "intensity%units": "area/g",
+      "isotopologue": "13C0",
+      "isotopologue%type": "13C",
+      "normalized_concentration": "8.66575819911349e-05",
+      "normalized_concentration%type": "protein normalized",
+      "normalized_concentration%units": "uMol/g",
+      "protocol.id": "ICMS1",
+      "raw_intensity": "1891.7707306231",
+      "raw_intensity%type": "spectrometer peak area",
+      "entity.id": "30_C1-20_Lung_allogenic_7days_170427_UKy_GCH_rep3-polar-ICMS_A"
+    }
+  },
+  "project": {
+    "GH_Spleen": {
+      "PI_email": "gerhard.hildebrandt@uky.edu",
+      "PI_first_name": "Gerhard",
+      "PI_last_name": "Hildebrandt",
+      "address": "Gerhard C. Hildebrandt, MD, Room no. CC401A, Ben Roach Building, Markey Cancer Center University of Kentucky, Lexington, 40536",
+      "department": "Markey Cancer Center, Hematology and Blood and Marrow Transplant",
+      "description": "Allogeneic hematopoietic cell transplantation (allo-HCT) is a potentially curative treatment option for a variety of hematological malignancies. Interactions between the donor immune system and the patient tissue result in a disease, called GVHD. The pathophysiology of acute GVHD can be hypothesized in three sequential phases: cytokine storm and activation of the antigen-presenting cells (APC), donor T cell activation and effector cell phase. Idiopathic pneumonia syndrome (IPS) is one of the most deleterious complications after allogeneic HCT and is considered not only to be related to conditioning regimen toxicity but also represents an end organ damage caused by allo-reactive T cells, therefore making the lung susceptible to a two-pronged attack, one of which overlaps with GVHD causing other target organ injury. IPS results in mortality of up to 90% of patients. We will use a murine model of IPS and GVHD which is well established in our group, and in which disease evolves either across disparities in major histocompatibility complex (MCH) class I and II, minor histocompatibility antigens (miHags) or both. Metabolomics changes following syngeneic and allogeneic HCT at post-transplantation Days +7 (cytokine storm phase) and Days +42 (cellular effector phase) are compared to baseline wild-type (naive) controls. Prior to analysis, na\u00efve - and experimental mice (N=3 from each group) were fed with semi-liquid diet supplemented with tracers (13C6-glucose ) over 24 hours. At the end of 7 days or 42 days, respectively, feces and aGVHD target organs (colon, liver and lung) were collected from all groups and further processed and / or analyzed. We expect to reveal metabolic pathways affected after allo-HCT which contribute to immune cell mediated lung injury (IPS) and will potentially identify different metabolic pathways in other GVHD target organs.",
+      "id": "GH_Spleen",
+      "institution": "University of Kentucky",
+      "phone": "800-333-8874",
+      "title": "Metabolomics of lung injury after allogeneic hematopoietic cell transplantation"
+    }
+  },
+  "protocol": {
+    "IC-FTMS_preparation": {
+      "description": "Before going into the IC-FTMS the frozen sample is reconstituted in water.",
+      "filename": "",
+      "id": "IC-FTMS_preparation",
+      "type": "sample_prep"
+    },
+    "ICMS1": {
+      "chromatography_description": "Targeted IC",
+      "chromatography_instrument_name": "Thermo Dionex ICS-5000+",
+      "chromatography_type": "Targeted IC",
+      "column_name": "Dionex IonPac AS11-HC-4um 2 mm i.d. x 250 mm",
+      "description": "ICMS Analytical Experiment with detection of compounds by comparison to standards. \nThermo RAW files are loaded into TraceFinder and peaks are manually curated. The area under the chromatograms is then exported to an Excel file. The area is then corrected for natural abundance. The natural abundance corrected area is then used to calculate the concentration of each compound for each sample. This calculation is done using standards. The first sample ran on the ICMS is a standard that has known concentrations of certain compounds. Then a number of samples are ran (typically 3-4) followed by another standard. The equation to calculate the concentration is \"intensity in sample\"/(\"intensity in first standard\" + ((\"intensity in second standard\" - \"intensity in first standard\")/# of samples) * \"known concentration in standard\", where the \"intensity\" is the aforementioned natural abundance corrected area, and the unlabeled intensity from the standard is used for all isotopologues of the compound. The reconstitution volume is simply the volume that the polar part of the sample was reconstituted to before going into the ICMS. The injection volume is how much of the reconstitution volume was injected into the ICMS. The protein is how much protein was in the entire sample (not only the small portion that was aliquoted for the ICMS). The polar split ratio is the fraction of the polar part of the sample that was aliquoted for the ICMS. This is calculated by dividing the weight of the polar aliquot for ICMS by the total weight of the polar portion of the sample. The protein normalized concentration is calculated using the equation, concentration * (reconstitution volume / 1000 / polar split ratio / protein).",
+      "id": "ICMS1",
+      "instrument": "Orbitrap Fusion",
+      "instrument_type": "IC-FTMS",
+      "ion_mode": "NEGATIVE",
+      "ionization": "ESI",
+      "type": "measurement",
+      "parent_protocol": "IC-FTMS_measurement"
+    },
+    "allogenic": {
+      "description": "Mouse with allogenic bone marrow transplant. Fed with semi-liquid diet supplemented with fully labeled glucose for 24 hours before harvest.",
+      "id": "allogenic",
+      "type": "treatment",
+      "filename": "study_treatments.pdf",
+      "parent_protocol": "mouse_experiment"
+    },
+    "frozen_tissue_grind": {
+      "description": "Frozen tissue is ground in a SPEX grinder under liquid nitrogen to homogenize the sample.",
+      "id": "frozen_tissue_grind",
+      "type": "sample_prep"
+    },
+    "mouse_tissue_collection": {
+      "description": "Mouse is sacrificed and tissues are harvested.",
+      "id": "mouse_tissue_collection",
+      "sample_type": "mouse",
+      "type": "collection",
+      "filename": "mouse_tissue_procedure.pdf"
+    },
+    "polar_extraction": {
+      "description": "Polar extraction from homogenate, lypholized, and frozen.",
+      "filename": "4B_Extract_Polar_Lipid_Prot_Fan_070417.pdf",
+      "id": "polar_extraction",
+      "type": "sample_prep"
+    },
+    "tissue_quench": {
+      "description": "Tissue is frozen in liquid nitrogen to stop metabolic processes.",
+      "id": "tissue_quench",
+      "type": "sample_pre"
+    }
+  },
+  "study": {
+    "GH_Spleen": {
+      "PI_email": "gerhard.hildebrandt@uky.edu",
+      "PI_first_name": "Gerhard",
+      "PI_last_name": "Hildebrandt",
+      "address": "CTW-453, 900 South Limestone street. UKY. Lexington, Kentucky-40536",
+      "contact_email": "gerhard.hildebrandt@uky.edu",
+      "contact_first_name": "Gerhard",
+      "contact_last_name": "Hildebrandt",
+      "department": "MCC",
+      "description": "Allogeneic hematopoietic cell transplantation (allo-HCT) is a potentially curative treatment option for a variety of hematological malignancies. Interactions between the donor immune system and the patient tissue result in a disease, called GVHD. The pathophysiology of acute GVHD can be hypothesized in three sequential phases: cytokine storm and activation of the antigen-presenting cells (APC), donor T cell activation and effector cell phase. Idiopathic pneumonia syndrome (IPS) is one of the most deleterious complications after allogeneic HCT and is considered not only to be related to conditioning regimen toxicity but also represents an end organ damage caused by allo-reactive T cells, therefore making the lung susceptible to a two-pronged attack, one of which overlaps with GVHD causing other target organ injury. IPS results in mortality of up to 90% of patients. We will use a murine model of IPS and GVHD which is well established in our group, and in which disease evolves either across disparities in major histocompatibility complex (MCH) class I and II, minor histocompatibility antigens (miHags) or both. Metabolomics changes following syngeneic and allogeneic HCT at post-transplantation Days +7 (cytokine storm phase) and Days +42 (cellular effector phase) are compared to baseline wild-type (naive) controls. Prior to analysis, na\u00efve - and experimental mice (N=3 from each group) were fed with semi-liquid diet supplemented with tracers (13C6-glucose ) over 24 hours. At the end of 7 days or 42 days, respectively, feces and aGVHD target organs (colon, liver and lung) were collected from all groups and further processed and / or analyzed. We expect to reveal metabolic pathways affected after allo-HCT which contribute to immune cell mediated lung injury (IPS) and will potentially identify different metabolic pathways in other GVHD target organs.",
+      "id": "GH_Spleen",
+      "institution": "University of Kentucky",
+      "phone": "800-333-8874",
+      "title": "Metabolomics of lung injury after allogeneic hematopoietic cell transplantation - Lung ICMS",
+      "type": "preliminary data"
+    }
+  },
+  "entity": {
+    "29_C1-2_Lung_allogenic_7days_170427_UKy_GCH_rep2": {
+      "id": "29_C1-2_Lung_allogenic_7days_170427_UKy_GCH_rep2",
+      "parent_id": "14_C1-2_allogenic_7days_UKy_GCH_rep2",
+      "project.id": "GH_Spleen",
+      "protocol.id": [
+        "mouse_tissue_collection",
+        "tissue_quench",
+        "frozen_tissue_grind"
+      ],
+      "study.id": "GH_Spleen",
+      "type": "sample"
+    },
+    "29_C1-2_Lung_allogenic_7days_170427_UKy_GCH_rep2-polar-ICMS_A": {
+      "id": "29_C1-2_Lung_allogenic_7days_170427_UKy_GCH_rep2-polar-ICMS_A",
+      "injection_volume": "10",
+      "injection_volume%units": "uL",
+      "parent_id": "29_C1-2_Lung_allogenic_7days_170427_UKy_GCH_rep",
+      "polar_split_ratio": "0.122427408",
+      "project.id": "GH_Spleen",
+      "protocol.id": [
+        "polar_extraction",
+        "IC-FTMS_preparation"
+      ],
+      "reconstitution_volume": "20",
+      "reconstitution_volume%units": "uL",
+      "replicate": "1",
+      "replicate%type": "analytical",
+      "study.id": "GH_Spleen",
+      "type": "sample",
+      "weight": "0.1969",
+      "weight%units": "g"
+    },
+    "30_C1-20_Lung_allogenic_7days_170427_UKy_GCH_rep3": {
+      "id": "30_C1-20_Lung_allogenic_7days_170427_UKy_GCH_rep3",
+      "parent_id": "15_C1-20_allogenic_7days_UKy_GCH_rep3",
+      "project.id": "GH_Spleen",
+      "protocol.id": [
+        "mouse_tissue_collection",
+        "tissue_quench",
+        "frozen_tissue_grind"
+      ],
+      "study.id": "GH_Spleen",
+      "type": "sample"
+    },
+    "30_C1-20_Lung_allogenic_7days_170427_UKy_GCH_rep3-polar-ICMS_A": {
+      "id": "30_C1-20_Lung_allogenic_7days_170427_UKy_GCH_rep3-polar-ICMS_A",
+      "injection_volume": "10",
+      "injection_volume%units": "uL",
+      "parent_id": "30_C1-20_Lung_allogenic_7days_170427_UKy_GCH_rep3",
+      "polar_split_ratio": "0.112660944",
+      "project.id": "GH_Spleen",
+      "protocol.id": [
+        "polar_extraction",
+        "IC-FTMS_preparation"
+      ],
+      "reconstitution_volume": "20",
+      "reconstitution_volume%units": "uL",
+      "replicate": "1",
+      "replicate%type": "analytical",
+      "study.id": "GH_Spleen",
+      "type": "sample",
+      "weight": "0.189",
+      "weight%units": "g"
+    },
+    "14_C1-2_allogenic_7days_UKy_GCH_rep2": {
+      "id": "14_C1-2_allogenic_7days_UKy_GCH_rep2",
+      "project.id": "GH_Spleen",
+      "protocol.id": [
+        "allogenic"
+      ],
+      "replicate": "2",
+      "species": "Mus musculus",
+      "species_type": "Mouse",
+      "study.id": "GH_Spleen",
+      "taxonomy_id": "10090",
+      "time_point": "7",
+      "type": "subject"
+    },
+    "15_C1-20_allogenic_7days_UKy_GCH_rep3": {
+      "id": "15_C1-20_allogenic_7days_UKy_GCH_rep3",
+      "project.id": "GH_Spleen",
+      "protocol.id": [
+        "allogenic"
+      ],
+      "replicate": "3",
+      "species": "Mus musculus",
+      "species_type": "Mouse",
+      "study.id": "GH_Spleen",
+      "taxonomy_id": "10090",
+      "time_point": "7",
+      "type": "subject"
+    }
+  }
+}

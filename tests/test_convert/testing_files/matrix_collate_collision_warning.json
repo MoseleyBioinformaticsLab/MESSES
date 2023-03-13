@@ -1,0 +1,18 @@
+{
+  "TREATMENT": {
+    "TREATMENT_SUMMARY": {
+      "headers": [
+        "\"field\"=field",
+        "project.id=project.id"
+      ],
+      "id": "TREATMENT_SUMMARY",
+      "sort_by": [
+        "id"
+      ],
+      "sort_order": "ascending",
+      "table": "factor",
+      "value_type": "matrix",
+      "collate": "project.id"
+    }
+  }
+}

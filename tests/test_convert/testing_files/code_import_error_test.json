@@ -1,0 +1,21 @@
+{
+  "TREATMENT": {
+    "TREATMENT_SUMMARY": {
+      "headers": [
+        "\"id\"=id",
+        "\"field\"=field",
+        "project.id=project.id"
+      ],
+      "id": "TREATMENT_SUMMARY",
+      "sort_by": [
+        "id"
+      ],
+      "sort_order": "ascending",
+      "table": "asdf",
+      "value_type": "matrix",
+      "default": "qwer",
+      "code": "import_test.foo()",
+      "import": "../asdf.py"
+    }
+  }
+}

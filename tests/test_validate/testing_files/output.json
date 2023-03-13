@@ -1,0 +1,4197 @@
+{
+  "type": "object",
+  "properties": {
+    "protocol": {
+      "type": "object",
+      "minProperties": 1,
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "parent_id": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "sample_prep",
+              "treatment",
+              "collection",
+              "storage",
+              "measurement"
+            ]
+          },
+          "description": {
+            "type": "string"
+          },
+          "filename": {
+            "type": [
+              "string",
+              "array"
+            ],
+            "minItems": 1,
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        },
+        "required": [
+          "id",
+          "type"
+        ],
+        "allOf": [
+          {
+            "if": {
+              "anyOf": [
+                {
+                  "properties": {
+                    "id": {
+                      "const": "Chromatography_MS_measurement"
+                    }
+                  },
+                  "required": [
+                    "id"
+                  ]
+                },
+                {
+                  "properties": {
+                    "parent_id": {
+                      "anyOf": [
+                        {
+                          "const": "Chromatography_MS_measurement"
+                        },
+                        {
+                          "contains": {
+                            "const": "Chromatography_MS_measurement"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  "required": [
+                    "parent_id"
+                  ]
+                }
+              ]
+            },
+            "then": {
+              "properties": {
+                "instrument": {
+                  "minLength": 1,
+                  "table": "protocol",
+                  "type": "string"
+                },
+                "instrument_type": {
+                  "minLength": 1,
+                  "table": "protocol",
+                  "type": "string"
+                },
+                "chromatography_description": {
+                  "minLength": 1,
+                  "table": "protocol",
+                  "type": "string"
+                },
+                "chromatography_instrument_name": {
+                  "minLength": 1,
+                  "table": "protocol",
+                  "type": "string"
+                },
+                "chromatography_type": {
+                  "minLength": 1,
+                  "table": "protocol",
+                  "type": "string"
+                },
+                "column_name": {
+                  "minLength": 1,
+                  "table": "protocol",
+                  "type": "string"
+                },
+                "ion_mode": {
+                  "minLength": 1,
+                  "table": "protocol",
+                  "type": "string"
+                },
+                "ionization": {
+                  "minLength": 1,
+                  "table": "protocol",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "instrument",
+                "chromatography_instrument_name",
+                "chromatography_type",
+                "column_name",
+                "ion_mode",
+                "ionization"
+              ]
+            }
+          },
+          {
+            "if": {
+              "anyOf": [
+                {
+                  "properties": {
+                    "id": {
+                      "const": "DI-FTMS_measurement"
+                    }
+                  },
+                  "required": [
+                    "id"
+                  ]
+                },
+                {
+                  "properties": {
+                    "parent_id": {
+                      "anyOf": [
+                        {
+                          "const": "DI-FTMS_measurement"
+                        },
+                        {
+                          "contains": {
+                            "const": "DI-FTMS_measurement"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  "required": [
+                    "parent_id"
+                  ]
+                }
+              ]
+            },
+            "then": {
+              "properties": {
+                "instrument": {
+                  "minLength": 1,
+                  "table": "protocol",
+                  "type": "string"
+                },
+                "instrument_type": {
+                  "minLength": 1,
+                  "table": "protocol",
+                  "type": "string"
+                },
+                "chromatography_description": {
+                  "minLength": 1,
+                  "table": "protocol",
+                  "type": "string"
+                },
+                "chromatography_instrument_name": {
+                  "minLength": 1,
+                  "table": "protocol",
+                  "type": "string"
+                },
+                "chromatography_type": {
+                  "minLength": 1,
+                  "table": "protocol",
+                  "type": "string"
+                },
+                "column_name": {
+                  "minLength": 1,
+                  "table": "protocol",
+                  "type": "string"
+                },
+                "ion_mode": {
+                  "minLength": 1,
+                  "table": "protocol",
+                  "type": "string"
+                },
+                "ionization": {
+                  "minLength": 1,
+                  "table": "protocol",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "instrument",
+                "chromatography_instrument_name",
+                "chromatography_type",
+                "column_name",
+                "ion_mode",
+                "ionization"
+              ]
+            }
+          },
+          {
+            "if": {
+              "anyOf": [
+                {
+                  "properties": {
+                    "id": {
+                      "const": "GCMS_measurement"
+                    }
+                  },
+                  "required": [
+                    "id"
+                  ]
+                },
+                {
+                  "properties": {
+                    "parent_id": {
+                      "anyOf": [
+                        {
+                          "const": "GCMS_measurement"
+                        },
+                        {
+                          "contains": {
+                            "const": "GCMS_measurement"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  "required": [
+                    "parent_id"
+                  ]
+                }
+              ]
+            },
+            "then": {
+              "properties": {
+                "instrument": {
+                  "minLength": 1,
+                  "table": "protocol",
+                  "type": "string"
+                },
+                "instrument_type": {
+                  "minLength": 1,
+                  "table": "protocol",
+                  "type": "string"
+                },
+                "chromatography_description": {
+                  "minLength": 1,
+                  "table": "protocol",
+                  "type": "string"
+                },
+                "chromatography_instrument_name": {
+                  "minLength": 1,
+                  "table": "protocol",
+                  "type": "string"
+                },
+                "chromatography_type": {
+                  "minLength": 1,
+                  "table": "protocol",
+                  "type": "string"
+                },
+                "column_name": {
+                  "minLength": 1,
+                  "table": "protocol",
+                  "type": "string"
+                },
+                "ion_mode": {
+                  "minLength": 1,
+                  "table": "protocol",
+                  "type": "string"
+                },
+                "ionization": {
+                  "minLength": 1,
+                  "table": "protocol",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "instrument",
+                "chromatography_instrument_name",
+                "chromatography_type",
+                "column_name",
+                "ion_mode",
+                "ionization"
+              ]
+            }
+          },
+          {
+            "if": {
+              "anyOf": [
+                {
+                  "properties": {
+                    "id": {
+                      "const": "IC-FTMS_measurement"
+                    }
+                  },
+                  "required": [
+                    "id"
+                  ]
+                },
+                {
+                  "properties": {
+                    "parent_id": {
+                      "anyOf": [
+                        {
+                          "const": "IC-FTMS_measurement"
+                        },
+                        {
+                          "contains": {
+                            "const": "IC-FTMS_measurement"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  "required": [
+                    "parent_id"
+                  ]
+                }
+              ]
+            },
+            "then": {
+              "properties": {
+                "instrument": {
+                  "minLength": 1,
+                  "table": "protocol",
+                  "type": "string"
+                },
+                "instrument_type": {
+                  "minLength": 1,
+                  "table": "protocol",
+                  "type": "string"
+                },
+                "chromatography_description": {
+                  "minLength": 1,
+                  "table": "protocol",
+                  "type": "string"
+                },
+                "chromatography_instrument_name": {
+                  "minLength": 1,
+                  "table": "protocol",
+                  "type": "string"
+                },
+                "chromatography_type": {
+                  "minLength": 1,
+                  "table": "protocol",
+                  "type": "string"
+                },
+                "column_name": {
+                  "minLength": 1,
+                  "table": "protocol",
+                  "type": "string"
+                },
+                "ion_mode": {
+                  "minLength": 1,
+                  "table": "protocol",
+                  "type": "string"
+                },
+                "ionization": {
+                  "minLength": 1,
+                  "table": "protocol",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "instrument",
+                "chromatography_instrument_name",
+                "chromatography_type",
+                "column_name",
+                "ion_mode",
+                "ionization"
+              ]
+            }
+          },
+          {
+            "if": {
+              "anyOf": [
+                {
+                  "properties": {
+                    "id": {
+                      "const": "MS_measurement"
+                    }
+                  },
+                  "required": [
+                    "id"
+                  ]
+                },
+                {
+                  "properties": {
+                    "parent_id": {
+                      "anyOf": [
+                        {
+                          "const": "MS_measurement"
+                        },
+                        {
+                          "contains": {
+                            "const": "MS_measurement"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  "required": [
+                    "parent_id"
+                  ]
+                }
+              ]
+            },
+            "then": {
+              "properties": {
+                "instrument": {
+                  "minLength": 1,
+                  "table": "protocol",
+                  "type": "string"
+                },
+                "instrument_type": {
+                  "minLength": 1,
+                  "table": "protocol",
+                  "type": "string"
+                },
+                "chromatography_description": {
+                  "minLength": 1,
+                  "table": "protocol",
+                  "type": "string"
+                },
+                "chromatography_instrument_name": {
+                  "minLength": 1,
+                  "table": "protocol",
+                  "type": "string"
+                },
+                "chromatography_type": {
+                  "minLength": 1,
+                  "table": "protocol",
+                  "type": "string"
+                },
+                "column_name": {
+                  "minLength": 1,
+                  "table": "protocol",
+                  "type": "string"
+                },
+                "ion_mode": {
+                  "minLength": 1,
+                  "table": "protocol",
+                  "type": "string"
+                },
+                "ionization": {
+                  "minLength": 1,
+                  "table": "protocol",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "instrument",
+                "chromatography_instrument_name",
+                "chromatography_type",
+                "column_name",
+                "ion_mode",
+                "ionization"
+              ]
+            }
+          },
+          {
+            "if": {
+              "anyOf": [
+                {
+                  "properties": {
+                    "id": {
+                      "const": "NMR_measurement"
+                    }
+                  },
+                  "required": [
+                    "id"
+                  ]
+                },
+                {
+                  "properties": {
+                    "parent_id": {
+                      "anyOf": [
+                        {
+                          "const": "NMR_measurement"
+                        },
+                        {
+                          "contains": {
+                            "const": "NMR_measurement"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  "required": [
+                    "parent_id"
+                  ]
+                }
+              ]
+            },
+            "then": {
+              "properties": {
+                "instrument": {
+                  "minLength": 1,
+                  "table": "protocol",
+                  "type": "string"
+                },
+                "instrument_type": {
+                  "minLength": 1,
+                  "table": "protocol",
+                  "type": "string"
+                },
+                "NMR_experiment_type": {
+                  "minLength": 1,
+                  "table": "protocol",
+                  "type": "string"
+                },
+                "NMR_probe": {
+                  "minLength": 1,
+                  "table": "protocol",
+                  "type": "string"
+                },
+                "NMR_solvent": {
+                  "minLength": 1,
+                  "table": "protocol",
+                  "type": "string"
+                },
+                "NMR_tube_size": {
+                  "format": "numeric",
+                  "table": "protocol",
+                  "type": "number"
+                },
+                "NMR_tube_size%units": {
+                  "minLength": 1,
+                  "table": "protocol",
+                  "type": "string"
+                },
+                "acquisition_time": {
+                  "format": "numeric",
+                  "table": "protocol",
+                  "type": "number"
+                },
+                "acquisition_time%units": {
+                  "minLength": 1,
+                  "table": "protocol",
+                  "type": "string"
+                },
+                "baseline_correction_method": {
+                  "minLength": 1,
+                  "table": "protocol",
+                  "type": "string"
+                },
+                "chemical_shift_ref_cpd": {
+                  "minLength": 1,
+                  "table": "protocol",
+                  "type": "string"
+                },
+                "pulse_sequence": {
+                  "minLength": 1,
+                  "table": "protocol",
+                  "type": "string"
+                },
+                "relaxation_delay": {
+                  "format": "numeric",
+                  "table": "protocol",
+                  "type": "number"
+                },
+                "relaxation_delay%units": {
+                  "minLength": 1,
+                  "table": "protocol",
+                  "type": "string"
+                },
+                "shimming_method": {
+                  "minLength": 1,
+                  "table": "protocol",
+                  "type": "string"
+                },
+                "spectrometer_frequency": {
+                  "format": "numeric",
+                  "table": "protocol",
+                  "type": "number"
+                },
+                "spectrometer_frequency%units": {
+                  "minLength": 1,
+                  "table": "protocol",
+                  "type": "string"
+                },
+                "standard_concentration": {
+                  "format": "numeric",
+                  "table": "protocol",
+                  "type": "number"
+                },
+                "standard_concentration%units": {
+                  "minLength": 1,
+                  "table": "protocol",
+                  "type": "string"
+                },
+                "temperature": {
+                  "format": "numeric",
+                  "table": "protocol",
+                  "type": "number"
+                },
+                "temperature%units": {
+                  "minLength": 1,
+                  "table": "protocol",
+                  "type": "string"
+                },
+                "water_suppression": {
+                  "minLength": 1,
+                  "table": "protocol",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "instrument",
+                "instrument_type",
+                "NMR_experiment_type",
+                "spectrometer_frequency",
+                "spectrometer_frequency%units"
+              ]
+            }
+          },
+          {
+            "if": {
+              "anyOf": [
+                {
+                  "properties": {
+                    "id": {
+                      "const": "PDX_tissue_collection"
+                    }
+                  },
+                  "required": [
+                    "id"
+                  ]
+                },
+                {
+                  "properties": {
+                    "parent_id": {
+                      "anyOf": [
+                        {
+                          "const": "PDX_tissue_collection"
+                        },
+                        {
+                          "contains": {
+                            "const": "PDX_tissue_collection"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  "required": [
+                    "parent_id"
+                  ]
+                }
+              ]
+            },
+            "then": {
+              "properties": {
+                "sample_type": {
+                  "minLength": 1,
+                  "table": "protocol",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "sample_type"
+              ]
+            }
+          },
+          {
+            "if": {
+              "anyOf": [
+                {
+                  "properties": {
+                    "id": {
+                      "const": "analytical_sample_storage"
+                    }
+                  },
+                  "required": [
+                    "id"
+                  ]
+                },
+                {
+                  "properties": {
+                    "parent_id": {
+                      "anyOf": [
+                        {
+                          "const": "analytical_sample_storage"
+                        },
+                        {
+                          "contains": {
+                            "const": "analytical_sample_storage"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  "required": [
+                    "parent_id"
+                  ]
+                }
+              ]
+            },
+            "then": {
+              "properties": {
+                "location": {
+                  "minLength": 1,
+                  "table": "protocol",
+                  "type": "string"
+                },
+                "location%type": {
+                  "minLength": 1,
+                  "table": "protocol",
+                  "type": "string"
+                },
+                "box_name": {
+                  "minLength": 1,
+                  "table": "protocol",
+                  "type": "string"
+                }
+              }
+            }
+          },
+          {
+            "if": {
+              "anyOf": [
+                {
+                  "properties": {
+                    "id": {
+                      "const": "bulk_tissue"
+                    }
+                  },
+                  "required": [
+                    "id"
+                  ]
+                },
+                {
+                  "properties": {
+                    "parent_id": {
+                      "anyOf": [
+                        {
+                          "const": "bulk_tissue"
+                        },
+                        {
+                          "contains": {
+                            "const": "bulk_tissue"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  "required": [
+                    "parent_id"
+                  ]
+                }
+              ]
+            },
+            "then": {
+              "properties": {
+                "sample_type": {
+                  "minLength": 1,
+                  "table": "protocol",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "sample_type"
+              ]
+            }
+          },
+          {
+            "if": {
+              "anyOf": [
+                {
+                  "properties": {
+                    "id": {
+                      "const": "bulk_tissue_storage"
+                    }
+                  },
+                  "required": [
+                    "id"
+                  ]
+                },
+                {
+                  "properties": {
+                    "parent_id": {
+                      "anyOf": [
+                        {
+                          "const": "bulk_tissue_storage"
+                        },
+                        {
+                          "contains": {
+                            "const": "bulk_tissue_storage"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  "required": [
+                    "parent_id"
+                  ]
+                }
+              ]
+            },
+            "then": {
+              "properties": {
+                "location": {
+                  "minLength": 1,
+                  "table": "protocol",
+                  "type": "string"
+                },
+                "location%type": {
+                  "minLength": 1,
+                  "table": "protocol",
+                  "type": "string"
+                },
+                "box_name": {
+                  "minLength": 1,
+                  "table": "protocol",
+                  "type": "string"
+                }
+              }
+            }
+          },
+          {
+            "if": {
+              "anyOf": [
+                {
+                  "properties": {
+                    "id": {
+                      "const": "cell_quench_collection"
+                    }
+                  },
+                  "required": [
+                    "id"
+                  ]
+                },
+                {
+                  "properties": {
+                    "parent_id": {
+                      "anyOf": [
+                        {
+                          "const": "cell_quench_collection"
+                        },
+                        {
+                          "contains": {
+                            "const": "cell_quench_collection"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  "required": [
+                    "parent_id"
+                  ]
+                }
+              ]
+            },
+            "then": {
+              "properties": {
+                "sample_type": {
+                  "minLength": 1,
+                  "table": "protocol",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "sample_type"
+              ]
+            }
+          },
+          {
+            "if": {
+              "anyOf": [
+                {
+                  "properties": {
+                    "id": {
+                      "const": "cells_media"
+                    }
+                  },
+                  "required": [
+                    "id"
+                  ]
+                },
+                {
+                  "properties": {
+                    "parent_id": {
+                      "anyOf": [
+                        {
+                          "const": "cells_media"
+                        },
+                        {
+                          "contains": {
+                            "const": "cells_media"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  "required": [
+                    "parent_id"
+                  ]
+                }
+              ]
+            },
+            "then": {
+              "properties": {
+                "sample_type": {
+                  "minLength": 1,
+                  "table": "protocol",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "sample_type"
+              ]
+            }
+          },
+          {
+            "if": {
+              "anyOf": [
+                {
+                  "properties": {
+                    "id": {
+                      "const": "cells_storage"
+                    }
+                  },
+                  "required": [
+                    "id"
+                  ]
+                },
+                {
+                  "properties": {
+                    "parent_id": {
+                      "anyOf": [
+                        {
+                          "const": "cells_storage"
+                        },
+                        {
+                          "contains": {
+                            "const": "cells_storage"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  "required": [
+                    "parent_id"
+                  ]
+                }
+              ]
+            },
+            "then": {
+              "properties": {
+                "location": {
+                  "minLength": 1,
+                  "table": "protocol",
+                  "type": "string"
+                },
+                "location%type": {
+                  "minLength": 1,
+                  "table": "protocol",
+                  "type": "string"
+                },
+                "box_name": {
+                  "minLength": 1,
+                  "table": "protocol",
+                  "type": "string"
+                }
+              }
+            }
+          },
+          {
+            "if": {
+              "anyOf": [
+                {
+                  "properties": {
+                    "id": {
+                      "const": "file_storage"
+                    }
+                  },
+                  "required": [
+                    "id"
+                  ]
+                },
+                {
+                  "properties": {
+                    "parent_id": {
+                      "anyOf": [
+                        {
+                          "const": "file_storage"
+                        },
+                        {
+                          "contains": {
+                            "const": "file_storage"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  "required": [
+                    "parent_id"
+                  ]
+                }
+              ]
+            },
+            "then": {
+              "properties": {
+                "location": {
+                  "minLength": 1,
+                  "table": "protocol",
+                  "type": "string"
+                },
+                "location%type": {
+                  "minLength": 1,
+                  "table": "protocol",
+                  "type": "string"
+                },
+                "data_files": {
+                  "items": {
+                    "minLength": 1,
+                    "type": "string"
+                  },
+                  "table": "protocol",
+                  "type": [
+                    "array",
+                    "null"
+                  ]
+                },
+                "entity.id": {
+                  "minLength": 1,
+                  "table": "protocol",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "data_files",
+                "entity.id"
+              ]
+            }
+          },
+          {
+            "if": {
+              "anyOf": [
+                {
+                  "properties": {
+                    "id": {
+                      "const": "ground_bulk_tissue_storage"
+                    }
+                  },
+                  "required": [
+                    "id"
+                  ]
+                },
+                {
+                  "properties": {
+                    "parent_id": {
+                      "anyOf": [
+                        {
+                          "const": "ground_bulk_tissue_storage"
+                        },
+                        {
+                          "contains": {
+                            "const": "ground_bulk_tissue_storage"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  "required": [
+                    "parent_id"
+                  ]
+                }
+              ]
+            },
+            "then": {
+              "properties": {
+                "location": {
+                  "minLength": 1,
+                  "table": "protocol",
+                  "type": "string"
+                },
+                "location%type": {
+                  "minLength": 1,
+                  "table": "protocol",
+                  "type": "string"
+                },
+                "box_name": {
+                  "minLength": 1,
+                  "table": "protocol",
+                  "type": "string"
+                }
+              }
+            }
+          },
+          {
+            "if": {
+              "anyOf": [
+                {
+                  "properties": {
+                    "id": {
+                      "const": "homogenization_quench"
+                    }
+                  },
+                  "required": [
+                    "id"
+                  ]
+                },
+                {
+                  "properties": {
+                    "parent_id": {
+                      "anyOf": [
+                        {
+                          "const": "homogenization_quench"
+                        },
+                        {
+                          "contains": {
+                            "const": "homogenization_quench"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  "required": [
+                    "parent_id"
+                  ]
+                }
+              ]
+            },
+            "then": {
+              "properties": {
+                "sample_type": {
+                  "minLength": 1,
+                  "table": "protocol",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "sample_type"
+              ]
+            }
+          },
+          {
+            "if": {
+              "anyOf": [
+                {
+                  "properties": {
+                    "id": {
+                      "const": "homogenization_quench_retsch"
+                    }
+                  },
+                  "required": [
+                    "id"
+                  ]
+                },
+                {
+                  "properties": {
+                    "parent_id": {
+                      "anyOf": [
+                        {
+                          "const": "homogenization_quench_retsch"
+                        },
+                        {
+                          "contains": {
+                            "const": "homogenization_quench_retsch"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  "required": [
+                    "parent_id"
+                  ]
+                }
+              ]
+            },
+            "then": {
+              "properties": {
+                "sample_type": {
+                  "minLength": 1,
+                  "table": "protocol",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "sample_type"
+              ]
+            }
+          },
+          {
+            "if": {
+              "anyOf": [
+                {
+                  "properties": {
+                    "id": {
+                      "const": "image_collection"
+                    }
+                  },
+                  "required": [
+                    "id"
+                  ]
+                },
+                {
+                  "properties": {
+                    "parent_id": {
+                      "anyOf": [
+                        {
+                          "const": "image_collection"
+                        },
+                        {
+                          "contains": {
+                            "const": "image_collection"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  "required": [
+                    "parent_id"
+                  ]
+                }
+              ]
+            },
+            "then": {
+              "properties": {
+                "sample_type": {
+                  "minLength": 1,
+                  "table": "protocol",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "sample_type"
+              ]
+            }
+          },
+          {
+            "if": {
+              "anyOf": [
+                {
+                  "properties": {
+                    "id": {
+                      "const": "image_storage"
+                    }
+                  },
+                  "required": [
+                    "id"
+                  ]
+                },
+                {
+                  "properties": {
+                    "parent_id": {
+                      "anyOf": [
+                        {
+                          "const": "image_storage"
+                        },
+                        {
+                          "contains": {
+                            "const": "image_storage"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  "required": [
+                    "parent_id"
+                  ]
+                }
+              ]
+            },
+            "then": {
+              "properties": {
+                "location": {
+                  "minLength": 1,
+                  "table": "protocol",
+                  "type": "string"
+                },
+                "location%type": {
+                  "minLength": 1,
+                  "table": "protocol",
+                  "type": "string"
+                }
+              }
+            }
+          },
+          {
+            "if": {
+              "anyOf": [
+                {
+                  "properties": {
+                    "id": {
+                      "const": "master_collection"
+                    }
+                  },
+                  "required": [
+                    "id"
+                  ]
+                },
+                {
+                  "properties": {
+                    "parent_id": {
+                      "anyOf": [
+                        {
+                          "const": "master_collection"
+                        },
+                        {
+                          "contains": {
+                            "const": "master_collection"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  "required": [
+                    "parent_id"
+                  ]
+                }
+              ]
+            },
+            "then": {
+              "properties": {
+                "sample_type": {
+                  "minLength": 1,
+                  "table": "protocol",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "sample_type"
+              ]
+            }
+          },
+          {
+            "if": {
+              "anyOf": [
+                {
+                  "properties": {
+                    "id": {
+                      "const": "master_measurement"
+                    }
+                  },
+                  "required": [
+                    "id"
+                  ]
+                },
+                {
+                  "properties": {
+                    "parent_id": {
+                      "anyOf": [
+                        {
+                          "const": "master_measurement"
+                        },
+                        {
+                          "contains": {
+                            "const": "master_measurement"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  "required": [
+                    "parent_id"
+                  ]
+                }
+              ]
+            },
+            "then": {
+              "properties": {
+                "instrument": {
+                  "minLength": 1,
+                  "table": "protocol",
+                  "type": "string"
+                },
+                "instrument_type": {
+                  "minLength": 1,
+                  "table": "protocol",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "instrument"
+              ]
+            }
+          },
+          {
+            "if": {
+              "anyOf": [
+                {
+                  "properties": {
+                    "id": {
+                      "const": "master_storage"
+                    }
+                  },
+                  "required": [
+                    "id"
+                  ]
+                },
+                {
+                  "properties": {
+                    "parent_id": {
+                      "anyOf": [
+                        {
+                          "const": "master_storage"
+                        },
+                        {
+                          "contains": {
+                            "const": "master_storage"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  "required": [
+                    "parent_id"
+                  ]
+                }
+              ]
+            },
+            "then": {
+              "properties": {
+                "location": {
+                  "minLength": 1,
+                  "table": "protocol",
+                  "type": "string"
+                },
+                "location%type": {
+                  "minLength": 1,
+                  "table": "protocol",
+                  "type": "string"
+                }
+              }
+            }
+          },
+          {
+            "if": {
+              "anyOf": [
+                {
+                  "properties": {
+                    "id": {
+                      "const": "media_storage"
+                    }
+                  },
+                  "required": [
+                    "id"
+                  ]
+                },
+                {
+                  "properties": {
+                    "parent_id": {
+                      "anyOf": [
+                        {
+                          "const": "media_storage"
+                        },
+                        {
+                          "contains": {
+                            "const": "media_storage"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  "required": [
+                    "parent_id"
+                  ]
+                }
+              ]
+            },
+            "then": {
+              "properties": {
+                "location": {
+                  "minLength": 1,
+                  "table": "protocol",
+                  "type": "string"
+                },
+                "location%type": {
+                  "minLength": 1,
+                  "table": "protocol",
+                  "type": "string"
+                },
+                "box_name": {
+                  "minLength": 1,
+                  "table": "protocol",
+                  "type": "string"
+                }
+              }
+            }
+          },
+          {
+            "if": {
+              "anyOf": [
+                {
+                  "properties": {
+                    "id": {
+                      "const": "mouse_tissue_collection"
+                    }
+                  },
+                  "required": [
+                    "id"
+                  ]
+                },
+                {
+                  "properties": {
+                    "parent_id": {
+                      "anyOf": [
+                        {
+                          "const": "mouse_tissue_collection"
+                        },
+                        {
+                          "contains": {
+                            "const": "mouse_tissue_collection"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  "required": [
+                    "parent_id"
+                  ]
+                }
+              ]
+            },
+            "then": {
+              "properties": {
+                "sample_type": {
+                  "minLength": 1,
+                  "table": "protocol",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "sample_type"
+              ]
+            }
+          },
+          {
+            "if": {
+              "anyOf": [
+                {
+                  "properties": {
+                    "id": {
+                      "const": "sample_storage"
+                    }
+                  },
+                  "required": [
+                    "id"
+                  ]
+                },
+                {
+                  "properties": {
+                    "parent_id": {
+                      "anyOf": [
+                        {
+                          "const": "sample_storage"
+                        },
+                        {
+                          "contains": {
+                            "const": "sample_storage"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  "required": [
+                    "parent_id"
+                  ]
+                }
+              ]
+            },
+            "then": {
+              "properties": {
+                "location": {
+                  "minLength": 1,
+                  "table": "protocol",
+                  "type": "string"
+                },
+                "location%type": {
+                  "minLength": 1,
+                  "table": "protocol",
+                  "type": "string"
+                },
+                "box_name": {
+                  "minLength": 1,
+                  "table": "protocol",
+                  "type": "string"
+                }
+              }
+            }
+          },
+          {
+            "if": {
+              "anyOf": [
+                {
+                  "properties": {
+                    "id": {
+                      "const": "tissue_histology"
+                    }
+                  },
+                  "required": [
+                    "id"
+                  ]
+                },
+                {
+                  "properties": {
+                    "parent_id": {
+                      "anyOf": [
+                        {
+                          "const": "tissue_histology"
+                        },
+                        {
+                          "contains": {
+                            "const": "tissue_histology"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  "required": [
+                    "parent_id"
+                  ]
+                }
+              ]
+            },
+            "then": {
+              "properties": {
+                "sample_type": {
+                  "minLength": 1,
+                  "table": "protocol",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "sample_type"
+              ]
+            }
+          },
+          {
+            "if": {
+              "anyOf": [
+                {
+                  "properties": {
+                    "id": {
+                      "const": "tissue_histology_storage"
+                    }
+                  },
+                  "required": [
+                    "id"
+                  ]
+                },
+                {
+                  "properties": {
+                    "parent_id": {
+                      "anyOf": [
+                        {
+                          "const": "tissue_histology_storage"
+                        },
+                        {
+                          "contains": {
+                            "const": "tissue_histology_storage"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  "required": [
+                    "parent_id"
+                  ]
+                }
+              ]
+            },
+            "then": {
+              "properties": {
+                "location": {
+                  "minLength": 1,
+                  "table": "protocol",
+                  "type": "string"
+                },
+                "location%type": {
+                  "minLength": 1,
+                  "table": "protocol",
+                  "type": "string"
+                },
+                "box_name": {
+                  "minLength": 1,
+                  "table": "protocol",
+                  "type": "string"
+                }
+              }
+            }
+          },
+          {
+            "if": {
+              "anyOf": [
+                {
+                  "properties": {
+                    "id": {
+                      "const": "tissue_media"
+                    }
+                  },
+                  "required": [
+                    "id"
+                  ]
+                },
+                {
+                  "properties": {
+                    "parent_id": {
+                      "anyOf": [
+                        {
+                          "const": "tissue_media"
+                        },
+                        {
+                          "contains": {
+                            "const": "tissue_media"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  "required": [
+                    "parent_id"
+                  ]
+                }
+              ]
+            },
+            "then": {
+              "properties": {
+                "sample_type": {
+                  "minLength": 1,
+                  "table": "protocol",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "sample_type"
+              ]
+            }
+          },
+          {
+            "if": {
+              "anyOf": [
+                {
+                  "properties": {
+                    "id": {
+                      "const": "tissue_slice_storage"
+                    }
+                  },
+                  "required": [
+                    "id"
+                  ]
+                },
+                {
+                  "properties": {
+                    "parent_id": {
+                      "anyOf": [
+                        {
+                          "const": "tissue_slice_storage"
+                        },
+                        {
+                          "contains": {
+                            "const": "tissue_slice_storage"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  "required": [
+                    "parent_id"
+                  ]
+                }
+              ]
+            },
+            "then": {
+              "properties": {
+                "location": {
+                  "minLength": 1,
+                  "table": "protocol",
+                  "type": "string"
+                },
+                "location%type": {
+                  "minLength": 1,
+                  "table": "protocol",
+                  "type": "string"
+                },
+                "box_name": {
+                  "minLength": 1,
+                  "table": "protocol",
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ]
+      }
+    },
+    "entity": {
+      "type": "object",
+      "minProperties": 1,
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "parent_id": {
+            "type": "string"
+          },
+          "project.id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "study.id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "protocol.id": {
+            "type": [
+              "string",
+              "array"
+            ],
+            "minItems": 1,
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "minLength": 1
+          },
+          "status": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "sample",
+              "subject"
+            ]
+          }
+        },
+        "required": [
+          "id",
+          "type",
+          "project.id",
+          "study.id",
+          "protocol.id"
+        ],
+        "if": {
+          "properties": {
+            "type": {
+              "const": "sample"
+            }
+          }
+        },
+        "then": {
+          "required": [
+            "parent_id"
+          ]
+        },
+        "allOf": [
+          {
+            "if": {
+              "properties": {
+                "protocol.id": {
+                  "anyOf": [
+                    {
+                      "const": "IC-FTMS_preparation"
+                    },
+                    {
+                      "contains": {
+                        "const": "IC-FTMS_preparation"
+                      }
+                    }
+                  ]
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "injection_volume": {
+                  "format": "numeric",
+                  "table": "entity",
+                  "type": "number"
+                },
+                "injection_volume%units": {
+                  "minLength": 1,
+                  "table": "entity",
+                  "type": "string"
+                },
+                "polar_split_ratio": {
+                  "format": "numeric",
+                  "table": "entity",
+                  "type": "number"
+                },
+                "reconstitution_volume": {
+                  "format": "numeric",
+                  "table": "entity",
+                  "type": "number"
+                },
+                "reconstitution_volume%units": {
+                  "minLength": 1,
+                  "table": "entity",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "polar_split_ratio",
+                "reconstitution_volume"
+              ]
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "protocol.id": {
+                  "anyOf": [
+                    {
+                      "const": "PDX_experiment"
+                    },
+                    {
+                      "contains": {
+                        "const": "PDX_experiment"
+                      }
+                    }
+                  ]
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "species": {
+                  "items": {
+                    "minLength": 1,
+                    "type": "string"
+                  },
+                  "minLength": 1,
+                  "table": "entity",
+                  "type": [
+                    "string",
+                    "array",
+                    "null"
+                  ]
+                },
+                "species_type": {
+                  "items": {
+                    "minLength": 1,
+                    "type": "string"
+                  },
+                  "minLength": 1,
+                  "table": "entity",
+                  "type": [
+                    "string",
+                    "array",
+                    "null"
+                  ]
+                },
+                "taxonomy_id": {
+                  "format": "numeric",
+                  "items": {
+                    "minLength": 1,
+                    "type": "string"
+                  },
+                  "table": "entity",
+                  "type": [
+                    "number",
+                    "array",
+                    "null"
+                  ]
+                },
+                "treatment": {
+                  "minLength": 1,
+                  "table": "entity",
+                  "type": "string"
+                },
+                "treatment_amount": {
+                  "format": "numeric",
+                  "table": "entity",
+                  "type": "number"
+                },
+                "treatment_amount%units": {
+                  "minLength": 1,
+                  "table": "entity",
+                  "type": "string"
+                },
+                "replicate": {
+                  "format": "numeric",
+                  "table": "entity",
+                  "type": "number"
+                },
+                "replicate%type": {
+                  "minLength": 1,
+                  "table": "entity",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "replicate"
+              ]
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "protocol.id": {
+                  "anyOf": [
+                    {
+                      "const": "PDX_tissue_collection"
+                    },
+                    {
+                      "contains": {
+                        "const": "PDX_tissue_collection"
+                      }
+                    }
+                  ]
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "extracted_tissue_type": {
+                  "minLength": 1,
+                  "table": "entity",
+                  "type": "string"
+                },
+                "extracted_tissue_weight": {
+                  "format": "numeric",
+                  "table": "entity",
+                  "type": "number"
+                },
+                "extracted_tissue_weight%units": {
+                  "minLength": 1,
+                  "table": "entity",
+                  "type": "string"
+                }
+              }
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "protocol.id": {
+                  "anyOf": [
+                    {
+                      "const": "acetone_extraction"
+                    },
+                    {
+                      "contains": {
+                        "const": "acetone_extraction"
+                      }
+                    }
+                  ]
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "replicate": {
+                  "format": "numeric",
+                  "table": "entity",
+                  "type": "number"
+                },
+                "replicate%type": {
+                  "minLength": 1,
+                  "table": "entity",
+                  "type": "string"
+                },
+                "weight": {
+                  "format": "numeric",
+                  "table": "entity",
+                  "type": "number"
+                },
+                "weight%units": {
+                  "minLength": 1,
+                  "table": "entity",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "weight",
+                "weight%units"
+              ]
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "protocol.id": {
+                  "anyOf": [
+                    {
+                      "const": "bulk_tissue"
+                    },
+                    {
+                      "contains": {
+                        "const": "bulk_tissue"
+                      }
+                    }
+                  ]
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "barcode": {
+                  "minLength": 1,
+                  "table": "entity",
+                  "type": "string"
+                },
+                "tissue_type": {
+                  "minLength": 1,
+                  "table": "entity",
+                  "type": "string"
+                }
+              }
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "protocol.id": {
+                  "anyOf": [
+                    {
+                      "const": "bulk_tissue_storage"
+                    },
+                    {
+                      "contains": {
+                        "const": "bulk_tissue_storage"
+                      }
+                    }
+                  ]
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "barcode": {
+                  "minLength": 1,
+                  "table": "entity",
+                  "type": "string"
+                }
+              }
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "protocol.id": {
+                  "anyOf": [
+                    {
+                      "const": "cancer_surgery"
+                    },
+                    {
+                      "contains": {
+                        "const": "cancer_surgery"
+                      }
+                    }
+                  ]
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "species": {
+                  "items": {
+                    "minLength": 1,
+                    "type": "string"
+                  },
+                  "minLength": 1,
+                  "table": "entity",
+                  "type": [
+                    "string",
+                    "array",
+                    "null"
+                  ]
+                },
+                "species_type": {
+                  "items": {
+                    "minLength": 1,
+                    "type": "string"
+                  },
+                  "minLength": 1,
+                  "table": "entity",
+                  "type": [
+                    "string",
+                    "array",
+                    "null"
+                  ]
+                },
+                "taxonomy_id": {
+                  "format": "numeric",
+                  "items": {
+                    "minLength": 1,
+                    "type": "string"
+                  },
+                  "table": "entity",
+                  "type": [
+                    "number",
+                    "array",
+                    "null"
+                  ]
+                },
+                "treatment": {
+                  "minLength": 1,
+                  "table": "entity",
+                  "type": "string"
+                },
+                "treatment_amount": {
+                  "format": "numeric",
+                  "table": "entity",
+                  "type": "number"
+                },
+                "treatment_amount%units": {
+                  "minLength": 1,
+                  "table": "entity",
+                  "type": "string"
+                }
+              }
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "protocol.id": {
+                  "anyOf": [
+                    {
+                      "const": "cell_culture_experiment"
+                    },
+                    {
+                      "contains": {
+                        "const": "cell_culture_experiment"
+                      }
+                    }
+                  ]
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "species": {
+                  "items": {
+                    "minLength": 1,
+                    "type": "string"
+                  },
+                  "minLength": 1,
+                  "table": "entity",
+                  "type": [
+                    "string",
+                    "array",
+                    "null"
+                  ]
+                },
+                "species_type": {
+                  "items": {
+                    "minLength": 1,
+                    "type": "string"
+                  },
+                  "minLength": 1,
+                  "table": "entity",
+                  "type": [
+                    "string",
+                    "array",
+                    "null"
+                  ]
+                },
+                "taxonomy_id": {
+                  "format": "numeric",
+                  "items": {
+                    "minLength": 1,
+                    "type": "string"
+                  },
+                  "table": "entity",
+                  "type": [
+                    "number",
+                    "array",
+                    "null"
+                  ]
+                },
+                "treatment": {
+                  "minLength": 1,
+                  "table": "entity",
+                  "type": "string"
+                },
+                "treatment_amount": {
+                  "format": "numeric",
+                  "table": "entity",
+                  "type": "number"
+                },
+                "treatment_amount%units": {
+                  "minLength": 1,
+                  "table": "entity",
+                  "type": "string"
+                },
+                "cell_line": {
+                  "minLength": 1,
+                  "table": "entity",
+                  "type": "string"
+                },
+                "cell_type": {
+                  "minLength": 1,
+                  "table": "entity",
+                  "type": "string"
+                },
+                "empty_plate_weight": {
+                  "format": "numeric",
+                  "table": "entity",
+                  "type": "number"
+                },
+                "empty_plate_weight%units": {
+                  "minLength": 1,
+                  "table": "entity",
+                  "type": "string"
+                },
+                "plate_with_media_and_subject_weight": {
+                  "format": "numeric",
+                  "table": "entity",
+                  "type": "number"
+                },
+                "plate_with_media_and_subject_weight%units": {
+                  "minLength": 1,
+                  "table": "entity",
+                  "type": "string"
+                },
+                "plate_with_media_weight": {
+                  "format": "numeric",
+                  "table": "entity",
+                  "type": "number"
+                },
+                "plate_with_media_weight%units": {
+                  "minLength": 1,
+                  "table": "entity",
+                  "type": "string"
+                },
+                "plate_with_subject_weight": {
+                  "format": "numeric",
+                  "table": "entity",
+                  "type": "number"
+                },
+                "plate_with_subject_weight%units": {
+                  "minLength": 1,
+                  "table": "entity",
+                  "type": "string"
+                },
+                "replicate": {
+                  "format": "numeric",
+                  "table": "entity",
+                  "type": "number"
+                },
+                "replicate%type": {
+                  "minLength": 1,
+                  "table": "entity",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "replicate"
+              ]
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "protocol.id": {
+                  "anyOf": [
+                    {
+                      "const": "cell_extraction"
+                    },
+                    {
+                      "contains": {
+                        "const": "cell_extraction"
+                      }
+                    }
+                  ]
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "cell_count": {
+                  "format": "numeric",
+                  "table": "entity",
+                  "type": "number"
+                },
+                "cell_type": {
+                  "minLength": 1,
+                  "table": "entity",
+                  "type": "string"
+                },
+                "description": {
+                  "minLength": 1,
+                  "table": "entity",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "cell_type"
+              ]
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "protocol.id": {
+                  "anyOf": [
+                    {
+                      "const": "cell_quench_collection"
+                    },
+                    {
+                      "contains": {
+                        "const": "cell_quench_collection"
+                      }
+                    }
+                  ]
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "cell_type": {
+                  "minLength": 1,
+                  "table": "entity",
+                  "type": "string"
+                }
+              }
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "protocol.id": {
+                  "anyOf": [
+                    {
+                      "const": "cells_media"
+                    },
+                    {
+                      "contains": {
+                        "const": "cells_media"
+                      }
+                    }
+                  ]
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "cell_type": {
+                  "minLength": 1,
+                  "table": "entity",
+                  "type": "string"
+                },
+                "time_point": {
+                  "format": "numeric",
+                  "table": "entity",
+                  "type": "number"
+                },
+                "time_point%units": {
+                  "minLength": 1,
+                  "table": "entity",
+                  "type": "string"
+                },
+                "total_media_weight": {
+                  "format": "numeric",
+                  "table": "entity",
+                  "type": "number"
+                },
+                "total_media_weight%units": {
+                  "minLength": 1,
+                  "table": "entity",
+                  "type": "string"
+                },
+                "wet_weight": {
+                  "format": "numeric",
+                  "table": "entity",
+                  "type": "number"
+                },
+                "wet_weight%units": {
+                  "minLength": 1,
+                  "table": "entity",
+                  "type": "string"
+                }
+              }
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "protocol.id": {
+                  "anyOf": [
+                    {
+                      "const": "image_storage"
+                    },
+                    {
+                      "contains": {
+                        "const": "image_storage"
+                      }
+                    }
+                  ]
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "filename": {
+                  "items": {
+                    "minLength": 1,
+                    "type": "string"
+                  },
+                  "minLength": 1,
+                  "table": "entity",
+                  "type": [
+                    "string",
+                    "array",
+                    "null"
+                  ]
+                }
+              },
+              "required": [
+                "filename"
+              ]
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "protocol.id": {
+                  "anyOf": [
+                    {
+                      "const": "lipid_extraction"
+                    },
+                    {
+                      "contains": {
+                        "const": "lipid_extraction"
+                      }
+                    }
+                  ]
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "replicate": {
+                  "format": "numeric",
+                  "table": "entity",
+                  "type": "number"
+                },
+                "replicate%type": {
+                  "minLength": 1,
+                  "table": "entity",
+                  "type": "string"
+                },
+                "weight": {
+                  "format": "numeric",
+                  "table": "entity",
+                  "type": "number"
+                },
+                "weight%units": {
+                  "minLength": 1,
+                  "table": "entity",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "weight",
+                "weight%units"
+              ]
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "protocol.id": {
+                  "anyOf": [
+                    {
+                      "const": "master_experiment"
+                    },
+                    {
+                      "contains": {
+                        "const": "master_experiment"
+                      }
+                    }
+                  ]
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "species": {
+                  "items": {
+                    "minLength": 1,
+                    "type": "string"
+                  },
+                  "minLength": 1,
+                  "table": "entity",
+                  "type": [
+                    "string",
+                    "array",
+                    "null"
+                  ]
+                },
+                "species_type": {
+                  "items": {
+                    "minLength": 1,
+                    "type": "string"
+                  },
+                  "minLength": 1,
+                  "table": "entity",
+                  "type": [
+                    "string",
+                    "array",
+                    "null"
+                  ]
+                },
+                "taxonomy_id": {
+                  "format": "numeric",
+                  "items": {
+                    "minLength": 1,
+                    "type": "string"
+                  },
+                  "table": "entity",
+                  "type": [
+                    "number",
+                    "array",
+                    "null"
+                  ]
+                },
+                "treatment": {
+                  "minLength": 1,
+                  "table": "entity",
+                  "type": "string"
+                },
+                "treatment_amount": {
+                  "format": "numeric",
+                  "table": "entity",
+                  "type": "number"
+                },
+                "treatment_amount%units": {
+                  "minLength": 1,
+                  "table": "entity",
+                  "type": "string"
+                }
+              }
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "protocol.id": {
+                  "anyOf": [
+                    {
+                      "const": "mouse_experiment"
+                    },
+                    {
+                      "contains": {
+                        "const": "mouse_experiment"
+                      }
+                    }
+                  ]
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "species": {
+                  "items": {
+                    "minLength": 1,
+                    "type": "string"
+                  },
+                  "minLength": 1,
+                  "table": "entity",
+                  "type": [
+                    "string",
+                    "array",
+                    "null"
+                  ]
+                },
+                "species_type": {
+                  "items": {
+                    "minLength": 1,
+                    "type": "string"
+                  },
+                  "minLength": 1,
+                  "table": "entity",
+                  "type": [
+                    "string",
+                    "array",
+                    "null"
+                  ]
+                },
+                "taxonomy_id": {
+                  "format": "numeric",
+                  "items": {
+                    "minLength": 1,
+                    "type": "string"
+                  },
+                  "table": "entity",
+                  "type": [
+                    "number",
+                    "array",
+                    "null"
+                  ]
+                },
+                "treatment": {
+                  "minLength": 1,
+                  "table": "entity",
+                  "type": "string"
+                },
+                "treatment_amount": {
+                  "format": "numeric",
+                  "table": "entity",
+                  "type": "number"
+                },
+                "treatment_amount%units": {
+                  "minLength": 1,
+                  "table": "entity",
+                  "type": "string"
+                },
+                "replicate": {
+                  "format": "numeric",
+                  "table": "entity",
+                  "type": "number"
+                },
+                "replicate%type": {
+                  "minLength": 1,
+                  "table": "entity",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "replicate"
+              ]
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "protocol.id": {
+                  "anyOf": [
+                    {
+                      "const": "mouse_tissue_collection"
+                    },
+                    {
+                      "contains": {
+                        "const": "mouse_tissue_collection"
+                      }
+                    }
+                  ]
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "extracted_tissue_type": {
+                  "minLength": 1,
+                  "table": "entity",
+                  "type": "string"
+                },
+                "extracted_tissue_weight": {
+                  "format": "numeric",
+                  "table": "entity",
+                  "type": "number"
+                },
+                "extracted_tissue_weight%units": {
+                  "minLength": 1,
+                  "table": "entity",
+                  "type": "string"
+                }
+              }
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "protocol.id": {
+                  "anyOf": [
+                    {
+                      "const": "polar_extraction"
+                    },
+                    {
+                      "contains": {
+                        "const": "polar_extraction"
+                      }
+                    }
+                  ]
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "replicate": {
+                  "format": "numeric",
+                  "table": "entity",
+                  "type": "number"
+                },
+                "replicate%type": {
+                  "minLength": 1,
+                  "table": "entity",
+                  "type": "string"
+                },
+                "sample_split_ratio": {
+                  "format": "numeric",
+                  "table": "entity",
+                  "type": "number"
+                },
+                "weight": {
+                  "format": "numeric",
+                  "table": "entity",
+                  "type": "number"
+                },
+                "weight%units": {
+                  "minLength": 1,
+                  "table": "entity",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "weight",
+                "weight%units"
+              ]
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "protocol.id": {
+                  "anyOf": [
+                    {
+                      "const": "polar_preparation"
+                    },
+                    {
+                      "contains": {
+                        "const": "polar_preparation"
+                      }
+                    }
+                  ]
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "replicate": {
+                  "format": "numeric",
+                  "table": "entity",
+                  "type": "number"
+                },
+                "replicate%type": {
+                  "minLength": 1,
+                  "table": "entity",
+                  "type": "string"
+                },
+                "weight": {
+                  "format": "numeric",
+                  "table": "entity",
+                  "type": "number"
+                },
+                "weight%units": {
+                  "minLength": 1,
+                  "table": "entity",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "weight",
+                "weight%units"
+              ]
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "protocol.id": {
+                  "anyOf": [
+                    {
+                      "const": "protein_extraction"
+                    },
+                    {
+                      "contains": {
+                        "const": "protein_extraction"
+                      }
+                    }
+                  ]
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "dry_residue": {
+                  "format": "numeric",
+                  "table": "entity",
+                  "type": "number"
+                },
+                "dry_residue%units": {
+                  "minLength": 1,
+                  "table": "entity",
+                  "type": "string"
+                },
+                "dry_weight": {
+                  "format": "numeric",
+                  "table": "entity",
+                  "type": "number"
+                },
+                "dry_weight%units": {
+                  "minLength": 1,
+                  "table": "entity",
+                  "type": "string"
+                },
+                "protein_weight": {
+                  "format": "numeric",
+                  "table": "entity",
+                  "type": "number"
+                },
+                "protein_weight%units": {
+                  "minLength": 1,
+                  "table": "entity",
+                  "type": "string"
+                },
+                "weight": {
+                  "format": "numeric",
+                  "table": "entity",
+                  "type": "number"
+                },
+                "weight%units": {
+                  "minLength": 1,
+                  "table": "entity",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "protein_weight",
+                "protein_weight%units"
+              ]
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "protocol.id": {
+                  "anyOf": [
+                    {
+                      "const": "tissue_media"
+                    },
+                    {
+                      "contains": {
+                        "const": "tissue_media"
+                      }
+                    }
+                  ]
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "time_point": {
+                  "format": "numeric",
+                  "table": "entity",
+                  "type": "number"
+                },
+                "time_point%units": {
+                  "minLength": 1,
+                  "table": "entity",
+                  "type": "string"
+                },
+                "total_media_weight": {
+                  "format": "numeric",
+                  "table": "entity",
+                  "type": "number"
+                },
+                "total_media_weight%units": {
+                  "minLength": 1,
+                  "table": "entity",
+                  "type": "string"
+                },
+                "wet_weight": {
+                  "format": "numeric",
+                  "table": "entity",
+                  "type": "number"
+                },
+                "wet_weight%units": {
+                  "minLength": 1,
+                  "table": "entity",
+                  "type": "string"
+                }
+              }
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "protocol.id": {
+                  "anyOf": [
+                    {
+                      "const": "tissue_slice_experiment"
+                    },
+                    {
+                      "contains": {
+                        "const": "tissue_slice_experiment"
+                      }
+                    }
+                  ]
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "species": {
+                  "items": {
+                    "minLength": 1,
+                    "type": "string"
+                  },
+                  "minLength": 1,
+                  "table": "entity",
+                  "type": [
+                    "string",
+                    "array",
+                    "null"
+                  ]
+                },
+                "species_type": {
+                  "items": {
+                    "minLength": 1,
+                    "type": "string"
+                  },
+                  "minLength": 1,
+                  "table": "entity",
+                  "type": [
+                    "string",
+                    "array",
+                    "null"
+                  ]
+                },
+                "taxonomy_id": {
+                  "format": "numeric",
+                  "items": {
+                    "minLength": 1,
+                    "type": "string"
+                  },
+                  "table": "entity",
+                  "type": [
+                    "number",
+                    "array",
+                    "null"
+                  ]
+                },
+                "treatment": {
+                  "minLength": 1,
+                  "table": "entity",
+                  "type": "string"
+                },
+                "treatment_amount": {
+                  "format": "numeric",
+                  "table": "entity",
+                  "type": "number"
+                },
+                "treatment_amount%units": {
+                  "minLength": 1,
+                  "table": "entity",
+                  "type": "string"
+                },
+                "empty_flask_weight": {
+                  "format": "numeric",
+                  "table": "entity",
+                  "type": "number"
+                },
+                "empty_flask_weight%units": {
+                  "minLength": 1,
+                  "table": "entity",
+                  "type": "string"
+                },
+                "flask_with_media_and_subject_weight": {
+                  "format": "numeric",
+                  "table": "entity",
+                  "type": "number"
+                },
+                "flask_with_media_and_subject_weight%units": {
+                  "minLength": 1,
+                  "table": "entity",
+                  "type": "string"
+                },
+                "flask_with_media_weight": {
+                  "format": "numeric",
+                  "table": "entity",
+                  "type": "number"
+                },
+                "replicate": {
+                  "format": "numeric",
+                  "table": "entity",
+                  "type": "number"
+                },
+                "replicate%type": {
+                  "minLength": 1,
+                  "table": "entity",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "flask_with_media_weight",
+                "replicate"
+              ]
+            }
+          }
+        ]
+      }
+    },
+    "measurement": {
+      "type": "object",
+      "minProperties": 1,
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "entity.id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "protocol.id": {
+            "type": [
+              "string",
+              "array"
+            ],
+            "minItems": 1,
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "minLength": 1
+          }
+        },
+        "required": [
+          "id",
+          "entity.id",
+          "protocol.id"
+        ],
+        "allOf": [
+          {
+            "if": {
+              "properties": {
+                "protocol.id": {
+                  "anyOf": [
+                    {
+                      "const": "Chromatography_MS_measurement"
+                    },
+                    {
+                      "contains": {
+                        "const": "Chromatography_MS_measurement"
+                      }
+                    }
+                  ]
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "entity.id": {
+                  "minLength": 1,
+                  "table": "measurement",
+                  "type": "string"
+                },
+                "assignment": {
+                  "minLength": 1,
+                  "table": "measurement",
+                  "type": "string"
+                },
+                "assignment%method": {
+                  "minLength": 1,
+                  "table": "measurement",
+                  "type": "string"
+                },
+                "compound": {
+                  "minLength": 1,
+                  "table": "measurement",
+                  "type": "string"
+                },
+                "concentration": {
+                  "format": "numeric",
+                  "table": "measurement",
+                  "type": "number"
+                },
+                "concentration%type": {
+                  "minLength": 1,
+                  "table": "measurement",
+                  "type": "string"
+                },
+                "concentration%units": {
+                  "minLength": 1,
+                  "table": "measurement",
+                  "type": "string"
+                },
+                "corrected_raw_intensity": {
+                  "format": "numeric",
+                  "table": "measurement",
+                  "type": "number"
+                },
+                "corrected_raw_intensity%type": {
+                  "minLength": 1,
+                  "table": "measurement",
+                  "type": "string"
+                },
+                "formula": {
+                  "minLength": 1,
+                  "table": "measurement",
+                  "type": "string"
+                },
+                "intensity": {
+                  "format": "numeric",
+                  "table": "measurement",
+                  "type": "number"
+                },
+                "intensity%type": {
+                  "minLength": 1,
+                  "table": "measurement",
+                  "type": "string"
+                },
+                "intensity%units": {
+                  "minLength": 1,
+                  "table": "measurement",
+                  "type": "string"
+                },
+                "isotopologue": {
+                  "minLength": 1,
+                  "table": "measurement",
+                  "type": "string"
+                },
+                "isotopologue%type": {
+                  "minLength": 1,
+                  "table": "measurement",
+                  "type": "string"
+                },
+                "normalized_concentration": {
+                  "format": "numeric",
+                  "table": "measurement",
+                  "type": "number"
+                },
+                "normalized_concentration%type": {
+                  "minLength": 1,
+                  "table": "measurement",
+                  "type": "string"
+                },
+                "normalized_concentration%units": {
+                  "minLength": 1,
+                  "table": "measurement",
+                  "type": "string"
+                },
+                "raw_intensity": {
+                  "format": "numeric",
+                  "table": "measurement",
+                  "type": "number"
+                },
+                "raw_intensity%type": {
+                  "minLength": 1,
+                  "table": "measurement",
+                  "type": "string"
+                },
+                "retention_time": {
+                  "format": "numeric",
+                  "table": "measurement",
+                  "type": "number"
+                },
+                "retention_time%units": {
+                  "minLength": 1,
+                  "table": "measurement",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "entity.id",
+                "assignment",
+                "assignment%method",
+                "concentration",
+                "corrected_raw_intensity",
+                "intensity",
+                "normalized_concentration",
+                "raw_intensity"
+              ]
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "protocol.id": {
+                  "anyOf": [
+                    {
+                      "const": "DI-FTMS_measurement"
+                    },
+                    {
+                      "contains": {
+                        "const": "DI-FTMS_measurement"
+                      }
+                    }
+                  ]
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "entity.id": {
+                  "minLength": 1,
+                  "table": "measurement",
+                  "type": "string"
+                },
+                "assignment": {
+                  "minLength": 1,
+                  "table": "measurement",
+                  "type": "string"
+                },
+                "assignment%method": {
+                  "minLength": 1,
+                  "table": "measurement",
+                  "type": "string"
+                },
+                "compound": {
+                  "minLength": 1,
+                  "table": "measurement",
+                  "type": "string"
+                },
+                "concentration": {
+                  "format": "numeric",
+                  "table": "measurement",
+                  "type": "number"
+                },
+                "concentration%type": {
+                  "minLength": 1,
+                  "table": "measurement",
+                  "type": "string"
+                },
+                "concentration%units": {
+                  "minLength": 1,
+                  "table": "measurement",
+                  "type": "string"
+                },
+                "corrected_raw_intensity": {
+                  "format": "numeric",
+                  "table": "measurement",
+                  "type": "number"
+                },
+                "corrected_raw_intensity%type": {
+                  "minLength": 1,
+                  "table": "measurement",
+                  "type": "string"
+                },
+                "formula": {
+                  "minLength": 1,
+                  "table": "measurement",
+                  "type": "string"
+                },
+                "intensity": {
+                  "format": "numeric",
+                  "table": "measurement",
+                  "type": "number"
+                },
+                "intensity%type": {
+                  "minLength": 1,
+                  "table": "measurement",
+                  "type": "string"
+                },
+                "intensity%units": {
+                  "minLength": 1,
+                  "table": "measurement",
+                  "type": "string"
+                },
+                "isotopologue": {
+                  "minLength": 1,
+                  "table": "measurement",
+                  "type": "string"
+                },
+                "isotopologue%type": {
+                  "minLength": 1,
+                  "table": "measurement",
+                  "type": "string"
+                },
+                "normalized_concentration": {
+                  "format": "numeric",
+                  "table": "measurement",
+                  "type": "number"
+                },
+                "normalized_concentration%type": {
+                  "minLength": 1,
+                  "table": "measurement",
+                  "type": "string"
+                },
+                "normalized_concentration%units": {
+                  "minLength": 1,
+                  "table": "measurement",
+                  "type": "string"
+                },
+                "raw_intensity": {
+                  "format": "numeric",
+                  "table": "measurement",
+                  "type": "number"
+                },
+                "raw_intensity%type": {
+                  "minLength": 1,
+                  "table": "measurement",
+                  "type": "string"
+                },
+                "retention_time": {
+                  "format": "numeric",
+                  "table": "measurement",
+                  "type": "number"
+                },
+                "retention_time%units": {
+                  "minLength": 1,
+                  "table": "measurement",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "entity.id",
+                "assignment",
+                "assignment%method",
+                "concentration",
+                "corrected_raw_intensity",
+                "intensity",
+                "normalized_concentration",
+                "raw_intensity"
+              ]
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "protocol.id": {
+                  "anyOf": [
+                    {
+                      "const": "GCMS_measurement"
+                    },
+                    {
+                      "contains": {
+                        "const": "GCMS_measurement"
+                      }
+                    }
+                  ]
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "entity.id": {
+                  "minLength": 1,
+                  "table": "measurement",
+                  "type": "string"
+                },
+                "assignment": {
+                  "minLength": 1,
+                  "table": "measurement",
+                  "type": "string"
+                },
+                "assignment%method": {
+                  "minLength": 1,
+                  "table": "measurement",
+                  "type": "string"
+                },
+                "compound": {
+                  "minLength": 1,
+                  "table": "measurement",
+                  "type": "string"
+                },
+                "concentration": {
+                  "format": "numeric",
+                  "table": "measurement",
+                  "type": "number"
+                },
+                "concentration%type": {
+                  "minLength": 1,
+                  "table": "measurement",
+                  "type": "string"
+                },
+                "concentration%units": {
+                  "minLength": 1,
+                  "table": "measurement",
+                  "type": "string"
+                },
+                "corrected_raw_intensity": {
+                  "format": "numeric",
+                  "table": "measurement",
+                  "type": "number"
+                },
+                "corrected_raw_intensity%type": {
+                  "minLength": 1,
+                  "table": "measurement",
+                  "type": "string"
+                },
+                "formula": {
+                  "minLength": 1,
+                  "table": "measurement",
+                  "type": "string"
+                },
+                "intensity": {
+                  "format": "numeric",
+                  "table": "measurement",
+                  "type": "number"
+                },
+                "intensity%type": {
+                  "minLength": 1,
+                  "table": "measurement",
+                  "type": "string"
+                },
+                "intensity%units": {
+                  "minLength": 1,
+                  "table": "measurement",
+                  "type": "string"
+                },
+                "isotopologue": {
+                  "minLength": 1,
+                  "table": "measurement",
+                  "type": "string"
+                },
+                "isotopologue%type": {
+                  "minLength": 1,
+                  "table": "measurement",
+                  "type": "string"
+                },
+                "normalized_concentration": {
+                  "format": "numeric",
+                  "table": "measurement",
+                  "type": "number"
+                },
+                "normalized_concentration%type": {
+                  "minLength": 1,
+                  "table": "measurement",
+                  "type": "string"
+                },
+                "normalized_concentration%units": {
+                  "minLength": 1,
+                  "table": "measurement",
+                  "type": "string"
+                },
+                "raw_intensity": {
+                  "format": "numeric",
+                  "table": "measurement",
+                  "type": "number"
+                },
+                "raw_intensity%type": {
+                  "minLength": 1,
+                  "table": "measurement",
+                  "type": "string"
+                },
+                "retention_time": {
+                  "format": "numeric",
+                  "table": "measurement",
+                  "type": "number"
+                },
+                "retention_time%units": {
+                  "minLength": 1,
+                  "table": "measurement",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "entity.id",
+                "assignment",
+                "assignment%method",
+                "concentration",
+                "corrected_raw_intensity",
+                "intensity",
+                "normalized_concentration",
+                "raw_intensity"
+              ]
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "protocol.id": {
+                  "anyOf": [
+                    {
+                      "const": "IC-FTMS_measurement"
+                    },
+                    {
+                      "contains": {
+                        "const": "IC-FTMS_measurement"
+                      }
+                    }
+                  ]
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "entity.id": {
+                  "minLength": 1,
+                  "table": "measurement",
+                  "type": "string"
+                },
+                "assignment": {
+                  "minLength": 1,
+                  "table": "measurement",
+                  "type": "string"
+                },
+                "assignment%method": {
+                  "minLength": 1,
+                  "table": "measurement",
+                  "type": "string"
+                },
+                "compound": {
+                  "minLength": 1,
+                  "table": "measurement",
+                  "type": "string"
+                },
+                "concentration": {
+                  "format": "numeric",
+                  "table": "measurement",
+                  "type": "number"
+                },
+                "concentration%type": {
+                  "minLength": 1,
+                  "table": "measurement",
+                  "type": "string"
+                },
+                "concentration%units": {
+                  "minLength": 1,
+                  "table": "measurement",
+                  "type": "string"
+                },
+                "corrected_raw_intensity": {
+                  "format": "numeric",
+                  "table": "measurement",
+                  "type": "number"
+                },
+                "corrected_raw_intensity%type": {
+                  "minLength": 1,
+                  "table": "measurement",
+                  "type": "string"
+                },
+                "formula": {
+                  "minLength": 1,
+                  "table": "measurement",
+                  "type": "string"
+                },
+                "intensity": {
+                  "format": "numeric",
+                  "table": "measurement",
+                  "type": "number"
+                },
+                "intensity%type": {
+                  "minLength": 1,
+                  "table": "measurement",
+                  "type": "string"
+                },
+                "intensity%units": {
+                  "minLength": 1,
+                  "table": "measurement",
+                  "type": "string"
+                },
+                "isotopologue": {
+                  "minLength": 1,
+                  "table": "measurement",
+                  "type": "string"
+                },
+                "isotopologue%type": {
+                  "minLength": 1,
+                  "table": "measurement",
+                  "type": "string"
+                },
+                "normalized_concentration": {
+                  "format": "numeric",
+                  "table": "measurement",
+                  "type": "number"
+                },
+                "normalized_concentration%type": {
+                  "minLength": 1,
+                  "table": "measurement",
+                  "type": "string"
+                },
+                "normalized_concentration%units": {
+                  "minLength": 1,
+                  "table": "measurement",
+                  "type": "string"
+                },
+                "raw_intensity": {
+                  "format": "numeric",
+                  "table": "measurement",
+                  "type": "number"
+                },
+                "raw_intensity%type": {
+                  "minLength": 1,
+                  "table": "measurement",
+                  "type": "string"
+                },
+                "retention_time": {
+                  "format": "numeric",
+                  "table": "measurement",
+                  "type": "number"
+                },
+                "retention_time%units": {
+                  "minLength": 1,
+                  "table": "measurement",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "entity.id",
+                "assignment",
+                "assignment%method",
+                "concentration",
+                "corrected_raw_intensity",
+                "intensity",
+                "normalized_concentration",
+                "raw_intensity"
+              ]
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "protocol.id": {
+                  "anyOf": [
+                    {
+                      "const": "MS_measurement"
+                    },
+                    {
+                      "contains": {
+                        "const": "MS_measurement"
+                      }
+                    }
+                  ]
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "entity.id": {
+                  "minLength": 1,
+                  "table": "measurement",
+                  "type": "string"
+                },
+                "assignment": {
+                  "minLength": 1,
+                  "table": "measurement",
+                  "type": "string"
+                },
+                "assignment%method": {
+                  "minLength": 1,
+                  "table": "measurement",
+                  "type": "string"
+                },
+                "compound": {
+                  "minLength": 1,
+                  "table": "measurement",
+                  "type": "string"
+                },
+                "concentration": {
+                  "format": "numeric",
+                  "table": "measurement",
+                  "type": "number"
+                },
+                "concentration%type": {
+                  "minLength": 1,
+                  "table": "measurement",
+                  "type": "string"
+                },
+                "concentration%units": {
+                  "minLength": 1,
+                  "table": "measurement",
+                  "type": "string"
+                },
+                "corrected_raw_intensity": {
+                  "format": "numeric",
+                  "table": "measurement",
+                  "type": "number"
+                },
+                "corrected_raw_intensity%type": {
+                  "minLength": 1,
+                  "table": "measurement",
+                  "type": "string"
+                },
+                "formula": {
+                  "minLength": 1,
+                  "table": "measurement",
+                  "type": "string"
+                },
+                "intensity": {
+                  "format": "numeric",
+                  "table": "measurement",
+                  "type": "number"
+                },
+                "intensity%type": {
+                  "minLength": 1,
+                  "table": "measurement",
+                  "type": "string"
+                },
+                "intensity%units": {
+                  "minLength": 1,
+                  "table": "measurement",
+                  "type": "string"
+                },
+                "isotopologue": {
+                  "minLength": 1,
+                  "table": "measurement",
+                  "type": "string"
+                },
+                "isotopologue%type": {
+                  "minLength": 1,
+                  "table": "measurement",
+                  "type": "string"
+                },
+                "normalized_concentration": {
+                  "format": "numeric",
+                  "table": "measurement",
+                  "type": "number"
+                },
+                "normalized_concentration%type": {
+                  "minLength": 1,
+                  "table": "measurement",
+                  "type": "string"
+                },
+                "normalized_concentration%units": {
+                  "minLength": 1,
+                  "table": "measurement",
+                  "type": "string"
+                },
+                "raw_intensity": {
+                  "format": "numeric",
+                  "table": "measurement",
+                  "type": "number"
+                },
+                "raw_intensity%type": {
+                  "minLength": 1,
+                  "table": "measurement",
+                  "type": "string"
+                },
+                "retention_time": {
+                  "format": "numeric",
+                  "table": "measurement",
+                  "type": "number"
+                },
+                "retention_time%units": {
+                  "minLength": 1,
+                  "table": "measurement",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "entity.id",
+                "assignment",
+                "assignment%method",
+                "concentration",
+                "corrected_raw_intensity",
+                "intensity",
+                "normalized_concentration",
+                "raw_intensity"
+              ]
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "protocol.id": {
+                  "anyOf": [
+                    {
+                      "const": "NMR_measurement"
+                    },
+                    {
+                      "contains": {
+                        "const": "NMR_measurement"
+                      }
+                    }
+                  ]
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "entity.id": {
+                  "minLength": 1,
+                  "table": "measurement",
+                  "type": "string"
+                },
+                "assignment": {
+                  "minLength": 1,
+                  "table": "measurement",
+                  "type": "string"
+                },
+                "base_inchi": {
+                  "items": {
+                    "minLength": 1,
+                    "type": "string"
+                  },
+                  "minLength": 1,
+                  "table": "measurement",
+                  "type": [
+                    "string",
+                    "array",
+                    "null"
+                  ]
+                },
+                "chemical_shift": {
+                  "format": "numeric",
+                  "table": "measurement",
+                  "type": "number"
+                },
+                "intensity": {
+                  "format": "numeric",
+                  "table": "measurement",
+                  "type": "number"
+                },
+                "intensity%type": {
+                  "minLength": 1,
+                  "table": "measurement",
+                  "type": "string"
+                },
+                "isotopic_inchi": {
+                  "items": {
+                    "minLength": 1,
+                    "type": "string"
+                  },
+                  "minLength": 1,
+                  "table": "measurement",
+                  "type": [
+                    "string",
+                    "array",
+                    "null"
+                  ]
+                },
+                "peak_area": {
+                  "format": "numeric",
+                  "table": "measurement",
+                  "type": "number"
+                },
+                "peak_description": {
+                  "items": {
+                    "minLength": 1,
+                    "type": "string"
+                  },
+                  "minLength": 1,
+                  "table": "measurement",
+                  "type": [
+                    "string",
+                    "array",
+                    "null"
+                  ]
+                },
+                "peak_height": {
+                  "format": "numeric",
+                  "table": "measurement",
+                  "type": "number"
+                },
+                "peak_pattern": {
+                  "minLength": 1,
+                  "table": "measurement",
+                  "type": "string"
+                },
+                "peak_width": {
+                  "format": "numeric",
+                  "table": "measurement",
+                  "type": "number"
+                },
+                "proton_count": {
+                  "format": "numeric",
+                  "table": "measurement",
+                  "type": "number"
+                },
+                "representative_inchi": {
+                  "items": {
+                    "minLength": 1,
+                    "type": "string"
+                  },
+                  "minLength": 1,
+                  "table": "measurement",
+                  "type": [
+                    "string",
+                    "array",
+                    "null"
+                  ]
+                },
+                "resonance_assignment": {
+                  "minLength": 1,
+                  "table": "measurement",
+                  "type": "string"
+                },
+                "transient_peak": {
+                  "minLength": 1,
+                  "table": "measurement",
+                  "type": "string"
+                },
+                "transient_peak%type": {
+                  "minLength": 1,
+                  "table": "measurement",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "entity.id",
+                "assignment",
+                "base_inchi",
+                "chemical_shift",
+                "intensity",
+                "intensity%type",
+                "isotopic_inchi",
+                "peak_area",
+                "peak_description",
+                "peak_height",
+                "peak_width",
+                "proton_count",
+                "representative_inchi",
+                "resonance_assignment",
+                "transient_peak",
+                "transient_peak%type"
+              ]
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "protocol.id": {
+                  "anyOf": [
+                    {
+                      "const": "master_measurement"
+                    },
+                    {
+                      "contains": {
+                        "const": "master_measurement"
+                      }
+                    }
+                  ]
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "entity.id": {
+                  "minLength": 1,
+                  "table": "measurement",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "entity.id"
+              ]
+            }
+          }
+        ]
+      }
+    },
+    "factor": {
+      "type": "object",
+      "minProperties": 1,
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "field": {
+            "type": "string",
+            "minLength": 1
+          },
+          "project.id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "study.id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "allowed_values": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        },
+        "required": [
+          "id",
+          "field",
+          "project.id",
+          "study.id",
+          "allowed_values"
+        ]
+      }
+    },
+    "project": {
+      "type": "object",
+      "minProperties": 1,
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "PI_email": {
+            "type": "string",
+            "format": "email"
+          },
+          "PI_first_name": {
+            "type": "string",
+            "minLength": 1
+          },
+          "PI_last_name": {
+            "type": "string",
+            "minLength": 1
+          },
+          "address": {
+            "type": "string",
+            "minLength": 1
+          },
+          "department": {
+            "type": "string",
+            "minLength": 1
+          },
+          "phone": {
+            "type": "string",
+            "minLength": 1
+          },
+          "title": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "id",
+          "PI_email",
+          "PI_first_name",
+          "PI_last_name",
+          "address",
+          "department",
+          "phone",
+          "title"
+        ]
+      }
+    },
+    "study": {
+      "type": "object",
+      "minProperties": 1,
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "PI_email": {
+            "type": "string",
+            "format": "email"
+          },
+          "PI_first_name": {
+            "type": "string",
+            "minLength": 1
+          },
+          "PI_last_name": {
+            "type": "string",
+            "minLength": 1
+          },
+          "address": {
+            "type": "string",
+            "minLength": 1
+          },
+          "department": {
+            "type": "string",
+            "minLength": 1
+          },
+          "phone": {
+            "type": "string",
+            "minLength": 1
+          },
+          "title": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "id",
+          "PI_email",
+          "PI_first_name",
+          "PI_last_name",
+          "address",
+          "department",
+          "phone",
+          "title"
+        ]
+      }
+    }
+  },
+  "required": [
+    "entity",
+    "protocol",
+    "measurement",
+    "factor",
+    "project",
+    "study"
+  ]
+}

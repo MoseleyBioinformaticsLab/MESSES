@@ -1,0 +1,222 @@
+{
+  "type": "object",
+  "properties": {
+    "protocol": {
+      "type": "object",
+      "minProperties": 1,
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "parent_id": {
+            "type": "string"
+          },
+          "parent_protocol": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "sample_prep",
+              "treatment",
+              "collection",
+              "storage",
+              "measurement"
+            ]
+          },
+          "description": {
+            "type": "string"
+          },
+          "filename": {
+            "type": [
+              "string",
+              "array"
+            ],
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        },
+        "required": [
+          "id",
+          "type"
+        ]
+      }
+    },
+    "entity": {
+      "type": "object",
+      "minProperties": 1,
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "parent_id": {
+            "type": "string"
+          },
+          "protocol.id": {
+            "type": [
+              "string",
+              "array"
+            ],
+            "minItems": 1,
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "minLength": 1
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "sample",
+              "subject"
+            ]
+          }
+        },
+        "required": [
+          "id",
+          "type",
+          "protocol.id"
+        ],
+        "if": {
+          "properties": {
+            "type": {
+              "const": "sample"
+            }
+          },
+          "required": [
+            "type"
+          ]
+        },
+        "then": {
+          "required": [
+            "parent_id"
+          ]
+        }
+      }
+    },
+    "measurement": {
+      "type": "object",
+      "minProperties": 1,
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "parent_id": {
+            "type": "string"
+          },
+          "entity.id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "protocol.id": {
+            "type": [
+              "string",
+              "array"
+            ],
+            "minItems": 1,
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "minLength": 1
+          }
+        },
+        "required": [
+          "id",
+          "entity.id",
+          "protocol.id"
+        ]
+      }
+    },
+    "factor": {
+      "type": "object",
+      "minProperties": 1,
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "parent_id": {
+            "type": "string"
+          },
+          "field": {
+            "type": "string",
+            "minLength": 1
+          },
+          "allowed_values": {
+            "type": "array",
+            "minItems": 2,
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        },
+        "required": [
+          "id",
+          "field",
+          "allowed_values"
+        ]
+      }
+    },
+    "project": {
+      "type": "object",
+      "minProperties": 1,
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "parent_id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id"
+        ]
+      }
+    },
+    "study": {
+      "type": "object",
+      "minProperties": 1,
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "parent_id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id"
+        ]
+      }
+    }
+  },
+  "required": [
+    "entity",
+    "protocol",
+    "measurement",
+    "factor",
+    "project",
+    "study"
+  ]
+}
