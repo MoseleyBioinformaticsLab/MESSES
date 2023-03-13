@@ -25,8 +25,8 @@ Usage
 Validate
 ~~~~~~~~
 The validate command of MESSES supports validating JSON data. This is done largely 
-through utilizing `JSON Schema <https://json-schema.org/understanding-json-schema/>`_, 
-but validation beyond the capabilities of JSON Schema is also done. By default, 
+through utilizing `JSON Schema <https://json-schema.org/understanding-json-schema/>`_ (`jsonschema <https://pypi.org/project/jsonschema/>`_), 
+but validation beyond the capabilities of JSON Schema (`jsonschema <https://pypi.org/project/jsonschema/>`_) is also done. By default, 
 JSON files are validated against the :doc:`experiment_description_schema`, but this 
 can be turned off with options. Users can also provide additional validation in 
 the form of their own JSON schema and a :doc:`protocol_dependent_schema`. More details 

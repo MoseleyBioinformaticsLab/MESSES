@@ -20,3 +20,4 @@ coverage.xml
 *.xlsx
 *.json
 src/messes/_version.py
+*.png

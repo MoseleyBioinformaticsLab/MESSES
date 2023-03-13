@@ -39,6 +39,8 @@ Add a "exact_assign" tag to modification tags that keeps the field type (list vs
 
 Add an option to not sort JSON output keys.
 
+Add a way to filter the tables and records. This could probbaly be done with modification tags.
+
 
 Possible Improvements to Validate
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

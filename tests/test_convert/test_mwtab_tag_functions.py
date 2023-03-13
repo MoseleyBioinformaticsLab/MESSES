@@ -8,6 +8,7 @@ import json
 import os
 import pathlib
 import copy
+import operator
 
 from contextlib import nullcontext as does_not_raise
 
@@ -30,6 +31,23 @@ os.chdir(cwd)
 @pytest.fixture
 def mwtab_json():
     return test_mwtab_json
+
+
+def test_ss_factors_are_unique(mwtab_json, capsys):
+    """Test that generated ss_factors are unique."""
+    working_json = copy.deepcopy(mwtab_json)
+    
+    with does_not_raise():
+        ss_factors = create_subject_sample_factors(working_json)
+    captured = capsys.readouterr()
+    assert captured.err == ""
+    
+    ss_factors_compare = []
+    for ss_factor in ss_factors:
+        if ss_factor in ss_factors_compare:
+            assert False
+        else:
+            ss_factors_compare.append(ss_factor)
 
 
 def test_parent_not_in_entity_table_error(mwtab_json, capsys):
@@ -192,6 +210,7 @@ def test_sample_has_factors_str(mwtab_json, capsys):
                                   "RAW_FILE_NAME": "16_A0_Lung_T032017_naive_ICMSA.raw"
                                 }
                               })
+    ss_factors_compare = sorted(ss_factors_compare, key = operator.itemgetter(*["Subject ID", "Sample ID"]))
     
     assert ss_factors == ss_factors_compare
 
@@ -228,6 +247,7 @@ def test_sample_has_factors_list(mwtab_json, capsys):
                                   "RAW_FILE_NAME": "16_A0_Lung_T032017_naive_ICMSA.raw"
                                 }
                               })
+    ss_factors_compare = sorted(ss_factors_compare, key = operator.itemgetter(*["Subject ID", "Sample ID"]))
     
     assert ss_factors == ss_factors_compare
 

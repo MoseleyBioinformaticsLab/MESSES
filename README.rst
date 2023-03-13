@@ -17,9 +17,10 @@ MESSES
    :target: https://codecov.io/gh/MoseleyBioinformaticsLab/messes
    :alt: Code coverage information
 
-.. image:: https://img.shields.io/badge/DOI-10.3390%2Fmetabo11030163-blue.svg
-   :target: https://doi.org/10.3390/metabo11030163
-   :alt: Citation link
+..
+    .. image:: https://img.shields.io/badge/DOI-10.3390%2Fmetabo11030163-blue.svg
+       :target: https://doi.org/10.3390/metabo11030163
+       :alt: Citation link
 
 .. image:: https://img.shields.io/github/stars/MoseleyBioinformaticsLab/messes.svg?style=social&label=Star
     :target: https://github.com/MoseleyBioinformaticsLab/messes

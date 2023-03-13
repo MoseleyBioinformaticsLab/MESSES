@@ -1,9 +1,11 @@
 # -*- coding: utf-8 -*-
 """
-Functions for mwtab format.
+Functions For mwtab Format
+--------------------------
 """
 
 import sys
+import operator
 
 
 def create_sample_lineages(input_json: dict, entity_table_name: str="entity", parent_key: str="parent_id") -> dict:
@@ -73,7 +75,7 @@ def create_subject_sample_factors(input_json: dict,
                                   protocol_type_field: str="type",
                                   storage_type_value: str="storage",
                                   storage_files_key: str="data_files",
-                                  lineage_field_exclusion_list: list[str]|tuple[str] =("study.id", "project.id", "parent_id")) -> dict:
+                                  lineage_field_exclusion_list: list[str]|tuple[str] =("study.id", "project.id", "parent_id")) -> list[dict]:
     """Create the SUBJECT_SAMPLE_FACTORS section of the mwTab JSON.
     
     Args:
@@ -97,13 +99,13 @@ def create_subject_sample_factors(input_json: dict,
         lineage_field_exclusion_list: the fields in entity records that should not be added as additional data.
         
     Returns:
-        a dictionary of SUBJECT_SAMPLE_FACTORS.
+        a list of SUBJECT_SAMPLE_FACTORS.
     """
     
-    samples = []
+    samples = set()
     for measurement_name, measurement_attributes in input_json[measurement_table_name].items():
         if sample_id := measurement_attributes.get(sample_id_key):
-            samples.append(sample_id)
+            samples.add(sample_id)
             
     lineages = create_sample_lineages(input_json, entity_table_name=entity_table_name, parent_key=parent_key)
     
@@ -208,5 +210,8 @@ def create_subject_sample_factors(input_json: dict,
     samples_without_all_factors = [ss_factor["Sample ID"] for ss_factor in ss_factors if found_factors - set(ss_factor["Factors"])]
     if samples_without_all_factors:
        print("Warning: The following samples do not have the full set of factors: \n" + "\n".join(samples_without_all_factors), file=sys.stderr)
+    
+    ## Sort ss_factors.
+    ss_factors = sorted(ss_factors, key = operator.itemgetter(*["Subject ID", "Sample ID"]))
         
     return ss_factors
