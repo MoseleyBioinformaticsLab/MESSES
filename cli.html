@@ -4,9 +4,10 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>CLI &mdash; MESSES 0.1.dev1+ga3d861d documentation</title>
+  <title>CLI &mdash; MESSES 0.1.dev1+g62b989a documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/custom_css.css" type="text/css" />
+      <link rel="stylesheet" href="_static/sphinxcontrib-images/LightBox2/lightbox2/dist/css/lightbox.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
@@ -17,6 +18,8 @@
         <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="_static/doctools.js"></script>
         <script src="_static/sphinx_highlight.js"></script>
+        <script src="_static/sphinxcontrib-images/LightBox2/lightbox2/dist/js/lightbox-plus-jquery.min.js"></script>
+        <script src="_static/sphinxcontrib-images/LightBox2/lightbox2-customize/jquery-noconflict.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -32,7 +35,7 @@
             <a href="index.html" class="icon icon-home"> MESSES
           </a>
               <div class="version">
-                0.1.dev1+ga3d861d
+                0.1.dev1+g62b989a
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -51,11 +54,11 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#validate">Validate</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id1">Usage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id2">Usage</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#convert">Convert</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id2">Usage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">Usage</a></li>
 </ul>
 </li>
 </ul>
@@ -155,14 +158,14 @@ Regular Expression Format:
 <section id="validate">
 <h2>Validate<a class="headerlink" href="#validate" title="Permalink to this heading"></a></h2>
 <p>The validate command of MESSES supports validating JSON data. This is done largely
-through utilizing <a class="reference external" href="https://json-schema.org/understanding-json-schema/">JSON Schema</a>,
-but validation beyond the capabilities of JSON Schema is also done. By default,
+through utilizing <a class="reference external" href="https://json-schema.org/understanding-json-schema/">JSON Schema</a> (<a class="reference external" href="https://pypi.org/project/jsonschema/">jsonschema</a>),
+but validation beyond the capabilities of JSON Schema (<a class="reference external" href="https://pypi.org/project/jsonschema/">jsonschema</a>) is also done. By default,
 JSON files are validated against the <a class="reference internal" href="experiment_description_schema.html"><span class="doc">Experiment Description Schema</span></a>, but this
 can be turned off with options. Users can also provide additional validation in
 the form of their own JSON schema and a <a class="reference internal" href="protocol_dependent_schema.html"><span class="doc">Protocol-Dependent Schema</span></a>. More details
 and examples for the validate command are in the <a class="reference internal" href="tutorial.html"><span class="doc">Tutorial</span></a>.</p>
-<section id="id1">
-<h3>Usage<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h3>
+<section id="id2">
+<h3>Usage<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h3>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Usage:
     messes validate json &lt;input_JSON&gt; [--pds=&lt;pds&gt; [--csv | --xlsx | --json] | --no_base_schema] 
                                       [--no_extra_checks]
@@ -234,8 +237,8 @@ conversions are supported through the “generic” command and all supported fo
 are converted using commands that match their namesake. All supported formats are
 detailed in the <a class="reference internal" href="supported_formats.html"><span class="doc">Supported Conversion Formats</span></a> section. More details and examples for
 the convert command are in the <a class="reference internal" href="tutorial.html"><span class="doc">Tutorial</span></a>.</p>
-<section id="id2">
-<h3>Usage<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h3>
+<section id="id3">
+<h3>Usage<a class="headerlink" href="#id3" title="Permalink to this heading"></a></h3>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Usage:
     messes convert mwtab (ms | nmr | nmr_binned) &lt;input_JSON&gt; &lt;output_name&gt; [--update &lt;conversion_directives&gt; | --override &lt;conversion_directives&gt;] [--silent]
     messes convert save-directives mwtab (ms | nmr | nmr_binned) &lt;output_filetype&gt; [&lt;output_name&gt;]

@@ -1,7 +1,10 @@
 Tutorial
 ========
 MESSES is intended to be used solely as a command line program. This 
-tutorial describes each command and its options.
+tutorial describes each command and its options. Before running the program you 
+will likely want to review the :doc:`experiment_description_schema` page and the 
+:doc:`tagging` page, as well as the examples in the examples folder on the GitHub_ 
+repository.
 
 Top-Level Usage
 
@@ -28,41 +31,42 @@ and functionality.
 
 Options
 -------
-**--silent** - This option will silence all warning messages. Errors will still be printed.
 
-**--output** - This option is used to specify the name of the JSON file that will be output. If this option is not specified there will be no output file.
+--silent  This option will silence all warning messages. Errors will still be printed.
 
-**--compare** - This option allows you to compare the resulting JSON file with the one provided with this option. It will show differences such as missing and extra tables and fields.
+--output  This option is used to specify the name of the JSON file that will be output. If this option is not specified there will be no output file.
 
-**--modify** - This option is used to specify the Excel worksheet name, the Excel file and worksheet name, or the CSV or JSON file name that contains the modification tags. 
-The default assumption for MESSES is that the input file is an Excel workbook, so the default sheet name for the modify option is '#modify'. Be sure any input Excel 
-files do not have a worksheet with this name if it does not contain modification tags. To specify a separate Excel file and sheet name as the location of modification 
-tags, the file name/path and sheet name need to be separated by a semicolon. Ex. Modification_tags.xlsx:sheet1. The sheet name can also be a regular expression. 
-Ex. Modification_tags.xlsx:r'.*dify'  or just  r'.*dify'  to specify a regex for a sheetname in the input data file. File types other than Excel are specified as 
-normal. If multiple input data files are given, the specified file or sheet name given to --modify is used for all of them. Details about modification tags are 
-in the :doc:`tagging` section.
+--compare  This option allows you to compare the resulting JSON file with the one provided with this option. It will show differences such as missing and extra tables and fields.
 
-**--end-modify** - The same as --modify, but modifications are done at the end, after all input data files have been parsed and merged into one JSON file. There is 
-no default value.
+--modify  This option is used to specify the Excel worksheet name, the Excel file and worksheet name, or the CSV or JSON file name that contains the modification tags. 
+          The default assumption for MESSES is that the input file is an Excel workbook, so the default sheet name for the modify option is '#modify'. Be sure any input Excel 
+          files do not have a worksheet with this name if it does not contain modification tags. To specify a separate Excel file and sheet name as the location of modification 
+          tags, the file name/path and sheet name need to be separated by a semicolon. Ex. Modification_tags.xlsx:sheet1. The sheet name can also be a regular expression. 
+          Ex. Modification_tags.xlsx:r'.*dify'  or just  r'.*dify'  to specify a regex for a sheetname in the input data file. File types other than Excel are specified as 
+          normal. If multiple input data files are given, the specified file or sheet name given to --modify is used for all of them. Details about modification tags are 
+          in the :doc:`tagging` section.
 
-**--automate** - The same as --modify, but for automation tags. The default sheet name is '#automate'. Details about automation tags are in the :doc:`tagging` section.
+--end-modify  The same as --modify, but modifications are done at the end, after all input data files have been parsed and merged into one JSON file. There is 
+              no default value.
 
-**--save-directives** - This option allows you to save any modification or automation directives as JSON to the specified file path. Note that --end-modify directives 
-will overwrite --modify directives, so only --end-modify directives will be in the output if specified.
+--automate  The same as --modify, but for automation tags. The default sheet name is '#automate'. Details about automation tags are in the :doc:`tagging` section.
 
-**--save-export** - This option lets you save the version of the data that has all automations applied just before parsing into JSON. It can be useful for debugging. 
-The export file will be saved with the same name as the input file with '_export' added to the end. Choose 'csv' to save as a CSV file, and 'xlsx' to save as 
-an Excel file. Note that this file will likely not look pretty.
+--save-directives  This option allows you to save any modification or automation directives as JSON to the specified file path. Note that --end-modify directives 
+                   will overwrite --modify directives, so only --end-modify directives will be in the output if specified.
 
-**--show** - This option allows you to see tables or lineages in the input data. Specify 'tables' to see tables, 'lineages' to see lineages, or 'all' to see both.
+--save-export  This option lets you save the version of the data that has all automations applied just before parsing into JSON. It can be useful for debugging. 
+               The export file will be saved with the same name as the input file with '_export' added to the end. Choose 'csv' to save as a CSV file, and 'xlsx' to save as 
+               an Excel file. Note that this file will likely not look pretty.
 
-**--delete** - Use this option to delete tables, records, or fields from the JSONized input. Note that fields can also be deleted using modification tags. This 
-option is limited and only allows the deletion of one table, record, or field at a time. Ex. --delete protocol  will delete the protocol table. Tables, records, 
-and fields can also be specified with regular expressions. Ex. --delete r'.*tocol' will delete all tables that match the regular expression.
+--show  This option allows you to see tables or lineages in the input data. Specify 'tables' to see tables, 'lineages' to see lineages, or 'all' to see both.
 
-**--keep** - Use this option to keep only the indicated tables in the JSONized output. These are tables only, but multiple tables can be specified. 
-Ex. --keep protocol,measurement  will keep only the protocol and measurement tables. Tables can also specified with regular expressions Ex. --keep r'.*tocl',r'measure.*'  
-will keep all the tables that match the regular expressions.
+--delete  Use this option to delete tables, records, or fields from the JSONized input. Note that fields can also be deleted using modification tags. This 
+          option is limited and only allows the deletion of one table, record, or field at a time. Ex. --delete protocol  will delete the protocol table. Tables, records, 
+          and fields can also be specified with regular expressions. Ex. --delete r'.*tocol' will delete all tables that match the regular expression.
+
+--keep  Use this option to keep only the indicated tables in the JSONized output. These are tables only, but multiple tables can be specified. 
+        Ex. --keep protocol,measurement  will keep only the protocol and measurement tables. Tables can also specified with regular expressions Ex. --keep r'.*tocl',r'measure.*'  
+        will keep all the tables that match the regular expressions.
 
 
 Examples
@@ -597,38 +601,39 @@ added so users can check that the protocol-dependent schemas they create are val
 
 Options
 -------
-**--silent** - This option specifies what warnings should be printed. "full" will silence all warnings, "nuisance" will only silence warnings that 
-have been deemed to be a nuisance in some cirumstances, and "none" will silence no warnings which is the default.
 
-**--pds** - This option specifies that a protocol-dependent schema should be used with the command and where to read the file from. If "-" is given, 
-the PDS will be read from stdin, anything else is interpreted as a filepath. If the PDS is an Excel file, the default sheet name to read in is 
-#validate, to specify a different sheet name separate it from the file name with a colon ex: file_name.xlsx:sheet_name.
+--silent  This option specifies what warnings should be printed. "full" will silence all warnings, "nuisance" will only silence warnings that 
+          have been deemed to be a nuisance in some cirumstances, and "none" will silence no warnings which is the default.
 
-**--csv** - This option specifies that the PDS file is a CSV (comma delimited) file. If the PDS file is read from stdin, it is required to indicate 
-what type of file it is, otherwise it will be determined from the file extension if not specified.
+--pds  This option specifies that a protocol-dependent schema should be used with the command and where to read the file from. If "-" is given, 
+       the PDS will be read from stdin, anything else is interpreted as a filepath. If the PDS is an Excel file, the default sheet name to read in is 
+       #validate, to specify a different sheet name separate it from the file name with a colon ex: file_name.xlsx:sheet_name.
 
-**--xlsx** - This option specifies that the PDS file is an Excel file. This type of file cannot be read from stdin, but can still be specified to 
-indicate that the PDS file is an Excel file.
+--csv  This option specifies that the PDS file is a CSV (comma delimited) file. If the PDS file is read from stdin, it is required to indicate 
+       what type of file it is, otherwise it will be determined from the file extension if not specified.
 
-**--json** - This option specifies that the PDS file is a JSON file. If the PDS file is read from stdin, it is required to indicate what type of 
-file it is, otherwise it will be determined from the file extension if not specified.
+--xlsx  This option specifies that the PDS file is an Excel file. This type of file cannot be read from stdin, but can still be specified to 
+        indicate that the PDS file is an Excel file.
 
-**--additional** - This option specifies that an additional JSON schema file should be used with the command and where to read the file from. 
-If "-" is given, the file will be read from stdin, anything else is interpreted as a filepath.
+--json  This option specifies that the PDS file is a JSON file. If the PDS file is read from stdin, it is required to indicate what type of 
+         file it is, otherwise it will be determined from the file extension if not specified.
 
-**--format** - This option specifies that additional validation should be done with the assumption that the input JSON is going to be converted 
-into the given format.
+--additional  This option specifies that an additional JSON schema file should be used with the command and where to read the file from. 
+              If "-" is given, the file will be read from stdin, anything else is interpreted as a filepath.
 
-**--no_base_schema** - This option specifies that validation against the base schema should not be done. Use this along with the 
---no_extra_checks option to validate against only your own schema supplied with the --additional option.
+--format  This option specifies that additional validation should be done with the assumption that the input JSON is going to be converted 
+          into the given format.
 
-**--no_extra_checks** - This option specifies that extra validation beyond the base schema should not be done. Use this along with the 
---no_base_schema option to validate against only your own schema supplied with the --additional option.
+--no_base_schema  This option specifies that validation against the base schema should not be done. Use this along with the 
+                  --no_extra_checks option to validate against only your own schema supplied with the --additional option.
 
-**--input** - This option specifies that an input JSON file should be used with the "save-schema" command and where to read the file from. 
-If "-" is given, the file will be read from stdin, anything else is interpreted as a filepath. If a PDS is given, protocols from the input 
-protocol table are added to the parent_protocol table in the PDS, which changes the final schema used for validation. So you may need to specify 
-an input JSON file to reproduce the schema from the "json" command exactly.
+--no_extra_checks  This option specifies that extra validation beyond the base schema should not be done. Use this along with the 
+                   --no_base_schema option to validate against only your own schema supplied with the --additional option.
+
+--input  This option specifies that an input JSON file should be used with the "save-schema" command and where to read the file from. 
+         If "-" is given, the file will be read from stdin, anything else is interpreted as a filepath. If a PDS is given, protocols from the input 
+         protocol table are added to the parent_protocol table in the PDS, which changes the final schema used for validation. So you may need to specify 
+         an input JSON file to reproduce the schema from the "json" command exactly.
 
 
 Examples
@@ -764,15 +769,16 @@ attempting a conversion.
 
 Options
 -------
-**--update** - For supported formats, allows the user to specify a file of conversion directives that will be used to update the built-in directives for the format. 
-This is intended to be used for simple changes such as updating the value of the analysis ID. You only have to specify what 
-needs to change. Any values that are left out of the update directives won't be changed. If you need to remove directives, 
-then use the override option.
 
-**--override** - For supported formats, allows the user to override the built-in directives for the format. The built-in directives 
-will not be used and these will be used instead.
+--update  For supported formats, allows the user to specify a file of conversion directives that will be used to update the built-in directives for the format. 
+          This is intended to be used for simple changes such as updating the value of the analysis ID. You only have to specify what 
+          needs to change. Any values that are left out of the update directives won't be changed. If you need to remove directives, 
+          then use the override option.
 
-**--silent** - This option will silence all warning messages. Errors will still be printed.
+--override  For supported formats, allows the user to override the built-in directives for the format. The built-in directives 
+            will not be used and these will be used instead.
+
+--silent  This option will silence all warning messages. Errors will still be printed.
 
 
 Examples
