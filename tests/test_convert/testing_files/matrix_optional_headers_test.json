@@ -3,11 +3,10 @@
     "TREATMENT_SUMMARY": {
       "headers": [
         "\"id\"=id",
-        "\"field\"=field",
-        "project.id=project.id"
+        "\"field\"=field"
       ],
       "optional_headers": [
-        "study.id"
+        "allowed_values"
       ],
       "id": "TREATMENT_SUMMARY",
       "sort_by": [

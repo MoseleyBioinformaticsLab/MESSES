@@ -3,13 +3,14 @@
     "ANALYSIS_TYPE": "NM"
   },
   "COLLECTION": {
+    "COLLECTION_PROTOCOL_FILENAME": "mouse_tissue_procedure.pdf",
     "COLLECTION_PROTOCOL_ID": "mouse_tissue_collection",
     "COLLECTION_SUMMARY": "Mouse is sacrificed and tissues are harvested.",
     "SAMPLE_TYPE": "mouse"
   },
   "METABOLOMICS WORKBENCH": {
     "ANALYSIS_ID": "AN000000",
-    "CREATED_ON": "2023-03-13",
+    "CREATED_ON": "2023-03-24",
     "STUDY_ID": "ST000000",
     "VERSION": "1"
   },
@@ -25,7 +26,7 @@
     "PROJECT_TITLE": "Metabolomics of lung injury after allogeneic hematopoietic cell transplantation"
   },
   "SAMPLEPREP": {
-    "SAMPLEPREP_PROTOCOL_FILENAME": "4B_Extract_Polar_Lipid_Prot_Fan_070417.pdf;['4D_17Jun4_Fan_Prot_Quant.pdf', '4B_Extract_Polar_Lipid_Prot_Fan_070417.pdf']",
+    "SAMPLEPREP_PROTOCOL_FILENAME": "No tissue_quench file.;No frozen_tissue_grind file.;4B_Extract_Polar_Lipid_Prot_Fan_070417.pdf;['4D_17Jun4_Fan_Prot_Quant.pdf', '4B_Extract_Polar_Lipid_Prot_Fan_070417.pdf']",
     "SAMPLEPREP_PROTOCOL_ID": "tissue_quench;frozen_tissue_grind;polar_extraction;protein_extraction",
     "SAMPLEPREP_SUMMARY": "Tissue is frozen in liquid nitrogen to stop metabolic processes.;Frozen tissue is ground in a SPEX grinder under liquid nitrogen to homogenize the sample.;Polar extraction from homogenate, lypholized, and frozen.;Protein extraction and quantification."
   },
@@ -70,7 +71,7 @@
         "lineage2_protein_weight%units": "mg",
         "lineage2_protocol.id": "['protein_extraction']",
         "lineage2_type": "sample",
-        "RAW_FILE_NAME": "['01_A0_13C6-Glc_UKy_GCH_Ms_colon_PRESAT_01.fid', '01_A0_13C6-Glc_UKy_GCH_Ms_colon_gHSQCAD_01.fid']"
+        "RAW_FILE_NAME": "01_A0_13C6-Glc_UKy_GCH_Ms_colon_PRESAT_01.fid"
       }
     },
     {
@@ -97,7 +98,7 @@
         "lineage2_protein_weight%units": "mg",
         "lineage2_protocol.id": "['protein_extraction']",
         "lineage2_type": "sample",
-        "RAW_FILE_NAME": "['02_A1_13C6-Glc_UKy_GCH_Ms_colon_PRESAT_01.fid', '02_A1_13C6-Glc_UKy_GCH_Ms_colon_gHSQCAD_01.fid']"
+        "RAW_FILE_NAME": "02_A1_13C6-Glc_UKy_GCH_Ms_colon_PRESAT_01.fid"
       }
     },
     {
@@ -124,7 +125,7 @@
         "lineage2_protein_weight%units": "mg",
         "lineage2_protocol.id": "['protein_extraction']",
         "lineage2_type": "sample",
-        "RAW_FILE_NAME": "['03_A2_13C6-Glc_UKy_GCH_Ms_colon_PRESAT_01.fid', '03_A2_13C6-Glc_UKy_GCH_Ms_colon_gHSQCAD_01.fid']"
+        "RAW_FILE_NAME": "03_A2_13C6-Glc_UKy_GCH_Ms_colon_PRESAT_01.fid"
       }
     },
     {
@@ -151,7 +152,7 @@
         "lineage2_protein_weight%units": "mg",
         "lineage2_protocol.id": "['protein_extraction']",
         "lineage2_type": "sample",
-        "RAW_FILE_NAME": "['04_B0_13C6-Glc_UKy_GCH_Ms_colon_PRESAT_01.fid', '04_B0_13C6-Glc_UKy_GCH_Ms_colon_gHSQCAD_01.fid']"
+        "RAW_FILE_NAME": "04_B0_13C6-Glc_UKy_GCH_Ms_colon_PRESAT_01.fid"
       }
     },
     {
@@ -178,7 +179,7 @@
         "lineage2_protein_weight%units": "mg",
         "lineage2_protocol.id": "['protein_extraction']",
         "lineage2_type": "sample",
-        "RAW_FILE_NAME": "['05_B1_13C6-Glc_UKy_GCH_Ms_colon_PRESAT_01.fid', '05_B1_13C6-Glc_UKy_GCH_Ms_colon_gHSQCAD_01.fid']"
+        "RAW_FILE_NAME": "05_B1_13C6-Glc_UKy_GCH_Ms_colon_PRESAT_01.fid"
       }
     },
     {
@@ -205,7 +206,7 @@
         "lineage2_protein_weight%units": "mg",
         "lineage2_protocol.id": "['protein_extraction']",
         "lineage2_type": "sample",
-        "RAW_FILE_NAME": "['06_B2_13C6-Glc_UKy_GCH_Ms_colon_PRESAT_01.fid', '06_B2_13C6-Glc_UKy_GCH_Ms_colon_gHSQCAD_01.fid']"
+        "RAW_FILE_NAME": "06_B2_13C6-Glc_UKy_GCH_Ms_colon_PRESAT_01.fid"
       }
     },
     {
@@ -232,7 +233,7 @@
         "lineage2_protein_weight%units": "mg",
         "lineage2_protocol.id": "['protein_extraction']",
         "lineage2_type": "sample",
-        "RAW_FILE_NAME": "['07_C1-1_13C6-Glc_UKy_GCH_Ms_colon_PRESAT_01.fid', '07_C1-1_13C6-Glc_UKy_GCH_Ms_colon_gHSQCAD_01.fid']"
+        "RAW_FILE_NAME": "07_C1-1_13C6-Glc_UKy_GCH_Ms_colon_PRESAT_01.fid"
       }
     },
     {
@@ -259,7 +260,7 @@
         "lineage2_protein_weight%units": "mg",
         "lineage2_protocol.id": "['protein_extraction']",
         "lineage2_type": "sample",
-        "RAW_FILE_NAME": "['08_C1-2_13C6-Glc_UKy_GCH_Ms_colon_PRESAT_01.fid', '08_C1-2_13C6-Glc_UKy_GCH_Ms_colon_gHSQCAD_01.fid']"
+        "RAW_FILE_NAME": "08_C1-2_13C6-Glc_UKy_GCH_Ms_colon_PRESAT_01.fid"
       }
     },
     {
@@ -286,7 +287,7 @@
         "lineage2_protein_weight%units": "mg",
         "lineage2_protocol.id": "['protein_extraction']",
         "lineage2_type": "sample",
-        "RAW_FILE_NAME": "['09_C2-0_13C6-Glc_UKy_GCH_Ms_colon_PRESAT_01.fid', '09_C2-0_13C6-Glc_UKy_GCH_Ms_colon_gHSQCAD_01.fid']"
+        "RAW_FILE_NAME": "09_C2-0_13C6-Glc_UKy_GCH_Ms_colon_PRESAT_01.fid"
       }
     },
     {
@@ -313,7 +314,7 @@
         "lineage2_protein_weight%units": "mg",
         "lineage2_protocol.id": "['protein_extraction']",
         "lineage2_type": "sample",
-        "RAW_FILE_NAME": "['10_B1-0_13C6-Glc_UKy_GCH_Ms_colon_PRESAT_01.fid', '10_B1-0_13C6-Glc_UKy_GCH_Ms_colon_gHSQCAD_01.fid']"
+        "RAW_FILE_NAME": "10_B1-0_13C6-Glc_UKy_GCH_Ms_colon_PRESAT_01.fid"
       }
     },
     {
@@ -340,7 +341,7 @@
         "lineage2_protein_weight%units": "mg",
         "lineage2_protocol.id": "['protein_extraction']",
         "lineage2_type": "sample",
-        "RAW_FILE_NAME": "['11_B1-1_13C6-Glc_UKy_GCH_Ms_colon_PRESAT_01.fid', '11_B1-1_13C6-Glc_UKy_GCH_Ms_colon_gHSQCAD_01.fid']"
+        "RAW_FILE_NAME": "11_B1-1_13C6-Glc_UKy_GCH_Ms_colon_PRESAT_01.fid"
       }
     },
     {
@@ -367,7 +368,7 @@
         "lineage2_protein_weight%units": "mg",
         "lineage2_protocol.id": "['protein_extraction']",
         "lineage2_type": "sample",
-        "RAW_FILE_NAME": "['12_B1-2_13C6-Glc_UKy_GCH_Ms_colon_PRESAT_01.fid', '12_B1-2_13C6-Glc_UKy_GCH_Ms_colon_gHSQCAD_01.fid']"
+        "RAW_FILE_NAME": "12_B1-2_13C6-Glc_UKy_GCH_Ms_colon_PRESAT_01.fid"
       }
     },
     {
@@ -394,7 +395,7 @@
         "lineage2_protein_weight%units": "mg",
         "lineage2_protocol.id": "['protein_extraction']",
         "lineage2_type": "sample",
-        "RAW_FILE_NAME": "['13_C1-1_13C6-Glc_UKy_GCH_Ms_colon_PRESAT_01.fid', '13_C1-1_13C6-Glc_UKy_GCH_Ms_colon_gHSQCAD_01.fid']"
+        "RAW_FILE_NAME": "13_C1-1_13C6-Glc_UKy_GCH_Ms_colon_PRESAT_01.fid"
       }
     },
     {
@@ -421,7 +422,7 @@
         "lineage2_protein_weight%units": "mg",
         "lineage2_protocol.id": "['protein_extraction']",
         "lineage2_type": "sample",
-        "RAW_FILE_NAME": "['14_C1-2_13C6-Glc_UKy_GCH_Ms_colon_PRESAT_01.fid', '14_C1-2_13C6-Glc_UKy_GCH_Ms_colon_gHSQCAD_01.fid']"
+        "RAW_FILE_NAME": "14_C1-2_13C6-Glc_UKy_GCH_Ms_colon_PRESAT_01.fid"
       }
     },
     {
@@ -448,11 +449,12 @@
         "lineage2_protein_weight%units": "mg",
         "lineage2_protocol.id": "['protein_extraction']",
         "lineage2_type": "sample",
-        "RAW_FILE_NAME": "['15_C1-20_13C6-Glc_UKy_GCH_Ms_colon_PRESAT_01.fid', '15_C1-20_13C6-Glc_UKy_GCH_Ms_colon_gHSQCAD_01.fid']"
+        "RAW_FILE_NAME": "15_C1-20_13C6-Glc_UKy_GCH_Ms_colon_PRESAT_01.fid"
       }
     }
   ],
   "TREATMENT": {
+    "TREATMENT_PROTOCOL_FILENAME": "study_treatments.pdf;study_treatments.pdf;study_treatments.pdf",
     "TREATMENT_PROTOCOL_ID": "allogenic;naive;syngenic",
     "TREATMENT_SUMMARY": "Mouse with allogenic bone marrow transplant. Fed with semi-liquid diet supplemented with fully labeled glucose for 24 hours before harvest.;Mouse with no treatment. Fed with semi-liquid diet supplemented with fully labeled glucose for 24 hours before harvest.;Mouse with syngenic bone marrow transplant. Fed with semi-liquid diet supplemented with fully labeled glucose for 24 hours before harvest."
   },

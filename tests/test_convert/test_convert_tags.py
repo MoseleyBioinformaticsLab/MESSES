@@ -352,7 +352,7 @@ def test_str_no_sort_by_field():
     
     assert not output_path_json.exists()
     
-    assert 'Error: The record, "Treatment", in the "factor" table does not have the field,' in output 
+    assert 'Error: The record, "Time Point", in the "factor" table does not have the field,' in output 
     assert '\'asdf\', required by the "sort_by" field for the conversion,' in output
     assert '"TREATMENT_SUMMARY", in the conversion table, "TREATMENT".' in output
 
@@ -379,12 +379,10 @@ def test_matrix_base_case():
                               {
                                 "id": "Time Point",
                                 "field": "time_point",
-                                "GH_Spleen": "GH_Spleen"
                               },
                               {
                                 "id": "Treatment",
                                 "field": "protocol.id",
-                                "GH_Spleen": "GH_Spleen"
                               }
                             ]
                           }
@@ -588,7 +586,6 @@ def test_matrix_test():
                               {
                                 "id": "Treatment",
                                 "field": "protocol.id",
-                                "GH_Spleen": "GH_Spleen"
                               }
                             ]
                           }
@@ -617,16 +614,14 @@ def test_optional_headers_test():
                           "TREATMENT": {
                             "TREATMENT_SUMMARY": [
                               {
+                                'allowed_values': ['0', '7', '42'],
                                 "id": "Time Point",
                                 "field": "time_point",
-                                "GH_Spleen": "GH_Spleen",
-                                "study.id": "GH_Spleen"
                               },
                               {
+                                'allowed_values': ['naive', 'syngenic', 'allogenic'],
                                 "id": "Treatment",
                                 "field": "protocol.id",
-                                "GH_Spleen": "GH_Spleen",
-                                "study.id": "GH_Spleen"
                               }
                             ]
                           }
@@ -649,7 +644,7 @@ def test_matrix_collate_error():
     assert not output_path_json.exists()
     
     assert output == 'Error: The record, ' + \
-                      '"(S)-2-Acetolactate Glutaric acid Methylsuccinic acid-13C0-16_A0_Lung_naive_0days_170427_UKy_GCH_rep1-polar-ICMS_A", ' + \
+                      '"(S)-2-Acetolactate Glutaric acid Methylsuccinic acid-13C0-01_A0_Colon_naive_0days_170427_UKy_GCH_rep1-polar-ICMS_A", ' + \
                       'in the "measurement" table does not have the field, "asdf", required by the ' + \
                       '"collate" field for the conversion, "Data", in the conversion table, "MS_METABOLITE_DATA".\n'
 
@@ -668,10 +663,11 @@ def test_matrix_header_no_inputkey_error():
     assert not output_path_json.exists()
     
     assert output == 'Error: The record, '+\
-                      '"(S)-2-Acetolactate Glutaric acid Methylsuccinic acid-13C0-16_A0_Lung_naive_0days_170427_UKy_GCH_rep1-polar-ICMS_A",'+\
+                      '"(S)-2-Acetolactate Glutaric acid Methylsuccinic acid-13C0-01_A0_Colon_naive_0days_170427_UKy_GCH_rep1-polar-ICMS_A",'+\
                       ' in the "measurement" table does not have the field, "asdf", required by the '+\
                       '"headers" field for the conversion, "Data", in the conversion table, "MS_METABOLITE_DATA".\n'
-                     
+ 
+                        
 def test_matrix_header_no_outputkey_error():
     """Test that an error is printed when there is a header that is not in a record."""
     
@@ -686,7 +682,7 @@ def test_matrix_header_no_outputkey_error():
     assert not output_path_json.exists()
     
     assert output == 'Error: The record, '+\
-                      '"(S)-2-Acetolactate Glutaric acid Methylsuccinic acid-13C0-16_A0_Lung_naive_0days_170427_UKy_GCH_rep1-polar-ICMS_A",'+\
+                      '"(S)-2-Acetolactate Glutaric acid Methylsuccinic acid-13C0-01_A0_Colon_naive_0days_170427_UKy_GCH_rep1-polar-ICMS_A",'+\
                       ' in the "measurement" table does not have the field, "qwer", required by the '+\
                       '"headers" field for the conversion, "Data", in the conversion table, "MS_METABOLITE_DATA".\n'
 
@@ -704,9 +700,9 @@ def test_matrix_collate_collision_warning():
     
     assert output_path_json.exists()
     
-    assert output == 'Warning: When creating the "TREATMENT_SUMMARY" matrix for the ' +\
-            '"TREATMENT" table different values for the output key, "field", were found' +\
-            ' for the collate key "GH_Spleen". Only the last value will be used.\n'
+    assert 'Warning: When creating the "ENTITY_SUMMARY" matrix for the "ENTITY" ' +\
+            'table different values for the output key, "replicate", were found for the ' +\
+            'collate key "subject". Only the last value will be used.\n' in output
 
 
 def test_default_directive():

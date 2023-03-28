@@ -1,7 +1,7 @@
 [
   {
     "Subject ID": "01_A0_naive_0days_UKy_GCH_rep1",
-    "Sample ID": "16_A0_Lung_naive_0days_170427_UKy_GCH_rep1-polar-ICMS_A",
+    "Sample ID": "01_A0_Colon_naive_0days_170427_UKy_GCH_rep1-polar-ICMS_A",
     "Factors": {
       "Treatment": "naive",
       "Time Point": "0"
@@ -15,20 +15,20 @@
       "lineage0_taxonomy_id": "10090",
       "lineage0_time_point": "0",
       "lineage0_type": "subject",
-      "lineage1_id": "16_A0_Lung_naive_0days_170427_UKy_GCH_rep1",
+      "lineage1_id": "01_A0_Colon_naive_0days_170427_UKy_GCH_rep1",
       "lineage1_protocol.id": "['mouse_tissue_collection', 'tissue_quench', 'frozen_tissue_grind']",
       "lineage1_type": "sample",
-      "lineage2_id": "16_A0_Lung_naive_0days_170427_UKy_GCH_rep1-protein",
-      "lineage2_protein_weight": "0.6757957582975501",
+      "lineage2_id": "01_A0_Colon_naive_0days_170427_UKy_GCH_rep1-protein",
+      "lineage2_protein_weight": "0.6181768442446792",
       "lineage2_protein_weight%units": "mg",
       "lineage2_protocol.id": "['protein_extraction']",
       "lineage2_type": "sample",
-      "RAW_FILE_NAME": "16_A0_Lung_T032017_naive_ICMSA.raw"
+      "RAW_FILE_NAME": "01_A0_Colon_naive_170427_UKy_GCB_rep1-quench_ICMSA.raw"
     }
   },
   {
     "Subject ID": "02_A1_naive_0days_UKy_GCH_rep2",
-    "Sample ID": "17_A1_Lung_naive_0days_170427_UKy_GCH_rep2-polar-ICMS_A",
+    "Sample ID": "02_A1_Colon_naive_0days_170427_UKy_GCH_rep2-polar-ICMS_A",
     "Factors": {
       "Treatment": "naive",
       "Time Point": "0"
@@ -42,20 +42,20 @@
       "lineage0_taxonomy_id": "10090",
       "lineage0_time_point": "0",
       "lineage0_type": "subject",
-      "lineage1_id": "17_A1_Lung_naive_0days_170427_UKy_GCH_rep2",
+      "lineage1_id": "02_A1_Colon_naive_0days_170427_UKy_GCH_rep2",
       "lineage1_protocol.id": "['mouse_tissue_collection', 'tissue_quench', 'frozen_tissue_grind']",
       "lineage1_type": "sample",
-      "lineage2_id": "17_A1_Lung_naive_0days_170427_UKy_GCH_rep2-protein",
-      "lineage2_protein_weight": "0.6112704400619461",
+      "lineage2_id": "02_A1_Colon_naive_0days_170427_UKy_GCH_rep2-protein",
+      "lineage2_protein_weight": "0.4626846570186025",
       "lineage2_protein_weight%units": "mg",
       "lineage2_protocol.id": "['protein_extraction']",
       "lineage2_type": "sample",
-      "RAW_FILE_NAME": "17_A1_Lung_T032017_naive_ICMSA.raw"
+      "RAW_FILE_NAME": "02_A1_Colon_naive_170427_UKy_GCB_rep2-quench_ICMSA.raw"
     }
   },
   {
     "Subject ID": "03_A2_naive_0days_UKy_GCH_rep3",
-    "Sample ID": "18_A2_Lung_naive_0days_170427_UKy_GCH_rep3-polar-ICMS_A",
+    "Sample ID": "03_A2_Colon_naive_0days_170427_UKy_GCH_rep3-polar-ICMS_A",
     "Factors": {
       "Treatment": "naive",
       "Time Point": "0"
@@ -69,20 +69,20 @@
       "lineage0_taxonomy_id": "10090",
       "lineage0_time_point": "0",
       "lineage0_type": "subject",
-      "lineage1_id": "18_A2_Lung_naive_0days_170427_UKy_GCH_rep3",
+      "lineage1_id": "03_A2_Colon_naive_0days_170427_UKy_GCH_rep3",
       "lineage1_protocol.id": "['mouse_tissue_collection', 'tissue_quench', 'frozen_tissue_grind']",
       "lineage1_type": "sample",
-      "lineage2_id": "18_A2_Lung_naive_0days_170427_UKy_GCH_rep3-protein",
-      "lineage2_protein_weight": "0.14664251664539998",
+      "lineage2_id": "03_A2_Colon_naive_0days_170427_UKy_GCH_rep3-protein",
+      "lineage2_protein_weight": "0.6317204628207644",
       "lineage2_protein_weight%units": "mg",
       "lineage2_protocol.id": "['protein_extraction']",
       "lineage2_type": "sample",
-      "RAW_FILE_NAME": "18_A2_Lung_T032017_naive_ICMSA.raw"
+      "RAW_FILE_NAME": "03_A2_Colon_naive_170427_UKy_GCB_rep3-quench_ICMSA.raw"
     }
   },
   {
     "Subject ID": "04_B0_syngenic_42days_UKy_GCH_rep1",
-    "Sample ID": "19_B0_Lung_syngenic_42days_170427_UKy_GCH_rep1-polar-ICMS_A",
+    "Sample ID": "04_B0_Colon_syngenic_42days_170427_UKy_GCH_rep1-polar-ICMS_A",
     "Factors": {
       "Treatment": "syngenic",
       "Time Point": "42"
@@ -96,20 +96,20 @@
       "lineage0_taxonomy_id": "10090",
       "lineage0_time_point": "42",
       "lineage0_type": "subject",
-      "lineage1_id": "19_B0_Lung_syngenic_42days_170427_UKy_GCH_rep1",
+      "lineage1_id": "04_B0_Colon_syngenic_42days_170427_UKy_GCH_rep1",
       "lineage1_protocol.id": "['mouse_tissue_collection', 'tissue_quench', 'frozen_tissue_grind']",
       "lineage1_type": "sample",
-      "lineage2_id": "19_B0_Lung_syngenic_42days_170427_UKy_GCH_rep1-protein",
-      "lineage2_protein_weight": "0.5600416771907997",
+      "lineage2_id": "04_B0_Colon_syngenic_42days_170427_UKy_GCH_rep1-protein",
+      "lineage2_protein_weight": "0.6679368105226386",
       "lineage2_protein_weight%units": "mg",
       "lineage2_protocol.id": "['protein_extraction']",
       "lineage2_type": "sample",
-      "RAW_FILE_NAME": "19_B0_Lung_T032017_syn_ICMSA.raw"
+      "RAW_FILE_NAME": "04_B0_Colon_syngenic_170427_UKy_GCB_rep1-quench_ICMSA.raw"
     }
   },
   {
     "Subject ID": "05_B1_syngenic_42days_UKy_GCH_rep2",
-    "Sample ID": "20_B1_Lung_syngenic_42days_170427_UKy_GCH_rep2-polar-ICMS_A",
+    "Sample ID": "05_B1_Colon_syngenic_42days_170427_UKy_GCH_rep2-polar-ICMS_A",
     "Factors": {
       "Treatment": "syngenic",
       "Time Point": "42"
@@ -123,20 +123,20 @@
       "lineage0_taxonomy_id": "10090",
       "lineage0_time_point": "42",
       "lineage0_type": "subject",
-      "lineage1_id": "20_B1_Lung_syngenic_42days_170427_UKy_GCH_rep2",
+      "lineage1_id": "05_B1_Colon_syngenic_42days_170427_UKy_GCH_rep2",
       "lineage1_protocol.id": "['mouse_tissue_collection', 'tissue_quench', 'frozen_tissue_grind']",
       "lineage1_type": "sample",
-      "lineage2_id": "20_B1_Lung_syngenic_42days_170427_UKy_GCH_rep2-protein",
-      "lineage2_protein_weight": "0.2959754761535626",
+      "lineage2_id": "05_B1_Colon_syngenic_42days_170427_UKy_GCH_rep2-protein",
+      "lineage2_protein_weight": "0.6160223770621668",
       "lineage2_protein_weight%units": "mg",
       "lineage2_protocol.id": "['protein_extraction']",
       "lineage2_type": "sample",
-      "RAW_FILE_NAME": "20_B1_Lung_T032017_syn_ICMSA.raw"
+      "RAW_FILE_NAME": "05_B1_Colon_syngenic_170427_UKy_GCB_rep2-quench_ICMSA.raw"
     }
   },
   {
     "Subject ID": "06_B2_syngenic_42days_UKy_GCH_rep3",
-    "Sample ID": "21_B2_Lung_syngenic_42days_170427_UKy_GCH_rep3-polar-ICMS_A",
+    "Sample ID": "06_B2_Colon_syngenic_42days_170427_UKy_GCH_rep3-polar-ICMS_A",
     "Factors": {
       "Treatment": "syngenic",
       "Time Point": "42"
@@ -150,20 +150,20 @@
       "lineage0_taxonomy_id": "10090",
       "lineage0_time_point": "42",
       "lineage0_type": "subject",
-      "lineage1_id": "21_B2_Lung_syngenic_42days_170427_UKy_GCH_rep3",
+      "lineage1_id": "06_B2_Colon_syngenic_42days_170427_UKy_GCH_rep3",
       "lineage1_protocol.id": "['mouse_tissue_collection', 'tissue_quench', 'frozen_tissue_grind']",
       "lineage1_type": "sample",
-      "lineage2_id": "21_B2_Lung_syngenic_42days_170427_UKy_GCH_rep3-protein",
-      "lineage2_protein_weight": "0.3382559813306206",
+      "lineage2_id": "06_B2_Colon_syngenic_42days_170427_UKy_GCH_rep3-protein",
+      "lineage2_protein_weight": "1.5623114343705382",
       "lineage2_protein_weight%units": "mg",
       "lineage2_protocol.id": "['protein_extraction']",
       "lineage2_type": "sample",
-      "RAW_FILE_NAME": "21_B2_Lung_T032017_syn_ICMSA.raw"
+      "RAW_FILE_NAME": "06_B2_Colon_syngenic_170427_UKy_GCB_rep3-quench_ICMSA.raw"
     }
   },
   {
     "Subject ID": "07_C1-1_allogenic_42days_UKy_GCH_rep1",
-    "Sample ID": "22_C1-1_Lung_allogenic_42days_170427_UKy_GCH_rep1-polar-ICMS_A",
+    "Sample ID": "07_C1-1_Colon_allogenic_42days_170427_UKy_GCH_rep1-polar-ICMS_A",
     "Factors": {
       "Treatment": "allogenic",
       "Time Point": "42"
@@ -177,20 +177,20 @@
       "lineage0_taxonomy_id": "10090",
       "lineage0_time_point": "42",
       "lineage0_type": "subject",
-      "lineage1_id": "22_C1-1_Lung_allogenic_42days_170427_UKy_GCH_rep1",
+      "lineage1_id": "07_C1-1_Colon_allogenic_42days_170427_UKy_GCH_rep1",
       "lineage1_protocol.id": "['mouse_tissue_collection', 'tissue_quench', 'frozen_tissue_grind']",
       "lineage1_type": "sample",
-      "lineage2_id": "22_C1-1_Lung_allogenic_42days_170427_UKy_GCH_rep1-protein",
-      "lineage2_protein_weight": "1.3767591694919588",
+      "lineage2_id": "07_C1-1_Colon_allogenic_42days_170427_UKy_GCH_rep1-protein",
+      "lineage2_protein_weight": "1.2093335004111359",
       "lineage2_protein_weight%units": "mg",
       "lineage2_protocol.id": "['protein_extraction']",
       "lineage2_type": "sample",
-      "RAW_FILE_NAME": "22_C11_Lung_T032017_allo_ICMSA.raw"
+      "RAW_FILE_NAME": "07_C1-1_Colon_allogenic_170427_UKy_GCB_rep1-quench_ICMSA.raw"
     }
   },
   {
     "Subject ID": "08_C1-2_allogenic_42days_UKy_GCH_rep2",
-    "Sample ID": "23_C1-2_Lung_allogenic_42days_170427_UKy_GCH_rep2-polar-ICMS_A",
+    "Sample ID": "08_C1-2_Colon_allogenic_42days_170427_UKy_GCH_rep2-polar-ICMS_A",
     "Factors": {
       "Treatment": "allogenic",
       "Time Point": "42"
@@ -204,20 +204,20 @@
       "lineage0_taxonomy_id": "10090",
       "lineage0_time_point": "42",
       "lineage0_type": "subject",
-      "lineage1_id": "23_C1-2_Lung_allogenic_42days_170427_UKy_GCH_rep2",
+      "lineage1_id": "08_C1-2_Colon_allogenic_42days_170427_UKy_GCH_rep2",
       "lineage1_protocol.id": "['mouse_tissue_collection', 'tissue_quench', 'frozen_tissue_grind']",
       "lineage1_type": "sample",
-      "lineage2_id": "23_C1-2_Lung_allogenic_42days_170427_UKy_GCH_rep2-protein",
-      "lineage2_protein_weight": "1.1547210188083492",
+      "lineage2_id": "08_C1-2_Colon_allogenic_42days_170427_UKy_GCH_rep2-protein",
+      "lineage2_protein_weight": "1.6115317800148334",
       "lineage2_protein_weight%units": "mg",
       "lineage2_protocol.id": "['protein_extraction']",
       "lineage2_type": "sample",
-      "RAW_FILE_NAME": "23_C12_Lung_T032017_allo_ICMSA.raw"
+      "RAW_FILE_NAME": "08_C1-2_Colon_allogenic_170427_UKy_GCB_rep2-quench_ICMSA.raw"
     }
   },
   {
     "Subject ID": "09_C2-0_allogenic_42days_UKy_GCH_rep1",
-    "Sample ID": "24_C2-0_Lung_allogenic_42days_170427_UKy_GCH_rep1-polar-ICMS_A",
+    "Sample ID": "09_C2-0_Colon_allogenic_42days_170427_UKy_GCH_rep1-polar-ICMS_A",
     "Factors": {
       "Treatment": "allogenic",
       "Time Point": "42"
@@ -231,20 +231,20 @@
       "lineage0_taxonomy_id": "10090",
       "lineage0_time_point": "42",
       "lineage0_type": "subject",
-      "lineage1_id": "24_C2-0_Lung_allogenic_42days_170427_UKy_GCH_rep1",
+      "lineage1_id": "09_C2-0_Colon_allogenic_42days_170427_UKy_GCH_rep1",
       "lineage1_protocol.id": "['mouse_tissue_collection', 'tissue_quench', 'frozen_tissue_grind']",
       "lineage1_type": "sample",
-      "lineage2_id": "24_C2-0_Lung_allogenic_42days_170427_UKy_GCH_rep1-protein",
-      "lineage2_protein_weight": "0.6075844437094541",
+      "lineage2_id": "09_C2-0_Colon_allogenic_42days_170427_UKy_GCH_rep1-protein",
+      "lineage2_protein_weight": "1.6843458692847952",
       "lineage2_protein_weight%units": "mg",
       "lineage2_protocol.id": "['protein_extraction']",
       "lineage2_type": "sample",
-      "RAW_FILE_NAME": "24_C20_Lung_T032017_allo_ICMSA.raw"
+      "RAW_FILE_NAME": "09_C2-0_Colon_allogenic_170427_UKy_GCB_rep1-quench_ICMSA.raw"
     }
   },
   {
     "Subject ID": "10_B1-0_syngenic_7days_UKy_GCH_rep1",
-    "Sample ID": "25_B1-0_Lung_syngenic_7days_170427_UKy_GCH_rep1-polar-ICMS_A",
+    "Sample ID": "10_B1-0_Colon_syngenic_7days_170427_UKy_GCH_rep1-polar-ICMS_A",
     "Factors": {
       "Treatment": "syngenic",
       "Time Point": "7"
@@ -258,20 +258,20 @@
       "lineage0_taxonomy_id": "10090",
       "lineage0_time_point": "7",
       "lineage0_type": "subject",
-      "lineage1_id": "25_B1-0_Lung_syngenic_7days_170427_UKy_GCH_rep1",
+      "lineage1_id": "10_B1-0_Colon_syngenic_7days_170427_UKy_GCH_rep1",
       "lineage1_protocol.id": "['mouse_tissue_collection', 'tissue_quench', 'frozen_tissue_grind']",
       "lineage1_type": "sample",
-      "lineage2_id": "25_B1-0_Lung_syngenic_7days_170427_UKy_GCH_rep1-protein",
-      "lineage2_protein_weight": "0.47147932892528355",
+      "lineage2_id": "10_B1-0_Colon_syngenic_7days_170427_UKy_GCH_rep1-protein",
+      "lineage2_protein_weight": "0.9744309499653369",
       "lineage2_protein_weight%units": "mg",
       "lineage2_protocol.id": "['protein_extraction']",
       "lineage2_type": "sample",
-      "RAW_FILE_NAME": "25_B10_Lung_T042017_syn_ICMSA.raw"
+      "RAW_FILE_NAME": "10_B1-0_Colon_syngenic_170427_UKy_GCB_rep1-quench_ICMSA.raw"
     }
   },
   {
     "Subject ID": "11_B1-1_syngenic_7days_UKy_GCH_rep2",
-    "Sample ID": "26_B1-1_Lung_syngenic_7days_170427_UKy_GCH_rep2-polar-ICMS_A",
+    "Sample ID": "11_B1-1_Colon_syngenic_7days_170427_UKy_GCH_rep2-polar-ICMS_A",
     "Factors": {
       "Treatment": "syngenic",
       "Time Point": "7"
@@ -285,20 +285,20 @@
       "lineage0_taxonomy_id": "10090",
       "lineage0_time_point": "7",
       "lineage0_type": "subject",
-      "lineage1_id": "26_B1-1_Lung_syngenic_7days_170427_UKy_GCH_rep2",
+      "lineage1_id": "11_B1-1_Colon_syngenic_7days_170427_UKy_GCH_rep2",
       "lineage1_protocol.id": "['mouse_tissue_collection', 'tissue_quench', 'frozen_tissue_grind']",
       "lineage1_type": "sample",
-      "lineage2_id": "26_B1-1_Lung_syngenic_7days_170427_UKy_GCH_rep2-protein",
-      "lineage2_protein_weight": "0.34798720067708344",
+      "lineage2_id": "11_B1-1_Colon_syngenic_7days_170427_UKy_GCH_rep2-protein",
+      "lineage2_protein_weight": "1.2443973624103961",
       "lineage2_protein_weight%units": "mg",
       "lineage2_protocol.id": "['protein_extraction']",
       "lineage2_type": "sample",
-      "RAW_FILE_NAME": "26_B11_Lung_T042017_syn_ICMSA.raw"
+      "RAW_FILE_NAME": "11_B1-1_Colon_syngenic_170427_UKy_GCB_rep2-quench_ICMSA.raw"
     }
   },
   {
     "Subject ID": "12_B1-2_syngenic_7days_UKy_GCH_rep3",
-    "Sample ID": "27_B1-2_Lung_syngenic_7days_170427_UKy_GCH_rep3-polar-ICMS_A",
+    "Sample ID": "12_B1-2_Colon_syngenic_7days_170427_UKy_GCH_rep3-polar-ICMS_A",
     "Factors": {
       "Treatment": "syngenic",
       "Time Point": "7"
@@ -312,20 +312,20 @@
       "lineage0_taxonomy_id": "10090",
       "lineage0_time_point": "7",
       "lineage0_type": "subject",
-      "lineage1_id": "27_B1-2_Lung_syngenic_7days_170427_UKy_GCH_rep3",
+      "lineage1_id": "12_B1-2_Colon_syngenic_7days_170427_UKy_GCH_rep3",
       "lineage1_protocol.id": "['mouse_tissue_collection', 'tissue_quench', 'frozen_tissue_grind']",
       "lineage1_type": "sample",
-      "lineage2_id": "27_B1-2_Lung_syngenic_7days_170427_UKy_GCH_rep3-protein",
-      "lineage2_protein_weight": "0.3397343460300001",
+      "lineage2_id": "12_B1-2_Colon_syngenic_7days_170427_UKy_GCH_rep3-protein",
+      "lineage2_protein_weight": "1.6127238309055993",
       "lineage2_protein_weight%units": "mg",
       "lineage2_protocol.id": "['protein_extraction']",
       "lineage2_type": "sample",
-      "RAW_FILE_NAME": "27_B12_Lung_T042017_syn_ICMSA.raw"
+      "RAW_FILE_NAME": "12_B1-2_Colon_syngenic_170427_UKy_GCB_rep3-quench_ICMSA.raw"
     }
   },
   {
     "Subject ID": "13_C1-1_allogenic_7days_UKy_GCH_rep1",
-    "Sample ID": "28_C1-1_Lung_allogenic_7days_170427_UKy_GCH_rep1-polar-ICMS_A",
+    "Sample ID": "13_C1-1_Colon_allogenic_7days_170427_UKy_GCH_rep1-polar-ICMS_A",
     "Factors": {
       "Treatment": "allogenic",
       "Time Point": "7"
@@ -339,20 +339,20 @@
       "lineage0_taxonomy_id": "10090",
       "lineage0_time_point": "7",
       "lineage0_type": "subject",
-      "lineage1_id": "28_C1-1_Lung_allogenic_7days_170427_UKy_GCH_rep1",
+      "lineage1_id": "13_C1-1_Colon_allogenic_7days_170427_UKy_GCH_rep1",
       "lineage1_protocol.id": "['mouse_tissue_collection', 'tissue_quench', 'frozen_tissue_grind']",
       "lineage1_type": "sample",
-      "lineage2_id": "28_C1-1_Lung_allogenic_7days_170427_UKy_GCH_rep1-protein",
-      "lineage2_protein_weight": "0.37226618572882475",
+      "lineage2_id": "13_C1-1_Colon_allogenic_7days_170427_UKy_GCH_rep1-protein",
+      "lineage2_protein_weight": "2.0735556513766173",
       "lineage2_protein_weight%units": "mg",
       "lineage2_protocol.id": "['protein_extraction']",
       "lineage2_type": "sample",
-      "RAW_FILE_NAME": "28_C11_Lung_T042017_allo_ICMSA.raw"
+      "RAW_FILE_NAME": "13_C1-1_Colon_allogenic_170427_UKy_GCB_rep1-quench_ICMSA.raw"
     }
   },
   {
     "Subject ID": "14_C1-2_allogenic_7days_UKy_GCH_rep2",
-    "Sample ID": "29_C1-2_Lung_allogenic_7days_170427_UKy_GCH_rep2-polar-ICMS_A",
+    "Sample ID": "14_C1-2_Colon_allogenic_7days_170427_UKy_GCH_rep2-polar-ICMS_A",
     "Factors": {
       "Treatment": "allogenic",
       "Time Point": "7"
@@ -366,20 +366,20 @@
       "lineage0_taxonomy_id": "10090",
       "lineage0_time_point": "7",
       "lineage0_type": "subject",
-      "lineage1_id": "29_C1-2_Lung_allogenic_7days_170427_UKy_GCH_rep2",
+      "lineage1_id": "14_C1-2_Colon_allogenic_7days_170427_UKy_GCH_rep2",
       "lineage1_protocol.id": "['mouse_tissue_collection', 'tissue_quench', 'frozen_tissue_grind']",
       "lineage1_type": "sample",
-      "lineage2_id": "29_C1-2_Lung_allogenic_7days_170427_UKy_GCH_rep2-protein",
-      "lineage2_protein_weight": "0.31985855339373337",
+      "lineage2_id": "14_C1-2_Colon_allogenic_7days_170427_UKy_GCH_rep2-protein",
+      "lineage2_protein_weight": "1.7420773775641787",
       "lineage2_protein_weight%units": "mg",
       "lineage2_protocol.id": "['protein_extraction']",
       "lineage2_type": "sample",
-      "RAW_FILE_NAME": "29_C12_Lung_T042017_allo_ICMSA.raw"
+      "RAW_FILE_NAME": "14_C1-2_Colon_allogenic_170427_UKy_GCB_rep2-quench_ICMSA.raw"
     }
   },
   {
     "Subject ID": "15_C1-20_allogenic_7days_UKy_GCH_rep3",
-    "Sample ID": "30_C1-20_Lung_allogenic_7days_170427_UKy_GCH_rep3-polar-ICMS_A",
+    "Sample ID": "15_C1-20_Colon_allogenic_7days_170427_UKy_GCH_rep3-polar-ICMS_A",
     "Factors": {
       "Treatment": "allogenic",
       "Time Point": "7"
@@ -393,15 +393,15 @@
       "lineage0_taxonomy_id": "10090",
       "lineage0_time_point": "7",
       "lineage0_type": "subject",
-      "lineage1_id": "30_C1-20_Lung_allogenic_7days_170427_UKy_GCH_rep3",
+      "lineage1_id": "15_C1-20_Colon_allogenic_7days_170427_UKy_GCH_rep3",
       "lineage1_protocol.id": "['mouse_tissue_collection', 'tissue_quench', 'frozen_tissue_grind']",
       "lineage1_type": "sample",
-      "lineage2_id": "30_C1-20_Lung_allogenic_7days_170427_UKy_GCH_rep3-protein",
-      "lineage2_protein_weight": "0.4930096320820004",
+      "lineage2_id": "15_C1-20_Colon_allogenic_7days_170427_UKy_GCH_rep3-protein",
+      "lineage2_protein_weight": "1.9186640291000003",
       "lineage2_protein_weight%units": "mg",
       "lineage2_protocol.id": "['protein_extraction']",
       "lineage2_type": "sample",
-      "RAW_FILE_NAME": "30_C120_Lung_T042017_allo_ICMSA.raw"
+      "RAW_FILE_NAME": "15_C1-20_Colon_allogenic_170427_UKy_GCB_rep3-quench_ICMSA.raw"
     }
   }
 ]

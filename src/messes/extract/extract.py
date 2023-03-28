@@ -51,6 +51,9 @@ Regular Expression Format:
 #
 #   Revised significantly by Travis Thompson, 03/03/2023
 
+## "r'^(?!.*(ICMS_A|lipid).*)'"  This is the pattern that will let you mimic keep with the --delete option.
+## This says match if ICMS_A or lipid are not in the name, so entity,r\'(?!.*(ICMS_A|lipid).*)\' will only 
+## keep entities that have ICMS_A or lipid in the name.
 
 
 from __future__ import annotations

@@ -3,8 +3,7 @@
     "TREATMENT_SUMMARY": {
       "headers": [
         "\"id\"=id",
-        "\"field\"=field",
-        "project.id=project.id"
+        "\"field\"=field"
       ],
       "id": "TREATMENT_SUMMARY",
       "sort_by": [

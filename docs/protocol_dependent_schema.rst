@@ -233,7 +233,7 @@ Just know that for most keywords in `JSON Schema <https://json-schema.org/unders
 it is acceptable to put a string value in place of the proper type. This 
 is done to support the tabular form of the protocol-dependent schema as described below. 
 A best attempt has been made to support most of the features of JSON Schema, but 
-not everything has been tested or is guarenteed to work. If you find an error or 
+not everything has been tested or is guaranteed to work. If you find an error or 
 something you would like to be added, then please open an `issue <https://github.com/MoseleyBioinformaticsLab/MESSES/issues>`_ on GitHub.
 
 Protocol-Dependent Schema - Table

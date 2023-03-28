@@ -194,6 +194,18 @@
       "table": "measurement",
       "type": "string"
     },
+    "data_files": {
+      "uniqueItems": "True",
+      "required": "False",
+      "table": "protocol",
+      "type": "array"
+    },
+    "data_files%entity_id": {
+      "uniqueItems": "True",
+      "required": "False",
+      "table": "protocol",
+      "type": "array"
+    },
     "formula": {
       "minLength": "1",
       "table": "measurement",
@@ -276,6 +288,18 @@
     }
   },
   "NMR_measurement": {
+    "data_files": {
+      "uniqueItems": "True",
+      "required": "False",
+      "table": "protocol",
+      "type": "array"
+    },
+    "data_files%entity_id": {
+      "uniqueItems": "True",
+      "required": "False",
+      "table": "protocol",
+      "type": "array"
+    },
     "NMR_experiment_type": {
       "minLength": "1",
       "required": "True",

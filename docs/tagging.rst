@@ -60,7 +60,7 @@ Export Tags
 * Tag rows are identified by putting **'#tags'** in the left most column of the data file.
 
     * Typically, there will be nothing underneath of **'#tags'** except **'#ignore'** for rows to ignore.
-    * You may need to add a blank column to the left of your data to accomodate this.
+    * You may need to add a blank column to the left of your data to accommodate this.
     * **'#tags'** always needs to be on the very left most column, even if your table has several blank columns before it starts.
     
 * Cells on this row will have tags over the columns to be exported.
@@ -600,7 +600,7 @@ There are 6 modifications that can be done, "assign", "append", "prepend", "rege
 .. note::
     ID fields are special. 
     
-    * Modifications to id fields will be propogated to the table key of that record.
+    * Modifications to id fields will be propagated to the table key of that record.
     * They cannot be deleted or renamed.
     * They are the only time a period, '.', can appear in the field_name.
     
@@ -787,7 +787,7 @@ The Tags
        * Example: Name+"-"+Isopotologue+"-"+r'^\d+\w+ Isotope$'
        * This functionality means that certain characters can't be used for literal matching outside of a regex.
        * For example, if a header name in a data table is "protein+solvent", then you can't simply put protein+solvent under **#header** because it will be interpreted as a concatenation of a "protein" header and a separate "solvent" header.
-       * The easist way to solve this issue is to use a regular expression. r'protein\+solvent' will match the header correctly.
+       * The easiest way to solve this issue is to use a regular expression. r'protein\+solvent' will match the header correctly.
        * In general, if you are having difficulty matching a header, try using a regex.
     
     * An eval function can be used in the form "eval(...)".
@@ -1079,7 +1079,7 @@ Adding Additional Fields
 |       | 13-BPG-13C3                                               | indirect_to_standard                  |               |            |
 +-------+-----------------------------------------------------------+---------------------------------------+---------------+------------+
 
-This will add an additional "assignment%method" field to the measurement records whose "assigment" 
+This will add an additional "assignment%method" field to the measurement records whose "assignment" 
 field matches the ".value" column.
 
 

@@ -1,18 +1,19 @@
 {
-  "TREATMENT": {
-    "TREATMENT_SUMMARY": {
+  "ENTITY": {
+    "ENTITY_SUMMARY": {
       "headers": [
-        "\"field\"=field",
-        "project.id=project.id"
+        "\"replicate\"=replicate",
+        "\"type\"=type"
       ],
       "id": "TREATMENT_SUMMARY",
       "sort_by": [
         "id"
       ],
       "sort_order": "ascending",
-      "table": "factor",
+      "table": "entity",
       "value_type": "matrix",
-      "collate": "project.id"
+      "test":"type=subject",
+      "collate": "type"
     }
   }
 }

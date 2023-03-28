@@ -48,13 +48,13 @@ that it is more interoperable and more standardized.
 The validation step ensures the data that was extracted is valid against the `Experiment Description Schema <https://moseleybioinformaticslab.github.io/messes/experiment_description_schema.html>`__, 
 the `Protocol Dependent Schema <https://moseleybioinformaticslab.github.io/messes/protocol_dependent_schema.html>`__, any additional JSON schema you wish to provide, and a built 
 in schema specific for the format you wish to convert to. The conversion step converts the 
-extracted data to the form that is accepted by the online repository. There is an intial 
+extracted data to the form that is accepted by the online repository. There is an initial 
 steep learning curve. But once the extraction, validation, and conversion settings are 
 worked out, this process can be easily added to our data generation and analysis workflows.
 
 Although any kind of data schema can be used for extraction into JSON, conversion 
 to another format from the extracted JSON does rely on the data being in a specific 
-schema. A generalized schema was developed for MESSES that should be able to comprehensivley 
+schema. A generalized schema was developed for MESSES that should be able to comprehensively 
 describe most experimental designs and data. This schema is described in the `Experiment Description Schema <https://moseleybioinformaticslab.github.io/messes/experiment_description_schema.html>`__ section 
 of the documentation. But original data entry, manual tagging of tabular data, and even 
 automated tagging facilities can be messy, generating errors in the extracted JSONized 

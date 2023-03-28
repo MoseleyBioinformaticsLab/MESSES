@@ -1,9 +1,10 @@
 This is an example using real data that has been uploaded to the Metabolomics Workbench. It has been cleaned up a little bit, but some 
 messiness remains to illustrate how tags can be added on top of existing data. The mouse_experiment_metadata.xlsx file is data collected 
 for a PDX mouse experiment (summary below). The "Master sheet" sheet is the mostly original sheet used by the lab during the experiment 
-to tabulate the data, while the "#export" is a copy by values of the "Master sheet". An important thing to note is that only the NMR data 
-is tagged for this NMR example. In general you do not want to pull in more than is necessary because it can cause conflicts and may be unecessary 
-for the repository depositon. This file is where most of the data for the factor, project, study, and entity tables will come from. 
+to tabulate the data, while the "#export" is a copy by values of the "Master sheet". This file is where most of the data for the factor, 
+project, study, and entity tables will come from. An important thing to note is that only the NMR data is pulled out for this NMR example. 
+The --delete option is used to filter out data not relevant for the submission. In general you do not want to pull in more than is necessary 
+because it can cause conflicts and may be unecessary for the repository depositon. 
 
 The NMR_colon_measurements.xlsx are nuclear magnetic resonance spectroscopy measurements done on the colons of the harvested mice 
 in the experiment. Metabolites identified from the raw NMR results and that data is what is presented here. 
@@ -38,4 +39,4 @@ Output Files:
 extracted_result.json
 
 Run Command:
-messes extract mouse_experiment_metadata.xlsx NMR_colon_measurements.xlsx --output extracted_result --silent
+messes extract mouse_experiment_metadata.xlsx NMR_colon_measurements.xlsx --end-modify #endmodify --output extracted_result --silent --delete "entity,r'^(?!.*(-NMR_A|-protein|\d$))|.*Plasma|Lung|Spleen|SI|Liver.*'" --delete "protocol,acetone_extraction" --delete "protocol,lipid_extraction" --delete "protocol,IC-FTMS_preparation"
