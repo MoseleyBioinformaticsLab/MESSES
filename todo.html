@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>TODO List &mdash; MESSES 0.1.dev1+g62b989a documentation</title>
+  <title>TODO List &mdash; MESSES 0.1.dev1+g991df59 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/custom_css.css" type="text/css" />
       <link rel="stylesheet" href="_static/sphinxcontrib-images/LightBox2/lightbox2/dist/css/lightbox.css" type="text/css" />
@@ -34,7 +34,7 @@
             <a href="index.html" class="icon icon-home"> MESSES
           </a>
               <div class="version">
-                0.1.dev1+g62b989a
+                0.1.dev1+g991df59
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -111,17 +111,19 @@ TagParser._parseRow is where this warning would go.</p>
 <p>Allow input files to be URLs and fetch them from the internet.</p>
 <p>Handle column based data. Most likely this will be a tag directly after #tags that indicates the data is in column format and it will be
 transposed and then processed as normal.</p>
-<p>Add a #max-distance tag for levenshtein comaprison to put a minimum distance that must be acheived to be considered a match.</p>
+<p>Add a #max-distance tag for levenshtein comparison to put a minimum distance that must be acheived to be considered a match.</p>
 <p>Add an option not to print warnings about unused modification directives.</p>
 <p>Add a “exact_assign” tag to modification tags that keeps the field type (list vs non list).</p>
 <p>Add an option to not sort JSON output keys.</p>
-<p>Add a way to filter the tables and records. This could probbaly be done with modification tags.</p>
+<p>Add a way to filter the tables and records. This could probably be done with modification tags.</p>
 </section>
 <section id="possible-improvements-to-validate">
 <h2>Possible Improvements to Validate<a class="headerlink" href="#possible-improvements-to-validate" title="Permalink to this heading"></a></h2>
 <p>Improve build_PD_schema function by supporting more JSON Schema keywords. dependentRequired could be done the same as required,
 but with a list value instead of boolean.</p>
 <p>Have an option to check that fields with the same name in the same table have the same type.</p>
+<p>Add an option similar to the –delete option for extract that would filter before validation, –exclude possibly. This would give the
+user more options to remove nuisance messages.</p>
 </section>
 <section id="possible-improvements-to-convert">
 <h2>Possible Improvements to Convert<a class="headerlink" href="#possible-improvements-to-convert" title="Permalink to this heading"></a></h2>

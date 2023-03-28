@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Tagging &mdash; MESSES 0.1.dev1+g62b989a documentation</title>
+  <title>Tagging &mdash; MESSES 0.1.dev1+g991df59 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/custom_css.css" type="text/css" />
       <link rel="stylesheet" href="_static/sphinxcontrib-images/LightBox2/lightbox2/dist/css/lightbox.css" type="text/css" />
@@ -35,7 +35,7 @@
             <a href="index.html" class="icon icon-home"> MESSES
           </a>
               <div class="version">
-                0.1.dev1+g62b989a
+                0.1.dev1+g991df59
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -196,7 +196,7 @@ command are in the <a class="reference internal" href="tutorial.html"><span clas
 <blockquote>
 <div><ul class="simple">
 <li><p>Typically, there will be nothing underneath of <strong>‘#tags’</strong> except <strong>‘#ignore’</strong> for rows to ignore.</p></li>
-<li><p>You may need to add a blank column to the left of your data to accomodate this.</p></li>
+<li><p>You may need to add a blank column to the left of your data to accommodate this.</p></li>
 <li><p><strong>‘#tags’</strong> always needs to be on the very left most column, even if your table has several blank columns before it starts.</p></li>
 </ul>
 </div></blockquote>
@@ -1131,7 +1131,7 @@ each row individually, or for the whole column by using the = sign. Ex. <strong>
 <p class="admonition-title">Note</p>
 <p>ID fields are special.</p>
 <ul>
-<li><p>Modifications to id fields will be propogated to the table key of that record.</p></li>
+<li><p>Modifications to id fields will be propagated to the table key of that record.</p></li>
 <li><p>They cannot be deleted or renamed.</p></li>
 <li><p>They are the only time a period, ‘.’, can appear in the field_name.</p>
 <blockquote>
@@ -1463,7 +1463,7 @@ matched, detailed below.</p>
 <li><p>Example: Name+”-“+Isopotologue+”-“+r’^d+w+ Isotope$’</p></li>
 <li><p>This functionality means that certain characters can’t be used for literal matching outside of a regex.</p></li>
 <li><p>For example, if a header name in a data table is “protein+solvent”, then you can’t simply put protein+solvent under <strong>#header</strong> because it will be interpreted as a concatenation of a “protein” header and a separate “solvent” header.</p></li>
-<li><p>The easist way to solve this issue is to use a regular expression. r’protein+solvent’ will match the header correctly.</p></li>
+<li><p>The easiest way to solve this issue is to use a regular expression. r’protein+solvent’ will match the header correctly.</p></li>
 <li><p>In general, if you are having difficulty matching a header, try using a regex.</p></li>
 </ul>
 </div></blockquote>
@@ -2455,7 +2455,7 @@ to make the same change in the id field, but we can’t simply use an assign, th
 </tr>
 </tbody>
 </table>
-<p>This will add an additional “assignment%method” field to the measurement records whose “assigment”
+<p>This will add an additional “assignment%method” field to the measurement records whose “assignment”
 field matches the “.value” column.</p>
 </section>
 </section>

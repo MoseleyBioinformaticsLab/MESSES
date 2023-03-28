@@ -419,7 +419,7 @@ Input JSON
           "filename": "study_treatments.pdf"
           },
         "4c_polar_extraction": {
-          "description": "Polar extraction from homogenate, lypholized, and frozen.",
+          "description": "Polar extraction from homogenate, lyophilized, and frozen.",
           "filename": "4B_Extract_Polar_Lipid_Prot_Fan_070417.pdf",
           "id": "4c_polar_extraction",
           "type": "sample_prep"

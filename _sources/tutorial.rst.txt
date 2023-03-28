@@ -62,7 +62,11 @@ Options
 
 --delete  Use this option to delete tables, records, or fields from the JSONized input. Note that fields can also be deleted using modification tags. This 
           option is limited and only allows the deletion of one table, record, or field at a time. Ex. --delete protocol  will delete the protocol table. Tables, records, 
-          and fields can also be specified with regular expressions. Ex. --delete r'.*tocol' will delete all tables that match the regular expression.
+          and fields can also be specified with regular expressions. Ex. --delete r'.*tocol' will delete all tables that match the regular expression. If 
+          you would like to delete all records besides those that match a certain pattern you can use a more advanced regular expression. 
+          Ex. entity,r'^(?!.*(-ICMS_A|-protein))' will delete all entities that do not have "-ICMS_A" or "-protein" in the id. The (?!...) special 
+          grouping matches if the pattern inside is not found. You can see more complex examples of this option in the mwtab examples found in the 
+          examples folder of the GitHub_ repository.
 
 --keep  Use this option to keep only the indicated tables in the JSONized output. These are tables only, but multiple tables can be specified. 
         Ex. --keep protocol,measurement  will keep only the protocol and measurement tables. Tables can also specified with regular expressions Ex. --keep r'.*tocl',r'measure.*'  
@@ -588,7 +592,7 @@ The protocol-dependent schema can be a JSON file or a tagged tabular file detail
 protocol-dependent schema is not required, but it is highly recommended to minimize problems in 
 the conversion step.
 
-The validate command is used to validate extracted data. It is not guarenteed to catch everything wrong, but it makes a best attempt to check for 
+The validate command is used to validate extracted data. It is not guaranteed to catch everything wrong, but it makes a best attempt to check for 
 common issues. This can be highly influenced by the user through the --pds and --additional options, which allow the user to specify a protocol-dependent 
 schema and additional JSON schema, respectively. The protocol-dependent schema (PDS) is detailed in the :doc:`protocol_dependent_schema` section of the documentation, and allows 
 users to specify additional validation based on the protocols of records. The additional JSON schema is any arbitrary valid `JSON schema <https://json-schema.org/understanding-json-schema/>`_ and it is 
@@ -603,7 +607,7 @@ Options
 -------
 
 --silent  This option specifies what warnings should be printed. "full" will silence all warnings, "nuisance" will only silence warnings that 
-          have been deemed to be a nuisance in some cirumstances, and "none" will silence no warnings which is the default.
+          have been deemed to be a nuisance in some circumstances, and "none" will silence no warnings which is the default.
 
 --pds  This option specifies that a protocol-dependent schema should be used with the command and where to read the file from. If "-" is given, 
        the PDS will be read from stdin, anything else is interpreted as a filepath. If the PDS is an Excel file, the default sheet name to read in is 
@@ -638,7 +642,7 @@ Options
 
 Examples
 --------
-The inputs and outputs are too large to demonstrate readily inline, but there are examples available in the examples folder on the GitHub_ repo.
+The inputs and outputs are too large to demonstrate readily inline, but there are examples available in the examples folder on the GitHub_ repository.
 
 Basic JSON Validation
 +++++++++++++++++++++
@@ -783,7 +787,7 @@ Options
 
 Examples
 --------
-The inputs and outputs are too large to demonstrate readily inline, but there are examples available in the examples folder on the GitHub_ repo.
+The inputs and outputs are too large to demonstrate readily inline, but there are examples available in the examples folder on the GitHub_ repository.
 
 Basic Supported Format Run
 ++++++++++++++++++++++++++

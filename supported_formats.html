@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Supported Conversion Formats &mdash; MESSES 0.1.dev1+g62b989a documentation</title>
+  <title>Supported Conversion Formats &mdash; MESSES 0.1.dev1+g991df59 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/custom_css.css" type="text/css" />
       <link rel="stylesheet" href="_static/sphinxcontrib-images/LightBox2/lightbox2/dist/css/lightbox.css" type="text/css" />
@@ -35,7 +35,7 @@
             <a href="index.html" class="icon icon-home"> MESSES
           </a>
               <div class="version">
-                0.1.dev1+g62b989a
+                0.1.dev1+g991df59
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -171,12 +171,12 @@ full specification for the format here: <a class="reference external" href="http
 <h3>How SUBJECT_SAMPLE_FACTORS (SSF) Are Determined<a class="headerlink" href="#how-subject-sample-factors-ssf-are-determined" title="Permalink to this heading"></a></h3>
 <p>The SUBJECT_SAMPLE_FACTORS section is created by first finding all of the samples associated with measurement records. Then
 lineages for each sample are determined. Siblings are added to the lineages if they meet the right user determined conditions.
-By default, a sibling is included if the “protocol.id” field is “protein_extraction”. Then for each sample associated with a measurement record,
-the factors and nearest subject ancestor are determined. All ancestors, the sample itself, and any siblings that were added
-to the lineages are searched for raw files and are added into the SSF if found. The function used to create this section is
-called create_subject_sample_factors and it can be found in the <a class="reference internal" href="api.html"><span class="doc">API</span></a> section of the documentation. If the preferred
-table schema and controlled vocabulary are followed, then there is likely very little you might need to change here. But if you
-do need to make a change, then all of the parameters for the function are in the API documentation.</p>
+By default, a sibling is included if the “protocol.id” field has “protein_extraction”. Then for each sample associated with a measurement record,
+the factors and nearest subject ancestor are determined. Raw files are expected to be in a list on the measurement protocol as described
+in option 5 of the <a class="reference internal" href="experiment_description_schema.html#raw-files-method"><span class="std std-ref">Connecting Records to File Names</span></a> section in the documentation. The function used
+to create this section is called create_subject_sample_factors and it can be found in the <a class="reference internal" href="api.html"><span class="doc">API</span></a> section of the documentation.
+If the preferred table schema and controlled vocabulary are followed, then there is likely very little you might need to change here.
+But if you do need to make a change, then all of the parameters for the function are in the API documentation.</p>
 </section>
 </section>
 </section>

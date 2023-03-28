@@ -89,12 +89,12 @@ How SUBJECT_SAMPLE_FACTORS (SSF) Are Determined
 -----------------------------------------------
 The SUBJECT_SAMPLE_FACTORS section is created by first finding all of the samples associated with measurement records. Then 
 lineages for each sample are determined. Siblings are added to the lineages if they meet the right user determined conditions. 
-By default, a sibling is included if the "protocol.id" field is "protein_extraction". Then for each sample associated with a measurement record, 
-the factors and nearest subject ancestor are determined. All ancestors, the sample itself, and any siblings that were added 
-to the lineages are searched for raw files and are added into the SSF if found. The function used to create this section is 
-called create_subject_sample_factors and it can be found in the :doc:`api` section of the documentation. If the preferred 
-table schema and controlled vocabulary are followed, then there is likely very little you might need to change here. But if you 
-do need to make a change, then all of the parameters for the function are in the API documentation.
+By default, a sibling is included if the "protocol.id" field has "protein_extraction". Then for each sample associated with a measurement record, 
+the factors and nearest subject ancestor are determined. Raw files are expected to be in a list on the measurement protocol as described 
+in option 5 of the :ref:`raw-files-method` section in the documentation. The function used 
+to create this section is called create_subject_sample_factors and it can be found in the :doc:`api` section of the documentation. 
+If the preferred table schema and controlled vocabulary are followed, then there is likely very little you might need to change here. 
+But if you do need to make a change, then all of the parameters for the function are in the API documentation.
 
 
 

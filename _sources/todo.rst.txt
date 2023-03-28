@@ -31,7 +31,7 @@ Allow input files to be URLs and fetch them from the internet.
 Handle column based data. Most likely this will be a tag directly after #tags that indicates the data is in column format and it will be 
 transposed and then processed as normal.
 
-Add a #max-distance tag for levenshtein comaprison to put a minimum distance that must be acheived to be considered a match.
+Add a #max-distance tag for levenshtein comparison to put a minimum distance that must be acheived to be considered a match.
 
 Add an option not to print warnings about unused modification directives.
 
@@ -39,7 +39,7 @@ Add a "exact_assign" tag to modification tags that keeps the field type (list vs
 
 Add an option to not sort JSON output keys.
 
-Add a way to filter the tables and records. This could probbaly be done with modification tags.
+Add a way to filter the tables and records. This could probably be done with modification tags.
 
 
 Possible Improvements to Validate
@@ -48,6 +48,9 @@ Improve build_PD_schema function by supporting more JSON Schema keywords. depend
 but with a list value instead of boolean.
 
 Have an option to check that fields with the same name in the same table have the same type.
+
+Add an option similar to the --delete option for extract that would filter before validation, --exclude possibly. This would give the 
+user more options to remove nuisance messages.
 
 
 Possible Improvements to Convert

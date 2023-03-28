@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Tutorial &mdash; MESSES 0.1.dev1+g62b989a documentation</title>
+  <title>Tutorial &mdash; MESSES 0.1.dev1+g991df59 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/custom_css.css" type="text/css" />
       <link rel="stylesheet" href="_static/sphinxcontrib-images/LightBox2/lightbox2/dist/css/lightbox.css" type="text/css" />
@@ -35,7 +35,7 @@
             <a href="index.html" class="icon icon-home"> MESSES
           </a>
               <div class="version">
-                0.1.dev1+g62b989a
+                0.1.dev1+g991df59
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -243,7 +243,11 @@ an Excel file. Note that this file will likely not look pretty.</p>
 <dt><kbd><span class="option">--delete</span></kbd></dt>
 <dd><p>Use this option to delete tables, records, or fields from the JSONized input. Note that fields can also be deleted using modification tags. This
 option is limited and only allows the deletion of one table, record, or field at a time. Ex. –delete protocol  will delete the protocol table. Tables, records,
-and fields can also be specified with regular expressions. Ex. –delete r’.*tocol’ will delete all tables that match the regular expression.</p>
+and fields can also be specified with regular expressions. Ex. –delete r’.*tocol’ will delete all tables that match the regular expression. If
+you would like to delete all records besides those that match a certain pattern you can use a more advanced regular expression.
+Ex. entity,r’^(?!.*(-ICMS_A|-protein))’ will delete all entities that do not have “-ICMS_A” or “-protein” in the id. The (?!…) special
+grouping matches if the pattern inside is not found. You can see more complex examples of this option in the mwtab examples found in the
+examples folder of the <a class="reference external" href="https://github.com/MoseleyBioinformaticsLab/messes">GitHub</a> repository.</p>
 </dd>
 <dt><kbd><span class="option">--keep</span></kbd></dt>
 <dd><p>Use this option to keep only the indicated tables in the JSONized output. These are tables only, but multiple tables can be specified.
@@ -1008,7 +1012,7 @@ their protocol(s). This layer does require the user to generate what is called a
 The protocol-dependent schema can be a JSON file or a tagged tabular file detailed below. The
 protocol-dependent schema is not required, but it is highly recommended to minimize problems in
 the conversion step.</p>
-<p>The validate command is used to validate extracted data. It is not guarenteed to catch everything wrong, but it makes a best attempt to check for
+<p>The validate command is used to validate extracted data. It is not guaranteed to catch everything wrong, but it makes a best attempt to check for
 common issues. This can be highly influenced by the user through the –pds and –additional options, which allow the user to specify a protocol-dependent
 schema and additional JSON schema, respectively. The protocol-dependent schema (PDS) is detailed in the <a class="reference internal" href="protocol_dependent_schema.html"><span class="doc">Protocol-Dependent Schema</span></a> section of the documentation, and allows
 users to specify additional validation based on the protocols of records. The additional JSON schema is any arbitrary valid <a class="reference external" href="https://json-schema.org/understanding-json-schema/">JSON schema</a> and it is
@@ -1022,7 +1026,7 @@ added so users can check that the protocol-dependent schemas they create are val
 <dl class="option-list">
 <dt><kbd><span class="option">--silent</span></kbd></dt>
 <dd><p>This option specifies what warnings should be printed. “full” will silence all warnings, “nuisance” will only silence warnings that
-have been deemed to be a nuisance in some cirumstances, and “none” will silence no warnings which is the default.</p>
+have been deemed to be a nuisance in some circumstances, and “none” will silence no warnings which is the default.</p>
 </dd>
 <dt><kbd><span class="option">--pds</span></kbd></dt>
 <dd><p>This option specifies that a protocol-dependent schema should be used with the command and where to read the file from. If “-” is given,
@@ -1067,7 +1071,7 @@ an input JSON file to reproduce the schema from the “json” command exactly.<
 </section>
 <section id="id2">
 <h3>Examples<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h3>
-<p>The inputs and outputs are too large to demonstrate readily inline, but there are examples available in the examples folder on the <a class="reference external" href="https://github.com/MoseleyBioinformaticsLab/messes">GitHub</a> repo.</p>
+<p>The inputs and outputs are too large to demonstrate readily inline, but there are examples available in the examples folder on the <a class="reference external" href="https://github.com/MoseleyBioinformaticsLab/messes">GitHub</a> repository.</p>
 <section id="basic-json-validation">
 <h4>Basic JSON Validation<a class="headerlink" href="#basic-json-validation" title="Permalink to this heading"></a></h4>
 <p>Command Line:</p>
@@ -1216,7 +1220,7 @@ will not be used and these will be used instead.</p>
 </section>
 <section id="id4">
 <h3>Examples<a class="headerlink" href="#id4" title="Permalink to this heading"></a></h3>
-<p>The inputs and outputs are too large to demonstrate readily inline, but there are examples available in the examples folder on the <a class="reference external" href="https://github.com/MoseleyBioinformaticsLab/messes">GitHub</a> repo.</p>
+<p>The inputs and outputs are too large to demonstrate readily inline, but there are examples available in the examples folder on the <a class="reference external" href="https://github.com/MoseleyBioinformaticsLab/messes">GitHub</a> repository.</p>
 <section id="basic-supported-format-run">
 <h4>Basic Supported Format Run<a class="headerlink" href="#basic-supported-format-run" title="Permalink to this heading"></a></h4>
 <p>Command Line:</p>
