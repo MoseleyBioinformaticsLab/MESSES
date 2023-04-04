@@ -187,6 +187,7 @@
         "intensity%units",
         "assignment",
         "entity.id",
+        "protocol.id",
         "formula",
         "compound",
         "isotopologue",

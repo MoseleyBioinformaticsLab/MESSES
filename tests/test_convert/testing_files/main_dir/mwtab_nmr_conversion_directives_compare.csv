@@ -78,7 +78,7 @@
 ,Metabolites,resonance_assignment,"""Metabolite""=resonance_assignment,""base_inchi""=base_inchi,""representative_inchi""=representative_inchi,""isotopic_inchi""=isotopic_inchi,""peak_description""=peak_description,""peak_pattern""=peak_pattern,""proton_count""=proton_count,""transient_peak""=transient_peak,""transient_peak_type""=transient_peak%type",True,resonance_assignment,ascending,measurement,matrix,True,
 ,,,,,,,,,,
 #tags,#NMR_METABOLITE_DATA.id,*#.exclusion_headers,#.fields_to_headers,*#.headers,#.required,*#.sort_by,#.sort_order,#.table,#.value_type,#.values_to_str
-,Extended,"id,intensity,intensity%type,intensity%units,resonance_assignment,entity.id,base_inchi,representative_inchi,isotopic_inchi,peak_description,peak_pattern,proton_count,transient_peak,transient_peak%type",True,"""Metabolite""=resonance_assignment,""sample_id""=entity.id",False,resonance_assignment,ascending,measurement,matrix,True
+,Extended,"id,intensity,intensity%type,intensity%units,resonance_assignment,entity.id,protocol.id,base_inchi,representative_inchi,isotopic_inchi,peak_description,peak_pattern,proton_count,transient_peak,transient_peak%type",True,"""Metabolite""=resonance_assignment,""sample_id""=entity.id",False,resonance_assignment,ascending,measurement,matrix,True
 ,,,,,,,,,,
 #tags,#NMR_METABOLITE_DATA.id,*#.fields,#.required,#.table,#.value_type,,,,,
 ,Units,intensity%type,True,measurement,str,,,,,

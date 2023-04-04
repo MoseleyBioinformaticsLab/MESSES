@@ -72,6 +72,7 @@
   },
   "PROJECT": {
     "ADDRESS": {
+      "required": "True",
       "fields": [
         "address"
       ],
@@ -80,6 +81,7 @@
       "value_type": "str"
     },
     "DEPARTMENT": {
+      "required": "True",
       "fields": [
         "department"
       ],
@@ -88,6 +90,7 @@
       "value_type": "str"
     },
     "EMAIL": {
+      "required": "True",
       "fields": [
         "PI_email"
       ],
@@ -96,6 +99,7 @@
       "value_type": "str"
     },
     "FIRST_NAME": {
+      "required": "True",
       "fields": [
         "PI_first_name"
       ],
@@ -104,6 +108,7 @@
       "value_type": "str"
     },
     "INSTITUTE": {
+      "required": "True",
       "fields": [
         "institution"
       ],
@@ -112,6 +117,7 @@
       "value_type": "str"
     },
     "LAST_NAME": {
+      "required": "True",
       "fields": [
         "PI_last_name"
       ],
@@ -120,6 +126,7 @@
       "value_type": "str"
     },
     "PHONE": {
+      "required": "True",
       "fields": [
         "phone"
       ],
@@ -128,6 +135,7 @@
       "value_type": "str"
     },
     "PROJECT_SUMMARY": {
+      "required": "True",
       "fields": [
         "description"
       ],
@@ -136,6 +144,7 @@
       "value_type": "str"
     },
     "PROJECT_TITLE": {
+      "required": "True",
       "fields": [
         "title"
       ],
@@ -154,11 +163,11 @@
       "id": "SAMPLEPREP_PROTOCOL_FILENAME",
       "required": "False",
       "sort_by": [
-        "id"
+        "order"
       ],
       "sort_order": "ascending",
       "table": "protocol",
-      "test": "type=treatment",
+      "test": "type=sample_prep",
       "value_type": "str"
     },
     "SAMPLEPREP_PROTOCOL_ID": {
@@ -170,7 +179,7 @@
       "id": "SAMPLEPREP_PROTOCOL_ID",
       "required": "True",
       "sort_by": [
-        "id"
+        "order"
       ],
       "sort_order": "ascending",
       "table": "protocol",
@@ -178,7 +187,7 @@
       "value_type": "str"
     },
     "SAMPLEPREP_SUMMARY": {
-      "delimiter": "\" \"",
+      "delimiter": ";",
       "fields": [
         "description"
       ],
@@ -186,7 +195,7 @@
       "id": "SAMPLEPREP_SUMMARY",
       "required": "True",
       "sort_by": [
-        "id"
+        "order"
       ],
       "sort_order": "ascending",
       "table": "protocol",
@@ -196,6 +205,7 @@
   },
   "STUDY": {
     "ADDRESS": {
+      "required": "True",
       "fields": [
         "address"
       ],
@@ -204,6 +214,7 @@
       "value_type": "str"
     },
     "DEPARTMENT": {
+      "required": "True",
       "fields": [
         "department"
       ],
@@ -212,6 +223,7 @@
       "value_type": "str"
     },
     "EMAIL": {
+      "required": "True",
       "fields": [
         "PI_email"
       ],
@@ -220,6 +232,7 @@
       "value_type": "str"
     },
     "FIRST_NAME": {
+      "required": "True",
       "fields": [
         "PI_first_name"
       ],
@@ -228,6 +241,7 @@
       "value_type": "str"
     },
     "INSTITUTE": {
+      "required": "True",
       "fields": [
         "institution"
       ],
@@ -236,6 +250,7 @@
       "value_type": "str"
     },
     "LAST_NAME": {
+      "required": "True",
       "fields": [
         "PI_last_name"
       ],
@@ -244,6 +259,7 @@
       "value_type": "str"
     },
     "PHONE": {
+      "required": "True",
       "fields": [
         "phone"
       ],
@@ -252,6 +268,7 @@
       "value_type": "str"
     },
     "STUDY_SUMMARY": {
+      "required": "True",
       "fields": [
         "description"
       ],
@@ -260,6 +277,7 @@
       "value_type": "str"
     },
     "STUDY_TITLE": {
+      "required": "True",
       "fields": [
         "title"
       ],
@@ -270,6 +288,7 @@
   },
   "SUBJECT": {
     "SUBJECT_SPECIES": {
+      "required": "True",
       "fields": [
         "species"
       ],
@@ -279,6 +298,7 @@
       "value_type": "str"
     },
     "SUBJECT_TYPE": {
+      "required": "True",
       "fields": [
         "species_type"
       ],
@@ -288,6 +308,7 @@
       "value_type": "str"
     },
     "TAXONOMY_ID": {
+      "required": "True",
       "fields": [
         "taxonomy_id"
       ],
@@ -301,7 +322,8 @@
     "no_id_needed": {
       "code": "mwtab_functions.create_subject_sample_factors(input_json)",
       "id": "no_id_needed",
-      "value_type": "section"
+      "value_type": "section",
+      "required": "True"
     }
   },
   "TREATMENT": {
@@ -338,7 +360,7 @@
       "value_type": "str"
     },
     "TREATMENT_SUMMARY": {
-      "delimiter": "\" \"",
+      "delimiter": ";",
       "fields": [
         "description"
       ],
@@ -364,7 +386,7 @@
       "id": "ACQUISITION_TIME",
       "required": "False",
       "table": "protocol",
-      "test": "type=NMR",
+      "test": "machine_type=NMR",
       "value_type": "str"
     },
     "BASELINE_CORRECTION_METHOD": {
@@ -374,7 +396,7 @@
       "id": "BASELINE_CORRECTION_METHOD",
       "required": "False",
       "table": "protocol",
-      "test": "type=NMR",
+      "test": "machine_type=NMR",
       "value_type": "str"
     },
     "CHEMICAL_SHIFT_REF_CPD": {
@@ -384,7 +406,7 @@
       "id": "CHEMICAL_SHIFT_REF_CPD",
       "required": "False",
       "table": "protocol",
-      "test": "type=NMR",
+      "test": "machine_type=NMR",
       "value_type": "str"
     },
     "INSTRUMENT_NAME": {
@@ -394,7 +416,7 @@
       "id": "INSTRUMENT_NAME",
       "required": "True",
       "table": "protocol",
-      "test": "type=NMR",
+      "test": "machine_type=NMR",
       "value_type": "str"
     },
     "INSTRUMENT_TYPE": {
@@ -404,7 +426,7 @@
       "id": "INSTRUMENT_TYPE",
       "required": "True",
       "table": "protocol",
-      "test": "type=NMR",
+      "test": "machine_type=NMR",
       "value_type": "str"
     },
     "NMR_EXPERIMENT_TYPE": {
@@ -414,7 +436,7 @@
       "id": "NMR_EXPERIMENT_TYPE",
       "required": "True",
       "table": "protocol",
-      "test": "type=NMR",
+      "test": "machine_type=NMR",
       "value_type": "str"
     },
     "NMR_PROBE": {
@@ -424,7 +446,7 @@
       "id": "NMR_PROBE",
       "required": "False",
       "table": "protocol",
-      "test": "type=NMR",
+      "test": "machine_type=NMR",
       "value_type": "str"
     },
     "NMR_SOLVENT": {
@@ -434,7 +456,7 @@
       "id": "NMR_SOLVENT",
       "required": "False",
       "table": "protocol",
-      "test": "type=NMR",
+      "test": "machine_type=NMR",
       "value_type": "str"
     },
     "NMR_TUBE_SIZE": {
@@ -446,7 +468,7 @@
       "id": "NMR_TUBE_SIZE",
       "required": "False",
       "table": "protocol",
-      "test": "type=NMR",
+      "test": "machine_type=NMR",
       "value_type": "str"
     },
     "PULSE_SEQUENCE": {
@@ -456,7 +478,7 @@
       "id": "PULSE_SEQUENCE",
       "required": "False",
       "table": "protocol",
-      "test": "type=NMR",
+      "test": "machine_type=NMR",
       "value_type": "str"
     },
     "RELAXATION_DELAY": {
@@ -468,7 +490,7 @@
       "id": "RELAXATION_DELAY",
       "required": "False",
       "table": "protocol",
-      "test": "type=NMR",
+      "test": "machine_type=NMR",
       "value_type": "str"
     },
     "SHIMMING_METHOD": {
@@ -478,7 +500,7 @@
       "id": "SHIMMING_METHOD",
       "required": "False",
       "table": "protocol",
-      "test": "type=NMR",
+      "test": "machine_type=NMR",
       "value_type": "str"
     },
     "SPECTROMETER_FREQUENCY": {
@@ -490,7 +512,7 @@
       "id": "SPECTROMETER_FREQUENCY",
       "required": "True",
       "table": "protocol",
-      "test": "type=NMR",
+      "test": "machine_type=NMR",
       "value_type": "str"
     },
     "STANDARD_CONCENTRATION": {
@@ -502,7 +524,7 @@
       "id": "STANDARD_CONCENTRATION",
       "required": "False",
       "table": "protocol",
-      "test": "type=NMR",
+      "test": "machine_type=NMR",
       "value_type": "str"
     },
     "TEMPERATURE": {
@@ -514,7 +536,7 @@
       "id": "TEMPERATURE",
       "required": "False",
       "table": "protocol",
-      "test": "type=NMR",
+      "test": "machine_type=NMR",
       "value_type": "str"
     },
     "WATER_SUPPRESSION": {
@@ -524,16 +546,17 @@
       "id": "WATER_SUPPRESSION",
       "required": "False",
       "table": "protocol",
-      "test": "type=NMR",
+      "test": "machine_type=NMR",
       "value_type": "str"
     }
   },
   "NMR_METABOLITE_DATA": {
     "Data": {
+      "required": "True",
       "collate": "resonance_assignment",
       "headers": [
         "\"Metabolite\"=resonance_assignment",
-        "sample.id=intensity"
+        "entity.id=intensity"
       ],
       "id": "Data",
       "sort_by": [
@@ -545,13 +568,15 @@
       "values_to_str": "True"
     },
     "Extended": {
+      "required": "False",
       "exclusion_headers": [
         "id",
         "intensity",
         "intensity%type",
         "intensity%units",
         "resonance_assignment",
-        "sample.id",
+        "entity.id",
+        "protocol.id",
         "base_inchi",
         "representative_inchi",
         "isotopic_inchi",
@@ -564,7 +589,7 @@
       "fields_to_headers": "True",
       "headers": [
         "\"Metabolite\"=resonance_assignment",
-        "\"sample_id\"=sample.id"
+        "\"sample_id\"=entity.id"
       ],
       "id": "Extended",
       "sort_by": [
@@ -576,6 +601,7 @@
       "values_to_str": "True"
     },
     "Metabolites": {
+      "required": "True",
       "collate": "resonance_assignment",
       "headers": [
         "\"Metabolite\"=resonance_assignment",
@@ -598,6 +624,7 @@
       "values_to_str": "True"
     },
     "Units": {
+      "required": "True",
       "fields": [
         "intensity%type"
       ],

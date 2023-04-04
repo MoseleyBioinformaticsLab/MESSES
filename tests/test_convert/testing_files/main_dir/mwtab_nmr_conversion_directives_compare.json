@@ -576,6 +576,7 @@
         "intensity%units",
         "resonance_assignment",
         "entity.id",
+        "protocol.id",
         "base_inchi",
         "representative_inchi",
         "isotopic_inchi",

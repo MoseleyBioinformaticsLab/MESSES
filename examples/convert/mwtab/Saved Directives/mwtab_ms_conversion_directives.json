@@ -14,7 +14,7 @@
       "id": "CHROMATOGRAPHY_SUMMARY",
       "required": "False",
       "table": "protocol",
-      "test": "type=MS",
+      "test": "machine_type=MS",
       "value_type": "str"
     },
     "CHROMATOGRAPHY_TYPE": {
@@ -24,7 +24,7 @@
       "id": "CHROMATOGRAPHY_TYPE",
       "required": "True",
       "table": "protocol",
-      "test": "type=MS",
+      "test": "machine_type=MS",
       "value_type": "str"
     },
     "COLUMN_NAME": {
@@ -34,7 +34,7 @@
       "id": "COLUMN_NAME",
       "required": "True",
       "table": "protocol",
-      "test": "type=MS",
+      "test": "machine_type=MS",
       "value_type": "str"
     },
     "INSTRUMENT_NAME": {
@@ -44,7 +44,7 @@
       "id": "INSTRUMENT_NAME",
       "required": "True",
       "table": "protocol",
-      "test": "type=MS",
+      "test": "machine_type=MS",
       "value_type": "str"
     }
   },
@@ -120,7 +120,7 @@
       "id": "INSTRUMENT_NAME",
       "required": "True",
       "table": "protocol",
-      "test": "type=MS",
+      "test": "machine_type=MS",
       "value_type": "str"
     },
     "INSTRUMENT_TYPE": {
@@ -130,7 +130,7 @@
       "id": "INSTRUMENT_TYPE",
       "required": "True",
       "table": "protocol",
-      "test": "type=MS",
+      "test": "machine_type=MS",
       "value_type": "str"
     },
     "ION_MODE": {
@@ -140,7 +140,7 @@
       "id": "ION_MODE",
       "required": "True",
       "table": "protocol",
-      "test": "type=MS",
+      "test": "machine_type=MS",
       "value_type": "str"
     },
     "MS_COMMENTS": {
@@ -150,7 +150,7 @@
       "id": "MS_COMMENTS",
       "required": "False",
       "table": "protocol",
-      "test": "type=MS",
+      "test": "machine_type=MS",
       "value_type": "str"
     },
     "MS_TYPE": {
@@ -160,16 +160,17 @@
       "id": "MS_TYPE",
       "required": "True",
       "table": "protocol",
-      "test": "type=MS",
+      "test": "machine_type=MS",
       "value_type": "str"
     }
   },
   "MS_METABOLITE_DATA": {
     "Data": {
+      "required": "True",
       "collate": "assignment",
       "headers": [
         "\"Metabolite\"=assignment",
-        "sample.id=intensity"
+        "entity.id=intensity"
       ],
       "id": "Data",
       "sort_by": [
@@ -180,13 +181,15 @@
       "value_type": "matrix"
     },
     "Extended": {
+      "required": "False",
       "exclusion_headers": [
         "id",
         "intensity",
         "intensity%type",
         "intensity%units",
         "assignment",
-        "sample.id",
+        "entity.id",
+        "protocol.id",
         "formula",
         "compound",
         "isotopologue",
@@ -195,7 +198,7 @@
       "fields_to_headers": "True",
       "headers": [
         "\"Metabolite\"=assignment",
-        "\"sample_id\"=sample.id"
+        "\"sample_id\"=entity.id"
       ],
       "id": "Extended",
       "sort_by": [
@@ -207,6 +210,7 @@
       "values_to_str": "True"
     },
     "Metabolites": {
+      "required": "True",
       "collate": "assignment",
       "headers": [
         "\"Metabolite\"=assignment",
@@ -224,6 +228,7 @@
       "value_type": "matrix"
     },
     "Units": {
+      "required": "True",
       "fields": [
         "intensity%type"
       ],
@@ -234,6 +239,7 @@
   },
   "PROJECT": {
     "ADDRESS": {
+      "required": "True",
       "fields": [
         "address"
       ],
@@ -242,6 +248,7 @@
       "value_type": "str"
     },
     "DEPARTMENT": {
+      "required": "True",
       "fields": [
         "department"
       ],
@@ -250,6 +257,7 @@
       "value_type": "str"
     },
     "EMAIL": {
+      "required": "True",
       "fields": [
         "PI_email"
       ],
@@ -258,6 +266,7 @@
       "value_type": "str"
     },
     "FIRST_NAME": {
+      "required": "True",
       "fields": [
         "PI_first_name"
       ],
@@ -266,6 +275,7 @@
       "value_type": "str"
     },
     "INSTITUTE": {
+      "required": "True",
       "fields": [
         "institution"
       ],
@@ -274,6 +284,7 @@
       "value_type": "str"
     },
     "LAST_NAME": {
+      "required": "True",
       "fields": [
         "PI_last_name"
       ],
@@ -282,6 +293,7 @@
       "value_type": "str"
     },
     "PHONE": {
+      "required": "True",
       "fields": [
         "phone"
       ],
@@ -290,6 +302,7 @@
       "value_type": "str"
     },
     "PROJECT_SUMMARY": {
+      "required": "True",
       "fields": [
         "description"
       ],
@@ -298,6 +311,7 @@
       "value_type": "str"
     },
     "PROJECT_TITLE": {
+      "required": "True",
       "fields": [
         "title"
       ],
@@ -316,11 +330,11 @@
       "id": "SAMPLEPREP_PROTOCOL_FILENAME",
       "required": "False",
       "sort_by": [
-        "id"
+        "order"
       ],
       "sort_order": "ascending",
       "table": "protocol",
-      "test": "type=treatment",
+      "test": "type=sample_prep",
       "value_type": "str"
     },
     "SAMPLEPREP_PROTOCOL_ID": {
@@ -332,7 +346,7 @@
       "id": "SAMPLEPREP_PROTOCOL_ID",
       "required": "True",
       "sort_by": [
-        "id"
+        "order"
       ],
       "sort_order": "ascending",
       "table": "protocol",
@@ -340,7 +354,7 @@
       "value_type": "str"
     },
     "SAMPLEPREP_SUMMARY": {
-      "delimiter": "\" \"",
+      "delimiter": ";",
       "fields": [
         "description"
       ],
@@ -348,7 +362,7 @@
       "id": "SAMPLEPREP_SUMMARY",
       "required": "True",
       "sort_by": [
-        "id"
+        "order"
       ],
       "sort_order": "ascending",
       "table": "protocol",
@@ -358,6 +372,7 @@
   },
   "STUDY": {
     "ADDRESS": {
+      "required": "True",
       "fields": [
         "address"
       ],
@@ -366,6 +381,7 @@
       "value_type": "str"
     },
     "DEPARTMENT": {
+      "required": "True",
       "fields": [
         "department"
       ],
@@ -374,6 +390,7 @@
       "value_type": "str"
     },
     "EMAIL": {
+      "required": "True",
       "fields": [
         "PI_email"
       ],
@@ -382,6 +399,7 @@
       "value_type": "str"
     },
     "FIRST_NAME": {
+      "required": "True",
       "fields": [
         "PI_first_name"
       ],
@@ -390,6 +408,7 @@
       "value_type": "str"
     },
     "INSTITUTE": {
+      "required": "True",
       "fields": [
         "institution"
       ],
@@ -398,6 +417,7 @@
       "value_type": "str"
     },
     "LAST_NAME": {
+      "required": "True",
       "fields": [
         "PI_last_name"
       ],
@@ -406,6 +426,7 @@
       "value_type": "str"
     },
     "PHONE": {
+      "required": "True",
       "fields": [
         "phone"
       ],
@@ -414,6 +435,7 @@
       "value_type": "str"
     },
     "STUDY_SUMMARY": {
+      "required": "True",
       "fields": [
         "description"
       ],
@@ -422,6 +444,7 @@
       "value_type": "str"
     },
     "STUDY_TITLE": {
+      "required": "True",
       "fields": [
         "title"
       ],
@@ -432,6 +455,7 @@
   },
   "SUBJECT": {
     "SUBJECT_SPECIES": {
+      "required": "True",
       "fields": [
         "species"
       ],
@@ -441,6 +465,7 @@
       "value_type": "str"
     },
     "SUBJECT_TYPE": {
+      "required": "True",
       "fields": [
         "species_type"
       ],
@@ -450,6 +475,7 @@
       "value_type": "str"
     },
     "TAXONOMY_ID": {
+      "required": "True",
       "fields": [
         "taxonomy_id"
       ],
@@ -463,7 +489,8 @@
     "no_id_needed": {
       "code": "mwtab_functions.create_subject_sample_factors(input_json)",
       "id": "no_id_needed",
-      "value_type": "section"
+      "value_type": "section",
+      "required": "True"
     }
   },
   "TREATMENT": {
@@ -500,7 +527,7 @@
       "value_type": "str"
     },
     "TREATMENT_SUMMARY": {
-      "delimiter": "\" \"",
+      "delimiter": ";",
       "fields": [
         "description"
       ],

@@ -1,7 +1,6 @@
 This continues from the example started in the extract folder, and should be done after the validation 
 step. The convert command produces both a JSON file and text file that are in the mwtab format. If you 
-run the command below under Run Command you should see no errors or warnings printed. If you remove the 
-'--silent' portion you will see many warnings that are safe to ignore for this dataset.
+run the command below under Run Command you should see no errors or warnings printed.
 
 Note that this uses the default study and analysis ID of 000000, but you would need to change this to the 
 correct ones given to you by the Metabolomics Workbench either manually after running the conversion or 
@@ -27,7 +26,7 @@ Example Update Directives:
 
 To run with these new settings:
 
-   messes convert mwtab ms extracted_result.json output --update update_directives.json --silent
+   messes convert mwtab ms extracted_result.json output --update update_directives.json
 
 
 Input Files:
@@ -38,4 +37,4 @@ output.json
 output.txt
 
 Run Command:
-messes convert mwtab nmr extracted_result.json output --silent
+messes convert mwtab nmr extracted_result.json output

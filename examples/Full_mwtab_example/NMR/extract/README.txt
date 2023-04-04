@@ -7,7 +7,7 @@ The --delete option is used to filter out data not relevant for the submission. 
 because it can cause conflicts and may be unecessary for the repository depositon. 
 
 The NMR_colon_measurements.xlsx are nuclear magnetic resonance spectroscopy measurements done on the colons of the harvested mice 
-in the experiment. Metabolites identified from the raw NMR results and that data is what is presented here. 
+in the experiment. Metabolites are identified from the raw NMR results and that data is what is presented here. 
 Tags are added directly to the metadata file, but automation and modification tags are used heavily for the NMR data. To reproduce the 
 result run the Run Command given below. Note that --silent can be left out to see warnings, but there are several "never matched" warnings 
 that can be safely ignored. If you cannot reproduce extracted_result.json then don't use the --silent option and troubleshoot the errors 

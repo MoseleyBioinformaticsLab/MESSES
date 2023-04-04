@@ -33,7 +33,7 @@
 ,Metabolites,assignment,"""Metabolite""=assignment,""formula""=formula,""compound""=compound,""isotopologue""=isotopologue,""isotopologue%type""=isotopologue%type",True,assignment,ascending,measurement,matrix,,
 ,,,,,,,,,,
 #tags,#MS_METABOLITE_DATA.id,*#.exclusion_headers,#.fields_to_headers,*#.headers,#.required,*#.sort_by,#.sort_order,#.table,#.value_type,#.values_to_str
-,Extended,"id,intensity,intensity%type,intensity%units,assignment,entity.id,formula,compound,isotopologue,isotopologue%type",True,"""Metabolite""=assignment,""sample_id""=entity.id",False,assignment,ascending,measurement,matrix,True
+,Extended,"id,intensity,intensity%type,intensity%units,assignment,entity.id,protocol.id,formula,compound,isotopologue,isotopologue%type",True,"""Metabolite""=assignment,""sample_id""=entity.id",False,assignment,ascending,measurement,matrix,True
 ,,,,,,,,,,
 #tags,#MS_METABOLITE_DATA.id,*#.fields,#.required,#.table,#.value_type,,,,,
 ,Units,intensity%type,True,measurement,str,,,,,

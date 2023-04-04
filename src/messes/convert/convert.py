@@ -10,6 +10,8 @@ Usage:
     
     <conversion_directives> - can be a JSON, csv, or xlsx file. If xlsx the default sheet name to read in is #convert, 
                               to specify a different sheet name separate it from the file name with a colon ex: file_name.xlsx:sheet_name.
+                              
+    <output_filetype> - "json", "xlsx", or "csv"
 
 Options:
     -h, --help                           - show this screen.
@@ -931,60 +933,3 @@ def directives_to_table(conversion_directives: dict) -> pandas.core.frame.DataFr
 # section_directive_fields = ["code", "import"]
 
 
-
-
-
-# input_json["entity"] = {}
-# for sample_name, sample_attributes in input_json["sample"].items():
-#     input_json["entity"][sample_name] = sample_attributes
-#     input_json["entity"][sample_name]["type"] = "sample"
-# for subject_name, subject_attributes in input_json["subject"].items():
-#     input_json["entity"][subject_name] = subject_attributes
-#     input_json["entity"][subject_name]["type"] = "subject"
-
-# input_json["factor"] = \
-# {'Treatment': {
-#   'allowed_values': ['naive', 'syngenic', 'allogenic'],
-#   'id': 'Treatment',
-#   'field': 'protocol.id',
-#   'project.id': 'GH_Spleen',
-#   'study.id': 'GH_Spleen'},
-#  'Time Point': {
-#   'allowed_values': ['0', '7', '42'],
-#   'id': 'Time Point',
-#   'field': 'time_point',
-#   'project.id': 'GH_Spleen',
-#   'study.id': 'GH_Spleen'}}
-
-
-## Create binned nmr
-# from random import uniform
-
-# temp = {}
-# for measurement, measurement_attributes in input_json["measurement"].items():
-#     bottom_range = uniform(0, 1000)
-#     top_range = uniform(bottom_range, 1000)
-    
-#     assignment = str(bottom_range) + "-" + str(top_range)
-#     intensity = measurement_attributes["intensity"]
-#     units = measurement_attributes["intensity%type"]
-    
-#     temp[assignment] = {"intensity": intensity, "intensity%type":units, "assignment":assignment, "sample.id":measurement_attributes["sample.id"]}
-    
-# input_json["measurement"] = temp
-
-# with open('C:/Users/Sparda/Desktop/Moseley Lab/Code/MESSES/tests/test_convert/testing_files/NMR_binned_base_input.json','w') as jsonFile:
-#     jsonFile.write(json.dumps(input_json, indent=2))
-
-
-## Remove isotopologues from MS data
-# keys_to_delete = []
-# for measurement, measurement_attributes in input_json["measurement"].items():
-#     if measurement_attributes["isotopologue"] != "13C0":
-#         keys_to_delete.append(measurement)
-        
-# for key in keys_to_delete:
-#     del input_json["measurement"][key]
-
-# with open('C:/Users/Sparda/Desktop/Moseley Lab/Code/MESSES/tests/test_convert/testing_files/MS_base_input_truncated.json','w') as jsonFile:
-#     jsonFile.write(json.dumps(input_json, indent=2))
