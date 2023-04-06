@@ -603,6 +603,16 @@ that users can see the JSON schema being created and used by the "json" command 
 The "schema" command was added as an easy way for users to check that any JSON schemas they create are valid. Similarly, the "pds" command was 
 added so users can check that the protocol-dependent schemas they create are valid.
 
+Although the validate command uses JSON schema, it also introduces 2 new formats. The "integer" and "numeric" formats were introduced 
+so that string type values can be treated as numeric type values. It allows you to use JSON schema keywords such as "minimum" even if 
+the value is a string type. This is accomplished by converting the string value to an integer or floating point type before validating 
+those keywords. As an example, say we have an "intensity" field whose value is "1234" as a string type. If you would like to validate 
+that all intensity fields are greater than 0 you can use the "minimum" keyword in JSON schema. Normally, this wouldn't work as the value 
+is a string type, but if you add a "format" keyword and set the format to "numeric" then the validate command will convert intensity fields 
+to floats before doing the normal JSON schema validation. The import thing to be aware of here is NOT to set the "type" keyword to "string" 
+for any field that you use the "integer" or "numeric" format on because it will throw a wrong type validation error after the conversion to 
+a numeric type.
+
 Options
 -------
 

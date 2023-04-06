@@ -433,7 +433,7 @@ def create_validator(schema: JSON) -> jsonschema.protocols.Validator:
     format_checker = jsonschema.FormatChecker()
     @format_checker.checks('integer') 
     def is_integer(value):
-        if value and isinstance(value, str):
+        if value is not None and isinstance(value, str):
             try:
                 float(value)
             except ValueError:
@@ -442,7 +442,7 @@ def create_validator(schema: JSON) -> jsonschema.protocols.Validator:
         return True
     @format_checker.checks('numeric') 
     def is_float(value):
-        if value and isinstance(value, str):
+        if value is not None and isinstance(value, str):
             try:
                 float(value)
             except ValueError:

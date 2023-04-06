@@ -187,7 +187,8 @@ ms_directives = \
       ],
       "sort_order": "ascending",
       "table": "measurement",
-      "value_type": "matrix"
+      "value_type": "matrix",
+      "values_to_str": "True"
     },
     "Extended": {
       "required": "False",
@@ -234,7 +235,8 @@ ms_directives = \
       ],
       "sort_order": "ascending",
       "table": "measurement",
-      "value_type": "matrix"
+      "value_type": "matrix",
+      "values_to_str": "True"
     },
     "Units": {
       "required": "True",
@@ -837,7 +839,8 @@ nmr_binned_directives["NMR_BINNED_DATA"] = {
       ],
       "sort_order": "ascending",
       "table": "measurement",
-      "value_type": "matrix"
+      "value_type": "matrix",
+      "values_to_str": "True"
     },
     "Units": {
       "required": "True",
