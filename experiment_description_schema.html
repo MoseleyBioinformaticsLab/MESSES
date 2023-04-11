@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Experiment Description Schema &mdash; MESSES 0.1.dev1+g991df59 documentation</title>
+  <title>Experiment Description Schema &mdash; MESSES 0.1.dev1+gd87f1ca documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/custom_css.css" type="text/css" />
       <link rel="stylesheet" href="_static/sphinxcontrib-images/LightBox2/lightbox2/dist/css/lightbox.css" type="text/css" />
@@ -35,7 +35,7 @@
             <a href="index.html" class="icon icon-home"> MESSES
           </a>
               <div class="version">
-                0.1.dev1+g991df59
+                0.1.dev1+gd87f1ca
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -547,7 +547,7 @@ a diagram depicting the mouse, each tissue, and each test tube after that. This 
 connecting one to the next. An example is shown below.</p>
 <figure class="">
             <a 
-               data-lightbox="group-21ab766c-dbf0-4673-9351-4664fd4c1b9d"
+               data-lightbox="group-feb51d6f-6f2d-4b0c-b986-6dfb77716a7f"
                href="_images/mouse_diagram.png"
                title="Diagram showing an example experiment. The first layer depicts the real physical samples and places
 protocols along the way. The second layer is a written description of each step. The third layer is
@@ -667,7 +667,7 @@ field that points to the entity it is associated with, and a protocol.id field t
 <li><p>This protocol could be a protocol for the measurement record or the entity that was measured.</p></li>
 <li><p>This repeats the raw file field less, but requires the creation of many protocols that will likely dominate the protocol table,
 all to hold a raw file name or path.</p></li>
-<li><p>It is also not as straightforward to determine which raw file goes with which measurement
+<li><p>It is also not as straightforward to determine which raw file goes with which measurement,
 since you have to match up the entity.id and/or protocol.id from the measurement record with those on the storage protocol.</p></li>
 </ul>
 <p><span class="raw-html"><p></p></span></p>
@@ -690,24 +690,38 @@ than simply looking up a field.</p></li>
 </ul>
 <p><span class="raw-html"><p></p></span></p>
 </li>
-<li><p>Add a data_files list field and a data_files%entity_id or data_files%measurement_protocol field onto the measurement protocol
-or entity, respectively. The lists would be linked such that the positions in each list correspond to one another. For example, if
-you have a data_files list on a measurement protocol, [file1, file2], and a data_files%entity_id list, [entity1, entity2], then
-file1 would be associated with entity1 and file2 with entity2 because they are in the same numerical position in their respective
-lists.</p>
+<li><p>Add a data_files list field and a data_files%entity_id onto the measurement protocol. The lists would be linked such that the
+positions in each list correspond to one another. For example, if you have a data_files list on a measurement protocol,
+[file1, file2], and a data_files%entity_id list, [entity1, entity2], then file1 would be associated with entity1 and file2
+with entity2 because they are in the same numerical position in their respective lists.</p>
 <ul class="simple">
-<li><p>This does require the lists to be the same length and leaves open the possibility of the lists getting off in that way, but
+<li><p>This does require the lists to be the same length and leaves open the possibility of the lists getting out of sync, but
 if you use the automation tags with the extract command you can reduce the likelihood of that happening.</p></li>
-<li><p>Determining which file goes with which measurement just requires matching the entity.id or protocol.id field of the
-measurement record with a value in the data_files%entity_id or data_files%measurement_protocol list, respectively.</p></li>
+<li><p>Determining which file goes with which measurement just requires matching the entity.id field of the
+measurement record with a value in the data_files%entity_id list.</p></li>
 <li><p>Determining the file that goes with the measurement or sample is more complicated than simply looking up a field,
 but there is much less repetition of redundant information.</p></li>
-<li><p>Compared with the previous option there is also the advantage that both lists are in 1 table and record.</p></li>
+<li><p>Compared with option 4 there is also the advantage that both lists are in 1 table and record.</p></li>
+</ul>
+<p><span class="raw-html"><p></p></span></p>
+</li>
+<li><p>Add a data_files list field and a data_files%measurement_protocol onto the entities. The lists would be linked such that the
+positions in each list correspond to one another. For example, if you have a data_files list on an entity,
+[file1, file2], and a data_files%measurement_protocol list, [protocol1, protocol2], then file1 would be associated with protocol1 and file2
+with protocol2 because they are in the same numerical position in their respective lists.</p>
+<ul class="simple">
+<li><p>This does require the lists to be the same length and leaves open the possibility of the lists getting out of sync, but
+if you use the automation tags with the extract command you can reduce the likelihood of that happening.</p></li>
+<li><p>Determining which file goes with which measurement just requires matching the protocol.id field of the
+measurement record with a value in the data_files%measurement_protocol list.</p></li>
+<li><p>Determining the file that goes with the measurement is more complicated than simply looking up a field,
+but there is much less repetition of redundant information.</p></li>
+<li><p>Compared with option 4 there is also the advantage that both lists are in 1 table and record.</p></li>
 </ul>
 </li>
 </ol>
 <p>This was a decision we had to make for the schema that would be expected when converting to the mwtab format. Ultimately,
-we went with the last option. To see how this works you can look at the mwtab examples in the examples folder of the
+we went with option 5. To see how this works you can look at the mwtab examples in the examples folder of the
 <a class="reference external" href="https://github.com/MoseleyBioinformaticsLab/messes">GitHub</a> repository. Look at the #automate sheets of the measurements Excel files to see how you can easily add these
 fields in a way that will reduce the chance of having misaligned lists. Also check out the protocol-dependent_schema
 files to see how to enforce unique file names.</p>

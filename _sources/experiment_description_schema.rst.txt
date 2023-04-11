@@ -435,7 +435,7 @@ choose a way that is best for your situation.
    * This protocol could be a protocol for the measurement record or the entity that was measured. 
    * This repeats the raw file field less, but requires the creation of many protocols that will likely dominate the protocol table, 
      all to hold a raw file name or path. 
-   * It is also not as straightforward to determine which raw file goes with which measurement 
+   * It is also not as straightforward to determine which raw file goes with which measurement, 
      since you have to match up the entity.id and/or protocol.id from the measurement record with those on the storage protocol.
      
    :raw-html:`<p></p>`
@@ -458,22 +458,36 @@ choose a way that is best for your situation.
      
    :raw-html:`<p></p>`
    
-5. Add a data_files list field and a data_files%entity_id or data_files%measurement_protocol field onto the measurement protocol 
-   or entity, respectively. The lists would be linked such that the positions in each list correspond to one another. For example, if 
-   you have a data_files list on a measurement protocol, [file1, file2], and a data_files%entity_id list, [entity1, entity2], then 
-   file1 would be associated with entity1 and file2 with entity2 because they are in the same numerical position in their respective 
-   lists. 
+5. Add a data_files list field and a data_files%entity_id onto the measurement protocol. The lists would be linked such that the 
+   positions in each list correspond to one another. For example, if you have a data_files list on a measurement protocol, 
+   [file1, file2], and a data_files%entity_id list, [entity1, entity2], then file1 would be associated with entity1 and file2 
+   with entity2 because they are in the same numerical position in their respective lists. 
    
-   * This does require the lists to be the same length and leaves open the possibility of the lists getting off in that way, but 
+   * This does require the lists to be the same length and leaves open the possibility of the lists getting out of sync, but 
      if you use the automation tags with the extract command you can reduce the likelihood of that happening. 
-   * Determining which file goes with which measurement just requires matching the entity.id or protocol.id field of the 
-     measurement record with a value in the data_files%entity_id or data_files%measurement_protocol list, respectively. 
+   * Determining which file goes with which measurement just requires matching the entity.id field of the 
+     measurement record with a value in the data_files%entity_id list. 
    * Determining the file that goes with the measurement or sample is more complicated than simply looking up a field, 
      but there is much less repetition of redundant information. 
-   * Compared with the previous option there is also the advantage that both lists are in 1 table and record.
+   * Compared with option 4 there is also the advantage that both lists are in 1 table and record.
+   
+   :raw-html:`<p></p>`
+   
+6. Add a data_files list field and a data_files%measurement_protocol onto the entities. The lists would be linked such that the 
+   positions in each list correspond to one another. For example, if you have a data_files list on an entity, 
+   [file1, file2], and a data_files%measurement_protocol list, [protocol1, protocol2], then file1 would be associated with protocol1 and file2 
+   with protocol2 because they are in the same numerical position in their respective lists. 
+   
+   * This does require the lists to be the same length and leaves open the possibility of the lists getting out of sync, but 
+     if you use the automation tags with the extract command you can reduce the likelihood of that happening. 
+   * Determining which file goes with which measurement just requires matching the protocol.id field of the 
+     measurement record with a value in the data_files%measurement_protocol list. 
+   * Determining the file that goes with the measurement is more complicated than simply looking up a field, 
+     but there is much less repetition of redundant information. 
+   * Compared with option 4 there is also the advantage that both lists are in 1 table and record.
 
 This was a decision we had to make for the schema that would be expected when converting to the mwtab format. Ultimately, 
-we went with the last option. To see how this works you can look at the mwtab examples in the examples folder of the 
+we went with option 5. To see how this works you can look at the mwtab examples in the examples folder of the 
 GitHub_ repository. Look at the #automate sheets of the measurements Excel files to see how you can easily add these 
 fields in a way that will reduce the chance of having misaligned lists. Also check out the protocol-dependent_schema 
 files to see how to enforce unique file names.

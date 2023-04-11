@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Tutorial &mdash; MESSES 0.1.dev1+g991df59 documentation</title>
+  <title>Tutorial &mdash; MESSES 0.1.dev1+gd87f1ca documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/custom_css.css" type="text/css" />
       <link rel="stylesheet" href="_static/sphinxcontrib-images/LightBox2/lightbox2/dist/css/lightbox.css" type="text/css" />
@@ -35,7 +35,7 @@
             <a href="index.html" class="icon icon-home"> MESSES
           </a>
               <div class="version">
-                0.1.dev1+g991df59
+                0.1.dev1+gd87f1ca
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -161,7 +161,10 @@ print the usage with -h option or print all of the commands usage’s with the �
     messes extract &lt;metadata_source&gt;... [--delete &lt;metadata_section&gt;...] [options]
     messes extract --help
 
-    &lt;metadata_source&gt; - tagged input metadata source as csv/json filename or xlsx_filename[:worksheet_name|regular_expression]. &quot;#export&quot; worksheet name is the default.
+    &lt;metadata_source&gt; - tagged input metadata source as csv/json filename or 
+                        xlsx_filename[:worksheet_name|regular_expression] or 
+                        google_sheets_url[:worksheet_name|regular_expression]
+                        &quot;#export&quot; worksheet name is the default.
 
  Options:
     -h, --help                          - show this help documentation.
@@ -169,9 +172,17 @@ print the usage with -h option or print all of the commands usage’s with the �
     --silent                            - print no warning messages.
     --output &lt;filename_json&gt;            - output json filename.
     --compare &lt;filename_json&gt;           - compare extracted metadata to given JSONized metadata.
-    --modify &lt;source&gt;                   - modification directives worksheet name, regular expression, csv/json filename, or xlsx_filename:[worksheet_name|regular_expression] [default: #modify].
-    --end-modify &lt;source&gt;               - apply modification directives after all metadata merging. Requires csv/json filename or xlsx_filename:[worksheet_name|regular_expression].
-    --automate &lt;source&gt;                 - automation directives worksheet name, regular expression, csv/json filename, or xlsx_filename:[worksheet_name|regular_expression] [default: #automate].
+    --modify &lt;source&gt;                   - modification directives worksheet name, regular expression, csv/json filename, or 
+                                          xlsx_filename:[worksheet_name|regular_expression] or 
+                                          google_sheets_url[:worksheet_name|regular_expression] 
+                                          [default: #modify].
+    --end-modify &lt;source&gt;               - apply modification directives after all metadata merging. Requires csv/json filename or 
+                                          xlsx_filename:[worksheet_name|regular_expression] or 
+                                          google_sheets_url[:worksheet_name|regular_expression].
+    --automate &lt;source&gt;                 - automation directives worksheet name, regular expression, csv/json filename, or 
+                                          xlsx_filename:[worksheet_name|regular_expression] or 
+                                          google_sheets_url[:worksheet_name|regular_expression] 
+                                          [default: #automate].
     --save-directives &lt;filename_json&gt;   - output filename with modification and automation directives in JSON format.
     --save-export &lt;filetype&gt;            - output export worksheet with suffix &quot;_export&quot; and with the indicated xlsx/csv format extension.
     --show &lt;show_option&gt;                - show a part of the metadata. See options below.
@@ -943,21 +954,21 @@ will keep all the tables that match the regular expressions.</p>
 <section id="validate">
 <h2>Validate<a class="headerlink" href="#validate" title="Permalink to this heading"></a></h2>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Usage:
-    messes validate json &lt;input_JSON&gt; [--pds=&lt;pds&gt; [--csv | --xlsx | --json] | --no_base_schema] 
+    messes validate json &lt;input_JSON&gt; [--pds=&lt;pds&gt; [--csv | --xlsx | --json | --gs] | --no_base_schema] 
                                       [--no_extra_checks]
                                       [--additional=&lt;add_schema&gt;] 
                                       [--format=&lt;format&gt;]
                                       [--silent=&lt;level&gt;]
     messes validate save-schema &lt;output_schema&gt; [--input=&lt;input_JSON&gt;] 
-                                                [--pds=&lt;pds&gt; [--csv | --xlsx | --json]] 
+                                                [--pds=&lt;pds&gt; [--csv | --xlsx | --json | --gs]] 
                                                 [--format=&lt;format&gt;]
                                                 [--silent=&lt;level&gt;]
     messes validate schema &lt;input_schema&gt;
-    messes validate pds &lt;pds&gt; [--csv | --xlsx | --json] [--silent=&lt;level&gt;]
+    messes validate pds &lt;pds&gt; [--csv | --xlsx | --json | --gs] [--silent=&lt;level&gt;]
     messes validate --help
     
     &lt;input_JSON&gt; - if &#39;-&#39; read from standard input.
-    &lt;pds&gt; - can be a JSON, csv, or xlsx file. If xlsx the default sheet name to read in is #validate, 
+    &lt;pds&gt; - can be a JSON, csv, xlsx, or Google Sheets file. If xlsx or Google Sheets the default sheet name to read in is #validate, 
            to specify a different sheet name separate it from the file name with a colon ex: file_name.xlsx:sheet_name.
            If &#39;-&#39; read from standard input.
     &lt;input_schema&gt; - must be a valid JSON Schema file. If &#39;-&#39; read from standard input.
@@ -1021,6 +1032,18 @@ simply used as is as additional validation.</p>
 that users can see the JSON schema being created and used by the “json” command and possibly modify it for use with the –additional option.
 The “schema” command was added as an easy way for users to check that any JSON schemas they create are valid. Similarly, the “pds” command was
 added so users can check that the protocol-dependent schemas they create are valid.</p>
+<p>Although the validate command uses JSON schema, it also introduces 4 new formats. The “integer” and “numeric” formats were introduced
+so that string type values can be treated as numeric type values. It allows you to use JSON schema keywords such as “minimum” even if
+the value is a string type. This is accomplished by converting the string value to an integer or floating point type before validating
+those keywords. As an example, say we have an “intensity” field whose value is “1234” as a string type. If you would like to validate
+that all intensity fields are greater than 0 you can use the “minimum” keyword in JSON schema. Normally, this wouldn’t work as the value
+is a string type, but if you add a “format” keyword and set the format to “numeric” then the validate command will convert intensity fields
+to floats before doing the normal JSON schema validation. The import thing to be aware of here is NOT to set the “type” keyword to “string”
+for any field that you use the “integer” or “numeric” format on because it will throw a wrong type validation error after the conversion to
+a numeric type. If you need to enforce a string type and also want the benefits of the “integer” and “numeric” formats, then use the “str_integer”
+and “str_numeric” formats. They operate the same as their “integer” and “numeric” counterparts, but also validate that the value is a string
+type. Again, DO NOT set a “type” field equal to “string” at the same time when using any of these formats because it will throw a wrong type
+validation error. “string” can be included in a list of types, but cannot be the only type.</p>
 <section id="id1">
 <h3>Options<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h3>
 <dl class="option-list">
@@ -1044,6 +1067,10 @@ indicate that the PDS file is an Excel file.</p>
 <dt><kbd><span class="option">--json</span></kbd></dt>
 <dd><p>This option specifies that the PDS file is a JSON file. If the PDS file is read from stdin, it is required to indicate what type of
 file it is, otherwise it will be determined from the file extension if not specified.</p>
+</dd>
+<dt><kbd><span class="option">--gs</span></kbd></dt>
+<dd><p>This option specifies that the PDS file is a Google Sheets file. This type of file cannot be read from stdin, but can still be specified to
+indicate that the PDS file is a Google Sheets file.</p>
 </dd>
 <dt><kbd><span class="option">--additional</span></kbd></dt>
 <dd><p>This option specifies that an additional JSON schema file should be used with the command and where to read the file from.
@@ -1166,8 +1193,10 @@ an input JSON file to reproduce the schema from the “json” command exactly.<
     messes convert generic &lt;input_JSON&gt; &lt;output_name&gt; &lt;conversion_directives&gt; [--silent]
     messes convert --help
     
-    &lt;conversion_directives&gt; - can be a JSON, csv, or xlsx file. If xlsx the default sheet name to read in is #convert, 
+    &lt;conversion_directives&gt; - can be a JSON, csv, xlsx, or Google Sheets file. If xlsx or Google Sheets the default sheet name to read in is #convert, 
                               to specify a different sheet name separate it from the file name with a colon ex: file_name.xlsx:sheet_name.
+                              
+    &lt;output_filetype&gt; - &quot;json&quot;, &quot;xlsx&quot;, or &quot;csv&quot;
 
 Options:
     -h, --help                           - show this screen.

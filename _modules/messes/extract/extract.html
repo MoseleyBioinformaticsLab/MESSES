@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>messes.extract.extract &mdash; MESSES 0.1.dev1+g991df59 documentation</title>
+  <title>messes.extract.extract &mdash; MESSES 0.1.dev1+gd87f1ca documentation</title>
       <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/css/custom_css.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/sphinxcontrib-images/LightBox2/lightbox2/dist/css/lightbox.css" type="text/css" />
@@ -32,7 +32,7 @@
             <a href="../../../index.html" class="icon icon-home"> MESSES
           </a>
               <div class="version">
-                0.1.dev1+g991df59
+                0.1.dev1+gd87f1ca
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
@@ -90,7 +90,10 @@
 <span class="sd">    messes extract &lt;metadata_source&gt;... [--delete &lt;metadata_section&gt;...] [options]</span>
 <span class="sd">    messes extract --help</span>
 
-<span class="sd">    &lt;metadata_source&gt; - tagged input metadata source as csv/json filename or xlsx_filename[:worksheet_name|regular_expression]. &quot;#export&quot; worksheet name is the default.</span>
+<span class="sd">    &lt;metadata_source&gt; - tagged input metadata source as csv/json filename or </span>
+<span class="sd">                        xlsx_filename[:worksheet_name|regular_expression] or </span>
+<span class="sd">                        google_sheets_url[:worksheet_name|regular_expression]</span>
+<span class="sd">                        &quot;#export&quot; worksheet name is the default.</span>
 
 <span class="sd"> Options:</span>
 <span class="sd">    -h, --help                          - show this help documentation.</span>
@@ -98,9 +101,17 @@
 <span class="sd">    --silent                            - print no warning messages.</span>
 <span class="sd">    --output &lt;filename_json&gt;            - output json filename.</span>
 <span class="sd">    --compare &lt;filename_json&gt;           - compare extracted metadata to given JSONized metadata.</span>
-<span class="sd">    --modify &lt;source&gt;                   - modification directives worksheet name, regular expression, csv/json filename, or xlsx_filename:[worksheet_name|regular_expression] [default: #modify].</span>
-<span class="sd">    --end-modify &lt;source&gt;               - apply modification directives after all metadata merging. Requires csv/json filename or xlsx_filename:[worksheet_name|regular_expression].</span>
-<span class="sd">    --automate &lt;source&gt;                 - automation directives worksheet name, regular expression, csv/json filename, or xlsx_filename:[worksheet_name|regular_expression] [default: #automate].</span>
+<span class="sd">    --modify &lt;source&gt;                   - modification directives worksheet name, regular expression, csv/json filename, or </span>
+<span class="sd">                                          xlsx_filename:[worksheet_name|regular_expression] or </span>
+<span class="sd">                                          google_sheets_url[:worksheet_name|regular_expression] </span>
+<span class="sd">                                          [default: #modify].</span>
+<span class="sd">    --end-modify &lt;source&gt;               - apply modification directives after all metadata merging. Requires csv/json filename or </span>
+<span class="sd">                                          xlsx_filename:[worksheet_name|regular_expression] or </span>
+<span class="sd">                                          google_sheets_url[:worksheet_name|regular_expression].</span>
+<span class="sd">    --automate &lt;source&gt;                 - automation directives worksheet name, regular expression, csv/json filename, or </span>
+<span class="sd">                                          xlsx_filename:[worksheet_name|regular_expression] or </span>
+<span class="sd">                                          google_sheets_url[:worksheet_name|regular_expression] </span>
+<span class="sd">                                          [default: #automate].</span>
 <span class="sd">    --save-directives &lt;filename_json&gt;   - output filename with modification and automation directives in JSON format.</span>
 <span class="sd">    --save-export &lt;filetype&gt;            - output export worksheet with suffix &quot;_export&quot; and with the indicated xlsx/csv format extension.</span>
 <span class="sd">    --show &lt;show_option&gt;                - show a part of the metadata. See options below.</span>
@@ -135,9 +146,6 @@
 <span class="c1">#</span>
 <span class="c1">#   Revised significantly by Travis Thompson, 03/03/2023</span>
 
-<span class="c1">## &quot;r&#39;^(?!.*(ICMS_A|lipid).*)&#39;&quot;  This is the pattern that will let you mimic keep with the --delete option.</span>
-<span class="c1">## This says match if ICMS_A or lipid are not in the name, so entity,r\&#39;(?!.*(ICMS_A|lipid).*)\&#39; will only </span>
-<span class="c1">## keep entities that have ICMS_A or lipid in the name.</span>
 
 
 <span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">annotations</span>
@@ -149,6 +157,7 @@
 <span class="kn">import</span> <span class="nn">pathlib</span>
 <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">TextIO</span>
 <span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">import</span> <span class="nn">urllib.error</span>
 
 <span class="kn">import</span> <span class="nn">pandas</span>
 <span class="kn">import</span> <span class="nn">docopt</span>
@@ -194,14 +203,28 @@
     <span class="k">if</span> <span class="n">args</span><span class="p">[</span><span class="s2">&quot;--end-modify&quot;</span><span class="p">]</span> <span class="o">!=</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">modificationSource</span> <span class="o">=</span> <span class="n">args</span><span class="p">[</span><span class="s2">&quot;--end-modify&quot;</span><span class="p">]</span>
             
-        <span class="k">if</span> <span class="ow">not</span> <span class="n">TagParser</span><span class="o">.</span><span class="n">hasFileExtension</span><span class="p">(</span><span class="n">modificationSource</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">reMatch</span> <span class="o">:=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;(.*\.xls[xm]?)&quot;</span><span class="p">,</span> <span class="n">metadataSource</span><span class="p">)):</span>
-            <span class="n">modificationFilePath</span> <span class="o">=</span> <span class="n">reMatch</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> 
-            <span class="n">modificationSheetName</span> <span class="o">=</span> <span class="n">modificationSource</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">TagParser</span><span class="o">.</span><span class="n">hasFileExtension</span><span class="p">(</span><span class="n">modificationSource</span><span class="p">)</span> <span class="ow">and</span> \
+           <span class="ow">not</span> <span class="n">TagParser</span><span class="o">.</span><span class="n">isGoogleSheetsFile</span><span class="p">(</span><span class="n">modificationSource</span><span class="p">):</span>
+               <span class="k">if</span> <span class="p">(</span><span class="n">reMatch</span> <span class="o">:=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;(.*\.xls[xm]?)&quot;</span><span class="p">,</span> <span class="n">metadataSource</span><span class="p">)):</span>
+                   <span class="n">modificationFilePath</span> <span class="o">=</span> <span class="n">reMatch</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> 
+                   <span class="n">modificationSheetName</span> <span class="o">=</span> <span class="n">modificationSource</span>
+               <span class="k">elif</span> <span class="p">(</span><span class="n">reMatch</span> <span class="o">:=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;docs.google.com/spreadsheets/d/([^/]*)/.*$&quot;</span><span class="p">,</span> <span class="n">metadataSource</span><span class="p">)):</span>
+                   <span class="n">modificationFilePath</span> <span class="o">=</span> <span class="s2">&quot;https://docs.google.com/spreadsheets/d/&quot;</span> <span class="o">+</span> <span class="n">reMatch</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/export?format=xlsx&quot;</span>
+                   <span class="n">modificationSheetName</span> <span class="o">=</span> <span class="n">modificationSource</span>
+               <span class="k">else</span><span class="p">:</span>
+                   <span class="n">modificationFilePath</span> <span class="o">=</span> <span class="n">modificationSource</span>
+                   <span class="n">modificationSheetName</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="k">elif</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;\.xls[xm]?$&quot;</span><span class="p">,</span> <span class="n">modificationSource</span><span class="p">):</span>
             <span class="n">modificationFilePath</span> <span class="o">=</span> <span class="n">modificationSource</span>
             <span class="n">modificationSheetName</span> <span class="o">=</span> <span class="s2">&quot;#modify&quot;</span>
         <span class="k">elif</span> <span class="p">(</span><span class="n">reMatch</span> <span class="o">:=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;^(.*\.xls[xm]?):(.*)$&quot;</span><span class="p">,</span> <span class="n">modificationSource</span><span class="p">)):</span>
             <span class="n">modificationFilePath</span> <span class="o">=</span> <span class="n">reMatch</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+            <span class="n">modificationSheetName</span> <span class="o">=</span> <span class="n">reMatch</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="p">(</span><span class="n">reMatch</span> <span class="o">:=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;docs.google.com/spreadsheets/d/([^/]*)/[^:]*$&quot;</span><span class="p">,</span> <span class="n">modificationSource</span><span class="p">)):</span>
+            <span class="n">modificationFilePath</span> <span class="o">=</span> <span class="s2">&quot;https://docs.google.com/spreadsheets/d/&quot;</span> <span class="o">+</span> <span class="n">reMatch</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/export?format=xlsx&quot;</span>
+            <span class="n">modificationSheetName</span> <span class="o">=</span> <span class="s2">&quot;#modify&quot;</span>
+        <span class="k">elif</span> <span class="p">(</span><span class="n">reMatch</span> <span class="o">:=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;docs.google.com/spreadsheets/d/([^/]*)/.*:(.*)$&quot;</span><span class="p">,</span> <span class="n">modificationSource</span><span class="p">)):</span>
+            <span class="n">modificationFilePath</span> <span class="o">=</span> <span class="s2">&quot;https://docs.google.com/spreadsheets/d/&quot;</span> <span class="o">+</span> <span class="n">reMatch</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/export?format=xlsx&quot;</span>
             <span class="n">modificationSheetName</span> <span class="o">=</span> <span class="n">reMatch</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="n">modificationFilePath</span> <span class="o">=</span> <span class="n">modificationSource</span>
@@ -1225,9 +1248,15 @@
 <span class="sd">        Raises:</span>
 <span class="sd">            Exception: If fileName is invalid.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">fileName</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">reMatch</span> <span class="o">:=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;^(.*\.xls[xm]?)$&quot;</span><span class="p">,</span> <span class="n">fileName</span><span class="p">)):</span>
-            <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">fileName</span><span class="p">):</span>
-                <span class="n">workbook</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">ExcelFile</span><span class="p">(</span><span class="n">fileName</span><span class="p">)</span>
+        <span class="n">isGoogleSheetsFile</span> <span class="o">=</span> <span class="n">TagParser</span><span class="o">.</span><span class="n">isGoogleSheetsFile</span><span class="p">(</span><span class="n">fileName</span><span class="p">)</span>
+        
+        <span class="k">if</span> <span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">fileName</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">reMatch</span> <span class="o">:=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;^(.*\.xls[xm]?)$&quot;</span><span class="p">,</span> <span class="n">fileName</span><span class="p">)))</span> <span class="ow">or</span> <span class="n">isGoogleSheetsFile</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">fileName</span><span class="p">)</span> <span class="ow">or</span> <span class="n">isGoogleSheetsFile</span><span class="p">:</span>
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="n">workbook</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">ExcelFile</span><span class="p">(</span><span class="n">fileName</span><span class="p">)</span>
+                <span class="k">except</span> <span class="n">urllib</span><span class="o">.</span><span class="n">error</span><span class="o">.</span><span class="n">HTTPError</span><span class="p">:</span>
+                    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The Google Sheets file </span><span class="se">\&quot;</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="n">fileName</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\&quot;</span><span class="s2"> does not exist or the URL is malformed.&quot;</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="p">)</span>
+                    <span class="k">return</span> <span class="kc">None</span>
                 
                 <span class="c1">## Convert the sheetname to a regular expression pattern so users can specify a sheetname using a regular expression.</span>
                 <span class="k">if</span> <span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="n">TagParser</span><span class="o">.</span><span class="n">reDetector</span><span class="p">,</span> <span class="n">sheetName</span><span class="p">):</span>
@@ -1241,7 +1270,11 @@
                         <span class="n">converters</span> <span class="o">=</span> <span class="p">{</span><span class="n">column</span><span class="p">:</span><span class="nb">str</span> <span class="k">for</span> <span class="n">column</span> <span class="ow">in</span> <span class="n">dataFrame</span><span class="o">.</span><span class="n">columns</span><span class="p">}</span>
                         <span class="n">dataFrame</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="n">workbook</span><span class="p">,</span> <span class="n">sheetName</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">converters</span><span class="o">=</span><span class="n">converters</span><span class="p">)</span>
                         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">dataFrame</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-                            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;There is no data in worksheet </span><span class="se">\&quot;</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="n">fileName</span> <span class="o">+</span> <span class="s2">&quot;:&quot;</span> <span class="o">+</span> <span class="n">sheetName</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\&quot;</span><span class="s2">.&quot;</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="p">)</span>
+                            <span class="k">if</span> <span class="n">isGoogleSheetsFile</span><span class="p">:</span>
+                                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;There is no data in the sheet, &quot;</span> <span class="o">+</span> <span class="n">sheetName</span> <span class="o">+</span> \
+                                      <span class="s2">&quot;, of the Google Sheets file </span><span class="se">\&quot;</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="n">fileName</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\&quot;</span><span class="s2">.&quot;</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="p">)</span>
+                            <span class="k">else</span><span class="p">:</span>
+                                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;There is no data in worksheet </span><span class="se">\&quot;</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="n">fileName</span> <span class="o">+</span> <span class="s2">&quot;:&quot;</span> <span class="o">+</span> <span class="n">sheetName</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\&quot;</span><span class="s2">.&quot;</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="p">)</span>
                             <span class="k">return</span> <span class="kc">None</span>
                         <span class="k">else</span><span class="p">:</span>
                             <span class="c1">## Empty cells are read in as nan by default, replace with empty string.</span>
@@ -1268,7 +1301,7 @@
                         <span class="n">dataFrame</span> <span class="o">=</span> <span class="n">dataFrame</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span> <span class="c1"># Empty cells are read in as nan by default. Therefore replace with empty string.</span>
                         <span class="k">if</span> <span class="n">removeRegex</span><span class="p">:</span>
                             <span class="n">dataFrame</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">removeRegex</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">regex</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-                        <span class="n">sheetName</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+                        <span class="n">sheetName</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">sheetName</span> <span class="k">else</span> <span class="n">sheetName</span>
                         <span class="k">return</span> <span class="p">(</span><span class="n">fileName</span><span class="p">,</span> <span class="n">sheetName</span><span class="p">,</span> <span class="n">dataFrame</span><span class="p">)</span>
             <span class="k">else</span><span class="p">:</span>
                 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The csv file </span><span class="se">\&quot;</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="n">fileName</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\&quot;</span><span class="s2"> does not exist.&quot;</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="p">)</span>
@@ -1289,6 +1322,18 @@
 <span class="sd">            True if .xls, .xlsx, .xlsm, .csv, or .json is in string, False otherwise.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="s2">&quot;.xls&quot;</span> <span class="ow">in</span> <span class="n">string</span> <span class="ow">or</span> <span class="s2">&quot;.xlsx&quot;</span> <span class="ow">in</span> <span class="n">string</span> <span class="ow">or</span> <span class="s2">&quot;.xlsm&quot;</span> <span class="ow">in</span> <span class="n">string</span> <span class="ow">or</span> <span class="s2">&quot;.csv&quot;</span> <span class="ow">in</span> <span class="n">string</span> <span class="ow">or</span> <span class="s2">&quot;.json&quot;</span> <span class="ow">in</span> <span class="n">string</span></div>
+    
+<div class="viewcode-block" id="TagParser.isGoogleSheetsFile"><a class="viewcode-back" href="../../../api.html#messes.extract.extract.TagParser.isGoogleSheetsFile">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">isGoogleSheetsFile</span><span class="p">(</span><span class="n">string</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Tests whether the string is a Google Sheets URL.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            string: string to test.</span>
+<span class="sd">            </span>
+<span class="sd">        Returns:</span>
+<span class="sd">            True if docs.google.com/spreadsheets/d/ is in string, False otherwise.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="kc">True</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">string</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span> <span class="ow">and</span> <span class="s2">&quot;docs.google.com/spreadsheets/d/&quot;</span> <span class="ow">in</span> <span class="n">string</span> <span class="k">else</span> <span class="kc">False</span></div>
 
 <div class="viewcode-block" id="TagParser.readMetadata"><a class="viewcode-back" href="../../../api.html#messes.extract.extract.TagParser.readMetadata">[docs]</a>    <span class="k">def</span> <span class="nf">readMetadata</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">metadataSource</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">automationSource</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">automateDefaulted</span><span class="p">:</span> <span class="nb">bool</span><span class="p">,</span> <span class="n">modificationSource</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">modifyDefaulted</span><span class="p">:</span> <span class="nb">bool</span><span class="p">,</span> <span class="n">removeRegex</span><span class="p">:</span> <span class="nb">str</span><span class="o">|</span><span class="kc">None</span><span class="p">,</span> <span class="n">saveExtension</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Reads metadata from source.</span>
@@ -1303,27 +1348,56 @@
 <span class="sd">                         Can be a regex. Set to None to not replace anything. Passed to loadSheet and readDirectives.</span>
 <span class="sd">            saveExtension: if &quot;csv&quot; saves the export as a csv file, else saves it as an Excel file.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="n">TagParser</span><span class="o">.</span><span class="n">hasFileExtension</span><span class="p">(</span><span class="n">automationSource</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">reMatch</span> <span class="o">:=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;(.*\.xls[xm]?)&quot;</span><span class="p">,</span> <span class="n">metadataSource</span><span class="p">)):</span>
-            <span class="n">automationFilePath</span> <span class="o">=</span> <span class="n">reMatch</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> 
-            <span class="n">automationSheetName</span> <span class="o">=</span> <span class="n">automationSource</span>
+        <span class="c1">## If automation source is just a sheet name then see if metadata source is an Excel or Google Sheets file.</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">TagParser</span><span class="o">.</span><span class="n">hasFileExtension</span><span class="p">(</span><span class="n">automationSource</span><span class="p">)</span> <span class="ow">and</span> \
+           <span class="ow">not</span> <span class="n">TagParser</span><span class="o">.</span><span class="n">isGoogleSheetsFile</span><span class="p">(</span><span class="n">automationSource</span><span class="p">):</span>
+               <span class="k">if</span> <span class="p">(</span><span class="n">reMatch</span> <span class="o">:=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;(.*\.xls[xm]?)&quot;</span><span class="p">,</span> <span class="n">metadataSource</span><span class="p">)):</span>
+                   <span class="n">automationFilePath</span> <span class="o">=</span> <span class="n">reMatch</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> 
+                   <span class="n">automationSheetName</span> <span class="o">=</span> <span class="n">automationSource</span>
+               <span class="k">elif</span> <span class="p">(</span><span class="n">reMatch</span> <span class="o">:=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;docs.google.com/spreadsheets/d/([^/]*)/.*$&quot;</span><span class="p">,</span> <span class="n">metadataSource</span><span class="p">)):</span>
+                   <span class="n">automationFilePath</span> <span class="o">=</span> <span class="s2">&quot;https://docs.google.com/spreadsheets/d/&quot;</span> <span class="o">+</span> <span class="n">reMatch</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/export?format=xlsx&quot;</span>
+                   <span class="n">automationSheetName</span> <span class="o">=</span> <span class="n">automationSource</span>
+               <span class="k">else</span><span class="p">:</span>
+                   <span class="n">automationFilePath</span> <span class="o">=</span> <span class="n">automationSource</span>
+                   <span class="n">automationSheetName</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="k">elif</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;\.xls[xm]?$&quot;</span><span class="p">,</span> <span class="n">automationSource</span><span class="p">):</span>
             <span class="n">automationFilePath</span> <span class="o">=</span> <span class="n">automationSource</span>
             <span class="n">automationSheetName</span> <span class="o">=</span> <span class="s2">&quot;#automate&quot;</span>
         <span class="k">elif</span> <span class="p">(</span><span class="n">reMatch</span> <span class="o">:=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;^(.*\.xls[xm]?):(.*)$&quot;</span><span class="p">,</span> <span class="n">automationSource</span><span class="p">)):</span>
             <span class="n">automationFilePath</span> <span class="o">=</span> <span class="n">reMatch</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
             <span class="n">automationSheetName</span> <span class="o">=</span> <span class="n">reMatch</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="p">(</span><span class="n">reMatch</span> <span class="o">:=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;docs.google.com/spreadsheets/d/([^/]*)/[^:]*$&quot;</span><span class="p">,</span> <span class="n">automationSource</span><span class="p">)):</span>
+            <span class="n">automationFilePath</span> <span class="o">=</span> <span class="s2">&quot;https://docs.google.com/spreadsheets/d/&quot;</span> <span class="o">+</span> <span class="n">reMatch</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/export?format=xlsx&quot;</span>
+            <span class="n">automationSheetName</span> <span class="o">=</span> <span class="s2">&quot;#automate&quot;</span>
+        <span class="k">elif</span> <span class="p">(</span><span class="n">reMatch</span> <span class="o">:=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;docs.google.com/spreadsheets/d/([^/]*)/.*:(.*)$&quot;</span><span class="p">,</span> <span class="n">automationSource</span><span class="p">)):</span>
+            <span class="n">automationFilePath</span> <span class="o">=</span> <span class="s2">&quot;https://docs.google.com/spreadsheets/d/&quot;</span> <span class="o">+</span> <span class="n">reMatch</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/export?format=xlsx&quot;</span>
+            <span class="n">automationSheetName</span> <span class="o">=</span> <span class="n">reMatch</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="n">automationFilePath</span> <span class="o">=</span> <span class="n">automationSource</span>
             <span class="n">automationSheetName</span> <span class="o">=</span> <span class="kc">None</span>
                     
-        <span class="k">if</span> <span class="ow">not</span> <span class="n">TagParser</span><span class="o">.</span><span class="n">hasFileExtension</span><span class="p">(</span><span class="n">modificationSource</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">reMatch</span> <span class="o">:=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;(.*\.xls[xm]?)&quot;</span><span class="p">,</span> <span class="n">metadataSource</span><span class="p">)):</span>
-            <span class="n">modificationFilePath</span> <span class="o">=</span> <span class="n">reMatch</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> 
-            <span class="n">modificationSheetName</span> <span class="o">=</span> <span class="n">modificationSource</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">TagParser</span><span class="o">.</span><span class="n">hasFileExtension</span><span class="p">(</span><span class="n">modificationSource</span><span class="p">)</span> <span class="ow">and</span> \
+           <span class="ow">not</span> <span class="n">TagParser</span><span class="o">.</span><span class="n">isGoogleSheetsFile</span><span class="p">(</span><span class="n">modificationSource</span><span class="p">):</span>
+               <span class="k">if</span> <span class="p">(</span><span class="n">reMatch</span> <span class="o">:=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;(.*\.xls[xm]?)&quot;</span><span class="p">,</span> <span class="n">metadataSource</span><span class="p">)):</span>
+                   <span class="n">modificationFilePath</span> <span class="o">=</span> <span class="n">reMatch</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> 
+                   <span class="n">modificationSheetName</span> <span class="o">=</span> <span class="n">modificationSource</span>
+               <span class="k">elif</span> <span class="p">(</span><span class="n">reMatch</span> <span class="o">:=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;docs.google.com/spreadsheets/d/([^/]*)/.*$&quot;</span><span class="p">,</span> <span class="n">metadataSource</span><span class="p">)):</span>
+                   <span class="n">modificationFilePath</span> <span class="o">=</span> <span class="s2">&quot;https://docs.google.com/spreadsheets/d/&quot;</span> <span class="o">+</span> <span class="n">reMatch</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/export?format=xlsx&quot;</span>
+                   <span class="n">modificationSheetName</span> <span class="o">=</span> <span class="n">modificationSource</span>
+               <span class="k">else</span><span class="p">:</span>
+                   <span class="n">modificationFilePath</span> <span class="o">=</span> <span class="n">modificationSource</span>
+                   <span class="n">modificationSheetName</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="k">elif</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;\.xls[xm]?$&quot;</span><span class="p">,</span> <span class="n">modificationSource</span><span class="p">):</span>
             <span class="n">modificationFilePath</span> <span class="o">=</span> <span class="n">modificationSource</span>
             <span class="n">modificationSheetName</span> <span class="o">=</span> <span class="s2">&quot;#modify&quot;</span>
         <span class="k">elif</span> <span class="p">(</span><span class="n">reMatch</span> <span class="o">:=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;^(.*\.xls[xm]?):(.*)$&quot;</span><span class="p">,</span> <span class="n">modificationSource</span><span class="p">)):</span>
             <span class="n">modificationFilePath</span> <span class="o">=</span> <span class="n">reMatch</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+            <span class="n">modificationSheetName</span> <span class="o">=</span> <span class="n">reMatch</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="p">(</span><span class="n">reMatch</span> <span class="o">:=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;docs.google.com/spreadsheets/d/([^/]*)/[^:]*$&quot;</span><span class="p">,</span> <span class="n">modificationSource</span><span class="p">)):</span>
+            <span class="n">modificationFilePath</span> <span class="o">=</span> <span class="s2">&quot;https://docs.google.com/spreadsheets/d/&quot;</span> <span class="o">+</span> <span class="n">reMatch</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/export?format=xlsx&quot;</span>
+            <span class="n">modificationSheetName</span> <span class="o">=</span> <span class="s2">&quot;#modify&quot;</span>
+        <span class="k">elif</span> <span class="p">(</span><span class="n">reMatch</span> <span class="o">:=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;docs.google.com/spreadsheets/d/([^/]*)/.*:(.*)$&quot;</span><span class="p">,</span> <span class="n">modificationSource</span><span class="p">)):</span>
+            <span class="n">modificationFilePath</span> <span class="o">=</span> <span class="s2">&quot;https://docs.google.com/spreadsheets/d/&quot;</span> <span class="o">+</span> <span class="n">reMatch</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/export?format=xlsx&quot;</span>
             <span class="n">modificationSheetName</span> <span class="o">=</span> <span class="n">reMatch</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="n">modificationFilePath</span> <span class="o">=</span> <span class="n">modificationSource</span>
@@ -1335,18 +1409,24 @@
         <span class="k">elif</span> <span class="p">(</span><span class="n">reMatch</span> <span class="o">:=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;^(.*\.xls[xm]?):(.*)$&quot;</span><span class="p">,</span> <span class="n">metadataSource</span><span class="p">)):</span>
             <span class="n">metadataFilePath</span> <span class="o">=</span> <span class="n">reMatch</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
             <span class="n">metadataSheetName</span> <span class="o">=</span> <span class="n">reMatch</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="p">(</span><span class="n">reMatch</span> <span class="o">:=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;docs.google.com/spreadsheets/d/([^/]*)/[^:]*$&quot;</span><span class="p">,</span> <span class="n">metadataSource</span><span class="p">)):</span>
+            <span class="n">metadataFilePath</span> <span class="o">=</span> <span class="s2">&quot;https://docs.google.com/spreadsheets/d/&quot;</span> <span class="o">+</span> <span class="n">reMatch</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/export?format=xlsx&quot;</span>
+            <span class="n">metadataSheetName</span> <span class="o">=</span> <span class="s2">&quot;#export&quot;</span>
+        <span class="k">elif</span> <span class="p">(</span><span class="n">reMatch</span> <span class="o">:=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;docs.google.com/spreadsheets/d/([^/]*)/.*:(.*)$&quot;</span><span class="p">,</span> <span class="n">metadataSource</span><span class="p">)):</span>
+            <span class="n">metadataFilePath</span> <span class="o">=</span> <span class="s2">&quot;https://docs.google.com/spreadsheets/d/&quot;</span> <span class="o">+</span> <span class="n">reMatch</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/export?format=xlsx&quot;</span>
+            <span class="n">metadataSheetName</span> <span class="o">=</span> <span class="n">reMatch</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="n">metadataFilePath</span> <span class="o">=</span> <span class="n">metadataSource</span>
             <span class="n">metadataSheetName</span> <span class="o">=</span> <span class="kc">None</span>
 
-        <span class="k">if</span> <span class="n">TagParser</span><span class="o">.</span><span class="n">hasFileExtension</span><span class="p">(</span><span class="n">automationFilePath</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">TagParser</span><span class="o">.</span><span class="n">hasFileExtension</span><span class="p">(</span><span class="n">automationFilePath</span><span class="p">)</span> <span class="ow">or</span> <span class="n">TagParser</span><span class="o">.</span><span class="n">isGoogleSheetsFile</span><span class="p">(</span><span class="n">automationFilePath</span><span class="p">):</span>
             <span class="n">automationDirectives</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">readDirectives</span><span class="p">(</span><span class="n">automationFilePath</span><span class="p">,</span> <span class="n">automationSheetName</span><span class="p">,</span> <span class="s2">&quot;automation&quot;</span><span class="p">,</span> <span class="n">removeRegex</span><span class="p">,</span> <span class="n">automateDefaulted</span><span class="p">)</span> 
         <span class="k">else</span><span class="p">:</span>
             <span class="n">automationDirectives</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="c1">## Structure of modificationDirectives: {table_key:{field_key:{comparison_type:{field_value:{directive:{field_key:directive_value}}}}}} </span>
         <span class="c1">## The directive value is the new value to give the field or regex, regex is a list, assign is a string.</span>
         <span class="c1">## unique is handled by having &quot;-unique&quot; added to comparison type key, so there is &quot;exact-unique&quot; and &quot;exact&quot;.</span>
-        <span class="k">if</span> <span class="n">TagParser</span><span class="o">.</span><span class="n">hasFileExtension</span><span class="p">(</span><span class="n">metadataFilePath</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">TagParser</span><span class="o">.</span><span class="n">hasFileExtension</span><span class="p">(</span><span class="n">modificationFilePath</span><span class="p">)</span> <span class="ow">or</span> <span class="n">TagParser</span><span class="o">.</span><span class="n">isGoogleSheetsFile</span><span class="p">(</span><span class="n">modificationFilePath</span><span class="p">):</span>
             <span class="n">modificationDirectives</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">readDirectives</span><span class="p">(</span><span class="n">modificationFilePath</span><span class="p">,</span> <span class="n">modificationSheetName</span><span class="p">,</span> <span class="s2">&quot;modification&quot;</span><span class="p">,</span> <span class="n">removeRegex</span><span class="p">,</span> <span class="n">modifyDefaulted</span><span class="p">)</span> 
         <span class="k">else</span><span class="p">:</span>
             <span class="n">modificationDirectives</span> <span class="o">=</span> <span class="kc">None</span>
@@ -1389,8 +1469,13 @@
 <span class="sd">            worksheet: data to save.</span>
 <span class="sd">            saveExtension: if &quot;csv&quot; save as csv file, else save as Excel.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">baseName</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">fileName</span><span class="p">)</span>
-        <span class="n">fileName</span> <span class="o">=</span> <span class="n">baseName</span><span class="o">.</span><span class="n">rsplit</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">,</span><span class="mi">1</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot;_export.&quot;</span>
+        <span class="k">if</span> <span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">(</span><span class="n">fileName</span><span class="p">)</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
+            <span class="n">baseName</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">fileName</span><span class="p">)</span>
+            <span class="n">fileName</span> <span class="o">=</span> <span class="n">baseName</span><span class="o">.</span><span class="n">rsplit</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">,</span><span class="mi">1</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot;_export.&quot;</span>
+        <span class="k">elif</span> <span class="p">(</span><span class="n">reMatch</span> <span class="o">:=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;docs.google.com/spreadsheets/d/([^/]*)/[^:]*$&quot;</span><span class="p">,</span> <span class="n">fileName</span><span class="p">)):</span>
+            <span class="n">fileName</span> <span class="o">=</span> <span class="s2">&quot;Google_Sheets_&quot;</span> <span class="o">+</span> <span class="n">reMatch</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;_export.&quot;</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">fileName</span> <span class="o">=</span> <span class="s2">&quot;stdin_export.&quot;</span>
         <span class="k">if</span> <span class="n">saveExtension</span> <span class="o">==</span> <span class="s2">&quot;csv&quot;</span><span class="p">:</span>
             <span class="n">fileName</span> <span class="o">+=</span> <span class="s2">&quot;csv&quot;</span>
             <span class="n">worksheet</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">fileName</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
@@ -1829,7 +1914,7 @@
                     <span class="n">directives</span> <span class="o">=</span> <span class="kc">None</span>
                     <span class="k">if</span> <span class="ow">not</span> <span class="n">silent</span><span class="p">:</span>
                         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Warning: The input directives JSON file is either not a dict or does not contain the directive keyword </span><span class="se">\&quot;</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="n">directiveType</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\&quot;</span><span class="s2">. This means that &quot;</span> <span class="o">+</span> <span class="n">directiveType</span> <span class="o">+</span> <span class="s2">&quot; will not be done.&quot;</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="p">)</span>
-        <span class="k">elif</span> <span class="n">TagParser</span><span class="o">.</span><span class="n">hasFileExtension</span><span class="p">(</span><span class="n">source</span><span class="p">):</span>
+        <span class="k">elif</span> <span class="n">TagParser</span><span class="o">.</span><span class="n">hasFileExtension</span><span class="p">(</span><span class="n">source</span><span class="p">)</span> <span class="ow">or</span> <span class="n">TagParser</span><span class="o">.</span><span class="n">isGoogleSheetsFile</span><span class="p">(</span><span class="n">source</span><span class="p">):</span>
             <span class="n">dataFrameTuple</span> <span class="o">=</span> <span class="n">TagParser</span><span class="o">.</span><span class="n">loadSheet</span><span class="p">(</span><span class="n">source</span><span class="p">,</span> <span class="n">sheetName</span><span class="p">,</span> <span class="n">removeRegex</span><span class="o">=</span><span class="n">removeRegex</span><span class="p">,</span> <span class="n">isDefaultSearch</span><span class="o">=</span><span class="n">isDefaultSearch</span><span class="p">)</span>
             <span class="k">if</span> <span class="n">dataFrameTuple</span> <span class="o">!=</span> <span class="kc">None</span><span class="p">:</span>
                 <span class="k">if</span> <span class="n">directiveType</span> <span class="o">==</span> <span class="s2">&quot;modification&quot;</span><span class="p">:</span>
@@ -2563,21 +2648,7 @@
                 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="o">*</span><span class="n">indentation</span><span class="p">,</span><span class="nb">id</span><span class="p">,</span><span class="n">file</span><span class="o">=</span><span class="n">file</span><span class="p">)</span></div></div>
 
 
-<span class="c1">#</span>
-<span class="c1"># Main Execution</span>
-<span class="c1">#</span>
-<span class="c1"># if __name__ == &quot;__main__&quot;:</span>
-<span class="c1">#     if len(sys.argv) &gt; 1 and sys.argv[1] == &quot;--profile&quot;:</span>
-<span class="c1">#         sys.argv.pop(1)</span>
-<span class="c1">#         import cProfile</span>
-<span class="c1">#         profiler = cProfile.Profile()</span>
-<span class="c1">#         profiler.enable()</span>
-<span class="c1">#         main()</span>
-<span class="c1">#         profiler.disable()</span>
-<span class="c1">#         profiler.print_stats()</span>
-<span class="c1">#     else:</span>
-<span class="c1">#         main()</span>
-    
+
 </pre></div>
 
            </div>

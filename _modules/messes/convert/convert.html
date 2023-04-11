@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>messes.convert.convert &mdash; MESSES 0.1.dev1+g991df59 documentation</title>
+  <title>messes.convert.convert &mdash; MESSES 0.1.dev1+gd87f1ca documentation</title>
       <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/css/custom_css.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/sphinxcontrib-images/LightBox2/lightbox2/dist/css/lightbox.css" type="text/css" />
@@ -32,7 +32,7 @@
             <a href="../../../index.html" class="icon icon-home"> MESSES
           </a>
               <div class="version">
-                0.1.dev1+g991df59
+                0.1.dev1+gd87f1ca
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
@@ -92,8 +92,10 @@
 <span class="sd">    messes convert generic &lt;input_JSON&gt; &lt;output_name&gt; &lt;conversion_directives&gt; [--silent]</span>
 <span class="sd">    messes convert --help</span>
 <span class="sd">    </span>
-<span class="sd">    &lt;conversion_directives&gt; - can be a JSON, csv, or xlsx file. If xlsx the default sheet name to read in is #convert, </span>
+<span class="sd">    &lt;conversion_directives&gt; - can be a JSON, csv, xlsx, or Google Sheets file. If xlsx or Google Sheets the default sheet name to read in is #convert, </span>
 <span class="sd">                              to specify a different sheet name separate it from the file name with a colon ex: file_name.xlsx:sheet_name.</span>
+<span class="sd">                              </span>
+<span class="sd">    &lt;output_filetype&gt; - &quot;json&quot;, &quot;xlsx&quot;, or &quot;csv&quot;</span>
 
 <span class="sd">Options:</span>
 <span class="sd">    -h, --help                           - show this screen.</span>
@@ -166,7 +168,7 @@
             <span class="k">break</span>
         
     <span class="k">if</span> <span class="n">filepath</span> <span class="o">:=</span> <span class="nb">next</span><span class="p">((</span><span class="n">arg</span> <span class="k">for</span> <span class="n">arg</span> <span class="ow">in</span> <span class="p">[</span><span class="n">args</span><span class="p">[</span><span class="s2">&quot;&lt;conversion_directives&gt;&quot;</span><span class="p">],</span> <span class="n">args</span><span class="p">[</span><span class="s2">&quot;--update&quot;</span><span class="p">],</span> <span class="n">args</span><span class="p">[</span><span class="s2">&quot;--override&quot;</span><span class="p">]]</span> <span class="k">if</span> <span class="n">arg</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">),</span> <span class="kc">False</span><span class="p">):</span>
-        <span class="k">if</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;.*(\.xls[xm]?|\.csv)&quot;</span><span class="p">,</span> <span class="n">filepath</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;.*(\.xls[xm]?|\.csv)&quot;</span><span class="p">,</span> <span class="n">filepath</span><span class="p">)</span> <span class="ow">or</span> <span class="n">extract</span><span class="o">.</span><span class="n">TagParser</span><span class="o">.</span><span class="n">isGoogleSheetsFile</span><span class="p">(</span><span class="n">filepath</span><span class="p">):</span>
             <span class="n">default_sheet_name</span> <span class="o">=</span> <span class="kc">False</span>
             <span class="k">if</span> <span class="p">(</span><span class="n">reMatch</span> <span class="o">:=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;^(.*\.xls[xm]?):(.*)$&quot;</span><span class="p">,</span> <span class="n">filepath</span><span class="p">)):</span>
                 <span class="n">filepath</span> <span class="o">=</span> <span class="n">reMatch</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
@@ -174,23 +176,34 @@
             <span class="k">elif</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;\.xls[xm]?$&quot;</span><span class="p">,</span> <span class="n">filepath</span><span class="p">):</span>
                 <span class="n">sheet_name</span> <span class="o">=</span> <span class="s2">&quot;#convert&quot;</span>
                 <span class="n">default_sheet_name</span> <span class="o">=</span> <span class="kc">True</span>
+            <span class="k">elif</span> <span class="p">(</span><span class="n">reMatch</span> <span class="o">:=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;docs.google.com/spreadsheets/d/([^/]*)/[^:]*$&quot;</span><span class="p">,</span> <span class="n">filepath</span><span class="p">)):</span>
+                <span class="n">filepath</span> <span class="o">=</span> <span class="s2">&quot;https://docs.google.com/spreadsheets/d/&quot;</span> <span class="o">+</span> <span class="n">reMatch</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/export?format=xlsx&quot;</span>
+                <span class="n">sheet_name</span> <span class="o">=</span> <span class="s2">&quot;#convert&quot;</span>
+                <span class="n">default_sheet_name</span> <span class="o">=</span> <span class="kc">True</span>
+            <span class="k">elif</span> <span class="p">(</span><span class="n">reMatch</span> <span class="o">:=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;docs.google.com/spreadsheets/d/([^/]*)/.*:(.*)$&quot;</span><span class="p">,</span> <span class="n">filepath</span><span class="p">)):</span>
+                <span class="n">filepath</span> <span class="o">=</span> <span class="s2">&quot;https://docs.google.com/spreadsheets/d/&quot;</span> <span class="o">+</span> <span class="n">reMatch</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/export?format=xlsx&quot;</span>
+                <span class="n">sheet_name</span> <span class="o">=</span> <span class="n">reMatch</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
             <span class="n">tagParser</span> <span class="o">=</span> <span class="n">extract</span><span class="o">.</span><span class="n">TagParser</span><span class="p">()</span>
             <span class="c1">## In order to print error messages correctly we have to know if loadSheet printed a message or not, so temporarily replace stderr.</span>
             <span class="n">old_stderr</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">stderr</span>
             <span class="n">sys</span><span class="o">.</span><span class="n">stderr</span> <span class="o">=</span> <span class="n">buffer</span> <span class="o">=</span> <span class="n">io</span><span class="o">.</span><span class="n">StringIO</span><span class="p">()</span>
-            <span class="k">if</span> <span class="n">worksheet_tuple</span> <span class="o">:=</span> <span class="n">tagParser</span><span class="o">.</span><span class="n">loadSheet</span><span class="p">(</span><span class="n">filepath</span><span class="p">,</span> <span class="n">sheet_name</span><span class="p">,</span> <span class="n">isDefaultSearch</span><span class="o">=</span><span class="n">default_sheet_name</span><span class="p">):</span>
-                <span class="n">tagParser</span><span class="o">.</span><span class="n">parseSheet</span><span class="p">(</span><span class="o">*</span><span class="n">worksheet_tuple</span><span class="p">)</span>
-                <span class="n">update_conversion_directives</span> <span class="o">=</span> <span class="n">tagParser</span><span class="o">.</span><span class="n">extraction</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">worksheet_tuple</span> <span class="o">:=</span> <span class="n">tagParser</span><span class="o">.</span><span class="n">loadSheet</span><span class="p">(</span><span class="n">filepath</span><span class="p">,</span> <span class="n">sheet_name</span><span class="p">,</span> <span class="n">isDefaultSearch</span><span class="o">=</span><span class="n">default_sheet_name</span><span class="p">):</span>
+                    <span class="n">tagParser</span><span class="o">.</span><span class="n">parseSheet</span><span class="p">(</span><span class="o">*</span><span class="n">worksheet_tuple</span><span class="p">)</span>
+                    <span class="n">update_conversion_directives</span> <span class="o">=</span> <span class="n">tagParser</span><span class="o">.</span><span class="n">extraction</span>
+                    <span class="n">sys</span><span class="o">.</span><span class="n">stderr</span> <span class="o">=</span> <span class="n">old_stderr</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">sys</span><span class="o">.</span><span class="n">stderr</span> <span class="o">=</span> <span class="n">old_stderr</span>
+                    <span class="k">if</span> <span class="n">buffer</span><span class="o">.</span><span class="n">getvalue</span><span class="p">():</span>
+                        <span class="c1">## Have to trim the extra newline off the end of buffer.</span>
+                        <span class="nb">print</span><span class="p">(</span><span class="n">buffer</span><span class="o">.</span><span class="n">getvalue</span><span class="p">()[</span><span class="mi">0</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">file</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="p">)</span>
+                    <span class="k">elif</span> <span class="n">default_sheet_name</span><span class="p">:</span>
+                        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Error: No sheet name was given for the file, so the default name &quot;</span> <span class="o">+</span>\
+                              <span class="s2">&quot;of #convert was used, but it was not found in the file.&quot;</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="p">)</span>
+                    <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">()</span>
+            <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
                 <span class="n">sys</span><span class="o">.</span><span class="n">stderr</span> <span class="o">=</span> <span class="n">old_stderr</span>
-            <span class="k">else</span><span class="p">:</span>
-                <span class="n">sys</span><span class="o">.</span><span class="n">stderr</span> <span class="o">=</span> <span class="n">old_stderr</span>
-                <span class="k">if</span> <span class="n">buffer</span><span class="o">.</span><span class="n">getvalue</span><span class="p">():</span>
-                    <span class="c1">## Have to trim the extra newline off the end of buffer.</span>
-                    <span class="nb">print</span><span class="p">(</span><span class="n">buffer</span><span class="o">.</span><span class="n">getvalue</span><span class="p">()[</span><span class="mi">0</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">file</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="p">)</span>
-                <span class="k">elif</span> <span class="n">default_sheet_name</span><span class="p">:</span>
-                    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Error: No sheet name was given for the xlsx file, so the default name &quot;</span> <span class="o">+</span>\
-                          <span class="s2">&quot;of #convert was used, but it was not found in the file.&quot;</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="p">)</span>
-                <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">()</span>
+                <span class="k">raise</span> <span class="n">e</span>
         
         <span class="k">elif</span> <span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;.*\.json$&quot;</span><span class="p">,</span> <span class="n">filepath</span><span class="p">):</span>
             <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filepath</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">jsonFile</span><span class="p">:</span>
@@ -1015,63 +1028,6 @@
 <span class="c1"># section_directive_fields = [&quot;code&quot;, &quot;import&quot;]</span>
 
 
-
-
-
-<span class="c1"># input_json[&quot;entity&quot;] = {}</span>
-<span class="c1"># for sample_name, sample_attributes in input_json[&quot;sample&quot;].items():</span>
-<span class="c1">#     input_json[&quot;entity&quot;][sample_name] = sample_attributes</span>
-<span class="c1">#     input_json[&quot;entity&quot;][sample_name][&quot;type&quot;] = &quot;sample&quot;</span>
-<span class="c1"># for subject_name, subject_attributes in input_json[&quot;subject&quot;].items():</span>
-<span class="c1">#     input_json[&quot;entity&quot;][subject_name] = subject_attributes</span>
-<span class="c1">#     input_json[&quot;entity&quot;][subject_name][&quot;type&quot;] = &quot;subject&quot;</span>
-
-<span class="c1"># input_json[&quot;factor&quot;] = \</span>
-<span class="c1"># {&#39;Treatment&#39;: {</span>
-<span class="c1">#   &#39;allowed_values&#39;: [&#39;naive&#39;, &#39;syngenic&#39;, &#39;allogenic&#39;],</span>
-<span class="c1">#   &#39;id&#39;: &#39;Treatment&#39;,</span>
-<span class="c1">#   &#39;field&#39;: &#39;protocol.id&#39;,</span>
-<span class="c1">#   &#39;project.id&#39;: &#39;GH_Spleen&#39;,</span>
-<span class="c1">#   &#39;study.id&#39;: &#39;GH_Spleen&#39;},</span>
-<span class="c1">#  &#39;Time Point&#39;: {</span>
-<span class="c1">#   &#39;allowed_values&#39;: [&#39;0&#39;, &#39;7&#39;, &#39;42&#39;],</span>
-<span class="c1">#   &#39;id&#39;: &#39;Time Point&#39;,</span>
-<span class="c1">#   &#39;field&#39;: &#39;time_point&#39;,</span>
-<span class="c1">#   &#39;project.id&#39;: &#39;GH_Spleen&#39;,</span>
-<span class="c1">#   &#39;study.id&#39;: &#39;GH_Spleen&#39;}}</span>
-
-
-<span class="c1">## Create binned nmr</span>
-<span class="c1"># from random import uniform</span>
-
-<span class="c1"># temp = {}</span>
-<span class="c1"># for measurement, measurement_attributes in input_json[&quot;measurement&quot;].items():</span>
-<span class="c1">#     bottom_range = uniform(0, 1000)</span>
-<span class="c1">#     top_range = uniform(bottom_range, 1000)</span>
-    
-<span class="c1">#     assignment = str(bottom_range) + &quot;-&quot; + str(top_range)</span>
-<span class="c1">#     intensity = measurement_attributes[&quot;intensity&quot;]</span>
-<span class="c1">#     units = measurement_attributes[&quot;intensity%type&quot;]</span>
-    
-<span class="c1">#     temp[assignment] = {&quot;intensity&quot;: intensity, &quot;intensity%type&quot;:units, &quot;assignment&quot;:assignment, &quot;sample.id&quot;:measurement_attributes[&quot;sample.id&quot;]}</span>
-    
-<span class="c1"># input_json[&quot;measurement&quot;] = temp</span>
-
-<span class="c1"># with open(&#39;C:/Users/Sparda/Desktop/Moseley Lab/Code/MESSES/tests/test_convert/testing_files/NMR_binned_base_input.json&#39;,&#39;w&#39;) as jsonFile:</span>
-<span class="c1">#     jsonFile.write(json.dumps(input_json, indent=2))</span>
-
-
-<span class="c1">## Remove isotopologues from MS data</span>
-<span class="c1"># keys_to_delete = []</span>
-<span class="c1"># for measurement, measurement_attributes in input_json[&quot;measurement&quot;].items():</span>
-<span class="c1">#     if measurement_attributes[&quot;isotopologue&quot;] != &quot;13C0&quot;:</span>
-<span class="c1">#         keys_to_delete.append(measurement)</span>
-        
-<span class="c1"># for key in keys_to_delete:</span>
-<span class="c1">#     del input_json[&quot;measurement&quot;][key]</span>
-
-<span class="c1"># with open(&#39;C:/Users/Sparda/Desktop/Moseley Lab/Code/MESSES/tests/test_convert/testing_files/MS_base_input_truncated.json&#39;,&#39;w&#39;) as jsonFile:</span>
-<span class="c1">#     jsonFile.write(json.dumps(input_json, indent=2))</span>
 </pre></div>
 
            </div>
