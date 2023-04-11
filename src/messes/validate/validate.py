@@ -3,21 +3,21 @@
 Validate JSON files.
 
 Usage:
-    messes validate json <input_JSON> [--pds=<pds> [--csv | --xlsx | --json] | --no_base_schema] 
+    messes validate json <input_JSON> [--pds=<pds> [--csv | --xlsx | --json | --gs] | --no_base_schema] 
                                       [--no_extra_checks]
                                       [--additional=<add_schema>] 
                                       [--format=<format>]
                                       [--silent=<level>]
     messes validate save-schema <output_schema> [--input=<input_JSON>] 
-                                                [--pds=<pds> [--csv | --xlsx | --json]] 
+                                                [--pds=<pds> [--csv | --xlsx | --json | --gs]] 
                                                 [--format=<format>]
                                                 [--silent=<level>]
     messes validate schema <input_schema>
-    messes validate pds <pds> [--csv | --xlsx | --json] [--silent=<level>]
+    messes validate pds <pds> [--csv | --xlsx | --json | --gs] [--silent=<level>]
     messes validate --help
     
     <input_JSON> - if '-' read from standard input.
-    <pds> - can be a JSON, csv, or xlsx file. If xlsx the default sheet name to read in is #validate, 
+    <pds> - can be a JSON, csv, xlsx, or Google Sheets file. If xlsx or Google Sheets the default sheet name to read in is #validate, 
            to specify a different sheet name separate it from the file name with a colon ex: file_name.xlsx:sheet_name.
            If '-' read from standard input.
     <input_schema> - must be a valid JSON Schema file. If '-' read from standard input.
@@ -93,8 +93,9 @@ def main() :
     #######################
     if args["json"]:            
         run_json_command(args["<input_JSON>"], args["--pds"], args["--additional"], 
-                         args["--no_base_schema"], args["--no_extra_checks"], args["--csv"], 
-                         args["--xlsx"], args["--json"], args["--silent"], args["--format"])
+                         args["--no_base_schema"], args["--no_extra_checks"], 
+                         args["--csv"], args["--xlsx"], args["--json"], args["--gs"], 
+                         args["--silent"], args["--format"])
     
     
     #############################    
@@ -102,8 +103,8 @@ def main() :
     #############################
     if args["save-schema"]:
         run_save_schema_command(args["--pds"], args["<output_schema>"], args["--input"],
-                                args["--csv"], args["--xlsx"], args["--json"], args["--silent"],
-                                args["--format"])
+                                args["--csv"], args["--xlsx"], args["--json"], args["--gs"], 
+                                args["--silent"], args["--format"])
     
     
     #########################
@@ -117,7 +118,8 @@ def main() :
     ## Handle pds command.
     #####################
     if args["pds"]:
-        run_pds_command(args["<pds>"], args["--csv"], args["--xlsx"], args["--json"], args["--silent"])
+        run_pds_command(args["<pds>"], args["--csv"], args["--xlsx"], args["--json"], 
+                        args["--gs"], args["--silent"])
     
     
     
@@ -128,8 +130,8 @@ def check(self, instance: object, format: str) -> None:
     """Check whether the instance conforms to the given format.
     
     Modified from jsonschema.FormatChecker.check. Used to raise an error on 
-    the custom "integer" and "numeric" formats so their values can be cast 
-    to int and float respectively.
+    the custom "integer", "str_integer", "numeric", and "str_numeric" formats 
+    so their values can be cast to int and float appropriately.
 
     Args:
         instance: the instance to check
@@ -137,8 +139,9 @@ def check(self, instance: object, format: str) -> None:
 
     Raises:
         FormatError:
-            if the instance does not conform to ``format``, also raises if it 
-            does conform to "integer" or "numeric" formats
+            if the instance does not conform to ``format`` 
+            if the instance does conform to "integer", "str_integer", "numeric", and "str_numeric" formats
+            if the instance is not a string and the format is "str_integer" or "str_numeric"
     """
 
     if format not in self.checkers:
@@ -152,18 +155,21 @@ def check(self, instance: object, format: str) -> None:
         cause = e
     if not result:
         raise jsonschema.exceptions.FormatError(f"{instance!r} is not a {format!r}", cause=cause)
-    elif format == "integer" and isinstance(instance, str):
+    elif (format == "integer" or format == "str_integer") and isinstance(instance, str):
         raise jsonschema.exceptions.FormatError("safe to convert to int", cause=None) 
-    elif format == "numeric" and isinstance(instance, str):
-        raise jsonschema.exceptions.FormatError("safe to convert to float", cause=None) 
+    elif (format == "numeric" or format == "str_numeric") and isinstance(instance, str):
+        raise jsonschema.exceptions.FormatError("safe to convert to float", cause=None)
+    elif (format == "str_integer" or format == "str_numeric") and not isinstance(instance, str):
+        raise jsonschema.exceptions.FormatError("not str", cause=None)
 
 
 def convert_formats(validator: jsonschema.protocols.Validator, instance: dict|str|list) -> dict|str|list:
     """Convert "integer" and "numeric" formats to int and float.
     
-    Special function to iterate over JSON schema errors and if the custom "integer" 
-    or "numeric" formats are found converts that value in the instance to the 
-    appropriate type.
+    Special function to iterate over JSON schema errors and if the custom "integer", 
+    "str_integer", "numeric", and "str_numeric" formats are found, converts that value 
+    in the instance to the appropriate type. If the value is not a string and the format 
+    is "str_integer" or "str_numeric", prints an error.
     
     Args:
         validator: Validator from the jsonschema library to run iter_errors() on.
@@ -184,6 +190,10 @@ def convert_formats(validator: jsonschema.protocols.Validator, instance: dict|st
         elif error.message == "safe to convert to int":
             path = "[%s]" % "][".join(repr(index) for index in error.relative_path)
             exec("instance" + path + "=int(float(" + "instance" + path + "))")
+        elif error.message == "not str":
+            path = "[%s]" % "][".join(repr(index) for index in error.relative_path)
+            print("Error:  The value for " + path + " is not of type \"string\".", file=sys.stderr)
+            
             
     jsonschema.FormatChecker.check = original_check
     
@@ -264,7 +274,7 @@ def print_better_error_messages(errors_generator: Iterable[jsonschema.exceptions
     
     
 def read_and_validate_PDS(filepath: str, is_csv: bool, is_xlsx: bool, 
-                                            is_json: bool, no_last_message: bool, silent: str) -> JSON:
+                          is_json: bool, is_gs: bool, no_last_message: bool, silent: str) -> JSON:
     """Read in the protocol-dependent schema from filepath and validate it.
     
     Args:
@@ -272,6 +282,7 @@ def read_and_validate_PDS(filepath: str, is_csv: bool, is_xlsx: bool,
         is_csv: whether the protocol-dependent schema is a csv file, used for reading from stdin.
         is_xlsx: whether the protocol-dependent schema is a xlsx file.
         is_json: whether the protocol-dependent schema is a json file, used for reading from stdin.
+        is_json: whether the protocol-dependent schema is a Google Sheets file.
         no_last_message: if True do not print a message about the protocol-dependent schema being invalid and execution stopping.
         silent: if "full" do not print any warnings, if "nuisance" do not print nuisance warnings.
     
@@ -294,16 +305,25 @@ def read_and_validate_PDS(filepath: str, is_csv: bool, is_xlsx: bool,
         
                 
     
-    if is_csv or is_xlsx or (not from_stdin and re.search(r".*(\.xls[xm]?|\.csv)", filepath)):
+    if is_csv or is_xlsx or is_gs or \
+       (not from_stdin and (re.search(r".*(\.xls[xm]?|\.csv)", filepath) or extract.TagParser.isGoogleSheetsFile(filepath))):
         default_sheet_name = False
         sheet_name = None
-        if not from_stdin and (reMatch := re.search(r"^(.*\.xls[xm]?):(.*)$", filepath)):
-            filepath = reMatch.group(1)
-            sheet_name = reMatch.group(2)
-        # elif not from_stdin and re.search(r"\.xls[xm]?$", filepath):
-        elif not from_stdin and re.search(r"\.xls[xm]?$", filepath):
-            sheet_name = "#validate"
-            default_sheet_name = True
+        if not from_stdin:
+            if (reMatch := re.search(r"^(.*\.xls[xm]?):(.*)$", filepath)):
+                filepath = reMatch.group(1)
+                sheet_name = reMatch.group(2)
+            # elif not from_stdin and re.search(r"\.xls[xm]?$", filepath):
+            elif re.search(r"\.xls[xm]?$", filepath):
+                sheet_name = "#validate"
+                default_sheet_name = True
+            elif (reMatch := re.search(r"docs.google.com/spreadsheets/d/([^/]*)/[^:]*$", filepath)):
+                filepath = "https://docs.google.com/spreadsheets/d/" + reMatch.group(1) + "/export?format=xlsx"
+                sheet_name = "#validate"
+                default_sheet_name = True
+            elif (reMatch := re.search(r"docs.google.com/spreadsheets/d/([^/]*)/.*:(.*)$", filepath)):
+                filepath = "https://docs.google.com/spreadsheets/d/" + reMatch.group(1) + "/export?format=xlsx"
+                sheet_name = reMatch.group(2)
         tagParser = extract.TagParser()
         ## In order to print error messages correctly we have to know if loadSheet printed a message or not, so temporarily replace stderr.
         old_stderr = sys.stderr
@@ -319,7 +339,7 @@ def read_and_validate_PDS(filepath: str, is_csv: bool, is_xlsx: bool,
                     ## Have to trim the extra newline off the end of buffer.
                     print(buffer.getvalue()[0:-1], file=sys.stderr)
                 elif default_sheet_name:
-                    print("Error:  No sheet name was given for the xlsx file, so the default name " +\
+                    print("Error:  No sheet name was given for the file, so the default name " +\
                           "of #validate was used, but it was not found in the file.", file=sys.stderr)
                 sys.exit()
         except Exception as e:
@@ -427,7 +447,7 @@ def create_validator(schema: JSON) -> jsonschema.protocols.Validator:
         
     Returns:
         A jsonschema.protocols.Validator to validate the schema with an added format checker 
-        that is aware of the custom formats "integer" and "numeric".
+        that is aware of the custom formats "integer", "str_integer", "numeric", and "str_numeric".
     """
     validator = jsonschema.validators.validator_for(schema)
     format_checker = jsonschema.FormatChecker()
@@ -440,8 +460,26 @@ def create_validator(schema: JSON) -> jsonschema.protocols.Validator:
                 return False
             return True
         return True
+    @format_checker.checks('str_integer') 
+    def is_str_integer(value):
+        if value is not None and isinstance(value, str):
+            try:
+                float(value)
+            except ValueError:
+                return False
+            return True
+        return True
     @format_checker.checks('numeric') 
     def is_float(value):
+        if value is not None and isinstance(value, str):
+            try:
+                float(value)
+            except ValueError:
+                return False
+            return True
+        return True
+    @format_checker.checks('str_numeric') 
+    def is_str_float(value):
         if value is not None and isinstance(value, str):
             try:
                 float(value)
@@ -1072,7 +1110,8 @@ def _check_format(format_check: str|None) -> None:
 
 def run_json_command(input_json_source: str, pds_source: str|None, additional_schema_source: str|None, 
                      no_base_schema: bool = False, no_extra_checks: bool = False, is_csv: bool = False, 
-                     is_xlsx: bool = False, is_json: bool = False, silent: str = "none", format_check: str|None = None) -> None:
+                     is_xlsx: bool = False, is_json: bool = False, is_gs: bool = False, silent: str = "none", 
+                     format_check: str|None = None) -> None:
     """Run the json command.
     
     Args:
@@ -1084,13 +1123,14 @@ def run_json_command(input_json_source: str, pds_source: str|None, additional_sc
         is_csv: if True the pds_source is a csv file.
         is_xlsx: if True the pds_source is an xlsx file.
         is_json: if True the pds_source is a JSON file.
+        is_gs: if True the pds_source is a Google Sheets file.
         silent: if "full" do not print any warnings, if "nuisance" do not print nuisance warnings.
     """
     
     _check_format(format_check)
     
     if pds_source:
-        PDS = read_and_validate_PDS(pds_source, is_csv, is_xlsx, is_json, False, silent)
+        PDS = read_and_validate_PDS(pds_source, is_csv, is_xlsx, is_json, is_gs, False, silent)
     ## Read in JSON_schema if given.
     if additional_schema_source:
         user_json_schema = read_in_JSON_file(additional_schema_source, "additional schema")
@@ -1160,7 +1200,7 @@ def run_json_command(input_json_source: str, pds_source: str|None, additional_sc
 
 def run_save_schema_command(pds_source: str|None, output_schema_path: str, input_json_path: str|None,
                             is_csv: bool = False, is_xlsx: bool = False, is_json: bool = False, 
-                            silent: str = "none", format_check: str|None = None) -> None:
+                            is_gs: bool = False, silent: str = "none", format_check: str|None = None) -> None:
     """Run the save-schema command.
     
     Args:
@@ -1170,6 +1210,7 @@ def run_save_schema_command(pds_source: str|None, output_schema_path: str, input
         is_csv: if True the pds_source is a csv file.
         is_xlsx: if True the pds_source is an xlsx file.
         is_json: if True the pds_source is a JSON file.
+        is_gs: if True the pds_source is a Google Sheets file.
         silent: if "full" do not print any warnings, if "nuisance" do not print nuisance warnings.
     """
     
@@ -1185,7 +1226,7 @@ def run_save_schema_command(pds_source: str|None, output_schema_path: str, input
                 composite_schema = mwtab_schema_NMR_bin
     
     elif pds_source:
-        PDS = read_and_validate_PDS(pds_source, is_csv, is_xlsx, is_json, False, silent)
+        PDS = read_and_validate_PDS(pds_source, is_csv, is_xlsx, is_json, is_gs, False, silent)
         if input_json_path:
             input_json = read_in_JSON_file(input_json_path, "input JSON")
             if "protocol" in input_json:
@@ -1220,7 +1261,7 @@ def run_schema_command(input_schema_source: str) -> None:
 
 
 def run_pds_command(pds_source: str, is_csv: bool = False, is_xlsx: bool = False, 
-                   is_json: bool = False, silent: str = "none") -> None:
+                   is_json: bool = False, is_gs: bool = False, silent: str = "none") -> None:
     """Run the pds command.
     
     Args:
@@ -1228,9 +1269,10 @@ def run_pds_command(pds_source: str, is_csv: bool = False, is_xlsx: bool = False
         is_csv: if True the pds_source is a csv file.
         is_xlsx: if True the pds_source is an xlsx file.
         is_json: if True the pds_source is a JSON file.
+        is_gs: if True the pds_source is a Google Sheets file.
         silent: if "full" do not print any warnings, if "nuisance" do not print nuisance warnings.
     """
-    PDS = read_and_validate_PDS(pds_source, is_csv, is_xlsx, is_json, True, silent)
+    PDS = read_and_validate_PDS(pds_source, is_csv, is_xlsx, is_json, is_gs, True, silent)
     composite_schema = build_PD_schema(PDS)
     if validate_JSON_schema(composite_schema) and not silent == "full":
         print("Warning:  The schema created from the protocol-dependent schema is not valid.", file=sys.stderr)

@@ -877,10 +877,27 @@ def test_no_data_message_xlsx():
             
     assert "There is no data in worksheet" in output
     assert "no_data_message.xlsx:#export" in output
+    
+
+def test_no_data_message_Google_Sheets():
+    """Test that a message is printed when there is no data in a worksheet."""
+    
+    test_file = "https://docs.google.com/spreadsheets/d/1nrCMqr-x2Y_uRoeur_9kxl4OtSJaikg-mX8dvBvggIA/edit#gid=706429643"
+    
+    command = "messes extract " + test_file  + " --output " + output_path.as_posix()
+    command = command.split(" ")
+    subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
+    output = subp.stderr
+
+    
+    assert output_path.exists()
+            
+    assert "There is no data in the sheet, #export, of the Google Sheets file" in output
+    assert "https://docs.google.com/spreadsheets/d/1nrCMqr-x2Y_uRoeur_9kxl4OtSJaikg-mX8dvBvggIA/export?format=xlsx" in output
 
 
 
-def test_no_sheet_message():
+def test_no_sheet_message_xlsx():
     """Test that a message is printed when the user input sheet name is not found."""
     
     test_file = "base_source.xlsx"
@@ -895,6 +912,23 @@ def test_no_sheet_message():
             
     assert 'r\'^asdf$\' did not match any sheets in' in output
     assert 'base_source.xlsx' in output
+    
+
+def test_no_sheet_message_Google_Sheets():
+    """Test that a message is printed when the user input sheet name is not found."""
+    
+    test_file = "https://docs.google.com/spreadsheets/d/1jDMQjFeyETsI_uBQ7v-K2F4w18U-l_HJ9v0EJ4Bm0bg/edit?pli=1#gid=609251734"
+    
+    command = "messes extract " + test_file  + " --output " + output_path.as_posix() + " --modify asdf"
+    command = command.split(" ")
+    subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
+    output = subp.stderr
+
+    
+    assert output_path.exists()
+            
+    assert 'r\'^asdf$\' did not match any sheets in' in output
+    assert 'https://docs.google.com/spreadsheets/d/1jDMQjFeyETsI_uBQ7v-K2F4w18U-l_HJ9v0EJ4Bm0bg/export?format=xlsx' in output
 
 
 

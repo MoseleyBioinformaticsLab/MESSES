@@ -222,6 +222,29 @@ def test_modification_xlsx():
     assert output == ""
 
 
+def test_modification_Google_Sheets():
+    """Test that the modify option defaults to #modify."""
+    
+    test_file = "modification_test.xlsx"
+    
+    command = "messes extract ../" + test_file  + " --output " + output_path.as_posix() + " --modify https://docs.google.com/spreadsheets/d/1jDMQjFeyETsI_uBQ7v-K2F4w18U-l_HJ9v0EJ4Bm0bg/edit?pli=1#gid=609251734"
+    command = command.split(" ")
+    subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
+    output = subp.stderr
+
+    
+    assert output_path.exists()
+    
+    with open(output_path, "r") as f:
+        output_json = json.loads(f.read())
+        
+    with open(pathlib.Path("output_compare.json"), "r") as f:
+        output_compare_json = json.loads(f.read())
+        
+    assert output_json == output_compare_json
+    
+    assert output == ""
+
 
 
 
@@ -280,6 +303,54 @@ def test_end_modify_worksheet_name_and_sheetname():
     test_file = "modification_test.xlsx"
     
     command = "messes extract ../" + test_file  + " --output " + output_path.as_posix() + " --end-modify ../base_source.xlsx:#modify"
+    command = command.split(" ")
+    subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
+    output = subp.stderr
+
+    
+    assert output_path.exists()
+    
+    with open(output_path, "r") as f:
+        output_json = json.loads(f.read())
+        
+    with open(pathlib.Path("output_compare.json"), "r") as f:
+        output_compare_json = json.loads(f.read())
+        
+    assert output_json == output_compare_json
+    
+    assert output == ""
+    
+    
+def test_end_modify_Google_Sheets_name_and_sheetname():
+    """Test that the end-modify option works with worksheet:sheetname."""
+    
+    test_file = "modification_test.xlsx"
+    
+    command = "messes extract ../" + test_file  + " --output " + output_path.as_posix() + " --end-modify https://docs.google.com/spreadsheets/d/1jDMQjFeyETsI_uBQ7v-K2F4w18U-l_HJ9v0EJ4Bm0bg/edit?pli=1#gid=609251734:#modify"
+    command = command.split(" ")
+    subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
+    output = subp.stderr
+
+    
+    assert output_path.exists()
+    
+    with open(output_path, "r") as f:
+        output_json = json.loads(f.read())
+        
+    with open(pathlib.Path("output_compare.json"), "r") as f:
+        output_compare_json = json.loads(f.read())
+        
+    assert output_json == output_compare_json
+    
+    assert output == ""
+    
+
+def test_end_modify_Google_Sheets_default_name():
+    """Test that the end-modify option works with worksheet:sheetname."""
+    
+    test_file = "modification_test.xlsx"
+    
+    command = "messes extract ../" + test_file  + " --output " + output_path.as_posix() + " --end-modify https://docs.google.com/spreadsheets/d/1jDMQjFeyETsI_uBQ7v-K2F4w18U-l_HJ9v0EJ4Bm0bg/edit?pli=1#gid=609251734"
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -997,6 +1068,24 @@ def test_metadatasource_does_not_exist():
     assert output_path.exists()
         
     assert output == "Excel workbook \"fake_file.xlsx\" does not exist.\nExcel workbook \"fake_file.xlsx\" does not exist.\nExcel workbook \"fake_file.xlsx\" does not exist." + "\n"
+
+
+def test_metadatasource_does_not_exist_Google_Sheets():
+    """Test that invalid metadata sources print a message."""
+    
+    test_file = "attribute_field_test.xlsx"
+    
+    command = "messes extract ../" + test_file + " https://docs.google.com/spreadsheets/d/1jDMQjFeyETsI_uBQ7v-K2F4w18U9v0EJ4Bm0bg/edit?pli=1#gid=609251734 --output " + output_path.as_posix() 
+    command = command.split(" ")
+    subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
+    output = subp.stderr
+
+    
+    assert output_path.exists()
+        
+    assert output == "The Google Sheets file \"https://docs.google.com/spreadsheets/d/1jDMQjFeyETsI_uBQ7v-K2F4w18U9v0EJ4Bm0bg/export?format=xlsx\" does not exist or the URL is malformed.\n" +\
+        "The Google Sheets file \"https://docs.google.com/spreadsheets/d/1jDMQjFeyETsI_uBQ7v-K2F4w18U9v0EJ4Bm0bg/export?format=xlsx\" does not exist or the URL is malformed.\n" +\
+        "The Google Sheets file \"https://docs.google.com/spreadsheets/d/1jDMQjFeyETsI_uBQ7v-K2F4w18U9v0EJ4Bm0bg/export?format=xlsx\" does not exist or the URL is malformed.\n"
 
 
 

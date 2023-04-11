@@ -8,7 +8,7 @@ Usage:
     messes convert generic <input_JSON> <output_name> <conversion_directives> [--silent]
     messes convert --help
     
-    <conversion_directives> - can be a JSON, csv, or xlsx file. If xlsx the default sheet name to read in is #convert, 
+    <conversion_directives> - can be a JSON, csv, xlsx, or Google Sheets file. If xlsx or Google Sheets the default sheet name to read in is #convert, 
                               to specify a different sheet name separate it from the file name with a colon ex: file_name.xlsx:sheet_name.
                               
     <output_filetype> - "json", "xlsx", or "csv"
@@ -84,7 +84,7 @@ def main() :
             break
         
     if filepath := next((arg for arg in [args["<conversion_directives>"], args["--update"], args["--override"]] if arg is not None), False):
-        if re.search(r".*(\.xls[xm]?|\.csv)", filepath):
+        if re.search(r".*(\.xls[xm]?|\.csv)", filepath) or extract.TagParser.isGoogleSheetsFile(filepath):
             default_sheet_name = False
             if (reMatch := re.search(r"^(.*\.xls[xm]?):(.*)$", filepath)):
                 filepath = reMatch.group(1)
@@ -92,23 +92,34 @@ def main() :
             elif re.search(r"\.xls[xm]?$", filepath):
                 sheet_name = "#convert"
                 default_sheet_name = True
+            elif (reMatch := re.search(r"docs.google.com/spreadsheets/d/([^/]*)/[^:]*$", filepath)):
+                filepath = "https://docs.google.com/spreadsheets/d/" + reMatch.group(1) + "/export?format=xlsx"
+                sheet_name = "#convert"
+                default_sheet_name = True
+            elif (reMatch := re.search(r"docs.google.com/spreadsheets/d/([^/]*)/.*:(.*)$", filepath)):
+                filepath = "https://docs.google.com/spreadsheets/d/" + reMatch.group(1) + "/export?format=xlsx"
+                sheet_name = reMatch.group(2)
             tagParser = extract.TagParser()
             ## In order to print error messages correctly we have to know if loadSheet printed a message or not, so temporarily replace stderr.
             old_stderr = sys.stderr
             sys.stderr = buffer = io.StringIO()
-            if worksheet_tuple := tagParser.loadSheet(filepath, sheet_name, isDefaultSearch=default_sheet_name):
-                tagParser.parseSheet(*worksheet_tuple)
-                update_conversion_directives = tagParser.extraction
+            try:
+                if worksheet_tuple := tagParser.loadSheet(filepath, sheet_name, isDefaultSearch=default_sheet_name):
+                    tagParser.parseSheet(*worksheet_tuple)
+                    update_conversion_directives = tagParser.extraction
+                    sys.stderr = old_stderr
+                else:
+                    sys.stderr = old_stderr
+                    if buffer.getvalue():
+                        ## Have to trim the extra newline off the end of buffer.
+                        print(buffer.getvalue()[0:-1], file=sys.stderr)
+                    elif default_sheet_name:
+                        print("Error: No sheet name was given for the file, so the default name " +\
+                              "of #convert was used, but it was not found in the file.", file=sys.stderr)
+                    sys.exit()
+            except Exception as e:
                 sys.stderr = old_stderr
-            else:
-                sys.stderr = old_stderr
-                if buffer.getvalue():
-                    ## Have to trim the extra newline off the end of buffer.
-                    print(buffer.getvalue()[0:-1], file=sys.stderr)
-                elif default_sheet_name:
-                    print("Error: No sheet name was given for the xlsx file, so the default name " +\
-                          "of #convert was used, but it was not found in the file.", file=sys.stderr)
-                sys.exit()
+                raise e
         
         elif re.match(r".*\.json$", filepath):
             with open(filepath, 'r') as jsonFile:

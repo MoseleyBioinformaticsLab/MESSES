@@ -6,7 +6,10 @@ Extract data from Excel workbooks, csv files, and JSON files.
     messes extract <metadata_source>... [--delete <metadata_section>...] [options]
     messes extract --help
 
-    <metadata_source> - tagged input metadata source as csv/json filename or xlsx_filename[:worksheet_name|regular_expression]. "#export" worksheet name is the default.
+    <metadata_source> - tagged input metadata source as csv/json filename or 
+                        xlsx_filename[:worksheet_name|regular_expression] or 
+                        google_sheets_url[:worksheet_name|regular_expression]
+                        "#export" worksheet name is the default.
 
  Options:
     -h, --help                          - show this help documentation.
@@ -14,9 +17,17 @@ Extract data from Excel workbooks, csv files, and JSON files.
     --silent                            - print no warning messages.
     --output <filename_json>            - output json filename.
     --compare <filename_json>           - compare extracted metadata to given JSONized metadata.
-    --modify <source>                   - modification directives worksheet name, regular expression, csv/json filename, or xlsx_filename:[worksheet_name|regular_expression] [default: #modify].
-    --end-modify <source>               - apply modification directives after all metadata merging. Requires csv/json filename or xlsx_filename:[worksheet_name|regular_expression].
-    --automate <source>                 - automation directives worksheet name, regular expression, csv/json filename, or xlsx_filename:[worksheet_name|regular_expression] [default: #automate].
+    --modify <source>                   - modification directives worksheet name, regular expression, csv/json filename, or 
+                                          xlsx_filename:[worksheet_name|regular_expression] or 
+                                          google_sheets_url[:worksheet_name|regular_expression] 
+                                          [default: #modify].
+    --end-modify <source>               - apply modification directives after all metadata merging. Requires csv/json filename or 
+                                          xlsx_filename:[worksheet_name|regular_expression] or 
+                                          google_sheets_url[:worksheet_name|regular_expression].
+    --automate <source>                 - automation directives worksheet name, regular expression, csv/json filename, or 
+                                          xlsx_filename:[worksheet_name|regular_expression] or 
+                                          google_sheets_url[:worksheet_name|regular_expression] 
+                                          [default: #automate].
     --save-directives <filename_json>   - output filename with modification and automation directives in JSON format.
     --save-export <filetype>            - output export worksheet with suffix "_export" and with the indicated xlsx/csv format extension.
     --show <show_option>                - show a part of the metadata. See options below.
@@ -62,6 +73,7 @@ import collections
 import pathlib
 from typing import TextIO
 import json
+import urllib.error
 
 import pandas
 import docopt
@@ -107,14 +119,28 @@ def main() :
     if args["--end-modify"] != None:
         modificationSource = args["--end-modify"]
             
-        if not TagParser.hasFileExtension(modificationSource) and (reMatch := re.search(r"(.*\.xls[xm]?)", metadataSource)):
-            modificationFilePath = reMatch.group(1) 
-            modificationSheetName = modificationSource
+        if not TagParser.hasFileExtension(modificationSource) and \
+           not TagParser.isGoogleSheetsFile(modificationSource):
+               if (reMatch := re.search(r"(.*\.xls[xm]?)", metadataSource)):
+                   modificationFilePath = reMatch.group(1) 
+                   modificationSheetName = modificationSource
+               elif (reMatch := re.search(r"docs.google.com/spreadsheets/d/([^/]*)/.*$", metadataSource)):
+                   modificationFilePath = "https://docs.google.com/spreadsheets/d/" + reMatch.group(1) + "/export?format=xlsx"
+                   modificationSheetName = modificationSource
+               else:
+                   modificationFilePath = modificationSource
+                   modificationSheetName = None
         elif re.search(r"\.xls[xm]?$", modificationSource):
             modificationFilePath = modificationSource
             modificationSheetName = "#modify"
         elif (reMatch := re.search(r"^(.*\.xls[xm]?):(.*)$", modificationSource)):
             modificationFilePath = reMatch.group(1)
+            modificationSheetName = reMatch.group(2)
+        elif (reMatch := re.search(r"docs.google.com/spreadsheets/d/([^/]*)/[^:]*$", modificationSource)):
+            modificationFilePath = "https://docs.google.com/spreadsheets/d/" + reMatch.group(1) + "/export?format=xlsx"
+            modificationSheetName = "#modify"
+        elif (reMatch := re.search(r"docs.google.com/spreadsheets/d/([^/]*)/.*:(.*)$", modificationSource)):
+            modificationFilePath = "https://docs.google.com/spreadsheets/d/" + reMatch.group(1) + "/export?format=xlsx"
             modificationSheetName = reMatch.group(2)
         else:
             modificationFilePath = modificationSource
@@ -1138,9 +1164,15 @@ class TagParser(object):
         Raises:
             Exception: If fileName is invalid.
         """
-        if isinstance(fileName, str) and (reMatch := re.search(r"^(.*\.xls[xm]?)$", fileName)):
-            if os.path.isfile(fileName):
-                workbook = pandas.ExcelFile(fileName)
+        isGoogleSheetsFile = TagParser.isGoogleSheetsFile(fileName)
+        
+        if (isinstance(fileName, str) and (reMatch := re.search(r"^(.*\.xls[xm]?)$", fileName))) or isGoogleSheetsFile:
+            if os.path.isfile(fileName) or isGoogleSheetsFile:
+                try:
+                    workbook = pandas.ExcelFile(fileName)
+                except urllib.error.HTTPError:
+                    print("The Google Sheets file \"" + fileName + "\" does not exist or the URL is malformed.", file=sys.stderr)
+                    return None
                 
                 ## Convert the sheetname to a regular expression pattern so users can specify a sheetname using a regular expression.
                 if re.match(TagParser.reDetector, sheetName):
@@ -1154,7 +1186,11 @@ class TagParser(object):
                         converters = {column:str for column in dataFrame.columns}
                         dataFrame = pandas.read_excel(workbook, sheetName, header=None, index_col=None, converters=converters)
                         if len(dataFrame) == 0:
-                            print("There is no data in worksheet \"" + fileName + ":" + sheetName + "\".", file=sys.stderr)
+                            if isGoogleSheetsFile:
+                                print("There is no data in the sheet, " + sheetName + \
+                                      ", of the Google Sheets file \"" + fileName + "\".", file=sys.stderr)
+                            else:
+                                print("There is no data in worksheet \"" + fileName + ":" + sheetName + "\".", file=sys.stderr)
                             return None
                         else:
                             ## Empty cells are read in as nan by default, replace with empty string.
@@ -1181,7 +1217,7 @@ class TagParser(object):
                         dataFrame = dataFrame.fillna("") # Empty cells are read in as nan by default. Therefore replace with empty string.
                         if removeRegex:
                             dataFrame.replace(removeRegex, "", regex=True, inplace=True)
-                        sheetName = ""
+                        sheetName = "" if not sheetName else sheetName
                         return (fileName, sheetName, dataFrame)
             else:
                 print("The csv file \"" + fileName + "\" does not exist.", file=sys.stderr)
@@ -1202,6 +1238,18 @@ class TagParser(object):
             True if .xls, .xlsx, .xlsm, .csv, or .json is in string, False otherwise.
         """
         return ".xls" in string or ".xlsx" in string or ".xlsm" in string or ".csv" in string or ".json" in string
+    
+    @staticmethod
+    def isGoogleSheetsFile(string: str) -> bool:
+        """Tests whether the string is a Google Sheets URL.
+
+        Args:
+            string: string to test.
+            
+        Returns:
+            True if docs.google.com/spreadsheets/d/ is in string, False otherwise.
+        """
+        return True if isinstance(string, str) and "docs.google.com/spreadsheets/d/" in string else False
 
     def readMetadata(self, metadataSource: str, automationSource: str, automateDefaulted: bool, modificationSource: str, modifyDefaulted: bool, removeRegex: str|None, saveExtension: str =None):
         """Reads metadata from source.
@@ -1216,27 +1264,56 @@ class TagParser(object):
                          Can be a regex. Set to None to not replace anything. Passed to loadSheet and readDirectives.
             saveExtension: if "csv" saves the export as a csv file, else saves it as an Excel file.
         """
-        if not TagParser.hasFileExtension(automationSource) and (reMatch := re.search(r"(.*\.xls[xm]?)", metadataSource)):
-            automationFilePath = reMatch.group(1) 
-            automationSheetName = automationSource
+        ## If automation source is just a sheet name then see if metadata source is an Excel or Google Sheets file.
+        if not TagParser.hasFileExtension(automationSource) and \
+           not TagParser.isGoogleSheetsFile(automationSource):
+               if (reMatch := re.search(r"(.*\.xls[xm]?)", metadataSource)):
+                   automationFilePath = reMatch.group(1) 
+                   automationSheetName = automationSource
+               elif (reMatch := re.search(r"docs.google.com/spreadsheets/d/([^/]*)/.*$", metadataSource)):
+                   automationFilePath = "https://docs.google.com/spreadsheets/d/" + reMatch.group(1) + "/export?format=xlsx"
+                   automationSheetName = automationSource
+               else:
+                   automationFilePath = automationSource
+                   automationSheetName = None
         elif re.search(r"\.xls[xm]?$", automationSource):
             automationFilePath = automationSource
             automationSheetName = "#automate"
         elif (reMatch := re.search(r"^(.*\.xls[xm]?):(.*)$", automationSource)):
             automationFilePath = reMatch.group(1)
             automationSheetName = reMatch.group(2)
+        elif (reMatch := re.search(r"docs.google.com/spreadsheets/d/([^/]*)/[^:]*$", automationSource)):
+            automationFilePath = "https://docs.google.com/spreadsheets/d/" + reMatch.group(1) + "/export?format=xlsx"
+            automationSheetName = "#automate"
+        elif (reMatch := re.search(r"docs.google.com/spreadsheets/d/([^/]*)/.*:(.*)$", automationSource)):
+            automationFilePath = "https://docs.google.com/spreadsheets/d/" + reMatch.group(1) + "/export?format=xlsx"
+            automationSheetName = reMatch.group(2)
         else:
             automationFilePath = automationSource
             automationSheetName = None
                     
-        if not TagParser.hasFileExtension(modificationSource) and (reMatch := re.search(r"(.*\.xls[xm]?)", metadataSource)):
-            modificationFilePath = reMatch.group(1) 
-            modificationSheetName = modificationSource
+        if not TagParser.hasFileExtension(modificationSource) and \
+           not TagParser.isGoogleSheetsFile(modificationSource):
+               if (reMatch := re.search(r"(.*\.xls[xm]?)", metadataSource)):
+                   modificationFilePath = reMatch.group(1) 
+                   modificationSheetName = modificationSource
+               elif (reMatch := re.search(r"docs.google.com/spreadsheets/d/([^/]*)/.*$", metadataSource)):
+                   modificationFilePath = "https://docs.google.com/spreadsheets/d/" + reMatch.group(1) + "/export?format=xlsx"
+                   modificationSheetName = modificationSource
+               else:
+                   modificationFilePath = modificationSource
+                   modificationSheetName = None
         elif re.search(r"\.xls[xm]?$", modificationSource):
             modificationFilePath = modificationSource
             modificationSheetName = "#modify"
         elif (reMatch := re.search(r"^(.*\.xls[xm]?):(.*)$", modificationSource)):
             modificationFilePath = reMatch.group(1)
+            modificationSheetName = reMatch.group(2)
+        elif (reMatch := re.search(r"docs.google.com/spreadsheets/d/([^/]*)/[^:]*$", modificationSource)):
+            modificationFilePath = "https://docs.google.com/spreadsheets/d/" + reMatch.group(1) + "/export?format=xlsx"
+            modificationSheetName = "#modify"
+        elif (reMatch := re.search(r"docs.google.com/spreadsheets/d/([^/]*)/.*:(.*)$", modificationSource)):
+            modificationFilePath = "https://docs.google.com/spreadsheets/d/" + reMatch.group(1) + "/export?format=xlsx"
             modificationSheetName = reMatch.group(2)
         else:
             modificationFilePath = modificationSource
@@ -1248,18 +1325,24 @@ class TagParser(object):
         elif (reMatch := re.search(r"^(.*\.xls[xm]?):(.*)$", metadataSource)):
             metadataFilePath = reMatch.group(1)
             metadataSheetName = reMatch.group(2)
+        elif (reMatch := re.search(r"docs.google.com/spreadsheets/d/([^/]*)/[^:]*$", metadataSource)):
+            metadataFilePath = "https://docs.google.com/spreadsheets/d/" + reMatch.group(1) + "/export?format=xlsx"
+            metadataSheetName = "#export"
+        elif (reMatch := re.search(r"docs.google.com/spreadsheets/d/([^/]*)/.*:(.*)$", metadataSource)):
+            metadataFilePath = "https://docs.google.com/spreadsheets/d/" + reMatch.group(1) + "/export?format=xlsx"
+            metadataSheetName = reMatch.group(2)
         else:
             metadataFilePath = metadataSource
             metadataSheetName = None
 
-        if TagParser.hasFileExtension(automationFilePath):
+        if TagParser.hasFileExtension(automationFilePath) or TagParser.isGoogleSheetsFile(automationFilePath):
             automationDirectives = self.readDirectives(automationFilePath, automationSheetName, "automation", removeRegex, automateDefaulted) 
         else:
             automationDirectives = None
         ## Structure of modificationDirectives: {table_key:{field_key:{comparison_type:{field_value:{directive:{field_key:directive_value}}}}}} 
         ## The directive value is the new value to give the field or regex, regex is a list, assign is a string.
         ## unique is handled by having "-unique" added to comparison type key, so there is "exact-unique" and "exact".
-        if TagParser.hasFileExtension(metadataFilePath):
+        if TagParser.hasFileExtension(modificationFilePath) or TagParser.isGoogleSheetsFile(modificationFilePath):
             modificationDirectives = self.readDirectives(modificationFilePath, modificationSheetName, "modification", removeRegex, modifyDefaulted) 
         else:
             modificationDirectives = None
@@ -1302,8 +1385,13 @@ class TagParser(object):
             worksheet: data to save.
             saveExtension: if "csv" save as csv file, else save as Excel.
         """
-        baseName = os.path.basename(fileName)
-        fileName = baseName.rsplit(".",1)[0] + "_export."
+        if pathlib.Path(fileName).exists():
+            baseName = os.path.basename(fileName)
+            fileName = baseName.rsplit(".",1)[0] + "_export."
+        elif (reMatch := re.search(r"docs.google.com/spreadsheets/d/([^/]*)/[^:]*$", fileName)):
+            fileName = "Google_Sheets_" + reMatch.group(1) + "_export."
+        else:
+            fileName = "stdin_export."
         if saveExtension == "csv":
             fileName += "csv"
             worksheet.to_csv(fileName, header=False, index=False)
@@ -1742,7 +1830,7 @@ class TagParser(object):
                     directives = None
                     if not silent:
                         print("Warning: The input directives JSON file is either not a dict or does not contain the directive keyword \"" + directiveType + "\". This means that " + directiveType + " will not be done.", file=sys.stderr)
-        elif TagParser.hasFileExtension(source):
+        elif TagParser.hasFileExtension(source) or TagParser.isGoogleSheetsFile(source):
             dataFrameTuple = TagParser.loadSheet(source, sheetName, removeRegex=removeRegex, isDefaultSearch=isDefaultSearch)
             if dataFrameTuple != None:
                 if directiveType == "modification":

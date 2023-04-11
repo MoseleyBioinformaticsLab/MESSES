@@ -74,6 +74,62 @@ def test_integer_and_numeric_format_conversion():
         assert error in output
 
 
+def test_str_integer_and_str_numeric_format_conversion():
+    """Test that str_integer and str_numeric formats get type cast."""
+    
+    test_file = "simplified_base_input.json"
+    
+    command = "messes validate json ../" + test_file + " --pds ../PDS_base_format_conversion_check2.json"
+    command = command.split(" ")
+    subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
+    output = subp.stderr
+    
+    errors = [
+        "Error:  The value for " +\
+        "['measurement']['dUMP-13C0-29_C1-2_Lung_allogenic_7days_170427_UKy_GCH_rep2-polar-ICMS_A']['concentration'] " +\
+        "must be less than or equal to -1.",
+        "Error:  The value for " +\
+        "['measurement']['dUMP-13C0-29_C1-2_Lung_allogenic_7days_170427_UKy_GCH_rep2-polar-ICMS_A']['corrected_raw_intensity'] " +\
+        "must be less than or equal to -1.",
+        "Error:  The value for " +\
+        "['measurement']['dUMP-13C0-30_C1-20_Lung_allogenic_7days_170427_UKy_GCH_rep3-polar-ICMS_A']['concentration'] " +\
+        "must be less than or equal to -1.",
+        "Error:  The value for " +\
+        "['measurement']['dUMP-13C0-30_C1-20_Lung_allogenic_7days_170427_UKy_GCH_rep3-polar-ICMS_A']['corrected_raw_intensity'] " +\
+        "must be less than or equal to -1."
+        ]
+    for error in errors:
+        assert error in output
+        
+
+def test_str_integer_and_str_numeric_format_type_check():
+    """Test that str_integer and str_numeric formats check for string type."""
+    
+    test_file = "simplified_base_input_str_format_errors.json"
+    
+    command = "messes validate json ../" + test_file + " --pds ../PDS_base_format_conversion_check2.json"
+    command = command.split(" ")
+    subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
+    output = subp.stderr
+    
+    errors = [
+        "Error:  The value for " +\
+        "['measurement']['dUMP-13C0-29_C1-2_Lung_allogenic_7days_170427_UKy_GCH_rep2-polar-ICMS_A']['concentration'] " +\
+        "is not of type \"string\".",
+        "Error:  The value for " +\
+        "['measurement']['dUMP-13C0-29_C1-2_Lung_allogenic_7days_170427_UKy_GCH_rep2-polar-ICMS_A']['corrected_raw_intensity'] " +\
+        "is not of type \"string\".",
+        "Error:  The value for " +\
+        "['measurement']['dUMP-13C0-30_C1-20_Lung_allogenic_7days_170427_UKy_GCH_rep3-polar-ICMS_A']['concentration'] " +\
+        "is not of type \"string\".",
+        "Error:  The value for " +\
+        "['measurement']['dUMP-13C0-30_C1-20_Lung_allogenic_7days_170427_UKy_GCH_rep3-polar-ICMS_A']['corrected_raw_intensity'] " +\
+        "is not of type \"string\"."
+        ]
+    for error in errors:
+        assert error in output
+
+
 def test_pds_xlsx_no_sheet_found():
     """Test that xlsx files where sheet name can't be found or isn't given prints an error."""
     
@@ -84,7 +140,21 @@ def test_pds_xlsx_no_sheet_found():
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
     
-    assert output == "Error:  No sheet name was given for the xlsx file, so the default " +\
+    assert output == "Error:  No sheet name was given for the file, so the default " +\
+                      "name of #validate was used, but it was not found in the file." + "\n"
+    
+                      
+def test_pds_Google_Sheets_no_sheet_found():
+    """Test that Google Sheets files where sheet name can't be found or isn't given prints an error."""
+    
+    test_file = "simplified_base_input.json"
+    
+    command = "messes validate json ../" + test_file + " --pds https://docs.google.com/spreadsheets/d/1IxEkJZwKsuJ-LlaC2W9iCmcuM3T9C-docYgMNAg1b_I/edit#gid=1704460543"
+    command = command.split(" ")
+    subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
+    output = subp.stderr
+    
+    assert output == "Error:  No sheet name was given for the file, so the default " +\
                       "name of #validate was used, but it was not found in the file." + "\n"
 
 
@@ -100,6 +170,20 @@ def test_pds_xlsx_bad_sheet_name():
     
     assert "r'^Sheet1$' did not match any sheets in " in output
     assert 'PDS_base_bad_sheet_name.xlsx' in output
+
+
+def test_pds_Google_Sheets_bad_sheet_name():
+    """Test that Google Sheets files where user gives bad sheet name prints an error."""
+    
+    test_file = "simplified_base_input.json"
+    
+    command = "messes validate json ../" + test_file + " --pds https://docs.google.com/spreadsheets/d/1IxEkJZwKsuJ-LlaC2W9iCmcuM3T9C-docYgMNAg1b_I/edit#gid=1704460543:Sheet1"
+    command = command.split(" ")
+    subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
+    output = subp.stderr
+    
+    assert "r'^Sheet1$' did not match any sheets in " in output
+    assert 'https://docs.google.com/spreadsheets/d/1IxEkJZwKsuJ-LlaC2W9iCmcuM3T9C-docYgMNAg1b_I/export?format=xlsx' in output
 
 
 def test_pds_unknown_file_type():
@@ -444,15 +528,6 @@ def test_additional_schema_invalid():
     output = subp.stderr
     
     assert "Error:  The provided additional JSON schema is not valid, so execution stops here." in output
-
-
-
-
-
-
-
-
-
 
 
 

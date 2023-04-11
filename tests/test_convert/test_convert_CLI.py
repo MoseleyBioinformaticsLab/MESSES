@@ -676,6 +676,32 @@ def test_xlsx_read_in():
     assert output == ""
     
 
+def test_Google_Sheets_read_in():
+    """Test that Google Sheets files are read in as expected."""
+    
+    test_file = "MS_base_input_truncated.json"
+    
+    command = "messes convert generic ../" + test_file  + " output https://docs.google.com/spreadsheets/d/1McMXzsrLCw_WURntkWTo6HfP8U3DWpBj91OhUyPpaaQ/edit#gid=273139213:Sheet1" 
+    command = command.split(" ")
+    subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
+    output = subp.stderr
+
+    
+    assert output_path_json.exists()
+    
+    with open(output_path_json, "r") as f:
+        output_json = json.loads(f.read())
+        
+    with open(pathlib.Path("MS_output_compare_truncated.json"), "r") as f:
+        output_compare_json = json.loads(f.read())
+    
+    del output_json["METABOLOMICS WORKBENCH"]["CREATED_ON"]
+    del output_compare_json["METABOLOMICS WORKBENCH"]["CREATED_ON"]
+    assert output_json == output_compare_json
+        
+    assert output == ""
+    
+
 def test_xlsx_no_default_sheetname_error():
     """Test that an error is printed when the xlsx file does not have the default sheet name."""
     
@@ -688,7 +714,23 @@ def test_xlsx_no_default_sheetname_error():
 
     assert not output_path_json.exists()
         
-    assert output == "Error: No sheet name was given for the xlsx file, so the default name " +\
+    assert output == "Error: No sheet name was given for the file, so the default name " +\
+                      "of #convert was used, but it was not found in the file.\n"
+
+
+def test_Google_Sheets_no_default_sheetname_error():
+    """Test that an error is printed when the Google Sheets file does not have the default sheet name."""
+    
+    test_file = "MS_base_input_truncated.json"
+    
+    command = "messes convert generic ../" + test_file  + " output https://docs.google.com/spreadsheets/d/1McMXzsrLCw_WURntkWTo6HfP8U3DWpBj91OhUyPpaaQ/edit#gid=273139213" 
+    command = command.split(" ")
+    subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
+    output = subp.stderr
+
+    assert not output_path_json.exists()
+        
+    assert output == "Error: No sheet name was given for the file, so the default name " +\
                       "of #convert was used, but it was not found in the file.\n"
                       
 
@@ -705,6 +747,21 @@ def test_xlsx_does_not_exist_error():
     assert not output_path_json.exists()
         
     assert output == "Excel workbook \"mwtab_ms_conversion_directives_compa.xlsx\" does not exist.\n"
+
+
+def test_Google_Sheets_does_not_exist_error():
+    """Test that an error is printed when the Google Sheets file does not exist."""
+    
+    test_file = "MS_base_input_truncated.json"
+    
+    command = "messes convert generic ../" + test_file  + " output https://docs.google.com/spreadsheets/d/1McMXCw_WURntkWTo6HfP8U3DWpBj91OhUyPpaaQ/edit#gid=273139213:Sheet1" 
+    command = command.split(" ")
+    subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
+    output = subp.stderr
+
+    assert not output_path_json.exists()
+        
+    assert output == "The Google Sheets file \"https://docs.google.com/spreadsheets/d/1McMXCw_WURntkWTo6HfP8U3DWpBj91OhUyPpaaQ/export?format=xlsx\" does not exist or the URL is malformed.\n"
     
     
 def test_xlsx_does_not_have_given_sheetname():
@@ -720,6 +777,21 @@ def test_xlsx_does_not_have_given_sheetname():
     assert not output_path_json.exists()
         
     assert output == "r'^asdf$' did not match any sheets in \"mwtab_ms_conversion_directives_compare.xlsx\".\n"
+
+
+def test_Google_Sheets_does_not_have_given_sheetname():
+    """Test that an error is printed when the given sheet name does not exist."""
+    
+    test_file = "MS_base_input_truncated.json"
+    
+    command = "messes convert generic ../" + test_file  + " output https://docs.google.com/spreadsheets/d/1McMXzsrLCw_WURntkWTo6HfP8U3DWpBj91OhUyPpaaQ/edit#gid=273139213:asdf" 
+    command = command.split(" ")
+    subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
+    output = subp.stderr
+
+    assert not output_path_json.exists()
+        
+    assert output == "r'^asdf$' did not match any sheets in \"https://docs.google.com/spreadsheets/d/1McMXzsrLCw_WURntkWTo6HfP8U3DWpBj91OhUyPpaaQ/export?format=xlsx\".\n"
                      
                      
 def test_conversion_directives_wrong_file_type():
