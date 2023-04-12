@@ -882,7 +882,7 @@ def test_no_data_message_xlsx():
 def test_no_data_message_Google_Sheets():
     """Test that a message is printed when there is no data in a worksheet."""
     
-    test_file = "https://docs.google.com/spreadsheets/d/1nrCMqr-x2Y_uRoeur_9kxl4OtSJaikg-mX8dvBvggIA/edit#gid=706429643"
+    test_file = "https://docs.google.com/spreadsheets/d/1_wGthpMlf_cnV15pGY2K_iqUEvy7rYwsqOSjQ5LTJG0/edit#gid=706429643"
     
     command = "messes extract " + test_file  + " --output " + output_path.as_posix()
     command = command.split(" ")
@@ -893,7 +893,7 @@ def test_no_data_message_Google_Sheets():
     assert output_path.exists()
             
     assert "There is no data in the sheet, #export, of the Google Sheets file" in output
-    assert "https://docs.google.com/spreadsheets/d/1nrCMqr-x2Y_uRoeur_9kxl4OtSJaikg-mX8dvBvggIA/export?format=xlsx" in output
+    assert "https://docs.google.com/spreadsheets/d/1_wGthpMlf_cnV15pGY2K_iqUEvy7rYwsqOSjQ5LTJG0/export?format=xlsx" in output
 
 
 

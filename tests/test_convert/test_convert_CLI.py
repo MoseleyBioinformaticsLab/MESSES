@@ -681,7 +681,7 @@ def test_Google_Sheets_read_in():
     
     test_file = "MS_base_input_truncated.json"
     
-    command = "messes convert generic ../" + test_file  + " output https://docs.google.com/spreadsheets/d/1McMXzsrLCw_WURntkWTo6HfP8U3DWpBj91OhUyPpaaQ/edit#gid=273139213:Sheet1" 
+    command = "messes convert generic ../" + test_file  + " output https://docs.google.com/spreadsheets/d/1ebwRw2hEaeJBdBBnCj3UAR79O7tJqSa_TodpA7Twle0/edit#gid=273139213:Sheet1" 
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -723,7 +723,7 @@ def test_Google_Sheets_no_default_sheetname_error():
     
     test_file = "MS_base_input_truncated.json"
     
-    command = "messes convert generic ../" + test_file  + " output https://docs.google.com/spreadsheets/d/1McMXzsrLCw_WURntkWTo6HfP8U3DWpBj91OhUyPpaaQ/edit#gid=273139213" 
+    command = "messes convert generic ../" + test_file  + " output https://docs.google.com/spreadsheets/d/1ebwRw2hEaeJBdBBnCj3UAR79O7tJqSa_TodpA7Twle0/edit#gid=273139213" 
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -784,14 +784,14 @@ def test_Google_Sheets_does_not_have_given_sheetname():
     
     test_file = "MS_base_input_truncated.json"
     
-    command = "messes convert generic ../" + test_file  + " output https://docs.google.com/spreadsheets/d/1McMXzsrLCw_WURntkWTo6HfP8U3DWpBj91OhUyPpaaQ/edit#gid=273139213:asdf" 
+    command = "messes convert generic ../" + test_file  + " output https://docs.google.com/spreadsheets/d/1ebwRw2hEaeJBdBBnCj3UAR79O7tJqSa_TodpA7Twle0/edit#gid=273139213:asdf" 
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
 
     assert not output_path_json.exists()
         
-    assert output == "r'^asdf$' did not match any sheets in \"https://docs.google.com/spreadsheets/d/1McMXzsrLCw_WURntkWTo6HfP8U3DWpBj91OhUyPpaaQ/export?format=xlsx\".\n"
+    assert output == "r'^asdf$' did not match any sheets in \"https://docs.google.com/spreadsheets/d/1ebwRw2hEaeJBdBBnCj3UAR79O7tJqSa_TodpA7Twle0/export?format=xlsx\".\n"
                      
                      
 def test_conversion_directives_wrong_file_type():

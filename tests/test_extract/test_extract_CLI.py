@@ -227,7 +227,7 @@ def test_modification_Google_Sheets():
     
     test_file = "modification_test.xlsx"
     
-    command = "messes extract ../" + test_file  + " --output " + output_path.as_posix() + " --modify https://docs.google.com/spreadsheets/d/1jDMQjFeyETsI_uBQ7v-K2F4w18U-l_HJ9v0EJ4Bm0bg/edit?pli=1#gid=609251734"
+    command = "messes extract ../" + test_file  + " --output " + output_path.as_posix() + " --modify https://docs.google.com/spreadsheets/d/1g3xM2GW3gYiwDY815LFC5mdaYEJFU49V4AIiobvwP0c/edit?usp=sharing"
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -326,7 +326,7 @@ def test_end_modify_Google_Sheets_name_and_sheetname():
     
     test_file = "modification_test.xlsx"
     
-    command = "messes extract ../" + test_file  + " --output " + output_path.as_posix() + " --end-modify https://docs.google.com/spreadsheets/d/1jDMQjFeyETsI_uBQ7v-K2F4w18U-l_HJ9v0EJ4Bm0bg/edit?pli=1#gid=609251734:#modify"
+    command = "messes extract ../" + test_file  + " --output " + output_path.as_posix() + " --end-modify https://docs.google.com/spreadsheets/d/1g3xM2GW3gYiwDY815LFC5mdaYEJFU49V4AIiobvwP0c/edit?usp=sharing:#modify"
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -350,7 +350,7 @@ def test_end_modify_Google_Sheets_default_name():
     
     test_file = "modification_test.xlsx"
     
-    command = "messes extract ../" + test_file  + " --output " + output_path.as_posix() + " --end-modify https://docs.google.com/spreadsheets/d/1jDMQjFeyETsI_uBQ7v-K2F4w18U-l_HJ9v0EJ4Bm0bg/edit?pli=1#gid=609251734"
+    command = "messes extract ../" + test_file  + " --output " + output_path.as_posix() + " --end-modify https://docs.google.com/spreadsheets/d/1g3xM2GW3gYiwDY815LFC5mdaYEJFU49V4AIiobvwP0c/edit?usp=sharing"
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -1075,7 +1075,7 @@ def test_metadatasource_does_not_exist_Google_Sheets():
     
     test_file = "attribute_field_test.xlsx"
     
-    command = "messes extract ../" + test_file + " https://docs.google.com/spreadsheets/d/1jDMQjFeyETsI_uBQ7v-K2F4w18U9v0EJ4Bm0bg/edit?pli=1#gid=609251734 --output " + output_path.as_posix() 
+    command = "messes extract ../" + test_file + " https://docs.google.com/spreadsheets/d/1g3xM2GW3gYiwC5mdaYEJFU49V4AIiobvwP0c/edit?usp=sharing --output " + output_path.as_posix() 
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -1083,9 +1083,9 @@ def test_metadatasource_does_not_exist_Google_Sheets():
     
     assert output_path.exists()
         
-    assert output == "The Google Sheets file \"https://docs.google.com/spreadsheets/d/1jDMQjFeyETsI_uBQ7v-K2F4w18U9v0EJ4Bm0bg/export?format=xlsx\" does not exist or the URL is malformed.\n" +\
-        "The Google Sheets file \"https://docs.google.com/spreadsheets/d/1jDMQjFeyETsI_uBQ7v-K2F4w18U9v0EJ4Bm0bg/export?format=xlsx\" does not exist or the URL is malformed.\n" +\
-        "The Google Sheets file \"https://docs.google.com/spreadsheets/d/1jDMQjFeyETsI_uBQ7v-K2F4w18U9v0EJ4Bm0bg/export?format=xlsx\" does not exist or the URL is malformed.\n"
+    assert output == "The Google Sheets file \"https://docs.google.com/spreadsheets/d/1g3xM2GW3gYiwC5mdaYEJFU49V4AIiobvwP0c/export?format=xlsx\" does not exist or the URL is malformed.\n" +\
+        "The Google Sheets file \"https://docs.google.com/spreadsheets/d/1g3xM2GW3gYiwC5mdaYEJFU49V4AIiobvwP0c/export?format=xlsx\" does not exist or the URL is malformed.\n" +\
+        "The Google Sheets file \"https://docs.google.com/spreadsheets/d/1g3xM2GW3gYiwC5mdaYEJFU49V4AIiobvwP0c/export?format=xlsx\" does not exist or the URL is malformed.\n"
 
 
 

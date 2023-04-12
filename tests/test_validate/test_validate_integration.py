@@ -149,7 +149,7 @@ def test_pds_Google_Sheets_no_sheet_found():
     
     test_file = "simplified_base_input.json"
     
-    command = "messes validate json ../" + test_file + " --pds https://docs.google.com/spreadsheets/d/1IxEkJZwKsuJ-LlaC2W9iCmcuM3T9C-docYgMNAg1b_I/edit#gid=1704460543"
+    command = "messes validate json ../" + test_file + " --pds https://docs.google.com/spreadsheets/d/1R_KXzdc2xyVzWYkQiF7XbvlMaJ3USFZGBqWpNojEd3k/edit#gid=1704460543"
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -177,13 +177,13 @@ def test_pds_Google_Sheets_bad_sheet_name():
     
     test_file = "simplified_base_input.json"
     
-    command = "messes validate json ../" + test_file + " --pds https://docs.google.com/spreadsheets/d/1IxEkJZwKsuJ-LlaC2W9iCmcuM3T9C-docYgMNAg1b_I/edit#gid=1704460543:Sheet1"
+    command = "messes validate json ../" + test_file + " --pds https://docs.google.com/spreadsheets/d/1R_KXzdc2xyVzWYkQiF7XbvlMaJ3USFZGBqWpNojEd3k/edit#gid=1704460543:Sheet1"
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
     
     assert "r'^Sheet1$' did not match any sheets in " in output
-    assert 'https://docs.google.com/spreadsheets/d/1IxEkJZwKsuJ-LlaC2W9iCmcuM3T9C-docYgMNAg1b_I/export?format=xlsx' in output
+    assert 'https://docs.google.com/spreadsheets/d/1R_KXzdc2xyVzWYkQiF7XbvlMaJ3USFZGBqWpNojEd3k/export?format=xlsx' in output
 
 
 def test_pds_unknown_file_type():
