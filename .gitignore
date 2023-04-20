@@ -21,3 +21,4 @@ coverage.xml
 /*.json
 src/messes/_version.py
 /*.png
+isadatasets

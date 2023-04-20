@@ -47,8 +47,9 @@ export tags are expected to be in a sheet named '#export', if given an Excel fil
 name. If given a CSV file, then this file is expected to have export tags. Modification tags are expected to be in 
 a sheet named '#modify' by default, but can be specified using the --modify option. The option can be used 
 to specify either a different sheet name in the given Excel file, a different Excel file, a different Excel 
-file with a different sheet name, a JSON file, or a CSV file. Automation tags are similarly specified, but 
-using the --automate option.
+file with a different sheet name, a Google Sheets file, a Google Sheets file with a different sheet name, 
+a JSON file, or a CSV file. Automation tags are similarly specifiedusing the --automate option or otherwise expected 
+in a sheet named ‘#automate’ by default.
 
 Each part of the tagging system are explained below with examples. Examples using them with the extract 
 command are in the :doc:`tutorial` section and there are full run examples in the "examples" folder of the 

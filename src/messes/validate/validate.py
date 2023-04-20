@@ -17,7 +17,7 @@ Usage:
     messes validate --help
     
     <input_JSON> - if '-' read from standard input.
-    <pds> - can be a JSON, csv, xlsx, or Google Sheets file. If xlsx or Google Sheets the default sheet name to read in is #validate, 
+    <pds> - can be a JSON, csv, xlsx, or Google Sheets file. If xlsx or Google Sheets, the default sheet name to read in is #validate, 
            to specify a different sheet name separate it from the file name with a colon ex: file_name.xlsx:sheet_name.
            If '-' read from standard input.
     <input_schema> - must be a valid JSON Schema file. If '-' read from standard input.
@@ -53,8 +53,8 @@ The "json" command will validate the <input_JSON> against the internal base_sche
 by the --pds and --additional options. To validate only against a provided schema, use the --additional and --no_base_schema options.
 
 The "save-schema" command will save the internal base_schema to the <output_schema> location. If --pds is given 
-then it will be parsed and placed into the base_schema. If --input is given the protocols table will be added 
-in with the PDS to reproduce what happens in the json command. If --format is used then that format schema is 
+then it will be parsed and placed into the base_schema. If --input is given, the protocols table will be added 
+in with the PDS to reproduce what happens in the json command. If --format is used, then that format schema is 
 saved instead of the base_schema.
 
 The "schema" command will validate the <input_schema> against the JSON Schema meta schema.
