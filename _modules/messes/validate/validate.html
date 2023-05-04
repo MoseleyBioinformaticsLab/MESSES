@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>messes.validate.validate &mdash; MESSES 0.1.dev1+g089fe0d documentation</title>
+  <title>messes.validate.validate &mdash; MESSES 0.1.dev1+g9155da5 documentation</title>
       <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/css/custom_css.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/sphinxcontrib-images/LightBox2/lightbox2/dist/css/lightbox.css" type="text/css" />
@@ -32,7 +32,7 @@
             <a href="../../../index.html" class="icon icon-home"> MESSES
           </a>
               <div class="version">
-                0.1.dev1+g089fe0d
+                0.1.dev1+g9155da5
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
@@ -89,7 +89,7 @@
 <span class="sd">Usage:</span>
 <span class="sd">    messes validate json &lt;input_JSON&gt; [--pds=&lt;pds&gt; [--csv | --xlsx | --json | --gs] | --no_base_schema] </span>
 <span class="sd">                                      [--no_extra_checks]</span>
-<span class="sd">                                      [--additional=&lt;add_schema&gt;] </span>
+<span class="sd">                                      [--additional=&lt;add_schema&gt;...] </span>
 <span class="sd">                                      [--format=&lt;format&gt;]</span>
 <span class="sd">                                      [--silent=&lt;level&gt;]</span>
 <span class="sd">    messes validate save-schema &lt;output_schema&gt; [--input=&lt;input_JSON&gt;] </span>
@@ -97,15 +97,24 @@
 <span class="sd">                                                [--format=&lt;format&gt;]</span>
 <span class="sd">                                                [--silent=&lt;level&gt;]</span>
 <span class="sd">    messes validate schema &lt;input_schema&gt;</span>
-<span class="sd">    messes validate pds &lt;pds&gt; [--csv | --xlsx | --json | --gs] [--silent=&lt;level&gt;]</span>
+<span class="sd">    messes validate pds &lt;pds&gt; [--csv | --xlsx | --json | --gs] [--silent=&lt;level&gt;] [--save=&lt;output_name&gt;]</span>
+<span class="sd">    messes validate pds-to-table &lt;pds_json&gt; &lt;output_name&gt; [&lt;output_filetype&gt;]</span>
+<span class="sd">    messes validate pds-to-json &lt;pds_tabular&gt; [--csv | --xlsx | --gs] &lt;output_name&gt;</span>
+<span class="sd">    messes validate cd-to-json-schema &lt;conversion_directives&gt; [--csv | --xlsx | --json | --gs] &lt;output_schema&gt;</span>
 <span class="sd">    messes validate --help</span>
 <span class="sd">    </span>
 <span class="sd">    &lt;input_JSON&gt; - if &#39;-&#39; read from standard input.</span>
-<span class="sd">    &lt;pds&gt; - can be a JSON, csv, xlsx, or Google Sheets file. If xlsx or Google Sheets the default sheet name to read in is #validate, </span>
+<span class="sd">    &lt;pds&gt; - can be a JSON, csv, xlsx, or Google Sheets file. If xlsx or Google Sheets, the default sheet name to read in is #validate, </span>
 <span class="sd">           to specify a different sheet name separate it from the file name with a colon ex: file_name.xlsx:sheet_name.</span>
 <span class="sd">           If &#39;-&#39; read from standard input.</span>
 <span class="sd">    &lt;input_schema&gt; - must be a valid JSON Schema file. If &#39;-&#39; read from standard input.</span>
 <span class="sd">    &lt;output_schema&gt; - if &#39;-&#39; save to standard output.</span>
+<span class="sd">    &lt;output_name&gt; - path to save tabular pds to, if &#39;-&#39; save to standard output as CSV.</span>
+<span class="sd">    &lt;output_filetype&gt; - &quot;xlsx&quot; or &quot;csv&quot;, defaults to &quot;csv&quot;.</span>
+<span class="sd">    &lt;conversion_directives&gt; - can be a JSON, csv, xlsx, or Google Sheets file. If xlsx or Google Sheets, </span>
+<span class="sd">                              the default sheet name to read in is #convert, to specify a different </span>
+<span class="sd">                              sheet name separate it from the file name with a colon ex: file_name.xlsx:sheet_name.</span>
+<span class="sd">                              If &#39;-&#39; read from standard input.</span>
 
 <span class="sd">Options:</span>
 <span class="sd">    -h, --help                           - show this screen.</span>
@@ -120,31 +129,42 @@
 <span class="sd">    --csv                                - indicates that the protocol-dependent schema file is a csv (comma delimited) file.</span>
 <span class="sd">    --xlsx                               - indicates that the protocol-dependent schema file is an xlsx (Excel) file.</span>
 <span class="sd">    --json                               - indicates that the protocol-dependent schema file is a JSON file.</span>
+<span class="sd">    --gs                                 - indicates that the protocol-dependent schema file is a Google Sheets file.</span>
 <span class="sd">                                           If a file type is not given then it will be guessed from the file extension.</span>
 <span class="sd">    --additional &lt;add_schema&gt;            - an additional JSON Schema file that will be used to validate &lt;input_JSON&gt;.</span>
 <span class="sd">    --format &lt;format&gt;                    - additional validation done for the desired supported format. </span>
 <span class="sd">                                           Current supported formats: </span>
-<span class="sd">                                               mwtab_MS, </span>
-<span class="sd">                                               mwtab_NMR, </span>
-<span class="sd">                                               mwtab_NMR_bin</span>
+<span class="sd">                                               mwtab</span>
 <span class="sd">    --no_base_schema                     - don&#39;t validate with the base JSON schema.</span>
 <span class="sd">    --no_extra_checks                    - only do JSON Schema validation and nothing else.</span>
 <span class="sd">    --input &lt;input_JSON&gt;                 - optionally give an input JSON file to save-schema to reproduce the </span>
 <span class="sd">                                           schema used to validate in the json command.</span>
+<span class="sd">    --save &lt;output_name&gt;                 - save the JSON Schema created from the protocol-dependent schema.</span>
 <span class="sd">    </span>
 
 <span class="sd">The &quot;json&quot; command will validate the &lt;input_JSON&gt; against the internal base_schema, and optional schema provided </span>
 <span class="sd">by the --pds and --additional options. To validate only against a provided schema, use the --additional and --no_base_schema options.</span>
 
 <span class="sd">The &quot;save-schema&quot; command will save the internal base_schema to the &lt;output_schema&gt; location. If --pds is given </span>
-<span class="sd">then it will be parsed and placed into the base_schema. If --input is given the protocols table will be added </span>
-<span class="sd">in with the PDS to reproduce what happens in the json command. If --format is used then that format schema is </span>
+<span class="sd">then it will be parsed and placed into the base_schema. If --input is given, the protocols table will be added </span>
+<span class="sd">in with the PDS to reproduce what happens in the json command. If --format is used, then that format schema is </span>
 <span class="sd">saved instead of the base_schema.</span>
 
 <span class="sd">The &quot;schema&quot; command will validate the &lt;input_schema&gt; against the JSON Schema meta schema.</span>
 
-<span class="sd">The &quot;pds&quot; command will validate that the &lt;pds&gt; file is a valid protocol-dependent schema file.</span>
+<span class="sd">The &quot;pds&quot; command will validate that the &lt;pds&gt; file is a valid protocol-dependent schema file. </span>
+<span class="sd">If the --save option is given, then save the built JSON Schema.</span>
+
+<span class="sd">The &quot;pds-to-table&quot; command will read in a protocol-dependent schema in JSON form and save it out in a tabular form.</span>
+
+<span class="sd">The &quot;pds-to-json&quot; command will read in a protocol-dependent schema in tabular form and save it out in a JSON form. </span>
+
+<span class="sd">The &quot;cd-to-json-schema&quot; command will read in conversion directives and create a JSON Schema </span>
+<span class="sd">template file that can be filled in and used to validate files that will be converted using those directives.</span>
 <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="c1">## Add a section in documentation explaining cd-to-json-schema and how to use it.</span>
+<span class="c1">## Add examples for new commands in the examples folder.</span>
 
 <span class="kn">import</span> <span class="nn">re</span>
 <span class="kn">import</span> <span class="nn">sys</span>
@@ -160,9 +180,12 @@
 
 <span class="kn">from</span> <span class="nn">messes</span> <span class="kn">import</span> <span class="n">__version__</span>
 <span class="kn">from</span> <span class="nn">messes.extract</span> <span class="kn">import</span> <span class="n">extract</span>
-<span class="kn">from</span> <span class="nn">messes.validate.validate_schema</span> <span class="kn">import</span> <span class="n">base_schema</span><span class="p">,</span> <span class="n">PD_schema</span><span class="p">,</span> <span class="n">mwtab_schema_MS</span><span class="p">,</span> <span class="n">mwtab_schema_NMR</span><span class="p">,</span> <span class="n">mwtab_schema_NMR_bin</span>
+<span class="kn">from</span> <span class="nn">messes.validate.validate_schema</span> <span class="kn">import</span> <span class="n">base_schema</span><span class="p">,</span> <span class="n">PD_schema</span><span class="p">,</span> <span class="n">mwtab_schema</span>
+<span class="kn">from</span> <span class="nn">messes.convert.convert</span> <span class="kn">import</span> <span class="n">directives_to_table</span><span class="p">,</span> <span class="n">literal_regex</span>
+<span class="kn">from</span> <span class="nn">messes.convert</span> <span class="kn">import</span> <span class="n">user_input_checking</span>
+<span class="kn">from</span> <span class="nn">messes.convert</span> <span class="kn">import</span> <span class="n">convert_schema</span>
 
-<span class="n">supported_formats</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;mwtab_MS&quot;</span><span class="p">,</span> <span class="s2">&quot;mwtab_NMR&quot;</span><span class="p">,</span> <span class="s2">&quot;mwtab_NMR_bin&quot;</span><span class="p">]</span>
+<span class="n">supported_formats</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;mwtab&quot;</span><span class="p">]</span>
 
 <span class="k">def</span> <span class="nf">main</span><span class="p">()</span> <span class="p">:</span>
     <span class="n">args</span> <span class="o">=</span> <span class="n">docopt</span><span class="o">.</span><span class="n">docopt</span><span class="p">(</span><span class="vm">__doc__</span><span class="p">,</span> <span class="n">version</span><span class="o">=</span><span class="n">__version__</span><span class="p">)</span>
@@ -202,8 +225,35 @@
     <span class="c1">## Handle pds command.</span>
     <span class="c1">#####################</span>
     <span class="k">if</span> <span class="n">args</span><span class="p">[</span><span class="s2">&quot;pds&quot;</span><span class="p">]:</span>
-        <span class="n">run_pds_command</span><span class="p">(</span><span class="n">args</span><span class="p">[</span><span class="s2">&quot;&lt;pds&gt;&quot;</span><span class="p">],</span> <span class="n">args</span><span class="p">[</span><span class="s2">&quot;--csv&quot;</span><span class="p">],</span> <span class="n">args</span><span class="p">[</span><span class="s2">&quot;--xlsx&quot;</span><span class="p">],</span> <span class="n">args</span><span class="p">[</span><span class="s2">&quot;--json&quot;</span><span class="p">],</span> 
-                        <span class="n">args</span><span class="p">[</span><span class="s2">&quot;--gs&quot;</span><span class="p">],</span> <span class="n">args</span><span class="p">[</span><span class="s2">&quot;--silent&quot;</span><span class="p">])</span>
+        <span class="n">run_pds_command</span><span class="p">(</span><span class="n">args</span><span class="p">[</span><span class="s2">&quot;&lt;pds&gt;&quot;</span><span class="p">],</span> <span class="n">args</span><span class="p">[</span><span class="s2">&quot;--save&quot;</span><span class="p">],</span> <span class="n">args</span><span class="p">[</span><span class="s2">&quot;--csv&quot;</span><span class="p">],</span> <span class="n">args</span><span class="p">[</span><span class="s2">&quot;--xlsx&quot;</span><span class="p">],</span> 
+                        <span class="n">args</span><span class="p">[</span><span class="s2">&quot;--json&quot;</span><span class="p">],</span> <span class="n">args</span><span class="p">[</span><span class="s2">&quot;--gs&quot;</span><span class="p">],</span> <span class="n">args</span><span class="p">[</span><span class="s2">&quot;--silent&quot;</span><span class="p">])</span>
+        
+    
+    <span class="c1">##########################</span>
+    <span class="c1">## Handle pds-to-table command.</span>
+    <span class="c1">##########################</span>
+    <span class="k">if</span> <span class="n">args</span><span class="p">[</span><span class="s2">&quot;pds-to-table&quot;</span><span class="p">]:</span>
+        <span class="n">run_pds_to_table_command</span><span class="p">(</span><span class="n">args</span><span class="p">[</span><span class="s2">&quot;&lt;pds_json&gt;&quot;</span><span class="p">],</span> <span class="n">args</span><span class="p">[</span><span class="s2">&quot;&lt;output_name&gt;&quot;</span><span class="p">],</span> 
+                                 <span class="n">args</span><span class="p">[</span><span class="s2">&quot;&lt;output_filetype&gt;&quot;</span><span class="p">],</span> <span class="n">args</span><span class="p">[</span><span class="s2">&quot;--silent&quot;</span><span class="p">])</span>
+        
+    
+    <span class="c1">##########################</span>
+    <span class="c1">## Handle pds-to-json command.</span>
+    <span class="c1">##########################</span>
+    <span class="k">if</span> <span class="n">args</span><span class="p">[</span><span class="s2">&quot;pds-to-json&quot;</span><span class="p">]:</span>
+        <span class="n">run_pds_to_json_command</span><span class="p">(</span><span class="n">args</span><span class="p">[</span><span class="s2">&quot;&lt;pds_tabular&gt;&quot;</span><span class="p">],</span> <span class="n">args</span><span class="p">[</span><span class="s2">&quot;--csv&quot;</span><span class="p">],</span> <span class="n">args</span><span class="p">[</span><span class="s2">&quot;--xlsx&quot;</span><span class="p">],</span> 
+                                <span class="n">args</span><span class="p">[</span><span class="s2">&quot;--gs&quot;</span><span class="p">],</span> <span class="n">args</span><span class="p">[</span><span class="s2">&quot;&lt;output_name&gt;&quot;</span><span class="p">],</span> <span class="n">args</span><span class="p">[</span><span class="s2">&quot;--silent&quot;</span><span class="p">])</span>
+        
+    
+    <span class="c1">##########################</span>
+    <span class="c1">## Handle pds-to-table command.</span>
+    <span class="c1">##########################</span>
+    <span class="k">if</span> <span class="n">args</span><span class="p">[</span><span class="s2">&quot;cd-to-json-schema&quot;</span><span class="p">]:</span>
+        <span class="n">run_conversion_directives_to_json_schema_command</span><span class="p">(</span><span class="n">args</span><span class="p">[</span><span class="s2">&quot;&lt;conversion_directives&gt;&quot;</span><span class="p">],</span> 
+                                                         <span class="n">args</span><span class="p">[</span><span class="s2">&quot;--csv&quot;</span><span class="p">],</span> <span class="n">args</span><span class="p">[</span><span class="s2">&quot;--xlsx&quot;</span><span class="p">],</span> 
+                                                         <span class="n">args</span><span class="p">[</span><span class="s2">&quot;--json&quot;</span><span class="p">],</span> <span class="n">args</span><span class="p">[</span><span class="s2">&quot;--gs&quot;</span><span class="p">],</span> 
+                                                         <span class="n">args</span><span class="p">[</span><span class="s2">&quot;&lt;output_schema&gt;&quot;</span><span class="p">],</span> <span class="n">args</span><span class="p">[</span><span class="s2">&quot;--silent&quot;</span><span class="p">])</span>
+        
     
     
     
@@ -376,82 +426,8 @@
 <span class="sd">    Raises:</span>
 <span class="sd">        SystemExit: Will raise errors if filepath does not exist or there is a read in error.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    
-    <span class="n">from_stdin</span> <span class="o">=</span> <span class="kc">False</span>
-    <span class="k">if</span> <span class="n">filepath</span> <span class="o">==</span> <span class="s2">&quot;-&quot;</span><span class="p">:</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="n">is_csv</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">is_json</span><span class="p">:</span>
-            <span class="c1">## Have to clear the input or the system prints an extra error.</span>
-            <span class="n">sys</span><span class="o">.</span><span class="n">stdin</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
-            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Error:  When reading the protocol-dependent schema from standard input you must specify that it is &#39;--csv&#39; or &#39;--json&#39;.&quot;</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="p">)</span>
-            <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">()</span>
-        <span class="n">filepath</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">stdin</span>
-        <span class="n">from_stdin</span> <span class="o">=</span> <span class="kc">True</span>
-        
-                
-    
-    <span class="k">if</span> <span class="n">is_csv</span> <span class="ow">or</span> <span class="n">is_xlsx</span> <span class="ow">or</span> <span class="n">is_gs</span> <span class="ow">or</span> \
-       <span class="p">(</span><span class="ow">not</span> <span class="n">from_stdin</span> <span class="ow">and</span> <span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;.*(\.xls[xm]?|\.csv)&quot;</span><span class="p">,</span> <span class="n">filepath</span><span class="p">)</span> <span class="ow">or</span> <span class="n">extract</span><span class="o">.</span><span class="n">TagParser</span><span class="o">.</span><span class="n">isGoogleSheetsFile</span><span class="p">(</span><span class="n">filepath</span><span class="p">))):</span>
-        <span class="n">default_sheet_name</span> <span class="o">=</span> <span class="kc">False</span>
-        <span class="n">sheet_name</span> <span class="o">=</span> <span class="kc">None</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="n">from_stdin</span><span class="p">:</span>
-            <span class="k">if</span> <span class="p">(</span><span class="n">reMatch</span> <span class="o">:=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;^(.*\.xls[xm]?):(.*)$&quot;</span><span class="p">,</span> <span class="n">filepath</span><span class="p">)):</span>
-                <span class="n">filepath</span> <span class="o">=</span> <span class="n">reMatch</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-                <span class="n">sheet_name</span> <span class="o">=</span> <span class="n">reMatch</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-            <span class="c1"># elif not from_stdin and re.search(r&quot;\.xls[xm]?$&quot;, filepath):</span>
-            <span class="k">elif</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;\.xls[xm]?$&quot;</span><span class="p">,</span> <span class="n">filepath</span><span class="p">):</span>
-                <span class="n">sheet_name</span> <span class="o">=</span> <span class="s2">&quot;#validate&quot;</span>
-                <span class="n">default_sheet_name</span> <span class="o">=</span> <span class="kc">True</span>
-            <span class="k">elif</span> <span class="p">(</span><span class="n">reMatch</span> <span class="o">:=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;docs.google.com/spreadsheets/d/([^/]*)/[^:]*$&quot;</span><span class="p">,</span> <span class="n">filepath</span><span class="p">)):</span>
-                <span class="n">filepath</span> <span class="o">=</span> <span class="s2">&quot;https://docs.google.com/spreadsheets/d/&quot;</span> <span class="o">+</span> <span class="n">reMatch</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/export?format=xlsx&quot;</span>
-                <span class="n">sheet_name</span> <span class="o">=</span> <span class="s2">&quot;#validate&quot;</span>
-                <span class="n">default_sheet_name</span> <span class="o">=</span> <span class="kc">True</span>
-            <span class="k">elif</span> <span class="p">(</span><span class="n">reMatch</span> <span class="o">:=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;docs.google.com/spreadsheets/d/([^/]*)/.*:(.*)$&quot;</span><span class="p">,</span> <span class="n">filepath</span><span class="p">)):</span>
-                <span class="n">filepath</span> <span class="o">=</span> <span class="s2">&quot;https://docs.google.com/spreadsheets/d/&quot;</span> <span class="o">+</span> <span class="n">reMatch</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/export?format=xlsx&quot;</span>
-                <span class="n">sheet_name</span> <span class="o">=</span> <span class="n">reMatch</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-        <span class="n">tagParser</span> <span class="o">=</span> <span class="n">extract</span><span class="o">.</span><span class="n">TagParser</span><span class="p">()</span>
-        <span class="c1">## In order to print error messages correctly we have to know if loadSheet printed a message or not, so temporarily replace stderr.</span>
-        <span class="n">old_stderr</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">stderr</span>
-        <span class="n">sys</span><span class="o">.</span><span class="n">stderr</span> <span class="o">=</span> <span class="n">buffer</span> <span class="o">=</span> <span class="n">io</span><span class="o">.</span><span class="n">StringIO</span><span class="p">()</span>
-        <span class="k">try</span><span class="p">:</span>
-            <span class="k">if</span> <span class="n">worksheet_tuple</span> <span class="o">:=</span> <span class="n">tagParser</span><span class="o">.</span><span class="n">loadSheet</span><span class="p">(</span><span class="n">filepath</span><span class="p">,</span> <span class="n">sheet_name</span><span class="p">,</span> <span class="n">isDefaultSearch</span><span class="o">=</span><span class="n">default_sheet_name</span><span class="p">):</span>
-                <span class="n">tagParser</span><span class="o">.</span><span class="n">parseSheet</span><span class="p">(</span><span class="o">*</span><span class="n">worksheet_tuple</span><span class="p">)</span>
-                <span class="n">PDS</span> <span class="o">=</span> <span class="n">tagParser</span><span class="o">.</span><span class="n">extraction</span>
-                <span class="n">sys</span><span class="o">.</span><span class="n">stderr</span> <span class="o">=</span> <span class="n">old_stderr</span>
-            <span class="k">else</span><span class="p">:</span>
-                <span class="n">sys</span><span class="o">.</span><span class="n">stderr</span> <span class="o">=</span> <span class="n">old_stderr</span>
-                <span class="k">if</span> <span class="n">buffer</span><span class="o">.</span><span class="n">getvalue</span><span class="p">():</span>
-                    <span class="c1">## Have to trim the extra newline off the end of buffer.</span>
-                    <span class="nb">print</span><span class="p">(</span><span class="n">buffer</span><span class="o">.</span><span class="n">getvalue</span><span class="p">()[</span><span class="mi">0</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">file</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="p">)</span>
-                <span class="k">elif</span> <span class="n">default_sheet_name</span><span class="p">:</span>
-                    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Error:  No sheet name was given for the file, so the default name &quot;</span> <span class="o">+</span>\
-                          <span class="s2">&quot;of #validate was used, but it was not found in the file.&quot;</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="p">)</span>
-                <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">()</span>
-        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-            <span class="n">sys</span><span class="o">.</span><span class="n">stderr</span> <span class="o">=</span> <span class="n">old_stderr</span>
-            <span class="k">if</span> <span class="n">from_stdin</span><span class="p">:</span>
-                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Error:  A problem was encountered when trying to read the protocol-dependent schema from stdin. &quot;</span> <span class="o">+</span>\
-                      <span class="s2">&quot;Make sure the indicated file type is correct.&quot;</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="p">)</span>
-                <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">()</span>
-            <span class="k">raise</span> <span class="n">e</span>
-    
-    <span class="k">elif</span> <span class="n">is_json</span> <span class="ow">or</span> <span class="p">(</span><span class="ow">not</span> <span class="n">from_stdin</span> <span class="ow">and</span> <span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;.*\.json$&quot;</span><span class="p">,</span> <span class="n">filepath</span><span class="p">)):</span>
-        <span class="k">if</span> <span class="n">from_stdin</span><span class="p">:</span>
-            <span class="k">try</span><span class="p">:</span>
-                <span class="n">PDS</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">filepath</span><span class="p">)</span>
-            <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
-                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Error:  A problem was encountered when trying to read the protocol-dependent schema from stdin. &quot;</span> <span class="o">+</span>\
-                      <span class="s2">&quot;Make sure the indicated file type is correct.&quot;</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="p">)</span>
-                <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">()</span>
-        <span class="k">elif</span> <span class="ow">not</span> <span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">(</span><span class="n">filepath</span><span class="p">)</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
-            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Error:  The value entered for the protocol-dependent schema, &quot;</span> <span class="o">+</span> <span class="n">filepath</span> <span class="o">+</span> <span class="s2">&quot;, is not a valid file path or does not exist.&quot;</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="p">)</span>
-            <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">()</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filepath</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">jsonFile</span><span class="p">:</span>
-                <span class="n">PDS</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">jsonFile</span><span class="p">)</span>
-    
-    <span class="k">else</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Error:  Unknown file type for the protocol-dependent schema file.&quot;</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="p">)</span>
-        <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">()</span>
+    <span class="n">PDS</span> <span class="o">=</span> <span class="n">read_json_or_tabular_file</span><span class="p">(</span><span class="n">filepath</span><span class="p">,</span> <span class="n">is_csv</span><span class="p">,</span> <span class="n">is_xlsx</span><span class="p">,</span> <span class="n">is_json</span><span class="p">,</span> <span class="n">is_gs</span><span class="p">,</span> 
+                                    <span class="s2">&quot;protocol-dependent schema&quot;</span><span class="p">,</span> <span class="s2">&quot;#validate&quot;</span><span class="p">,</span> <span class="n">silent</span><span class="p">)</span>
         
     <span class="c1"># if (validate_PDS_parent_protocols(PDS) or validate_with_arbitrary_schema(PDS, PD_schema)) \</span>
     <span class="c1">#    and not no_last_message:</span>
@@ -462,7 +438,107 @@
             <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Error:  The provided protocol-dependent schema is not valid, so execution stops here.&quot;</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="p">)</span>
         <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">()</span>
         
-    <span class="k">return</span> <span class="n">PDS</span></div>
+    <span class="k">return</span> <span class="n">PDS</span>    </div>
+
+
+<div class="viewcode-block" id="read_json_or_tabular_file"><a class="viewcode-back" href="../../../api.html#messes.validate.validate.read_json_or_tabular_file">[docs]</a><span class="k">def</span> <span class="nf">read_json_or_tabular_file</span><span class="p">(</span><span class="n">filepath</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">is_csv</span><span class="p">:</span> <span class="nb">bool</span><span class="p">,</span> <span class="n">is_xlsx</span><span class="p">:</span> <span class="nb">bool</span><span class="p">,</span> 
+                              <span class="n">is_json</span><span class="p">:</span> <span class="nb">bool</span><span class="p">,</span> <span class="n">is_gs</span><span class="p">:</span> <span class="nb">bool</span><span class="p">,</span> <span class="n">file_title</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> 
+                              <span class="n">default_sheet_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">silent</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">JSON</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Read in a file from filepath.</span>
+<span class="sd">    </span>
+<span class="sd">    Args:</span>
+<span class="sd">        filepath: the path to the file or &quot;-&quot; meaning to read from stdin.</span>
+<span class="sd">        is_csv: whether the file is a csv file, used for reading from stdin.</span>
+<span class="sd">        is_xlsx: whether the file is a xlsx file.</span>
+<span class="sd">        is_json: whether the file is a json file, used for reading from stdin.</span>
+<span class="sd">        is_json: whether the file is a Google Sheets file.</span>
+<span class="sd">        file_title: a string to use for printing error messages about the file.</span>
+<span class="sd">        default_sheet_name: sheet name to default to for Excel and Google Sheets files.</span>
+<span class="sd">        silent: if &quot;full&quot; do not print any warnings, if &quot;nuisance&quot; do not print nuisance warnings.</span>
+<span class="sd">    </span>
+<span class="sd">    Returns:</span>
+<span class="sd">        The file contents.</span>
+<span class="sd">    </span>
+<span class="sd">    Raises:</span>
+<span class="sd">        SystemExit: Will raise errors if filepath does not exist or there is a read in error.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">from_stdin</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="k">if</span> <span class="n">filepath</span> <span class="o">==</span> <span class="s2">&quot;-&quot;</span><span class="p">:</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">is_csv</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">is_json</span><span class="p">:</span>
+            <span class="c1">## Have to clear the input or the system prints an extra error.</span>
+            <span class="n">sys</span><span class="o">.</span><span class="n">stdin</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Error:  When reading the &quot;</span> <span class="o">+</span> <span class="n">file_title</span> <span class="o">+</span> <span class="s2">&quot; from standard input you must specify that it is &#39;--csv&#39; or &#39;--json&#39;.&quot;</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="p">)</span>
+            <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">()</span>
+        <span class="n">filepath</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">stdin</span>
+        <span class="n">from_stdin</span> <span class="o">=</span> <span class="kc">True</span>
+        
+                
+    
+    <span class="k">if</span> <span class="n">is_csv</span> <span class="ow">or</span> <span class="n">is_xlsx</span> <span class="ow">or</span> <span class="n">is_gs</span> <span class="ow">or</span> \
+       <span class="p">(</span><span class="ow">not</span> <span class="n">from_stdin</span> <span class="ow">and</span> <span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;.*(\.xls[xm]?|\.csv)&quot;</span><span class="p">,</span> <span class="n">filepath</span><span class="p">)</span> <span class="ow">or</span> <span class="n">extract</span><span class="o">.</span><span class="n">TagParser</span><span class="o">.</span><span class="n">isGoogleSheetsFile</span><span class="p">(</span><span class="n">filepath</span><span class="p">))):</span>
+        <span class="n">default_sheet_name_used</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="n">sheet_name</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">from_stdin</span><span class="p">:</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">reMatch</span> <span class="o">:=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;^(.*\.xls[xm]?):(.*)$&quot;</span><span class="p">,</span> <span class="n">filepath</span><span class="p">)):</span>
+                <span class="n">filepath</span> <span class="o">=</span> <span class="n">reMatch</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+                <span class="n">sheet_name</span> <span class="o">=</span> <span class="n">reMatch</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+            <span class="c1"># elif not from_stdin and re.search(r&quot;\.xls[xm]?$&quot;, filepath):</span>
+            <span class="k">elif</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;\.xls[xm]?$&quot;</span><span class="p">,</span> <span class="n">filepath</span><span class="p">):</span>
+                <span class="n">sheet_name</span> <span class="o">=</span> <span class="n">default_sheet_name</span>
+                <span class="n">default_sheet_name_used</span> <span class="o">=</span> <span class="kc">True</span>
+            <span class="k">elif</span> <span class="p">(</span><span class="n">reMatch</span> <span class="o">:=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;docs.google.com/spreadsheets/d/([^/]*)/[^:]*$&quot;</span><span class="p">,</span> <span class="n">filepath</span><span class="p">)):</span>
+                <span class="n">filepath</span> <span class="o">=</span> <span class="s2">&quot;https://docs.google.com/spreadsheets/d/&quot;</span> <span class="o">+</span> <span class="n">reMatch</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/export?format=xlsx&quot;</span>
+                <span class="n">sheet_name</span> <span class="o">=</span> <span class="n">default_sheet_name</span>
+                <span class="n">default_sheet_name_used</span> <span class="o">=</span> <span class="kc">True</span>
+            <span class="k">elif</span> <span class="p">(</span><span class="n">reMatch</span> <span class="o">:=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;docs.google.com/spreadsheets/d/([^/]*)/.*:(.*)$&quot;</span><span class="p">,</span> <span class="n">filepath</span><span class="p">)):</span>
+                <span class="n">filepath</span> <span class="o">=</span> <span class="s2">&quot;https://docs.google.com/spreadsheets/d/&quot;</span> <span class="o">+</span> <span class="n">reMatch</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/export?format=xlsx&quot;</span>
+                <span class="n">sheet_name</span> <span class="o">=</span> <span class="n">reMatch</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+        <span class="n">tagParser</span> <span class="o">=</span> <span class="n">extract</span><span class="o">.</span><span class="n">TagParser</span><span class="p">()</span>
+        <span class="c1">## In order to print error messages correctly we have to know if loadSheet printed a message or not, so temporarily replace stderr.</span>
+        <span class="n">old_stderr</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">stderr</span>
+        <span class="n">sys</span><span class="o">.</span><span class="n">stderr</span> <span class="o">=</span> <span class="n">buffer</span> <span class="o">=</span> <span class="n">io</span><span class="o">.</span><span class="n">StringIO</span><span class="p">()</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">worksheet_tuple</span> <span class="o">:=</span> <span class="n">tagParser</span><span class="o">.</span><span class="n">loadSheet</span><span class="p">(</span><span class="n">filepath</span><span class="p">,</span> <span class="n">sheet_name</span><span class="p">,</span> <span class="n">isDefaultSearch</span><span class="o">=</span><span class="n">default_sheet_name_used</span><span class="p">):</span>
+                <span class="n">tagParser</span><span class="o">.</span><span class="n">parseSheet</span><span class="p">(</span><span class="o">*</span><span class="n">worksheet_tuple</span><span class="p">)</span>
+                <span class="n">file_contents</span> <span class="o">=</span> <span class="n">tagParser</span><span class="o">.</span><span class="n">extraction</span>
+                <span class="n">sys</span><span class="o">.</span><span class="n">stderr</span> <span class="o">=</span> <span class="n">old_stderr</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">sys</span><span class="o">.</span><span class="n">stderr</span> <span class="o">=</span> <span class="n">old_stderr</span>
+                <span class="k">if</span> <span class="n">buffer</span><span class="o">.</span><span class="n">getvalue</span><span class="p">():</span>
+                    <span class="c1">## Have to trim the extra newline off the end of buffer.</span>
+                    <span class="nb">print</span><span class="p">(</span><span class="n">buffer</span><span class="o">.</span><span class="n">getvalue</span><span class="p">()[</span><span class="mi">0</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">file</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="p">)</span>
+                <span class="k">elif</span> <span class="n">default_sheet_name_used</span><span class="p">:</span>
+                    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Error:  No sheet name was given for the file, so the default name &quot;</span> <span class="o">+</span>\
+                          <span class="s2">&quot;of &quot;</span> <span class="o">+</span> <span class="n">default_sheet_name</span> <span class="o">+</span> <span class="s2">&quot; was used, but it was not found in the file.&quot;</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="p">)</span>
+                <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">()</span>
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="n">sys</span><span class="o">.</span><span class="n">stderr</span> <span class="o">=</span> <span class="n">old_stderr</span>
+            <span class="k">if</span> <span class="n">from_stdin</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Error:  A problem was encountered when trying to read the &quot;</span> <span class="o">+</span> <span class="n">file_title</span> <span class="o">+</span> <span class="s2">&quot; from stdin. &quot;</span> <span class="o">+</span>\
+                      <span class="s2">&quot;Make sure the indicated file type is correct.&quot;</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="p">)</span>
+                <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">()</span>
+            <span class="k">raise</span> <span class="n">e</span>
+    
+    <span class="k">elif</span> <span class="n">is_json</span> <span class="ow">or</span> <span class="p">(</span><span class="ow">not</span> <span class="n">from_stdin</span> <span class="ow">and</span> <span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;.*\.json$&quot;</span><span class="p">,</span> <span class="n">filepath</span><span class="p">)):</span>
+        <span class="k">if</span> <span class="n">from_stdin</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">file_contents</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">filepath</span><span class="p">)</span>
+            <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Error:  A problem was encountered when trying to read the &quot;</span> <span class="o">+</span> <span class="n">file_title</span> <span class="o">+</span> <span class="s2">&quot; from stdin. &quot;</span> <span class="o">+</span>\
+                      <span class="s2">&quot;Make sure the indicated file type is correct.&quot;</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="p">)</span>
+                <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">()</span>
+        <span class="k">elif</span> <span class="ow">not</span> <span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">(</span><span class="n">filepath</span><span class="p">)</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Error:  The value entered for the &quot;</span> <span class="o">+</span> <span class="n">file_title</span> <span class="o">+</span> <span class="s2">&quot;, &quot;</span> <span class="o">+</span> <span class="n">filepath</span> <span class="o">+</span> <span class="s2">&quot;, is not a valid file path or does not exist.&quot;</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="p">)</span>
+            <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">()</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filepath</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">jsonFile</span><span class="p">:</span>
+                <span class="n">file_contents</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">jsonFile</span><span class="p">)</span>
+    
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Error:  Unknown file type for the &quot;</span> <span class="o">+</span> <span class="n">file_title</span> <span class="o">+</span> <span class="s2">&quot; file.&quot;</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="p">)</span>
+        <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">()</span>
+        
+    <span class="k">return</span> <span class="n">file_contents</span></div>
             
        
 <div class="viewcode-block" id="read_in_JSON_file"><a class="viewcode-back" href="../../../api.html#messes.validate.validate.read_in_JSON_file">[docs]</a><span class="k">def</span> <span class="nf">read_in_JSON_file</span><span class="p">(</span><span class="n">filepath</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">description</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">JSON</span><span class="p">:</span>
@@ -502,6 +578,25 @@
         
     <span class="k">return</span> <span class="n">user_json</span>  </div>
 
+
+<div class="viewcode-block" id="save_out_JSON_file"><a class="viewcode-back" href="../../../api.html#messes.validate.validate.save_out_JSON_file">[docs]</a><span class="k">def</span> <span class="nf">save_out_JSON_file</span><span class="p">(</span><span class="n">filepath</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">json_to_save</span><span class="p">:</span> <span class="nb">dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Handle renaming and directing JSON to the correct output.</span>
+<span class="sd">    </span>
+<span class="sd">    Args:</span>
+<span class="sd">        filepath: the path to save the JSON file to or &quot;-&quot; meaning to write to stdout.</span>
+<span class="sd">        json_to_save: the JSON to save out.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">filepath</span> <span class="o">==</span> <span class="s2">&quot;-&quot;</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">json_to_save</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">2</span><span class="p">))</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;.*\.json$&quot;</span><span class="p">,</span> <span class="n">filepath</span><span class="p">):</span>
+            <span class="n">json_save_name</span> <span class="o">=</span> <span class="n">filepath</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">json_save_name</span> <span class="o">=</span> <span class="n">filepath</span> <span class="o">+</span> <span class="s2">&quot;.json&quot;</span>
+        
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">json_save_name</span><span class="p">,</span><span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">jsonFile</span><span class="p">:</span>
+            <span class="n">jsonFile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">json_to_save</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">2</span><span class="p">))</span></div>
+            
 
 <div class="viewcode-block" id="validate_JSON_schema"><a class="viewcode-back" href="../../../api.html#messes.validate.validate.validate_JSON_schema">[docs]</a><span class="k">def</span> <span class="nf">validate_JSON_schema</span><span class="p">(</span><span class="n">user_json_schema</span><span class="p">:</span> <span class="n">JSON</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Validate an arbitrary JSON schema.</span>
@@ -572,6 +667,71 @@
             <span class="k">return</span> <span class="kc">True</span>
         <span class="k">return</span> <span class="kc">True</span>
     <span class="k">return</span> <span class="n">validator</span><span class="p">(</span><span class="n">schema</span><span class="o">=</span><span class="n">schema</span><span class="p">,</span> <span class="n">format_checker</span><span class="o">=</span><span class="n">format_checker</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="mwtab_checks"><a class="viewcode-back" href="../../../api.html#messes.validate.validate.mwtab_checks">[docs]</a><span class="k">def</span> <span class="nf">mwtab_checks</span><span class="p">(</span><span class="n">input_json</span><span class="p">:</span> <span class="nb">dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Check that the input_json is ready for mwtab conversion.</span>
+<span class="sd">    </span>
+<span class="sd">    Run checks that cannot be done by JSON Schema. They are the following:</span>
+<span class="sd">        Check that at least 1 protocol has the &quot;machine_type&quot; field.</span>
+<span class="sd">        Check that the first collection protocol has a &quot;sample_type&quot; field.</span>
+<span class="sd">        Check that there are at least 1 collection type, treatment type, and sample_prep type protocols.</span>
+<span class="sd">        Check that the first subject has the &quot;species&quot;, &quot;species_type&quot;, and &quot;taxonomy_id&quot; fields.</span>
+<span class="sd">    </span>
+<span class="sd">    Args:</span>
+<span class="sd">        input_json: the JSON to perform the checks on.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">protocol_table</span> <span class="o">:=</span> <span class="n">input_json</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;protocol&quot;</span><span class="p">):</span>
+        <span class="n">has_machine_type</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="n">is_first_collection_type</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="n">has_collection_type</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="n">has_sample_prep_type</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="n">has_treatment_type</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="k">for</span> <span class="n">protocol</span><span class="p">,</span> <span class="n">attributes</span> <span class="ow">in</span> <span class="n">protocol_table</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">if</span> <span class="s2">&quot;machine_type&quot;</span> <span class="ow">in</span> <span class="n">attributes</span><span class="p">:</span>
+                <span class="n">has_machine_type</span> <span class="o">=</span> <span class="kc">True</span>
+            
+            <span class="k">if</span> <span class="n">protocol_type</span> <span class="o">:=</span> <span class="n">attributes</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;type&quot;</span><span class="p">):</span>
+                <span class="k">if</span> <span class="n">protocol_type</span> <span class="o">==</span> <span class="s2">&quot;collection&quot;</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="n">is_first_collection_type</span> <span class="ow">and</span> <span class="s2">&quot;sample_type&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">attributes</span><span class="p">:</span>
+                        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Error:  The first collection protocol, &quot;</span> <span class="o">+</span> <span class="n">protocol</span> <span class="o">+</span> \
+                              <span class="s2">&quot;, does not have the required </span><span class="se">\&quot;</span><span class="s2">sample_type</span><span class="se">\&quot;</span><span class="s2"> field for the mwtab conversion.&quot;</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="p">)</span>
+                    <span class="n">is_first_collection_type</span> <span class="o">=</span> <span class="kc">False</span>
+                    <span class="n">has_collection_type</span> <span class="o">=</span> <span class="kc">True</span>
+                    
+                <span class="k">if</span> <span class="n">protocol_type</span> <span class="o">==</span> <span class="s2">&quot;sample_prep&quot;</span><span class="p">:</span>
+                    <span class="n">has_sample_prep_type</span> <span class="o">=</span> <span class="kc">True</span>
+                    
+                <span class="k">if</span> <span class="n">protocol_type</span> <span class="o">==</span> <span class="s2">&quot;treatment&quot;</span><span class="p">:</span>
+                    <span class="n">has_treatment_type</span> <span class="o">=</span> <span class="kc">True</span>
+                    
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">has_machine_type</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Error:  No protocols have a </span><span class="se">\&quot;</span><span class="s2">machine_type</span><span class="se">\&quot;</span><span class="s2"> field used to mark &quot;</span> <span class="o">+</span>\
+              <span class="s2">&quot;the protocol that contains the instrument information for the mwtab conversion.&quot;</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="p">)</span>
+            
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">has_collection_type</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Error:  There are no </span><span class="se">\&quot;</span><span class="s2">collection</span><span class="se">\&quot;</span><span class="s2"> type protocols. There must be &quot;</span> <span class="o">+</span>\
+              <span class="s2">&quot;at least one for the mwtab conversion.&quot;</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="p">)</span>
+    
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">has_sample_prep_type</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Error:  There are no </span><span class="se">\&quot;</span><span class="s2">sample_prep</span><span class="se">\&quot;</span><span class="s2"> type protocols. There must be &quot;</span> <span class="o">+</span>\
+              <span class="s2">&quot;at least one for the mwtab conversion.&quot;</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="p">)</span>
+            
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">has_treatment_type</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Error:  There are no </span><span class="se">\&quot;</span><span class="s2">treatment</span><span class="se">\&quot;</span><span class="s2"> type protocols. There must be &quot;</span> <span class="o">+</span>\
+              <span class="s2">&quot;at least one for the mwtab conversion.&quot;</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="p">)</span>
+            
+    
+    <span class="k">if</span> <span class="n">entity_table</span> <span class="o">:=</span> <span class="n">input_json</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;entity&quot;</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">entity</span><span class="p">,</span> <span class="n">attributes</span> <span class="ow">in</span> <span class="n">entity_table</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">entity_type</span> <span class="o">:=</span> <span class="n">attributes</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;type&quot;</span><span class="p">))</span> <span class="ow">and</span> <span class="n">entity_type</span> <span class="o">==</span> <span class="s2">&quot;subject&quot;</span><span class="p">:</span>
+                <span class="n">fields_not_in_subject</span> <span class="o">=</span> <span class="p">[</span><span class="n">field</span> <span class="k">for</span> <span class="n">field</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;species&quot;</span><span class="p">,</span> <span class="s2">&quot;species_type&quot;</span><span class="p">,</span> <span class="s2">&quot;taxonomy_id&quot;</span><span class="p">]</span> <span class="k">if</span> <span class="n">field</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">attributes</span><span class="p">]</span>
+                <span class="k">if</span> <span class="n">fields_not_in_subject</span><span class="p">:</span>
+                    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Error:  The first subject, &quot;</span> <span class="o">+</span> <span class="n">entity</span> <span class="o">+</span> <span class="s2">&quot;, does not have the &quot;</span> <span class="o">+</span>\
+                          <span class="s2">&quot;following required fields for the mwtab conversion:</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span>\
+                          <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">fields_not_in_subject</span><span class="p">),</span> <span class="n">file</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="p">)</span>
+                <span class="k">break</span></div>
+
 
 
 <div class="viewcode-block" id="validate_PDS_parent_protocols"><a class="viewcode-back" href="../../../api.html#messes.validate.validate.validate_PDS_parent_protocols">[docs]</a><span class="k">def</span> <span class="nf">validate_PDS_parent_protocols</span><span class="p">(</span><span class="n">pds</span><span class="p">:</span> <span class="n">JSON</span><span class="p">,</span> <span class="n">silent</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
@@ -1192,7 +1352,7 @@
             <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">()</span>
 
 
-<div class="viewcode-block" id="run_json_command"><a class="viewcode-back" href="../../../api.html#messes.validate.validate.run_json_command">[docs]</a><span class="k">def</span> <span class="nf">run_json_command</span><span class="p">(</span><span class="n">input_json_source</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">pds_source</span><span class="p">:</span> <span class="nb">str</span><span class="o">|</span><span class="kc">None</span><span class="p">,</span> <span class="n">additional_schema_source</span><span class="p">:</span> <span class="nb">str</span><span class="o">|</span><span class="kc">None</span><span class="p">,</span> 
+<div class="viewcode-block" id="run_json_command"><a class="viewcode-back" href="../../../api.html#messes.validate.validate.run_json_command">[docs]</a><span class="k">def</span> <span class="nf">run_json_command</span><span class="p">(</span><span class="n">input_json_source</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">pds_source</span><span class="p">:</span> <span class="nb">str</span><span class="o">|</span><span class="kc">None</span><span class="p">,</span> <span class="n">additional_schema_sources</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> 
                      <span class="n">no_base_schema</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">no_extra_checks</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">is_csv</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> 
                      <span class="n">is_xlsx</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">is_json</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">is_gs</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">silent</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;none&quot;</span><span class="p">,</span> 
                      <span class="n">format_check</span><span class="p">:</span> <span class="nb">str</span><span class="o">|</span><span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
@@ -1201,7 +1361,7 @@
 <span class="sd">    Args:</span>
 <span class="sd">        input_json_source: either a filepath or &quot;-&quot; to read from stdin.</span>
 <span class="sd">        pds_source: either a filepath or &quot;-&quot; to read from stdin, if not None.</span>
-<span class="sd">        additional_schema_source: either a filepath or &quot;-&quot; to read from stdin, if not None.</span>
+<span class="sd">        additional_schema_sources: either a filepath or &quot;-&quot; to read from stdin, if not None.</span>
 <span class="sd">        no_base_schema: if True do not validate with the base_schema, ignored if pds_source is given.</span>
 <span class="sd">        no_extra_checks: if True only do JSON Schema validations.</span>
 <span class="sd">        is_csv: if True the pds_source is a csv file.</span>
@@ -1216,13 +1376,16 @@
     <span class="k">if</span> <span class="n">pds_source</span><span class="p">:</span>
         <span class="n">PDS</span> <span class="o">=</span> <span class="n">read_and_validate_PDS</span><span class="p">(</span><span class="n">pds_source</span><span class="p">,</span> <span class="n">is_csv</span><span class="p">,</span> <span class="n">is_xlsx</span><span class="p">,</span> <span class="n">is_json</span><span class="p">,</span> <span class="n">is_gs</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="n">silent</span><span class="p">)</span>
     <span class="c1">## Read in JSON_schema if given.</span>
-    <span class="k">if</span> <span class="n">additional_schema_source</span><span class="p">:</span>
-        <span class="n">user_json_schema</span> <span class="o">=</span> <span class="n">read_in_JSON_file</span><span class="p">(</span><span class="n">additional_schema_source</span><span class="p">,</span> <span class="s2">&quot;additional schema&quot;</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">validate_JSON_schema</span><span class="p">(</span><span class="n">user_json_schema</span><span class="p">):</span>
-            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Error:  The provided additional JSON schema is not valid, so execution stops here.&quot;</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="p">)</span>
-            <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">()</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="n">user_json_schema</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">if</span> <span class="n">additional_schema_sources</span><span class="p">:</span>
+        <span class="n">user_json_schemas</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">additional_schema_source</span> <span class="ow">in</span> <span class="n">additional_schema_sources</span><span class="p">:</span>
+            <span class="n">user_json_schema</span> <span class="o">=</span> <span class="n">read_in_JSON_file</span><span class="p">(</span><span class="n">additional_schema_source</span><span class="p">,</span> <span class="s2">&quot;additional schema&quot;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">validate_JSON_schema</span><span class="p">(</span><span class="n">user_json_schema</span><span class="p">):</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Error:  The additional JSON schema, &quot;</span> <span class="o">+</span> <span class="n">additional_schema_source</span> <span class="o">+</span> <span class="s2">&quot;, is not valid, so execution stops here.&quot;</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="p">)</span>
+                <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">()</span>
+            <span class="n">user_json_schemas</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">user_json_schema</span><span class="p">)</span>
+    <span class="c1"># else:</span>
+    <span class="c1">#     user_json_schema = {}</span>
     
     <span class="c1">## Read in input_JSON.</span>
     <span class="n">input_json</span> <span class="o">=</span> <span class="n">read_in_JSON_file</span><span class="p">(</span><span class="n">input_json_source</span><span class="p">,</span> <span class="s2">&quot;input JSON&quot;</span><span class="p">)</span>
@@ -1265,21 +1428,19 @@
             <span class="n">protocol_description_check</span><span class="p">(</span><span class="n">input_json</span><span class="p">)</span>
     
     <span class="c1">## Do additional schema validation if user provided it.</span>
-    <span class="k">if</span> <span class="n">additional_schema_source</span><span class="p">:</span>
-        <span class="c1">## Determine the validator for the schema and replace numeric and integer formats by type casting them.</span>
-        <span class="n">validator</span> <span class="o">=</span> <span class="n">create_validator</span><span class="p">(</span><span class="n">user_json_schema</span><span class="p">)</span>
-        <span class="n">convert_formats</span><span class="p">(</span><span class="n">validator</span><span class="p">,</span> <span class="n">input_json</span><span class="p">)</span>
-        
-        <span class="c1"># validate_with_arbitrary_schema(input_json, user_json_schema)</span>
-        <span class="n">print_better_error_messages</span><span class="p">(</span><span class="n">validator</span><span class="o">.</span><span class="n">iter_errors</span><span class="p">(</span><span class="n">input_json</span><span class="p">))</span>
+    <span class="k">if</span> <span class="n">additional_schema_sources</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">user_json_schema</span> <span class="ow">in</span> <span class="n">user_json_schemas</span><span class="p">:</span>
+            <span class="c1">## Determine the validator for the schema and replace numeric and integer formats by type casting them.</span>
+            <span class="n">validator</span> <span class="o">=</span> <span class="n">create_validator</span><span class="p">(</span><span class="n">user_json_schema</span><span class="p">)</span>
+            <span class="n">convert_formats</span><span class="p">(</span><span class="n">validator</span><span class="p">,</span> <span class="n">input_json</span><span class="p">)</span>
+            
+            <span class="c1"># validate_with_arbitrary_schema(input_json, user_json_schema)</span>
+            <span class="n">print_better_error_messages</span><span class="p">(</span><span class="n">validator</span><span class="o">.</span><span class="n">iter_errors</span><span class="p">(</span><span class="n">input_json</span><span class="p">))</span>
         
     <span class="k">match</span> <span class="n">format_check</span><span class="p">:</span>
-        <span class="k">case</span> <span class="s2">&quot;mwtab_MS&quot;</span><span class="p">:</span>
-            <span class="n">print_better_error_messages</span><span class="p">(</span><span class="n">create_validator</span><span class="p">(</span><span class="n">mwtab_schema_MS</span><span class="p">)</span><span class="o">.</span><span class="n">iter_errors</span><span class="p">(</span><span class="n">input_json</span><span class="p">))</span>
-        <span class="k">case</span> <span class="s2">&quot;mwtab_NMR&quot;</span><span class="p">:</span>
-            <span class="n">print_better_error_messages</span><span class="p">(</span><span class="n">create_validator</span><span class="p">(</span><span class="n">mwtab_schema_NMR</span><span class="p">)</span><span class="o">.</span><span class="n">iter_errors</span><span class="p">(</span><span class="n">input_json</span><span class="p">))</span>
-        <span class="k">case</span> <span class="s2">&quot;mwtab_NMR_bin&quot;</span><span class="p">:</span>
-            <span class="n">print_better_error_messages</span><span class="p">(</span><span class="n">create_validator</span><span class="p">(</span><span class="n">mwtab_schema_NMR_bin</span><span class="p">)</span><span class="o">.</span><span class="n">iter_errors</span><span class="p">(</span><span class="n">input_json</span><span class="p">))</span></div>
+        <span class="k">case</span> <span class="s2">&quot;mwtab&quot;</span><span class="p">:</span>
+            <span class="n">print_better_error_messages</span><span class="p">(</span><span class="n">create_validator</span><span class="p">(</span><span class="n">mwtab_schema</span><span class="p">)</span><span class="o">.</span><span class="n">iter_errors</span><span class="p">(</span><span class="n">input_json</span><span class="p">))</span>
+            <span class="n">mwtab_checks</span><span class="p">(</span><span class="n">input_json</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="run_save_schema_command"><a class="viewcode-back" href="../../../api.html#messes.validate.validate.run_save_schema_command">[docs]</a><span class="k">def</span> <span class="nf">run_save_schema_command</span><span class="p">(</span><span class="n">pds_source</span><span class="p">:</span> <span class="nb">str</span><span class="o">|</span><span class="kc">None</span><span class="p">,</span> <span class="n">output_schema_path</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">input_json_path</span><span class="p">:</span> <span class="nb">str</span><span class="o">|</span><span class="kc">None</span><span class="p">,</span>
@@ -1302,12 +1463,8 @@
     
     <span class="k">if</span> <span class="n">format_check</span><span class="p">:</span>
         <span class="k">match</span> <span class="n">format_check</span><span class="p">:</span>
-            <span class="k">case</span> <span class="s2">&quot;mwtab_MS&quot;</span><span class="p">:</span>
-                <span class="n">composite_schema</span> <span class="o">=</span> <span class="n">mwtab_schema_MS</span>
-            <span class="k">case</span> <span class="s2">&quot;mwtab_NMR&quot;</span><span class="p">:</span>
-                <span class="n">composite_schema</span> <span class="o">=</span> <span class="n">mwtab_schema_NMR</span>
-            <span class="k">case</span> <span class="s2">&quot;mwtab_NMR_bin&quot;</span><span class="p">:</span>
-                <span class="n">composite_schema</span> <span class="o">=</span> <span class="n">mwtab_schema_NMR_bin</span>
+            <span class="k">case</span> <span class="s2">&quot;mwtab&quot;</span><span class="p">:</span>
+                <span class="n">composite_schema</span> <span class="o">=</span> <span class="n">mwtab_schema</span>
     
     <span class="k">elif</span> <span class="n">pds_source</span><span class="p">:</span>
         <span class="n">PDS</span> <span class="o">=</span> <span class="n">read_and_validate_PDS</span><span class="p">(</span><span class="n">pds_source</span><span class="p">,</span> <span class="n">is_csv</span><span class="p">,</span> <span class="n">is_xlsx</span><span class="p">,</span> <span class="n">is_json</span><span class="p">,</span> <span class="n">is_gs</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="n">silent</span><span class="p">)</span>
@@ -1321,16 +1478,8 @@
     <span class="k">else</span><span class="p">:</span>
         <span class="n">composite_schema</span> <span class="o">=</span> <span class="n">base_schema</span>
     
-    <span class="k">if</span> <span class="n">output_schema_path</span> <span class="o">==</span> <span class="s2">&quot;-&quot;</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">composite_schema</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">2</span><span class="p">))</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="k">if</span> <span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;.*\.json$&quot;</span><span class="p">,</span> <span class="n">output_schema_path</span><span class="p">):</span>
-            <span class="n">json_save_name</span> <span class="o">=</span> <span class="n">output_schema_path</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">json_save_name</span> <span class="o">=</span> <span class="n">output_schema_path</span> <span class="o">+</span> <span class="s2">&quot;.json&quot;</span>
-        
-        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">json_save_name</span><span class="p">,</span><span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">jsonFile</span><span class="p">:</span>
-            <span class="n">jsonFile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">composite_schema</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">2</span><span class="p">))</span></div>
+    <span class="n">save_out_JSON_file</span><span class="p">(</span><span class="n">output_schema_path</span><span class="p">,</span> <span class="n">composite_schema</span><span class="p">)</span></div>
+    
 
 
 <div class="viewcode-block" id="run_schema_command"><a class="viewcode-back" href="../../../api.html#messes.validate.validate.run_schema_command">[docs]</a><span class="k">def</span> <span class="nf">run_schema_command</span><span class="p">(</span><span class="n">input_schema_source</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
@@ -1344,12 +1493,13 @@
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;No errors. This is a valid JSON schema.&quot;</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="run_pds_command"><a class="viewcode-back" href="../../../api.html#messes.validate.validate.run_pds_command">[docs]</a><span class="k">def</span> <span class="nf">run_pds_command</span><span class="p">(</span><span class="n">pds_source</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">is_csv</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">is_xlsx</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> 
+<div class="viewcode-block" id="run_pds_command"><a class="viewcode-back" href="../../../api.html#messes.validate.validate.run_pds_command">[docs]</a><span class="k">def</span> <span class="nf">run_pds_command</span><span class="p">(</span><span class="n">pds_source</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">output_path</span><span class="p">:</span> <span class="nb">str</span><span class="o">|</span><span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">is_csv</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">is_xlsx</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> 
                    <span class="n">is_json</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">is_gs</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">silent</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;none&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Run the pds command.</span>
 <span class="sd">    </span>
 <span class="sd">    Args:</span>
 <span class="sd">        pds_source: either a filepath or &quot;-&quot; to read from stdin.</span>
+<span class="sd">        output_path: if given then save the JSON Schema from the PDS.</span>
 <span class="sd">        is_csv: if True the pds_source is a csv file.</span>
 <span class="sd">        is_xlsx: if True the pds_source is an xlsx file.</span>
 <span class="sd">        is_json: if True the pds_source is a JSON file.</span>
@@ -1359,8 +1509,160 @@
     <span class="n">PDS</span> <span class="o">=</span> <span class="n">read_and_validate_PDS</span><span class="p">(</span><span class="n">pds_source</span><span class="p">,</span> <span class="n">is_csv</span><span class="p">,</span> <span class="n">is_xlsx</span><span class="p">,</span> <span class="n">is_json</span><span class="p">,</span> <span class="n">is_gs</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="n">silent</span><span class="p">)</span>
     <span class="n">composite_schema</span> <span class="o">=</span> <span class="n">build_PD_schema</span><span class="p">(</span><span class="n">PDS</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">validate_JSON_schema</span><span class="p">(</span><span class="n">composite_schema</span><span class="p">)</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">silent</span> <span class="o">==</span> <span class="s2">&quot;full&quot;</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Warning:  The schema created from the protocol-dependent schema is not valid.&quot;</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="p">)</span></div>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Warning:  The schema created from the protocol-dependent schema is not valid.&quot;</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="p">)</span>
+    
+    <span class="k">if</span> <span class="n">output_path</span><span class="p">:</span>
+        <span class="n">save_out_JSON_file</span><span class="p">(</span><span class="n">output_path</span><span class="p">,</span> <span class="n">composite_schema</span><span class="p">)</span></div>
 
+
+<div class="viewcode-block" id="run_pds_to_table_command"><a class="viewcode-back" href="../../../api.html#messes.validate.validate.run_pds_to_table_command">[docs]</a><span class="k">def</span> <span class="nf">run_pds_to_table_command</span><span class="p">(</span><span class="n">pds_source</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">output_path</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">output_filetype</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">silent</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;none&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Run the pds-to-table command.</span>
+<span class="sd">    </span>
+<span class="sd">    Args:</span>
+<span class="sd">        pds_source: either a filepath or &quot;-&quot; to read from stdin.</span>
+<span class="sd">        output_path: either a filepath or &quot;-&quot; to write to stdout.</span>
+<span class="sd">        output_filetype: either &quot;xlsx&quot; or &quot;csv&quot;.</span>
+<span class="sd">        silent: if &quot;full&quot; do not print any warnings, if &quot;nuisance&quot; do not print nuisance warnings.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">PDS</span> <span class="o">=</span> <span class="n">read_and_validate_PDS</span><span class="p">(</span><span class="n">pds_source</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="n">silent</span><span class="p">)</span>
+    
+    <span class="k">if</span> <span class="n">output_path</span> <span class="o">==</span> <span class="s2">&quot;-&quot;</span><span class="p">:</span>
+        <span class="n">table_to_save</span> <span class="o">=</span> <span class="n">directives_to_table</span><span class="p">(</span><span class="n">PDS</span><span class="p">)</span>
+        <span class="n">table_to_save</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">output_filetype</span> <span class="o">=</span> <span class="n">output_filetype</span> <span class="k">if</span> <span class="n">output_filetype</span> <span class="k">else</span> <span class="s2">&quot;csv&quot;</span>
+        
+        <span class="k">if</span> <span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;.*\.&quot;</span> <span class="o">+</span> <span class="n">output_filetype</span> <span class="o">+</span> <span class="s2">&quot;$&quot;</span><span class="p">,</span> <span class="n">output_path</span><span class="p">):</span>
+            <span class="n">save_name</span> <span class="o">=</span> <span class="n">output_path</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">save_name</span> <span class="o">=</span> <span class="n">output_path</span> <span class="o">+</span> <span class="s2">&quot;.&quot;</span> <span class="o">+</span> <span class="n">output_filetype</span>
+        
+        <span class="k">if</span> <span class="n">output_filetype</span> <span class="o">==</span> <span class="s2">&quot;xlsx&quot;</span><span class="p">:</span>
+            <span class="n">table_to_save</span> <span class="o">=</span> <span class="n">directives_to_table</span><span class="p">(</span><span class="n">PDS</span><span class="p">)</span>
+            <span class="n">table_to_save</span><span class="o">.</span><span class="n">to_excel</span><span class="p">(</span><span class="n">save_name</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">output_filetype</span> <span class="o">==</span> <span class="s2">&quot;csv&quot;</span><span class="p">:</span>
+            <span class="n">table_to_save</span> <span class="o">=</span> <span class="n">directives_to_table</span><span class="p">(</span><span class="n">PDS</span><span class="p">)</span>
+            <span class="n">table_to_save</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">save_name</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Error:  Unknown output filetype.&quot;</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="p">)</span></div>
+    
+
+<div class="viewcode-block" id="run_pds_to_json_command"><a class="viewcode-back" href="../../../api.html#messes.validate.validate.run_pds_to_json_command">[docs]</a><span class="k">def</span> <span class="nf">run_pds_to_json_command</span><span class="p">(</span><span class="n">pds_source</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">is_csv</span><span class="p">:</span> <span class="nb">bool</span><span class="p">,</span> <span class="n">is_xlsx</span><span class="p">:</span> <span class="nb">bool</span><span class="p">,</span> <span class="n">is_gs</span><span class="p">:</span> <span class="nb">bool</span><span class="p">,</span> 
+                            <span class="n">output_path</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">silent</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;none&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Run the pds-to-json command.</span>
+<span class="sd">    </span>
+<span class="sd">    Args:</span>
+<span class="sd">        pds_source: either a filepath or &quot;-&quot; to read from stdin.</span>
+<span class="sd">        is_csv: if True the pds_source is a csv file.</span>
+<span class="sd">        is_xlsx: if True the pds_source is an xlsx file.</span>
+<span class="sd">        is_gs: if True the pds_source is a Google Sheets file.</span>
+<span class="sd">        output_path: either a filepath or &quot;-&quot; to write to stdout.</span>
+<span class="sd">        silent: if &quot;full&quot; do not print any warnings, if &quot;nuisance&quot; do not print nuisance warnings.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">PDS</span> <span class="o">=</span> <span class="n">read_and_validate_PDS</span><span class="p">(</span><span class="n">pds_source</span><span class="p">,</span> <span class="n">is_csv</span><span class="p">,</span> <span class="n">is_xlsx</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="n">is_gs</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="n">silent</span><span class="p">)</span>
+    
+    <span class="n">save_out_JSON_file</span><span class="p">(</span><span class="n">output_path</span><span class="p">,</span> <span class="n">PDS</span><span class="p">)</span>    </div>
+        
+
+<div class="viewcode-block" id="run_conversion_directives_to_json_schema_command"><a class="viewcode-back" href="../../../api.html#messes.validate.validate.run_conversion_directives_to_json_schema_command">[docs]</a><span class="k">def</span> <span class="nf">run_conversion_directives_to_json_schema_command</span><span class="p">(</span><span class="n">conversion_directives_source</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> 
+                                                 <span class="n">is_csv</span><span class="p">:</span> <span class="nb">bool</span><span class="p">,</span> <span class="n">is_xlsx</span><span class="p">:</span> <span class="nb">bool</span><span class="p">,</span> <span class="n">is_json</span><span class="p">:</span> <span class="nb">bool</span><span class="p">,</span> 
+                                                 <span class="n">is_gs</span><span class="p">:</span> <span class="nb">bool</span><span class="p">,</span> <span class="n">output_schema_path</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> 
+                                                 <span class="n">silent</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Run the cd-to-json command.</span>
+<span class="sd">    </span>
+<span class="sd">    Args:</span>
+<span class="sd">        conversion_directives_source: either a filepath or &quot;-&quot; to read from stdin.</span>
+<span class="sd">        is_csv: if True the conversion_directives_source is a csv file.</span>
+<span class="sd">        is_xlsx: if True the conversion_directives_source is an xlsx file.</span>
+<span class="sd">        is_json: if True the conversion_directives_source is a JSON file.</span>
+<span class="sd">        is_gs: if True the conversion_directives_source is a Google Sheets file.</span>
+<span class="sd">        silent: if &quot;full&quot; do not print any warnings, if &quot;nuisance&quot; do not print nuisance warnings.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">conversion_directives</span> <span class="o">=</span> <span class="n">read_json_or_tabular_file</span><span class="p">(</span><span class="n">conversion_directives_source</span><span class="p">,</span> 
+                                                      <span class="n">is_csv</span><span class="p">,</span> <span class="n">is_xlsx</span><span class="p">,</span> <span class="n">is_json</span><span class="p">,</span> <span class="n">is_gs</span><span class="p">,</span>
+                                                      <span class="s2">&quot;conversion directives&quot;</span><span class="p">,</span> <span class="s2">&quot;#convert&quot;</span><span class="p">,</span> <span class="n">silent</span><span class="p">)</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">user_input_checking</span><span class="o">.</span><span class="n">validate_conversion_directives</span><span class="p">(</span><span class="n">conversion_directives</span><span class="p">,</span> <span class="n">convert_schema</span><span class="o">.</span><span class="n">directives_schema</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">SystemExit</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Error:  The conversion directives are not valid, so a JSON schema could not be created.&quot;</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="p">)</span>
+        <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">()</span>
+        
+    <span class="k">def</span> <span class="nf">add_table</span><span class="p">(</span><span class="n">schema</span><span class="p">,</span> <span class="n">table</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">table</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">schema</span><span class="p">[</span><span class="s2">&quot;properties&quot;</span><span class="p">]:</span>
+            <span class="n">schema</span><span class="p">[</span><span class="s2">&quot;properties&quot;</span><span class="p">][</span><span class="n">table</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span><span class="s2">&quot;object&quot;</span><span class="p">,</span> <span class="s2">&quot;additionalProperties&quot;</span><span class="p">:{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span><span class="s2">&quot;object&quot;</span><span class="p">,</span> <span class="s2">&quot;properties&quot;</span><span class="p">:{}}}</span>
+        
+    <span class="k">def</span> <span class="nf">add_field</span><span class="p">(</span><span class="n">schema</span><span class="p">,</span> <span class="n">table</span><span class="p">,</span> <span class="n">field</span><span class="p">,</span> <span class="n">required</span><span class="p">):</span>
+        <span class="n">schema</span><span class="p">[</span><span class="s2">&quot;properties&quot;</span><span class="p">][</span><span class="n">table</span><span class="p">][</span><span class="s2">&quot;additionalProperties&quot;</span><span class="p">][</span><span class="s2">&quot;properties&quot;</span><span class="p">][</span><span class="n">field</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">if</span> <span class="n">required</span><span class="p">:</span>
+            <span class="k">if</span> <span class="s2">&quot;required&quot;</span> <span class="ow">in</span> <span class="n">schema</span><span class="p">[</span><span class="s2">&quot;properties&quot;</span><span class="p">][</span><span class="n">table</span><span class="p">][</span><span class="s2">&quot;additionalProperties&quot;</span><span class="p">]:</span>
+                <span class="k">if</span> <span class="n">field</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">schema</span><span class="p">[</span><span class="s2">&quot;properties&quot;</span><span class="p">][</span><span class="n">table</span><span class="p">][</span><span class="s2">&quot;additionalProperties&quot;</span><span class="p">][</span><span class="s2">&quot;required&quot;</span><span class="p">]:</span>
+                    <span class="n">schema</span><span class="p">[</span><span class="s2">&quot;properties&quot;</span><span class="p">][</span><span class="n">table</span><span class="p">][</span><span class="s2">&quot;additionalProperties&quot;</span><span class="p">][</span><span class="s2">&quot;required&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">field</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">schema</span><span class="p">[</span><span class="s2">&quot;properties&quot;</span><span class="p">][</span><span class="n">table</span><span class="p">][</span><span class="s2">&quot;additionalProperties&quot;</span><span class="p">][</span><span class="s2">&quot;required&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">field</span><span class="p">]</span>
+    
+    <span class="n">new_schema</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span><span class="s2">&quot;object&quot;</span><span class="p">,</span> <span class="s2">&quot;properties&quot;</span><span class="p">:{}}</span>
+    <span class="k">for</span> <span class="n">conversion_table</span><span class="p">,</span> <span class="n">directives</span> <span class="ow">in</span> <span class="n">conversion_directives</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="k">for</span> <span class="n">directive</span><span class="p">,</span> <span class="n">directive_attributes</span> <span class="ow">in</span> <span class="n">directives</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">if</span> <span class="s2">&quot;table&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">directive_attributes</span><span class="p">:</span>
+                <span class="k">continue</span>
+            <span class="n">table</span> <span class="o">=</span> <span class="n">directive_attributes</span><span class="p">[</span><span class="s2">&quot;table&quot;</span><span class="p">]</span>
+            <span class="n">required</span> <span class="o">=</span> <span class="kc">True</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">required_attr</span> <span class="o">:=</span> <span class="n">directive_attributes</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;required&quot;</span><span class="p">))</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">required_attr</span><span class="p">,</span> <span class="nb">bool</span><span class="p">):</span>
+                    <span class="n">required</span> <span class="o">=</span> <span class="n">required_attr</span>
+                <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">required_attr</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span> <span class="ow">and</span> <span class="n">required_attr</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="s2">&quot;false&quot;</span><span class="p">:</span>
+                    <span class="n">required</span> <span class="o">=</span> <span class="kc">False</span>
+            
+            <span class="c1">## &quot;headers&quot; keyword</span>
+            <span class="k">if</span> <span class="n">directive_attributes</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;headers&quot;</span><span class="p">):</span>
+                <span class="k">for</span> <span class="n">pair</span> <span class="ow">in</span> <span class="n">directive_attributes</span><span class="p">[</span><span class="s2">&quot;headers&quot;</span><span class="p">]:</span>
+                    <span class="n">split</span> <span class="o">=</span> <span class="n">pair</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;=&quot;</span><span class="p">)</span>
+                    <span class="n">output_key</span> <span class="o">=</span> <span class="n">split</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+                    <span class="n">input_key</span> <span class="o">=</span> <span class="n">split</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+                    
+                    <span class="k">if</span> <span class="ow">not</span> <span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="n">literal_regex</span><span class="p">,</span> <span class="n">output_key</span><span class="p">):</span>
+                        <span class="n">add_table</span><span class="p">(</span><span class="n">new_schema</span><span class="p">,</span> <span class="n">table</span><span class="p">)</span>
+                        <span class="n">add_field</span><span class="p">(</span><span class="n">new_schema</span><span class="p">,</span> <span class="n">table</span><span class="p">,</span> <span class="n">output_key</span><span class="p">,</span> <span class="n">required</span><span class="p">)</span>
+                        
+                    <span class="k">if</span> <span class="ow">not</span> <span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="n">literal_regex</span><span class="p">,</span> <span class="n">input_key</span><span class="p">):</span>
+                        <span class="n">add_table</span><span class="p">(</span><span class="n">new_schema</span><span class="p">,</span> <span class="n">table</span><span class="p">)</span>
+                        <span class="n">add_field</span><span class="p">(</span><span class="n">new_schema</span><span class="p">,</span> <span class="n">table</span><span class="p">,</span> <span class="n">input_key</span><span class="p">,</span> <span class="n">required</span><span class="p">)</span>
+                        
+            <span class="c1">## &quot;fields&quot; keyword</span>
+            <span class="k">if</span> <span class="n">fields</span> <span class="o">:=</span> <span class="n">directive_attributes</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;fields&quot;</span><span class="p">):</span>
+                <span class="k">for</span> <span class="n">field</span> <span class="ow">in</span> <span class="n">fields</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="ow">not</span> <span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="n">literal_regex</span><span class="p">,</span> <span class="n">field</span><span class="p">):</span>
+                        <span class="n">add_table</span><span class="p">(</span><span class="n">new_schema</span><span class="p">,</span> <span class="n">table</span><span class="p">)</span>
+                        <span class="n">add_field</span><span class="p">(</span><span class="n">new_schema</span><span class="p">,</span> <span class="n">table</span><span class="p">,</span> <span class="n">field</span><span class="p">,</span> <span class="n">required</span><span class="p">)</span>
+                        
+            <span class="c1">## &quot;test&quot; keyword</span>
+            <span class="k">if</span> <span class="n">test</span> <span class="o">:=</span> <span class="n">directive_attributes</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;test&quot;</span><span class="p">):</span>
+                <span class="n">split</span> <span class="o">=</span> <span class="n">test</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;=&quot;</span><span class="p">)</span>
+                <span class="n">test_field</span> <span class="o">=</span> <span class="n">split</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+                <span class="n">add_table</span><span class="p">(</span><span class="n">new_schema</span><span class="p">,</span> <span class="n">table</span><span class="p">)</span>
+                <span class="n">add_field</span><span class="p">(</span><span class="n">new_schema</span><span class="p">,</span> <span class="n">table</span><span class="p">,</span> <span class="n">test_field</span><span class="p">,</span> <span class="n">required</span><span class="p">)</span>
+            
+            <span class="c1">## &quot;collate&quot; keyword</span>
+            <span class="k">if</span> <span class="n">collate</span> <span class="o">:=</span> <span class="n">directive_attributes</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;collate&quot;</span><span class="p">):</span>
+                <span class="n">add_table</span><span class="p">(</span><span class="n">new_schema</span><span class="p">,</span> <span class="n">table</span><span class="p">)</span>
+                <span class="n">add_field</span><span class="p">(</span><span class="n">new_schema</span><span class="p">,</span> <span class="n">table</span><span class="p">,</span> <span class="n">collate</span><span class="p">,</span> <span class="n">required</span><span class="p">)</span>
+                
+            <span class="c1">## &quot;sort_by&quot; keyword</span>
+            <span class="k">if</span> <span class="n">sort_by</span> <span class="o">:=</span> <span class="n">directive_attributes</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;sort_by&quot;</span><span class="p">):</span>
+                <span class="k">for</span> <span class="n">field</span> <span class="ow">in</span> <span class="n">sort_by</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="ow">not</span> <span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="n">literal_regex</span><span class="p">,</span> <span class="n">field</span><span class="p">):</span>
+                        <span class="n">add_table</span><span class="p">(</span><span class="n">new_schema</span><span class="p">,</span> <span class="n">table</span><span class="p">)</span>
+                        <span class="n">add_field</span><span class="p">(</span><span class="n">new_schema</span><span class="p">,</span> <span class="n">table</span><span class="p">,</span> <span class="n">field</span><span class="p">,</span> <span class="n">required</span><span class="p">)</span>
+                        
+            <span class="c1">## &quot;optional_headers&quot; keyword</span>
+            <span class="k">if</span> <span class="n">optional_headers</span> <span class="o">:=</span> <span class="n">directive_attributes</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;optional_headers&quot;</span><span class="p">):</span>
+                <span class="k">for</span> <span class="n">field</span> <span class="ow">in</span> <span class="n">optional_headers</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="ow">not</span> <span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="n">literal_regex</span><span class="p">,</span> <span class="n">field</span><span class="p">):</span>
+                        <span class="n">add_table</span><span class="p">(</span><span class="n">new_schema</span><span class="p">,</span> <span class="n">table</span><span class="p">)</span>
+                        <span class="n">add_field</span><span class="p">(</span><span class="n">new_schema</span><span class="p">,</span> <span class="n">table</span><span class="p">,</span> <span class="n">field</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
+                
+    
+    <span class="n">save_out_JSON_file</span><span class="p">(</span><span class="n">output_schema_path</span><span class="p">,</span> <span class="n">new_schema</span><span class="p">)</span></div>
 
 
 </pre></div>

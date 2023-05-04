@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>CLI &mdash; MESSES 0.1.dev1+g089fe0d documentation</title>
+  <title>CLI &mdash; MESSES 0.1.dev1+g9155da5 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/custom_css.css" type="text/css" />
       <link rel="stylesheet" href="_static/sphinxcontrib-images/LightBox2/lightbox2/dist/css/lightbox.css" type="text/css" />
@@ -35,7 +35,7 @@
             <a href="index.html" class="icon icon-home"> MESSES
           </a>
               <div class="version">
-                0.1.dev1+g089fe0d
+                0.1.dev1+g9155da5
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -180,7 +180,7 @@ and examples for the validate command are in the <a class="reference internal" h
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Usage:
     messes validate json &lt;input_JSON&gt; [--pds=&lt;pds&gt; [--csv | --xlsx | --json | --gs] | --no_base_schema] 
                                       [--no_extra_checks]
-                                      [--additional=&lt;add_schema&gt;] 
+                                      [--additional=&lt;add_schema&gt;...] 
                                       [--format=&lt;format&gt;]
                                       [--silent=&lt;level&gt;]
     messes validate save-schema &lt;output_schema&gt; [--input=&lt;input_JSON&gt;] 
@@ -188,15 +188,24 @@ and examples for the validate command are in the <a class="reference internal" h
                                                 [--format=&lt;format&gt;]
                                                 [--silent=&lt;level&gt;]
     messes validate schema &lt;input_schema&gt;
-    messes validate pds &lt;pds&gt; [--csv | --xlsx | --json | --gs] [--silent=&lt;level&gt;]
+    messes validate pds &lt;pds&gt; [--csv | --xlsx | --json | --gs] [--silent=&lt;level&gt;] [--save=&lt;output_name&gt;]
+    messes validate pds-to-table &lt;pds_json&gt; &lt;output_name&gt; [&lt;output_filetype&gt;]
+    messes validate pds-to-json &lt;pds_tabular&gt; [--csv | --xlsx | --gs] &lt;output_name&gt;
+    messes validate cd-to-json-schema &lt;conversion_directives&gt; [--csv | --xlsx | --json | --gs] &lt;output_schema&gt;
     messes validate --help
     
     &lt;input_JSON&gt; - if &#39;-&#39; read from standard input.
-    &lt;pds&gt; - can be a JSON, csv, xlsx, or Google Sheets file. If xlsx or Google Sheets the default sheet name to read in is #validate, 
+    &lt;pds&gt; - can be a JSON, csv, xlsx, or Google Sheets file. If xlsx or Google Sheets, the default sheet name to read in is #validate, 
            to specify a different sheet name separate it from the file name with a colon ex: file_name.xlsx:sheet_name.
            If &#39;-&#39; read from standard input.
     &lt;input_schema&gt; - must be a valid JSON Schema file. If &#39;-&#39; read from standard input.
     &lt;output_schema&gt; - if &#39;-&#39; save to standard output.
+    &lt;output_name&gt; - path to save tabular pds to, if &#39;-&#39; save to standard output as CSV.
+    &lt;output_filetype&gt; - &quot;xlsx&quot; or &quot;csv&quot;, defaults to &quot;csv&quot;.
+    &lt;conversion_directives&gt; - can be a JSON, csv, xlsx, or Google Sheets file. If xlsx or Google Sheets, 
+                              the default sheet name to read in is #convert, to specify a different 
+                              sheet name separate it from the file name with a colon ex: file_name.xlsx:sheet_name.
+                              If &#39;-&#39; read from standard input.
 
 Options:
     -h, --help                           - show this screen.
@@ -211,30 +220,38 @@ Options:
     --csv                                - indicates that the protocol-dependent schema file is a csv (comma delimited) file.
     --xlsx                               - indicates that the protocol-dependent schema file is an xlsx (Excel) file.
     --json                               - indicates that the protocol-dependent schema file is a JSON file.
+    --gs                                 - indicates that the protocol-dependent schema file is a Google Sheets file.
                                            If a file type is not given then it will be guessed from the file extension.
     --additional &lt;add_schema&gt;            - an additional JSON Schema file that will be used to validate &lt;input_JSON&gt;.
     --format &lt;format&gt;                    - additional validation done for the desired supported format. 
                                            Current supported formats: 
-                                               mwtab_MS, 
-                                               mwtab_NMR, 
-                                               mwtab_NMR_bin
+                                               mwtab
     --no_base_schema                     - don&#39;t validate with the base JSON schema.
     --no_extra_checks                    - only do JSON Schema validation and nothing else.
     --input &lt;input_JSON&gt;                 - optionally give an input JSON file to save-schema to reproduce the 
                                            schema used to validate in the json command.
+    --save &lt;output_name&gt;                 - save the JSON Schema created from the protocol-dependent schema.
     
 
 The &quot;json&quot; command will validate the &lt;input_JSON&gt; against the internal base_schema, and optional schema provided 
 by the --pds and --additional options. To validate only against a provided schema, use the --additional and --no_base_schema options.
 
 The &quot;save-schema&quot; command will save the internal base_schema to the &lt;output_schema&gt; location. If --pds is given 
-then it will be parsed and placed into the base_schema. If --input is given the protocols table will be added 
-in with the PDS to reproduce what happens in the json command. If --format is used then that format schema is 
+then it will be parsed and placed into the base_schema. If --input is given, the protocols table will be added 
+in with the PDS to reproduce what happens in the json command. If --format is used, then that format schema is 
 saved instead of the base_schema.
 
 The &quot;schema&quot; command will validate the &lt;input_schema&gt; against the JSON Schema meta schema.
 
-The &quot;pds&quot; command will validate that the &lt;pds&gt; file is a valid protocol-dependent schema file.
+The &quot;pds&quot; command will validate that the &lt;pds&gt; file is a valid protocol-dependent schema file. 
+If the --save option is given, then save the built JSON Schema.
+
+The &quot;pds-to-table&quot; command will read in a protocol-dependent schema in JSON form and save it out in a tabular form.
+
+The &quot;pds-to-json&quot; command will read in a protocol-dependent schema in tabular form and save it out in a JSON form. 
+
+The &quot;cd-to-json-schema&quot; command will read in conversion directives and create a JSON Schema 
+template file that can be filled in and used to validate files that will be converted using those directives.
 </pre></div>
 </div>
 </section>

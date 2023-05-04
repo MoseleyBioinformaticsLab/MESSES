@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>messes.extract.extract &mdash; MESSES 0.1.dev1+g089fe0d documentation</title>
+  <title>messes.extract.extract &mdash; MESSES 0.1.dev1+g9155da5 documentation</title>
       <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/css/custom_css.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/sphinxcontrib-images/LightBox2/lightbox2/dist/css/lightbox.css" type="text/css" />
@@ -32,7 +32,7 @@
             <a href="../../../index.html" class="icon icon-home"> MESSES
           </a>
               <div class="version">
-                0.1.dev1+g089fe0d
+                0.1.dev1+g9155da5
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
@@ -1225,6 +1225,10 @@
                 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Warning: The header row at index &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">headerRowIndex</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot; in the compiled export sheet does not have an </span><span class="se">\&quot;</span><span class="s2">id</span><span class="se">\&quot;</span><span class="s2"> tag, so it will not be in the JSON output.&quot;</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="p">)</span>
             <span class="n">rowsToParse</span> <span class="o">=</span> <span class="p">[</span><span class="n">index</span> <span class="k">for</span> <span class="n">index</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">headerRowIndex</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">endOfTagGroupIndexes</span><span class="p">[</span><span class="n">headerRow</span><span class="p">])]</span>
             <span class="n">rowsToParse</span> <span class="o">=</span> <span class="n">ignoreRows</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">rowsToParse</span><span class="p">][</span><span class="o">~</span><span class="n">ignoreRows</span><span class="p">]</span>
+            <span class="c1">## If there was a header, but no rows underneath we want to add an empty table.</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">rowsToParse</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="n">recordMakers</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">table</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">extraction</span> <span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">extraction</span><span class="p">[</span><span class="n">recordMakers</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">table</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
             <span class="k">for</span> <span class="n">index</span> <span class="ow">in</span> <span class="n">rowsToParse</span><span class="o">.</span><span class="n">index</span><span class="p">:</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">_parseRow</span><span class="p">(</span><span class="n">recordMakers</span><span class="p">,</span> <span class="n">worksheet</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">index</span><span class="p">,</span> <span class="p">:])</span>
         
