@@ -484,7 +484,7 @@ def test_matrix_fields_to_headers_exclusion():
 
 
 def test_matrix_values_to_str():
-    """Test that values_to_str field for matrix directive works as expceted."""
+    """Test that values_to_str field for matrix directive works as expected."""
     
     test_file = "NMR_base_input.json"
     

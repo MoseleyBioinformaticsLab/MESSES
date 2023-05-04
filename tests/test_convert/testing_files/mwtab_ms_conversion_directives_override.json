@@ -166,6 +166,7 @@
   },
   "MS_METABOLITE_DATA": {
     "Data": {
+      "required": "True",
       "collate": "assignment",
       "headers": [
         "\"Metabolite\"=assignment",
@@ -177,15 +178,18 @@
       ],
       "sort_order": "ascending",
       "table": "measurement",
-      "value_type": "matrix"
+      "value_type": "matrix",
+      "values_to_str": "True"
     },
     "Extended": {
+      "required": "False",
       "exclusion_headers": [
         "id",
         "intensity",
         "intensity%type",
         "intensity%units",
         "assignment",
+        "assignment%method",
         "entity.id",
         "protocol.id",
         "formula",
@@ -208,13 +212,17 @@
       "values_to_str": "True"
     },
     "Metabolites": {
+      "required": "True",
       "collate": "assignment",
       "headers": [
-        "\"Metabolite\"=assignment",
-        "\"formula\"=formula",
-        "\"compound\"=compound",
-        "\"isotopologue\"=isotopologue",
-        "\"isotopologue%type\"=isotopologue%type"
+        "\"Metabolite\"=assignment"
+      ],
+      "optional_headers": [
+        "assignment%method",
+        "formula",
+        "compound",
+        "isotopologue",
+        "isotopologue%type"
       ],
       "id": "Metabolites",
       "sort_by": [
@@ -222,9 +230,11 @@
       ],
       "sort_order": "ascending",
       "table": "measurement",
-      "value_type": "matrix"
+      "value_type": "matrix",
+      "values_to_str": "True"
     },
     "Units": {
+      "required": "True",
       "fields": [
         "intensity%type"
       ],
@@ -235,6 +245,7 @@
   },
   "PROJECT": {
     "ADDRESS": {
+      "required": "True",
       "fields": [
         "address"
       ],
@@ -243,6 +254,7 @@
       "value_type": "str"
     },
     "DEPARTMENT": {
+      "required": "True",
       "fields": [
         "department"
       ],
@@ -251,6 +263,7 @@
       "value_type": "str"
     },
     "EMAIL": {
+      "required": "True",
       "fields": [
         "PI_email"
       ],
@@ -259,6 +272,7 @@
       "value_type": "str"
     },
     "FIRST_NAME": {
+      "required": "True",
       "fields": [
         "PI_first_name"
       ],
@@ -267,6 +281,7 @@
       "value_type": "str"
     },
     "INSTITUTE": {
+      "required": "True",
       "fields": [
         "institution"
       ],
@@ -275,6 +290,7 @@
       "value_type": "str"
     },
     "LAST_NAME": {
+      "required": "True",
       "fields": [
         "PI_last_name"
       ],
@@ -283,6 +299,7 @@
       "value_type": "str"
     },
     "PHONE": {
+      "required": "True",
       "fields": [
         "phone"
       ],
@@ -291,6 +308,7 @@
       "value_type": "str"
     },
     "PROJECT_SUMMARY": {
+      "required": "True",
       "fields": [
         "description"
       ],
@@ -299,6 +317,7 @@
       "value_type": "str"
     },
     "PROJECT_TITLE": {
+      "required": "True",
       "fields": [
         "title"
       ],
@@ -359,6 +378,7 @@
   },
   "STUDY": {
     "ADDRESS": {
+      "required": "True",
       "fields": [
         "address"
       ],
@@ -367,6 +387,7 @@
       "value_type": "str"
     },
     "DEPARTMENT": {
+      "required": "True",
       "fields": [
         "department"
       ],
@@ -375,6 +396,7 @@
       "value_type": "str"
     },
     "EMAIL": {
+      "required": "True",
       "fields": [
         "PI_email"
       ],
@@ -383,6 +405,7 @@
       "value_type": "str"
     },
     "FIRST_NAME": {
+      "required": "True",
       "fields": [
         "PI_first_name"
       ],
@@ -391,6 +414,7 @@
       "value_type": "str"
     },
     "INSTITUTE": {
+      "required": "True",
       "fields": [
         "institution"
       ],
@@ -399,6 +423,7 @@
       "value_type": "str"
     },
     "LAST_NAME": {
+      "required": "True",
       "fields": [
         "PI_last_name"
       ],
@@ -407,6 +432,7 @@
       "value_type": "str"
     },
     "PHONE": {
+      "required": "True",
       "fields": [
         "phone"
       ],
@@ -415,6 +441,7 @@
       "value_type": "str"
     },
     "STUDY_SUMMARY": {
+      "required": "True",
       "fields": [
         "description"
       ],
@@ -423,6 +450,7 @@
       "value_type": "str"
     },
     "STUDY_TITLE": {
+      "required": "True",
       "fields": [
         "title"
       ],
@@ -433,6 +461,7 @@
   },
   "SUBJECT": {
     "SUBJECT_SPECIES": {
+      "required": "True",
       "fields": [
         "species"
       ],
@@ -442,6 +471,7 @@
       "value_type": "str"
     },
     "SUBJECT_TYPE": {
+      "required": "True",
       "fields": [
         "species_type"
       ],
@@ -451,6 +481,7 @@
       "value_type": "str"
     },
     "TAXONOMY_ID": {
+      "required": "True",
       "fields": [
         "taxonomy_id"
       ],
@@ -464,7 +495,8 @@
     "no_id_needed": {
       "code": "mwtab_functions.create_subject_sample_factors(input_json)",
       "id": "no_id_needed",
-      "value_type": "section"
+      "value_type": "section",
+      "required": "True"
     }
   },
   "TREATMENT": {

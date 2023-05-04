@@ -178,7 +178,8 @@
       ],
       "sort_order": "ascending",
       "table": "measurement",
-      "value_type": "matrix"
+      "value_type": "matrix",
+      "values_to_str": "True"
     },
     "Extended": {
       "required": "False",
@@ -188,7 +189,9 @@
         "intensity%type",
         "intensity%units",
         "assignment",
+        "assignment%method",
         "entity.id",
+        "protocol.id",
         "formula",
         "compound",
         "isotopologue",
@@ -212,11 +215,14 @@
       "required": "True",
       "collate": "assignment",
       "headers": [
-        "\"Metabolite\"=assignment",
-        "\"formula\"=formula",
-        "\"compound\"=compound",
-        "\"isotopologue\"=isotopologue",
-        "\"isotopologue%type\"=isotopologue%type"
+        "\"Metabolite\"=assignment"
+      ],
+      "optional_headers": [
+        "assignment%method",
+        "formula",
+        "compound",
+        "isotopologue",
+        "isotopologue%type"
       ],
       "id": "Metabolites",
       "sort_by": [
@@ -224,7 +230,8 @@
       ],
       "sort_order": "ascending",
       "table": "measurement",
-      "value_type": "matrix"
+      "value_type": "matrix",
+      "values_to_str": "True"
     },
     "Units": {
       "required": "True",

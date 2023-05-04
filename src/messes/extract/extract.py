@@ -1141,6 +1141,10 @@ class TagParser(object):
                 print("Warning: The header row at index " + str(headerRowIndex) + " in the compiled export sheet does not have an \"id\" tag, so it will not be in the JSON output.", file=sys.stderr)
             rowsToParse = [index for index in range(headerRowIndex+1, endOfTagGroupIndexes[headerRow])]
             rowsToParse = ignoreRows.iloc[rowsToParse][~ignoreRows]
+            ## If there was a header, but no rows underneath we want to add an empty table.
+            if len(rowsToParse) == 0:
+                if not recordMakers[0].table in self.extraction :
+                    self.extraction[recordMakers[0].table] = {}
             for index in rowsToParse.index:
                 self._parseRow(recordMakers, worksheet.loc[index, :])
         

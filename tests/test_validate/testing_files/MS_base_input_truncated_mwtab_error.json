@@ -25,7 +25,7 @@
   },
   "measurement": {
     "(S)-2-Acetolactate Glutaric acid Methylsuccinic acid-13C0-16_A0_Lung_naive_0days_170427_UKy_GCH_rep1-polar-ICMS_A": {
-      "assignment": "(S)-2-Acetolactate Glutaric acid Methylsuccinic acid-13C0",
+      "assignment1": "(S)-2-Acetolactate Glutaric acid Methylsuccinic acid-13C0",
       "assignment%method": "database",
       "compound": "(S)-2-Acetolactate Glutaric acid Methylsuccinic acid",
       "concentration": "0",
@@ -34,7 +34,7 @@
       "corrected_raw_intensity": "10882632.3918",
       "corrected_raw_intensity%type": "natural abundance corrected peak area",
       "id": "(S)-2-Acetolactate Glutaric acid Methylsuccinic acid-13C0-16_A0_Lung_naive_0days_170427_UKy_GCH_rep1-polar-ICMS_A",
-      "intensity": "16103434.00085152",
+      "intensity1": "16103434.00085152",
       "intensity%type": "natural abundance corrected and protein normalized peak area",
       "intensity%units": "area/g",
       "isotopologue": "13C0",

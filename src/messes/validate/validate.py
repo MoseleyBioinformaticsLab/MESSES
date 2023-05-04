@@ -5,7 +5,7 @@ Validate JSON files.
 Usage:
     messes validate json <input_JSON> [--pds=<pds> [--csv | --xlsx | --json | --gs] | --no_base_schema] 
                                       [--no_extra_checks]
-                                      [--additional=<add_schema>] 
+                                      [--additional=<add_schema>...] 
                                       [--format=<format>]
                                       [--silent=<level>]
     messes validate save-schema <output_schema> [--input=<input_JSON>] 
@@ -13,7 +13,10 @@ Usage:
                                                 [--format=<format>]
                                                 [--silent=<level>]
     messes validate schema <input_schema>
-    messes validate pds <pds> [--csv | --xlsx | --json | --gs] [--silent=<level>]
+    messes validate pds <pds> [--csv | --xlsx | --json | --gs] [--silent=<level>] [--save=<output_name>]
+    messes validate pds-to-table <pds_json> <output_name> [<output_filetype>]
+    messes validate pds-to-json <pds_tabular> [--csv | --xlsx | --gs] <output_name>
+    messes validate cd-to-json-schema <conversion_directives> [--csv | --xlsx | --json | --gs] <output_schema>
     messes validate --help
     
     <input_JSON> - if '-' read from standard input.
@@ -22,6 +25,12 @@ Usage:
            If '-' read from standard input.
     <input_schema> - must be a valid JSON Schema file. If '-' read from standard input.
     <output_schema> - if '-' save to standard output.
+    <output_name> - path to save tabular pds to, if '-' save to standard output as CSV.
+    <output_filetype> - "xlsx" or "csv", defaults to "csv".
+    <conversion_directives> - can be a JSON, csv, xlsx, or Google Sheets file. If xlsx or Google Sheets, 
+                              the default sheet name to read in is #convert, to specify a different 
+                              sheet name separate it from the file name with a colon ex: file_name.xlsx:sheet_name.
+                              If '-' read from standard input.
 
 Options:
     -h, --help                           - show this screen.
@@ -36,17 +45,17 @@ Options:
     --csv                                - indicates that the protocol-dependent schema file is a csv (comma delimited) file.
     --xlsx                               - indicates that the protocol-dependent schema file is an xlsx (Excel) file.
     --json                               - indicates that the protocol-dependent schema file is a JSON file.
+    --gs                                 - indicates that the protocol-dependent schema file is a Google Sheets file.
                                            If a file type is not given then it will be guessed from the file extension.
     --additional <add_schema>            - an additional JSON Schema file that will be used to validate <input_JSON>.
     --format <format>                    - additional validation done for the desired supported format. 
                                            Current supported formats: 
-                                               mwtab_MS, 
-                                               mwtab_NMR, 
-                                               mwtab_NMR_bin
+                                               mwtab
     --no_base_schema                     - don't validate with the base JSON schema.
     --no_extra_checks                    - only do JSON Schema validation and nothing else.
     --input <input_JSON>                 - optionally give an input JSON file to save-schema to reproduce the 
                                            schema used to validate in the json command.
+    --save <output_name>                 - save the JSON Schema created from the protocol-dependent schema.
     
 
 The "json" command will validate the <input_JSON> against the internal base_schema, and optional schema provided 
@@ -59,8 +68,19 @@ saved instead of the base_schema.
 
 The "schema" command will validate the <input_schema> against the JSON Schema meta schema.
 
-The "pds" command will validate that the <pds> file is a valid protocol-dependent schema file.
+The "pds" command will validate that the <pds> file is a valid protocol-dependent schema file. 
+If the --save option is given, then save the built JSON Schema.
+
+The "pds-to-table" command will read in a protocol-dependent schema in JSON form and save it out in a tabular form.
+
+The "pds-to-json" command will read in a protocol-dependent schema in tabular form and save it out in a JSON form. 
+
+The "cd-to-json-schema" command will read in conversion directives and create a JSON Schema 
+template file that can be filled in and used to validate files that will be converted using those directives.
 """
+
+## Add a section in documentation explaining cd-to-json-schema and how to use it.
+## Add examples for new commands in the examples folder.
 
 import re
 import sys
@@ -76,9 +96,12 @@ import jsonschema
 
 from messes import __version__
 from messes.extract import extract
-from messes.validate.validate_schema import base_schema, PD_schema, mwtab_schema_MS, mwtab_schema_NMR, mwtab_schema_NMR_bin
+from messes.validate.validate_schema import base_schema, PD_schema, mwtab_schema
+from messes.convert.convert import directives_to_table, literal_regex
+from messes.convert import user_input_checking
+from messes.convert import convert_schema
 
-supported_formats = ["mwtab_MS", "mwtab_NMR", "mwtab_NMR_bin"]
+supported_formats = ["mwtab"]
 
 def main() :
     args = docopt.docopt(__doc__, version=__version__)
@@ -118,8 +141,35 @@ def main() :
     ## Handle pds command.
     #####################
     if args["pds"]:
-        run_pds_command(args["<pds>"], args["--csv"], args["--xlsx"], args["--json"], 
-                        args["--gs"], args["--silent"])
+        run_pds_command(args["<pds>"], args["--save"], args["--csv"], args["--xlsx"], 
+                        args["--json"], args["--gs"], args["--silent"])
+        
+    
+    ##########################
+    ## Handle pds-to-table command.
+    ##########################
+    if args["pds-to-table"]:
+        run_pds_to_table_command(args["<pds_json>"], args["<output_name>"], 
+                                 args["<output_filetype>"], args["--silent"])
+        
+    
+    ##########################
+    ## Handle pds-to-json command.
+    ##########################
+    if args["pds-to-json"]:
+        run_pds_to_json_command(args["<pds_tabular>"], args["--csv"], args["--xlsx"], 
+                                args["--gs"], args["<output_name>"], args["--silent"])
+        
+    
+    ##########################
+    ## Handle pds-to-table command.
+    ##########################
+    if args["cd-to-json-schema"]:
+        run_conversion_directives_to_json_schema_command(args["<conversion_directives>"], 
+                                                         args["--csv"], args["--xlsx"], 
+                                                         args["--json"], args["--gs"], 
+                                                         args["<output_schema>"], args["--silent"])
+        
     
     
     
@@ -292,82 +342,8 @@ def read_and_validate_PDS(filepath: str, is_csv: bool, is_xlsx: bool,
     Raises:
         SystemExit: Will raise errors if filepath does not exist or there is a read in error.
     """
-    
-    from_stdin = False
-    if filepath == "-":
-        if not is_csv and not is_json:
-            ## Have to clear the input or the system prints an extra error.
-            sys.stdin.readlines()
-            print("Error:  When reading the protocol-dependent schema from standard input you must specify that it is '--csv' or '--json'.", file=sys.stderr)
-            sys.exit()
-        filepath = sys.stdin
-        from_stdin = True
-        
-                
-    
-    if is_csv or is_xlsx or is_gs or \
-       (not from_stdin and (re.search(r".*(\.xls[xm]?|\.csv)", filepath) or extract.TagParser.isGoogleSheetsFile(filepath))):
-        default_sheet_name = False
-        sheet_name = None
-        if not from_stdin:
-            if (reMatch := re.search(r"^(.*\.xls[xm]?):(.*)$", filepath)):
-                filepath = reMatch.group(1)
-                sheet_name = reMatch.group(2)
-            # elif not from_stdin and re.search(r"\.xls[xm]?$", filepath):
-            elif re.search(r"\.xls[xm]?$", filepath):
-                sheet_name = "#validate"
-                default_sheet_name = True
-            elif (reMatch := re.search(r"docs.google.com/spreadsheets/d/([^/]*)/[^:]*$", filepath)):
-                filepath = "https://docs.google.com/spreadsheets/d/" + reMatch.group(1) + "/export?format=xlsx"
-                sheet_name = "#validate"
-                default_sheet_name = True
-            elif (reMatch := re.search(r"docs.google.com/spreadsheets/d/([^/]*)/.*:(.*)$", filepath)):
-                filepath = "https://docs.google.com/spreadsheets/d/" + reMatch.group(1) + "/export?format=xlsx"
-                sheet_name = reMatch.group(2)
-        tagParser = extract.TagParser()
-        ## In order to print error messages correctly we have to know if loadSheet printed a message or not, so temporarily replace stderr.
-        old_stderr = sys.stderr
-        sys.stderr = buffer = io.StringIO()
-        try:
-            if worksheet_tuple := tagParser.loadSheet(filepath, sheet_name, isDefaultSearch=default_sheet_name):
-                tagParser.parseSheet(*worksheet_tuple)
-                PDS = tagParser.extraction
-                sys.stderr = old_stderr
-            else:
-                sys.stderr = old_stderr
-                if buffer.getvalue():
-                    ## Have to trim the extra newline off the end of buffer.
-                    print(buffer.getvalue()[0:-1], file=sys.stderr)
-                elif default_sheet_name:
-                    print("Error:  No sheet name was given for the file, so the default name " +\
-                          "of #validate was used, but it was not found in the file.", file=sys.stderr)
-                sys.exit()
-        except Exception as e:
-            sys.stderr = old_stderr
-            if from_stdin:
-                print("Error:  A problem was encountered when trying to read the protocol-dependent schema from stdin. " +\
-                      "Make sure the indicated file type is correct.", file=sys.stderr)
-                sys.exit()
-            raise e
-    
-    elif is_json or (not from_stdin and re.match(r".*\.json$", filepath)):
-        if from_stdin:
-            try:
-                PDS = json.load(filepath)
-            except Exception:
-                print("Error:  A problem was encountered when trying to read the protocol-dependent schema from stdin. " +\
-                      "Make sure the indicated file type is correct.", file=sys.stderr)
-                sys.exit()
-        elif not pathlib.Path(filepath).exists():
-            print("Error:  The value entered for the protocol-dependent schema, " + filepath + ", is not a valid file path or does not exist.", file=sys.stderr)
-            sys.exit()
-        else:
-            with open(filepath, 'r') as jsonFile:
-                PDS = json.load(jsonFile)
-    
-    else:
-        print("Error:  Unknown file type for the protocol-dependent schema file.", file=sys.stderr)
-        sys.exit()
+    PDS = read_json_or_tabular_file(filepath, is_csv, is_xlsx, is_json, is_gs, 
+                                    "protocol-dependent schema", "#validate", silent)
         
     # if (validate_PDS_parent_protocols(PDS) or validate_with_arbitrary_schema(PDS, PD_schema)) \
     #    and not no_last_message:
@@ -378,7 +354,107 @@ def read_and_validate_PDS(filepath: str, is_csv: bool, is_xlsx: bool,
             print("Error:  The provided protocol-dependent schema is not valid, so execution stops here.", file=sys.stderr)
         sys.exit()
         
-    return PDS
+    return PDS    
+
+
+def read_json_or_tabular_file(filepath: str, is_csv: bool, is_xlsx: bool, 
+                              is_json: bool, is_gs: bool, file_title: str, 
+                              default_sheet_name: str, silent: str) -> JSON:
+    """Read in a file from filepath.
+    
+    Args:
+        filepath: the path to the file or "-" meaning to read from stdin.
+        is_csv: whether the file is a csv file, used for reading from stdin.
+        is_xlsx: whether the file is a xlsx file.
+        is_json: whether the file is a json file, used for reading from stdin.
+        is_json: whether the file is a Google Sheets file.
+        file_title: a string to use for printing error messages about the file.
+        default_sheet_name: sheet name to default to for Excel and Google Sheets files.
+        silent: if "full" do not print any warnings, if "nuisance" do not print nuisance warnings.
+    
+    Returns:
+        The file contents.
+    
+    Raises:
+        SystemExit: Will raise errors if filepath does not exist or there is a read in error.
+    """
+    from_stdin = False
+    if filepath == "-":
+        if not is_csv and not is_json:
+            ## Have to clear the input or the system prints an extra error.
+            sys.stdin.readlines()
+            print("Error:  When reading the " + file_title + " from standard input you must specify that it is '--csv' or '--json'.", file=sys.stderr)
+            sys.exit()
+        filepath = sys.stdin
+        from_stdin = True
+        
+                
+    
+    if is_csv or is_xlsx or is_gs or \
+       (not from_stdin and (re.search(r".*(\.xls[xm]?|\.csv)", filepath) or extract.TagParser.isGoogleSheetsFile(filepath))):
+        default_sheet_name_used = False
+        sheet_name = None
+        if not from_stdin:
+            if (reMatch := re.search(r"^(.*\.xls[xm]?):(.*)$", filepath)):
+                filepath = reMatch.group(1)
+                sheet_name = reMatch.group(2)
+            # elif not from_stdin and re.search(r"\.xls[xm]?$", filepath):
+            elif re.search(r"\.xls[xm]?$", filepath):
+                sheet_name = default_sheet_name
+                default_sheet_name_used = True
+            elif (reMatch := re.search(r"docs.google.com/spreadsheets/d/([^/]*)/[^:]*$", filepath)):
+                filepath = "https://docs.google.com/spreadsheets/d/" + reMatch.group(1) + "/export?format=xlsx"
+                sheet_name = default_sheet_name
+                default_sheet_name_used = True
+            elif (reMatch := re.search(r"docs.google.com/spreadsheets/d/([^/]*)/.*:(.*)$", filepath)):
+                filepath = "https://docs.google.com/spreadsheets/d/" + reMatch.group(1) + "/export?format=xlsx"
+                sheet_name = reMatch.group(2)
+        tagParser = extract.TagParser()
+        ## In order to print error messages correctly we have to know if loadSheet printed a message or not, so temporarily replace stderr.
+        old_stderr = sys.stderr
+        sys.stderr = buffer = io.StringIO()
+        try:
+            if worksheet_tuple := tagParser.loadSheet(filepath, sheet_name, isDefaultSearch=default_sheet_name_used):
+                tagParser.parseSheet(*worksheet_tuple)
+                file_contents = tagParser.extraction
+                sys.stderr = old_stderr
+            else:
+                sys.stderr = old_stderr
+                if buffer.getvalue():
+                    ## Have to trim the extra newline off the end of buffer.
+                    print(buffer.getvalue()[0:-1], file=sys.stderr)
+                elif default_sheet_name_used:
+                    print("Error:  No sheet name was given for the file, so the default name " +\
+                          "of " + default_sheet_name + " was used, but it was not found in the file.", file=sys.stderr)
+                sys.exit()
+        except Exception as e:
+            sys.stderr = old_stderr
+            if from_stdin:
+                print("Error:  A problem was encountered when trying to read the " + file_title + " from stdin. " +\
+                      "Make sure the indicated file type is correct.", file=sys.stderr)
+                sys.exit()
+            raise e
+    
+    elif is_json or (not from_stdin and re.match(r".*\.json$", filepath)):
+        if from_stdin:
+            try:
+                file_contents = json.load(filepath)
+            except Exception:
+                print("Error:  A problem was encountered when trying to read the " + file_title + " from stdin. " +\
+                      "Make sure the indicated file type is correct.", file=sys.stderr)
+                sys.exit()
+        elif not pathlib.Path(filepath).exists():
+            print("Error:  The value entered for the " + file_title + ", " + filepath + ", is not a valid file path or does not exist.", file=sys.stderr)
+            sys.exit()
+        else:
+            with open(filepath, 'r') as jsonFile:
+                file_contents = json.load(jsonFile)
+    
+    else:
+        print("Error:  Unknown file type for the " + file_title + " file.", file=sys.stderr)
+        sys.exit()
+        
+    return file_contents
             
        
 def read_in_JSON_file(filepath: str, description: str) -> JSON:
@@ -418,6 +494,25 @@ def read_in_JSON_file(filepath: str, description: str) -> JSON:
         
     return user_json  
 
+
+def save_out_JSON_file(filepath: str, json_to_save: dict) -> None:
+    """Handle renaming and directing JSON to the correct output.
+    
+    Args:
+        filepath: the path to save the JSON file to or "-" meaning to write to stdout.
+        json_to_save: the JSON to save out.
+    """
+    if filepath == "-":
+        print(json.dumps(json_to_save, indent=2))
+    else:
+        if re.match(r".*\.json$", filepath):
+            json_save_name = filepath
+        else:
+            json_save_name = filepath + ".json"
+        
+        with open(json_save_name,'w') as jsonFile:
+            jsonFile.write(json.dumps(json_to_save, indent=2))
+            
 
 def validate_JSON_schema(user_json_schema: JSON) -> bool:
     """Validate an arbitrary JSON schema.
@@ -488,6 +583,71 @@ def create_validator(schema: JSON) -> jsonschema.protocols.Validator:
             return True
         return True
     return validator(schema=schema, format_checker=format_checker)
+
+
+def mwtab_checks(input_json: dict) -> None:
+    """Check that the input_json is ready for mwtab conversion.
+    
+    Run checks that cannot be done by JSON Schema. They are the following:
+        Check that at least 1 protocol has the "machine_type" field.
+        Check that the first collection protocol has a "sample_type" field.
+        Check that there are at least 1 collection type, treatment type, and sample_prep type protocols.
+        Check that the first subject has the "species", "species_type", and "taxonomy_id" fields.
+    
+    Args:
+        input_json: the JSON to perform the checks on.
+    """
+    if protocol_table := input_json.get("protocol"):
+        has_machine_type = False
+        is_first_collection_type = True
+        has_collection_type = False
+        has_sample_prep_type = False
+        has_treatment_type = False
+        for protocol, attributes in protocol_table.items():
+            if "machine_type" in attributes:
+                has_machine_type = True
+            
+            if protocol_type := attributes.get("type"):
+                if protocol_type == "collection":
+                    if is_first_collection_type and "sample_type" not in attributes:
+                        print("Error:  The first collection protocol, " + protocol + \
+                              ", does not have the required \"sample_type\" field for the mwtab conversion.", file=sys.stderr)
+                    is_first_collection_type = False
+                    has_collection_type = True
+                    
+                if protocol_type == "sample_prep":
+                    has_sample_prep_type = True
+                    
+                if protocol_type == "treatment":
+                    has_treatment_type = True
+                    
+    if not has_machine_type:
+        print("Error:  No protocols have a \"machine_type\" field used to mark " +\
+              "the protocol that contains the instrument information for the mwtab conversion.", file=sys.stderr)
+            
+    if not has_collection_type:
+        print("Error:  There are no \"collection\" type protocols. There must be " +\
+              "at least one for the mwtab conversion.", file=sys.stderr)
+    
+    if not has_sample_prep_type:
+        print("Error:  There are no \"sample_prep\" type protocols. There must be " +\
+              "at least one for the mwtab conversion.", file=sys.stderr)
+            
+    if not has_treatment_type:
+        print("Error:  There are no \"treatment\" type protocols. There must be " +\
+              "at least one for the mwtab conversion.", file=sys.stderr)
+            
+    
+    if entity_table := input_json.get("entity"):
+        for entity, attributes in entity_table.items():
+            if (entity_type := attributes.get("type")) and entity_type == "subject":
+                fields_not_in_subject = [field for field in ["species", "species_type", "taxonomy_id"] if field not in attributes]
+                if fields_not_in_subject:
+                    print("Error:  The first subject, " + entity + ", does not have the " +\
+                          "following required fields for the mwtab conversion:\n" +\
+                          "\n".join(fields_not_in_subject), file=sys.stderr)
+                break
+
 
 
 def validate_PDS_parent_protocols(pds: JSON, silent: str) -> bool:
@@ -1108,7 +1268,7 @@ def _check_format(format_check: str|None) -> None:
             sys.exit()
 
 
-def run_json_command(input_json_source: str, pds_source: str|None, additional_schema_source: str|None, 
+def run_json_command(input_json_source: str, pds_source: str|None, additional_schema_sources: list[str], 
                      no_base_schema: bool = False, no_extra_checks: bool = False, is_csv: bool = False, 
                      is_xlsx: bool = False, is_json: bool = False, is_gs: bool = False, silent: str = "none", 
                      format_check: str|None = None) -> None:
@@ -1117,7 +1277,7 @@ def run_json_command(input_json_source: str, pds_source: str|None, additional_sc
     Args:
         input_json_source: either a filepath or "-" to read from stdin.
         pds_source: either a filepath or "-" to read from stdin, if not None.
-        additional_schema_source: either a filepath or "-" to read from stdin, if not None.
+        additional_schema_sources: either a filepath or "-" to read from stdin, if not None.
         no_base_schema: if True do not validate with the base_schema, ignored if pds_source is given.
         no_extra_checks: if True only do JSON Schema validations.
         is_csv: if True the pds_source is a csv file.
@@ -1132,13 +1292,16 @@ def run_json_command(input_json_source: str, pds_source: str|None, additional_sc
     if pds_source:
         PDS = read_and_validate_PDS(pds_source, is_csv, is_xlsx, is_json, is_gs, False, silent)
     ## Read in JSON_schema if given.
-    if additional_schema_source:
-        user_json_schema = read_in_JSON_file(additional_schema_source, "additional schema")
-        if validate_JSON_schema(user_json_schema):
-            print("Error:  The provided additional JSON schema is not valid, so execution stops here.", file=sys.stderr)
-            sys.exit()
-    else:
-        user_json_schema = {}
+    if additional_schema_sources:
+        user_json_schemas = []
+        for additional_schema_source in additional_schema_sources:
+            user_json_schema = read_in_JSON_file(additional_schema_source, "additional schema")
+            if validate_JSON_schema(user_json_schema):
+                print("Error:  The additional JSON schema, " + additional_schema_source + ", is not valid, so execution stops here.", file=sys.stderr)
+                sys.exit()
+            user_json_schemas.append(user_json_schema)
+    # else:
+    #     user_json_schema = {}
     
     ## Read in input_JSON.
     input_json = read_in_JSON_file(input_json_source, "input JSON")
@@ -1181,21 +1344,19 @@ def run_json_command(input_json_source: str, pds_source: str|None, additional_sc
             protocol_description_check(input_json)
     
     ## Do additional schema validation if user provided it.
-    if additional_schema_source:
-        ## Determine the validator for the schema and replace numeric and integer formats by type casting them.
-        validator = create_validator(user_json_schema)
-        convert_formats(validator, input_json)
-        
-        # validate_with_arbitrary_schema(input_json, user_json_schema)
-        print_better_error_messages(validator.iter_errors(input_json))
+    if additional_schema_sources:
+        for user_json_schema in user_json_schemas:
+            ## Determine the validator for the schema and replace numeric and integer formats by type casting them.
+            validator = create_validator(user_json_schema)
+            convert_formats(validator, input_json)
+            
+            # validate_with_arbitrary_schema(input_json, user_json_schema)
+            print_better_error_messages(validator.iter_errors(input_json))
         
     match format_check:
-        case "mwtab_MS":
-            print_better_error_messages(create_validator(mwtab_schema_MS).iter_errors(input_json))
-        case "mwtab_NMR":
-            print_better_error_messages(create_validator(mwtab_schema_NMR).iter_errors(input_json))
-        case "mwtab_NMR_bin":
-            print_better_error_messages(create_validator(mwtab_schema_NMR_bin).iter_errors(input_json))
+        case "mwtab":
+            print_better_error_messages(create_validator(mwtab_schema).iter_errors(input_json))
+            mwtab_checks(input_json)
 
 
 def run_save_schema_command(pds_source: str|None, output_schema_path: str, input_json_path: str|None,
@@ -1218,12 +1379,8 @@ def run_save_schema_command(pds_source: str|None, output_schema_path: str, input
     
     if format_check:
         match format_check:
-            case "mwtab_MS":
-                composite_schema = mwtab_schema_MS
-            case "mwtab_NMR":
-                composite_schema = mwtab_schema_NMR
-            case "mwtab_NMR_bin":
-                composite_schema = mwtab_schema_NMR_bin
+            case "mwtab":
+                composite_schema = mwtab_schema
     
     elif pds_source:
         PDS = read_and_validate_PDS(pds_source, is_csv, is_xlsx, is_json, is_gs, False, silent)
@@ -1237,16 +1394,8 @@ def run_save_schema_command(pds_source: str|None, output_schema_path: str, input
     else:
         composite_schema = base_schema
     
-    if output_schema_path == "-":
-        print(json.dumps(composite_schema, indent=2))
-    else:
-        if re.match(r".*\.json$", output_schema_path):
-            json_save_name = output_schema_path
-        else:
-            json_save_name = output_schema_path + ".json"
-        
-        with open(json_save_name,'w') as jsonFile:
-            jsonFile.write(json.dumps(composite_schema, indent=2))
+    save_out_JSON_file(output_schema_path, composite_schema)
+    
 
 
 def run_schema_command(input_schema_source: str) -> None:
@@ -1260,12 +1409,13 @@ def run_schema_command(input_schema_source: str) -> None:
         print("No errors. This is a valid JSON schema.")
 
 
-def run_pds_command(pds_source: str, is_csv: bool = False, is_xlsx: bool = False, 
+def run_pds_command(pds_source: str, output_path: str|None = None, is_csv: bool = False, is_xlsx: bool = False, 
                    is_json: bool = False, is_gs: bool = False, silent: str = "none") -> None:
     """Run the pds command.
     
     Args:
         pds_source: either a filepath or "-" to read from stdin.
+        output_path: if given then save the JSON Schema from the PDS.
         is_csv: if True the pds_source is a csv file.
         is_xlsx: if True the pds_source is an xlsx file.
         is_json: if True the pds_source is a JSON file.
@@ -1276,6 +1426,158 @@ def run_pds_command(pds_source: str, is_csv: bool = False, is_xlsx: bool = False
     composite_schema = build_PD_schema(PDS)
     if validate_JSON_schema(composite_schema) and not silent == "full":
         print("Warning:  The schema created from the protocol-dependent schema is not valid.", file=sys.stderr)
+    
+    if output_path:
+        save_out_JSON_file(output_path, composite_schema)
 
+
+def run_pds_to_table_command(pds_source: str, output_path: str, output_filetype: str, silent: str = "none") -> None:
+    """Run the pds-to-table command.
+    
+    Args:
+        pds_source: either a filepath or "-" to read from stdin.
+        output_path: either a filepath or "-" to write to stdout.
+        output_filetype: either "xlsx" or "csv".
+        silent: if "full" do not print any warnings, if "nuisance" do not print nuisance warnings.
+    """
+    PDS = read_and_validate_PDS(pds_source, False, False, True, False, False, silent)
+    
+    if output_path == "-":
+        table_to_save = directives_to_table(PDS)
+        table_to_save.to_csv(sys.stdout, index=False, header=False)
+    else:
+        output_filetype = output_filetype if output_filetype else "csv"
+        
+        if re.match(r".*\." + output_filetype + "$", output_path):
+            save_name = output_path
+        else:
+            save_name = output_path + "." + output_filetype
+        
+        if output_filetype == "xlsx":
+            table_to_save = directives_to_table(PDS)
+            table_to_save.to_excel(save_name, index=False, header=False)
+        elif output_filetype == "csv":
+            table_to_save = directives_to_table(PDS)
+            table_to_save.to_csv(save_name, index=False, header=False)
+        else:
+            print("Error:  Unknown output filetype.", file=sys.stderr)
+    
+
+def run_pds_to_json_command(pds_source: str, is_csv: bool, is_xlsx: bool, is_gs: bool, 
+                            output_path: str, silent: str = "none") -> None:
+    """Run the pds-to-json command.
+    
+    Args:
+        pds_source: either a filepath or "-" to read from stdin.
+        is_csv: if True the pds_source is a csv file.
+        is_xlsx: if True the pds_source is an xlsx file.
+        is_gs: if True the pds_source is a Google Sheets file.
+        output_path: either a filepath or "-" to write to stdout.
+        silent: if "full" do not print any warnings, if "nuisance" do not print nuisance warnings.
+    """
+    PDS = read_and_validate_PDS(pds_source, is_csv, is_xlsx, False, is_gs, False, silent)
+    
+    save_out_JSON_file(output_path, PDS)    
+        
+
+def run_conversion_directives_to_json_schema_command(conversion_directives_source: str, 
+                                                 is_csv: bool, is_xlsx: bool, is_json: bool, 
+                                                 is_gs: bool, output_schema_path: str, 
+                                                 silent: str) -> None:
+    """Run the cd-to-json command.
+    
+    Args:
+        conversion_directives_source: either a filepath or "-" to read from stdin.
+        is_csv: if True the conversion_directives_source is a csv file.
+        is_xlsx: if True the conversion_directives_source is an xlsx file.
+        is_json: if True the conversion_directives_source is a JSON file.
+        is_gs: if True the conversion_directives_source is a Google Sheets file.
+        silent: if "full" do not print any warnings, if "nuisance" do not print nuisance warnings.
+    """
+    conversion_directives = read_json_or_tabular_file(conversion_directives_source, 
+                                                      is_csv, is_xlsx, is_json, is_gs,
+                                                      "conversion directives", "#convert", silent)
+    try:
+        user_input_checking.validate_conversion_directives(conversion_directives, convert_schema.directives_schema)
+    except SystemExit:
+        print("Error:  The conversion directives are not valid, so a JSON schema could not be created.", file=sys.stderr)
+        sys.exit()
+        
+    def add_table(schema, table):
+        if table not in schema["properties"]:
+            schema["properties"][table] = {"type":"object", "additionalProperties":{"type":"object", "properties":{}}}
+        
+    def add_field(schema, table, field, required):
+        schema["properties"][table]["additionalProperties"]["properties"][field] = {}
+        if required:
+            if "required" in schema["properties"][table]["additionalProperties"]:
+                if field not in schema["properties"][table]["additionalProperties"]["required"]:
+                    schema["properties"][table]["additionalProperties"]["required"].append(field)
+            else:
+                schema["properties"][table]["additionalProperties"]["required"] = [field]
+    
+    new_schema = {"type":"object", "properties":{}}
+    for conversion_table, directives in conversion_directives.items():
+        for directive, directive_attributes in directives.items():
+            if "table" not in directive_attributes:
+                continue
+            table = directive_attributes["table"]
+            required = True
+            if (required_attr := directive_attributes.get("required")) is not None:
+                if isinstance(required_attr, bool):
+                    required = required_attr
+                elif isinstance(required_attr, str) and required_attr.lower() == "false":
+                    required = False
+            
+            ## "headers" keyword
+            if directive_attributes.get("headers"):
+                for pair in directive_attributes["headers"]:
+                    split = pair.split("=")
+                    output_key = split[0].strip()
+                    input_key = split[1].strip()
+                    
+                    if not re.match(literal_regex, output_key):
+                        add_table(new_schema, table)
+                        add_field(new_schema, table, output_key, required)
+                        
+                    if not re.match(literal_regex, input_key):
+                        add_table(new_schema, table)
+                        add_field(new_schema, table, input_key, required)
+                        
+            ## "fields" keyword
+            if fields := directive_attributes.get("fields"):
+                for field in fields:
+                    if not re.match(literal_regex, field):
+                        add_table(new_schema, table)
+                        add_field(new_schema, table, field, required)
+                        
+            ## "test" keyword
+            if test := directive_attributes.get("test"):
+                split = test.split("=")
+                test_field = split[0].strip()
+                add_table(new_schema, table)
+                add_field(new_schema, table, test_field, required)
+            
+            ## "collate" keyword
+            if collate := directive_attributes.get("collate"):
+                add_table(new_schema, table)
+                add_field(new_schema, table, collate, required)
+                
+            ## "sort_by" keyword
+            if sort_by := directive_attributes.get("sort_by"):
+                for field in sort_by:
+                    if not re.match(literal_regex, field):
+                        add_table(new_schema, table)
+                        add_field(new_schema, table, field, required)
+                        
+            ## "optional_headers" keyword
+            if optional_headers := directive_attributes.get("optional_headers"):
+                for field in optional_headers:
+                    if not re.match(literal_regex, field):
+                        add_table(new_schema, table)
+                        add_field(new_schema, table, field, False)
+                
+    
+    save_out_JSON_file(output_schema_path, new_schema)
 
 

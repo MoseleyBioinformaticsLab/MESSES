@@ -189,6 +189,7 @@
         "intensity%type",
         "intensity%units",
         "assignment",
+        "assignment%method",
         "entity.id",
         "protocol.id",
         "formula",
@@ -214,11 +215,14 @@
       "required": "True",
       "collate": "assignment",
       "headers": [
-        "\"Metabolite\"=assignment",
-        "\"formula\"=formula",
-        "\"compound\"=compound",
-        "\"isotopologue\"=isotopologue",
-        "\"isotopologue%type\"=isotopologue%type"
+        "\"Metabolite\"=assignment"
+      ],
+      "optional_headers": [
+        "assignment%method",
+        "formula",
+        "compound",
+        "isotopologue",
+        "isotopologue%type"
       ],
       "id": "Metabolites",
       "sort_by": [

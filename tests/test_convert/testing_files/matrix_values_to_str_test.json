@@ -6,7 +6,7 @@
         "intensity",
         "intensity%type",
         "intensity%units",
-        "resonance_assignment",
+        "assignment",
         "entity.id",
         "base_inchi",
         "representative_inchi",
@@ -19,12 +19,12 @@
       ],
       "fields_to_headers": "True",
       "headers": [
-        "\"Metabolite\"=resonance_assignment",
+        "\"Metabolite\"=assignment",
         "\"sample_id\"=entity.id"
       ],
       "id": "Extended",
       "sort_by": [
-        "resonance_assignment"
+        "assignment"
       ],
       "sort_order": "ascending",
       "table": "measurement",

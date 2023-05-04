@@ -198,6 +198,7 @@ ms_directives = \
         "intensity%type",
         "intensity%units",
         "assignment",
+        "assignment%method",
         "entity.id",
         "protocol.id",
         "formula",
@@ -223,12 +224,15 @@ ms_directives = \
       "required": "True",
       "collate": "assignment",
       "headers": [
-        "\"Metabolite\"=assignment",
-        "\"formula\"=formula",
-        "\"compound\"=compound",
-        "\"isotopologue\"=isotopologue",
-        "\"isotopologue%type\"=isotopologue%type"
+        "\"Metabolite\"=assignment"
       ],
+      "optional_headers": [
+          "assignment%method",
+          "formula",
+          "compound",
+          "isotopologue",
+          "isotopologue%type"
+          ],
       "id": "Metabolites",
       "sort_by": [
         "assignment"
@@ -742,14 +746,14 @@ nmr_directives["NM"] = {
 nmr_directives["NMR_METABOLITE_DATA"] = {
     "Data": {
       "required": "True",
-      "collate": "resonance_assignment",
+      "collate": "assignment",
       "headers": [
-        "\"Metabolite\"=resonance_assignment",
+        "\"Metabolite\"=assignment",
         "entity.id=intensity"
       ],
       "id": "Data",
       "sort_by": [
-        "resonance_assignment"
+        "assignment"
       ],
       "sort_order": "ascending",
       "table": "measurement",
@@ -763,7 +767,8 @@ nmr_directives["NMR_METABOLITE_DATA"] = {
         "intensity",
         "intensity%type",
         "intensity%units",
-        "resonance_assignment",
+        "assignment",
+        "assignment%method",
         "entity.id",
         "protocol.id",
         "base_inchi",
@@ -773,16 +778,17 @@ nmr_directives["NMR_METABOLITE_DATA"] = {
         "peak_pattern",
         "proton_count",
         "transient_peak",
-        "transient_peak%type"
+        "transient_peak%type",
+        "compound"
       ],
       "fields_to_headers": "True",
       "headers": [
-        "\"Metabolite\"=resonance_assignment",
+        "\"Metabolite\"=assignment",
         "\"sample_id\"=entity.id"
       ],
       "id": "Extended",
       "sort_by": [
-        "resonance_assignment"
+        "assignment"
       ],
       "sort_order": "ascending",
       "table": "measurement",
@@ -791,21 +797,25 @@ nmr_directives["NMR_METABOLITE_DATA"] = {
     },
     "Metabolites": {
       "required": "True",
-      "collate": "resonance_assignment",
+      "collate": "assignment",
       "headers": [
-        "\"Metabolite\"=resonance_assignment",
-        "\"base_inchi\"=base_inchi",
-        "\"representative_inchi\"=representative_inchi",
-        "\"isotopic_inchi\"=isotopic_inchi",
-        "\"peak_description\"=peak_description",
-        "\"peak_pattern\"=peak_pattern",
-        "\"proton_count\"=proton_count",
-        "\"transient_peak\"=transient_peak",
-        "\"transient_peak_type\"=transient_peak%type"
+        "\"Metabolite\"=assignment"
       ],
+      "optional_headers": [
+          "assignment%method",
+          "base_inchi",
+          "representative_inchi",
+          "isotopic_inchi",
+          "peak_description",
+          "peak_pattern",
+          "proton_count",
+          "transient_peak",
+          "transient_peak%type",
+          "compound"
+          ],
       "id": "Metabolites",
       "sort_by": [
-        "resonance_assignment"
+        "assignment"
       ],
       "sort_order": "ascending",
       "table": "measurement",

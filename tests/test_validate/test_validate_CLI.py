@@ -7,7 +7,9 @@ import time
 import json
 import subprocess
 import platform
+import io
 
+import pandas
 
 
 @pytest.fixture(scope="module", autouse=True)
@@ -30,6 +32,32 @@ def delete_json():
             time_counter += 1
             if time_counter > time_to_wait:
                 raise FileExistsError(output_path_json + " was not deleted within " + str(time_to_wait) + " seconds, so it is assumed that it won't be and something went wrong.")
+
+output_path_csv = pathlib.Path("output.csv")
+@pytest.fixture(autouse=True)
+def delete_csv():                
+    if output_path_csv.exists():
+        os.remove(output_path_csv)
+        time_to_wait=10
+        time_counter = 0
+        while output_path_csv.exists():
+            time.sleep(1)
+            time_counter += 1
+            if time_counter > time_to_wait:
+                raise FileExistsError(output_path_csv + " was not deleted within " + str(time_to_wait) + " seconds, so it is assumed that it won't be and something went wrong.")
+                
+output_path_xlsx = pathlib.Path("output.xlsx")
+@pytest.fixture(autouse=True)
+def delete_xlsx():                
+    if output_path_xlsx.exists():
+        os.remove(output_path_xlsx)
+        time_to_wait=10
+        time_counter = 0
+        while output_path_xlsx.exists():
+            time.sleep(1)
+            time_counter += 1
+            if time_counter > time_to_wait:
+                raise FileExistsError(output_path_xlsx + " was not deleted within " + str(time_to_wait) + " seconds, so it is assumed that it won't be and something went wrong.")
                 
 
 
@@ -347,41 +375,84 @@ def test_json_command_silent_nuisance():
 
 
 def test_json_command_format_mwtab_MS():
-    """Test that --format mwtab_MS works."""
+    """Test that --format mwtab works."""
     
     test_file = "MS_base_input_truncated_mwtab_error.json"
     
-    command = "messes validate json ../" + test_file + " --silent nuisance --format mwtab_MS"
+    command = "messes validate json ../" + test_file + " --silent nuisance --format mwtab"
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
     
     errors = [
-        "Error:  The entry ['protocol']['ICMS1'] is missing the required property 'column_name'.",
-        "Error:  The entry ['protocol']['mouse_tissue_collection'] is missing the required property 'description'.",
         "Error:  The entry ['protocol']['naive'] is missing the required property 'description'.",
+        "Error:  The entry ['protocol']['IC-FTMS_preparation'] is missing the required property 'order'.",
+        "Error:  The entry ['protocol']['frozen_tissue_grind'] is missing the required property 'order'.",
+        "Error:  The entry ['protocol']['ICMS1'] is missing the required property 'column_name'.",
+        "Error:  The entry ['protocol']['protein_extraction'] is missing the required property 'order'.",
+        "Error:  The entry ['protocol']['tissue_quench'] is missing the required property 'order'.",
+        "Error:  The entry ['protocol']['mouse_tissue_collection'] is missing the required property 'description'.",
         "Error:  The entry ['protocol']['polar_extraction'] is missing the required property 'description'.",
-        "Error:  The entry ['measurement']['(S)-2-Acetolactate Glutaric acid Methylsuccinic acid-13C0-16_A0_Lung_naive_0days_170427_UKy_GCH_rep1-polar-ICMS_A'] " + \
-        "is missing the required property 'formula'."
+        "Error:  The entry ['protocol']['polar_extraction'] is missing the required property 'order'.",
+        "Error:  The entry ['measurement']['(S)-2-Acetolactate Glutaric acid Methylsuccinic acid-13C0-16_A0_Lung_naive_0days_170427_UKy_GCH_rep1-polar-ICMS_A'] is missing the required property 'assignment'.",
+        "Error:  The entry ['measurement']['(S)-2-Acetolactate Glutaric acid Methylsuccinic acid-13C0-16_A0_Lung_naive_0days_170427_UKy_GCH_rep1-polar-ICMS_A'] is missing the required property 'intensity'."
+        ]
+    for error in errors:
+        assert error in output
+        
+
+def test_json_command_format_mwtab_extra_MS():
+    """Test that --format mwtab works for the extra checks."""
+    
+    test_file = "MS_base_input_truncated_mwtab_extra_error.json"
+    
+    command = "messes validate json ../" + test_file + " --silent nuisance --format mwtab"
+    command = command.split(" ")
+    subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
+    output = subp.stderr
+    
+    errors = [
+        'Error:  The first collection protocol, mouse_tissue_collection, does not have the required "sample_type" field for the mwtab conversion.',
+        'Error:  No protocols have a "machine_type" field used to mark the protocol that contains the instrument information for the mwtab conversion.',
+        'Error:  The first subject, 01_A0_naive_0days_UKy_GCH_rep1, does not have the following required fields for the mwtab conversion:',
+        'species',
+        'species_type',
+        'taxonomy_id'
+        ]
+    for error in errors:
+        assert error in output
+        
+
+def test_json_command_format_mwtab_extra_MS_2():
+    """Test that --format mwtab works for the extra checks 2."""
+    
+    test_file = "MS_base_input_truncated_mwtab_extra_error_2.json"
+    
+    command = "messes validate json ../" + test_file + " --silent nuisance --format mwtab"
+    command = command.split(" ")
+    subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
+    output = subp.stderr
+    
+    errors = [
+        'Error:  There are no "collection" type protocols. There must be at least one for the mwtab conversion.',
+        'Error:  There are no "sample_prep" type protocols. There must be at least one for the mwtab conversion.',
+        'Error:  There are no "treatment" type protocols. There must be at least one for the mwtab conversion.'
         ]
     for error in errors:
         assert error in output
         
 
 def test_json_command_format_mwtab_NMR():
-    """Test that --format mwtab_NMR works."""
+    """Test that --format mwtab works."""
     
     test_file = "NMR_base_input_mwtab_error.json"
     
-    command = "messes validate json ../" + test_file + " --silent nuisance --format mwtab_NMR"
+    command = "messes validate json ../" + test_file + " --silent nuisance --format mwtab"
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
     
     errors = [
-        "Error:  The value for ['measurement'][\"AXP-1'_1-16_A0_Lung_naive_0days_170427_UKy_GCH_rep1-polar-NMR_A-NMR2\"]['base_inchi'] " +\
-        "cannot be empty.",
-        
         "Error:  The entry ['measurement'][\"AXP-1'_1-16_A0_Lung_naive_0days_170427_UKy_GCH_rep1-polar-NMR_A-NMR2\"] " +\
         "is missing the required property 'intensity'."
         ]
@@ -390,11 +461,11 @@ def test_json_command_format_mwtab_NMR():
         
 
 def test_json_command_format_mwtab_NMR_bin():
-    """Test that --format mwtab_NMR_bin works."""
+    """Test that --format mwtab works."""
     
     test_file = "NMR_binned_base_input_mwtab_error.json"
     
-    command = "messes validate json ../" + test_file + " --silent nuisance --format mwtab_NMR_bin"
+    command = "messes validate json ../" + test_file + " --silent nuisance --format mwtab"
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
@@ -434,6 +505,8 @@ def test_save_schema_command_no_options():
     
     assert output == ""
     
+    assert output_path_json.exists()
+    
     with open(output_path_json, 'r') as jsonFile:
         output_schema = json.load(jsonFile)
     
@@ -453,6 +526,8 @@ def test_save_schema_command_pds():
     
     assert output == ""
     
+    assert output_path_json.exists()
+    
     with open(output_path_json, 'r') as jsonFile:
         output_schema = json.load(jsonFile)
     
@@ -471,6 +546,8 @@ def test_save_schema_command_pds_and_input():
     output = subp.stderr
     
     assert output == ""
+    
+    assert output_path_json.exists()
     
     with open(output_path_json, 'r') as jsonFile:
         output_schema = json.load(jsonFile)
@@ -494,6 +571,8 @@ def test_save_schema_command_pds_from_stdin_csv():
     
     assert output == ""
     
+    assert output_path_json.exists()
+    
     with open(output_path_json, 'r') as jsonFile:
         output_schema = json.load(jsonFile)
     
@@ -515,6 +594,8 @@ def test_save_schema_command_pds_from_stdin_json():
     output = subp.stderr
     
     assert output == ""
+    
+    assert output_path_json.exists()
     
     with open(output_path_json, 'r') as jsonFile:
         output_schema = json.load(jsonFile)
@@ -538,6 +619,8 @@ def test_save_schema_command_input_from_stdin():
     
     assert output == ""
     
+    assert output_path_json.exists()
+    
     with open(output_path_json, 'r') as jsonFile:
         output_schema = json.load(jsonFile)
     
@@ -557,6 +640,8 @@ def test_save_schema_command_silent_nuisance():
     
     assert output == ""
     
+    assert output_path_json.exists()
+    
     with open(output_path_json, 'r') as jsonFile:
         output_schema = json.load(jsonFile)
     
@@ -575,6 +660,8 @@ def test_save_schema_command_silent_full():
     output = subp.stderr
     
     assert output == ""
+    
+    assert output_path_json.exists()
     
     with open(output_path_json, 'r') as jsonFile:
         output_schema = json.load(jsonFile)
@@ -603,61 +690,26 @@ def test_save_schema_command_stdout():
     assert output_schema == base_schema
 
 
-def test_save_schema_command_format_mwtab_MS():
-    """Test that the save_schema commmand produces expected file for the mwtab_MS format."""
+def test_save_schema_command_format_mwtab():
+    """Test that the save_schema commmand produces expected file for the mwtab format."""
     
-    command = "messes validate save-schema output --format mwtab_MS --silent nuisance"
+    command = "messes validate save-schema output --format mwtab --silent nuisance"
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
     
     assert output == ""
     
-    with open(output_path_json, 'r') as jsonFile:
-        output_schema = json.load(jsonFile)
-    
-    with open("mwtab_MS_schema.json", 'r') as jsonFile:
-        base_schema = json.load(jsonFile)
-        
-    assert output_schema == base_schema
-    
-
-def test_save_schema_command_format_mwtab_NMR():
-    """Test that the save_schema commmand produces expected file for the mwtab_NMR format."""
-    
-    command = "messes validate save-schema output --format mwtab_NMR --silent nuisance"
-    command = command.split(" ")
-    subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
-    output = subp.stderr
-    
-    assert output == ""
+    assert output_path_json.exists()
     
     with open(output_path_json, 'r') as jsonFile:
         output_schema = json.load(jsonFile)
     
-    with open("mwtab_NMR_schema.json", 'r') as jsonFile:
+    with open("mwtab_schema.json", 'r') as jsonFile:
         base_schema = json.load(jsonFile)
         
     assert output_schema == base_schema
     
-
-def test_save_schema_command_format_mwtab_NMR_bin():
-    """Test that the save_schema commmand produces expected file for the mwtab_NMR_bin format."""
-    
-    command = "messes validate save-schema output --format mwtab_NMR_bin --silent nuisance"
-    command = command.split(" ")
-    subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
-    output = subp.stderr
-    
-    assert output == ""
-    
-    with open(output_path_json, 'r') as jsonFile:
-        output_schema = json.load(jsonFile)
-    
-    with open("mwtab_NMR_bin_schema.json", 'r') as jsonFile:
-        base_schema = json.load(jsonFile)
-        
-    assert output_schema == base_schema
 
 
 #############
@@ -705,6 +757,29 @@ def test_pds_command_no_errors():
     output = subp.stderr
     
     assert output == ""
+    
+
+def test_pds_command_save_option():
+    """Test the pds command saves the JSON Schema when --save is given."""
+    
+    test_file = "PDS_base.json"
+    
+    command = "messes validate pds ../" + test_file + " --silent nuisance --save output"
+    command = command.split(" ")
+    subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
+    output = subp.stderr
+    
+    assert output == ""
+    
+    assert output_path_json.exists()
+    
+    with open(output_path_json, 'r') as jsonFile:
+        output_schema = json.load(jsonFile)
+    
+    with open("PDS_JSON_Schema.json", 'r') as jsonFile:
+        directives_schema = json.load(jsonFile)
+        
+    assert output_schema == directives_schema
 
 
 def test_pds_command_read_from_stdin_csv():
@@ -746,5 +821,117 @@ def test_pds_command_silent_full():
     assert output == ""
 
 
+#################
+## pds-to-table
+#################
 
+def test_pds_to_table_command_csv():
+    """Test the pds-to-table command works as expected for csv output."""
+    
+    command = "messes validate pds-to-table ../PDS_base.json output csv"
+    command = command.split(" ")
+    subprocess.run(command, capture_output=True, encoding="UTF-8", shell=True)
+    
+    compare_df = pandas.read_csv("pds_to_table.csv", header=None)
+    new_df = pandas.read_csv("output.csv", header=None)
+    
+    assert compare_df.equals(new_df)
+
+
+def test_pds_to_table_command_xlsx():
+    """Test the pds-to-table command works as expected for xlsx output."""
+    
+    command = "messes validate pds-to-table ../PDS_base.json output xlsx"
+    command = command.split(" ")
+    subprocess.run(command, capture_output=True, encoding="UTF-8", shell=True)
+    
+    compare_df = pandas.read_excel("pds_to_table.xlsx", header=None)
+    new_df = pandas.read_excel("output.xlsx", header=None)
+    
+    assert compare_df.equals(new_df)
+
+
+def test_pds_to_table_command_stdout():
+    """Test the pds-to-table command works as expected for stdout output."""
+    
+    command = "messes validate pds-to-table ../PDS_base.json -"
+    command = command.split(" ")
+    subp = subprocess.run(command, capture_output=True, encoding="UTF-8", shell=True)
+    output = subp.stdout
+    
+    compare_df = pandas.read_csv("pds_to_table.csv", header=None)
+    new_df = pandas.read_csv(io.StringIO(output), header=None)
+    
+    assert compare_df.equals(new_df)
+
+
+def test_pds_to_table_command_invalid_output_type():
+    """Test the pds-to-table command prints an error when the output filetype is invalid."""
+    
+    command = "messes validate pds-to-table ../PDS_base.json output asdf"
+    command = command.split(" ")
+    subp = subprocess.run(command, capture_output=True, encoding="UTF-8", shell=True)
+    output = subp.stderr
+    
+    assert "Error:  Unknown output filetype." in output
+
+
+
+#################
+## pds-to-json
+#################
+
+def test_pds_to_json_command():
+    """Test the pds-to-json command works as expected."""
+    
+    command = "messes validate pds-to-json ../PDS_base.csv output"
+    command = command.split(" ")
+    subprocess.run(command, capture_output=True, encoding="UTF-8", shell=True)
+    
+    assert output_path_json.exists()
+    
+    with open(output_path_json, 'r') as jsonFile:
+        output_schema = json.load(jsonFile)
+    
+    with open("pds_to_json.json", 'r') as jsonFile:
+        directives_schema = json.load(jsonFile)
+    
+    assert output_schema == directives_schema
+
+
+#################
+## cd-to-json-schema
+#################
+
+def test_cd_to_json_schema_command():
+    """Test the cd-to-json-schema command works as expected."""
+    
+    command = "messes validate cd-to-json-schema ../mwtab_ms_conversion_directives.json output"
+    command = command.split(" ")
+    subp = subprocess.run(command, capture_output=True, encoding="UTF-8", shell=True)
+    output = subp.stderr
+    
+    assert output == ""
+    
+    assert output_path_json.exists()
+    
+    with open(output_path_json, 'r') as jsonFile:
+        output_schema = json.load(jsonFile)
+    
+    with open("MS_directives_schema.json", 'r') as jsonFile:
+        directives_schema = json.load(jsonFile)
+        
+    assert output_schema == directives_schema
+    
+
+def test_cd_to_json_schema_command_invalid_directives():
+    """Test the cd-to-json-schema command prints an error when the directives are invalid."""
+    
+    command = "messes validate cd-to-json-schema ../mwtab_ms_conversion_directives_error.json output"
+    command = command.split(" ")
+    subp = subprocess.run(command, capture_output=True, encoding="UTF-8", shell=True)
+    output = subp.stderr
+    
+    assert "Error:  The conversion directives are not valid, so a JSON schema could not be created." in output
+    
 

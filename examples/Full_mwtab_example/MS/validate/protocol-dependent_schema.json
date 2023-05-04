@@ -1,472 +1,726 @@
 {
   "Chromatography_MS_measurement": {
     "chromatography_description": {
+      "id": "chromatography_description",
       "minLength": "1",
       "table": "protocol",
       "type": "string"
     },
+    "retention_time%units": {
+      "id": "retention_time%units",
+      "minLength": "1",
+      "table": "measurement",
+      "type": "string"
+    },
     "chromatography_instrument_name": {
+      "id": "chromatography_instrument_name",
       "minLength": "1",
       "required": "True",
       "table": "protocol",
       "type": "string"
     },
     "chromatography_type": {
+      "id": "chromatography_type",
       "minLength": "1",
       "required": "True",
       "table": "protocol",
       "type": "string"
     },
     "column_name": {
+      "id": "column_name",
       "minLength": "1",
       "required": "True",
       "table": "protocol",
       "type": "string"
     },
     "retention_time": {
+      "id": "retention_time",
       "format": "numeric",
       "table": "measurement",
       "type": "number"
-    },
-    "retention_time%units": {
-      "minLength": "1",
-      "table": "measurement",
-      "type": "string"
     }
   },
-  "DI-FTMS_measurement": {},
-  "GCMS_measurement": {},
-  "IC-FTMS_measurement": {
+  "DI-FTMS_measurement": {
+    "assignment%method": {
+      "id": "assignment%method",
+      "minLength": "1",
+      "required": "False",
+      "table": "measurement",
+      "type": "string"
+    },
+    "compound": {
+      "id": "compound",
+      "minLength": "1",
+      "required": "False",
+      "table": "measurement",
+      "type": "string"
+    },
+    "intensity%type": {
+      "id": "intensity%type",
+      "minLength": "1",
+      "required": "False",
+      "table": "measurement",
+      "type": "string"
+    },
     "concentration": {
+      "id": "concentration",
+      "format": "numeric",
+      "required": "False",
+      "table": "measurement",
+      "type": "number"
+    },
+    "corrected_raw_intensity": {
+      "id": "corrected_raw_intensity",
+      "format": "numeric",
+      "required": "False",
+      "table": "measurement",
+      "type": "number"
+    },
+    "intensity": {
+      "id": "intensity",
+      "format": "numeric",
+      "required": "False",
+      "table": "measurement",
+      "type": "number"
+    },
+    "normalized_concentration": {
+      "id": "normalized_concentration",
+      "format": "numeric",
+      "required": "False",
+      "table": "measurement",
+      "type": "number"
+    },
+    "raw_intensity": {
+      "id": "raw_intensity",
       "format": "numeric",
       "required": "True",
       "table": "measurement",
       "type": "number"
     },
+    "raw_intensity_sd": {
+      "id": "raw_intensity_sd",
+      "format": "numeric",
+      "required": "True",
+      "table": "measurement",
+      "type": "number"
+    },
+    "raw_mz": {
+      "id": "raw_mz",
+      "format": "numeric",
+      "required": "True",
+      "table": "measurement",
+      "type": "number"
+    },
+    "raw_mz_sd": {
+      "id": "raw_mz_sd",
+      "format": "numeric",
+      "required": "True",
+      "table": "measurement",
+      "type": "number"
+    },
+    "formula": {
+      "id": "formula",
+      "items": "{'minLength': 1, 'type': 'string'}",
+      "minItems": "1",
+      "minLength": "1",
+      "table": "measurement",
+      "type": [
+        "array",
+        "string"
+      ]
+    },
+    "isotopologue": {
+      "id": "isotopologue",
+      "items": "{'minLength': 1, 'type': 'string'}",
+      "minItems": "1",
+      "minLength": "1",
+      "table": "measurement",
+      "type": [
+        "array",
+        "string"
+      ]
+    },
+    "isotopologue%type": {
+      "id": "isotopologue%type",
+      "items": "{'minLength': 1, 'type': 'string'}",
+      "minItems": "1",
+      "minLength": "1",
+      "table": "measurement",
+      "type": [
+        "array",
+        "string"
+      ]
+    },
+    "raw_intensity%type": {
+      "id": "raw_intensity%type",
+      "minLength": "1",
+      "table": "measurement",
+      "type": "string"
+    },
+    "raw_mz%units": {
+      "id": "raw_mz%units",
+      "minLength": "1",
+      "table": "measurement",
+      "type": "string"
+    }
+  },
+  "IC-FTMS_measurement": {
+    "concentration": {
+      "id": "concentration",
+      "format": "numeric",
+      "required": "True",
+      "table": "measurement",
+      "type": "number"
+    },
+    "corrected_raw_intensity": {
+      "id": "corrected_raw_intensity",
+      "format": "numeric",
+      "required": "True",
+      "table": "measurement",
+      "type": "number"
+    },
+    "normalized_concentration": {
+      "id": "normalized_concentration",
+      "format": "numeric",
+      "required": "True",
+      "table": "measurement",
+      "type": "number"
+    },
+    "raw_intensity": {
+      "id": "raw_intensity",
+      "format": "numeric",
+      "required": "True",
+      "table": "measurement",
+      "type": "number"
+    },
+    "raw_intensity_sd": {
+      "id": "raw_intensity_sd",
+      "format": "numeric",
+      "required": "False",
+      "table": "measurement",
+      "type": "number"
+    },
+    "formula": {
+      "id": "formula",
+      "minLength": "1",
+      "required": "True",
+      "table": "measurement",
+      "type": "string"
+    },
+    "compound": {
+      "id": "compound",
+      "minLength": "1",
+      "required": "True",
+      "table": "measurement",
+      "type": "string"
+    },
     "concentration%type": {
+      "id": "concentration%type",
       "minLength": "1",
       "table": "measurement",
       "type": "string"
     },
     "concentration%units": {
+      "id": "concentration%units",
       "minLength": "1",
       "table": "measurement",
       "type": "string"
-    },
-    "corrected_raw_intensity": {
-      "format": "numeric",
-      "required": "True",
-      "table": "measurement",
-      "type": "number"
     },
     "corrected_raw_intensity%type": {
+      "id": "corrected_raw_intensity%type",
       "minLength": "1",
       "table": "measurement",
       "type": "string"
-    },
-    "formula": {
-      "minLength": "1",
-      "table": "measurement",
-      "type": "string"
-    },
-    "normalized_concentration": {
-      "format": "numeric",
-      "required": "True",
-      "table": "measurement",
-      "type": "number"
     },
     "normalized_concentration%type": {
+      "id": "normalized_concentration%type",
       "minLength": "1",
       "table": "measurement",
       "type": "string"
     },
     "normalized_concentration%units": {
+      "id": "normalized_concentration%units",
       "minLength": "1",
       "table": "measurement",
       "type": "string"
     },
-    "raw_intensity": {
-      "format": "numeric",
-      "required": "True",
-      "table": "measurement",
-      "type": "number"
-    },
     "raw_intensity%type": {
+      "id": "raw_intensity%type",
       "minLength": "1",
       "table": "measurement",
       "type": "string"
     }
   },
+  "labeled_IC-FTMS_measurement": {
+    "isotopologue": {
+      "id": "isotopologue",
+      "minLength": "1",
+      "table": "measurement",
+      "type": "string",
+      "required": "True"
+    },
+    "isotopologue%type": {
+      "id": "isotopologue%type",
+      "minLength": "1",
+      "table": "measurement",
+      "type": "string",
+      "required": "True"
+    }
+  },
   "IC-FTMS_preparation": {
     "injection_volume": {
+      "id": "injection_volume",
       "format": "numeric",
       "table": "entity",
       "type": "number"
     },
     "injection_volume%units": {
+      "id": "injection_volume%units",
+      "minLength": "1",
+      "table": "entity",
+      "type": "string"
+    },
+    "reconstitution_volume%units": {
+      "id": "reconstitution_volume%units",
       "minLength": "1",
       "table": "entity",
       "type": "string"
     },
     "polar_split_ratio": {
+      "id": "polar_split_ratio",
       "format": "numeric",
       "required": "True",
       "table": "entity",
       "type": "number"
     },
     "reconstitution_volume": {
+      "id": "reconstitution_volume",
       "format": "numeric",
       "required": "True",
       "table": "entity",
       "type": "number"
-    },
-    "reconstitution_volume%units": {
-      "minLength": "1",
-      "table": "entity",
-      "type": "string"
     }
   },
   "MS_measurement": {
     "assignment": {
+      "id": "assignment",
       "minLength": "1",
       "required": "True",
       "table": "measurement",
       "type": "string"
     },
     "assignment%method": {
+      "id": "assignment%method",
       "minLength": "1",
       "required": "True",
       "table": "measurement",
       "type": "string"
-    },
-    "chromatography_description": {
-      "minLength": "1",
-      "table": "protocol",
-      "type": "string"
-    },
-    "chromatography_instrument_name": {
-      "minLength": "1",
-      "required": "True",
-      "table": "protocol",
-      "type": "string"
-    },
-    "chromatography_type": {
-      "minLength": "1",
-      "required": "True",
-      "table": "protocol",
-      "type": "string"
-    },
-    "column_name": {
-      "minLength": "1",
-      "required": "True",
-      "table": "protocol",
-      "type": "string"
-    },
-    "compound": {
-      "minLength": "1",
-      "table": "measurement",
-      "type": "string"
-    },
-    "concentration": {
-      "format": "numeric",
-      "required": "True",
-      "table": "measurement",
-      "type": "number"
-    },
-    "concentration%type": {
-      "minLength": "1",
-      "table": "measurement",
-      "type": "string"
-    },
-    "concentration%units": {
-      "minLength": "1",
-      "table": "measurement",
-      "type": "string"
-    },
-    "corrected_raw_intensity": {
-      "format": "numeric",
-      "required": "True",
-      "table": "measurement",
-      "type": "number"
-    },
-    "corrected_raw_intensity%type": {
-      "minLength": "1",
-      "table": "measurement",
-      "type": "string"
-    },
-    "data_files": {
-      "uniqueItems": "True",
-      "required": "False",
-      "table": "protocol",
-      "type": "array"
-    },
-    "data_files%entity_id": {
-      "uniqueItems": "True",
-      "required": "False",
-      "table": "protocol",
-      "type": "array"
-    },
-    "formula": {
-      "minLength": "1",
-      "table": "measurement",
-      "type": "string"
-    },
-    "intensity": {
-      "format": "numeric",
-      "required": "True",
-      "table": "measurement",
-      "type": "number"
     },
     "intensity%type": {
+      "id": "intensity%type",
       "minLength": "1",
-      "table": "measurement",
-      "type": "string"
-    },
-    "intensity%units": {
-      "minLength": "1",
+      "required": "True",
       "table": "measurement",
       "type": "string"
     },
     "ion_mode": {
+      "id": "ion_mode",
       "minLength": "1",
       "required": "True",
       "table": "protocol",
       "type": "string"
     },
     "ionization": {
+      "id": "ionization",
       "minLength": "1",
       "required": "True",
       "table": "protocol",
       "type": "string"
     },
-    "isotopologue": {
+    "compound": {
+      "id": "compound",
       "minLength": "1",
       "table": "measurement",
       "type": "string"
     },
-    "isotopologue%type": {
+    "concentration%type": {
+      "id": "concentration%type",
       "minLength": "1",
       "table": "measurement",
       "type": "string"
     },
-    "normalized_concentration": {
-      "format": "numeric",
-      "required": "True",
+    "concentration%units": {
+      "id": "concentration%units",
+      "minLength": "1",
       "table": "measurement",
-      "type": "number"
+      "type": "string"
+    },
+    "corrected_raw_intensity%type": {
+      "id": "corrected_raw_intensity%type",
+      "minLength": "1",
+      "table": "measurement",
+      "type": "string"
+    },
+    "formula": {
+      "id": "formula",
+      "minLength": "1",
+      "table": "measurement",
+      "type": "string"
+    },
+    "intensity%units": {
+      "id": "intensity%units",
+      "minLength": "1",
+      "table": "measurement",
+      "type": "string"
     },
     "normalized_concentration%type": {
+      "id": "normalized_concentration%type",
       "minLength": "1",
       "table": "measurement",
       "type": "string"
     },
     "normalized_concentration%units": {
+      "id": "normalized_concentration%units",
       "minLength": "1",
       "table": "measurement",
       "type": "string"
-    },
-    "raw_intensity": {
-      "format": "numeric",
-      "required": "True",
-      "table": "measurement",
-      "type": "number"
     },
     "raw_intensity%type": {
+      "id": "raw_intensity%type",
       "minLength": "1",
       "table": "measurement",
       "type": "string"
     },
-    "retention_time": {
+    "retention_time%units": {
+      "id": "retention_time%units",
+      "minLength": "1",
+      "table": "measurement",
+      "type": "string"
+    },
+    "description": {
+      "id": "description",
+      "minLength": "1",
+      "table": "protocol",
+      "type": "string"
+    },
+    "concentration": {
+      "id": "concentration",
       "format": "numeric",
+      "required": "True",
       "table": "measurement",
       "type": "number"
     },
-    "retention_time%units": {
-      "minLength": "1",
+    "corrected_raw_intensity": {
+      "id": "corrected_raw_intensity",
+      "format": "numeric",
+      "required": "True",
       "table": "measurement",
-      "type": "string"
-    }
-  },
-  "NMR_measurement": {
+      "type": "number"
+    },
+    "normalized_concentration": {
+      "id": "normalized_concentration",
+      "format": "numeric",
+      "required": "True",
+      "table": "measurement",
+      "type": "number"
+    },
+    "raw_intensity": {
+      "id": "raw_intensity",
+      "format": "numeric",
+      "required": "True",
+      "table": "measurement",
+      "type": "number"
+    },
+    "intensity": {
+      "id": "intensity",
+      "format": "numeric",
+      "required": "True",
+      "table": "measurement",
+      "type": [
+        "string",
+        "number"
+      ],
+      "minLength": "1",
+      "minimum": "0"
+    },
     "data_files": {
-      "uniqueItems": "True",
+      "id": "data_files",
       "required": "False",
       "table": "protocol",
-      "type": "array"
+      "type": "array",
+      "uniqueItems": "True"
     },
     "data_files%entity_id": {
-      "uniqueItems": "True",
+      "id": "data_files%entity_id",
       "required": "False",
       "table": "protocol",
-      "type": "array"
+      "type": "array",
+      "uniqueItems": "True"
+    },
+    "retention_time": {
+      "id": "retention_time",
+      "format": "numeric",
+      "table": "measurement",
+      "type": "number"
+    }
+  },
+  "abstract_NMR_measurement": {
+    "assignment": {
+      "id": "assignment",
+      "minLength": "1",
+      "required": "True",
+      "table": "measurement",
+      "type": "string"
+    },
+    "intensity%type": {
+      "id": "intensity%type",
+      "minLength": "1",
+      "required": "True",
+      "table": "measurement",
+      "type": "string"
+    },
+    "intensity": {
+      "id": "intensity",
+      "format": "numeric",
+      "required": "True",
+      "table": "measurement",
+      "type": [
+        "string",
+        "number"
+      ],
+      "minLength": "1"
+    },
+    "data_files": {
+      "id": "data_files",
+      "required": "False",
+      "table": "protocol",
+      "type": "array",
+      "uniqueItems": "True"
+    },
+    "data_files%entity_id": {
+      "id": "data_files%entity_id",
+      "required": "False",
+      "table": "protocol",
+      "type": "array",
+      "uniqueItems": "True"
     },
     "NMR_experiment_type": {
+      "id": "NMR_experiment_type",
       "minLength": "1",
       "required": "True",
       "table": "protocol",
+      "type": "string"
+    },
+    "instrument_type": {
+      "id": "instrument_type",
+      "minLength": "1",
+      "required": "True",
+      "table": "protocol",
+      "type": "string"
+    },
+    "spectrometer_frequency%units": {
+      "id": "spectrometer_frequency%units",
+      "minLength": "1",
+      "required": "True",
+      "table": "protocol",
+      "type": "string"
+    },
+    "assignment%method": {
+      "id": "assignment%method",
+      "minLength": "1",
+      "required": "False",
+      "table": "measurement",
+      "type": "string"
+    },
+    "compound": {
+      "id": "compound",
+      "minLength": "1",
+      "required": "False",
+      "table": "measurement",
       "type": "string"
     },
     "NMR_probe": {
+      "id": "NMR_probe",
       "minLength": "1",
       "table": "protocol",
       "type": "string"
     },
     "NMR_solvent": {
+      "id": "NMR_solvent",
+      "minLength": "1",
+      "table": "protocol",
+      "type": "string"
+    },
+    "NMR_tube_size%units": {
+      "id": "NMR_tube_size%units",
+      "minLength": "1",
+      "table": "protocol",
+      "type": "string"
+    },
+    "acquisition_time%units": {
+      "id": "acquisition_time%units",
+      "minLength": "1",
+      "table": "protocol",
+      "type": "string"
+    },
+    "baseline_correction_method": {
+      "id": "baseline_correction_method",
+      "minLength": "1",
+      "table": "protocol",
+      "type": "string"
+    },
+    "chemical_shift_ref_cpd": {
+      "id": "chemical_shift_ref_cpd",
+      "minLength": "1",
+      "table": "protocol",
+      "type": "string"
+    },
+    "pulse_sequence": {
+      "id": "pulse_sequence",
+      "minLength": "1",
+      "table": "protocol",
+      "type": "string"
+    },
+    "relaxation_delay%units": {
+      "id": "relaxation_delay%units",
+      "minLength": "1",
+      "table": "protocol",
+      "type": "string"
+    },
+    "shimming_method": {
+      "id": "shimming_method",
+      "minLength": "1",
+      "table": "protocol",
+      "type": "string"
+    },
+    "standard_concentration%units": {
+      "id": "standard_concentration%units",
+      "minLength": "1",
+      "table": "protocol",
+      "type": "string"
+    },
+    "temperature%units": {
+      "id": "temperature%units",
+      "minLength": "1",
+      "table": "protocol",
+      "type": "string"
+    },
+    "water_suppression": {
+      "id": "water_suppression",
       "minLength": "1",
       "table": "protocol",
       "type": "string"
     },
     "NMR_tube_size": {
+      "id": "NMR_tube_size",
       "format": "numeric",
       "table": "protocol",
       "type": "number"
-    },
-    "NMR_tube_size%units": {
-      "minLength": "1",
-      "table": "protocol",
-      "type": "string"
     },
     "acquisition_time": {
+      "id": "acquisition_time",
       "format": "numeric",
       "table": "protocol",
       "type": "number"
     },
-    "acquisition_time%units": {
-      "minLength": "1",
+    "relaxation_delay": {
+      "id": "relaxation_delay",
+      "format": "numeric",
       "table": "protocol",
-      "type": "string"
+      "type": "number"
     },
-    "assignment": {
-      "minLength": "1",
-      "required": "True",
-      "table": "measurement",
-      "type": "string"
-    },
-    "base_inchi": {
-      "items": {
-        "minLength": 1,
-        "type": "string"
-      },
-      "minLength": "1",
-      "required": "True",
-      "table": "measurement",
-      "type": [
-        "string",
-        "array",
-        "null"
-      ]
-    },
-    "baseline_correction_method": {
-      "minLength": "1",
+    "standard_concentration": {
+      "id": "standard_concentration",
+      "format": "numeric",
       "table": "protocol",
-      "type": "string"
+      "type": "number"
     },
+    "temperature": {
+      "id": "temperature",
+      "format": "numeric",
+      "table": "protocol",
+      "type": "number"
+    },
+    "spectrometer_frequency": {
+      "id": "spectrometer_frequency",
+      "format": "numeric",
+      "required": "True",
+      "table": "protocol",
+      "type": "number"
+    }
+  },
+  "NMR_measurement": {
     "chemical_shift": {
+      "id": "chemical_shift",
       "format": "numeric",
       "required": "True",
       "table": "measurement",
       "type": "number"
-    },
-    "chemical_shift_ref_cpd": {
-      "minLength": "1",
-      "table": "protocol",
-      "type": "string"
-    },
-    "instrument_type": {
-      "minLength": "1",
-      "required": "True",
-      "table": "protocol",
-      "type": "string"
-    },
-    "intensity": {
-      "format": "numeric",
-      "required": "True",
-      "table": "measurement",
-      "type": "number"
-    },
-    "intensity%type": {
-      "minLength": "1",
-      "required": "True",
-      "table": "measurement",
-      "type": "string"
-    },
-    "isotopic_inchi": {
-      "items": {
-        "minLength": 1,
-        "type": "string"
-      },
-      "minLength": "1",
-      "required": "True",
-      "table": "measurement",
-      "type": [
-        "string",
-        "array",
-        "null"
-      ]
     },
     "peak_area": {
+      "id": "peak_area",
       "format": "numeric",
       "required": "True",
       "table": "measurement",
       "type": "number"
-    },
-    "peak_description": {
-      "items": {
-        "minLength": 1,
-        "type": "string"
-      },
-      "minLength": "1",
-      "required": "True",
-      "table": "measurement",
-      "type": [
-        "string",
-        "array",
-        "null"
-      ]
     },
     "peak_height": {
+      "id": "peak_height",
       "format": "numeric",
       "required": "True",
       "table": "measurement",
       "type": "number"
     },
-    "peak_pattern": {
-      "minLength": "1",
-      "table": "measurement",
-      "type": "string"
-    },
     "peak_width": {
+      "id": "peak_width",
       "format": "numeric",
       "required": "True",
       "table": "measurement",
       "type": "number"
     },
     "proton_count": {
+      "id": "proton_count",
       "format": "numeric",
       "required": "True",
       "table": "measurement",
-      "type": "number"
-    },
-    "pulse_sequence": {
+      "type": [
+        "string",
+        "number"
+      ],
       "minLength": "1",
-      "table": "protocol",
+      "minimum": "0"
+    },
+    "compound": {
+      "id": "compound",
+      "minLength": "1",
+      "required": "True",
+      "table": "measurement",
       "type": "string"
     },
-    "relaxation_delay": {
-      "format": "numeric",
-      "table": "protocol",
-      "type": "number"
-    },
-    "relaxation_delay%units": {
+    "transient_peak": {
+      "id": "transient_peak",
       "minLength": "1",
-      "table": "protocol",
+      "required": "True",
+      "table": "measurement",
       "type": "string"
     },
-    "representative_inchi": {
-      "items": {
-        "minLength": 1,
-        "type": "string"
-      },
+    "transient_peak%type": {
+      "id": "transient_peak%type",
+      "minLength": "1",
+      "required": "True",
+      "table": "measurement",
+      "type": "string"
+    },
+    "assignment%method": {
+      "id": "assignment%method",
+      "minLength": "1",
+      "required": "True",
+      "table": "measurement",
+      "type": "string"
+    },
+    "base_inchi": {
+      "id": "base_inchi",
+      "items": "{'minLength': 1, 'type': 'string'}",
       "minLength": "1",
       "required": "True",
       "table": "measurement",
@@ -476,75 +730,58 @@
         "null"
       ]
     },
-    "resonance_assignment": {
+    "isotopic_inchi": {
+      "id": "isotopic_inchi",
+      "items": "{'minLength': 1, 'type': 'string'}",
       "minLength": "1",
       "required": "True",
       "table": "measurement",
-      "type": "string"
+      "type": [
+        "string",
+        "array",
+        "null"
+      ]
     },
-    "shimming_method": {
-      "minLength": "1",
-      "table": "protocol",
-      "type": "string"
-    },
-    "spectrometer_frequency": {
-      "format": "numeric",
-      "required": "True",
-      "table": "protocol",
-      "type": "number"
-    },
-    "spectrometer_frequency%units": {
-      "minLength": "1",
-      "required": "True",
-      "table": "protocol",
-      "type": "string"
-    },
-    "standard_concentration": {
-      "format": "numeric",
-      "table": "protocol",
-      "type": "number"
-    },
-    "standard_concentration%units": {
-      "minLength": "1",
-      "table": "protocol",
-      "type": "string"
-    },
-    "temperature": {
-      "format": "numeric",
-      "table": "protocol",
-      "type": "number"
-    },
-    "temperature%units": {
-      "minLength": "1",
-      "table": "protocol",
-      "type": "string"
-    },
-    "transient_peak": {
+    "peak_description": {
+      "id": "peak_description",
+      "items": "{'minLength': 1, 'type': 'string'}",
       "minLength": "1",
       "required": "True",
       "table": "measurement",
-      "type": "string"
+      "type": [
+        "string",
+        "array",
+        "null"
+      ]
     },
-    "transient_peak%type": {
+    "representative_inchi": {
+      "id": "representative_inchi",
+      "items": "{'minLength': 1, 'type': 'string'}",
       "minLength": "1",
       "required": "True",
       "table": "measurement",
-      "type": "string"
+      "type": [
+        "string",
+        "array",
+        "null"
+      ]
     },
-    "water_suppression": {
-      "minLength": "1",
-      "table": "protocol",
+    "peak_pattern": {
+      "id": "peak_pattern",
+      "table": "measurement",
       "type": "string"
     }
   },
   "PDX_experiment": {
     "replicate": {
+      "id": "replicate",
       "format": "numeric",
       "required": "True",
       "table": "entity",
       "type": "number"
     },
     "replicate%type": {
+      "id": "replicate%type",
       "minLength": "1",
       "table": "entity",
       "type": "string"
@@ -552,54 +789,61 @@
   },
   "PDX_tissue_collection": {
     "extracted_tissue_type": {
+      "id": "extracted_tissue_type",
+      "minLength": "1",
+      "table": "entity",
+      "type": "string"
+    },
+    "extracted_tissue_weight%units": {
+      "id": "extracted_tissue_weight%units",
       "minLength": "1",
       "table": "entity",
       "type": "string"
     },
     "extracted_tissue_weight": {
+      "id": "extracted_tissue_weight",
       "format": "numeric",
       "table": "entity",
       "type": "number"
-    },
-    "extracted_tissue_weight%units": {
-      "minLength": "1",
-      "table": "entity",
-      "type": "string"
     }
   },
   "acetone_extraction": {
     "replicate": {
+      "id": "replicate",
       "format": "numeric",
       "table": "entity",
       "type": "number"
     },
     "replicate%type": {
+      "id": "replicate%type",
       "minLength": "1",
       "table": "entity",
       "type": "string"
     },
     "weight": {
+      "id": "weight",
       "format": "numeric",
       "required": "True",
       "table": "entity",
       "type": "number"
     },
     "weight%units": {
+      "id": "weight%units",
       "minLength": "1",
       "required": "True",
       "table": "entity",
       "type": "string"
     }
   },
-  "acetone_preparation": {},
-  "analytical_sample_storage": {},
   "bulk_tissue": {
     "barcode": {
+      "id": "barcode",
       "minLength": "1",
       "table": "entity",
       "type": "string"
     },
     "tissue_type": {
+      "id": "tissue_type",
       "minLength": "1",
       "table": "entity",
       "type": "string"
@@ -607,79 +851,89 @@
   },
   "bulk_tissue_storage": {
     "barcode": {
+      "id": "barcode",
       "minLength": "1",
       "table": "entity",
       "type": "string"
     }
   },
-  "cancer_surgery": {},
   "cell_culture_experiment": {
     "cell_line": {
+      "id": "cell_line",
       "minLength": "1",
       "table": "entity",
       "type": "string"
     },
     "cell_type": {
+      "id": "cell_type",
+      "minLength": "1",
+      "table": "entity",
+      "type": "string"
+    },
+    "empty_plate_weight%units": {
+      "id": "empty_plate_weight%units",
+      "minLength": "1",
+      "table": "entity",
+      "type": "string"
+    },
+    "plate_with_media_and_subject_weight%units": {
+      "id": "plate_with_media_and_subject_weight%units",
+      "minLength": "1",
+      "table": "entity",
+      "type": "string"
+    },
+    "plate_with_media_weight%units": {
+      "id": "plate_with_media_weight%units",
+      "minLength": "1",
+      "table": "entity",
+      "type": "string"
+    },
+    "plate_with_subject_weight%units": {
+      "id": "plate_with_subject_weight%units",
+      "minLength": "1",
+      "table": "entity",
+      "type": "string"
+    },
+    "replicate%type": {
+      "id": "replicate%type",
       "minLength": "1",
       "table": "entity",
       "type": "string"
     },
     "empty_plate_weight": {
+      "id": "empty_plate_weight",
       "format": "numeric",
       "table": "entity",
       "type": "number"
-    },
-    "empty_plate_weight%units": {
-      "minLength": "1",
-      "table": "entity",
-      "type": "string"
     },
     "plate_with_media_and_subject_weight": {
+      "id": "plate_with_media_and_subject_weight",
       "format": "numeric",
       "table": "entity",
       "type": "number"
-    },
-    "plate_with_media_and_subject_weight%units": {
-      "minLength": "1",
-      "table": "entity",
-      "type": "string"
     },
     "plate_with_media_weight": {
+      "id": "plate_with_media_weight",
       "format": "numeric",
       "table": "entity",
       "type": "number"
-    },
-    "plate_with_media_weight%units": {
-      "minLength": "1",
-      "table": "entity",
-      "type": "string"
     },
     "plate_with_subject_weight": {
+      "id": "plate_with_subject_weight",
       "format": "numeric",
       "table": "entity",
       "type": "number"
     },
-    "plate_with_subject_weight%units": {
-      "minLength": "1",
-      "table": "entity",
-      "type": "string"
-    },
     "replicate": {
+      "id": "replicate",
       "format": "numeric",
       "required": "True",
       "table": "entity",
       "type": "number"
     },
-    "replicate%type": {
-      "minLength": "1",
-      "table": "entity",
-      "type": "string"
-    },
     "species": {
-      "items": {
-        "minLength": 1,
-        "type": "string"
-      },
+      "id": "species",
+      "items": "{'minLength': 1, 'type': 'string'}",
       "minLength": "1",
       "table": "entity",
       "type": [
@@ -691,17 +945,20 @@
   },
   "cell_extraction": {
     "cell_count": {
+      "id": "cell_count",
       "format": "numeric",
       "table": "entity",
       "type": "number"
     },
     "cell_type": {
+      "id": "cell_type",
       "minLength": "1",
       "required": "True",
       "table": "entity",
       "type": "string"
     },
     "description": {
+      "id": "description",
       "minLength": "1",
       "table": "entity",
       "type": "string"
@@ -709,6 +966,7 @@
   },
   "cell_quench_collection": {
     "cell_type": {
+      "id": "cell_type",
       "minLength": "1",
       "table": "entity",
       "type": "string"
@@ -716,48 +974,52 @@
   },
   "cells_media": {
     "cell_type": {
+      "id": "cell_type",
+      "minLength": "1",
+      "table": "entity",
+      "type": "string"
+    },
+    "time_point%units": {
+      "id": "time_point%units",
+      "minLength": "1",
+      "table": "entity",
+      "type": "string"
+    },
+    "total_media_weight%units": {
+      "id": "total_media_weight%units",
+      "minLength": "1",
+      "table": "entity",
+      "type": "string"
+    },
+    "wet_weight%units": {
+      "id": "wet_weight%units",
       "minLength": "1",
       "table": "entity",
       "type": "string"
     },
     "time_point": {
+      "id": "time_point",
       "format": "numeric",
       "table": "entity",
       "type": "number"
-    },
-    "time_point%units": {
-      "minLength": "1",
-      "table": "entity",
-      "type": "string"
     },
     "total_media_weight": {
+      "id": "total_media_weight",
       "format": "numeric",
       "table": "entity",
       "type": "number"
-    },
-    "total_media_weight%units": {
-      "minLength": "1",
-      "table": "entity",
-      "type": "string"
     },
     "wet_weight": {
+      "id": "wet_weight",
       "format": "numeric",
       "table": "entity",
       "type": "number"
-    },
-    "wet_weight%units": {
-      "minLength": "1",
-      "table": "entity",
-      "type": "string"
     }
   },
-  "cells_storage": {},
   "file_storage": {
     "data_files": {
-      "items": {
-        "minLength": 1,
-        "type": "string"
-      },
+      "id": "data_files",
+      "items": "{'minLength': 1, 'type': 'string'}",
       "required": "True",
       "table": "protocol",
       "type": [
@@ -766,23 +1028,17 @@
       ]
     },
     "entity.id": {
+      "id": "entity.id",
       "minLength": "1",
       "required": "True",
       "table": "protocol",
       "type": "string"
     }
   },
-  "frozen_tissue_grind": {},
-  "ground_bulk_tissue_storage": {},
-  "homogenization_quench": {},
-  "homogenization_quench_retsch": {},
-  "image_collection": {},
   "image_storage": {
     "filename": {
-      "items": {
-        "minLength": 1,
-        "type": "string"
-      },
+      "id": "filename",
+      "items": "{'minLength': 1, 'type': 'string'}",
       "minLength": "1",
       "required": "True",
       "table": "entity",
@@ -795,22 +1051,26 @@
   },
   "lipid_extraction": {
     "replicate": {
+      "id": "replicate",
       "format": "numeric",
       "table": "entity",
       "type": "number"
     },
     "replicate%type": {
+      "id": "replicate%type",
       "minLength": "1",
       "table": "entity",
       "type": "string"
     },
     "weight": {
+      "id": "weight",
       "format": "numeric",
       "required": "True",
       "table": "entity",
       "type": "number"
     },
     "weight%units": {
+      "id": "weight%units",
       "minLength": "1",
       "required": "True",
       "table": "entity",
@@ -819,6 +1079,7 @@
   },
   "master_collection": {
     "sample_type": {
+      "id": "sample_type",
       "minLength": "1",
       "required": "True",
       "table": "protocol",
@@ -827,10 +1088,8 @@
   },
   "master_experiment": {
     "species": {
-      "items": {
-        "minLength": 1,
-        "type": "string"
-      },
+      "id": "species",
+      "items": "{'minLength': 1, 'type': 'string'}",
       "minLength": "1",
       "table": "entity",
       "type": [
@@ -840,10 +1099,8 @@
       ]
     },
     "species_type": {
-      "items": {
-        "minLength": 1,
-        "type": "string"
-      },
+      "id": "species_type",
+      "items": "{'minLength': 1, 'type': 'string'}",
       "minLength": "1",
       "table": "entity",
       "type": [
@@ -853,11 +1110,9 @@
       ]
     },
     "taxonomy_id": {
+      "id": "taxonomy_id",
       "format": "numeric",
-      "items": {
-        "minLength": 1,
-        "type": "string"
-      },
+      "items": "{'minLength': 1, 'type': 'string'}",
       "table": "entity",
       "type": [
         "number",
@@ -866,62 +1121,70 @@
       ]
     },
     "treatment": {
+      "id": "treatment",
+      "minLength": "1",
+      "table": "entity",
+      "type": "string"
+    },
+    "treatment_amount%units": {
+      "id": "treatment_amount%units",
       "minLength": "1",
       "table": "entity",
       "type": "string"
     },
     "treatment_amount": {
+      "id": "treatment_amount",
       "format": "numeric",
       "table": "entity",
       "type": "number"
-    },
-    "treatment_amount%units": {
-      "minLength": "1",
-      "table": "entity",
-      "type": "string"
     }
   },
   "master_measurement": {
     "instrument": {
+      "id": "instrument",
       "minLength": "1",
       "required": "True",
-      "table": "protocol",
-      "type": "string"
-    },
-    "instrument_type": {
-      "minLength": "1",
       "table": "protocol",
       "type": "string"
     },
     "entity.id": {
+      "id": "entity.id",
       "minLength": "1",
       "required": "True",
       "table": "measurement",
       "type": "string"
+    },
+    "instrument_type": {
+      "id": "instrument_type",
+      "minLength": "1",
+      "table": "protocol",
+      "type": "string"
     }
   },
-  "master_sample_prep": {},
   "master_storage": {
     "location": {
+      "id": "location",
       "minLength": "1",
       "table": "protocol",
       "type": "string"
     },
     "location%type": {
+      "id": "location%type",
       "minLength": "1",
       "table": "protocol",
       "type": "string"
     }
   },
-  "media_storage": {},
   "mouse_experiment": {
     "replicate": {
+      "id": "replicate",
       "format": "numeric",
       "required": "True",
       "table": "entity",
       "type": "number"
     },
     "replicate%type": {
+      "id": "replicate%type",
       "minLength": "1",
       "table": "entity",
       "type": "string"
@@ -929,370 +1192,399 @@
   },
   "mouse_tissue_collection": {
     "extracted_tissue_type": {
+      "id": "extracted_tissue_type",
+      "minLength": "1",
+      "table": "entity",
+      "type": "string"
+    },
+    "extracted_tissue_weight%units": {
+      "id": "extracted_tissue_weight%units",
       "minLength": "1",
       "table": "entity",
       "type": "string"
     },
     "extracted_tissue_weight": {
+      "id": "extracted_tissue_weight",
       "format": "numeric",
       "table": "entity",
       "type": "number"
-    },
-    "extracted_tissue_weight%units": {
-      "minLength": "1",
-      "table": "entity",
-      "type": "string"
     }
   },
   "parent_protocol": {
     "Chromatography_MS_measurement": {
+      "id": "Chromatography_MS_measurement",
       "description": "Measurements made using mass spec with chromatography",
       "filename": "",
-      "id": "Chromatography_MS_measurement",
       "parent_id": "MS_measurement",
       "type": "measurement"
     },
     "DI-FTMS_measurement": {
+      "id": "DI-FTMS_measurement",
       "description": "Measurements made using direct infusion (nano-electrospray) FTMS",
       "filename": "",
-      "id": "DI-FTMS_measurement",
       "parent_id": "MS_measurement",
       "type": "measurement"
     },
     "GCMS_measurement": {
+      "id": "GCMS_measurement",
       "description": "Measurements made using gas chromatography MS",
       "filename": "",
-      "id": "GCMS_measurement",
       "parent_id": "Chromatography_MS_measurement",
       "type": "measurement"
     },
     "IC-FTMS_measurement": {
+      "id": "IC-FTMS_measurement",
       "description": "Measurements made using ion chromatoraphy FTMS",
       "filename": "",
-      "id": "IC-FTMS_measurement",
       "parent_id": "Chromatography_MS_measurement",
       "type": "measurement"
     },
+    "labeled_IC-FTMS_measurement": {
+      "id": "labeled_IC-FTMS_measurement",
+      "description": "Measurements made using ion chromatoraphy FTMS on labeled samples",
+      "filename": "",
+      "parent_id": "IC-FTMS_measurement",
+      "type": "measurement"
+    },
     "IC-FTMS_preparation": {
+      "id": "IC-FTMS_preparation",
       "description": "before going into the IC-FTMS the frozen sample is reconstituted in water",
       "filename": "",
-      "id": "IC-FTMS_preparation",
       "parent_id": "master_sample_prep",
       "type": "sample_prep"
     },
     "MS_measurement": {
+      "id": "MS_measurement",
       "description": "Measurements made using mass spec",
       "filename": "",
-      "id": "MS_measurement",
       "parent_id": "master_measurement",
+      "type": "measurement"
+    },
+    "abstract_NMR_measurement": {
+      "id": "abstract_NMR_measurement",
+      "description": "Base protocol for NMR measurements to build from",
+      "filename": "",
+      "parent_id": "master_measurement",
+      "type": "measurement"
+    },
+    "binned_NMR_measurement": {
+      "id": "binned_NMR_measurement",
+      "description": "Measurements made using NMR and binned",
+      "filename": "",
+      "parent_id": "abstract_NMR_measurement",
       "type": "measurement"
     },
     "NMR_measurement": {
+      "id": "NMR_measurement",
       "description": "Measurements made using NMR",
       "filename": "",
-      "id": "NMR_measurement",
-      "parent_id": "master_measurement",
+      "parent_id": "abstract_NMR_measurement",
       "type": "measurement"
     },
     "PDX_experiment": {
+      "id": "PDX_experiment",
       "description": "patient-derived xenograft where tissue from patient is implanted into an immunocompromised mouse with or without treatment",
       "filename": "",
-      "id": "PDX_experiment",
       "parent_id": "master_experiment",
       "type": "treatment"
     },
     "PDX_tissue_collection": {
+      "id": "PDX_tissue_collection",
       "description": "tissue collected from PDX mouse",
       "filename": "",
-      "id": "PDX_tissue_collection",
       "parent_id": "master_collection",
       "type": "collection"
     },
     "acetone_extraction": {
+      "id": "acetone_extraction",
       "description": "acetone extraction of polar metabolites",
       "filename": "",
-      "id": "acetone_extraction",
       "parent_id": "master_sample_prep",
       "type": "sample_prep"
     },
     "acetone_preparation": {
+      "id": "acetone_preparation",
       "description": "acetone precipitation of polar fraction",
       "filename": "",
-      "id": "acetone_preparation",
       "parent_id": "master_sample_prep",
       "type": "sample_prep"
     },
     "analytical_sample_storage": {
+      "id": "analytical_sample_storage",
       "description": "placement of analytical samples into minus 80 for storage",
       "filename": "",
-      "id": "analytical_sample_storage",
       "parent_id": "sample_storage",
       "type": "storage"
     },
     "bulk_tissue": {
+      "id": "bulk_tissue",
       "description": "bulk tissue collection.",
       "filename": "",
-      "id": "bulk_tissue",
       "parent_id": "master_collection",
       "type": "collection"
     },
     "bulk_tissue_storage": {
+      "id": "bulk_tissue_storage",
       "description": "placement of bulk tissue samples into minus 80 for storage",
       "filename": "",
-      "id": "bulk_tissue_storage",
       "parent_id": "sample_storage",
       "type": "storage"
     },
     "cancer_surgery": {
+      "id": "cancer_surgery",
       "description": "surgical procedure to remove a cancerous tumor",
       "filename": "",
-      "id": "cancer_surgery",
       "parent_id": "master_experiment",
       "type": "treatment"
     },
     "cell_culture_experiment": {
+      "id": "cell_culture_experiment",
       "description": "incubation of cells in media with or without treatment",
       "filename": "",
-      "id": "cell_culture_experiment",
       "parent_id": "master_experiment",
       "type": "treatment"
     },
     "cell_extraction": {
+      "id": "cell_extraction",
       "description": "Cells of interest extracted from sample",
       "filename": "",
-      "id": "cell_extraction",
       "parent_id": "master_sample_prep",
       "type": "sample_prep"
     },
     "cell_quench_collection": {
+      "id": "cell_quench_collection",
       "description": "harvest of cells metabolically quenched with acetonitrile",
       "filename": "",
-      "id": "cell_quench_collection",
       "parent_id": "master_collection",
       "type": "collection"
     },
     "cells_media": {
+      "id": "cells_media",
       "description": "collection, aliquoting, and weighing of media samples from cell culture experiment",
       "filename": "",
-      "id": "cells_media",
       "parent_id": "master_collection",
       "type": "collection"
     },
     "cells_storage": {
+      "id": "cells_storage",
       "description": "freezing and storage of cells in liquid nitrogen",
       "filename": "",
-      "id": "cells_storage",
       "parent_id": "sample_storage",
       "type": "storage"
     },
     "file_storage": {
+      "id": "file_storage",
       "description": "protocol to link a sample or subject to data files associated with it",
       "filename": "",
-      "id": "file_storage",
       "parent_id": "master_storage",
       "type": "storage"
     },
     "frozen_tissue_grind": {
+      "id": "frozen_tissue_grind",
       "description": "frozen tissue ground into powder, usually with SPEX liquid nitrogen grinder",
       "filename": "",
-      "id": "frozen_tissue_grind",
       "parent_id": "master_sample_prep",
       "type": "sample_prep"
     },
     "ground_bulk_tissue_storage": {
+      "id": "ground_bulk_tissue_storage",
       "description": "placement of ground bulk tissue samples into liquid nitrogen for storage",
       "filename": "",
-      "id": "ground_bulk_tissue_storage",
       "parent_id": "sample_storage",
       "type": "storage"
     },
     "homogenization_quench": {
+      "id": "homogenization_quench",
       "description": "grinding of tissue samples and metabolic quench with acetonitrile",
       "filename": "",
-      "id": "homogenization_quench",
       "parent_id": "master_collection",
       "type": "collection"
     },
     "homogenization_quench_retsch": {
+      "id": "homogenization_quench_retsch",
       "description": "grinding of frozen tissue and metabolite quench with acetonitrile",
       "filename": "",
-      "id": "homogenization_quench_retsch",
       "parent_id": "master_collection",
       "type": "collection"
     },
     "image_collection": {
+      "id": "image_collection",
       "description": "take picture of subject.",
       "filename": "",
-      "id": "image_collection",
       "parent_id": "master_collection",
       "type": "collection"
     },
     "image_storage": {
+      "id": "image_storage",
       "description": "folder name of images associated with study",
       "filename": "",
-      "id": "image_storage",
       "parent_id": "master_storage",
       "type": "storage"
     },
     "lipid_extraction": {
+      "id": "lipid_extraction",
       "description": "collection of nonpolar extract from acetonitrile-chloroform extraction and reconsitution in chloroform-methanol-bht",
       "filename": "",
-      "id": "lipid_extraction",
       "parent_id": "master_sample_prep",
       "type": "sample_prep"
     },
-    "master_collection": {
-      "description": "master collection protocol",
-      "filename": "",
-      "id": "master_collection",
-      "type": "collection"
-    },
-    "master_experiment": {
-      "description": "master experiment protocol",
-      "filename": "",
-      "id": "master_experiment",
-      "type": "treatment"
-    },
-    "master_measurement": {
-      "description": "master measurement protocol",
-      "filename": "",
-      "id": "master_measurement",
-      "type": "measurement"
-    },
-    "master_sample_prep": {
-      "description": "master sample prep protocol",
-      "filename": "",
-      "id": "master_sample_prep",
-      "type": "sample_prep"
-    },
-    "master_storage": {
-      "description": "master storage protocol",
-      "filename": "",
-      "id": "master_storage",
-      "type": "storage"
-    },
     "media_storage": {
+      "id": "media_storage",
       "description": "freezing of media samples and storage in minus 80",
       "filename": "",
-      "id": "media_storage",
       "parent_id": "sample_storage",
       "type": "storage"
     },
     "mouse_experiment": {
+      "id": "mouse_experiment",
       "description": "experiment where mice recieve a treatment and their organs are harvested for analysis.",
       "filename": "",
-      "id": "mouse_experiment",
       "parent_id": "master_experiment",
       "type": "treatment"
     },
     "mouse_tissue_collection": {
+      "id": "mouse_tissue_collection",
       "description": "tissue collected from mouse",
       "filename": "",
-      "id": "mouse_tissue_collection",
       "parent_id": "master_collection",
       "type": "collection"
     },
     "polar_extraction": {
+      "id": "polar_extraction",
       "description": "collection of polar fraction of acetonitrile-chloroform",
       "filename": "",
-      "id": "polar_extraction",
       "parent_id": "master_sample_prep",
       "type": "sample_prep"
     },
     "polar_preparation": {
+      "id": "polar_preparation",
       "description": "aliquoting of the polar portion of the sample",
       "filename": "",
-      "id": "polar_preparation",
       "parent_id": "master_sample_prep",
       "type": "sample_prep"
     },
     "protein_extraction": {
+      "id": "protein_extraction",
       "description": "extraction of protein fraction from acetonitrile-chloroform extraction",
       "filename": "",
-      "id": "protein_extraction",
       "parent_id": "master_sample_prep",
       "type": "sample_prep"
     },
     "sample_storage": {
+      "id": "sample_storage",
       "description": "sample storage protocol",
       "filename": "",
-      "id": "sample_storage",
       "parent_id": "master_storage",
       "type": "storage"
     },
     "tissue_histology": {
+      "id": "tissue_histology",
       "description": "collection of the histology sample",
       "filename": "",
-      "id": "tissue_histology",
       "parent_id": "master_collection",
       "type": "collection"
     },
     "tissue_histology_storage": {
+      "id": "tissue_histology_storage",
       "description": "histology sample storage in minus 80.",
       "filename": "",
-      "id": "tissue_histology_storage",
       "parent_id": "sample_storage",
       "type": "storage"
     },
     "tissue_media": {
+      "id": "tissue_media",
       "description": "collection, aliquoting, and weighing of media samples from tissue slice experiment",
       "filename": "",
-      "id": "tissue_media",
       "parent_id": "master_collection",
       "type": "collection"
     },
     "tissue_quench": {
+      "id": "tissue_quench",
       "description": "tissue quenched in liquid nitrogen to halt metabolic processes",
       "filename": "",
-      "id": "tissue_quench",
       "parent_id": "master_sample_prep",
       "type": "sample_prep"
     },
     "tissue_slice_experiment": {
+      "id": "tissue_slice_experiment",
       "description": "incubation of tissue slice in culture flask with or without treatment",
       "filename": "",
-      "id": "tissue_slice_experiment",
       "parent_id": "master_experiment",
       "type": "treatment"
     },
     "tissue_slice_storage": {
+      "id": "tissue_slice_storage",
       "description": "placement of slice tissue samples into minus 80 for storage",
       "filename": "",
-      "id": "tissue_slice_storage",
       "parent_id": "sample_storage",
       "type": "storage"
     },
     "tissue_staining": {
+      "id": "tissue_staining",
       "description": "IHC, IFC, or staining done on tissue histology samples",
       "filename": "",
-      "id": "tissue_staining",
       "parent_id": "master_sample_prep",
       "type": "sample_prep"
+    },
+    "master_collection": {
+      "id": "master_collection",
+      "description": "master collection protocol",
+      "filename": "",
+      "type": "collection"
+    },
+    "master_experiment": {
+      "id": "master_experiment",
+      "description": "master experiment protocol",
+      "filename": "",
+      "type": "treatment"
+    },
+    "master_measurement": {
+      "id": "master_measurement",
+      "description": "master measurement protocol",
+      "filename": "",
+      "type": "measurement"
+    },
+    "master_sample_prep": {
+      "id": "master_sample_prep",
+      "description": "master sample prep protocol",
+      "filename": "",
+      "type": "sample_prep"
+    },
+    "master_storage": {
+      "id": "master_storage",
+      "description": "master storage protocol",
+      "filename": "",
+      "type": "storage"
     }
   },
   "polar_extraction": {
     "replicate": {
+      "id": "replicate",
+      "format": "numeric",
+      "table": "entity",
+      "type": "number"
+    },
+    "sample_split_ratio": {
+      "id": "sample_split_ratio",
       "format": "numeric",
       "table": "entity",
       "type": "number"
     },
     "replicate%type": {
+      "id": "replicate%type",
       "minLength": "1",
       "table": "entity",
       "type": "string"
     },
-    "sample_split_ratio": {
-      "format": "numeric",
-      "table": "entity",
-      "type": "number"
-    },
     "weight": {
+      "id": "weight",
       "format": "numeric",
       "required": "True",
       "table": "entity",
       "type": "number"
     },
     "weight%units": {
+      "id": "weight%units",
       "minLength": "1",
       "required": "True",
       "table": "entity",
@@ -1301,22 +1593,26 @@
   },
   "polar_preparation": {
     "replicate": {
+      "id": "replicate",
       "format": "numeric",
       "table": "entity",
       "type": "number"
     },
     "replicate%type": {
+      "id": "replicate%type",
       "minLength": "1",
       "table": "entity",
       "type": "string"
     },
     "weight": {
+      "id": "weight",
       "format": "numeric",
       "required": "True",
       "table": "entity",
       "type": "number"
     },
     "weight%units": {
+      "id": "weight%units",
       "minLength": "1",
       "required": "True",
       "table": "entity",
@@ -1325,129 +1621,172 @@
   },
   "protein_extraction": {
     "dry_residue": {
+      "id": "dry_residue",
+      "format": "numeric",
+      "table": "entity",
+      "type": "number"
+    },
+    "dry_weight": {
+      "id": "dry_weight",
+      "format": "numeric",
+      "table": "entity",
+      "type": "number"
+    },
+    "weight": {
+      "id": "weight",
       "format": "numeric",
       "table": "entity",
       "type": "number"
     },
     "dry_residue%units": {
+      "id": "dry_residue%units",
       "minLength": "1",
       "table": "entity",
       "type": "string"
     },
-    "dry_weight": {
-      "format": "numeric",
-      "table": "entity",
-      "type": "number"
-    },
     "dry_weight%units": {
+      "id": "dry_weight%units",
+      "minLength": "1",
+      "table": "entity",
+      "type": "string"
+    },
+    "weight%units": {
+      "id": "weight%units",
       "minLength": "1",
       "table": "entity",
       "type": "string"
     },
     "protein_weight": {
+      "id": "protein_weight",
       "format": "numeric",
       "required": "True",
       "table": "entity",
       "type": "number"
     },
     "protein_weight%units": {
+      "id": "protein_weight%units",
       "minLength": "1",
       "required": "True",
-      "table": "entity",
-      "type": "string"
-    },
-    "weight": {
-      "format": "numeric",
-      "table": "entity",
-      "type": "number"
-    },
-    "weight%units": {
-      "minLength": "1",
       "table": "entity",
       "type": "string"
     }
   },
   "sample_storage": {
     "box_name": {
+      "id": "box_name",
       "minLength": "1",
       "table": "protocol",
       "type": "string"
     }
   },
-  "tissue_histology": {},
-  "tissue_histology_storage": {},
   "tissue_media": {
     "time_point": {
+      "id": "time_point",
+      "format": "numeric",
+      "table": "entity",
+      "type": "number"
+    },
+    "total_media_weight": {
+      "id": "total_media_weight",
+      "format": "numeric",
+      "table": "entity",
+      "type": "number"
+    },
+    "wet_weight": {
+      "id": "wet_weight",
       "format": "numeric",
       "table": "entity",
       "type": "number"
     },
     "time_point%units": {
+      "id": "time_point%units",
       "minLength": "1",
       "table": "entity",
       "type": "string"
-    },
-    "total_media_weight": {
-      "format": "numeric",
-      "table": "entity",
-      "type": "number"
     },
     "total_media_weight%units": {
+      "id": "total_media_weight%units",
       "minLength": "1",
       "table": "entity",
       "type": "string"
     },
-    "wet_weight": {
-      "format": "numeric",
-      "table": "entity",
-      "type": "number"
-    },
     "wet_weight%units": {
+      "id": "wet_weight%units",
       "minLength": "1",
       "table": "entity",
       "type": "string"
     }
   },
-  "tissue_quench": {},
   "tissue_slice_experiment": {
     "empty_flask_weight": {
+      "id": "empty_flask_weight",
+      "format": "numeric",
+      "table": "entity",
+      "type": "number"
+    },
+    "flask_with_media_and_subject_weight": {
+      "id": "flask_with_media_and_subject_weight",
       "format": "numeric",
       "table": "entity",
       "type": "number"
     },
     "empty_flask_weight%units": {
+      "id": "empty_flask_weight%units",
       "minLength": "1",
       "table": "entity",
       "type": "string"
     },
-    "flask_with_media_and_subject_weight": {
-      "format": "numeric",
-      "table": "entity",
-      "type": "number"
-    },
     "flask_with_media_and_subject_weight%units": {
+      "id": "flask_with_media_and_subject_weight%units",
+      "minLength": "1",
+      "table": "entity",
+      "type": "string"
+    },
+    "replicate%type": {
+      "id": "replicate%type",
       "minLength": "1",
       "table": "entity",
       "type": "string"
     },
     "flask_with_media_weight": {
+      "id": "flask_with_media_weight",
       "format": "numeric",
       "required": "True",
       "table": "entity",
       "type": "number"
     },
     "replicate": {
+      "id": "replicate",
       "format": "numeric",
       "required": "True",
       "table": "entity",
       "type": "number"
-    },
-    "replicate%type": {
-      "minLength": "1",
-      "table": "entity",
-      "type": "string"
     }
   },
+  "GCMS_measurement": {},
+  "acetone_preparation": {},
+  "analytical_sample_storage": {},
+  "cancer_surgery": {},
+  "cells_storage": {},
+  "frozen_tissue_grind": {},
+  "ground_bulk_tissue_storage": {},
+  "homogenization_quench": {},
+  "homogenization_quench_retsch": {},
+  "image_collection": {},
+  "master_sample_prep": {
+    "description": {
+      "id": "description",
+      "minLength": "1",
+      "table": "protocol",
+      "type": "string",
+      "required": "True"
+    }
+  },
+  "media_storage": {},
+  "tissue_histology": {},
+  "tissue_histology_storage": {},
+  "tissue_quench": {},
   "tissue_slice_storage": {},
-  "tissue_staining": {}
+  "tissue_staining": {},
+  "binned_NMR_measurement": {}
 }

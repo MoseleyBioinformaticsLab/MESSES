@@ -601,7 +601,15 @@ simply used as is as additional validation.
 While the "json" command is the reason validate was created the other commands were added to support it. The "save-schema" command was added so 
 that users can see the JSON schema being created and used by the "json" command and possibly modify it for use with the --additional option. 
 The "schema" command was added as an easy way for users to check that any JSON schemas they create are valid. Similarly, the "pds" command was 
-added so users can check that the protocol-dependent schemas they create are valid.
+added so users can check that the protocol-dependent schemas they create are valid. The "pds-to-table" command was created so that a JSONized 
+protocol-dependent schema can be transformed into a tabular form that may be easier to edit and view. The "pds-to-json" command is the inverse 
+of the "pds-to-table" command and will take a protocol-dependent schema in tabular form and convert it to JSON. Note that this is just the 
+protocol-dependent schema in JSON form, and not the protocol-dependent schema built into a JSON Schema. To build the protocol-dependent schema 
+into a JSON Schema and save it, use the "--save" option of the "pds" command. The "cd-to-json-schema" command will take a 
+conversion directives file for the convert command and create a JSON Schema template from it that can be used as a start to creating a schema 
+that can be used to validate data before those conversion directives are used on it. The command goes through the conversion directives and 
+finds all fields used and required by the directives to create the JSON Schema template. The template alone is not enough and additional 
+checks on the fields such as type checks need to be added manually to the template, but it is a good place to start.
 
 Although the validate command uses JSON schema, it also introduces 4 new formats. The "integer" and "numeric" formats were introduced 
 so that string type values can be treated as numeric type values. It allows you to use JSON schema keywords such as "minimum" even if 
@@ -654,6 +662,8 @@ Options
          If "-" is given, the file will be read from stdin, anything else is interpreted as a filepath. If a PDS is given, protocols from the input 
          protocol table are added to the parent_protocol table in the PDS, which changes the final schema used for validation. So you may need to specify 
          an input JSON file to reproduce the schema from the "json" command exactly.
+         
+--save  This option specifies that the JSON Schema created from the PDS should be saved out to the indicated file path.
 
 
 Examples
@@ -768,9 +778,40 @@ Command Line:
     messes validate pds PDS_file.json
 
 
+Save The JSON Schema Created From The Protocol-Dependent Schema
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Command Line:
+
+.. code:: console
+
+    messes validate pds PDS_file.json --save PDS_JSON_Schema.json
+    
+
+Transform A JSONized Protocol-Dependent Schema To A Table
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Command Line:
+
+.. code:: console
+
+    messes validate pds-to-table PDS_file.json tabular_PDS_file.csv
 
 
+Transform A Tabular Protocol-Dependent Schema To JSON
++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Command Line:
 
+.. code:: console
+
+    messes validate pds-to-json PDS_file.csv JSONized_PDS_file.json
+
+
+Create A JSON Schema From Conversion Directives
++++++++++++++++++++++++++++++++++++++++++++++++
+Command Line:
+
+.. code:: console
+
+    messes validate cd-to-json-schema directives.json directives_schema.json
 
 
 

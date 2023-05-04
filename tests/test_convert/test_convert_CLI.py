@@ -692,7 +692,7 @@ def test_Google_Sheets_read_in():
     with open(output_path_json, "r") as f:
         output_json = json.loads(f.read())
         
-    with open(pathlib.Path("MS_output_compare_truncated.json"), "r") as f:
+    with open(pathlib.Path("Google_Sheets_compare.json"), "r") as f:
         output_compare_json = json.loads(f.read())
     
     del output_json["METABOLOMICS WORKBENCH"]["CREATED_ON"]

@@ -154,7 +154,7 @@ base_schema = \
  }
 
 
-mwtab_base_schema = \
+mwtab_schema = \
 {
  "type": "object",
  "properties": {
@@ -201,9 +201,8 @@ mwtab_base_schema = \
                 "then":{
                     "properties":{
                         "description":{"type":"string", "minLength":1},
-                        "sample_type":{"type":"string", "minLength":1}
                         },
-                    "required":["description", "sample_type"]
+                    "required":["description"]
                     }
                 },
                 {
@@ -212,8 +211,9 @@ mwtab_base_schema = \
                 "then":{
                     "properties":{
                         "description":{"type":"string", "minLength":1},
+                        "order":{"type":"string", "minLength":1}
                         },
-                    "required":["description"]
+                    "required":["description", "order"]
                     }
                 },
                 {
@@ -275,69 +275,81 @@ mwtab_base_schema = \
                 "required": ["PI_email", "PI_first_name", "PI_last_name", "address", "department", "phone", "title"]
                 }
             },
+    "measurement":{
+        "type": "object",
+        "additionalProperties":{
+            "type": "object",
+            "properties":{
+                "assignment":{"type":"string", "minLength":1},
+                "intensity":{"type":["string", "number"], "minLength":1, "format":"numeric"},
+                "intensity%type":{"type":"string", "minLength":1}
+                },
+            "required":["assignment", "intensity", "intensity%type"]
+            }
+        }
     },
 }
 
 
-mwtab_schema_MS = copy.deepcopy(mwtab_base_schema)
-mwtab_schema_MS["properties"]["measurement"] = \
-    {
-    "type": "object",
-    "additionalProperties":{
-        "type": "object",
-        "properties":{
-            "assignment":{"type":"string", "minLength":1},
-            "intensity":{"type":["string", "number"], "minLength":1, "format":"numeric", "minimum":0},
-            "intensity%type":{"type":"string", "minLength":1},
-            "formula":{"type":"string", "minLength":1},
-            "compound":{"type":"string", "minLength":1},
-            "isotopologue":{"type":"string", "minLength":1},
-            "isotopologue%type":{"type":"string", "minLength":1}
-            },
-        "required":["assignment", "intensity", "intensity%type", "formula", "compound", "isotopologue", "isotopologue%type"]
-        }
-    }
+# mwtab_schema_MS = copy.deepcopy(mwtab_base_schema)
+# mwtab_schema_MS["properties"]["measurement"] = \
+#     {
+#     "type": "object",
+#     "additionalProperties":{
+#         "type": "object",
+#         "properties":{
+#             "assignment":{"type":"string", "minLength":1},
+#             "intensity":{"type":["string", "number"], "minLength":1, "format":"numeric", "minimum":0},
+#             "intensity%type":{"type":"string", "minLength":1},
+#             "formula":{"type":"string", "minLength":1},
+#             "compound":{"type":"string", "minLength":1},
+#             "isotopologue":{"type":"string", "minLength":1},
+#             "isotopologue%type":{"type":"string", "minLength":1}
+#             },
+#         "required":["assignment", "intensity", "intensity%type", "formula", "compound", "isotopologue", "isotopologue%type"]
+#         }
+#     }
 
-mwtab_schema_NMR = copy.deepcopy(mwtab_base_schema)
-mwtab_schema_NMR["properties"]["measurement"] = \
-    {
-    "type": "object",
-    "additionalProperties":{
-        "type": "object",
-        "properties":{
-            "resonance_assignment":{"type":"string", "minLength":1},
-            "intensity":{"type":["string", "number"], "minLength":1, "format":"numeric", "minimum":0},
-            "intensity%type":{"type":"string", "minLength":1},
-            "base_inchi":{"type":["string", "array"], "minItems":1, "minLength":1},
-            "representative_inchi":{"type":["string", "array"], "minItems":1, "minLength":1},
-            "isotopic_inchi":{"type":["string", "array"], "minItems":1, "minLength":1},
-            "peak_description":{"type":["string", "array"], "minItems":1, "minLength":1},
-            "peak_pattern":{"type":"string"},
-            "proton_count":{"type":["string", "number"], "minLength":1, "minimum":0},
-            "transient_peak":{"type":"string", "minLength":1},
-            "transient_peak%type":{"type":"string", "minLength":1}
-            },
-        "required":["resonance_assignment", "intensity", "intensity%type", "base_inchi", 
-                    "representative_inchi", "isotopic_inchi", "peak_description",
-                    "peak_pattern", "proton_count", 
-                    "transient_peak", "transient_peak%type"]
-        }
-    }
+# mwtab_schema_NMR = copy.deepcopy(mwtab_base_schema)
+# mwtab_schema_NMR["properties"]["measurement"] = \
+#     {
+#     "type": "object",
+#     "additionalProperties":{
+#         "type": "object",
+#         "properties":{
+#             "resonance_assignment":{"type":"string", "minLength":1},
+#             "intensity":{"type":["string", "number"], "minLength":1, "format":"numeric", "minimum":0},
+#             "intensity%type":{"type":"string", "minLength":1},
+#             "base_inchi":{"type":["string", "array"], "minItems":1, "minLength":1},
+#             "representative_inchi":{"type":["string", "array"], "minItems":1, "minLength":1},
+#             "isotopic_inchi":{"type":["string", "array"], "minItems":1, "minLength":1},
+#             "peak_description":{"type":["string", "array"], "minItems":1, "minLength":1},
+#             "peak_pattern":{"type":"string"},
+#             "proton_count":{"type":["string", "number"], "minLength":1, "minimum":0},
+#             "transient_peak":{"type":"string", "minLength":1},
+#             "transient_peak%type":{"type":"string", "minLength":1}
+#             },
+#         "required":["resonance_assignment", "intensity", "intensity%type", "base_inchi", 
+#                     "representative_inchi", "isotopic_inchi", "peak_description",
+#                     "peak_pattern", "proton_count", 
+#                     "transient_peak", "transient_peak%type"]
+#         }
+#     }
 
-mwtab_schema_NMR_bin = copy.deepcopy(mwtab_base_schema)
-mwtab_schema_NMR_bin["properties"]["measurement"] = \
-    {
-    "type": "object",
-    "additionalProperties":{
-        "type": "object",
-        "properties":{
-            "assignment":{"type":"string", "minLength":1},
-            "intensity":{"type":["string", "number"], "minLength":1, "format":"numeric", "minimum":0},
-            "intensity%type":{"type":"string", "minLength":1}
-            },
-        "required":["assignment", "intensity", "intensity%type"]
-        }
-    }
+# mwtab_schema_NMR_bin = copy.deepcopy(mwtab_base_schema)
+# mwtab_schema_NMR_bin["properties"]["measurement"] = \
+#     {
+#     "type": "object",
+#     "additionalProperties":{
+#         "type": "object",
+#         "properties":{
+#             "assignment":{"type":"string", "minLength":1},
+#             "intensity":{"type":["string", "number"], "minLength":1, "format":"numeric", "minimum":0},
+#             "intensity%type":{"type":"string", "minLength":1}
+#             },
+#         "required":["assignment", "intensity", "intensity%type"]
+#         }
+#     }
 
 
 

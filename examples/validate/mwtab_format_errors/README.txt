@@ -5,4 +5,4 @@ Input Files:
 MS_base_input_truncated_mwtab_errors.json
 
 Run Command:
-messes validate json MS_base_input_truncated_mwtab_errors.json --format mwtab_MS
+messes validate json MS_base_input_truncated_mwtab_errors.json --format mwtab

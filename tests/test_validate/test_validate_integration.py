@@ -527,7 +527,7 @@ def test_additional_schema_invalid():
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
     
-    assert "Error:  The provided additional JSON schema is not valid, so execution stops here." in output
+    assert "Error:  The additional JSON schema, ../invalid_JSON_schema.json, is not valid, so execution stops here." in output
 
 
 

@@ -74,11 +74,13 @@
 ,WATER_SUPPRESSION,water_suppression,False,protocol,machine_type=NMR,str,,,,
 ,,,,,,,,,,
 #tags,#NMR_METABOLITE_DATA.id,#.collate,*#.headers,#.required,*#.sort_by,#.sort_order,#.table,#.value_type,#.values_to_str,
-,Data,resonance_assignment,"""Metabolite""=resonance_assignment,entity.id=intensity",True,resonance_assignment,ascending,measurement,matrix,True,
-,Metabolites,resonance_assignment,"""Metabolite""=resonance_assignment,""base_inchi""=base_inchi,""representative_inchi""=representative_inchi,""isotopic_inchi""=isotopic_inchi,""peak_description""=peak_description,""peak_pattern""=peak_pattern,""proton_count""=proton_count,""transient_peak""=transient_peak,""transient_peak_type""=transient_peak%type",True,resonance_assignment,ascending,measurement,matrix,True,
+,Data,assignment,"""Metabolite""=assignment,entity.id=intensity",True,assignment,ascending,measurement,matrix,True,
 ,,,,,,,,,,
 #tags,#NMR_METABOLITE_DATA.id,*#.exclusion_headers,#.fields_to_headers,*#.headers,#.required,*#.sort_by,#.sort_order,#.table,#.value_type,#.values_to_str
-,Extended,"id,intensity,intensity%type,intensity%units,resonance_assignment,entity.id,protocol.id,base_inchi,representative_inchi,isotopic_inchi,peak_description,peak_pattern,proton_count,transient_peak,transient_peak%type",True,"""Metabolite""=resonance_assignment,""sample_id""=entity.id",False,resonance_assignment,ascending,measurement,matrix,True
+,Extended,"id,intensity,intensity%type,intensity%units,assignment,assignment%method,entity.id,protocol.id,base_inchi,representative_inchi,isotopic_inchi,peak_description,peak_pattern,proton_count,transient_peak,transient_peak%type",True,"""Metabolite""=assignment,""sample_id""=entity.id",False,assignment,ascending,measurement,matrix,True
+,,,,,,,,,,
+#tags,#NMR_METABOLITE_DATA.id,#.collate,*#.headers,*#.optional_headers,#.required,*#.sort_by,#.sort_order,#.table,#.value_type,#.values_to_str
+,Metabolites,assignment,"""Metabolite""=assignment","assignment%method,base_inchi,representative_inchi,isotopic_inchi,peak_description,peak_pattern,proton_count,transient_peak,transient_peak%type",True,assignment,ascending,measurement,matrix,True
 ,,,,,,,,,,
 #tags,#NMR_METABOLITE_DATA.id,*#.fields,#.required,#.table,#.value_type,,,,,
 ,Units,intensity%type,True,measurement,str,,,,,

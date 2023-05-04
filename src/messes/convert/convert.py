@@ -902,6 +902,12 @@ def directives_to_table(conversion_directives: dict) -> pandas.core.frame.DataFr
     
     df_list = []
     for table, records in conversion_directives.items():
+        ## For tables with no records add a simple header and blank row.
+        if not records:
+            rows = []
+            rows.append(["#tags", "#" + table + ".id"])
+            rows.append(["",""])
+            df_list.append(pandas.DataFrame(rows))
         matched_keys = set()
         for record_name, record_fields in records.items():
             if record_name in matched_keys:

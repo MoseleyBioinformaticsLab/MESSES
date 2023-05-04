@@ -10,7 +10,7 @@
   },
   "METABOLOMICS WORKBENCH": {
     "ANALYSIS_ID": "AN000000",
-    "CREATED_ON": "2023-04-04",
+    "CREATED_ON": "2023-05-04",
     "STUDY_ID": "ST000000",
     "VERSION": "1"
   },
@@ -1196,7 +1196,6 @@
       {
         "Metabolite": "AXP-1'_1",
         "sample_id": "16_A0_Lung_naive_0days_170427_UKy_GCH_rep1-polar-NMR_A",
-        "assignment": "AXP-1'",
         "chemical_shift": "6.140930557856694",
         "peak_area": "6.051353796795649",
         "peak_height": "0.22310900311925",
@@ -1205,7 +1204,6 @@
       {
         "Metabolite": "AXP-1'_1",
         "sample_id": "17_A1_Lung_naive_0days_170427_UKy_GCH_rep2-polar-NMR_A",
-        "assignment": "AXP-1'",
         "chemical_shift": "6.138235717671325",
         "peak_area": "9.682088136630101",
         "peak_height": "0.2924786211063936",
@@ -1214,7 +1212,6 @@
       {
         "Metabolite": "AXP-1'_1",
         "sample_id": "18_A2_Lung_naive_0days_170427_UKy_GCH_rep3-polar-NMR_A",
-        "assignment": "AXP-1'",
         "chemical_shift": "6.137609155687388",
         "peak_area": "4.462505898874794",
         "peak_height": "0.1536058328721234",
@@ -1223,7 +1220,6 @@
       {
         "Metabolite": "AXP-1'_1",
         "sample_id": "19_B0_Lung_syngenic_42days_170427_UKy_GCH_rep1-polar-NMR_A",
-        "assignment": "AXP-1'",
         "chemical_shift": "6.137492484848237",
         "peak_area": "13.81699825684117",
         "peak_height": "0.2980331977909093",
@@ -1232,7 +1228,6 @@
       {
         "Metabolite": "AXP-1'_1",
         "sample_id": "20_B1_Lung_syngenic_42days_170427_UKy_GCH_rep2-polar-NMR_A",
-        "assignment": "AXP-1'",
         "chemical_shift": "6.144837571508773",
         "peak_area": "4.684851129638833",
         "peak_height": "0.1812824660081821",
@@ -1241,7 +1236,6 @@
       {
         "Metabolite": "AXP-1'_1",
         "sample_id": "21_B2_Lung_syngenic_42days_170427_UKy_GCH_rep3-polar-NMR_A",
-        "assignment": "AXP-1'",
         "chemical_shift": "6.139521916216222",
         "peak_area": "10.51272464314843",
         "peak_height": "0.3427292159696202",
@@ -1250,7 +1244,6 @@
       {
         "Metabolite": "AXP-1'_1",
         "sample_id": "22_C1-1_Lung_allogenic_42days_170427_UKy_GCH_rep1-polar-NMR_A",
-        "assignment": "AXP-1'",
         "chemical_shift": "6.135466386058206",
         "peak_area": "8.219746007660284",
         "peak_height": "0.2389636592238455",
@@ -1259,7 +1252,6 @@
       {
         "Metabolite": "AXP-1'_1",
         "sample_id": "23_C1-2_Lung_allogenic_42days_170427_UKy_GCH_rep2-polar-NMR_A",
-        "assignment": "AXP-1'",
         "chemical_shift": "6.143750508652085",
         "peak_area": "20.74827696368287",
         "peak_height": "0.4946741449868799",
@@ -1268,7 +1260,6 @@
       {
         "Metabolite": "AXP-1'_1",
         "sample_id": "24_C2-0_Lung_allogenic_42days_170427_UKy_GCH_rep1-polar-NMR_A",
-        "assignment": "AXP-1'",
         "chemical_shift": "6.144338813262667",
         "peak_area": "43.92696913329419",
         "peak_height": "1.047757586340283",
@@ -1277,7 +1268,6 @@
       {
         "Metabolite": "AXP-1'_1",
         "sample_id": "25_B1-0_Lung_syngenic_7days_170427_UKy_GCH_rep1-polar-NMR_A",
-        "assignment": "AXP-1'",
         "chemical_shift": "6.1416243696499",
         "peak_area": "21.52358015767358",
         "peak_height": "0.5574228340821448",
@@ -1286,7 +1276,6 @@
       {
         "Metabolite": "AXP-1'_1",
         "sample_id": "26_B1-1_Lung_syngenic_7days_170427_UKy_GCH_rep2-polar-NMR_A",
-        "assignment": "AXP-1'",
         "chemical_shift": "6.139553483082373",
         "peak_area": "4.345300560566886",
         "peak_height": "0.1666035228663279",
@@ -1295,7 +1284,6 @@
       {
         "Metabolite": "AXP-1'_1",
         "sample_id": "27_B1-2_Lung_syngenic_7days_170427_UKy_GCH_rep3-polar-NMR_A",
-        "assignment": "AXP-1'",
         "chemical_shift": "6.140787835308999",
         "peak_area": "9.039271816746838",
         "peak_height": "0.2877929701605874",
@@ -1304,7 +1292,6 @@
       {
         "Metabolite": "AXP-1'_1",
         "sample_id": "28_C1-1_Lung_allogenic_7days_170427_UKy_GCH_rep1-polar-NMR_A",
-        "assignment": "AXP-1'",
         "chemical_shift": "6.140452172016065",
         "peak_area": "6.441375258279031",
         "peak_height": "0.1964143822058902",
@@ -1313,7 +1300,6 @@
       {
         "Metabolite": "AXP-1'_1",
         "sample_id": "29_C1-2_Lung_allogenic_7days_170427_UKy_GCH_rep2-polar-NMR_A",
-        "assignment": "AXP-1'",
         "chemical_shift": "6.139283488450624",
         "peak_area": "26.40760404001792",
         "peak_height": "0.4032011801220514",
@@ -1322,7 +1308,6 @@
       {
         "Metabolite": "AXP-1'_1",
         "sample_id": "30_C1-20_Lung_allogenic_7days_170427_UKy_GCH_rep3-polar-NMR_A",
-        "assignment": "AXP-1'",
         "chemical_shift": "6.140289259105357",
         "peak_area": "16.81496592872274",
         "peak_height": "0.3480534155580416",
@@ -1331,7 +1316,6 @@
       {
         "Metabolite": "AXP-1'_2",
         "sample_id": "22_C1-1_Lung_allogenic_42days_170427_UKy_GCH_rep1-polar-NMR_A",
-        "assignment": "AXP-1'",
         "chemical_shift": "6.146960822319806",
         "peak_area": "2.832099804624011",
         "peak_height": "0.1475450984668343",
@@ -1340,7 +1324,6 @@
       {
         "Metabolite": "AXP-2_1",
         "sample_id": "16_A0_Lung_naive_0days_170427_UKy_GCH_rep1-polar-NMR_A",
-        "assignment": "AXP-2",
         "chemical_shift": "8.25888843041048",
         "peak_area": "2.465630075862531",
         "peak_height": "0.1182847679640191",
@@ -1349,7 +1332,6 @@
       {
         "Metabolite": "AXP-2_1",
         "sample_id": "17_A1_Lung_naive_0days_170427_UKy_GCH_rep2-polar-NMR_A",
-        "assignment": "AXP-2",
         "chemical_shift": "8.253964410749854",
         "peak_area": "2.122489178783557",
         "peak_height": "0.1192761906965313",
@@ -1358,7 +1340,6 @@
       {
         "Metabolite": "AXP-2_1",
         "sample_id": "18_A2_Lung_naive_0days_170427_UKy_GCH_rep3-polar-NMR_A",
-        "assignment": "AXP-2",
         "chemical_shift": "8.275977838588927",
         "peak_area": "2.636444835965149",
         "peak_height": "0.1531467771341484",
@@ -1367,7 +1348,6 @@
       {
         "Metabolite": "AXP-2_1",
         "sample_id": "19_B0_Lung_syngenic_42days_170427_UKy_GCH_rep1-polar-NMR_A",
-        "assignment": "AXP-2",
         "chemical_shift": "8.253081418625822",
         "peak_area": "1.243009195448877",
         "peak_height": "0.06810081557841395",
@@ -1376,7 +1356,6 @@
       {
         "Metabolite": "AXP-2_1",
         "sample_id": "20_B1_Lung_syngenic_42days_170427_UKy_GCH_rep2-polar-NMR_A",
-        "assignment": "AXP-2",
         "chemical_shift": "8.254510462849423",
         "peak_area": "0.5447033324231522",
         "peak_height": "0.03403356869667526",
@@ -1385,7 +1364,6 @@
       {
         "Metabolite": "AXP-2_1",
         "sample_id": "21_B2_Lung_syngenic_42days_170427_UKy_GCH_rep3-polar-NMR_A",
-        "assignment": "AXP-2",
         "chemical_shift": "8.256764561770032",
         "peak_area": "2.455583867301609",
         "peak_height": "0.1006702754851761",
@@ -1394,7 +1372,6 @@
       {
         "Metabolite": "AXP-2_1",
         "sample_id": "22_C1-1_Lung_allogenic_42days_170427_UKy_GCH_rep1-polar-NMR_A",
-        "assignment": "AXP-2",
         "chemical_shift": "8.256864651837462",
         "peak_area": "1.001199360817605",
         "peak_height": "0.08795476633521764",
@@ -1403,7 +1380,6 @@
       {
         "Metabolite": "AXP-2_1",
         "sample_id": "23_C1-2_Lung_allogenic_42days_170427_UKy_GCH_rep2-polar-NMR_A",
-        "assignment": "AXP-2",
         "chemical_shift": "8.25216847432685",
         "peak_area": "0.3171077589380195",
         "peak_height": "0.0336866728500812",
@@ -1412,7 +1388,6 @@
       {
         "Metabolite": "AXP-2_1",
         "sample_id": "24_C2-0_Lung_allogenic_42days_170427_UKy_GCH_rep1-polar-NMR_A",
-        "assignment": "AXP-2",
         "chemical_shift": "8.254015448985133",
         "peak_area": "8.316564270029698",
         "peak_height": "0.3076567342155923",
@@ -1421,7 +1396,6 @@
       {
         "Metabolite": "AXP-2_1",
         "sample_id": "25_B1-0_Lung_syngenic_7days_170427_UKy_GCH_rep1-polar-NMR_A",
-        "assignment": "AXP-2",
         "chemical_shift": "8.253959184701383",
         "peak_area": "5.286119383625488",
         "peak_height": "0.1674859851491535",
@@ -1430,7 +1404,6 @@
       {
         "Metabolite": "AXP-2_1",
         "sample_id": "26_B1-1_Lung_syngenic_7days_170427_UKy_GCH_rep2-polar-NMR_A",
-        "assignment": "AXP-2",
         "chemical_shift": "8.25768658302363",
         "peak_area": "3.292293576364786",
         "peak_height": "0.1080984211235066",
@@ -1439,7 +1412,6 @@
       {
         "Metabolite": "AXP-2_1",
         "sample_id": "27_B1-2_Lung_syngenic_7days_170427_UKy_GCH_rep3-polar-NMR_A",
-        "assignment": "AXP-2",
         "chemical_shift": "8.265426093875085",
         "peak_area": "2.508729328510752",
         "peak_height": "0.07539492870553119",
@@ -1448,7 +1420,6 @@
       {
         "Metabolite": "AXP-2_1",
         "sample_id": "28_C1-1_Lung_allogenic_7days_170427_UKy_GCH_rep1-polar-NMR_A",
-        "assignment": "AXP-2",
         "chemical_shift": "8.252611798069081",
         "peak_area": "7.36462537611061",
         "peak_height": "0.1691979588803012",
@@ -1457,7 +1428,6 @@
       {
         "Metabolite": "AXP-2_1",
         "sample_id": "29_C1-2_Lung_allogenic_7days_170427_UKy_GCH_rep2-polar-NMR_A",
-        "assignment": "AXP-2",
         "chemical_shift": "8.252329443514805",
         "peak_area": "3.099763887138852",
         "peak_height": "0.1858056679256198",
@@ -1466,7 +1436,6 @@
       {
         "Metabolite": "AXP-2_1",
         "sample_id": "30_C1-20_Lung_allogenic_7days_170427_UKy_GCH_rep3-polar-NMR_A",
-        "assignment": "AXP-2",
         "chemical_shift": "8.252696905967733",
         "peak_area": "3.861363115267904",
         "peak_height": "0.1805214102571201",
@@ -1475,7 +1444,6 @@
       {
         "Metabolite": "AXP-8_1",
         "sample_id": "16_A0_Lung_naive_0days_170427_UKy_GCH_rep1-polar-NMR_A",
-        "assignment": "AXP-8",
         "chemical_shift": "8.512725664426405",
         "peak_area": "0.09636758257507522",
         "peak_height": "0.01349922036909005",
@@ -1484,7 +1452,6 @@
       {
         "Metabolite": "AXP-8_1",
         "sample_id": "17_A1_Lung_naive_0days_170427_UKy_GCH_rep2-polar-NMR_A",
-        "assignment": "AXP-8",
         "chemical_shift": "8.532394823677532",
         "peak_area": "1.581116021548546",
         "peak_height": "0.1023115363859136",
@@ -1493,7 +1460,6 @@
       {
         "Metabolite": "AXP-8_1",
         "sample_id": "18_A2_Lung_naive_0days_170427_UKy_GCH_rep3-polar-NMR_A",
-        "assignment": "AXP-8",
         "chemical_shift": "8.529373691766162",
         "peak_area": "0.5199874732210333",
         "peak_height": "0.03795825305464094",
@@ -1502,7 +1468,6 @@
       {
         "Metabolite": "AXP-8_1",
         "sample_id": "19_B0_Lung_syngenic_42days_170427_UKy_GCH_rep1-polar-NMR_A",
-        "assignment": "AXP-8",
         "chemical_shift": "8.538884499620925",
         "peak_area": "4.164510010961791",
         "peak_height": "0.1615384300926806",
@@ -1511,7 +1476,6 @@
       {
         "Metabolite": "AXP-8_1",
         "sample_id": "20_B1_Lung_syngenic_42days_170427_UKy_GCH_rep2-polar-NMR_A",
-        "assignment": "AXP-8",
         "chemical_shift": "8.54050352372942",
         "peak_area": "4.454218737497699",
         "peak_height": "0.1786218610440962",
@@ -1520,7 +1484,6 @@
       {
         "Metabolite": "AXP-8_1",
         "sample_id": "21_B2_Lung_syngenic_42days_170427_UKy_GCH_rep3-polar-NMR_A",
-        "assignment": "AXP-8",
         "chemical_shift": "8.526490242181504",
         "peak_area": "2.04080232438951",
         "peak_height": "0.08916350611818681",
@@ -1529,7 +1492,6 @@
       {
         "Metabolite": "AXP-8_1",
         "sample_id": "22_C1-1_Lung_allogenic_42days_170427_UKy_GCH_rep1-polar-NMR_A",
-        "assignment": "AXP-8",
         "chemical_shift": "8.539450220835118",
         "peak_area": "0.8791289090586817",
         "peak_height": "0.0793636616062202",
@@ -1538,7 +1500,6 @@
       {
         "Metabolite": "AXP-8_1",
         "sample_id": "23_C1-2_Lung_allogenic_42days_170427_UKy_GCH_rep2-polar-NMR_A",
-        "assignment": "AXP-8",
         "chemical_shift": "8.526058950801653",
         "peak_area": "0.7500990930657742",
         "peak_height": "0.04561491941662546",
@@ -1547,7 +1508,6 @@
       {
         "Metabolite": "AXP-8_1",
         "sample_id": "24_C2-0_Lung_allogenic_42days_170427_UKy_GCH_rep1-polar-NMR_A",
-        "assignment": "AXP-8",
         "chemical_shift": "8.540781433889952",
         "peak_area": "4.549648170888623",
         "peak_height": "0.2065569996838993",
@@ -1556,7 +1516,6 @@
       {
         "Metabolite": "AXP-8_1",
         "sample_id": "25_B1-0_Lung_syngenic_7days_170427_UKy_GCH_rep1-polar-NMR_A",
-        "assignment": "AXP-8",
         "chemical_shift": "8.542413127021456",
         "peak_area": "2.194173216968797",
         "peak_height": "0.1456310691721234",
@@ -1565,7 +1524,6 @@
       {
         "Metabolite": "AXP-8_1",
         "sample_id": "27_B1-2_Lung_syngenic_7days_170427_UKy_GCH_rep3-polar-NMR_A",
-        "assignment": "AXP-8",
         "chemical_shift": "8.52550050071426",
         "peak_area": "1.369158687143802",
         "peak_height": "0.0787727674335029",
@@ -1574,7 +1532,6 @@
       {
         "Metabolite": "AXP-8_1",
         "sample_id": "28_C1-1_Lung_allogenic_7days_170427_UKy_GCH_rep1-polar-NMR_A",
-        "assignment": "AXP-8",
         "chemical_shift": "8.543692191655804",
         "peak_area": "2.256436030622968",
         "peak_height": "0.123136722932822",
@@ -1583,7 +1540,6 @@
       {
         "Metabolite": "AXP-8_1",
         "sample_id": "29_C1-2_Lung_allogenic_7days_170427_UKy_GCH_rep2-polar-NMR_A",
-        "assignment": "AXP-8",
         "chemical_shift": "8.54146260174339",
         "peak_area": "0.7684351317623923",
         "peak_height": "0.06264475723628708",
@@ -1592,7 +1548,6 @@
       {
         "Metabolite": "AXP-8_1",
         "sample_id": "30_C1-20_Lung_allogenic_7days_170427_UKy_GCH_rep3-polar-NMR_A",
-        "assignment": "AXP-8",
         "chemical_shift": "8.54232477599862",
         "peak_area": "2.385889876740265",
         "peak_height": "0.1199198129443138",
@@ -1601,7 +1556,6 @@
       {
         "Metabolite": "Ace-2_1",
         "sample_id": "24_C2-0_Lung_allogenic_42days_170427_UKy_GCH_rep1-polar-NMR_A",
-        "assignment": "Ace-2",
         "chemical_shift": "1.906913861650448",
         "peak_area": "27.60596656172531",
         "peak_height": "0.4953972280824556",
@@ -1610,7 +1564,6 @@
       {
         "Metabolite": "Ala-3_1",
         "sample_id": "16_A0_Lung_naive_0days_170427_UKy_GCH_rep1-polar-NMR_A",
-        "assignment": "Ala-3",
         "chemical_shift": "1.462354118312802",
         "peak_area": "40.38869315556165",
         "peak_height": "1.278587123662779",
@@ -1619,7 +1572,6 @@
       {
         "Metabolite": "Ala-3_1",
         "sample_id": "17_A1_Lung_naive_0days_170427_UKy_GCH_rep2-polar-NMR_A",
-        "assignment": "Ala-3",
         "chemical_shift": "1.461862788898565",
         "peak_area": "53.74346079624419",
         "peak_height": "1.789894710292992",
@@ -1628,7 +1580,6 @@
       {
         "Metabolite": "Ala-3_1",
         "sample_id": "18_A2_Lung_naive_0days_170427_UKy_GCH_rep3-polar-NMR_A",
-        "assignment": "Ala-3",
         "chemical_shift": "1.464972898642681",
         "peak_area": "21.8014658507886",
         "peak_height": "0.5382857196665446",
@@ -1637,7 +1588,6 @@
       {
         "Metabolite": "Ala-3_1",
         "sample_id": "19_B0_Lung_syngenic_42days_170427_UKy_GCH_rep1-polar-NMR_A",
-        "assignment": "Ala-3",
         "chemical_shift": "1.463336387216805",
         "peak_area": "45.7196138521909",
         "peak_height": "1.406519346177578",
@@ -1646,7 +1596,6 @@
       {
         "Metabolite": "Ala-3_1",
         "sample_id": "20_B1_Lung_syngenic_42days_170427_UKy_GCH_rep2-polar-NMR_A",
-        "assignment": "Ala-3",
         "chemical_shift": "1.461134747428007",
         "peak_area": "24.28241678462306",
         "peak_height": "0.9291327249722936",
@@ -1655,7 +1604,6 @@
       {
         "Metabolite": "Ala-3_1",
         "sample_id": "21_B2_Lung_syngenic_42days_170427_UKy_GCH_rep3-polar-NMR_A",
-        "assignment": "Ala-3",
         "chemical_shift": "1.461767514991669",
         "peak_area": "94.07593072618614",
         "peak_height": "3.145335553930139",
@@ -1664,7 +1612,6 @@
       {
         "Metabolite": "Ala-3_1",
         "sample_id": "22_C1-1_Lung_allogenic_42days_170427_UKy_GCH_rep1-polar-NMR_A",
-        "assignment": "Ala-3",
         "chemical_shift": "1.462822299421818",
         "peak_area": "52.07834250501532",
         "peak_height": "1.49039546435703",
@@ -1673,7 +1620,6 @@
       {
         "Metabolite": "Ala-3_1",
         "sample_id": "23_C1-2_Lung_allogenic_42days_170427_UKy_GCH_rep2-polar-NMR_A",
-        "assignment": "Ala-3",
         "chemical_shift": "1.462438844457851",
         "peak_area": "42.98965620433707",
         "peak_height": "1.53305414641",
@@ -1682,7 +1628,6 @@
       {
         "Metabolite": "Ala-3_1",
         "sample_id": "24_C2-0_Lung_allogenic_42days_170427_UKy_GCH_rep1-polar-NMR_A",
-        "assignment": "Ala-3",
         "chemical_shift": "1.463990503875846",
         "peak_area": "191.8884249824533",
         "peak_height": "6.364911102135015",
@@ -1691,7 +1636,6 @@
       {
         "Metabolite": "Ala-3_1",
         "sample_id": "25_B1-0_Lung_syngenic_7days_170427_UKy_GCH_rep1-polar-NMR_A",
-        "assignment": "Ala-3",
         "chemical_shift": "1.463018200164253",
         "peak_area": "50.89074194765215",
         "peak_height": "1.880938204584709",
@@ -1700,7 +1644,6 @@
       {
         "Metabolite": "Ala-3_1",
         "sample_id": "26_B1-1_Lung_syngenic_7days_170427_UKy_GCH_rep2-polar-NMR_A",
-        "assignment": "Ala-3",
         "chemical_shift": "1.468629145612564",
         "peak_area": "37.91668572691754",
         "peak_height": "0.8295312837399639",
@@ -1709,7 +1652,6 @@
       {
         "Metabolite": "Ala-3_1",
         "sample_id": "27_B1-2_Lung_syngenic_7days_170427_UKy_GCH_rep3-polar-NMR_A",
-        "assignment": "Ala-3",
         "chemical_shift": "1.46874416443301",
         "peak_area": "75.3361684260461",
         "peak_height": "1.774135060394825",
@@ -1718,7 +1660,6 @@
       {
         "Metabolite": "Ala-3_1",
         "sample_id": "28_C1-1_Lung_allogenic_7days_170427_UKy_GCH_rep1-polar-NMR_A",
-        "assignment": "Ala-3",
         "chemical_shift": "1.467589605514433",
         "peak_area": "50.95617222336024",
         "peak_height": "1.247542810362134",
@@ -1727,7 +1668,6 @@
       {
         "Metabolite": "Ala-3_1",
         "sample_id": "29_C1-2_Lung_allogenic_7days_170427_UKy_GCH_rep2-polar-NMR_A",
-        "assignment": "Ala-3",
         "chemical_shift": "1.46125902952472",
         "peak_area": "57.86179808206396",
         "peak_height": "1.837400794397098",
@@ -1736,7 +1676,6 @@
       {
         "Metabolite": "Ala-3_1",
         "sample_id": "30_C1-20_Lung_allogenic_7days_170427_UKy_GCH_rep3-polar-NMR_A",
-        "assignment": "Ala-3",
         "chemical_shift": "1.462961947316504",
         "peak_area": "70.87853922083089",
         "peak_height": "2.053963312215139",
@@ -1745,7 +1684,6 @@
       {
         "Metabolite": "Ala-3_2",
         "sample_id": "16_A0_Lung_naive_0days_170427_UKy_GCH_rep1-polar-NMR_A",
-        "assignment": "Ala-3",
         "chemical_shift": "1.475087056343949",
         "peak_area": "18.7443091926501",
         "peak_height": "0.876468215297148",
@@ -1754,7 +1692,6 @@
       {
         "Metabolite": "Ala-3_2",
         "sample_id": "17_A1_Lung_naive_0days_170427_UKy_GCH_rep2-polar-NMR_A",
-        "assignment": "Ala-3",
         "chemical_shift": "1.474389262605654",
         "peak_area": "39.19200643321608",
         "peak_height": "1.518325484482881",
@@ -1763,7 +1700,6 @@
       {
         "Metabolite": "Ala-3_2",
         "sample_id": "19_B0_Lung_syngenic_42days_170427_UKy_GCH_rep1-polar-NMR_A",
-        "assignment": "Ala-3",
         "chemical_shift": "1.47619799318711",
         "peak_area": "23.30769580827402",
         "peak_height": "0.9889554432299009",
@@ -1772,7 +1708,6 @@
       {
         "Metabolite": "Ala-3_2",
         "sample_id": "20_B1_Lung_syngenic_42days_170427_UKy_GCH_rep2-polar-NMR_A",
-        "assignment": "Ala-3",
         "chemical_shift": "1.473880085129204",
         "peak_area": "15.10882899666385",
         "peak_height": "0.8005230241637237",
@@ -1781,7 +1716,6 @@
       {
         "Metabolite": "Ala-3_2",
         "sample_id": "21_B2_Lung_syngenic_42days_170427_UKy_GCH_rep3-polar-NMR_A",
-        "assignment": "Ala-3",
         "chemical_shift": "1.474520213553439",
         "peak_area": "99.32222591322073",
         "peak_height": "3.293949748381563",
@@ -1790,7 +1724,6 @@
       {
         "Metabolite": "Ala-3_2",
         "sample_id": "22_C1-1_Lung_allogenic_42days_170427_UKy_GCH_rep1-polar-NMR_A",
-        "assignment": "Ala-3",
         "chemical_shift": "1.475516065553102",
         "peak_area": "25.91090344052633",
         "peak_height": "1.076811899641803",
@@ -1799,7 +1732,6 @@
       {
         "Metabolite": "Ala-3_2",
         "sample_id": "23_C1-2_Lung_allogenic_42days_170427_UKy_GCH_rep2-polar-NMR_A",
-        "assignment": "Ala-3",
         "chemical_shift": "1.475203916459223",
         "peak_area": "56.10799341139039",
         "peak_height": "1.725471254882427",
@@ -1808,7 +1740,6 @@
       {
         "Metabolite": "Ala-3_2",
         "sample_id": "24_C2-0_Lung_allogenic_42days_170427_UKy_GCH_rep1-polar-NMR_A",
-        "assignment": "Ala-3",
         "chemical_shift": "1.476387464666409",
         "peak_area": "196.2699149824753",
         "peak_height": "6.447773192867837",
@@ -1817,7 +1748,6 @@
       {
         "Metabolite": "Ala-3_2",
         "sample_id": "25_B1-0_Lung_syngenic_7days_170427_UKy_GCH_rep1-polar-NMR_A",
-        "assignment": "Ala-3",
         "chemical_shift": "1.475383416569185",
         "peak_area": "45.71475589529873",
         "peak_height": "1.75397250932317",
@@ -1826,7 +1756,6 @@
       {
         "Metabolite": "Ala-3_2",
         "sample_id": "29_C1-2_Lung_allogenic_7days_170427_UKy_GCH_rep2-polar-NMR_A",
-        "assignment": "Ala-3",
         "chemical_shift": "1.473992668273313",
         "peak_area": "30.32835461116378",
         "peak_height": "1.328114192857223",
@@ -1835,7 +1764,6 @@
       {
         "Metabolite": "Ala-3_2",
         "sample_id": "30_C1-20_Lung_allogenic_7days_170427_UKy_GCH_rep3-polar-NMR_A",
-        "assignment": "Ala-3",
         "chemical_shift": "1.4751465900862",
         "peak_area": "47.63626016550165",
         "peak_height": "1.738307399097219",
@@ -1844,7 +1772,6 @@
       {
         "Metabolite": "Asp-3b_1",
         "sample_id": "16_A0_Lung_naive_0days_170427_UKy_GCH_rep1-polar-NMR_A",
-        "assignment": "Asp-3b",
         "chemical_shift": "2.787134027629223",
         "peak_area": "1.519370453385877",
         "peak_height": "0.1066520733620017",
@@ -1853,7 +1780,6 @@
       {
         "Metabolite": "Asp-3b_1",
         "sample_id": "17_A1_Lung_naive_0days_170427_UKy_GCH_rep2-polar-NMR_A",
-        "assignment": "Asp-3b",
         "chemical_shift": "2.788468215454108",
         "peak_area": "7.369803313091052",
         "peak_height": "0.2828327955792886",
@@ -1862,7 +1788,6 @@
       {
         "Metabolite": "Asp-3b_1",
         "sample_id": "18_A2_Lung_naive_0days_170427_UKy_GCH_rep3-polar-NMR_A",
-        "assignment": "Asp-3b",
         "chemical_shift": "2.821895266815031",
         "peak_area": "2.3959621521689",
         "peak_height": "0.1320398766774301",
@@ -1871,7 +1796,6 @@
       {
         "Metabolite": "Asp-3b_1",
         "sample_id": "19_B0_Lung_syngenic_42days_170427_UKy_GCH_rep1-polar-NMR_A",
-        "assignment": "Asp-3b",
         "chemical_shift": "2.790116897741853",
         "peak_area": "9.329929481681754",
         "peak_height": "0.3318478618828005",
@@ -1880,7 +1804,6 @@
       {
         "Metabolite": "Asp-3b_1",
         "sample_id": "20_B1_Lung_syngenic_42days_170427_UKy_GCH_rep2-polar-NMR_A",
-        "assignment": "Asp-3b",
         "chemical_shift": "2.786197214402495",
         "peak_area": "2.419521925027679",
         "peak_height": "0.1361123842468583",
@@ -1889,7 +1812,6 @@
       {
         "Metabolite": "Asp-3b_1",
         "sample_id": "21_B2_Lung_syngenic_42days_170427_UKy_GCH_rep3-polar-NMR_A",
-        "assignment": "Asp-3b",
         "chemical_shift": "2.787153489781756",
         "peak_area": "16.80277785834007",
         "peak_height": "0.5403039854103676",
@@ -1898,7 +1820,6 @@
       {
         "Metabolite": "Asp-3b_1",
         "sample_id": "22_C1-1_Lung_allogenic_42days_170427_UKy_GCH_rep1-polar-NMR_A",
-        "assignment": "Asp-3b",
         "chemical_shift": "2.788722192591088",
         "peak_area": "2.469132597438783",
         "peak_height": "0.1262608163792322",
@@ -1907,7 +1828,6 @@
       {
         "Metabolite": "Asp-3b_1",
         "sample_id": "23_C1-2_Lung_allogenic_42days_170427_UKy_GCH_rep2-polar-NMR_A",
-        "assignment": "Asp-3b",
         "chemical_shift": "2.788940053076274",
         "peak_area": "13.49202747288558",
         "peak_height": "0.4301789861956822",
@@ -1916,7 +1836,6 @@
       {
         "Metabolite": "Asp-3b_1",
         "sample_id": "24_C2-0_Lung_allogenic_42days_170427_UKy_GCH_rep1-polar-NMR_A",
-        "assignment": "Asp-3b",
         "chemical_shift": "2.790998303388557",
         "peak_area": "47.71168629878088",
         "peak_height": "1.334963050553863",
@@ -1925,7 +1844,6 @@
       {
         "Metabolite": "Asp-3b_1",
         "sample_id": "25_B1-0_Lung_syngenic_7days_170427_UKy_GCH_rep1-polar-NMR_A",
-        "assignment": "Asp-3b",
         "chemical_shift": "2.785765333034845",
         "peak_area": "14.52849294767455",
         "peak_height": "0.5067293812363921",
@@ -1934,7 +1852,6 @@
       {
         "Metabolite": "Asp-3b_1",
         "sample_id": "26_B1-1_Lung_syngenic_7days_170427_UKy_GCH_rep2-polar-NMR_A",
-        "assignment": "Asp-3b",
         "chemical_shift": "2.789873387946011",
         "peak_area": "10.4232319008556",
         "peak_height": "0.200043585172984",
@@ -1943,7 +1860,6 @@
       {
         "Metabolite": "Asp-3b_1",
         "sample_id": "27_B1-2_Lung_syngenic_7days_170427_UKy_GCH_rep3-polar-NMR_A",
-        "assignment": "Asp-3b",
         "chemical_shift": "2.785864860711088",
         "peak_area": "8.064911678316273",
         "peak_height": "0.2884961513833942",
@@ -1952,7 +1868,6 @@
       {
         "Metabolite": "Asp-3b_1",
         "sample_id": "28_C1-1_Lung_allogenic_7days_170427_UKy_GCH_rep1-polar-NMR_A",
-        "assignment": "Asp-3b",
         "chemical_shift": "2.789029604411957",
         "peak_area": "5.728341945419517",
         "peak_height": "0.2423824663389385",
@@ -1961,7 +1876,6 @@
       {
         "Metabolite": "Asp-3b_1",
         "sample_id": "29_C1-2_Lung_allogenic_7days_170427_UKy_GCH_rep2-polar-NMR_A",
-        "assignment": "Asp-3b",
         "chemical_shift": "2.787697966376287",
         "peak_area": "11.36579421460837",
         "peak_height": "0.4404209181517295",
@@ -1970,7 +1884,6 @@
       {
         "Metabolite": "Asp-3b_1",
         "sample_id": "30_C1-20_Lung_allogenic_7days_170427_UKy_GCH_rep3-polar-NMR_A",
-        "assignment": "Asp-3b",
         "chemical_shift": "2.789055578251143",
         "peak_area": "17.09299506054247",
         "peak_height": "0.4718094635666644",
@@ -1979,7 +1892,6 @@
       {
         "Metabolite": "Asp-3b_2",
         "sample_id": "16_A0_Lung_naive_0days_170427_UKy_GCH_rep1-polar-NMR_A",
-        "assignment": "Asp-3b",
         "chemical_shift": "2.819284892332248",
         "peak_area": "4.639644619884503",
         "peak_height": "0.2142922770578811",
@@ -1988,7 +1900,6 @@
       {
         "Metabolite": "Asp-3b_2",
         "sample_id": "17_A1_Lung_naive_0days_170427_UKy_GCH_rep2-polar-NMR_A",
-        "assignment": "Asp-3b",
         "chemical_shift": "2.818657707543247",
         "peak_area": "11.16101590377429",
         "peak_height": "0.2824895661475942",
@@ -1997,7 +1908,6 @@
       {
         "Metabolite": "Asp-3b_2",
         "sample_id": "19_B0_Lung_syngenic_42days_170427_UKy_GCH_rep1-polar-NMR_A",
-        "assignment": "Asp-3b",
         "chemical_shift": "2.818335982787879",
         "peak_area": "5.485314838043246",
         "peak_height": "0.2487726179665743",
@@ -2006,7 +1916,6 @@
       {
         "Metabolite": "Asp-3b_2",
         "sample_id": "20_B1_Lung_syngenic_42days_170427_UKy_GCH_rep2-polar-NMR_A",
-        "assignment": "Asp-3b",
         "chemical_shift": "2.819991898790839",
         "peak_area": "2.153902094597956",
         "peak_height": "0.1135657256605077",
@@ -2015,7 +1924,6 @@
       {
         "Metabolite": "Asp-3b_2",
         "sample_id": "21_B2_Lung_syngenic_42days_170427_UKy_GCH_rep3-polar-NMR_A",
-        "assignment": "Asp-3b",
         "chemical_shift": "2.817721496287447",
         "peak_area": "16.56969456683603",
         "peak_height": "0.4664790528628047",
@@ -2024,7 +1932,6 @@
       {
         "Metabolite": "Asp-3b_2",
         "sample_id": "22_C1-1_Lung_allogenic_42days_170427_UKy_GCH_rep1-polar-NMR_A",
-        "assignment": "Asp-3b",
         "chemical_shift": "2.816157195711948",
         "peak_area": "0.6316433495148177",
         "peak_height": "0.05339846351037189",
@@ -2033,7 +1940,6 @@
       {
         "Metabolite": "Asp-3b_2",
         "sample_id": "23_C1-2_Lung_allogenic_42days_170427_UKy_GCH_rep2-polar-NMR_A",
-        "assignment": "Asp-3b",
         "chemical_shift": "2.82020879606289",
         "peak_area": "7.36964904104185",
         "peak_height": "0.3110948414273116",
@@ -2042,7 +1948,6 @@
       {
         "Metabolite": "Asp-3b_2",
         "sample_id": "24_C2-0_Lung_allogenic_42days_170427_UKy_GCH_rep1-polar-NMR_A",
-        "assignment": "Asp-3b",
         "chemical_shift": "2.821275439745957",
         "peak_area": "30.20672815356597",
         "peak_height": "1.054803461579735",
@@ -2051,7 +1956,6 @@
       {
         "Metabolite": "Asp-3b_2",
         "sample_id": "25_B1-0_Lung_syngenic_7days_170427_UKy_GCH_rep1-polar-NMR_A",
-        "assignment": "Asp-3b",
         "chemical_shift": "2.817028720001148",
         "peak_area": "13.85262954957766",
         "peak_height": "0.4178146421906897",
@@ -2060,7 +1964,6 @@
       {
         "Metabolite": "Asp-3b_2",
         "sample_id": "26_B1-1_Lung_syngenic_7days_170427_UKy_GCH_rep2-polar-NMR_A",
-        "assignment": "Asp-3b",
         "chemical_shift": "2.817706758691668",
         "peak_area": "1.238255253794013",
         "peak_height": "0.08755311024650468",
@@ -2069,7 +1972,6 @@
       {
         "Metabolite": "Asp-3b_2",
         "sample_id": "27_B1-2_Lung_syngenic_7days_170427_UKy_GCH_rep3-polar-NMR_A",
-        "assignment": "Asp-3b",
         "chemical_shift": "2.816715581917656",
         "peak_area": "6.744300130420299",
         "peak_height": "0.2564270140707642",
@@ -2078,7 +1980,6 @@
       {
         "Metabolite": "Asp-3b_2",
         "sample_id": "28_C1-1_Lung_allogenic_7days_170427_UKy_GCH_rep1-polar-NMR_A",
-        "assignment": "Asp-3b",
         "chemical_shift": "2.817218967161764",
         "peak_area": "5.996648757192804",
         "peak_height": "0.2451227147931755",
@@ -2087,7 +1988,6 @@
       {
         "Metabolite": "Asp-3b_2",
         "sample_id": "29_C1-2_Lung_allogenic_7days_170427_UKy_GCH_rep2-polar-NMR_A",
-        "assignment": "Asp-3b",
         "chemical_shift": "2.818650348505831",
         "peak_area": "12.79676206665156",
         "peak_height": "0.3900410717518791",
@@ -2096,7 +1996,6 @@
       {
         "Metabolite": "Asp-3b_2",
         "sample_id": "30_C1-20_Lung_allogenic_7days_170427_UKy_GCH_rep3-polar-NMR_A",
-        "assignment": "Asp-3b",
         "chemical_shift": "2.817353961157185",
         "peak_area": "11.88805496900186",
         "peak_height": "0.4091397217279936",
@@ -2105,7 +2004,6 @@
       {
         "Metabolite": "CXP-6_1",
         "sample_id": "16_A0_Lung_naive_0days_170427_UKy_GCH_rep1-polar-NMR_A",
-        "assignment": "CXP-6",
         "chemical_shift": "8.145468048988318",
         "peak_area": "1.48351788624908",
         "peak_height": "0.0822542205040512",
@@ -2114,7 +2012,6 @@
       {
         "Metabolite": "CXP-6_1",
         "sample_id": "19_B0_Lung_syngenic_42days_170427_UKy_GCH_rep1-polar-NMR_A",
-        "assignment": "CXP-6",
         "chemical_shift": "8.153476899508025",
         "peak_area": "1.772381905002998",
         "peak_height": "0.1041835177458291",
@@ -2123,7 +2020,6 @@
       {
         "Metabolite": "CXP-6_1",
         "sample_id": "20_B1_Lung_syngenic_42days_170427_UKy_GCH_rep2-polar-NMR_A",
-        "assignment": "CXP-6",
         "chemical_shift": "8.143817134153474",
         "peak_area": "1.765705885410852",
         "peak_height": "0.1032277993373779",
@@ -2132,7 +2028,6 @@
       {
         "Metabolite": "CXP-6_1",
         "sample_id": "21_B2_Lung_syngenic_42days_170427_UKy_GCH_rep3-polar-NMR_A",
-        "assignment": "CXP-6",
         "chemical_shift": "8.1612130962168",
         "peak_area": "1.721466001756131",
         "peak_height": "0.06455785099849173",
@@ -2141,7 +2036,6 @@
       {
         "Metabolite": "CXP-6_1",
         "sample_id": "23_C1-2_Lung_allogenic_42days_170427_UKy_GCH_rep2-polar-NMR_A",
-        "assignment": "CXP-6",
         "chemical_shift": "8.1518606255968",
         "peak_area": "0.3700538954323866",
         "peak_height": "0.03136566578044842",
@@ -2150,7 +2044,6 @@
       {
         "Metabolite": "CXP-6_1",
         "sample_id": "24_C2-0_Lung_allogenic_42days_170427_UKy_GCH_rep1-polar-NMR_A",
-        "assignment": "CXP-6",
         "chemical_shift": "8.140967904513076",
         "peak_area": "2.18433629760881",
         "peak_height": "0.1282673239202436",
@@ -2159,7 +2052,6 @@
       {
         "Metabolite": "CXP-6_1",
         "sample_id": "25_B1-0_Lung_syngenic_7days_170427_UKy_GCH_rep1-polar-NMR_A",
-        "assignment": "CXP-6",
         "chemical_shift": "8.148158653706277",
         "peak_area": "0.2965697251177748",
         "peak_height": "0.03289835918584615",
@@ -2168,7 +2060,6 @@
       {
         "Metabolite": "CXP-6_1",
         "sample_id": "26_B1-1_Lung_syngenic_7days_170427_UKy_GCH_rep2-polar-NMR_A",
-        "assignment": "CXP-6",
         "chemical_shift": "8.157552645614832",
         "peak_area": "0.4531672181919748",
         "peak_height": "0.0372859126649425",
@@ -2177,7 +2068,6 @@
       {
         "Metabolite": "CXP-6_1",
         "sample_id": "28_C1-1_Lung_allogenic_7days_170427_UKy_GCH_rep1-polar-NMR_A",
-        "assignment": "CXP-6",
         "chemical_shift": "8.17134282443992",
         "peak_area": "3.321602966914788",
         "peak_height": "0.1612482409352883",
@@ -2186,7 +2076,6 @@
       {
         "Metabolite": "CXP-6_1",
         "sample_id": "29_C1-2_Lung_allogenic_7days_170427_UKy_GCH_rep2-polar-NMR_A",
-        "assignment": "CXP-6",
         "chemical_shift": "8.145832840125863",
         "peak_area": "2.224087196605944",
         "peak_height": "0.0728060971470262",
@@ -2195,7 +2084,6 @@
       {
         "Metabolite": "CXP-6_1",
         "sample_id": "30_C1-20_Lung_allogenic_7days_170427_UKy_GCH_rep3-polar-NMR_A",
-        "assignment": "CXP-6",
         "chemical_shift": "8.141338173756793",
         "peak_area": "0.5757624407553777",
         "peak_height": "0.04112443462370326",
@@ -2204,7 +2092,6 @@
       {
         "Metabolite": "CXP-6_2",
         "sample_id": "16_A0_Lung_naive_0days_170427_UKy_GCH_rep1-polar-NMR_A",
-        "assignment": "CXP-6",
         "chemical_shift": "8.159212449742084",
         "peak_area": "3.560827877389022",
         "peak_height": "0.1212194575254662",
@@ -2213,7 +2100,6 @@
       {
         "Metabolite": "DSS_1",
         "sample_id": "16_A0_Lung_naive_0days_170427_UKy_GCH_rep1-polar-NMR_A",
-        "assignment": "DSS",
         "chemical_shift": "0.0001703395190791166",
         "peak_area": "36.52744932599367",
         "peak_height": "1.241198535868239",
@@ -2222,7 +2108,6 @@
       {
         "Metabolite": "DSS_1",
         "sample_id": "17_A1_Lung_naive_0days_170427_UKy_GCH_rep2-polar-NMR_A",
-        "assignment": "DSS",
         "chemical_shift": "-0.0003645285291707625",
         "peak_area": "34.32068504052266",
         "peak_height": "1.233412402986721",
@@ -2231,7 +2116,6 @@
       {
         "Metabolite": "DSS_1",
         "sample_id": "18_A2_Lung_naive_0days_170427_UKy_GCH_rep3-polar-NMR_A",
-        "assignment": "DSS",
         "chemical_shift": "-7.2661977841962e-05",
         "peak_area": "31.48799999678365",
         "peak_height": "1.113299886357304",
@@ -2240,7 +2124,6 @@
       {
         "Metabolite": "DSS_1",
         "sample_id": "19_B0_Lung_syngenic_42days_170427_UKy_GCH_rep1-polar-NMR_A",
-        "assignment": "DSS",
         "chemical_shift": "-0.0002067207872162183",
         "peak_area": "34.74846877012883",
         "peak_height": "1.109995313938432",
@@ -2249,7 +2132,6 @@
       {
         "Metabolite": "DSS_1",
         "sample_id": "20_B1_Lung_syngenic_42days_170427_UKy_GCH_rep2-polar-NMR_A",
-        "assignment": "DSS",
         "chemical_shift": "1.038834624229576e-05",
         "peak_area": "31.63540830764603",
         "peak_height": "1.199456440080418",
@@ -2258,7 +2140,6 @@
       {
         "Metabolite": "DSS_1",
         "sample_id": "21_B2_Lung_syngenic_42days_170427_UKy_GCH_rep3-polar-NMR_A",
-        "assignment": "DSS",
         "chemical_shift": "-8.408244527191024e-05",
         "peak_area": "26.11223151452656",
         "peak_height": "1.077028302162859",
@@ -2267,7 +2148,6 @@
       {
         "Metabolite": "DSS_1",
         "sample_id": "22_C1-1_Lung_allogenic_42days_170427_UKy_GCH_rep1-polar-NMR_A",
-        "assignment": "DSS",
         "chemical_shift": "0.0004567224055085535",
         "peak_area": "32.16140278052097",
         "peak_height": "1.204112024288413",
@@ -2276,7 +2156,6 @@
       {
         "Metabolite": "DSS_1",
         "sample_id": "23_C1-2_Lung_allogenic_42days_170427_UKy_GCH_rep2-polar-NMR_A",
-        "assignment": "DSS",
         "chemical_shift": "-4.182642000457409e-05",
         "peak_area": "37.61023816706161",
         "peak_height": "1.286962271107746",
@@ -2285,7 +2164,6 @@
       {
         "Metabolite": "DSS_1",
         "sample_id": "24_C2-0_Lung_allogenic_42days_170427_UKy_GCH_rep1-polar-NMR_A",
-        "assignment": "DSS",
         "chemical_shift": "-0.0001708445654494846",
         "peak_area": "34.02300013524556",
         "peak_height": "0.887005118749956",
@@ -2294,7 +2172,6 @@
       {
         "Metabolite": "DSS_1",
         "sample_id": "25_B1-0_Lung_syngenic_7days_170427_UKy_GCH_rep1-polar-NMR_A",
-        "assignment": "DSS",
         "chemical_shift": "4.397419833169056e-05",
         "peak_area": "31.67508107567576",
         "peak_height": "1.129556202131145",
@@ -2303,7 +2180,6 @@
       {
         "Metabolite": "DSS_1",
         "sample_id": "26_B1-1_Lung_syngenic_7days_170427_UKy_GCH_rep2-polar-NMR_A",
-        "assignment": "DSS",
         "chemical_shift": "6.552370087656787e-05",
         "peak_area": "38.1545758836897",
         "peak_height": "1.217607372400172",
@@ -2312,7 +2188,6 @@
       {
         "Metabolite": "DSS_1",
         "sample_id": "27_B1-2_Lung_syngenic_7days_170427_UKy_GCH_rep3-polar-NMR_A",
-        "assignment": "DSS",
         "chemical_shift": "-2.057282354775252e-05",
         "peak_area": "27.34984981836482",
         "peak_height": "1.039345441396493",
@@ -2321,7 +2196,6 @@
       {
         "Metabolite": "DSS_1",
         "sample_id": "28_C1-1_Lung_allogenic_7days_170427_UKy_GCH_rep1-polar-NMR_A",
-        "assignment": "DSS",
         "chemical_shift": "-0.0004984872359416918",
         "peak_area": "38.29248892139609",
         "peak_height": "1.282323791586629",
@@ -2330,7 +2204,6 @@
       {
         "Metabolite": "DSS_1",
         "sample_id": "29_C1-2_Lung_allogenic_7days_170427_UKy_GCH_rep2-polar-NMR_A",
-        "assignment": "DSS",
         "chemical_shift": "-6.719744237791155e-05",
         "peak_area": "35.94358989076349",
         "peak_height": "1.281567774326639",
@@ -2339,7 +2212,6 @@
       {
         "Metabolite": "DSS_1",
         "sample_id": "30_C1-20_Lung_allogenic_7days_170427_UKy_GCH_rep3-polar-NMR_A",
-        "assignment": "DSS",
         "chemical_shift": "9.506472747434241e-05",
         "peak_area": "29.63208221907423",
         "peak_height": "1.139658619048901",
@@ -2348,7 +2220,6 @@
       {
         "Metabolite": "GSH+GSSG-3_1",
         "sample_id": "18_A2_Lung_naive_0days_170427_UKy_GCH_rep3-polar-NMR_A",
-        "assignment": "GSH+GSSG-3",
         "chemical_shift": "2.172925055547484",
         "peak_area": "2.815872126717093",
         "peak_height": "0.1167475567400144",
@@ -2357,7 +2228,6 @@
       {
         "Metabolite": "GSH+GSSG-3_1",
         "sample_id": "19_B0_Lung_syngenic_42days_170427_UKy_GCH_rep1-polar-NMR_A",
-        "assignment": "GSH+GSSG-3",
         "chemical_shift": "2.17823013961378",
         "peak_area": "0.2762310943939901",
         "peak_height": "0.04170807667545951",
@@ -2366,7 +2236,6 @@
       {
         "Metabolite": "GSH+GSSG-3_1",
         "sample_id": "20_B1_Lung_syngenic_42days_170427_UKy_GCH_rep2-polar-NMR_A",
-        "assignment": "GSH+GSSG-3",
         "chemical_shift": "2.148957510159272",
         "peak_area": "19.85243461938239",
         "peak_height": "0.4447609977150747",
@@ -2375,7 +2244,6 @@
       {
         "Metabolite": "GSH+GSSG-3_1",
         "sample_id": "23_C1-2_Lung_allogenic_42days_170427_UKy_GCH_rep2-polar-NMR_A",
-        "assignment": "GSH+GSSG-3",
         "chemical_shift": "2.150950735521592",
         "peak_area": "47.11705865904743",
         "peak_height": "0.7111480934999629",
@@ -2384,7 +2252,6 @@
       {
         "Metabolite": "GSH+GSSG-3_1",
         "sample_id": "26_B1-1_Lung_syngenic_7days_170427_UKy_GCH_rep2-polar-NMR_A",
-        "assignment": "GSH+GSSG-3",
         "chemical_shift": "2.149607218742117",
         "peak_area": "28.31312009801377",
         "peak_height": "0.3195392080331401",
@@ -2393,7 +2260,6 @@
       {
         "Metabolite": "GSH+GSSG-4_1",
         "sample_id": "16_A0_Lung_naive_0days_170427_UKy_GCH_rep1-polar-NMR_A",
-        "assignment": "GSH+GSSG-4",
         "chemical_shift": "2.505351140529218",
         "peak_area": "2.226478443546848",
         "peak_height": "0.08943037637969328",
@@ -2402,7 +2268,6 @@
       {
         "Metabolite": "GSH+GSSG-4_1",
         "sample_id": "17_A1_Lung_naive_0days_170427_UKy_GCH_rep2-polar-NMR_A",
-        "assignment": "GSH+GSSG-4",
         "chemical_shift": "2.514958849366804",
         "peak_area": "8.70501479744592",
         "peak_height": "0.2120375819841037",
@@ -2411,7 +2276,6 @@
       {
         "Metabolite": "GSH+GSSG-4_1",
         "sample_id": "18_A2_Lung_naive_0days_170427_UKy_GCH_rep3-polar-NMR_A",
-        "assignment": "GSH+GSSG-4",
         "chemical_shift": "2.49382243363426",
         "peak_area": "0.4200235865776386",
         "peak_height": "0.03171613188969912",
@@ -2420,7 +2284,6 @@
       {
         "Metabolite": "GSH+GSSG-4_1",
         "sample_id": "19_B0_Lung_syngenic_42days_170427_UKy_GCH_rep1-polar-NMR_A",
-        "assignment": "GSH+GSSG-4",
         "chemical_shift": "2.498097646985988",
         "peak_area": "0.6924367976181119",
         "peak_height": "0.04625390034899535",
@@ -2429,7 +2292,6 @@
       {
         "Metabolite": "GSH+GSSG-4_1",
         "sample_id": "20_B1_Lung_syngenic_42days_170427_UKy_GCH_rep2-polar-NMR_A",
-        "assignment": "GSH+GSSG-4",
         "chemical_shift": "2.505603416094308",
         "peak_area": "0.7871489122372977",
         "peak_height": "0.05487815439572452",
@@ -2438,7 +2300,6 @@
       {
         "Metabolite": "GSH+GSSG-4_1",
         "sample_id": "21_B2_Lung_syngenic_42days_170427_UKy_GCH_rep3-polar-NMR_A",
-        "assignment": "GSH+GSSG-4",
         "chemical_shift": "2.492151058639122",
         "peak_area": "2.254017392314799",
         "peak_height": "0.07184224373432538",
@@ -2447,7 +2308,6 @@
       {
         "Metabolite": "GSH+GSSG-4_1",
         "sample_id": "22_C1-1_Lung_allogenic_42days_170427_UKy_GCH_rep1-polar-NMR_A",
-        "assignment": "GSH+GSSG-4",
         "chemical_shift": "2.4958975168466",
         "peak_area": "0.6855138431343769",
         "peak_height": "0.03497056534951187",
@@ -2456,7 +2316,6 @@
       {
         "Metabolite": "GSH+GSSG-4_1",
         "sample_id": "23_C1-2_Lung_allogenic_42days_170427_UKy_GCH_rep2-polar-NMR_A",
-        "assignment": "GSH+GSSG-4",
         "chemical_shift": "2.516399965932135",
         "peak_area": "9.583283495910532",
         "peak_height": "0.2041361022200958",
@@ -2465,7 +2324,6 @@
       {
         "Metabolite": "GSH+GSSG-4_1",
         "sample_id": "24_C2-0_Lung_allogenic_42days_170427_UKy_GCH_rep1-polar-NMR_A",
-        "assignment": "GSH+GSSG-4",
         "chemical_shift": "2.517993416730944",
         "peak_area": "43.45250486150717",
         "peak_height": "0.6286444828395055",
@@ -2474,7 +2332,6 @@
       {
         "Metabolite": "GSH+GSSG-4_1",
         "sample_id": "25_B1-0_Lung_syngenic_7days_170427_UKy_GCH_rep1-polar-NMR_A",
-        "assignment": "GSH+GSSG-4",
         "chemical_shift": "2.51645268003735",
         "peak_area": "15.11650973576745",
         "peak_height": "0.403025534828891",
@@ -2483,7 +2340,6 @@
       {
         "Metabolite": "GSH+GSSG-4_1",
         "sample_id": "26_B1-1_Lung_syngenic_7days_170427_UKy_GCH_rep2-polar-NMR_A",
-        "assignment": "GSH+GSSG-4",
         "chemical_shift": "2.512563787580696",
         "peak_area": "8.268688428996528",
         "peak_height": "0.1919975138462725",
@@ -2492,7 +2348,6 @@
       {
         "Metabolite": "GSH+GSSG-4_1",
         "sample_id": "27_B1-2_Lung_syngenic_7days_170427_UKy_GCH_rep3-polar-NMR_A",
-        "assignment": "GSH+GSSG-4",
         "chemical_shift": "2.514228886450082",
         "peak_area": "9.735951734150381",
         "peak_height": "0.2439724392111721",
@@ -2501,7 +2356,6 @@
       {
         "Metabolite": "GSH+GSSG-4_1",
         "sample_id": "28_C1-1_Lung_allogenic_7days_170427_UKy_GCH_rep1-polar-NMR_A",
-        "assignment": "GSH+GSSG-4",
         "chemical_shift": "2.513999733211162",
         "peak_area": "5.863360126627795",
         "peak_height": "0.1944865065739964",
@@ -2510,7 +2364,6 @@
       {
         "Metabolite": "GSH+GSSG-4_1",
         "sample_id": "29_C1-2_Lung_allogenic_7days_170427_UKy_GCH_rep2-polar-NMR_A",
-        "assignment": "GSH+GSSG-4",
         "chemical_shift": "2.511438130432914",
         "peak_area": "25.80349198750828",
         "peak_height": "0.3332250994240744",
@@ -2519,7 +2372,6 @@
       {
         "Metabolite": "GSH+GSSG-4_1",
         "sample_id": "30_C1-20_Lung_allogenic_7days_170427_UKy_GCH_rep3-polar-NMR_A",
-        "assignment": "GSH+GSSG-4",
         "chemical_shift": "2.516470377376662",
         "peak_area": "11.29953502500641",
         "peak_height": "0.2396943520539607",
@@ -2528,7 +2380,6 @@
       {
         "Metabolite": "GSH+GSSG-4_2",
         "sample_id": "16_A0_Lung_naive_0days_170427_UKy_GCH_rep1-polar-NMR_A",
-        "assignment": "GSH+GSSG-4",
         "chemical_shift": "2.51527822259895",
         "peak_area": "1.959200974420181",
         "peak_height": "0.07098405305277879",
@@ -2537,7 +2388,6 @@
       {
         "Metabolite": "GSH+GSSG-4_2",
         "sample_id": "17_A1_Lung_naive_0days_170427_UKy_GCH_rep2-polar-NMR_A",
-        "assignment": "GSH+GSSG-4",
         "chemical_shift": "2.544509577112108",
         "peak_area": "20.09817068396911",
         "peak_height": "0.2514193170222503",
@@ -2546,7 +2396,6 @@
       {
         "Metabolite": "GSH+GSSG-4_2",
         "sample_id": "18_A2_Lung_naive_0days_170427_UKy_GCH_rep3-polar-NMR_A",
-        "assignment": "GSH+GSSG-4",
         "chemical_shift": "2.512209484042105",
         "peak_area": "1.003951705063459",
         "peak_height": "0.05327061123594852",
@@ -2555,7 +2404,6 @@
       {
         "Metabolite": "GSH+GSSG-4_2",
         "sample_id": "19_B0_Lung_syngenic_42days_170427_UKy_GCH_rep1-polar-NMR_A",
-        "assignment": "GSH+GSSG-4",
         "chemical_shift": "2.519117842890246",
         "peak_area": "3.120827387883824",
         "peak_height": "0.1320741935655491",
@@ -2564,7 +2412,6 @@
       {
         "Metabolite": "GSH+GSSG-4_2",
         "sample_id": "20_B1_Lung_syngenic_42days_170427_UKy_GCH_rep2-polar-NMR_A",
-        "assignment": "GSH+GSSG-4",
         "chemical_shift": "2.515512732229258",
         "peak_area": "1.340236121048606",
         "peak_height": "0.07746243780203756",
@@ -2573,7 +2420,6 @@
       {
         "Metabolite": "GSH+GSSG-4_2",
         "sample_id": "21_B2_Lung_syngenic_42days_170427_UKy_GCH_rep3-polar-NMR_A",
-        "assignment": "GSH+GSSG-4",
         "chemical_shift": "2.517448871677111",
         "peak_area": "6.742363155754525",
         "peak_height": "0.2522367404733065",
@@ -2582,7 +2428,6 @@
       {
         "Metabolite": "GSH+GSSG-4_2",
         "sample_id": "22_C1-1_Lung_allogenic_42days_170427_UKy_GCH_rep1-polar-NMR_A",
-        "assignment": "GSH+GSSG-4",
         "chemical_shift": "2.516768310500429",
         "peak_area": "7.466589826988311",
         "peak_height": "0.2398104322889303",
@@ -2591,7 +2436,6 @@
       {
         "Metabolite": "GSH+GSSG-4_2",
         "sample_id": "23_C1-2_Lung_allogenic_42days_170427_UKy_GCH_rep2-polar-NMR_A",
-        "assignment": "GSH+GSSG-4",
         "chemical_shift": "2.53053478706779",
         "peak_area": "6.199802403088242",
         "peak_height": "0.2525158523340859",
@@ -2600,7 +2444,6 @@
       {
         "Metabolite": "GSH+GSSG-4_2",
         "sample_id": "24_C2-0_Lung_allogenic_42days_170427_UKy_GCH_rep1-polar-NMR_A",
-        "assignment": "GSH+GSSG-4",
         "chemical_shift": "2.543503211135257",
         "peak_area": "21.8953244185088",
         "peak_height": "0.5831643272481773",
@@ -2609,7 +2452,6 @@
       {
         "Metabolite": "GSH+GSSG-4_2",
         "sample_id": "25_B1-0_Lung_syngenic_7days_170427_UKy_GCH_rep1-polar-NMR_A",
-        "assignment": "GSH+GSSG-4",
         "chemical_shift": "2.542510540521825",
         "peak_area": "19.80360790775084",
         "peak_height": "0.4295974461692816",
@@ -2618,7 +2460,6 @@
       {
         "Metabolite": "GSH+GSSG-4_2",
         "sample_id": "26_B1-1_Lung_syngenic_7days_170427_UKy_GCH_rep2-polar-NMR_A",
-        "assignment": "GSH+GSSG-4",
         "chemical_shift": "2.540252733411787",
         "peak_area": "6.953970961065626",
         "peak_height": "0.1967749740287252",
@@ -2627,7 +2468,6 @@
       {
         "Metabolite": "GSH+GSSG-4_2",
         "sample_id": "27_B1-2_Lung_syngenic_7days_170427_UKy_GCH_rep3-polar-NMR_A",
-        "assignment": "GSH+GSSG-4",
         "chemical_shift": "2.537603231454535",
         "peak_area": "14.68617731475332",
         "peak_height": "0.2200750718519932",
@@ -2636,7 +2476,6 @@
       {
         "Metabolite": "GSH+GSSG-4_2",
         "sample_id": "28_C1-1_Lung_allogenic_7days_170427_UKy_GCH_rep1-polar-NMR_A",
-        "assignment": "GSH+GSSG-4",
         "chemical_shift": "2.537656715630125",
         "peak_area": "6.424757180364415",
         "peak_height": "0.2259294771001386",
@@ -2645,7 +2484,6 @@
       {
         "Metabolite": "GSH+GSSG-4_2",
         "sample_id": "29_C1-2_Lung_allogenic_7days_170427_UKy_GCH_rep2-polar-NMR_A",
-        "assignment": "GSH+GSSG-4",
         "chemical_shift": "2.538673594992631",
         "peak_area": "0.8780809839909601",
         "peak_height": "0.06121495891048846",
@@ -2654,7 +2492,6 @@
       {
         "Metabolite": "GSH+GSSG-4_2",
         "sample_id": "30_C1-20_Lung_allogenic_7days_170427_UKy_GCH_rep3-polar-NMR_A",
-        "assignment": "GSH+GSSG-4",
         "chemical_shift": "2.539653784494952",
         "peak_area": "6.899805056235",
         "peak_height": "0.2356225693669188",
@@ -2663,7 +2500,6 @@
       {
         "Metabolite": "GSH+GSSG-4_3",
         "sample_id": "16_A0_Lung_naive_0days_170427_UKy_GCH_rep1-polar-NMR_A",
-        "assignment": "GSH+GSSG-4",
         "chemical_shift": "2.544618685363216",
         "peak_area": "1.990195218258838",
         "peak_height": "0.1371635414211602",
@@ -2672,7 +2508,6 @@
       {
         "Metabolite": "GSH+GSSG-4_3",
         "sample_id": "18_A2_Lung_naive_0days_170427_UKy_GCH_rep3-polar-NMR_A",
-        "assignment": "GSH+GSSG-4",
         "chemical_shift": "2.539312839615974",
         "peak_area": "1.934789458674262",
         "peak_height": "0.1031851850643471",
@@ -2681,7 +2516,6 @@
       {
         "Metabolite": "GSH+GSSG-4_3",
         "sample_id": "19_B0_Lung_syngenic_42days_170427_UKy_GCH_rep1-polar-NMR_A",
-        "assignment": "GSH+GSSG-4",
         "chemical_shift": "2.539389934302845",
         "peak_area": "6.653957201842818",
         "peak_height": "0.18040926662156",
@@ -2690,7 +2524,6 @@
       {
         "Metabolite": "GSH+GSSG-4_3",
         "sample_id": "20_B1_Lung_syngenic_42days_170427_UKy_GCH_rep2-polar-NMR_A",
-        "assignment": "GSH+GSSG-4",
         "chemical_shift": "2.538125343829394",
         "peak_area": "1.543088409546221",
         "peak_height": "0.06260307715793863",
@@ -2699,7 +2532,6 @@
       {
         "Metabolite": "GSH+GSSG-4_3",
         "sample_id": "21_B2_Lung_syngenic_42days_170427_UKy_GCH_rep3-polar-NMR_A",
-        "assignment": "GSH+GSSG-4",
         "chemical_shift": "2.542324979590365",
         "peak_area": "21.6651751446148",
         "peak_height": "0.4090593461317623",
@@ -2708,7 +2540,6 @@
       {
         "Metabolite": "GSH+GSSG-4_3",
         "sample_id": "22_C1-1_Lung_allogenic_42days_170427_UKy_GCH_rep1-polar-NMR_A",
-        "assignment": "GSH+GSSG-4",
         "chemical_shift": "2.541012049327885",
         "peak_area": "6.238935461366937",
         "peak_height": "0.2110178191328985",
@@ -2717,7 +2548,6 @@
       {
         "Metabolite": "GSH+GSSG-4_3",
         "sample_id": "23_C1-2_Lung_allogenic_42days_170427_UKy_GCH_rep2-polar-NMR_A",
-        "assignment": "GSH+GSSG-4",
         "chemical_shift": "2.540695268540893",
         "peak_area": "5.031961585298419",
         "peak_height": "0.2372411130323246",
@@ -2726,7 +2556,6 @@
       {
         "Metabolite": "GSH+GSSG-4_3",
         "sample_id": "25_B1-0_Lung_syngenic_7days_170427_UKy_GCH_rep1-polar-NMR_A",
-        "assignment": "GSH+GSSG-4",
         "chemical_shift": "2.57414105213789",
         "peak_area": "9.154435652625729",
         "peak_height": "0.1933014373292169",
@@ -2735,7 +2564,6 @@
       {
         "Metabolite": "GSH+GSSG-4_3",
         "sample_id": "26_B1-1_Lung_syngenic_7days_170427_UKy_GCH_rep2-polar-NMR_A",
-        "assignment": "GSH+GSSG-4",
         "chemical_shift": "2.553826268274228",
         "peak_area": "1.386641042334058",
         "peak_height": "0.07564696776559453",
@@ -2744,7 +2572,6 @@
       {
         "Metabolite": "GSH+GSSG-4_3",
         "sample_id": "27_B1-2_Lung_syngenic_7days_170427_UKy_GCH_rep3-polar-NMR_A",
-        "assignment": "GSH+GSSG-4",
         "chemical_shift": "2.56793411982756",
         "peak_area": "0.5322699943018225",
         "peak_height": "0.0490233099225735",
@@ -2753,7 +2580,6 @@
       {
         "Metabolite": "GSH+GSSG-4_3",
         "sample_id": "28_C1-1_Lung_allogenic_7days_170427_UKy_GCH_rep1-polar-NMR_A",
-        "assignment": "GSH+GSSG-4",
         "chemical_shift": "2.559537796769225",
         "peak_area": "0.1213805679087739",
         "peak_height": "0.0186603856156369",
@@ -2762,7 +2588,6 @@
       {
         "Metabolite": "GSH+GSSG-4_3",
         "sample_id": "29_C1-2_Lung_allogenic_7days_170427_UKy_GCH_rep2-polar-NMR_A",
-        "assignment": "GSH+GSSG-4",
         "chemical_shift": "2.553071677072876",
         "peak_area": "3.564223941729705",
         "peak_height": "0.1287202578322597",
@@ -2771,7 +2596,6 @@
       {
         "Metabolite": "GSH+GSSG-4_3",
         "sample_id": "30_C1-20_Lung_allogenic_7days_170427_UKy_GCH_rep3-polar-NMR_A",
-        "assignment": "GSH+GSSG-4",
         "chemical_shift": "2.557035122787314",
         "peak_area": "4.390913181830729",
         "peak_height": "0.1468888398959791",
@@ -2780,7 +2604,6 @@
       {
         "Metabolite": "GSH+GSSG-4_4",
         "sample_id": "16_A0_Lung_naive_0days_170427_UKy_GCH_rep1-polar-NMR_A",
-        "assignment": "GSH+GSSG-4",
         "chemical_shift": "2.55591466857374",
         "peak_area": "1.055010988440491",
         "peak_height": "0.0719297620166618",
@@ -2789,7 +2612,6 @@
       {
         "Metabolite": "GSH+GSSG-4_4",
         "sample_id": "18_A2_Lung_naive_0days_170427_UKy_GCH_rep3-polar-NMR_A",
-        "assignment": "GSH+GSSG-4",
         "chemical_shift": "2.573440042457006",
         "peak_area": "1.553195543729836",
         "peak_height": "0.06905840659555446",
@@ -2798,7 +2620,6 @@
       {
         "Metabolite": "GSH+GSSG-4_4",
         "sample_id": "19_B0_Lung_syngenic_42days_170427_UKy_GCH_rep1-polar-NMR_A",
-        "assignment": "GSH+GSSG-4",
         "chemical_shift": "2.569786415551429",
         "peak_area": "0.2599764695617414",
         "peak_height": "0.02674782135470134",
@@ -2807,7 +2628,6 @@
       {
         "Metabolite": "GSH+GSSG-4_4",
         "sample_id": "20_B1_Lung_syngenic_42days_170427_UKy_GCH_rep2-polar-NMR_A",
-        "assignment": "GSH+GSSG-4",
         "chemical_shift": "2.565625982615853",
         "peak_area": "1.572460290838952",
         "peak_height": "0.06612802952946069",
@@ -2816,7 +2636,6 @@
       {
         "Metabolite": "GSH+GSSG-4_4",
         "sample_id": "21_B2_Lung_syngenic_42days_170427_UKy_GCH_rep3-polar-NMR_A",
-        "assignment": "GSH+GSSG-4",
         "chemical_shift": "2.57566674161482",
         "peak_area": "1.855467798001589",
         "peak_height": "0.07168962942105402",
@@ -2825,7 +2644,6 @@
       {
         "Metabolite": "GSH+GSSG-4_4",
         "sample_id": "22_C1-1_Lung_allogenic_42days_170427_UKy_GCH_rep1-polar-NMR_A",
-        "assignment": "GSH+GSSG-4",
         "chemical_shift": "2.566330368726507",
         "peak_area": "0.186919138812052",
         "peak_height": "0.02255776778592756",
@@ -2834,7 +2652,6 @@
       {
         "Metabolite": "GSH+GSSG-4_4",
         "sample_id": "23_C1-2_Lung_allogenic_42days_170427_UKy_GCH_rep2-polar-NMR_A",
-        "assignment": "GSH+GSSG-4",
         "chemical_shift": "2.555676091821483",
         "peak_area": "5.293823353015375",
         "peak_height": "0.1707152252992802",
@@ -2843,7 +2660,6 @@
       {
         "Metabolite": "GSH+GSSG-4_4",
         "sample_id": "26_B1-1_Lung_syngenic_7days_170427_UKy_GCH_rep2-polar-NMR_A",
-        "assignment": "GSH+GSSG-4",
         "chemical_shift": "2.578354684562759",
         "peak_area": "0.501507877526571",
         "peak_height": "0.04485297410410762",
@@ -2852,7 +2668,6 @@
       {
         "Metabolite": "GSH+GSSG-4_4",
         "sample_id": "29_C1-2_Lung_allogenic_7days_170427_UKy_GCH_rep2-polar-NMR_A",
-        "assignment": "GSH+GSSG-4",
         "chemical_shift": "2.57032413279444",
         "peak_area": "2.550364558951701",
         "peak_height": "0.08162095975208648",
@@ -2861,7 +2676,6 @@
       {
         "Metabolite": "GSH+GSSG-4_5",
         "sample_id": "18_A2_Lung_naive_0days_170427_UKy_GCH_rep3-polar-NMR_A",
-        "assignment": "GSH+GSSG-4",
         "chemical_shift": "2.597564998950672",
         "peak_area": "0.2960130725225653",
         "peak_height": "0.03222529801218576",
@@ -2870,7 +2684,6 @@
       {
         "Metabolite": "GSH+GSSG-4_5",
         "sample_id": "21_B2_Lung_syngenic_42days_170427_UKy_GCH_rep3-polar-NMR_A",
-        "assignment": "GSH+GSSG-4",
         "chemical_shift": "2.599873992808184",
         "peak_area": "0.9700010989980121",
         "peak_height": "0.05335803912562812",
@@ -2879,7 +2692,6 @@
       {
         "Metabolite": "Gln-3_1",
         "sample_id": "16_A0_Lung_naive_0days_170427_UKy_GCH_rep1-polar-NMR_A",
-        "assignment": "Gln-3",
         "chemical_shift": "2.151870807617744",
         "peak_area": "21.16799091512319",
         "peak_height": "0.411515320248847",
@@ -2888,7 +2700,6 @@
       {
         "Metabolite": "Gln-3_1",
         "sample_id": "17_A1_Lung_naive_0days_170427_UKy_GCH_rep2-polar-NMR_A",
-        "assignment": "Gln-3",
         "chemical_shift": "2.144958787207793",
         "peak_area": "21.9051050978671",
         "peak_height": "0.3858694918410626",
@@ -2897,7 +2708,6 @@
       {
         "Metabolite": "Gln-3_1",
         "sample_id": "18_A2_Lung_naive_0days_170427_UKy_GCH_rep3-polar-NMR_A",
-        "assignment": "Gln-3",
         "chemical_shift": "2.134750699591446",
         "peak_area": "7.898937726477937",
         "peak_height": "0.2237170759807715",
@@ -2906,7 +2716,6 @@
       {
         "Metabolite": "Gln-3_1",
         "sample_id": "19_B0_Lung_syngenic_42days_170427_UKy_GCH_rep1-polar-NMR_A",
-        "assignment": "Gln-3",
         "chemical_shift": "2.137148490060748",
         "peak_area": "1.957618541510205",
         "peak_height": "0.138541382027545",
@@ -2915,7 +2724,6 @@
       {
         "Metabolite": "Gln-3_1",
         "sample_id": "20_B1_Lung_syngenic_42days_170427_UKy_GCH_rep2-polar-NMR_A",
-        "assignment": "Gln-3",
         "chemical_shift": "2.133397895901866",
         "peak_area": "17.50263988035683",
         "peak_height": "0.3923678894542859",
@@ -2924,7 +2732,6 @@
       {
         "Metabolite": "Gln-3_1",
         "sample_id": "21_B2_Lung_syngenic_42days_170427_UKy_GCH_rep3-polar-NMR_A",
-        "assignment": "Gln-3",
         "chemical_shift": "2.12903033068928",
         "peak_area": "157.54852439563",
         "peak_height": "1.502327546989227",
@@ -2933,7 +2740,6 @@
       {
         "Metabolite": "Gln-3_1",
         "sample_id": "22_C1-1_Lung_allogenic_42days_170427_UKy_GCH_rep1-polar-NMR_A",
-        "assignment": "Gln-3",
         "chemical_shift": "2.14768314063201",
         "peak_area": "17.22567987407895",
         "peak_height": "0.28",
@@ -2942,7 +2748,6 @@
       {
         "Metabolite": "Gln-3_1",
         "sample_id": "23_C1-2_Lung_allogenic_42days_170427_UKy_GCH_rep2-polar-NMR_A",
-        "assignment": "Gln-3",
         "chemical_shift": "2.137309892846459",
         "peak_area": "1.755707958496799",
         "peak_height": "0.1474810540720009",
@@ -2951,7 +2756,6 @@
       {
         "Metabolite": "Gln-3_1",
         "sample_id": "24_C2-0_Lung_allogenic_42days_170427_UKy_GCH_rep1-polar-NMR_A",
-        "assignment": "Gln-3",
         "chemical_shift": "2.13387904671469",
         "peak_area": "332.8694068048931",
         "peak_height": "3.57148084554354",
@@ -2960,7 +2764,6 @@
       {
         "Metabolite": "Gln-3_1",
         "sample_id": "25_B1-0_Lung_syngenic_7days_170427_UKy_GCH_rep1-polar-NMR_A",
-        "assignment": "Gln-3",
         "chemical_shift": "2.134338245390688",
         "peak_area": "152.768463380191",
         "peak_height": "1.487331842377812",
@@ -2969,7 +2772,6 @@
       {
         "Metabolite": "Gln-3_1",
         "sample_id": "26_B1-1_Lung_syngenic_7days_170427_UKy_GCH_rep2-polar-NMR_A",
-        "assignment": "Gln-3",
         "chemical_shift": "2.13544256291646",
         "peak_area": "1.188697237561858",
         "peak_height": "0.04",
@@ -2978,7 +2780,6 @@
       {
         "Metabolite": "Gln-3_1",
         "sample_id": "27_B1-2_Lung_syngenic_7days_170427_UKy_GCH_rep3-polar-NMR_A",
-        "assignment": "Gln-3",
         "chemical_shift": "2.148096232971998",
         "peak_area": "31.42793405962049",
         "peak_height": "0.494045767775307",
@@ -2987,7 +2788,6 @@
       {
         "Metabolite": "Gln-3_1",
         "sample_id": "28_C1-1_Lung_allogenic_7days_170427_UKy_GCH_rep1-polar-NMR_A",
-        "assignment": "Gln-3",
         "chemical_shift": "2.132100219160981",
         "peak_area": "81.42523934463708",
         "peak_height": "0.808841736902338",
@@ -2996,7 +2796,6 @@
       {
         "Metabolite": "Gln-3_1",
         "sample_id": "29_C1-2_Lung_allogenic_7days_170427_UKy_GCH_rep2-polar-NMR_A",
-        "assignment": "Gln-3",
         "chemical_shift": "2.129518011787622",
         "peak_area": "115.1293328099958",
         "peak_height": "1.106220974797631",
@@ -3005,7 +2804,6 @@
       {
         "Metabolite": "Gln-3_1",
         "sample_id": "30_C1-20_Lung_allogenic_7days_170427_UKy_GCH_rep3-polar-NMR_A",
-        "assignment": "Gln-3",
         "chemical_shift": "2.130355963277824",
         "peak_area": "140.482037020143",
         "peak_height": "1.166851409956829",
@@ -3014,7 +2812,6 @@
       {
         "Metabolite": "Gln-3_2",
         "sample_id": "18_A2_Lung_naive_0days_170427_UKy_GCH_rep3-polar-NMR_A",
-        "assignment": "Gln-3",
         "chemical_shift": "2.147695493818314",
         "peak_area": "3.478869258689099",
         "peak_height": "0.1685742274877338",
@@ -3023,7 +2820,6 @@
       {
         "Metabolite": "Gln-3_2",
         "sample_id": "19_B0_Lung_syngenic_42days_170427_UKy_GCH_rep1-polar-NMR_A",
-        "assignment": "Gln-3",
         "chemical_shift": "2.15040428407711",
         "peak_area": "13.68613790834588",
         "peak_height": "0.4232691858980349",
@@ -3032,7 +2828,6 @@
       {
         "Metabolite": "Gln-4_1",
         "sample_id": "16_A0_Lung_naive_0days_170427_UKy_GCH_rep1-polar-NMR_A",
-        "assignment": "Gln-4",
         "chemical_shift": "2.4321726304649",
         "peak_area": "4.256849582427514",
         "peak_height": "0.1737918175597326",
@@ -3041,7 +2836,6 @@
       {
         "Metabolite": "Gln-4_1",
         "sample_id": "17_A1_Lung_naive_0days_170427_UKy_GCH_rep2-polar-NMR_A",
-        "assignment": "Gln-4",
         "chemical_shift": "2.447566662729423",
         "peak_area": "19.09837633504354",
         "peak_height": "0.3170696535225938",
@@ -3050,7 +2844,6 @@
       {
         "Metabolite": "Gln-4_1",
         "sample_id": "19_B0_Lung_syngenic_42days_170427_UKy_GCH_rep1-polar-NMR_A",
-        "assignment": "Gln-4",
         "chemical_shift": "2.431908118746202",
         "peak_area": "3.032801005850636",
         "peak_height": "0.1830275058607817",
@@ -3059,7 +2852,6 @@
       {
         "Metabolite": "Gln-4_1",
         "sample_id": "20_B1_Lung_syngenic_42days_170427_UKy_GCH_rep2-polar-NMR_A",
-        "assignment": "Gln-4",
         "chemical_shift": "2.447822722731144",
         "peak_area": "0.1820771436644673",
         "peak_height": "0.02191556279640692",
@@ -3068,7 +2860,6 @@
       {
         "Metabolite": "Gln-4_1",
         "sample_id": "21_B2_Lung_syngenic_42days_170427_UKy_GCH_rep3-polar-NMR_A",
-        "assignment": "Gln-4",
         "chemical_shift": "2.430392865728082",
         "peak_area": "14.02186601822934",
         "peak_height": "0.3244762756359851",
@@ -3077,7 +2868,6 @@
       {
         "Metabolite": "Gln-4_1",
         "sample_id": "22_C1-1_Lung_allogenic_42days_170427_UKy_GCH_rep1-polar-NMR_A",
-        "assignment": "Gln-4",
         "chemical_shift": "2.446149334172341",
         "peak_area": "8.24014069975887",
         "peak_height": "0.2131210396279974",
@@ -3086,7 +2876,6 @@
       {
         "Metabolite": "Gln-4_1",
         "sample_id": "23_C1-2_Lung_allogenic_42days_170427_UKy_GCH_rep2-polar-NMR_A",
-        "assignment": "Gln-4",
         "chemical_shift": "2.433971299588577",
         "peak_area": "1.351599167163134",
         "peak_height": "0.09920165788656907",
@@ -3095,7 +2884,6 @@
       {
         "Metabolite": "Gln-4_1",
         "sample_id": "24_C2-0_Lung_allogenic_42days_170427_UKy_GCH_rep1-polar-NMR_A",
-        "assignment": "Gln-4",
         "chemical_shift": "2.433864539753875",
         "peak_area": "18.67387650347282",
         "peak_height": "0.446926414988467",
@@ -3104,7 +2892,6 @@
       {
         "Metabolite": "Gln-4_1",
         "sample_id": "25_B1-0_Lung_syngenic_7days_170427_UKy_GCH_rep1-polar-NMR_A",
-        "assignment": "Gln-4",
         "chemical_shift": "2.421139167769953",
         "peak_area": "1.832053834306536",
         "peak_height": "0.1139953923927571",
@@ -3113,7 +2900,6 @@
       {
         "Metabolite": "Gln-4_1",
         "sample_id": "26_B1-1_Lung_syngenic_7days_170427_UKy_GCH_rep2-polar-NMR_A",
-        "assignment": "Gln-4",
         "chemical_shift": "2.44391776288337",
         "peak_area": "6.023362948472956",
         "peak_height": "0.1538229213430393",
@@ -3122,7 +2908,6 @@
       {
         "Metabolite": "Gln-4_1",
         "sample_id": "27_B1-2_Lung_syngenic_7days_170427_UKy_GCH_rep3-polar-NMR_A",
-        "assignment": "Gln-4",
         "chemical_shift": "2.431326838632314",
         "peak_area": "6.365181057571621",
         "peak_height": "0.2061542610836387",
@@ -3131,7 +2916,6 @@
       {
         "Metabolite": "Gln-4_1",
         "sample_id": "28_C1-1_Lung_allogenic_7days_170427_UKy_GCH_rep1-polar-NMR_A",
-        "assignment": "Gln-4",
         "chemical_shift": "2.430183344166378",
         "peak_area": "5.860393543780961",
         "peak_height": "0.1761966119655738",
@@ -3140,7 +2924,6 @@
       {
         "Metabolite": "Gln-4_1",
         "sample_id": "29_C1-2_Lung_allogenic_7days_170427_UKy_GCH_rep2-polar-NMR_A",
-        "assignment": "Gln-4",
         "chemical_shift": "2.412144780419811",
         "peak_area": "13.76505010890334",
         "peak_height": "0.3012909121890902",
@@ -3149,7 +2932,6 @@
       {
         "Metabolite": "Gln-4_1",
         "sample_id": "30_C1-20_Lung_allogenic_7days_170427_UKy_GCH_rep3-polar-NMR_A",
-        "assignment": "Gln-4",
         "chemical_shift": "2.433087709093819",
         "peak_area": "13.40056124486549",
         "peak_height": "0.3720659143772855",
@@ -3158,7 +2940,6 @@
       {
         "Metabolite": "Gln-4_2",
         "sample_id": "16_A0_Lung_naive_0days_170427_UKy_GCH_rep1-polar-NMR_A",
-        "assignment": "Gln-4",
         "chemical_shift": "2.446946726875385",
         "peak_area": "2.545525628945215",
         "peak_height": "0.1433498539920345",
@@ -3167,7 +2948,6 @@
       {
         "Metabolite": "Gln-4_2",
         "sample_id": "19_B0_Lung_syngenic_42days_170427_UKy_GCH_rep1-polar-NMR_A",
-        "assignment": "Gln-4",
         "chemical_shift": "2.44753420740452",
         "peak_area": "5.279120217614047",
         "peak_height": "0.1889547585098657",
@@ -3176,7 +2956,6 @@
       {
         "Metabolite": "Gln-4_2",
         "sample_id": "21_B2_Lung_syngenic_42days_170427_UKy_GCH_rep3-polar-NMR_A",
-        "assignment": "Gln-4",
         "chemical_shift": "2.44874528328213",
         "peak_area": "10.8355133174873",
         "peak_height": "0.2955307175045599",
@@ -3185,7 +2964,6 @@
       {
         "Metabolite": "Gln-4_2",
         "sample_id": "22_C1-1_Lung_allogenic_42days_170427_UKy_GCH_rep1-polar-NMR_A",
-        "assignment": "Gln-4",
         "chemical_shift": "2.467751583150315",
         "peak_area": "4.986461650317508",
         "peak_height": "0.1149589017392715",
@@ -3194,7 +2972,6 @@
       {
         "Metabolite": "Gln-4_2",
         "sample_id": "23_C1-2_Lung_allogenic_42days_170427_UKy_GCH_rep2-polar-NMR_A",
-        "assignment": "Gln-4",
         "chemical_shift": "2.449026759573414",
         "peak_area": "4.341597921043982",
         "peak_height": "0.1307304615830611",
@@ -3203,7 +2980,6 @@
       {
         "Metabolite": "Gln-4_2",
         "sample_id": "24_C2-0_Lung_allogenic_42days_170427_UKy_GCH_rep1-polar-NMR_A",
-        "assignment": "Gln-4",
         "chemical_shift": "2.450757376496763",
         "peak_area": "20.12419840822496",
         "peak_height": "0.4637685098466534",
@@ -3212,7 +2988,6 @@
       {
         "Metabolite": "Gln-4_2",
         "sample_id": "25_B1-0_Lung_syngenic_7days_170427_UKy_GCH_rep1-polar-NMR_A",
-        "assignment": "Gln-4",
         "chemical_shift": "2.433802418026736",
         "peak_area": "7.143603907081401",
         "peak_height": "0.2539988091696473",
@@ -3221,7 +2996,6 @@
       {
         "Metabolite": "Gln-4_2",
         "sample_id": "27_B1-2_Lung_syngenic_7days_170427_UKy_GCH_rep3-polar-NMR_A",
-        "assignment": "Gln-4",
         "chemical_shift": "2.446482333609446",
         "peak_area": "4.369383432311664",
         "peak_height": "0.2012401438245166",
@@ -3230,7 +3004,6 @@
       {
         "Metabolite": "Gln-4_2",
         "sample_id": "28_C1-1_Lung_allogenic_7days_170427_UKy_GCH_rep1-polar-NMR_A",
-        "assignment": "Gln-4",
         "chemical_shift": "2.445200885111177",
         "peak_area": "1.89616916111592",
         "peak_height": "0.09803266282504863",
@@ -3239,7 +3012,6 @@
       {
         "Metabolite": "Gln-4_2",
         "sample_id": "29_C1-2_Lung_allogenic_7days_170427_UKy_GCH_rep2-polar-NMR_A",
-        "assignment": "Gln-4",
         "chemical_shift": "2.432077960586166",
         "peak_area": "2.52770048797625",
         "peak_height": "0.1535700406546827",
@@ -3248,7 +3020,6 @@
       {
         "Metabolite": "Gln-4_2",
         "sample_id": "30_C1-20_Lung_allogenic_7days_170427_UKy_GCH_rep3-polar-NMR_A",
-        "assignment": "Gln-4",
         "chemical_shift": "2.44659744444639",
         "peak_area": "3.618049576512038",
         "peak_height": "0.1983731002712627",
@@ -3257,7 +3028,6 @@
       {
         "Metabolite": "Gln-4_3",
         "sample_id": "16_A0_Lung_naive_0days_170427_UKy_GCH_rep1-polar-NMR_A",
-        "assignment": "Gln-4",
         "chemical_shift": "2.46219551796387",
         "peak_area": "1.307922179669706",
         "peak_height": "0.07010360884235363",
@@ -3266,7 +3036,6 @@
       {
         "Metabolite": "Gln-4_3",
         "sample_id": "25_B1-0_Lung_syngenic_7days_170427_UKy_GCH_rep1-polar-NMR_A",
-        "assignment": "Gln-4",
         "chemical_shift": "2.44700710106548",
         "peak_area": "5.005111711642341",
         "peak_height": "0.2486508082185376",
@@ -3275,7 +3044,6 @@
       {
         "Metabolite": "Gln-4_3",
         "sample_id": "28_C1-1_Lung_allogenic_7days_170427_UKy_GCH_rep1-polar-NMR_A",
-        "assignment": "Gln-4",
         "chemical_shift": "2.463351723472159",
         "peak_area": "1.864684512946393",
         "peak_height": "0.07276128325759319",
@@ -3284,7 +3052,6 @@
       {
         "Metabolite": "Gln-4_3",
         "sample_id": "29_C1-2_Lung_allogenic_7days_170427_UKy_GCH_rep2-polar-NMR_A",
-        "assignment": "Gln-4",
         "chemical_shift": "2.453078398707286",
         "peak_area": "12.06117604537921",
         "peak_height": "0.1953987266684137",
@@ -3293,7 +3060,6 @@
       {
         "Metabolite": "Gln-4_3",
         "sample_id": "30_C1-20_Lung_allogenic_7days_170427_UKy_GCH_rep3-polar-NMR_A",
-        "assignment": "Gln-4",
         "chemical_shift": "2.46171149023639",
         "peak_area": "11.44731056605389",
         "peak_height": "0.2422952782412681",
@@ -3302,7 +3068,6 @@
       {
         "Metabolite": "Gln-4_4",
         "sample_id": "25_B1-0_Lung_syngenic_7days_170427_UKy_GCH_rep1-polar-NMR_A",
-        "assignment": "Gln-4",
         "chemical_shift": "2.464552816107565",
         "peak_area": "20.72197384639833",
         "peak_height": "0.2275841139320182",
@@ -3311,7 +3076,6 @@
       {
         "Metabolite": "Glu-3-a_1",
         "sample_id": "16_A0_Lung_naive_0days_170427_UKy_GCH_rep1-polar-NMR_A",
-        "assignment": "Glu-3-a",
         "chemical_shift": "2.030851203654234",
         "peak_area": "8.857696112425476",
         "peak_height": "0.209589371805585",
@@ -3320,7 +3084,6 @@
       {
         "Metabolite": "Glu-3-a_1",
         "sample_id": "17_A1_Lung_naive_0days_170427_UKy_GCH_rep2-polar-NMR_A",
-        "assignment": "Glu-3-a",
         "chemical_shift": "2.037508713792979",
         "peak_area": "17.7712952464435",
         "peak_height": "0.3856119816106301",
@@ -3329,7 +3092,6 @@
       {
         "Metabolite": "Glu-3-a_1",
         "sample_id": "18_A2_Lung_naive_0days_170427_UKy_GCH_rep3-polar-NMR_A",
-        "assignment": "Glu-3-a",
         "chemical_shift": "2.046259320288729",
         "peak_area": "2.344382905186013",
         "peak_height": "0.04839013290656813",
@@ -3338,7 +3100,6 @@
       {
         "Metabolite": "Glu-3-a_1",
         "sample_id": "19_B0_Lung_syngenic_42days_170427_UKy_GCH_rep1-polar-NMR_A",
-        "assignment": "Glu-3-a",
         "chemical_shift": "2.030025225092851",
         "peak_area": "12.04774074018927",
         "peak_height": "0.2727289726591782",
@@ -3347,7 +3108,6 @@
       {
         "Metabolite": "Glu-3-a_1",
         "sample_id": "20_B1_Lung_syngenic_42days_170427_UKy_GCH_rep2-polar-NMR_A",
-        "assignment": "Glu-3-a",
         "chemical_shift": "2.02730502318701",
         "peak_area": "4.102983429688574",
         "peak_height": "0.1735554189740138",
@@ -3356,7 +3116,6 @@
       {
         "Metabolite": "Glu-3-a_1",
         "sample_id": "21_B2_Lung_syngenic_42days_170427_UKy_GCH_rep3-polar-NMR_A",
-        "assignment": "Glu-3-a",
         "chemical_shift": "2.049589425627631",
         "peak_area": "53.15021705750867",
         "peak_height": "0.767690121048102",
@@ -3365,7 +3124,6 @@
       {
         "Metabolite": "Glu-3-a_1",
         "sample_id": "22_C1-1_Lung_allogenic_42days_170427_UKy_GCH_rep1-polar-NMR_A",
-        "assignment": "Glu-3-a",
         "chemical_shift": "2.021974942688626",
         "peak_area": "1.917684420559786",
         "peak_height": "0.1304132652287949",
@@ -3374,7 +3132,6 @@
       {
         "Metabolite": "Glu-3-a_1",
         "sample_id": "23_C1-2_Lung_allogenic_42days_170427_UKy_GCH_rep2-polar-NMR_A",
-        "assignment": "Glu-3-a",
         "chemical_shift": "2.012395661173065",
         "peak_area": "2.7091511725413",
         "peak_height": "0.06718473125201711",
@@ -3383,7 +3140,6 @@
       {
         "Metabolite": "Glu-3-a_1",
         "sample_id": "24_C2-0_Lung_allogenic_42days_170427_UKy_GCH_rep1-polar-NMR_A",
-        "assignment": "Glu-3-a",
         "chemical_shift": "2.054201585352814",
         "peak_area": "181.51634560348",
         "peak_height": "2.09251426803433",
@@ -3392,7 +3148,6 @@
       {
         "Metabolite": "Glu-3-a_1",
         "sample_id": "25_B1-0_Lung_syngenic_7days_170427_UKy_GCH_rep1-polar-NMR_A",
-        "assignment": "Glu-3-a",
         "chemical_shift": "2.050457558141666",
         "peak_area": "69.41295442398153",
         "peak_height": "0.7246014103077788",
@@ -3401,7 +3156,6 @@
       {
         "Metabolite": "Glu-3-a_1",
         "sample_id": "26_B1-1_Lung_syngenic_7days_170427_UKy_GCH_rep2-polar-NMR_A",
-        "assignment": "Glu-3-a",
         "chemical_shift": "2.01998352990387",
         "peak_area": "0.7555995727753084",
         "peak_height": "0.05319349889255701",
@@ -3410,7 +3164,6 @@
       {
         "Metabolite": "Glu-3-a_1",
         "sample_id": "27_B1-2_Lung_syngenic_7days_170427_UKy_GCH_rep3-polar-NMR_A",
-        "assignment": "Glu-3-a",
         "chemical_shift": "2.032202902124347",
         "peak_area": "4.768486405250959",
         "peak_height": "0.2829071173280919",
@@ -3419,7 +3172,6 @@
       {
         "Metabolite": "Glu-3-a_1",
         "sample_id": "28_C1-1_Lung_allogenic_7days_170427_UKy_GCH_rep1-polar-NMR_A",
-        "assignment": "Glu-3-a",
         "chemical_shift": "2.026156696548957",
         "peak_area": "7.635435319704936",
         "peak_height": "0.1667755891891161",
@@ -3428,7 +3180,6 @@
       {
         "Metabolite": "Glu-3-a_1",
         "sample_id": "29_C1-2_Lung_allogenic_7days_170427_UKy_GCH_rep2-polar-NMR_A",
-        "assignment": "Glu-3-a",
         "chemical_shift": "2.054443321298861",
         "peak_area": "56.64885026586802",
         "peak_height": "0.6031828595432465",
@@ -3437,7 +3188,6 @@
       {
         "Metabolite": "Glu-3-a_1",
         "sample_id": "30_C1-20_Lung_allogenic_7days_170427_UKy_GCH_rep3-polar-NMR_A",
-        "assignment": "Glu-3-a",
         "chemical_shift": "2.040012456613503",
         "peak_area": "45.48967395631462",
         "peak_height": "0.6697672010856434",
@@ -3446,7 +3196,6 @@
       {
         "Metabolite": "Glu-3-a_2",
         "sample_id": "16_A0_Lung_naive_0days_170427_UKy_GCH_rep1-polar-NMR_A",
-        "assignment": "Glu-3-a",
         "chemical_shift": "2.053027289707702",
         "peak_area": "10.05138701331577",
         "peak_height": "0.2582358399156234",
@@ -3455,7 +3204,6 @@
       {
         "Metabolite": "Glu-3-a_2",
         "sample_id": "17_A1_Lung_naive_0days_170427_UKy_GCH_rep2-polar-NMR_A",
-        "assignment": "Glu-3-a",
         "chemical_shift": "2.054799792451594",
         "peak_area": "0.2331392948280419",
         "peak_height": "0.03315833790674945",
@@ -3464,7 +3212,6 @@
       {
         "Metabolite": "Glu-3-a_2",
         "sample_id": "18_A2_Lung_naive_0days_170427_UKy_GCH_rep3-polar-NMR_A",
-        "assignment": "Glu-3-a",
         "chemical_shift": "2.067179479293993",
         "peak_area": "3.484898358909829",
         "peak_height": "0.1441060848570234",
@@ -3473,7 +3220,6 @@
       {
         "Metabolite": "Glu-3-a_2",
         "sample_id": "19_B0_Lung_syngenic_42days_170427_UKy_GCH_rep1-polar-NMR_A",
-        "assignment": "Glu-3-a",
         "chemical_shift": "2.044266571818588",
         "peak_area": "3.426652689316178",
         "peak_height": "0.160082912906407",
@@ -3482,7 +3228,6 @@
       {
         "Metabolite": "Glu-3-a_2",
         "sample_id": "20_B1_Lung_syngenic_42days_170427_UKy_GCH_rep2-polar-NMR_A",
-        "assignment": "Glu-3-a",
         "chemical_shift": "2.043615156143403",
         "peak_area": "5.258305507373461",
         "peak_height": "0.2418693472162816",
@@ -3491,7 +3236,6 @@
       {
         "Metabolite": "Glu-3-a_2",
         "sample_id": "22_C1-1_Lung_allogenic_42days_170427_UKy_GCH_rep1-polar-NMR_A",
-        "assignment": "Glu-3-a",
         "chemical_shift": "2.030918226095879",
         "peak_area": "2.539219610592107",
         "peak_height": "0.1608902750236633",
@@ -3500,7 +3244,6 @@
       {
         "Metabolite": "Glu-3-a_2",
         "sample_id": "23_C1-2_Lung_allogenic_42days_170427_UKy_GCH_rep2-polar-NMR_A",
-        "assignment": "Glu-3-a",
         "chemical_shift": "2.051569327401746",
         "peak_area": "45.5980621052338",
         "peak_height": "0.5879510664495678",
@@ -3509,7 +3252,6 @@
       {
         "Metabolite": "Glu-3-a_2",
         "sample_id": "26_B1-1_Lung_syngenic_7days_170427_UKy_GCH_rep2-polar-NMR_A",
-        "assignment": "Glu-3-a",
         "chemical_shift": "2.031719058725246",
         "peak_area": "0.4112399367712178",
         "peak_height": "0.04973422195056935",
@@ -3518,7 +3260,6 @@
       {
         "Metabolite": "Glu-3-a_2",
         "sample_id": "27_B1-2_Lung_syngenic_7days_170427_UKy_GCH_rep3-polar-NMR_A",
-        "assignment": "Glu-3-a",
         "chemical_shift": "2.042348031997728",
         "peak_area": "2.35833346112084",
         "peak_height": "0.240132928925133",
@@ -3527,7 +3268,6 @@
       {
         "Metabolite": "Glu-3-a_2",
         "sample_id": "28_C1-1_Lung_allogenic_7days_170427_UKy_GCH_rep1-polar-NMR_A",
-        "assignment": "Glu-3-a",
         "chemical_shift": "2.042684076169087",
         "peak_area": "4.234120743581087",
         "peak_height": "0.1736420573226303",
@@ -3536,7 +3276,6 @@
       {
         "Metabolite": "Glu-3-a_2",
         "sample_id": "30_C1-20_Lung_allogenic_7days_170427_UKy_GCH_rep3-polar-NMR_A",
-        "assignment": "Glu-3-a",
         "chemical_shift": "2.054032322867892",
         "peak_area": "7.892014632895955",
         "peak_height": "0.4",
@@ -3545,7 +3284,6 @@
       {
         "Metabolite": "Glu-3-a_3",
         "sample_id": "16_A0_Lung_naive_0days_170427_UKy_GCH_rep1-polar-NMR_A",
-        "assignment": "Glu-3-a",
         "chemical_shift": "2.069726835820248",
         "peak_area": "7.881122440910317",
         "peak_height": "0.2411072369687734",
@@ -3554,7 +3292,6 @@
       {
         "Metabolite": "Glu-3-a_3",
         "sample_id": "17_A1_Lung_naive_0days_170427_UKy_GCH_rep2-polar-NMR_A",
-        "assignment": "Glu-3-a",
         "chemical_shift": "2.061963794606446",
         "peak_area": "16.10412366650401",
         "peak_height": "0.3906329614684025",
@@ -3563,7 +3300,6 @@
       {
         "Metabolite": "Glu-3-a_3",
         "sample_id": "19_B0_Lung_syngenic_42days_170427_UKy_GCH_rep1-polar-NMR_A",
-        "assignment": "Glu-3-a",
         "chemical_shift": "2.057107032289267",
         "peak_area": "30.10490646893318",
         "peak_height": "0.4266723034625787",
@@ -3572,7 +3308,6 @@
       {
         "Metabolite": "Glu-3-a_3",
         "sample_id": "20_B1_Lung_syngenic_42days_170427_UKy_GCH_rep2-polar-NMR_A",
-        "assignment": "Glu-3-a",
         "chemical_shift": "2.05463994585142",
         "peak_area": "4.821227494251629",
         "peak_height": "0.2361764099280296",
@@ -3581,7 +3316,6 @@
       {
         "Metabolite": "Glu-3-a_3",
         "sample_id": "22_C1-1_Lung_allogenic_42days_170427_UKy_GCH_rep1-polar-NMR_A",
-        "assignment": "Glu-3-a",
         "chemical_shift": "2.045327780582854",
         "peak_area": "2.683276051109536",
         "peak_height": "0.211394464797139",
@@ -3590,7 +3324,6 @@
       {
         "Metabolite": "Glu-3-a_3",
         "sample_id": "23_C1-2_Lung_allogenic_42days_170427_UKy_GCH_rep2-polar-NMR_A",
-        "assignment": "Glu-3-a",
         "chemical_shift": "2.06897750903469",
         "peak_area": "5.795982057067723",
         "peak_height": "0.2273008634820455",
@@ -3599,7 +3332,6 @@
       {
         "Metabolite": "Glu-3-a_3",
         "sample_id": "26_B1-1_Lung_syngenic_7days_170427_UKy_GCH_rep2-polar-NMR_A",
-        "assignment": "Glu-3-a",
         "chemical_shift": "2.043052165865131",
         "peak_area": "1.508957568721364",
         "peak_height": "0.08832927343697583",
@@ -3608,7 +3340,6 @@
       {
         "Metabolite": "Glu-3-a_3",
         "sample_id": "27_B1-2_Lung_syngenic_7days_170427_UKy_GCH_rep3-polar-NMR_A",
-        "assignment": "Glu-3-a",
         "chemical_shift": "2.057449487332421",
         "peak_area": "21.90080149618848",
         "peak_height": "0.4794875566071901",
@@ -3617,7 +3348,6 @@
       {
         "Metabolite": "Glu-3-a_3",
         "sample_id": "28_C1-1_Lung_allogenic_7days_170427_UKy_GCH_rep1-polar-NMR_A",
-        "assignment": "Glu-3-a",
         "chemical_shift": "2.059808213657624",
         "peak_area": "17.59131190960354",
         "peak_height": "0.411525602074031",
@@ -3626,7 +3356,6 @@
       {
         "Metabolite": "Glu-3-a_3",
         "sample_id": "30_C1-20_Lung_allogenic_7days_170427_UKy_GCH_rep3-polar-NMR_A",
-        "assignment": "Glu-3-a",
         "chemical_shift": "2.067845649280557",
         "peak_area": "4.631055036696582",
         "peak_height": "0.3",
@@ -3635,7 +3364,6 @@
       {
         "Metabolite": "Glu-3-a_4",
         "sample_id": "20_B1_Lung_syngenic_42days_170427_UKy_GCH_rep2-polar-NMR_A",
-        "assignment": "Glu-3-a",
         "chemical_shift": "2.066381356559429",
         "peak_area": "5.888574551975836",
         "peak_height": "0.2615844719353662",
@@ -3644,7 +3372,6 @@
       {
         "Metabolite": "Glu-3-a_4",
         "sample_id": "22_C1-1_Lung_allogenic_42days_170427_UKy_GCH_rep1-polar-NMR_A",
-        "assignment": "Glu-3-a",
         "chemical_shift": "2.055503327305068",
         "peak_area": "5.839057885147923",
         "peak_height": "0.2756348008436979",
@@ -3653,7 +3380,6 @@
       {
         "Metabolite": "Glu-3-a_4",
         "sample_id": "26_B1-1_Lung_syngenic_7days_170427_UKy_GCH_rep2-polar-NMR_A",
-        "assignment": "Glu-3-a",
         "chemical_shift": "2.06885432375674",
         "peak_area": "11.77330257589049",
         "peak_height": "0.1996684939886988",
@@ -3662,7 +3388,6 @@
       {
         "Metabolite": "Glu-3-a_5",
         "sample_id": "22_C1-1_Lung_allogenic_42days_170427_UKy_GCH_rep1-polar-NMR_A",
-        "assignment": "Glu-3-a",
         "chemical_shift": "2.070450053087939",
         "peak_area": "6.889996282917691",
         "peak_height": "0.2510746232143117",
@@ -3671,7 +3396,6 @@
       {
         "Metabolite": "Glu-3-b_1",
         "sample_id": "16_A0_Lung_naive_0days_170427_UKy_GCH_rep1-polar-NMR_A",
-        "assignment": "Glu-3-b",
         "chemical_shift": "2.122095251219891",
         "peak_area": "37.35608789831367",
         "peak_height": "0.5539318156943414",
@@ -3680,7 +3404,6 @@
       {
         "Metabolite": "Glu-3-b_1",
         "sample_id": "17_A1_Lung_naive_0days_170427_UKy_GCH_rep2-polar-NMR_A",
-        "assignment": "Glu-3-b",
         "chemical_shift": "2.125595618202083",
         "peak_area": "100.0490094826573",
         "peak_height": "0.8805566414258559",
@@ -3689,7 +3412,6 @@
       {
         "Metabolite": "Glu-3-b_1",
         "sample_id": "18_A2_Lung_naive_0days_170427_UKy_GCH_rep3-polar-NMR_A",
-        "assignment": "Glu-3-b",
         "chemical_shift": "2.112144971603104",
         "peak_area": "8.358813072400283",
         "peak_height": "0.1974652730077893",
@@ -3698,7 +3420,6 @@
       {
         "Metabolite": "Glu-3-b_1",
         "sample_id": "19_B0_Lung_syngenic_42days_170427_UKy_GCH_rep1-polar-NMR_A",
-        "assignment": "Glu-3-b",
         "chemical_shift": "2.124152223727188",
         "peak_area": "63.95104162605271",
         "peak_height": "0.7468341987461885",
@@ -3707,7 +3428,6 @@
       {
         "Metabolite": "Glu-3-b_1",
         "sample_id": "20_B1_Lung_syngenic_42days_170427_UKy_GCH_rep2-polar-NMR_A",
-        "assignment": "Glu-3-b",
         "chemical_shift": "2.090306588694744",
         "peak_area": "6.34724285714441",
         "peak_height": "0.2481479947067313",
@@ -3716,7 +3436,6 @@
       {
         "Metabolite": "Glu-3-b_1",
         "sample_id": "21_B2_Lung_syngenic_42days_170427_UKy_GCH_rep3-polar-NMR_A",
-        "assignment": "Glu-3-b",
         "chemical_shift": "2.12903033068928",
         "peak_area": "157.54852439563",
         "peak_height": "1.502327546989227",
@@ -3725,7 +3444,6 @@
       {
         "Metabolite": "Glu-3-b_1",
         "sample_id": "22_C1-1_Lung_allogenic_42days_170427_UKy_GCH_rep1-polar-NMR_A",
-        "assignment": "Glu-3-b",
         "chemical_shift": "2.132722650030773",
         "peak_area": "80.47353911217482",
         "peak_height": "0.7",
@@ -3734,7 +3452,6 @@
       {
         "Metabolite": "Glu-3-b_1",
         "sample_id": "23_C1-2_Lung_allogenic_42days_170427_UKy_GCH_rep2-polar-NMR_A",
-        "assignment": "Glu-3-b",
         "chemical_shift": "2.119590859929612",
         "peak_area": "67.48058286496455",
         "peak_height": "0.8424105458294266",
@@ -3743,7 +3460,6 @@
       {
         "Metabolite": "Glu-3-b_1",
         "sample_id": "24_C2-0_Lung_allogenic_42days_170427_UKy_GCH_rep1-polar-NMR_A",
-        "assignment": "Glu-3-b",
         "chemical_shift": "2.13387904671469",
         "peak_area": "332.8694068048931",
         "peak_height": "3.57148084554354",
@@ -3752,7 +3468,6 @@
       {
         "Metabolite": "Glu-3-b_1",
         "sample_id": "25_B1-0_Lung_syngenic_7days_170427_UKy_GCH_rep1-polar-NMR_A",
-        "assignment": "Glu-3-b",
         "chemical_shift": "2.134338245390688",
         "peak_area": "152.768463380191",
         "peak_height": "1.487331842377812",
@@ -3761,7 +3476,6 @@
       {
         "Metabolite": "Glu-3-b_1",
         "sample_id": "26_B1-1_Lung_syngenic_7days_170427_UKy_GCH_rep2-polar-NMR_A",
-        "assignment": "Glu-3-b",
         "chemical_shift": "2.121012326889728",
         "peak_area": "27.98277758426448",
         "peak_height": "0.3096151584228568",
@@ -3770,7 +3484,6 @@
       {
         "Metabolite": "Glu-3-b_1",
         "sample_id": "27_B1-2_Lung_syngenic_7days_170427_UKy_GCH_rep3-polar-NMR_A",
-        "assignment": "Glu-3-b",
         "chemical_shift": "2.124302593671366",
         "peak_area": "58.36225146854037",
         "peak_height": "0.7370183597482028",
@@ -3779,7 +3492,6 @@
       {
         "Metabolite": "Glu-3-b_1",
         "sample_id": "28_C1-1_Lung_allogenic_7days_170427_UKy_GCH_rep1-polar-NMR_A",
-        "assignment": "Glu-3-b",
         "chemical_shift": "2.132100219160981",
         "peak_area": "81.42523934463708",
         "peak_height": "0.808841736902338",
@@ -3788,7 +3500,6 @@
       {
         "Metabolite": "Glu-3-b_1",
         "sample_id": "29_C1-2_Lung_allogenic_7days_170427_UKy_GCH_rep2-polar-NMR_A",
-        "assignment": "Glu-3-b",
         "chemical_shift": "2.129518011787622",
         "peak_area": "115.1293328099958",
         "peak_height": "1.106220974797631",
@@ -3797,7 +3508,6 @@
       {
         "Metabolite": "Glu-3-b_1",
         "sample_id": "30_C1-20_Lung_allogenic_7days_170427_UKy_GCH_rep3-polar-NMR_A",
-        "assignment": "Glu-3-b",
         "chemical_shift": "2.11616098638455",
         "peak_area": "8.08199843897748",
         "peak_height": "0.22",
@@ -3806,7 +3516,6 @@
       {
         "Metabolite": "Glu-3-b_2",
         "sample_id": "20_B1_Lung_syngenic_42days_170427_UKy_GCH_rep2-polar-NMR_A",
-        "assignment": "Glu-3-b",
         "chemical_shift": "2.1112951790224",
         "peak_area": "13.63347232265605",
         "peak_height": "0.418070510649587",
@@ -3815,7 +3524,6 @@
       {
         "Metabolite": "Glu-4_1",
         "sample_id": "16_A0_Lung_naive_0days_170427_UKy_GCH_rep1-polar-NMR_A",
-        "assignment": "Glu-4",
         "chemical_shift": "2.338097525884669",
         "peak_area": "34.64833228509345",
         "peak_height": "0.486374280039109",
@@ -3824,7 +3532,6 @@
       {
         "Metabolite": "Glu-4_1",
         "sample_id": "17_A1_Lung_naive_0days_170427_UKy_GCH_rep2-polar-NMR_A",
-        "assignment": "Glu-4",
         "chemical_shift": "2.336676532215532",
         "peak_area": "50.1362372964366",
         "peak_height": "0.7646927887904157",
@@ -3833,7 +3540,6 @@
       {
         "Metabolite": "Glu-4_1",
         "sample_id": "18_A2_Lung_naive_0days_170427_UKy_GCH_rep3-polar-NMR_A",
-        "assignment": "Glu-4",
         "chemical_shift": "2.330531489920455",
         "peak_area": "3.255301569823603",
         "peak_height": "0.1185141802109861",
@@ -3842,7 +3548,6 @@
       {
         "Metabolite": "Glu-4_1",
         "sample_id": "19_B0_Lung_syngenic_42days_170427_UKy_GCH_rep1-polar-NMR_A",
-        "assignment": "Glu-4",
         "chemical_shift": "2.333039636737765",
         "peak_area": "37.58878647427614",
         "peak_height": "0.5200761099833701",
@@ -3851,7 +3556,6 @@
       {
         "Metabolite": "Glu-4_1",
         "sample_id": "20_B1_Lung_syngenic_42days_170427_UKy_GCH_rep2-polar-NMR_A",
-        "assignment": "Glu-4",
         "chemical_shift": "2.324588270216807",
         "peak_area": "21.31062691079802",
         "peak_height": "0.3349865802216003",
@@ -3860,7 +3564,6 @@
       {
         "Metabolite": "Glu-4_1",
         "sample_id": "21_B2_Lung_syngenic_42days_170427_UKy_GCH_rep3-polar-NMR_A",
-        "assignment": "Glu-4",
         "chemical_shift": "2.336193902360916",
         "peak_area": "98.03941699316258",
         "peak_height": "1.233371702819241",
@@ -3869,7 +3572,6 @@
       {
         "Metabolite": "Glu-4_1",
         "sample_id": "22_C1-1_Lung_allogenic_42days_170427_UKy_GCH_rep1-polar-NMR_A",
-        "assignment": "Glu-4",
         "chemical_shift": "2.338880404877655",
         "peak_area": "27.41415509985531",
         "peak_height": "0.4389230703931823",
@@ -3878,7 +3580,6 @@
       {
         "Metabolite": "Glu-4_1",
         "sample_id": "23_C1-2_Lung_allogenic_42days_170427_UKy_GCH_rep2-polar-NMR_A",
-        "assignment": "Glu-4",
         "chemical_shift": "2.337084085322551",
         "peak_area": "51.99462661847775",
         "peak_height": "0.6528591540274891",
@@ -3887,7 +3588,6 @@
       {
         "Metabolite": "Glu-4_1",
         "sample_id": "24_C2-0_Lung_allogenic_42days_170427_UKy_GCH_rep1-polar-NMR_A",
-        "assignment": "Glu-4",
         "chemical_shift": "2.338717684106491",
         "peak_area": "179.4028694519298",
         "peak_height": "2.337989717937414",
@@ -3896,7 +3596,6 @@
       {
         "Metabolite": "Glu-4_1",
         "sample_id": "25_B1-0_Lung_syngenic_7days_170427_UKy_GCH_rep1-polar-NMR_A",
-        "assignment": "Glu-4",
         "chemical_shift": "2.339601163084992",
         "peak_area": "48.67193873992471",
         "peak_height": "0.7719825149659831",
@@ -3905,7 +3604,6 @@
       {
         "Metabolite": "Glu-4_1",
         "sample_id": "26_B1-1_Lung_syngenic_7days_170427_UKy_GCH_rep2-polar-NMR_A",
-        "assignment": "Glu-4",
         "chemical_shift": "2.327947508083625",
         "peak_area": "6.085714772672445",
         "peak_height": "0.2177821472650971",
@@ -3914,7 +3612,6 @@
       {
         "Metabolite": "Glu-4_1",
         "sample_id": "27_B1-2_Lung_syngenic_7days_170427_UKy_GCH_rep3-polar-NMR_A",
-        "assignment": "Glu-4",
         "chemical_shift": "2.339054461609243",
         "peak_area": "55.57027823110184",
         "peak_height": "0.7265503364468139",
@@ -3923,7 +3620,6 @@
       {
         "Metabolite": "Glu-4_1",
         "sample_id": "28_C1-1_Lung_allogenic_7days_170427_UKy_GCH_rep1-polar-NMR_A",
-        "assignment": "Glu-4",
         "chemical_shift": "2.340209907253578",
         "peak_area": "44.66272889345428",
         "peak_height": "0.5852936351173638",
@@ -3932,7 +3628,6 @@
       {
         "Metabolite": "Glu-4_1",
         "sample_id": "29_C1-2_Lung_allogenic_7days_170427_UKy_GCH_rep2-polar-NMR_A",
-        "assignment": "Glu-4",
         "chemical_shift": "2.334214803267565",
         "peak_area": "63.87190928657409",
         "peak_height": "0.9349348330098624",
@@ -3941,7 +3636,6 @@
       {
         "Metabolite": "Glu-4_1",
         "sample_id": "30_C1-20_Lung_allogenic_7days_170427_UKy_GCH_rep3-polar-NMR_A",
-        "assignment": "Glu-4",
         "chemical_shift": "2.333852565343423",
         "peak_area": "87.3479365171702",
         "peak_height": "1.13926825547011",
@@ -3950,7 +3644,6 @@
       {
         "Metabolite": "Glu-4_2",
         "sample_id": "18_A2_Lung_naive_0days_170427_UKy_GCH_rep3-polar-NMR_A",
-        "assignment": "Glu-4",
         "chemical_shift": "2.343358408416814",
         "peak_area": "2.361203070239339",
         "peak_height": "0.1130824737963821",
@@ -3959,7 +3652,6 @@
       {
         "Metabolite": "Glu-4_2",
         "sample_id": "26_B1-1_Lung_syngenic_7days_170427_UKy_GCH_rep2-polar-NMR_A",
-        "assignment": "Glu-4",
         "chemical_shift": "2.341590314431918",
         "peak_area": "7.594275241996926",
         "peak_height": "0.2342161449136629",
@@ -3968,7 +3660,6 @@
       {
         "Metabolite": "Glu-4_3",
         "sample_id": "18_A2_Lung_naive_0days_170427_UKy_GCH_rep3-polar-NMR_A",
-        "assignment": "Glu-4",
         "chemical_shift": "2.355463226168038",
         "peak_area": "3.255356626750288",
         "peak_height": "0.1196390566376477",
@@ -3977,7 +3668,6 @@
       {
         "Metabolite": "Gly_1",
         "sample_id": "16_A0_Lung_naive_0days_170427_UKy_GCH_rep1-polar-NMR_A",
-        "assignment": "Gly",
         "chemical_shift": "3.54513888244093",
         "peak_area": "16.84215134410485",
         "peak_height": "0.6203514766340829",
@@ -3986,7 +3676,6 @@
       {
         "Metabolite": "Gly_1",
         "sample_id": "17_A1_Lung_naive_0days_170427_UKy_GCH_rep2-polar-NMR_A",
-        "assignment": "Gly",
         "chemical_shift": "3.544969462861019",
         "peak_area": "27.95029128355089",
         "peak_height": "0.9636021616102527",
@@ -3995,7 +3684,6 @@
       {
         "Metabolite": "Gly_1",
         "sample_id": "18_A2_Lung_naive_0days_170427_UKy_GCH_rep3-polar-NMR_A",
-        "assignment": "Gly",
         "chemical_shift": "3.544208878079734",
         "peak_area": "9.494593727006196",
         "peak_height": "0.2622829784115681",
@@ -4004,7 +3692,6 @@
       {
         "Metabolite": "Gly_1",
         "sample_id": "19_B0_Lung_syngenic_42days_170427_UKy_GCH_rep1-polar-NMR_A",
-        "assignment": "Gly",
         "chemical_shift": "3.546119052907934",
         "peak_area": "15.03981545575192",
         "peak_height": "0.5082595488274011",
@@ -4013,7 +3700,6 @@
       {
         "Metabolite": "Gly_1",
         "sample_id": "20_B1_Lung_syngenic_42days_170427_UKy_GCH_rep2-polar-NMR_A",
-        "assignment": "Gly",
         "chemical_shift": "3.544475520106734",
         "peak_area": "28.54852322372997",
         "peak_height": "0.6322671757424673",
@@ -4022,7 +3708,6 @@
       {
         "Metabolite": "Gly_1",
         "sample_id": "21_B2_Lung_syngenic_42days_170427_UKy_GCH_rep3-polar-NMR_A",
-        "assignment": "Gly",
         "chemical_shift": "3.545242955341867",
         "peak_area": "23.06987835294598",
         "peak_height": "0.8943164380478087",
@@ -4031,7 +3716,6 @@
       {
         "Metabolite": "Gly_1",
         "sample_id": "22_C1-1_Lung_allogenic_42days_170427_UKy_GCH_rep1-polar-NMR_A",
-        "assignment": "Gly",
         "chemical_shift": "3.545655111056492",
         "peak_area": "29.77696882521393",
         "peak_height": "1.008204865605788",
@@ -4040,7 +3724,6 @@
       {
         "Metabolite": "Gly_1",
         "sample_id": "23_C1-2_Lung_allogenic_42days_170427_UKy_GCH_rep2-polar-NMR_A",
-        "assignment": "Gly",
         "chemical_shift": "3.545517749862946",
         "peak_area": "18.32415536378117",
         "peak_height": "0.5884936045252657",
@@ -4049,7 +3732,6 @@
       {
         "Metabolite": "Gly_1",
         "sample_id": "24_C2-0_Lung_allogenic_42days_170427_UKy_GCH_rep1-polar-NMR_A",
-        "assignment": "Gly",
         "chemical_shift": "3.547667671716541",
         "peak_area": "47.14083499247315",
         "peak_height": "1.685882193651216",
@@ -4058,7 +3740,6 @@
       {
         "Metabolite": "Gly_1",
         "sample_id": "25_B1-0_Lung_syngenic_7days_170427_UKy_GCH_rep1-polar-NMR_A",
-        "assignment": "Gly",
         "chemical_shift": "3.546067382247173",
         "peak_area": "32.76585133619122",
         "peak_height": "1.191888147230204",
@@ -4067,7 +3748,6 @@
       {
         "Metabolite": "Gly_1",
         "sample_id": "26_B1-1_Lung_syngenic_7days_170427_UKy_GCH_rep2-polar-NMR_A",
-        "assignment": "Gly",
         "chemical_shift": "3.545410754940595",
         "peak_area": "12.51482633222404",
         "peak_height": "0.4599357841853681",
@@ -4076,7 +3756,6 @@
       {
         "Metabolite": "Gly_1",
         "sample_id": "27_B1-2_Lung_syngenic_7days_170427_UKy_GCH_rep3-polar-NMR_A",
-        "assignment": "Gly",
         "chemical_shift": "3.546122449478169",
         "peak_area": "14.67394029157074",
         "peak_height": "0.5341446416060399",
@@ -4085,7 +3764,6 @@
       {
         "Metabolite": "Gly_1",
         "sample_id": "28_C1-1_Lung_allogenic_7days_170427_UKy_GCH_rep1-polar-NMR_A",
-        "assignment": "Gly",
         "chemical_shift": "3.544208984535097",
         "peak_area": "14.78054833545986",
         "peak_height": "0.5219649462451829",
@@ -4094,7 +3772,6 @@
       {
         "Metabolite": "Gly_1",
         "sample_id": "29_C1-2_Lung_allogenic_7days_170427_UKy_GCH_rep2-polar-NMR_A",
-        "assignment": "Gly",
         "chemical_shift": "3.544534275315131",
         "peak_area": "22.34955430988849",
         "peak_height": "0.827404673762641",
@@ -4103,7 +3780,6 @@
       {
         "Metabolite": "Gly_1",
         "sample_id": "30_C1-20_Lung_allogenic_7days_170427_UKy_GCH_rep3-polar-NMR_A",
-        "assignment": "Gly",
         "chemical_shift": "3.545119052907934",
         "peak_area": "24.47972537222777",
         "peak_height": "0.9042588523327038",
@@ -4112,7 +3788,6 @@
       {
         "Metabolite": "Glycogen_1",
         "sample_id": "16_A0_Lung_naive_0days_170427_UKy_GCH_rep1-polar-NMR_A",
-        "assignment": "Glycogen",
         "chemical_shift": "5.409172623178693",
         "peak_area": "1.335960357950937",
         "peak_height": "0.04958291427158132",
@@ -4121,7 +3796,6 @@
       {
         "Metabolite": "Glycogen_1",
         "sample_id": "17_A1_Lung_naive_0days_170427_UKy_GCH_rep2-polar-NMR_A",
-        "assignment": "Glycogen",
         "chemical_shift": "5.41232673516723",
         "peak_area": "6.234538983196813",
         "peak_height": "0.15439722885123",
@@ -4130,7 +3804,6 @@
       {
         "Metabolite": "Glycogen_1",
         "sample_id": "18_A2_Lung_naive_0days_170427_UKy_GCH_rep3-polar-NMR_A",
-        "assignment": "Glycogen",
         "chemical_shift": "5.402419078083803",
         "peak_area": "0.3103698293823754",
         "peak_height": "0.0351993788054824",
@@ -4139,7 +3812,6 @@
       {
         "Metabolite": "Glycogen_1",
         "sample_id": "19_B0_Lung_syngenic_42days_170427_UKy_GCH_rep1-polar-NMR_A",
-        "assignment": "Glycogen",
         "chemical_shift": "5.415131128649978",
         "peak_area": "3.976383085764673",
         "peak_height": "0.1112120288069772",
@@ -4148,7 +3820,6 @@
       {
         "Metabolite": "Glycogen_1",
         "sample_id": "20_B1_Lung_syngenic_42days_170427_UKy_GCH_rep2-polar-NMR_A",
-        "assignment": "Glycogen",
         "chemical_shift": "5.407314031354876",
         "peak_area": "5.841859399515223",
         "peak_height": "0.1683965712022708",
@@ -4157,7 +3828,6 @@
       {
         "Metabolite": "Glycogen_1",
         "sample_id": "21_B2_Lung_syngenic_42days_170427_UKy_GCH_rep3-polar-NMR_A",
-        "assignment": "Glycogen",
         "chemical_shift": "5.412849385820469",
         "peak_area": "33.08181550270535",
         "peak_height": "0.4547839342117495",
@@ -4166,7 +3836,6 @@
       {
         "Metabolite": "Glycogen_1",
         "sample_id": "22_C1-1_Lung_allogenic_42days_170427_UKy_GCH_rep1-polar-NMR_A",
-        "assignment": "Glycogen",
         "chemical_shift": "5.415377106272691",
         "peak_area": "0.6592866602010409",
         "peak_height": "0.05962543224156152",
@@ -4175,7 +3844,6 @@
       {
         "Metabolite": "Glycogen_1",
         "sample_id": "23_C1-2_Lung_allogenic_42days_170427_UKy_GCH_rep2-polar-NMR_A",
-        "assignment": "Glycogen",
         "chemical_shift": "5.416115236613884",
         "peak_area": "12.69754096561619",
         "peak_height": "0.2757146043527718",
@@ -4184,7 +3852,6 @@
       {
         "Metabolite": "Glycogen_1",
         "sample_id": "24_C2-0_Lung_allogenic_42days_170427_UKy_GCH_rep1-polar-NMR_A",
-        "assignment": "Glycogen",
         "chemical_shift": "5.419825754918972",
         "peak_area": "34.40492710107146",
         "peak_height": "0.6676093584354763",
@@ -4193,7 +3860,6 @@
       {
         "Metabolite": "Glycogen_1",
         "sample_id": "25_B1-0_Lung_syngenic_7days_170427_UKy_GCH_rep1-polar-NMR_A",
-        "assignment": "Glycogen",
         "chemical_shift": "5.418323254551026",
         "peak_area": "17.21738621422023",
         "peak_height": "0.273842019190207",
@@ -4202,7 +3868,6 @@
       {
         "Metabolite": "Glycogen_1",
         "sample_id": "26_B1-1_Lung_syngenic_7days_170427_UKy_GCH_rep2-polar-NMR_A",
-        "assignment": "Glycogen",
         "chemical_shift": "5.415880743334145",
         "peak_area": "1.109390408890076",
         "peak_height": "0.08249538801324008",
@@ -4211,7 +3876,6 @@
       {
         "Metabolite": "Glycogen_1",
         "sample_id": "27_B1-2_Lung_syngenic_7days_170427_UKy_GCH_rep3-polar-NMR_A",
-        "assignment": "Glycogen",
         "chemical_shift": "5.420407970521767",
         "peak_area": "7.965997687633291",
         "peak_height": "0.1521492539063887",
@@ -4220,7 +3884,6 @@
       {
         "Metabolite": "Glycogen_1",
         "sample_id": "28_C1-1_Lung_allogenic_7days_170427_UKy_GCH_rep1-polar-NMR_A",
-        "assignment": "Glycogen",
         "chemical_shift": "5.408992669334484",
         "peak_area": "2.921653775069233",
         "peak_height": "0.1121953977040008",
@@ -4229,7 +3892,6 @@
       {
         "Metabolite": "Glycogen_1",
         "sample_id": "29_C1-2_Lung_allogenic_7days_170427_UKy_GCH_rep2-polar-NMR_A",
-        "assignment": "Glycogen",
         "chemical_shift": "5.410338255788952",
         "peak_area": "8.018282155449784",
         "peak_height": "0.2268127598713926",
@@ -4238,7 +3900,6 @@
       {
         "Metabolite": "Glycogen_1",
         "sample_id": "30_C1-20_Lung_allogenic_7days_170427_UKy_GCH_rep3-polar-NMR_A",
-        "assignment": "Glycogen",
         "chemical_shift": "5.413734181758121",
         "peak_area": "5.642723608202744",
         "peak_height": "0.1814301080998388",
@@ -4247,7 +3908,6 @@
       {
         "Metabolite": "Glycogen_2",
         "sample_id": "18_A2_Lung_naive_0days_170427_UKy_GCH_rep3-polar-NMR_A",
-        "assignment": "Glycogen",
         "chemical_shift": "5.414280888000238",
         "peak_area": "0.4716856679952891",
         "peak_height": "0.034629732607441",
@@ -4256,7 +3916,6 @@
       {
         "Metabolite": "Lac-2_1",
         "sample_id": "16_A0_Lung_naive_0days_170427_UKy_GCH_rep1-polar-NMR_A",
-        "assignment": "Lac-2",
         "chemical_shift": "4.093070516253682",
         "peak_area": "60.96351433054401",
         "peak_height": "0.8199694108857857",
@@ -4265,7 +3924,6 @@
       {
         "Metabolite": "Lac-2_1",
         "sample_id": "17_A1_Lung_naive_0days_170427_UKy_GCH_rep2-polar-NMR_A",
-        "assignment": "Lac-2",
         "chemical_shift": "4.09068308075663",
         "peak_area": "57.30736173222908",
         "peak_height": "0.9098848827283967",
@@ -4274,7 +3932,6 @@
       {
         "Metabolite": "Lac-2_1",
         "sample_id": "18_A2_Lung_naive_0days_170427_UKy_GCH_rep3-polar-NMR_A",
-        "assignment": "Lac-2",
         "chemical_shift": "4.097023367157002",
         "peak_area": "7.146858889871684",
         "peak_height": "0.3136736404864792",
@@ -4283,7 +3940,6 @@
       {
         "Metabolite": "Lac-2_1",
         "sample_id": "19_B0_Lung_syngenic_42days_170427_UKy_GCH_rep1-polar-NMR_A",
-        "assignment": "Lac-2",
         "chemical_shift": "4.09503715920096",
         "peak_area": "15.03877043636968",
         "peak_height": "0.4957644475977782",
@@ -4292,7 +3948,6 @@
       {
         "Metabolite": "Lac-2_1",
         "sample_id": "20_B1_Lung_syngenic_42days_170427_UKy_GCH_rep2-polar-NMR_A",
-        "assignment": "Lac-2",
         "chemical_shift": "4.082341319982884",
         "peak_area": "21.02197595303462",
         "peak_height": "0.2055105627321405",
@@ -4301,7 +3956,6 @@
       {
         "Metabolite": "Lac-2_1",
         "sample_id": "21_B2_Lung_syngenic_42days_170427_UKy_GCH_rep3-polar-NMR_A",
-        "assignment": "Lac-2",
         "chemical_shift": "4.090882092541373",
         "peak_area": "40.00348155156236",
         "peak_height": "1",
@@ -4310,7 +3964,6 @@
       {
         "Metabolite": "Lac-2_1",
         "sample_id": "22_C1-1_Lung_allogenic_42days_170427_UKy_GCH_rep1-polar-NMR_A",
-        "assignment": "Lac-2",
         "chemical_shift": "4.092835447167339",
         "peak_area": "47.02630373575384",
         "peak_height": "0.8699817505156329",
@@ -4319,7 +3972,6 @@
       {
         "Metabolite": "Lac-2_1",
         "sample_id": "23_C1-2_Lung_allogenic_42days_170427_UKy_GCH_rep2-polar-NMR_A",
-        "assignment": "Lac-2",
         "chemical_shift": "4.093100817871202",
         "peak_area": "38.8926678561095",
         "peak_height": "0.7579652175527025",
@@ -4328,7 +3980,6 @@
       {
         "Metabolite": "Lac-2_1",
         "sample_id": "24_C2-0_Lung_allogenic_42days_170427_UKy_GCH_rep1-polar-NMR_A",
-        "assignment": "Lac-2",
         "chemical_shift": "4.096663642963806",
         "peak_area": "78.2008667761459",
         "peak_height": "2.364695914726709",
@@ -4337,7 +3988,6 @@
       {
         "Metabolite": "Lac-2_1",
         "sample_id": "25_B1-0_Lung_syngenic_7days_170427_UKy_GCH_rep1-polar-NMR_A",
-        "assignment": "Lac-2",
         "chemical_shift": "4.093061491733231",
         "peak_area": "53.09593361024601",
         "peak_height": "1.1",
@@ -4346,7 +3996,6 @@
       {
         "Metabolite": "Lac-2_1",
         "sample_id": "26_B1-1_Lung_syngenic_7days_170427_UKy_GCH_rep2-polar-NMR_A",
-        "assignment": "Lac-2",
         "chemical_shift": "4.095043272624925",
         "peak_area": "16.97766355059344",
         "peak_height": "0.436926791174843",
@@ -4355,7 +4004,6 @@
       {
         "Metabolite": "Lac-2_1",
         "sample_id": "27_B1-2_Lung_syngenic_7days_170427_UKy_GCH_rep3-polar-NMR_A",
-        "assignment": "Lac-2",
         "chemical_shift": "4.080564927548378",
         "peak_area": "24.76428188879026",
         "peak_height": "0.6318199404200969",
@@ -4364,7 +4012,6 @@
       {
         "Metabolite": "Lac-2_1",
         "sample_id": "28_C1-1_Lung_allogenic_7days_170427_UKy_GCH_rep1-polar-NMR_A",
-        "assignment": "Lac-2",
         "chemical_shift": "4.091600682684209",
         "peak_area": "15.94279280473895",
         "peak_height": "0.6347040992721357",
@@ -4373,7 +4020,6 @@
       {
         "Metabolite": "Lac-2_1",
         "sample_id": "29_C1-2_Lung_allogenic_7days_170427_UKy_GCH_rep2-polar-NMR_A",
-        "assignment": "Lac-2",
         "chemical_shift": "4.094255140095929",
         "peak_area": "69.7939098223973",
         "peak_height": "1.183637091699629",
@@ -4382,7 +4028,6 @@
       {
         "Metabolite": "Lac-2_1",
         "sample_id": "30_C1-20_Lung_allogenic_7days_170427_UKy_GCH_rep3-polar-NMR_A",
-        "assignment": "Lac-2",
         "chemical_shift": "4.077511332387433",
         "peak_area": "62.58227304466717",
         "peak_height": "0.6146252797301609",
@@ -4391,7 +4036,6 @@
       {
         "Metabolite": "Lac-2_2",
         "sample_id": "16_A0_Lung_naive_0days_170427_UKy_GCH_rep1-polar-NMR_A",
-        "assignment": "Lac-2",
         "chemical_shift": "4.109249777894112",
         "peak_area": "10.63477639132573",
         "peak_height": "0.3965747453914962",
@@ -4400,7 +4044,6 @@
       {
         "Metabolite": "Lac-2_2",
         "sample_id": "17_A1_Lung_naive_0days_170427_UKy_GCH_rep2-polar-NMR_A",
-        "assignment": "Lac-2",
         "chemical_shift": "4.107888701151643",
         "peak_area": "26.35266965605965",
         "peak_height": "0.7502603469700021",
@@ -4409,7 +4052,6 @@
       {
         "Metabolite": "Lac-2_2",
         "sample_id": "18_A2_Lung_naive_0days_170427_UKy_GCH_rep3-polar-NMR_A",
-        "assignment": "Lac-2",
         "chemical_shift": "4.106779189734425",
         "peak_area": "11.6056171071048",
         "peak_height": "0.3352100677604023",
@@ -4418,7 +4060,6 @@
       {
         "Metabolite": "Lac-2_2",
         "sample_id": "19_B0_Lung_syngenic_42days_170427_UKy_GCH_rep1-polar-NMR_A",
-        "assignment": "Lac-2",
         "chemical_shift": "4.109461446971264",
         "peak_area": "19.73013618573467",
         "peak_height": "0.4507987725061398",
@@ -4427,7 +4068,6 @@
       {
         "Metabolite": "Lac-2_2",
         "sample_id": "20_B1_Lung_syngenic_42days_170427_UKy_GCH_rep2-polar-NMR_A",
-        "assignment": "Lac-2",
         "chemical_shift": "4.094734409466771",
         "peak_area": "-4.172922453870706",
         "peak_height": "-0.1187233706842315",
@@ -4436,7 +4076,6 @@
       {
         "Metabolite": "Lac-2_2",
         "sample_id": "21_B2_Lung_syngenic_42days_170427_UKy_GCH_rep3-polar-NMR_A",
-        "assignment": "Lac-2",
         "chemical_shift": "4.109236394941205",
         "peak_area": "43.71343019657986",
         "peak_height": "1.059015474712268",
@@ -4445,7 +4084,6 @@
       {
         "Metabolite": "Lac-2_2",
         "sample_id": "22_C1-1_Lung_allogenic_42days_170427_UKy_GCH_rep1-polar-NMR_A",
-        "assignment": "Lac-2",
         "chemical_shift": "4.107279354723742",
         "peak_area": "21.80868304489859",
         "peak_height": "0.6749485497083103",
@@ -4454,7 +4092,6 @@
       {
         "Metabolite": "Lac-2_2",
         "sample_id": "23_C1-2_Lung_allogenic_42days_170427_UKy_GCH_rep2-polar-NMR_A",
-        "assignment": "Lac-2",
         "chemical_shift": "4.110925869635679",
         "peak_area": "33.73424907706095",
         "peak_height": "0.7421154090279906",
@@ -4463,7 +4100,6 @@
       {
         "Metabolite": "Lac-2_2",
         "sample_id": "24_C2-0_Lung_allogenic_42days_170427_UKy_GCH_rep1-polar-NMR_A",
-        "assignment": "Lac-2",
         "chemical_shift": "4.109988081195805",
         "peak_area": "76.86439899546977",
         "peak_height": "2.224936348211269",
@@ -4472,7 +4108,6 @@
       {
         "Metabolite": "Lac-2_2",
         "sample_id": "25_B1-0_Lung_syngenic_7days_170427_UKy_GCH_rep1-polar-NMR_A",
-        "assignment": "Lac-2",
         "chemical_shift": "4.109162309163253",
         "peak_area": "41.19985433216476",
         "peak_height": "1",
@@ -4481,7 +4116,6 @@
       {
         "Metabolite": "Lac-2_2",
         "sample_id": "26_B1-1_Lung_syngenic_7days_170427_UKy_GCH_rep2-polar-NMR_A",
-        "assignment": "Lac-2",
         "chemical_shift": "4.107552761600932",
         "peak_area": "12.47574977410014",
         "peak_height": "0.4682652544704439",
@@ -4490,7 +4124,6 @@
       {
         "Metabolite": "Lac-2_2",
         "sample_id": "27_B1-2_Lung_syngenic_7days_170427_UKy_GCH_rep3-polar-NMR_A",
-        "assignment": "Lac-2",
         "chemical_shift": "4.095676288055865",
         "peak_area": "10.61895710931564",
         "peak_height": "0.5423605103380948",
@@ -4499,7 +4132,6 @@
       {
         "Metabolite": "Lac-2_2",
         "sample_id": "28_C1-1_Lung_allogenic_7days_170427_UKy_GCH_rep1-polar-NMR_A",
-        "assignment": "Lac-2",
         "chemical_shift": "4.105919015710543",
         "peak_area": "8.947042357487284",
         "peak_height": "0.4559566643788999",
@@ -4508,7 +4140,6 @@
       {
         "Metabolite": "Lac-2_2",
         "sample_id": "29_C1-2_Lung_allogenic_7days_170427_UKy_GCH_rep2-polar-NMR_A",
-        "assignment": "Lac-2",
         "chemical_shift": "4.10885892354506",
         "peak_area": "13.93796265142454",
         "peak_height": "0.5654822315373685",
@@ -4517,7 +4148,6 @@
       {
         "Metabolite": "Lac-2_2",
         "sample_id": "30_C1-20_Lung_allogenic_7days_170427_UKy_GCH_rep3-polar-NMR_A",
-        "assignment": "Lac-2",
         "chemical_shift": "4.103392959743927",
         "peak_area": "49.68364490293543",
         "peak_height": "0.9342561556475474",
@@ -4526,7 +4156,6 @@
       {
         "Metabolite": "Lac-2_3",
         "sample_id": "20_B1_Lung_syngenic_42days_170427_UKy_GCH_rep2-polar-NMR_A",
-        "assignment": "Lac-2",
         "chemical_shift": "4.099732820562425",
         "peak_area": "32.04559423466767",
         "peak_height": "0.5482313540013234",
@@ -4535,7 +4164,6 @@
       {
         "Metabolite": "Lac-2_3",
         "sample_id": "27_B1-2_Lung_syngenic_7days_170427_UKy_GCH_rep3-polar-NMR_A",
-        "assignment": "Lac-2",
         "chemical_shift": "4.109671319899748",
         "peak_area": "35.96843021973991",
         "peak_height": "0.763804964952875",
@@ -4544,7 +4172,6 @@
       {
         "Metabolite": "Lac-2_3",
         "sample_id": "28_C1-1_Lung_allogenic_7days_170427_UKy_GCH_rep1-polar-NMR_A",
-        "assignment": "Lac-2",
         "chemical_shift": "4.12068238776785",
         "peak_area": "9.154507504470294",
         "peak_height": "0.3216826018256456",
@@ -4553,7 +4180,6 @@
       {
         "Metabolite": "Lac-3_1",
         "sample_id": "16_A0_Lung_naive_0days_170427_UKy_GCH_rep1-polar-NMR_A",
-        "assignment": "Lac-3",
         "chemical_shift": "1.312582689441741",
         "peak_area": "254.5390625087136",
         "peak_height": "7.968627119947808",
@@ -4562,7 +4188,6 @@
       {
         "Metabolite": "Lac-3_1",
         "sample_id": "17_A1_Lung_naive_0days_170427_UKy_GCH_rep2-polar-NMR_A",
-        "assignment": "Lac-3",
         "chemical_shift": "1.312210615554505",
         "peak_area": "288.5736816561702",
         "peak_height": "8.757180815737254",
@@ -4571,7 +4196,6 @@
       {
         "Metabolite": "Lac-3_1",
         "sample_id": "18_A2_Lung_naive_0days_170427_UKy_GCH_rep3-polar-NMR_A",
-        "assignment": "Lac-3",
         "chemical_shift": "1.311014740137288",
         "peak_area": "76.62366603332768",
         "peak_height": "2.487444855818366",
@@ -4580,7 +4204,6 @@
       {
         "Metabolite": "Lac-3_1",
         "sample_id": "19_B0_Lung_syngenic_42days_170427_UKy_GCH_rep1-polar-NMR_A",
-        "assignment": "Lac-3",
         "chemical_shift": "1.313239929740557",
         "peak_area": "183.3203170481378",
         "peak_height": "4.788648838978829",
@@ -4589,7 +4212,6 @@
       {
         "Metabolite": "Lac-3_1",
         "sample_id": "20_B1_Lung_syngenic_42days_170427_UKy_GCH_rep2-polar-NMR_A",
-        "assignment": "Lac-3",
         "chemical_shift": "1.311813488311143",
         "peak_area": "140.3080488125079",
         "peak_height": "4.612328879654701",
@@ -4598,7 +4220,6 @@
       {
         "Metabolite": "Lac-3_1",
         "sample_id": "21_B2_Lung_syngenic_42days_170427_UKy_GCH_rep3-polar-NMR_A",
-        "assignment": "Lac-3",
         "chemical_shift": "1.312227964584579",
         "peak_area": "327.8038581135633",
         "peak_height": "11.68866122949384",
@@ -4607,7 +4228,6 @@
       {
         "Metabolite": "Lac-3_1",
         "sample_id": "22_C1-1_Lung_allogenic_42days_170427_UKy_GCH_rep1-polar-NMR_A",
-        "assignment": "Lac-3",
         "chemical_shift": "1.312735906394261",
         "peak_area": "225.6698789976948",
         "peak_height": "7.592244247984485",
@@ -4616,7 +4236,6 @@
       {
         "Metabolite": "Lac-3_1",
         "sample_id": "23_C1-2_Lung_allogenic_42days_170427_UKy_GCH_rep2-polar-NMR_A",
-        "assignment": "Lac-3",
         "chemical_shift": "1.312672381715762",
         "peak_area": "182.0863495041909",
         "peak_height": "6.690970443602146",
@@ -4625,7 +4244,6 @@
       {
         "Metabolite": "Lac-3_1",
         "sample_id": "24_C2-0_Lung_allogenic_42days_170427_UKy_GCH_rep1-polar-NMR_A",
-        "assignment": "Lac-3",
         "chemical_shift": "1.314107595416698",
         "peak_area": "802.6218196665778",
         "peak_height": "27.80504932462306",
@@ -4634,7 +4252,6 @@
       {
         "Metabolite": "Lac-3_1",
         "sample_id": "25_B1-0_Lung_syngenic_7days_170427_UKy_GCH_rep1-polar-NMR_A",
-        "assignment": "Lac-3",
         "chemical_shift": "1.31314191477956",
         "peak_area": "311.3013331454852",
         "peak_height": "10.19668096432319",
@@ -4643,7 +4260,6 @@
       {
         "Metabolite": "Lac-3_1",
         "sample_id": "26_B1-1_Lung_syngenic_7days_170427_UKy_GCH_rep2-polar-NMR_A",
-        "assignment": "Lac-3",
         "chemical_shift": "1.312397293137699",
         "peak_area": "136.1319649545128",
         "peak_height": "4.509961383692279",
@@ -4652,7 +4268,6 @@
       {
         "Metabolite": "Lac-3_1",
         "sample_id": "27_B1-2_Lung_syngenic_7days_170427_UKy_GCH_rep3-polar-NMR_A",
-        "assignment": "Lac-3",
         "chemical_shift": "1.312454742462593",
         "peak_area": "214.0723140691891",
         "peak_height": "6.861042555972664",
@@ -4661,7 +4276,6 @@
       {
         "Metabolite": "Lac-3_1",
         "sample_id": "28_C1-1_Lung_allogenic_7days_170427_UKy_GCH_rep1-polar-NMR_A",
-        "assignment": "Lac-3",
         "chemical_shift": "1.311569212638777",
         "peak_area": "152.4207025188956",
         "peak_height": "5.567351071569941",
@@ -4670,7 +4284,6 @@
       {
         "Metabolite": "Lac-3_1",
         "sample_id": "29_C1-2_Lung_allogenic_7days_170427_UKy_GCH_rep2-polar-NMR_A",
-        "assignment": "Lac-3",
         "chemical_shift": "1.311821881935356",
         "peak_area": "311.2566969530333",
         "peak_height": "9.800243965318069",
@@ -4679,7 +4292,6 @@
       {
         "Metabolite": "Lac-3_1",
         "sample_id": "30_C1-20_Lung_allogenic_7days_170427_UKy_GCH_rep3-polar-NMR_A",
-        "assignment": "Lac-3",
         "chemical_shift": "1.312316591642325",
         "peak_area": "332.2554712452022",
         "peak_height": "10.13716262246058",
@@ -4688,7 +4300,6 @@
       {
         "Metabolite": "Lac-3_2",
         "sample_id": "16_A0_Lung_naive_0days_170427_UKy_GCH_rep1-polar-NMR_A",
-        "assignment": "Lac-3",
         "chemical_shift": "1.324411334772341",
         "peak_area": "158.1626041892832",
         "peak_height": "5.95823245615149",
@@ -4697,7 +4308,6 @@
       {
         "Metabolite": "Lac-3_2",
         "sample_id": "17_A1_Lung_naive_0days_170427_UKy_GCH_rep2-polar-NMR_A",
-        "assignment": "Lac-3",
         "chemical_shift": "1.324112566480781",
         "peak_area": "157.6893344615985",
         "peak_height": "6.280083091256005",
@@ -4706,7 +4316,6 @@
       {
         "Metabolite": "Lac-3_2",
         "sample_id": "18_A2_Lung_naive_0days_170427_UKy_GCH_rep3-polar-NMR_A",
-        "assignment": "Lac-3",
         "chemical_shift": "1.322829467791454",
         "peak_area": "42.21911815001699",
         "peak_height": "1.844274705899945",
@@ -4715,7 +4324,6 @@
       {
         "Metabolite": "Lac-3_2",
         "sample_id": "19_B0_Lung_syngenic_42days_170427_UKy_GCH_rep1-polar-NMR_A",
-        "assignment": "Lac-3",
         "chemical_shift": "1.325096672143925",
         "peak_area": "76.82761325148664",
         "peak_height": "2.925039934881124",
@@ -4724,7 +4332,6 @@
       {
         "Metabolite": "Lac-3_2",
         "sample_id": "20_B1_Lung_syngenic_42days_170427_UKy_GCH_rep2-polar-NMR_A",
-        "assignment": "Lac-3",
         "chemical_shift": "1.323648196462102",
         "peak_area": "90.79015308746087",
         "peak_height": "3.394655499318223",
@@ -4733,7 +4340,6 @@
       {
         "Metabolite": "Lac-3_2",
         "sample_id": "21_B2_Lung_syngenic_42days_170427_UKy_GCH_rep3-polar-NMR_A",
-        "assignment": "Lac-3",
         "chemical_shift": "1.324015875239505",
         "peak_area": "277.4774274046229",
         "peak_height": "10.16342877918581",
@@ -4742,7 +4348,6 @@
       {
         "Metabolite": "Lac-3_2",
         "sample_id": "22_C1-1_Lung_allogenic_42days_170427_UKy_GCH_rep1-polar-NMR_A",
-        "assignment": "Lac-3",
         "chemical_shift": "1.324458258375382",
         "peak_area": "176.3283082096515",
         "peak_height": "6.241825215603344",
@@ -4751,7 +4356,6 @@
       {
         "Metabolite": "Lac-3_2",
         "sample_id": "23_C1-2_Lung_allogenic_42days_170427_UKy_GCH_rep2-polar-NMR_A",
-        "assignment": "Lac-3",
         "chemical_shift": "1.324507539401878",
         "peak_area": "165.5694647886469",
         "peak_height": "6.057436047104955",
@@ -4760,7 +4364,6 @@
       {
         "Metabolite": "Lac-3_2",
         "sample_id": "24_C2-0_Lung_allogenic_42days_170427_UKy_GCH_rep1-polar-NMR_A",
-        "assignment": "Lac-3",
         "chemical_shift": "1.325895434267876",
         "peak_area": "647.3749491408352",
         "peak_height": "23.99105479599673",
@@ -4769,7 +4372,6 @@
       {
         "Metabolite": "Lac-3_2",
         "sample_id": "25_B1-0_Lung_syngenic_7days_170427_UKy_GCH_rep1-polar-NMR_A",
-        "assignment": "Lac-3",
         "chemical_shift": "1.325035179408842",
         "peak_area": "197.447747196899",
         "peak_height": "7.838661019590812",
@@ -4778,7 +4380,6 @@
       {
         "Metabolite": "Lac-3_2",
         "sample_id": "26_B1-1_Lung_syngenic_7days_170427_UKy_GCH_rep2-polar-NMR_A",
-        "assignment": "Lac-3",
         "chemical_shift": "1.324237358618384",
         "peak_area": "92.19076230064081",
         "peak_height": "3.498334391646673",
@@ -4787,7 +4388,6 @@
       {
         "Metabolite": "Lac-3_2",
         "sample_id": "27_B1-2_Lung_syngenic_7days_170427_UKy_GCH_rep3-polar-NMR_A",
-        "assignment": "Lac-3",
         "chemical_shift": "1.324114238125473",
         "peak_area": "170.7339506355534",
         "peak_height": "5.979512714812308",
@@ -4796,7 +4396,6 @@
       {
         "Metabolite": "Lac-3_2",
         "sample_id": "28_C1-1_Lung_allogenic_7days_170427_UKy_GCH_rep1-polar-NMR_A",
-        "assignment": "Lac-3",
         "chemical_shift": "1.323304518678932",
         "peak_area": "140.2685412898631",
         "peak_height": "5.053473652809226",
@@ -4805,7 +4404,6 @@
       {
         "Metabolite": "Lac-3_2",
         "sample_id": "29_C1-2_Lung_allogenic_7days_170427_UKy_GCH_rep2-polar-NMR_A",
-        "assignment": "Lac-3",
         "chemical_shift": "1.323719494141349",
         "peak_area": "177.0871206894408",
         "peak_height": "7.012068871654504",
@@ -4814,7 +4412,6 @@
       {
         "Metabolite": "Lac-3_2",
         "sample_id": "30_C1-20_Lung_allogenic_7days_170427_UKy_GCH_rep3-polar-NMR_A",
-        "assignment": "Lac-3",
         "chemical_shift": "1.324191604424337",
         "peak_area": "196.6201781569255",
         "peak_height": "7.368751193389586",
@@ -4823,7 +4420,6 @@
       {
         "Metabolite": "NAD+-A1'_1",
         "sample_id": "16_A0_Lung_naive_0days_170427_UKy_GCH_rep1-polar-NMR_A",
-        "assignment": "NAD+-A1'",
         "chemical_shift": "6.03004632586385",
         "peak_area": "1.502014817851093",
         "peak_height": "0.05975619087713095",
@@ -4832,7 +4428,6 @@
       {
         "Metabolite": "NAD+-A1'_1",
         "sample_id": "17_A1_Lung_naive_0days_170427_UKy_GCH_rep2-polar-NMR_A",
-        "assignment": "NAD+-A1'",
         "chemical_shift": "6.018422145778445",
         "peak_area": "0.7647655965205701",
         "peak_height": "0.03616920749605282",
@@ -4841,7 +4436,6 @@
       {
         "Metabolite": "NAD+-A1'_1",
         "sample_id": "18_A2_Lung_naive_0days_170427_UKy_GCH_rep3-polar-NMR_A",
-        "assignment": "NAD+-A1'",
         "chemical_shift": "6.014882053145834",
         "peak_area": "1.870010553935515",
         "peak_height": "0.07250379531658686",
@@ -4850,7 +4444,6 @@
       {
         "Metabolite": "NAD+-A1'_1",
         "sample_id": "19_B0_Lung_syngenic_42days_170427_UKy_GCH_rep1-polar-NMR_A",
-        "assignment": "NAD+-A1'",
         "chemical_shift": "6.007421167390429",
         "peak_area": "0.4284003832292242",
         "peak_height": "0.03171351592498785",
@@ -4859,7 +4452,6 @@
       {
         "Metabolite": "NAD+-A1'_1",
         "sample_id": "20_B1_Lung_syngenic_42days_170427_UKy_GCH_rep2-polar-NMR_A",
-        "assignment": "NAD+-A1'",
         "chemical_shift": "6.005635092468235",
         "peak_area": "0.6300552496800057",
         "peak_height": "0.03301454784761191",
@@ -4868,7 +4460,6 @@
       {
         "Metabolite": "NAD+-A1'_1",
         "sample_id": "21_B2_Lung_syngenic_42days_170427_UKy_GCH_rep3-polar-NMR_A",
-        "assignment": "NAD+-A1'",
         "chemical_shift": "6.022150930771248",
         "peak_area": "3.355168150003294",
         "peak_height": "0.1233232494481401",
@@ -4877,7 +4468,6 @@
       {
         "Metabolite": "NAD+-A1'_1",
         "sample_id": "23_C1-2_Lung_allogenic_42days_170427_UKy_GCH_rep2-polar-NMR_A",
-        "assignment": "NAD+-A1'",
         "chemical_shift": "6.023732765888155",
         "peak_area": "0.7774911487144324",
         "peak_height": "0.03635406591638064",
@@ -4886,7 +4476,6 @@
       {
         "Metabolite": "NAD+-A1'_1",
         "sample_id": "24_C2-0_Lung_allogenic_42days_170427_UKy_GCH_rep1-polar-NMR_A",
-        "assignment": "NAD+-A1'",
         "chemical_shift": "6.012650358877146",
         "peak_area": "6.374509227780504",
         "peak_height": "0.16",
@@ -4895,7 +4484,6 @@
       {
         "Metabolite": "NAD+-A1'_1",
         "sample_id": "25_B1-0_Lung_syngenic_7days_170427_UKy_GCH_rep1-polar-NMR_A",
-        "assignment": "NAD+-A1'",
         "chemical_shift": "6.014608396260506",
         "peak_area": "0.9782527566290548",
         "peak_height": "0.04100017673286088",
@@ -4904,7 +4492,6 @@
       {
         "Metabolite": "NAD+-A1'_1",
         "sample_id": "26_B1-1_Lung_syngenic_7days_170427_UKy_GCH_rep2-polar-NMR_A",
-        "assignment": "NAD+-A1'",
         "chemical_shift": "6.031338147837081",
         "peak_area": "2.820722084252627",
         "peak_height": "0.09409800600842994",
@@ -4913,7 +4500,6 @@
       {
         "Metabolite": "NAD+-A1'_1",
         "sample_id": "27_B1-2_Lung_syngenic_7days_170427_UKy_GCH_rep3-polar-NMR_A",
-        "assignment": "NAD+-A1'",
         "chemical_shift": "6.039925027015144",
         "peak_area": "1.831055114420716",
         "peak_height": "0.06220073484866549",
@@ -4922,7 +4508,6 @@
       {
         "Metabolite": "NAD+-A1'_1",
         "sample_id": "28_C1-1_Lung_allogenic_7days_170427_UKy_GCH_rep1-polar-NMR_A",
-        "assignment": "NAD+-A1'",
         "chemical_shift": "6.024163061879775",
         "peak_area": "0.3229702544517254",
         "peak_height": "0.02785407527382671",
@@ -4931,7 +4516,6 @@
       {
         "Metabolite": "NAD+-A1'_1",
         "sample_id": "29_C1-2_Lung_allogenic_7days_170427_UKy_GCH_rep2-polar-NMR_A",
-        "assignment": "NAD+-A1'",
         "chemical_shift": "6.010388574151263",
         "peak_area": "1.701712125804509",
         "peak_height": "0.08255597955466042",
@@ -4940,7 +4524,6 @@
       {
         "Metabolite": "NAD+-A1'_1",
         "sample_id": "30_C1-20_Lung_allogenic_7days_170427_UKy_GCH_rep3-polar-NMR_A",
-        "assignment": "NAD+-A1'",
         "chemical_shift": "6.009944774614688",
         "peak_area": "3.564061088618107",
         "peak_height": "0.1261453632369503",
@@ -4949,7 +4532,6 @@
       {
         "Metabolite": "NAD+-A1'_2",
         "sample_id": "17_A1_Lung_naive_0days_170427_UKy_GCH_rep2-polar-NMR_A",
-        "assignment": "NAD+-A1'",
         "chemical_shift": "6.033859199732687",
         "peak_area": "0.2574649678664002",
         "peak_height": "0.03443647415464973",
@@ -4958,7 +4540,6 @@
       {
         "Metabolite": "NAD+-A1'_2",
         "sample_id": "19_B0_Lung_syngenic_42days_170427_UKy_GCH_rep1-polar-NMR_A",
-        "assignment": "NAD+-A1'",
         "chemical_shift": "6.015921095248751",
         "peak_area": "0.1641360992447716",
         "peak_height": "0.02423846743934584",
@@ -4967,7 +4548,6 @@
       {
         "Metabolite": "NAD+-A1'_2",
         "sample_id": "30_C1-20_Lung_allogenic_7days_170427_UKy_GCH_rep3-polar-NMR_A",
-        "assignment": "NAD+-A1'",
         "chemical_shift": "6.026783002101622",
         "peak_area": "1.070276789689862",
         "peak_height": "0.06504392507575832",
@@ -4976,7 +4556,6 @@
       {
         "Metabolite": "NAD+-N1'_1",
         "sample_id": "16_A0_Lung_naive_0days_170427_UKy_GCH_rep1-polar-NMR_A",
-        "assignment": "NAD+-N1'",
         "chemical_shift": "6.045564703677341",
         "peak_area": "1.307147533332329",
         "peak_height": "0.07147048210423217",
@@ -4985,7 +4564,6 @@
       {
         "Metabolite": "NAD+-N1'_1",
         "sample_id": "17_A1_Lung_naive_0days_170427_UKy_GCH_rep2-polar-NMR_A",
-        "assignment": "NAD+-N1'",
         "chemical_shift": "6.069640756538015",
         "peak_area": "3.575259989350523",
         "peak_height": "0.141960869508141",
@@ -4994,7 +4572,6 @@
       {
         "Metabolite": "NAD+-N1'_1",
         "sample_id": "18_A2_Lung_naive_0days_170427_UKy_GCH_rep3-polar-NMR_A",
-        "assignment": "NAD+-N1'",
         "chemical_shift": "6.083300730626457",
         "peak_area": "0.7215583378590743",
         "peak_height": "0.05391790407970483",
@@ -5003,7 +4580,6 @@
       {
         "Metabolite": "NAD+-N1'_1",
         "sample_id": "19_B0_Lung_syngenic_42days_170427_UKy_GCH_rep1-polar-NMR_A",
-        "assignment": "NAD+-N1'",
         "chemical_shift": "6.071707032559947",
         "peak_area": "1.539445456459842",
         "peak_height": "0.05521133508160984",
@@ -5012,7 +4588,6 @@
       {
         "Metabolite": "NAD+-N1'_1",
         "sample_id": "20_B1_Lung_syngenic_42days_170427_UKy_GCH_rep2-polar-NMR_A",
-        "assignment": "NAD+-N1'",
         "chemical_shift": "6.02361896294985",
         "peak_area": "0.6077751473051438",
         "peak_height": "0.0456617186339706",
@@ -5021,7 +4596,6 @@
       {
         "Metabolite": "NAD+-N1'_1",
         "sample_id": "21_B2_Lung_syngenic_42days_170427_UKy_GCH_rep3-polar-NMR_A",
-        "assignment": "NAD+-N1'",
         "chemical_shift": "6.067046676261879",
         "peak_area": "0.5424205241434561",
         "peak_height": "0.03224110997633135",
@@ -5030,7 +4604,6 @@
       {
         "Metabolite": "NAD+-N1'_1",
         "sample_id": "22_C1-1_Lung_allogenic_42days_170427_UKy_GCH_rep1-polar-NMR_A",
-        "assignment": "NAD+-N1'",
         "chemical_shift": "6.064925710069454",
         "peak_area": "0.6745039990669326",
         "peak_height": "0.04766499197900032",
@@ -5039,7 +4612,6 @@
       {
         "Metabolite": "NAD+-N1'_1",
         "sample_id": "23_C1-2_Lung_allogenic_42days_170427_UKy_GCH_rep2-polar-NMR_A",
-        "assignment": "NAD+-N1'",
         "chemical_shift": "6.068441742144855",
         "peak_area": "5.288249137109227",
         "peak_height": "0.1111668834976317",
@@ -5048,7 +4620,6 @@
       {
         "Metabolite": "NAD+-N1'_1",
         "sample_id": "24_C2-0_Lung_allogenic_42days_170427_UKy_GCH_rep1-polar-NMR_A",
-        "assignment": "NAD+-N1'",
         "chemical_shift": "6.067999788869087",
         "peak_area": "9.17685352844336",
         "peak_height": "0.1927507016438749",
@@ -5057,7 +4628,6 @@
       {
         "Metabolite": "NAD+-N1'_1",
         "sample_id": "25_B1-0_Lung_syngenic_7days_170427_UKy_GCH_rep1-polar-NMR_A",
-        "assignment": "NAD+-N1'",
         "chemical_shift": "6.070977254590787",
         "peak_area": "7.711547806023736",
         "peak_height": "0.2068250156083079",
@@ -5066,7 +4636,6 @@
       {
         "Metabolite": "NAD+-N1'_1",
         "sample_id": "26_B1-1_Lung_syngenic_7days_170427_UKy_GCH_rep2-polar-NMR_A",
-        "assignment": "NAD+-N1'",
         "chemical_shift": "6.074647935576611",
         "peak_area": "2.428408052603836",
         "peak_height": "0.07159916281065667",
@@ -5075,7 +4644,6 @@
       {
         "Metabolite": "NAD+-N1'_1",
         "sample_id": "27_B1-2_Lung_syngenic_7days_170427_UKy_GCH_rep3-polar-NMR_A",
-        "assignment": "NAD+-N1'",
         "chemical_shift": "6.066575785835373",
         "peak_area": "0.29543797908882",
         "peak_height": "0.03036008718650711",
@@ -5084,7 +4652,6 @@
       {
         "Metabolite": "NAD+-N1'_1",
         "sample_id": "28_C1-1_Lung_allogenic_7days_170427_UKy_GCH_rep1-polar-NMR_A",
-        "assignment": "NAD+-N1'",
         "chemical_shift": "6.083450590101127",
         "peak_area": "0.1000532182115873",
         "peak_height": "0.01530386646065287",
@@ -5093,7 +4660,6 @@
       {
         "Metabolite": "NAD+-N1'_1",
         "sample_id": "29_C1-2_Lung_allogenic_7days_170427_UKy_GCH_rep2-polar-NMR_A",
-        "assignment": "NAD+-N1'",
         "chemical_shift": "6.062109641780551",
         "peak_area": "3.102614481624151",
         "peak_height": "0.1147629451967833",
@@ -5102,7 +4668,6 @@
       {
         "Metabolite": "NAD+-N1'_1",
         "sample_id": "30_C1-20_Lung_allogenic_7days_170427_UKy_GCH_rep3-polar-NMR_A",
-        "assignment": "NAD+-N1'",
         "chemical_shift": "6.068906398589231",
         "peak_area": "10.93586791638191",
         "peak_height": "0.2368381170227908",
@@ -5111,7 +4676,6 @@
       {
         "Metabolite": "NAD+-N1'_2",
         "sample_id": "17_A1_Lung_naive_0days_170427_UKy_GCH_rep2-polar-NMR_A",
-        "assignment": "NAD+-N1'",
         "chemical_shift": "6.08519945032759",
         "peak_area": "3.193581633844515",
         "peak_height": "0.1504755844056107",
@@ -5120,7 +4684,6 @@
       {
         "Metabolite": "NAD+-N1'_2",
         "sample_id": "19_B0_Lung_syngenic_42days_170427_UKy_GCH_rep1-polar-NMR_A",
-        "assignment": "NAD+-N1'",
         "chemical_shift": "6.08189771872913",
         "peak_area": "0.9256175225541692",
         "peak_height": "0.05391086883925834",
@@ -5129,7 +4692,6 @@
       {
         "Metabolite": "NAD+-N1'_2",
         "sample_id": "21_B2_Lung_syngenic_42days_170427_UKy_GCH_rep3-polar-NMR_A",
-        "assignment": "NAD+-N1'",
         "chemical_shift": "6.078774530852024",
         "peak_area": "0.4692541867110285",
         "peak_height": "0.03130307435435193",
@@ -5138,7 +4700,6 @@
       {
         "Metabolite": "NAD+-N1'_2",
         "sample_id": "22_C1-1_Lung_allogenic_42days_170427_UKy_GCH_rep1-polar-NMR_A",
-        "assignment": "NAD+-N1'",
         "chemical_shift": "6.08124791364694",
         "peak_area": "0.6412071997989288",
         "peak_height": "0.04139165131848412",
@@ -5147,7 +4708,6 @@
       {
         "Metabolite": "NAD+-N1'_2",
         "sample_id": "24_C2-0_Lung_allogenic_42days_170427_UKy_GCH_rep1-polar-NMR_A",
-        "assignment": "NAD+-N1'",
         "chemical_shift": "6.091879805788636",
         "peak_area": "6.154987649858422",
         "peak_height": "0.1357804286347266",
@@ -5156,7 +4716,6 @@
       {
         "Metabolite": "NAD+-N1'_2",
         "sample_id": "26_B1-1_Lung_syngenic_7days_170427_UKy_GCH_rep2-polar-NMR_A",
-        "assignment": "NAD+-N1'",
         "chemical_shift": "6.092480908341421",
         "peak_area": "1.103010594677247",
         "peak_height": "0.05245595043014084",
@@ -5165,7 +4724,6 @@
       {
         "Metabolite": "NAD+-N1'_2",
         "sample_id": "28_C1-1_Lung_allogenic_7days_170427_UKy_GCH_rep1-polar-NMR_A",
-        "assignment": "NAD+-N1'",
         "chemical_shift": "6.096583247375246",
         "peak_area": "0.05389015815972539",
         "peak_height": "0.008961153726405088",
@@ -5174,7 +4732,6 @@
       {
         "Metabolite": "Nicotin-2_1",
         "sample_id": "16_A0_Lung_naive_0days_170427_UKy_GCH_rep1-polar-NMR_A",
-        "assignment": "Nicotin-2",
         "chemical_shift": "8.907912711384736",
         "peak_area": "2.530708678484963",
         "peak_height": "0.1001739857738933",
@@ -5183,7 +4740,6 @@
       {
         "Metabolite": "Nicotin-2_1",
         "sample_id": "17_A1_Lung_naive_0days_170427_UKy_GCH_rep2-polar-NMR_A",
-        "assignment": "Nicotin-2",
         "chemical_shift": "8.941002064588144",
         "peak_area": "4.801856375160281",
         "peak_height": "0.1401833337541445",
@@ -5192,7 +4748,6 @@
       {
         "Metabolite": "Nicotin-2_1",
         "sample_id": "18_A2_Lung_naive_0days_170427_UKy_GCH_rep3-polar-NMR_A",
-        "assignment": "Nicotin-2",
         "chemical_shift": "8.939458661260838",
         "peak_area": "2.632072030077223",
         "peak_height": "0.1390351069684215",
@@ -5201,7 +4756,6 @@
       {
         "Metabolite": "Nicotin-2_1",
         "sample_id": "19_B0_Lung_syngenic_42days_170427_UKy_GCH_rep1-polar-NMR_A",
-        "assignment": "Nicotin-2",
         "chemical_shift": "8.932982850225347",
         "peak_area": "0.1193312174579147",
         "peak_height": "0.02032987045904768",
@@ -5210,7 +4764,6 @@
       {
         "Metabolite": "Nicotin-2_1",
         "sample_id": "20_B1_Lung_syngenic_42days_170427_UKy_GCH_rep2-polar-NMR_A",
-        "assignment": "Nicotin-2",
         "chemical_shift": "8.936808789216125",
         "peak_area": "2.203691738031255",
         "peak_height": "0.1160924572069794",
@@ -5219,7 +4772,6 @@
       {
         "Metabolite": "Nicotin-2_1",
         "sample_id": "21_B2_Lung_syngenic_42days_170427_UKy_GCH_rep3-polar-NMR_A",
-        "assignment": "Nicotin-2",
         "chemical_shift": "8.91817206861132",
         "peak_area": "1.626664486195061",
         "peak_height": "0.06691423604356846",
@@ -5228,7 +4780,6 @@
       {
         "Metabolite": "Nicotin-2_1",
         "sample_id": "22_C1-1_Lung_allogenic_42days_170427_UKy_GCH_rep1-polar-NMR_A",
-        "assignment": "Nicotin-2",
         "chemical_shift": "8.921803632116406",
         "peak_area": "0.004308868146732792",
         "peak_height": "0.0018940746533234",
@@ -5237,7 +4788,6 @@
       {
         "Metabolite": "Nicotin-2_1",
         "sample_id": "23_C1-2_Lung_allogenic_42days_170427_UKy_GCH_rep2-polar-NMR_A",
-        "assignment": "Nicotin-2",
         "chemical_shift": "8.915411553755414",
         "peak_area": "2.793524695191069",
         "peak_height": "0.08755024798910808",
@@ -5246,7 +4796,6 @@
       {
         "Metabolite": "Nicotin-2_1",
         "sample_id": "24_C2-0_Lung_allogenic_42days_170427_UKy_GCH_rep1-polar-NMR_A",
-        "assignment": "Nicotin-2",
         "chemical_shift": "8.930380190603238",
         "peak_area": "1.7149216808255",
         "peak_height": "0.06659488911798446",
@@ -5255,7 +4804,6 @@
       {
         "Metabolite": "Nicotin-2_1",
         "sample_id": "25_B1-0_Lung_syngenic_7days_170427_UKy_GCH_rep1-polar-NMR_A",
-        "assignment": "Nicotin-2",
         "chemical_shift": "8.933122370766878",
         "peak_area": "3.229310276443751",
         "peak_height": "0.09155521106712877",
@@ -5264,7 +4812,6 @@
       {
         "Metabolite": "Nicotin-2_1",
         "sample_id": "26_B1-1_Lung_syngenic_7days_170427_UKy_GCH_rep2-polar-NMR_A",
-        "assignment": "Nicotin-2",
         "chemical_shift": "8.931219632040436",
         "peak_area": "0.4160136229806028",
         "peak_height": "0.02326589610379495",
@@ -5273,7 +4820,6 @@
       {
         "Metabolite": "Nicotin-2_1",
         "sample_id": "27_B1-2_Lung_syngenic_7days_170427_UKy_GCH_rep3-polar-NMR_A",
-        "assignment": "Nicotin-2",
         "chemical_shift": "8.926006008346633",
         "peak_area": "0.1715872527466766",
         "peak_height": "0.01773231637970504",
@@ -5282,7 +4828,6 @@
       {
         "Metabolite": "Nicotin-2_1",
         "sample_id": "28_C1-1_Lung_allogenic_7days_170427_UKy_GCH_rep1-polar-NMR_A",
-        "assignment": "Nicotin-2",
         "chemical_shift": "8.939194476422243",
         "peak_area": "0.6068155716329817",
         "peak_height": "0.03557143060777782",
@@ -5291,7 +4836,6 @@
       {
         "Metabolite": "Nicotin-2_1",
         "sample_id": "29_C1-2_Lung_allogenic_7days_170427_UKy_GCH_rep2-polar-NMR_A",
-        "assignment": "Nicotin-2",
         "chemical_shift": "8.92036356091747",
         "peak_area": "1.556422922562517",
         "peak_height": "0.06101945226444146",
@@ -5300,7 +4844,6 @@
       {
         "Metabolite": "Nicotin-2_1",
         "sample_id": "30_C1-20_Lung_allogenic_7days_170427_UKy_GCH_rep3-polar-NMR_A",
-        "assignment": "Nicotin-2",
         "chemical_shift": "8.925696075191361",
         "peak_area": "2.256757783600128",
         "peak_height": "0.07087554591899768",
@@ -5309,7 +4852,6 @@
       {
         "Metabolite": "Nicotin-6_1",
         "sample_id": "16_A0_Lung_naive_0days_170427_UKy_GCH_rep1-polar-NMR_A",
-        "assignment": "Nicotin-6",
         "chemical_shift": "8.69856235621899",
         "peak_area": "0.7560983894906564",
         "peak_height": "0.04748522588868434",
@@ -5318,7 +4860,6 @@
       {
         "Metabolite": "Nicotin-6_1",
         "sample_id": "17_A1_Lung_naive_0days_170427_UKy_GCH_rep2-polar-NMR_A",
-        "assignment": "Nicotin-6",
         "chemical_shift": "8.68375228429467",
         "peak_area": "2.267206978187519",
         "peak_height": "0.12209966341246",
@@ -5327,7 +4868,6 @@
       {
         "Metabolite": "Nicotin-6_1",
         "sample_id": "18_A2_Lung_naive_0days_170427_UKy_GCH_rep3-polar-NMR_A",
-        "assignment": "Nicotin-6",
         "chemical_shift": "8.699101185831726",
         "peak_area": "0.06602001752666174",
         "peak_height": "0.01343004763165789",
@@ -5336,7 +4876,6 @@
       {
         "Metabolite": "Nicotin-6_1",
         "sample_id": "19_B0_Lung_syngenic_42days_170427_UKy_GCH_rep1-polar-NMR_A",
-        "assignment": "Nicotin-6",
         "chemical_shift": "8.695572258244225",
         "peak_area": "0.2792859532414051",
         "peak_height": "0.02251221611669394",
@@ -5345,7 +4884,6 @@
       {
         "Metabolite": "Nicotin-6_1",
         "sample_id": "20_B1_Lung_syngenic_42days_170427_UKy_GCH_rep2-polar-NMR_A",
-        "assignment": "Nicotin-6",
         "chemical_shift": "8.705424757471084",
         "peak_area": "3.653847115565133",
         "peak_height": "0.1395821881698765",
@@ -5354,7 +4892,6 @@
       {
         "Metabolite": "Nicotin-6_1",
         "sample_id": "23_C1-2_Lung_allogenic_42days_170427_UKy_GCH_rep2-polar-NMR_A",
-        "assignment": "Nicotin-6",
         "chemical_shift": "8.701869838038146",
         "peak_area": "0.6741933483141022",
         "peak_height": "0.04784983586529316",
@@ -5363,7 +4900,6 @@
       {
         "Metabolite": "Nicotin-6_1",
         "sample_id": "24_C2-0_Lung_allogenic_42days_170427_UKy_GCH_rep1-polar-NMR_A",
-        "assignment": "Nicotin-6",
         "chemical_shift": "8.706181274958594",
         "peak_area": "1.467362766466175",
         "peak_height": "0.0635737530947341",
@@ -5372,7 +4908,6 @@
       {
         "Metabolite": "Nicotin-6_1",
         "sample_id": "25_B1-0_Lung_syngenic_7days_170427_UKy_GCH_rep1-polar-NMR_A",
-        "assignment": "Nicotin-6",
         "chemical_shift": "8.70258749574382",
         "peak_area": "1.145717020847512",
         "peak_height": "0.06203222321987741",
@@ -5381,7 +4916,6 @@
       {
         "Metabolite": "Nicotin-6_1",
         "sample_id": "27_B1-2_Lung_syngenic_7days_170427_UKy_GCH_rep3-polar-NMR_A",
-        "assignment": "Nicotin-6",
         "chemical_shift": "8.699790550017573",
         "peak_area": "0.2067887746143828",
         "peak_height": "0.02203974509354865",
@@ -5390,7 +4924,6 @@
       {
         "Metabolite": "Nicotin-6_1",
         "sample_id": "28_C1-1_Lung_allogenic_7days_170427_UKy_GCH_rep1-polar-NMR_A",
-        "assignment": "Nicotin-6",
         "chemical_shift": "8.692960193735654",
         "peak_area": "4.078421684699764",
         "peak_height": "0.1582336225705371",
@@ -5399,7 +4932,6 @@
       {
         "Metabolite": "Nicotin-6_1",
         "sample_id": "29_C1-2_Lung_allogenic_7days_170427_UKy_GCH_rep2-polar-NMR_A",
-        "assignment": "Nicotin-6",
         "chemical_shift": "8.689147469822446",
         "peak_area": "3.23589666421247",
         "peak_height": "0.107081013802398",
@@ -5408,7 +4940,6 @@
       {
         "Metabolite": "P-Cho A_1",
         "sample_id": "16_A0_Lung_naive_0days_170427_UKy_GCH_rep1-polar-NMR_A",
-        "assignment": "P-Cho A",
         "chemical_shift": "3.221990546357455",
         "peak_area": "45.61531566889474",
         "peak_height": "0.8577452955696072",
@@ -5417,7 +4948,6 @@
       {
         "Metabolite": "P-Cho A_1",
         "sample_id": "17_A1_Lung_naive_0days_170427_UKy_GCH_rep2-polar-NMR_A",
-        "assignment": "P-Cho A",
         "chemical_shift": "3.222208468343679",
         "peak_area": "36.39053022472542",
         "peak_height": "0.7336772595395582",
@@ -5426,7 +4956,6 @@
       {
         "Metabolite": "P-Cho A_1",
         "sample_id": "19_B0_Lung_syngenic_42days_170427_UKy_GCH_rep1-polar-NMR_A",
-        "assignment": "P-Cho A",
         "chemical_shift": "3.223721606327026",
         "peak_area": "35.10580961849696",
         "peak_height": "0.7637960031834454",
@@ -5435,7 +4964,6 @@
       {
         "Metabolite": "P-Cho A_1",
         "sample_id": "20_B1_Lung_syngenic_42days_170427_UKy_GCH_rep2-polar-NMR_A",
-        "assignment": "P-Cho A",
         "chemical_shift": "3.219822394547053",
         "peak_area": "28.36567479669742",
         "peak_height": "0.4839211958787036",
@@ -5444,7 +4972,6 @@
       {
         "Metabolite": "P-Cho A_1",
         "sample_id": "21_B2_Lung_syngenic_42days_170427_UKy_GCH_rep3-polar-NMR_A",
-        "assignment": "P-Cho A",
         "chemical_shift": "3.222452666296597",
         "peak_area": "42.13901728591073",
         "peak_height": "0.9008063873288015",
@@ -5453,7 +4980,6 @@
       {
         "Metabolite": "P-Cho A_1",
         "sample_id": "22_C1-1_Lung_allogenic_42days_170427_UKy_GCH_rep1-polar-NMR_A",
-        "assignment": "P-Cho A",
         "chemical_shift": "3.222368311774268",
         "peak_area": "42.68003188308179",
         "peak_height": "0.7465937037443028",
@@ -5462,7 +4988,6 @@
       {
         "Metabolite": "P-Cho A_1",
         "sample_id": "23_C1-2_Lung_allogenic_42days_170427_UKy_GCH_rep2-polar-NMR_A",
-        "assignment": "P-Cho A",
         "chemical_shift": "3.223921239333198",
         "peak_area": "48.30810318875795",
         "peak_height": "0.8504459589554586",
@@ -5471,7 +4996,6 @@
       {
         "Metabolite": "P-Cho A_1",
         "sample_id": "24_C2-0_Lung_allogenic_42days_170427_UKy_GCH_rep1-polar-NMR_A",
-        "assignment": "P-Cho A",
         "chemical_shift": "3.225888093983463",
         "peak_area": "167.3988366322989",
         "peak_height": "2.103737896983476",
@@ -5480,7 +5004,6 @@
       {
         "Metabolite": "P-Cho A_1",
         "sample_id": "25_B1-0_Lung_syngenic_7days_170427_UKy_GCH_rep1-polar-NMR_A",
-        "assignment": "P-Cho A",
         "chemical_shift": "3.223452666296597",
         "peak_area": "99.37828991372612",
         "peak_height": "1.674396897061836",
@@ -5489,7 +5012,6 @@
       {
         "Metabolite": "P-Cho A_1",
         "sample_id": "26_B1-1_Lung_syngenic_7days_170427_UKy_GCH_rep2-polar-NMR_A",
-        "assignment": "P-Cho A",
         "chemical_shift": "3.220962704108975",
         "peak_area": "20.49541209685918",
         "peak_height": "0.4455416384632144",
@@ -5498,7 +5020,6 @@
       {
         "Metabolite": "P-Cho A_1",
         "sample_id": "27_B1-2_Lung_syngenic_7days_170427_UKy_GCH_rep3-polar-NMR_A",
-        "assignment": "P-Cho A",
         "chemical_shift": "3.22291546865597",
         "peak_area": "21.32083127687848",
         "peak_height": "0.5172664219678241",
@@ -5507,7 +5028,6 @@
       {
         "Metabolite": "P-Cho A_1",
         "sample_id": "28_C1-1_Lung_allogenic_7days_170427_UKy_GCH_rep1-polar-NMR_A",
-        "assignment": "P-Cho A",
         "chemical_shift": "3.220460526902235",
         "peak_area": "22.72983216745647",
         "peak_height": "0.4898941595833458",
@@ -5516,7 +5036,6 @@
       {
         "Metabolite": "P-Cho A_1",
         "sample_id": "29_C1-2_Lung_allogenic_7days_170427_UKy_GCH_rep2-polar-NMR_A",
-        "assignment": "P-Cho A",
         "chemical_shift": "3.221537968449437",
         "peak_area": "26.03805221386025",
         "peak_height": "0.4535711780233997",
@@ -5525,7 +5044,6 @@
       {
         "Metabolite": "P-Cho A_1",
         "sample_id": "30_C1-20_Lung_allogenic_7days_170427_UKy_GCH_rep3-polar-NMR_A",
-        "assignment": "P-Cho A",
         "chemical_shift": "3.221990546357455",
         "peak_area": "31.14092479783751",
         "peak_height": "0.7468536939977316",
@@ -5534,7 +5052,6 @@
       {
         "Metabolite": "Succinate-2,3_1",
         "sample_id": "16_A0_Lung_naive_0days_170427_UKy_GCH_rep1-polar-NMR_A",
-        "assignment": "Succinate-2,3",
         "chemical_shift": "2.39674856509846",
         "peak_area": "7.242257781456705",
         "peak_height": "0.242382757705274",
@@ -5543,7 +5060,6 @@
       {
         "Metabolite": "Succinate-2,3_1",
         "sample_id": "17_A1_Lung_naive_0days_170427_UKy_GCH_rep2-polar-NMR_A",
-        "assignment": "Succinate-2,3",
         "chemical_shift": "2.395322707516147",
         "peak_area": "5.566762496696383",
         "peak_height": "0.2188066594240019",
@@ -5552,7 +5068,6 @@
       {
         "Metabolite": "Succinate-2,3_1",
         "sample_id": "18_A2_Lung_naive_0days_170427_UKy_GCH_rep3-polar-NMR_A",
-        "assignment": "Succinate-2,3",
         "chemical_shift": "2.404862476584337",
         "peak_area": "1.476281069126111",
         "peak_height": "0.05624276769546728",
@@ -5561,7 +5076,6 @@
       {
         "Metabolite": "Succinate-2,3_1",
         "sample_id": "20_B1_Lung_syngenic_42days_170427_UKy_GCH_rep2-polar-NMR_A",
-        "assignment": "Succinate-2,3",
         "chemical_shift": "2.395518002877747",
         "peak_area": "0.1509305417335084",
         "peak_height": "0.02302141533164733",
@@ -5570,7 +5084,6 @@
       {
         "Metabolite": "Succinate-2,3_1",
         "sample_id": "21_B2_Lung_syngenic_42days_170427_UKy_GCH_rep3-polar-NMR_A",
-        "assignment": "Succinate-2,3",
         "chemical_shift": "2.39520851305795",
         "peak_area": "16.50984397934536",
         "peak_height": "0.3463785611185507",
@@ -5579,7 +5092,6 @@
       {
         "Metabolite": "Succinate-2,3_1",
         "sample_id": "22_C1-1_Lung_allogenic_42days_170427_UKy_GCH_rep1-polar-NMR_A",
-        "assignment": "Succinate-2,3",
         "chemical_shift": "2.395011391903013",
         "peak_area": "1.064410028398347",
         "peak_height": "0.09241495353621408",
@@ -5588,7 +5100,6 @@
       {
         "Metabolite": "Succinate-2,3_1",
         "sample_id": "23_C1-2_Lung_allogenic_42days_170427_UKy_GCH_rep2-polar-NMR_A",
-        "assignment": "Succinate-2,3",
         "chemical_shift": "2.396342984259251",
         "peak_area": "9.446980695052666",
         "peak_height": "0.242173028671183",
@@ -5597,7 +5108,6 @@
       {
         "Metabolite": "Succinate-2,3_1",
         "sample_id": "24_C2-0_Lung_allogenic_42days_170427_UKy_GCH_rep1-polar-NMR_A",
-        "assignment": "Succinate-2,3",
         "chemical_shift": "2.397315806164673",
         "peak_area": "26.86466340757755",
         "peak_height": "0.7791307132980329",
@@ -5606,7 +5116,6 @@
       {
         "Metabolite": "Succinate-2,3_1",
         "sample_id": "25_B1-0_Lung_syngenic_7days_170427_UKy_GCH_rep1-polar-NMR_A",
-        "assignment": "Succinate-2,3",
         "chemical_shift": "2.397224429456212",
         "peak_area": "19.6151002013038",
         "peak_height": "0.4147472724177343",
@@ -5615,7 +5124,6 @@
       {
         "Metabolite": "Succinate-2,3_1",
         "sample_id": "26_B1-1_Lung_syngenic_7days_170427_UKy_GCH_rep2-polar-NMR_A",
-        "assignment": "Succinate-2,3",
         "chemical_shift": "2.394054334600463",
         "peak_area": "1.987015387832918",
         "peak_height": "0.1224411619747336",
@@ -5624,7 +5132,6 @@
       {
         "Metabolite": "Succinate-2,3_1",
         "sample_id": "27_B1-2_Lung_syngenic_7days_170427_UKy_GCH_rep3-polar-NMR_A",
-        "assignment": "Succinate-2,3",
         "chemical_shift": "2.395896378033963",
         "peak_area": "7.054633158359006",
         "peak_height": "0.2108715568704319",
@@ -5633,7 +5140,6 @@
       {
         "Metabolite": "Succinate-2,3_1",
         "sample_id": "28_C1-1_Lung_allogenic_7days_170427_UKy_GCH_rep1-polar-NMR_A",
-        "assignment": "Succinate-2,3",
         "chemical_shift": "2.398147307419248",
         "peak_area": "2.062376312826296",
         "peak_height": "0.1282122719634318",
@@ -5642,7 +5148,6 @@
       {
         "Metabolite": "Succinate-2,3_1",
         "sample_id": "29_C1-2_Lung_allogenic_7days_170427_UKy_GCH_rep2-polar-NMR_A",
-        "assignment": "Succinate-2,3",
         "chemical_shift": "2.392683852502206",
         "peak_area": "5.992591561941332",
         "peak_height": "0.2700586585293218",
@@ -5651,7 +5156,6 @@
       {
         "Metabolite": "Succinate-2,3_1",
         "sample_id": "30_C1-20_Lung_allogenic_7days_170427_UKy_GCH_rep3-polar-NMR_A",
-        "assignment": "Succinate-2,3",
         "chemical_shift": "2.392156816941921",
         "peak_area": "5.258165139556104",
         "peak_height": "0.1860564648183904",
@@ -5660,7 +5164,6 @@
       {
         "Metabolite": "UXP-1'_1",
         "sample_id": "16_A0_Lung_naive_0days_170427_UKy_GCH_rep1-polar-NMR_A",
-        "assignment": "UXP-1'",
         "chemical_shift": "5.993945907186706",
         "peak_area": "10.52272682921159",
         "peak_height": "0.2318628452695195",
@@ -5669,7 +5172,6 @@
       {
         "Metabolite": "UXP-1'_1",
         "sample_id": "17_A1_Lung_naive_0days_170427_UKy_GCH_rep2-polar-NMR_A",
-        "assignment": "UXP-1'",
         "chemical_shift": "5.990338490010773",
         "peak_area": "0.6249905376736028",
         "peak_height": "0.05503949385761671",
@@ -5678,7 +5180,6 @@
       {
         "Metabolite": "UXP-1'_1",
         "sample_id": "18_A2_Lung_naive_0days_170427_UKy_GCH_rep3-polar-NMR_A",
-        "assignment": "UXP-1'",
         "chemical_shift": "5.978062078197466",
         "peak_area": "2.30525238914674",
         "peak_height": "0.0915106829577967",
@@ -5687,7 +5188,6 @@
       {
         "Metabolite": "UXP-1'_1",
         "sample_id": "19_B0_Lung_syngenic_42days_170427_UKy_GCH_rep1-polar-NMR_A",
-        "assignment": "UXP-1'",
         "chemical_shift": "5.984780167971999",
         "peak_area": "3.210842212049619",
         "peak_height": "0.1506912124996748",
@@ -5696,7 +5196,6 @@
       {
         "Metabolite": "UXP-1'_1",
         "sample_id": "20_B1_Lung_syngenic_42days_170427_UKy_GCH_rep2-polar-NMR_A",
-        "assignment": "UXP-1'",
         "chemical_shift": "5.989381141515755",
         "peak_area": "2.881267425414594",
         "peak_height": "0.08090055622193525",
@@ -5705,7 +5204,6 @@
       {
         "Metabolite": "UXP-1'_1",
         "sample_id": "21_B2_Lung_syngenic_42days_170427_UKy_GCH_rep3-polar-NMR_A",
-        "assignment": "UXP-1'",
         "chemical_shift": "5.985519056373427",
         "peak_area": "6.490758071731675",
         "peak_height": "0.1880828277907935",
@@ -5714,7 +5212,6 @@
       {
         "Metabolite": "UXP-1'_1",
         "sample_id": "22_C1-1_Lung_allogenic_42days_170427_UKy_GCH_rep1-polar-NMR_A",
-        "assignment": "UXP-1'",
         "chemical_shift": "5.975971160589371",
         "peak_area": "2.886097582130728",
         "peak_height": "0.1316309783632515",
@@ -5723,7 +5220,6 @@
       {
         "Metabolite": "UXP-1'_1",
         "sample_id": "23_C1-2_Lung_allogenic_42days_170427_UKy_GCH_rep2-polar-NMR_A",
-        "assignment": "UXP-1'",
         "chemical_shift": "5.987882860198544",
         "peak_area": "8.20244906756356",
         "peak_height": "0.1843254090266536",
@@ -5732,7 +5228,6 @@
       {
         "Metabolite": "UXP-1'_1",
         "sample_id": "24_C2-0_Lung_allogenic_42days_170427_UKy_GCH_rep1-polar-NMR_A",
-        "assignment": "UXP-1'",
         "chemical_shift": "5.986719750672036",
         "peak_area": "74.92268220342831",
         "peak_height": "0.6500470250755055",
@@ -5741,7 +5236,6 @@
       {
         "Metabolite": "UXP-1'_1",
         "sample_id": "25_B1-0_Lung_syngenic_7days_170427_UKy_GCH_rep1-polar-NMR_A",
-        "assignment": "UXP-1'",
         "chemical_shift": "5.986440505436606",
         "peak_area": "7.333966006375265",
         "peak_height": "0.2189194252789029",
@@ -5750,7 +5244,6 @@
       {
         "Metabolite": "UXP-1'_1",
         "sample_id": "26_B1-1_Lung_syngenic_7days_170427_UKy_GCH_rep2-polar-NMR_A",
-        "assignment": "UXP-1'",
         "chemical_shift": "5.990052166890743",
         "peak_area": "2.452664336628265",
         "peak_height": "0.1007040884563977",
@@ -5759,7 +5252,6 @@
       {
         "Metabolite": "UXP-1'_1",
         "sample_id": "27_B1-2_Lung_syngenic_7days_170427_UKy_GCH_rep3-polar-NMR_A",
-        "assignment": "UXP-1'",
         "chemical_shift": "5.98605781709757",
         "peak_area": "1.980488289857661",
         "peak_height": "0.07734947156889169",
@@ -5768,7 +5260,6 @@
       {
         "Metabolite": "UXP-1'_1",
         "sample_id": "28_C1-1_Lung_allogenic_7days_170427_UKy_GCH_rep1-polar-NMR_A",
-        "assignment": "UXP-1'",
         "chemical_shift": "5.981877949653263",
         "peak_area": "4.43713019363272",
         "peak_height": "0.1446269098779213",
@@ -5777,7 +5268,6 @@
       {
         "Metabolite": "UXP-1'_1",
         "sample_id": "29_C1-2_Lung_allogenic_7days_170427_UKy_GCH_rep2-polar-NMR_A",
-        "assignment": "UXP-1'",
         "chemical_shift": "5.985825440422769",
         "peak_area": "8.13221678170012",
         "peak_height": "0.2303938850267811",
@@ -5786,7 +5276,6 @@
       {
         "Metabolite": "UXP-1'_1",
         "sample_id": "30_C1-20_Lung_allogenic_7days_170427_UKy_GCH_rep3-polar-NMR_A",
-        "assignment": "UXP-1'",
         "chemical_shift": "5.986360388015356",
         "peak_area": "14.08531556233143",
         "peak_height": "0.2861985274699572",
@@ -5795,7 +5284,6 @@
       {
         "Metabolite": "aGlc_1",
         "sample_id": "16_A0_Lung_naive_0days_170427_UKy_GCH_rep1-polar-NMR_A",
-        "assignment": "aGlc",
         "chemical_shift": "5.221200726486083",
         "peak_area": "35.97004050164687",
         "peak_height": "1.229203477068371",
@@ -5804,7 +5292,6 @@
       {
         "Metabolite": "aGlc_1",
         "sample_id": "17_A1_Lung_naive_0days_170427_UKy_GCH_rep2-polar-NMR_A",
-        "assignment": "aGlc",
         "chemical_shift": "5.220721918231431",
         "peak_area": "39.46969933352005",
         "peak_height": "1.100197625255281",
@@ -5813,7 +5300,6 @@
       {
         "Metabolite": "aGlc_1",
         "sample_id": "19_B0_Lung_syngenic_42days_170427_UKy_GCH_rep1-polar-NMR_A",
-        "assignment": "aGlc",
         "chemical_shift": "5.222729025784426",
         "peak_area": "21.01586037249409",
         "peak_height": "0.6330620773212616",
@@ -5822,7 +5308,6 @@
       {
         "Metabolite": "aGlc_1",
         "sample_id": "20_B1_Lung_syngenic_42days_170427_UKy_GCH_rep2-polar-NMR_A",
-        "assignment": "aGlc",
         "chemical_shift": "5.221170623104314",
         "peak_area": "31.36925643105233",
         "peak_height": "0.6975278481917804",
@@ -5831,7 +5316,6 @@
       {
         "Metabolite": "aGlc_1",
         "sample_id": "21_B2_Lung_syngenic_42days_170427_UKy_GCH_rep3-polar-NMR_A",
-        "assignment": "aGlc",
         "chemical_shift": "5.220886296474114",
         "peak_area": "44.67823586421171",
         "peak_height": "1.390426748495795",
@@ -5840,7 +5324,6 @@
       {
         "Metabolite": "aGlc_1",
         "sample_id": "22_C1-1_Lung_allogenic_42days_170427_UKy_GCH_rep1-polar-NMR_A",
-        "assignment": "aGlc",
         "chemical_shift": "5.221439563134743",
         "peak_area": "19.21719579346997",
         "peak_height": "0.6007265089819296",
@@ -5849,7 +5332,6 @@
       {
         "Metabolite": "aGlc_1",
         "sample_id": "23_C1-2_Lung_allogenic_42days_170427_UKy_GCH_rep2-polar-NMR_A",
-        "assignment": "aGlc",
         "chemical_shift": "5.221036383955824",
         "peak_area": "32.99832428585729",
         "peak_height": "1.065643486351622",
@@ -5858,7 +5340,6 @@
       {
         "Metabolite": "aGlc_1",
         "sample_id": "24_C2-0_Lung_allogenic_42days_170427_UKy_GCH_rep1-polar-NMR_A",
-        "assignment": "aGlc",
         "chemical_shift": "5.223434368914286",
         "peak_area": "80.09716121012292",
         "peak_height": "2.618878321265716",
@@ -5867,7 +5348,6 @@
       {
         "Metabolite": "aGlc_1",
         "sample_id": "25_B1-0_Lung_syngenic_7days_170427_UKy_GCH_rep1-polar-NMR_A",
-        "assignment": "aGlc",
         "chemical_shift": "5.222289079981335",
         "peak_area": "59.34580699407837",
         "peak_height": "1.990293730618431",
@@ -5876,7 +5356,6 @@
       {
         "Metabolite": "aGlc_1",
         "sample_id": "26_B1-1_Lung_syngenic_7days_170427_UKy_GCH_rep2-polar-NMR_A",
-        "assignment": "aGlc",
         "chemical_shift": "5.220815831616533",
         "peak_area": "20.23081557826015",
         "peak_height": "0.6285863565773149",
@@ -5885,7 +5364,6 @@
       {
         "Metabolite": "aGlc_1",
         "sample_id": "27_B1-2_Lung_syngenic_7days_170427_UKy_GCH_rep3-polar-NMR_A",
-        "assignment": "aGlc",
         "chemical_shift": "5.222329280702142",
         "peak_area": "25.88826637399641",
         "peak_height": "0.8022340712208175",
@@ -5894,7 +5372,6 @@
       {
         "Metabolite": "aGlc_1",
         "sample_id": "28_C1-1_Lung_allogenic_7days_170427_UKy_GCH_rep1-polar-NMR_A",
-        "assignment": "aGlc",
         "chemical_shift": "5.219708503165172",
         "peak_area": "23.89448436837811",
         "peak_height": "0.5807703418671742",
@@ -5903,7 +5380,6 @@
       {
         "Metabolite": "aGlc_1",
         "sample_id": "29_C1-2_Lung_allogenic_7days_170427_UKy_GCH_rep2-polar-NMR_A",
-        "assignment": "aGlc",
         "chemical_shift": "5.219708503165172",
         "peak_area": "20.57446582125898",
         "peak_height": "0.5539988082421392",
@@ -5912,7 +5388,6 @@
       {
         "Metabolite": "aGlc_1",
         "sample_id": "30_C1-20_Lung_allogenic_7days_170427_UKy_GCH_rep3-polar-NMR_A",
-        "assignment": "aGlc",
         "chemical_shift": "5.220218191242145",
         "peak_area": "32.18115578710792",
         "peak_height": "0.8445995373901234",
@@ -5921,7 +5396,6 @@
       {
         "Metabolite": "bGlc_1",
         "sample_id": "16_A0_Lung_naive_0days_170427_UKy_GCH_rep1-polar-NMR_A",
-        "assignment": "bGlc",
         "chemical_shift": "4.629269030607724",
         "peak_area": "43.00099903340845",
         "peak_height": "1.163213974672013",
@@ -5930,7 +5404,6 @@
       {
         "Metabolite": "bGlc_1",
         "sample_id": "17_A1_Lung_naive_0days_170427_UKy_GCH_rep2-polar-NMR_A",
-        "assignment": "bGlc",
         "chemical_shift": "4.628757189888984",
         "peak_area": "39.27898380948454",
         "peak_height": "1.06612649838644",
@@ -5939,7 +5412,6 @@
       {
         "Metabolite": "bGlc_1",
         "sample_id": "18_A2_Lung_naive_0days_170427_UKy_GCH_rep3-polar-NMR_A",
-        "assignment": "bGlc",
         "chemical_shift": "4.623836935170128",
         "peak_area": "8.777120857517069",
         "peak_height": "0.2455235001623276",
@@ -5948,7 +5420,6 @@
       {
         "Metabolite": "bGlc_1",
         "sample_id": "19_B0_Lung_syngenic_42days_170427_UKy_GCH_rep1-polar-NMR_A",
-        "assignment": "bGlc",
         "chemical_shift": "4.619504292613622",
         "peak_area": "20.17618768993954",
         "peak_height": "0.3063250048418453",
@@ -5957,7 +5428,6 @@
       {
         "Metabolite": "bGlc_1",
         "sample_id": "20_B1_Lung_syngenic_42days_170427_UKy_GCH_rep2-polar-NMR_A",
-        "assignment": "bGlc",
         "chemical_shift": "4.628519949899086",
         "peak_area": "13.40332000062982",
         "peak_height": "0.4436353855306547",
@@ -5966,7 +5436,6 @@
       {
         "Metabolite": "bGlc_1",
         "sample_id": "21_B2_Lung_syngenic_42days_170427_UKy_GCH_rep3-polar-NMR_A",
-        "assignment": "bGlc",
         "chemical_shift": "4.628053648350837",
         "peak_area": "31.39116504035078",
         "peak_height": "1.104234307361885",
@@ -5975,7 +5444,6 @@
       {
         "Metabolite": "bGlc_1",
         "sample_id": "22_C1-1_Lung_allogenic_42days_170427_UKy_GCH_rep1-polar-NMR_A",
-        "assignment": "bGlc",
         "chemical_shift": "4.627858603000219",
         "peak_area": "25.09788564956144",
         "peak_height": "0.6793624061590178",
@@ -5984,7 +5452,6 @@
       {
         "Metabolite": "bGlc_1",
         "sample_id": "23_C1-2_Lung_allogenic_42days_170427_UKy_GCH_rep2-polar-NMR_A",
-        "assignment": "bGlc",
         "chemical_shift": "4.628174158706553",
         "peak_area": "28.55978332613306",
         "peak_height": "0.928760202762203",
@@ -5993,7 +5460,6 @@
       {
         "Metabolite": "bGlc_1",
         "sample_id": "24_C2-0_Lung_allogenic_42days_170427_UKy_GCH_rep1-polar-NMR_A",
-        "assignment": "bGlc",
         "chemical_shift": "4.630280987782054",
         "peak_area": "59.24598687248117",
         "peak_height": "1.653311559015377",
@@ -6002,7 +5468,6 @@
       {
         "Metabolite": "bGlc_1",
         "sample_id": "25_B1-0_Lung_syngenic_7days_170427_UKy_GCH_rep1-polar-NMR_A",
-        "assignment": "bGlc",
         "chemical_shift": "4.629286285230421",
         "peak_area": "58.95756917292915",
         "peak_height": "1.610179370162596",
@@ -6011,7 +5476,6 @@
       {
         "Metabolite": "bGlc_1",
         "sample_id": "26_B1-1_Lung_syngenic_7days_170427_UKy_GCH_rep2-polar-NMR_A",
-        "assignment": "bGlc",
         "chemical_shift": "4.627800131021202",
         "peak_area": "16.77318438087286",
         "peak_height": "0.5410469514431272",
@@ -6020,7 +5484,6 @@
       {
         "Metabolite": "bGlc_1",
         "sample_id": "27_B1-2_Lung_syngenic_7days_170427_UKy_GCH_rep3-polar-NMR_A",
-        "assignment": "bGlc",
         "chemical_shift": "4.628588109069263",
         "peak_area": "22.73961406749863",
         "peak_height": "0.6627619580070273",
@@ -6029,7 +5492,6 @@
       {
         "Metabolite": "bGlc_1",
         "sample_id": "28_C1-1_Lung_allogenic_7days_170427_UKy_GCH_rep1-polar-NMR_A",
-        "assignment": "bGlc",
         "chemical_shift": "4.627525193835648",
         "peak_area": "17.71686456967724",
         "peak_height": "0.5070027246880087",
@@ -6038,7 +5500,6 @@
       {
         "Metabolite": "bGlc_1",
         "sample_id": "29_C1-2_Lung_allogenic_7days_170427_UKy_GCH_rep2-polar-NMR_A",
-        "assignment": "bGlc",
         "chemical_shift": "4.62041344174543",
         "peak_area": "35.31212272131086",
         "peak_height": "0.4310914544490905",
@@ -6047,7 +5508,6 @@
       {
         "Metabolite": "bGlc_1",
         "sample_id": "30_C1-20_Lung_allogenic_7days_170427_UKy_GCH_rep3-polar-NMR_A",
-        "assignment": "bGlc",
         "chemical_shift": "4.627438609825971",
         "peak_area": "31.64383029199188",
         "peak_height": "0.858182518276035",
@@ -6056,7 +5516,6 @@
       {
         "Metabolite": "bGlc_2",
         "sample_id": "16_A0_Lung_naive_0days_170427_UKy_GCH_rep1-polar-NMR_A",
-        "assignment": "bGlc",
         "chemical_shift": "4.642680026369255",
         "peak_area": "14.40519563953441",
         "peak_height": "0.7871591898001511",
@@ -6065,7 +5524,6 @@
       {
         "Metabolite": "bGlc_2",
         "sample_id": "17_A1_Lung_naive_0days_170427_UKy_GCH_rep2-polar-NMR_A",
-        "assignment": "bGlc",
         "chemical_shift": "4.642957971734745",
         "peak_area": "11.51638600118586",
         "peak_height": "0.5915119219406711",
@@ -6074,7 +5532,6 @@
       {
         "Metabolite": "bGlc_2",
         "sample_id": "18_A2_Lung_naive_0days_170427_UKy_GCH_rep3-polar-NMR_A",
-        "assignment": "bGlc",
         "chemical_shift": "4.642534359055494",
         "peak_area": "5.815230420069276",
         "peak_height": "0.1922523407944112",
@@ -6083,7 +5540,6 @@
       {
         "Metabolite": "bGlc_2",
         "sample_id": "19_B0_Lung_syngenic_42days_170427_UKy_GCH_rep1-polar-NMR_A",
-        "assignment": "bGlc",
         "chemical_shift": "4.641457361982328",
         "peak_area": "8.643052108449647",
         "peak_height": "0.3365525281959866",
@@ -6092,7 +5548,6 @@
       {
         "Metabolite": "bGlc_2",
         "sample_id": "20_B1_Lung_syngenic_42days_170427_UKy_GCH_rep2-polar-NMR_A",
-        "assignment": "bGlc",
         "chemical_shift": "4.641756398521782",
         "peak_area": "15.3201141763206",
         "peak_height": "0.5846737550938924",
@@ -6101,7 +5556,6 @@
       {
         "Metabolite": "bGlc_2",
         "sample_id": "21_B2_Lung_syngenic_42days_170427_UKy_GCH_rep3-polar-NMR_A",
-        "assignment": "bGlc",
         "chemical_shift": "4.642714375181564",
         "peak_area": "42.56357801548323",
         "peak_height": "1.23381845455577",
@@ -6110,7 +5564,6 @@
       {
         "Metabolite": "bGlc_2",
         "sample_id": "22_C1-1_Lung_allogenic_42days_170427_UKy_GCH_rep1-polar-NMR_A",
-        "assignment": "bGlc",
         "chemical_shift": "4.642569060927301",
         "peak_area": "14.3637801420289",
         "peak_height": "0.5409149704925356",
@@ -6119,7 +5572,6 @@
       {
         "Metabolite": "bGlc_2",
         "sample_id": "23_C1-2_Lung_allogenic_42days_170427_UKy_GCH_rep2-polar-NMR_A",
-        "assignment": "bGlc",
         "chemical_shift": "4.642818496791255",
         "peak_area": "25.24147265312402",
         "peak_height": "0.9117840681915402",
@@ -6128,7 +5580,6 @@
       {
         "Metabolite": "bGlc_2",
         "sample_id": "24_C2-0_Lung_allogenic_42days_170427_UKy_GCH_rep1-polar-NMR_A",
-        "assignment": "bGlc",
         "chemical_shift": "4.644477993928703",
         "peak_area": "75.07984610228881",
         "peak_height": "2.170866579960716",
@@ -6137,7 +5588,6 @@
       {
         "Metabolite": "bGlc_2",
         "sample_id": "25_B1-0_Lung_syngenic_7days_170427_UKy_GCH_rep1-polar-NMR_A",
-        "assignment": "bGlc",
         "chemical_shift": "4.643478728568975",
         "peak_area": "53.32507103153385",
         "peak_height": "1.698748929063883",
@@ -6146,7 +5596,6 @@
       {
         "Metabolite": "bGlc_2",
         "sample_id": "26_B1-1_Lung_syngenic_7days_170427_UKy_GCH_rep2-polar-NMR_A",
-        "assignment": "bGlc",
         "chemical_shift": "4.640552544837752",
         "peak_area": "8.871235856064848",
         "peak_height": "0.3875141349049001",
@@ -6155,7 +5604,6 @@
       {
         "Metabolite": "bGlc_2",
         "sample_id": "27_B1-2_Lung_syngenic_7days_170427_UKy_GCH_rep3-polar-NMR_A",
-        "assignment": "bGlc",
         "chemical_shift": "4.642542160578634",
         "peak_area": "16.01758221206634",
         "peak_height": "0.5620749774842752",
@@ -6164,7 +5612,6 @@
       {
         "Metabolite": "bGlc_2",
         "sample_id": "28_C1-1_Lung_allogenic_7days_170427_UKy_GCH_rep1-polar-NMR_A",
-        "assignment": "bGlc",
         "chemical_shift": "4.642575900887438",
         "peak_area": "13.3991349699145",
         "peak_height": "0.4327552134654083",
@@ -6173,7 +5620,6 @@
       {
         "Metabolite": "bGlc_2",
         "sample_id": "29_C1-2_Lung_allogenic_7days_170427_UKy_GCH_rep2-polar-NMR_A",
-        "assignment": "bGlc",
         "chemical_shift": "4.642520557883882",
         "peak_area": "7.276926135119587",
         "peak_height": "0.3099178661212251",
@@ -6182,7 +5628,6 @@
       {
         "Metabolite": "bGlc_2",
         "sample_id": "30_C1-20_Lung_allogenic_7days_170427_UKy_GCH_rep3-polar-NMR_A",
-        "assignment": "bGlc",
         "chemical_shift": "4.642854347602202",
         "peak_area": "21.64795941787881",
         "peak_height": "0.7395130004904107",
@@ -6191,7 +5636,6 @@
       {
         "Metabolite": "m-Ins-2?_1",
         "sample_id": "23_C1-2_Lung_allogenic_42days_170427_UKy_GCH_rep2-polar-NMR_A",
-        "assignment": "m-Ins-2?",
         "chemical_shift": "4.064085146847729",
         "peak_area": "8.971314709625695",
         "peak_height": "0.2791133067055979",
@@ -6200,7 +5644,6 @@
       {
         "Metabolite": "m-Ins-2?_1",
         "sample_id": "26_B1-1_Lung_syngenic_7days_170427_UKy_GCH_rep2-polar-NMR_A",
-        "assignment": "m-Ins-2?",
         "chemical_shift": "4.069896200862278",
         "peak_area": "4.886878013682263",
         "peak_height": "0.1673815676327661",
@@ -6209,7 +5652,6 @@
       {
         "Metabolite": "pyruvate-3_1",
         "sample_id": "20_B1_Lung_syngenic_42days_170427_UKy_GCH_rep2-polar-NMR_A",
-        "assignment": "pyruvate-3",
         "chemical_shift": "2.368202560489391",
         "peak_area": "3.023713805595997",
         "peak_height": "0.1225177299252498",
@@ -6218,7 +5660,6 @@
       {
         "Metabolite": "pyruvate-3_1",
         "sample_id": "22_C1-1_Lung_allogenic_42days_170427_UKy_GCH_rep1-polar-NMR_A",
-        "assignment": "pyruvate-3",
         "chemical_shift": "2.369121585838791",
         "peak_area": "2.796162760424785",
         "peak_height": "0.1239721394487349",
@@ -6227,7 +5668,6 @@
       {
         "Metabolite": "pyruvate-3_1",
         "sample_id": "26_B1-1_Lung_syngenic_7days_170427_UKy_GCH_rep2-polar-NMR_A",
-        "assignment": "pyruvate-3",
         "chemical_shift": "2.357889141212278",
         "peak_area": "4.876794529188476",
         "peak_height": "0.1157658292104429",
@@ -6244,7 +5684,8 @@
         "peak_pattern": "",
         "proton_count": "1",
         "transient_peak": "1",
-        "transient_peak_type": "integer"
+        "transient_peak%type": "integer",
+        "compound": "AXP-1'"
       },
       {
         "Metabolite": "AXP-1'_2",
@@ -6255,7 +5696,8 @@
         "peak_pattern": "",
         "proton_count": "1",
         "transient_peak": "2",
-        "transient_peak_type": "integer"
+        "transient_peak%type": "integer",
+        "compound": "AXP-1'"
       },
       {
         "Metabolite": "AXP-2_1",
@@ -6266,7 +5708,8 @@
         "peak_pattern": "",
         "proton_count": "1",
         "transient_peak": "1",
-        "transient_peak_type": "integer"
+        "transient_peak%type": "integer",
+        "compound": "AXP-2"
       },
       {
         "Metabolite": "AXP-8_1",
@@ -6277,7 +5720,8 @@
         "peak_pattern": "",
         "proton_count": "1",
         "transient_peak": "1",
-        "transient_peak_type": "integer"
+        "transient_peak%type": "integer",
+        "compound": "AXP-8"
       },
       {
         "Metabolite": "Ace-2_1",
@@ -6288,7 +5732,8 @@
         "peak_pattern": "",
         "proton_count": "3",
         "transient_peak": "1",
-        "transient_peak_type": "integer"
+        "transient_peak%type": "integer",
+        "compound": "Ace-2"
       },
       {
         "Metabolite": "Ala-3_1",
@@ -6299,7 +5744,8 @@
         "peak_pattern": "",
         "proton_count": "3",
         "transient_peak": "1",
-        "transient_peak_type": "integer"
+        "transient_peak%type": "integer",
+        "compound": "Ala-3"
       },
       {
         "Metabolite": "Ala-3_2",
@@ -6310,7 +5756,8 @@
         "peak_pattern": "",
         "proton_count": "3",
         "transient_peak": "2",
-        "transient_peak_type": "integer"
+        "transient_peak%type": "integer",
+        "compound": "Ala-3"
       },
       {
         "Metabolite": "Asp-3b_1",
@@ -6321,7 +5768,8 @@
         "peak_pattern": "",
         "proton_count": "1",
         "transient_peak": "1",
-        "transient_peak_type": "integer"
+        "transient_peak%type": "integer",
+        "compound": "Asp-3b"
       },
       {
         "Metabolite": "Asp-3b_2",
@@ -6332,7 +5780,8 @@
         "peak_pattern": "",
         "proton_count": "1",
         "transient_peak": "2",
-        "transient_peak_type": "integer"
+        "transient_peak%type": "integer",
+        "compound": "Asp-3b"
       },
       {
         "Metabolite": "CXP-6_1",
@@ -6343,7 +5792,8 @@
         "peak_pattern": "",
         "proton_count": "1",
         "transient_peak": "1",
-        "transient_peak_type": "integer"
+        "transient_peak%type": "integer",
+        "compound": "CXP-6"
       },
       {
         "Metabolite": "CXP-6_2",
@@ -6354,7 +5804,8 @@
         "peak_pattern": "",
         "proton_count": "1",
         "transient_peak": "2",
-        "transient_peak_type": "integer"
+        "transient_peak%type": "integer",
+        "compound": "CXP-6"
       },
       {
         "Metabolite": "DSS_1",
@@ -6365,7 +5816,8 @@
         "peak_pattern": "",
         "proton_count": "9",
         "transient_peak": "1",
-        "transient_peak_type": "integer"
+        "transient_peak%type": "integer",
+        "compound": "DSS"
       },
       {
         "Metabolite": "GSH+GSSG-3_1",
@@ -6376,7 +5828,8 @@
         "peak_pattern": "",
         "proton_count": "2",
         "transient_peak": "1",
-        "transient_peak_type": "integer"
+        "transient_peak%type": "integer",
+        "compound": "GSH+GSSG-3"
       },
       {
         "Metabolite": "GSH+GSSG-4_1",
@@ -6387,7 +5840,8 @@
         "peak_pattern": "",
         "proton_count": "4",
         "transient_peak": "1",
-        "transient_peak_type": "integer"
+        "transient_peak%type": "integer",
+        "compound": "GSH+GSSG-4"
       },
       {
         "Metabolite": "GSH+GSSG-4_2",
@@ -6398,7 +5852,8 @@
         "peak_pattern": "",
         "proton_count": "4",
         "transient_peak": "2",
-        "transient_peak_type": "integer"
+        "transient_peak%type": "integer",
+        "compound": "GSH+GSSG-4"
       },
       {
         "Metabolite": "GSH+GSSG-4_3",
@@ -6409,7 +5864,8 @@
         "peak_pattern": "",
         "proton_count": "4",
         "transient_peak": "3",
-        "transient_peak_type": "integer"
+        "transient_peak%type": "integer",
+        "compound": "GSH+GSSG-4"
       },
       {
         "Metabolite": "GSH+GSSG-4_4",
@@ -6420,7 +5876,8 @@
         "peak_pattern": "",
         "proton_count": "4",
         "transient_peak": "4",
-        "transient_peak_type": "integer"
+        "transient_peak%type": "integer",
+        "compound": "GSH+GSSG-4"
       },
       {
         "Metabolite": "GSH+GSSG-4_5",
@@ -6431,7 +5888,8 @@
         "peak_pattern": "",
         "proton_count": "4",
         "transient_peak": "5",
-        "transient_peak_type": "integer"
+        "transient_peak%type": "integer",
+        "compound": "GSH+GSSG-4"
       },
       {
         "Metabolite": "Gln-3_1",
@@ -6442,7 +5900,8 @@
         "peak_pattern": "",
         "proton_count": "2",
         "transient_peak": "1",
-        "transient_peak_type": "integer"
+        "transient_peak%type": "integer",
+        "compound": "Gln-3"
       },
       {
         "Metabolite": "Gln-3_2",
@@ -6453,7 +5912,8 @@
         "peak_pattern": "",
         "proton_count": "2",
         "transient_peak": "2",
-        "transient_peak_type": "integer"
+        "transient_peak%type": "integer",
+        "compound": "Gln-3"
       },
       {
         "Metabolite": "Gln-4_1",
@@ -6464,7 +5924,8 @@
         "peak_pattern": "",
         "proton_count": "2",
         "transient_peak": "1",
-        "transient_peak_type": "integer"
+        "transient_peak%type": "integer",
+        "compound": "Gln-4"
       },
       {
         "Metabolite": "Gln-4_2",
@@ -6475,7 +5936,8 @@
         "peak_pattern": "",
         "proton_count": "2",
         "transient_peak": "2",
-        "transient_peak_type": "integer"
+        "transient_peak%type": "integer",
+        "compound": "Gln-4"
       },
       {
         "Metabolite": "Gln-4_3",
@@ -6486,7 +5948,8 @@
         "peak_pattern": "",
         "proton_count": "2",
         "transient_peak": "3",
-        "transient_peak_type": "integer"
+        "transient_peak%type": "integer",
+        "compound": "Gln-4"
       },
       {
         "Metabolite": "Gln-4_4",
@@ -6497,7 +5960,8 @@
         "peak_pattern": "",
         "proton_count": "2",
         "transient_peak": "4",
-        "transient_peak_type": "integer"
+        "transient_peak%type": "integer",
+        "compound": "Gln-4"
       },
       {
         "Metabolite": "Glu-3-a_1",
@@ -6508,7 +5972,8 @@
         "peak_pattern": "",
         "proton_count": "1",
         "transient_peak": "1",
-        "transient_peak_type": "integer"
+        "transient_peak%type": "integer",
+        "compound": "Glu-3-a"
       },
       {
         "Metabolite": "Glu-3-a_2",
@@ -6519,7 +5984,8 @@
         "peak_pattern": "",
         "proton_count": "1",
         "transient_peak": "2",
-        "transient_peak_type": "integer"
+        "transient_peak%type": "integer",
+        "compound": "Glu-3-a"
       },
       {
         "Metabolite": "Glu-3-a_3",
@@ -6530,7 +5996,8 @@
         "peak_pattern": "",
         "proton_count": "1",
         "transient_peak": "3",
-        "transient_peak_type": "integer"
+        "transient_peak%type": "integer",
+        "compound": "Glu-3-a"
       },
       {
         "Metabolite": "Glu-3-a_4",
@@ -6541,7 +6008,8 @@
         "peak_pattern": "",
         "proton_count": "1",
         "transient_peak": "4",
-        "transient_peak_type": "integer"
+        "transient_peak%type": "integer",
+        "compound": "Glu-3-a"
       },
       {
         "Metabolite": "Glu-3-a_5",
@@ -6552,7 +6020,8 @@
         "peak_pattern": "",
         "proton_count": "1",
         "transient_peak": "5",
-        "transient_peak_type": "integer"
+        "transient_peak%type": "integer",
+        "compound": "Glu-3-a"
       },
       {
         "Metabolite": "Glu-3-b_1",
@@ -6563,7 +6032,8 @@
         "peak_pattern": "",
         "proton_count": "1",
         "transient_peak": "1",
-        "transient_peak_type": "integer"
+        "transient_peak%type": "integer",
+        "compound": "Glu-3-b"
       },
       {
         "Metabolite": "Glu-3-b_2",
@@ -6574,7 +6044,8 @@
         "peak_pattern": "",
         "proton_count": "1",
         "transient_peak": "2",
-        "transient_peak_type": "integer"
+        "transient_peak%type": "integer",
+        "compound": "Glu-3-b"
       },
       {
         "Metabolite": "Glu-4_1",
@@ -6585,7 +6056,8 @@
         "peak_pattern": "",
         "proton_count": "2",
         "transient_peak": "1",
-        "transient_peak_type": "integer"
+        "transient_peak%type": "integer",
+        "compound": "Glu-4"
       },
       {
         "Metabolite": "Glu-4_2",
@@ -6596,7 +6068,8 @@
         "peak_pattern": "",
         "proton_count": "2",
         "transient_peak": "2",
-        "transient_peak_type": "integer"
+        "transient_peak%type": "integer",
+        "compound": "Glu-4"
       },
       {
         "Metabolite": "Glu-4_3",
@@ -6607,7 +6080,8 @@
         "peak_pattern": "",
         "proton_count": "2",
         "transient_peak": "3",
-        "transient_peak_type": "integer"
+        "transient_peak%type": "integer",
+        "compound": "Glu-4"
       },
       {
         "Metabolite": "Gly_1",
@@ -6618,7 +6092,8 @@
         "peak_pattern": "",
         "proton_count": "2",
         "transient_peak": "1",
-        "transient_peak_type": "integer"
+        "transient_peak%type": "integer",
+        "compound": "Gly"
       },
       {
         "Metabolite": "Glycogen_1",
@@ -6629,7 +6104,8 @@
         "peak_pattern": "",
         "proton_count": "1",
         "transient_peak": "1",
-        "transient_peak_type": "integer"
+        "transient_peak%type": "integer",
+        "compound": "Glycogen"
       },
       {
         "Metabolite": "Glycogen_2",
@@ -6640,7 +6116,8 @@
         "peak_pattern": "",
         "proton_count": "1",
         "transient_peak": "2",
-        "transient_peak_type": "integer"
+        "transient_peak%type": "integer",
+        "compound": "Glycogen"
       },
       {
         "Metabolite": "Lac-2_1",
@@ -6651,7 +6128,8 @@
         "peak_pattern": "",
         "proton_count": "1",
         "transient_peak": "1",
-        "transient_peak_type": "integer"
+        "transient_peak%type": "integer",
+        "compound": "Lac-2"
       },
       {
         "Metabolite": "Lac-2_2",
@@ -6662,7 +6140,8 @@
         "peak_pattern": "",
         "proton_count": "1",
         "transient_peak": "2",
-        "transient_peak_type": "integer"
+        "transient_peak%type": "integer",
+        "compound": "Lac-2"
       },
       {
         "Metabolite": "Lac-2_3",
@@ -6673,7 +6152,8 @@
         "peak_pattern": "",
         "proton_count": "1",
         "transient_peak": "3",
-        "transient_peak_type": "integer"
+        "transient_peak%type": "integer",
+        "compound": "Lac-2"
       },
       {
         "Metabolite": "Lac-3_1",
@@ -6684,7 +6164,8 @@
         "peak_pattern": "",
         "proton_count": "3",
         "transient_peak": "1",
-        "transient_peak_type": "integer"
+        "transient_peak%type": "integer",
+        "compound": "Lac-3"
       },
       {
         "Metabolite": "Lac-3_2",
@@ -6695,7 +6176,8 @@
         "peak_pattern": "",
         "proton_count": "3",
         "transient_peak": "2",
-        "transient_peak_type": "integer"
+        "transient_peak%type": "integer",
+        "compound": "Lac-3"
       },
       {
         "Metabolite": "NAD+-A1'_1",
@@ -6706,7 +6188,8 @@
         "peak_pattern": "",
         "proton_count": "1",
         "transient_peak": "1",
-        "transient_peak_type": "integer"
+        "transient_peak%type": "integer",
+        "compound": "NAD+-A1'"
       },
       {
         "Metabolite": "NAD+-A1'_2",
@@ -6717,7 +6200,8 @@
         "peak_pattern": "",
         "proton_count": "1",
         "transient_peak": "2",
-        "transient_peak_type": "integer"
+        "transient_peak%type": "integer",
+        "compound": "NAD+-A1'"
       },
       {
         "Metabolite": "NAD+-N1'_1",
@@ -6728,7 +6212,8 @@
         "peak_pattern": "",
         "proton_count": "1",
         "transient_peak": "1",
-        "transient_peak_type": "integer"
+        "transient_peak%type": "integer",
+        "compound": "NAD+-N1'"
       },
       {
         "Metabolite": "NAD+-N1'_2",
@@ -6739,7 +6224,8 @@
         "peak_pattern": "",
         "proton_count": "1",
         "transient_peak": "2",
-        "transient_peak_type": "integer"
+        "transient_peak%type": "integer",
+        "compound": "NAD+-N1'"
       },
       {
         "Metabolite": "Nicotin-2_1",
@@ -6750,7 +6236,8 @@
         "peak_pattern": "",
         "proton_count": "1",
         "transient_peak": "1",
-        "transient_peak_type": "integer"
+        "transient_peak%type": "integer",
+        "compound": "Nicotin-2"
       },
       {
         "Metabolite": "Nicotin-6_1",
@@ -6761,7 +6248,8 @@
         "peak_pattern": "",
         "proton_count": "1",
         "transient_peak": "1",
-        "transient_peak_type": "integer"
+        "transient_peak%type": "integer",
+        "compound": "Nicotin-6"
       },
       {
         "Metabolite": "P-Cho A_1",
@@ -6772,7 +6260,8 @@
         "peak_pattern": "",
         "proton_count": "9",
         "transient_peak": "1",
-        "transient_peak_type": "integer"
+        "transient_peak%type": "integer",
+        "compound": "P-Cho A"
       },
       {
         "Metabolite": "Succinate-2,3_1",
@@ -6783,7 +6272,8 @@
         "peak_pattern": "",
         "proton_count": "4",
         "transient_peak": "1",
-        "transient_peak_type": "integer"
+        "transient_peak%type": "integer",
+        "compound": "Succinate-2,3"
       },
       {
         "Metabolite": "UXP-1'_1",
@@ -6794,7 +6284,8 @@
         "peak_pattern": "",
         "proton_count": "1",
         "transient_peak": "1",
-        "transient_peak_type": "integer"
+        "transient_peak%type": "integer",
+        "compound": "UXP-1'"
       },
       {
         "Metabolite": "aGlc_1",
@@ -6805,7 +6296,8 @@
         "peak_pattern": "",
         "proton_count": "0.35",
         "transient_peak": "1",
-        "transient_peak_type": "integer"
+        "transient_peak%type": "integer",
+        "compound": "aGlc"
       },
       {
         "Metabolite": "bGlc_1",
@@ -6816,7 +6308,8 @@
         "peak_pattern": "",
         "proton_count": "0.65",
         "transient_peak": "1",
-        "transient_peak_type": "integer"
+        "transient_peak%type": "integer",
+        "compound": "bGlc"
       },
       {
         "Metabolite": "bGlc_2",
@@ -6827,7 +6320,8 @@
         "peak_pattern": "",
         "proton_count": "0.65",
         "transient_peak": "2",
-        "transient_peak_type": "integer"
+        "transient_peak%type": "integer",
+        "compound": "bGlc"
       },
       {
         "Metabolite": "m-Ins-2?_1",
@@ -6838,7 +6332,8 @@
         "peak_pattern": "",
         "proton_count": "1",
         "transient_peak": "1",
-        "transient_peak_type": "integer"
+        "transient_peak%type": "integer",
+        "compound": "m-Ins-2?"
       },
       {
         "Metabolite": "pyruvate-3_1",
@@ -6849,7 +6344,8 @@
         "peak_pattern": "",
         "proton_count": "3",
         "transient_peak": "1",
-        "transient_peak_type": "integer"
+        "transient_peak%type": "integer",
+        "compound": "pyruvate-3"
       }
     ],
     "Units": "normalized peak area"

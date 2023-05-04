@@ -12,4 +12,4 @@ extracted_result.json
 protocol-dependent_schema.json
 
 Run Command:
-messes validate json extracted_result.json --pds protocol-dependent_schema.json --format mwtab_NMR --silent nuisance
+messes validate json extracted_result.json --pds protocol-dependent_schema.json --format mwtab --silent nuisance
