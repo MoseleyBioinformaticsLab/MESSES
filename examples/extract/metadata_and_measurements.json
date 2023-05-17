@@ -6792,7 +6792,7 @@
       "ion_mode": "NEGATIVE",
       "ionization": "ESI",
       "machine_type": "MS",
-      "parent_protocol": "IC-FTMS_measurement",
+      "parent_protocol": "labeled_IC-FTMS_measurement",
       "type": "measurement"
     },
     "ICMS_file_storage1": {

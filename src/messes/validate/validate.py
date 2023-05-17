@@ -79,8 +79,6 @@ The "cd-to-json-schema" command will read in conversion directives and create a 
 template file that can be filled in and used to validate files that will be converted using those directives.
 """
 
-## Add a section in documentation explaining cd-to-json-schema and how to use it.
-## Add examples for new commands in the examples folder.
 
 import re
 import sys

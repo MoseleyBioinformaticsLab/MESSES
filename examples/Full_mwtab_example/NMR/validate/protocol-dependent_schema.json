@@ -129,6 +129,20 @@
         "string"
       ]
     },
+    "raw_intensity%type": {
+      "id": "raw_intensity%type",
+      "minLength": "1",
+      "table": "measurement",
+      "type": "string"
+    },
+    "raw_mz%units": {
+      "id": "raw_mz%units",
+      "minLength": "1",
+      "table": "measurement",
+      "type": "string"
+    }
+  },
+  "labeled_DI-FTMS_measurement": {
     "isotopologue": {
       "id": "isotopologue",
       "items": "{'minLength': 1, 'type': 'string'}",
@@ -150,18 +164,6 @@
         "array",
         "string"
       ]
-    },
-    "raw_intensity%type": {
-      "id": "raw_intensity%type",
-      "minLength": "1",
-      "table": "measurement",
-      "type": "string"
-    },
-    "raw_mz%units": {
-      "id": "raw_mz%units",
-      "minLength": "1",
-      "table": "measurement",
-      "type": "string"
     }
   },
   "IC-FTMS_measurement": {
@@ -1223,6 +1225,13 @@
       "description": "Measurements made using direct infusion (nano-electrospray) FTMS",
       "filename": "",
       "parent_id": "MS_measurement",
+      "type": "measurement"
+    },
+    "labeled_DI-FTMS_measurement": {
+      "id": "labeled_DI-FTMS_measurement",
+      "description": "Measurements made using direct infusion (nano-electrospray) FTMS on labeled samples",
+      "filename": "",
+      "parent_id": "DI-FTMS_measurement",
       "type": "measurement"
     },
     "GCMS_measurement": {

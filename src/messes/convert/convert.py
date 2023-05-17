@@ -62,6 +62,8 @@ from messes.convert import mwtab_functions
 from messes.convert import user_input_checking
 from messes.convert import convert_schema
 
+## TODO add check to see if a section type directive is in the same table as others and print a warning because the section type overwrites the others.
+
 
 supported_formats_and_sub_commands = {"mwtab":["ms", "nmr", "nmr_binned"]}
 
