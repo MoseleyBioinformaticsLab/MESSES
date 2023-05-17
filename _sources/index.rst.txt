@@ -18,6 +18,7 @@ Welcome to MESSES's documentation!
    experiment_description_schema
    protocol_dependent_schema
    supported_formats
+   ISA
    api
    license
    todo
