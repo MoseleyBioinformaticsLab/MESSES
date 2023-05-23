@@ -132,6 +132,9 @@ parameters
 otherMaterials
 characteristics
 
+Hunter suggested something like OBI:0500020:time series design:comment for ontologyAnnotations. 
+We can use online resources to turn something like OBI:0500020 into a full ISA ontologyAnnotation.
+
 
 Subject/Sample
 --------------

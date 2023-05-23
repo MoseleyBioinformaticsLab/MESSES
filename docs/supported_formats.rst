@@ -108,7 +108,7 @@ update_directives.json:
      }
     }
 
-Convert assumes the input JSON is following the table schema as described in the :doc:`experiment_description_schema` section, 
+Convert assumes the input JSON is following the table schema as described in the :doc:`experiment_description_specification` section, 
 so if your JSON has different table names or a different structure then you will need to override the directives. You may also 
 need to change the SUBJECT_SAMPLE_FACTORS directive. The SUBJECT_SAMPLE_FACTORS are built using a function that has the same 
 assumptions as convert, but also some additional ones. It assumes when building lineages for a sample that some siblings should be included. 

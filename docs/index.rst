@@ -15,10 +15,9 @@ Welcome to MESSES's documentation!
    tutorial
    tagging
    conversion_directives
-   experiment_description_schema
+   experiment_description_specification
    protocol_dependent_schema
    supported_formats
-   ISA
    api
    license
    todo
