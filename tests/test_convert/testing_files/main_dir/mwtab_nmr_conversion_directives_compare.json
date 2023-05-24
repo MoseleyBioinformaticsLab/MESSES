@@ -585,7 +585,8 @@
         "peak_pattern",
         "proton_count",
         "transient_peak",
-        "transient_peak%type"
+        "transient_peak%type",
+        "compound"
       ],
       "fields_to_headers": "True",
       "headers": [
@@ -616,7 +617,8 @@
         "peak_pattern",
         "proton_count",
         "transient_peak",
-        "transient_peak%type"
+        "transient_peak%type",
+        "compound"
       ],
       "id": "Metabolites",
       "sort_by": [
