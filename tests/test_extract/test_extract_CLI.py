@@ -788,14 +788,18 @@ def test_save_export_csv():
     test_file_export = pathlib.Path(test_file.stem + "_export.csv")
     assert test_file_export.exists()
     export_df = pandas.read_csv(test_file_export, header=None)
-    for column in saved_export_df.columns:
-        print(saved_export_df.loc[:,column].values)
-        print()
-        print(export_df.loc[:,column].values)
-        print()
-        print()
-        print(saved_export_df.loc[:,column].compare(export_df.loc[:,column]))
-        assert export_df.loc[:,column].equals(saved_export_df.loc[:,column])
+    print(repr(saved_export_df.iloc[:, 17].iloc[1]))
+    print()
+    print(repr(export_df.iloc[:, 17].iloc[1]))
+    
+    # for column in saved_export_df.columns:
+    #     print(saved_export_df.loc[:,column].values)
+    #     print()
+    #     print(export_df.loc[:,column].values)
+    #     print()
+    #     print()
+    #     print(saved_export_df.loc[:,column].compare(export_df.loc[:,column]))
+    #     assert export_df.loc[:,column].equals(saved_export_df.loc[:,column])
     assert saved_export_df.equals(export_df)
         
             
