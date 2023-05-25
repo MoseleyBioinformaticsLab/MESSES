@@ -1,0 +1,20 @@
+{
+  "TREATMENT": {
+    "TREATMENT_SUMMARY": {
+      "delimiter": "\" \"",
+      "fields": [
+        "description"
+      ],
+      "for_each": "True",
+      "id": "TREATMENT_SUMMARY",
+      "required": "True",
+      "sort_by": [
+        "id"
+      ],
+      "sort_order": "ascending",
+      "table": "protocol",
+      "test": "type=treatment",
+      "value_type": "str"
+    }
+  }
+}

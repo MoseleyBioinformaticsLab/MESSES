@@ -1,0 +1,315 @@
+{
+  "type": "object",
+  "properties": {
+    "protocol": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "machine_type": {
+            "type": "string",
+            "enum": [
+              "MS",
+              "NMR"
+            ]
+          }
+        },
+        "allOf": [
+          {
+            "if": {
+              "properties": {
+                "machine_type": {
+                  "const": "MS"
+                }
+              },
+              "required": [
+                "machine_type"
+              ]
+            },
+            "then": {
+              "properties": {
+                "chromatography_type": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "column_name": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "chromatography_instrument_name": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "instrument": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "instrument_type": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "ion_mode": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "ionization": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              },
+              "required": [
+                "chromatography_type",
+                "column_name",
+                "chromatography_instrument_name",
+                "instrument",
+                "instrument_type",
+                "ion_mode",
+                "ionization"
+              ]
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "machine_type": {
+                  "const": "NMR"
+                }
+              },
+              "required": [
+                "machine_type"
+              ]
+            },
+            "then": {
+              "properties": {
+                "instrument": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "instrument_type": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "NMR_experiment_type": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "spectrometer_frequency": {
+                  "type": [
+                    "string",
+                    "number"
+                  ],
+                  "minLength": 1,
+                  "format": "numeric"
+                },
+                "spectrometer_frequency%units": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              },
+              "required": [
+                "instrument",
+                "instrument_type",
+                "NMR_experiment_type",
+                "spectrometer_frequency",
+                "spectrometer_frequency%units"
+              ]
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "type": {
+                  "const": "collection"
+                }
+              },
+              "required": [
+                "type"
+              ]
+            },
+            "then": {
+              "properties": {
+                "description": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              },
+              "required": [
+                "description"
+              ]
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "type": {
+                  "const": "sample_prep"
+                }
+              },
+              "required": [
+                "type"
+              ]
+            },
+            "then": {
+              "properties": {
+                "description": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "order": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              },
+              "required": [
+                "description",
+                "order"
+              ]
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "type": {
+                  "const": "treatment"
+                }
+              },
+              "required": [
+                "type"
+              ]
+            },
+            "then": {
+              "properties": {
+                "description": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              },
+              "required": [
+                "description"
+              ]
+            }
+          }
+        ]
+      }
+    },
+    "project": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "PI_email": {
+            "type": "string",
+            "format": "email"
+          },
+          "PI_first_name": {
+            "type": "string",
+            "minLength": 1
+          },
+          "PI_last_name": {
+            "type": "string",
+            "minLength": 1
+          },
+          "address": {
+            "type": "string",
+            "minLength": 1
+          },
+          "department": {
+            "type": "string",
+            "minLength": 1
+          },
+          "phone": {
+            "type": "string",
+            "minLength": 1
+          },
+          "title": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "PI_email",
+          "PI_first_name",
+          "PI_last_name",
+          "address",
+          "department",
+          "phone",
+          "title"
+        ]
+      }
+    },
+    "study": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "PI_email": {
+            "type": "string",
+            "format": "email"
+          },
+          "PI_first_name": {
+            "type": "string",
+            "minLength": 1
+          },
+          "PI_last_name": {
+            "type": "string",
+            "minLength": 1
+          },
+          "address": {
+            "type": "string",
+            "minLength": 1
+          },
+          "department": {
+            "type": "string",
+            "minLength": 1
+          },
+          "phone": {
+            "type": "string",
+            "minLength": 1
+          },
+          "title": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "PI_email",
+          "PI_first_name",
+          "PI_last_name",
+          "address",
+          "department",
+          "phone",
+          "title"
+        ]
+      }
+    },
+    "measurement": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "assignment": {
+            "type": "string",
+            "minLength": 1
+          },
+          "intensity": {
+            "type": [
+              "string",
+              "number"
+            ],
+            "minLength": 1,
+            "format": "numeric"
+          },
+          "intensity%type": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "assignment",
+          "intensity",
+          "intensity%type"
+        ]
+      }
+    }
+  }
+}

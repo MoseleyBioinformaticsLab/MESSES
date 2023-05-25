@@ -1,0 +1,407 @@
+[
+  {
+    "Subject ID": "01_A0_naive_0days_UKy_GCH_rep1",
+    "Sample ID": "01_A0_Colon_naive_0days_170427_UKy_GCH_rep1-polar-ICMS_A",
+    "Factors": {
+      "Treatment": "naive",
+      "Time Point": "0"
+    },
+    "Additional sample data": {
+      "lineage0_id": "01_A0_naive_0days_UKy_GCH_rep1",
+      "lineage0_protocol.id": "['naive']",
+      "lineage0_replicate": "1",
+      "lineage0_species": "Mus musculus",
+      "lineage0_species_type": "Mouse",
+      "lineage0_taxonomy_id": "10090",
+      "lineage0_time_point": "0",
+      "lineage0_type": "subject",
+      "lineage1_id": "01_A0_Colon_naive_0days_170427_UKy_GCH_rep1",
+      "lineage1_protocol.id": "['mouse_tissue_collection', 'tissue_quench', 'frozen_tissue_grind']",
+      "lineage1_type": "sample",
+      "lineage2_id": "01_A0_Colon_naive_0days_170427_UKy_GCH_rep1-protein",
+      "lineage2_protein_weight": "0.6181768442446792",
+      "lineage2_protein_weight%units": "mg",
+      "lineage2_protocol.id": "['protein_extraction']",
+      "lineage2_type": "sample",
+      "RAW_FILE_NAME": "01_A0_Colon_naive_170427_UKy_GCB_rep1-quench_ICMSA.raw"
+    }
+  },
+  {
+    "Subject ID": "02_A1_naive_0days_UKy_GCH_rep2",
+    "Sample ID": "02_A1_Colon_naive_0days_170427_UKy_GCH_rep2-polar-ICMS_A",
+    "Factors": {
+      "Treatment": "naive",
+      "Time Point": "0"
+    },
+    "Additional sample data": {
+      "lineage0_id": "02_A1_naive_0days_UKy_GCH_rep2",
+      "lineage0_protocol.id": "['naive']",
+      "lineage0_replicate": "2",
+      "lineage0_species": "Mus musculus",
+      "lineage0_species_type": "Mouse",
+      "lineage0_taxonomy_id": "10090",
+      "lineage0_time_point": "0",
+      "lineage0_type": "subject",
+      "lineage1_id": "02_A1_Colon_naive_0days_170427_UKy_GCH_rep2",
+      "lineage1_protocol.id": "['mouse_tissue_collection', 'tissue_quench', 'frozen_tissue_grind']",
+      "lineage1_type": "sample",
+      "lineage2_id": "02_A1_Colon_naive_0days_170427_UKy_GCH_rep2-protein",
+      "lineage2_protein_weight": "0.4626846570186025",
+      "lineage2_protein_weight%units": "mg",
+      "lineage2_protocol.id": "['protein_extraction']",
+      "lineage2_type": "sample",
+      "RAW_FILE_NAME": "02_A1_Colon_naive_170427_UKy_GCB_rep2-quench_ICMSA.raw"
+    }
+  },
+  {
+    "Subject ID": "03_A2_naive_0days_UKy_GCH_rep3",
+    "Sample ID": "03_A2_Colon_naive_0days_170427_UKy_GCH_rep3-polar-ICMS_A",
+    "Factors": {
+      "Treatment": "naive",
+      "Time Point": "0"
+    },
+    "Additional sample data": {
+      "lineage0_id": "03_A2_naive_0days_UKy_GCH_rep3",
+      "lineage0_protocol.id": "['naive']",
+      "lineage0_replicate": "3",
+      "lineage0_species": "Mus musculus",
+      "lineage0_species_type": "Mouse",
+      "lineage0_taxonomy_id": "10090",
+      "lineage0_time_point": "0",
+      "lineage0_type": "subject",
+      "lineage1_id": "03_A2_Colon_naive_0days_170427_UKy_GCH_rep3",
+      "lineage1_protocol.id": "['mouse_tissue_collection', 'tissue_quench', 'frozen_tissue_grind']",
+      "lineage1_type": "sample",
+      "lineage2_id": "03_A2_Colon_naive_0days_170427_UKy_GCH_rep3-protein",
+      "lineage2_protein_weight": "0.6317204628207644",
+      "lineage2_protein_weight%units": "mg",
+      "lineage2_protocol.id": "['protein_extraction']",
+      "lineage2_type": "sample",
+      "RAW_FILE_NAME": "03_A2_Colon_naive_170427_UKy_GCB_rep3-quench_ICMSA.raw"
+    }
+  },
+  {
+    "Subject ID": "04_B0_syngenic_42days_UKy_GCH_rep1",
+    "Sample ID": "04_B0_Colon_syngenic_42days_170427_UKy_GCH_rep1-polar-ICMS_A",
+    "Factors": {
+      "Treatment": "syngenic",
+      "Time Point": "42"
+    },
+    "Additional sample data": {
+      "lineage0_id": "04_B0_syngenic_42days_UKy_GCH_rep1",
+      "lineage0_protocol.id": "['syngenic']",
+      "lineage0_replicate": "1",
+      "lineage0_species": "Mus musculus",
+      "lineage0_species_type": "Mouse",
+      "lineage0_taxonomy_id": "10090",
+      "lineage0_time_point": "42",
+      "lineage0_type": "subject",
+      "lineage1_id": "04_B0_Colon_syngenic_42days_170427_UKy_GCH_rep1",
+      "lineage1_protocol.id": "['mouse_tissue_collection', 'tissue_quench', 'frozen_tissue_grind']",
+      "lineage1_type": "sample",
+      "lineage2_id": "04_B0_Colon_syngenic_42days_170427_UKy_GCH_rep1-protein",
+      "lineage2_protein_weight": "0.6679368105226386",
+      "lineage2_protein_weight%units": "mg",
+      "lineage2_protocol.id": "['protein_extraction']",
+      "lineage2_type": "sample",
+      "RAW_FILE_NAME": "04_B0_Colon_syngenic_170427_UKy_GCB_rep1-quench_ICMSA.raw"
+    }
+  },
+  {
+    "Subject ID": "05_B1_syngenic_42days_UKy_GCH_rep2",
+    "Sample ID": "05_B1_Colon_syngenic_42days_170427_UKy_GCH_rep2-polar-ICMS_A",
+    "Factors": {
+      "Treatment": "syngenic",
+      "Time Point": "42"
+    },
+    "Additional sample data": {
+      "lineage0_id": "05_B1_syngenic_42days_UKy_GCH_rep2",
+      "lineage0_protocol.id": "['syngenic']",
+      "lineage0_replicate": "2",
+      "lineage0_species": "Mus musculus",
+      "lineage0_species_type": "Mouse",
+      "lineage0_taxonomy_id": "10090",
+      "lineage0_time_point": "42",
+      "lineage0_type": "subject",
+      "lineage1_id": "05_B1_Colon_syngenic_42days_170427_UKy_GCH_rep2",
+      "lineage1_protocol.id": "['mouse_tissue_collection', 'tissue_quench', 'frozen_tissue_grind']",
+      "lineage1_type": "sample",
+      "lineage2_id": "05_B1_Colon_syngenic_42days_170427_UKy_GCH_rep2-protein",
+      "lineage2_protein_weight": "0.6160223770621668",
+      "lineage2_protein_weight%units": "mg",
+      "lineage2_protocol.id": "['protein_extraction']",
+      "lineage2_type": "sample",
+      "RAW_FILE_NAME": "05_B1_Colon_syngenic_170427_UKy_GCB_rep2-quench_ICMSA.raw"
+    }
+  },
+  {
+    "Subject ID": "06_B2_syngenic_42days_UKy_GCH_rep3",
+    "Sample ID": "06_B2_Colon_syngenic_42days_170427_UKy_GCH_rep3-polar-ICMS_A",
+    "Factors": {
+      "Treatment": "syngenic",
+      "Time Point": "42"
+    },
+    "Additional sample data": {
+      "lineage0_id": "06_B2_syngenic_42days_UKy_GCH_rep3",
+      "lineage0_protocol.id": "['syngenic']",
+      "lineage0_replicate": "3",
+      "lineage0_species": "Mus musculus",
+      "lineage0_species_type": "Mouse",
+      "lineage0_taxonomy_id": "10090",
+      "lineage0_time_point": "42",
+      "lineage0_type": "subject",
+      "lineage1_id": "06_B2_Colon_syngenic_42days_170427_UKy_GCH_rep3",
+      "lineage1_protocol.id": "['mouse_tissue_collection', 'tissue_quench', 'frozen_tissue_grind']",
+      "lineage1_type": "sample",
+      "lineage2_id": "06_B2_Colon_syngenic_42days_170427_UKy_GCH_rep3-protein",
+      "lineage2_protein_weight": "1.5623114343705382",
+      "lineage2_protein_weight%units": "mg",
+      "lineage2_protocol.id": "['protein_extraction']",
+      "lineage2_type": "sample",
+      "RAW_FILE_NAME": "06_B2_Colon_syngenic_170427_UKy_GCB_rep3-quench_ICMSA.raw"
+    }
+  },
+  {
+    "Subject ID": "07_C1-1_allogenic_42days_UKy_GCH_rep1",
+    "Sample ID": "07_C1-1_Colon_allogenic_42days_170427_UKy_GCH_rep1-polar-ICMS_A",
+    "Factors": {
+      "Treatment": "allogenic",
+      "Time Point": "42"
+    },
+    "Additional sample data": {
+      "lineage0_id": "07_C1-1_allogenic_42days_UKy_GCH_rep1",
+      "lineage0_protocol.id": "['allogenic']",
+      "lineage0_replicate": "1",
+      "lineage0_species": "Mus musculus",
+      "lineage0_species_type": "Mouse",
+      "lineage0_taxonomy_id": "10090",
+      "lineage0_time_point": "42",
+      "lineage0_type": "subject",
+      "lineage1_id": "07_C1-1_Colon_allogenic_42days_170427_UKy_GCH_rep1",
+      "lineage1_protocol.id": "['mouse_tissue_collection', 'tissue_quench', 'frozen_tissue_grind']",
+      "lineage1_type": "sample",
+      "lineage2_id": "07_C1-1_Colon_allogenic_42days_170427_UKy_GCH_rep1-protein",
+      "lineage2_protein_weight": "1.2093335004111359",
+      "lineage2_protein_weight%units": "mg",
+      "lineage2_protocol.id": "['protein_extraction']",
+      "lineage2_type": "sample",
+      "RAW_FILE_NAME": "07_C1-1_Colon_allogenic_170427_UKy_GCB_rep1-quench_ICMSA.raw"
+    }
+  },
+  {
+    "Subject ID": "08_C1-2_allogenic_42days_UKy_GCH_rep2",
+    "Sample ID": "08_C1-2_Colon_allogenic_42days_170427_UKy_GCH_rep2-polar-ICMS_A",
+    "Factors": {
+      "Treatment": "allogenic",
+      "Time Point": "42"
+    },
+    "Additional sample data": {
+      "lineage0_id": "08_C1-2_allogenic_42days_UKy_GCH_rep2",
+      "lineage0_protocol.id": "['allogenic']",
+      "lineage0_replicate": "2",
+      "lineage0_species": "Mus musculus",
+      "lineage0_species_type": "Mouse",
+      "lineage0_taxonomy_id": "10090",
+      "lineage0_time_point": "42",
+      "lineage0_type": "subject",
+      "lineage1_id": "08_C1-2_Colon_allogenic_42days_170427_UKy_GCH_rep2",
+      "lineage1_protocol.id": "['mouse_tissue_collection', 'tissue_quench', 'frozen_tissue_grind']",
+      "lineage1_type": "sample",
+      "lineage2_id": "08_C1-2_Colon_allogenic_42days_170427_UKy_GCH_rep2-protein",
+      "lineage2_protein_weight": "1.6115317800148334",
+      "lineage2_protein_weight%units": "mg",
+      "lineage2_protocol.id": "['protein_extraction']",
+      "lineage2_type": "sample",
+      "RAW_FILE_NAME": "08_C1-2_Colon_allogenic_170427_UKy_GCB_rep2-quench_ICMSA.raw"
+    }
+  },
+  {
+    "Subject ID": "09_C2-0_allogenic_42days_UKy_GCH_rep1",
+    "Sample ID": "09_C2-0_Colon_allogenic_42days_170427_UKy_GCH_rep1-polar-ICMS_A",
+    "Factors": {
+      "Treatment": "allogenic",
+      "Time Point": "42"
+    },
+    "Additional sample data": {
+      "lineage0_id": "09_C2-0_allogenic_42days_UKy_GCH_rep1",
+      "lineage0_protocol.id": "['allogenic']",
+      "lineage0_replicate": "1",
+      "lineage0_species": "Mus musculus",
+      "lineage0_species_type": "Mouse",
+      "lineage0_taxonomy_id": "10090",
+      "lineage0_time_point": "42",
+      "lineage0_type": "subject",
+      "lineage1_id": "09_C2-0_Colon_allogenic_42days_170427_UKy_GCH_rep1",
+      "lineage1_protocol.id": "['mouse_tissue_collection', 'tissue_quench', 'frozen_tissue_grind']",
+      "lineage1_type": "sample",
+      "lineage2_id": "09_C2-0_Colon_allogenic_42days_170427_UKy_GCH_rep1-protein",
+      "lineage2_protein_weight": "1.6843458692847952",
+      "lineage2_protein_weight%units": "mg",
+      "lineage2_protocol.id": "['protein_extraction']",
+      "lineage2_type": "sample",
+      "RAW_FILE_NAME": "09_C2-0_Colon_allogenic_170427_UKy_GCB_rep1-quench_ICMSA.raw"
+    }
+  },
+  {
+    "Subject ID": "10_B1-0_syngenic_7days_UKy_GCH_rep1",
+    "Sample ID": "10_B1-0_Colon_syngenic_7days_170427_UKy_GCH_rep1-polar-ICMS_A",
+    "Factors": {
+      "Treatment": "syngenic",
+      "Time Point": "7"
+    },
+    "Additional sample data": {
+      "lineage0_id": "10_B1-0_syngenic_7days_UKy_GCH_rep1",
+      "lineage0_protocol.id": "['syngenic']",
+      "lineage0_replicate": "1",
+      "lineage0_species": "Mus musculus",
+      "lineage0_species_type": "Mouse",
+      "lineage0_taxonomy_id": "10090",
+      "lineage0_time_point": "7",
+      "lineage0_type": "subject",
+      "lineage1_id": "10_B1-0_Colon_syngenic_7days_170427_UKy_GCH_rep1",
+      "lineage1_protocol.id": "['mouse_tissue_collection', 'tissue_quench', 'frozen_tissue_grind']",
+      "lineage1_type": "sample",
+      "lineage2_id": "10_B1-0_Colon_syngenic_7days_170427_UKy_GCH_rep1-protein",
+      "lineage2_protein_weight": "0.9744309499653369",
+      "lineage2_protein_weight%units": "mg",
+      "lineage2_protocol.id": "['protein_extraction']",
+      "lineage2_type": "sample",
+      "RAW_FILE_NAME": "10_B1-0_Colon_syngenic_170427_UKy_GCB_rep1-quench_ICMSA.raw"
+    }
+  },
+  {
+    "Subject ID": "11_B1-1_syngenic_7days_UKy_GCH_rep2",
+    "Sample ID": "11_B1-1_Colon_syngenic_7days_170427_UKy_GCH_rep2-polar-ICMS_A",
+    "Factors": {
+      "Treatment": "syngenic",
+      "Time Point": "7"
+    },
+    "Additional sample data": {
+      "lineage0_id": "11_B1-1_syngenic_7days_UKy_GCH_rep2",
+      "lineage0_protocol.id": "['syngenic']",
+      "lineage0_replicate": "2",
+      "lineage0_species": "Mus musculus",
+      "lineage0_species_type": "Mouse",
+      "lineage0_taxonomy_id": "10090",
+      "lineage0_time_point": "7",
+      "lineage0_type": "subject",
+      "lineage1_id": "11_B1-1_Colon_syngenic_7days_170427_UKy_GCH_rep2",
+      "lineage1_protocol.id": "['mouse_tissue_collection', 'tissue_quench', 'frozen_tissue_grind']",
+      "lineage1_type": "sample",
+      "lineage2_id": "11_B1-1_Colon_syngenic_7days_170427_UKy_GCH_rep2-protein",
+      "lineage2_protein_weight": "1.2443973624103961",
+      "lineage2_protein_weight%units": "mg",
+      "lineage2_protocol.id": "['protein_extraction']",
+      "lineage2_type": "sample",
+      "RAW_FILE_NAME": "11_B1-1_Colon_syngenic_170427_UKy_GCB_rep2-quench_ICMSA.raw"
+    }
+  },
+  {
+    "Subject ID": "12_B1-2_syngenic_7days_UKy_GCH_rep3",
+    "Sample ID": "12_B1-2_Colon_syngenic_7days_170427_UKy_GCH_rep3-polar-ICMS_A",
+    "Factors": {
+      "Treatment": "syngenic",
+      "Time Point": "7"
+    },
+    "Additional sample data": {
+      "lineage0_id": "12_B1-2_syngenic_7days_UKy_GCH_rep3",
+      "lineage0_protocol.id": "['syngenic']",
+      "lineage0_replicate": "3",
+      "lineage0_species": "Mus musculus",
+      "lineage0_species_type": "Mouse",
+      "lineage0_taxonomy_id": "10090",
+      "lineage0_time_point": "7",
+      "lineage0_type": "subject",
+      "lineage1_id": "12_B1-2_Colon_syngenic_7days_170427_UKy_GCH_rep3",
+      "lineage1_protocol.id": "['mouse_tissue_collection', 'tissue_quench', 'frozen_tissue_grind']",
+      "lineage1_type": "sample",
+      "lineage2_id": "12_B1-2_Colon_syngenic_7days_170427_UKy_GCH_rep3-protein",
+      "lineage2_protein_weight": "1.6127238309055993",
+      "lineage2_protein_weight%units": "mg",
+      "lineage2_protocol.id": "['protein_extraction']",
+      "lineage2_type": "sample",
+      "RAW_FILE_NAME": "12_B1-2_Colon_syngenic_170427_UKy_GCB_rep3-quench_ICMSA.raw"
+    }
+  },
+  {
+    "Subject ID": "13_C1-1_allogenic_7days_UKy_GCH_rep1",
+    "Sample ID": "13_C1-1_Colon_allogenic_7days_170427_UKy_GCH_rep1-polar-ICMS_A",
+    "Factors": {
+      "Treatment": "allogenic",
+      "Time Point": "7"
+    },
+    "Additional sample data": {
+      "lineage0_id": "13_C1-1_allogenic_7days_UKy_GCH_rep1",
+      "lineage0_protocol.id": "['allogenic']",
+      "lineage0_replicate": "1",
+      "lineage0_species": "Mus musculus",
+      "lineage0_species_type": "Mouse",
+      "lineage0_taxonomy_id": "10090",
+      "lineage0_time_point": "7",
+      "lineage0_type": "subject",
+      "lineage1_id": "13_C1-1_Colon_allogenic_7days_170427_UKy_GCH_rep1",
+      "lineage1_protocol.id": "['mouse_tissue_collection', 'tissue_quench', 'frozen_tissue_grind']",
+      "lineage1_type": "sample",
+      "lineage2_id": "13_C1-1_Colon_allogenic_7days_170427_UKy_GCH_rep1-protein",
+      "lineage2_protein_weight": "2.0735556513766173",
+      "lineage2_protein_weight%units": "mg",
+      "lineage2_protocol.id": "['protein_extraction']",
+      "lineage2_type": "sample",
+      "RAW_FILE_NAME": "13_C1-1_Colon_allogenic_170427_UKy_GCB_rep1-quench_ICMSA.raw"
+    }
+  },
+  {
+    "Subject ID": "14_C1-2_allogenic_7days_UKy_GCH_rep2",
+    "Sample ID": "14_C1-2_Colon_allogenic_7days_170427_UKy_GCH_rep2-polar-ICMS_A",
+    "Factors": {
+      "Treatment": "allogenic",
+      "Time Point": "7"
+    },
+    "Additional sample data": {
+      "lineage0_id": "14_C1-2_allogenic_7days_UKy_GCH_rep2",
+      "lineage0_protocol.id": "['allogenic']",
+      "lineage0_replicate": "2",
+      "lineage0_species": "Mus musculus",
+      "lineage0_species_type": "Mouse",
+      "lineage0_taxonomy_id": "10090",
+      "lineage0_time_point": "7",
+      "lineage0_type": "subject",
+      "lineage1_id": "14_C1-2_Colon_allogenic_7days_170427_UKy_GCH_rep2",
+      "lineage1_protocol.id": "['mouse_tissue_collection', 'tissue_quench', 'frozen_tissue_grind']",
+      "lineage1_type": "sample",
+      "lineage2_id": "14_C1-2_Colon_allogenic_7days_170427_UKy_GCH_rep2-protein",
+      "lineage2_protein_weight": "1.7420773775641787",
+      "lineage2_protein_weight%units": "mg",
+      "lineage2_protocol.id": "['protein_extraction']",
+      "lineage2_type": "sample",
+      "RAW_FILE_NAME": "14_C1-2_Colon_allogenic_170427_UKy_GCB_rep2-quench_ICMSA.raw"
+    }
+  },
+  {
+    "Subject ID": "15_C1-20_allogenic_7days_UKy_GCH_rep3",
+    "Sample ID": "15_C1-20_Colon_allogenic_7days_170427_UKy_GCH_rep3-polar-ICMS_A",
+    "Factors": {
+      "Treatment": "allogenic",
+      "Time Point": "7"
+    },
+    "Additional sample data": {
+      "lineage0_id": "15_C1-20_allogenic_7days_UKy_GCH_rep3",
+      "lineage0_protocol.id": "['allogenic']",
+      "lineage0_replicate": "3",
+      "lineage0_species": "Mus musculus",
+      "lineage0_species_type": "Mouse",
+      "lineage0_taxonomy_id": "10090",
+      "lineage0_time_point": "7",
+      "lineage0_type": "subject",
+      "lineage1_id": "15_C1-20_Colon_allogenic_7days_170427_UKy_GCH_rep3",
+      "lineage1_protocol.id": "['mouse_tissue_collection', 'tissue_quench', 'frozen_tissue_grind']",
+      "lineage1_type": "sample",
+      "lineage2_id": "15_C1-20_Colon_allogenic_7days_170427_UKy_GCH_rep3-protein",
+      "lineage2_protein_weight": "1.9186640291000003",
+      "lineage2_protein_weight%units": "mg",
+      "lineage2_protocol.id": "['protein_extraction']",
+      "lineage2_type": "sample",
+      "RAW_FILE_NAME": "15_C1-20_Colon_allogenic_170427_UKy_GCB_rep3-quench_ICMSA.raw"
+    }
+  }
+]

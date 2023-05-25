@@ -1,0 +1,20 @@
+{
+  "TREATMENT": {
+    "TREATMENT_SUMMARY": {
+      "headers": [
+        "\"id\"=id",
+        "\"field\"=field"
+      ],
+      "optional_headers": [
+        "allowed_values"
+      ],
+      "id": "TREATMENT_SUMMARY",
+      "sort_by": [
+        "id"
+      ],
+      "sort_order": "ascending",
+      "table": "factor",
+      "value_type": "matrix"
+    }
+  }
+}

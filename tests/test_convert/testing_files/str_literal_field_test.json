@@ -1,0 +1,14 @@
+{
+  "CHROMATOGRAPHY": {
+    "CHROMATOGRAPHY_SUMMARY": {
+      "fields": [
+        "\"asdf\""
+      ],
+      "id": "CHROMATOGRAPHY_SUMMARY",
+      "required": "False",
+      "table": "protocol",
+      "test": "machine_type=MS",
+      "value_type": "str"
+    }
+  }
+}

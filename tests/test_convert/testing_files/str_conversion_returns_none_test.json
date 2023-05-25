@@ -1,0 +1,13 @@
+{
+  "TREATMENT": {
+    "TREATMENT_SUMMARY": {
+      "fields": [
+        "id"
+      ],
+      "id": "TREATMENT_SUMMARY",
+      "table": "factor",
+      "value_type": "str",
+      "code": "None"
+    }
+  }
+}
