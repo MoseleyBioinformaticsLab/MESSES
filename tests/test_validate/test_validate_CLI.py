@@ -6,7 +6,6 @@ import os
 import time
 import json
 import subprocess
-import platform
 import io
 
 import pandas
@@ -234,12 +233,10 @@ def test_json_command_pds_option_stdin_csv():
     
     test_file = "simplified_base_input_pds_error.json"
     
-    if platform.system() == "Windows":
-        command = "TYPE ..\\PDS_base.csv | messes validate json ../" + test_file + " --pds - --csv --silent nuisance"
-    else:
-        command = "cat ../PDS_base.csv | messes validate json ../" + test_file + " --pds - --csv --silent nuisance"
+    command = "messes validate json ../" + test_file + " --pds - --csv --silent nuisance"
     command = command.split(" ")
-    subp = subprocess.run(command, capture_output=True, encoding="UTF-8", shell=True)
+    with open("../PDS_base.csv") as file:
+        subp = subprocess.run(command, stdin=file, capture_output=True, encoding="UTF-8")
     output = subp.stderr
     
     assert output == "Error:  The entry ['measurement']['dUMP-13C0-29_C1-2_Lung_allogenic_7days_170427_UKy_GCH_rep2-polar-ICMS_A'] " +\
@@ -251,12 +248,10 @@ def test_json_command_pds_option_stdin_json():
     
     test_file = "simplified_base_input_pds_error.json"
     
-    if platform.system() == "Windows":
-        command = "TYPE ..\\PDS_base.json | messes validate json ../" + test_file + " --pds - --json --silent nuisance"
-    else:
-        command = "cat ../PDS_base.json | messes validate json ../" + test_file + " --pds - --json --silent nuisance"
+    command = "messes validate json ../" + test_file + " --pds - --json --silent nuisance"
     command = command.split(" ")
-    subp = subprocess.run(command, capture_output=True, encoding="UTF-8", shell=True)
+    with open("../PDS_base.json") as file:
+        subp = subprocess.run(command, stdin=file, capture_output=True, encoding="UTF-8")
     output = subp.stderr
     
     assert output == "Error:  The entry ['measurement']['dUMP-13C0-29_C1-2_Lung_allogenic_7days_170427_UKy_GCH_rep2-polar-ICMS_A'] " +\
@@ -268,12 +263,10 @@ def test_json_command_pds_option_stdin_wrong_type():
     
     test_file = "simplified_base_input_pds_error.json"
     
-    if platform.system() == "Windows":
-        command = "TYPE ..\\PDS_base.json | messes validate json ../" + test_file + " --pds - --csv --silent nuisance"
-    else:
-        command = "cat ../PDS_base.json | messes validate json ../" + test_file + " --pds - --csv --silent nuisance"
+    command = "messes validate json ../" + test_file + " --pds - --csv --silent nuisance"
     command = command.split(" ")
-    subp = subprocess.run(command, capture_output=True, encoding="UTF-8", shell=True)
+    with open("../PDS_base.json") as file:
+        subp = subprocess.run(command, stdin=file, capture_output=True, encoding="UTF-8")
     output = subp.stderr
     
     assert output == "Error:  A problem was encountered when trying to read the protocol-dependent schema from stdin. " +\
@@ -285,12 +278,10 @@ def test_json_command_pds_option_stdin_wrong_type2():
     
     test_file = "simplified_base_input_pds_error.json"
     
-    if platform.system() == "Windows":
-        command = "TYPE ..\\PDS_base.csv | messes validate json ../" + test_file + " --pds - --json --silent nuisance"
-    else:
-        command = "cat ../PDS_base.csv | messes validate json ../" + test_file + " --pds - --json --silent nuisance"
+    command = "messes validate json ../" + test_file + " --pds - --json --silent nuisance"
     command = command.split(" ")
-    subp = subprocess.run(command, capture_output=True, encoding="UTF-8", shell=True)
+    with open("../PDS_base.csv") as file:
+        subp = subprocess.run(command, stdin=file, capture_output=True, encoding="UTF-8")
     output = subp.stderr
     
     assert output == "Error:  A problem was encountered when trying to read the protocol-dependent schema from stdin. " +\
@@ -302,12 +293,10 @@ def test_json_command_pds_option_stdin_no_type_given():
     
     test_file = "simplified_base_input_pds_error.json"
     
-    if platform.system() == "Windows":
-        command = "TYPE ..\\PDS_base.csv | messes validate json ../" + test_file + " --pds - --silent nuisance"
-    else:
-        command = "cat ../PDS_base.csv | messes validate json ../" + test_file + " --pds - --silent nuisance"
+    command = "messes validate json ../" + test_file + " --pds - --silent nuisance"
     command = command.split(" ")
-    subp = subprocess.run(command, capture_output=True, encoding="UTF-8", shell=True)
+    with open("../PDS_base.csv") as file:
+        subp = subprocess.run(command, stdin=file, capture_output=True, encoding="UTF-8")
     output = subp.stderr
     
     assert output == "Error:  When reading the protocol-dependent schema from standard input you must specify that it is '--csv' or '--json'." + "\n"
@@ -316,12 +305,10 @@ def test_json_command_pds_option_stdin_no_type_given():
 def test_json_command_read_input_from_stdin():
     """Test that reading input JSON from stdin works."""
     
-    if platform.system() == "Windows":
-        command = "TYPE ..\\simplified_base_input.json | messes validate json -"
-    else:
-        command = "cat ../simplified_base_input.json | messes validate json -"
+    command = "messes validate json -"
     command = command.split(" ")
-    subp = subprocess.run(command, capture_output=True, encoding="UTF-8", shell=True)
+    with open("../simplified_base_input.json") as file:
+        subp = subprocess.run(command, stdin=file, capture_output=True, encoding="UTF-8")
     output = subp.stderr
     
     assert output == ""
@@ -332,12 +319,10 @@ def test_json_command_read_additional_from_stdin():
     
     test_file = "simplified_base_input_base_error.json"
     
-    if platform.system() == "Windows":
-        command = "TYPE ..\\base_schema.json | messes validate json ../" + test_file + " --additional - --no_base_schema"
-    else:
-        command = "cat ../base_schema.json | messes validate json ../" + test_file + " --additional - --no_base_schema"
+    command = "messes validate json ../" + test_file + " --additional - --no_base_schema"
     command = command.split(" ")
-    subp = subprocess.run(command, capture_output=True, encoding="UTF-8", shell=True)
+    with open("../base_schema.json") as file:
+        subp = subprocess.run(command, stdin=file, capture_output=True, encoding="UTF-8")
     output = subp.stderr
     
     assert output == "Error:  The entry ['factor']['Time Point'] is missing the required property 'allowed_values'." + "\n"
@@ -561,12 +546,10 @@ def test_save_schema_command_pds_and_input():
 def test_save_schema_command_pds_from_stdin_csv():
     """Test that the save_schema commmand produces expected file with pds option reading from stdin csv."""
     
-    if platform.system() == "Windows":
-        command = "TYPE ..\\PDS_base.csv | messes validate save-schema output --input ../simplified_base_input.json --pds - --csv --silent nuisance"
-    else:
-        command = "cat ../PDS_base.csv | messes validate save-schema output --input ../simplified_base_input.json --pds - --csv --silent nuisance"
+    command = "messes validate save-schema output --input ../simplified_base_input.json --pds - --csv --silent nuisance"
     command = command.split(" ")
-    subp = subprocess.run(command, capture_output=True, encoding="UTF-8", shell=True)
+    with open("../PDS_base.csv") as file:
+        subp = subprocess.run(command, stdin=file, capture_output=True, encoding="UTF-8")
     output = subp.stderr
     
     assert output == ""
@@ -585,12 +568,10 @@ def test_save_schema_command_pds_from_stdin_csv():
 def test_save_schema_command_pds_from_stdin_json():
     """Test that the save_schema commmand produces expected file with pds option reading from stdin json."""
     
-    if platform.system() == "Windows":
-        command = "TYPE ..\\PDS_base.json | messes validate save-schema output --input ../simplified_base_input.json --pds - --json --silent nuisance"
-    else:
-        command = "cat ../PDS_base.json | messes validate save-schema output --input ../simplified_base_input.json --pds - --json --silent nuisance"
+    command = "messes validate save-schema output --input ../simplified_base_input.json --pds - --json --silent nuisance"
     command = command.split(" ")
-    subp = subprocess.run(command, capture_output=True, encoding="UTF-8", shell=True)
+    with open("../PDS_base.json") as file:
+        subp = subprocess.run(command, stdin=file, capture_output=True, encoding="UTF-8")
     output = subp.stderr
     
     assert output == ""
@@ -609,12 +590,10 @@ def test_save_schema_command_pds_from_stdin_json():
 def test_save_schema_command_input_from_stdin():
     """Test that the save_schema commmand produces expected file with input option reading from stdin."""
     
-    if platform.system() == "Windows":
-        command = "TYPE ..\\simplified_base_input.json | messes validate save-schema output --input - --pds ../PDS_base.json --silent nuisance"
-    else:
-        command = "cat ../simplified_base_input.json | messes validate save-schema output --input - --pds ../PDS_base.json --silent nuisance"
+    command = "messes validate save-schema output --input - --pds ../PDS_base.json --silent nuisance"
     command = command.split(" ")
-    subp = subprocess.run(command, capture_output=True, encoding="UTF-8", shell=True)
+    with open("../simplified_base_input.json") as file:
+        subp = subprocess.run(command, stdin=file, capture_output=True, encoding="UTF-8")
     output = subp.stderr
     
     assert output == ""
@@ -785,12 +764,10 @@ def test_pds_command_save_option():
 def test_pds_command_read_from_stdin_csv():
     """Test the pds command can read from stdin."""
     
-    if platform.system() == "Windows":
-        command = "TYPE ..\\PDS_base.csv | messes validate pds - --csv --silent nuisance"
-    else:
-        command = "cat ../PDS_base.csv | messes validate pds - --csv --silent nuisance"
+    command = "messes validate pds - --csv --silent nuisance"
     command = command.split(" ")
-    subp = subprocess.run(command, capture_output=True, encoding="UTF-8", shell=True)
+    with open("../PDS_base.csv") as file:
+        subp = subprocess.run(command, stdin=file, capture_output=True, encoding="UTF-8")
     output = subp.stderr
     
     assert output == ""
@@ -799,12 +776,10 @@ def test_pds_command_read_from_stdin_csv():
 def test_pds_command_read_from_stdin_json():
     """Test the pds command can read from stdin."""
     
-    if platform.system() == "Windows":
-        command = "TYPE ..\\PDS_base.json | messes validate pds - --json --silent nuisance"
-    else:
-        command = "cat ../PDS_base.json | messes validate pds - --json --silent nuisance"
+    command = "messes validate pds - --json --silent nuisance"
     command = command.split(" ")
-    subp = subprocess.run(command, capture_output=True, encoding="UTF-8", shell=True)
+    with open("../PDS_base.json") as file:
+        subp = subprocess.run(command, stdin=file, capture_output=True, encoding="UTF-8")
     output = subp.stderr
     
     assert output == ""
@@ -815,7 +790,7 @@ def test_pds_command_silent_full():
     
     command = "messes validate pds ../PDS_base.csv --csv --silent full"
     command = command.split(" ")
-    subp = subprocess.run(command, capture_output=True, encoding="UTF-8", shell=True)
+    subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
     
     assert output == ""
@@ -830,7 +805,7 @@ def test_pds_to_table_command_csv():
     
     command = "messes validate pds-to-table ../PDS_base.json output csv"
     command = command.split(" ")
-    subprocess.run(command, capture_output=True, encoding="UTF-8", shell=True)
+    subprocess.run(command, capture_output=True, encoding="UTF-8")
     
     compare_df = pandas.read_csv("pds_to_table.csv", header=None)
     new_df = pandas.read_csv("output.csv", header=None)
@@ -843,7 +818,7 @@ def test_pds_to_table_command_xlsx():
     
     command = "messes validate pds-to-table ../PDS_base.json output xlsx"
     command = command.split(" ")
-    subprocess.run(command, capture_output=True, encoding="UTF-8", shell=True)
+    subprocess.run(command, capture_output=True, encoding="UTF-8")
     
     compare_df = pandas.read_excel("pds_to_table.xlsx", header=None)
     new_df = pandas.read_excel("output.xlsx", header=None)
@@ -856,7 +831,7 @@ def test_pds_to_table_command_stdout():
     
     command = "messes validate pds-to-table ../PDS_base.json -"
     command = command.split(" ")
-    subp = subprocess.run(command, capture_output=True, encoding="UTF-8", shell=True)
+    subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stdout
     
     compare_df = pandas.read_csv("pds_to_table.csv", header=None)
@@ -870,7 +845,7 @@ def test_pds_to_table_command_invalid_output_type():
     
     command = "messes validate pds-to-table ../PDS_base.json output asdf"
     command = command.split(" ")
-    subp = subprocess.run(command, capture_output=True, encoding="UTF-8", shell=True)
+    subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
     
     assert "Error:  Unknown output filetype." in output
@@ -886,7 +861,7 @@ def test_pds_to_json_command():
     
     command = "messes validate pds-to-json ../PDS_base.csv output"
     command = command.split(" ")
-    subprocess.run(command, capture_output=True, encoding="UTF-8", shell=True)
+    subprocess.run(command, capture_output=True, encoding="UTF-8")
     
     assert output_path_json.exists()
     
@@ -908,7 +883,7 @@ def test_cd_to_json_schema_command():
     
     command = "messes validate cd-to-json-schema ../mwtab_ms_conversion_directives.json output"
     command = command.split(" ")
-    subp = subprocess.run(command, capture_output=True, encoding="UTF-8", shell=True)
+    subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
     
     assert output == ""
@@ -929,7 +904,7 @@ def test_cd_to_json_schema_command_invalid_directives():
     
     command = "messes validate cd-to-json-schema ../mwtab_ms_conversion_directives_error.json output"
     command = command.split(" ")
-    subp = subprocess.run(command, capture_output=True, encoding="UTF-8", shell=True)
+    subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
     
     assert "Error:  The conversion directives are not valid, so a JSON schema could not be created." in output

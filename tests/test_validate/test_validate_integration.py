@@ -6,7 +6,6 @@ import os
 import time
 import json
 import subprocess
-import platform
 
 
 
@@ -254,12 +253,10 @@ def test_file_path_doesnt_exist_pds():
 def test_read_in_error_stdin_json():
     """Test that error is printed when a json file is read from stdin and encounters an error."""
     
-    if platform.system() == "Windows":
-        command = "TYPE ..\\bad_JSON_file.json | messes validate json -"
-    else:
-        command = "cat ../bad_JSON_file.json | messes validate json -"
+    command = "messes validate json -"
     command = command.split(" ")
-    subp = subprocess.run(command, capture_output=True, encoding="UTF-8", shell=True)
+    with open("../bad_JSON_file.json") as file:
+        subp = subprocess.run(command, stdin=file, capture_output=True, encoding="UTF-8")
     output = subp.stderr
         
     assert output == "Error:  An error was encountered when trying to read in the input JSON from standard input." + "\n"
