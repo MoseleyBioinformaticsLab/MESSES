@@ -792,6 +792,10 @@ def test_save_export_csv():
     print()
     print(repr(export_df.iloc[:, 17].iloc[1]))
     
+    with open(saved_export) as filetxt:
+        txt = filetxt.read()
+    print(repr(txt))
+    
     # for column in saved_export_df.columns:
     #     print(saved_export_df.loc[:,column].values)
     #     print()
