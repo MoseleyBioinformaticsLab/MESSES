@@ -790,10 +790,10 @@ def test_save_export_csv():
     export_df = pandas.read_csv(test_file_export, header=None)
     for column in saved_export_df.columns:
         print(saved_export_df.loc[:,column].values)
-        print(saved_export_df.loc[:,column].isnull())
+        print(saved_export_df.loc[:,column].map(type))
         print()
         print(export_df.loc[:,column].values)
-        print(export_df.loc[:,column].isnull())
+        print(export_df.loc[:,column].map(type))
         print()
         print()
         print(export_df.loc[:,column] == saved_export_df.loc[:,column])
