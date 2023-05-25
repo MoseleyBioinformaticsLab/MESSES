@@ -783,19 +783,18 @@ def test_save_export_csv():
     
     test_file = pathlib.Path(test_file)
     saved_export = pathlib.Path("../" + test_file.stem + "_export.csv")
-    saved_export_df = pandas.read_csv(saved_export, header=None)
+    # saved_export_df = pandas.read_csv(saved_export, header=None)
+    with open(saved_export) as saved_export_handle:
+        saved_export_df = pandas.read_csv(saved_export_handle, header=None)
     
     test_file_export = pathlib.Path(test_file.stem + "_export.csv")
     assert test_file_export.exists()
     export_df = pandas.read_csv(test_file_export, header=None)
+    
     print(repr(saved_export_df.iloc[:, 17].iloc[1]))
     print()
     print(repr(export_df.iloc[:, 17].iloc[1]))
-    
-    with open(saved_export) as filetxt:
-        txt = filetxt.read()
-    print(repr(txt))
-    
+        
     # for column in saved_export_df.columns:
     #     print(saved_export_df.loc[:,column].values)
     #     print()
