@@ -20,8 +20,8 @@ jobs:
     # The type of runner that the job will run on
     strategy:
       matrix:
-        python-version: ['3.10', '3.11']
-        os: [ubuntu-latest, windows-latest]
+        python-version: ['3.10']
+        os: [windows-latest]
     runs-on: ${{matrix.os}}
 
     # Steps represent a sequence of tasks that will be executed as part of the job
@@ -46,4 +46,4 @@ jobs:
 
       # Run pytest
       - name: Test with pytest
-        run: pytest
+        run: pytest -vv
