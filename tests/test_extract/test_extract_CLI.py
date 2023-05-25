@@ -794,6 +794,7 @@ def test_save_export_csv():
         print(export_df.loc[:,column].values)
         print()
         print()
+        assert (export_df.loc[:,column] == saved_export_df.loc[:,column]).all()
     assert saved_export_df.equals(export_df)
         
             
