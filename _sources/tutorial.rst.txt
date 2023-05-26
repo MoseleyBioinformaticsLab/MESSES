@@ -2,7 +2,7 @@ Tutorial
 ========
 MESSES is intended to be used solely as a command line program. This 
 tutorial describes each command and its options. Before running the program you 
-will likely want to review the :doc:`experiment_description_schema` page and the 
+will likely want to review the :doc:`experiment_description_specification` page and the 
 :doc:`tagging` page, as well as the examples in the examples folder on the GitHub_ 
 repository.
 
@@ -582,7 +582,7 @@ Validate
     :language: none
 
 Validation can be broken down into layers. The first layer is making sure the data is valid 
-against the :doc:`experiment_description_schema`. This includes things such as making sure every protocol 
+against the :doc:`experiment_description_specification`. This includes things such as making sure every protocol 
 is one of the 5 types, making sure every sample entity has a parent, and all records have the 
 required fields. This layer is built into the validate command and does not require any 
 user input. The second layer is a layer that validates fields in table records based on 

@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Protocol-Dependent Schema &mdash; MESSES 0.1.dev1+g817984f documentation</title>
+  <title>Protocol-Dependent Schema &mdash; MESSES 0.1.dev1+g80469ef documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/custom_css.css" type="text/css" />
       <link rel="stylesheet" href="_static/sphinxcontrib-images/LightBox2/lightbox2/dist/css/lightbox.css" type="text/css" />
@@ -24,7 +24,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Supported Conversion Formats" href="supported_formats.html" />
-    <link rel="prev" title="Experiment Description Schema" href="experiment_description_schema.html" /> 
+    <link rel="prev" title="Experiment Description Specification" href="experiment_description_specification.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -35,7 +35,7 @@
             <a href="index.html" class="icon icon-home"> MESSES
           </a>
               <div class="version">
-                0.1.dev1+g817984f
+                0.1.dev1+g80469ef
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -52,7 +52,7 @@
 <li class="toctree-l1"><a class="reference internal" href="tutorial.html">Tutorial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tagging.html">Tagging</a></li>
 <li class="toctree-l1"><a class="reference internal" href="conversion_directives.html">Conversion Directives</a></li>
-<li class="toctree-l1"><a class="reference internal" href="experiment_description_schema.html">Experiment Description Schema</a></li>
+<li class="toctree-l1"><a class="reference internal" href="experiment_description_specification.html">Experiment Description Specification</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Protocol-Dependent Schema</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#protocol-dependent-schema-json">Protocol-Dependent Schema - JSON</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#pds-json-to-json-schema">PDS JSON to JSON Schema</a></li>
@@ -62,7 +62,6 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="supported_formats.html">Supported Conversion Formats</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ISA.html">ISA and MESSES</a></li>
 <li class="toctree-l1"><a class="reference internal" href="api.html">API</a></li>
 <li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
 <li class="toctree-l1"><a class="reference internal" href="todo.html">TODO List</a></li>
@@ -120,7 +119,7 @@ schema. The general format is shown below:</p>
 <span class="go">}</span>
 </pre></div>
 </div>
-<p>The first table shown is the “parent_protocol” table, named so it will not be confused with the “protocol” table in <a class="reference internal" href="experiment_description_schema.html"><span class="doc">Experiment Description Schema</span></a>.
+<p>The first table shown is the “parent_protocol” table, named so it will not be confused with the “protocol” table in <a class="reference internal" href="experiment_description_specification.html"><span class="doc">Experiment Description Specification</span></a>.
 The parent_protocol is required to specify the types of the protocols in the JSON, but
 also allows you to specify inheritance of protocols. The children of a protocol
 inherit all of the required fields of not only its parent, but all of its ancestors.
@@ -843,7 +842,7 @@ protocols to illustrate inheritance is shown below:</p>
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="experiment_description_schema.html" class="btn btn-neutral float-left" title="Experiment Description Schema" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="experiment_description_specification.html" class="btn btn-neutral float-left" title="Experiment Description Specification" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="supported_formats.html" class="btn btn-neutral float-right" title="Supported Conversion Formats" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 

@@ -9,6 +9,9 @@ Possible Improvements to MESSES
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Support the ISA-Tab format.
 
+If the user says to read from stdin but does not supply a file, then it will run indefinitely. This is 
+normal behavior for that situation in other programs, but we could add a timeout on waiting.
+
 
 Possible Improvements to Extract
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

@@ -29,7 +29,7 @@ schema. The general format is shown below:
     ...
     }
 
-The first table shown is the "parent_protocol" table, named so it will not be confused with the "protocol" table in :doc:`experiment_description_schema`. 
+The first table shown is the "parent_protocol" table, named so it will not be confused with the "protocol" table in :doc:`experiment_description_specification`. 
 The parent_protocol is required to specify the types of the protocols in the JSON, but 
 also allows you to specify inheritance of protocols. The children of a protocol 
 inherit all of the required fields of not only its parent, but all of its ancestors. 

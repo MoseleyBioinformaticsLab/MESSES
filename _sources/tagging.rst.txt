@@ -24,7 +24,7 @@ to create a more robust system that could handle more complicated data arrangeme
 verbosity to a minimum. The system that was devised was an extra layer of tags added on top of existing 
 tables that tell the extract command how to transform the tabular data into key-based record data similar 
 to JSON or SQL databases. The specific table schema this system was designed for is covered in the 
-:doc:`experiment_description_schema` section, but it is general enough that it can be used with most table schema.
+:doc:`experiment_description_specification` section, but it is general enough that it can be used with most table schema.
 
 This initial system served its function well, but it became clear that more functionality was sorely needed. 
 Namely, both a way to add tags programmatically to data and a way to modify record values was needed, so the 

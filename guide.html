@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>User Guide &mdash; MESSES 0.1.dev1+g817984f documentation</title>
+  <title>User Guide &mdash; MESSES 0.1.dev1+g80469ef documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/custom_css.css" type="text/css" />
       <link rel="stylesheet" href="_static/sphinxcontrib-images/LightBox2/lightbox2/dist/css/lightbox.css" type="text/css" />
@@ -35,7 +35,7 @@
             <a href="index.html" class="icon icon-home"> MESSES
           </a>
               <div class="version">
-                0.1.dev1+g817984f
+                0.1.dev1+g80469ef
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -69,10 +69,9 @@
 <li class="toctree-l1"><a class="reference internal" href="tutorial.html">Tutorial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tagging.html">Tagging</a></li>
 <li class="toctree-l1"><a class="reference internal" href="conversion_directives.html">Conversion Directives</a></li>
-<li class="toctree-l1"><a class="reference internal" href="experiment_description_schema.html">Experiment Description Schema</a></li>
+<li class="toctree-l1"><a class="reference internal" href="experiment_description_specification.html">Experiment Description Specification</a></li>
 <li class="toctree-l1"><a class="reference internal" href="protocol_dependent_schema.html">Protocol-Dependent Schema</a></li>
 <li class="toctree-l1"><a class="reference internal" href="supported_formats.html">Supported Conversion Formats</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ISA.html">ISA and MESSES</a></li>
 <li class="toctree-l1"><a class="reference internal" href="api.html">API</a></li>
 <li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
 <li class="toctree-l1"><a class="reference internal" href="todo.html">TODO List</a></li>
@@ -109,7 +108,7 @@
 <a class="reference external image-reference" href="https://pypi.org/project/messes"><img alt="Current library version" src="https://img.shields.io/pypi/v/messes.svg" /></a>
 <a class="reference external image-reference" href="https://pypi.org/project/messes"><img alt="Supported Python versions" src="https://img.shields.io/pypi/pyversions/messes.svg" /></a>
 <a class="reference external image-reference" href="https://github.com/MoseleyBioinformaticsLab/messes/actions/workflows/build.yml"><img alt="Build status" src="https://github.com/MoseleyBioinformaticsLab/messes/actions/workflows/build.yml/badge.svg" /></a>
-<a class="reference external image-reference" href="https://codecov.io/gh/MoseleyBioinformaticsLab/messes"><img alt="Code coverage information" src="https://codecov.io/gh/MoseleyBioinformaticsLab/messes/branch/main/graphs/badge.svg?branch=main" /></a>
+<a class="reference external image-reference" href="https://codecov.io/gh/MoseleyBioinformaticsLab/MESSES"><img alt="Code coverage information" src="https://codecov.io/gh/MoseleyBioinformaticsLab/MESSES/branch/main/graphs/badge.svg?branch=main" /></a>
 <a class="reference external image-reference" href="https://github.com/MoseleyBioinformaticsLab/messes"><img alt="GitHub project" src="https://img.shields.io/github/stars/MoseleyBioinformaticsLab/messes.svg?style=social&amp;label=Star" /></a>
 <div class="line-block">
 <div class="line"><br /></div>
@@ -117,8 +116,8 @@
 <p>MESSES (Metadata from Experimental SpreadSheets Extraction System) is a Python package that facilitates the conversion of tabular data into
 other formats. We call it MESSES because we try to convert other people’s metadata messes into clean, well-structured, JSONized metadata.
 It was initially created to pull mass spectrometry (MS) and nuclear magnetic resonance (NMR) experimental data into a database, but has been generalized to work with all tabular data. The key to this
-is the <a class="reference external" href="https://moseleybioinformaticslab.github.io/messes/tagging.html">tagging</a> system. Simply add a layer of tags to any tabular data and
-MESSES can transform it into an intermediate JSON representation and then convert it to any of the <a class="reference external" href="https://moseleybioinformaticslab.github.io/messes/supported_formats.html">supported formats</a>.</p>
+is the <a class="reference external" href="https://moseleybioinformaticslab.github.io/MESSES/tagging.html">tagging</a> system. Simply add a layer of tags to any tabular data and
+MESSES can transform it into an intermediate JSON representation and then convert it to any of the <a class="reference external" href="https://moseleybioinformaticslab.github.io/MESSES/supported_formats.html">supported formats</a>.</p>
 <p>Currently Supported Formats:</p>
 <blockquote>
 <div><ul class="simple">
@@ -136,16 +135,16 @@ is not an easy one, but MESSES was created to make it easier. MESSES breaks up t
 into 3 steps: extract, validate, and convert. The extraction step adds a layer of tags
 to your raw tabular data, which may be automatable, and then extracts it into a JSONized form
 that it is more interoperable and more standardized.
-The validation step ensures the data that was extracted is valid against the <a class="reference external" href="https://moseleybioinformaticslab.github.io/messes/experiment_description_schema.html">Experiment Description Schema</a>,
-the <a class="reference external" href="https://moseleybioinformaticslab.github.io/messes/protocol_dependent_schema.html">Protocol Dependent Schema</a>, any additional JSON schema you wish to provide, and a built
+The validation step ensures the data that was extracted is valid against the <a class="reference external" href="https://moseleybioinformaticslab.github.io/MESSES/experiment_description_specification.html">Experiment Description Specification</a>,
+the <a class="reference external" href="https://moseleybioinformaticslab.github.io/MESSES/protocol_dependent_schema.html">Protocol Dependent Schema</a>, any additional JSON schema you wish to provide, and a built
 in schema specific for the format you wish to convert to. The conversion step converts the
 extracted data to the form that is accepted by the online repository. There is an initial
 steep learning curve. But once the extraction, validation, and conversion settings are
-worked out, this process can be easily added to our data generation and analysis workflows.</p>
+worked out, this process can be easily added to your data generation and analysis workflows.</p>
 <p>Although any kind of data schema can be used for extraction into JSON, conversion
 to another format from the extracted JSON does rely on the data being in a specific
 schema. A generalized schema was developed for MESSES that should be able to comprehensively
-describe most experimental designs and data. This schema is described in the <a class="reference external" href="https://moseleybioinformaticslab.github.io/messes/experiment_description_schema.html">Experiment Description Schema</a> section
+describe most experimental designs and data. This schema is described in the <a class="reference external" href="https://moseleybioinformaticslab.github.io/MESSES/experiment_description_specification.html">Experiment Description Specification</a> section
 of the documentation. But original data entry, manual tagging of tabular data, and even
 automated tagging facilities can be messy, generating errors in the extracted JSONized
 representation. So MESSES includes a validate command to help make sure your data is in
@@ -161,7 +160,7 @@ used as a library and extended to handle additional data conversion use-cases.</
 <li><p>MESSES &#64; <a class="reference external" href="https://github.com/MoseleyBioinformaticsLab/messes">GitHub</a></p></li>
 <li><p><a class="reference external" href="https://github.com/MoseleyBioinformaticsLab/messes/issues">Issues</a></p></li>
 <li><p>MESSES &#64; <a class="reference external" href="https://pypi.org/project/messes">PyPI</a></p></li>
-<li><p>Documentation &#64; <a class="reference external" href="https://moseleybioinformaticslab.github.io/messes/">Pages</a></p></li>
+<li><p>Documentation &#64; <a class="reference external" href="https://moseleybioinformaticslab.github.io/MESSES/">Pages</a></p></li>
 </ul>
 </div></blockquote>
 </section>
@@ -201,8 +200,8 @@ version of pip as older versions are known to have issues grabbing all dependenc
 <section id="quickstart">
 <h2>Quickstart<a class="headerlink" href="#quickstart" title="Permalink to this heading"></a></h2>
 <p>It is unlikely that you will have data that is tagged and ready to be converted, so
-it is highly recommended to first read the documentation on <a class="reference external" href="https://moseleybioinformaticslab.github.io/messes/tagging.html">tagging</a>
-and the <a class="reference external" href="https://moseleybioinformaticslab.github.io/messes/experiment_description_schema.html">Experiment Description Schema</a> so
+it is highly recommended to first read the documentation on <a class="reference external" href="https://moseleybioinformaticslab.github.io/MESSES/tagging.html">tagging</a>
+and the <a class="reference external" href="https://moseleybioinformaticslab.github.io/MESSES/experiment_description_specification.html">Experiment Description Specification</a> so
 that you can properly tag your data first.</p>
 <p>The expected workflow is to use the “extract” command to transform your tabular data
 into JSON, then use the “validate” command to validate the JSON based on your specific
@@ -216,8 +215,8 @@ messes<span class="w"> </span>convert<span class="w"> </span>desired_format<span
 </pre></div>
 </div>
 <p>MESSES’s behavior can be quite complex, so it is highly encouraged to read the
-<a class="reference external" href="https://moseleybioinformaticslab.github.io/messes/guide.html">guide</a> and <a class="reference external" href="https://moseleybioinformaticslab.github.io/messes/tutorial.html">tutorial</a>.
-There are also examples available in the examples folder on the <a class="reference external" href="https://github.com/MoseleyBioinformaticsLab/messes">GitHub</a> repository.</p>
+<a class="reference external" href="https://moseleybioinformaticslab.github.io/MESSES/guide.html">guide</a> and <a class="reference external" href="https://moseleybioinformaticslab.github.io/MESSES/tutorial.html">tutorial</a>.
+There are also examples available in the examples folder on the <a class="reference external" href="https://github.com/MoseleyBioinformaticsLab/messes">GitHub</a> repository and in a <a class="reference external" href="https://doi.org/10.6084/m9.figshare.23148224.v1">figshare</a>.</p>
 </section>
 <section id="mac-os-note">
 <h2>Mac OS Note<a class="headerlink" href="#mac-os-note" title="Permalink to this heading"></a></h2>
@@ -231,7 +230,7 @@ in the /Applications/Python 3.x folder. This should fix the issue.</p>
 </section>
 <section id="license">
 <h2>License<a class="headerlink" href="#license" title="Permalink to this heading"></a></h2>
-<p>This package is distributed under the BSD <a class="reference external" href="https://moseleybioinformaticslab.github.io/messes/license.html">license</a>.</p>
+<p>This package is distributed under the BSD <a class="reference external" href="https://moseleybioinformaticslab.github.io/MESSES/license.html">license</a>.</p>
 </section>
 <section id="get-the-source-code">
 <h2>Get the source code<a class="headerlink" href="#get-the-source-code" title="Permalink to this heading"></a></h2>

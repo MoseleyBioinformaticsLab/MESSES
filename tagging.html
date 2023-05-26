@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Tagging &mdash; MESSES 0.1.dev1+g817984f documentation</title>
+  <title>Tagging &mdash; MESSES 0.1.dev1+g80469ef documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/custom_css.css" type="text/css" />
       <link rel="stylesheet" href="_static/sphinxcontrib-images/LightBox2/lightbox2/dist/css/lightbox.css" type="text/css" />
@@ -35,7 +35,7 @@
             <a href="index.html" class="icon icon-home"> MESSES
           </a>
               <div class="version">
-                0.1.dev1+g817984f
+                0.1.dev1+g80469ef
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -98,10 +98,9 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="conversion_directives.html">Conversion Directives</a></li>
-<li class="toctree-l1"><a class="reference internal" href="experiment_description_schema.html">Experiment Description Schema</a></li>
+<li class="toctree-l1"><a class="reference internal" href="experiment_description_specification.html">Experiment Description Specification</a></li>
 <li class="toctree-l1"><a class="reference internal" href="protocol_dependent_schema.html">Protocol-Dependent Schema</a></li>
 <li class="toctree-l1"><a class="reference internal" href="supported_formats.html">Supported Conversion Formats</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ISA.html">ISA and MESSES</a></li>
 <li class="toctree-l1"><a class="reference internal" href="api.html">API</a></li>
 <li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
 <li class="toctree-l1"><a class="reference internal" href="todo.html">TODO List</a></li>
@@ -163,7 +162,7 @@ to create a more robust system that could handle more complicated data arrangeme
 verbosity to a minimum. The system that was devised was an extra layer of tags added on top of existing
 tables that tell the extract command how to transform the tabular data into key-based record data similar
 to JSON or SQL databases. The specific table schema this system was designed for is covered in the
-<a class="reference internal" href="experiment_description_schema.html"><span class="doc">Experiment Description Schema</span></a> section, but it is general enough that it can be used with most table schema.</p>
+<a class="reference internal" href="experiment_description_specification.html"><span class="doc">Experiment Description Specification</span></a> section, but it is general enough that it can be used with most table schema.</p>
 <p>This initial system served its function well, but it became clear that more functionality was sorely needed.
 Namely, both a way to add tags programmatically to data and a way to modify record values was needed, so the
 system was expanded to provide facilities to do both. Ultimately there are 3 parts to the tagging system that are
