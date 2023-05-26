@@ -1,0 +1,35 @@
+{
+  "NMR_METABOLITE_DATA": {
+    "Extended": {
+      "exclusion_headers": [
+        "id",
+        "intensity",
+        "intensity%type",
+        "intensity%units",
+        "assignment",
+        "entity.id",
+        "base_inchi",
+        "representative_inchi",
+        "isotopic_inchi",
+        "peak_description",
+        "peak_pattern",
+        "proton_count",
+        "transient_peak",
+        "transient_peak%type"
+      ],
+      "fields_to_headers": "True",
+      "headers": [
+        "\"Metabolite\"=assignment",
+        "\"sample_id\"=entity.id"
+      ],
+      "id": "Extended",
+      "sort_by": [
+        "assignment"
+      ],
+      "sort_order": "ascending",
+      "table": "measurement",
+      "value_type": "matrix",
+      "values_to_str": "False"
+    }
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "CHROMATOGRAPHY": {
+    "CHROMATOGRAPHY_SUMMARY": {
+      "fields": [
+        "asdf"
+      ],
+      "id": "CHROMATOGRAPHY_SUMMARY",
+      "required": "True",
+      "table": "protocol",
+      "test": "machine_type=MS",
+      "value_type": "str",
+      "record_id": "ICMS1"
+    }
+  }
+}

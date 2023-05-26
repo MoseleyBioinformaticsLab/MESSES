@@ -1,0 +1,3928 @@
+{
+  "entity": {
+    "01_A0_Colon_naive_0days_170427_UKy_GCH_rep1": {
+      "id": "01_A0_Colon_naive_0days_170427_UKy_GCH_rep1",
+      "parent_id": "01_A0_naive_0days_UKy_GCH_rep1",
+      "protocol.id": [
+        "mouse_tissue_collection",
+        "tissue_quench",
+        "frozen_tissue_grind"
+      ],
+      "type": "sample"
+    },
+    "01_A0_Colon_naive_0days_170427_UKy_GCH_rep1-polar-ICMS_A": {
+      "id": "01_A0_Colon_naive_0days_170427_UKy_GCH_rep1-polar-ICMS_A",
+      "injection_volume": "10",
+      "injection_volume%units": "uL",
+      "parent_id": "01_A0_Colon_naive_0days_170427_UKy_GCH_rep1",
+      "polar_split_ratio": "0.255757329816374",
+      "protocol.id": [
+        "polar_extraction",
+        "IC-FTMS_preparation",
+        "ICMS_file_storage46"
+      ],
+      "reconstitution_volume": "20",
+      "reconstitution_volume%units": "uL",
+      "replicate": "1",
+      "replicate%type": "analytical",
+      "type": "sample",
+      "weight": "0.2521",
+      "weight%units": "g"
+    },
+    "01_A0_Colon_naive_0days_170427_UKy_GCH_rep1-protein": {
+      "id": "01_A0_Colon_naive_0days_170427_UKy_GCH_rep1-protein",
+      "parent_id": "01_A0_Colon_naive_0days_170427_UKy_GCH_rep1",
+      "protein_weight": "0.6181768442446792",
+      "protein_weight%units": "mg",
+      "protocol.id": [
+        "protein_extraction"
+      ],
+      "type": "sample"
+    },
+    "01_A0_Liver_naive_0days_170427_UKy_GCH_rep1": {
+      "id": "01_A0_Liver_naive_0days_170427_UKy_GCH_rep1",
+      "parent_id": "01_A0_naive_0days_UKy_GCH_rep1",
+      "protocol.id": [
+        "mouse_tissue_collection",
+        "tissue_quench",
+        "frozen_tissue_grind"
+      ],
+      "type": "sample"
+    },
+    "01_A0_Liver_naive_0days_170427_UKy_GCH_rep1-polar-ICMS_A": {
+      "id": "01_A0_Liver_naive_0days_170427_UKy_GCH_rep1-polar-ICMS_A",
+      "injection_volume": "10",
+      "injection_volume%units": "uL",
+      "parent_id": "01_A0_Liver_naive_0days_170427_UKy_GCH_rep1",
+      "polar_split_ratio": "0.118022328548644",
+      "protocol.id": [
+        "polar_extraction",
+        "IC-FTMS_preparation",
+        "ICMS_file_storage61"
+      ],
+      "reconstitution_volume": "20",
+      "reconstitution_volume%units": "uL",
+      "replicate": "1",
+      "replicate%type": "analytical",
+      "type": "sample",
+      "weight": "0.1924",
+      "weight%units": "g"
+    },
+    "01_A0_Liver_naive_0days_170427_UKy_GCH_rep1-protein": {
+      "id": "01_A0_Liver_naive_0days_170427_UKy_GCH_rep1-protein",
+      "parent_id": "01_A0_Liver_naive_0days_170427_UKy_GCH_rep1",
+      "protein_weight": "0.9698575961126314",
+      "protein_weight%units": "mg",
+      "protocol.id": [
+        "protein_extraction"
+      ],
+      "type": "sample"
+    },
+    "01_A0_SI_naive_0days_170427_UKy_GCH_rep1": {
+      "id": "01_A0_SI_naive_0days_170427_UKy_GCH_rep1",
+      "parent_id": "01_A0_naive_0days_UKy_GCH_rep1",
+      "protocol.id": [
+        "mouse_tissue_collection",
+        "tissue_quench",
+        "frozen_tissue_grind"
+      ],
+      "type": "sample"
+    },
+    "01_A0_SI_naive_0days_170427_UKy_GCH_rep1-polar-ICMS_A": {
+      "id": "01_A0_SI_naive_0days_170427_UKy_GCH_rep1-polar-ICMS_A",
+      "injection_volume": "10",
+      "injection_volume%units": "uL",
+      "parent_id": "01_A0_SI_naive_0days_170427_UKy_GCH_rep1",
+      "polar_split_ratio": "0.101435260586319",
+      "protocol.id": [
+        "polar_extraction",
+        "IC-FTMS_preparation",
+        "ICMS_file_storage31"
+      ],
+      "reconstitution_volume": "20",
+      "reconstitution_volume%units": "uL",
+      "replicate": "1",
+      "replicate%type": "analytical",
+      "type": "sample",
+      "weight": "0.1993",
+      "weight%units": "g"
+    },
+    "01_A0_SI_naive_0days_170427_UKy_GCH_rep1-protein": {
+      "id": "01_A0_SI_naive_0days_170427_UKy_GCH_rep1-protein",
+      "parent_id": "01_A0_SI_naive_0days_170427_UKy_GCH_rep1",
+      "protein_weight": "1.360284489372172",
+      "protein_weight%units": "mg",
+      "protocol.id": [
+        "protein_extraction"
+      ],
+      "type": "sample"
+    },
+    "01_A0_Spleen_naive_0days_170427_UKy_GCH_rep1": {
+      "id": "01_A0_Spleen_naive_0days_170427_UKy_GCH_rep1",
+      "parent_id": "01_A0_naive_0days_UKy_GCH_rep1",
+      "protocol.id": [
+        "mouse_tissue_collection",
+        "tissue_quench",
+        "frozen_tissue_grind"
+      ],
+      "type": "sample"
+    },
+    "01_A0_Spleen_naive_0days_170427_UKy_GCH_rep1-polar-ICMS_A": {
+      "id": "01_A0_Spleen_naive_0days_170427_UKy_GCH_rep1-polar-ICMS_A",
+      "injection_volume": "10",
+      "injection_volume%units": "uL",
+      "parent_id": "01_A0_Spleen_naive_0days_170427_UKy_GCH_rep1",
+      "polar_split_ratio": "0.120490287",
+      "protocol.id": [
+        "polar_extraction",
+        "IC-FTMS_preparation",
+        "ICMS_file_storage1"
+      ],
+      "reconstitution_volume": "20",
+      "reconstitution_volume%units": "uL",
+      "replicate": "1",
+      "replicate%type": "analytical",
+      "type": "sample",
+      "weight": "0.20839999999999992",
+      "weight%units": "g"
+    },
+    "01_A0_Spleen_naive_0days_170427_UKy_GCH_rep1-protein": {
+      "dry_residue": "1.3",
+      "dry_residue%units": "mg",
+      "id": "01_A0_Spleen_naive_0days_170427_UKy_GCH_rep1-protein",
+      "parent_id": "01_A0_Spleen_naive_0days_170427_UKy_GCH_rep1",
+      "protein_weight": "0",
+      "protein_weight%units": "mg",
+      "protocol.id": [
+        "protein_extraction"
+      ],
+      "type": "sample"
+    },
+    "01_A0_naive_0days_UKy_GCH_rep1": {
+      "id": "01_A0_naive_0days_UKy_GCH_rep1",
+      "protocol.id": [
+        "naive"
+      ],
+      "replicate": "1",
+      "species": "Mus musculus",
+      "species_type": "Mouse",
+      "taxonomy_id": "10090",
+      "time_point": "0",
+      "type": "subject"
+    },
+    "02_A1_Colon_naive_0days_170427_UKy_GCH_rep2": {
+      "id": "02_A1_Colon_naive_0days_170427_UKy_GCH_rep2",
+      "parent_id": "02_A1_naive_0days_UKy_GCH_rep2",
+      "protocol.id": [
+        "mouse_tissue_collection",
+        "tissue_quench",
+        "frozen_tissue_grind"
+      ],
+      "type": "sample"
+    },
+    "02_A1_Colon_naive_0days_170427_UKy_GCH_rep2-polar-ICMS_A": {
+      "id": "02_A1_Colon_naive_0days_170427_UKy_GCH_rep2-polar-ICMS_A",
+      "injection_volume": "10",
+      "injection_volume%units": "uL",
+      "parent_id": "02_A1_Colon_naive_0days_170427_UKy_GCH_rep2",
+      "polar_split_ratio": "0.187720016373312",
+      "protocol.id": [
+        "polar_extraction",
+        "IC-FTMS_preparation",
+        "ICMS_file_storage47"
+      ],
+      "reconstitution_volume": "20",
+      "reconstitution_volume%units": "uL",
+      "replicate": "1",
+      "replicate%type": "analytical",
+      "type": "sample",
+      "weight": "0.2293",
+      "weight%units": "g"
+    },
+    "02_A1_Colon_naive_0days_170427_UKy_GCH_rep2-protein": {
+      "id": "02_A1_Colon_naive_0days_170427_UKy_GCH_rep2-protein",
+      "parent_id": "02_A1_Colon_naive_0days_170427_UKy_GCH_rep2",
+      "protein_weight": "0.4626846570186025",
+      "protein_weight%units": "mg",
+      "protocol.id": [
+        "protein_extraction"
+      ],
+      "type": "sample"
+    },
+    "02_A1_Liver_naive_0days_170427_UKy_GCH_rep2": {
+      "id": "02_A1_Liver_naive_0days_170427_UKy_GCH_rep2",
+      "parent_id": "02_A1_naive_0days_UKy_GCH_rep2",
+      "protocol.id": [
+        "mouse_tissue_collection",
+        "tissue_quench",
+        "frozen_tissue_grind"
+      ],
+      "type": "sample"
+    },
+    "02_A1_Liver_naive_0days_170427_UKy_GCH_rep2-polar-ICMS_A": {
+      "id": "02_A1_Liver_naive_0days_170427_UKy_GCH_rep2-polar-ICMS_A",
+      "injection_volume": "10",
+      "injection_volume%units": "uL",
+      "parent_id": "02_A1_Liver_naive_0days_170427_UKy_GCH_rep2",
+      "polar_split_ratio": "0.120185092546273",
+      "protocol.id": [
+        "polar_extraction",
+        "IC-FTMS_preparation",
+        "ICMS_file_storage62"
+      ],
+      "reconstitution_volume": "20",
+      "reconstitution_volume%units": "uL",
+      "replicate": "1",
+      "replicate%type": "analytical",
+      "type": "sample",
+      "weight": "0.1922",
+      "weight%units": "g"
+    },
+    "02_A1_Liver_naive_0days_170427_UKy_GCH_rep2-protein": {
+      "id": "02_A1_Liver_naive_0days_170427_UKy_GCH_rep2-protein",
+      "parent_id": "02_A1_Liver_naive_0days_170427_UKy_GCH_rep2",
+      "protein_weight": "1.2532242979132797",
+      "protein_weight%units": "mg",
+      "protocol.id": [
+        "protein_extraction"
+      ],
+      "type": "sample"
+    },
+    "02_A1_SI_naive_0days_170427_UKy_GCH_rep2": {
+      "id": "02_A1_SI_naive_0days_170427_UKy_GCH_rep2",
+      "parent_id": "02_A1_naive_0days_UKy_GCH_rep2",
+      "protocol.id": [
+        "mouse_tissue_collection",
+        "tissue_quench",
+        "frozen_tissue_grind"
+      ],
+      "type": "sample"
+    },
+    "02_A1_SI_naive_0days_170427_UKy_GCH_rep2-polar-ICMS_A": {
+      "id": "02_A1_SI_naive_0days_170427_UKy_GCH_rep2-polar-ICMS_A",
+      "injection_volume": "10",
+      "injection_volume%units": "uL",
+      "parent_id": "02_A1_SI_naive_0days_170427_UKy_GCH_rep2",
+      "polar_split_ratio": "0.120584361154353",
+      "protocol.id": [
+        "polar_extraction",
+        "IC-FTMS_preparation",
+        "ICMS_file_storage32"
+      ],
+      "reconstitution_volume": "20",
+      "reconstitution_volume%units": "uL",
+      "replicate": "1",
+      "replicate%type": "analytical",
+      "type": "sample",
+      "weight": "0.2014",
+      "weight%units": "g"
+    },
+    "02_A1_SI_naive_0days_170427_UKy_GCH_rep2-protein": {
+      "id": "02_A1_SI_naive_0days_170427_UKy_GCH_rep2-protein",
+      "parent_id": "02_A1_SI_naive_0days_170427_UKy_GCH_rep2",
+      "protein_weight": "1.2310244885693347",
+      "protein_weight%units": "mg",
+      "protocol.id": [
+        "protein_extraction"
+      ],
+      "type": "sample"
+    },
+    "02_A1_Spleen_naive_0days_170427_UKy_GCH_rep2": {
+      "id": "02_A1_Spleen_naive_0days_170427_UKy_GCH_rep2",
+      "parent_id": "02_A1_naive_0days_UKy_GCH_rep2",
+      "protocol.id": [
+        "mouse_tissue_collection",
+        "tissue_quench",
+        "frozen_tissue_grind"
+      ],
+      "type": "sample"
+    },
+    "02_A1_Spleen_naive_0days_170427_UKy_GCH_rep2-polar-ICMS_A": {
+      "id": "02_A1_Spleen_naive_0days_170427_UKy_GCH_rep2-polar-ICMS_A",
+      "injection_volume": "10",
+      "injection_volume%units": "uL",
+      "parent_id": "02_A1_Spleen_naive_0days_170427_UKy_GCH_rep2",
+      "polar_split_ratio": "0.119762988",
+      "protocol.id": [
+        "polar_extraction",
+        "IC-FTMS_preparation",
+        "ICMS_file_storage2"
+      ],
+      "reconstitution_volume": "20",
+      "reconstitution_volume%units": "uL",
+      "replicate": "1",
+      "replicate%type": "analytical",
+      "type": "sample",
+      "weight": "0.20009999999999994",
+      "weight%units": "g"
+    },
+    "02_A1_Spleen_naive_0days_170427_UKy_GCH_rep2-protein": {
+      "dry_residue": "1.51",
+      "dry_residue%units": "mg",
+      "id": "02_A1_Spleen_naive_0days_170427_UKy_GCH_rep2-protein",
+      "parent_id": "02_A1_Spleen_naive_0days_170427_UKy_GCH_rep2",
+      "protein_weight": "0",
+      "protein_weight%units": "mg",
+      "protocol.id": [
+        "protein_extraction"
+      ],
+      "type": "sample"
+    },
+    "02_A1_naive_0days_UKy_GCH_rep2": {
+      "id": "02_A1_naive_0days_UKy_GCH_rep2",
+      "protocol.id": [
+        "naive"
+      ],
+      "replicate": "2",
+      "species": "Mus musculus",
+      "species_type": "Mouse",
+      "taxonomy_id": "10090",
+      "time_point": "0",
+      "type": "subject"
+    },
+    "03_A2_Colon_naive_0days_170427_UKy_GCH_rep3": {
+      "id": "03_A2_Colon_naive_0days_170427_UKy_GCH_rep3",
+      "parent_id": "03_A2_naive_0days_UKy_GCH_rep3",
+      "protocol.id": [
+        "mouse_tissue_collection",
+        "tissue_quench",
+        "frozen_tissue_grind"
+      ],
+      "type": "sample"
+    },
+    "03_A2_Colon_naive_0days_170427_UKy_GCH_rep3-polar-ICMS_A": {
+      "id": "03_A2_Colon_naive_0days_170427_UKy_GCH_rep3-polar-ICMS_A",
+      "injection_volume": "10",
+      "injection_volume%units": "uL",
+      "parent_id": "03_A2_Colon_naive_0days_170427_UKy_GCH_rep3",
+      "polar_split_ratio": "0.201939213126981",
+      "protocol.id": [
+        "polar_extraction",
+        "IC-FTMS_preparation",
+        "ICMS_file_storage48"
+      ],
+      "reconstitution_volume": "20",
+      "reconstitution_volume%units": "uL",
+      "replicate": "1",
+      "replicate%type": "analytical",
+      "type": "sample",
+      "weight": "0.2166",
+      "weight%units": "g"
+    },
+    "03_A2_Colon_naive_0days_170427_UKy_GCH_rep3-protein": {
+      "id": "03_A2_Colon_naive_0days_170427_UKy_GCH_rep3-protein",
+      "parent_id": "03_A2_Colon_naive_0days_170427_UKy_GCH_rep3",
+      "protein_weight": "0.6317204628207644",
+      "protein_weight%units": "mg",
+      "protocol.id": [
+        "protein_extraction"
+      ],
+      "type": "sample"
+    },
+    "03_A2_Liver_naive_0days_170427_UKy_GCH_rep3": {
+      "id": "03_A2_Liver_naive_0days_170427_UKy_GCH_rep3",
+      "parent_id": "03_A2_naive_0days_UKy_GCH_rep3",
+      "protocol.id": [
+        "mouse_tissue_collection",
+        "tissue_quench",
+        "frozen_tissue_grind"
+      ],
+      "type": "sample"
+    },
+    "03_A2_Liver_naive_0days_170427_UKy_GCH_rep3-polar-ICMS_A": {
+      "id": "03_A2_Liver_naive_0days_170427_UKy_GCH_rep3-polar-ICMS_A",
+      "injection_volume": "10",
+      "injection_volume%units": "uL",
+      "parent_id": "03_A2_Liver_naive_0days_170427_UKy_GCH_rep3",
+      "polar_split_ratio": "0.121206300422589",
+      "protocol.id": [
+        "polar_extraction",
+        "IC-FTMS_preparation",
+        "ICMS_file_storage63"
+      ],
+      "reconstitution_volume": "20",
+      "reconstitution_volume%units": "uL",
+      "replicate": "1",
+      "replicate%type": "analytical",
+      "type": "sample",
+      "weight": "0.1893",
+      "weight%units": "g"
+    },
+    "03_A2_Liver_naive_0days_170427_UKy_GCH_rep3-protein": {
+      "id": "03_A2_Liver_naive_0days_170427_UKy_GCH_rep3-protein",
+      "parent_id": "03_A2_Liver_naive_0days_170427_UKy_GCH_rep3",
+      "protein_weight": "1.6441784321516473",
+      "protein_weight%units": "mg",
+      "protocol.id": [
+        "protein_extraction"
+      ],
+      "type": "sample"
+    },
+    "03_A2_SI_naive_0days_170427_UKy_GCH_rep3": {
+      "id": "03_A2_SI_naive_0days_170427_UKy_GCH_rep3",
+      "parent_id": "03_A2_naive_0days_UKy_GCH_rep3",
+      "protocol.id": [
+        "mouse_tissue_collection",
+        "tissue_quench",
+        "frozen_tissue_grind"
+      ],
+      "type": "sample"
+    },
+    "03_A2_SI_naive_0days_170427_UKy_GCH_rep3-polar-ICMS_A": {
+      "id": "03_A2_SI_naive_0days_170427_UKy_GCH_rep3-polar-ICMS_A",
+      "injection_volume": "10",
+      "injection_volume%units": "uL",
+      "parent_id": "03_A2_SI_naive_0days_170427_UKy_GCH_rep3",
+      "polar_split_ratio": "0.141890977952117",
+      "protocol.id": [
+        "polar_extraction",
+        "IC-FTMS_preparation",
+        "ICMS_file_storage33"
+      ],
+      "reconstitution_volume": "20",
+      "reconstitution_volume%units": "uL",
+      "replicate": "1",
+      "replicate%type": "analytical",
+      "type": "sample",
+      "weight": "0.2098",
+      "weight%units": "g"
+    },
+    "03_A2_SI_naive_0days_170427_UKy_GCH_rep3-protein": {
+      "id": "03_A2_SI_naive_0days_170427_UKy_GCH_rep3-protein",
+      "parent_id": "03_A2_SI_naive_0days_170427_UKy_GCH_rep3",
+      "protein_weight": "0.8819362150128038",
+      "protein_weight%units": "mg",
+      "protocol.id": [
+        "protein_extraction"
+      ],
+      "type": "sample"
+    },
+    "03_A2_Spleen_naive_0days_170427_UKy_GCH_rep3": {
+      "id": "03_A2_Spleen_naive_0days_170427_UKy_GCH_rep3",
+      "parent_id": "03_A2_naive_0days_UKy_GCH_rep3",
+      "protocol.id": [
+        "mouse_tissue_collection",
+        "tissue_quench",
+        "frozen_tissue_grind"
+      ],
+      "type": "sample"
+    },
+    "03_A2_Spleen_naive_0days_170427_UKy_GCH_rep3-polar-ICMS_A": {
+      "id": "03_A2_Spleen_naive_0days_170427_UKy_GCH_rep3-polar-ICMS_A",
+      "injection_volume": "10",
+      "injection_volume%units": "uL",
+      "parent_id": "03_A2_Spleen_naive_0days_170427_UKy_GCH_rep3",
+      "polar_split_ratio": "0.115690228",
+      "protocol.id": [
+        "polar_extraction",
+        "IC-FTMS_preparation",
+        "ICMS_file_storage3"
+      ],
+      "reconstitution_volume": "20",
+      "reconstitution_volume%units": "uL",
+      "replicate": "1",
+      "replicate%type": "analytical",
+      "type": "sample",
+      "weight": "0.19510000000000005",
+      "weight%units": "g"
+    },
+    "03_A2_Spleen_naive_0days_170427_UKy_GCH_rep3-protein": {
+      "dry_residue": "1.67",
+      "dry_residue%units": "mg",
+      "id": "03_A2_Spleen_naive_0days_170427_UKy_GCH_rep3-protein",
+      "parent_id": "03_A2_Spleen_naive_0days_170427_UKy_GCH_rep3",
+      "protein_weight": "0",
+      "protein_weight%units": "mg",
+      "protocol.id": [
+        "protein_extraction"
+      ],
+      "type": "sample"
+    },
+    "03_A2_naive_0days_UKy_GCH_rep3": {
+      "id": "03_A2_naive_0days_UKy_GCH_rep3",
+      "protocol.id": [
+        "naive"
+      ],
+      "replicate": "3",
+      "species": "Mus musculus",
+      "species_type": "Mouse",
+      "taxonomy_id": "10090",
+      "time_point": "0",
+      "type": "subject"
+    },
+    "04_B0_Colon_syngenic_42days_170427_UKy_GCH_rep1": {
+      "id": "04_B0_Colon_syngenic_42days_170427_UKy_GCH_rep1",
+      "parent_id": "04_B0_syngenic_42days_UKy_GCH_rep1",
+      "protocol.id": [
+        "mouse_tissue_collection",
+        "tissue_quench",
+        "frozen_tissue_grind"
+      ],
+      "type": "sample"
+    },
+    "04_B0_Colon_syngenic_42days_170427_UKy_GCH_rep1-polar-ICMS_A": {
+      "id": "04_B0_Colon_syngenic_42days_170427_UKy_GCH_rep1-polar-ICMS_A",
+      "injection_volume": "10",
+      "injection_volume%units": "uL",
+      "parent_id": "04_B0_Colon_syngenic_42days_170427_UKy_GCH_rep1",
+      "polar_split_ratio": "0.123618301385197",
+      "protocol.id": [
+        "polar_extraction",
+        "IC-FTMS_preparation",
+        "ICMS_file_storage49"
+      ],
+      "reconstitution_volume": "20",
+      "reconstitution_volume%units": "uL",
+      "replicate": "1",
+      "replicate%type": "analytical",
+      "type": "sample",
+      "weight": "0.1767",
+      "weight%units": "g"
+    },
+    "04_B0_Colon_syngenic_42days_170427_UKy_GCH_rep1-protein": {
+      "id": "04_B0_Colon_syngenic_42days_170427_UKy_GCH_rep1-protein",
+      "parent_id": "04_B0_Colon_syngenic_42days_170427_UKy_GCH_rep1",
+      "protein_weight": "0.6679368105226386",
+      "protein_weight%units": "mg",
+      "protocol.id": [
+        "protein_extraction"
+      ],
+      "type": "sample"
+    },
+    "04_B0_Liver_syngenic_42days_170427_UKy_GCH_rep1": {
+      "id": "04_B0_Liver_syngenic_42days_170427_UKy_GCH_rep1",
+      "parent_id": "04_B0_syngenic_42days_UKy_GCH_rep1",
+      "protocol.id": [
+        "mouse_tissue_collection",
+        "tissue_quench",
+        "frozen_tissue_grind"
+      ],
+      "type": "sample"
+    },
+    "04_B0_Liver_syngenic_42days_170427_UKy_GCH_rep1-polar-ICMS_A": {
+      "id": "04_B0_Liver_syngenic_42days_170427_UKy_GCH_rep1-polar-ICMS_A",
+      "injection_volume": "10",
+      "injection_volume%units": "uL",
+      "parent_id": "04_B0_Liver_syngenic_42days_170427_UKy_GCH_rep1",
+      "polar_split_ratio": "0.113586559532505",
+      "protocol.id": [
+        "polar_extraction",
+        "IC-FTMS_preparation",
+        "ICMS_file_storage64"
+      ],
+      "reconstitution_volume": "20",
+      "reconstitution_volume%units": "uL",
+      "replicate": "1",
+      "replicate%type": "analytical",
+      "type": "sample",
+      "weight": "0.1866",
+      "weight%units": "g"
+    },
+    "04_B0_Liver_syngenic_42days_170427_UKy_GCH_rep1-protein": {
+      "id": "04_B0_Liver_syngenic_42days_170427_UKy_GCH_rep1-protein",
+      "parent_id": "04_B0_Liver_syngenic_42days_170427_UKy_GCH_rep1",
+      "protein_weight": "0.8340488686911995",
+      "protein_weight%units": "mg",
+      "protocol.id": [
+        "protein_extraction"
+      ],
+      "type": "sample"
+    },
+    "04_B0_SI_syngenic_42days_170427_UKy_GCH_rep1": {
+      "id": "04_B0_SI_syngenic_42days_170427_UKy_GCH_rep1",
+      "parent_id": "04_B0_syngenic_42days_UKy_GCH_rep1",
+      "protocol.id": [
+        "mouse_tissue_collection",
+        "tissue_quench",
+        "frozen_tissue_grind"
+      ],
+      "type": "sample"
+    },
+    "04_B0_SI_syngenic_42days_170427_UKy_GCH_rep1-polar-ICMS_A": {
+      "id": "04_B0_SI_syngenic_42days_170427_UKy_GCH_rep1-polar-ICMS_A",
+      "injection_volume": "10",
+      "injection_volume%units": "uL",
+      "parent_id": "04_B0_SI_syngenic_42days_170427_UKy_GCH_rep1",
+      "polar_split_ratio": "0.124849788122193",
+      "protocol.id": [
+        "polar_extraction",
+        "IC-FTMS_preparation",
+        "ICMS_file_storage34"
+      ],
+      "reconstitution_volume": "20",
+      "reconstitution_volume%units": "uL",
+      "replicate": "1",
+      "replicate%type": "analytical",
+      "type": "sample",
+      "weight": "0.1974",
+      "weight%units": "g"
+    },
+    "04_B0_SI_syngenic_42days_170427_UKy_GCH_rep1-protein": {
+      "id": "04_B0_SI_syngenic_42days_170427_UKy_GCH_rep1-protein",
+      "parent_id": "04_B0_SI_syngenic_42days_170427_UKy_GCH_rep1",
+      "protein_weight": "0.9825758684635557",
+      "protein_weight%units": "mg",
+      "protocol.id": [
+        "protein_extraction"
+      ],
+      "type": "sample"
+    },
+    "04_B0_Spleen_syngenic_42days_170427_UKy_GCH_rep1": {
+      "id": "04_B0_Spleen_syngenic_42days_170427_UKy_GCH_rep1",
+      "parent_id": "04_B0_syngenic_42days_UKy_GCH_rep1",
+      "protocol.id": [
+        "mouse_tissue_collection",
+        "tissue_quench",
+        "frozen_tissue_grind"
+      ],
+      "type": "sample"
+    },
+    "04_B0_Spleen_syngenic_42days_170427_UKy_GCH_rep1-polar-ICMS_A": {
+      "id": "04_B0_Spleen_syngenic_42days_170427_UKy_GCH_rep1-polar-ICMS_A",
+      "injection_volume": "10",
+      "injection_volume%units": "uL",
+      "parent_id": "04_B0_Spleen_syngenic_42days_170427_UKy_GCH_rep1",
+      "polar_split_ratio": "0.115297572",
+      "protocol.id": [
+        "polar_extraction",
+        "IC-FTMS_preparation",
+        "ICMS_file_storage4"
+      ],
+      "reconstitution_volume": "20",
+      "reconstitution_volume%units": "uL",
+      "replicate": "1",
+      "replicate%type": "analytical",
+      "type": "sample",
+      "weight": "0.1885000000000001",
+      "weight%units": "g"
+    },
+    "04_B0_Spleen_syngenic_42days_170427_UKy_GCH_rep1-protein": {
+      "dry_residue": "1.91",
+      "dry_residue%units": "mg",
+      "id": "04_B0_Spleen_syngenic_42days_170427_UKy_GCH_rep1-protein",
+      "parent_id": "04_B0_Spleen_syngenic_42days_170427_UKy_GCH_rep1",
+      "protein_weight": "0",
+      "protein_weight%units": "mg",
+      "protocol.id": [
+        "protein_extraction"
+      ],
+      "type": "sample"
+    },
+    "04_B0_syngenic_42days_UKy_GCH_rep1": {
+      "id": "04_B0_syngenic_42days_UKy_GCH_rep1",
+      "protocol.id": [
+        "syngenic"
+      ],
+      "replicate": "1",
+      "species": "Mus musculus",
+      "species_type": "Mouse",
+      "taxonomy_id": "10090",
+      "time_point": "42",
+      "type": "subject"
+    },
+    "05_B1_Colon_syngenic_42days_170427_UKy_GCH_rep2": {
+      "id": "05_B1_Colon_syngenic_42days_170427_UKy_GCH_rep2",
+      "parent_id": "05_B1_syngenic_42days_UKy_GCH_rep2",
+      "protocol.id": [
+        "mouse_tissue_collection",
+        "tissue_quench",
+        "frozen_tissue_grind"
+      ],
+      "type": "sample"
+    },
+    "05_B1_Colon_syngenic_42days_170427_UKy_GCH_rep2-polar-ICMS_A": {
+      "id": "05_B1_Colon_syngenic_42days_170427_UKy_GCH_rep2-polar-ICMS_A",
+      "injection_volume": "10",
+      "injection_volume%units": "uL",
+      "parent_id": "05_B1_Colon_syngenic_42days_170427_UKy_GCH_rep2",
+      "polar_split_ratio": "0.13203816728273",
+      "protocol.id": [
+        "polar_extraction",
+        "IC-FTMS_preparation",
+        "ICMS_file_storage50"
+      ],
+      "reconstitution_volume": "20",
+      "reconstitution_volume%units": "uL",
+      "replicate": "1",
+      "replicate%type": "analytical",
+      "type": "sample",
+      "weight": "0.1536",
+      "weight%units": "g"
+    },
+    "05_B1_Colon_syngenic_42days_170427_UKy_GCH_rep2-protein": {
+      "id": "05_B1_Colon_syngenic_42days_170427_UKy_GCH_rep2-protein",
+      "parent_id": "05_B1_Colon_syngenic_42days_170427_UKy_GCH_rep2",
+      "protein_weight": "0.6160223770621668",
+      "protein_weight%units": "mg",
+      "protocol.id": [
+        "protein_extraction"
+      ],
+      "type": "sample"
+    },
+    "05_B1_Liver_syngenic_42days_170427_UKy_GCH_rep2": {
+      "id": "05_B1_Liver_syngenic_42days_170427_UKy_GCH_rep2",
+      "parent_id": "05_B1_syngenic_42days_UKy_GCH_rep2",
+      "protocol.id": [
+        "mouse_tissue_collection",
+        "tissue_quench",
+        "frozen_tissue_grind"
+      ],
+      "type": "sample"
+    },
+    "05_B1_Liver_syngenic_42days_170427_UKy_GCH_rep2-polar-ICMS_A": {
+      "id": "05_B1_Liver_syngenic_42days_170427_UKy_GCH_rep2-polar-ICMS_A",
+      "injection_volume": "10",
+      "injection_volume%units": "uL",
+      "parent_id": "05_B1_Liver_syngenic_42days_170427_UKy_GCH_rep2",
+      "polar_split_ratio": "0.124180843317667",
+      "protocol.id": [
+        "polar_extraction",
+        "IC-FTMS_preparation",
+        "ICMS_file_storage65"
+      ],
+      "reconstitution_volume": "20",
+      "reconstitution_volume%units": "uL",
+      "replicate": "1",
+      "replicate%type": "analytical",
+      "type": "sample",
+      "weight": "0.1876",
+      "weight%units": "g"
+    },
+    "05_B1_Liver_syngenic_42days_170427_UKy_GCH_rep2-protein": {
+      "id": "05_B1_Liver_syngenic_42days_170427_UKy_GCH_rep2-protein",
+      "parent_id": "05_B1_Liver_syngenic_42days_170427_UKy_GCH_rep2",
+      "protein_weight": "0.8729838077879587",
+      "protein_weight%units": "mg",
+      "protocol.id": [
+        "protein_extraction"
+      ],
+      "type": "sample"
+    },
+    "05_B1_SI_syngenic_42days_170427_UKy_GCH_rep2": {
+      "id": "05_B1_SI_syngenic_42days_170427_UKy_GCH_rep2",
+      "parent_id": "05_B1_syngenic_42days_UKy_GCH_rep2",
+      "protocol.id": [
+        "mouse_tissue_collection",
+        "tissue_quench",
+        "frozen_tissue_grind"
+      ],
+      "type": "sample"
+    },
+    "05_B1_SI_syngenic_42days_170427_UKy_GCH_rep2-polar-ICMS_A": {
+      "id": "05_B1_SI_syngenic_42days_170427_UKy_GCH_rep2-polar-ICMS_A",
+      "injection_volume": "10",
+      "injection_volume%units": "uL",
+      "parent_id": "05_B1_SI_syngenic_42days_170427_UKy_GCH_rep2",
+      "polar_split_ratio": "0.119571791460022",
+      "protocol.id": [
+        "polar_extraction",
+        "IC-FTMS_preparation",
+        "ICMS_file_storage35"
+      ],
+      "reconstitution_volume": "20",
+      "reconstitution_volume%units": "uL",
+      "replicate": "1",
+      "replicate%type": "analytical",
+      "type": "sample",
+      "weight": "0.1977",
+      "weight%units": "g"
+    },
+    "05_B1_SI_syngenic_42days_170427_UKy_GCH_rep2-protein": {
+      "id": "05_B1_SI_syngenic_42days_170427_UKy_GCH_rep2-protein",
+      "parent_id": "05_B1_SI_syngenic_42days_170427_UKy_GCH_rep2",
+      "protein_weight": "1.0010730956302694",
+      "protein_weight%units": "mg",
+      "protocol.id": [
+        "protein_extraction"
+      ],
+      "type": "sample"
+    },
+    "05_B1_Spleen_syngenic_42days_170427_UKy_GCH_rep2": {
+      "id": "05_B1_Spleen_syngenic_42days_170427_UKy_GCH_rep2",
+      "parent_id": "05_B1_syngenic_42days_UKy_GCH_rep2",
+      "protocol.id": [
+        "mouse_tissue_collection",
+        "tissue_quench",
+        "frozen_tissue_grind"
+      ],
+      "type": "sample"
+    },
+    "05_B1_Spleen_syngenic_42days_170427_UKy_GCH_rep2-polar-ICMS_A": {
+      "id": "05_B1_Spleen_syngenic_42days_170427_UKy_GCH_rep2-polar-ICMS_A",
+      "injection_volume": "10",
+      "injection_volume%units": "uL",
+      "parent_id": "05_B1_Spleen_syngenic_42days_170427_UKy_GCH_rep2",
+      "polar_split_ratio": "0.115636866",
+      "protocol.id": [
+        "polar_extraction",
+        "IC-FTMS_preparation",
+        "ICMS_file_storage5"
+      ],
+      "reconstitution_volume": "20",
+      "reconstitution_volume%units": "uL",
+      "replicate": "1",
+      "replicate%type": "analytical",
+      "type": "sample",
+      "weight": "0.20100000000000007",
+      "weight%units": "g"
+    },
+    "05_B1_Spleen_syngenic_42days_170427_UKy_GCH_rep2-protein": {
+      "dry_residue": "1.1",
+      "dry_residue%units": "mg",
+      "id": "05_B1_Spleen_syngenic_42days_170427_UKy_GCH_rep2-protein",
+      "parent_id": "05_B1_Spleen_syngenic_42days_170427_UKy_GCH_rep2",
+      "protein_weight": "0",
+      "protein_weight%units": "mg",
+      "protocol.id": [
+        "protein_extraction"
+      ],
+      "type": "sample"
+    },
+    "05_B1_syngenic_42days_UKy_GCH_rep2": {
+      "id": "05_B1_syngenic_42days_UKy_GCH_rep2",
+      "protocol.id": [
+        "syngenic"
+      ],
+      "replicate": "2",
+      "species": "Mus musculus",
+      "species_type": "Mouse",
+      "taxonomy_id": "10090",
+      "time_point": "42",
+      "type": "subject"
+    },
+    "06_B2_Colon_syngenic_42days_170427_UKy_GCH_rep3": {
+      "id": "06_B2_Colon_syngenic_42days_170427_UKy_GCH_rep3",
+      "parent_id": "06_B2_syngenic_42days_UKy_GCH_rep3",
+      "protocol.id": [
+        "mouse_tissue_collection",
+        "tissue_quench",
+        "frozen_tissue_grind"
+      ],
+      "type": "sample"
+    },
+    "06_B2_Colon_syngenic_42days_170427_UKy_GCH_rep3-polar-ICMS_A": {
+      "id": "06_B2_Colon_syngenic_42days_170427_UKy_GCH_rep3-polar-ICMS_A",
+      "injection_volume": "10",
+      "injection_volume%units": "uL",
+      "parent_id": "06_B2_Colon_syngenic_42days_170427_UKy_GCH_rep3",
+      "polar_split_ratio": "0.125838779956427",
+      "protocol.id": [
+        "polar_extraction",
+        "IC-FTMS_preparation",
+        "ICMS_file_storage51"
+      ],
+      "reconstitution_volume": "20",
+      "reconstitution_volume%units": "uL",
+      "replicate": "1",
+      "replicate%type": "analytical",
+      "type": "sample",
+      "weight": "0.1444",
+      "weight%units": "g"
+    },
+    "06_B2_Colon_syngenic_42days_170427_UKy_GCH_rep3-protein": {
+      "id": "06_B2_Colon_syngenic_42days_170427_UKy_GCH_rep3-protein",
+      "parent_id": "06_B2_Colon_syngenic_42days_170427_UKy_GCH_rep3",
+      "protein_weight": "1.5623114343705382",
+      "protein_weight%units": "mg",
+      "protocol.id": [
+        "protein_extraction"
+      ],
+      "type": "sample"
+    },
+    "06_B2_Liver_syngenic_42days_170427_UKy_GCH_rep3": {
+      "id": "06_B2_Liver_syngenic_42days_170427_UKy_GCH_rep3",
+      "parent_id": "06_B2_syngenic_42days_UKy_GCH_rep3",
+      "protocol.id": [
+        "mouse_tissue_collection",
+        "tissue_quench",
+        "frozen_tissue_grind"
+      ],
+      "type": "sample"
+    },
+    "06_B2_Liver_syngenic_42days_170427_UKy_GCH_rep3-polar-ICMS_A": {
+      "id": "06_B2_Liver_syngenic_42days_170427_UKy_GCH_rep3-polar-ICMS_A",
+      "injection_volume": "10",
+      "injection_volume%units": "uL",
+      "parent_id": "06_B2_Liver_syngenic_42days_170427_UKy_GCH_rep3",
+      "polar_split_ratio": "0.127582814037389",
+      "protocol.id": [
+        "polar_extraction",
+        "IC-FTMS_preparation",
+        "ICMS_file_storage66"
+      ],
+      "reconstitution_volume": "20",
+      "reconstitution_volume%units": "uL",
+      "replicate": "1",
+      "replicate%type": "analytical",
+      "type": "sample",
+      "weight": "0.1929",
+      "weight%units": "g"
+    },
+    "06_B2_Liver_syngenic_42days_170427_UKy_GCH_rep3-protein": {
+      "id": "06_B2_Liver_syngenic_42days_170427_UKy_GCH_rep3-protein",
+      "parent_id": "06_B2_Liver_syngenic_42days_170427_UKy_GCH_rep3",
+      "protein_weight": "0.7304291414016",
+      "protein_weight%units": "mg",
+      "protocol.id": [
+        "protein_extraction"
+      ],
+      "type": "sample"
+    },
+    "06_B2_SI_syngenic_42days_170427_UKy_GCH_rep3": {
+      "id": "06_B2_SI_syngenic_42days_170427_UKy_GCH_rep3",
+      "parent_id": "06_B2_syngenic_42days_UKy_GCH_rep3",
+      "protocol.id": [
+        "mouse_tissue_collection",
+        "tissue_quench",
+        "frozen_tissue_grind"
+      ],
+      "type": "sample"
+    },
+    "06_B2_SI_syngenic_42days_170427_UKy_GCH_rep3-polar-ICMS_A": {
+      "id": "06_B2_SI_syngenic_42days_170427_UKy_GCH_rep3-polar-ICMS_A",
+      "injection_volume": "10",
+      "injection_volume%units": "uL",
+      "parent_id": "06_B2_SI_syngenic_42days_170427_UKy_GCH_rep3",
+      "polar_split_ratio": "0.228426992711028",
+      "protocol.id": [
+        "polar_extraction",
+        "IC-FTMS_preparation",
+        "ICMS_file_storage36"
+      ],
+      "reconstitution_volume": "20",
+      "reconstitution_volume%units": "uL",
+      "replicate": "1",
+      "replicate%type": "analytical",
+      "type": "sample",
+      "weight": "0.1943",
+      "weight%units": "g"
+    },
+    "06_B2_SI_syngenic_42days_170427_UKy_GCH_rep3-protein": {
+      "id": "06_B2_SI_syngenic_42days_170427_UKy_GCH_rep3-protein",
+      "parent_id": "06_B2_SI_syngenic_42days_170427_UKy_GCH_rep3",
+      "protein_weight": "0.5913021972603197",
+      "protein_weight%units": "mg",
+      "protocol.id": [
+        "protein_extraction"
+      ],
+      "type": "sample"
+    },
+    "06_B2_Spleen_syngenic_42days_170427_UKy_GCH_rep3": {
+      "id": "06_B2_Spleen_syngenic_42days_170427_UKy_GCH_rep3",
+      "parent_id": "06_B2_syngenic_42days_UKy_GCH_rep3",
+      "protocol.id": [
+        "mouse_tissue_collection",
+        "tissue_quench",
+        "frozen_tissue_grind"
+      ],
+      "type": "sample"
+    },
+    "06_B2_Spleen_syngenic_42days_170427_UKy_GCH_rep3-polar-ICMS_A": {
+      "id": "06_B2_Spleen_syngenic_42days_170427_UKy_GCH_rep3-polar-ICMS_A",
+      "injection_volume": "10",
+      "injection_volume%units": "uL",
+      "parent_id": "06_B2_Spleen_syngenic_42days_170427_UKy_GCH_rep3",
+      "polar_split_ratio": "0.119417244",
+      "protocol.id": [
+        "polar_extraction",
+        "IC-FTMS_preparation",
+        "ICMS_file_storage6"
+      ],
+      "reconstitution_volume": "20",
+      "reconstitution_volume%units": "uL",
+      "replicate": "1",
+      "replicate%type": "analytical",
+      "type": "sample",
+      "weight": "0.20000000000000018",
+      "weight%units": "g"
+    },
+    "06_B2_Spleen_syngenic_42days_170427_UKy_GCH_rep3-protein": {
+      "dry_residue": "3.36",
+      "dry_residue%units": "mg",
+      "id": "06_B2_Spleen_syngenic_42days_170427_UKy_GCH_rep3-protein",
+      "parent_id": "06_B2_Spleen_syngenic_42days_170427_UKy_GCH_rep3",
+      "protein_weight": "0",
+      "protein_weight%units": "mg",
+      "protocol.id": [
+        "protein_extraction"
+      ],
+      "type": "sample"
+    },
+    "06_B2_syngenic_42days_UKy_GCH_rep3": {
+      "id": "06_B2_syngenic_42days_UKy_GCH_rep3",
+      "protocol.id": [
+        "syngenic"
+      ],
+      "replicate": "3",
+      "species": "Mus musculus",
+      "species_type": "Mouse",
+      "taxonomy_id": "10090",
+      "time_point": "42",
+      "type": "subject"
+    },
+    "07_C1-1_Colon_allogenic_42days_170427_UKy_GCH_rep1": {
+      "id": "07_C1-1_Colon_allogenic_42days_170427_UKy_GCH_rep1",
+      "parent_id": "07_C1-1_allogenic_42days_UKy_GCH_rep1",
+      "protocol.id": [
+        "mouse_tissue_collection",
+        "tissue_quench",
+        "frozen_tissue_grind"
+      ],
+      "type": "sample"
+    },
+    "07_C1-1_Colon_allogenic_42days_170427_UKy_GCH_rep1-polar-ICMS_A": {
+      "id": "07_C1-1_Colon_allogenic_42days_170427_UKy_GCH_rep1-polar-ICMS_A",
+      "injection_volume": "10",
+      "injection_volume%units": "uL",
+      "parent_id": "07_C1-1_Colon_allogenic_42days_170427_UKy_GCH_rep1",
+      "polar_split_ratio": "0.184148425421108",
+      "protocol.id": [
+        "polar_extraction",
+        "IC-FTMS_preparation",
+        "ICMS_file_storage52"
+      ],
+      "reconstitution_volume": "20",
+      "reconstitution_volume%units": "uL",
+      "replicate": "1",
+      "replicate%type": "analytical",
+      "type": "sample",
+      "weight": "0.2263",
+      "weight%units": "g"
+    },
+    "07_C1-1_Colon_allogenic_42days_170427_UKy_GCH_rep1-protein": {
+      "id": "07_C1-1_Colon_allogenic_42days_170427_UKy_GCH_rep1-protein",
+      "parent_id": "07_C1-1_Colon_allogenic_42days_170427_UKy_GCH_rep1",
+      "protein_weight": "1.2093335004111359",
+      "protein_weight%units": "mg",
+      "protocol.id": [
+        "protein_extraction"
+      ],
+      "type": "sample"
+    },
+    "07_C1-1_Liver_allogenic_42days_170427_UKy_GCH_rep1": {
+      "id": "07_C1-1_Liver_allogenic_42days_170427_UKy_GCH_rep1",
+      "parent_id": "07_C1-1_allogenic_42days_UKy_GCH_rep1",
+      "protocol.id": [
+        "mouse_tissue_collection",
+        "tissue_quench",
+        "frozen_tissue_grind"
+      ],
+      "type": "sample"
+    },
+    "07_C1-1_Liver_allogenic_42days_170427_UKy_GCH_rep1-polar-ICMS_A": {
+      "id": "07_C1-1_Liver_allogenic_42days_170427_UKy_GCH_rep1-polar-ICMS_A",
+      "injection_volume": "10",
+      "injection_volume%units": "uL",
+      "parent_id": "07_C1-1_Liver_allogenic_42days_170427_UKy_GCH_rep1",
+      "polar_split_ratio": "0.114865693609714",
+      "protocol.id": [
+        "polar_extraction",
+        "IC-FTMS_preparation",
+        "ICMS_file_storage67"
+      ],
+      "reconstitution_volume": "20",
+      "reconstitution_volume%units": "uL",
+      "replicate": "1",
+      "replicate%type": "analytical",
+      "type": "sample",
+      "weight": "0.1873",
+      "weight%units": "g"
+    },
+    "07_C1-1_Liver_allogenic_42days_170427_UKy_GCH_rep1-protein": {
+      "id": "07_C1-1_Liver_allogenic_42days_170427_UKy_GCH_rep1-protein",
+      "parent_id": "07_C1-1_Liver_allogenic_42days_170427_UKy_GCH_rep1",
+      "protein_weight": "1.1018298457977784",
+      "protein_weight%units": "mg",
+      "protocol.id": [
+        "protein_extraction"
+      ],
+      "type": "sample"
+    },
+    "07_C1-1_SI_allogenic_42days_170427_UKy_GCH_rep1": {
+      "id": "07_C1-1_SI_allogenic_42days_170427_UKy_GCH_rep1",
+      "parent_id": "07_C1-1_allogenic_42days_UKy_GCH_rep1",
+      "protocol.id": [
+        "mouse_tissue_collection",
+        "tissue_quench",
+        "frozen_tissue_grind"
+      ],
+      "type": "sample"
+    },
+    "07_C1-1_SI_allogenic_42days_170427_UKy_GCH_rep1-polar-ICMS_A": {
+      "id": "07_C1-1_SI_allogenic_42days_170427_UKy_GCH_rep1-polar-ICMS_A",
+      "injection_volume": "10",
+      "injection_volume%units": "uL",
+      "parent_id": "07_C1-1_SI_allogenic_42days_170427_UKy_GCH_rep1",
+      "polar_split_ratio": "0.112862731359841",
+      "protocol.id": [
+        "polar_extraction",
+        "IC-FTMS_preparation",
+        "ICMS_file_storage37"
+      ],
+      "reconstitution_volume": "20",
+      "reconstitution_volume%units": "uL",
+      "replicate": "1",
+      "replicate%type": "analytical",
+      "type": "sample",
+      "weight": "0.1933",
+      "weight%units": "g"
+    },
+    "07_C1-1_SI_allogenic_42days_170427_UKy_GCH_rep1-protein": {
+      "id": "07_C1-1_SI_allogenic_42days_170427_UKy_GCH_rep1-protein",
+      "parent_id": "07_C1-1_SI_allogenic_42days_170427_UKy_GCH_rep1",
+      "protein_weight": "3.4114953724241492",
+      "protein_weight%units": "mg",
+      "protocol.id": [
+        "protein_extraction"
+      ],
+      "type": "sample"
+    },
+    "07_C1-1_Spleen_allogenic_42days_170427_UKy_GCH_rep1": {
+      "id": "07_C1-1_Spleen_allogenic_42days_170427_UKy_GCH_rep1",
+      "parent_id": "07_C1-1_allogenic_42days_UKy_GCH_rep1",
+      "protocol.id": [
+        "mouse_tissue_collection",
+        "tissue_quench",
+        "frozen_tissue_grind"
+      ],
+      "type": "sample"
+    },
+    "07_C1-1_Spleen_allogenic_42days_170427_UKy_GCH_rep1-polar-ICMS_A": {
+      "id": "07_C1-1_Spleen_allogenic_42days_170427_UKy_GCH_rep1-polar-ICMS_A",
+      "injection_volume": "10",
+      "injection_volume%units": "uL",
+      "parent_id": "07_C1-1_Spleen_allogenic_42days_170427_UKy_GCH_rep1",
+      "polar_split_ratio": "0.117161404",
+      "protocol.id": [
+        "polar_extraction",
+        "IC-FTMS_preparation",
+        "ICMS_file_storage7"
+      ],
+      "reconstitution_volume": "20",
+      "reconstitution_volume%units": "uL",
+      "replicate": "1",
+      "replicate%type": "analytical",
+      "type": "sample",
+      "weight": "0.18589999999999973",
+      "weight%units": "g"
+    },
+    "07_C1-1_Spleen_allogenic_42days_170427_UKy_GCH_rep1-protein": {
+      "dry_residue": "1.07",
+      "dry_residue%units": "mg",
+      "id": "07_C1-1_Spleen_allogenic_42days_170427_UKy_GCH_rep1-protein",
+      "parent_id": "07_C1-1_Spleen_allogenic_42days_170427_UKy_GCH_rep1",
+      "protein_weight": "0",
+      "protein_weight%units": "mg",
+      "protocol.id": [
+        "protein_extraction"
+      ],
+      "type": "sample"
+    },
+    "07_C1-1_allogenic_42days_UKy_GCH_rep1": {
+      "id": "07_C1-1_allogenic_42days_UKy_GCH_rep1",
+      "protocol.id": [
+        "allogenic"
+      ],
+      "replicate": "1",
+      "species": "Mus musculus",
+      "species_type": "Mouse",
+      "taxonomy_id": "10090",
+      "time_point": "42",
+      "type": "subject"
+    },
+    "08_C1-2_Colon_allogenic_42days_170427_UKy_GCH_rep2": {
+      "id": "08_C1-2_Colon_allogenic_42days_170427_UKy_GCH_rep2",
+      "parent_id": "08_C1-2_allogenic_42days_UKy_GCH_rep2",
+      "protocol.id": [
+        "mouse_tissue_collection",
+        "tissue_quench",
+        "frozen_tissue_grind"
+      ],
+      "type": "sample"
+    },
+    "08_C1-2_Colon_allogenic_42days_170427_UKy_GCH_rep2-polar-ICMS_A": {
+      "id": "08_C1-2_Colon_allogenic_42days_170427_UKy_GCH_rep2-polar-ICMS_A",
+      "injection_volume": "10",
+      "injection_volume%units": "uL",
+      "parent_id": "08_C1-2_Colon_allogenic_42days_170427_UKy_GCH_rep2",
+      "polar_split_ratio": "0.152109107169474",
+      "protocol.id": [
+        "polar_extraction",
+        "IC-FTMS_preparation",
+        "ICMS_file_storage53"
+      ],
+      "reconstitution_volume": "20",
+      "reconstitution_volume%units": "uL",
+      "replicate": "1",
+      "replicate%type": "analytical",
+      "type": "sample",
+      "weight": "0.2041",
+      "weight%units": "g"
+    },
+    "08_C1-2_Colon_allogenic_42days_170427_UKy_GCH_rep2-protein": {
+      "id": "08_C1-2_Colon_allogenic_42days_170427_UKy_GCH_rep2-protein",
+      "parent_id": "08_C1-2_Colon_allogenic_42days_170427_UKy_GCH_rep2",
+      "protein_weight": "1.6115317800148334",
+      "protein_weight%units": "mg",
+      "protocol.id": [
+        "protein_extraction"
+      ],
+      "type": "sample"
+    },
+    "08_C1-2_Liver_allogenic_42days_170427_UKy_GCH_rep2": {
+      "id": "08_C1-2_Liver_allogenic_42days_170427_UKy_GCH_rep2",
+      "parent_id": "08_C1-2_allogenic_42days_UKy_GCH_rep2",
+      "protocol.id": [
+        "mouse_tissue_collection",
+        "tissue_quench",
+        "frozen_tissue_grind"
+      ],
+      "type": "sample"
+    },
+    "08_C1-2_Liver_allogenic_42days_170427_UKy_GCH_rep2-polar-ICMS_A": {
+      "id": "08_C1-2_Liver_allogenic_42days_170427_UKy_GCH_rep2-polar-ICMS_A",
+      "injection_volume": "10",
+      "injection_volume%units": "uL",
+      "parent_id": "08_C1-2_Liver_allogenic_42days_170427_UKy_GCH_rep2",
+      "polar_split_ratio": "0.113173353330834",
+      "protocol.id": [
+        "polar_extraction",
+        "IC-FTMS_preparation",
+        "ICMS_file_storage68"
+      ],
+      "reconstitution_volume": "20",
+      "reconstitution_volume%units": "uL",
+      "replicate": "1",
+      "replicate%type": "analytical",
+      "type": "sample",
+      "weight": "0.1811",
+      "weight%units": "g"
+    },
+    "08_C1-2_Liver_allogenic_42days_170427_UKy_GCH_rep2-protein": {
+      "id": "08_C1-2_Liver_allogenic_42days_170427_UKy_GCH_rep2-protein",
+      "parent_id": "08_C1-2_Liver_allogenic_42days_170427_UKy_GCH_rep2",
+      "protein_weight": "1.6422993603789873",
+      "protein_weight%units": "mg",
+      "protocol.id": [
+        "protein_extraction"
+      ],
+      "type": "sample"
+    },
+    "08_C1-2_SI_allogenic_42days_170427_UKy_GCH_rep2": {
+      "id": "08_C1-2_SI_allogenic_42days_170427_UKy_GCH_rep2",
+      "parent_id": "08_C1-2_allogenic_42days_UKy_GCH_rep2",
+      "protocol.id": [
+        "mouse_tissue_collection",
+        "tissue_quench",
+        "frozen_tissue_grind"
+      ],
+      "type": "sample"
+    },
+    "08_C1-2_SI_allogenic_42days_170427_UKy_GCH_rep2-polar-ICMS_A": {
+      "id": "08_C1-2_SI_allogenic_42days_170427_UKy_GCH_rep2-polar-ICMS_A",
+      "injection_volume": "10",
+      "injection_volume%units": "uL",
+      "parent_id": "08_C1-2_SI_allogenic_42days_170427_UKy_GCH_rep2",
+      "polar_split_ratio": "0.116381850324101",
+      "protocol.id": [
+        "polar_extraction",
+        "IC-FTMS_preparation",
+        "ICMS_file_storage38"
+      ],
+      "reconstitution_volume": "20",
+      "reconstitution_volume%units": "uL",
+      "replicate": "1",
+      "replicate%type": "analytical",
+      "type": "sample",
+      "weight": "0.1975",
+      "weight%units": "g"
+    },
+    "08_C1-2_SI_allogenic_42days_170427_UKy_GCH_rep2-protein": {
+      "id": "08_C1-2_SI_allogenic_42days_170427_UKy_GCH_rep2-protein",
+      "parent_id": "08_C1-2_SI_allogenic_42days_170427_UKy_GCH_rep2",
+      "protein_weight": "3.1425075687553528",
+      "protein_weight%units": "mg",
+      "protocol.id": [
+        "protein_extraction"
+      ],
+      "type": "sample"
+    },
+    "08_C1-2_Spleen_allogenic_42days_170427_UKy_GCH_rep2": {
+      "id": "08_C1-2_Spleen_allogenic_42days_170427_UKy_GCH_rep2",
+      "parent_id": "08_C1-2_allogenic_42days_UKy_GCH_rep2",
+      "protocol.id": [
+        "mouse_tissue_collection",
+        "tissue_quench",
+        "frozen_tissue_grind"
+      ],
+      "type": "sample"
+    },
+    "08_C1-2_Spleen_allogenic_42days_170427_UKy_GCH_rep2-polar-ICMS_A": {
+      "id": "08_C1-2_Spleen_allogenic_42days_170427_UKy_GCH_rep2-polar-ICMS_A",
+      "injection_volume": "10",
+      "injection_volume%units": "uL",
+      "parent_id": "08_C1-2_Spleen_allogenic_42days_170427_UKy_GCH_rep2",
+      "polar_split_ratio": "0.119693218",
+      "protocol.id": [
+        "polar_extraction",
+        "IC-FTMS_preparation",
+        "ICMS_file_storage8"
+      ],
+      "reconstitution_volume": "20",
+      "reconstitution_volume%units": "uL",
+      "replicate": "1",
+      "replicate%type": "analytical",
+      "type": "sample",
+      "weight": "0.1981999999999997",
+      "weight%units": "g"
+    },
+    "08_C1-2_Spleen_allogenic_42days_170427_UKy_GCH_rep2-protein": {
+      "dry_residue": "0.53",
+      "dry_residue%units": "mg",
+      "id": "08_C1-2_Spleen_allogenic_42days_170427_UKy_GCH_rep2-protein",
+      "parent_id": "08_C1-2_Spleen_allogenic_42days_170427_UKy_GCH_rep2",
+      "protein_weight": "0",
+      "protein_weight%units": "mg",
+      "protocol.id": [
+        "protein_extraction"
+      ],
+      "type": "sample"
+    },
+    "08_C1-2_allogenic_42days_UKy_GCH_rep2": {
+      "id": "08_C1-2_allogenic_42days_UKy_GCH_rep2",
+      "protocol.id": [
+        "allogenic"
+      ],
+      "replicate": "2",
+      "species": "Mus musculus",
+      "species_type": "Mouse",
+      "taxonomy_id": "10090",
+      "time_point": "42",
+      "type": "subject"
+    },
+    "09_C2-0_Colon_allogenic_42days_170427_UKy_GCH_rep1": {
+      "id": "09_C2-0_Colon_allogenic_42days_170427_UKy_GCH_rep1",
+      "parent_id": "09_C2-0_allogenic_42days_UKy_GCH_rep1",
+      "protocol.id": [
+        "mouse_tissue_collection",
+        "tissue_quench",
+        "frozen_tissue_grind"
+      ],
+      "type": "sample"
+    },
+    "09_C2-0_Colon_allogenic_42days_170427_UKy_GCH_rep1-polar-ICMS_A": {
+      "id": "09_C2-0_Colon_allogenic_42days_170427_UKy_GCH_rep1-polar-ICMS_A",
+      "injection_volume": "10",
+      "injection_volume%units": "uL",
+      "parent_id": "09_C2-0_Colon_allogenic_42days_170427_UKy_GCH_rep1",
+      "polar_split_ratio": "0.141717963066592",
+      "protocol.id": [
+        "polar_extraction",
+        "IC-FTMS_preparation",
+        "ICMS_file_storage54"
+      ],
+      "reconstitution_volume": "20",
+      "reconstitution_volume%units": "uL",
+      "replicate": "1",
+      "replicate%type": "analytical",
+      "type": "sample",
+      "weight": "0.2026",
+      "weight%units": "g"
+    },
+    "09_C2-0_Colon_allogenic_42days_170427_UKy_GCH_rep1-protein": {
+      "id": "09_C2-0_Colon_allogenic_42days_170427_UKy_GCH_rep1-protein",
+      "parent_id": "09_C2-0_Colon_allogenic_42days_170427_UKy_GCH_rep1",
+      "protein_weight": "1.6843458692847952",
+      "protein_weight%units": "mg",
+      "protocol.id": [
+        "protein_extraction"
+      ],
+      "type": "sample"
+    },
+    "09_C2-0_Liver_allogenic_42days_170427_UKy_GCH_rep1": {
+      "id": "09_C2-0_Liver_allogenic_42days_170427_UKy_GCH_rep1",
+      "parent_id": "09_C2-0_allogenic_42days_UKy_GCH_rep1",
+      "protocol.id": [
+        "mouse_tissue_collection",
+        "tissue_quench",
+        "frozen_tissue_grind"
+      ],
+      "type": "sample"
+    },
+    "09_C2-0_Liver_allogenic_42days_170427_UKy_GCH_rep1-polar-ICMS_A": {
+      "id": "09_C2-0_Liver_allogenic_42days_170427_UKy_GCH_rep1-polar-ICMS_A",
+      "injection_volume": "10",
+      "injection_volume%units": "uL",
+      "parent_id": "09_C2-0_Liver_allogenic_42days_170427_UKy_GCH_rep1",
+      "polar_split_ratio": "0.116565946046975",
+      "protocol.id": [
+        "polar_extraction",
+        "IC-FTMS_preparation",
+        "ICMS_file_storage69"
+      ],
+      "reconstitution_volume": "20",
+      "reconstitution_volume%units": "uL",
+      "replicate": "1",
+      "replicate%type": "analytical",
+      "type": "sample",
+      "weight": "0.1871",
+      "weight%units": "g"
+    },
+    "09_C2-0_Liver_allogenic_42days_170427_UKy_GCH_rep1-protein": {
+      "id": "09_C2-0_Liver_allogenic_42days_170427_UKy_GCH_rep1-protein",
+      "parent_id": "09_C2-0_Liver_allogenic_42days_170427_UKy_GCH_rep1",
+      "protein_weight": "1.507104667608952",
+      "protein_weight%units": "mg",
+      "protocol.id": [
+        "protein_extraction"
+      ],
+      "type": "sample"
+    },
+    "09_C2-0_SI_allogenic_42days_170427_UKy_GCH_rep1": {
+      "id": "09_C2-0_SI_allogenic_42days_170427_UKy_GCH_rep1",
+      "parent_id": "09_C2-0_allogenic_42days_UKy_GCH_rep1",
+      "protocol.id": [
+        "mouse_tissue_collection",
+        "tissue_quench",
+        "frozen_tissue_grind"
+      ],
+      "type": "sample"
+    },
+    "09_C2-0_SI_allogenic_42days_170427_UKy_GCH_rep1-polar-ICMS_A": {
+      "id": "09_C2-0_SI_allogenic_42days_170427_UKy_GCH_rep1-polar-ICMS_A",
+      "injection_volume": "10",
+      "injection_volume%units": "uL",
+      "parent_id": "09_C2-0_SI_allogenic_42days_170427_UKy_GCH_rep1",
+      "polar_split_ratio": "0.114317673378076",
+      "protocol.id": [
+        "polar_extraction",
+        "IC-FTMS_preparation",
+        "ICMS_file_storage39"
+      ],
+      "reconstitution_volume": "20",
+      "reconstitution_volume%units": "uL",
+      "replicate": "1",
+      "replicate%type": "analytical",
+      "type": "sample",
+      "weight": "0.2044",
+      "weight%units": "g"
+    },
+    "09_C2-0_SI_allogenic_42days_170427_UKy_GCH_rep1-protein": {
+      "id": "09_C2-0_SI_allogenic_42days_170427_UKy_GCH_rep1-protein",
+      "parent_id": "09_C2-0_SI_allogenic_42days_170427_UKy_GCH_rep1",
+      "protein_weight": "2.180889533694321",
+      "protein_weight%units": "mg",
+      "protocol.id": [
+        "protein_extraction"
+      ],
+      "type": "sample"
+    },
+    "09_C2-0_Spleen_allogenic_42days_170427_UKy_GCH_rep1": {
+      "id": "09_C2-0_Spleen_allogenic_42days_170427_UKy_GCH_rep1",
+      "parent_id": "09_C2-0_allogenic_42days_UKy_GCH_rep1",
+      "protocol.id": [
+        "mouse_tissue_collection",
+        "tissue_quench",
+        "frozen_tissue_grind"
+      ],
+      "type": "sample"
+    },
+    "09_C2-0_Spleen_allogenic_42days_170427_UKy_GCH_rep1-polar-ICMS_A": {
+      "id": "09_C2-0_Spleen_allogenic_42days_170427_UKy_GCH_rep1-polar-ICMS_A",
+      "injection_volume": "10",
+      "injection_volume%units": "uL",
+      "parent_id": "09_C2-0_Spleen_allogenic_42days_170427_UKy_GCH_rep1",
+      "polar_split_ratio": "0.122111591",
+      "protocol.id": [
+        "polar_extraction",
+        "IC-FTMS_preparation",
+        "ICMS_file_storage9"
+      ],
+      "reconstitution_volume": "20",
+      "reconstitution_volume%units": "uL",
+      "replicate": "1",
+      "replicate%type": "analytical",
+      "type": "sample",
+      "weight": "0.195",
+      "weight%units": "g"
+    },
+    "09_C2-0_Spleen_allogenic_42days_170427_UKy_GCH_rep1-protein": {
+      "dry_residue": "1.2",
+      "dry_residue%units": "mg",
+      "id": "09_C2-0_Spleen_allogenic_42days_170427_UKy_GCH_rep1-protein",
+      "parent_id": "09_C2-0_Spleen_allogenic_42days_170427_UKy_GCH_rep1",
+      "protein_weight": "0",
+      "protein_weight%units": "mg",
+      "protocol.id": [
+        "protein_extraction"
+      ],
+      "type": "sample"
+    },
+    "09_C2-0_allogenic_42days_UKy_GCH_rep1": {
+      "id": "09_C2-0_allogenic_42days_UKy_GCH_rep1",
+      "protocol.id": [
+        "allogenic"
+      ],
+      "replicate": "1",
+      "species": "Mus musculus",
+      "species_type": "Mouse",
+      "taxonomy_id": "10090",
+      "time_point": "42",
+      "type": "subject"
+    },
+    "10_B1-0_Colon_syngenic_7days_170427_UKy_GCH_rep1": {
+      "id": "10_B1-0_Colon_syngenic_7days_170427_UKy_GCH_rep1",
+      "parent_id": "10_B1-0_syngenic_7days_UKy_GCH_rep1",
+      "protocol.id": [
+        "mouse_tissue_collection",
+        "tissue_quench",
+        "frozen_tissue_grind"
+      ],
+      "type": "sample"
+    },
+    "10_B1-0_Colon_syngenic_7days_170427_UKy_GCH_rep1-polar-ICMS_A": {
+      "id": "10_B1-0_Colon_syngenic_7days_170427_UKy_GCH_rep1-polar-ICMS_A",
+      "injection_volume": "10",
+      "injection_volume%units": "uL",
+      "parent_id": "10_B1-0_Colon_syngenic_7days_170427_UKy_GCH_rep1",
+      "polar_split_ratio": "0.170429537859646",
+      "protocol.id": [
+        "polar_extraction",
+        "IC-FTMS_preparation",
+        "ICMS_file_storage55"
+      ],
+      "reconstitution_volume": "20",
+      "reconstitution_volume%units": "uL",
+      "replicate": "1",
+      "replicate%type": "analytical",
+      "type": "sample",
+      "weight": "0.2091",
+      "weight%units": "g"
+    },
+    "10_B1-0_Colon_syngenic_7days_170427_UKy_GCH_rep1-protein": {
+      "id": "10_B1-0_Colon_syngenic_7days_170427_UKy_GCH_rep1-protein",
+      "parent_id": "10_B1-0_Colon_syngenic_7days_170427_UKy_GCH_rep1",
+      "protein_weight": "0.9744309499653369",
+      "protein_weight%units": "mg",
+      "protocol.id": [
+        "protein_extraction"
+      ],
+      "type": "sample"
+    },
+    "10_B1-0_Liver_syngenic_7days_170427_UKy_GCH_rep1": {
+      "id": "10_B1-0_Liver_syngenic_7days_170427_UKy_GCH_rep1",
+      "parent_id": "10_B1-0_syngenic_7days_UKy_GCH_rep1",
+      "protocol.id": [
+        "mouse_tissue_collection",
+        "tissue_quench",
+        "frozen_tissue_grind"
+      ],
+      "type": "sample"
+    },
+    "10_B1-0_Liver_syngenic_7days_170427_UKy_GCH_rep1-polar-ICMS_A": {
+      "id": "10_B1-0_Liver_syngenic_7days_170427_UKy_GCH_rep1-polar-ICMS_A",
+      "injection_volume": "10",
+      "injection_volume%units": "uL",
+      "parent_id": "10_B1-0_Liver_syngenic_7days_170427_UKy_GCH_rep1",
+      "polar_split_ratio": "0.131564245810056",
+      "protocol.id": [
+        "polar_extraction",
+        "IC-FTMS_preparation",
+        "ICMS_file_storage70"
+      ],
+      "reconstitution_volume": "20",
+      "reconstitution_volume%units": "uL",
+      "replicate": "1",
+      "replicate%type": "analytical",
+      "type": "sample",
+      "weight": "0.1884",
+      "weight%units": "g"
+    },
+    "10_B1-0_Liver_syngenic_7days_170427_UKy_GCH_rep1-protein": {
+      "id": "10_B1-0_Liver_syngenic_7days_170427_UKy_GCH_rep1-protein",
+      "parent_id": "10_B1-0_Liver_syngenic_7days_170427_UKy_GCH_rep1",
+      "protein_weight": "0.28991116453120014",
+      "protein_weight%units": "mg",
+      "protocol.id": [
+        "protein_extraction"
+      ],
+      "type": "sample"
+    },
+    "10_B1-0_SI_syngenic_7days_170427_UKy_GCH_rep1": {
+      "id": "10_B1-0_SI_syngenic_7days_170427_UKy_GCH_rep1",
+      "parent_id": "10_B1-0_syngenic_7days_UKy_GCH_rep1",
+      "protocol.id": [
+        "mouse_tissue_collection",
+        "tissue_quench",
+        "frozen_tissue_grind"
+      ],
+      "type": "sample"
+    },
+    "10_B1-0_SI_syngenic_7days_170427_UKy_GCH_rep1-polar-ICMS_A": {
+      "id": "10_B1-0_SI_syngenic_7days_170427_UKy_GCH_rep1-polar-ICMS_A",
+      "injection_volume": "10",
+      "injection_volume%units": "uL",
+      "parent_id": "10_B1-0_SI_syngenic_7days_170427_UKy_GCH_rep1",
+      "polar_split_ratio": "0.145307917888563",
+      "protocol.id": [
+        "polar_extraction",
+        "IC-FTMS_preparation",
+        "ICMS_file_storage40"
+      ],
+      "reconstitution_volume": "20",
+      "reconstitution_volume%units": "uL",
+      "replicate": "1",
+      "replicate%type": "analytical",
+      "type": "sample",
+      "weight": "0.1982",
+      "weight%units": "g"
+    },
+    "10_B1-0_SI_syngenic_7days_170427_UKy_GCH_rep1-protein": {
+      "id": "10_B1-0_SI_syngenic_7days_170427_UKy_GCH_rep1-protein",
+      "parent_id": "10_B1-0_SI_syngenic_7days_170427_UKy_GCH_rep1",
+      "protein_weight": "1.8221409547723206",
+      "protein_weight%units": "mg",
+      "protocol.id": [
+        "protein_extraction"
+      ],
+      "type": "sample"
+    },
+    "10_B1-0_Spleen_syngenic_7days_170427_UKy_GCH_rep1": {
+      "id": "10_B1-0_Spleen_syngenic_7days_170427_UKy_GCH_rep1",
+      "parent_id": "10_B1-0_syngenic_7days_UKy_GCH_rep1",
+      "protocol.id": [
+        "mouse_tissue_collection",
+        "tissue_quench",
+        "frozen_tissue_grind"
+      ],
+      "type": "sample"
+    },
+    "10_B1-0_Spleen_syngenic_7days_170427_UKy_GCH_rep1-polar-ICMS_A": {
+      "id": "10_B1-0_Spleen_syngenic_7days_170427_UKy_GCH_rep1-polar-ICMS_A",
+      "injection_volume": "10",
+      "injection_volume%units": "uL",
+      "parent_id": "10_B1-0_Spleen_syngenic_7days_170427_UKy_GCH_rep1",
+      "polar_split_ratio": "0.121717929",
+      "protocol.id": [
+        "polar_extraction",
+        "IC-FTMS_preparation",
+        "ICMS_file_storage10"
+      ],
+      "reconstitution_volume": "20",
+      "reconstitution_volume%units": "uL",
+      "replicate": "1",
+      "replicate%type": "analytical",
+      "type": "sample",
+      "weight": "0.1947",
+      "weight%units": "g"
+    },
+    "10_B1-0_Spleen_syngenic_7days_170427_UKy_GCH_rep1-protein": {
+      "dry_residue": "2.82",
+      "dry_residue%units": "mg",
+      "id": "10_B1-0_Spleen_syngenic_7days_170427_UKy_GCH_rep1-protein",
+      "parent_id": "10_B1-0_Spleen_syngenic_7days_170427_UKy_GCH_rep1",
+      "protein_weight": "0",
+      "protein_weight%units": "mg",
+      "protocol.id": [
+        "protein_extraction"
+      ],
+      "type": "sample"
+    },
+    "10_B1-0_syngenic_7days_UKy_GCH_rep1": {
+      "id": "10_B1-0_syngenic_7days_UKy_GCH_rep1",
+      "protocol.id": [
+        "syngenic"
+      ],
+      "replicate": "1",
+      "species": "Mus musculus",
+      "species_type": "Mouse",
+      "taxonomy_id": "10090",
+      "time_point": "7",
+      "type": "subject"
+    },
+    "11_B1-1_Colon_syngenic_7days_170427_UKy_GCH_rep2": {
+      "id": "11_B1-1_Colon_syngenic_7days_170427_UKy_GCH_rep2",
+      "parent_id": "11_B1-1_syngenic_7days_UKy_GCH_rep2",
+      "protocol.id": [
+        "mouse_tissue_collection",
+        "tissue_quench",
+        "frozen_tissue_grind"
+      ],
+      "type": "sample"
+    },
+    "11_B1-1_Colon_syngenic_7days_170427_UKy_GCH_rep2-polar-ICMS_A": {
+      "id": "11_B1-1_Colon_syngenic_7days_170427_UKy_GCH_rep2-polar-ICMS_A",
+      "injection_volume": "10",
+      "injection_volume%units": "uL",
+      "parent_id": "11_B1-1_Colon_syngenic_7days_170427_UKy_GCH_rep2",
+      "polar_split_ratio": "0.153805215540181",
+      "protocol.id": [
+        "polar_extraction",
+        "IC-FTMS_preparation",
+        "ICMS_file_storage56"
+      ],
+      "reconstitution_volume": "20",
+      "reconstitution_volume%units": "uL",
+      "replicate": "1",
+      "replicate%type": "analytical",
+      "type": "sample",
+      "weight": "0.2023",
+      "weight%units": "g"
+    },
+    "11_B1-1_Colon_syngenic_7days_170427_UKy_GCH_rep2-protein": {
+      "id": "11_B1-1_Colon_syngenic_7days_170427_UKy_GCH_rep2-protein",
+      "parent_id": "11_B1-1_Colon_syngenic_7days_170427_UKy_GCH_rep2",
+      "protein_weight": "1.2443973624103961",
+      "protein_weight%units": "mg",
+      "protocol.id": [
+        "protein_extraction"
+      ],
+      "type": "sample"
+    },
+    "11_B1-1_Liver_syngenic_7days_170427_UKy_GCH_rep2": {
+      "id": "11_B1-1_Liver_syngenic_7days_170427_UKy_GCH_rep2",
+      "parent_id": "11_B1-1_syngenic_7days_UKy_GCH_rep2",
+      "protocol.id": [
+        "mouse_tissue_collection",
+        "tissue_quench",
+        "frozen_tissue_grind"
+      ],
+      "type": "sample"
+    },
+    "11_B1-1_Liver_syngenic_7days_170427_UKy_GCH_rep2-polar-ICMS_A": {
+      "id": "11_B1-1_Liver_syngenic_7days_170427_UKy_GCH_rep2-polar-ICMS_A",
+      "injection_volume": "10",
+      "injection_volume%units": "uL",
+      "parent_id": "11_B1-1_Liver_syngenic_7days_170427_UKy_GCH_rep2",
+      "polar_split_ratio": "0.12950327510917",
+      "protocol.id": [
+        "polar_extraction",
+        "IC-FTMS_preparation",
+        "ICMS_file_storage71"
+      ],
+      "reconstitution_volume": "20",
+      "reconstitution_volume%units": "uL",
+      "replicate": "1",
+      "replicate%type": "analytical",
+      "type": "sample",
+      "weight": "0.1898",
+      "weight%units": "g"
+    },
+    "11_B1-1_Liver_syngenic_7days_170427_UKy_GCH_rep2-protein": {
+      "id": "11_B1-1_Liver_syngenic_7days_170427_UKy_GCH_rep2-protein",
+      "parent_id": "11_B1-1_Liver_syngenic_7days_170427_UKy_GCH_rep2",
+      "protein_weight": "1.0584918601501316",
+      "protein_weight%units": "mg",
+      "protocol.id": [
+        "protein_extraction"
+      ],
+      "type": "sample"
+    },
+    "11_B1-1_SI_syngenic_7days_170427_UKy_GCH_rep2": {
+      "id": "11_B1-1_SI_syngenic_7days_170427_UKy_GCH_rep2",
+      "parent_id": "11_B1-1_syngenic_7days_UKy_GCH_rep2",
+      "protocol.id": [
+        "mouse_tissue_collection",
+        "tissue_quench",
+        "frozen_tissue_grind"
+      ],
+      "type": "sample"
+    },
+    "11_B1-1_SI_syngenic_7days_170427_UKy_GCH_rep2-polar-ICMS_A": {
+      "id": "11_B1-1_SI_syngenic_7days_170427_UKy_GCH_rep2-polar-ICMS_A",
+      "injection_volume": "10",
+      "injection_volume%units": "uL",
+      "parent_id": "11_B1-1_SI_syngenic_7days_170427_UKy_GCH_rep2",
+      "polar_split_ratio": "0.144286781179985",
+      "protocol.id": [
+        "polar_extraction",
+        "IC-FTMS_preparation",
+        "ICMS_file_storage41"
+      ],
+      "reconstitution_volume": "20",
+      "reconstitution_volume%units": "uL",
+      "replicate": "1",
+      "replicate%type": "analytical",
+      "type": "sample",
+      "weight": "0.1932",
+      "weight%units": "g"
+    },
+    "11_B1-1_SI_syngenic_7days_170427_UKy_GCH_rep2-protein": {
+      "id": "11_B1-1_SI_syngenic_7days_170427_UKy_GCH_rep2-protein",
+      "parent_id": "11_B1-1_SI_syngenic_7days_170427_UKy_GCH_rep2",
+      "protein_weight": "2.378970613770366",
+      "protein_weight%units": "mg",
+      "protocol.id": [
+        "protein_extraction"
+      ],
+      "type": "sample"
+    },
+    "11_B1-1_Spleen_syngenic_7days_170427_UKy_GCH_rep2": {
+      "id": "11_B1-1_Spleen_syngenic_7days_170427_UKy_GCH_rep2",
+      "parent_id": "11_B1-1_syngenic_7days_UKy_GCH_rep2",
+      "protocol.id": [
+        "mouse_tissue_collection",
+        "tissue_quench",
+        "frozen_tissue_grind"
+      ],
+      "type": "sample"
+    },
+    "11_B1-1_Spleen_syngenic_7days_170427_UKy_GCH_rep2-polar-ICMS_A": {
+      "id": "11_B1-1_Spleen_syngenic_7days_170427_UKy_GCH_rep2-polar-ICMS_A",
+      "injection_volume": "10",
+      "injection_volume%units": "uL",
+      "parent_id": "11_B1-1_Spleen_syngenic_7days_170427_UKy_GCH_rep2",
+      "polar_split_ratio": "0.118311089",
+      "protocol.id": [
+        "polar_extraction",
+        "IC-FTMS_preparation",
+        "ICMS_file_storage11"
+      ],
+      "reconstitution_volume": "20",
+      "reconstitution_volume%units": "uL",
+      "replicate": "1",
+      "replicate%type": "analytical",
+      "type": "sample",
+      "weight": "0.1897",
+      "weight%units": "g"
+    },
+    "11_B1-1_Spleen_syngenic_7days_170427_UKy_GCH_rep2-protein": {
+      "dry_residue": "2.12",
+      "dry_residue%units": "mg",
+      "id": "11_B1-1_Spleen_syngenic_7days_170427_UKy_GCH_rep2-protein",
+      "parent_id": "11_B1-1_Spleen_syngenic_7days_170427_UKy_GCH_rep2",
+      "protein_weight": "0",
+      "protein_weight%units": "mg",
+      "protocol.id": [
+        "protein_extraction"
+      ],
+      "type": "sample"
+    },
+    "11_B1-1_syngenic_7days_UKy_GCH_rep2": {
+      "id": "11_B1-1_syngenic_7days_UKy_GCH_rep2",
+      "protocol.id": [
+        "syngenic"
+      ],
+      "replicate": "2",
+      "species": "Mus musculus",
+      "species_type": "Mouse",
+      "taxonomy_id": "10090",
+      "time_point": "7",
+      "type": "subject"
+    },
+    "12_B1-2_Colon_syngenic_7days_170427_UKy_GCH_rep3": {
+      "id": "12_B1-2_Colon_syngenic_7days_170427_UKy_GCH_rep3",
+      "parent_id": "12_B1-2_syngenic_7days_UKy_GCH_rep3",
+      "protocol.id": [
+        "mouse_tissue_collection",
+        "tissue_quench",
+        "frozen_tissue_grind"
+      ],
+      "type": "sample"
+    },
+    "12_B1-2_Colon_syngenic_7days_170427_UKy_GCH_rep3-polar-ICMS_A": {
+      "id": "12_B1-2_Colon_syngenic_7days_170427_UKy_GCH_rep3-polar-ICMS_A",
+      "injection_volume": "10",
+      "injection_volume%units": "uL",
+      "parent_id": "12_B1-2_Colon_syngenic_7days_170427_UKy_GCH_rep3",
+      "polar_split_ratio": "0.134705645702025",
+      "protocol.id": [
+        "polar_extraction",
+        "IC-FTMS_preparation",
+        "ICMS_file_storage57"
+      ],
+      "reconstitution_volume": "20",
+      "reconstitution_volume%units": "uL",
+      "replicate": "1",
+      "replicate%type": "analytical",
+      "type": "sample",
+      "weight": "0.2009",
+      "weight%units": "g"
+    },
+    "12_B1-2_Colon_syngenic_7days_170427_UKy_GCH_rep3-protein": {
+      "id": "12_B1-2_Colon_syngenic_7days_170427_UKy_GCH_rep3-protein",
+      "parent_id": "12_B1-2_Colon_syngenic_7days_170427_UKy_GCH_rep3",
+      "protein_weight": "1.6127238309055993",
+      "protein_weight%units": "mg",
+      "protocol.id": [
+        "protein_extraction"
+      ],
+      "type": "sample"
+    },
+    "12_B1-2_Liver_syngenic_7days_170427_UKy_GCH_rep3": {
+      "id": "12_B1-2_Liver_syngenic_7days_170427_UKy_GCH_rep3",
+      "parent_id": "12_B1-2_syngenic_7days_UKy_GCH_rep3",
+      "protocol.id": [
+        "mouse_tissue_collection",
+        "tissue_quench",
+        "frozen_tissue_grind"
+      ],
+      "type": "sample"
+    },
+    "12_B1-2_Liver_syngenic_7days_170427_UKy_GCH_rep3-polar-ICMS_A": {
+      "id": "12_B1-2_Liver_syngenic_7days_170427_UKy_GCH_rep3-polar-ICMS_A",
+      "injection_volume": "10",
+      "injection_volume%units": "uL",
+      "parent_id": "12_B1-2_Liver_syngenic_7days_170427_UKy_GCH_rep3",
+      "polar_split_ratio": "0.198599688819738",
+      "protocol.id": [
+        "polar_extraction",
+        "IC-FTMS_preparation",
+        "ICMS_file_storage72"
+      ],
+      "reconstitution_volume": "20",
+      "reconstitution_volume%units": "uL",
+      "replicate": "1",
+      "replicate%type": "analytical",
+      "type": "sample",
+      "weight": "0.1787",
+      "weight%units": "g"
+    },
+    "12_B1-2_Liver_syngenic_7days_170427_UKy_GCH_rep3-protein": {
+      "id": "12_B1-2_Liver_syngenic_7days_170427_UKy_GCH_rep3-protein",
+      "parent_id": "12_B1-2_Liver_syngenic_7days_170427_UKy_GCH_rep3",
+      "protein_weight": "0.2978170715225778",
+      "protein_weight%units": "mg",
+      "protocol.id": [
+        "protein_extraction"
+      ],
+      "type": "sample"
+    },
+    "12_B1-2_SI_syngenic_7days_170427_UKy_GCH_rep3": {
+      "id": "12_B1-2_SI_syngenic_7days_170427_UKy_GCH_rep3",
+      "parent_id": "12_B1-2_syngenic_7days_UKy_GCH_rep3",
+      "protocol.id": [
+        "mouse_tissue_collection",
+        "tissue_quench",
+        "frozen_tissue_grind"
+      ],
+      "type": "sample"
+    },
+    "12_B1-2_SI_syngenic_7days_170427_UKy_GCH_rep3-polar-ICMS_A": {
+      "id": "12_B1-2_SI_syngenic_7days_170427_UKy_GCH_rep3-polar-ICMS_A",
+      "injection_volume": "10",
+      "injection_volume%units": "uL",
+      "parent_id": "12_B1-2_SI_syngenic_7days_170427_UKy_GCH_rep3",
+      "polar_split_ratio": "0.118380248091603",
+      "protocol.id": [
+        "polar_extraction",
+        "IC-FTMS_preparation",
+        "ICMS_file_storage42"
+      ],
+      "reconstitution_volume": "20",
+      "reconstitution_volume%units": "uL",
+      "replicate": "1",
+      "replicate%type": "analytical",
+      "type": "sample",
+      "weight": "0.1985",
+      "weight%units": "g"
+    },
+    "12_B1-2_SI_syngenic_7days_170427_UKy_GCH_rep3-protein": {
+      "id": "12_B1-2_SI_syngenic_7days_170427_UKy_GCH_rep3-protein",
+      "parent_id": "12_B1-2_SI_syngenic_7days_170427_UKy_GCH_rep3",
+      "protein_weight": "0.8102614389604975",
+      "protein_weight%units": "mg",
+      "protocol.id": [
+        "protein_extraction"
+      ],
+      "type": "sample"
+    },
+    "12_B1-2_Spleen_syngenic_7days_170427_UKy_GCH_rep3": {
+      "id": "12_B1-2_Spleen_syngenic_7days_170427_UKy_GCH_rep3",
+      "parent_id": "12_B1-2_syngenic_7days_UKy_GCH_rep3",
+      "protocol.id": [
+        "mouse_tissue_collection",
+        "tissue_quench",
+        "frozen_tissue_grind"
+      ],
+      "type": "sample"
+    },
+    "12_B1-2_Spleen_syngenic_7days_170427_UKy_GCH_rep3-polar-ICMS_A": {
+      "id": "12_B1-2_Spleen_syngenic_7days_170427_UKy_GCH_rep3-polar-ICMS_A",
+      "injection_volume": "10",
+      "injection_volume%units": "uL",
+      "parent_id": "12_B1-2_Spleen_syngenic_7days_170427_UKy_GCH_rep3",
+      "polar_split_ratio": "0.12084312",
+      "protocol.id": [
+        "polar_extraction",
+        "IC-FTMS_preparation",
+        "ICMS_file_storage12"
+      ],
+      "reconstitution_volume": "20",
+      "reconstitution_volume%units": "uL",
+      "replicate": "1",
+      "replicate%type": "analytical",
+      "type": "sample",
+      "weight": "0.1955",
+      "weight%units": "g"
+    },
+    "12_B1-2_Spleen_syngenic_7days_170427_UKy_GCH_rep3-protein": {
+      "dry_residue": "1.6",
+      "dry_residue%units": "mg",
+      "id": "12_B1-2_Spleen_syngenic_7days_170427_UKy_GCH_rep3-protein",
+      "parent_id": "12_B1-2_Spleen_syngenic_7days_170427_UKy_GCH_rep3",
+      "protein_weight": "0",
+      "protein_weight%units": "mg",
+      "protocol.id": [
+        "protein_extraction"
+      ],
+      "type": "sample"
+    },
+    "12_B1-2_syngenic_7days_UKy_GCH_rep3": {
+      "id": "12_B1-2_syngenic_7days_UKy_GCH_rep3",
+      "protocol.id": [
+        "syngenic"
+      ],
+      "replicate": "3",
+      "species": "Mus musculus",
+      "species_type": "Mouse",
+      "taxonomy_id": "10090",
+      "time_point": "7",
+      "type": "subject"
+    },
+    "13_C1-1_Colon_allogenic_7days_170427_UKy_GCH_rep1": {
+      "id": "13_C1-1_Colon_allogenic_7days_170427_UKy_GCH_rep1",
+      "parent_id": "13_C1-1_allogenic_7days_UKy_GCH_rep1",
+      "protocol.id": [
+        "mouse_tissue_collection",
+        "tissue_quench",
+        "frozen_tissue_grind"
+      ],
+      "type": "sample"
+    },
+    "13_C1-1_Colon_allogenic_7days_170427_UKy_GCH_rep1-polar-ICMS_A": {
+      "id": "13_C1-1_Colon_allogenic_7days_170427_UKy_GCH_rep1-polar-ICMS_A",
+      "injection_volume": "10",
+      "injection_volume%units": "uL",
+      "parent_id": "13_C1-1_Colon_allogenic_7days_170427_UKy_GCH_rep1",
+      "polar_split_ratio": "0.134222399150743",
+      "protocol.id": [
+        "polar_extraction",
+        "IC-FTMS_preparation",
+        "ICMS_file_storage58"
+      ],
+      "reconstitution_volume": "20",
+      "reconstitution_volume%units": "uL",
+      "replicate": "1",
+      "replicate%type": "analytical",
+      "type": "sample",
+      "weight": "0.2023",
+      "weight%units": "g"
+    },
+    "13_C1-1_Colon_allogenic_7days_170427_UKy_GCH_rep1-protein": {
+      "id": "13_C1-1_Colon_allogenic_7days_170427_UKy_GCH_rep1-protein",
+      "parent_id": "13_C1-1_Colon_allogenic_7days_170427_UKy_GCH_rep1",
+      "protein_weight": "2.0735556513766173",
+      "protein_weight%units": "mg",
+      "protocol.id": [
+        "protein_extraction"
+      ],
+      "type": "sample"
+    },
+    "13_C1-1_Liver_allogenic_7days_170427_UKy_GCH_rep1": {
+      "id": "13_C1-1_Liver_allogenic_7days_170427_UKy_GCH_rep1",
+      "parent_id": "13_C1-1_allogenic_7days_UKy_GCH_rep1",
+      "protocol.id": [
+        "mouse_tissue_collection",
+        "tissue_quench",
+        "frozen_tissue_grind"
+      ],
+      "type": "sample"
+    },
+    "13_C1-1_Liver_allogenic_7days_170427_UKy_GCH_rep1-polar-ICMS_A": {
+      "id": "13_C1-1_Liver_allogenic_7days_170427_UKy_GCH_rep1-polar-ICMS_A",
+      "injection_volume": "10",
+      "injection_volume%units": "uL",
+      "parent_id": "13_C1-1_Liver_allogenic_7days_170427_UKy_GCH_rep1",
+      "polar_split_ratio": "0.134672001207821",
+      "protocol.id": [
+        "polar_extraction",
+        "IC-FTMS_preparation",
+        "ICMS_file_storage73"
+      ],
+      "reconstitution_volume": "20",
+      "reconstitution_volume%units": "uL",
+      "replicate": "1",
+      "replicate%type": "analytical",
+      "type": "sample",
+      "weight": "0.1784",
+      "weight%units": "g"
+    },
+    "13_C1-1_Liver_allogenic_7days_170427_UKy_GCH_rep1-protein": {
+      "id": "13_C1-1_Liver_allogenic_7days_170427_UKy_GCH_rep1-protein",
+      "parent_id": "13_C1-1_Liver_allogenic_7days_170427_UKy_GCH_rep1",
+      "protein_weight": "0.5694947367563199",
+      "protein_weight%units": "mg",
+      "protocol.id": [
+        "protein_extraction"
+      ],
+      "type": "sample"
+    },
+    "13_C1-1_SI_allogenic_7days_170427_UKy_GCH_rep1": {
+      "id": "13_C1-1_SI_allogenic_7days_170427_UKy_GCH_rep1",
+      "parent_id": "13_C1-1_allogenic_7days_UKy_GCH_rep1",
+      "protocol.id": [
+        "mouse_tissue_collection",
+        "tissue_quench",
+        "frozen_tissue_grind"
+      ],
+      "type": "sample"
+    },
+    "13_C1-1_SI_allogenic_7days_170427_UKy_GCH_rep1-polar-ICMS_A": {
+      "id": "13_C1-1_SI_allogenic_7days_170427_UKy_GCH_rep1-polar-ICMS_A",
+      "injection_volume": "10",
+      "injection_volume%units": "uL",
+      "parent_id": "13_C1-1_SI_allogenic_7days_170427_UKy_GCH_rep1",
+      "polar_split_ratio": "0.218256223712629",
+      "protocol.id": [
+        "polar_extraction",
+        "IC-FTMS_preparation",
+        "ICMS_file_storage43"
+      ],
+      "reconstitution_volume": "20",
+      "reconstitution_volume%units": "uL",
+      "replicate": "1",
+      "replicate%type": "analytical",
+      "type": "sample",
+      "weight": "0.192",
+      "weight%units": "g"
+    },
+    "13_C1-1_SI_allogenic_7days_170427_UKy_GCH_rep1-protein": {
+      "id": "13_C1-1_SI_allogenic_7days_170427_UKy_GCH_rep1-protein",
+      "parent_id": "13_C1-1_SI_allogenic_7days_170427_UKy_GCH_rep1",
+      "protein_weight": "1.4507095321124897",
+      "protein_weight%units": "mg",
+      "protocol.id": [
+        "protein_extraction"
+      ],
+      "type": "sample"
+    },
+    "13_C1-1_Spleen_allogenic_7days_170427_UKy_GCH_rep1": {
+      "id": "13_C1-1_Spleen_allogenic_7days_170427_UKy_GCH_rep1",
+      "parent_id": "13_C1-1_allogenic_7days_UKy_GCH_rep1",
+      "protocol.id": [
+        "mouse_tissue_collection",
+        "tissue_quench",
+        "frozen_tissue_grind"
+      ],
+      "type": "sample"
+    },
+    "13_C1-1_Spleen_allogenic_7days_170427_UKy_GCH_rep1-polar-ICMS_A": {
+      "id": "13_C1-1_Spleen_allogenic_7days_170427_UKy_GCH_rep1-polar-ICMS_A",
+      "injection_volume": "10",
+      "injection_volume%units": "uL",
+      "parent_id": "13_C1-1_Spleen_allogenic_7days_170427_UKy_GCH_rep1",
+      "polar_split_ratio": "0.120323714",
+      "protocol.id": [
+        "polar_extraction",
+        "IC-FTMS_preparation",
+        "ICMS_file_storage13"
+      ],
+      "reconstitution_volume": "20",
+      "reconstitution_volume%units": "uL",
+      "replicate": "1",
+      "replicate%type": "analytical",
+      "type": "sample",
+      "weight": "0.0788",
+      "weight%units": "g"
+    },
+    "13_C1-1_Spleen_allogenic_7days_170427_UKy_GCH_rep1-protein": {
+      "dry_residue": "1.61",
+      "dry_residue%units": "mg",
+      "id": "13_C1-1_Spleen_allogenic_7days_170427_UKy_GCH_rep1-protein",
+      "parent_id": "13_C1-1_Spleen_allogenic_7days_170427_UKy_GCH_rep1",
+      "protein_weight": "0",
+      "protein_weight%units": "mg",
+      "protocol.id": [
+        "protein_extraction"
+      ],
+      "type": "sample"
+    },
+    "13_C1-1_allogenic_7days_UKy_GCH_rep1": {
+      "id": "13_C1-1_allogenic_7days_UKy_GCH_rep1",
+      "protocol.id": [
+        "allogenic"
+      ],
+      "replicate": "1",
+      "species": "Mus musculus",
+      "species_type": "Mouse",
+      "taxonomy_id": "10090",
+      "time_point": "7",
+      "type": "subject"
+    },
+    "14_C1-2_Colon_allogenic_7days_170427_UKy_GCH_rep2": {
+      "id": "14_C1-2_Colon_allogenic_7days_170427_UKy_GCH_rep2",
+      "parent_id": "14_C1-2_allogenic_7days_UKy_GCH_rep2",
+      "protocol.id": [
+        "mouse_tissue_collection",
+        "tissue_quench",
+        "frozen_tissue_grind"
+      ],
+      "type": "sample"
+    },
+    "14_C1-2_Colon_allogenic_7days_170427_UKy_GCH_rep2-polar-ICMS_A": {
+      "id": "14_C1-2_Colon_allogenic_7days_170427_UKy_GCH_rep2-polar-ICMS_A",
+      "injection_volume": "10",
+      "injection_volume%units": "uL",
+      "parent_id": "14_C1-2_Colon_allogenic_7days_170427_UKy_GCH_rep2",
+      "polar_split_ratio": "0.0855160450997398",
+      "protocol.id": [
+        "polar_extraction",
+        "IC-FTMS_preparation",
+        "ICMS_file_storage59"
+      ],
+      "reconstitution_volume": "20",
+      "reconstitution_volume%units": "uL",
+      "replicate": "1",
+      "replicate%type": "analytical",
+      "type": "sample",
+      "weight": "0.1972",
+      "weight%units": "g"
+    },
+    "14_C1-2_Colon_allogenic_7days_170427_UKy_GCH_rep2-protein": {
+      "id": "14_C1-2_Colon_allogenic_7days_170427_UKy_GCH_rep2-protein",
+      "parent_id": "14_C1-2_Colon_allogenic_7days_170427_UKy_GCH_rep2",
+      "protein_weight": "1.7420773775641787",
+      "protein_weight%units": "mg",
+      "protocol.id": [
+        "protein_extraction"
+      ],
+      "type": "sample"
+    },
+    "14_C1-2_Liver_allogenic_7days_170427_UKy_GCH_rep2": {
+      "id": "14_C1-2_Liver_allogenic_7days_170427_UKy_GCH_rep2",
+      "parent_id": "14_C1-2_allogenic_7days_UKy_GCH_rep2",
+      "protocol.id": [
+        "mouse_tissue_collection",
+        "tissue_quench",
+        "frozen_tissue_grind"
+      ],
+      "type": "sample"
+    },
+    "14_C1-2_Liver_allogenic_7days_170427_UKy_GCH_rep2-polar-ICMS_A": {
+      "id": "14_C1-2_Liver_allogenic_7days_170427_UKy_GCH_rep2-polar-ICMS_A",
+      "injection_volume": "10",
+      "injection_volume%units": "uL",
+      "parent_id": "14_C1-2_Liver_allogenic_7days_170427_UKy_GCH_rep2",
+      "polar_split_ratio": "0.124224818852405",
+      "protocol.id": [
+        "polar_extraction",
+        "IC-FTMS_preparation",
+        "ICMS_file_storage74"
+      ],
+      "reconstitution_volume": "20",
+      "reconstitution_volume%units": "uL",
+      "replicate": "1",
+      "replicate%type": "analytical",
+      "type": "sample",
+      "weight": "0.1903",
+      "weight%units": "g"
+    },
+    "14_C1-2_Liver_allogenic_7days_170427_UKy_GCH_rep2-protein": {
+      "id": "14_C1-2_Liver_allogenic_7days_170427_UKy_GCH_rep2-protein",
+      "parent_id": "14_C1-2_Liver_allogenic_7days_170427_UKy_GCH_rep2",
+      "protein_weight": "0.35634743380940803",
+      "protein_weight%units": "mg",
+      "protocol.id": [
+        "protein_extraction"
+      ],
+      "type": "sample"
+    },
+    "14_C1-2_SI_allogenic_7days_170427_UKy_GCH_rep2": {
+      "id": "14_C1-2_SI_allogenic_7days_170427_UKy_GCH_rep2",
+      "parent_id": "14_C1-2_allogenic_7days_UKy_GCH_rep2",
+      "protocol.id": [
+        "mouse_tissue_collection",
+        "tissue_quench",
+        "frozen_tissue_grind"
+      ],
+      "type": "sample"
+    },
+    "14_C1-2_SI_allogenic_7days_170427_UKy_GCH_rep2-polar-ICMS_A": {
+      "id": "14_C1-2_SI_allogenic_7days_170427_UKy_GCH_rep2-polar-ICMS_A",
+      "injection_volume": "10",
+      "injection_volume%units": "uL",
+      "parent_id": "14_C1-2_SI_allogenic_7days_170427_UKy_GCH_rep2",
+      "polar_split_ratio": "0.11595166163142",
+      "protocol.id": [
+        "polar_extraction",
+        "IC-FTMS_preparation",
+        "ICMS_file_storage44"
+      ],
+      "reconstitution_volume": "20",
+      "reconstitution_volume%units": "uL",
+      "replicate": "1",
+      "replicate%type": "analytical",
+      "type": "sample",
+      "weight": "0.1919",
+      "weight%units": "g"
+    },
+    "14_C1-2_SI_allogenic_7days_170427_UKy_GCH_rep2-protein": {
+      "id": "14_C1-2_SI_allogenic_7days_170427_UKy_GCH_rep2-protein",
+      "parent_id": "14_C1-2_SI_allogenic_7days_170427_UKy_GCH_rep2",
+      "protein_weight": "2.9949937519110956",
+      "protein_weight%units": "mg",
+      "protocol.id": [
+        "protein_extraction"
+      ],
+      "type": "sample"
+    },
+    "14_C1-2_Spleen_allogenic_7days_170427_UKy_GCH_rep2": {
+      "id": "14_C1-2_Spleen_allogenic_7days_170427_UKy_GCH_rep2",
+      "parent_id": "14_C1-2_allogenic_7days_UKy_GCH_rep2",
+      "protocol.id": [
+        "mouse_tissue_collection",
+        "tissue_quench",
+        "frozen_tissue_grind"
+      ],
+      "type": "sample"
+    },
+    "14_C1-2_Spleen_allogenic_7days_170427_UKy_GCH_rep2-polar-ICMS_A": {
+      "id": "14_C1-2_Spleen_allogenic_7days_170427_UKy_GCH_rep2-polar-ICMS_A",
+      "injection_volume": "10",
+      "injection_volume%units": "uL",
+      "parent_id": "14_C1-2_Spleen_allogenic_7days_170427_UKy_GCH_rep2",
+      "polar_split_ratio": "0.120832766",
+      "protocol.id": [
+        "polar_extraction",
+        "IC-FTMS_preparation",
+        "ICMS_file_storage14"
+      ],
+      "reconstitution_volume": "20",
+      "reconstitution_volume%units": "uL",
+      "replicate": "1",
+      "replicate%type": "analytical",
+      "type": "sample",
+      "weight": "0.0888",
+      "weight%units": "g"
+    },
+    "14_C1-2_Spleen_allogenic_7days_170427_UKy_GCH_rep2-protein": {
+      "dry_residue": "2.01",
+      "dry_residue%units": "mg",
+      "id": "14_C1-2_Spleen_allogenic_7days_170427_UKy_GCH_rep2-protein",
+      "parent_id": "14_C1-2_Spleen_allogenic_7days_170427_UKy_GCH_rep2",
+      "protein_weight": "0",
+      "protein_weight%units": "mg",
+      "protocol.id": [
+        "protein_extraction"
+      ],
+      "type": "sample"
+    },
+    "14_C1-2_allogenic_7days_UKy_GCH_rep2": {
+      "id": "14_C1-2_allogenic_7days_UKy_GCH_rep2",
+      "protocol.id": [
+        "allogenic"
+      ],
+      "replicate": "2",
+      "species": "Mus musculus",
+      "species_type": "Mouse",
+      "taxonomy_id": "10090",
+      "time_point": "7",
+      "type": "subject"
+    },
+    "15_C1-20_Colon_allogenic_7days_170427_UKy_GCH_rep3": {
+      "id": "15_C1-20_Colon_allogenic_7days_170427_UKy_GCH_rep3",
+      "parent_id": "15_C1-20_allogenic_7days_UKy_GCH_rep3",
+      "protocol.id": [
+        "mouse_tissue_collection",
+        "tissue_quench",
+        "frozen_tissue_grind"
+      ],
+      "type": "sample"
+    },
+    "15_C1-20_Colon_allogenic_7days_170427_UKy_GCH_rep3-polar-ICMS_A": {
+      "id": "15_C1-20_Colon_allogenic_7days_170427_UKy_GCH_rep3-polar-ICMS_A",
+      "injection_volume": "10",
+      "injection_volume%units": "uL",
+      "parent_id": "15_C1-20_Colon_allogenic_7days_170427_UKy_GCH_rep3",
+      "polar_split_ratio": "0.143267710878",
+      "protocol.id": [
+        "polar_extraction",
+        "IC-FTMS_preparation",
+        "ICMS_file_storage60"
+      ],
+      "reconstitution_volume": "20",
+      "reconstitution_volume%units": "uL",
+      "replicate": "1",
+      "replicate%type": "analytical",
+      "type": "sample",
+      "weight": "0.1994",
+      "weight%units": "g"
+    },
+    "15_C1-20_Colon_allogenic_7days_170427_UKy_GCH_rep3-protein": {
+      "id": "15_C1-20_Colon_allogenic_7days_170427_UKy_GCH_rep3-protein",
+      "parent_id": "15_C1-20_Colon_allogenic_7days_170427_UKy_GCH_rep3",
+      "protein_weight": "1.9186640291000003",
+      "protein_weight%units": "mg",
+      "protocol.id": [
+        "protein_extraction"
+      ],
+      "type": "sample"
+    },
+    "15_C1-20_Liver_allogenic_7days_170427_UKy_GCH_rep3": {
+      "id": "15_C1-20_Liver_allogenic_7days_170427_UKy_GCH_rep3",
+      "parent_id": "15_C1-20_allogenic_7days_UKy_GCH_rep3",
+      "protocol.id": [
+        "mouse_tissue_collection",
+        "tissue_quench",
+        "frozen_tissue_grind"
+      ],
+      "type": "sample"
+    },
+    "15_C1-20_Liver_allogenic_7days_170427_UKy_GCH_rep3-polar-ICMS_A": {
+      "id": "15_C1-20_Liver_allogenic_7days_170427_UKy_GCH_rep3-polar-ICMS_A",
+      "injection_volume": "10",
+      "injection_volume%units": "uL",
+      "parent_id": "15_C1-20_Liver_allogenic_7days_170427_UKy_GCH_rep3",
+      "polar_split_ratio": "0.109910128734515",
+      "protocol.id": [
+        "polar_extraction",
+        "IC-FTMS_preparation",
+        "ICMS_file_storage75"
+      ],
+      "reconstitution_volume": "20",
+      "reconstitution_volume%units": "uL",
+      "replicate": "1",
+      "replicate%type": "analytical",
+      "type": "sample",
+      "weight": "0.181",
+      "weight%units": "g"
+    },
+    "15_C1-20_Liver_allogenic_7days_170427_UKy_GCH_rep3-protein": {
+      "id": "15_C1-20_Liver_allogenic_7days_170427_UKy_GCH_rep3-protein",
+      "parent_id": "15_C1-20_Liver_allogenic_7days_170427_UKy_GCH_rep3",
+      "protein_weight": "1.1606039340615675",
+      "protein_weight%units": "mg",
+      "protocol.id": [
+        "protein_extraction"
+      ],
+      "type": "sample"
+    },
+    "15_C1-20_SI_allogenic_7days_170427_UKy_GCH_rep3": {
+      "id": "15_C1-20_SI_allogenic_7days_170427_UKy_GCH_rep3",
+      "parent_id": "15_C1-20_allogenic_7days_UKy_GCH_rep3",
+      "protocol.id": [
+        "mouse_tissue_collection",
+        "tissue_quench",
+        "frozen_tissue_grind"
+      ],
+      "type": "sample"
+    },
+    "15_C1-20_SI_allogenic_7days_170427_UKy_GCH_rep3-polar-ICMS_A": {
+      "id": "15_C1-20_SI_allogenic_7days_170427_UKy_GCH_rep3-polar-ICMS_A",
+      "injection_volume": "10",
+      "injection_volume%units": "uL",
+      "parent_id": "15_C1-20_SI_allogenic_7days_170427_UKy_GCH_rep3",
+      "polar_split_ratio": "0.216383992905443",
+      "protocol.id": [
+        "polar_extraction",
+        "IC-FTMS_preparation",
+        "ICMS_file_storage45"
+      ],
+      "reconstitution_volume": "20",
+      "reconstitution_volume%units": "uL",
+      "replicate": "1",
+      "replicate%type": "analytical",
+      "type": "sample",
+      "weight": "0.1952",
+      "weight%units": "g"
+    },
+    "15_C1-20_SI_allogenic_7days_170427_UKy_GCH_rep3-protein": {
+      "id": "15_C1-20_SI_allogenic_7days_170427_UKy_GCH_rep3-protein",
+      "parent_id": "15_C1-20_SI_allogenic_7days_170427_UKy_GCH_rep3",
+      "protein_weight": "0.07598828829511124",
+      "protein_weight%units": "mg",
+      "protocol.id": [
+        "protein_extraction"
+      ],
+      "type": "sample"
+    },
+    "15_C1-20_Spleen_allogenic_7days_170427_UKy_GCH_rep3": {
+      "id": "15_C1-20_Spleen_allogenic_7days_170427_UKy_GCH_rep3",
+      "parent_id": "15_C1-20_allogenic_7days_UKy_GCH_rep3",
+      "protocol.id": [
+        "mouse_tissue_collection",
+        "tissue_quench",
+        "frozen_tissue_grind"
+      ],
+      "type": "sample"
+    },
+    "15_C1-20_Spleen_allogenic_7days_170427_UKy_GCH_rep3-polar-ICMS_A": {
+      "id": "15_C1-20_Spleen_allogenic_7days_170427_UKy_GCH_rep3-polar-ICMS_A",
+      "injection_volume": "10",
+      "injection_volume%units": "uL",
+      "parent_id": "15_C1-20_Spleen_allogenic_7days_170427_UKy_GCH_rep3",
+      "polar_split_ratio": "0.122262648",
+      "protocol.id": [
+        "polar_extraction",
+        "IC-FTMS_preparation",
+        "ICMS_file_storage15"
+      ],
+      "reconstitution_volume": "20",
+      "reconstitution_volume%units": "uL",
+      "replicate": "1",
+      "replicate%type": "analytical",
+      "type": "sample",
+      "weight": "0.1781",
+      "weight%units": "g"
+    },
+    "15_C1-20_Spleen_allogenic_7days_170427_UKy_GCH_rep3-protein": {
+      "dry_residue": "2.64",
+      "dry_residue%units": "mg",
+      "id": "15_C1-20_Spleen_allogenic_7days_170427_UKy_GCH_rep3-protein",
+      "parent_id": "15_C1-20_Spleen_allogenic_7days_170427_UKy_GCH_rep3",
+      "protein_weight": "0",
+      "protein_weight%units": "mg",
+      "protocol.id": [
+        "protein_extraction"
+      ],
+      "type": "sample"
+    },
+    "15_C1-20_allogenic_7days_UKy_GCH_rep3": {
+      "id": "15_C1-20_allogenic_7days_UKy_GCH_rep3",
+      "protocol.id": [
+        "allogenic"
+      ],
+      "replicate": "3",
+      "species": "Mus musculus",
+      "species_type": "Mouse",
+      "taxonomy_id": "10090",
+      "time_point": "7",
+      "type": "subject"
+    },
+    "16_A0_Lung_naive_0days_170427_UKy_GCH_rep1": {
+      "id": "16_A0_Lung_naive_0days_170427_UKy_GCH_rep1",
+      "parent_id": "01_A0_naive_0days_UKy_GCH_rep1",
+      "protocol.id": [
+        "mouse_tissue_collection",
+        "tissue_quench",
+        "frozen_tissue_grind"
+      ],
+      "type": "sample"
+    },
+    "16_A0_Lung_naive_0days_170427_UKy_GCH_rep1-polar-ICMS_A": {
+      "id": "16_A0_Lung_naive_0days_170427_UKy_GCH_rep1-polar-ICMS_A",
+      "injection_volume": "10",
+      "injection_volume%units": "uL",
+      "parent_id": "16_A0_Lung_naive_0days_170427_UKy_GCH_rep1",
+      "polar_split_ratio": "0.115962524",
+      "protocol.id": [
+        "polar_extraction",
+        "IC-FTMS_preparation",
+        "ICMS_file_storage16"
+      ],
+      "reconstitution_volume": "20",
+      "reconstitution_volume%units": "uL",
+      "replicate": "1",
+      "replicate%type": "analytical",
+      "type": "sample",
+      "weight": "0.1968",
+      "weight%units": "g"
+    },
+    "16_A0_Lung_naive_0days_170427_UKy_GCH_rep1-protein": {
+      "id": "16_A0_Lung_naive_0days_170427_UKy_GCH_rep1-protein",
+      "parent_id": "16_A0_Lung_naive_0days_170427_UKy_GCH_rep1",
+      "protein_weight": "0.6757957582975501",
+      "protein_weight%units": "mg",
+      "protocol.id": [
+        "protein_extraction"
+      ],
+      "type": "sample"
+    },
+    "17_A1_Lung_naive_0days_170427_UKy_GCH_rep2": {
+      "id": "17_A1_Lung_naive_0days_170427_UKy_GCH_rep2",
+      "parent_id": "02_A1_naive_0days_UKy_GCH_rep2",
+      "protocol.id": [
+        "mouse_tissue_collection",
+        "tissue_quench",
+        "frozen_tissue_grind"
+      ],
+      "type": "sample"
+    },
+    "17_A1_Lung_naive_0days_170427_UKy_GCH_rep2-polar-ICMS_A": {
+      "id": "17_A1_Lung_naive_0days_170427_UKy_GCH_rep2-polar-ICMS_A",
+      "injection_volume": "10",
+      "injection_volume%units": "uL",
+      "parent_id": "17_A1_Lung_naive_0days_170427_UKy_GCH_rep2",
+      "polar_split_ratio": "0.116556291",
+      "protocol.id": [
+        "polar_extraction",
+        "IC-FTMS_preparation",
+        "ICMS_file_storage17"
+      ],
+      "reconstitution_volume": "20",
+      "reconstitution_volume%units": "uL",
+      "replicate": "1",
+      "replicate%type": "analytical",
+      "type": "sample",
+      "weight": "0.1936",
+      "weight%units": "g"
+    },
+    "17_A1_Lung_naive_0days_170427_UKy_GCH_rep2-protein": {
+      "id": "17_A1_Lung_naive_0days_170427_UKy_GCH_rep2-protein",
+      "parent_id": "17_A1_Lung_naive_0days_170427_UKy_GCH_rep2",
+      "protein_weight": "0.6112704400619461",
+      "protein_weight%units": "mg",
+      "protocol.id": [
+        "protein_extraction"
+      ],
+      "type": "sample"
+    },
+    "18_A2_Lung_naive_0days_170427_UKy_GCH_rep3": {
+      "id": "18_A2_Lung_naive_0days_170427_UKy_GCH_rep3",
+      "parent_id": "03_A2_naive_0days_UKy_GCH_rep3",
+      "protocol.id": [
+        "mouse_tissue_collection",
+        "tissue_quench",
+        "frozen_tissue_grind"
+      ],
+      "type": "sample"
+    },
+    "18_A2_Lung_naive_0days_170427_UKy_GCH_rep3-polar-ICMS_A": {
+      "id": "18_A2_Lung_naive_0days_170427_UKy_GCH_rep3-polar-ICMS_A",
+      "injection_volume": "10",
+      "injection_volume%units": "uL",
+      "parent_id": "18_A2_Lung_naive_0days_170427_UKy_GCH_rep3",
+      "polar_split_ratio": "0.114343627",
+      "protocol.id": [
+        "polar_extraction",
+        "IC-FTMS_preparation",
+        "ICMS_file_storage18"
+      ],
+      "reconstitution_volume": "20",
+      "reconstitution_volume%units": "uL",
+      "replicate": "1",
+      "replicate%type": "analytical",
+      "type": "sample",
+      "weight": "0.1918",
+      "weight%units": "g"
+    },
+    "18_A2_Lung_naive_0days_170427_UKy_GCH_rep3-protein": {
+      "id": "18_A2_Lung_naive_0days_170427_UKy_GCH_rep3-protein",
+      "parent_id": "18_A2_Lung_naive_0days_170427_UKy_GCH_rep3",
+      "protein_weight": "0.14664251664539998",
+      "protein_weight%units": "mg",
+      "protocol.id": [
+        "protein_extraction"
+      ],
+      "type": "sample"
+    },
+    "19_B0_Lung_syngenic_42days_170427_UKy_GCH_rep1": {
+      "id": "19_B0_Lung_syngenic_42days_170427_UKy_GCH_rep1",
+      "parent_id": "04_B0_syngenic_42days_UKy_GCH_rep1",
+      "protocol.id": [
+        "mouse_tissue_collection",
+        "tissue_quench",
+        "frozen_tissue_grind"
+      ],
+      "type": "sample"
+    },
+    "19_B0_Lung_syngenic_42days_170427_UKy_GCH_rep1-polar-ICMS_A": {
+      "id": "19_B0_Lung_syngenic_42days_170427_UKy_GCH_rep1-polar-ICMS_A",
+      "injection_volume": "10",
+      "injection_volume%units": "uL",
+      "parent_id": "19_B0_Lung_syngenic_42days_170427_UKy_GCH_rep1",
+      "polar_split_ratio": "0.114203342",
+      "protocol.id": [
+        "polar_extraction",
+        "IC-FTMS_preparation",
+        "ICMS_file_storage19"
+      ],
+      "reconstitution_volume": "20",
+      "reconstitution_volume%units": "uL",
+      "replicate": "1",
+      "replicate%type": "analytical",
+      "type": "sample",
+      "weight": "0.1941",
+      "weight%units": "g"
+    },
+    "19_B0_Lung_syngenic_42days_170427_UKy_GCH_rep1-protein": {
+      "id": "19_B0_Lung_syngenic_42days_170427_UKy_GCH_rep1-protein",
+      "parent_id": "19_B0_Lung_syngenic_42days_170427_UKy_GCH_rep1",
+      "protein_weight": "0.5600416771907997",
+      "protein_weight%units": "mg",
+      "protocol.id": [
+        "protein_extraction"
+      ],
+      "type": "sample"
+    },
+    "20_B1_Lung_syngenic_42days_170427_UKy_GCH_rep2": {
+      "id": "20_B1_Lung_syngenic_42days_170427_UKy_GCH_rep2",
+      "parent_id": "05_B1_syngenic_42days_UKy_GCH_rep2",
+      "protocol.id": [
+        "mouse_tissue_collection",
+        "tissue_quench",
+        "frozen_tissue_grind"
+      ],
+      "type": "sample"
+    },
+    "20_B1_Lung_syngenic_42days_170427_UKy_GCH_rep2-polar-ICMS_A": {
+      "id": "20_B1_Lung_syngenic_42days_170427_UKy_GCH_rep2-polar-ICMS_A",
+      "injection_volume": "10",
+      "injection_volume%units": "uL",
+      "parent_id": "20_B1_Lung_syngenic_42days_170427_UKy_GCH_rep2",
+      "polar_split_ratio": "0.109164101",
+      "protocol.id": [
+        "polar_extraction",
+        "IC-FTMS_preparation",
+        "ICMS_file_storage20"
+      ],
+      "reconstitution_volume": "20",
+      "reconstitution_volume%units": "uL",
+      "replicate": "1",
+      "replicate%type": "analytical",
+      "type": "sample",
+      "weight": "0.1844",
+      "weight%units": "g"
+    },
+    "20_B1_Lung_syngenic_42days_170427_UKy_GCH_rep2-protein": {
+      "id": "20_B1_Lung_syngenic_42days_170427_UKy_GCH_rep2-protein",
+      "parent_id": "20_B1_Lung_syngenic_42days_170427_UKy_GCH_rep2",
+      "protein_weight": "0.2959754761535626",
+      "protein_weight%units": "mg",
+      "protocol.id": [
+        "protein_extraction"
+      ],
+      "type": "sample"
+    },
+    "21_B2_Lung_syngenic_42days_170427_UKy_GCH_rep3": {
+      "id": "21_B2_Lung_syngenic_42days_170427_UKy_GCH_rep3",
+      "parent_id": "06_B2_syngenic_42days_UKy_GCH_rep3",
+      "protocol.id": [
+        "mouse_tissue_collection",
+        "tissue_quench",
+        "frozen_tissue_grind"
+      ],
+      "type": "sample"
+    },
+    "21_B2_Lung_syngenic_42days_170427_UKy_GCH_rep3-polar-ICMS_A": {
+      "id": "21_B2_Lung_syngenic_42days_170427_UKy_GCH_rep3-polar-ICMS_A",
+      "injection_volume": "10",
+      "injection_volume%units": "uL",
+      "parent_id": "21_B2_Lung_syngenic_42days_170427_UKy_GCH_rep3",
+      "polar_split_ratio": "0.114047451",
+      "protocol.id": [
+        "polar_extraction",
+        "IC-FTMS_preparation",
+        "ICMS_file_storage21"
+      ],
+      "reconstitution_volume": "20",
+      "reconstitution_volume%units": "uL",
+      "replicate": "1",
+      "replicate%type": "analytical",
+      "type": "sample",
+      "weight": "0.1942",
+      "weight%units": "g"
+    },
+    "21_B2_Lung_syngenic_42days_170427_UKy_GCH_rep3-protein": {
+      "id": "21_B2_Lung_syngenic_42days_170427_UKy_GCH_rep3-protein",
+      "parent_id": "21_B2_Lung_syngenic_42days_170427_UKy_GCH_rep3",
+      "protein_weight": "0.3382559813306206",
+      "protein_weight%units": "mg",
+      "protocol.id": [
+        "protein_extraction"
+      ],
+      "type": "sample"
+    },
+    "22_C1-1_Lung_allogenic_42days_170427_UKy_GCH_rep1": {
+      "id": "22_C1-1_Lung_allogenic_42days_170427_UKy_GCH_rep1",
+      "parent_id": "07_C1-1_allogenic_42days_UKy_GCH_rep1",
+      "protocol.id": [
+        "mouse_tissue_collection",
+        "tissue_quench",
+        "frozen_tissue_grind"
+      ],
+      "type": "sample"
+    },
+    "22_C1-1_Lung_allogenic_42days_170427_UKy_GCH_rep1-polar-ICMS_A": {
+      "id": "22_C1-1_Lung_allogenic_42days_170427_UKy_GCH_rep1-polar-ICMS_A",
+      "injection_volume": "10",
+      "injection_volume%units": "uL",
+      "parent_id": "22_C1-1_Lung_allogenic_42days_170427_UKy_GCH_rep1",
+      "polar_split_ratio": "0.11762231",
+      "protocol.id": [
+        "polar_extraction",
+        "IC-FTMS_preparation",
+        "ICMS_file_storage22"
+      ],
+      "reconstitution_volume": "20",
+      "reconstitution_volume%units": "uL",
+      "replicate": "1",
+      "replicate%type": "analytical",
+      "type": "sample",
+      "weight": "0.1957",
+      "weight%units": "g"
+    },
+    "22_C1-1_Lung_allogenic_42days_170427_UKy_GCH_rep1-protein": {
+      "id": "22_C1-1_Lung_allogenic_42days_170427_UKy_GCH_rep1-protein",
+      "parent_id": "22_C1-1_Lung_allogenic_42days_170427_UKy_GCH_rep1",
+      "protein_weight": "1.3767591694919588",
+      "protein_weight%units": "mg",
+      "protocol.id": [
+        "protein_extraction"
+      ],
+      "type": "sample"
+    },
+    "23_C1-2_Lung_allogenic_42days_170427_UKy_GCH_rep2": {
+      "id": "23_C1-2_Lung_allogenic_42days_170427_UKy_GCH_rep2",
+      "parent_id": "08_C1-2_allogenic_42days_UKy_GCH_rep2",
+      "protocol.id": [
+        "mouse_tissue_collection",
+        "tissue_quench",
+        "frozen_tissue_grind"
+      ],
+      "type": "sample"
+    },
+    "23_C1-2_Lung_allogenic_42days_170427_UKy_GCH_rep2-polar-ICMS_A": {
+      "id": "23_C1-2_Lung_allogenic_42days_170427_UKy_GCH_rep2-polar-ICMS_A",
+      "injection_volume": "10",
+      "injection_volume%units": "uL",
+      "parent_id": "23_C1-2_Lung_allogenic_42days_170427_UKy_GCH_rep2",
+      "polar_split_ratio": "0.113664707",
+      "protocol.id": [
+        "polar_extraction",
+        "IC-FTMS_preparation",
+        "ICMS_file_storage23"
+      ],
+      "reconstitution_volume": "20",
+      "reconstitution_volume%units": "uL",
+      "replicate": "1",
+      "replicate%type": "analytical",
+      "type": "sample",
+      "weight": "0.1914",
+      "weight%units": "g"
+    },
+    "23_C1-2_Lung_allogenic_42days_170427_UKy_GCH_rep2-protein": {
+      "id": "23_C1-2_Lung_allogenic_42days_170427_UKy_GCH_rep2-protein",
+      "parent_id": "23_C1-2_Lung_allogenic_42days_170427_UKy_GCH_rep2",
+      "protein_weight": "1.1547210188083492",
+      "protein_weight%units": "mg",
+      "protocol.id": [
+        "protein_extraction"
+      ],
+      "type": "sample"
+    },
+    "24_C2-0_Lung_allogenic_42days_170427_UKy_GCH_rep1": {
+      "id": "24_C2-0_Lung_allogenic_42days_170427_UKy_GCH_rep1",
+      "parent_id": "09_C2-0_allogenic_42days_UKy_GCH_rep1",
+      "protocol.id": [
+        "mouse_tissue_collection",
+        "tissue_quench",
+        "frozen_tissue_grind"
+      ],
+      "type": "sample"
+    },
+    "24_C2-0_Lung_allogenic_42days_170427_UKy_GCH_rep1-polar-ICMS_A": {
+      "id": "24_C2-0_Lung_allogenic_42days_170427_UKy_GCH_rep1-polar-ICMS_A",
+      "injection_volume": "10",
+      "injection_volume%units": "uL",
+      "parent_id": "24_C2-0_Lung_allogenic_42days_170427_UKy_GCH_rep1",
+      "polar_split_ratio": "0.117502917",
+      "protocol.id": [
+        "polar_extraction",
+        "IC-FTMS_preparation",
+        "ICMS_file_storage24"
+      ],
+      "reconstitution_volume": "20",
+      "reconstitution_volume%units": "uL",
+      "replicate": "1",
+      "replicate%type": "analytical",
+      "type": "sample",
+      "weight": "0.2014",
+      "weight%units": "g"
+    },
+    "24_C2-0_Lung_allogenic_42days_170427_UKy_GCH_rep1-protein": {
+      "id": "24_C2-0_Lung_allogenic_42days_170427_UKy_GCH_rep1-protein",
+      "parent_id": "24_C2-0_Lung_allogenic_42days_170427_UKy_GCH_rep1",
+      "protein_weight": "0.6075844437094541",
+      "protein_weight%units": "mg",
+      "protocol.id": [
+        "protein_extraction"
+      ],
+      "type": "sample"
+    },
+    "25_B1-0_Lung_syngenic_7days_170427_UKy_GCH_rep1": {
+      "id": "25_B1-0_Lung_syngenic_7days_170427_UKy_GCH_rep1",
+      "parent_id": "10_B1-0_syngenic_7days_UKy_GCH_rep1",
+      "protocol.id": [
+        "mouse_tissue_collection",
+        "tissue_quench",
+        "frozen_tissue_grind"
+      ],
+      "type": "sample"
+    },
+    "25_B1-0_Lung_syngenic_7days_170427_UKy_GCH_rep1-polar-ICMS_A": {
+      "id": "25_B1-0_Lung_syngenic_7days_170427_UKy_GCH_rep1-polar-ICMS_A",
+      "injection_volume": "10",
+      "injection_volume%units": "uL",
+      "parent_id": "25_B1-0_Lung_syngenic_7days_170427_UKy_GCH_rep1",
+      "polar_split_ratio": "0.114347546",
+      "protocol.id": [
+        "polar_extraction",
+        "IC-FTMS_preparation",
+        "ICMS_file_storage25"
+      ],
+      "reconstitution_volume": "20",
+      "reconstitution_volume%units": "uL",
+      "replicate": "1",
+      "replicate%type": "analytical",
+      "type": "sample",
+      "weight": "0.1955",
+      "weight%units": "g"
+    },
+    "25_B1-0_Lung_syngenic_7days_170427_UKy_GCH_rep1-protein": {
+      "id": "25_B1-0_Lung_syngenic_7days_170427_UKy_GCH_rep1-protein",
+      "parent_id": "25_B1-0_Lung_syngenic_7days_170427_UKy_GCH_rep1",
+      "protein_weight": "0.47147932892528355",
+      "protein_weight%units": "mg",
+      "protocol.id": [
+        "protein_extraction"
+      ],
+      "type": "sample"
+    },
+    "26_B1-1_Lung_syngenic_7days_170427_UKy_GCH_rep2": {
+      "id": "26_B1-1_Lung_syngenic_7days_170427_UKy_GCH_rep2",
+      "parent_id": "11_B1-1_syngenic_7days_UKy_GCH_rep2",
+      "protocol.id": [
+        "mouse_tissue_collection",
+        "tissue_quench",
+        "frozen_tissue_grind"
+      ],
+      "type": "sample"
+    },
+    "26_B1-1_Lung_syngenic_7days_170427_UKy_GCH_rep2-polar-ICMS_A": {
+      "id": "26_B1-1_Lung_syngenic_7days_170427_UKy_GCH_rep2-polar-ICMS_A",
+      "injection_volume": "10",
+      "injection_volume%units": "uL",
+      "parent_id": "26_B1-1_Lung_syngenic_7days_170427_UKy_GCH_rep2",
+      "polar_split_ratio": "0.117881649",
+      "protocol.id": [
+        "polar_extraction",
+        "IC-FTMS_preparation",
+        "ICMS_file_storage26"
+      ],
+      "reconstitution_volume": "20",
+      "reconstitution_volume%units": "uL",
+      "replicate": "1",
+      "replicate%type": "analytical",
+      "type": "sample",
+      "weight": "0.201",
+      "weight%units": "g"
+    },
+    "26_B1-1_Lung_syngenic_7days_170427_UKy_GCH_rep2-protein": {
+      "id": "26_B1-1_Lung_syngenic_7days_170427_UKy_GCH_rep2-protein",
+      "parent_id": "26_B1-1_Lung_syngenic_7days_170427_UKy_GCH_rep2",
+      "protein_weight": "0.34798720067708344",
+      "protein_weight%units": "mg",
+      "protocol.id": [
+        "protein_extraction"
+      ],
+      "type": "sample"
+    },
+    "27_B1-2_Lung_syngenic_7days_170427_UKy_GCH_rep3": {
+      "id": "27_B1-2_Lung_syngenic_7days_170427_UKy_GCH_rep3",
+      "parent_id": "12_B1-2_syngenic_7days_UKy_GCH_rep3",
+      "protocol.id": [
+        "mouse_tissue_collection",
+        "tissue_quench",
+        "frozen_tissue_grind"
+      ],
+      "type": "sample"
+    },
+    "27_B1-2_Lung_syngenic_7days_170427_UKy_GCH_rep3-polar-ICMS_A": {
+      "id": "27_B1-2_Lung_syngenic_7days_170427_UKy_GCH_rep3-polar-ICMS_A",
+      "injection_volume": "10",
+      "injection_volume%units": "uL",
+      "parent_id": "27_B1-2_Lung_syngenic_7days_170427_UKy_GCH_rep3",
+      "polar_split_ratio": "0.12673043",
+      "protocol.id": [
+        "polar_extraction",
+        "IC-FTMS_preparation",
+        "ICMS_file_storage27"
+      ],
+      "reconstitution_volume": "20",
+      "reconstitution_volume%units": "uL",
+      "replicate": "1",
+      "replicate%type": "analytical",
+      "type": "sample",
+      "weight": "0.2014",
+      "weight%units": "g"
+    },
+    "27_B1-2_Lung_syngenic_7days_170427_UKy_GCH_rep3-protein": {
+      "id": "27_B1-2_Lung_syngenic_7days_170427_UKy_GCH_rep3-protein",
+      "parent_id": "27_B1-2_Lung_syngenic_7days_170427_UKy_GCH_rep3",
+      "protein_weight": "0.3397343460300001",
+      "protein_weight%units": "mg",
+      "protocol.id": [
+        "protein_extraction"
+      ],
+      "type": "sample"
+    },
+    "28_C1-1_Lung_allogenic_7days_170427_UKy_GCH_rep1": {
+      "id": "28_C1-1_Lung_allogenic_7days_170427_UKy_GCH_rep1",
+      "parent_id": "13_C1-1_allogenic_7days_UKy_GCH_rep1",
+      "protocol.id": [
+        "mouse_tissue_collection",
+        "tissue_quench",
+        "frozen_tissue_grind"
+      ],
+      "type": "sample"
+    },
+    "28_C1-1_Lung_allogenic_7days_170427_UKy_GCH_rep1-polar-ICMS_A": {
+      "id": "28_C1-1_Lung_allogenic_7days_170427_UKy_GCH_rep1-polar-ICMS_A",
+      "injection_volume": "10",
+      "injection_volume%units": "uL",
+      "parent_id": "28_C1-1_Lung_allogenic_7days_170427_UKy_GCH_rep1",
+      "polar_split_ratio": "0.111222741",
+      "protocol.id": [
+        "polar_extraction",
+        "IC-FTMS_preparation",
+        "ICMS_file_storage28"
+      ],
+      "reconstitution_volume": "20",
+      "reconstitution_volume%units": "uL",
+      "replicate": "1",
+      "replicate%type": "analytical",
+      "type": "sample",
+      "weight": "0.1882",
+      "weight%units": "g"
+    },
+    "28_C1-1_Lung_allogenic_7days_170427_UKy_GCH_rep1-protein": {
+      "id": "28_C1-1_Lung_allogenic_7days_170427_UKy_GCH_rep1-protein",
+      "parent_id": "28_C1-1_Lung_allogenic_7days_170427_UKy_GCH_rep1",
+      "protein_weight": "0.37226618572882475",
+      "protein_weight%units": "mg",
+      "protocol.id": [
+        "protein_extraction"
+      ],
+      "type": "sample"
+    },
+    "29_C1-2_Lung_allogenic_7days_170427_UKy_GCH_rep2": {
+      "id": "29_C1-2_Lung_allogenic_7days_170427_UKy_GCH_rep2",
+      "parent_id": "14_C1-2_allogenic_7days_UKy_GCH_rep2",
+      "protocol.id": [
+        "mouse_tissue_collection",
+        "tissue_quench",
+        "frozen_tissue_grind"
+      ],
+      "type": "sample"
+    },
+    "29_C1-2_Lung_allogenic_7days_170427_UKy_GCH_rep2-polar-ICMS_A": {
+      "id": "29_C1-2_Lung_allogenic_7days_170427_UKy_GCH_rep2-polar-ICMS_A",
+      "injection_volume": "10",
+      "injection_volume%units": "uL",
+      "parent_id": "29_C1-2_Lung_allogenic_7days_170427_UKy_GCH_rep2",
+      "polar_split_ratio": "0.122427408",
+      "protocol.id": [
+        "polar_extraction",
+        "IC-FTMS_preparation",
+        "ICMS_file_storage29"
+      ],
+      "reconstitution_volume": "20",
+      "reconstitution_volume%units": "uL",
+      "replicate": "1",
+      "replicate%type": "analytical",
+      "type": "sample",
+      "weight": "0.1969",
+      "weight%units": "g"
+    },
+    "29_C1-2_Lung_allogenic_7days_170427_UKy_GCH_rep2-protein": {
+      "id": "29_C1-2_Lung_allogenic_7days_170427_UKy_GCH_rep2-protein",
+      "parent_id": "29_C1-2_Lung_allogenic_7days_170427_UKy_GCH_rep2",
+      "protein_weight": "0.31985855339373337",
+      "protein_weight%units": "mg",
+      "protocol.id": [
+        "protein_extraction"
+      ],
+      "type": "sample"
+    },
+    "30_C1-20_Lung_allogenic_7days_170427_UKy_GCH_rep3": {
+      "id": "30_C1-20_Lung_allogenic_7days_170427_UKy_GCH_rep3",
+      "parent_id": "15_C1-20_allogenic_7days_UKy_GCH_rep3",
+      "protocol.id": [
+        "mouse_tissue_collection",
+        "tissue_quench",
+        "frozen_tissue_grind"
+      ],
+      "type": "sample"
+    },
+    "30_C1-20_Lung_allogenic_7days_170427_UKy_GCH_rep3-polar-ICMS_A": {
+      "id": "30_C1-20_Lung_allogenic_7days_170427_UKy_GCH_rep3-polar-ICMS_A",
+      "injection_volume": "10",
+      "injection_volume%units": "uL",
+      "parent_id": "30_C1-20_Lung_allogenic_7days_170427_UKy_GCH_rep3",
+      "polar_split_ratio": "0.112660944",
+      "protocol.id": [
+        "polar_extraction",
+        "IC-FTMS_preparation",
+        "ICMS_file_storage30"
+      ],
+      "reconstitution_volume": "20",
+      "reconstitution_volume%units": "uL",
+      "replicate": "1",
+      "replicate%type": "analytical",
+      "type": "sample",
+      "weight": "0.189",
+      "weight%units": "g"
+    },
+    "30_C1-20_Lung_allogenic_7days_170427_UKy_GCH_rep3-protein": {
+      "id": "30_C1-20_Lung_allogenic_7days_170427_UKy_GCH_rep3-protein",
+      "parent_id": "30_C1-20_Lung_allogenic_7days_170427_UKy_GCH_rep3",
+      "protein_weight": "0.4930096320820004",
+      "protein_weight%units": "mg",
+      "protocol.id": [
+        "protein_extraction"
+      ],
+      "type": "sample"
+    }
+  },
+  "factor": {
+    "Time Point": {
+      "allowed_values": [
+        "0",
+        "7",
+        "42"
+      ],
+      "field": "time_point",
+      "id": "Time Point"
+    },
+    "Treatment": {
+      "allowed_values": [
+        "naive",
+        "syngenic",
+        "allogenic"
+      ],
+      "field": "protocol.id",
+      "id": "Treatment"
+    }
+  },
+  "project": {
+    "GH_Spleen": {
+      "PI_email": "gerhard.hildebrandt@uky.edu",
+      "PI_first_name": "Gerhard",
+      "PI_last_name": "Hildebrandt",
+      "address": "Gerhard C. Hildebrandt, MD, Room no. CC401A, Ben Roach Building, Markey Cancer Center University of Kentucky, Lexington, 40536",
+      "department": "Markey Cancer Center, Hematology and Blood and Marrow Transplant",
+      "description": "Allogeneic hematopoietic cell transplantation (allo-HCT) is a potentially curative treatment option for a variety of hematological malignancies. Interactions between the donor immune system and the patient tissue result in a disease, called GVHD. The pathophysiology of acute GVHD can be hypothesized in three sequential phases: cytokine storm and activation of the antigen-presenting cells (APC), donor T cell activation and effector cell phase. Idiopathic pneumonia syndrome (IPS) is one of the most deleterious complications after allogeneic HCT and is considered not only to be related to conditioning regimen toxicity but also represents an end organ damage caused by allo-reactive T cells, therefore making the lung susceptible to a two-pronged attack, one of which overlaps with GVHD causing other target organ injury. IPS results in mortality of up to 90% of patients. We will use a murine model of IPS and GVHD which is well established in our group, and in which disease evolves either across disparities in major histocompatibility complex (MCH) class I and II, minor histocompatibility antigens (miHags) or both. Metabolomics changes following syngeneic and allogeneic HCT at post-transplantation Days +7 (cytokine storm phase) and Days +42 (cellular effector phase) are compared to baseline wild-type (naive) controls. Prior to analysis, na\u00efve - and experimental mice (N=3 from each group) were fed with semi-liquid diet supplemented with tracers (13C6-glucose ) over 24 hours. At the end of 7 days or 42 days, respectively, feces and aGVHD target organs (colon, liver and lung) were collected from all groups and further processed and / or analyzed. We expect to reveal metabolic pathways affected after allo-HCT which contribute to immune cell mediated lung injury (IPS) and will potentially identify different metabolic pathways in other GVHD target organs.",
+      "id": "GH_Spleen",
+      "institution": "University of Kentucky",
+      "phone": "800-333-8874",
+      "title": "Metabolomics of lung injury after allogeneic hematopoietic cell transplantation"
+    }
+  },
+  "protocol": {
+    "IC-FTMS_preparation": {
+      "description": "Before going into the IC-FTMS the frozen sample is reconstituted in water.",
+      "filename": "",
+      "id": "IC-FTMS_preparation",
+      "order": "5",
+      "type": "sample_prep"
+    },
+    "ICMS_file_storage1": {
+      "data_files": [
+        "01_A0_Spleen_T032017_naive_ICMSA.raw"
+      ],
+      "entity.id": "01_A0_Spleen_naive_0days_170427_UKy_GCH_rep1-polar-ICMS_A",
+      "id": "ICMS_file_storage1",
+      "parent_protocol": "file_storage",
+      "type": "storage"
+    },
+    "ICMS_file_storage10": {
+      "data_files": [
+        "10_B10_Spleen_T042017_syn_ICMSA.raw"
+      ],
+      "entity.id": "10_B1-0_Spleen_syngenic_7days_170427_UKy_GCH_rep1-polar-ICMS_A",
+      "id": "ICMS_file_storage10",
+      "parent_protocol": "file_storage",
+      "type": "storage"
+    },
+    "ICMS_file_storage11": {
+      "data_files": [
+        "11_B11_Spleen_T042017_syn_ICMSA.raw"
+      ],
+      "entity.id": "11_B1-1_Spleen_syngenic_7days_170427_UKy_GCH_rep2-polar-ICMS_A",
+      "id": "ICMS_file_storage11",
+      "parent_protocol": "file_storage",
+      "type": "storage"
+    },
+    "ICMS_file_storage12": {
+      "data_files": [
+        "12_B12_Spleen_T042017_syn_ICMSA.raw"
+      ],
+      "entity.id": "12_B1-2_Spleen_syngenic_7days_170427_UKy_GCH_rep3-polar-ICMS_A",
+      "id": "ICMS_file_storage12",
+      "parent_protocol": "file_storage",
+      "type": "storage"
+    },
+    "ICMS_file_storage13": {
+      "data_files": [
+        "13_C11_Spleen_T042017_allo_ICMSA.raw"
+      ],
+      "entity.id": "13_C1-1_Spleen_allogenic_7days_170427_UKy_GCH_rep1-polar-ICMS_A",
+      "id": "ICMS_file_storage13",
+      "parent_protocol": "file_storage",
+      "type": "storage"
+    },
+    "ICMS_file_storage14": {
+      "data_files": [
+        "14_C12_Spleen_T042017_allo_ICMSA.raw"
+      ],
+      "entity.id": "14_C1-2_Spleen_allogenic_7days_170427_UKy_GCH_rep2-polar-ICMS_A",
+      "id": "ICMS_file_storage14",
+      "parent_protocol": "file_storage",
+      "type": "storage"
+    },
+    "ICMS_file_storage15": {
+      "data_files": [
+        "15_C120_Spleen_T042017_allo_ICMSA.raw"
+      ],
+      "entity.id": "15_C1-20_Spleen_allogenic_7days_170427_UKy_GCH_rep3-polar-ICMS_A",
+      "id": "ICMS_file_storage15",
+      "parent_protocol": "file_storage",
+      "type": "storage"
+    },
+    "ICMS_file_storage16": {
+      "data_files": [
+        "16_A0_Lung_T032017_naive_ICMSA.raw"
+      ],
+      "entity.id": "16_A0_Lung_naive_0days_170427_UKy_GCH_rep1-polar-ICMS_A",
+      "id": "ICMS_file_storage16",
+      "parent_protocol": "file_storage",
+      "type": "storage"
+    },
+    "ICMS_file_storage17": {
+      "data_files": [
+        "17_A1_Lung_T032017_naive_ICMSA.raw"
+      ],
+      "entity.id": "17_A1_Lung_naive_0days_170427_UKy_GCH_rep2-polar-ICMS_A",
+      "id": "ICMS_file_storage17",
+      "parent_protocol": "file_storage",
+      "type": "storage"
+    },
+    "ICMS_file_storage18": {
+      "data_files": [
+        "18_A2_Lung_T032017_naive_ICMSA.raw"
+      ],
+      "entity.id": "18_A2_Lung_naive_0days_170427_UKy_GCH_rep3-polar-ICMS_A",
+      "id": "ICMS_file_storage18",
+      "parent_protocol": "file_storage",
+      "type": "storage"
+    },
+    "ICMS_file_storage19": {
+      "data_files": [
+        "19_B0_Lung_T032017_syn_ICMSA.raw"
+      ],
+      "entity.id": "19_B0_Lung_syngenic_42days_170427_UKy_GCH_rep1-polar-ICMS_A",
+      "id": "ICMS_file_storage19",
+      "parent_protocol": "file_storage",
+      "type": "storage"
+    },
+    "ICMS_file_storage2": {
+      "data_files": [
+        "02_A1_Spleen_T032017_naive_ICMSA.raw"
+      ],
+      "entity.id": "02_A1_Spleen_naive_0days_170427_UKy_GCH_rep2-polar-ICMS_A",
+      "id": "ICMS_file_storage2",
+      "parent_protocol": "file_storage",
+      "type": "storage"
+    },
+    "ICMS_file_storage20": {
+      "data_files": [
+        "20_B1_Lung_T032017_syn_ICMSA.raw"
+      ],
+      "entity.id": "20_B1_Lung_syngenic_42days_170427_UKy_GCH_rep2-polar-ICMS_A",
+      "id": "ICMS_file_storage20",
+      "parent_protocol": "file_storage",
+      "type": "storage"
+    },
+    "ICMS_file_storage21": {
+      "data_files": [
+        "21_B2_Lung_T032017_syn_ICMSA.raw"
+      ],
+      "entity.id": "21_B2_Lung_syngenic_42days_170427_UKy_GCH_rep3-polar-ICMS_A",
+      "id": "ICMS_file_storage21",
+      "parent_protocol": "file_storage",
+      "type": "storage"
+    },
+    "ICMS_file_storage22": {
+      "data_files": [
+        "22_C11_Lung_T032017_allo_ICMSA.raw"
+      ],
+      "entity.id": "22_C1-1_Lung_allogenic_42days_170427_UKy_GCH_rep1-polar-ICMS_A",
+      "id": "ICMS_file_storage22",
+      "parent_protocol": "file_storage",
+      "type": "storage"
+    },
+    "ICMS_file_storage23": {
+      "data_files": [
+        "23_C12_Lung_T032017_allo_ICMSA.raw"
+      ],
+      "entity.id": "23_C1-2_Lung_allogenic_42days_170427_UKy_GCH_rep2-polar-ICMS_A",
+      "id": "ICMS_file_storage23",
+      "parent_protocol": "file_storage",
+      "type": "storage"
+    },
+    "ICMS_file_storage24": {
+      "data_files": [
+        "24_C20_Lung_T032017_allo_ICMSA.raw"
+      ],
+      "entity.id": "24_C2-0_Lung_allogenic_42days_170427_UKy_GCH_rep1-polar-ICMS_A",
+      "id": "ICMS_file_storage24",
+      "parent_protocol": "file_storage",
+      "type": "storage"
+    },
+    "ICMS_file_storage25": {
+      "data_files": [
+        "25_B10_Lung_T042017_syn_ICMSA.raw"
+      ],
+      "entity.id": "25_B1-0_Lung_syngenic_7days_170427_UKy_GCH_rep1-polar-ICMS_A",
+      "id": "ICMS_file_storage25",
+      "parent_protocol": "file_storage",
+      "type": "storage"
+    },
+    "ICMS_file_storage26": {
+      "data_files": [
+        "26_B11_Lung_T042017_syn_ICMSA.raw"
+      ],
+      "entity.id": "26_B1-1_Lung_syngenic_7days_170427_UKy_GCH_rep2-polar-ICMS_A",
+      "id": "ICMS_file_storage26",
+      "parent_protocol": "file_storage",
+      "type": "storage"
+    },
+    "ICMS_file_storage27": {
+      "data_files": [
+        "27_B12_Lung_T042017_syn_ICMSA.raw"
+      ],
+      "entity.id": "27_B1-2_Lung_syngenic_7days_170427_UKy_GCH_rep3-polar-ICMS_A",
+      "id": "ICMS_file_storage27",
+      "parent_protocol": "file_storage",
+      "type": "storage"
+    },
+    "ICMS_file_storage28": {
+      "data_files": [
+        "28_C11_Lung_T042017_allo_ICMSA.raw"
+      ],
+      "entity.id": "28_C1-1_Lung_allogenic_7days_170427_UKy_GCH_rep1-polar-ICMS_A",
+      "id": "ICMS_file_storage28",
+      "parent_protocol": "file_storage",
+      "type": "storage"
+    },
+    "ICMS_file_storage29": {
+      "data_files": [
+        "29_C12_Lung_T042017_allo_ICMSA.raw"
+      ],
+      "entity.id": "29_C1-2_Lung_allogenic_7days_170427_UKy_GCH_rep2-polar-ICMS_A",
+      "id": "ICMS_file_storage29",
+      "parent_protocol": "file_storage",
+      "type": "storage"
+    },
+    "ICMS_file_storage3": {
+      "data_files": [
+        "03_A2_Spleen_T032017_naive_ICMSA.raw"
+      ],
+      "entity.id": "03_A2_Spleen_naive_0days_170427_UKy_GCH_rep3-polar-ICMS_A",
+      "id": "ICMS_file_storage3",
+      "parent_protocol": "file_storage",
+      "type": "storage"
+    },
+    "ICMS_file_storage30": {
+      "data_files": [
+        "30_C120_Lung_T042017_allo_ICMSA.raw"
+      ],
+      "entity.id": "30_C1-20_Lung_allogenic_7days_170427_UKy_GCH_rep3-polar-ICMS_A",
+      "id": "ICMS_file_storage30",
+      "parent_protocol": "file_storage",
+      "type": "storage"
+    },
+    "ICMS_file_storage31": {
+      "data_files": [
+        "01_A0_SI_naive_170427_UKy_GCB_rep1-quench_ICMSA.raw"
+      ],
+      "entity.id": "01_A0_SI_naive_0days_170427_UKy_GCH_rep1-polar-ICMS_A",
+      "id": "ICMS_file_storage31",
+      "parent_protocol": "file_storage",
+      "type": "storage"
+    },
+    "ICMS_file_storage32": {
+      "data_files": [
+        "02_A1_SI_naive_170427_UKy_GCB_rep2-quench_ICMSA.raw"
+      ],
+      "entity.id": "02_A1_SI_naive_0days_170427_UKy_GCH_rep2-polar-ICMS_A",
+      "id": "ICMS_file_storage32",
+      "parent_protocol": "file_storage",
+      "type": "storage"
+    },
+    "ICMS_file_storage33": {
+      "data_files": [
+        "03_A2_SI_naive_170427_UKy_GCB_rep3-quench_ICMSA.raw"
+      ],
+      "entity.id": "03_A2_SI_naive_0days_170427_UKy_GCH_rep3-polar-ICMS_A",
+      "id": "ICMS_file_storage33",
+      "parent_protocol": "file_storage",
+      "type": "storage"
+    },
+    "ICMS_file_storage34": {
+      "data_files": [
+        "04_B0_SI_syngenic_170427_UKy_GCB_rep1-quench_ICMSA.raw"
+      ],
+      "entity.id": "04_B0_SI_syngenic_42days_170427_UKy_GCH_rep1-polar-ICMS_A",
+      "id": "ICMS_file_storage34",
+      "parent_protocol": "file_storage",
+      "type": "storage"
+    },
+    "ICMS_file_storage35": {
+      "data_files": [
+        "05_B1_SI_syngenic_170427_UKy_GCB_rep2-quench_ICMSA.raw"
+      ],
+      "entity.id": "05_B1_SI_syngenic_42days_170427_UKy_GCH_rep2-polar-ICMS_A",
+      "id": "ICMS_file_storage35",
+      "parent_protocol": "file_storage",
+      "type": "storage"
+    },
+    "ICMS_file_storage36": {
+      "data_files": [
+        "06_B2_SI_syngenic_170427_UKy_GCB_rep3-quench_ICMSA.raw"
+      ],
+      "entity.id": "06_B2_SI_syngenic_42days_170427_UKy_GCH_rep3-polar-ICMS_A",
+      "id": "ICMS_file_storage36",
+      "parent_protocol": "file_storage",
+      "type": "storage"
+    },
+    "ICMS_file_storage37": {
+      "data_files": [
+        "07_C1-1_SI_allogenic_170427_UKy_GCB_rep1-quench_ICMSA.raw"
+      ],
+      "entity.id": "07_C1-1_SI_allogenic_42days_170427_UKy_GCH_rep1-polar-ICMS_A",
+      "id": "ICMS_file_storage37",
+      "parent_protocol": "file_storage",
+      "type": "storage"
+    },
+    "ICMS_file_storage38": {
+      "data_files": [
+        "08_C1-2_SI_allogenic_170427_UKy_GCB_rep2-quench_ICMSA.raw"
+      ],
+      "entity.id": "08_C1-2_SI_allogenic_42days_170427_UKy_GCH_rep2-polar-ICMS_A",
+      "id": "ICMS_file_storage38",
+      "parent_protocol": "file_storage",
+      "type": "storage"
+    },
+    "ICMS_file_storage39": {
+      "data_files": [
+        "09_C2-0_SI_allogenic_170427_UKy_GCB_rep1-quench_ICMSA.raw"
+      ],
+      "entity.id": "09_C2-0_SI_allogenic_42days_170427_UKy_GCH_rep1-polar-ICMS_A",
+      "id": "ICMS_file_storage39",
+      "parent_protocol": "file_storage",
+      "type": "storage"
+    },
+    "ICMS_file_storage4": {
+      "data_files": [
+        "04_B0_Spleen_T032017_syn_ICMSA.raw"
+      ],
+      "entity.id": "04_B0_Spleen_syngenic_42days_170427_UKy_GCH_rep1-polar-ICMS_A",
+      "id": "ICMS_file_storage4",
+      "parent_protocol": "file_storage",
+      "type": "storage"
+    },
+    "ICMS_file_storage40": {
+      "data_files": [
+        "10_B1-0_SI_syngenic_170427_UKy_GCB_rep1-quench_ICMSA.raw"
+      ],
+      "entity.id": "10_B1-0_SI_syngenic_7days_170427_UKy_GCH_rep1-polar-ICMS_A",
+      "id": "ICMS_file_storage40",
+      "parent_protocol": "file_storage",
+      "type": "storage"
+    },
+    "ICMS_file_storage41": {
+      "data_files": [
+        "11_B1-1_SI_syngenic_170427_UKy_GCB_rep2-quench_ICMSA.raw"
+      ],
+      "entity.id": "11_B1-1_SI_syngenic_7days_170427_UKy_GCH_rep2-polar-ICMS_A",
+      "id": "ICMS_file_storage41",
+      "parent_protocol": "file_storage",
+      "type": "storage"
+    },
+    "ICMS_file_storage42": {
+      "data_files": [
+        "12_B1-2_SI_syngenic_170427_UKy_GCB_rep3-quench_ICMSA.raw"
+      ],
+      "entity.id": "12_B1-2_SI_syngenic_7days_170427_UKy_GCH_rep3-polar-ICMS_A",
+      "id": "ICMS_file_storage42",
+      "parent_protocol": "file_storage",
+      "type": "storage"
+    },
+    "ICMS_file_storage43": {
+      "data_files": [
+        "13_C1-1_SI_allogenic_170427_UKy_GCB_rep1-quench_ICMSA.raw"
+      ],
+      "entity.id": "13_C1-1_SI_allogenic_7days_170427_UKy_GCH_rep1-polar-ICMS_A",
+      "id": "ICMS_file_storage43",
+      "parent_protocol": "file_storage",
+      "type": "storage"
+    },
+    "ICMS_file_storage44": {
+      "data_files": [
+        "14_C1-2_SI_allogenic_170427_UKy_GCB_rep2-quench_ICMSA.raw"
+      ],
+      "entity.id": "14_C1-2_SI_allogenic_7days_170427_UKy_GCH_rep2-polar-ICMS_A",
+      "id": "ICMS_file_storage44",
+      "parent_protocol": "file_storage",
+      "type": "storage"
+    },
+    "ICMS_file_storage45": {
+      "data_files": [
+        "15_C1-20_SI_allogenic_170427_UKy_GCB_rep3-quench_ICMSA.raw"
+      ],
+      "entity.id": "15_C1-20_SI_allogenic_7days_170427_UKy_GCH_rep3-polar-ICMS_A",
+      "id": "ICMS_file_storage45",
+      "parent_protocol": "file_storage",
+      "type": "storage"
+    },
+    "ICMS_file_storage46": {
+      "data_files": [
+        "01_A0_Colon_naive_170427_UKy_GCB_rep1-quench_ICMSA.raw"
+      ],
+      "entity.id": "01_A0_Colon_naive_0days_170427_UKy_GCH_rep1-polar-ICMS_A",
+      "id": "ICMS_file_storage46",
+      "parent_protocol": "file_storage",
+      "type": "storage"
+    },
+    "ICMS_file_storage47": {
+      "data_files": [
+        "02_A1_Colon_naive_170427_UKy_GCB_rep2-quench_ICMSA.raw"
+      ],
+      "entity.id": "02_A1_Colon_naive_0days_170427_UKy_GCH_rep2-polar-ICMS_A",
+      "id": "ICMS_file_storage47",
+      "parent_protocol": "file_storage",
+      "type": "storage"
+    },
+    "ICMS_file_storage48": {
+      "data_files": [
+        "03_A2_Colon_naive_170427_UKy_GCB_rep3-quench_ICMSA.raw"
+      ],
+      "entity.id": "03_A2_Colon_naive_0days_170427_UKy_GCH_rep3-polar-ICMS_A",
+      "id": "ICMS_file_storage48",
+      "parent_protocol": "file_storage",
+      "type": "storage"
+    },
+    "ICMS_file_storage49": {
+      "data_files": [
+        "04_B0_Colon_syngenic_170427_UKy_GCB_rep1-quench_ICMSA.raw"
+      ],
+      "entity.id": "04_B0_Colon_syngenic_42days_170427_UKy_GCH_rep1-polar-ICMS_A",
+      "id": "ICMS_file_storage49",
+      "parent_protocol": "file_storage",
+      "type": "storage"
+    },
+    "ICMS_file_storage5": {
+      "data_files": [
+        "05_B1_Spleen_T032017_syn_ICMSA.raw"
+      ],
+      "entity.id": "05_B1_Spleen_syngenic_42days_170427_UKy_GCH_rep2-polar-ICMS_A",
+      "id": "ICMS_file_storage5",
+      "parent_protocol": "file_storage",
+      "type": "storage"
+    },
+    "ICMS_file_storage50": {
+      "data_files": [
+        "05_B1_Colon_syngenic_170427_UKy_GCB_rep2-quench_ICMSA.raw"
+      ],
+      "entity.id": "05_B1_Colon_syngenic_42days_170427_UKy_GCH_rep2-polar-ICMS_A",
+      "id": "ICMS_file_storage50",
+      "parent_protocol": "file_storage",
+      "type": "storage"
+    },
+    "ICMS_file_storage51": {
+      "data_files": [
+        "06_B2_Colon_syngenic_170427_UKy_GCB_rep3-quench_ICMSA.raw"
+      ],
+      "entity.id": "06_B2_Colon_syngenic_42days_170427_UKy_GCH_rep3-polar-ICMS_A",
+      "id": "ICMS_file_storage51",
+      "parent_protocol": "file_storage",
+      "type": "storage"
+    },
+    "ICMS_file_storage52": {
+      "data_files": [
+        "07_C1-1_Colon_allogenic_170427_UKy_GCB_rep1-quench_ICMSA.raw"
+      ],
+      "entity.id": "07_C1-1_Colon_allogenic_42days_170427_UKy_GCH_rep1-polar-ICMS_A",
+      "id": "ICMS_file_storage52",
+      "parent_protocol": "file_storage",
+      "type": "storage"
+    },
+    "ICMS_file_storage53": {
+      "data_files": [
+        "08_C1-2_Colon_allogenic_170427_UKy_GCB_rep2-quench_ICMSA.raw"
+      ],
+      "entity.id": "08_C1-2_Colon_allogenic_42days_170427_UKy_GCH_rep2-polar-ICMS_A",
+      "id": "ICMS_file_storage53",
+      "parent_protocol": "file_storage",
+      "type": "storage"
+    },
+    "ICMS_file_storage54": {
+      "data_files": [
+        "09_C2-0_Colon_allogenic_170427_UKy_GCB_rep1-quench_ICMSA.raw"
+      ],
+      "entity.id": "09_C2-0_Colon_allogenic_42days_170427_UKy_GCH_rep1-polar-ICMS_A",
+      "id": "ICMS_file_storage54",
+      "parent_protocol": "file_storage",
+      "type": "storage"
+    },
+    "ICMS_file_storage55": {
+      "data_files": [
+        "10_B1-0_Colon_syngenic_170427_UKy_GCB_rep1-quench_ICMSA.raw"
+      ],
+      "entity.id": "10_B1-0_Colon_syngenic_7days_170427_UKy_GCH_rep1-polar-ICMS_A",
+      "id": "ICMS_file_storage55",
+      "parent_protocol": "file_storage",
+      "type": "storage"
+    },
+    "ICMS_file_storage56": {
+      "data_files": [
+        "11_B1-1_Colon_syngenic_170427_UKy_GCB_rep2-quench_ICMSA.raw"
+      ],
+      "entity.id": "11_B1-1_Colon_syngenic_7days_170427_UKy_GCH_rep2-polar-ICMS_A",
+      "id": "ICMS_file_storage56",
+      "parent_protocol": "file_storage",
+      "type": "storage"
+    },
+    "ICMS_file_storage57": {
+      "data_files": [
+        "12_B1-2_Colon_syngenic_170427_UKy_GCB_rep3-quench_ICMSA.raw"
+      ],
+      "entity.id": "12_B1-2_Colon_syngenic_7days_170427_UKy_GCH_rep3-polar-ICMS_A",
+      "id": "ICMS_file_storage57",
+      "parent_protocol": "file_storage",
+      "type": "storage"
+    },
+    "ICMS_file_storage58": {
+      "data_files": [
+        "13_C1-1_Colon_allogenic_170427_UKy_GCB_rep1-quench_ICMSA.raw"
+      ],
+      "entity.id": "13_C1-1_Colon_allogenic_7days_170427_UKy_GCH_rep1-polar-ICMS_A",
+      "id": "ICMS_file_storage58",
+      "parent_protocol": "file_storage",
+      "type": "storage"
+    },
+    "ICMS_file_storage59": {
+      "data_files": [
+        "14_C1-2_Colon_allogenic_170427_UKy_GCB_rep2-quench_ICMSA.raw"
+      ],
+      "entity.id": "14_C1-2_Colon_allogenic_7days_170427_UKy_GCH_rep2-polar-ICMS_A",
+      "id": "ICMS_file_storage59",
+      "parent_protocol": "file_storage",
+      "type": "storage"
+    },
+    "ICMS_file_storage6": {
+      "data_files": [
+        "06_B2_Spleen_T032017_syn_ICMSA.raw"
+      ],
+      "entity.id": "06_B2_Spleen_syngenic_42days_170427_UKy_GCH_rep3-polar-ICMS_A",
+      "id": "ICMS_file_storage6",
+      "parent_protocol": "file_storage",
+      "type": "storage"
+    },
+    "ICMS_file_storage60": {
+      "data_files": [
+        "15_C1-20_Colon_allogenic_170427_UKy_GCB_rep3-quench_ICMSA.raw"
+      ],
+      "entity.id": "15_C1-20_Colon_allogenic_7days_170427_UKy_GCH_rep3-polar-ICMS_A",
+      "id": "ICMS_file_storage60",
+      "parent_protocol": "file_storage",
+      "type": "storage"
+    },
+    "ICMS_file_storage61": {
+      "data_files": [
+        "01_A0_Liver_naive_170427_UKy_GCB_rep1-quench_ICMSA.raw"
+      ],
+      "entity.id": "01_A0_Liver_naive_0days_170427_UKy_GCH_rep1-polar-ICMS_A",
+      "id": "ICMS_file_storage61",
+      "parent_protocol": "file_storage",
+      "type": "storage"
+    },
+    "ICMS_file_storage62": {
+      "data_files": [
+        "02_A1_Liver_naive_170427_UKy_GCB_rep2-quench_ICMSA.raw"
+      ],
+      "entity.id": "02_A1_Liver_naive_0days_170427_UKy_GCH_rep2-polar-ICMS_A",
+      "id": "ICMS_file_storage62",
+      "parent_protocol": "file_storage",
+      "type": "storage"
+    },
+    "ICMS_file_storage63": {
+      "data_files": [
+        "03_A2_Liver_naive_170427_UKy_GCB_rep3-quench_ICMSA.raw"
+      ],
+      "entity.id": "03_A2_Liver_naive_0days_170427_UKy_GCH_rep3-polar-ICMS_A",
+      "id": "ICMS_file_storage63",
+      "parent_protocol": "file_storage",
+      "type": "storage"
+    },
+    "ICMS_file_storage64": {
+      "data_files": [
+        "04_B0_Liver_syngenic_170427_UKy_GCB_rep1-quench_ICMS.raw"
+      ],
+      "entity.id": "04_B0_Liver_syngenic_42days_170427_UKy_GCH_rep1-polar-ICMS_A",
+      "id": "ICMS_file_storage64",
+      "parent_protocol": "file_storage",
+      "type": "storage"
+    },
+    "ICMS_file_storage65": {
+      "data_files": [
+        "05_B1_Liver_syngenic_170427_UKy_GCB_rep2-quench_ICMSA.raw"
+      ],
+      "entity.id": "05_B1_Liver_syngenic_42days_170427_UKy_GCH_rep2-polar-ICMS_A",
+      "id": "ICMS_file_storage65",
+      "parent_protocol": "file_storage",
+      "type": "storage"
+    },
+    "ICMS_file_storage66": {
+      "data_files": [
+        "06_B2_Liver_syngenic_170427_UKy_GCB_rep3-quench_ICMS.raw"
+      ],
+      "entity.id": "06_B2_Liver_syngenic_42days_170427_UKy_GCH_rep3-polar-ICMS_A",
+      "id": "ICMS_file_storage66",
+      "parent_protocol": "file_storage",
+      "type": "storage"
+    },
+    "ICMS_file_storage67": {
+      "data_files": [
+        "07_C1-1_Liver_allogenic_170427_UKy_GCB_rep1-quench_ICMSA.raw"
+      ],
+      "entity.id": "07_C1-1_Liver_allogenic_42days_170427_UKy_GCH_rep1-polar-ICMS_A",
+      "id": "ICMS_file_storage67",
+      "parent_protocol": "file_storage",
+      "type": "storage"
+    },
+    "ICMS_file_storage68": {
+      "data_files": [
+        "08_C1-2_Liver_allogenic_170427_UKy_GCB_rep2-quench_ICMSA.raw"
+      ],
+      "entity.id": "08_C1-2_Liver_allogenic_42days_170427_UKy_GCH_rep2-polar-ICMS_A",
+      "id": "ICMS_file_storage68",
+      "parent_protocol": "file_storage",
+      "type": "storage"
+    },
+    "ICMS_file_storage69": {
+      "data_files": [
+        "09_C2-0_Liver_allogenic_170427_UKy_GCB_rep1-quench_ICMSA.raw"
+      ],
+      "entity.id": "09_C2-0_Liver_allogenic_42days_170427_UKy_GCH_rep1-polar-ICMS_A",
+      "id": "ICMS_file_storage69",
+      "parent_protocol": "file_storage",
+      "type": "storage"
+    },
+    "ICMS_file_storage7": {
+      "data_files": [
+        "07_C11_Spleen_T032017_allo_ICMSA.raw"
+      ],
+      "entity.id": "07_C1-1_Spleen_allogenic_42days_170427_UKy_GCH_rep1-polar-ICMS_A",
+      "id": "ICMS_file_storage7",
+      "parent_protocol": "file_storage",
+      "type": "storage"
+    },
+    "ICMS_file_storage70": {
+      "data_files": [
+        "10_B1-0_Liver_syngenic_170427_UKy_GCB_rep1-quench_ICMSA.raw"
+      ],
+      "entity.id": "10_B1-0_Liver_syngenic_7days_170427_UKy_GCH_rep1-polar-ICMS_A",
+      "id": "ICMS_file_storage70",
+      "parent_protocol": "file_storage",
+      "type": "storage"
+    },
+    "ICMS_file_storage71": {
+      "data_files": [
+        "11_B1-1_Liver_syngenic_170427_UKy_GCB_rep2-quench_ICMSA.raw"
+      ],
+      "entity.id": "11_B1-1_Liver_syngenic_7days_170427_UKy_GCH_rep2-polar-ICMS_A",
+      "id": "ICMS_file_storage71",
+      "parent_protocol": "file_storage",
+      "type": "storage"
+    },
+    "ICMS_file_storage72": {
+      "data_files": [
+        "12_B1-2_Liver_syngenic_170427_UKy_GCB_rep3-quench_ICMSA.raw"
+      ],
+      "entity.id": "12_B1-2_Liver_syngenic_7days_170427_UKy_GCH_rep3-polar-ICMS_A",
+      "id": "ICMS_file_storage72",
+      "parent_protocol": "file_storage",
+      "type": "storage"
+    },
+    "ICMS_file_storage73": {
+      "data_files": [
+        "13_C1-1_Liver_allogenic_170427_UKy_GCB_rep1-quench_ICMS.raw"
+      ],
+      "entity.id": "13_C1-1_Liver_allogenic_7days_170427_UKy_GCH_rep1-polar-ICMS_A",
+      "id": "ICMS_file_storage73",
+      "parent_protocol": "file_storage",
+      "type": "storage"
+    },
+    "ICMS_file_storage74": {
+      "data_files": [
+        "14_C1-2_Liver_allogenic_170427_UKy_GCB_rep2-quench_ICMSA.raw"
+      ],
+      "entity.id": "14_C1-2_Liver_allogenic_7days_170427_UKy_GCH_rep2-polar-ICMS_A",
+      "id": "ICMS_file_storage74",
+      "parent_protocol": "file_storage",
+      "type": "storage"
+    },
+    "ICMS_file_storage75": {
+      "data_files": [
+        "15_C1-20_Liver_allogenic_170427_UKy_GCB_rep3-quench_ICMSA.raw"
+      ],
+      "entity.id": "15_C1-20_Liver_allogenic_7days_170427_UKy_GCH_rep3-polar-ICMS_A",
+      "id": "ICMS_file_storage75",
+      "parent_protocol": "file_storage",
+      "type": "storage"
+    },
+    "ICMS_file_storage8": {
+      "data_files": [
+        "08_C12_Spleen_T032017_allo_ICMSA.raw"
+      ],
+      "entity.id": "08_C1-2_Spleen_allogenic_42days_170427_UKy_GCH_rep2-polar-ICMS_A",
+      "id": "ICMS_file_storage8",
+      "parent_protocol": "file_storage",
+      "type": "storage"
+    },
+    "ICMS_file_storage9": {
+      "data_files": [
+        "09_C20_Spleen_T032017_allo_ICMSA.raw"
+      ],
+      "entity.id": "09_C2-0_Spleen_allogenic_42days_170427_UKy_GCH_rep1-polar-ICMS_A",
+      "id": "ICMS_file_storage9",
+      "parent_protocol": "file_storage",
+      "type": "storage"
+    },
+    "allogenic": {
+      "description": "Mouse with allogenic bone marrow transplant. Fed with semi-liquid diet supplemented with fully labeled glucose for 24 hours before harvest.",
+      "id": "allogenic",
+      "parent_protocol": "mouse_experiment",
+      "type": "treatment"
+    },
+    "frozen_tissue_grind": {
+      "description": "Frozen tissue is ground in a SPEX grinder under liquid nitrogen to homogenize the sample.",
+      "id": "frozen_tissue_grind",
+      "order": "2",
+      "type": "sample_prep"
+    },
+    "mouse_tissue_collection": {
+      "description": "Mouse is sacrificed and tissues are harvested.",
+      "id": "mouse_tissue_collection",
+      "sample_type": "mouse",
+      "type": "collection"
+    },
+    "naive": {
+      "description": "Mouse with no treatment. Fed with semi-liquid diet supplemented with fully labeled glucose for 24 hours before harvest.",
+      "id": "naive",
+      "parent_protocol": "mouse_experiment",
+      "type": "treatment"
+    },
+    "polar_extraction": {
+      "description": "Polar extraction from homogenate, lypholized, and frozen.",
+      "filename": "4B_Extract_Polar_Lipid_Prot_Fan_070417.pdf",
+      "id": "polar_extraction",
+      "order": "3",
+      "type": "sample_prep"
+    },
+    "protein_extraction": {
+      "description": "Protein extraction and quantification.",
+      "filename": [
+        "4D_17Jun4_Fan_Prot_Quant.pdf",
+        "4B_Extract_Polar_Lipid_Prot_Fan_070417.pdf"
+      ],
+      "id": "protein_extraction",
+      "order": "4",
+      "type": "sample_prep"
+    },
+    "syngenic": {
+      "description": "Mouse with syngenic bone marrow transplant. Fed with semi-liquid diet supplemented with fully labeled glucose for 24 hours before harvest.",
+      "id": "syngenic",
+      "parent_protocol": "mouse_experiment",
+      "type": "treatment"
+    },
+    "tissue_quench": {
+      "description": "Tissue is frozen in liquid nitrogen to stop metabolic processes.",
+      "id": "tissue_quench",
+      "order": "1",
+      "type": "sample_prep"
+    }
+  },
+  "study": {
+    "GH_Spleen": {
+      "PI_email": "gerhard.hildebrandt@uky.edu",
+      "PI_first_name": "Gerhard",
+      "PI_last_name": "Hildebrandt",
+      "address": "CTW-453, 900 South Limestone street. UKY. Lexington, Kentucky-40536",
+      "contact_email": "gerhard.hildebrandt@uky.edu",
+      "contact_first_name": "Gerhard",
+      "contact_last_name": "Hildebrandt",
+      "department": "MCC",
+      "description": "Allogeneic hematopoietic cell transplantation (allo-HCT) is a potentially curative treatment option for a variety of hematological malignancies. Interactions between the donor immune system and the patient tissue result in a disease, called GVHD. The pathophysiology of acute GVHD can be hypothesized in three sequential phases: cytokine storm and activation of the antigen-presenting cells (APC), donor T cell activation and effector cell phase. Idiopathic pneumonia syndrome (IPS) is one of the most deleterious complications after allogeneic HCT and is considered not only to be related to conditioning regimen toxicity but also represents an end organ damage caused by allo-reactive T cells, therefore making the lung susceptible to a two-pronged attack, one of which overlaps with GVHD causing other target organ injury. IPS results in mortality of up to 90% of patients. We will use a murine model of IPS and GVHD which is well established in our group, and in which disease evolves either across disparities in major histocompatibility complex (MCH) class I and II, minor histocompatibility antigens (miHags) or both. Metabolomics changes following syngeneic and allogeneic HCT at post-transplantation Days +7 (cytokine storm phase) and Days +42 (cellular effector phase) are compared to baseline wild-type (naive) controls. Prior to analysis, na\u00efve - and experimental mice (N=3 from each group) were fed with semi-liquid diet supplemented with tracers (13C6-glucose ) over 24 hours. At the end of 7 days or 42 days, respectively, feces and aGVHD target organs (colon, liver and lung) were collected from all groups and further processed and / or analyzed. We expect to reveal metabolic pathways affected after allo-HCT which contribute to immune cell mediated lung injury (IPS) and will potentially identify different metabolic pathways in other GVHD target organs.",
+      "id": "GH_Spleen",
+      "institution": "University of Kentucky",
+      "phone": "800-333-8874",
+      "title": "Metabolomics of lung injury after allogeneic hematopoietic cell transplantation",
+      "type": "preliminary data"
+    }
+  }
+}

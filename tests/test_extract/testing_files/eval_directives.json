@@ -1,0 +1,146 @@
+{
+  "modification": {
+    "measurement": {
+      "compound": {
+        "exact": {
+          "(S)-2-Acetolactate_Glutaric acid_Methylsuccinic acid_MP_NoStd": {
+            "regex": {
+              "id": [
+                "r'\\(S\\)-2-Acetolactate_Glutaric acid_Methylsuccinic acid_MP_NoStd'",
+                "r'(S)-2-Acetolactate Glutaric acid Methylsuccinic acid'"
+              ]
+            }
+          }
+        }
+      }
+    }
+  },
+  "automation": [
+    {
+      "insert": [
+        [
+          "#tags",
+          "",
+          "",
+          "",
+          "#protocol.id",
+          "#.type",
+          "#.instrument",
+          "#.ion_mode",
+          "#.ionization",
+          "#.instrument_type",
+          "",
+          "#.description",
+          "#.chromatography_instrument_name",
+          "#.chromatography_type",
+          "#.column_name",
+          "#.chromatography_description",
+          "#.parentID"
+        ],
+        [
+          "",
+          "",
+          "",
+          "",
+          "ICMS1",
+          "MS",
+          "Orbitrap Fusion",
+          "NEGATIVE",
+          "ESI",
+          "IC-FTMS",
+          "",
+          "ICMS Analytical Experiment with detection of compounds by comparison to standards. \nThermo RAW files are loaded into TraceFinder and peaks are manually curated. The area under the chromatograms is then exported to an Excel file. The area is then corrected for natural abundance. The natural abundance corrected area is then used to calculate the concentration of each compound for each sample. This calculation is done using standards. The first sample ran on the ICMS is a standard that has known concentrations of certain compounds. Then a number of samples are ran (typically 3-4) followed by another standard. The equation to calculate the concentration is \"intensity in sample\"/(\"intensity in first standard\" + ((\"intensity in second standard\" - \"intensity in first standard\")/# of samples) * \"known concentration in standard\", where the \"intensity\" is the aforementioned natural abundance corrected area, and the unlabeled intensity from the standard is used for all isotopologues of the compound. The reconstitution volume is simply the volume that the polar part of the sample was reconstituted to before going into the ICMS. The injection volume is how much of the reconstitution volume was injected into the ICMS. The protein is how much protein was in the entire sample (not only the small portion that was aliquoted for the ICMS). The polar split ratio is the fraction of the polar part of the sample that was aliquoted for the ICMS. This is calculated by dividing the weight of the polar aliquot for ICMS by the total weight of the polar portion of the sample. The protein normalized concentration is calculated using the equation, concentration * (reconstitution volume / 1000 / polar split ratio / protein).",
+          "Thermo Dionex ICS-5000+",
+          "Targeted IC",
+          "Dionex IonPac AS11-HC-4um 2 mm i.d. x 250 mm",
+          "Targeted IC",
+          "IC-FTMS_measurement"
+        ],
+        [
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ]
+      ],
+      "insert_multiple": false
+    },
+    {
+      "header_tag_descriptions": [
+        {
+          "header": "Compound+\"-13C\"+C_isomers+\"-\"+SamplID",
+          "required": true,
+          "tag": "#measurement.id"
+        },
+        {
+          "header": "Compound+\"-13C\"+C_isomers",
+          "required": true,
+          "tag": "#measurement.assignment"
+        },
+        {
+          "header": "r'.*pound'",
+          "required": true,
+          "tag": "#measurement.compound"
+        },
+        {
+          "header": "Mol_Formula",
+          "required": true,
+          "tag": "#measurement.formula"
+        },
+        {
+          "header": "SamplID",
+          "required": true,
+          "tag": "#sample.id"
+        },
+        {
+          "header": "\"13C\"+C_isomers",
+          "required": true,
+          "tag": "#measurement.isotopologue;#%type=\"13C\""
+        },
+        {
+          "header": "Intensity",
+          "required": true,
+          "tag": "#measurement.raw_intensity;#%type=\"spectrometer peak area\""
+        },
+        {
+          "header": "Renormalized",
+          "required": true,
+          "tag": "#measurement.corrected_raw_intensity;#%type=\"natural abundance corrected peak area\""
+        },
+        {
+          "header": "Quantified_uM_sequence_ratio",
+          "required": true,
+          "tag": "#measurement.concentration;#%units=uM;#%type=\"calculated from standard\""
+        },
+        {
+          "header": "Amount_ProteinAdj_uMol_g_protein_SequenceBased",
+          "required": true,
+          "tag": "#measurement.normalized_concentration;#%type=\"protein normalized\";#%units=\"uMol/g\""
+        },
+        {
+          "header": "eval(float(#r'Renorm.*'#) / float(#protein_mg#))",
+          "required": true,
+          "tag": "#measurement.intensity;#%type=\"natural abundance corrected and protein normalized peak area\";#%units=\"area/g\""
+        },
+        {
+          "header": "",
+          "required": true,
+          "tag": "#protocol.id=ICMS1"
+        }
+      ]
+    }
+  ]
+}

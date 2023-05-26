@@ -1,0 +1,140 @@
+{
+  "type": "object",
+  "properties": {
+    "protocol": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "chromatography_description": {},
+          "machine_type": {},
+          "chromatography_type": {},
+          "column_name": {},
+          "chromatography_instrument_name": {},
+          "filename": {},
+          "type": {},
+          "id": {},
+          "description": {},
+          "sample_type": {},
+          "instrument": {},
+          "instrument_type": {},
+          "ion_mode": {},
+          "ionization": {},
+          "order": {}
+        },
+        "required": [
+          "chromatography_type",
+          "machine_type",
+          "column_name",
+          "chromatography_instrument_name",
+          "id",
+          "type",
+          "description",
+          "sample_type",
+          "instrument",
+          "instrument_type",
+          "ion_mode",
+          "ionization",
+          "order"
+        ]
+      }
+    },
+    "measurement": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "assignment": {},
+          "entity.id": {},
+          "intensity": {},
+          "assignment%method": {},
+          "formula": {},
+          "compound": {},
+          "isotopologue": {},
+          "isotopologue%type": {},
+          "intensity%type": {}
+        },
+        "required": [
+          "assignment",
+          "entity.id",
+          "intensity",
+          "intensity%type"
+        ]
+      }
+    },
+    "project": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "address": {},
+          "department": {},
+          "PI_email": {},
+          "PI_first_name": {},
+          "institution": {},
+          "PI_last_name": {},
+          "phone": {},
+          "description": {},
+          "title": {}
+        },
+        "required": [
+          "address",
+          "department",
+          "PI_email",
+          "PI_first_name",
+          "institution",
+          "PI_last_name",
+          "phone",
+          "description",
+          "title"
+        ]
+      }
+    },
+    "study": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "address": {},
+          "department": {},
+          "PI_email": {},
+          "PI_first_name": {},
+          "institution": {},
+          "PI_last_name": {},
+          "phone": {},
+          "description": {},
+          "title": {}
+        },
+        "required": [
+          "address",
+          "department",
+          "PI_email",
+          "PI_first_name",
+          "institution",
+          "PI_last_name",
+          "phone",
+          "description",
+          "title"
+        ]
+      }
+    },
+    "entity": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "species": {},
+          "type": {},
+          "species_type": {},
+          "taxonomy_id": {}
+        },
+        "required": [
+          "species",
+          "type",
+          "species_type",
+          "taxonomy_id"
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "ENTITY": {
+    "ENTITY_SUMMARY": {
+      "headers": [
+        "\"replicate\"=replicate",
+        "\"type\"=type"
+      ],
+      "id": "TREATMENT_SUMMARY",
+      "sort_by": [
+        "id"
+      ],
+      "sort_order": "ascending",
+      "table": "entity",
+      "value_type": "matrix",
+      "test":"type=subject",
+      "collate": "type"
+    }
+  }
+}

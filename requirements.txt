@@ -1,0 +1,8 @@
+docopt >= 0.6.2
+jsonschema >= 4.4.0
+pandas >= 0.24.2
+openpyxl >= 2.6.2
+jellyfish >= 0.9.0
+mwtab >= 1.2.5
+numpy >= 1.22.4
+xlsxwriter >= 3.0.3

@@ -1,0 +1,9 @@
+{
+  "METABOLOMICS WORKBENCH": {
+    "ANALYSIS_ID": {
+      "id": "ANALYSIS_ID",
+      "override": "AN000001",
+      "value_type": "str"
+    }
+  }
+}

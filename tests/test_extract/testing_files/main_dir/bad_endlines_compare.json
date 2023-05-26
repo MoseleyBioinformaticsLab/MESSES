@@ -1,0 +1,8 @@
+{
+  "protocol": {
+    "test": {
+      "description": "This is a test description\nfor test purposes.",
+      "id": "test"
+    }
+  }
+}

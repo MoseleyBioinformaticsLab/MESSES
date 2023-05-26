@@ -1,0 +1,16 @@
+{
+  "CHROMATOGRAPHY": {
+    "CHROMATOGRAPHY_SUMMARY": {
+      "fields": [
+        "chromatography_description"
+      ],
+      "id": "CHROMATOGRAPHY_SUMMARY",
+      "required": "False",
+      "table": "protocol",
+      "test": "type=MS",
+      "value_type": "str",
+      "override":"test_value",
+      "code":"str(datetime.datetime.now().date())"
+    }
+  }
+}

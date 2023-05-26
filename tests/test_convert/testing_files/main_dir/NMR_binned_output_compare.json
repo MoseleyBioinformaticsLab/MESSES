@@ -1,0 +1,2709 @@
+{
+  "ANALYSIS": {
+    "ANALYSIS_TYPE": "NM"
+  },
+  "COLLECTION": {
+    "COLLECTION_PROTOCOL_FILENAME": "mouse_tissue_procedure.pdf",
+    "COLLECTION_PROTOCOL_ID": "mouse_tissue_collection",
+    "COLLECTION_SUMMARY": "Mouse is sacrificed and tissues are harvested.",
+    "SAMPLE_TYPE": "mouse"
+  },
+  "METABOLOMICS WORKBENCH": {
+    "ANALYSIS_ID": "AN000000",
+    "CREATED_ON": "2023-03-24",
+    "STUDY_ID": "ST000000",
+    "VERSION": "1"
+  },
+  "PROJECT": {
+    "ADDRESS": "Gerhard C. Hildebrandt, MD, Room no. CC401A, Ben Roach Building, Markey Cancer Center University of Kentucky, Lexington, 40536",
+    "DEPARTMENT": "Markey Cancer Center, Hematology and Blood and Marrow Transplant",
+    "EMAIL": "gerhard.hildebrandt@uky.edu",
+    "FIRST_NAME": "Gerhard",
+    "INSTITUTE": "University of Kentucky",
+    "LAST_NAME": "Hildebrandt",
+    "PHONE": "800-333-8874",
+    "PROJECT_SUMMARY": "Allogeneic hematopoietic cell transplantation (allo-HCT) is a potentially curative treatment option for a variety of hematological malignancies. Interactions between the donor immune system and the patient tissue result in a disease, called GVHD. The pathophysiology of acute GVHD can be hypothesized in three sequential phases: cytokine storm and activation of the antigen-presenting cells (APC), donor T cell activation and effector cell phase. Idiopathic pneumonia syndrome (IPS) is one of the most deleterious complications after allogeneic HCT and is considered not only to be related to conditioning regimen toxicity but also represents an end organ damage caused by allo-reactive T cells, therefore making the lung susceptible to a two-pronged attack, one of which overlaps with GVHD causing other target organ injury. IPS results in mortality of up to 90% of patients. We will use a murine model of IPS and GVHD which is well established in our group, and in which disease evolves either across disparities in major histocompatibility complex (MCH) class I and II, minor histocompatibility antigens (miHags) or both. Metabolomics changes following syngeneic and allogeneic HCT at post-transplantation Days +7 (cytokine storm phase) and Days +42 (cellular effector phase) are compared to baseline wild-type (naive) controls. Prior to analysis, na\u00efve - and experimental mice (N=3 from each group) were fed with semi-liquid diet supplemented with tracers (13C6-glucose ) over 24 hours. At the end of 7 days or 42 days, respectively, feces and aGVHD target organs (colon, liver and lung) were collected from all groups and further processed and / or analyzed. We expect to reveal metabolic pathways affected after allo-HCT which contribute to immune cell mediated lung injury (IPS) and will potentially identify different metabolic pathways in other GVHD target organs.",
+    "PROJECT_TITLE": "Metabolomics of lung injury after allogeneic hematopoietic cell transplantation"
+  },
+  "SAMPLEPREP": {
+    "SAMPLEPREP_PROTOCOL_FILENAME": "No tissue_quench file.;No frozen_tissue_grind file.;4B_Extract_Polar_Lipid_Prot_Fan_070417.pdf;['4D_17Jun4_Fan_Prot_Quant.pdf', '4B_Extract_Polar_Lipid_Prot_Fan_070417.pdf'];4A2_Media Extraction with acetone ppt step.pdf",
+    "SAMPLEPREP_PROTOCOL_ID": "tissue_quench;frozen_tissue_grind;polar_extraction;protein_extraction;acetone_extraction",
+    "SAMPLEPREP_SUMMARY": "Tissue is frozen in liquid nitrogen to stop metabolic processes.;Frozen tissue is ground in a SPEX grinder under liquid nitrogen to homogenize the sample.;Polar extraction from homogenate, lypholized, and frozen.;Protein extraction and quantification.;acetone extraction of polar metabolites"
+  },
+  "STUDY": {
+    "ADDRESS": "CTW-453, 900 South Limestone street. UKY. Lexington, Kentucky-40536",
+    "DEPARTMENT": "MCC",
+    "EMAIL": "gerhard.hildebrandt@uky.edu",
+    "FIRST_NAME": "Gerhard",
+    "INSTITUTE": "University of Kentucky",
+    "LAST_NAME": "Hildebrandt",
+    "PHONE": "800-333-8874",
+    "STUDY_SUMMARY": "Allogeneic hematopoietic cell transplantation (allo-HCT) is a potentially curative treatment option for a variety of hematological malignancies. Interactions between the donor immune system and the patient tissue result in a disease, called GVHD. The pathophysiology of acute GVHD can be hypothesized in three sequential phases: cytokine storm and activation of the antigen-presenting cells (APC), donor T cell activation and effector cell phase. Idiopathic pneumonia syndrome (IPS) is one of the most deleterious complications after allogeneic HCT and is considered not only to be related to conditioning regimen toxicity but also represents an end organ damage caused by allo-reactive T cells, therefore making the lung susceptible to a two-pronged attack, one of which overlaps with GVHD causing other target organ injury. IPS results in mortality of up to 90% of patients. We will use a murine model of IPS and GVHD which is well established in our group, and in which disease evolves either across disparities in major histocompatibility complex (MCH) class I and II, minor histocompatibility antigens (miHags) or both. Metabolomics changes following syngeneic and allogeneic HCT at post-transplantation Days +7 (cytokine storm phase) and Days +42 (cellular effector phase) are compared to baseline wild-type (naive) controls. Prior to analysis, na\u00efve - and experimental mice (N=3 from each group) were fed with semi-liquid diet supplemented with tracers (13C6-glucose ) over 24 hours. At the end of 7 days or 42 days, respectively, feces and aGVHD target organs (colon, liver and lung) were collected from all groups and further processed and / or analyzed. We expect to reveal metabolic pathways affected after allo-HCT which contribute to immune cell mediated lung injury (IPS) and will potentially identify different metabolic pathways in other GVHD target organs.",
+    "STUDY_TITLE": "Metabolomics of lung injury after allogeneic hematopoietic cell transplantation - Lung NMR HSQC"
+  },
+  "SUBJECT": {
+    "SUBJECT_SPECIES": "Mus musculus",
+    "SUBJECT_TYPE": "Mouse",
+    "TAXONOMY_ID": "10090"
+  },
+  "SUBJECT_SAMPLE_FACTORS": [
+    {
+      "Subject ID": "01_A0_naive_0days_UKy_GCH_rep1",
+      "Sample ID": "16_A0_Lung_naive_0days_170427_UKy_GCH_rep1-polar-NMR_A",
+      "Factors": {
+        "Treatment": "naive",
+        "Time Point": "0"
+      },
+      "Additional sample data": {
+        "lineage0_id": "01_A0_naive_0days_UKy_GCH_rep1",
+        "lineage0_protocol.id": "['naive']",
+        "lineage0_replicate": "1",
+        "lineage0_species": "Mus musculus",
+        "lineage0_species_type": "Mouse",
+        "lineage0_taxonomy_id": "10090",
+        "lineage0_time_point": "0",
+        "lineage0_type": "subject",
+        "lineage1_id": "16_A0_Lung_naive_0days_170427_UKy_GCH_rep1",
+        "lineage1_protocol.id": "['mouse_tissue_collection', 'tissue_quench', 'frozen_tissue_grind']",
+        "lineage1_type": "sample",
+        "lineage2_id": "16_A0_Lung_naive_0days_170427_UKy_GCH_rep1-protein",
+        "lineage2_protein_weight": "0.6757957582975501",
+        "lineage2_protein_weight%units": "mg",
+        "lineage2_protocol.id": "['protein_extraction']",
+        "lineage2_type": "sample"
+      }
+    },
+    {
+      "Subject ID": "02_A1_naive_0days_UKy_GCH_rep2",
+      "Sample ID": "17_A1_Lung_naive_0days_170427_UKy_GCH_rep2-polar-NMR_A",
+      "Factors": {
+        "Treatment": "naive",
+        "Time Point": "0"
+      },
+      "Additional sample data": {
+        "lineage0_id": "02_A1_naive_0days_UKy_GCH_rep2",
+        "lineage0_protocol.id": "['naive']",
+        "lineage0_replicate": "2",
+        "lineage0_species": "Mus musculus",
+        "lineage0_species_type": "Mouse",
+        "lineage0_taxonomy_id": "10090",
+        "lineage0_time_point": "0",
+        "lineage0_type": "subject",
+        "lineage1_id": "17_A1_Lung_naive_0days_170427_UKy_GCH_rep2",
+        "lineage1_protocol.id": "['mouse_tissue_collection', 'tissue_quench', 'frozen_tissue_grind']",
+        "lineage1_type": "sample",
+        "lineage2_id": "17_A1_Lung_naive_0days_170427_UKy_GCH_rep2-protein",
+        "lineage2_protein_weight": "0.6112704400619461",
+        "lineage2_protein_weight%units": "mg",
+        "lineage2_protocol.id": "['protein_extraction']",
+        "lineage2_type": "sample"
+      }
+    },
+    {
+      "Subject ID": "03_A2_naive_0days_UKy_GCH_rep3",
+      "Sample ID": "18_A2_Lung_naive_0days_170427_UKy_GCH_rep3-polar-NMR_A",
+      "Factors": {
+        "Treatment": "naive",
+        "Time Point": "0"
+      },
+      "Additional sample data": {
+        "lineage0_id": "03_A2_naive_0days_UKy_GCH_rep3",
+        "lineage0_protocol.id": "['naive']",
+        "lineage0_replicate": "3",
+        "lineage0_species": "Mus musculus",
+        "lineage0_species_type": "Mouse",
+        "lineage0_taxonomy_id": "10090",
+        "lineage0_time_point": "0",
+        "lineage0_type": "subject",
+        "lineage1_id": "18_A2_Lung_naive_0days_170427_UKy_GCH_rep3",
+        "lineage1_protocol.id": "['mouse_tissue_collection', 'tissue_quench', 'frozen_tissue_grind']",
+        "lineage1_type": "sample",
+        "lineage2_id": "18_A2_Lung_naive_0days_170427_UKy_GCH_rep3-protein",
+        "lineage2_protein_weight": "0.14664251664539998",
+        "lineage2_protein_weight%units": "mg",
+        "lineage2_protocol.id": "['protein_extraction']",
+        "lineage2_type": "sample"
+      }
+    },
+    {
+      "Subject ID": "04_B0_syngenic_42days_UKy_GCH_rep1",
+      "Sample ID": "19_B0_Lung_syngenic_42days_170427_UKy_GCH_rep1-polar-NMR_A",
+      "Factors": {
+        "Treatment": "syngenic",
+        "Time Point": "42"
+      },
+      "Additional sample data": {
+        "lineage0_id": "04_B0_syngenic_42days_UKy_GCH_rep1",
+        "lineage0_protocol.id": "['syngenic']",
+        "lineage0_replicate": "1",
+        "lineage0_species": "Mus musculus",
+        "lineage0_species_type": "Mouse",
+        "lineage0_taxonomy_id": "10090",
+        "lineage0_time_point": "42",
+        "lineage0_type": "subject",
+        "lineage1_id": "19_B0_Lung_syngenic_42days_170427_UKy_GCH_rep1",
+        "lineage1_protocol.id": "['mouse_tissue_collection', 'tissue_quench', 'frozen_tissue_grind']",
+        "lineage1_type": "sample",
+        "lineage2_id": "19_B0_Lung_syngenic_42days_170427_UKy_GCH_rep1-protein",
+        "lineage2_protein_weight": "0.5600416771907997",
+        "lineage2_protein_weight%units": "mg",
+        "lineage2_protocol.id": "['protein_extraction']",
+        "lineage2_type": "sample"
+      }
+    },
+    {
+      "Subject ID": "05_B1_syngenic_42days_UKy_GCH_rep2",
+      "Sample ID": "20_B1_Lung_syngenic_42days_170427_UKy_GCH_rep2-polar-NMR_A",
+      "Factors": {
+        "Treatment": "syngenic",
+        "Time Point": "42"
+      },
+      "Additional sample data": {
+        "lineage0_id": "05_B1_syngenic_42days_UKy_GCH_rep2",
+        "lineage0_protocol.id": "['syngenic']",
+        "lineage0_replicate": "2",
+        "lineage0_species": "Mus musculus",
+        "lineage0_species_type": "Mouse",
+        "lineage0_taxonomy_id": "10090",
+        "lineage0_time_point": "42",
+        "lineage0_type": "subject",
+        "lineage1_id": "20_B1_Lung_syngenic_42days_170427_UKy_GCH_rep2",
+        "lineage1_protocol.id": "['mouse_tissue_collection', 'tissue_quench', 'frozen_tissue_grind']",
+        "lineage1_type": "sample",
+        "lineage2_id": "20_B1_Lung_syngenic_42days_170427_UKy_GCH_rep2-protein",
+        "lineage2_protein_weight": "0.2959754761535626",
+        "lineage2_protein_weight%units": "mg",
+        "lineage2_protocol.id": "['protein_extraction']",
+        "lineage2_type": "sample"
+      }
+    },
+    {
+      "Subject ID": "06_B2_syngenic_42days_UKy_GCH_rep3",
+      "Sample ID": "21_B2_Lung_syngenic_42days_170427_UKy_GCH_rep3-polar-NMR_A",
+      "Factors": {
+        "Treatment": "syngenic",
+        "Time Point": "42"
+      },
+      "Additional sample data": {
+        "lineage0_id": "06_B2_syngenic_42days_UKy_GCH_rep3",
+        "lineage0_protocol.id": "['syngenic']",
+        "lineage0_replicate": "3",
+        "lineage0_species": "Mus musculus",
+        "lineage0_species_type": "Mouse",
+        "lineage0_taxonomy_id": "10090",
+        "lineage0_time_point": "42",
+        "lineage0_type": "subject",
+        "lineage1_id": "21_B2_Lung_syngenic_42days_170427_UKy_GCH_rep3",
+        "lineage1_protocol.id": "['mouse_tissue_collection', 'tissue_quench', 'frozen_tissue_grind']",
+        "lineage1_type": "sample",
+        "lineage2_id": "21_B2_Lung_syngenic_42days_170427_UKy_GCH_rep3-protein",
+        "lineage2_protein_weight": "0.3382559813306206",
+        "lineage2_protein_weight%units": "mg",
+        "lineage2_protocol.id": "['protein_extraction']",
+        "lineage2_type": "sample"
+      }
+    },
+    {
+      "Subject ID": "07_C1-1_allogenic_42days_UKy_GCH_rep1",
+      "Sample ID": "22_C1-1_Lung_allogenic_42days_170427_UKy_GCH_rep1-polar-NMR_A",
+      "Factors": {
+        "Treatment": "allogenic",
+        "Time Point": "42"
+      },
+      "Additional sample data": {
+        "lineage0_id": "07_C1-1_allogenic_42days_UKy_GCH_rep1",
+        "lineage0_protocol.id": "['allogenic']",
+        "lineage0_replicate": "1",
+        "lineage0_species": "Mus musculus",
+        "lineage0_species_type": "Mouse",
+        "lineage0_taxonomy_id": "10090",
+        "lineage0_time_point": "42",
+        "lineage0_type": "subject",
+        "lineage1_id": "22_C1-1_Lung_allogenic_42days_170427_UKy_GCH_rep1",
+        "lineage1_protocol.id": "['mouse_tissue_collection', 'tissue_quench', 'frozen_tissue_grind']",
+        "lineage1_type": "sample",
+        "lineage2_id": "22_C1-1_Lung_allogenic_42days_170427_UKy_GCH_rep1-protein",
+        "lineage2_protein_weight": "1.3767591694919588",
+        "lineage2_protein_weight%units": "mg",
+        "lineage2_protocol.id": "['protein_extraction']",
+        "lineage2_type": "sample"
+      }
+    },
+    {
+      "Subject ID": "08_C1-2_allogenic_42days_UKy_GCH_rep2",
+      "Sample ID": "23_C1-2_Lung_allogenic_42days_170427_UKy_GCH_rep2-polar-NMR_A",
+      "Factors": {
+        "Treatment": "allogenic",
+        "Time Point": "42"
+      },
+      "Additional sample data": {
+        "lineage0_id": "08_C1-2_allogenic_42days_UKy_GCH_rep2",
+        "lineage0_protocol.id": "['allogenic']",
+        "lineage0_replicate": "2",
+        "lineage0_species": "Mus musculus",
+        "lineage0_species_type": "Mouse",
+        "lineage0_taxonomy_id": "10090",
+        "lineage0_time_point": "42",
+        "lineage0_type": "subject",
+        "lineage1_id": "23_C1-2_Lung_allogenic_42days_170427_UKy_GCH_rep2",
+        "lineage1_protocol.id": "['mouse_tissue_collection', 'tissue_quench', 'frozen_tissue_grind']",
+        "lineage1_type": "sample",
+        "lineage2_id": "23_C1-2_Lung_allogenic_42days_170427_UKy_GCH_rep2-protein",
+        "lineage2_protein_weight": "1.1547210188083492",
+        "lineage2_protein_weight%units": "mg",
+        "lineage2_protocol.id": "['protein_extraction']",
+        "lineage2_type": "sample"
+      }
+    },
+    {
+      "Subject ID": "09_C2-0_allogenic_42days_UKy_GCH_rep1",
+      "Sample ID": "24_C2-0_Lung_allogenic_42days_170427_UKy_GCH_rep1-polar-NMR_A",
+      "Factors": {
+        "Treatment": "allogenic",
+        "Time Point": "42"
+      },
+      "Additional sample data": {
+        "lineage0_id": "09_C2-0_allogenic_42days_UKy_GCH_rep1",
+        "lineage0_protocol.id": "['allogenic']",
+        "lineage0_replicate": "1",
+        "lineage0_species": "Mus musculus",
+        "lineage0_species_type": "Mouse",
+        "lineage0_taxonomy_id": "10090",
+        "lineage0_time_point": "42",
+        "lineage0_type": "subject",
+        "lineage1_id": "24_C2-0_Lung_allogenic_42days_170427_UKy_GCH_rep1",
+        "lineage1_protocol.id": "['mouse_tissue_collection', 'tissue_quench', 'frozen_tissue_grind']",
+        "lineage1_type": "sample",
+        "lineage2_id": "24_C2-0_Lung_allogenic_42days_170427_UKy_GCH_rep1-protein",
+        "lineage2_protein_weight": "0.6075844437094541",
+        "lineage2_protein_weight%units": "mg",
+        "lineage2_protocol.id": "['protein_extraction']",
+        "lineage2_type": "sample"
+      }
+    },
+    {
+      "Subject ID": "10_B1-0_syngenic_7days_UKy_GCH_rep1",
+      "Sample ID": "25_B1-0_Lung_syngenic_7days_170427_UKy_GCH_rep1-polar-NMR_A",
+      "Factors": {
+        "Treatment": "syngenic",
+        "Time Point": "7"
+      },
+      "Additional sample data": {
+        "lineage0_id": "10_B1-0_syngenic_7days_UKy_GCH_rep1",
+        "lineage0_protocol.id": "['syngenic']",
+        "lineage0_replicate": "1",
+        "lineage0_species": "Mus musculus",
+        "lineage0_species_type": "Mouse",
+        "lineage0_taxonomy_id": "10090",
+        "lineage0_time_point": "7",
+        "lineage0_type": "subject",
+        "lineage1_id": "25_B1-0_Lung_syngenic_7days_170427_UKy_GCH_rep1",
+        "lineage1_protocol.id": "['mouse_tissue_collection', 'tissue_quench', 'frozen_tissue_grind']",
+        "lineage1_type": "sample",
+        "lineage2_id": "25_B1-0_Lung_syngenic_7days_170427_UKy_GCH_rep1-protein",
+        "lineage2_protein_weight": "0.47147932892528355",
+        "lineage2_protein_weight%units": "mg",
+        "lineage2_protocol.id": "['protein_extraction']",
+        "lineage2_type": "sample"
+      }
+    },
+    {
+      "Subject ID": "11_B1-1_syngenic_7days_UKy_GCH_rep2",
+      "Sample ID": "26_B1-1_Lung_syngenic_7days_170427_UKy_GCH_rep2-polar-NMR_A",
+      "Factors": {
+        "Treatment": "syngenic",
+        "Time Point": "7"
+      },
+      "Additional sample data": {
+        "lineage0_id": "11_B1-1_syngenic_7days_UKy_GCH_rep2",
+        "lineage0_protocol.id": "['syngenic']",
+        "lineage0_replicate": "2",
+        "lineage0_species": "Mus musculus",
+        "lineage0_species_type": "Mouse",
+        "lineage0_taxonomy_id": "10090",
+        "lineage0_time_point": "7",
+        "lineage0_type": "subject",
+        "lineage1_id": "26_B1-1_Lung_syngenic_7days_170427_UKy_GCH_rep2",
+        "lineage1_protocol.id": "['mouse_tissue_collection', 'tissue_quench', 'frozen_tissue_grind']",
+        "lineage1_type": "sample",
+        "lineage2_id": "26_B1-1_Lung_syngenic_7days_170427_UKy_GCH_rep2-protein",
+        "lineage2_protein_weight": "0.34798720067708344",
+        "lineage2_protein_weight%units": "mg",
+        "lineage2_protocol.id": "['protein_extraction']",
+        "lineage2_type": "sample"
+      }
+    },
+    {
+      "Subject ID": "12_B1-2_syngenic_7days_UKy_GCH_rep3",
+      "Sample ID": "27_B1-2_Lung_syngenic_7days_170427_UKy_GCH_rep3-polar-NMR_A",
+      "Factors": {
+        "Treatment": "syngenic",
+        "Time Point": "7"
+      },
+      "Additional sample data": {
+        "lineage0_id": "12_B1-2_syngenic_7days_UKy_GCH_rep3",
+        "lineage0_protocol.id": "['syngenic']",
+        "lineage0_replicate": "3",
+        "lineage0_species": "Mus musculus",
+        "lineage0_species_type": "Mouse",
+        "lineage0_taxonomy_id": "10090",
+        "lineage0_time_point": "7",
+        "lineage0_type": "subject",
+        "lineage1_id": "27_B1-2_Lung_syngenic_7days_170427_UKy_GCH_rep3",
+        "lineage1_protocol.id": "['mouse_tissue_collection', 'tissue_quench', 'frozen_tissue_grind']",
+        "lineage1_type": "sample",
+        "lineage2_id": "27_B1-2_Lung_syngenic_7days_170427_UKy_GCH_rep3-protein",
+        "lineage2_protein_weight": "0.3397343460300001",
+        "lineage2_protein_weight%units": "mg",
+        "lineage2_protocol.id": "['protein_extraction']",
+        "lineage2_type": "sample"
+      }
+    },
+    {
+      "Subject ID": "13_C1-1_allogenic_7days_UKy_GCH_rep1",
+      "Sample ID": "28_C1-1_Lung_allogenic_7days_170427_UKy_GCH_rep1-polar-NMR_A",
+      "Factors": {
+        "Treatment": "allogenic",
+        "Time Point": "7"
+      },
+      "Additional sample data": {
+        "lineage0_id": "13_C1-1_allogenic_7days_UKy_GCH_rep1",
+        "lineage0_protocol.id": "['allogenic']",
+        "lineage0_replicate": "1",
+        "lineage0_species": "Mus musculus",
+        "lineage0_species_type": "Mouse",
+        "lineage0_taxonomy_id": "10090",
+        "lineage0_time_point": "7",
+        "lineage0_type": "subject",
+        "lineage1_id": "28_C1-1_Lung_allogenic_7days_170427_UKy_GCH_rep1",
+        "lineage1_protocol.id": "['mouse_tissue_collection', 'tissue_quench', 'frozen_tissue_grind']",
+        "lineage1_type": "sample",
+        "lineage2_id": "28_C1-1_Lung_allogenic_7days_170427_UKy_GCH_rep1-protein",
+        "lineage2_protein_weight": "0.37226618572882475",
+        "lineage2_protein_weight%units": "mg",
+        "lineage2_protocol.id": "['protein_extraction']",
+        "lineage2_type": "sample"
+      }
+    },
+    {
+      "Subject ID": "14_C1-2_allogenic_7days_UKy_GCH_rep2",
+      "Sample ID": "29_C1-2_Lung_allogenic_7days_170427_UKy_GCH_rep2-polar-NMR_A",
+      "Factors": {
+        "Treatment": "allogenic",
+        "Time Point": "7"
+      },
+      "Additional sample data": {
+        "lineage0_id": "14_C1-2_allogenic_7days_UKy_GCH_rep2",
+        "lineage0_protocol.id": "['allogenic']",
+        "lineage0_replicate": "2",
+        "lineage0_species": "Mus musculus",
+        "lineage0_species_type": "Mouse",
+        "lineage0_taxonomy_id": "10090",
+        "lineage0_time_point": "7",
+        "lineage0_type": "subject",
+        "lineage1_id": "29_C1-2_Lung_allogenic_7days_170427_UKy_GCH_rep2",
+        "lineage1_protocol.id": "['mouse_tissue_collection', 'tissue_quench', 'frozen_tissue_grind']",
+        "lineage1_type": "sample",
+        "lineage2_id": "29_C1-2_Lung_allogenic_7days_170427_UKy_GCH_rep2-protein",
+        "lineage2_protein_weight": "0.31985855339373337",
+        "lineage2_protein_weight%units": "mg",
+        "lineage2_protocol.id": "['protein_extraction']",
+        "lineage2_type": "sample"
+      }
+    },
+    {
+      "Subject ID": "15_C1-20_allogenic_7days_UKy_GCH_rep3",
+      "Sample ID": "30_C1-20_Lung_allogenic_7days_170427_UKy_GCH_rep3-polar-NMR_A",
+      "Factors": {
+        "Treatment": "allogenic",
+        "Time Point": "7"
+      },
+      "Additional sample data": {
+        "lineage0_id": "15_C1-20_allogenic_7days_UKy_GCH_rep3",
+        "lineage0_protocol.id": "['allogenic']",
+        "lineage0_replicate": "3",
+        "lineage0_species": "Mus musculus",
+        "lineage0_species_type": "Mouse",
+        "lineage0_taxonomy_id": "10090",
+        "lineage0_time_point": "7",
+        "lineage0_type": "subject",
+        "lineage1_id": "30_C1-20_Lung_allogenic_7days_170427_UKy_GCH_rep3",
+        "lineage1_protocol.id": "['mouse_tissue_collection', 'tissue_quench', 'frozen_tissue_grind']",
+        "lineage1_type": "sample",
+        "lineage2_id": "30_C1-20_Lung_allogenic_7days_170427_UKy_GCH_rep3-protein",
+        "lineage2_protein_weight": "0.4930096320820004",
+        "lineage2_protein_weight%units": "mg",
+        "lineage2_protocol.id": "['protein_extraction']",
+        "lineage2_type": "sample"
+      }
+    }
+  ],
+  "TREATMENT": {
+    "TREATMENT_PROTOCOL_FILENAME": "study_treatments.pdf;study_treatments.pdf;study_treatments.pdf",
+    "TREATMENT_PROTOCOL_ID": "allogenic;naive;syngenic",
+    "TREATMENT_SUMMARY": "Mouse with allogenic bone marrow transplant. Fed with semi-liquid diet supplemented with fully labeled glucose for 24 hours before harvest.;Mouse with no treatment. Fed with semi-liquid diet supplemented with fully labeled glucose for 24 hours before harvest.;Mouse with syngenic bone marrow transplant. Fed with semi-liquid diet supplemented with fully labeled glucose for 24 hours before harvest."
+  },
+  "NM": {
+    "ACQUISITION_TIME": "2 s",
+    "BASELINE_CORRECTION_METHOD": "Bernstein Polynomial",
+    "CHEMICAL_SHIFT_REF_CPD": "DSS",
+    "INSTRUMENT_NAME": "Agilent 600",
+    "INSTRUMENT_TYPE": "Agilent 600",
+    "NMR_EXPERIMENT_TYPE": "HC-HSQC",
+    "NMR_PROBE": "cryogenic triple resonance HCN",
+    "NMR_SOLVENT": "D20",
+    "NMR_TUBE_SIZE": "1.7 mm",
+    "PULSE_SEQUENCE": "gHSQCAD",
+    "RELAXATION_DELAY": "4 s",
+    "SHIMMING_METHOD": "gradient shimming",
+    "SPECTROMETER_FREQUENCY": "600 MHz",
+    "STANDARD_CONCENTRATION": "0.5 mM",
+    "TEMPERATURE": "15 celsius",
+    "WATER_SUPPRESSION": "presaturation"
+  },
+  "NMR_BINNED_DATA": {
+    "Data": [
+      {
+        "Bin range(ppm)": "0.1114075023667116-737.3158495462656",
+        "30_C1-20_Lung_allogenic_7days_170427_UKy_GCH_rep3-polar-NMR_A": "1.070276789689862"
+      },
+      {
+        "Bin range(ppm)": "10.884268361690541-332.45707152922944",
+        "28_C1-1_Lung_allogenic_7days_170427_UKy_GCH_rep1-polar-NMR_A": "5.728341945419517"
+      },
+      {
+        "Bin range(ppm)": "101.1375436454094-866.8979074676492",
+        "20_B1_Lung_syngenic_42days_170427_UKy_GCH_rep2-polar-NMR_A": "3.653847115565133"
+      },
+      {
+        "Bin range(ppm)": "102.2054281730208-678.7584273676783",
+        "24_C2-0_Lung_allogenic_42days_170427_UKy_GCH_rep1-polar-NMR_A": "1.467362766466175"
+      },
+      {
+        "Bin range(ppm)": "102.26299207865608-598.457441106026",
+        "30_C1-20_Lung_allogenic_7days_170427_UKy_GCH_rep3-polar-NMR_A": "48.68281583383366"
+      },
+      {
+        "Bin range(ppm)": "103.10842032605316-761.4011461969942",
+        "20_B1_Lung_syngenic_42days_170427_UKy_GCH_rep2-polar-NMR_A": "0.3350590302621514"
+      },
+      {
+        "Bin range(ppm)": "103.52320634975464-425.3491551118651",
+        "26_B1-1_Lung_syngenic_7days_170427_UKy_GCH_rep2-polar-NMR_A": "12.47574977410014"
+      },
+      {
+        "Bin range(ppm)": "104.1954300327359-265.84477598866636",
+        "19_B0_Lung_syngenic_42days_170427_UKy_GCH_rep1-polar-NMR_A": "63.95104162605271"
+      },
+      {
+        "Bin range(ppm)": "106.47144824155464-684.3506659607492",
+        "22_C1-1_Lung_allogenic_42days_170427_UKy_GCH_rep1-polar-NMR_A": "38.61213176855605"
+      },
+      {
+        "Bin range(ppm)": "107.408914719468-818.6665011897883",
+        "30_C1-20_Lung_allogenic_7days_170427_UKy_GCH_rep3-polar-NMR_A": "62.58227304466717"
+      },
+      {
+        "Bin range(ppm)": "108.41806060111514-352.2420270471699",
+        "19_B0_Lung_syngenic_42days_170427_UKy_GCH_rep1-polar-NMR_A": "3.900645513166329"
+      },
+      {
+        "Bin range(ppm)": "11.47358343442939-709.6210524105138",
+        "27_B1-2_Lung_syngenic_7days_170427_UKy_GCH_rep3-polar-NMR_A": "1.369158687143802"
+      },
+      {
+        "Bin range(ppm)": "11.794310854827295-288.19802127776734",
+        "26_B1-1_Lung_syngenic_7days_170427_UKy_GCH_rep2-polar-NMR_A": "2.820722084252627"
+      },
+      {
+        "Bin range(ppm)": "110.31415353332375-585.2253079740021",
+        "18_A2_Lung_naive_0days_170427_UKy_GCH_rep3-polar-NMR_A": "13.50326285771857"
+      },
+      {
+        "Bin range(ppm)": "111.93038648039754-861.9088745159461",
+        "24_C2-0_Lung_allogenic_42days_170427_UKy_GCH_rep1-polar-NMR_A": "23.57041749623658"
+      },
+      {
+        "Bin range(ppm)": "114.7331405393277-618.8828600746268",
+        "16_A0_Lung_naive_0days_170427_UKy_GCH_rep1-polar-NMR_A": "1.48351788624908"
+      },
+      {
+        "Bin range(ppm)": "114.90550570928993-828.6097661332933",
+        "21_B2_Lung_syngenic_42days_170427_UKy_GCH_rep3-polar-NMR_A": "0.4692541867110285"
+      },
+      {
+        "Bin range(ppm)": "115.04721322525025-518.4214507484108",
+        "23_C1-2_Lung_allogenic_42days_170427_UKy_GCH_rep2-polar-NMR_A": "1.323455838253844"
+      },
+      {
+        "Bin range(ppm)": "115.7129540127565-815.8623124577418",
+        "26_B1-1_Lung_syngenic_7days_170427_UKy_GCH_rep2-polar-NMR_A": "16.97766355059344"
+      },
+      {
+        "Bin range(ppm)": "120.57889039171843-986.1354848806651",
+        "23_C1-2_Lung_allogenic_42days_170427_UKy_GCH_rep2-polar-NMR_A": "8.971314709625695"
+      },
+      {
+        "Bin range(ppm)": "126.08875135775676-741.768965869814",
+        "23_C1-2_Lung_allogenic_42days_170427_UKy_GCH_rep2-polar-NMR_A": "2.361745173763167"
+      },
+      {
+        "Bin range(ppm)": "127.02998382158614-935.3102426249416",
+        "26_B1-1_Lung_syngenic_7days_170427_UKy_GCH_rep2-polar-NMR_A": "0.3466602605835146"
+      },
+      {
+        "Bin range(ppm)": "127.31931423079823-377.43888996677686",
+        "17_A1_Lung_naive_0days_170427_UKy_GCH_rep2-polar-NMR_A": "7.369803313091052"
+      },
+      {
+        "Bin range(ppm)": "129.64188957315014-502.59584149632656",
+        "25_B1-0_Lung_syngenic_7days_170427_UKy_GCH_rep1-polar-NMR_A": "3.519453452852863"
+      },
+      {
+        "Bin range(ppm)": "130.46584089907708-208.5986085960195",
+        "18_A2_Lung_naive_0days_170427_UKy_GCH_rep3-polar-NMR_A": "1.627650784911801"
+      },
+      {
+        "Bin range(ppm)": "132.38982421000867-606.9197396647133",
+        "30_C1-20_Lung_allogenic_7days_170427_UKy_GCH_rep3-polar-NMR_A": "15.87875338850055"
+      },
+      {
+        "Bin range(ppm)": "134.1791294940361-818.8625009979107",
+        "17_A1_Lung_naive_0days_170427_UKy_GCH_rep2-polar-NMR_A": "100.0490094826573"
+      },
+      {
+        "Bin range(ppm)": "135.84385634457496-667.3909974296531",
+        "22_C1-1_Lung_allogenic_42days_170427_UKy_GCH_rep1-polar-NMR_A": "2.493230825158754"
+      },
+      {
+        "Bin range(ppm)": "136.80557272406668-364.4642790517879",
+        "18_A2_Lung_naive_0days_170427_UKy_GCH_rep3-polar-NMR_A": "4.747296863503098"
+      },
+      {
+        "Bin range(ppm)": "136.8259863556549-839.1491501244227",
+        "17_A1_Lung_naive_0days_170427_UKy_GCH_rep2-polar-NMR_A": "60.42920586074544"
+      },
+      {
+        "Bin range(ppm)": "141.45343707281864-348.68513766803926",
+        "23_C1-2_Lung_allogenic_42days_170427_UKy_GCH_rep2-polar-NMR_A": "4.178915351895735"
+      },
+      {
+        "Bin range(ppm)": "142.5058222556792-381.24205545907785",
+        "22_C1-1_Lung_allogenic_42days_170427_UKy_GCH_rep1-polar-NMR_A": "58.77610273655051"
+      },
+      {
+        "Bin range(ppm)": "143.6616688467972-515.7440813879077",
+        "16_A0_Lung_naive_0days_170427_UKy_GCH_rep1-polar-NMR_A": "8.857696112425476"
+      },
+      {
+        "Bin range(ppm)": "144.34723445221164-384.22560253321706",
+        "29_C1-2_Lung_allogenic_7days_170427_UKy_GCH_rep2-polar-NMR_A": "57.5646664049979"
+      },
+      {
+        "Bin range(ppm)": "145.92525586459982-891.6915235033068",
+        "19_B0_Lung_syngenic_42days_170427_UKy_GCH_rep1-polar-NMR_A": "19.73013618573467"
+      },
+      {
+        "Bin range(ppm)": "146.82185470474485-315.5088588694822",
+        "21_B2_Lung_syngenic_42days_170427_UKy_GCH_rep3-polar-NMR_A": "1.626664486195061"
+      },
+      {
+        "Bin range(ppm)": "151.12911174543564-600.1485277180719",
+        "17_A1_Lung_naive_0days_170427_UKy_GCH_rep2-polar-NMR_A": "17.7712952464435"
+      },
+      {
+        "Bin range(ppm)": "151.59918821223462-872.9211689242458",
+        "20_B1_Lung_syngenic_42days_170427_UKy_GCH_rep2-polar-NMR_A": "1.007904601865332"
+      },
+      {
+        "Bin range(ppm)": "154.4182531891425-668.7154242060724",
+        "23_C1-2_Lung_allogenic_42days_170427_UKy_GCH_rep2-polar-NMR_A": "0.7500990930657742"
+      },
+      {
+        "Bin range(ppm)": "154.50724695152084-542.9466760043242",
+        "19_B0_Lung_syngenic_42days_170427_UKy_GCH_rep1-polar-NMR_A": "1.539445456459842"
+      },
+      {
+        "Bin range(ppm)": "157.00958146050382-451.42517531893145",
+        "21_B2_Lung_syngenic_42days_170427_UKy_GCH_rep3-polar-NMR_A": "6.490758071731675"
+      },
+      {
+        "Bin range(ppm)": "157.18867493243792-337.3944890026246",
+        "20_B1_Lung_syngenic_42days_170427_UKy_GCH_rep2-polar-NMR_A": "0.1967872280593244"
+      },
+      {
+        "Bin range(ppm)": "159.51132560080396-206.54403631406612",
+        "17_A1_Lung_naive_0days_170427_UKy_GCH_rep2-polar-NMR_A": "26.35266965605965"
+      },
+      {
+        "Bin range(ppm)": "16.135894012782813-807.4111674851474",
+        "25_B1-0_Lung_syngenic_7days_170427_UKy_GCH_rep1-polar-NMR_A": "2.194173216968797"
+      },
+      {
+        "Bin range(ppm)": "161.2273726677841-870.0325682040245",
+        "20_B1_Lung_syngenic_42days_170427_UKy_GCH_rep2-polar-NMR_A": "4.684851129638833"
+      },
+      {
+        "Bin range(ppm)": "163.8386297260863-388.00619301240897",
+        "27_B1-2_Lung_syngenic_7days_170427_UKy_GCH_rep3-polar-NMR_A": "2.433987933537595"
+      },
+      {
+        "Bin range(ppm)": "164.17957750716116-656.6104403210824",
+        "22_C1-1_Lung_allogenic_42days_170427_UKy_GCH_rep1-polar-NMR_A": "1.001199360817605"
+      },
+      {
+        "Bin range(ppm)": "164.6807824824359-970.8788472450535",
+        "19_B0_Lung_syngenic_42days_170427_UKy_GCH_rep1-polar-NMR_A": "3.210842212049619"
+      },
+      {
+        "Bin range(ppm)": "164.94098786749944-180.871355098624",
+        "19_B0_Lung_syngenic_42days_170427_UKy_GCH_rep1-polar-NMR_A": "0.2792859532414051"
+      },
+      {
+        "Bin range(ppm)": "165.05215115232042-494.52802644289034",
+        "23_C1-2_Lung_allogenic_42days_170427_UKy_GCH_rep2-polar-NMR_A": "33.73424907706095"
+      },
+      {
+        "Bin range(ppm)": "17.193904546260242-607.331285209969",
+        "17_A1_Lung_naive_0days_170427_UKy_GCH_rep2-polar-NMR_A": "0.6249905376736028"
+      },
+      {
+        "Bin range(ppm)": "17.25322971103138-719.6993578289159",
+        "27_B1-2_Lung_syngenic_7days_170427_UKy_GCH_rep3-polar-NMR_A": "1.831055114420716"
+      },
+      {
+        "Bin range(ppm)": "171.16117120195128-873.3276393631265",
+        "16_A0_Lung_naive_0days_170427_UKy_GCH_rep1-polar-NMR_A": "7.881122440910317"
+      },
+      {
+        "Bin range(ppm)": "171.51376386256123-285.98407373319566",
+        "25_B1-0_Lung_syngenic_7days_170427_UKy_GCH_rep1-polar-NMR_A": "169.5594485545096"
+      },
+      {
+        "Bin range(ppm)": "176.41604608824468-679.8627365325489",
+        "24_C2-0_Lung_allogenic_42days_170427_UKy_GCH_rep1-polar-NMR_A": "9.17685352844336"
+      },
+      {
+        "Bin range(ppm)": "178.93234588556683-419.6880753685714",
+        "24_C2-0_Lung_allogenic_42days_170427_UKy_GCH_rep1-polar-NMR_A": "63.96280832748442"
+      },
+      {
+        "Bin range(ppm)": "179.49864059593645-883.3013451850524",
+        "30_C1-20_Lung_allogenic_7days_170427_UKy_GCH_rep3-polar-NMR_A": "2.824883756251602"
+      },
+      {
+        "Bin range(ppm)": "184.20935032090756-675.884629480985",
+        "17_A1_Lung_naive_0days_170427_UKy_GCH_rep2-polar-NMR_A": "52.56311148719951"
+      },
+      {
+        "Bin range(ppm)": "184.4735607309136-378.65228663208813",
+        "22_C1-1_Lung_allogenic_42days_170427_UKy_GCH_rep1-polar-NMR_A": "2.683276051109536"
+      },
+      {
+        "Bin range(ppm)": "185.83870513943535-933.5335109636783",
+        "28_C1-1_Lung_allogenic_7days_170427_UKy_GCH_rep1-polar-NMR_A": "15.94279280473895"
+      },
+      {
+        "Bin range(ppm)": "186.42182973575527-659.4306280508755",
+        "28_C1-1_Lung_allogenic_7days_170427_UKy_GCH_rep1-polar-NMR_A": "1.465840031656949"
+      },
+      {
+        "Bin range(ppm)": "190.18306324420863-836.99508322394",
+        "30_C1-20_Lung_allogenic_7days_170427_UKy_GCH_rep3-polar-NMR_A": "17.09299506054247"
+      },
+      {
+        "Bin range(ppm)": "191.84734632469957-818.0504410464521",
+        "23_C1-2_Lung_allogenic_42days_170427_UKy_GCH_rep2-polar-NMR_A": "0.3700538954323866"
+      },
+      {
+        "Bin range(ppm)": "192.9081546305208-826.9550172687798",
+        "23_C1-2_Lung_allogenic_42days_170427_UKy_GCH_rep2-polar-NMR_A": "13.49202747288558"
+      },
+      {
+        "Bin range(ppm)": "193.04362596048597-208.11973607737272",
+        "20_B1_Lung_syngenic_42days_170427_UKy_GCH_rep2-polar-NMR_A": "8.094138928207686"
+      },
+      {
+        "Bin range(ppm)": "194.91759870721447-681.1324393917092",
+        "16_A0_Lung_naive_0days_170427_UKy_GCH_rep1-polar-NMR_A": "10.52272682921159"
+      },
+      {
+        "Bin range(ppm)": "196.51664810585746-740.1337454542249",
+        "28_C1-1_Lung_allogenic_7days_170427_UKy_GCH_rep1-polar-NMR_A": "5.996648757192804"
+      },
+      {
+        "Bin range(ppm)": "197.3338571940668-965.5323539569207",
+        "23_C1-2_Lung_allogenic_42days_170427_UKy_GCH_rep2-polar-NMR_A": "0.675799583581567"
+      },
+      {
+        "Bin range(ppm)": "2.509788348352804-54.23034184562044",
+        "25_B1-0_Lung_syngenic_7days_170427_UKy_GCH_rep1-polar-NMR_A": "3.779127433941862"
+      },
+      {
+        "Bin range(ppm)": "2.5446292098258994-903.4688039099368",
+        "25_B1-0_Lung_syngenic_7days_170427_UKy_GCH_rep1-polar-NMR_A": "16.38292566809561"
+      },
+      {
+        "Bin range(ppm)": "200.35400282278937-601.0063874945354",
+        "19_B0_Lung_syngenic_42days_170427_UKy_GCH_rep1-polar-NMR_A": "0.9256175225541692"
+      },
+      {
+        "Bin range(ppm)": "200.74472382952902-998.0910655124958",
+        "16_A0_Lung_naive_0days_170427_UKy_GCH_rep1-polar-NMR_A": "8.421075672052426"
+      },
+      {
+        "Bin range(ppm)": "201.14690485932664-824.6235091401338",
+        "26_B1-1_Lung_syngenic_7days_170427_UKy_GCH_rep2-polar-NMR_A": "1.103010594677247"
+      },
+      {
+        "Bin range(ppm)": "204.70301248489875-711.1956822327227",
+        "22_C1-1_Lung_allogenic_42days_170427_UKy_GCH_rep1-polar-NMR_A": "0.6316433495148177"
+      },
+      {
+        "Bin range(ppm)": "204.73672694761592-999.000160829401",
+        "29_C1-2_Lung_allogenic_7days_170427_UKy_GCH_rep2-polar-NMR_A": "3.993732210084832"
+      },
+      {
+        "Bin range(ppm)": "205.17926757199012-354.4367492320812",
+        "26_B1-1_Lung_syngenic_7days_170427_UKy_GCH_rep2-polar-NMR_A": "0.4531672181919748"
+      },
+      {
+        "Bin range(ppm)": "205.77082485771015-697.8901675059246",
+        "24_C2-0_Lung_allogenic_42days_170427_UKy_GCH_rep1-polar-NMR_A": "215.7916497136117"
+      },
+      {
+        "Bin range(ppm)": "206.97514241610136-435.44432544928736",
+        "18_A2_Lung_naive_0days_170427_UKy_GCH_rep3-polar-NMR_A": "0.4716856679952891"
+      },
+      {
+        "Bin range(ppm)": "208.59305716203946-319.4211020394218",
+        "20_B1_Lung_syngenic_42days_170427_UKy_GCH_rep2-polar-NMR_A": "9.926217309691197"
+      },
+      {
+        "Bin range(ppm)": "209.84758328649966-848.2804594294046",
+        "16_A0_Lung_naive_0days_170427_UKy_GCH_rep1-polar-NMR_A": "0.4975488045647096"
+      },
+      {
+        "Bin range(ppm)": "211.3360376910537-292.2837921369765",
+        "22_C1-1_Lung_allogenic_42days_170427_UKy_GCH_rep1-polar-NMR_A": "0.2661025070995867"
+      },
+      {
+        "Bin range(ppm)": "216.35175543802154-898.7420333203152",
+        "19_B0_Lung_syngenic_42days_170427_UKy_GCH_rep1-polar-NMR_A": "13.81699825684117"
+      },
+      {
+        "Bin range(ppm)": "22.38839416021854-445.135582792826",
+        "19_B0_Lung_syngenic_42days_170427_UKy_GCH_rep1-polar-NMR_A": "30.10490646893318"
+      },
+      {
+        "Bin range(ppm)": "222.03071029733368-916.6256939141095",
+        "27_B1-2_Lung_syngenic_7days_170427_UKy_GCH_rep3-polar-NMR_A": "7.336970145785372"
+      },
+      {
+        "Bin range(ppm)": "224.71133001281973-976.6723646467382",
+        "16_A0_Lung_naive_0days_170427_UKy_GCH_rep1-polar-NMR_A": "6.051353796795649"
+      },
+      {
+        "Bin range(ppm)": "227.1697845222127-244.19344845225217",
+        "22_C1-1_Lung_allogenic_42days_170427_UKy_GCH_rep1-polar-NMR_A": "2.886097582130728"
+      },
+      {
+        "Bin range(ppm)": "228.6879419722816-275.0052197136714",
+        "27_B1-2_Lung_syngenic_7days_170427_UKy_GCH_rep3-polar-NMR_A": "15.71396702981025"
+      },
+      {
+        "Bin range(ppm)": "233.91206126057872-657.8079021292558",
+        "21_B2_Lung_syngenic_42days_170427_UKy_GCH_rep3-polar-NMR_A": "3.355168150003294"
+      },
+      {
+        "Bin range(ppm)": "235.33806356427846-259.51425840064553",
+        "28_C1-1_Lung_allogenic_7days_170427_UKy_GCH_rep1-polar-NMR_A": "0.6068155716329817"
+      },
+      {
+        "Bin range(ppm)": "235.68691942899756-955.8633748751729",
+        "30_C1-20_Lung_allogenic_7days_170427_UKy_GCH_rep3-polar-NMR_A": "5.642723608202744"
+      },
+      {
+        "Bin range(ppm)": "239.90712704724638-439.9844705536585",
+        "26_B1-1_Lung_syngenic_7days_170427_UKy_GCH_rep2-polar-NMR_A": "11.77330257589049"
+      },
+      {
+        "Bin range(ppm)": "240.3158036235483-736.4523108117422",
+        "22_C1-1_Lung_allogenic_42days_170427_UKy_GCH_rep1-polar-NMR_A": "54.9062736956285"
+      },
+      {
+        "Bin range(ppm)": "240.8951906476281-968.5688521550601",
+        "27_B1-2_Lung_syngenic_7days_170427_UKy_GCH_rep3-polar-NMR_A": "3.182590528785811"
+      },
+      {
+        "Bin range(ppm)": "241.47886465833446-649.2573466224148",
+        "30_C1-20_Lung_allogenic_7days_170427_UKy_GCH_rep3-polar-NMR_A": "70.24101851007148"
+      },
+      {
+        "Bin range(ppm)": "242.12755837482126-790.0373114054357",
+        "17_A1_Lung_naive_0days_170427_UKy_GCH_rep2-polar-NMR_A": "3.575259989350523"
+      },
+      {
+        "Bin range(ppm)": "242.18839327437115-787.7384917002479",
+        "30_C1-20_Lung_allogenic_7days_170427_UKy_GCH_rep3-polar-NMR_A": "11.88805496900186"
+      },
+      {
+        "Bin range(ppm)": "244.99677369383534-759.6881494407562",
+        "20_B1_Lung_syngenic_42days_170427_UKy_GCH_rep2-polar-NMR_A": "0.09103857183223366"
+      },
+      {
+        "Bin range(ppm)": "249.01805903599595-788.5248125647149",
+        "28_C1-1_Lung_allogenic_7days_170427_UKy_GCH_rep1-polar-NMR_A": "40.71261967231854"
+      },
+      {
+        "Bin range(ppm)": "25.468374978587782-597.2232705283874",
+        "22_C1-1_Lung_allogenic_42days_170427_UKy_GCH_rep1-polar-NMR_A": "8.636967813508775"
+      },
+      {
+        "Bin range(ppm)": "25.9600343307973-271.4960530480732",
+        "23_C1-2_Lung_allogenic_42days_170427_UKy_GCH_rep2-polar-NMR_A": "67.48058286496455"
+      },
+      {
+        "Bin range(ppm)": "251.61209908560656-936.6066805001049",
+        "20_B1_Lung_syngenic_42days_170427_UKy_GCH_rep2-polar-NMR_A": "0.6077751473051438"
+      },
+      {
+        "Bin range(ppm)": "253.325866063023-923.1498203232542",
+        "27_B1-2_Lung_syngenic_7days_170427_UKy_GCH_rep3-polar-NMR_A": "24.64243417240976"
+      },
+      {
+        "Bin range(ppm)": "254.39551326251964-507.7598210541496",
+        "17_A1_Lung_naive_0days_170427_UKy_GCH_rep2-polar-NMR_A": "96.1912272187234"
+      },
+      {
+        "Bin range(ppm)": "258.0884547077431-718.7119573189573",
+        "23_C1-2_Lung_allogenic_42days_170427_UKy_GCH_rep2-polar-NMR_A": "12.69754096561619"
+      },
+      {
+        "Bin range(ppm)": "258.10800596934325-596.8863927180371",
+        "30_C1-20_Lung_allogenic_7days_170427_UKy_GCH_rep3-polar-NMR_A": "0.5757624407553777"
+      },
+      {
+        "Bin range(ppm)": "258.1797557052039-408.77286995513776",
+        "22_C1-1_Lung_allogenic_42days_170427_UKy_GCH_rep1-polar-NMR_A": "8.219746007660284"
+      },
+      {
+        "Bin range(ppm)": "26.0999179126018-723.191857415138",
+        "23_C1-2_Lung_allogenic_42days_170427_UKy_GCH_rep2-polar-NMR_A": "23.55852932952372"
+      },
+      {
+        "Bin range(ppm)": "26.12053264249281-93.31105063141126",
+        "29_C1-2_Lung_allogenic_7days_170427_UKy_GCH_rep2-polar-NMR_A": "58.78418806073994"
+      },
+      {
+        "Bin range(ppm)": "261.1219213036963-667.405781536892",
+        "26_B1-1_Lung_syngenic_7days_170427_UKy_GCH_rep2-polar-NMR_A": "0.1253769693816427"
+      },
+      {
+        "Bin range(ppm)": "262.64517445367085-386.1107703055551",
+        "18_A2_Lung_naive_0days_170427_UKy_GCH_rep3-polar-NMR_A": "0.7215583378590743"
+      },
+      {
+        "Bin range(ppm)": "264.5240474990808-285.5633336797133",
+        "30_C1-20_Lung_allogenic_7days_170427_UKy_GCH_rep3-polar-NMR_A": "65.54005938564184"
+      },
+      {
+        "Bin range(ppm)": "27.058199188507825-90.7420056023436",
+        "28_C1-1_Lung_allogenic_7days_170427_UKy_GCH_rep1-polar-NMR_A": "0.1000532182115873"
+      },
+      {
+        "Bin range(ppm)": "274.21694446904246-559.5202494398455",
+        "22_C1-1_Lung_allogenic_42days_170427_UKy_GCH_rep1-polar-NMR_A": "2.469132597438783"
+      },
+      {
+        "Bin range(ppm)": "274.3310900926449-450.0984606976408",
+        "21_B2_Lung_syngenic_42days_170427_UKy_GCH_rep3-polar-NMR_A": "0.4638669495003971"
+      },
+      {
+        "Bin range(ppm)": "276.5334247849238-420.77784715034784",
+        "20_B1_Lung_syngenic_42days_170427_UKy_GCH_rep2-polar-NMR_A": "2.153902094597956"
+      },
+      {
+        "Bin range(ppm)": "278.5205251327243-864.1671416420893",
+        "26_B1-1_Lung_syngenic_7days_170427_UKy_GCH_rep2-polar-NMR_A": "0.4967538469582294"
+      },
+      {
+        "Bin range(ppm)": "280.66846662404686-538.9867289163484",
+        "28_C1-1_Lung_allogenic_7days_170427_UKy_GCH_rep1-polar-NMR_A": "4.078421684699764"
+      },
+      {
+        "Bin range(ppm)": "282.61419819706856-622.3447408902364",
+        "16_A0_Lung_naive_0days_170427_UKy_GCH_rep1-polar-NMR_A": "13.46289771852055"
+      },
+      {
+        "Bin range(ppm)": "283.3755055298172-384.26048553754833",
+        "21_B2_Lung_syngenic_42days_170427_UKy_GCH_rep3-polar-NMR_A": "109.2679527045211"
+      },
+      {
+        "Bin range(ppm)": "284.85994645544963-636.7691409655814",
+        "16_A0_Lung_naive_0days_170427_UKy_GCH_rep1-polar-NMR_A": "4.058605480665964"
+      },
+      {
+        "Bin range(ppm)": "288.2518679399145-469.6704120640413",
+        "29_C1-2_Lung_allogenic_7days_170427_UKy_GCH_rep2-polar-NMR_A": "1.556422922562517"
+      },
+      {
+        "Bin range(ppm)": "289.6760603560652-839.318490604185",
+        "17_A1_Lung_naive_0days_170427_UKy_GCH_rep2-polar-NMR_A": "4.801856375160281"
+      },
+      {
+        "Bin range(ppm)": "29.43305322528067-457.88687742166894",
+        "22_C1-1_Lung_allogenic_42days_170427_UKy_GCH_rep1-polar-NMR_A": "47.02630373575384"
+      },
+      {
+        "Bin range(ppm)": "290.12232340116617-464.77043789371817",
+        "17_A1_Lung_naive_0days_170427_UKy_GCH_rep2-polar-NMR_A": "13.97514564177545"
+      },
+      {
+        "Bin range(ppm)": "290.4925262048873-487.8544934248733",
+        "26_B1-1_Lung_syngenic_7days_170427_UKy_GCH_rep2-polar-NMR_A": "1.109390408890076"
+      },
+      {
+        "Bin range(ppm)": "291.41299832195114-524.392052764896",
+        "23_C1-2_Lung_allogenic_42days_170427_UKy_GCH_rep2-polar-NMR_A": "2.793524695191069"
+      },
+      {
+        "Bin range(ppm)": "298.8325081227513-536.1341151610776",
+        "27_B1-2_Lung_syngenic_7days_170427_UKy_GCH_rep3-polar-NMR_A": "0.1330674985754556"
+      },
+      {
+        "Bin range(ppm)": "299.78209776039733-518.5018108609346",
+        "29_C1-2_Lung_allogenic_7days_170427_UKy_GCH_rep2-polar-NMR_A": "0.8910559854324261"
+      },
+      {
+        "Bin range(ppm)": "300.1469219058498-858.301376631167",
+        "21_B2_Lung_syngenic_42days_170427_UKy_GCH_rep3-polar-NMR_A": "40.00348155156236"
+      },
+      {
+        "Bin range(ppm)": "302.84523146520684-635.8585569456259",
+        "25_B1-0_Lung_syngenic_7days_170427_UKy_GCH_rep1-polar-NMR_A": "0.2965697251177748"
+      },
+      {
+        "Bin range(ppm)": "303.4062281916966-536.2817205014126",
+        "28_C1-1_Lung_allogenic_7days_170427_UKy_GCH_rep1-polar-NMR_A": "0.5155940782065741"
+      },
+      {
+        "Bin range(ppm)": "307.5838372665904-747.787354293171",
+        "18_A2_Lung_naive_0days_170427_UKy_GCH_rep3-polar-NMR_A": "0.4836973646685656"
+      },
+      {
+        "Bin range(ppm)": "31.60574197907817-264.5233053484",
+        "18_A2_Lung_naive_0days_170427_UKy_GCH_rep3-polar-NMR_A": "0.3882988859324589"
+      },
+      {
+        "Bin range(ppm)": "311.1797238835439-689.6805294269889",
+        "25_B1-0_Lung_syngenic_7days_170427_UKy_GCH_rep1-polar-NMR_A": "10.36098692319917"
+      },
+      {
+        "Bin range(ppm)": "315.5693545090954-817.0636501423442",
+        "27_B1-2_Lung_syngenic_7days_170427_UKy_GCH_rep3-polar-NMR_A": "35.96843021973991"
+      },
+      {
+        "Bin range(ppm)": "316.16453153718726-552.6514775131265",
+        "19_B0_Lung_syngenic_42days_170427_UKy_GCH_rep1-polar-NMR_A": "7.51990772787596"
+      },
+      {
+        "Bin range(ppm)": "318.0381226973028-684.4131997686729",
+        "30_C1-20_Lung_allogenic_7days_170427_UKy_GCH_rep3-polar-NMR_A": "3.861363115267904"
+      },
+      {
+        "Bin range(ppm)": "318.5806381051649-726.7732894274525",
+        "20_B1_Lung_syngenic_42days_170427_UKy_GCH_rep2-polar-NMR_A": "0.0377326354333771"
+      },
+      {
+        "Bin range(ppm)": "32.14447435250556-922.2761012892026",
+        "17_A1_Lung_naive_0days_170427_UKy_GCH_rep2-polar-NMR_A": "1.581116021548546"
+      },
+      {
+        "Bin range(ppm)": "32.66895080686116-164.81391672176596",
+        "23_C1-2_Lung_allogenic_42days_170427_UKy_GCH_rep2-polar-NMR_A": "8.20244906756356"
+      },
+      {
+        "Bin range(ppm)": "320.1040415733054-642.1583055636106",
+        "26_B1-1_Lung_syngenic_7days_170427_UKy_GCH_rep2-polar-NMR_A": "1.738492740266407"
+      },
+      {
+        "Bin range(ppm)": "321.52598295567594-462.10209029581495",
+        "28_C1-1_Lung_allogenic_7days_170427_UKy_GCH_rep1-polar-NMR_A": "50.80690083963188"
+      },
+      {
+        "Bin range(ppm)": "326.2490813633845-536.8432710243434",
+        "17_A1_Lung_naive_0days_170427_UKy_GCH_rep2-polar-NMR_A": "9.682088136630101"
+      },
+      {
+        "Bin range(ppm)": "33.5290967182883-624.4405216405197",
+        "19_B0_Lung_syngenic_42days_170427_UKy_GCH_rep1-polar-NMR_A": "1.516400502925318"
+      },
+      {
+        "Bin range(ppm)": "33.982884558198755-595.6099948112015",
+        "27_B1-2_Lung_syngenic_7days_170427_UKy_GCH_rep3-polar-NMR_A": "7.965997687633291"
+      },
+      {
+        "Bin range(ppm)": "330.12684914810075-792.6189446946295",
+        "22_C1-1_Lung_allogenic_42days_170427_UKy_GCH_rep1-polar-NMR_A": "14.88848441260696"
+      },
+      {
+        "Bin range(ppm)": "330.4266240255185-831.5886466811206",
+        "18_A2_Lung_naive_0days_170427_UKy_GCH_rep3-polar-NMR_A": "11.6056171071048"
+      },
+      {
+        "Bin range(ppm)": "331.7427426532026-538.9990128933644",
+        "22_C1-1_Lung_allogenic_42days_170427_UKy_GCH_rep1-polar-NMR_A": "8.612839937039475"
+      },
+      {
+        "Bin range(ppm)": "333.0205842491695-740.8577651364687",
+        "29_C1-2_Lung_allogenic_7days_170427_UKy_GCH_rep2-polar-NMR_A": "28.78233320249895"
+      },
+      {
+        "Bin range(ppm)": "334.17808431429575-681.8960250122443",
+        "30_C1-20_Lung_allogenic_7days_170427_UKy_GCH_rep3-polar-NMR_A": "45.48967395631462"
+      },
+      {
+        "Bin range(ppm)": "334.44243078748724-581.4342736898296",
+        "22_C1-1_Lung_allogenic_42days_170427_UKy_GCH_rep1-polar-NMR_A": "2.832099804624011"
+      },
+      {
+        "Bin range(ppm)": "335.639081092385-790.2061510873724",
+        "28_C1-1_Lung_allogenic_7days_170427_UKy_GCH_rep1-polar-NMR_A": "1.606189295091104"
+      },
+      {
+        "Bin range(ppm)": "337.7803781957915-466.4383944155776",
+        "19_B0_Lung_syngenic_42days_170427_UKy_GCH_rep1-polar-NMR_A": "15.23987128406363"
+      },
+      {
+        "Bin range(ppm)": "343.20496075139295-972.7458998543708",
+        "17_A1_Lung_naive_0days_170427_UKy_GCH_rep2-polar-NMR_A": "4.043392247191713"
+      },
+      {
+        "Bin range(ppm)": "343.75394548738416-963.8587018553229",
+        "22_C1-1_Lung_allogenic_42days_170427_UKy_GCH_rep1-polar-NMR_A": "80.47353911217482"
+      },
+      {
+        "Bin range(ppm)": "344.5453052813028-546.8429510912378",
+        "30_C1-20_Lung_allogenic_7days_170427_UKy_GCH_rep3-polar-NMR_A": "10.93586791638191"
+      },
+      {
+        "Bin range(ppm)": "348.4570416927475-500.27350535298115",
+        "29_C1-2_Lung_allogenic_7days_170427_UKy_GCH_rep2-polar-NMR_A": "1.701712125804509"
+      },
+      {
+        "Bin range(ppm)": "349.9682127705116-603.9204945532763",
+        "28_C1-1_Lung_allogenic_7days_170427_UKy_GCH_rep1-polar-NMR_A": "2.93019677189048"
+      },
+      {
+        "Bin range(ppm)": "35.145157415035435-89.31219175687906",
+        "22_C1-1_Lung_allogenic_42days_170427_UKy_GCH_rep1-polar-NMR_A": "5.839057885147923"
+      },
+      {
+        "Bin range(ppm)": "355.36039010097386-545.896814533155",
+        "28_C1-1_Lung_allogenic_7days_170427_UKy_GCH_rep1-polar-NMR_A": "0.03034514197719348"
+      },
+      {
+        "Bin range(ppm)": "359.8632833084152-780.9540027767578",
+        "25_B1-0_Lung_syngenic_7days_170427_UKy_GCH_rep1-polar-NMR_A": "4.903775050325949"
+      },
+      {
+        "Bin range(ppm)": "362.1391633169698-542.9288303476451",
+        "23_C1-2_Lung_allogenic_42days_170427_UKy_GCH_rep2-polar-NMR_A": "2.395820873977633"
+      },
+      {
+        "Bin range(ppm)": "362.1656102086003-701.651863694839",
+        "23_C1-2_Lung_allogenic_42days_170427_UKy_GCH_rep2-polar-NMR_A": "1.54995060077206"
+      },
+      {
+        "Bin range(ppm)": "365.6449619686379-682.6616864673454",
+        "18_A2_Lung_naive_0days_170427_UKy_GCH_rep3-polar-NMR_A": "0.07400326813064133"
+      },
+      {
+        "Bin range(ppm)": "37.287862972757544-982.4467012248243",
+        "17_A1_Lung_naive_0days_170427_UKy_GCH_rep2-polar-NMR_A": "112.770569524343"
+      },
+      {
+        "Bin range(ppm)": "372.72264265937014-849.9705995697564",
+        "16_A0_Lung_naive_0days_170427_UKy_GCH_rep1-polar-NMR_A": "60.96351433054401"
+      },
+      {
+        "Bin range(ppm)": "375.7075859218099-948.8163285089961",
+        "19_B0_Lung_syngenic_42days_170427_UKy_GCH_rep1-polar-NMR_A": "6.84306895417294"
+      },
+      {
+        "Bin range(ppm)": "376.55525741470996-756.3749820440288",
+        "23_C1-2_Lung_allogenic_42days_170427_UKy_GCH_rep2-polar-NMR_A": "5.795982057067723"
+      },
+      {
+        "Bin range(ppm)": "377.3556787194886-883.4237523877969",
+        "28_C1-1_Lung_allogenic_7days_170427_UKy_GCH_rep1-polar-NMR_A": "20.35630983615927"
+      },
+      {
+        "Bin range(ppm)": "378.45956301685277-722.3232839182465",
+        "20_B1_Lung_syngenic_42days_170427_UKy_GCH_rep2-polar-NMR_A": "3.151741644077491"
+      },
+      {
+        "Bin range(ppm)": "379.27904495344967-871.7869228702668",
+        "27_B1-2_Lung_syngenic_7days_170427_UKy_GCH_rep3-polar-NMR_A": "71.35743802306303"
+      },
+      {
+        "Bin range(ppm)": "381.3349895072627-785.4640367080923",
+        "20_B1_Lung_syngenic_42days_170427_UKy_GCH_rep2-polar-NMR_A": "6.34724285714441"
+      },
+      {
+        "Bin range(ppm)": "381.5659272667308-744.4510598613371",
+        "24_C2-0_Lung_allogenic_42days_170427_UKy_GCH_rep1-polar-NMR_A": "34.40492710107146"
+      },
+      {
+        "Bin range(ppm)": "382.1054237172576-997.5293614546678",
+        "18_A2_Lung_naive_0days_170427_UKy_GCH_rep3-polar-NMR_A": "2.30525238914674"
+      },
+      {
+        "Bin range(ppm)": "382.4235141636838-843.9053484093059",
+        "30_C1-20_Lung_allogenic_7days_170427_UKy_GCH_rep3-polar-NMR_A": "110.7518237484007"
+      },
+      {
+        "Bin range(ppm)": "386.58336768640567-691.3772828055564",
+        "17_A1_Lung_naive_0days_170427_UKy_GCH_rep2-polar-NMR_A": "17.9144869320814"
+      },
+      {
+        "Bin range(ppm)": "388.1251059246961-870.8366412043331",
+        "18_A2_Lung_naive_0days_170427_UKy_GCH_rep3-polar-NMR_A": "14.073039383339"
+      },
+      {
+        "Bin range(ppm)": "388.68253263705833-492.2907282520493",
+        "26_B1-1_Lung_syngenic_7days_170427_UKy_GCH_rep2-polar-NMR_A": "27.98277758426448"
+      },
+      {
+        "Bin range(ppm)": "389.4828252180955-673.9293662631383",
+        "19_B0_Lung_syngenic_42days_170427_UKy_GCH_rep1-polar-NMR_A": "4.164510010961791"
+      },
+      {
+        "Bin range(ppm)": "397.8972984800782-502.29384436980496",
+        "21_B2_Lung_syngenic_42days_170427_UKy_GCH_rep3-polar-NMR_A": "16.80277785834007"
+      },
+      {
+        "Bin range(ppm)": "398.8467695123129-967.5664277768157",
+        "30_C1-20_Lung_allogenic_7days_170427_UKy_GCH_rep3-polar-NMR_A": "1.809024788256019"
+      },
+      {
+        "Bin range(ppm)": "4.95257800320148-965.6068288764745",
+        "22_C1-1_Lung_allogenic_42days_170427_UKy_GCH_rep1-polar-NMR_A": "3.573489197835663"
+      },
+      {
+        "Bin range(ppm)": "400.6753228559285-705.6679866169778",
+        "22_C1-1_Lung_allogenic_42days_170427_UKy_GCH_rep1-polar-NMR_A": "0.8791289090586817"
+      },
+      {
+        "Bin range(ppm)": "403.1288816728343-735.1471560051498",
+        "21_B2_Lung_syngenic_42days_170427_UKy_GCH_rep3-polar-NMR_A": "49.01970849658129"
+      },
+      {
+        "Bin range(ppm)": "405.0100815812073-411.1061473460945",
+        "30_C1-20_Lung_allogenic_7days_170427_UKy_GCH_rep3-polar-NMR_A": "8.08199843897748"
+      },
+      {
+        "Bin range(ppm)": "407.7328648608425-727.3211124687202",
+        "23_C1-2_Lung_allogenic_42days_170427_UKy_GCH_rep2-polar-NMR_A": "94.28092653102084"
+      },
+      {
+        "Bin range(ppm)": "41.477766973766485-376.0480589699777",
+        "18_A2_Lung_naive_0days_170427_UKy_GCH_rep3-polar-NMR_A": "4.462505898874794"
+      },
+      {
+        "Bin range(ppm)": "413.5004521139867-796.6394476868813",
+        "18_A2_Lung_naive_0days_170427_UKy_GCH_rep3-polar-NMR_A": "2.632072030077223"
+      },
+      {
+        "Bin range(ppm)": "415.22442896221844-463.71946538523815",
+        "29_C1-2_Lung_allogenic_7days_170427_UKy_GCH_rep2-polar-NMR_A": "13.93796265142454"
+      },
+      {
+        "Bin range(ppm)": "417.73175706436297-473.6399910898052",
+        "19_B0_Lung_syngenic_42days_170427_UKy_GCH_rep1-polar-NMR_A": "18.79439323713807"
+      },
+      {
+        "Bin range(ppm)": "418.94549686322256-862.4526101393142",
+        "22_C1-1_Lung_allogenic_42days_170427_UKy_GCH_rep1-polar-NMR_A": "0.6592866602010409"
+      },
+      {
+        "Bin range(ppm)": "420.0966149437213-518.7824234927725",
+        "17_A1_Lung_naive_0days_170427_UKy_GCH_rep2-polar-NMR_A": "5.024542670992277"
+      },
+      {
+        "Bin range(ppm)": "420.7888943118933-641.7081381628986",
+        "29_C1-2_Lung_allogenic_7days_170427_UKy_GCH_rep2-polar-NMR_A": "19.28726602735465"
+      },
+      {
+        "Bin range(ppm)": "420.9101035794977-684.5406554741671",
+        "26_B1-1_Lung_syngenic_7days_170427_UKy_GCH_rep2-polar-NMR_A": "1.238255253794013"
+      },
+      {
+        "Bin range(ppm)": "421.62846364396523-798.8970547360459",
+        "27_B1-2_Lung_syngenic_7days_170427_UKy_GCH_rep3-polar-NMR_A": "58.36225146854037"
+      },
+      {
+        "Bin range(ppm)": "422.9543805463444-727.0006297996458",
+        "19_B0_Lung_syngenic_42days_170427_UKy_GCH_rep1-polar-NMR_A": "1.772381905002998"
+      },
+      {
+        "Bin range(ppm)": "423.2632313374909-630.7094046950322",
+        "17_A1_Lung_naive_0days_170427_UKy_GCH_rep2-polar-NMR_A": "3.813409448946962"
+      },
+      {
+        "Bin range(ppm)": "424.1088187867531-555.7892784878035",
+        "30_C1-20_Lung_allogenic_7days_170427_UKy_GCH_rep3-polar-NMR_A": "16.81496592872274"
+      },
+      {
+        "Bin range(ppm)": "425.34759313760804-860.9689104403114",
+        "19_B0_Lung_syngenic_42days_170427_UKy_GCH_rep1-polar-NMR_A": "0.173109199404528"
+      },
+      {
+        "Bin range(ppm)": "426.7089118397814-569.6919627045846",
+        "29_C1-2_Lung_allogenic_7days_170427_UKy_GCH_rep2-polar-NMR_A": "26.40760404001792"
+      },
+      {
+        "Bin range(ppm)": "426.7372941091756-774.8216182149469",
+        "24_C2-0_Lung_allogenic_42days_170427_UKy_GCH_rep1-polar-NMR_A": "6.374509227780504"
+      },
+      {
+        "Bin range(ppm)": "426.9471749359086-948.8417071290087",
+        "20_B1_Lung_syngenic_42days_170427_UKy_GCH_rep2-polar-NMR_A": "0.6300552496800057"
+      },
+      {
+        "Bin range(ppm)": "426.974711196763-725.1715132552995",
+        "19_B0_Lung_syngenic_42days_170427_UKy_GCH_rep1-polar-NMR_A": "13.29700324376869"
+      },
+      {
+        "Bin range(ppm)": "426.98812152472067-590.9957802542386",
+        "18_A2_Lung_naive_0days_170427_UKy_GCH_rep3-polar-NMR_A": "1.180601535119669"
+      },
+      {
+        "Bin range(ppm)": "427.9734521976364-737.1654435122146",
+        "27_B1-2_Lung_syngenic_7days_170427_UKy_GCH_rep3-polar-NMR_A": "1.763658289589751"
+      },
+      {
+        "Bin range(ppm)": "430.17503979647586-532.5189789310339",
+        "28_C1-1_Lung_allogenic_7days_170427_UKy_GCH_rep1-polar-NMR_A": "68.26995533822318"
+      },
+      {
+        "Bin range(ppm)": "436.7556961201432-643.9353613835567",
+        "16_A0_Lung_naive_0days_170427_UKy_GCH_rep1-polar-NMR_A": "4.639644619884503"
+      },
+      {
+        "Bin range(ppm)": "437.36756661345487-961.9893879483228",
+        "28_C1-1_Lung_allogenic_7days_170427_UKy_GCH_rep1-polar-NMR_A": "0.05389015815972539"
+      },
+      {
+        "Bin range(ppm)": "437.7772805679946-584.1223299919616",
+        "21_B2_Lung_syngenic_42days_170427_UKy_GCH_rep3-polar-NMR_A": "33.10740863774024"
+      },
+      {
+        "Bin range(ppm)": "441.53015483613314-803.4308632306685",
+        "21_B2_Lung_syngenic_42days_170427_UKy_GCH_rep3-polar-NMR_A": "5.41775665874365"
+      },
+      {
+        "Bin range(ppm)": "442.9992461658184-761.7036304703347",
+        "30_C1-20_Lung_allogenic_7days_170427_UKy_GCH_rep3-polar-NMR_A": "2.256757783600128"
+      },
+      {
+        "Bin range(ppm)": "444.85206833623425-686.8161070640137",
+        "27_B1-2_Lung_syngenic_7days_170427_UKy_GCH_rep3-polar-NMR_A": "8.064911678316273"
+      },
+      {
+        "Bin range(ppm)": "445.2487729140576-822.3021892574365",
+        "25_B1-0_Lung_syngenic_7days_170427_UKy_GCH_rep1-polar-NMR_A": "13.85262954957766"
+      },
+      {
+        "Bin range(ppm)": "45.49952830378701-240.84070031153064",
+        "23_C1-2_Lung_allogenic_42days_170427_UKy_GCH_rep2-polar-NMR_A": "2.170798960521991"
+      },
+      {
+        "Bin range(ppm)": "452.23623321488105-952.3766529244635",
+        "24_C2-0_Lung_allogenic_42days_170427_UKy_GCH_rep1-polar-NMR_A": "10.86312621537679"
+      },
+      {
+        "Bin range(ppm)": "452.8885789762739-872.5861794432627",
+        "22_C1-1_Lung_allogenic_42days_170427_UKy_GCH_rep1-polar-NMR_A": "4.120070349879435"
+      },
+      {
+        "Bin range(ppm)": "453.8589328175476-506.65665886341225",
+        "23_C1-2_Lung_allogenic_42days_170427_UKy_GCH_rep2-polar-NMR_A": "0.3171077589380195"
+      },
+      {
+        "Bin range(ppm)": "457.4299918976444-705.2652519498441",
+        "16_A0_Lung_naive_0days_170427_UKy_GCH_rep1-polar-NMR_A": "6.248103064216701"
+      },
+      {
+        "Bin range(ppm)": "457.8908176953167-657.4504539164005",
+        "26_B1-1_Lung_syngenic_7days_170427_UKy_GCH_rep2-polar-NMR_A": "0.4160136229806028"
+      },
+      {
+        "Bin range(ppm)": "458.57509110516725-501.1358318636276",
+        "23_C1-2_Lung_allogenic_42days_170427_UKy_GCH_rep2-polar-NMR_A": "1.257990396324605"
+      },
+      {
+        "Bin range(ppm)": "458.9859248859768-638.1601011725372",
+        "20_B1_Lung_syngenic_42days_170427_UKy_GCH_rep2-polar-NMR_A": "46.76934960416931"
+      },
+      {
+        "Bin range(ppm)": "46.485559415360036-497.61236493880995",
+        "22_C1-1_Lung_allogenic_42days_170427_UKy_GCH_rep1-polar-NMR_A": "21.80868304489859"
+      },
+      {
+        "Bin range(ppm)": "464.58305005517184-638.8611010638294",
+        "28_C1-1_Lung_allogenic_7days_170427_UKy_GCH_rep1-polar-NMR_A": "0.9480845805579599"
+      },
+      {
+        "Bin range(ppm)": "465.1177085945292-486.3509218256915",
+        "21_B2_Lung_syngenic_42days_170427_UKy_GCH_rep3-polar-NMR_A": "5.4162937861537"
+      },
+      {
+        "Bin range(ppm)": "465.3506286433775-917.0154361742841",
+        "21_B2_Lung_syngenic_42days_170427_UKy_GCH_rep3-polar-NMR_A": "4.682113031767859"
+      },
+      {
+        "Bin range(ppm)": "467.5229269103062-648.9757093651292",
+        "24_C2-0_Lung_allogenic_42days_170427_UKy_GCH_rep1-polar-NMR_A": "76.86439899546977"
+      },
+      {
+        "Bin range(ppm)": "468.0472980594085-706.2666510914187",
+        "26_B1-1_Lung_syngenic_7days_170427_UKy_GCH_rep2-polar-NMR_A": "4.886878013682263"
+      },
+      {
+        "Bin range(ppm)": "468.44697326150276-473.35407544307867",
+        "20_B1_Lung_syngenic_42days_170427_UKy_GCH_rep2-polar-NMR_A": "0.393115072709738"
+      },
+      {
+        "Bin range(ppm)": "469.5551558280301-855.4829803473272",
+        "20_B1_Lung_syngenic_42days_170427_UKy_GCH_rep2-polar-NMR_A": "0.5447033324231522"
+      },
+      {
+        "Bin range(ppm)": "47.81968117180646-848.9081632391425",
+        "18_A2_Lung_naive_0days_170427_UKy_GCH_rep3-polar-NMR_A": "0.5199874732210333"
+      },
+      {
+        "Bin range(ppm)": "471.94171916459527-541.0155460777472",
+        "30_C1-20_Lung_allogenic_7days_170427_UKy_GCH_rep3-polar-NMR_A": "7.892014632895955"
+      },
+      {
+        "Bin range(ppm)": "472.7001073155778-823.5795549988661",
+        "24_C2-0_Lung_allogenic_42days_170427_UKy_GCH_rep1-polar-NMR_A": "47.71168629878088"
+      },
+      {
+        "Bin range(ppm)": "477.47837231857557-752.447887250951",
+        "29_C1-2_Lung_allogenic_7days_170427_UKy_GCH_rep2-polar-NMR_A": "11.19527097710706"
+      },
+      {
+        "Bin range(ppm)": "488.50013477982435-500.9098312813969",
+        "26_B1-1_Lung_syngenic_7days_170427_UKy_GCH_rep2-polar-NMR_A": "2.067172107249132"
+      },
+      {
+        "Bin range(ppm)": "488.9398066602144-795.8382962964569",
+        "25_B1-0_Lung_syngenic_7days_170427_UKy_GCH_rep1-polar-NMR_A": "2.288608913156432"
+      },
+      {
+        "Bin range(ppm)": "49.01079132952923-997.6550227151429",
+        "22_C1-1_Lung_allogenic_42days_170427_UKy_GCH_rep1-polar-NMR_A": "1.866647456747078"
+      },
+      {
+        "Bin range(ppm)": "491.1630126334218-876.7436397643444",
+        "29_C1-2_Lung_allogenic_7days_170427_UKy_GCH_rep2-polar-NMR_A": "2.224087196605944"
+      },
+      {
+        "Bin range(ppm)": "491.51312848720664-582.318623946703",
+        "29_C1-2_Lung_allogenic_7days_170427_UKy_GCH_rep2-polar-NMR_A": "3.23589666421247"
+      },
+      {
+        "Bin range(ppm)": "492.44587182624923-542.8879129650269",
+        "16_A0_Lung_naive_0days_170427_UKy_GCH_rep1-polar-NMR_A": "52.7208680630944"
+      },
+      {
+        "Bin range(ppm)": "494.660112021439-724.2369599003038",
+        "27_B1-2_Lung_syngenic_7days_170427_UKy_GCH_rep3-polar-NMR_A": "56.91131687851782"
+      },
+      {
+        "Bin range(ppm)": "497.7249029211367-850.2997170401497",
+        "25_B1-0_Lung_syngenic_7days_170427_UKy_GCH_rep1-polar-NMR_A": "21.52358015767358"
+      },
+      {
+        "Bin range(ppm)": "498.33852287900004-912.4678310196207",
+        "21_B2_Lung_syngenic_42days_170427_UKy_GCH_rep3-polar-NMR_A": "16.56969456683603"
+      },
+      {
+        "Bin range(ppm)": "498.9558329740349-517.0388401121506",
+        "19_B0_Lung_syngenic_42days_170427_UKy_GCH_rep1-polar-NMR_A": "7.769231936091338"
+      },
+      {
+        "Bin range(ppm)": "500.2948514051866-940.1927997469932",
+        "17_A1_Lung_naive_0days_170427_UKy_GCH_rep2-polar-NMR_A": "2.122489178783557"
+      },
+      {
+        "Bin range(ppm)": "500.77748907970056-523.2147588522838",
+        "21_B2_Lung_syngenic_42days_170427_UKy_GCH_rep3-polar-NMR_A": "11.53493917647299"
+      },
+      {
+        "Bin range(ppm)": "502.2418225216735-804.8809343485449",
+        "26_B1-1_Lung_syngenic_7days_170427_UKy_GCH_rep2-polar-NMR_A": "2.428408052603836"
+      },
+      {
+        "Bin range(ppm)": "502.61048276806383-702.5389278395938",
+        "18_A2_Lung_naive_0days_170427_UKy_GCH_rep3-polar-NMR_A": "3.949468863238969"
+      },
+      {
+        "Bin range(ppm)": "502.6403002509693-978.4867938868233",
+        "26_B1-1_Lung_syngenic_7days_170427_UKy_GCH_rep2-polar-NMR_A": "3.011681474236478"
+      },
+      {
+        "Bin range(ppm)": "504.29761097600766-963.3607407038953",
+        "19_B0_Lung_syngenic_42days_170427_UKy_GCH_rep1-polar-NMR_A": "0.06499411739043534"
+      },
+      {
+        "Bin range(ppm)": "506.0533572447757-577.356111857895",
+        "29_C1-2_Lung_allogenic_7days_170427_UKy_GCH_rep2-polar-NMR_A": "6.030588022689606"
+      },
+      {
+        "Bin range(ppm)": "507.1156974654621-850.4332179356768",
+        "23_C1-2_Lung_allogenic_42days_170427_UKy_GCH_rep2-polar-NMR_A": "60.6954498347303"
+      },
+      {
+        "Bin range(ppm)": "51.15628722400623-904.0861617397774",
+        "30_C1-20_Lung_allogenic_7days_170427_UKy_GCH_rep3-polar-NMR_A": "43.6739682585851"
+      },
+      {
+        "Bin range(ppm)": "510.3551838797118-803.4040937511985",
+        "24_C2-0_Lung_allogenic_42days_170427_UKy_GCH_rep1-polar-NMR_A": "91.1476721115095"
+      },
+      {
+        "Bin range(ppm)": "510.90442451871087-916.6571727141736",
+        "16_A0_Lung_naive_0days_170427_UKy_GCH_rep1-polar-NMR_A": "1.307147533332329"
+      },
+      {
+        "Bin range(ppm)": "515.4641180515889-728.1698354507942",
+        "27_B1-2_Lung_syngenic_7days_170427_UKy_GCH_rep3-polar-NMR_A": "10.61895710931564"
+      },
+      {
+        "Bin range(ppm)": "52.53591625064902-181.6994177177562",
+        "29_C1-2_Lung_allogenic_7days_170427_UKy_GCH_rep2-polar-NMR_A": "10.10945153705459"
+      },
+      {
+        "Bin range(ppm)": "520.7607551172284-544.94182535078",
+        "17_A1_Lung_naive_0days_170427_UKy_GCH_rep2-polar-NMR_A": "2.267206978187519"
+      },
+      {
+        "Bin range(ppm)": "523.432321202612-550.0832941249523",
+        "16_A0_Lung_naive_0days_170427_UKy_GCH_rep1-polar-NMR_A": "0.6539610898348532"
+      },
+      {
+        "Bin range(ppm)": "523.5018357125787-870.2597085543271",
+        "21_B2_Lung_syngenic_42days_170427_UKy_GCH_rep3-polar-NMR_A": "48.29410006207813"
+      },
+      {
+        "Bin range(ppm)": "523.9884696627104-683.9074513703765",
+        "19_B0_Lung_syngenic_42days_170427_UKy_GCH_rep1-polar-NMR_A": "12.04774074018927"
+      },
+      {
+        "Bin range(ppm)": "524.3541290272768-659.8767188558294",
+        "25_B1-0_Lung_syngenic_7days_170427_UKy_GCH_rep1-polar-NMR_A": "82.03857081774437"
+      },
+      {
+        "Bin range(ppm)": "528.2710185662802-639.1128202928946",
+        "21_B2_Lung_syngenic_42days_170427_UKy_GCH_rep3-polar-NMR_A": "92.49247580154095"
+      },
+      {
+        "Bin range(ppm)": "529.6345143038716-804.331311766914",
+        "22_C1-1_Lung_allogenic_42days_170427_UKy_GCH_rep1-polar-NMR_A": "1.917684420559786"
+      },
+      {
+        "Bin range(ppm)": "529.6870017284907-837.5212758016139",
+        "27_B1-2_Lung_syngenic_7days_170427_UKy_GCH_rep3-polar-NMR_A": "73.96647535427545"
+      },
+      {
+        "Bin range(ppm)": "531.6665416577664-728.8606689415634",
+        "20_B1_Lung_syngenic_42days_170427_UKy_GCH_rep2-polar-NMR_A": "89.6264469458638"
+      },
+      {
+        "Bin range(ppm)": "532.8998598875227-583.0671760047253",
+        "24_C2-0_Lung_allogenic_42days_170427_UKy_GCH_rep1-polar-NMR_A": "89.7014347259649"
+      },
+      {
+        "Bin range(ppm)": "535.0240465941594-576.7191417861991",
+        "24_C2-0_Lung_allogenic_42days_170427_UKy_GCH_rep1-polar-NMR_A": "74.92268220342831"
+      },
+      {
+        "Bin range(ppm)": "535.9471775231801-928.4642438294911",
+        "20_B1_Lung_syngenic_42days_170427_UKy_GCH_rep2-polar-NMR_A": "0.3857721023865553"
+      },
+      {
+        "Bin range(ppm)": "536.3296364694288-902.9331623515218",
+        "25_B1-0_Lung_syngenic_7days_170427_UKy_GCH_rep1-polar-NMR_A": "103.7671110484951"
+      },
+      {
+        "Bin range(ppm)": "538.4702491873838-585.0670875203482",
+        "21_B2_Lung_syngenic_42days_170427_UKy_GCH_rep3-polar-NMR_A": "39.3871310989075"
+      },
+      {
+        "Bin range(ppm)": "538.7475084980296-738.997392908286",
+        "21_B2_Lung_syngenic_42days_170427_UKy_GCH_rep3-polar-NMR_A": "31.35864357539538"
+      },
+      {
+        "Bin range(ppm)": "542.8203395690564-959.2349805753813",
+        "25_B1-0_Lung_syngenic_7days_170427_UKy_GCH_rep1-polar-NMR_A": "24.33596936996235"
+      },
+      {
+        "Bin range(ppm)": "547.9535567154202-752.340475692211",
+        "16_A0_Lung_naive_0days_170427_UKy_GCH_rep1-polar-NMR_A": "1.519370453385877"
+      },
+      {
+        "Bin range(ppm)": "549.0563632164068-954.7855831740966",
+        "24_C2-0_Lung_allogenic_42days_170427_UKy_GCH_rep1-polar-NMR_A": "3.780333348360618"
+      },
+      {
+        "Bin range(ppm)": "550.0443032961273-939.5685156985885",
+        "21_B2_Lung_syngenic_42days_170427_UKy_GCH_rep3-polar-NMR_A": "0.5635043480786999"
+      },
+      {
+        "Bin range(ppm)": "550.5065418466581-652.001168587084",
+        "18_A2_Lung_naive_0days_170427_UKy_GCH_rep3-polar-NMR_A": "1.627678313375144"
+      },
+      {
+        "Bin range(ppm)": "553.1073302268941-972.1003293482706",
+        "26_B1-1_Lung_syngenic_7days_170427_UKy_GCH_rep2-polar-NMR_A": "13.64805516317669"
+      },
+      {
+        "Bin range(ppm)": "556.6286033983447-986.0772667307133",
+        "21_B2_Lung_syngenic_42days_170427_UKy_GCH_rep3-polar-NMR_A": "7.01093300911467"
+      },
+      {
+        "Bin range(ppm)": "557.1931860797451-980.777456710051",
+        "23_C1-2_Lung_allogenic_42days_170427_UKy_GCH_rep2-polar-NMR_A": "2.7091511725413"
+      },
+      {
+        "Bin range(ppm)": "557.3883140896864-712.7071008879307",
+        "17_A1_Lung_naive_0days_170427_UKy_GCH_rep2-polar-NMR_A": "9.549188167521768"
+      },
+      {
+        "Bin range(ppm)": "558.0819413727237-868.3302767212808",
+        "23_C1-2_Lung_allogenic_42days_170427_UKy_GCH_rep2-polar-NMR_A": "0.6741933483141022"
+      },
+      {
+        "Bin range(ppm)": "56.96811648907585-383.1099027560471",
+        "22_C1-1_Lung_allogenic_42days_170427_UKy_GCH_rep1-polar-NMR_A": "22.09812329542907"
+      },
+      {
+        "Bin range(ppm)": "564.0030819473744-691.5927402621355",
+        "19_B0_Lung_syngenic_42days_170427_UKy_GCH_rep1-polar-NMR_A": "2.639560108807023"
+      },
+      {
+        "Bin range(ppm)": "564.8248278482727-834.5164314190697",
+        "18_A2_Lung_naive_0days_170427_UKy_GCH_rep3-polar-NMR_A": "0.06602001752666174"
+      },
+      {
+        "Bin range(ppm)": "566.3581975408517-912.9880816208911",
+        "26_B1-1_Lung_syngenic_7days_170427_UKy_GCH_rep2-polar-NMR_A": "2.277268010762131"
+      },
+      {
+        "Bin range(ppm)": "567.2298149840921-615.1493792111959",
+        "18_A2_Lung_naive_0days_170427_UKy_GCH_rep3-polar-NMR_A": "2.3959621521689"
+      },
+      {
+        "Bin range(ppm)": "569.3699608087991-779.9622063963786",
+        "17_A1_Lung_naive_0days_170427_UKy_GCH_rep2-polar-NMR_A": "1.391690624174096"
+      },
+      {
+        "Bin range(ppm)": "569.7399270336164-715.9658004496368",
+        "18_A2_Lung_naive_0days_170427_UKy_GCH_rep3-polar-NMR_A": "0.1050058966444097"
+      },
+      {
+        "Bin range(ppm)": "571.4981379250363-765.4863051159493",
+        "27_B1-2_Lung_syngenic_7days_170427_UKy_GCH_rep3-polar-NMR_A": "27.78513911555092"
+      },
+      {
+        "Bin range(ppm)": "572.9541392806144-940.0393388220202",
+        "24_C2-0_Lung_allogenic_42days_170427_UKy_GCH_rep1-polar-NMR_A": "5.473831104627201"
+      },
+      {
+        "Bin range(ppm)": "573.7299328289135-960.2121925610554",
+        "18_A2_Lung_naive_0days_170427_UKy_GCH_rep3-polar-NMR_A": "1.870010553935515"
+      },
+      {
+        "Bin range(ppm)": "574.571219879183-784.0467964304438",
+        "17_A1_Lung_naive_0days_170427_UKy_GCH_rep2-polar-NMR_A": "0.7647655965205701"
+      },
+      {
+        "Bin range(ppm)": "575.2400707676181-827.6946558502195",
+        "17_A1_Lung_naive_0days_170427_UKy_GCH_rep2-polar-NMR_A": "16.10412366650401"
+      },
+      {
+        "Bin range(ppm)": "579.678344901029-677.5390339146921",
+        "18_A2_Lung_naive_0days_170427_UKy_GCH_rep3-polar-NMR_A": "0.3690702672815278"
+      },
+      {
+        "Bin range(ppm)": "58.11787902978638-328.26222457832046",
+        "16_A0_Lung_naive_0days_170427_UKy_GCH_rep1-polar-NMR_A": "1.502014817851093"
+      },
+      {
+        "Bin range(ppm)": "580.0102245486717-839.7134459252669",
+        "20_B1_Lung_syngenic_42days_170427_UKy_GCH_rep2-polar-NMR_A": "1.765705885410852"
+      },
+      {
+        "Bin range(ppm)": "580.0945289137852-971.1928807949928",
+        "29_C1-2_Lung_allogenic_7days_170427_UKy_GCH_rep2-polar-NMR_A": "3.102614481624151"
+      },
+      {
+        "Bin range(ppm)": "584.7416773456713-819.2393029820191",
+        "18_A2_Lung_naive_0days_170427_UKy_GCH_rep3-polar-NMR_A": "8.358813072400283"
+      },
+      {
+        "Bin range(ppm)": "587.4532641581595-629.6777418351699",
+        "18_A2_Lung_naive_0days_170427_UKy_GCH_rep3-polar-NMR_A": "0.3103698293823754"
+      },
+      {
+        "Bin range(ppm)": "592.31972512662-847.7822215898061",
+        "16_A0_Lung_naive_0days_170427_UKy_GCH_rep1-polar-NMR_A": "5.068368407654971"
+      },
+      {
+        "Bin range(ppm)": "592.405266250043-604.6236113415903",
+        "24_C2-0_Lung_allogenic_42days_170427_UKy_GCH_rep1-polar-NMR_A": "6.154987649858422"
+      },
+      {
+        "Bin range(ppm)": "592.5227795902898-596.2578994053877",
+        "24_C2-0_Lung_allogenic_42days_170427_UKy_GCH_rep1-polar-NMR_A": "18.5998707369221"
+      },
+      {
+        "Bin range(ppm)": "596.2770185853469-744.9701107241459",
+        "30_C1-20_Lung_allogenic_7days_170427_UKy_GCH_rep3-polar-NMR_A": "2.385889876740265"
+      },
+      {
+        "Bin range(ppm)": "598.1501222870871-854.6541364193338",
+        "20_B1_Lung_syngenic_42days_170427_UKy_GCH_rep2-polar-NMR_A": "5.888574551975836"
+      },
+      {
+        "Bin range(ppm)": "6.717621612940428-397.2190688573855",
+        "29_C1-2_Lung_allogenic_7days_170427_UKy_GCH_rep2-polar-NMR_A": "8.018282155449784"
+      },
+      {
+        "Bin range(ppm)": "6.767582623525836-932.854931460147",
+        "22_C1-1_Lung_allogenic_42days_170427_UKy_GCH_rep1-polar-NMR_A": "0.6745039990669326"
+      },
+      {
+        "Bin range(ppm)": "60.51587976613904-269.12746344343026",
+        "27_B1-2_Lung_syngenic_7days_170427_UKy_GCH_rep3-polar-NMR_A": "2.184691716155832"
+      },
+      {
+        "Bin range(ppm)": "603.9090527421363-749.4987776507778",
+        "16_A0_Lung_naive_0days_170427_UKy_GCH_rep1-polar-NMR_A": "0.556619610886712"
+      },
+      {
+        "Bin range(ppm)": "604.4712294591457-729.3907814950599",
+        "17_A1_Lung_naive_0days_170427_UKy_GCH_rep2-polar-NMR_A": "6.234538983196813"
+      },
+      {
+        "Bin range(ppm)": "607.6803724763352-879.3402215827805",
+        "25_B1-0_Lung_syngenic_7days_170427_UKy_GCH_rep1-polar-NMR_A": "7.333966006375265"
+      },
+      {
+        "Bin range(ppm)": "61.2600551362994-561.5208436438747",
+        "16_A0_Lung_naive_0days_170427_UKy_GCH_rep1-polar-NMR_A": "2.530708678484963"
+      },
+      {
+        "Bin range(ppm)": "612.395689782409-660.4874733292811",
+        "23_C1-2_Lung_allogenic_42days_170427_UKy_GCH_rep2-polar-NMR_A": "7.36964904104185"
+      },
+      {
+        "Bin range(ppm)": "612.4045783147093-824.122258733863",
+        "21_B2_Lung_syngenic_42days_170427_UKy_GCH_rep3-polar-NMR_A": "33.08181550270535"
+      },
+      {
+        "Bin range(ppm)": "613.3659248464226-781.4140293109151",
+        "18_A2_Lung_naive_0days_170427_UKy_GCH_rep3-polar-NMR_A": "1.407936063358546"
+      },
+      {
+        "Bin range(ppm)": "613.429522284115-733.0589724149618",
+        "24_C2-0_Lung_allogenic_42days_170427_UKy_GCH_rep1-polar-NMR_A": "8.316564270029698"
+      },
+      {
+        "Bin range(ppm)": "617.1515960232674-928.2721499582617",
+        "29_C1-2_Lung_allogenic_7days_170427_UKy_GCH_rep2-polar-NMR_A": "12.79676206665156"
+      },
+      {
+        "Bin range(ppm)": "617.652660485129-758.6498114832358",
+        "16_A0_Lung_naive_0days_170427_UKy_GCH_rep1-polar-NMR_A": "2.128424791213757"
+      },
+      {
+        "Bin range(ppm)": "617.701443032188-937.2565697599014",
+        "20_B1_Lung_syngenic_42days_170427_UKy_GCH_rep2-polar-NMR_A": "-4.172922453870706"
+      },
+      {
+        "Bin range(ppm)": "618.7027524403409-775.2665576762022",
+        "21_B2_Lung_syngenic_42days_170427_UKy_GCH_rep3-polar-NMR_A": "0.5424205241434561"
+      },
+      {
+        "Bin range(ppm)": "625.3555509051117-706.2521181243608",
+        "24_C2-0_Lung_allogenic_42days_170427_UKy_GCH_rep1-polar-NMR_A": "43.92696913329419"
+      },
+      {
+        "Bin range(ppm)": "629.4571801476486-681.4065448663013",
+        "21_B2_Lung_syngenic_42days_170427_UKy_GCH_rep3-polar-NMR_A": "2.455583867301609"
+      },
+      {
+        "Bin range(ppm)": "63.87016628291453-830.3878969080295",
+        "25_B1-0_Lung_syngenic_7days_170427_UKy_GCH_rep1-polar-NMR_A": "14.52849294767455"
+      },
+      {
+        "Bin range(ppm)": "630.7757073463101-754.850205118912",
+        "21_B2_Lung_syngenic_42days_170427_UKy_GCH_rep3-polar-NMR_A": "65.48242771612804"
+      },
+      {
+        "Bin range(ppm)": "631.939131805127-731.1137058702941",
+        "18_A2_Lung_naive_0days_170427_UKy_GCH_rep3-polar-NMR_A": "3.498666666309294"
+      },
+      {
+        "Bin range(ppm)": "632.1883636214533-654.8913715026574",
+        "22_C1-1_Lung_allogenic_42days_170427_UKy_GCH_rep1-polar-NMR_A": "0.004308868146732792"
+      },
+      {
+        "Bin range(ppm)": "632.9190378367737-894.0021348830434",
+        "29_C1-2_Lung_allogenic_7days_170427_UKy_GCH_rep2-polar-NMR_A": "59.0290402298136"
+      },
+      {
+        "Bin range(ppm)": "634.5867342338435-854.7956255970847",
+        "30_C1-20_Lung_allogenic_7days_170427_UKy_GCH_rep3-polar-NMR_A": "1.097728295457682"
+      },
+      {
+        "Bin range(ppm)": "637.0797328725832-925.0987239557828",
+        "17_A1_Lung_naive_0days_170427_UKy_GCH_rep2-polar-NMR_A": "57.30736173222908"
+      },
+      {
+        "Bin range(ppm)": "637.7081279391354-728.9295787659282",
+        "28_C1-1_Lung_allogenic_7days_170427_UKy_GCH_rep1-polar-NMR_A": "2.256436030622968"
+      },
+      {
+        "Bin range(ppm)": "639.9747667018285-765.2108907822839",
+        "23_C1-2_Lung_allogenic_42days_170427_UKy_GCH_rep2-polar-NMR_A": "25.99731330923887"
+      },
+      {
+        "Bin range(ppm)": "641.3531433770327-704.702756414014",
+        "20_B1_Lung_syngenic_42days_170427_UKy_GCH_rep2-polar-NMR_A": "5.036276332221283"
+      },
+      {
+        "Bin range(ppm)": "642.608506013752-994.1789980936144",
+        "22_C1-1_Lung_allogenic_42days_170427_UKy_GCH_rep1-polar-NMR_A": "13.70707754992765"
+      },
+      {
+        "Bin range(ppm)": "642.7096753637602-904.3845607515518",
+        "29_C1-2_Lung_allogenic_7days_170427_UKy_GCH_rep2-polar-NMR_A": "54.32634264817055"
+      },
+      {
+        "Bin range(ppm)": "642.7621443002499-703.7428979023375",
+        "27_B1-2_Lung_syngenic_7days_170427_UKy_GCH_rep3-polar-NMR_A": "9.039271816746838"
+      },
+      {
+        "Bin range(ppm)": "644.0916537402935-657.924141275236",
+        "27_B1-2_Lung_syngenic_7days_170427_UKy_GCH_rep3-polar-NMR_A": "3.671544328688329"
+      },
+      {
+        "Bin range(ppm)": "644.1008465839932-862.4361899816352",
+        "30_C1-20_Lung_allogenic_7days_170427_UKy_GCH_rep3-polar-NMR_A": "23.62617974027696"
+      },
+      {
+        "Bin range(ppm)": "644.669655344534-661.1613237273205",
+        "25_B1-0_Lung_syngenic_7days_170427_UKy_GCH_rep1-polar-NMR_A": "4.950901976937711"
+      },
+      {
+        "Bin range(ppm)": "645.0992761576772-869.2947164429638",
+        "23_C1-2_Lung_allogenic_42days_170427_UKy_GCH_rep2-polar-NMR_A": "9.162077681890583"
+      },
+      {
+        "Bin range(ppm)": "65.47950746213927-539.5082112022145",
+        "16_A0_Lung_naive_0days_170427_UKy_GCH_rep1-polar-NMR_A": "1.335960357950937"
+      },
+      {
+        "Bin range(ppm)": "651.3156008120719-938.9725542675823",
+        "28_C1-1_Lung_allogenic_7days_170427_UKy_GCH_rep1-polar-NMR_A": "7.36462537611061"
+      },
+      {
+        "Bin range(ppm)": "655.2344293217725-965.1703857409652",
+        "28_C1-1_Lung_allogenic_7days_170427_UKy_GCH_rep1-polar-NMR_A": "8.947042357487284"
+      },
+      {
+        "Bin range(ppm)": "658.9768498499975-735.3711848408608",
+        "21_B2_Lung_syngenic_42days_170427_UKy_GCH_rep3-polar-NMR_A": "43.71343019657986"
+      },
+      {
+        "Bin range(ppm)": "659.4296099991656-732.8506775681145",
+        "18_A2_Lung_naive_0days_170427_UKy_GCH_rep3-polar-NMR_A": "7.267155283596199"
+      },
+      {
+        "Bin range(ppm)": "66.68656799559736-204.8732342753643",
+        "16_A0_Lung_naive_0days_170427_UKy_GCH_rep1-polar-NMR_A": "2.465630075862531"
+      },
+      {
+        "Bin range(ppm)": "661.9088957548937-757.5930186297278",
+        "16_A0_Lung_naive_0days_170427_UKy_GCH_rep1-polar-NMR_A": "10.05138701331577"
+      },
+      {
+        "Bin range(ppm)": "662.2931615277918-853.1823807017923",
+        "17_A1_Lung_naive_0days_170427_UKy_GCH_rep2-polar-NMR_A": "0.2331392948280419"
+      },
+      {
+        "Bin range(ppm)": "662.5494717980976-693.8329213352818",
+        "28_C1-1_Lung_allogenic_7days_170427_UKy_GCH_rep1-polar-NMR_A": "16.98539074112008"
+      },
+      {
+        "Bin range(ppm)": "663.8135963069751-980.8377408223485",
+        "28_C1-1_Lung_allogenic_7days_170427_UKy_GCH_rep1-polar-NMR_A": "20.61405379986846"
+      },
+      {
+        "Bin range(ppm)": "665.5150389536077-822.9329718317723",
+        "19_B0_Lung_syngenic_42days_170427_UKy_GCH_rep1-polar-NMR_A": "0.1641360992447716"
+      },
+      {
+        "Bin range(ppm)": "666.5554639984381-781.7763284244455",
+        "26_B1-1_Lung_syngenic_7days_170427_UKy_GCH_rep2-polar-NMR_A": "4.239397320409966"
+      },
+      {
+        "Bin range(ppm)": "668.0417978318254-976.9110311592585",
+        "25_B1-0_Lung_syngenic_7days_170427_UKy_GCH_rep1-polar-NMR_A": "38.19211584504775"
+      },
+      {
+        "Bin range(ppm)": "668.1182019435398-743.8455680821301",
+        "18_A2_Lung_naive_0days_170427_UKy_GCH_rep3-polar-NMR_A": "25.54122201110923"
+      },
+      {
+        "Bin range(ppm)": "67.40981075984887-358.94178056232965",
+        "30_C1-20_Lung_allogenic_7days_170427_UKy_GCH_rep3-polar-NMR_A": "5.723655283026943"
+      },
+      {
+        "Bin range(ppm)": "67.83021460243211-528.4085893481713",
+        "18_A2_Lung_naive_0days_170427_UKy_GCH_rep3-polar-NMR_A": "7.146858889871684"
+      },
+      {
+        "Bin range(ppm)": "670.4837213872545-902.9091082544105",
+        "23_C1-2_Lung_allogenic_42days_170427_UKy_GCH_rep2-polar-NMR_A": "43.93812819405086"
+      },
+      {
+        "Bin range(ppm)": "672.0780823935062-994.3318631721031",
+        "30_C1-20_Lung_allogenic_7days_170427_UKy_GCH_rep3-polar-NMR_A": "91.94615939173691"
+      },
+      {
+        "Bin range(ppm)": "673.1450572911261-757.3632751088123",
+        "24_C2-0_Lung_allogenic_42days_170427_UKy_GCH_rep1-polar-NMR_A": "30.20672815356597"
+      },
+      {
+        "Bin range(ppm)": "673.8041216551486-815.2222528722098",
+        "20_B1_Lung_syngenic_42days_170427_UKy_GCH_rep2-polar-NMR_A": "32.04559423466767"
+      },
+      {
+        "Bin range(ppm)": "675.8658791204695-885.5533175038103",
+        "22_C1-1_Lung_allogenic_42days_170427_UKy_GCH_rep1-polar-NMR_A": "4.742225764786865"
+      },
+      {
+        "Bin range(ppm)": "676.3511462118953-837.7819575687586",
+        "23_C1-2_Lung_allogenic_42days_170427_UKy_GCH_rep2-polar-NMR_A": "0.7774911487144324"
+      },
+      {
+        "Bin range(ppm)": "68.40983837251824-894.6778764700597",
+        "19_B0_Lung_syngenic_42days_170427_UKy_GCH_rep1-polar-NMR_A": "60.04531534998311"
+      },
+      {
+        "Bin range(ppm)": "685.6814500443373-814.3942254608571",
+        "29_C1-2_Lung_allogenic_7days_170427_UKy_GCH_rep2-polar-NMR_A": "2.893116912651139"
+      },
+      {
+        "Bin range(ppm)": "691.7973393496115-958.2918961497444",
+        "24_C2-0_Lung_allogenic_42days_170427_UKy_GCH_rep1-polar-NMR_A": "181.51634560348"
+      },
+      {
+        "Bin range(ppm)": "694.5664445997659-925.4630152271131",
+        "19_B0_Lung_syngenic_42days_170427_UKy_GCH_rep1-polar-NMR_A": "0.1193312174579147"
+      },
+      {
+        "Bin range(ppm)": "696.5889636222427-880.166832713643",
+        "18_A2_Lung_naive_0days_170427_UKy_GCH_rep3-polar-NMR_A": "8.946508338568117"
+      },
+      {
+        "Bin range(ppm)": "699.3868035441236-775.7611278644094",
+        "25_B1-0_Lung_syngenic_7days_170427_UKy_GCH_rep1-polar-NMR_A": "69.41295442398153"
+      },
+      {
+        "Bin range(ppm)": "703.4505792441157-834.436075857116",
+        "24_C2-0_Lung_allogenic_42days_170427_UKy_GCH_rep1-polar-NMR_A": "9.201988853908436"
+      },
+      {
+        "Bin range(ppm)": "706.1687135538062-876.6579914426304",
+        "25_B1-0_Lung_syngenic_7days_170427_UKy_GCH_rep1-polar-NMR_A": "76.3842316900955"
+      },
+      {
+        "Bin range(ppm)": "707.4256705503957-841.6435626720993",
+        "22_C1-1_Lung_allogenic_42days_170427_UKy_GCH_rep1-polar-NMR_A": "17.35944750167177"
+      },
+      {
+        "Bin range(ppm)": "707.6371261313618-997.7702356667942",
+        "27_B1-2_Lung_syngenic_7days_170427_UKy_GCH_rep3-polar-NMR_A": "0.1715872527466766"
+      },
+      {
+        "Bin range(ppm)": "708.1233884932024-865.0287154356103",
+        "24_C2-0_Lung_allogenic_42days_170427_UKy_GCH_rep1-polar-NMR_A": "1.7149216808255"
+      },
+      {
+        "Bin range(ppm)": "709.3610813191361-858.3390914414954",
+        "21_B2_Lung_syngenic_42days_170427_UKy_GCH_rep3-polar-NMR_A": "1.685590788938631"
+      },
+      {
+        "Bin range(ppm)": "709.9687237894698-804.2198703987738",
+        "22_C1-1_Lung_allogenic_42days_170427_UKy_GCH_rep1-polar-NMR_A": "0.6412071997989288"
+      },
+      {
+        "Bin range(ppm)": "710.17205490452-826.6413753507941",
+        "28_C1-1_Lung_allogenic_7days_170427_UKy_GCH_rep1-polar-NMR_A": "7.635435319704936"
+      },
+      {
+        "Bin range(ppm)": "711.0852906524227-718.4034543128532",
+        "22_C1-1_Lung_allogenic_42days_170427_UKy_GCH_rep1-polar-NMR_A": "0.9320542534749284"
+      },
+      {
+        "Bin range(ppm)": "714.3540879386235-766.3230610180025",
+        "23_C1-2_Lung_allogenic_42days_170427_UKy_GCH_rep2-polar-NMR_A": "55.18982159621563"
+      },
+      {
+        "Bin range(ppm)": "714.8100993000515-843.6804457057158",
+        "29_C1-2_Lung_allogenic_7days_170427_UKy_GCH_rep2-polar-NMR_A": "69.7939098223973"
+      },
+      {
+        "Bin range(ppm)": "717.891431638245-998.6967137994482",
+        "17_A1_Lung_naive_0days_170427_UKy_GCH_rep2-polar-NMR_A": "10.95255254893355"
+      },
+      {
+        "Bin range(ppm)": "718.9285956063625-938.3626958313304",
+        "24_C2-0_Lung_allogenic_42days_170427_UKy_GCH_rep1-polar-NMR_A": "78.2008667761459"
+      },
+      {
+        "Bin range(ppm)": "718.9851277034295-828.1413644810859",
+        "28_C1-1_Lung_allogenic_7days_170427_UKy_GCH_rep1-polar-NMR_A": "4.254720991266232"
+      },
+      {
+        "Bin range(ppm)": "719.500192739024-909.360336967456",
+        "25_B1-0_Lung_syngenic_7days_170427_UKy_GCH_rep1-polar-NMR_A": "2.50255585582117"
+      },
+      {
+        "Bin range(ppm)": "719.5456053782252-863.6087875091483",
+        "20_B1_Lung_syngenic_42days_170427_UKy_GCH_rep2-polar-NMR_A": "4.102983429688574"
+      },
+      {
+        "Bin range(ppm)": "724.4213018247963-950.2850958378367",
+        "21_B2_Lung_syngenic_42days_170427_UKy_GCH_rep3-polar-NMR_A": "2.901359057169617"
+      },
+      {
+        "Bin range(ppm)": "727.7681617278225-762.5965129213337",
+        "22_C1-1_Lung_allogenic_42days_170427_UKy_GCH_rep1-polar-NMR_A": "2.539219610592107"
+      },
+      {
+        "Bin range(ppm)": "727.9389763104623-771.5086108680503",
+        "26_B1-1_Lung_syngenic_7days_170427_UKy_GCH_rep2-polar-NMR_A": "3.797137620998463"
+      },
+      {
+        "Bin range(ppm)": "73.35985215830931-910.3890711254014",
+        "25_B1-0_Lung_syngenic_7days_170427_UKy_GCH_rep1-polar-NMR_A": "17.21738621422023"
+      },
+      {
+        "Bin range(ppm)": "730.6715712130067-869.6550555409086",
+        "26_B1-1_Lung_syngenic_7days_170427_UKy_GCH_rep2-polar-NMR_A": "0.4112399367712178"
+      },
+      {
+        "Bin range(ppm)": "731.008029240534-829.0586744839062",
+        "23_C1-2_Lung_allogenic_42days_170427_UKy_GCH_rep2-polar-NMR_A": "38.8926678561095"
+      },
+      {
+        "Bin range(ppm)": "731.4099521719303-831.9614736571762",
+        "29_C1-2_Lung_allogenic_7days_170427_UKy_GCH_rep2-polar-NMR_A": "1.498147890485333"
+      },
+      {
+        "Bin range(ppm)": "732.4210876507166-912.3705805456165",
+        "18_A2_Lung_naive_0days_170427_UKy_GCH_rep3-polar-NMR_A": "3.484898358909829"
+      },
+      {
+        "Bin range(ppm)": "732.9933971506961-859.9712070487248",
+        "20_B1_Lung_syngenic_42days_170427_UKy_GCH_rep2-polar-NMR_A": "14.27426161186498"
+      },
+      {
+        "Bin range(ppm)": "735.6330212123173-793.6635609499923",
+        "27_B1-2_Lung_syngenic_7days_170427_UKy_GCH_rep3-polar-NMR_A": "24.76428188879026"
+      },
+      {
+        "Bin range(ppm)": "738.1431516697183-859.3325772013978",
+        "19_B0_Lung_syngenic_42days_170427_UKy_GCH_rep1-polar-NMR_A": "0.780206846970956"
+      },
+      {
+        "Bin range(ppm)": "739.1144492297954-788.5631707697981",
+        "16_A0_Lung_naive_0days_170427_UKy_GCH_rep1-polar-NMR_A": "0.7560983894906564"
+      },
+      {
+        "Bin range(ppm)": "739.575889883452-931.1909035503223",
+        "25_B1-0_Lung_syngenic_7days_170427_UKy_GCH_rep1-polar-NMR_A": "16.96358064921738"
+      },
+      {
+        "Bin range(ppm)": "740.3749780463085-832.0839678771225",
+        "24_C2-0_Lung_allogenic_42days_170427_UKy_GCH_rep1-polar-NMR_A": "83.21735170122328"
+      },
+      {
+        "Bin range(ppm)": "749.8890190369522-832.8308514908905",
+        "26_B1-1_Lung_syngenic_7days_170427_UKy_GCH_rep2-polar-NMR_A": "57.80233022360042"
+      },
+      {
+        "Bin range(ppm)": "75.3420017535067-185.2758327730079",
+        "16_A0_Lung_naive_0days_170427_UKy_GCH_rep1-polar-NMR_A": "3.560827877389022"
+      },
+      {
+        "Bin range(ppm)": "75.38549009851958-918.1000423722273",
+        "18_A2_Lung_naive_0days_170427_UKy_GCH_rep3-polar-NMR_A": "2.636444835965149"
+      },
+      {
+        "Bin range(ppm)": "752.5726354496719-855.2257114058395",
+        "23_C1-2_Lung_allogenic_42days_170427_UKy_GCH_rep2-polar-NMR_A": "5.288249137109227"
+      },
+      {
+        "Bin range(ppm)": "761.3512792949359-818.0497089745354",
+        "25_B1-0_Lung_syngenic_7days_170427_UKy_GCH_rep1-polar-NMR_A": "0.9782527566290548"
+      },
+      {
+        "Bin range(ppm)": "763.2706510501508-945.1348142937446",
+        "28_C1-1_Lung_allogenic_7days_170427_UKy_GCH_rep1-polar-NMR_A": "0.9323422564731966"
+      },
+      {
+        "Bin range(ppm)": "763.3310917887544-787.3442155156577",
+        "19_B0_Lung_syngenic_42days_170427_UKy_GCH_rep1-polar-NMR_A": "61.10677234937927"
+      },
+      {
+        "Bin range(ppm)": "765.6151208547248-770.7004021093488",
+        "22_C1-1_Lung_allogenic_42days_170427_UKy_GCH_rep1-polar-NMR_A": "6.889996282917691"
+      },
+      {
+        "Bin range(ppm)": "767.6072628498493-833.5575115848088",
+        "19_B0_Lung_syngenic_42days_170427_UKy_GCH_rep1-polar-NMR_A": "3.976383085764673"
+      },
+      {
+        "Bin range(ppm)": "77.42013457241481-165.81567655422648",
+        "28_C1-1_Lung_allogenic_7days_170427_UKy_GCH_rep1-polar-NMR_A": "4.43713019363272"
+      },
+      {
+        "Bin range(ppm)": "770.8554719446535-981.4615774780395",
+        "22_C1-1_Lung_allogenic_42days_170427_UKy_GCH_rep1-polar-NMR_A": "1.559733865341734"
+      },
+      {
+        "Bin range(ppm)": "772.770459995788-834.0925167135152",
+        "26_B1-1_Lung_syngenic_7days_170427_UKy_GCH_rep2-polar-NMR_A": "1.625598176396158"
+      },
+      {
+        "Bin range(ppm)": "773.0393560851992-948.4919048693837",
+        "26_B1-1_Lung_syngenic_7days_170427_UKy_GCH_rep2-polar-NMR_A": "2.452664336628265"
+      },
+      {
+        "Bin range(ppm)": "773.073105747003-810.6079324032103",
+        "20_B1_Lung_syngenic_42days_170427_UKy_GCH_rep2-polar-NMR_A": "2.203691738031255"
+      },
+      {
+        "Bin range(ppm)": "774.455357130421-974.6230154768282",
+        "20_B1_Lung_syngenic_42days_170427_UKy_GCH_rep2-polar-NMR_A": "4.821227494251629"
+      },
+      {
+        "Bin range(ppm)": "776.8919515380533-841.1794363951934",
+        "17_A1_Lung_naive_0days_170427_UKy_GCH_rep2-polar-NMR_A": "3.193581633844515"
+      },
+      {
+        "Bin range(ppm)": "777.6258511997283-917.9524327319161",
+        "27_B1-2_Lung_syngenic_7days_170427_UKy_GCH_rep3-polar-NMR_A": "6.744300130420299"
+      },
+      {
+        "Bin range(ppm)": "778.2396034571169-888.938344051339",
+        "19_B0_Lung_syngenic_42days_170427_UKy_GCH_rep1-polar-NMR_A": "0.138115547196995"
+      },
+      {
+        "Bin range(ppm)": "778.3287321723043-990.7708330823905",
+        "17_A1_Lung_naive_0days_170427_UKy_GCH_rep2-polar-NMR_A": "2.17625369936148"
+      },
+      {
+        "Bin range(ppm)": "779.4991509025199-948.333727092753",
+        "19_B0_Lung_syngenic_42days_170427_UKy_GCH_rep1-polar-NMR_A": "15.03877043636968"
+      },
+      {
+        "Bin range(ppm)": "78.40007742688515-710.0030114335531",
+        "24_C2-0_Lung_allogenic_42days_170427_UKy_GCH_rep1-polar-NMR_A": "228.8490320289226"
+      },
+      {
+        "Bin range(ppm)": "781.6455282927141-980.5153236240491",
+        "26_B1-1_Lung_syngenic_7days_170427_UKy_GCH_rep2-polar-NMR_A": "6.257413166112022"
+      },
+      {
+        "Bin range(ppm)": "782.7596013399195-981.1841352445672",
+        "20_B1_Lung_syngenic_42days_170427_UKy_GCH_rep2-polar-NMR_A": "5.841859399515223"
+      },
+      {
+        "Bin range(ppm)": "785.7234377389584-806.9290844002946",
+        "16_A0_Lung_naive_0days_170427_UKy_GCH_rep1-polar-NMR_A": "1.810564445364176"
+      },
+      {
+        "Bin range(ppm)": "789.4644168874663-893.7262552400039",
+        "16_A0_Lung_naive_0days_170427_UKy_GCH_rep1-polar-NMR_A": "10.5839954575616"
+      },
+      {
+        "Bin range(ppm)": "79.00984912025643-669.431619337958",
+        "30_C1-20_Lung_allogenic_7days_170427_UKy_GCH_rep3-polar-NMR_A": "33.30455295058278"
+      },
+      {
+        "Bin range(ppm)": "790.2285078772444-895.1819026366213",
+        "20_B1_Lung_syngenic_42days_170427_UKy_GCH_rep2-polar-NMR_A": "3.515045367516226"
+      },
+      {
+        "Bin range(ppm)": "792.4764312153817-811.8885573873961",
+        "28_C1-1_Lung_allogenic_7days_170427_UKy_GCH_rep1-polar-NMR_A": "27.25671472258037"
+      },
+      {
+        "Bin range(ppm)": "793.5956232777974-800.004243160306",
+        "19_B0_Lung_syngenic_42days_170427_UKy_GCH_rep1-polar-NMR_A": "1.663489300460705"
+      },
+      {
+        "Bin range(ppm)": "797.909682219574-852.285211601284",
+        "27_B1-2_Lung_syngenic_7days_170427_UKy_GCH_rep3-polar-NMR_A": "34.98402164230558"
+      },
+      {
+        "Bin range(ppm)": "798.0465538444813-919.8581939938639",
+        "21_B2_Lung_syngenic_42days_170427_UKy_GCH_rep3-polar-NMR_A": "78.774262197815"
+      },
+      {
+        "Bin range(ppm)": "798.0610900052664-963.8383359365582",
+        "26_B1-1_Lung_syngenic_7days_170427_UKy_GCH_rep2-polar-NMR_A": "0.5943486187809288"
+      },
+      {
+        "Bin range(ppm)": "798.405229759169-923.3450698809194",
+        "19_B0_Lung_syngenic_42days_170427_UKy_GCH_rep1-polar-NMR_A": "0.4284003832292242"
+      },
+      {
+        "Bin range(ppm)": "8.60485375417519-312.09211939404184",
+        "25_B1-0_Lung_syngenic_7days_170427_UKy_GCH_rep1-polar-NMR_A": "90.70395257373714"
+      },
+      {
+        "Bin range(ppm)": "800.2430142745138-914.0652657926261",
+        "26_B1-1_Lung_syngenic_7days_170427_UKy_GCH_rep2-polar-NMR_A": "45.37732165150425"
+      },
+      {
+        "Bin range(ppm)": "800.3974757032599-945.599920032867",
+        "29_C1-2_Lung_allogenic_7days_170427_UKy_GCH_rep2-polar-NMR_A": "3.099763887138852"
+      },
+      {
+        "Bin range(ppm)": "803.1168031354603-957.1242592194112",
+        "26_B1-1_Lung_syngenic_7days_170427_UKy_GCH_rep2-polar-NMR_A": "10.4232319008556"
+      },
+      {
+        "Bin range(ppm)": "803.4189494556055-874.0457055551258",
+        "25_B1-0_Lung_syngenic_7days_170427_UKy_GCH_rep1-polar-NMR_A": "3.229310276443751"
+      },
+      {
+        "Bin range(ppm)": "803.7387345728422-902.9878682556425",
+        "16_A0_Lung_naive_0days_170427_UKy_GCH_rep1-polar-NMR_A": "17.32416614254672"
+      },
+      {
+        "Bin range(ppm)": "804.1685621566173-892.544784553008",
+        "25_B1-0_Lung_syngenic_7days_170427_UKy_GCH_rep1-polar-NMR_A": "53.09593361024601"
+      },
+      {
+        "Bin range(ppm)": "804.3867745082263-900.3518352218148",
+        "25_B1-0_Lung_syngenic_7days_170427_UKy_GCH_rep1-polar-NMR_A": "15.23825196509958"
+      },
+      {
+        "Bin range(ppm)": "805.4459549406165-845.8269781476712",
+        "23_C1-2_Lung_allogenic_42days_170427_UKy_GCH_rep2-polar-NMR_A": "18.70266447046346"
+      },
+      {
+        "Bin range(ppm)": "808.4701270514292-811.6978142428666",
+        "26_B1-1_Lung_syngenic_7days_170427_UKy_GCH_rep2-polar-NMR_A": "4.345300560566886"
+      },
+      {
+        "Bin range(ppm)": "808.8940872317727-937.4450571871865",
+        "20_B1_Lung_syngenic_42days_170427_UKy_GCH_rep2-polar-NMR_A": "13.63347232265605"
+      },
+      {
+        "Bin range(ppm)": "809.6663133735605-830.5120935509653",
+        "30_C1-20_Lung_allogenic_7days_170427_UKy_GCH_rep3-polar-NMR_A": "49.68364490293543"
+      },
+      {
+        "Bin range(ppm)": "81.68077497348469-382.6743555237861",
+        "28_C1-1_Lung_allogenic_7days_170427_UKy_GCH_rep1-polar-NMR_A": "7.390274167729928"
+      },
+      {
+        "Bin range(ppm)": "812.3464240342221-893.7683964127424",
+        "27_B1-2_Lung_syngenic_7days_170427_UKy_GCH_rep3-polar-NMR_A": "0.2067887746143828"
+      },
+      {
+        "Bin range(ppm)": "813.8557979610653-848.1638649925458",
+        "20_B1_Lung_syngenic_42days_170427_UKy_GCH_rep2-polar-NMR_A": "5.258305507373461"
+      },
+      {
+        "Bin range(ppm)": "815.8903069067326-816.2241059896854",
+        "28_C1-1_Lung_allogenic_7days_170427_UKy_GCH_rep1-polar-NMR_A": "46.75618042995438"
+      },
+      {
+        "Bin range(ppm)": "819.4449130544236-830.6921921167683",
+        "26_B1-1_Lung_syngenic_7days_170427_UKy_GCH_rep2-polar-NMR_A": "14.15656004900689"
+      },
+      {
+        "Bin range(ppm)": "819.8176064103108-877.5676635570402",
+        "28_C1-1_Lung_allogenic_7days_170427_UKy_GCH_rep1-polar-NMR_A": "6.441375258279031"
+      },
+      {
+        "Bin range(ppm)": "823.9669340963413-956.1666871966702",
+        "17_A1_Lung_naive_0days_170427_UKy_GCH_rep2-polar-NMR_A": "17.71751692490133"
+      },
+      {
+        "Bin range(ppm)": "824.614980311057-867.6721196529302",
+        "16_A0_Lung_naive_0days_170427_UKy_GCH_rep1-polar-NMR_A": "102.7715442904196"
+      },
+      {
+        "Bin range(ppm)": "83.97298797195984-84.55414908003299",
+        "20_B1_Lung_syngenic_42days_170427_UKy_GCH_rep2-polar-NMR_A": "10.65531345539901"
+      },
+      {
+        "Bin range(ppm)": "835.2561957852041-985.0346671406794",
+        "20_B1_Lung_syngenic_42days_170427_UKy_GCH_rep2-polar-NMR_A": "20.62049230866127"
+      },
+      {
+        "Bin range(ppm)": "835.3440552619255-943.6342303902273",
+        "19_B0_Lung_syngenic_42days_170427_UKy_GCH_rep1-polar-NMR_A": "3.426652689316178"
+      },
+      {
+        "Bin range(ppm)": "836.7833559327979-919.4011971153438",
+        "16_A0_Lung_naive_0days_170427_UKy_GCH_rep1-polar-NMR_A": "66.1553831283207"
+      },
+      {
+        "Bin range(ppm)": "837.1827352813494-842.600637987274",
+        "19_B0_Lung_syngenic_42days_170427_UKy_GCH_rep1-polar-NMR_A": "9.329929481681754"
+      },
+      {
+        "Bin range(ppm)": "838.8666927118547-889.1703525732783",
+        "28_C1-1_Lung_allogenic_7days_170427_UKy_GCH_rep1-polar-NMR_A": "2.525536907495163"
+      },
+      {
+        "Bin range(ppm)": "838.9590627398356-963.3356848581791",
+        "30_C1-20_Lung_allogenic_7days_170427_UKy_GCH_rep3-polar-NMR_A": "14.08531556233143"
+      },
+      {
+        "Bin range(ppm)": "84.84910157010029-195.629500584281",
+        "30_C1-20_Lung_allogenic_7days_170427_UKy_GCH_rep3-polar-NMR_A": "4.631055036696582"
+      },
+      {
+        "Bin range(ppm)": "842.5852237784005-933.0389449314052",
+        "28_C1-1_Lung_allogenic_7days_170427_UKy_GCH_rep1-polar-NMR_A": "3.321602966914788"
+      },
+      {
+        "Bin range(ppm)": "843.3356442114283-979.4468154673536",
+        "28_C1-1_Lung_allogenic_7days_170427_UKy_GCH_rep1-polar-NMR_A": "9.154507504470294"
+      },
+      {
+        "Bin range(ppm)": "844.7916162913965-970.282545954544",
+        "26_B1-1_Lung_syngenic_7days_170427_UKy_GCH_rep2-polar-NMR_A": "3.042857386336223"
+      },
+      {
+        "Bin range(ppm)": "846.4632497726301-904.9330312574169",
+        "25_B1-0_Lung_syngenic_7days_170427_UKy_GCH_rep1-polar-NMR_A": "0.9160269171532681"
+      },
+      {
+        "Bin range(ppm)": "855.7107128923673-950.2519460568748",
+        "19_B0_Lung_syngenic_42days_170427_UKy_GCH_rep1-polar-NMR_A": "1.243009195448877"
+      },
+      {
+        "Bin range(ppm)": "858.6349540410838-869.3153456415573",
+        "24_C2-0_Lung_allogenic_42days_170427_UKy_GCH_rep1-polar-NMR_A": "10.06209920411248"
+      },
+      {
+        "Bin range(ppm)": "860.2620177341036-932.4167616830636",
+        "29_C1-2_Lung_allogenic_7days_170427_UKy_GCH_rep2-polar-NMR_A": "0.21952024599774"
+      },
+      {
+        "Bin range(ppm)": "862.5507706865832-988.413443748611",
+        "29_C1-2_Lung_allogenic_7days_170427_UKy_GCH_rep2-polar-NMR_A": "8.13221678170012"
+      },
+      {
+        "Bin range(ppm)": "863.531463435873-902.8334976732266",
+        "29_C1-2_Lung_allogenic_7days_170427_UKy_GCH_rep2-polar-NMR_A": "6.88252505445167"
+      },
+      {
+        "Bin range(ppm)": "863.9017151741963-876.8942524622873",
+        "30_C1-20_Lung_allogenic_7days_170427_UKy_GCH_rep3-polar-NMR_A": "12.23986268611388"
+      },
+      {
+        "Bin range(ppm)": "866.1459573314702-991.7630426239127",
+        "26_B1-1_Lung_syngenic_7days_170427_UKy_GCH_rep2-polar-NMR_A": "30.7302541002136"
+      },
+      {
+        "Bin range(ppm)": "866.359439810513-967.2807324965182",
+        "22_C1-1_Lung_allogenic_42days_170427_UKy_GCH_rep1-polar-NMR_A": "75.22329299923159"
+      },
+      {
+        "Bin range(ppm)": "868.8823284568922-902.2414354408429",
+        "21_B2_Lung_syngenic_42days_170427_UKy_GCH_rep3-polar-NMR_A": "53.15021705750867"
+      },
+      {
+        "Bin range(ppm)": "869.8492803777708-902.8562717309651",
+        "30_C1-20_Lung_allogenic_7days_170427_UKy_GCH_rep3-polar-NMR_A": "1.314541284889026"
+      },
+      {
+        "Bin range(ppm)": "870.8285463007079-962.7684849421915",
+        "27_B1-2_Lung_syngenic_7days_170427_UKy_GCH_rep3-polar-NMR_A": "25.11205614201537"
+      },
+      {
+        "Bin range(ppm)": "872.4423576467123-976.504251702896",
+        "20_B1_Lung_syngenic_42days_170427_UKy_GCH_rep2-polar-NMR_A": "2.419521925027679"
+      },
+      {
+        "Bin range(ppm)": "872.780236491456-985.7019703431381",
+        "24_C2-0_Lung_allogenic_42days_170427_UKy_GCH_rep1-polar-NMR_A": "115.5074555419828"
+      },
+      {
+        "Bin range(ppm)": "873.3752233085578-980.9860536133342",
+        "24_C2-0_Lung_allogenic_42days_170427_UKy_GCH_rep1-polar-NMR_A": "267.5406065555259"
+      },
+      {
+        "Bin range(ppm)": "873.6128002372299-874.0356457992625",
+        "19_B0_Lung_syngenic_42days_170427_UKy_GCH_rep1-polar-NMR_A": "31.04028875375313"
+      },
+      {
+        "Bin range(ppm)": "874.0195486240236-914.8814894654607",
+        "30_C1-20_Lung_allogenic_7days_170427_UKy_GCH_rep3-polar-NMR_A": "3.460102755315279"
+      },
+      {
+        "Bin range(ppm)": "877.4530886324384-947.7166887642242",
+        "17_A1_Lung_naive_0days_170427_UKy_GCH_rep2-polar-NMR_A": "11.16101590377429"
+      },
+      {
+        "Bin range(ppm)": "878.0405621047496-949.5950461805586",
+        "24_C2-0_Lung_allogenic_42days_170427_UKy_GCH_rep1-polar-NMR_A": "9.33693825173641"
+      },
+      {
+        "Bin range(ppm)": "880.2622723366238-999.5172142056938",
+        "25_B1-0_Lung_syngenic_7days_170427_UKy_GCH_rep1-polar-NMR_A": "41.19985433216476"
+      },
+      {
+        "Bin range(ppm)": "881.5375063508027-957.3383326933687",
+        "21_B2_Lung_syngenic_42days_170427_UKy_GCH_rep3-polar-NMR_A": "0.242500274749503"
+      },
+      {
+        "Bin range(ppm)": "881.7404986980977-947.2219147840568",
+        "27_B1-2_Lung_syngenic_7days_170427_UKy_GCH_rep3-polar-NMR_A": "2.35833346112084"
+      },
+      {
+        "Bin range(ppm)": "882.6754395678995-977.8541628625987",
+        "28_C1-1_Lung_allogenic_7days_170427_UKy_GCH_rep1-polar-NMR_A": "22.33136444672714"
+      },
+      {
+        "Bin range(ppm)": "883.4791054004879-997.8748202273966",
+        "26_B1-1_Lung_syngenic_7days_170427_UKy_GCH_rep2-polar-NMR_A": "0.7555995727753084"
+      },
+      {
+        "Bin range(ppm)": "883.6079124642816-921.1729824454181",
+        "17_A1_Lung_naive_0days_170427_UKy_GCH_rep2-polar-NMR_A": "25.0681186482183"
+      },
+      {
+        "Bin range(ppm)": "884.6703121688379-963.7689423907188",
+        "23_C1-2_Lung_allogenic_42days_170427_UKy_GCH_rep2-polar-NMR_A": "5.367567020973105"
+      },
+      {
+        "Bin range(ppm)": "886.8565876976413-918.19188106259",
+        "20_B1_Lung_syngenic_42days_170427_UKy_GCH_rep2-polar-NMR_A": "2.881267425414594"
+      },
+      {
+        "Bin range(ppm)": "887.6995806919616-961.501569106907",
+        "16_A0_Lung_naive_0days_170427_UKy_GCH_rep1-polar-NMR_A": "0.2637527471101226"
+      },
+      {
+        "Bin range(ppm)": "888.2434210851454-920.2459509389272",
+        "19_B0_Lung_syngenic_42days_170427_UKy_GCH_rep1-polar-NMR_A": "3.860940974458759"
+      },
+      {
+        "Bin range(ppm)": "89.766335846322-352.5133895163344",
+        "27_B1-2_Lung_syngenic_7days_170427_UKy_GCH_rep3-polar-NMR_A": "0.29543797908882"
+      },
+      {
+        "Bin range(ppm)": "890.6846269261254-964.8562417365804",
+        "20_B1_Lung_syngenic_42days_170427_UKy_GCH_rep2-polar-NMR_A": "21.02197595303462"
+      },
+      {
+        "Bin range(ppm)": "892.4157295589798-929.9871321044207",
+        "17_A1_Lung_naive_0days_170427_UKy_GCH_rep2-polar-NMR_A": "0.2574649678664002"
+      },
+      {
+        "Bin range(ppm)": "892.4485680548788-966.1710398541996",
+        "30_C1-20_Lung_allogenic_7days_170427_UKy_GCH_rep3-polar-NMR_A": "3.292453579897137"
+      },
+      {
+        "Bin range(ppm)": "897.8228942209049-917.4421194601821",
+        "27_B1-2_Lung_syngenic_7days_170427_UKy_GCH_rep3-polar-NMR_A": "1.980488289857661"
+      },
+      {
+        "Bin range(ppm)": "90.81150544762062-147.8265986110714",
+        "16_A0_Lung_naive_0days_170427_UKy_GCH_rep1-polar-NMR_A": "22.16183944543756"
+      },
+      {
+        "Bin range(ppm)": "900.407803003694-962.7132582301325",
+        "20_B1_Lung_syngenic_42days_170427_UKy_GCH_rep2-polar-NMR_A": "8.751319940178417"
+      },
+      {
+        "Bin range(ppm)": "902.1554993556405-987.4076381530094",
+        "22_C1-1_Lung_allogenic_42days_170427_UKy_GCH_rep1-polar-NMR_A": "0.04672978470301301"
+      },
+      {
+        "Bin range(ppm)": "902.6504353359679-939.4770830919339",
+        "25_B1-0_Lung_syngenic_7days_170427_UKy_GCH_rep1-polar-NMR_A": "3.5718019535407"
+      },
+      {
+        "Bin range(ppm)": "905.5626244361706-985.9100988111576",
+        "20_B1_Lung_syngenic_42days_170427_UKy_GCH_rep2-polar-NMR_A": "30.26338436248696"
+      },
+      {
+        "Bin range(ppm)": "907.4165038614129-934.203698420798",
+        "16_A0_Lung_naive_0days_170427_UKy_GCH_rep1-polar-NMR_A": "37.35608789831367"
+      },
+      {
+        "Bin range(ppm)": "908.2607582457873-911.6962667746304",
+        "19_B0_Lung_syngenic_42days_170427_UKy_GCH_rep1-polar-NMR_A": "25.60920441716221"
+      },
+      {
+        "Bin range(ppm)": "909.1026277948895-996.0074243499948",
+        "28_C1-1_Lung_allogenic_7days_170427_UKy_GCH_rep1-polar-NMR_A": "17.59131190960354"
+      },
+      {
+        "Bin range(ppm)": "91.18414873872815-863.5240982911225",
+        "25_B1-0_Lung_syngenic_7days_170427_UKy_GCH_rep1-polar-NMR_A": "7.711547806023736"
+      },
+      {
+        "Bin range(ppm)": "915.0867975047505-987.8714522663219",
+        "28_C1-1_Lung_allogenic_7days_170427_UKy_GCH_rep1-polar-NMR_A": "0.3229702544517254"
+      },
+      {
+        "Bin range(ppm)": "915.2194063293542-967.3664901308365",
+        "21_B2_Lung_syngenic_42days_170427_UKy_GCH_rep3-polar-NMR_A": "2.04080232438951"
+      },
+      {
+        "Bin range(ppm)": "916.0655967018977-932.9083133080345",
+        "24_C2-0_Lung_allogenic_42days_170427_UKy_GCH_rep1-polar-NMR_A": "2.18433629760881"
+      },
+      {
+        "Bin range(ppm)": "917.2068686840587-990.8756137803701",
+        "29_C1-2_Lung_allogenic_7days_170427_UKy_GCH_rep2-polar-NMR_A": "0.6375911397379252"
+      },
+      {
+        "Bin range(ppm)": "919.188668785818-938.595587276104",
+        "24_C2-0_Lung_allogenic_42days_170427_UKy_GCH_rep1-polar-NMR_A": "166.4347034024466"
+      },
+      {
+        "Bin range(ppm)": "919.2510048810294-994.140066084789",
+        "17_A1_Lung_naive_0days_170427_UKy_GCH_rep2-polar-NMR_A": "13.06400214440536"
+      },
+      {
+        "Bin range(ppm)": "92.43500127874438-684.7694655971125",
+        "20_B1_Lung_syngenic_42days_170427_UKy_GCH_rep2-polar-NMR_A": "4.454218737497699"
+      },
+      {
+        "Bin range(ppm)": "92.7590403030717-987.8096183759426",
+        "29_C1-2_Lung_allogenic_7days_170427_UKy_GCH_rep2-polar-NMR_A": "6.45087299687707"
+      },
+      {
+        "Bin range(ppm)": "922.1819027964264-959.3993016432063",
+        "21_B2_Lung_syngenic_42days_170427_UKy_GCH_rep3-polar-NMR_A": "127.6521024691763"
+      },
+      {
+        "Bin range(ppm)": "922.7473569434854-928.4063252495148",
+        "24_C2-0_Lung_allogenic_42days_170427_UKy_GCH_rep1-polar-NMR_A": "6.716165851894387"
+      },
+      {
+        "Bin range(ppm)": "924.0550382278768-960.3272778455323",
+        "21_B2_Lung_syngenic_42days_170427_UKy_GCH_rep3-polar-NMR_A": "4.127460994836341"
+      },
+      {
+        "Bin range(ppm)": "925.2818376354271-954.9392867068279",
+        "27_B1-2_Lung_syngenic_7days_170427_UKy_GCH_rep3-polar-NMR_A": "2.508729328510752"
+      },
+      {
+        "Bin range(ppm)": "926.6071869027344-965.5860216779265",
+        "16_A0_Lung_naive_0days_170427_UKy_GCH_rep1-polar-NMR_A": "0.09636758257507522"
+      },
+      {
+        "Bin range(ppm)": "926.6126420218536-943.9198795447635",
+        "18_A2_Lung_naive_0days_170427_UKy_GCH_rep3-polar-NMR_A": "1.73943462934455"
+      },
+      {
+        "Bin range(ppm)": "928.5039318384569-977.0716999149947",
+        "29_C1-2_Lung_allogenic_7days_170427_UKy_GCH_rep2-polar-NMR_A": "103.7522323176778"
+      },
+      {
+        "Bin range(ppm)": "929.5061847786612-954.9436212761406",
+        "25_B1-0_Lung_syngenic_7days_170427_UKy_GCH_rep1-polar-NMR_A": "65.81591573229967"
+      },
+      {
+        "Bin range(ppm)": "93.27862419596578-114.1838145978591",
+        "27_B1-2_Lung_syngenic_7days_170427_UKy_GCH_rep3-polar-NMR_A": "3.038872202040535"
+      },
+      {
+        "Bin range(ppm)": "931.2455314682219-984.3121891560679",
+        "21_B2_Lung_syngenic_42days_170427_UKy_GCH_rep3-polar-NMR_A": "10.51272464314843"
+      },
+      {
+        "Bin range(ppm)": "931.3472746223425-943.5286271945592",
+        "29_C1-2_Lung_allogenic_7days_170427_UKy_GCH_rep2-polar-NMR_A": "56.64885026586802"
+      },
+      {
+        "Bin range(ppm)": "931.6880211018463-934.6165893865002",
+        "29_C1-2_Lung_allogenic_7days_170427_UKy_GCH_rep2-polar-NMR_A": "11.17477715494425"
+      },
+      {
+        "Bin range(ppm)": "935.1603601915052-935.9298937190283",
+        "25_B1-0_Lung_syngenic_7days_170427_UKy_GCH_rep1-polar-NMR_A": "11.04203221263624"
+      },
+      {
+        "Bin range(ppm)": "937.729180872994-977.1847005450057",
+        "23_C1-2_Lung_allogenic_42days_170427_UKy_GCH_rep2-polar-NMR_A": "38.83303485096003"
+      },
+      {
+        "Bin range(ppm)": "938.1839893713914-971.9911291251585",
+        "16_A0_Lung_naive_0days_170427_UKy_GCH_rep1-polar-NMR_A": "0.4898002436050454"
+      },
+      {
+        "Bin range(ppm)": "94.22708012888548-523.3078269005207",
+        "20_B1_Lung_syngenic_42days_170427_UKy_GCH_rep2-polar-NMR_A": "23.56940642510862"
+      },
+      {
+        "Bin range(ppm)": "943.0363590347336-975.3024641140157",
+        "28_C1-1_Lung_allogenic_7days_170427_UKy_GCH_rep1-polar-NMR_A": "2.921653775069233"
+      },
+      {
+        "Bin range(ppm)": "945.3397348977521-994.0435006219908",
+        "23_C1-2_Lung_allogenic_42days_170427_UKy_GCH_rep2-polar-NMR_A": "0.8778539792483994"
+      },
+      {
+        "Bin range(ppm)": "945.3981491941731-968.2537281239372",
+        "22_C1-1_Lung_allogenic_42days_170427_UKy_GCH_rep1-polar-NMR_A": "0.1713784607835942"
+      },
+      {
+        "Bin range(ppm)": "946.5437972469225-996.0044203255817",
+        "30_C1-20_Lung_allogenic_7days_170427_UKy_GCH_rep3-polar-NMR_A": "1.72495126405875"
+      },
+      {
+        "Bin range(ppm)": "947.2765083361354-994.3375827354387",
+        "23_C1-2_Lung_allogenic_42days_170427_UKy_GCH_rep2-polar-NMR_A": "45.5980621052338"
+      },
+      {
+        "Bin range(ppm)": "947.3167143231925-988.421393811571",
+        "25_B1-0_Lung_syngenic_7days_170427_UKy_GCH_rep1-polar-NMR_A": "5.286119383625488"
+      },
+      {
+        "Bin range(ppm)": "947.6872737942955-982.3056717302751",
+        "29_C1-2_Lung_allogenic_7days_170427_UKy_GCH_rep2-polar-NMR_A": "0.7684351317623923"
+      },
+      {
+        "Bin range(ppm)": "948.457779141897-951.5552894557585",
+        "28_C1-1_Lung_allogenic_7days_170427_UKy_GCH_rep1-polar-NMR_A": "4.234120743581087"
+      },
+      {
+        "Bin range(ppm)": "951.5420940506278-954.942698862192",
+        "16_A0_Lung_naive_0days_170427_UKy_GCH_rep1-polar-NMR_A": "1.272762814472607"
+      },
+      {
+        "Bin range(ppm)": "953.8044870273777-977.0956156056545",
+        "19_B0_Lung_syngenic_42days_170427_UKy_GCH_rep1-polar-NMR_A": "5.485314838043246"
+      },
+      {
+        "Bin range(ppm)": "954.2866427403387-985.0288217051415",
+        "27_B1-2_Lung_syngenic_7days_170427_UKy_GCH_rep3-polar-NMR_A": "4.768486405250959"
+      },
+      {
+        "Bin range(ppm)": "958.3291782228404-976.3348271322285",
+        "27_B1-2_Lung_syngenic_7days_170427_UKy_GCH_rep3-polar-NMR_A": "21.90080149618848"
+      },
+      {
+        "Bin range(ppm)": "964.0092760675241-967.3341405275136",
+        "27_B1-2_Lung_syngenic_7days_170427_UKy_GCH_rep3-polar-NMR_A": "2.368981252986498"
+      },
+      {
+        "Bin range(ppm)": "968.7869881920982-994.1286451215813",
+        "24_C2-0_Lung_allogenic_42days_170427_UKy_GCH_rep1-polar-NMR_A": "4.549648170888623"
+      },
+      {
+        "Bin range(ppm)": "972.8108879780438-990.0821428696293",
+        "24_C2-0_Lung_allogenic_42days_170427_UKy_GCH_rep1-polar-NMR_A": "65.42330499415841"
+      },
+      {
+        "Bin range(ppm)": "972.9428858833252-992.546601736173",
+        "29_C1-2_Lung_allogenic_7days_170427_UKy_GCH_rep2-polar-NMR_A": "1.263850243988125"
+      },
+      {
+        "Bin range(ppm)": "973.8272249485472-987.031218186113",
+        "18_A2_Lung_naive_0days_170427_UKy_GCH_rep3-polar-NMR_A": "2.344382905186013"
+      },
+      {
+        "Bin range(ppm)": "975.1949920395336-986.3971603644491",
+        "16_A0_Lung_naive_0days_170427_UKy_GCH_rep1-polar-NMR_A": "10.63477639132573"
+      },
+      {
+        "Bin range(ppm)": "975.9378660382735-991.9496827262556",
+        "26_B1-1_Lung_syngenic_7days_170427_UKy_GCH_rep2-polar-NMR_A": "25.8048990474967"
+      },
+      {
+        "Bin range(ppm)": "976.4717002402044-998.387641702285",
+        "21_B2_Lung_syngenic_42days_170427_UKy_GCH_rep3-polar-NMR_A": "1.721466001756131"
+      },
+      {
+        "Bin range(ppm)": "977.2408979502316-995.1926657474787",
+        "26_B1-1_Lung_syngenic_7days_170427_UKy_GCH_rep2-polar-NMR_A": "1.508957568721364"
+      },
+      {
+        "Bin range(ppm)": "978.0076480254379-985.3658262883813",
+        "29_C1-2_Lung_allogenic_7days_170427_UKy_GCH_rep2-polar-NMR_A": "11.36579421460837"
+      },
+      {
+        "Bin range(ppm)": "978.2704316180141-997.6871387315773",
+        "30_C1-20_Lung_allogenic_7days_170427_UKy_GCH_rep3-polar-NMR_A": "3.564061088618107"
+      },
+      {
+        "Bin range(ppm)": "98.37301794238029-976.3822912206496",
+        "25_B1-0_Lung_syngenic_7days_170427_UKy_GCH_rep1-polar-NMR_A": "1.145717020847512"
+      },
+      {
+        "Bin range(ppm)": "981.3080741390863-992.2960932404046",
+        "23_C1-2_Lung_allogenic_42days_170427_UKy_GCH_rep2-polar-NMR_A": "20.74827696368287"
+      },
+      {
+        "Bin range(ppm)": "982.8694779338311-996.9959806881242",
+        "29_C1-2_Lung_allogenic_7days_170427_UKy_GCH_rep2-polar-NMR_A": "31.93595464328705"
+      },
+      {
+        "Bin range(ppm)": "982.9019635524769-992.4084911939941",
+        "26_B1-1_Lung_syngenic_7days_170427_UKy_GCH_rep2-polar-NMR_A": "12.63889524230585"
+      },
+      {
+        "Bin range(ppm)": "988.0680263884998-989.7315301108654",
+        "26_B1-1_Lung_syngenic_7days_170427_UKy_GCH_rep2-polar-NMR_A": "3.292293576364786"
+      },
+      {
+        "Bin range(ppm)": "989.7245699033699-994.4070998713454",
+        "18_A2_Lung_naive_0days_170427_UKy_GCH_rep3-polar-NMR_A": "0.2509879262658648"
+      },
+      {
+        "Bin range(ppm)": "989.7442292495416-995.7348147005524",
+        "30_C1-20_Lung_allogenic_7days_170427_UKy_GCH_rep3-polar-NMR_A": "6.700280622432746"
+      },
+      {
+        "Bin range(ppm)": "990.2025715163251-999.6266774399768",
+        "16_A0_Lung_naive_0days_170427_UKy_GCH_rep1-polar-NMR_A": "84.84635416957121"
+      },
+      {
+        "Bin range(ppm)": "992.8608675859664-993.2394632710235",
+        "23_C1-2_Lung_allogenic_42days_170427_UKy_GCH_rep2-polar-NMR_A": "14.32988540144569"
+      },
+      {
+        "Bin range(ppm)": "995.9544739459224-998.7274326373293",
+        "19_B0_Lung_syngenic_42days_170427_UKy_GCH_rep1-polar-NMR_A": "0.9788092707551024"
+      }
+    ],
+    "Units": "normalized peak area"
+  }
+}
