@@ -13,8 +13,8 @@ MESSES
    :target: https://github.com/MoseleyBioinformaticsLab/messes/actions/workflows/build.yml
    :alt: Build status
 
-.. image:: https://codecov.io/gh/MoseleyBioinformaticsLab/messes/branch/main/graphs/badge.svg?branch=main
-   :target: https://codecov.io/gh/MoseleyBioinformaticsLab/messes
+.. image:: https://codecov.io/gh/MoseleyBioinformaticsLab/MESSES/branch/main/graphs/badge.svg?branch=main
+   :target: https://codecov.io/gh/MoseleyBioinformaticsLab/MESSES
    :alt: Code coverage information
 
 ..
