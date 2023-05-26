@@ -32,8 +32,8 @@ MESSES
 MESSES (Metadata from Experimental SpreadSheets Extraction System) is a Python package that facilitates the conversion of tabular data into
 other formats. We call it MESSES because we try to convert other people’s metadata messes into clean, well-structured, JSONized metadata. 
 It was initially created to pull mass spectrometry (MS) and nuclear magnetic resonance (NMR) experimental data into a database, but has been generalized to work with all tabular data. The key to this 
-is the `tagging <https://moseleybioinformaticslab.github.io/messes/tagging.html>`__ system. Simply add a layer of tags to any tabular data and 
-MESSES can transform it into an intermediate JSON representation and then convert it to any of the `supported formats <https://moseleybioinformaticslab.github.io/messes/supported_formats.html>`__. 
+is the `tagging <https://moseleybioinformaticslab.github.io/MESSES/tagging.html>`__ system. Simply add a layer of tags to any tabular data and 
+MESSES can transform it into an intermediate JSON representation and then convert it to any of the `supported formats <https://moseleybioinformaticslab.github.io/MESSES/supported_formats.html>`__. 
 
 Currently Supported Formats:
     
@@ -45,17 +45,17 @@ is not an easy one, but MESSES was created to make it easier. MESSES breaks up t
 into 3 steps: extract, validate, and convert. The extraction step adds a layer of tags 
 to your raw tabular data, which may be automatable, and then extracts it into a JSONized form 
 that it is more interoperable and more standardized. 
-The validation step ensures the data that was extracted is valid against the `Experiment Description Schema <https://moseleybioinformaticslab.github.io/messes/experiment_description_schema.html>`__, 
-the `Protocol Dependent Schema <https://moseleybioinformaticslab.github.io/messes/protocol_dependent_schema.html>`__, any additional JSON schema you wish to provide, and a built 
+The validation step ensures the data that was extracted is valid against the `Experiment Description Specification <https://moseleybioinformaticslab.github.io/MESSES/experiment_description_specification.html>`__, 
+the `Protocol Dependent Schema <https://moseleybioinformaticslab.github.io/MESSES/protocol_dependent_schema.html>`__, any additional JSON schema you wish to provide, and a built 
 in schema specific for the format you wish to convert to. The conversion step converts the 
 extracted data to the form that is accepted by the online repository. There is an initial 
 steep learning curve. But once the extraction, validation, and conversion settings are 
-worked out, this process can be easily added to our data generation and analysis workflows.
+worked out, this process can be easily added to your data generation and analysis workflows.
 
 Although any kind of data schema can be used for extraction into JSON, conversion 
 to another format from the extracted JSON does rely on the data being in a specific 
 schema. A generalized schema was developed for MESSES that should be able to comprehensively 
-describe most experimental designs and data. This schema is described in the `Experiment Description Schema <https://moseleybioinformaticslab.github.io/messes/experiment_description_schema.html>`__ section 
+describe most experimental designs and data. This schema is described in the `Experiment Description Specification <https://moseleybioinformaticslab.github.io/MESSES/experiment_description_specification.html>`__ section 
 of the documentation. But original data entry, manual tagging of tabular data, and even 
 automated tagging facilities can be messy, generating errors in the extracted JSONized 
 representation. So MESSES includes a validate command to help make sure your data is in 
@@ -125,8 +125,8 @@ Upgrade on Windows
 Quickstart
 ~~~~~~~~~~
 It is unlikely that you will have data that is tagged and ready to be converted, so 
-it is highly recommended to first read the documentation on `tagging <https://moseleybioinformaticslab.github.io/messes/tagging.html>`__ 
-and the `Experiment Description Schema <https://moseleybioinformaticslab.github.io/messes/experiment_description_schema.html>`__ so 
+it is highly recommended to first read the documentation on `tagging <https://moseleybioinformaticslab.github.io/MESSES/tagging.html>`__ 
+and the `Experiment Description Specification <https://moseleybioinformaticslab.github.io/MESSES/experiment_description_specification.html>`__ so 
 that you can properly tag your data first.
 
 The expected workflow is to use the "extract" command to transform your tabular data 
@@ -144,8 +144,8 @@ A basic error free run may look like:
    messes convert desired_format your_data.json your_format_data
    
 MESSES's behavior can be quite complex, so it is highly encouraged to read the 
-`guide <https://moseleybioinformaticslab.github.io/messes/guide.html>`_ and `tutorial <https://moseleybioinformaticslab.github.io/messes/tutorial.html>`_.
-There are also examples available in the examples folder on the GitHub_ repository.
+`guide <https://moseleybioinformaticslab.github.io/MESSES/guide.html>`_ and `tutorial <https://moseleybioinformaticslab.github.io/MESSES/tutorial.html>`_.
+There are also examples available in the examples folder on the GitHub_ repository and in a `figshare <https://doi.org/10.6084/m9.figshare.23148224.v1>`_.
 
 
 
@@ -163,14 +163,13 @@ in the /Applications/Python 3.x folder. This should fix the issue.
 License
 ~~~~~~~
 
-This package is distributed under the BSD `license <https://moseleybioinformaticslab.github.io/messes/license.html>`__.
+This package is distributed under the BSD `license <https://moseleybioinformaticslab.github.io/MESSES/license.html>`__.
 
 
 .. _Metabolomics Workbench: http://www.metabolomicsworkbench.org
 .. _GitHub: https://github.com/MoseleyBioinformaticsLab/messes
 .. _Issues: https://github.com/MoseleyBioinformaticsLab/messes/issues
-.. _Pages: https://moseleybioinformaticslab.github.io/messes/
-.. _ReadTheDocs: http://messes.readthedocs.io
+.. _Pages: https://moseleybioinformaticslab.github.io/MESSES/
 .. _PyPI: https://pypi.org/project/messes
 .. _pip: https://pip.pypa.io
 .. _BSD: https://choosealicense.com/licenses/bsd-3-clause-clear/
