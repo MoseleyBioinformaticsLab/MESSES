@@ -1,13 +1,6 @@
-#ANALYSIS
-AN:ANALYSIS_TYPE                 	NM
-#COLLECTION
-CO:COLLECTION_PROTOCOL_FILENAME  	mouse_tissue_procedure.pdf
-CO:COLLECTION_PROTOCOL_ID        	mouse_tissue_collection
-CO:COLLECTION_SUMMARY            	Mouse is sacrificed and tissues are harvested.
-CO:SAMPLE_TYPE                   	mouse
-#METABOLOMICS WORKBENCH ANALYSIS_ID:AN000000 STUDY_ID:ST000000
-CREATED_ON          	2023-03-24
+#METABOLOMICS WORKBENCH STUDY_ID:ST000000 ANALYSIS_ID:AN000000
 VERSION             	1
+CREATED_ON          	2023-05-31
 #PROJECT
 PR:ADDRESS                       	Gerhard C. Hildebrandt, MD, Room no. CC401A, Ben Roach Building, Markey Cancer
 PR:ADDRESS                       	Center University of Kentucky, Lexington, 40536
@@ -43,17 +36,6 @@ PR:PROJECT_SUMMARY               	after allo-HCT which contribute to immune cell
 PR:PROJECT_SUMMARY               	will potentially identify different metabolic pathways in other GVHD target
 PR:PROJECT_SUMMARY               	organs.
 PR:PROJECT_TITLE                 	Metabolomics of lung injury after allogeneic hematopoietic cell transplantation
-#SAMPLEPREP
-SP:SAMPLEPREP_PROTOCOL_FILENAME  	No tissue_quench file.;No frozen_tissue_grind
-SP:SAMPLEPREP_PROTOCOL_FILENAME  	file.;4B_Extract_Polar_Lipid_Prot_Fan_070417.pdf;['4D_17Jun4_Fan_Prot_Quant.pdf',
-SP:SAMPLEPREP_PROTOCOL_FILENAME  	'4B_Extract_Polar_Lipid_Prot_Fan_070417.pdf'];4A2_Media Extraction with acetone
-SP:SAMPLEPREP_PROTOCOL_FILENAME  	ppt step.pdf
-SP:SAMPLEPREP_PROTOCOL_ID        	
-SP:SAMPLEPREP_PROTOCOL_ID        	tissue_quench;frozen_tissue_grind;polar_extraction;protein_extraction;acetone_extraction
-SP:SAMPLEPREP_SUMMARY            	Tissue is frozen in liquid nitrogen to stop metabolic processes.;Frozen tissue is
-SP:SAMPLEPREP_SUMMARY            	ground in a SPEX grinder under liquid nitrogen to homogenize the sample.;Polar
-SP:SAMPLEPREP_SUMMARY            	extraction from homogenate, lypholized, and frozen.;Protein extraction and
-SP:SAMPLEPREP_SUMMARY            	quantification.;acetone extraction of polar metabolites
 #STUDY
 ST:ADDRESS                       	CTW-453, 900 South Limestone street. UKY. Lexington, Kentucky-40536
 ST:DEPARTMENT                    	MCC
@@ -109,6 +91,11 @@ SUBJECT_SAMPLE_FACTORS                                 	12_B1-2_syngenic_7days_U
 SUBJECT_SAMPLE_FACTORS                                 	13_C1-1_allogenic_7days_UKy_GCH_rep1	28_C1-1_Lung_allogenic_7days_170427_UKy_GCH_rep1-polar-NMR_A	Treatment:allogenic | Time Point:7	lineage0_id=13_C1-1_allogenic_7days_UKy_GCH_rep1;lineage0_protocol.id=['allogenic'];lineage0_replicate=1;lineage0_species=Mus musculus;lineage0_species_type=Mouse;lineage0_taxonomy_id=10090;lineage0_time_point=7;lineage0_type=subject;lineage1_id=28_C1-1_Lung_allogenic_7days_170427_UKy_GCH_rep1;lineage1_protocol.id=['mouse_tissue_collection', 'tissue_quench', 'frozen_tissue_grind'];lineage1_type=sample;lineage2_id=28_C1-1_Lung_allogenic_7days_170427_UKy_GCH_rep1-protein;lineage2_protein_weight=0.37226618572882475;lineage2_protein_weight%units=mg;lineage2_protocol.id=['protein_extraction'];lineage2_type=sample
 SUBJECT_SAMPLE_FACTORS                                 	14_C1-2_allogenic_7days_UKy_GCH_rep2	29_C1-2_Lung_allogenic_7days_170427_UKy_GCH_rep2-polar-NMR_A	Treatment:allogenic | Time Point:7	lineage0_id=14_C1-2_allogenic_7days_UKy_GCH_rep2;lineage0_protocol.id=['allogenic'];lineage0_replicate=2;lineage0_species=Mus musculus;lineage0_species_type=Mouse;lineage0_taxonomy_id=10090;lineage0_time_point=7;lineage0_type=subject;lineage1_id=29_C1-2_Lung_allogenic_7days_170427_UKy_GCH_rep2;lineage1_protocol.id=['mouse_tissue_collection', 'tissue_quench', 'frozen_tissue_grind'];lineage1_type=sample;lineage2_id=29_C1-2_Lung_allogenic_7days_170427_UKy_GCH_rep2-protein;lineage2_protein_weight=0.31985855339373337;lineage2_protein_weight%units=mg;lineage2_protocol.id=['protein_extraction'];lineage2_type=sample
 SUBJECT_SAMPLE_FACTORS                                 	15_C1-20_allogenic_7days_UKy_GCH_rep3	30_C1-20_Lung_allogenic_7days_170427_UKy_GCH_rep3-polar-NMR_A	Treatment:allogenic | Time Point:7	lineage0_id=15_C1-20_allogenic_7days_UKy_GCH_rep3;lineage0_protocol.id=['allogenic'];lineage0_replicate=3;lineage0_species=Mus musculus;lineage0_species_type=Mouse;lineage0_taxonomy_id=10090;lineage0_time_point=7;lineage0_type=subject;lineage1_id=30_C1-20_Lung_allogenic_7days_170427_UKy_GCH_rep3;lineage1_protocol.id=['mouse_tissue_collection', 'tissue_quench', 'frozen_tissue_grind'];lineage1_type=sample;lineage2_id=30_C1-20_Lung_allogenic_7days_170427_UKy_GCH_rep3-protein;lineage2_protein_weight=0.4930096320820004;lineage2_protein_weight%units=mg;lineage2_protocol.id=['protein_extraction'];lineage2_type=sample
+#COLLECTION
+CO:COLLECTION_PROTOCOL_FILENAME  	mouse_tissue_procedure.pdf
+CO:COLLECTION_PROTOCOL_ID        	mouse_tissue_collection
+CO:COLLECTION_SUMMARY            	Mouse is sacrificed and tissues are harvested.
+CO:SAMPLE_TYPE                   	mouse
 #TREATMENT
 TR:TREATMENT_PROTOCOL_FILENAME   	study_treatments.pdf;study_treatments.pdf;study_treatments.pdf
 TR:TREATMENT_PROTOCOL_ID         	allogenic;naive;syngenic
@@ -118,6 +105,19 @@ TR:TREATMENT_SUMMARY             	no treatment. Fed with semi-liquid diet supple
 TR:TREATMENT_SUMMARY             	for 24 hours before harvest.;Mouse with syngenic bone marrow transplant. Fed with
 TR:TREATMENT_SUMMARY             	semi-liquid diet supplemented with fully labeled glucose for 24 hours before
 TR:TREATMENT_SUMMARY             	harvest.
+#SAMPLEPREP
+SP:SAMPLEPREP_PROTOCOL_FILENAME  	No tissue_quench file.;No frozen_tissue_grind
+SP:SAMPLEPREP_PROTOCOL_FILENAME  	file.;4B_Extract_Polar_Lipid_Prot_Fan_070417.pdf;['4D_17Jun4_Fan_Prot_Quant.pdf',
+SP:SAMPLEPREP_PROTOCOL_FILENAME  	'4B_Extract_Polar_Lipid_Prot_Fan_070417.pdf'];4A2_Media Extraction with acetone
+SP:SAMPLEPREP_PROTOCOL_FILENAME  	ppt step.pdf
+SP:SAMPLEPREP_PROTOCOL_ID        	
+SP:SAMPLEPREP_PROTOCOL_ID        	tissue_quench;frozen_tissue_grind;polar_extraction;protein_extraction;acetone_extraction
+SP:SAMPLEPREP_SUMMARY            	Tissue is frozen in liquid nitrogen to stop metabolic processes.;Frozen tissue is
+SP:SAMPLEPREP_SUMMARY            	ground in a SPEX grinder under liquid nitrogen to homogenize the sample.;Polar
+SP:SAMPLEPREP_SUMMARY            	extraction from homogenate, lypholized, and frozen.;Protein extraction and
+SP:SAMPLEPREP_SUMMARY            	quantification.;acetone extraction of polar metabolites
+#ANALYSIS
+AN:ANALYSIS_TYPE                 	NM
 #NMR
 ACQUISITION_TIME              	2 s
 BASELINE_CORRECTION_METHOD    	Bernstein Polynomial
@@ -136,6 +136,7 @@ STANDARD_CONCENTRATION        	0.5 mM
 TEMPERATURE                   	15 celsius
 WATER_SUPPRESSION             	presaturation
 #NMR_BINNED_DATA
+NMR_BINNED_DATA:UNITS            	normalized peak area
 NMR_BINNED_DATA_START
 Bin range(ppm)	30_C1-20_Lung_allogenic_7days_170427_UKy_GCH_rep3-polar-NMR_A
 0.1114075023667116-737.3158495462656	1.070276789689862
@@ -699,5 +700,4 @@ Bin range(ppm)	30_C1-20_Lung_allogenic_7days_170427_UKy_GCH_rep3-polar-NMR_A
 992.8608675859664-993.2394632710235	14.32988540144569
 995.9544739459224-998.7274326373293	0.9788092707551024
 NMR_BINNED_DATA_END
-NMR_BINNED_DATA:UNITS            	normalized peak area
 #END

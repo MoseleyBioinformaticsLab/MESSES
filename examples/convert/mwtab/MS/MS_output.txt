@@ -1,18 +1,128 @@
-#ANALYSIS
-AN:ANALYSIS_TYPE                 	MS
-#CHROMATOGRAPHY
-CH:CHROMATOGRAPHY_SUMMARY        	Targeted IC
-CH:CHROMATOGRAPHY_TYPE           	Targeted IC
-CH:COLUMN_NAME                   	Dionex IonPac AS11-HC-4um 2 mm i.d. x 250 mm
-CH:INSTRUMENT_NAME               	Thermo Dionex ICS-5000+
+#METABOLOMICS WORKBENCH STUDY_ID:ST000000 ANALYSIS_ID:AN000000
+VERSION             	1
+CREATED_ON          	2023-05-31
+#PROJECT
+PR:ADDRESS                       	Gerhard C. Hildebrandt, MD, Room no. CC401A, Ben Roach Building, Markey Cancer
+PR:ADDRESS                       	Center University of Kentucky, Lexington, 40536
+PR:DEPARTMENT                    	Markey Cancer Center, Hematology and Blood and Marrow Transplant
+PR:EMAIL                         	gerhard.hildebrandt@uky.edu
+PR:FIRST_NAME                    	Gerhard
+PR:INSTITUTE                     	University of Kentucky
+PR:LAST_NAME                     	Hildebrandt
+PR:PHONE                         	800-333-8874
+PR:PROJECT_SUMMARY               	Allogeneic hematopoietic cell transplantation (allo-HCT) is a potentially
+PR:PROJECT_SUMMARY               	curative treatment option for a variety of hematological malignancies.
+PR:PROJECT_SUMMARY               	Interactions between the donor immune system and the patient tissue result in a
+PR:PROJECT_SUMMARY               	disease, called GVHD. The pathophysiology of acute GVHD can be hypothesized in
+PR:PROJECT_SUMMARY               	three sequential phases: cytokine storm and activation of the antigen-presenting
+PR:PROJECT_SUMMARY               	cells (APC), donor T cell activation and effector cell phase. Idiopathic
+PR:PROJECT_SUMMARY               	pneumonia syndrome (IPS) is one of the most deleterious complications after
+PR:PROJECT_SUMMARY               	allogeneic HCT and is considered not only to be related to conditioning regimen
+PR:PROJECT_SUMMARY               	toxicity but also represents an end organ damage caused by allo-reactive T cells,
+PR:PROJECT_SUMMARY               	therefore making the lung susceptible to a two-pronged attack, one of which
+PR:PROJECT_SUMMARY               	overlaps with GVHD causing other target organ injury. IPS results in mortality of
+PR:PROJECT_SUMMARY               	up to 90% of patients. We will use a murine model of IPS and GVHD which is well
+PR:PROJECT_SUMMARY               	established in our group, and in which disease evolves either across disparities
+PR:PROJECT_SUMMARY               	in major histocompatibility complex (MCH) class I and II, minor
+PR:PROJECT_SUMMARY               	histocompatibility antigens (miHags) or both. Metabolomics changes following
+PR:PROJECT_SUMMARY               	syngeneic and allogeneic HCT at post-transplantation Days +7 (cytokine storm
+PR:PROJECT_SUMMARY               	phase) and Days +42 (cellular effector phase) are compared to baseline wild-type
+PR:PROJECT_SUMMARY               	(naive) controls. Prior to analysis, naïve - and experimental mice (N=3 from each
+PR:PROJECT_SUMMARY               	group) were fed with semi-liquid diet supplemented with tracers (13C6-glucose )
+PR:PROJECT_SUMMARY               	over 24 hours. At the end of 7 days or 42 days, respectively, feces and aGVHD
+PR:PROJECT_SUMMARY               	target organs (colon, liver and lung) were collected from all groups and further
+PR:PROJECT_SUMMARY               	processed and / or analyzed. We expect to reveal metabolic pathways affected
+PR:PROJECT_SUMMARY               	after allo-HCT which contribute to immune cell mediated lung injury (IPS) and
+PR:PROJECT_SUMMARY               	will potentially identify different metabolic pathways in other GVHD target
+PR:PROJECT_SUMMARY               	organs.
+PR:PROJECT_TITLE                 	Metabolomics of lung injury after allogeneic hematopoietic cell transplantation
+#STUDY
+ST:ADDRESS                       	CTW-453, 900 South Limestone street. UKY. Lexington, Kentucky-40536
+ST:DEPARTMENT                    	MCC
+ST:EMAIL                         	gerhard.hildebrandt@uky.edu
+ST:FIRST_NAME                    	Gerhard
+ST:INSTITUTE                     	University of Kentucky
+ST:LAST_NAME                     	Hildebrandt
+ST:PHONE                         	800-333-8874
+ST:STUDY_SUMMARY                 	Allogeneic hematopoietic cell transplantation (allo-HCT) is a potentially
+ST:STUDY_SUMMARY                 	curative treatment option for a variety of hematological malignancies.
+ST:STUDY_SUMMARY                 	Interactions between the donor immune system and the patient tissue result in a
+ST:STUDY_SUMMARY                 	disease, called GVHD. The pathophysiology of acute GVHD can be hypothesized in
+ST:STUDY_SUMMARY                 	three sequential phases: cytokine storm and activation of the antigen-presenting
+ST:STUDY_SUMMARY                 	cells (APC), donor T cell activation and effector cell phase. Idiopathic
+ST:STUDY_SUMMARY                 	pneumonia syndrome (IPS) is one of the most deleterious complications after
+ST:STUDY_SUMMARY                 	allogeneic HCT and is considered not only to be related to conditioning regimen
+ST:STUDY_SUMMARY                 	toxicity but also represents an end organ damage caused by allo-reactive T cells,
+ST:STUDY_SUMMARY                 	therefore making the lung susceptible to a two-pronged attack, one of which
+ST:STUDY_SUMMARY                 	overlaps with GVHD causing other target organ injury. IPS results in mortality of
+ST:STUDY_SUMMARY                 	up to 90% of patients. We will use a murine model of IPS and GVHD which is well
+ST:STUDY_SUMMARY                 	established in our group, and in which disease evolves either across disparities
+ST:STUDY_SUMMARY                 	in major histocompatibility complex (MCH) class I and II, minor
+ST:STUDY_SUMMARY                 	histocompatibility antigens (miHags) or both. Metabolomics changes following
+ST:STUDY_SUMMARY                 	syngeneic and allogeneic HCT at post-transplantation Days +7 (cytokine storm
+ST:STUDY_SUMMARY                 	phase) and Days +42 (cellular effector phase) are compared to baseline wild-type
+ST:STUDY_SUMMARY                 	(naive) controls. Prior to analysis, naïve - and experimental mice (N=3 from each
+ST:STUDY_SUMMARY                 	group) were fed with semi-liquid diet supplemented with tracers (13C6-glucose )
+ST:STUDY_SUMMARY                 	over 24 hours. At the end of 7 days or 42 days, respectively, feces and aGVHD
+ST:STUDY_SUMMARY                 	target organs (colon, liver and lung) were collected from all groups and further
+ST:STUDY_SUMMARY                 	processed and / or analyzed. We expect to reveal metabolic pathways affected
+ST:STUDY_SUMMARY                 	after allo-HCT which contribute to immune cell mediated lung injury (IPS) and
+ST:STUDY_SUMMARY                 	will potentially identify different metabolic pathways in other GVHD target
+ST:STUDY_SUMMARY                 	organs.
+ST:STUDY_TITLE                   	Metabolomics of lung injury after allogeneic hematopoietic cell transplantation -
+ST:STUDY_TITLE                   	Lung ICMS
+#SUBJECT
+SU:SUBJECT_SPECIES               	Mus musculus
+SU:SUBJECT_TYPE                  	Mouse
+SU:TAXONOMY_ID                   	10090
+#SUBJECT_SAMPLE_FACTORS:         	SUBJECT(optional)[tab]SAMPLE[tab]FACTORS(NAME:VALUE pairs separated by |)[tab]Additional sample data
+SUBJECT_SAMPLE_FACTORS                                 	01_A0_naive_0days_UKy_GCH_rep1	16_A0_Lung_naive_0days_170427_UKy_GCH_rep1-polar-ICMS_A	Treatment:naive | Time Point:0	lineage0_id=01_A0_naive_0days_UKy_GCH_rep1;lineage0_protocol.id=['naive'];lineage0_replicate=1;lineage0_species=Mus musculus;lineage0_species_type=Mouse;lineage0_taxonomy_id=10090;lineage0_time_point=0;lineage0_type=subject;lineage1_id=16_A0_Lung_naive_0days_170427_UKy_GCH_rep1;lineage1_protocol.id=['mouse_tissue_collection', 'tissue_quench', 'frozen_tissue_grind'];lineage1_type=sample;lineage2_id=16_A0_Lung_naive_0days_170427_UKy_GCH_rep1-protein;lineage2_protein_weight=0.6757957582975501;lineage2_protein_weight%units=mg;lineage2_protocol.id=['protein_extraction'];lineage2_type=sample
+SUBJECT_SAMPLE_FACTORS                                 	02_A1_naive_0days_UKy_GCH_rep2	17_A1_Lung_naive_0days_170427_UKy_GCH_rep2-polar-ICMS_A	Treatment:naive | Time Point:0	lineage0_id=02_A1_naive_0days_UKy_GCH_rep2;lineage0_protocol.id=['naive'];lineage0_replicate=2;lineage0_species=Mus musculus;lineage0_species_type=Mouse;lineage0_taxonomy_id=10090;lineage0_time_point=0;lineage0_type=subject;lineage1_id=17_A1_Lung_naive_0days_170427_UKy_GCH_rep2;lineage1_protocol.id=['mouse_tissue_collection', 'tissue_quench', 'frozen_tissue_grind'];lineage1_type=sample;lineage2_id=17_A1_Lung_naive_0days_170427_UKy_GCH_rep2-protein;lineage2_protein_weight=0.6112704400619461;lineage2_protein_weight%units=mg;lineage2_protocol.id=['protein_extraction'];lineage2_type=sample
+SUBJECT_SAMPLE_FACTORS                                 	03_A2_naive_0days_UKy_GCH_rep3	18_A2_Lung_naive_0days_170427_UKy_GCH_rep3-polar-ICMS_A	Treatment:naive | Time Point:0	lineage0_id=03_A2_naive_0days_UKy_GCH_rep3;lineage0_protocol.id=['naive'];lineage0_replicate=3;lineage0_species=Mus musculus;lineage0_species_type=Mouse;lineage0_taxonomy_id=10090;lineage0_time_point=0;lineage0_type=subject;lineage1_id=18_A2_Lung_naive_0days_170427_UKy_GCH_rep3;lineage1_protocol.id=['mouse_tissue_collection', 'tissue_quench', 'frozen_tissue_grind'];lineage1_type=sample;lineage2_id=18_A2_Lung_naive_0days_170427_UKy_GCH_rep3-protein;lineage2_protein_weight=0.14664251664539998;lineage2_protein_weight%units=mg;lineage2_protocol.id=['protein_extraction'];lineage2_type=sample
+SUBJECT_SAMPLE_FACTORS                                 	04_B0_syngenic_42days_UKy_GCH_rep1	19_B0_Lung_syngenic_42days_170427_UKy_GCH_rep1-polar-ICMS_A	Treatment:syngenic | Time Point:42	lineage0_id=04_B0_syngenic_42days_UKy_GCH_rep1;lineage0_protocol.id=['syngenic'];lineage0_replicate=1;lineage0_species=Mus musculus;lineage0_species_type=Mouse;lineage0_taxonomy_id=10090;lineage0_time_point=42;lineage0_type=subject;lineage1_id=19_B0_Lung_syngenic_42days_170427_UKy_GCH_rep1;lineage1_protocol.id=['mouse_tissue_collection', 'tissue_quench', 'frozen_tissue_grind'];lineage1_type=sample;lineage2_id=19_B0_Lung_syngenic_42days_170427_UKy_GCH_rep1-protein;lineage2_protein_weight=0.5600416771907997;lineage2_protein_weight%units=mg;lineage2_protocol.id=['protein_extraction'];lineage2_type=sample
+SUBJECT_SAMPLE_FACTORS                                 	05_B1_syngenic_42days_UKy_GCH_rep2	20_B1_Lung_syngenic_42days_170427_UKy_GCH_rep2-polar-ICMS_A	Treatment:syngenic | Time Point:42	lineage0_id=05_B1_syngenic_42days_UKy_GCH_rep2;lineage0_protocol.id=['syngenic'];lineage0_replicate=2;lineage0_species=Mus musculus;lineage0_species_type=Mouse;lineage0_taxonomy_id=10090;lineage0_time_point=42;lineage0_type=subject;lineage1_id=20_B1_Lung_syngenic_42days_170427_UKy_GCH_rep2;lineage1_protocol.id=['mouse_tissue_collection', 'tissue_quench', 'frozen_tissue_grind'];lineage1_type=sample;lineage2_id=20_B1_Lung_syngenic_42days_170427_UKy_GCH_rep2-protein;lineage2_protein_weight=0.2959754761535626;lineage2_protein_weight%units=mg;lineage2_protocol.id=['protein_extraction'];lineage2_type=sample
+SUBJECT_SAMPLE_FACTORS                                 	06_B2_syngenic_42days_UKy_GCH_rep3	21_B2_Lung_syngenic_42days_170427_UKy_GCH_rep3-polar-ICMS_A	Treatment:syngenic | Time Point:42	lineage0_id=06_B2_syngenic_42days_UKy_GCH_rep3;lineage0_protocol.id=['syngenic'];lineage0_replicate=3;lineage0_species=Mus musculus;lineage0_species_type=Mouse;lineage0_taxonomy_id=10090;lineage0_time_point=42;lineage0_type=subject;lineage1_id=21_B2_Lung_syngenic_42days_170427_UKy_GCH_rep3;lineage1_protocol.id=['mouse_tissue_collection', 'tissue_quench', 'frozen_tissue_grind'];lineage1_type=sample;lineage2_id=21_B2_Lung_syngenic_42days_170427_UKy_GCH_rep3-protein;lineage2_protein_weight=0.3382559813306206;lineage2_protein_weight%units=mg;lineage2_protocol.id=['protein_extraction'];lineage2_type=sample
+SUBJECT_SAMPLE_FACTORS                                 	07_C1-1_allogenic_42days_UKy_GCH_rep1	22_C1-1_Lung_allogenic_42days_170427_UKy_GCH_rep1-polar-ICMS_A	Treatment:allogenic | Time Point:42	lineage0_id=07_C1-1_allogenic_42days_UKy_GCH_rep1;lineage0_protocol.id=['allogenic'];lineage0_replicate=1;lineage0_species=Mus musculus;lineage0_species_type=Mouse;lineage0_taxonomy_id=10090;lineage0_time_point=42;lineage0_type=subject;lineage1_id=22_C1-1_Lung_allogenic_42days_170427_UKy_GCH_rep1;lineage1_protocol.id=['mouse_tissue_collection', 'tissue_quench', 'frozen_tissue_grind'];lineage1_type=sample;lineage2_id=22_C1-1_Lung_allogenic_42days_170427_UKy_GCH_rep1-protein;lineage2_protein_weight=1.3767591694919588;lineage2_protein_weight%units=mg;lineage2_protocol.id=['protein_extraction'];lineage2_type=sample
+SUBJECT_SAMPLE_FACTORS                                 	08_C1-2_allogenic_42days_UKy_GCH_rep2	23_C1-2_Lung_allogenic_42days_170427_UKy_GCH_rep2-polar-ICMS_A	Treatment:allogenic | Time Point:42	lineage0_id=08_C1-2_allogenic_42days_UKy_GCH_rep2;lineage0_protocol.id=['allogenic'];lineage0_replicate=2;lineage0_species=Mus musculus;lineage0_species_type=Mouse;lineage0_taxonomy_id=10090;lineage0_time_point=42;lineage0_type=subject;lineage1_id=23_C1-2_Lung_allogenic_42days_170427_UKy_GCH_rep2;lineage1_protocol.id=['mouse_tissue_collection', 'tissue_quench', 'frozen_tissue_grind'];lineage1_type=sample;lineage2_id=23_C1-2_Lung_allogenic_42days_170427_UKy_GCH_rep2-protein;lineage2_protein_weight=1.1547210188083492;lineage2_protein_weight%units=mg;lineage2_protocol.id=['protein_extraction'];lineage2_type=sample
+SUBJECT_SAMPLE_FACTORS                                 	09_C2-0_allogenic_42days_UKy_GCH_rep1	24_C2-0_Lung_allogenic_42days_170427_UKy_GCH_rep1-polar-ICMS_A	Treatment:allogenic | Time Point:42	lineage0_id=09_C2-0_allogenic_42days_UKy_GCH_rep1;lineage0_protocol.id=['allogenic'];lineage0_replicate=1;lineage0_species=Mus musculus;lineage0_species_type=Mouse;lineage0_taxonomy_id=10090;lineage0_time_point=42;lineage0_type=subject;lineage1_id=24_C2-0_Lung_allogenic_42days_170427_UKy_GCH_rep1;lineage1_protocol.id=['mouse_tissue_collection', 'tissue_quench', 'frozen_tissue_grind'];lineage1_type=sample;lineage2_id=24_C2-0_Lung_allogenic_42days_170427_UKy_GCH_rep1-protein;lineage2_protein_weight=0.6075844437094541;lineage2_protein_weight%units=mg;lineage2_protocol.id=['protein_extraction'];lineage2_type=sample
+SUBJECT_SAMPLE_FACTORS                                 	10_B1-0_syngenic_7days_UKy_GCH_rep1	25_B1-0_Lung_syngenic_7days_170427_UKy_GCH_rep1-polar-ICMS_A	Treatment:syngenic | Time Point:7	lineage0_id=10_B1-0_syngenic_7days_UKy_GCH_rep1;lineage0_protocol.id=['syngenic'];lineage0_replicate=1;lineage0_species=Mus musculus;lineage0_species_type=Mouse;lineage0_taxonomy_id=10090;lineage0_time_point=7;lineage0_type=subject;lineage1_id=25_B1-0_Lung_syngenic_7days_170427_UKy_GCH_rep1;lineage1_protocol.id=['mouse_tissue_collection', 'tissue_quench', 'frozen_tissue_grind'];lineage1_type=sample;lineage2_id=25_B1-0_Lung_syngenic_7days_170427_UKy_GCH_rep1-protein;lineage2_protein_weight=0.47147932892528355;lineage2_protein_weight%units=mg;lineage2_protocol.id=['protein_extraction'];lineage2_type=sample
+SUBJECT_SAMPLE_FACTORS                                 	11_B1-1_syngenic_7days_UKy_GCH_rep2	26_B1-1_Lung_syngenic_7days_170427_UKy_GCH_rep2-polar-ICMS_A	Treatment:syngenic | Time Point:7	lineage0_id=11_B1-1_syngenic_7days_UKy_GCH_rep2;lineage0_protocol.id=['syngenic'];lineage0_replicate=2;lineage0_species=Mus musculus;lineage0_species_type=Mouse;lineage0_taxonomy_id=10090;lineage0_time_point=7;lineage0_type=subject;lineage1_id=26_B1-1_Lung_syngenic_7days_170427_UKy_GCH_rep2;lineage1_protocol.id=['mouse_tissue_collection', 'tissue_quench', 'frozen_tissue_grind'];lineage1_type=sample;lineage2_id=26_B1-1_Lung_syngenic_7days_170427_UKy_GCH_rep2-protein;lineage2_protein_weight=0.34798720067708344;lineage2_protein_weight%units=mg;lineage2_protocol.id=['protein_extraction'];lineage2_type=sample
+SUBJECT_SAMPLE_FACTORS                                 	12_B1-2_syngenic_7days_UKy_GCH_rep3	27_B1-2_Lung_syngenic_7days_170427_UKy_GCH_rep3-polar-ICMS_A	Treatment:syngenic | Time Point:7	lineage0_id=12_B1-2_syngenic_7days_UKy_GCH_rep3;lineage0_protocol.id=['syngenic'];lineage0_replicate=3;lineage0_species=Mus musculus;lineage0_species_type=Mouse;lineage0_taxonomy_id=10090;lineage0_time_point=7;lineage0_type=subject;lineage1_id=27_B1-2_Lung_syngenic_7days_170427_UKy_GCH_rep3;lineage1_protocol.id=['mouse_tissue_collection', 'tissue_quench', 'frozen_tissue_grind'];lineage1_type=sample;lineage2_id=27_B1-2_Lung_syngenic_7days_170427_UKy_GCH_rep3-protein;lineage2_protein_weight=0.3397343460300001;lineage2_protein_weight%units=mg;lineage2_protocol.id=['protein_extraction'];lineage2_type=sample
+SUBJECT_SAMPLE_FACTORS                                 	13_C1-1_allogenic_7days_UKy_GCH_rep1	28_C1-1_Lung_allogenic_7days_170427_UKy_GCH_rep1-polar-ICMS_A	Treatment:allogenic | Time Point:7	lineage0_id=13_C1-1_allogenic_7days_UKy_GCH_rep1;lineage0_protocol.id=['allogenic'];lineage0_replicate=1;lineage0_species=Mus musculus;lineage0_species_type=Mouse;lineage0_taxonomy_id=10090;lineage0_time_point=7;lineage0_type=subject;lineage1_id=28_C1-1_Lung_allogenic_7days_170427_UKy_GCH_rep1;lineage1_protocol.id=['mouse_tissue_collection', 'tissue_quench', 'frozen_tissue_grind'];lineage1_type=sample;lineage2_id=28_C1-1_Lung_allogenic_7days_170427_UKy_GCH_rep1-protein;lineage2_protein_weight=0.37226618572882475;lineage2_protein_weight%units=mg;lineage2_protocol.id=['protein_extraction'];lineage2_type=sample
+SUBJECT_SAMPLE_FACTORS                                 	14_C1-2_allogenic_7days_UKy_GCH_rep2	29_C1-2_Lung_allogenic_7days_170427_UKy_GCH_rep2-polar-ICMS_A	Treatment:allogenic | Time Point:7	lineage0_id=14_C1-2_allogenic_7days_UKy_GCH_rep2;lineage0_protocol.id=['allogenic'];lineage0_replicate=2;lineage0_species=Mus musculus;lineage0_species_type=Mouse;lineage0_taxonomy_id=10090;lineage0_time_point=7;lineage0_type=subject;lineage1_id=29_C1-2_Lung_allogenic_7days_170427_UKy_GCH_rep2;lineage1_protocol.id=['mouse_tissue_collection', 'tissue_quench', 'frozen_tissue_grind'];lineage1_type=sample;lineage2_id=29_C1-2_Lung_allogenic_7days_170427_UKy_GCH_rep2-protein;lineage2_protein_weight=0.31985855339373337;lineage2_protein_weight%units=mg;lineage2_protocol.id=['protein_extraction'];lineage2_type=sample
+SUBJECT_SAMPLE_FACTORS                                 	15_C1-20_allogenic_7days_UKy_GCH_rep3	30_C1-20_Lung_allogenic_7days_170427_UKy_GCH_rep3-polar-ICMS_A	Treatment:allogenic | Time Point:7	lineage0_id=15_C1-20_allogenic_7days_UKy_GCH_rep3;lineage0_protocol.id=['allogenic'];lineage0_replicate=3;lineage0_species=Mus musculus;lineage0_species_type=Mouse;lineage0_taxonomy_id=10090;lineage0_time_point=7;lineage0_type=subject;lineage1_id=30_C1-20_Lung_allogenic_7days_170427_UKy_GCH_rep3;lineage1_protocol.id=['mouse_tissue_collection', 'tissue_quench', 'frozen_tissue_grind'];lineage1_type=sample;lineage2_id=30_C1-20_Lung_allogenic_7days_170427_UKy_GCH_rep3-protein;lineage2_protein_weight=0.4930096320820004;lineage2_protein_weight%units=mg;lineage2_protocol.id=['protein_extraction'];lineage2_type=sample
 #COLLECTION
 CO:COLLECTION_PROTOCOL_FILENAME  	mouse_tissue_procedure.pdf
 CO:COLLECTION_PROTOCOL_ID        	mouse_tissue_collection
 CO:COLLECTION_SUMMARY            	Mouse is sacrificed and tissues are harvested.
 CO:SAMPLE_TYPE                   	mouse
-#METABOLOMICS WORKBENCH ANALYSIS_ID:AN000000 STUDY_ID:ST000000
-CREATED_ON          	2023-05-04
-VERSION             	1
+#TREATMENT
+TR:TREATMENT_PROTOCOL_FILENAME   	study_treatments.pdf;study_treatments.pdf;study_treatments.pdf
+TR:TREATMENT_PROTOCOL_ID         	allogenic;naive;syngenic
+TR:TREATMENT_SUMMARY             	Mouse with allogenic bone marrow transplant. Fed with semi-liquid diet
+TR:TREATMENT_SUMMARY             	supplemented with fully labeled glucose for 24 hours before harvest.;Mouse with
+TR:TREATMENT_SUMMARY             	no treatment. Fed with semi-liquid diet supplemented with fully labeled glucose
+TR:TREATMENT_SUMMARY             	for 24 hours before harvest.;Mouse with syngenic bone marrow transplant. Fed with
+TR:TREATMENT_SUMMARY             	semi-liquid diet supplemented with fully labeled glucose for 24 hours before
+TR:TREATMENT_SUMMARY             	harvest.
+#SAMPLEPREP
+SP:SAMPLEPREP_PROTOCOL_FILENAME  	No tissue_quench file.;No frozen_tissue_grind
+SP:SAMPLEPREP_PROTOCOL_FILENAME  	file.;4B_Extract_Polar_Lipid_Prot_Fan_070417.pdf;['4D_17Jun4_Fan_Prot_Quant.pdf',
+SP:SAMPLEPREP_PROTOCOL_FILENAME  	'4B_Extract_Polar_Lipid_Prot_Fan_070417.pdf'];No IC-FTMS_preparation file.
+SP:SAMPLEPREP_PROTOCOL_ID        	
+SP:SAMPLEPREP_PROTOCOL_ID        	tissue_quench;frozen_tissue_grind;polar_extraction;protein_extraction;IC-FTMS_preparation
+SP:SAMPLEPREP_SUMMARY            	Tissue is frozen in liquid nitrogen to stop metabolic processes.;Frozen tissue is
+SP:SAMPLEPREP_SUMMARY            	ground in a SPEX grinder under liquid nitrogen to homogenize the sample.;Polar
+SP:SAMPLEPREP_SUMMARY            	extraction from homogenate, lypholized, and frozen.;Protein extraction and
+SP:SAMPLEPREP_SUMMARY            	quantification.;Before going into the IC-FTMS the frozen sample is reconstituted
+SP:SAMPLEPREP_SUMMARY            	in water.
+#CHROMATOGRAPHY
+CH:CHROMATOGRAPHY_SUMMARY        	Targeted IC
+CH:CHROMATOGRAPHY_TYPE           	Targeted IC
+CH:COLUMN_NAME                   	Dionex IonPac AS11-HC-4um 2 mm i.d. x 250 mm
+CH:INSTRUMENT_NAME               	Thermo Dionex ICS-5000+
+#ANALYSIS
+AN:ANALYSIS_TYPE                 	MS
 #MS
 MS:INSTRUMENT_NAME               	Orbitrap Fusion
 MS:INSTRUMENT_TYPE               	IC-FTMS
@@ -43,6 +153,7 @@ MS:MS_COMMENTS                   	equation, concentration * (reconstitution volu
 MS:MS_COMMENTS                   	protein).
 MS:MS_TYPE                       	ESI
 #MS_METABOLITE_DATA
+MS_METABOLITE_DATA:UNITS         	natural abundance corrected and protein normalized peak area
 MS_METABOLITE_DATA_START
 Samples	16_A0_Lung_naive_0days_170427_UKy_GCH_rep1-polar-ICMS_A	17_A1_Lung_naive_0days_170427_UKy_GCH_rep2-polar-ICMS_A	18_A2_Lung_naive_0days_170427_UKy_GCH_rep3-polar-ICMS_A	19_B0_Lung_syngenic_42days_170427_UKy_GCH_rep1-polar-ICMS_A	20_B1_Lung_syngenic_42days_170427_UKy_GCH_rep2-polar-ICMS_A	21_B2_Lung_syngenic_42days_170427_UKy_GCH_rep3-polar-ICMS_A	22_C1-1_Lung_allogenic_42days_170427_UKy_GCH_rep1-polar-ICMS_A	23_C1-2_Lung_allogenic_42days_170427_UKy_GCH_rep2-polar-ICMS_A	24_C2-0_Lung_allogenic_42days_170427_UKy_GCH_rep1-polar-ICMS_A	25_B1-0_Lung_syngenic_7days_170427_UKy_GCH_rep1-polar-ICMS_A	26_B1-1_Lung_syngenic_7days_170427_UKy_GCH_rep2-polar-ICMS_A	27_B1-2_Lung_syngenic_7days_170427_UKy_GCH_rep3-polar-ICMS_A	28_C1-1_Lung_allogenic_7days_170427_UKy_GCH_rep1-polar-ICMS_A	29_C1-2_Lung_allogenic_7days_170427_UKy_GCH_rep2-polar-ICMS_A	30_C1-20_Lung_allogenic_7days_170427_UKy_GCH_rep3-polar-ICMS_A
 Factors	Treatment:naive | Time Point:0	Treatment:naive | Time Point:0	Treatment:naive | Time Point:0	Treatment:syngenic | Time Point:42	Treatment:syngenic | Time Point:42	Treatment:syngenic | Time Point:42	Treatment:allogenic | Time Point:42	Treatment:allogenic | Time Point:42	Treatment:allogenic | Time Point:42	Treatment:syngenic | Time Point:7	Treatment:syngenic | Time Point:7	Treatment:syngenic | Time Point:7	Treatment:allogenic | Time Point:7	Treatment:allogenic | Time Point:7	Treatment:allogenic | Time Point:7
@@ -873,6 +984,836 @@ dUMP-13C7	987.1329883572237
 dUMP-13C8	303.0930179119635
 dUMP-13C9	1344.786886714877
 MS_METABOLITE_DATA_END
+#METABOLITES
+METABOLITES_START
+metabolite_name	assignment%method	formula	compound	isotopologue	isotopologue%type
+(S)-2-Acetolactate Glutaric acid Methylsuccinic acid-13C0	database	C5H8O4	(S)-2-Acetolactate Glutaric acid Methylsuccinic acid	13C0	13C
+(S)-2-Acetolactate Glutaric acid Methylsuccinic acid-13C1	database	C5H8O4	(S)-2-Acetolactate Glutaric acid Methylsuccinic acid	13C1	13C
+(S)-2-Acetolactate Glutaric acid Methylsuccinic acid-13C2	database	C5H8O4	(S)-2-Acetolactate Glutaric acid Methylsuccinic acid	13C2	13C
+(S)-2-Acetolactate Glutaric acid Methylsuccinic acid-13C3	database	C5H8O4	(S)-2-Acetolactate Glutaric acid Methylsuccinic acid	13C3	13C
+(S)-2-Acetolactate Glutaric acid Methylsuccinic acid-13C4	database	C5H8O4	(S)-2-Acetolactate Glutaric acid Methylsuccinic acid	13C4	13C
+(S)-3-Sulfonatolactate-13C0	database	C3H6O6S1	(S)-3-Sulfonatolactate	13C0	13C
+(S)-3-Sulfonatolactate-13C1	database	C3H6O6S1	(S)-3-Sulfonatolactate	13C1	13C
+(S)-3-Sulfonatolactate-13C2	database	C3H6O6S1	(S)-3-Sulfonatolactate	13C2	13C
+(S)-3-Sulfonatolactate-13C3	database	C3H6O6S1	(S)-3-Sulfonatolactate	13C3	13C
+1-Pyrroline 2-carboxylate 1-Pyrroline-5-carboxylate-13C0	database	C5H7N1O2	1-Pyrroline 2-carboxylate 1-Pyrroline-5-carboxylate	13C0	13C
+1-Pyrroline 2-carboxylate 1-Pyrroline-5-carboxylate-13C1	database	C5H7N1O2	1-Pyrroline 2-carboxylate 1-Pyrroline-5-carboxylate	13C1	13C
+1-Pyrroline 2-carboxylate 1-Pyrroline-5-carboxylate-13C2	database	C5H7N1O2	1-Pyrroline 2-carboxylate 1-Pyrroline-5-carboxylate	13C2	13C
+1-Pyrroline 2-carboxylate 1-Pyrroline-5-carboxylate-13C3	database	C5H7N1O2	1-Pyrroline 2-carboxylate 1-Pyrroline-5-carboxylate	13C3	13C
+1-Pyrroline 2-carboxylate 1-Pyrroline-5-carboxylate-13C4	database	C5H7N1O2	1-Pyrroline 2-carboxylate 1-Pyrroline-5-carboxylate	13C4	13C
+13-BPG-13C0	direct_to_standard	C3H8O10P2	13-BPG	13C0	13C
+13-BPG-13C1	indirect_to_standard	C3H8O10P2	13-BPG	13C1	13C
+13-BPG-13C2	indirect_to_standard	C3H8O10P2	13-BPG	13C2	13C
+13-BPG-13C3	indirect_to_standard	C3H8O10P2	13-BPG	13C3	13C
+1D-Myo-inositol 1-3-bisphosphate-13C0	database	C6H14O12P2	1D-Myo-inositol 1-3-bisphosphate	13C0	13C
+1D-Myo-inositol 1-4-bisphosphate-13C0	database	C6H14O12P2	1D-Myo-inositol 1-4-bisphosphate	13C0	13C
+1D-Myo-inositol 3-4-bisphosphate-13C0	database	C6H14O12P2	1D-Myo-inositol 3-4-bisphosphate	13C0	13C
+2-Aminomuconic acid semialdehyde-13C0	database	C6H7N1O3	2-Aminomuconic acid semialdehyde	13C0	13C
+2-Aminomuconic acid semialdehyde-13C1	database	C6H7N1O3	2-Aminomuconic acid semialdehyde	13C1	13C
+2-Aminomuconic acid-13C0	database	C6H7N1O4	2-Aminomuconic acid	13C0	13C
+2-Hydroxyadipic acid-13C0	database	C6H10O5	2-Hydroxyadipic acid	13C0	13C
+2-Hydroxyadipic acid-13C1	database	C6H10O5	2-Hydroxyadipic acid	13C1	13C
+2-Hydroxyadipic acid-13C2	database	C6H10O5	2-Hydroxyadipic acid	13C2	13C
+2-Ketobutyric acid-13C0	direct_to_standard	C4H6O3	2-Ketobutyric acid	13C0	13C
+2-Ketobutyric acid-13C1	indirect_to_standard	C4H6O3	2-Ketobutyric acid	13C1	13C
+2-Ketobutyric acid-13C2	indirect_to_standard	C4H6O3	2-Ketobutyric acid	13C2	13C
+2-Ketobutyric acid-13C3	indirect_to_standard	C4H6O3	2-Ketobutyric acid	13C3	13C
+2-Ketobutyric acid-13C4	indirect_to_standard	C4H6O3	2-Ketobutyric acid	13C4	13C
+2-Propylglutaric acid Suberic acid-13C0	database	C8H14O4	2-Propylglutaric acid Suberic acid	13C0	13C
+2-Propylglutaric acid Suberic acid-13C1	database	C8H14O4	2-Propylglutaric acid Suberic acid	13C1	13C
+2-Propylglutaric acid Suberic acid-13C2	database	C8H14O4	2-Propylglutaric acid Suberic acid	13C2	13C
+2HG-13C0	direct_to_standard	C5H8O5	2HG	13C0	13C
+2HG-13C1	indirect_to_standard	C5H8O5	2HG	13C1	13C
+2HG-13C2	indirect_to_standard	C5H8O5	2HG	13C2	13C
+2HG-13C3	indirect_to_standard	C5H8O5	2HG	13C3	13C
+2HG-13C4	indirect_to_standard	C5H8O5	2HG	13C4	13C
+2HG-13C5	indirect_to_standard	C5H8O5	2HG	13C5	13C
+3-Dehydro-L-gulonate-13C0	database	C6H10O7	3-Dehydro-L-gulonate	13C0	13C
+3-Dehydro-L-gulonate-13C1	database	C6H10O7	3-Dehydro-L-gulonate	13C1	13C
+3-Dehydro-L-gulonate-13C2	database	C6H10O7	3-Dehydro-L-gulonate	13C2	13C
+3-Dehydro-L-gulonate-13C3	database	C6H10O7	3-Dehydro-L-gulonate	13C3	13C
+3-Dehydro-L-gulonate-13C4	database	C6H10O7	3-Dehydro-L-gulonate	13C4	13C
+3-Dehydro-L-gulonate-13C5	database	C6H10O7	3-Dehydro-L-gulonate	13C5	13C
+3-Dehydro-L-gulonate-13C6	database	C6H10O7	3-Dehydro-L-gulonate	13C6	13C
+3-Hydroxybutyric acid-13C0	direct_to_standard	C4H8O3	3-Hydroxybutyric acid	13C0	13C
+3-Hydroxybutyric acid-13C1	indirect_to_standard	C4H8O3	3-Hydroxybutyric acid	13C1	13C
+3-Hydroxybutyric acid-13C2	indirect_to_standard	C4H8O3	3-Hydroxybutyric acid	13C2	13C
+3-Hydroxybutyric acid-13C3	indirect_to_standard	C4H8O3	3-Hydroxybutyric acid	13C3	13C
+3-Hydroxybutyric acid-13C4	indirect_to_standard	C4H8O3	3-Hydroxybutyric acid	13C4	13C
+3-Hydroxymethylglutaric acid-13C0	direct_to_standard	C6H10O5	3-Hydroxymethylglutaric acid	13C0	13C
+3-Hydroxymethylglutaric acid-13C1	indirect_to_standard	C6H10O5	3-Hydroxymethylglutaric acid	13C1	13C
+3-Hydroxymethylglutaric acid-13C2	indirect_to_standard	C6H10O5	3-Hydroxymethylglutaric acid	13C2	13C
+3-Hydroxymethylglutaric acid-13C3	indirect_to_standard	C6H10O5	3-Hydroxymethylglutaric acid	13C3	13C
+3-Hydroxymethylglutaric acid-13C4	indirect_to_standard	C6H10O5	3-Hydroxymethylglutaric acid	13C4	13C
+3-Hydroxymethylglutaric acid-13C5	indirect_to_standard	C6H10O5	3-Hydroxymethylglutaric acid	13C5	13C
+3-Hydroxymethylglutaric acid-13C6	indirect_to_standard	C6H10O5	3-Hydroxymethylglutaric acid	13C6	13C
+3-Sulfinoalanine-13C0	database	C3H7N1O4S1	3-Sulfinoalanine	13C0	13C
+3-Sulfinoalanine-13C1	database	C3H7N1O4S1	3-Sulfinoalanine	13C1	13C
+3-Sulfinoalanine-13C2	database	C3H7N1O4S1	3-Sulfinoalanine	13C2	13C
+3-Sulfinoalanine-13C3	database	C3H7N1O4S1	3-Sulfinoalanine	13C3	13C
+3PG 2PG-13C0	direct_to_standard	C3H7O7P1	3PG 2PG	13C0	13C
+3PG 2PG-13C1	indirect_to_standard	C3H7O7P1	3PG 2PG	13C1	13C
+3PG 2PG-13C2	indirect_to_standard	C3H7O7P1	3PG 2PG	13C2	13C
+3PG 2PG-13C3	indirect_to_standard	C3H7O7P1	3PG 2PG	13C3	13C
+5-L-Glutamyl-L-alanine-13C0	database	C8H14N2O5	5-L-Glutamyl-L-alanine	13C0	13C
+5-L-Glutamyl-L-alanine-13C1	database	C8H14N2O5	5-L-Glutamyl-L-alanine	13C1	13C
+5-L-Glutamyl-L-alanine-13C2	database	C8H14N2O5	5-L-Glutamyl-L-alanine	13C2	13C
+5-L-Glutamyl-L-alanine-13C3	database	C8H14N2O5	5-L-Glutamyl-L-alanine	13C3	13C
+5-L-Glutamyl-L-alanine-13C4	database	C8H14N2O5	5-L-Glutamyl-L-alanine	13C4	13C
+5-L-Glutamyl-L-alanine-13C5	database	C8H14N2O5	5-L-Glutamyl-L-alanine	13C5	13C
+5-L-Glutamyl-L-alanine-13C6	database	C8H14N2O5	5-L-Glutamyl-L-alanine	13C6	13C
+5-L-Glutamyl-L-alanine-13C7	database	C8H14N2O5	5-L-Glutamyl-L-alanine	13C7	13C
+5-L-Glutamyl-L-alanine-13C8	database	C8H14N2O5	5-L-Glutamyl-L-alanine	13C8	13C
+5-L-Glutamyl-taurine-13C0	database	C7H14N2O6S1	5-L-Glutamyl-taurine	13C0	13C
+5-L-Glutamyl-taurine-13C1	database	C7H14N2O6S1	5-L-Glutamyl-taurine	13C1	13C
+5-L-Glutamyl-taurine-13C2	database	C7H14N2O6S1	5-L-Glutamyl-taurine	13C2	13C
+5-L-Glutamyl-taurine-13C3	database	C7H14N2O6S1	5-L-Glutamyl-taurine	13C3	13C
+5-L-Glutamyl-taurine-13C4	database	C7H14N2O6S1	5-L-Glutamyl-taurine	13C4	13C
+5-L-Glutamyl-taurine-13C5	database	C7H14N2O6S1	5-L-Glutamyl-taurine	13C5	13C
+5-L-Glutamyl-taurine-13C6	database	C7H14N2O6S1	5-L-Glutamyl-taurine	13C6	13C
+5-Phosphoribosyl-N-formylglycinamide-13C0	database	C8H15N2O9P1	5-Phosphoribosyl-N-formylglycinamide	13C0	13C
+5-Phosphoribosyl-N-formylglycinamide-13C1	database	C8H15N2O9P1	5-Phosphoribosyl-N-formylglycinamide	13C1	13C
+5-Phosphoribosyl-N-formylglycinamide-13C2	database	C8H15N2O9P1	5-Phosphoribosyl-N-formylglycinamide	13C2	13C
+5-Phosphoribosyl-N-formylglycinamide-13C3	database	C8H15N2O9P1	5-Phosphoribosyl-N-formylglycinamide	13C3	13C
+5-Phosphoribosyl-N-formylglycinamide-13C4	database	C8H15N2O9P1	5-Phosphoribosyl-N-formylglycinamide	13C4	13C
+5-Phosphoribosyl-N-formylglycinamide-13C5	database	C8H15N2O9P1	5-Phosphoribosyl-N-formylglycinamide	13C5	13C
+5-Phosphoribosyl-N-formylglycinamide-13C6	database	C8H15N2O9P1	5-Phosphoribosyl-N-formylglycinamide	13C6	13C
+6P-gluconic acid-13C0	direct_to_standard	C6H13O10P1	6P-gluconic acid	13C0	13C
+6P-gluconic acid-13C1	indirect_to_standard	C6H13O10P1	6P-gluconic acid	13C1	13C
+6P-gluconic acid-13C2	indirect_to_standard	C6H13O10P1	6P-gluconic acid	13C2	13C
+6P-gluconic acid-13C3	indirect_to_standard	C6H13O10P1	6P-gluconic acid	13C3	13C
+6P-gluconic acid-13C4	indirect_to_standard	C6H13O10P1	6P-gluconic acid	13C4	13C
+6P-gluconic acid-13C5	indirect_to_standard	C6H13O10P1	6P-gluconic acid	13C5	13C
+6P-gluconic acid-13C6	indirect_to_standard	C6H13O10P1	6P-gluconic acid	13C6	13C
+ADP-Ribose-13C0	direct_to_standard	C15H23N5O14P2	ADP-Ribose	13C0	13C
+ADP-Ribose-13C1	indirect_to_standard	C15H23N5O14P2	ADP-Ribose	13C1	13C
+ADP-Ribose-13C10	indirect_to_standard	C15H23N5O14P2	ADP-Ribose	13C10	13C
+ADP-Ribose-13C2	indirect_to_standard	C15H23N5O14P2	ADP-Ribose	13C2	13C
+ADP-Ribose-13C5	indirect_to_standard	C15H23N5O14P2	ADP-Ribose	13C5	13C
+ADP-Ribose-13C6	indirect_to_standard	C15H23N5O14P2	ADP-Ribose	13C6	13C
+ADP-Ribose-13C7	indirect_to_standard	C15H23N5O14P2	ADP-Ribose	13C7	13C
+ADP-Ribose-13C8	indirect_to_standard	C15H23N5O14P2	ADP-Ribose	13C8	13C
+ADP-Ribose-13C9	indirect_to_standard	C15H23N5O14P2	ADP-Ribose	13C9	13C
+ADP-glucose ADP-Mannose GDP-D-Rhamnose GDP-L-fucose-13C0	database	C16H25N5O15P2	ADP-glucose ADP-Mannose GDP-D-Rhamnose GDP-L-fucose	13C0	13C
+ADP-glucose ADP-Mannose GDP-D-Rhamnose GDP-L-fucose-13C1	database	C16H25N5O15P2	ADP-glucose ADP-Mannose GDP-D-Rhamnose GDP-L-fucose	13C1	13C
+ADP-glucose ADP-Mannose GDP-D-Rhamnose GDP-L-fucose-13C10	database	C16H25N5O15P2	ADP-glucose ADP-Mannose GDP-D-Rhamnose GDP-L-fucose	13C10	13C
+ADP-glucose ADP-Mannose GDP-D-Rhamnose GDP-L-fucose-13C11	database	C16H25N5O15P2	ADP-glucose ADP-Mannose GDP-D-Rhamnose GDP-L-fucose	13C11	13C
+ADP-glucose ADP-Mannose GDP-D-Rhamnose GDP-L-fucose-13C12	database	C16H25N5O15P2	ADP-glucose ADP-Mannose GDP-D-Rhamnose GDP-L-fucose	13C12	13C
+ADP-glucose ADP-Mannose GDP-D-Rhamnose GDP-L-fucose-13C13	database	C16H25N5O15P2	ADP-glucose ADP-Mannose GDP-D-Rhamnose GDP-L-fucose	13C13	13C
+ADP-glucose ADP-Mannose GDP-D-Rhamnose GDP-L-fucose-13C14	database	C16H25N5O15P2	ADP-glucose ADP-Mannose GDP-D-Rhamnose GDP-L-fucose	13C14	13C
+ADP-glucose ADP-Mannose GDP-D-Rhamnose GDP-L-fucose-13C2	database	C16H25N5O15P2	ADP-glucose ADP-Mannose GDP-D-Rhamnose GDP-L-fucose	13C2	13C
+ADP-glucose ADP-Mannose GDP-D-Rhamnose GDP-L-fucose-13C3	database	C16H25N5O15P2	ADP-glucose ADP-Mannose GDP-D-Rhamnose GDP-L-fucose	13C3	13C
+ADP-glucose ADP-Mannose GDP-D-Rhamnose GDP-L-fucose-13C4	database	C16H25N5O15P2	ADP-glucose ADP-Mannose GDP-D-Rhamnose GDP-L-fucose	13C4	13C
+ADP-glucose ADP-Mannose GDP-D-Rhamnose GDP-L-fucose-13C5	database	C16H25N5O15P2	ADP-glucose ADP-Mannose GDP-D-Rhamnose GDP-L-fucose	13C5	13C
+ADP-glucose ADP-Mannose GDP-D-Rhamnose GDP-L-fucose-13C6	database	C16H25N5O15P2	ADP-glucose ADP-Mannose GDP-D-Rhamnose GDP-L-fucose	13C6	13C
+ADP-glucose ADP-Mannose GDP-D-Rhamnose GDP-L-fucose-13C7	database	C16H25N5O15P2	ADP-glucose ADP-Mannose GDP-D-Rhamnose GDP-L-fucose	13C7	13C
+ADP-glucose ADP-Mannose GDP-D-Rhamnose GDP-L-fucose-13C8	database	C16H25N5O15P2	ADP-glucose ADP-Mannose GDP-D-Rhamnose GDP-L-fucose	13C8	13C
+ADP-glucose ADP-Mannose GDP-D-Rhamnose GDP-L-fucose-13C9	database	C16H25N5O15P2	ADP-glucose ADP-Mannose GDP-D-Rhamnose GDP-L-fucose	13C9	13C
+ADP-ribose 2-phosphate-13C0	database	C15H24N5O17P3	ADP-ribose 2-phosphate	13C0	13C
+ADP-ribose 2-phosphate-13C1	database	C15H24N5O17P3	ADP-ribose 2-phosphate	13C1	13C
+ADP-ribose 2-phosphate-13C10	database	C15H24N5O17P3	ADP-ribose 2-phosphate	13C10	13C
+ADP-ribose 2-phosphate-13C11	database	C15H24N5O17P3	ADP-ribose 2-phosphate	13C11	13C
+ADP-ribose 2-phosphate-13C12	database	C15H24N5O17P3	ADP-ribose 2-phosphate	13C12	13C
+ADP-ribose 2-phosphate-13C2	database	C15H24N5O17P3	ADP-ribose 2-phosphate	13C2	13C
+ADP-ribose 2-phosphate-13C3	database	C15H24N5O17P3	ADP-ribose 2-phosphate	13C3	13C
+ADP-ribose 2-phosphate-13C4	database	C15H24N5O17P3	ADP-ribose 2-phosphate	13C4	13C
+ADP-ribose 2-phosphate-13C5	database	C15H24N5O17P3	ADP-ribose 2-phosphate	13C5	13C
+ADP-ribose 2-phosphate-13C6	database	C15H24N5O17P3	ADP-ribose 2-phosphate	13C6	13C
+ADP-ribose 2-phosphate-13C7	database	C15H24N5O17P3	ADP-ribose 2-phosphate	13C7	13C
+ADP-ribose 2-phosphate-13C8	database	C15H24N5O17P3	ADP-ribose 2-phosphate	13C8	13C
+ADP-ribose 2-phosphate-13C9	database	C15H24N5O17P3	ADP-ribose 2-phosphate	13C9	13C
+ADP@mzAMP-13C0	direct_to_standard	C10H14N5O7P1	ADP@mzAMP	13C0	13C
+ADP@mzAMP-13C1	indirect_to_standard	C10H14N5O7P1	ADP@mzAMP	13C1	13C
+ADP@mzAMP-13C2	indirect_to_standard	C10H14N5O7P1	ADP@mzAMP	13C2	13C
+ADP@mzAMP-13C3	indirect_to_standard	C10H14N5O7P1	ADP@mzAMP	13C3	13C
+ADP@mzAMP-13C4	indirect_to_standard	C10H14N5O7P1	ADP@mzAMP	13C4	13C
+ADP@mzAMP-13C5	indirect_to_standard	C10H14N5O7P1	ADP@mzAMP	13C5	13C
+ADP@mzAMP-13C6	indirect_to_standard	C10H14N5O7P1	ADP@mzAMP	13C6	13C
+ADP@mzAMP-13C7	indirect_to_standard	C10H14N5O7P1	ADP@mzAMP	13C7	13C
+ADP@mzAMP-13C8	indirect_to_standard	C10H14N5O7P1	ADP@mzAMP	13C8	13C
+ADP@mzAMP-13C9	indirect_to_standard	C10H14N5O7P1	ADP@mzAMP	13C9	13C
+AICAR-13C0	direct_to_standard	C9H15N4O8P1	AICAR	13C0	13C
+AICAR-13C1	indirect_to_standard	C9H15N4O8P1	AICAR	13C1	13C
+AICAR-13C2	indirect_to_standard	C9H15N4O8P1	AICAR	13C2	13C
+AICAR-13C3	indirect_to_standard	C9H15N4O8P1	AICAR	13C3	13C
+AICAR-13C4	indirect_to_standard	C9H15N4O8P1	AICAR	13C4	13C
+AICAR-13C5	indirect_to_standard	C9H15N4O8P1	AICAR	13C5	13C
+AICAR-13C6	indirect_to_standard	C9H15N4O8P1	AICAR	13C6	13C
+AICAR-13C7	indirect_to_standard	C9H15N4O8P1	AICAR	13C7	13C
+AMP-13C0	direct_to_standard	C10H14N5O7P1	AMP	13C0	13C
+AMP-13C1	indirect_to_standard	C10H14N5O7P1	AMP	13C1	13C
+AMP-13C10	indirect_to_standard	C10H14N5O7P1	AMP	13C10	13C
+AMP-13C2	indirect_to_standard	C10H14N5O7P1	AMP	13C2	13C
+AMP-13C3	indirect_to_standard	C10H14N5O7P1	AMP	13C3	13C
+AMP-13C4	indirect_to_standard	C10H14N5O7P1	AMP	13C4	13C
+AMP-13C5	indirect_to_standard	C10H14N5O7P1	AMP	13C5	13C
+AMP-13C6	indirect_to_standard	C10H14N5O7P1	AMP	13C6	13C
+AMP-13C7	indirect_to_standard	C10H14N5O7P1	AMP	13C7	13C
+AMP-13C8	indirect_to_standard	C10H14N5O7P1	AMP	13C8	13C
+AMP-13C9	indirect_to_standard	C10H14N5O7P1	AMP	13C9	13C
+AP3A-13C0	database	C11H15N4O7P1S1	AP3A	13C0	13C
+ATP@mzADP-13C0	direct_to_standard	C10H15N5O10P2	ATP@mzADP	13C0	13C
+ATP@mzADP-13C1	indirect_to_standard	C10H15N5O10P2	ATP@mzADP	13C1	13C
+ATP@mzADP-13C2	indirect_to_standard	C10H15N5O10P2	ATP@mzADP	13C2	13C
+ATP@mzADP-13C3	indirect_to_standard	C10H15N5O10P2	ATP@mzADP	13C3	13C
+ATP@mzADP-13C4	indirect_to_standard	C10H15N5O10P2	ATP@mzADP	13C4	13C
+ATP@mzADP-13C5	indirect_to_standard	C10H15N5O10P2	ATP@mzADP	13C5	13C
+ATP@mzADP-13C6	indirect_to_standard	C10H15N5O10P2	ATP@mzADP	13C6	13C
+ATP@mzADP-13C7	indirect_to_standard	C10H15N5O10P2	ATP@mzADP	13C7	13C
+ATP@mzADP-13C8	indirect_to_standard	C10H15N5O10P2	ATP@mzADP	13C8	13C
+ATP@mzADP-13C9	indirect_to_standard	C10H15N5O10P2	ATP@mzADP	13C9	13C
+Acetylcysteine-13C0	direct_to_standard	C5H9N1O3S1	Acetylcysteine	13C0	13C
+Acetylcysteine-13C1	indirect_to_standard	C5H9N1O3S1	Acetylcysteine	13C1	13C
+Acetylcysteine-13C2	indirect_to_standard	C5H9N1O3S1	Acetylcysteine	13C2	13C
+Acetylcysteine-13C3	indirect_to_standard	C5H9N1O3S1	Acetylcysteine	13C3	13C
+Acetylcysteine-13C5	indirect_to_standard	C5H9N1O3S1	Acetylcysteine	13C5	13C
+Adenylsuccinic acid-13C0	database	C14H18N5O11P1	Adenylsuccinic acid	13C0	13C
+Adenylsuccinic acid-13C1	database	C14H18N5O11P1	Adenylsuccinic acid	13C1	13C
+Arabinonic acid L-Xylonate Ribonic acid-13C0	database	C5H10O6	Arabinonic acid L-Xylonate Ribonic acid	13C0	13C
+Arabinonic acid L-Xylonate Ribonic acid-13C1	database	C5H10O6	Arabinonic acid L-Xylonate Ribonic acid	13C1	13C
+Arabinonic acid L-Xylonate Ribonic acid-13C2	database	C5H10O6	Arabinonic acid L-Xylonate Ribonic acid	13C2	13C
+Arabinonic acid L-Xylonate Ribonic acid-13C3	database	C5H10O6	Arabinonic acid L-Xylonate Ribonic acid	13C3	13C
+Arabinonic acid L-Xylonate Ribonic acid-13C4	database	C5H10O6	Arabinonic acid L-Xylonate Ribonic acid	13C4	13C
+Arabinonic acid L-Xylonate Ribonic acid-13C5	database	C5H10O6	Arabinonic acid L-Xylonate Ribonic acid	13C5	13C
+Aspartate-13C0	direct_to_standard	C4H7N1O4	Aspartate	13C0	13C
+Aspartate-13C1	indirect_to_standard	C4H7N1O4	Aspartate	13C1	13C
+Aspartate-13C2	indirect_to_standard	C4H7N1O4	Aspartate	13C2	13C
+Aspartate-13C3	indirect_to_standard	C4H7N1O4	Aspartate	13C3	13C
+Aspartate-13C4	indirect_to_standard	C4H7N1O4	Aspartate	13C4	13C
+Beta-Citryl-L-glutamic acid-13C0	database	C11H15N1O10	Beta-Citryl-L-glutamic acid	13C0	13C
+Beta-Citryl-L-glutamic acid-13C1	database	C11H15N1O10	Beta-Citryl-L-glutamic acid	13C1	13C
+Beta-Citryl-L-glutamic acid-13C10	database	C11H15N1O10	Beta-Citryl-L-glutamic acid	13C10	13C
+Beta-Citryl-L-glutamic acid-13C11	database	C11H15N1O10	Beta-Citryl-L-glutamic acid	13C11	13C
+Beta-Citryl-L-glutamic acid-13C2	database	C11H15N1O10	Beta-Citryl-L-glutamic acid	13C2	13C
+Beta-Citryl-L-glutamic acid-13C3	database	C11H15N1O10	Beta-Citryl-L-glutamic acid	13C3	13C
+Beta-Citryl-L-glutamic acid-13C4	database	C11H15N1O10	Beta-Citryl-L-glutamic acid	13C4	13C
+Beta-Citryl-L-glutamic acid-13C5	database	C11H15N1O10	Beta-Citryl-L-glutamic acid	13C5	13C
+Beta-Citryl-L-glutamic acid-13C6	database	C11H15N1O10	Beta-Citryl-L-glutamic acid	13C6	13C
+Beta-Citryl-L-glutamic acid-13C7	database	C11H15N1O10	Beta-Citryl-L-glutamic acid	13C7	13C
+Beta-Citryl-L-glutamic acid-13C8	database	C11H15N1O10	Beta-Citryl-L-glutamic acid	13C8	13C
+Beta-Citryl-L-glutamic acid-13C9	database	C11H15N1O10	Beta-Citryl-L-glutamic acid	13C9	13C
+CAIR-13C0	database	C9H14N3O9P1	CAIR	13C0	13C
+CAIR-13C1	database	C9H14N3O9P1	CAIR	13C1	13C
+CAIR-13C2	database	C9H14N3O9P1	CAIR	13C2	13C
+CDP-13C0	direct_to_standard	C9H15N3O11P2	CDP	13C0	13C
+CDP-13C1	indirect_to_standard	C9H15N3O11P2	CDP	13C1	13C
+CDP-13C2	indirect_to_standard	C9H15N3O11P2	CDP	13C2	13C
+CDP-13C3	indirect_to_standard	C9H15N3O11P2	CDP	13C3	13C
+CDP-13C4	indirect_to_standard	C9H15N3O11P2	CDP	13C4	13C
+CDP-13C5	indirect_to_standard	C9H15N3O11P2	CDP	13C5	13C
+CDP-13C6	indirect_to_standard	C9H15N3O11P2	CDP	13C6	13C
+CDP-13C7	indirect_to_standard	C9H15N3O11P2	CDP	13C7	13C
+CDP-13C8	indirect_to_standard	C9H15N3O11P2	CDP	13C8	13C
+CDP-13C9	indirect_to_standard	C9H15N3O11P2	CDP	13C9	13C
+CDP-Ethanolamine-13C0	database	C11H20N4O11P2	CDP-Ethanolamine	13C0	13C
+CDP-Ethanolamine-13C1	database	C11H20N4O11P2	CDP-Ethanolamine	13C1	13C
+CDP-Ethanolamine-13C10	database	C11H20N4O11P2	CDP-Ethanolamine	13C10	13C
+CDP-Ethanolamine-13C2	database	C11H20N4O11P2	CDP-Ethanolamine	13C2	13C
+CDP-Ethanolamine-13C3	database	C11H20N4O11P2	CDP-Ethanolamine	13C3	13C
+CDP-Ethanolamine-13C4	database	C11H20N4O11P2	CDP-Ethanolamine	13C4	13C
+CDP-Ethanolamine-13C5	database	C11H20N4O11P2	CDP-Ethanolamine	13C5	13C
+CDP-Ethanolamine-13C6	database	C11H20N4O11P2	CDP-Ethanolamine	13C6	13C
+CDP-Ethanolamine-13C7	database	C11H20N4O11P2	CDP-Ethanolamine	13C7	13C
+CDP-Ethanolamine-13C8	database	C11H20N4O11P2	CDP-Ethanolamine	13C8	13C
+CDP-Ethanolamine-13C9	database	C11H20N4O11P2	CDP-Ethanolamine	13C9	13C
+CMP-13C0	direct_to_standard	C9H14N3O8P1	CMP	13C0	13C
+CMP-13C1	indirect_to_standard	C9H14N3O8P1	CMP	13C1	13C
+CMP-13C2	indirect_to_standard	C9H14N3O8P1	CMP	13C2	13C
+CTP@mzCDP-13C0	direct_to_standard	C9H15N3O11P2	CTP@mzCDP	13C0	13C
+CTP@mzCDP-13C1	indirect_to_standard	C9H15N3O11P2	CTP@mzCDP	13C1	13C
+CTP@mzCDP-13C2	indirect_to_standard	C9H15N3O11P2	CTP@mzCDP	13C2	13C
+CTP@mzCDP-13C3	indirect_to_standard	C9H15N3O11P2	CTP@mzCDP	13C3	13C
+CTP@mzCDP-13C4	indirect_to_standard	C9H15N3O11P2	CTP@mzCDP	13C4	13C
+CTP@mzCDP-13C5	indirect_to_standard	C9H15N3O11P2	CTP@mzCDP	13C5	13C
+CTP@mzCDP-13C6	indirect_to_standard	C9H15N3O11P2	CTP@mzCDP	13C6	13C
+CTP@mzCDP-13C7	indirect_to_standard	C9H15N3O11P2	CTP@mzCDP	13C7	13C
+CTP@mzCDP-13C8	indirect_to_standard	C9H15N3O11P2	CTP@mzCDP	13C8	13C
+CTP@mzCDP-13C9	indirect_to_standard	C9H15N3O11P2	CTP@mzCDP	13C9	13C
+Citrate-13C0	direct_to_standard	C6H8O7	Citrate	13C0	13C
+Citrate-13C1	indirect_to_standard	C6H8O7	Citrate	13C1	13C
+Citrate-13C2	indirect_to_standard	C6H8O7	Citrate	13C2	13C
+Citrate-13C3	indirect_to_standard	C6H8O7	Citrate	13C3	13C
+Citrate-13C4	indirect_to_standard	C6H8O7	Citrate	13C4	13C
+Citrate-13C5	indirect_to_standard	C6H8O7	Citrate	13C5	13C
+Citrate-13C6	indirect_to_standard	C6H8O7	Citrate	13C6	13C
+Cysteic acid-13C0	database	C3H7N1O5S1	Cysteic acid	13C0	13C
+Cysteic acid-13C1	database	C3H7N1O5S1	Cysteic acid	13C1	13C
+Cytidine monophosphate N-acetylneuraminic acid-13C0	database	C20H31N4O16P1	Cytidine monophosphate N-acetylneuraminic acid	13C0	13C
+Cytidine monophosphate N-acetylneuraminic acid-13C1	database	C20H31N4O16P1	Cytidine monophosphate N-acetylneuraminic acid	13C1	13C
+Cytidine monophosphate N-acetylneuraminic acid-13C10	database	C20H31N4O16P1	Cytidine monophosphate N-acetylneuraminic acid	13C10	13C
+Cytidine monophosphate N-acetylneuraminic acid-13C11	database	C20H31N4O16P1	Cytidine monophosphate N-acetylneuraminic acid	13C11	13C
+Cytidine monophosphate N-acetylneuraminic acid-13C12	database	C20H31N4O16P1	Cytidine monophosphate N-acetylneuraminic acid	13C12	13C
+Cytidine monophosphate N-acetylneuraminic acid-13C13	database	C20H31N4O16P1	Cytidine monophosphate N-acetylneuraminic acid	13C13	13C
+Cytidine monophosphate N-acetylneuraminic acid-13C14	database	C20H31N4O16P1	Cytidine monophosphate N-acetylneuraminic acid	13C14	13C
+Cytidine monophosphate N-acetylneuraminic acid-13C15	database	C20H31N4O16P1	Cytidine monophosphate N-acetylneuraminic acid	13C15	13C
+Cytidine monophosphate N-acetylneuraminic acid-13C16	database	C20H31N4O16P1	Cytidine monophosphate N-acetylneuraminic acid	13C16	13C
+Cytidine monophosphate N-acetylneuraminic acid-13C17	database	C20H31N4O16P1	Cytidine monophosphate N-acetylneuraminic acid	13C17	13C
+Cytidine monophosphate N-acetylneuraminic acid-13C18	database	C20H31N4O16P1	Cytidine monophosphate N-acetylneuraminic acid	13C18	13C
+Cytidine monophosphate N-acetylneuraminic acid-13C2	database	C20H31N4O16P1	Cytidine monophosphate N-acetylneuraminic acid	13C2	13C
+Cytidine monophosphate N-acetylneuraminic acid-13C3	database	C20H31N4O16P1	Cytidine monophosphate N-acetylneuraminic acid	13C3	13C
+Cytidine monophosphate N-acetylneuraminic acid-13C4	database	C20H31N4O16P1	Cytidine monophosphate N-acetylneuraminic acid	13C4	13C
+Cytidine monophosphate N-acetylneuraminic acid-13C5	database	C20H31N4O16P1	Cytidine monophosphate N-acetylneuraminic acid	13C5	13C
+Cytidine monophosphate N-acetylneuraminic acid-13C6	database	C20H31N4O16P1	Cytidine monophosphate N-acetylneuraminic acid	13C6	13C
+Cytidine monophosphate N-acetylneuraminic acid-13C7	database	C20H31N4O16P1	Cytidine monophosphate N-acetylneuraminic acid	13C7	13C
+Cytidine monophosphate N-acetylneuraminic acid-13C8	database	C20H31N4O16P1	Cytidine monophosphate N-acetylneuraminic acid	13C8	13C
+Cytidine monophosphate N-acetylneuraminic acid-13C9	database	C20H31N4O16P1	Cytidine monophosphate N-acetylneuraminic acid	13C9	13C
+D-Erythrose 4-phosphate-13C0	direct_to_standard	C4H9O7P1	D-Erythrose 4-phosphate	13C0	13C
+D-Erythrose 4-phosphate-13C1	indirect_to_standard	C4H9O7P1	D-Erythrose 4-phosphate	13C1	13C
+D-Erythrose 4-phosphate-13C3	indirect_to_standard	C4H9O7P1	D-Erythrose 4-phosphate	13C3	13C
+D-Erythrose 4-phosphate-13C4	indirect_to_standard	C4H9O7P1	D-Erythrose 4-phosphate	13C4	13C
+D-Galacturonate-13C0	database	C6H10O7	D-Galacturonate	13C0	13C
+D-Galacturonate-13C1	database	C6H10O7	D-Galacturonate	13C1	13C
+D-Galacturonate-13C2	database	C6H10O7	D-Galacturonate	13C2	13C
+D-Galacturonate-13C3	database	C6H10O7	D-Galacturonate	13C3	13C
+D-Galacturonate-13C4	database	C6H10O7	D-Galacturonate	13C4	13C
+D-Galacturonate-13C5	database	C6H10O7	D-Galacturonate	13C5	13C
+D-Galacturonate-13C6	database	C6H10O7	D-Galacturonate	13C6	13C
+D-Glucarate-13C0	database	C6H10O8	D-Glucarate	13C0	13C
+D-Glucarate-13C1	database	C6H10O8	D-Glucarate	13C1	13C
+D-Glucarate-13C2	database	C6H10O8	D-Glucarate	13C2	13C
+D-Glucarate-13C6	database	C6H10O8	D-Glucarate	13C6	13C
+D-Glucuronate 1-phosphate-13C0	database	C6H11O10P1	D-Glucuronate 1-phosphate	13C0	13C
+D-Glucuronate 1-phosphate-13C1	database	C6H11O10P1	D-Glucuronate 1-phosphate	13C1	13C
+D-Glucuronate 1-phosphate-13C2	database	C6H11O10P1	D-Glucuronate 1-phosphate	13C2	13C
+D-Glucuronate 1-phosphate-13C3	database	C6H11O10P1	D-Glucuronate 1-phosphate	13C3	13C
+D-Glucuronate 1-phosphate-13C4	database	C6H11O10P1	D-Glucuronate 1-phosphate	13C4	13C
+D-Glucuronate 1-phosphate-13C5	database	C6H11O10P1	D-Glucuronate 1-phosphate	13C5	13C
+D-Glucuronate 1-phosphate-13C6	database	C6H11O10P1	D-Glucuronate 1-phosphate	13C6	13C
+D-Ribose 1-phosphate-13C0	direct_to_standard	C5H11O8P1	D-Ribose 1-phosphate	13C0	13C
+D-Ribose 1-phosphate-13C1	indirect_to_standard	C5H11O8P1	D-Ribose 1-phosphate	13C1	13C
+D-Ribose 1-phosphate-13C2	indirect_to_standard	C5H11O8P1	D-Ribose 1-phosphate	13C2	13C
+D-Ribose 1-phosphate-13C3	indirect_to_standard	C5H11O8P1	D-Ribose 1-phosphate	13C3	13C
+D-Ribose 1-phosphate-13C4	indirect_to_standard	C5H11O8P1	D-Ribose 1-phosphate	13C4	13C
+D-Ribose 1-phosphate-13C5	indirect_to_standard	C5H11O8P1	D-Ribose 1-phosphate	13C5	13C
+D-Ribose 5-phosphate D-Ribulose 5-phosphate-13C0	direct_to_standard	C5H11O8P1	D-Ribose 5-phosphate D-Ribulose 5-phosphate	13C0	13C
+D-Ribose 5-phosphate D-Ribulose 5-phosphate-13C1	indirect_to_standard	C5H11O8P1	D-Ribose 5-phosphate D-Ribulose 5-phosphate	13C1	13C
+D-Ribose 5-phosphate D-Ribulose 5-phosphate-13C2	indirect_to_standard	C5H11O8P1	D-Ribose 5-phosphate D-Ribulose 5-phosphate	13C2	13C
+D-Ribose 5-phosphate D-Ribulose 5-phosphate-13C3	indirect_to_standard	C5H11O8P1	D-Ribose 5-phosphate D-Ribulose 5-phosphate	13C3	13C
+D-Ribose 5-phosphate D-Ribulose 5-phosphate-13C4	indirect_to_standard	C5H11O8P1	D-Ribose 5-phosphate D-Ribulose 5-phosphate	13C4	13C
+D-Ribose 5-phosphate D-Ribulose 5-phosphate-13C5	indirect_to_standard	C5H11O8P1	D-Ribose 5-phosphate D-Ribulose 5-phosphate	13C5	13C
+D-Sedoheptulose 7-phosphate-13C0	direct_to_standard	C7H15O10P1	D-Sedoheptulose 7-phosphate	13C0	13C
+D-Sedoheptulose 7-phosphate-13C1	indirect_to_standard	C7H15O10P1	D-Sedoheptulose 7-phosphate	13C1	13C
+D-Sedoheptulose 7-phosphate-13C2	indirect_to_standard	C7H15O10P1	D-Sedoheptulose 7-phosphate	13C2	13C
+D-Sedoheptulose 7-phosphate-13C3	indirect_to_standard	C7H15O10P1	D-Sedoheptulose 7-phosphate	13C3	13C
+D-Sedoheptulose 7-phosphate-13C4	indirect_to_standard	C7H15O10P1	D-Sedoheptulose 7-phosphate	13C4	13C
+D-Sedoheptulose 7-phosphate-13C5	indirect_to_standard	C7H15O10P1	D-Sedoheptulose 7-phosphate	13C5	13C
+D-Sedoheptulose 7-phosphate-13C6	indirect_to_standard	C7H15O10P1	D-Sedoheptulose 7-phosphate	13C6	13C
+D-Sedoheptulose 7-phosphate-13C7	indirect_to_standard	C7H15O10P1	D-Sedoheptulose 7-phosphate	13C7	13C
+DSS-13C0	direct_to_standard	C6H16O3S1Si1	DSS	13C0	13C
+DSS-13C1	indirect_to_standard	C6H16O3S1Si1	DSS	13C1	13C
+F6P-13C0	direct_to_standard	C6H13O9P1	F6P	13C0	13C
+F6P-13C1	indirect_to_standard	C6H13O9P1	F6P	13C1	13C
+F6P-13C2	indirect_to_standard	C6H13O9P1	F6P	13C2	13C
+F6P-13C3	indirect_to_standard	C6H13O9P1	F6P	13C3	13C
+F6P-13C4	indirect_to_standard	C6H13O9P1	F6P	13C4	13C
+F6P-13C5	indirect_to_standard	C6H13O9P1	F6P	13C5	13C
+F6P-13C6	indirect_to_standard	C6H13O9P1	F6P	13C6	13C
+Flavin Mononucleotide-13C0	database	C17H21N4O9P1	Flavin Mononucleotide	13C0	13C
+Flavin Mononucleotide-13C1	database	C17H21N4O9P1	Flavin Mononucleotide	13C1	13C
+Flavin Mononucleotide-13C2	database	C17H21N4O9P1	Flavin Mononucleotide	13C2	13C
+Fructose 1-6-bisphosphate-13C0	direct_to_standard	C6H14O12P2	Fructose 1-6-bisphosphate	13C0	13C
+Fructose 1-6-bisphosphate-13C1	indirect_to_standard	C6H14O12P2	Fructose 1-6-bisphosphate	13C1	13C
+Fructose 1-6-bisphosphate-13C2	indirect_to_standard	C6H14O12P2	Fructose 1-6-bisphosphate	13C2	13C
+Fructose 1-6-bisphosphate-13C3	indirect_to_standard	C6H14O12P2	Fructose 1-6-bisphosphate	13C3	13C
+Fructose 1-6-bisphosphate-13C4	indirect_to_standard	C6H14O12P2	Fructose 1-6-bisphosphate	13C4	13C
+Fructose 1-6-bisphosphate-13C5	indirect_to_standard	C6H14O12P2	Fructose 1-6-bisphosphate	13C5	13C
+Fructose 1-6-bisphosphate-13C6	indirect_to_standard	C6H14O12P2	Fructose 1-6-bisphosphate	13C6	13C
+Fructose 1-phosphate-13C0	database	C6H13O9P1	Fructose 1-phosphate	13C0	13C
+Fructose 1-phosphate-13C1	database	C6H13O9P1	Fructose 1-phosphate	13C1	13C
+Fructose 1-phosphate-13C2	database	C6H13O9P1	Fructose 1-phosphate	13C2	13C
+Fructose 1-phosphate-13C3	database	C6H13O9P1	Fructose 1-phosphate	13C3	13C
+Fructose 1-phosphate-13C4	database	C6H13O9P1	Fructose 1-phosphate	13C4	13C
+Fructose 1-phosphate-13C5	database	C6H13O9P1	Fructose 1-phosphate	13C5	13C
+Fructose 1-phosphate-13C6	database	C6H13O9P1	Fructose 1-phosphate	13C6	13C
+Fructose 2-6-bisphosphate-13C0	database	C6H14O12P2	Fructose 2-6-bisphosphate	13C0	13C
+Fructose 2-6-bisphosphate-13C1	database	C6H14O12P2	Fructose 2-6-bisphosphate	13C1	13C
+Fructose 2-6-bisphosphate-13C2	database	C6H14O12P2	Fructose 2-6-bisphosphate	13C2	13C
+Fructose 2-6-bisphosphate-13C3	database	C6H14O12P2	Fructose 2-6-bisphosphate	13C3	13C
+Fructose 2-6-bisphosphate-13C4	database	C6H14O12P2	Fructose 2-6-bisphosphate	13C4	13C
+Fructose 2-6-bisphosphate-13C5	database	C6H14O12P2	Fructose 2-6-bisphosphate	13C5	13C
+Fructose 2-6-bisphosphate-13C6	database	C6H14O12P2	Fructose 2-6-bisphosphate	13C6	13C
+Fumarate-13C0	direct_to_standard	C4H4O4	Fumarate	13C0	13C
+Fumarate-13C1	indirect_to_standard	C4H4O4	Fumarate	13C1	13C
+Fumarate-13C2	indirect_to_standard	C4H4O4	Fumarate	13C2	13C
+Fumarate-13C3	indirect_to_standard	C4H4O4	Fumarate	13C3	13C
+Fumarate-13C4	indirect_to_standard	C4H4O4	Fumarate	13C4	13C
+G6P-13C0	direct_to_standard	C6H13O9P1	G6P	13C0	13C
+G6P-13C1	indirect_to_standard	C6H13O9P1	G6P	13C1	13C
+G6P-13C2	indirect_to_standard	C6H13O9P1	G6P	13C2	13C
+G6P-13C3	indirect_to_standard	C6H13O9P1	G6P	13C3	13C
+G6P-13C4	indirect_to_standard	C6H13O9P1	G6P	13C4	13C
+G6P-13C5	indirect_to_standard	C6H13O9P1	G6P	13C5	13C
+G6P-13C6	indirect_to_standard	C6H13O9P1	G6P	13C6	13C
+GDP-13C0	direct_to_standard	C10H15N5O11P2	GDP	13C0	13C
+GDP-13C1	indirect_to_standard	C10H15N5O11P2	GDP	13C1	13C
+GDP-13C10	indirect_to_standard	C10H15N5O11P2	GDP	13C10	13C
+GDP-13C2	indirect_to_standard	C10H15N5O11P2	GDP	13C2	13C
+GDP-13C3	indirect_to_standard	C10H15N5O11P2	GDP	13C3	13C
+GDP-13C4	indirect_to_standard	C10H15N5O11P2	GDP	13C4	13C
+GDP-13C5	indirect_to_standard	C10H15N5O11P2	GDP	13C5	13C
+GDP-13C6	indirect_to_standard	C10H15N5O11P2	GDP	13C6	13C
+GDP-13C7	indirect_to_standard	C10H15N5O11P2	GDP	13C7	13C
+GDP-13C8	indirect_to_standard	C10H15N5O11P2	GDP	13C8	13C
+GDP-13C9	indirect_to_standard	C10H15N5O11P2	GDP	13C9	13C
+GMP-13C0	direct_to_standard	C10H14N5O8P1	GMP	13C0	13C
+GMP-13C1	indirect_to_standard	C10H14N5O8P1	GMP	13C1	13C
+GMP-13C10	indirect_to_standard	C10H14N5O8P1	GMP	13C10	13C
+GMP-13C2	indirect_to_standard	C10H14N5O8P1	GMP	13C2	13C
+GMP-13C3	indirect_to_standard	C10H14N5O8P1	GMP	13C3	13C
+GMP-13C4	indirect_to_standard	C10H14N5O8P1	GMP	13C4	13C
+GMP-13C5	indirect_to_standard	C10H14N5O8P1	GMP	13C5	13C
+GMP-13C6	indirect_to_standard	C10H14N5O8P1	GMP	13C6	13C
+GMP-13C7	indirect_to_standard	C10H14N5O8P1	GMP	13C7	13C
+GMP-13C8	indirect_to_standard	C10H14N5O8P1	GMP	13C8	13C
+GMP-13C9	indirect_to_standard	C10H14N5O8P1	GMP	13C9	13C
+GTP@mzGDP-13C0	direct_to_standard	C10H15N5O11P2	GTP@mzGDP	13C0	13C
+GTP@mzGDP-13C1	indirect_to_standard	C10H15N5O11P2	GTP@mzGDP	13C1	13C
+GTP@mzGDP-13C2	indirect_to_standard	C10H15N5O11P2	GTP@mzGDP	13C2	13C
+GTP@mzGDP-13C3	indirect_to_standard	C10H15N5O11P2	GTP@mzGDP	13C3	13C
+GTP@mzGDP-13C4	indirect_to_standard	C10H15N5O11P2	GTP@mzGDP	13C4	13C
+GTP@mzGDP-13C5	indirect_to_standard	C10H15N5O11P2	GTP@mzGDP	13C5	13C
+GTP@mzGDP-13C6	indirect_to_standard	C10H15N5O11P2	GTP@mzGDP	13C6	13C
+GTP@mzGDP-13C7	indirect_to_standard	C10H15N5O11P2	GTP@mzGDP	13C7	13C
+GTP@mzGDP-13C8	indirect_to_standard	C10H15N5O11P2	GTP@mzGDP	13C8	13C
+Galactaric acid MP-13C0	database	C6H10O8	Galactaric acid MP	13C0	13C
+Galactaric acid MP-13C1	database	C6H10O8	Galactaric acid MP	13C1	13C
+Galactaric acid MP-13C6	database	C6H10O8	Galactaric acid MP	13C6	13C
+Galactitol Sorbitol-13C0	database	C6H14O6	Galactitol Sorbitol	13C0	13C
+Galactitol Sorbitol-13C1	database	C6H14O6	Galactitol Sorbitol	13C1	13C
+Galactitol Sorbitol-13C5	database	C6H14O6	Galactitol Sorbitol	13C5	13C
+Galactitol Sorbitol-13C6	database	C6H14O6	Galactitol Sorbitol	13C6	13C
+Galactose 1-phosphate-13C0	direct_to_standard	C6H13O9P1	Galactose 1-phosphate	13C0	13C
+Galactose 1-phosphate-13C1	indirect_to_standard	C6H13O9P1	Galactose 1-phosphate	13C1	13C
+Galactose 1-phosphate-13C2	indirect_to_standard	C6H13O9P1	Galactose 1-phosphate	13C2	13C
+Galactose 1-phosphate-13C3	indirect_to_standard	C6H13O9P1	Galactose 1-phosphate	13C3	13C
+Galactose 1-phosphate-13C4	indirect_to_standard	C6H13O9P1	Galactose 1-phosphate	13C4	13C
+Galactose 1-phosphate-13C5	indirect_to_standard	C6H13O9P1	Galactose 1-phosphate	13C5	13C
+Galactose 1-phosphate-13C6	indirect_to_standard	C6H13O9P1	Galactose 1-phosphate	13C6	13C
+Gamma Glutamylglutamic acid-13C0	database	C10H16N2O7	Gamma Glutamylglutamic acid	13C0	13C
+Gamma Glutamylglutamic acid-13C1	database	C10H16N2O7	Gamma Glutamylglutamic acid	13C1	13C
+Gamma Glutamylglutamic acid-13C2	database	C10H16N2O7	Gamma Glutamylglutamic acid	13C2	13C
+Gamma Glutamylglutamic acid-13C3	database	C10H16N2O7	Gamma Glutamylglutamic acid	13C3	13C
+Gamma Glutamylglutamic acid-13C4	database	C10H16N2O7	Gamma Glutamylglutamic acid	13C4	13C
+Gamma Glutamylglutamic acid-13C5	database	C10H16N2O7	Gamma Glutamylglutamic acid	13C5	13C
+Gamma Glutamylglutamic acid-13C6	database	C10H16N2O7	Gamma Glutamylglutamic acid	13C6	13C
+Gamma Glutamylglutamic acid-13C7	database	C10H16N2O7	Gamma Glutamylglutamic acid	13C7	13C
+Gamma Glutamylglutamic acid-13C8	database	C10H16N2O7	Gamma Glutamylglutamic acid	13C8	13C
+Gamma Glutamylglutamic acid-13C9	database	C10H16N2O7	Gamma Glutamylglutamic acid	13C9	13C
+Gluconic acid-13C0	direct_to_standard	C6H12O7	Gluconic acid	13C0	13C
+Gluconic acid-13C1	indirect_to_standard	C6H12O7	Gluconic acid	13C1	13C
+Gluconic acid-13C2	indirect_to_standard	C6H12O7	Gluconic acid	13C2	13C
+Gluconic acid-13C3	indirect_to_standard	C6H12O7	Gluconic acid	13C3	13C
+Gluconic acid-13C4	indirect_to_standard	C6H12O7	Gluconic acid	13C4	13C
+Gluconic acid-13C5	indirect_to_standard	C6H12O7	Gluconic acid	13C5	13C
+Gluconic acid-13C6	indirect_to_standard	C6H12O7	Gluconic acid	13C6	13C
+Glucose 1-6-diphosphate-13C0	database	C6H14O12P2	Glucose 1-6-diphosphate	13C0	13C
+Glucose 1-6-diphosphate-13C1	database	C6H14O12P2	Glucose 1-6-diphosphate	13C1	13C
+Glucose 1-6-diphosphate-13C2	database	C6H14O12P2	Glucose 1-6-diphosphate	13C2	13C
+Glucose 1-6-diphosphate-13C3	database	C6H14O12P2	Glucose 1-6-diphosphate	13C3	13C
+Glucose 1-6-diphosphate-13C4	database	C6H14O12P2	Glucose 1-6-diphosphate	13C4	13C
+Glucose 1-6-diphosphate-13C5	database	C6H14O12P2	Glucose 1-6-diphosphate	13C5	13C
+Glucose 1-6-diphosphate-13C6	database	C6H14O12P2	Glucose 1-6-diphosphate	13C6	13C
+Glucose 1-phosphate-13C0	direct_to_standard	C6H13O9P1	Glucose 1-phosphate	13C0	13C
+Glucose 1-phosphate-13C1	indirect_to_standard	C6H13O9P1	Glucose 1-phosphate	13C1	13C
+Glucose 1-phosphate-13C2	indirect_to_standard	C6H13O9P1	Glucose 1-phosphate	13C2	13C
+Glucose 1-phosphate-13C3	indirect_to_standard	C6H13O9P1	Glucose 1-phosphate	13C3	13C
+Glucose 1-phosphate-13C4	indirect_to_standard	C6H13O9P1	Glucose 1-phosphate	13C4	13C
+Glucose 1-phosphate-13C5	indirect_to_standard	C6H13O9P1	Glucose 1-phosphate	13C5	13C
+Glucose 1-phosphate-13C6	indirect_to_standard	C6H13O9P1	Glucose 1-phosphate	13C6	13C
+Glucuronate-13C0	direct_to_standard	C6H10O7	Glucuronate	13C0	13C
+Glucuronate-13C1	indirect_to_standard	C6H10O7	Glucuronate	13C1	13C
+Glucuronate-13C2	indirect_to_standard	C6H10O7	Glucuronate	13C2	13C
+Glucuronate-13C3	indirect_to_standard	C6H10O7	Glucuronate	13C3	13C
+Glucuronate-13C4	indirect_to_standard	C6H10O7	Glucuronate	13C4	13C
+Glucuronate-13C5	indirect_to_standard	C6H10O7	Glucuronate	13C5	13C
+Glucuronate-13C6	indirect_to_standard	C6H10O7	Glucuronate	13C6	13C
+Glutamate-13C0	direct_to_standard	C5H9N1O4	Glutamate	13C0	13C
+Glutamate-13C1	indirect_to_standard	C5H9N1O4	Glutamate	13C1	13C
+Glutamate-13C2	indirect_to_standard	C5H9N1O4	Glutamate	13C2	13C
+Glutamate-13C3	indirect_to_standard	C5H9N1O4	Glutamate	13C3	13C
+Glutamate-13C4	indirect_to_standard	C5H9N1O4	Glutamate	13C4	13C
+Glutamate-13C5	indirect_to_standard	C5H9N1O4	Glutamate	13C5	13C
+Glutathione-13C0	direct_to_standard	C10H17N3O6S1	Glutathione	13C0	13C
+Glutathione-13C1	indirect_to_standard	C10H17N3O6S1	Glutathione	13C1	13C
+Glutathione-13C10	indirect_to_standard	C10H17N3O6S1	Glutathione	13C10	13C
+Glutathione-13C2	indirect_to_standard	C10H17N3O6S1	Glutathione	13C2	13C
+Glutathione-13C3	indirect_to_standard	C10H17N3O6S1	Glutathione	13C3	13C
+Glutathione-13C4	indirect_to_standard	C10H17N3O6S1	Glutathione	13C4	13C
+Glutathione-13C5	indirect_to_standard	C10H17N3O6S1	Glutathione	13C5	13C
+Glutathione-13C6	indirect_to_standard	C10H17N3O6S1	Glutathione	13C6	13C
+Glutathione-13C7	indirect_to_standard	C10H17N3O6S1	Glutathione	13C7	13C
+Glutathione-13C8	indirect_to_standard	C10H17N3O6S1	Glutathione	13C8	13C
+Glutathione-13C9	indirect_to_standard	C10H17N3O6S1	Glutathione	13C9	13C
+Glycerol 3-phosphate-13C0	direct_to_standard	C3H9O6P1	Glycerol 3-phosphate	13C0	13C
+Glycerol 3-phosphate-13C1	indirect_to_standard	C3H9O6P1	Glycerol 3-phosphate	13C1	13C
+Glycerol 3-phosphate-13C2	indirect_to_standard	C3H9O6P1	Glycerol 3-phosphate	13C2	13C
+Glycerol 3-phosphate-13C3	indirect_to_standard	C3H9O6P1	Glycerol 3-phosphate	13C3	13C
+Glycerophosphocholine-13C0	direct_to_standard	C8H20N1O6P1	Glycerophosphocholine	13C0	13C
+Glycerophosphocholine-13C1	indirect_to_standard	C8H20N1O6P1	Glycerophosphocholine	13C1	13C
+Glycerylphosphorylethanolamine-13C0	direct_to_standard	C5H14N1O6P1	Glycerylphosphorylethanolamine	13C0	13C
+Glycerylphosphorylethanolamine-13C1	indirect_to_standard	C5H14N1O6P1	Glycerylphosphorylethanolamine	13C1	13C
+Glycerylphosphorylethanolamine-13C2	indirect_to_standard	C5H14N1O6P1	Glycerylphosphorylethanolamine	13C2	13C
+Glycerylphosphorylethanolamine-13C3	indirect_to_standard	C5H14N1O6P1	Glycerylphosphorylethanolamine	13C3	13C
+Glycerylphosphorylethanolamine-13C4	indirect_to_standard	C5H14N1O6P1	Glycerylphosphorylethanolamine	13C4	13C
+Guanosine diphosphate mannose-13C0	direct_to_standard	C16H25N5O16P2	Guanosine diphosphate mannose	13C0	13C
+Guanosine diphosphate mannose-13C1	indirect_to_standard	C16H25N5O16P2	Guanosine diphosphate mannose	13C1	13C
+Guanosine diphosphate mannose-13C10	indirect_to_standard	C16H25N5O16P2	Guanosine diphosphate mannose	13C10	13C
+Guanosine diphosphate mannose-13C11	indirect_to_standard	C16H25N5O16P2	Guanosine diphosphate mannose	13C11	13C
+Guanosine diphosphate mannose-13C12	indirect_to_standard	C16H25N5O16P2	Guanosine diphosphate mannose	13C12	13C
+Guanosine diphosphate mannose-13C13	indirect_to_standard	C16H25N5O16P2	Guanosine diphosphate mannose	13C13	13C
+Guanosine diphosphate mannose-13C14	indirect_to_standard	C16H25N5O16P2	Guanosine diphosphate mannose	13C14	13C
+Guanosine diphosphate mannose-13C2	indirect_to_standard	C16H25N5O16P2	Guanosine diphosphate mannose	13C2	13C
+Guanosine diphosphate mannose-13C3	indirect_to_standard	C16H25N5O16P2	Guanosine diphosphate mannose	13C3	13C
+Guanosine diphosphate mannose-13C4	indirect_to_standard	C16H25N5O16P2	Guanosine diphosphate mannose	13C4	13C
+Guanosine diphosphate mannose-13C5	indirect_to_standard	C16H25N5O16P2	Guanosine diphosphate mannose	13C5	13C
+Guanosine diphosphate mannose-13C6	indirect_to_standard	C16H25N5O16P2	Guanosine diphosphate mannose	13C6	13C
+Guanosine diphosphate mannose-13C7	indirect_to_standard	C16H25N5O16P2	Guanosine diphosphate mannose	13C7	13C
+Guanosine diphosphate mannose-13C8	indirect_to_standard	C16H25N5O16P2	Guanosine diphosphate mannose	13C8	13C
+Guanosine diphosphate mannose-13C9	indirect_to_standard	C16H25N5O16P2	Guanosine diphosphate mannose	13C9	13C
+Hexoses-13C0	direct_to_standard	C6H12O6	Hexoses	13C0	13C
+Hexoses-13C1	indirect_to_standard	C6H12O6	Hexoses	13C1	13C
+Hexoses-13C2	indirect_to_standard	C6H12O6	Hexoses	13C2	13C
+Hexoses-13C5	indirect_to_standard	C6H12O6	Hexoses	13C5	13C
+Hexoses-13C6	indirect_to_standard	C6H12O6	Hexoses	13C6	13C
+Homocysteinesulfinic acid-13C0	database	C4H9N1O4S1	Homocysteinesulfinic acid	13C0	13C
+Homocysteinesulfinic acid-13C1	database	C4H9N1O4S1	Homocysteinesulfinic acid	13C1	13C
+Homocysteinesulfinic acid-13C2	database	C4H9N1O4S1	Homocysteinesulfinic acid	13C2	13C
+Homocysteinesulfinic acid-13C3	database	C4H9N1O4S1	Homocysteinesulfinic acid	13C3	13C
+Hydroxypropanedioic acid-13C0	database	C3H4O5	Hydroxypropanedioic acid	13C0	13C
+Hydroxypropanedioic acid-13C1	database	C3H4O5	Hydroxypropanedioic acid	13C1	13C
+Hydroxypropanedioic acid-13C3	database	C3H4O5	Hydroxypropanedioic acid	13C3	13C
+IMP-13C0	direct_to_standard	C10H13N4O8P1	IMP	13C0	13C
+IMP-13C1	indirect_to_standard	C10H13N4O8P1	IMP	13C1	13C
+IMP-13C2	indirect_to_standard	C10H13N4O8P1	IMP	13C2	13C
+IMP-13C3	indirect_to_standard	C10H13N4O8P1	IMP	13C3	13C
+IMP-13C4	indirect_to_standard	C10H13N4O8P1	IMP	13C4	13C
+IMP-13C5	indirect_to_standard	C10H13N4O8P1	IMP	13C5	13C
+IMP-13C6	indirect_to_standard	C10H13N4O8P1	IMP	13C6	13C
+Ino145-trisP Ino134-trisP@mz Ino-bisP-13C0	database	C6H14O12P2	Ino145-trisP Ino134-trisP@mz Ino-bisP	13C0	13C
+Ino145-trisP Ino134-trisP@mz Ino-bisP-13C1	database	C6H14O12P2	Ino145-trisP Ino134-trisP@mz Ino-bisP	13C1	13C
+Inosine-13C0	direct_to_standard	C10H12N4O5	Inosine	13C0	13C
+Inosine-13C1	indirect_to_standard	C10H12N4O5	Inosine	13C1	13C
+Inosine-13C2	indirect_to_standard	C10H12N4O5	Inosine	13C2	13C
+Isocitrate-13C0	direct_to_standard	C6H8O7	Isocitrate	13C0	13C
+Isocitrate-13C1	indirect_to_standard	C6H8O7	Isocitrate	13C1	13C
+Isocitrate-13C2	indirect_to_standard	C6H8O7	Isocitrate	13C2	13C
+Isocitrate-13C3	indirect_to_standard	C6H8O7	Isocitrate	13C3	13C
+Isocitrate-13C4	indirect_to_standard	C6H8O7	Isocitrate	13C4	13C
+Isocitrate-13C5	indirect_to_standard	C6H8O7	Isocitrate	13C5	13C
+Isocitrate-13C6	indirect_to_standard	C6H8O7	Isocitrate	13C6	13C
+Itaconate-13C0	direct_to_standard	C5H6O4	Itaconate	13C0	13C
+Itaconate-13C4	indirect_to_standard	C5H6O4	Itaconate	13C4	13C
+L-4-Hydroxyglutamate semialdehyde-13C0	database	C5H9N1O4	L-4-Hydroxyglutamate semialdehyde	13C0	13C
+L-4-Hydroxyglutamate semialdehyde-13C1	database	C5H9N1O4	L-4-Hydroxyglutamate semialdehyde	13C1	13C
+L-4-Hydroxyglutamate semialdehyde-13C2	database	C5H9N1O4	L-4-Hydroxyglutamate semialdehyde	13C2	13C
+L-4-Hydroxyglutamate semialdehyde-13C3	database	C5H9N1O4	L-4-Hydroxyglutamate semialdehyde	13C3	13C
+L-beta-aspartyl-L-glutamic acid -13C0	database	C9H14N2O7	L-beta-aspartyl-L-glutamic acid	13C0	13C
+L-beta-aspartyl-L-glutamic acid -13C1	database	C9H14N2O7	L-beta-aspartyl-L-glutamic acid	13C1	13C
+L-beta-aspartyl-L-glutamic acid -13C2	database	C9H14N2O7	L-beta-aspartyl-L-glutamic acid	13C2	13C
+Lactate-13C0	direct_to_standard	C3H6O3	Lactate	13C0	13C
+Lactate-13C1	indirect_to_standard	C3H6O3	Lactate	13C1	13C
+Lactate-13C2	indirect_to_standard	C3H6O3	Lactate	13C2	13C
+Lactate-13C3	indirect_to_standard	C3H6O3	Lactate	13C3	13C
+Malate-13C0	direct_to_standard	C4H6O5	Malate	13C0	13C
+Malate-13C1	indirect_to_standard	C4H6O5	Malate	13C1	13C
+Malate-13C2	indirect_to_standard	C4H6O5	Malate	13C2	13C
+Malate-13C3	indirect_to_standard	C4H6O5	Malate	13C3	13C
+Malate-13C4	indirect_to_standard	C4H6O5	Malate	13C4	13C
+Malonic acid-13C0	direct_to_standard	C3H4O4	Malonic acid	13C0	13C
+Malonic acid-13C1	indirect_to_standard	C3H4O4	Malonic acid	13C1	13C
+Malonic acid-13C2	indirect_to_standard	C3H4O4	Malonic acid	13C2	13C
+Malonic acid-13C3	indirect_to_standard	C3H4O4	Malonic acid	13C3	13C
+Mannose 6-phosphate-13C0	direct_to_standard	C6H13O9P1	Mannose 6-phosphate	13C0	13C
+Mannose 6-phosphate-13C1	indirect_to_standard	C6H13O9P1	Mannose 6-phosphate	13C1	13C
+Mannose 6-phosphate-13C2	indirect_to_standard	C6H13O9P1	Mannose 6-phosphate	13C2	13C
+Mannose 6-phosphate-13C3	indirect_to_standard	C6H13O9P1	Mannose 6-phosphate	13C3	13C
+Mannose 6-phosphate-13C4	indirect_to_standard	C6H13O9P1	Mannose 6-phosphate	13C4	13C
+Mannose 6-phosphate-13C5	indirect_to_standard	C6H13O9P1	Mannose 6-phosphate	13C5	13C
+Mannose 6-phosphate-13C6	indirect_to_standard	C6H13O9P1	Mannose 6-phosphate	13C6	13C
+Methylmalonic acid-13C0	direct_to_standard	C4H6O4	Methylmalonic acid	13C0	13C
+Methylmalonic acid-13C1	indirect_to_standard	C4H6O4	Methylmalonic acid	13C1	13C
+Methylmalonic acid-13C2	indirect_to_standard	C4H6O4	Methylmalonic acid	13C2	13C
+Methylmalonic acid-13C3	indirect_to_standard	C4H6O4	Methylmalonic acid	13C3	13C
+Methylmalonic acid-13C4	indirect_to_standard	C4H6O4	Methylmalonic acid	13C4	13C
+N-Acetyl-D-Glucosamine 6-Phosphate-13C0	direct_to_standard	C8H16N1O9P1	N-Acetyl-D-Glucosamine 6-Phosphate	13C0	13C
+N-Acetyl-D-Glucosamine 6-Phosphate-13C1	indirect_to_standard	C8H16N1O9P1	N-Acetyl-D-Glucosamine 6-Phosphate	13C1	13C
+N-Acetyl-D-Glucosamine 6-Phosphate-13C6	indirect_to_standard	C8H16N1O9P1	N-Acetyl-D-Glucosamine 6-Phosphate	13C6	13C
+N-Acetyl-D-Glucosamine 6-Phosphate-13C8	indirect_to_standard	C8H16N1O9P1	N-Acetyl-D-Glucosamine 6-Phosphate	13C8	13C
+N-Acetyl-L-aspartate-13C0	direct_to_standard	C6H9N1O5	N-Acetyl-L-aspartate	13C0	13C
+N-Acetyl-L-aspartate-13C1	indirect_to_standard	C6H9N1O5	N-Acetyl-L-aspartate	13C1	13C
+N-Acetyl-L-aspartate-13C2	indirect_to_standard	C6H9N1O5	N-Acetyl-L-aspartate	13C2	13C
+N-Acetyl-L-aspartate-13C3	indirect_to_standard	C6H9N1O5	N-Acetyl-L-aspartate	13C3	13C
+N-Acetyl-L-aspartate-13C4	indirect_to_standard	C6H9N1O5	N-Acetyl-L-aspartate	13C4	13C
+N-Acetyl-L-aspartate-13C5	indirect_to_standard	C6H9N1O5	N-Acetyl-L-aspartate	13C5	13C
+N-Acetyl-L-aspartate-13C6	indirect_to_standard	C6H9N1O5	N-Acetyl-L-aspartate	13C6	13C
+N-Acetyl-L-methionine-13C0	database	C7H13N1O3S1	N-Acetyl-L-methionine	13C0	13C
+N-Acetyl-L-methionine-13C1	database	C7H13N1O3S1	N-Acetyl-L-methionine	13C1	13C
+N-Acetyl-L-methionine-13C2	database	C7H13N1O3S1	N-Acetyl-L-methionine	13C2	13C
+N-Acetyl-L-methionine-13C3	database	C7H13N1O3S1	N-Acetyl-L-methionine	13C3	13C
+N-Acetyl-L-methionine-13C4	database	C7H13N1O3S1	N-Acetyl-L-methionine	13C4	13C
+N-Acetyl-glucosamine 1-phosphate-13C0	direct_to_standard	C8H16N1O9P1	N-Acetyl-glucosamine 1-phosphate	13C0	13C
+N-Acetyl-glucosamine 1-phosphate-13C1	indirect_to_standard	C8H16N1O9P1	N-Acetyl-glucosamine 1-phosphate	13C1	13C
+N-Acetyl-glucosamine 1-phosphate-13C2	indirect_to_standard	C8H16N1O9P1	N-Acetyl-glucosamine 1-phosphate	13C2	13C
+N-Acetyl-glucosamine 1-phosphate-13C3	indirect_to_standard	C8H16N1O9P1	N-Acetyl-glucosamine 1-phosphate	13C3	13C
+N-Acetyl-glucosamine 1-phosphate-13C4	indirect_to_standard	C8H16N1O9P1	N-Acetyl-glucosamine 1-phosphate	13C4	13C
+N-Acetyl-glucosamine 1-phosphate-13C5	indirect_to_standard	C8H16N1O9P1	N-Acetyl-glucosamine 1-phosphate	13C5	13C
+N-Acetyl-glucosamine 1-phosphate-13C6	indirect_to_standard	C8H16N1O9P1	N-Acetyl-glucosamine 1-phosphate	13C6	13C
+N-Acetyl-glucosamine 1-phosphate-13C7	indirect_to_standard	C8H16N1O9P1	N-Acetyl-glucosamine 1-phosphate	13C7	13C
+N-Acetyl-glucosamine 1-phosphate-13C8	indirect_to_standard	C8H16N1O9P1	N-Acetyl-glucosamine 1-phosphate	13C8	13C
+N-Acetylleucine-13C0	database	C8H15N1O3	N-Acetylleucine	13C0	13C
+N-Acetylneuraminic acid-13C0	direct_to_standard	C11H19N1O9	N-Acetylneuraminic acid	13C0	13C
+N-Acetylneuraminic acid-13C1	indirect_to_standard	C11H19N1O9	N-Acetylneuraminic acid	13C1	13C
+N-Acetylneuraminic acid-13C2	indirect_to_standard	C11H19N1O9	N-Acetylneuraminic acid	13C2	13C
+N-Acetylneuraminic acid-13C3	indirect_to_standard	C11H19N1O9	N-Acetylneuraminic acid	13C3	13C
+N-Acetylneuraminic acid-13C4	indirect_to_standard	C11H19N1O9	N-Acetylneuraminic acid	13C4	13C
+N-Acetylneuraminic acid-13C9	indirect_to_standard	C11H19N1O9	N-Acetylneuraminic acid	13C9	13C
+N-Carbamoyl-L-aspartate-13C0	direct_to_standard	C5H8N2O5	N-Carbamoyl-L-aspartate	13C0	13C
+N-Carbamoyl-L-aspartate-13C1	indirect_to_standard	C5H8N2O5	N-Carbamoyl-L-aspartate	13C1	13C
+N-Carbamoyl-L-aspartate-13C2	indirect_to_standard	C5H8N2O5	N-Carbamoyl-L-aspartate	13C2	13C
+N-Carbamoyl-L-aspartate-13C3	indirect_to_standard	C5H8N2O5	N-Carbamoyl-L-aspartate	13C3	13C
+N-Carbamoyl-L-aspartate-13C4	indirect_to_standard	C5H8N2O5	N-Carbamoyl-L-aspartate	13C4	13C
+N-Formyl-L-methionine-13C0	direct_to_standard	C6H11N1O3S1	N-Formyl-L-methionine	13C0	13C
+N-Formyl-L-methionine-13C1	indirect_to_standard	C6H11N1O3S1	N-Formyl-L-methionine	13C1	13C
+N-Formyl-L-methionine-13C2	indirect_to_standard	C6H11N1O3S1	N-Formyl-L-methionine	13C2	13C
+N-acetyl-alpha-D-galactosamine 1-phosphate-13C0	database	C8H16N1O9P1	N-acetyl-alpha-D-galactosamine 1-phosphate	13C0	13C
+N-acetyl-alpha-D-galactosamine 1-phosphate-13C1	database	C8H16N1O9P1	N-acetyl-alpha-D-galactosamine 1-phosphate	13C1	13C
+N-acetyl-alpha-D-galactosamine 1-phosphate-13C2	database	C8H16N1O9P1	N-acetyl-alpha-D-galactosamine 1-phosphate	13C2	13C
+N-acetyl-alpha-D-galactosamine 1-phosphate-13C3	database	C8H16N1O9P1	N-acetyl-alpha-D-galactosamine 1-phosphate	13C3	13C
+N-acetyl-alpha-D-galactosamine 1-phosphate-13C4	database	C8H16N1O9P1	N-acetyl-alpha-D-galactosamine 1-phosphate	13C4	13C
+N-acetyl-alpha-D-galactosamine 1-phosphate-13C5	database	C8H16N1O9P1	N-acetyl-alpha-D-galactosamine 1-phosphate	13C5	13C
+N-acetyl-alpha-D-galactosamine 1-phosphate-13C6	database	C8H16N1O9P1	N-acetyl-alpha-D-galactosamine 1-phosphate	13C6	13C
+N-acetyl-alpha-D-galactosamine 1-phosphate-13C7	database	C8H16N1O9P1	N-acetyl-alpha-D-galactosamine 1-phosphate	13C7	13C
+N-acetyl-alpha-D-galactosamine 1-phosphate-13C8	database	C8H16N1O9P1	N-acetyl-alpha-D-galactosamine 1-phosphate	13C8	13C
+NADH-13C0	direct_to_standard	C21H29N7O14P2	NADH	13C0	13C
+NADH-13C1	indirect_to_standard	C21H29N7O14P2	NADH	13C1	13C
+NADH-13C10	indirect_to_standard	C21H29N7O14P2	NADH	13C10	13C
+NADH-13C11	indirect_to_standard	C21H29N7O14P2	NADH	13C11	13C
+NADH-13C12	indirect_to_standard	C21H29N7O14P2	NADH	13C12	13C
+NADH-13C13	indirect_to_standard	C21H29N7O14P2	NADH	13C13	13C
+NADH-13C14	indirect_to_standard	C21H29N7O14P2	NADH	13C14	13C
+NADH-13C15	indirect_to_standard	C21H29N7O14P2	NADH	13C15	13C
+NADH-13C16	indirect_to_standard	C21H29N7O14P2	NADH	13C16	13C
+NADH-13C17	indirect_to_standard	C21H29N7O14P2	NADH	13C17	13C
+NADH-13C18	indirect_to_standard	C21H29N7O14P2	NADH	13C18	13C
+NADH-13C19	indirect_to_standard	C21H29N7O14P2	NADH	13C19	13C
+NADH-13C2	indirect_to_standard	C21H29N7O14P2	NADH	13C2	13C
+NADH-13C20	indirect_to_standard	C21H29N7O14P2	NADH	13C20	13C
+NADH-13C21	indirect_to_standard	C21H29N7O14P2	NADH	13C21	13C
+NADH-13C3	indirect_to_standard	C21H29N7O14P2	NADH	13C3	13C
+NADH-13C4	indirect_to_standard	C21H29N7O14P2	NADH	13C4	13C
+NADH-13C5	indirect_to_standard	C21H29N7O14P2	NADH	13C5	13C
+NADH-13C6	indirect_to_standard	C21H29N7O14P2	NADH	13C6	13C
+NADH-13C7	indirect_to_standard	C21H29N7O14P2	NADH	13C7	13C
+NADH-13C8	indirect_to_standard	C21H29N7O14P2	NADH	13C8	13C
+NADH-13C9	indirect_to_standard	C21H29N7O14P2	NADH	13C9	13C
+NADPH-13C0	database	C21H30N7O17P3	NADPH	13C0	13C
+Nicotinic acid From NADH-13C0	direct_to_standard	C6H5N1O2	Nicotinic acid From NADH	13C0	13C
+Orotate-13C0	direct_to_standard	C5H4N2O4	Orotate	13C0	13C
+Orotate-13C1	indirect_to_standard	C5H4N2O4	Orotate	13C1	13C
+Orotate-13C2	indirect_to_standard	C5H4N2O4	Orotate	13C2	13C
+Orotate-13C3	indirect_to_standard	C5H4N2O4	Orotate	13C3	13C
+Orotate-13C4	indirect_to_standard	C5H4N2O4	Orotate	13C4	13C
+Orotate-13C5	indirect_to_standard	C5H4N2O4	Orotate	13C5	13C
+Orotidine-13C0	database	C10H12N2O8	Orotidine	13C0	13C
+Orotidine-13C1	database	C10H12N2O8	Orotidine	13C1	13C
+Orotidine-13C2	database	C10H12N2O8	Orotidine	13C2	13C
+Orotidine-13C3	database	C10H12N2O8	Orotidine	13C3	13C
+Orotidine-13C4	database	C10H12N2O8	Orotidine	13C4	13C
+Orotidine-13C5	database	C10H12N2O8	Orotidine	13C5	13C
+Orotidine-13C6	database	C10H12N2O8	Orotidine	13C6	13C
+Orotidine-13C7	database	C10H12N2O8	Orotidine	13C7	13C
+Orotidine-13C8	database	C10H12N2O8	Orotidine	13C8	13C
+Orotidine-13C9	database	C10H12N2O8	Orotidine	13C9	13C
+Oxalate-13C0	direct_to_standard	C2H2O4	Oxalate	13C0	13C
+Oxalate-13C1	indirect_to_standard	C2H2O4	Oxalate	13C1	13C
+Oxalate-13C2	indirect_to_standard	C2H2O4	Oxalate	13C2	13C
+PEP-13C0	direct_to_standard	C3H5O6P1	PEP	13C0	13C
+PEP-13C1	indirect_to_standard	C3H5O6P1	PEP	13C1	13C
+PEP-13C2	indirect_to_standard	C3H5O6P1	PEP	13C2	13C
+PEP-13C3	indirect_to_standard	C3H5O6P1	PEP	13C3	13C
+PRPP-13C0	direct_to_standard	C5H13O14P3	PRPP	13C0	13C
+PRPP-13C1	indirect_to_standard	C5H13O14P3	PRPP	13C1	13C
+PRPP-13C2	indirect_to_standard	C5H13O14P3	PRPP	13C2	13C
+PRPP-13C3	indirect_to_standard	C5H13O14P3	PRPP	13C3	13C
+PRPP-13C4	indirect_to_standard	C5H13O14P3	PRPP	13C4	13C
+PRPP-13C5	indirect_to_standard	C5H13O14P3	PRPP	13C5	13C
+Pantothenate-13C0	direct_to_standard	C9H17N1O5	Pantothenate	13C0	13C
+Pantothenate-13C1	indirect_to_standard	C9H17N1O5	Pantothenate	13C1	13C
+Phosphate-13C0	direct_to_standard	H3O4P1	Phosphate	13C0	13C
+Phosphoadenosine phosphosulfate-13C0	database	C10H15N5O13P2S1	Phosphoadenosine phosphosulfate	13C0	13C
+Phosphoadenosine phosphosulfate-13C1	database	C10H15N5O13P2S1	Phosphoadenosine phosphosulfate	13C1	13C
+Phosphoadenosine phosphosulfate-13C2	database	C10H15N5O13P2S1	Phosphoadenosine phosphosulfate	13C2	13C
+Phosphocreatine-13C0	direct_to_standard	C4H10N3O5P1	Phosphocreatine	13C0	13C
+Phosphocreatine-13C1	indirect_to_standard	C4H10N3O5P1	Phosphocreatine	13C1	13C
+Pyridoxal 5-phosphate-13C0	direct_to_standard	C8H10N1O6P1	Pyridoxal 5-phosphate	13C0	13C
+Pyridoxal 5-phosphate-13C1	indirect_to_standard	C8H10N1O6P1	Pyridoxal 5-phosphate	13C1	13C
+Pyruvate-13C0	direct_to_standard	C3H4O3	Pyruvate	13C0	13C
+Pyruvate-13C1	indirect_to_standard	C3H4O3	Pyruvate	13C1	13C
+Pyruvate-13C2	indirect_to_standard	C3H4O3	Pyruvate	13C2	13C
+Pyruvate-13C3	indirect_to_standard	C3H4O3	Pyruvate	13C3	13C
+Riboflavin cyclic-4-5-phosphate-13C0	database	C17H19N4O8P1	Riboflavin cyclic-4-5-phosphate	13C0	13C
+Riboflavin cyclic-4-5-phosphate-13C1	database	C17H19N4O8P1	Riboflavin cyclic-4-5-phosphate	13C1	13C
+Riboflavin cyclic-4-5-phosphate-13C2	database	C17H19N4O8P1	Riboflavin cyclic-4-5-phosphate	13C2	13C
+Ribose 1-5-bisphosphate-13C0	database	C5H12O11P2	Ribose 1-5-bisphosphate	13C0	13C
+Ribose 1-5-bisphosphate-13C1	database	C5H12O11P2	Ribose 1-5-bisphosphate	13C1	13C
+Ribose 1-5-bisphosphate-13C4	database	C5H12O11P2	Ribose 1-5-bisphosphate	13C4	13C
+Ribose 1-5-bisphosphate-13C5	database	C5H12O11P2	Ribose 1-5-bisphosphate	13C5	13C
+Sedoheptulose 1-7-bisphosphate-13C0	database	C7H16O13P2	Sedoheptulose 1-7-bisphosphate	13C0	13C
+Sedoheptulose 1-7-bisphosphate-13C6	database	C7H16O13P2	Sedoheptulose 1-7-bisphosphate	13C6	13C
+Sedoheptulose 1-7-bisphosphate-13C7	database	C7H16O13P2	Sedoheptulose 1-7-bisphosphate	13C7	13C
+Succinate-13C0	direct_to_standard	C4H6O4	Succinate	13C0	13C
+Succinate-13C1	indirect_to_standard	C4H6O4	Succinate	13C1	13C
+Succinate-13C2	indirect_to_standard	C4H6O4	Succinate	13C2	13C
+Succinate-13C3	indirect_to_standard	C4H6O4	Succinate	13C3	13C
+Succinate-13C4	indirect_to_standard	C4H6O4	Succinate	13C4	13C
+Succinic acid semialdehyde 2-Methyl-3-oxopropanoic acid-13C0	database	C4H6O3	Succinic acid semialdehyde 2-Methyl-3-oxopropanoic acid	13C0	13C
+Succinic acid semialdehyde 2-Methyl-3-oxopropanoic acid-13C1	database	C4H6O3	Succinic acid semialdehyde 2-Methyl-3-oxopropanoic acid	13C1	13C
+Succinic acid semialdehyde 2-Methyl-3-oxopropanoic acid-13C2	database	C4H6O3	Succinic acid semialdehyde 2-Methyl-3-oxopropanoic acid	13C2	13C
+Succinic acid semialdehyde 2-Methyl-3-oxopropanoic acid-13C3	database	C4H6O3	Succinic acid semialdehyde 2-Methyl-3-oxopropanoic acid	13C3	13C
+Succinic acid semialdehyde 2-Methyl-3-oxopropanoic acid-13C4	database	C4H6O3	Succinic acid semialdehyde 2-Methyl-3-oxopropanoic acid	13C4	13C
+Taurine-13C0	direct_to_standard	C2H7N1O3S1	Taurine	13C0	13C
+Taurine-13C1	indirect_to_standard	C2H7N1O3S1	Taurine	13C1	13C
+Thiamine pyrophosphate-13C0	direct_to_standard	C12H19N4O7P2S1	Thiamine pyrophosphate	13C0	13C
+Thiamine pyrophosphate-13C1	indirect_to_standard	C12H19N4O7P2S1	Thiamine pyrophosphate	13C1	13C
+Thiosulfate-13C0	direct_to_standard	H2O3S2	Thiosulfate	13C0	13C
+Threonic acid-13C0	database	C4H8O5	Threonic acid	13C0	13C
+Threonic acid-13C1	database	C4H8O5	Threonic acid	13C1	13C
+UDP-13C0	direct_to_standard	C9H14N2O12P2	UDP	13C0	13C
+UDP-13C1	indirect_to_standard	C9H14N2O12P2	UDP	13C1	13C
+UDP-13C2	indirect_to_standard	C9H14N2O12P2	UDP	13C2	13C
+UDP-13C3	indirect_to_standard	C9H14N2O12P2	UDP	13C3	13C
+UDP-13C4	indirect_to_standard	C9H14N2O12P2	UDP	13C4	13C
+UDP-13C5	indirect_to_standard	C9H14N2O12P2	UDP	13C5	13C
+UDP-13C6	indirect_to_standard	C9H14N2O12P2	UDP	13C6	13C
+UDP-13C7	indirect_to_standard	C9H14N2O12P2	UDP	13C7	13C
+UDP-13C8	indirect_to_standard	C9H14N2O12P2	UDP	13C8	13C
+UDP-13C9	indirect_to_standard	C9H14N2O12P2	UDP	13C9	13C
+UDP-GalNAc-13C0	direct_to_standard	C17H27N3O17P2	UDP-GalNAc	13C0	13C
+UDP-GalNAc-13C1	indirect_to_standard	C17H27N3O17P2	UDP-GalNAc	13C1	13C
+UDP-GalNAc-13C10	indirect_to_standard	C17H27N3O17P2	UDP-GalNAc	13C10	13C
+UDP-GalNAc-13C11	indirect_to_standard	C17H27N3O17P2	UDP-GalNAc	13C11	13C
+UDP-GalNAc-13C12	indirect_to_standard	C17H27N3O17P2	UDP-GalNAc	13C12	13C
+UDP-GalNAc-13C13	indirect_to_standard	C17H27N3O17P2	UDP-GalNAc	13C13	13C
+UDP-GalNAc-13C14	indirect_to_standard	C17H27N3O17P2	UDP-GalNAc	13C14	13C
+UDP-GalNAc-13C15	indirect_to_standard	C17H27N3O17P2	UDP-GalNAc	13C15	13C
+UDP-GalNAc-13C16	indirect_to_standard	C17H27N3O17P2	UDP-GalNAc	13C16	13C
+UDP-GalNAc-13C17	indirect_to_standard	C17H27N3O17P2	UDP-GalNAc	13C17	13C
+UDP-GalNAc-13C2	indirect_to_standard	C17H27N3O17P2	UDP-GalNAc	13C2	13C
+UDP-GalNAc-13C3	indirect_to_standard	C17H27N3O17P2	UDP-GalNAc	13C3	13C
+UDP-GalNAc-13C4	indirect_to_standard	C17H27N3O17P2	UDP-GalNAc	13C4	13C
+UDP-GalNAc-13C5	indirect_to_standard	C17H27N3O17P2	UDP-GalNAc	13C5	13C
+UDP-GalNAc-13C6	indirect_to_standard	C17H27N3O17P2	UDP-GalNAc	13C6	13C
+UDP-GalNAc-13C7	indirect_to_standard	C17H27N3O17P2	UDP-GalNAc	13C7	13C
+UDP-GalNAc-13C8	indirect_to_standard	C17H27N3O17P2	UDP-GalNAc	13C8	13C
+UDP-GalNAc-13C9	indirect_to_standard	C17H27N3O17P2	UDP-GalNAc	13C9	13C
+UDP-GlcNAc-13C0	direct_to_standard	C17H27N3O17P2	UDP-GlcNAc	13C0	13C
+UDP-GlcNAc-13C1	indirect_to_standard	C17H27N3O17P2	UDP-GlcNAc	13C1	13C
+UDP-GlcNAc-13C10	indirect_to_standard	C17H27N3O17P2	UDP-GlcNAc	13C10	13C
+UDP-GlcNAc-13C11	indirect_to_standard	C17H27N3O17P2	UDP-GlcNAc	13C11	13C
+UDP-GlcNAc-13C12	indirect_to_standard	C17H27N3O17P2	UDP-GlcNAc	13C12	13C
+UDP-GlcNAc-13C13	indirect_to_standard	C17H27N3O17P2	UDP-GlcNAc	13C13	13C
+UDP-GlcNAc-13C14	indirect_to_standard	C17H27N3O17P2	UDP-GlcNAc	13C14	13C
+UDP-GlcNAc-13C15	indirect_to_standard	C17H27N3O17P2	UDP-GlcNAc	13C15	13C
+UDP-GlcNAc-13C16	indirect_to_standard	C17H27N3O17P2	UDP-GlcNAc	13C16	13C
+UDP-GlcNAc-13C17	indirect_to_standard	C17H27N3O17P2	UDP-GlcNAc	13C17	13C
+UDP-GlcNAc-13C2	indirect_to_standard	C17H27N3O17P2	UDP-GlcNAc	13C2	13C
+UDP-GlcNAc-13C3	indirect_to_standard	C17H27N3O17P2	UDP-GlcNAc	13C3	13C
+UDP-GlcNAc-13C4	indirect_to_standard	C17H27N3O17P2	UDP-GlcNAc	13C4	13C
+UDP-GlcNAc-13C5	indirect_to_standard	C17H27N3O17P2	UDP-GlcNAc	13C5	13C
+UDP-GlcNAc-13C6	indirect_to_standard	C17H27N3O17P2	UDP-GlcNAc	13C6	13C
+UDP-GlcNAc-13C7	indirect_to_standard	C17H27N3O17P2	UDP-GlcNAc	13C7	13C
+UDP-GlcNAc-13C8	indirect_to_standard	C17H27N3O17P2	UDP-GlcNAc	13C8	13C
+UDP-GlcNAc-13C9	indirect_to_standard	C17H27N3O17P2	UDP-GlcNAc	13C9	13C
+UMP-13C0	direct_to_standard	C9H13N2O9P1	UMP	13C0	13C
+UMP-13C1	indirect_to_standard	C9H13N2O9P1	UMP	13C1	13C
+UMP-13C2	indirect_to_standard	C9H13N2O9P1	UMP	13C2	13C
+UMP-13C3	indirect_to_standard	C9H13N2O9P1	UMP	13C3	13C
+UMP-13C4	indirect_to_standard	C9H13N2O9P1	UMP	13C4	13C
+UMP-13C5	indirect_to_standard	C9H13N2O9P1	UMP	13C5	13C
+UMP-13C6	indirect_to_standard	C9H13N2O9P1	UMP	13C6	13C
+UMP-13C7	indirect_to_standard	C9H13N2O9P1	UMP	13C7	13C
+UMP-13C8	indirect_to_standard	C9H13N2O9P1	UMP	13C8	13C
+UMP-13C9	indirect_to_standard	C9H13N2O9P1	UMP	13C9	13C
+UTP@mzUDP-13C0	direct_to_standard	C9H14N2O12P2	UTP@mzUDP	13C0	13C
+UTP@mzUDP-13C1	indirect_to_standard	C9H14N2O12P2	UTP@mzUDP	13C1	13C
+UTP@mzUDP-13C2	indirect_to_standard	C9H14N2O12P2	UTP@mzUDP	13C2	13C
+UTP@mzUDP-13C3	indirect_to_standard	C9H14N2O12P2	UTP@mzUDP	13C3	13C
+UTP@mzUDP-13C4	indirect_to_standard	C9H14N2O12P2	UTP@mzUDP	13C4	13C
+UTP@mzUDP-13C5	indirect_to_standard	C9H14N2O12P2	UTP@mzUDP	13C5	13C
+UTP@mzUDP-13C6	indirect_to_standard	C9H14N2O12P2	UTP@mzUDP	13C6	13C
+UTP@mzUDP-13C7	indirect_to_standard	C9H14N2O12P2	UTP@mzUDP	13C7	13C
+UTP@mzUDP-13C8	indirect_to_standard	C9H14N2O12P2	UTP@mzUDP	13C8	13C
+UTP@mzUDP-13C9	indirect_to_standard	C9H14N2O12P2	UTP@mzUDP	13C9	13C
+Uridine diphosphate glucose-13C0	direct_to_standard	C15H24N2O17P2	Uridine diphosphate glucose	13C0	13C
+Uridine diphosphate glucose-13C1	indirect_to_standard	C15H24N2O17P2	Uridine diphosphate glucose	13C1	13C
+Uridine diphosphate glucose-13C10	indirect_to_standard	C15H24N2O17P2	Uridine diphosphate glucose	13C10	13C
+Uridine diphosphate glucose-13C11	indirect_to_standard	C15H24N2O17P2	Uridine diphosphate glucose	13C11	13C
+Uridine diphosphate glucose-13C12	indirect_to_standard	C15H24N2O17P2	Uridine diphosphate glucose	13C12	13C
+Uridine diphosphate glucose-13C13	indirect_to_standard	C15H24N2O17P2	Uridine diphosphate glucose	13C13	13C
+Uridine diphosphate glucose-13C14	indirect_to_standard	C15H24N2O17P2	Uridine diphosphate glucose	13C14	13C
+Uridine diphosphate glucose-13C2	indirect_to_standard	C15H24N2O17P2	Uridine diphosphate glucose	13C2	13C
+Uridine diphosphate glucose-13C3	indirect_to_standard	C15H24N2O17P2	Uridine diphosphate glucose	13C3	13C
+Uridine diphosphate glucose-13C4	indirect_to_standard	C15H24N2O17P2	Uridine diphosphate glucose	13C4	13C
+Uridine diphosphate glucose-13C5	indirect_to_standard	C15H24N2O17P2	Uridine diphosphate glucose	13C5	13C
+Uridine diphosphate glucose-13C6	indirect_to_standard	C15H24N2O17P2	Uridine diphosphate glucose	13C6	13C
+Uridine diphosphate glucose-13C7	indirect_to_standard	C15H24N2O17P2	Uridine diphosphate glucose	13C7	13C
+Uridine diphosphate glucose-13C8	indirect_to_standard	C15H24N2O17P2	Uridine diphosphate glucose	13C8	13C
+Uridine diphosphate glucose-13C9	indirect_to_standard	C15H24N2O17P2	Uridine diphosphate glucose	13C9	13C
+Uridine diphosphategalactose-13C0	direct_to_standard	C15H24N2O17P2	Uridine diphosphategalactose	13C0	13C
+Uridine diphosphategalactose-13C1	indirect_to_standard	C15H24N2O17P2	Uridine diphosphategalactose	13C1	13C
+Uridine diphosphategalactose-13C11	indirect_to_standard	C15H24N2O17P2	Uridine diphosphategalactose	13C11	13C
+Uridine diphosphategalactose-13C2	indirect_to_standard	C15H24N2O17P2	Uridine diphosphategalactose	13C2	13C
+Uridine diphosphategalactose-13C5	indirect_to_standard	C15H24N2O17P2	Uridine diphosphategalactose	13C5	13C
+Uridine diphosphategalactose-13C6	indirect_to_standard	C15H24N2O17P2	Uridine diphosphategalactose	13C6	13C
+Uridine diphosphategalactose-13C7	indirect_to_standard	C15H24N2O17P2	Uridine diphosphategalactose	13C7	13C
+Uridine diphosphategalactose-13C8	indirect_to_standard	C15H24N2O17P2	Uridine diphosphategalactose	13C8	13C
+Uridine-13C0	direct_to_standard	C9H12N2O6	Uridine	13C0	13C
+Uridine-13C1	indirect_to_standard	C9H12N2O6	Uridine	13C1	13C
+Uridine-13C5	indirect_to_standard	C9H12N2O6	Uridine	13C5	13C
+XMP-13C0	database	C10H13N4O9P1	XMP	13C0	13C
+XMP-13C1	database	C10H13N4O9P1	XMP	13C1	13C
+alpha-Ketoglutarate-13C0	direct_to_standard	C5H6O5	alpha-Ketoglutarate	13C0	13C
+alpha-Ketoglutarate-13C1	indirect_to_standard	C5H6O5	alpha-Ketoglutarate	13C1	13C
+alpha-Ketoglutarate-13C2	indirect_to_standard	C5H6O5	alpha-Ketoglutarate	13C2	13C
+alpha-Ketoglutarate-13C3	indirect_to_standard	C5H6O5	alpha-Ketoglutarate	13C3	13C
+alpha-Ketoglutarate-13C4	indirect_to_standard	C5H6O5	alpha-Ketoglutarate	13C4	13C
+alpha-Ketoglutarate-13C5	indirect_to_standard	C5H6O5	alpha-Ketoglutarate	13C5	13C
+cis-Aconitate-13C0	direct_to_standard	C6H6O6	cis-Aconitate	13C0	13C
+cis-Aconitate-13C1	indirect_to_standard	C6H6O6	cis-Aconitate	13C1	13C
+cis-Aconitate-13C2	indirect_to_standard	C6H6O6	cis-Aconitate	13C2	13C
+cis-Aconitate-13C3	indirect_to_standard	C6H6O6	cis-Aconitate	13C3	13C
+cis-Aconitate-13C4	indirect_to_standard	C6H6O6	cis-Aconitate	13C4	13C
+cis-Aconitate-13C5	indirect_to_standard	C6H6O6	cis-Aconitate	13C5	13C
+cis-Aconitate-13C6	indirect_to_standard	C6H6O6	cis-Aconitate	13C6	13C
+dTDP-13C0	direct_to_standard	C10H16N2O11P2	dTDP	13C0	13C
+dTDP-13C1	indirect_to_standard	C10H16N2O11P2	dTDP	13C1	13C
+dTDP-13C10	indirect_to_standard	C10H16N2O11P2	dTDP	13C10	13C
+dTDP-13C3	indirect_to_standard	C10H16N2O11P2	dTDP	13C3	13C
+dTDP-13C4	indirect_to_standard	C10H16N2O11P2	dTDP	13C4	13C
+dTDP-13C5	indirect_to_standard	C10H16N2O11P2	dTDP	13C5	13C
+dTDP-13C6	indirect_to_standard	C10H16N2O11P2	dTDP	13C6	13C
+dTDP-13C7	indirect_to_standard	C10H16N2O11P2	dTDP	13C7	13C
+dTMP-13C0	direct_to_standard	C10H15N2O8P1	dTMP	13C0	13C
+dTMP-13C1	indirect_to_standard	C10H15N2O8P1	dTMP	13C1	13C
+dTMP-13C10	indirect_to_standard	C10H15N2O8P1	dTMP	13C10	13C
+dTMP-13C2	indirect_to_standard	C10H15N2O8P1	dTMP	13C2	13C
+dTMP-13C3	indirect_to_standard	C10H15N2O8P1	dTMP	13C3	13C
+dTMP-13C4	indirect_to_standard	C10H15N2O8P1	dTMP	13C4	13C
+dTMP-13C5	indirect_to_standard	C10H15N2O8P1	dTMP	13C5	13C
+dTMP-13C6	indirect_to_standard	C10H15N2O8P1	dTMP	13C6	13C
+dTMP-13C7	indirect_to_standard	C10H15N2O8P1	dTMP	13C7	13C
+dTMP-13C9	indirect_to_standard	C10H15N2O8P1	dTMP	13C9	13C
+dUMP-13C0	direct_to_standard	C9H13N2O8P1	dUMP	13C0	13C
+dUMP-13C1	indirect_to_standard	C9H13N2O8P1	dUMP	13C1	13C
+dUMP-13C2	indirect_to_standard	C9H13N2O8P1	dUMP	13C2	13C
+dUMP-13C3	indirect_to_standard	C9H13N2O8P1	dUMP	13C3	13C
+dUMP-13C4	indirect_to_standard	C9H13N2O8P1	dUMP	13C4	13C
+dUMP-13C5	indirect_to_standard	C9H13N2O8P1	dUMP	13C5	13C
+dUMP-13C6	indirect_to_standard	C9H13N2O8P1	dUMP	13C6	13C
+dUMP-13C7	indirect_to_standard	C9H13N2O8P1	dUMP	13C7	13C
+dUMP-13C8	indirect_to_standard	C9H13N2O8P1	dUMP	13C8	13C
+dUMP-13C9	indirect_to_standard	C9H13N2O8P1	dUMP	13C9	13C
+METABOLITES_END
 EXTENDED_MS_METABOLITE_DATA_START
 metabolite_name	sample_id	concentration	concentration%type	concentration%units	corrected_raw_intensity	corrected_raw_intensity%type	normalized_concentration	normalized_concentration%type	normalized_concentration%units	raw_intensity	raw_intensity%type
 (S)-2-Acetolactate Glutaric acid Methylsuccinic acid-13C0	16_A0_Lung_naive_0days_170427_UKy_GCH_rep1-polar-ICMS_A	0	calculated from standard	uM	10882632.3918	natural abundance corrected peak area	0	protein normalized	uMol/g	10292474.4912643	spectrometer peak area
@@ -12487,945 +13428,4 @@ dUMP-13C7	30_C1-20_Lung_allogenic_7days_170427_UKy_GCH_rep3-polar-ICMS_A	5.96238
 dUMP-13C8	23_C1-2_Lung_allogenic_42days_170427_UKy_GCH_rep2-polar-ICMS_A	4.05151527682206e-05	calculated from standard	uM	349.987878437	natural abundance corrected peak area	6.17368929138909e-06	protein normalized	uMol/g	380.699116462454	spectrometer peak area
 dUMP-13C9	30_C1-20_Lung_allogenic_7days_170427_UKy_GCH_rep3-polar-ICMS_A	8.12265025107765e-05	calculated from standard	uM	662.992888248	natural abundance corrected peak area	2.92481875566628e-05	protein normalized	uMol/g	705.974781624405	spectrometer peak area
 EXTENDED_MS_METABOLITE_DATA_END
-#METABOLITES
-METABOLITES_START
-metabolite_name	assignment%method	formula	compound	isotopologue	isotopologue%type
-(S)-2-Acetolactate Glutaric acid Methylsuccinic acid-13C0	database	C5H8O4	(S)-2-Acetolactate Glutaric acid Methylsuccinic acid	13C0	13C
-(S)-2-Acetolactate Glutaric acid Methylsuccinic acid-13C1	database	C5H8O4	(S)-2-Acetolactate Glutaric acid Methylsuccinic acid	13C1	13C
-(S)-2-Acetolactate Glutaric acid Methylsuccinic acid-13C2	database	C5H8O4	(S)-2-Acetolactate Glutaric acid Methylsuccinic acid	13C2	13C
-(S)-2-Acetolactate Glutaric acid Methylsuccinic acid-13C3	database	C5H8O4	(S)-2-Acetolactate Glutaric acid Methylsuccinic acid	13C3	13C
-(S)-2-Acetolactate Glutaric acid Methylsuccinic acid-13C4	database	C5H8O4	(S)-2-Acetolactate Glutaric acid Methylsuccinic acid	13C4	13C
-(S)-3-Sulfonatolactate-13C0	database	C3H6O6S1	(S)-3-Sulfonatolactate	13C0	13C
-(S)-3-Sulfonatolactate-13C1	database	C3H6O6S1	(S)-3-Sulfonatolactate	13C1	13C
-(S)-3-Sulfonatolactate-13C2	database	C3H6O6S1	(S)-3-Sulfonatolactate	13C2	13C
-(S)-3-Sulfonatolactate-13C3	database	C3H6O6S1	(S)-3-Sulfonatolactate	13C3	13C
-1-Pyrroline 2-carboxylate 1-Pyrroline-5-carboxylate-13C0	database	C5H7N1O2	1-Pyrroline 2-carboxylate 1-Pyrroline-5-carboxylate	13C0	13C
-1-Pyrroline 2-carboxylate 1-Pyrroline-5-carboxylate-13C1	database	C5H7N1O2	1-Pyrroline 2-carboxylate 1-Pyrroline-5-carboxylate	13C1	13C
-1-Pyrroline 2-carboxylate 1-Pyrroline-5-carboxylate-13C2	database	C5H7N1O2	1-Pyrroline 2-carboxylate 1-Pyrroline-5-carboxylate	13C2	13C
-1-Pyrroline 2-carboxylate 1-Pyrroline-5-carboxylate-13C3	database	C5H7N1O2	1-Pyrroline 2-carboxylate 1-Pyrroline-5-carboxylate	13C3	13C
-1-Pyrroline 2-carboxylate 1-Pyrroline-5-carboxylate-13C4	database	C5H7N1O2	1-Pyrroline 2-carboxylate 1-Pyrroline-5-carboxylate	13C4	13C
-13-BPG-13C0	direct_to_standard	C3H8O10P2	13-BPG	13C0	13C
-13-BPG-13C1	indirect_to_standard	C3H8O10P2	13-BPG	13C1	13C
-13-BPG-13C2	indirect_to_standard	C3H8O10P2	13-BPG	13C2	13C
-13-BPG-13C3	indirect_to_standard	C3H8O10P2	13-BPG	13C3	13C
-1D-Myo-inositol 1-3-bisphosphate-13C0	database	C6H14O12P2	1D-Myo-inositol 1-3-bisphosphate	13C0	13C
-1D-Myo-inositol 1-4-bisphosphate-13C0	database	C6H14O12P2	1D-Myo-inositol 1-4-bisphosphate	13C0	13C
-1D-Myo-inositol 3-4-bisphosphate-13C0	database	C6H14O12P2	1D-Myo-inositol 3-4-bisphosphate	13C0	13C
-2-Aminomuconic acid semialdehyde-13C0	database	C6H7N1O3	2-Aminomuconic acid semialdehyde	13C0	13C
-2-Aminomuconic acid semialdehyde-13C1	database	C6H7N1O3	2-Aminomuconic acid semialdehyde	13C1	13C
-2-Aminomuconic acid-13C0	database	C6H7N1O4	2-Aminomuconic acid	13C0	13C
-2-Hydroxyadipic acid-13C0	database	C6H10O5	2-Hydroxyadipic acid	13C0	13C
-2-Hydroxyadipic acid-13C1	database	C6H10O5	2-Hydroxyadipic acid	13C1	13C
-2-Hydroxyadipic acid-13C2	database	C6H10O5	2-Hydroxyadipic acid	13C2	13C
-2-Ketobutyric acid-13C0	direct_to_standard	C4H6O3	2-Ketobutyric acid	13C0	13C
-2-Ketobutyric acid-13C1	indirect_to_standard	C4H6O3	2-Ketobutyric acid	13C1	13C
-2-Ketobutyric acid-13C2	indirect_to_standard	C4H6O3	2-Ketobutyric acid	13C2	13C
-2-Ketobutyric acid-13C3	indirect_to_standard	C4H6O3	2-Ketobutyric acid	13C3	13C
-2-Ketobutyric acid-13C4	indirect_to_standard	C4H6O3	2-Ketobutyric acid	13C4	13C
-2-Propylglutaric acid Suberic acid-13C0	database	C8H14O4	2-Propylglutaric acid Suberic acid	13C0	13C
-2-Propylglutaric acid Suberic acid-13C1	database	C8H14O4	2-Propylglutaric acid Suberic acid	13C1	13C
-2-Propylglutaric acid Suberic acid-13C2	database	C8H14O4	2-Propylglutaric acid Suberic acid	13C2	13C
-2HG-13C0	direct_to_standard	C5H8O5	2HG	13C0	13C
-2HG-13C1	indirect_to_standard	C5H8O5	2HG	13C1	13C
-2HG-13C2	indirect_to_standard	C5H8O5	2HG	13C2	13C
-2HG-13C3	indirect_to_standard	C5H8O5	2HG	13C3	13C
-2HG-13C4	indirect_to_standard	C5H8O5	2HG	13C4	13C
-2HG-13C5	indirect_to_standard	C5H8O5	2HG	13C5	13C
-3-Dehydro-L-gulonate-13C0	database	C6H10O7	3-Dehydro-L-gulonate	13C0	13C
-3-Dehydro-L-gulonate-13C1	database	C6H10O7	3-Dehydro-L-gulonate	13C1	13C
-3-Dehydro-L-gulonate-13C2	database	C6H10O7	3-Dehydro-L-gulonate	13C2	13C
-3-Dehydro-L-gulonate-13C3	database	C6H10O7	3-Dehydro-L-gulonate	13C3	13C
-3-Dehydro-L-gulonate-13C4	database	C6H10O7	3-Dehydro-L-gulonate	13C4	13C
-3-Dehydro-L-gulonate-13C5	database	C6H10O7	3-Dehydro-L-gulonate	13C5	13C
-3-Dehydro-L-gulonate-13C6	database	C6H10O7	3-Dehydro-L-gulonate	13C6	13C
-3-Hydroxybutyric acid-13C0	direct_to_standard	C4H8O3	3-Hydroxybutyric acid	13C0	13C
-3-Hydroxybutyric acid-13C1	indirect_to_standard	C4H8O3	3-Hydroxybutyric acid	13C1	13C
-3-Hydroxybutyric acid-13C2	indirect_to_standard	C4H8O3	3-Hydroxybutyric acid	13C2	13C
-3-Hydroxybutyric acid-13C3	indirect_to_standard	C4H8O3	3-Hydroxybutyric acid	13C3	13C
-3-Hydroxybutyric acid-13C4	indirect_to_standard	C4H8O3	3-Hydroxybutyric acid	13C4	13C
-3-Hydroxymethylglutaric acid-13C0	direct_to_standard	C6H10O5	3-Hydroxymethylglutaric acid	13C0	13C
-3-Hydroxymethylglutaric acid-13C1	indirect_to_standard	C6H10O5	3-Hydroxymethylglutaric acid	13C1	13C
-3-Hydroxymethylglutaric acid-13C2	indirect_to_standard	C6H10O5	3-Hydroxymethylglutaric acid	13C2	13C
-3-Hydroxymethylglutaric acid-13C3	indirect_to_standard	C6H10O5	3-Hydroxymethylglutaric acid	13C3	13C
-3-Hydroxymethylglutaric acid-13C4	indirect_to_standard	C6H10O5	3-Hydroxymethylglutaric acid	13C4	13C
-3-Hydroxymethylglutaric acid-13C5	indirect_to_standard	C6H10O5	3-Hydroxymethylglutaric acid	13C5	13C
-3-Hydroxymethylglutaric acid-13C6	indirect_to_standard	C6H10O5	3-Hydroxymethylglutaric acid	13C6	13C
-3-Sulfinoalanine-13C0	database	C3H7N1O4S1	3-Sulfinoalanine	13C0	13C
-3-Sulfinoalanine-13C1	database	C3H7N1O4S1	3-Sulfinoalanine	13C1	13C
-3-Sulfinoalanine-13C2	database	C3H7N1O4S1	3-Sulfinoalanine	13C2	13C
-3-Sulfinoalanine-13C3	database	C3H7N1O4S1	3-Sulfinoalanine	13C3	13C
-3PG 2PG-13C0	direct_to_standard	C3H7O7P1	3PG 2PG	13C0	13C
-3PG 2PG-13C1	indirect_to_standard	C3H7O7P1	3PG 2PG	13C1	13C
-3PG 2PG-13C2	indirect_to_standard	C3H7O7P1	3PG 2PG	13C2	13C
-3PG 2PG-13C3	indirect_to_standard	C3H7O7P1	3PG 2PG	13C3	13C
-5-L-Glutamyl-L-alanine-13C0	database	C8H14N2O5	5-L-Glutamyl-L-alanine	13C0	13C
-5-L-Glutamyl-L-alanine-13C1	database	C8H14N2O5	5-L-Glutamyl-L-alanine	13C1	13C
-5-L-Glutamyl-L-alanine-13C2	database	C8H14N2O5	5-L-Glutamyl-L-alanine	13C2	13C
-5-L-Glutamyl-L-alanine-13C3	database	C8H14N2O5	5-L-Glutamyl-L-alanine	13C3	13C
-5-L-Glutamyl-L-alanine-13C4	database	C8H14N2O5	5-L-Glutamyl-L-alanine	13C4	13C
-5-L-Glutamyl-L-alanine-13C5	database	C8H14N2O5	5-L-Glutamyl-L-alanine	13C5	13C
-5-L-Glutamyl-L-alanine-13C6	database	C8H14N2O5	5-L-Glutamyl-L-alanine	13C6	13C
-5-L-Glutamyl-L-alanine-13C7	database	C8H14N2O5	5-L-Glutamyl-L-alanine	13C7	13C
-5-L-Glutamyl-L-alanine-13C8	database	C8H14N2O5	5-L-Glutamyl-L-alanine	13C8	13C
-5-L-Glutamyl-taurine-13C0	database	C7H14N2O6S1	5-L-Glutamyl-taurine	13C0	13C
-5-L-Glutamyl-taurine-13C1	database	C7H14N2O6S1	5-L-Glutamyl-taurine	13C1	13C
-5-L-Glutamyl-taurine-13C2	database	C7H14N2O6S1	5-L-Glutamyl-taurine	13C2	13C
-5-L-Glutamyl-taurine-13C3	database	C7H14N2O6S1	5-L-Glutamyl-taurine	13C3	13C
-5-L-Glutamyl-taurine-13C4	database	C7H14N2O6S1	5-L-Glutamyl-taurine	13C4	13C
-5-L-Glutamyl-taurine-13C5	database	C7H14N2O6S1	5-L-Glutamyl-taurine	13C5	13C
-5-L-Glutamyl-taurine-13C6	database	C7H14N2O6S1	5-L-Glutamyl-taurine	13C6	13C
-5-Phosphoribosyl-N-formylglycinamide-13C0	database	C8H15N2O9P1	5-Phosphoribosyl-N-formylglycinamide	13C0	13C
-5-Phosphoribosyl-N-formylglycinamide-13C1	database	C8H15N2O9P1	5-Phosphoribosyl-N-formylglycinamide	13C1	13C
-5-Phosphoribosyl-N-formylglycinamide-13C2	database	C8H15N2O9P1	5-Phosphoribosyl-N-formylglycinamide	13C2	13C
-5-Phosphoribosyl-N-formylglycinamide-13C3	database	C8H15N2O9P1	5-Phosphoribosyl-N-formylglycinamide	13C3	13C
-5-Phosphoribosyl-N-formylglycinamide-13C4	database	C8H15N2O9P1	5-Phosphoribosyl-N-formylglycinamide	13C4	13C
-5-Phosphoribosyl-N-formylglycinamide-13C5	database	C8H15N2O9P1	5-Phosphoribosyl-N-formylglycinamide	13C5	13C
-5-Phosphoribosyl-N-formylglycinamide-13C6	database	C8H15N2O9P1	5-Phosphoribosyl-N-formylglycinamide	13C6	13C
-6P-gluconic acid-13C0	direct_to_standard	C6H13O10P1	6P-gluconic acid	13C0	13C
-6P-gluconic acid-13C1	indirect_to_standard	C6H13O10P1	6P-gluconic acid	13C1	13C
-6P-gluconic acid-13C2	indirect_to_standard	C6H13O10P1	6P-gluconic acid	13C2	13C
-6P-gluconic acid-13C3	indirect_to_standard	C6H13O10P1	6P-gluconic acid	13C3	13C
-6P-gluconic acid-13C4	indirect_to_standard	C6H13O10P1	6P-gluconic acid	13C4	13C
-6P-gluconic acid-13C5	indirect_to_standard	C6H13O10P1	6P-gluconic acid	13C5	13C
-6P-gluconic acid-13C6	indirect_to_standard	C6H13O10P1	6P-gluconic acid	13C6	13C
-ADP-Ribose-13C0	direct_to_standard	C15H23N5O14P2	ADP-Ribose	13C0	13C
-ADP-Ribose-13C1	indirect_to_standard	C15H23N5O14P2	ADP-Ribose	13C1	13C
-ADP-Ribose-13C10	indirect_to_standard	C15H23N5O14P2	ADP-Ribose	13C10	13C
-ADP-Ribose-13C2	indirect_to_standard	C15H23N5O14P2	ADP-Ribose	13C2	13C
-ADP-Ribose-13C5	indirect_to_standard	C15H23N5O14P2	ADP-Ribose	13C5	13C
-ADP-Ribose-13C6	indirect_to_standard	C15H23N5O14P2	ADP-Ribose	13C6	13C
-ADP-Ribose-13C7	indirect_to_standard	C15H23N5O14P2	ADP-Ribose	13C7	13C
-ADP-Ribose-13C8	indirect_to_standard	C15H23N5O14P2	ADP-Ribose	13C8	13C
-ADP-Ribose-13C9	indirect_to_standard	C15H23N5O14P2	ADP-Ribose	13C9	13C
-ADP-glucose ADP-Mannose GDP-D-Rhamnose GDP-L-fucose-13C0	database	C16H25N5O15P2	ADP-glucose ADP-Mannose GDP-D-Rhamnose GDP-L-fucose	13C0	13C
-ADP-glucose ADP-Mannose GDP-D-Rhamnose GDP-L-fucose-13C1	database	C16H25N5O15P2	ADP-glucose ADP-Mannose GDP-D-Rhamnose GDP-L-fucose	13C1	13C
-ADP-glucose ADP-Mannose GDP-D-Rhamnose GDP-L-fucose-13C10	database	C16H25N5O15P2	ADP-glucose ADP-Mannose GDP-D-Rhamnose GDP-L-fucose	13C10	13C
-ADP-glucose ADP-Mannose GDP-D-Rhamnose GDP-L-fucose-13C11	database	C16H25N5O15P2	ADP-glucose ADP-Mannose GDP-D-Rhamnose GDP-L-fucose	13C11	13C
-ADP-glucose ADP-Mannose GDP-D-Rhamnose GDP-L-fucose-13C12	database	C16H25N5O15P2	ADP-glucose ADP-Mannose GDP-D-Rhamnose GDP-L-fucose	13C12	13C
-ADP-glucose ADP-Mannose GDP-D-Rhamnose GDP-L-fucose-13C13	database	C16H25N5O15P2	ADP-glucose ADP-Mannose GDP-D-Rhamnose GDP-L-fucose	13C13	13C
-ADP-glucose ADP-Mannose GDP-D-Rhamnose GDP-L-fucose-13C14	database	C16H25N5O15P2	ADP-glucose ADP-Mannose GDP-D-Rhamnose GDP-L-fucose	13C14	13C
-ADP-glucose ADP-Mannose GDP-D-Rhamnose GDP-L-fucose-13C2	database	C16H25N5O15P2	ADP-glucose ADP-Mannose GDP-D-Rhamnose GDP-L-fucose	13C2	13C
-ADP-glucose ADP-Mannose GDP-D-Rhamnose GDP-L-fucose-13C3	database	C16H25N5O15P2	ADP-glucose ADP-Mannose GDP-D-Rhamnose GDP-L-fucose	13C3	13C
-ADP-glucose ADP-Mannose GDP-D-Rhamnose GDP-L-fucose-13C4	database	C16H25N5O15P2	ADP-glucose ADP-Mannose GDP-D-Rhamnose GDP-L-fucose	13C4	13C
-ADP-glucose ADP-Mannose GDP-D-Rhamnose GDP-L-fucose-13C5	database	C16H25N5O15P2	ADP-glucose ADP-Mannose GDP-D-Rhamnose GDP-L-fucose	13C5	13C
-ADP-glucose ADP-Mannose GDP-D-Rhamnose GDP-L-fucose-13C6	database	C16H25N5O15P2	ADP-glucose ADP-Mannose GDP-D-Rhamnose GDP-L-fucose	13C6	13C
-ADP-glucose ADP-Mannose GDP-D-Rhamnose GDP-L-fucose-13C7	database	C16H25N5O15P2	ADP-glucose ADP-Mannose GDP-D-Rhamnose GDP-L-fucose	13C7	13C
-ADP-glucose ADP-Mannose GDP-D-Rhamnose GDP-L-fucose-13C8	database	C16H25N5O15P2	ADP-glucose ADP-Mannose GDP-D-Rhamnose GDP-L-fucose	13C8	13C
-ADP-glucose ADP-Mannose GDP-D-Rhamnose GDP-L-fucose-13C9	database	C16H25N5O15P2	ADP-glucose ADP-Mannose GDP-D-Rhamnose GDP-L-fucose	13C9	13C
-ADP-ribose 2-phosphate-13C0	database	C15H24N5O17P3	ADP-ribose 2-phosphate	13C0	13C
-ADP-ribose 2-phosphate-13C1	database	C15H24N5O17P3	ADP-ribose 2-phosphate	13C1	13C
-ADP-ribose 2-phosphate-13C10	database	C15H24N5O17P3	ADP-ribose 2-phosphate	13C10	13C
-ADP-ribose 2-phosphate-13C11	database	C15H24N5O17P3	ADP-ribose 2-phosphate	13C11	13C
-ADP-ribose 2-phosphate-13C12	database	C15H24N5O17P3	ADP-ribose 2-phosphate	13C12	13C
-ADP-ribose 2-phosphate-13C2	database	C15H24N5O17P3	ADP-ribose 2-phosphate	13C2	13C
-ADP-ribose 2-phosphate-13C3	database	C15H24N5O17P3	ADP-ribose 2-phosphate	13C3	13C
-ADP-ribose 2-phosphate-13C4	database	C15H24N5O17P3	ADP-ribose 2-phosphate	13C4	13C
-ADP-ribose 2-phosphate-13C5	database	C15H24N5O17P3	ADP-ribose 2-phosphate	13C5	13C
-ADP-ribose 2-phosphate-13C6	database	C15H24N5O17P3	ADP-ribose 2-phosphate	13C6	13C
-ADP-ribose 2-phosphate-13C7	database	C15H24N5O17P3	ADP-ribose 2-phosphate	13C7	13C
-ADP-ribose 2-phosphate-13C8	database	C15H24N5O17P3	ADP-ribose 2-phosphate	13C8	13C
-ADP-ribose 2-phosphate-13C9	database	C15H24N5O17P3	ADP-ribose 2-phosphate	13C9	13C
-ADP@mzAMP-13C0	direct_to_standard	C10H14N5O7P1	ADP@mzAMP	13C0	13C
-ADP@mzAMP-13C1	indirect_to_standard	C10H14N5O7P1	ADP@mzAMP	13C1	13C
-ADP@mzAMP-13C2	indirect_to_standard	C10H14N5O7P1	ADP@mzAMP	13C2	13C
-ADP@mzAMP-13C3	indirect_to_standard	C10H14N5O7P1	ADP@mzAMP	13C3	13C
-ADP@mzAMP-13C4	indirect_to_standard	C10H14N5O7P1	ADP@mzAMP	13C4	13C
-ADP@mzAMP-13C5	indirect_to_standard	C10H14N5O7P1	ADP@mzAMP	13C5	13C
-ADP@mzAMP-13C6	indirect_to_standard	C10H14N5O7P1	ADP@mzAMP	13C6	13C
-ADP@mzAMP-13C7	indirect_to_standard	C10H14N5O7P1	ADP@mzAMP	13C7	13C
-ADP@mzAMP-13C8	indirect_to_standard	C10H14N5O7P1	ADP@mzAMP	13C8	13C
-ADP@mzAMP-13C9	indirect_to_standard	C10H14N5O7P1	ADP@mzAMP	13C9	13C
-AICAR-13C0	direct_to_standard	C9H15N4O8P1	AICAR	13C0	13C
-AICAR-13C1	indirect_to_standard	C9H15N4O8P1	AICAR	13C1	13C
-AICAR-13C2	indirect_to_standard	C9H15N4O8P1	AICAR	13C2	13C
-AICAR-13C3	indirect_to_standard	C9H15N4O8P1	AICAR	13C3	13C
-AICAR-13C4	indirect_to_standard	C9H15N4O8P1	AICAR	13C4	13C
-AICAR-13C5	indirect_to_standard	C9H15N4O8P1	AICAR	13C5	13C
-AICAR-13C6	indirect_to_standard	C9H15N4O8P1	AICAR	13C6	13C
-AICAR-13C7	indirect_to_standard	C9H15N4O8P1	AICAR	13C7	13C
-AMP-13C0	direct_to_standard	C10H14N5O7P1	AMP	13C0	13C
-AMP-13C1	indirect_to_standard	C10H14N5O7P1	AMP	13C1	13C
-AMP-13C10	indirect_to_standard	C10H14N5O7P1	AMP	13C10	13C
-AMP-13C2	indirect_to_standard	C10H14N5O7P1	AMP	13C2	13C
-AMP-13C3	indirect_to_standard	C10H14N5O7P1	AMP	13C3	13C
-AMP-13C4	indirect_to_standard	C10H14N5O7P1	AMP	13C4	13C
-AMP-13C5	indirect_to_standard	C10H14N5O7P1	AMP	13C5	13C
-AMP-13C6	indirect_to_standard	C10H14N5O7P1	AMP	13C6	13C
-AMP-13C7	indirect_to_standard	C10H14N5O7P1	AMP	13C7	13C
-AMP-13C8	indirect_to_standard	C10H14N5O7P1	AMP	13C8	13C
-AMP-13C9	indirect_to_standard	C10H14N5O7P1	AMP	13C9	13C
-AP3A-13C0	database	C11H15N4O7P1S1	AP3A	13C0	13C
-ATP@mzADP-13C0	direct_to_standard	C10H15N5O10P2	ATP@mzADP	13C0	13C
-ATP@mzADP-13C1	indirect_to_standard	C10H15N5O10P2	ATP@mzADP	13C1	13C
-ATP@mzADP-13C2	indirect_to_standard	C10H15N5O10P2	ATP@mzADP	13C2	13C
-ATP@mzADP-13C3	indirect_to_standard	C10H15N5O10P2	ATP@mzADP	13C3	13C
-ATP@mzADP-13C4	indirect_to_standard	C10H15N5O10P2	ATP@mzADP	13C4	13C
-ATP@mzADP-13C5	indirect_to_standard	C10H15N5O10P2	ATP@mzADP	13C5	13C
-ATP@mzADP-13C6	indirect_to_standard	C10H15N5O10P2	ATP@mzADP	13C6	13C
-ATP@mzADP-13C7	indirect_to_standard	C10H15N5O10P2	ATP@mzADP	13C7	13C
-ATP@mzADP-13C8	indirect_to_standard	C10H15N5O10P2	ATP@mzADP	13C8	13C
-ATP@mzADP-13C9	indirect_to_standard	C10H15N5O10P2	ATP@mzADP	13C9	13C
-Acetylcysteine-13C0	direct_to_standard	C5H9N1O3S1	Acetylcysteine	13C0	13C
-Acetylcysteine-13C1	indirect_to_standard	C5H9N1O3S1	Acetylcysteine	13C1	13C
-Acetylcysteine-13C2	indirect_to_standard	C5H9N1O3S1	Acetylcysteine	13C2	13C
-Acetylcysteine-13C3	indirect_to_standard	C5H9N1O3S1	Acetylcysteine	13C3	13C
-Acetylcysteine-13C5	indirect_to_standard	C5H9N1O3S1	Acetylcysteine	13C5	13C
-Adenylsuccinic acid-13C0	database	C14H18N5O11P1	Adenylsuccinic acid	13C0	13C
-Adenylsuccinic acid-13C1	database	C14H18N5O11P1	Adenylsuccinic acid	13C1	13C
-Arabinonic acid L-Xylonate Ribonic acid-13C0	database	C5H10O6	Arabinonic acid L-Xylonate Ribonic acid	13C0	13C
-Arabinonic acid L-Xylonate Ribonic acid-13C1	database	C5H10O6	Arabinonic acid L-Xylonate Ribonic acid	13C1	13C
-Arabinonic acid L-Xylonate Ribonic acid-13C2	database	C5H10O6	Arabinonic acid L-Xylonate Ribonic acid	13C2	13C
-Arabinonic acid L-Xylonate Ribonic acid-13C3	database	C5H10O6	Arabinonic acid L-Xylonate Ribonic acid	13C3	13C
-Arabinonic acid L-Xylonate Ribonic acid-13C4	database	C5H10O6	Arabinonic acid L-Xylonate Ribonic acid	13C4	13C
-Arabinonic acid L-Xylonate Ribonic acid-13C5	database	C5H10O6	Arabinonic acid L-Xylonate Ribonic acid	13C5	13C
-Aspartate-13C0	direct_to_standard	C4H7N1O4	Aspartate	13C0	13C
-Aspartate-13C1	indirect_to_standard	C4H7N1O4	Aspartate	13C1	13C
-Aspartate-13C2	indirect_to_standard	C4H7N1O4	Aspartate	13C2	13C
-Aspartate-13C3	indirect_to_standard	C4H7N1O4	Aspartate	13C3	13C
-Aspartate-13C4	indirect_to_standard	C4H7N1O4	Aspartate	13C4	13C
-Beta-Citryl-L-glutamic acid-13C0	database	C11H15N1O10	Beta-Citryl-L-glutamic acid	13C0	13C
-Beta-Citryl-L-glutamic acid-13C1	database	C11H15N1O10	Beta-Citryl-L-glutamic acid	13C1	13C
-Beta-Citryl-L-glutamic acid-13C10	database	C11H15N1O10	Beta-Citryl-L-glutamic acid	13C10	13C
-Beta-Citryl-L-glutamic acid-13C11	database	C11H15N1O10	Beta-Citryl-L-glutamic acid	13C11	13C
-Beta-Citryl-L-glutamic acid-13C2	database	C11H15N1O10	Beta-Citryl-L-glutamic acid	13C2	13C
-Beta-Citryl-L-glutamic acid-13C3	database	C11H15N1O10	Beta-Citryl-L-glutamic acid	13C3	13C
-Beta-Citryl-L-glutamic acid-13C4	database	C11H15N1O10	Beta-Citryl-L-glutamic acid	13C4	13C
-Beta-Citryl-L-glutamic acid-13C5	database	C11H15N1O10	Beta-Citryl-L-glutamic acid	13C5	13C
-Beta-Citryl-L-glutamic acid-13C6	database	C11H15N1O10	Beta-Citryl-L-glutamic acid	13C6	13C
-Beta-Citryl-L-glutamic acid-13C7	database	C11H15N1O10	Beta-Citryl-L-glutamic acid	13C7	13C
-Beta-Citryl-L-glutamic acid-13C8	database	C11H15N1O10	Beta-Citryl-L-glutamic acid	13C8	13C
-Beta-Citryl-L-glutamic acid-13C9	database	C11H15N1O10	Beta-Citryl-L-glutamic acid	13C9	13C
-CAIR-13C0	database	C9H14N3O9P1	CAIR	13C0	13C
-CAIR-13C1	database	C9H14N3O9P1	CAIR	13C1	13C
-CAIR-13C2	database	C9H14N3O9P1	CAIR	13C2	13C
-CDP-13C0	direct_to_standard	C9H15N3O11P2	CDP	13C0	13C
-CDP-13C1	indirect_to_standard	C9H15N3O11P2	CDP	13C1	13C
-CDP-13C2	indirect_to_standard	C9H15N3O11P2	CDP	13C2	13C
-CDP-13C3	indirect_to_standard	C9H15N3O11P2	CDP	13C3	13C
-CDP-13C4	indirect_to_standard	C9H15N3O11P2	CDP	13C4	13C
-CDP-13C5	indirect_to_standard	C9H15N3O11P2	CDP	13C5	13C
-CDP-13C6	indirect_to_standard	C9H15N3O11P2	CDP	13C6	13C
-CDP-13C7	indirect_to_standard	C9H15N3O11P2	CDP	13C7	13C
-CDP-13C8	indirect_to_standard	C9H15N3O11P2	CDP	13C8	13C
-CDP-13C9	indirect_to_standard	C9H15N3O11P2	CDP	13C9	13C
-CDP-Ethanolamine-13C0	database	C11H20N4O11P2	CDP-Ethanolamine	13C0	13C
-CDP-Ethanolamine-13C1	database	C11H20N4O11P2	CDP-Ethanolamine	13C1	13C
-CDP-Ethanolamine-13C10	database	C11H20N4O11P2	CDP-Ethanolamine	13C10	13C
-CDP-Ethanolamine-13C2	database	C11H20N4O11P2	CDP-Ethanolamine	13C2	13C
-CDP-Ethanolamine-13C3	database	C11H20N4O11P2	CDP-Ethanolamine	13C3	13C
-CDP-Ethanolamine-13C4	database	C11H20N4O11P2	CDP-Ethanolamine	13C4	13C
-CDP-Ethanolamine-13C5	database	C11H20N4O11P2	CDP-Ethanolamine	13C5	13C
-CDP-Ethanolamine-13C6	database	C11H20N4O11P2	CDP-Ethanolamine	13C6	13C
-CDP-Ethanolamine-13C7	database	C11H20N4O11P2	CDP-Ethanolamine	13C7	13C
-CDP-Ethanolamine-13C8	database	C11H20N4O11P2	CDP-Ethanolamine	13C8	13C
-CDP-Ethanolamine-13C9	database	C11H20N4O11P2	CDP-Ethanolamine	13C9	13C
-CMP-13C0	direct_to_standard	C9H14N3O8P1	CMP	13C0	13C
-CMP-13C1	indirect_to_standard	C9H14N3O8P1	CMP	13C1	13C
-CMP-13C2	indirect_to_standard	C9H14N3O8P1	CMP	13C2	13C
-CTP@mzCDP-13C0	direct_to_standard	C9H15N3O11P2	CTP@mzCDP	13C0	13C
-CTP@mzCDP-13C1	indirect_to_standard	C9H15N3O11P2	CTP@mzCDP	13C1	13C
-CTP@mzCDP-13C2	indirect_to_standard	C9H15N3O11P2	CTP@mzCDP	13C2	13C
-CTP@mzCDP-13C3	indirect_to_standard	C9H15N3O11P2	CTP@mzCDP	13C3	13C
-CTP@mzCDP-13C4	indirect_to_standard	C9H15N3O11P2	CTP@mzCDP	13C4	13C
-CTP@mzCDP-13C5	indirect_to_standard	C9H15N3O11P2	CTP@mzCDP	13C5	13C
-CTP@mzCDP-13C6	indirect_to_standard	C9H15N3O11P2	CTP@mzCDP	13C6	13C
-CTP@mzCDP-13C7	indirect_to_standard	C9H15N3O11P2	CTP@mzCDP	13C7	13C
-CTP@mzCDP-13C8	indirect_to_standard	C9H15N3O11P2	CTP@mzCDP	13C8	13C
-CTP@mzCDP-13C9	indirect_to_standard	C9H15N3O11P2	CTP@mzCDP	13C9	13C
-Citrate-13C0	direct_to_standard	C6H8O7	Citrate	13C0	13C
-Citrate-13C1	indirect_to_standard	C6H8O7	Citrate	13C1	13C
-Citrate-13C2	indirect_to_standard	C6H8O7	Citrate	13C2	13C
-Citrate-13C3	indirect_to_standard	C6H8O7	Citrate	13C3	13C
-Citrate-13C4	indirect_to_standard	C6H8O7	Citrate	13C4	13C
-Citrate-13C5	indirect_to_standard	C6H8O7	Citrate	13C5	13C
-Citrate-13C6	indirect_to_standard	C6H8O7	Citrate	13C6	13C
-Cysteic acid-13C0	database	C3H7N1O5S1	Cysteic acid	13C0	13C
-Cysteic acid-13C1	database	C3H7N1O5S1	Cysteic acid	13C1	13C
-Cytidine monophosphate N-acetylneuraminic acid-13C0	database	C20H31N4O16P1	Cytidine monophosphate N-acetylneuraminic acid	13C0	13C
-Cytidine monophosphate N-acetylneuraminic acid-13C1	database	C20H31N4O16P1	Cytidine monophosphate N-acetylneuraminic acid	13C1	13C
-Cytidine monophosphate N-acetylneuraminic acid-13C10	database	C20H31N4O16P1	Cytidine monophosphate N-acetylneuraminic acid	13C10	13C
-Cytidine monophosphate N-acetylneuraminic acid-13C11	database	C20H31N4O16P1	Cytidine monophosphate N-acetylneuraminic acid	13C11	13C
-Cytidine monophosphate N-acetylneuraminic acid-13C12	database	C20H31N4O16P1	Cytidine monophosphate N-acetylneuraminic acid	13C12	13C
-Cytidine monophosphate N-acetylneuraminic acid-13C13	database	C20H31N4O16P1	Cytidine monophosphate N-acetylneuraminic acid	13C13	13C
-Cytidine monophosphate N-acetylneuraminic acid-13C14	database	C20H31N4O16P1	Cytidine monophosphate N-acetylneuraminic acid	13C14	13C
-Cytidine monophosphate N-acetylneuraminic acid-13C15	database	C20H31N4O16P1	Cytidine monophosphate N-acetylneuraminic acid	13C15	13C
-Cytidine monophosphate N-acetylneuraminic acid-13C16	database	C20H31N4O16P1	Cytidine monophosphate N-acetylneuraminic acid	13C16	13C
-Cytidine monophosphate N-acetylneuraminic acid-13C17	database	C20H31N4O16P1	Cytidine monophosphate N-acetylneuraminic acid	13C17	13C
-Cytidine monophosphate N-acetylneuraminic acid-13C18	database	C20H31N4O16P1	Cytidine monophosphate N-acetylneuraminic acid	13C18	13C
-Cytidine monophosphate N-acetylneuraminic acid-13C2	database	C20H31N4O16P1	Cytidine monophosphate N-acetylneuraminic acid	13C2	13C
-Cytidine monophosphate N-acetylneuraminic acid-13C3	database	C20H31N4O16P1	Cytidine monophosphate N-acetylneuraminic acid	13C3	13C
-Cytidine monophosphate N-acetylneuraminic acid-13C4	database	C20H31N4O16P1	Cytidine monophosphate N-acetylneuraminic acid	13C4	13C
-Cytidine monophosphate N-acetylneuraminic acid-13C5	database	C20H31N4O16P1	Cytidine monophosphate N-acetylneuraminic acid	13C5	13C
-Cytidine monophosphate N-acetylneuraminic acid-13C6	database	C20H31N4O16P1	Cytidine monophosphate N-acetylneuraminic acid	13C6	13C
-Cytidine monophosphate N-acetylneuraminic acid-13C7	database	C20H31N4O16P1	Cytidine monophosphate N-acetylneuraminic acid	13C7	13C
-Cytidine monophosphate N-acetylneuraminic acid-13C8	database	C20H31N4O16P1	Cytidine monophosphate N-acetylneuraminic acid	13C8	13C
-Cytidine monophosphate N-acetylneuraminic acid-13C9	database	C20H31N4O16P1	Cytidine monophosphate N-acetylneuraminic acid	13C9	13C
-D-Erythrose 4-phosphate-13C0	direct_to_standard	C4H9O7P1	D-Erythrose 4-phosphate	13C0	13C
-D-Erythrose 4-phosphate-13C1	indirect_to_standard	C4H9O7P1	D-Erythrose 4-phosphate	13C1	13C
-D-Erythrose 4-phosphate-13C3	indirect_to_standard	C4H9O7P1	D-Erythrose 4-phosphate	13C3	13C
-D-Erythrose 4-phosphate-13C4	indirect_to_standard	C4H9O7P1	D-Erythrose 4-phosphate	13C4	13C
-D-Galacturonate-13C0	database	C6H10O7	D-Galacturonate	13C0	13C
-D-Galacturonate-13C1	database	C6H10O7	D-Galacturonate	13C1	13C
-D-Galacturonate-13C2	database	C6H10O7	D-Galacturonate	13C2	13C
-D-Galacturonate-13C3	database	C6H10O7	D-Galacturonate	13C3	13C
-D-Galacturonate-13C4	database	C6H10O7	D-Galacturonate	13C4	13C
-D-Galacturonate-13C5	database	C6H10O7	D-Galacturonate	13C5	13C
-D-Galacturonate-13C6	database	C6H10O7	D-Galacturonate	13C6	13C
-D-Glucarate-13C0	database	C6H10O8	D-Glucarate	13C0	13C
-D-Glucarate-13C1	database	C6H10O8	D-Glucarate	13C1	13C
-D-Glucarate-13C2	database	C6H10O8	D-Glucarate	13C2	13C
-D-Glucarate-13C6	database	C6H10O8	D-Glucarate	13C6	13C
-D-Glucuronate 1-phosphate-13C0	database	C6H11O10P1	D-Glucuronate 1-phosphate	13C0	13C
-D-Glucuronate 1-phosphate-13C1	database	C6H11O10P1	D-Glucuronate 1-phosphate	13C1	13C
-D-Glucuronate 1-phosphate-13C2	database	C6H11O10P1	D-Glucuronate 1-phosphate	13C2	13C
-D-Glucuronate 1-phosphate-13C3	database	C6H11O10P1	D-Glucuronate 1-phosphate	13C3	13C
-D-Glucuronate 1-phosphate-13C4	database	C6H11O10P1	D-Glucuronate 1-phosphate	13C4	13C
-D-Glucuronate 1-phosphate-13C5	database	C6H11O10P1	D-Glucuronate 1-phosphate	13C5	13C
-D-Glucuronate 1-phosphate-13C6	database	C6H11O10P1	D-Glucuronate 1-phosphate	13C6	13C
-D-Ribose 1-phosphate-13C0	direct_to_standard	C5H11O8P1	D-Ribose 1-phosphate	13C0	13C
-D-Ribose 1-phosphate-13C1	indirect_to_standard	C5H11O8P1	D-Ribose 1-phosphate	13C1	13C
-D-Ribose 1-phosphate-13C2	indirect_to_standard	C5H11O8P1	D-Ribose 1-phosphate	13C2	13C
-D-Ribose 1-phosphate-13C3	indirect_to_standard	C5H11O8P1	D-Ribose 1-phosphate	13C3	13C
-D-Ribose 1-phosphate-13C4	indirect_to_standard	C5H11O8P1	D-Ribose 1-phosphate	13C4	13C
-D-Ribose 1-phosphate-13C5	indirect_to_standard	C5H11O8P1	D-Ribose 1-phosphate	13C5	13C
-D-Ribose 5-phosphate D-Ribulose 5-phosphate-13C0	direct_to_standard	C5H11O8P1	D-Ribose 5-phosphate D-Ribulose 5-phosphate	13C0	13C
-D-Ribose 5-phosphate D-Ribulose 5-phosphate-13C1	indirect_to_standard	C5H11O8P1	D-Ribose 5-phosphate D-Ribulose 5-phosphate	13C1	13C
-D-Ribose 5-phosphate D-Ribulose 5-phosphate-13C2	indirect_to_standard	C5H11O8P1	D-Ribose 5-phosphate D-Ribulose 5-phosphate	13C2	13C
-D-Ribose 5-phosphate D-Ribulose 5-phosphate-13C3	indirect_to_standard	C5H11O8P1	D-Ribose 5-phosphate D-Ribulose 5-phosphate	13C3	13C
-D-Ribose 5-phosphate D-Ribulose 5-phosphate-13C4	indirect_to_standard	C5H11O8P1	D-Ribose 5-phosphate D-Ribulose 5-phosphate	13C4	13C
-D-Ribose 5-phosphate D-Ribulose 5-phosphate-13C5	indirect_to_standard	C5H11O8P1	D-Ribose 5-phosphate D-Ribulose 5-phosphate	13C5	13C
-D-Sedoheptulose 7-phosphate-13C0	direct_to_standard	C7H15O10P1	D-Sedoheptulose 7-phosphate	13C0	13C
-D-Sedoheptulose 7-phosphate-13C1	indirect_to_standard	C7H15O10P1	D-Sedoheptulose 7-phosphate	13C1	13C
-D-Sedoheptulose 7-phosphate-13C2	indirect_to_standard	C7H15O10P1	D-Sedoheptulose 7-phosphate	13C2	13C
-D-Sedoheptulose 7-phosphate-13C3	indirect_to_standard	C7H15O10P1	D-Sedoheptulose 7-phosphate	13C3	13C
-D-Sedoheptulose 7-phosphate-13C4	indirect_to_standard	C7H15O10P1	D-Sedoheptulose 7-phosphate	13C4	13C
-D-Sedoheptulose 7-phosphate-13C5	indirect_to_standard	C7H15O10P1	D-Sedoheptulose 7-phosphate	13C5	13C
-D-Sedoheptulose 7-phosphate-13C6	indirect_to_standard	C7H15O10P1	D-Sedoheptulose 7-phosphate	13C6	13C
-D-Sedoheptulose 7-phosphate-13C7	indirect_to_standard	C7H15O10P1	D-Sedoheptulose 7-phosphate	13C7	13C
-DSS-13C0	direct_to_standard	C6H16O3S1Si1	DSS	13C0	13C
-DSS-13C1	indirect_to_standard	C6H16O3S1Si1	DSS	13C1	13C
-F6P-13C0	direct_to_standard	C6H13O9P1	F6P	13C0	13C
-F6P-13C1	indirect_to_standard	C6H13O9P1	F6P	13C1	13C
-F6P-13C2	indirect_to_standard	C6H13O9P1	F6P	13C2	13C
-F6P-13C3	indirect_to_standard	C6H13O9P1	F6P	13C3	13C
-F6P-13C4	indirect_to_standard	C6H13O9P1	F6P	13C4	13C
-F6P-13C5	indirect_to_standard	C6H13O9P1	F6P	13C5	13C
-F6P-13C6	indirect_to_standard	C6H13O9P1	F6P	13C6	13C
-Flavin Mononucleotide-13C0	database	C17H21N4O9P1	Flavin Mononucleotide	13C0	13C
-Flavin Mononucleotide-13C1	database	C17H21N4O9P1	Flavin Mononucleotide	13C1	13C
-Flavin Mononucleotide-13C2	database	C17H21N4O9P1	Flavin Mononucleotide	13C2	13C
-Fructose 1-6-bisphosphate-13C0	direct_to_standard	C6H14O12P2	Fructose 1-6-bisphosphate	13C0	13C
-Fructose 1-6-bisphosphate-13C1	indirect_to_standard	C6H14O12P2	Fructose 1-6-bisphosphate	13C1	13C
-Fructose 1-6-bisphosphate-13C2	indirect_to_standard	C6H14O12P2	Fructose 1-6-bisphosphate	13C2	13C
-Fructose 1-6-bisphosphate-13C3	indirect_to_standard	C6H14O12P2	Fructose 1-6-bisphosphate	13C3	13C
-Fructose 1-6-bisphosphate-13C4	indirect_to_standard	C6H14O12P2	Fructose 1-6-bisphosphate	13C4	13C
-Fructose 1-6-bisphosphate-13C5	indirect_to_standard	C6H14O12P2	Fructose 1-6-bisphosphate	13C5	13C
-Fructose 1-6-bisphosphate-13C6	indirect_to_standard	C6H14O12P2	Fructose 1-6-bisphosphate	13C6	13C
-Fructose 1-phosphate-13C0	database	C6H13O9P1	Fructose 1-phosphate	13C0	13C
-Fructose 1-phosphate-13C1	database	C6H13O9P1	Fructose 1-phosphate	13C1	13C
-Fructose 1-phosphate-13C2	database	C6H13O9P1	Fructose 1-phosphate	13C2	13C
-Fructose 1-phosphate-13C3	database	C6H13O9P1	Fructose 1-phosphate	13C3	13C
-Fructose 1-phosphate-13C4	database	C6H13O9P1	Fructose 1-phosphate	13C4	13C
-Fructose 1-phosphate-13C5	database	C6H13O9P1	Fructose 1-phosphate	13C5	13C
-Fructose 1-phosphate-13C6	database	C6H13O9P1	Fructose 1-phosphate	13C6	13C
-Fructose 2-6-bisphosphate-13C0	database	C6H14O12P2	Fructose 2-6-bisphosphate	13C0	13C
-Fructose 2-6-bisphosphate-13C1	database	C6H14O12P2	Fructose 2-6-bisphosphate	13C1	13C
-Fructose 2-6-bisphosphate-13C2	database	C6H14O12P2	Fructose 2-6-bisphosphate	13C2	13C
-Fructose 2-6-bisphosphate-13C3	database	C6H14O12P2	Fructose 2-6-bisphosphate	13C3	13C
-Fructose 2-6-bisphosphate-13C4	database	C6H14O12P2	Fructose 2-6-bisphosphate	13C4	13C
-Fructose 2-6-bisphosphate-13C5	database	C6H14O12P2	Fructose 2-6-bisphosphate	13C5	13C
-Fructose 2-6-bisphosphate-13C6	database	C6H14O12P2	Fructose 2-6-bisphosphate	13C6	13C
-Fumarate-13C0	direct_to_standard	C4H4O4	Fumarate	13C0	13C
-Fumarate-13C1	indirect_to_standard	C4H4O4	Fumarate	13C1	13C
-Fumarate-13C2	indirect_to_standard	C4H4O4	Fumarate	13C2	13C
-Fumarate-13C3	indirect_to_standard	C4H4O4	Fumarate	13C3	13C
-Fumarate-13C4	indirect_to_standard	C4H4O4	Fumarate	13C4	13C
-G6P-13C0	direct_to_standard	C6H13O9P1	G6P	13C0	13C
-G6P-13C1	indirect_to_standard	C6H13O9P1	G6P	13C1	13C
-G6P-13C2	indirect_to_standard	C6H13O9P1	G6P	13C2	13C
-G6P-13C3	indirect_to_standard	C6H13O9P1	G6P	13C3	13C
-G6P-13C4	indirect_to_standard	C6H13O9P1	G6P	13C4	13C
-G6P-13C5	indirect_to_standard	C6H13O9P1	G6P	13C5	13C
-G6P-13C6	indirect_to_standard	C6H13O9P1	G6P	13C6	13C
-GDP-13C0	direct_to_standard	C10H15N5O11P2	GDP	13C0	13C
-GDP-13C1	indirect_to_standard	C10H15N5O11P2	GDP	13C1	13C
-GDP-13C10	indirect_to_standard	C10H15N5O11P2	GDP	13C10	13C
-GDP-13C2	indirect_to_standard	C10H15N5O11P2	GDP	13C2	13C
-GDP-13C3	indirect_to_standard	C10H15N5O11P2	GDP	13C3	13C
-GDP-13C4	indirect_to_standard	C10H15N5O11P2	GDP	13C4	13C
-GDP-13C5	indirect_to_standard	C10H15N5O11P2	GDP	13C5	13C
-GDP-13C6	indirect_to_standard	C10H15N5O11P2	GDP	13C6	13C
-GDP-13C7	indirect_to_standard	C10H15N5O11P2	GDP	13C7	13C
-GDP-13C8	indirect_to_standard	C10H15N5O11P2	GDP	13C8	13C
-GDP-13C9	indirect_to_standard	C10H15N5O11P2	GDP	13C9	13C
-GMP-13C0	direct_to_standard	C10H14N5O8P1	GMP	13C0	13C
-GMP-13C1	indirect_to_standard	C10H14N5O8P1	GMP	13C1	13C
-GMP-13C10	indirect_to_standard	C10H14N5O8P1	GMP	13C10	13C
-GMP-13C2	indirect_to_standard	C10H14N5O8P1	GMP	13C2	13C
-GMP-13C3	indirect_to_standard	C10H14N5O8P1	GMP	13C3	13C
-GMP-13C4	indirect_to_standard	C10H14N5O8P1	GMP	13C4	13C
-GMP-13C5	indirect_to_standard	C10H14N5O8P1	GMP	13C5	13C
-GMP-13C6	indirect_to_standard	C10H14N5O8P1	GMP	13C6	13C
-GMP-13C7	indirect_to_standard	C10H14N5O8P1	GMP	13C7	13C
-GMP-13C8	indirect_to_standard	C10H14N5O8P1	GMP	13C8	13C
-GMP-13C9	indirect_to_standard	C10H14N5O8P1	GMP	13C9	13C
-GTP@mzGDP-13C0	direct_to_standard	C10H15N5O11P2	GTP@mzGDP	13C0	13C
-GTP@mzGDP-13C1	indirect_to_standard	C10H15N5O11P2	GTP@mzGDP	13C1	13C
-GTP@mzGDP-13C2	indirect_to_standard	C10H15N5O11P2	GTP@mzGDP	13C2	13C
-GTP@mzGDP-13C3	indirect_to_standard	C10H15N5O11P2	GTP@mzGDP	13C3	13C
-GTP@mzGDP-13C4	indirect_to_standard	C10H15N5O11P2	GTP@mzGDP	13C4	13C
-GTP@mzGDP-13C5	indirect_to_standard	C10H15N5O11P2	GTP@mzGDP	13C5	13C
-GTP@mzGDP-13C6	indirect_to_standard	C10H15N5O11P2	GTP@mzGDP	13C6	13C
-GTP@mzGDP-13C7	indirect_to_standard	C10H15N5O11P2	GTP@mzGDP	13C7	13C
-GTP@mzGDP-13C8	indirect_to_standard	C10H15N5O11P2	GTP@mzGDP	13C8	13C
-Galactaric acid MP-13C0	database	C6H10O8	Galactaric acid MP	13C0	13C
-Galactaric acid MP-13C1	database	C6H10O8	Galactaric acid MP	13C1	13C
-Galactaric acid MP-13C6	database	C6H10O8	Galactaric acid MP	13C6	13C
-Galactitol Sorbitol-13C0	database	C6H14O6	Galactitol Sorbitol	13C0	13C
-Galactitol Sorbitol-13C1	database	C6H14O6	Galactitol Sorbitol	13C1	13C
-Galactitol Sorbitol-13C5	database	C6H14O6	Galactitol Sorbitol	13C5	13C
-Galactitol Sorbitol-13C6	database	C6H14O6	Galactitol Sorbitol	13C6	13C
-Galactose 1-phosphate-13C0	direct_to_standard	C6H13O9P1	Galactose 1-phosphate	13C0	13C
-Galactose 1-phosphate-13C1	indirect_to_standard	C6H13O9P1	Galactose 1-phosphate	13C1	13C
-Galactose 1-phosphate-13C2	indirect_to_standard	C6H13O9P1	Galactose 1-phosphate	13C2	13C
-Galactose 1-phosphate-13C3	indirect_to_standard	C6H13O9P1	Galactose 1-phosphate	13C3	13C
-Galactose 1-phosphate-13C4	indirect_to_standard	C6H13O9P1	Galactose 1-phosphate	13C4	13C
-Galactose 1-phosphate-13C5	indirect_to_standard	C6H13O9P1	Galactose 1-phosphate	13C5	13C
-Galactose 1-phosphate-13C6	indirect_to_standard	C6H13O9P1	Galactose 1-phosphate	13C6	13C
-Gamma Glutamylglutamic acid-13C0	database	C10H16N2O7	Gamma Glutamylglutamic acid	13C0	13C
-Gamma Glutamylglutamic acid-13C1	database	C10H16N2O7	Gamma Glutamylglutamic acid	13C1	13C
-Gamma Glutamylglutamic acid-13C2	database	C10H16N2O7	Gamma Glutamylglutamic acid	13C2	13C
-Gamma Glutamylglutamic acid-13C3	database	C10H16N2O7	Gamma Glutamylglutamic acid	13C3	13C
-Gamma Glutamylglutamic acid-13C4	database	C10H16N2O7	Gamma Glutamylglutamic acid	13C4	13C
-Gamma Glutamylglutamic acid-13C5	database	C10H16N2O7	Gamma Glutamylglutamic acid	13C5	13C
-Gamma Glutamylglutamic acid-13C6	database	C10H16N2O7	Gamma Glutamylglutamic acid	13C6	13C
-Gamma Glutamylglutamic acid-13C7	database	C10H16N2O7	Gamma Glutamylglutamic acid	13C7	13C
-Gamma Glutamylglutamic acid-13C8	database	C10H16N2O7	Gamma Glutamylglutamic acid	13C8	13C
-Gamma Glutamylglutamic acid-13C9	database	C10H16N2O7	Gamma Glutamylglutamic acid	13C9	13C
-Gluconic acid-13C0	direct_to_standard	C6H12O7	Gluconic acid	13C0	13C
-Gluconic acid-13C1	indirect_to_standard	C6H12O7	Gluconic acid	13C1	13C
-Gluconic acid-13C2	indirect_to_standard	C6H12O7	Gluconic acid	13C2	13C
-Gluconic acid-13C3	indirect_to_standard	C6H12O7	Gluconic acid	13C3	13C
-Gluconic acid-13C4	indirect_to_standard	C6H12O7	Gluconic acid	13C4	13C
-Gluconic acid-13C5	indirect_to_standard	C6H12O7	Gluconic acid	13C5	13C
-Gluconic acid-13C6	indirect_to_standard	C6H12O7	Gluconic acid	13C6	13C
-Glucose 1-6-diphosphate-13C0	database	C6H14O12P2	Glucose 1-6-diphosphate	13C0	13C
-Glucose 1-6-diphosphate-13C1	database	C6H14O12P2	Glucose 1-6-diphosphate	13C1	13C
-Glucose 1-6-diphosphate-13C2	database	C6H14O12P2	Glucose 1-6-diphosphate	13C2	13C
-Glucose 1-6-diphosphate-13C3	database	C6H14O12P2	Glucose 1-6-diphosphate	13C3	13C
-Glucose 1-6-diphosphate-13C4	database	C6H14O12P2	Glucose 1-6-diphosphate	13C4	13C
-Glucose 1-6-diphosphate-13C5	database	C6H14O12P2	Glucose 1-6-diphosphate	13C5	13C
-Glucose 1-6-diphosphate-13C6	database	C6H14O12P2	Glucose 1-6-diphosphate	13C6	13C
-Glucose 1-phosphate-13C0	direct_to_standard	C6H13O9P1	Glucose 1-phosphate	13C0	13C
-Glucose 1-phosphate-13C1	indirect_to_standard	C6H13O9P1	Glucose 1-phosphate	13C1	13C
-Glucose 1-phosphate-13C2	indirect_to_standard	C6H13O9P1	Glucose 1-phosphate	13C2	13C
-Glucose 1-phosphate-13C3	indirect_to_standard	C6H13O9P1	Glucose 1-phosphate	13C3	13C
-Glucose 1-phosphate-13C4	indirect_to_standard	C6H13O9P1	Glucose 1-phosphate	13C4	13C
-Glucose 1-phosphate-13C5	indirect_to_standard	C6H13O9P1	Glucose 1-phosphate	13C5	13C
-Glucose 1-phosphate-13C6	indirect_to_standard	C6H13O9P1	Glucose 1-phosphate	13C6	13C
-Glucuronate-13C0	direct_to_standard	C6H10O7	Glucuronate	13C0	13C
-Glucuronate-13C1	indirect_to_standard	C6H10O7	Glucuronate	13C1	13C
-Glucuronate-13C2	indirect_to_standard	C6H10O7	Glucuronate	13C2	13C
-Glucuronate-13C3	indirect_to_standard	C6H10O7	Glucuronate	13C3	13C
-Glucuronate-13C4	indirect_to_standard	C6H10O7	Glucuronate	13C4	13C
-Glucuronate-13C5	indirect_to_standard	C6H10O7	Glucuronate	13C5	13C
-Glucuronate-13C6	indirect_to_standard	C6H10O7	Glucuronate	13C6	13C
-Glutamate-13C0	direct_to_standard	C5H9N1O4	Glutamate	13C0	13C
-Glutamate-13C1	indirect_to_standard	C5H9N1O4	Glutamate	13C1	13C
-Glutamate-13C2	indirect_to_standard	C5H9N1O4	Glutamate	13C2	13C
-Glutamate-13C3	indirect_to_standard	C5H9N1O4	Glutamate	13C3	13C
-Glutamate-13C4	indirect_to_standard	C5H9N1O4	Glutamate	13C4	13C
-Glutamate-13C5	indirect_to_standard	C5H9N1O4	Glutamate	13C5	13C
-Glutathione-13C0	direct_to_standard	C10H17N3O6S1	Glutathione	13C0	13C
-Glutathione-13C1	indirect_to_standard	C10H17N3O6S1	Glutathione	13C1	13C
-Glutathione-13C10	indirect_to_standard	C10H17N3O6S1	Glutathione	13C10	13C
-Glutathione-13C2	indirect_to_standard	C10H17N3O6S1	Glutathione	13C2	13C
-Glutathione-13C3	indirect_to_standard	C10H17N3O6S1	Glutathione	13C3	13C
-Glutathione-13C4	indirect_to_standard	C10H17N3O6S1	Glutathione	13C4	13C
-Glutathione-13C5	indirect_to_standard	C10H17N3O6S1	Glutathione	13C5	13C
-Glutathione-13C6	indirect_to_standard	C10H17N3O6S1	Glutathione	13C6	13C
-Glutathione-13C7	indirect_to_standard	C10H17N3O6S1	Glutathione	13C7	13C
-Glutathione-13C8	indirect_to_standard	C10H17N3O6S1	Glutathione	13C8	13C
-Glutathione-13C9	indirect_to_standard	C10H17N3O6S1	Glutathione	13C9	13C
-Glycerol 3-phosphate-13C0	direct_to_standard	C3H9O6P1	Glycerol 3-phosphate	13C0	13C
-Glycerol 3-phosphate-13C1	indirect_to_standard	C3H9O6P1	Glycerol 3-phosphate	13C1	13C
-Glycerol 3-phosphate-13C2	indirect_to_standard	C3H9O6P1	Glycerol 3-phosphate	13C2	13C
-Glycerol 3-phosphate-13C3	indirect_to_standard	C3H9O6P1	Glycerol 3-phosphate	13C3	13C
-Glycerophosphocholine-13C0	direct_to_standard	C8H20N1O6P1	Glycerophosphocholine	13C0	13C
-Glycerophosphocholine-13C1	indirect_to_standard	C8H20N1O6P1	Glycerophosphocholine	13C1	13C
-Glycerylphosphorylethanolamine-13C0	direct_to_standard	C5H14N1O6P1	Glycerylphosphorylethanolamine	13C0	13C
-Glycerylphosphorylethanolamine-13C1	indirect_to_standard	C5H14N1O6P1	Glycerylphosphorylethanolamine	13C1	13C
-Glycerylphosphorylethanolamine-13C2	indirect_to_standard	C5H14N1O6P1	Glycerylphosphorylethanolamine	13C2	13C
-Glycerylphosphorylethanolamine-13C3	indirect_to_standard	C5H14N1O6P1	Glycerylphosphorylethanolamine	13C3	13C
-Glycerylphosphorylethanolamine-13C4	indirect_to_standard	C5H14N1O6P1	Glycerylphosphorylethanolamine	13C4	13C
-Guanosine diphosphate mannose-13C0	direct_to_standard	C16H25N5O16P2	Guanosine diphosphate mannose	13C0	13C
-Guanosine diphosphate mannose-13C1	indirect_to_standard	C16H25N5O16P2	Guanosine diphosphate mannose	13C1	13C
-Guanosine diphosphate mannose-13C10	indirect_to_standard	C16H25N5O16P2	Guanosine diphosphate mannose	13C10	13C
-Guanosine diphosphate mannose-13C11	indirect_to_standard	C16H25N5O16P2	Guanosine diphosphate mannose	13C11	13C
-Guanosine diphosphate mannose-13C12	indirect_to_standard	C16H25N5O16P2	Guanosine diphosphate mannose	13C12	13C
-Guanosine diphosphate mannose-13C13	indirect_to_standard	C16H25N5O16P2	Guanosine diphosphate mannose	13C13	13C
-Guanosine diphosphate mannose-13C14	indirect_to_standard	C16H25N5O16P2	Guanosine diphosphate mannose	13C14	13C
-Guanosine diphosphate mannose-13C2	indirect_to_standard	C16H25N5O16P2	Guanosine diphosphate mannose	13C2	13C
-Guanosine diphosphate mannose-13C3	indirect_to_standard	C16H25N5O16P2	Guanosine diphosphate mannose	13C3	13C
-Guanosine diphosphate mannose-13C4	indirect_to_standard	C16H25N5O16P2	Guanosine diphosphate mannose	13C4	13C
-Guanosine diphosphate mannose-13C5	indirect_to_standard	C16H25N5O16P2	Guanosine diphosphate mannose	13C5	13C
-Guanosine diphosphate mannose-13C6	indirect_to_standard	C16H25N5O16P2	Guanosine diphosphate mannose	13C6	13C
-Guanosine diphosphate mannose-13C7	indirect_to_standard	C16H25N5O16P2	Guanosine diphosphate mannose	13C7	13C
-Guanosine diphosphate mannose-13C8	indirect_to_standard	C16H25N5O16P2	Guanosine diphosphate mannose	13C8	13C
-Guanosine diphosphate mannose-13C9	indirect_to_standard	C16H25N5O16P2	Guanosine diphosphate mannose	13C9	13C
-Hexoses-13C0	direct_to_standard	C6H12O6	Hexoses	13C0	13C
-Hexoses-13C1	indirect_to_standard	C6H12O6	Hexoses	13C1	13C
-Hexoses-13C2	indirect_to_standard	C6H12O6	Hexoses	13C2	13C
-Hexoses-13C5	indirect_to_standard	C6H12O6	Hexoses	13C5	13C
-Hexoses-13C6	indirect_to_standard	C6H12O6	Hexoses	13C6	13C
-Homocysteinesulfinic acid-13C0	database	C4H9N1O4S1	Homocysteinesulfinic acid	13C0	13C
-Homocysteinesulfinic acid-13C1	database	C4H9N1O4S1	Homocysteinesulfinic acid	13C1	13C
-Homocysteinesulfinic acid-13C2	database	C4H9N1O4S1	Homocysteinesulfinic acid	13C2	13C
-Homocysteinesulfinic acid-13C3	database	C4H9N1O4S1	Homocysteinesulfinic acid	13C3	13C
-Hydroxypropanedioic acid-13C0	database	C3H4O5	Hydroxypropanedioic acid	13C0	13C
-Hydroxypropanedioic acid-13C1	database	C3H4O5	Hydroxypropanedioic acid	13C1	13C
-Hydroxypropanedioic acid-13C3	database	C3H4O5	Hydroxypropanedioic acid	13C3	13C
-IMP-13C0	direct_to_standard	C10H13N4O8P1	IMP	13C0	13C
-IMP-13C1	indirect_to_standard	C10H13N4O8P1	IMP	13C1	13C
-IMP-13C2	indirect_to_standard	C10H13N4O8P1	IMP	13C2	13C
-IMP-13C3	indirect_to_standard	C10H13N4O8P1	IMP	13C3	13C
-IMP-13C4	indirect_to_standard	C10H13N4O8P1	IMP	13C4	13C
-IMP-13C5	indirect_to_standard	C10H13N4O8P1	IMP	13C5	13C
-IMP-13C6	indirect_to_standard	C10H13N4O8P1	IMP	13C6	13C
-Ino145-trisP Ino134-trisP@mz Ino-bisP-13C0	database	C6H14O12P2	Ino145-trisP Ino134-trisP@mz Ino-bisP	13C0	13C
-Ino145-trisP Ino134-trisP@mz Ino-bisP-13C1	database	C6H14O12P2	Ino145-trisP Ino134-trisP@mz Ino-bisP	13C1	13C
-Inosine-13C0	direct_to_standard	C10H12N4O5	Inosine	13C0	13C
-Inosine-13C1	indirect_to_standard	C10H12N4O5	Inosine	13C1	13C
-Inosine-13C2	indirect_to_standard	C10H12N4O5	Inosine	13C2	13C
-Isocitrate-13C0	direct_to_standard	C6H8O7	Isocitrate	13C0	13C
-Isocitrate-13C1	indirect_to_standard	C6H8O7	Isocitrate	13C1	13C
-Isocitrate-13C2	indirect_to_standard	C6H8O7	Isocitrate	13C2	13C
-Isocitrate-13C3	indirect_to_standard	C6H8O7	Isocitrate	13C3	13C
-Isocitrate-13C4	indirect_to_standard	C6H8O7	Isocitrate	13C4	13C
-Isocitrate-13C5	indirect_to_standard	C6H8O7	Isocitrate	13C5	13C
-Isocitrate-13C6	indirect_to_standard	C6H8O7	Isocitrate	13C6	13C
-Itaconate-13C0	direct_to_standard	C5H6O4	Itaconate	13C0	13C
-Itaconate-13C4	indirect_to_standard	C5H6O4	Itaconate	13C4	13C
-L-4-Hydroxyglutamate semialdehyde-13C0	database	C5H9N1O4	L-4-Hydroxyglutamate semialdehyde	13C0	13C
-L-4-Hydroxyglutamate semialdehyde-13C1	database	C5H9N1O4	L-4-Hydroxyglutamate semialdehyde	13C1	13C
-L-4-Hydroxyglutamate semialdehyde-13C2	database	C5H9N1O4	L-4-Hydroxyglutamate semialdehyde	13C2	13C
-L-4-Hydroxyglutamate semialdehyde-13C3	database	C5H9N1O4	L-4-Hydroxyglutamate semialdehyde	13C3	13C
-L-beta-aspartyl-L-glutamic acid -13C0	database	C9H14N2O7	L-beta-aspartyl-L-glutamic acid	13C0	13C
-L-beta-aspartyl-L-glutamic acid -13C1	database	C9H14N2O7	L-beta-aspartyl-L-glutamic acid	13C1	13C
-L-beta-aspartyl-L-glutamic acid -13C2	database	C9H14N2O7	L-beta-aspartyl-L-glutamic acid	13C2	13C
-Lactate-13C0	direct_to_standard	C3H6O3	Lactate	13C0	13C
-Lactate-13C1	indirect_to_standard	C3H6O3	Lactate	13C1	13C
-Lactate-13C2	indirect_to_standard	C3H6O3	Lactate	13C2	13C
-Lactate-13C3	indirect_to_standard	C3H6O3	Lactate	13C3	13C
-Malate-13C0	direct_to_standard	C4H6O5	Malate	13C0	13C
-Malate-13C1	indirect_to_standard	C4H6O5	Malate	13C1	13C
-Malate-13C2	indirect_to_standard	C4H6O5	Malate	13C2	13C
-Malate-13C3	indirect_to_standard	C4H6O5	Malate	13C3	13C
-Malate-13C4	indirect_to_standard	C4H6O5	Malate	13C4	13C
-Malonic acid-13C0	direct_to_standard	C3H4O4	Malonic acid	13C0	13C
-Malonic acid-13C1	indirect_to_standard	C3H4O4	Malonic acid	13C1	13C
-Malonic acid-13C2	indirect_to_standard	C3H4O4	Malonic acid	13C2	13C
-Malonic acid-13C3	indirect_to_standard	C3H4O4	Malonic acid	13C3	13C
-Mannose 6-phosphate-13C0	direct_to_standard	C6H13O9P1	Mannose 6-phosphate	13C0	13C
-Mannose 6-phosphate-13C1	indirect_to_standard	C6H13O9P1	Mannose 6-phosphate	13C1	13C
-Mannose 6-phosphate-13C2	indirect_to_standard	C6H13O9P1	Mannose 6-phosphate	13C2	13C
-Mannose 6-phosphate-13C3	indirect_to_standard	C6H13O9P1	Mannose 6-phosphate	13C3	13C
-Mannose 6-phosphate-13C4	indirect_to_standard	C6H13O9P1	Mannose 6-phosphate	13C4	13C
-Mannose 6-phosphate-13C5	indirect_to_standard	C6H13O9P1	Mannose 6-phosphate	13C5	13C
-Mannose 6-phosphate-13C6	indirect_to_standard	C6H13O9P1	Mannose 6-phosphate	13C6	13C
-Methylmalonic acid-13C0	direct_to_standard	C4H6O4	Methylmalonic acid	13C0	13C
-Methylmalonic acid-13C1	indirect_to_standard	C4H6O4	Methylmalonic acid	13C1	13C
-Methylmalonic acid-13C2	indirect_to_standard	C4H6O4	Methylmalonic acid	13C2	13C
-Methylmalonic acid-13C3	indirect_to_standard	C4H6O4	Methylmalonic acid	13C3	13C
-Methylmalonic acid-13C4	indirect_to_standard	C4H6O4	Methylmalonic acid	13C4	13C
-N-Acetyl-D-Glucosamine 6-Phosphate-13C0	direct_to_standard	C8H16N1O9P1	N-Acetyl-D-Glucosamine 6-Phosphate	13C0	13C
-N-Acetyl-D-Glucosamine 6-Phosphate-13C1	indirect_to_standard	C8H16N1O9P1	N-Acetyl-D-Glucosamine 6-Phosphate	13C1	13C
-N-Acetyl-D-Glucosamine 6-Phosphate-13C6	indirect_to_standard	C8H16N1O9P1	N-Acetyl-D-Glucosamine 6-Phosphate	13C6	13C
-N-Acetyl-D-Glucosamine 6-Phosphate-13C8	indirect_to_standard	C8H16N1O9P1	N-Acetyl-D-Glucosamine 6-Phosphate	13C8	13C
-N-Acetyl-L-aspartate-13C0	direct_to_standard	C6H9N1O5	N-Acetyl-L-aspartate	13C0	13C
-N-Acetyl-L-aspartate-13C1	indirect_to_standard	C6H9N1O5	N-Acetyl-L-aspartate	13C1	13C
-N-Acetyl-L-aspartate-13C2	indirect_to_standard	C6H9N1O5	N-Acetyl-L-aspartate	13C2	13C
-N-Acetyl-L-aspartate-13C3	indirect_to_standard	C6H9N1O5	N-Acetyl-L-aspartate	13C3	13C
-N-Acetyl-L-aspartate-13C4	indirect_to_standard	C6H9N1O5	N-Acetyl-L-aspartate	13C4	13C
-N-Acetyl-L-aspartate-13C5	indirect_to_standard	C6H9N1O5	N-Acetyl-L-aspartate	13C5	13C
-N-Acetyl-L-aspartate-13C6	indirect_to_standard	C6H9N1O5	N-Acetyl-L-aspartate	13C6	13C
-N-Acetyl-L-methionine-13C0	database	C7H13N1O3S1	N-Acetyl-L-methionine	13C0	13C
-N-Acetyl-L-methionine-13C1	database	C7H13N1O3S1	N-Acetyl-L-methionine	13C1	13C
-N-Acetyl-L-methionine-13C2	database	C7H13N1O3S1	N-Acetyl-L-methionine	13C2	13C
-N-Acetyl-L-methionine-13C3	database	C7H13N1O3S1	N-Acetyl-L-methionine	13C3	13C
-N-Acetyl-L-methionine-13C4	database	C7H13N1O3S1	N-Acetyl-L-methionine	13C4	13C
-N-Acetyl-glucosamine 1-phosphate-13C0	direct_to_standard	C8H16N1O9P1	N-Acetyl-glucosamine 1-phosphate	13C0	13C
-N-Acetyl-glucosamine 1-phosphate-13C1	indirect_to_standard	C8H16N1O9P1	N-Acetyl-glucosamine 1-phosphate	13C1	13C
-N-Acetyl-glucosamine 1-phosphate-13C2	indirect_to_standard	C8H16N1O9P1	N-Acetyl-glucosamine 1-phosphate	13C2	13C
-N-Acetyl-glucosamine 1-phosphate-13C3	indirect_to_standard	C8H16N1O9P1	N-Acetyl-glucosamine 1-phosphate	13C3	13C
-N-Acetyl-glucosamine 1-phosphate-13C4	indirect_to_standard	C8H16N1O9P1	N-Acetyl-glucosamine 1-phosphate	13C4	13C
-N-Acetyl-glucosamine 1-phosphate-13C5	indirect_to_standard	C8H16N1O9P1	N-Acetyl-glucosamine 1-phosphate	13C5	13C
-N-Acetyl-glucosamine 1-phosphate-13C6	indirect_to_standard	C8H16N1O9P1	N-Acetyl-glucosamine 1-phosphate	13C6	13C
-N-Acetyl-glucosamine 1-phosphate-13C7	indirect_to_standard	C8H16N1O9P1	N-Acetyl-glucosamine 1-phosphate	13C7	13C
-N-Acetyl-glucosamine 1-phosphate-13C8	indirect_to_standard	C8H16N1O9P1	N-Acetyl-glucosamine 1-phosphate	13C8	13C
-N-Acetylleucine-13C0	database	C8H15N1O3	N-Acetylleucine	13C0	13C
-N-Acetylneuraminic acid-13C0	direct_to_standard	C11H19N1O9	N-Acetylneuraminic acid	13C0	13C
-N-Acetylneuraminic acid-13C1	indirect_to_standard	C11H19N1O9	N-Acetylneuraminic acid	13C1	13C
-N-Acetylneuraminic acid-13C2	indirect_to_standard	C11H19N1O9	N-Acetylneuraminic acid	13C2	13C
-N-Acetylneuraminic acid-13C3	indirect_to_standard	C11H19N1O9	N-Acetylneuraminic acid	13C3	13C
-N-Acetylneuraminic acid-13C4	indirect_to_standard	C11H19N1O9	N-Acetylneuraminic acid	13C4	13C
-N-Acetylneuraminic acid-13C9	indirect_to_standard	C11H19N1O9	N-Acetylneuraminic acid	13C9	13C
-N-Carbamoyl-L-aspartate-13C0	direct_to_standard	C5H8N2O5	N-Carbamoyl-L-aspartate	13C0	13C
-N-Carbamoyl-L-aspartate-13C1	indirect_to_standard	C5H8N2O5	N-Carbamoyl-L-aspartate	13C1	13C
-N-Carbamoyl-L-aspartate-13C2	indirect_to_standard	C5H8N2O5	N-Carbamoyl-L-aspartate	13C2	13C
-N-Carbamoyl-L-aspartate-13C3	indirect_to_standard	C5H8N2O5	N-Carbamoyl-L-aspartate	13C3	13C
-N-Carbamoyl-L-aspartate-13C4	indirect_to_standard	C5H8N2O5	N-Carbamoyl-L-aspartate	13C4	13C
-N-Formyl-L-methionine-13C0	direct_to_standard	C6H11N1O3S1	N-Formyl-L-methionine	13C0	13C
-N-Formyl-L-methionine-13C1	indirect_to_standard	C6H11N1O3S1	N-Formyl-L-methionine	13C1	13C
-N-Formyl-L-methionine-13C2	indirect_to_standard	C6H11N1O3S1	N-Formyl-L-methionine	13C2	13C
-N-acetyl-alpha-D-galactosamine 1-phosphate-13C0	database	C8H16N1O9P1	N-acetyl-alpha-D-galactosamine 1-phosphate	13C0	13C
-N-acetyl-alpha-D-galactosamine 1-phosphate-13C1	database	C8H16N1O9P1	N-acetyl-alpha-D-galactosamine 1-phosphate	13C1	13C
-N-acetyl-alpha-D-galactosamine 1-phosphate-13C2	database	C8H16N1O9P1	N-acetyl-alpha-D-galactosamine 1-phosphate	13C2	13C
-N-acetyl-alpha-D-galactosamine 1-phosphate-13C3	database	C8H16N1O9P1	N-acetyl-alpha-D-galactosamine 1-phosphate	13C3	13C
-N-acetyl-alpha-D-galactosamine 1-phosphate-13C4	database	C8H16N1O9P1	N-acetyl-alpha-D-galactosamine 1-phosphate	13C4	13C
-N-acetyl-alpha-D-galactosamine 1-phosphate-13C5	database	C8H16N1O9P1	N-acetyl-alpha-D-galactosamine 1-phosphate	13C5	13C
-N-acetyl-alpha-D-galactosamine 1-phosphate-13C6	database	C8H16N1O9P1	N-acetyl-alpha-D-galactosamine 1-phosphate	13C6	13C
-N-acetyl-alpha-D-galactosamine 1-phosphate-13C7	database	C8H16N1O9P1	N-acetyl-alpha-D-galactosamine 1-phosphate	13C7	13C
-N-acetyl-alpha-D-galactosamine 1-phosphate-13C8	database	C8H16N1O9P1	N-acetyl-alpha-D-galactosamine 1-phosphate	13C8	13C
-NADH-13C0	direct_to_standard	C21H29N7O14P2	NADH	13C0	13C
-NADH-13C1	indirect_to_standard	C21H29N7O14P2	NADH	13C1	13C
-NADH-13C10	indirect_to_standard	C21H29N7O14P2	NADH	13C10	13C
-NADH-13C11	indirect_to_standard	C21H29N7O14P2	NADH	13C11	13C
-NADH-13C12	indirect_to_standard	C21H29N7O14P2	NADH	13C12	13C
-NADH-13C13	indirect_to_standard	C21H29N7O14P2	NADH	13C13	13C
-NADH-13C14	indirect_to_standard	C21H29N7O14P2	NADH	13C14	13C
-NADH-13C15	indirect_to_standard	C21H29N7O14P2	NADH	13C15	13C
-NADH-13C16	indirect_to_standard	C21H29N7O14P2	NADH	13C16	13C
-NADH-13C17	indirect_to_standard	C21H29N7O14P2	NADH	13C17	13C
-NADH-13C18	indirect_to_standard	C21H29N7O14P2	NADH	13C18	13C
-NADH-13C19	indirect_to_standard	C21H29N7O14P2	NADH	13C19	13C
-NADH-13C2	indirect_to_standard	C21H29N7O14P2	NADH	13C2	13C
-NADH-13C20	indirect_to_standard	C21H29N7O14P2	NADH	13C20	13C
-NADH-13C21	indirect_to_standard	C21H29N7O14P2	NADH	13C21	13C
-NADH-13C3	indirect_to_standard	C21H29N7O14P2	NADH	13C3	13C
-NADH-13C4	indirect_to_standard	C21H29N7O14P2	NADH	13C4	13C
-NADH-13C5	indirect_to_standard	C21H29N7O14P2	NADH	13C5	13C
-NADH-13C6	indirect_to_standard	C21H29N7O14P2	NADH	13C6	13C
-NADH-13C7	indirect_to_standard	C21H29N7O14P2	NADH	13C7	13C
-NADH-13C8	indirect_to_standard	C21H29N7O14P2	NADH	13C8	13C
-NADH-13C9	indirect_to_standard	C21H29N7O14P2	NADH	13C9	13C
-NADPH-13C0	database	C21H30N7O17P3	NADPH	13C0	13C
-Nicotinic acid From NADH-13C0	direct_to_standard	C6H5N1O2	Nicotinic acid From NADH	13C0	13C
-Orotate-13C0	direct_to_standard	C5H4N2O4	Orotate	13C0	13C
-Orotate-13C1	indirect_to_standard	C5H4N2O4	Orotate	13C1	13C
-Orotate-13C2	indirect_to_standard	C5H4N2O4	Orotate	13C2	13C
-Orotate-13C3	indirect_to_standard	C5H4N2O4	Orotate	13C3	13C
-Orotate-13C4	indirect_to_standard	C5H4N2O4	Orotate	13C4	13C
-Orotate-13C5	indirect_to_standard	C5H4N2O4	Orotate	13C5	13C
-Orotidine-13C0	database	C10H12N2O8	Orotidine	13C0	13C
-Orotidine-13C1	database	C10H12N2O8	Orotidine	13C1	13C
-Orotidine-13C2	database	C10H12N2O8	Orotidine	13C2	13C
-Orotidine-13C3	database	C10H12N2O8	Orotidine	13C3	13C
-Orotidine-13C4	database	C10H12N2O8	Orotidine	13C4	13C
-Orotidine-13C5	database	C10H12N2O8	Orotidine	13C5	13C
-Orotidine-13C6	database	C10H12N2O8	Orotidine	13C6	13C
-Orotidine-13C7	database	C10H12N2O8	Orotidine	13C7	13C
-Orotidine-13C8	database	C10H12N2O8	Orotidine	13C8	13C
-Orotidine-13C9	database	C10H12N2O8	Orotidine	13C9	13C
-Oxalate-13C0	direct_to_standard	C2H2O4	Oxalate	13C0	13C
-Oxalate-13C1	indirect_to_standard	C2H2O4	Oxalate	13C1	13C
-Oxalate-13C2	indirect_to_standard	C2H2O4	Oxalate	13C2	13C
-PEP-13C0	direct_to_standard	C3H5O6P1	PEP	13C0	13C
-PEP-13C1	indirect_to_standard	C3H5O6P1	PEP	13C1	13C
-PEP-13C2	indirect_to_standard	C3H5O6P1	PEP	13C2	13C
-PEP-13C3	indirect_to_standard	C3H5O6P1	PEP	13C3	13C
-PRPP-13C0	direct_to_standard	C5H13O14P3	PRPP	13C0	13C
-PRPP-13C1	indirect_to_standard	C5H13O14P3	PRPP	13C1	13C
-PRPP-13C2	indirect_to_standard	C5H13O14P3	PRPP	13C2	13C
-PRPP-13C3	indirect_to_standard	C5H13O14P3	PRPP	13C3	13C
-PRPP-13C4	indirect_to_standard	C5H13O14P3	PRPP	13C4	13C
-PRPP-13C5	indirect_to_standard	C5H13O14P3	PRPP	13C5	13C
-Pantothenate-13C0	direct_to_standard	C9H17N1O5	Pantothenate	13C0	13C
-Pantothenate-13C1	indirect_to_standard	C9H17N1O5	Pantothenate	13C1	13C
-Phosphate-13C0	direct_to_standard	H3O4P1	Phosphate	13C0	13C
-Phosphoadenosine phosphosulfate-13C0	database	C10H15N5O13P2S1	Phosphoadenosine phosphosulfate	13C0	13C
-Phosphoadenosine phosphosulfate-13C1	database	C10H15N5O13P2S1	Phosphoadenosine phosphosulfate	13C1	13C
-Phosphoadenosine phosphosulfate-13C2	database	C10H15N5O13P2S1	Phosphoadenosine phosphosulfate	13C2	13C
-Phosphocreatine-13C0	direct_to_standard	C4H10N3O5P1	Phosphocreatine	13C0	13C
-Phosphocreatine-13C1	indirect_to_standard	C4H10N3O5P1	Phosphocreatine	13C1	13C
-Pyridoxal 5-phosphate-13C0	direct_to_standard	C8H10N1O6P1	Pyridoxal 5-phosphate	13C0	13C
-Pyridoxal 5-phosphate-13C1	indirect_to_standard	C8H10N1O6P1	Pyridoxal 5-phosphate	13C1	13C
-Pyruvate-13C0	direct_to_standard	C3H4O3	Pyruvate	13C0	13C
-Pyruvate-13C1	indirect_to_standard	C3H4O3	Pyruvate	13C1	13C
-Pyruvate-13C2	indirect_to_standard	C3H4O3	Pyruvate	13C2	13C
-Pyruvate-13C3	indirect_to_standard	C3H4O3	Pyruvate	13C3	13C
-Riboflavin cyclic-4-5-phosphate-13C0	database	C17H19N4O8P1	Riboflavin cyclic-4-5-phosphate	13C0	13C
-Riboflavin cyclic-4-5-phosphate-13C1	database	C17H19N4O8P1	Riboflavin cyclic-4-5-phosphate	13C1	13C
-Riboflavin cyclic-4-5-phosphate-13C2	database	C17H19N4O8P1	Riboflavin cyclic-4-5-phosphate	13C2	13C
-Ribose 1-5-bisphosphate-13C0	database	C5H12O11P2	Ribose 1-5-bisphosphate	13C0	13C
-Ribose 1-5-bisphosphate-13C1	database	C5H12O11P2	Ribose 1-5-bisphosphate	13C1	13C
-Ribose 1-5-bisphosphate-13C4	database	C5H12O11P2	Ribose 1-5-bisphosphate	13C4	13C
-Ribose 1-5-bisphosphate-13C5	database	C5H12O11P2	Ribose 1-5-bisphosphate	13C5	13C
-Sedoheptulose 1-7-bisphosphate-13C0	database	C7H16O13P2	Sedoheptulose 1-7-bisphosphate	13C0	13C
-Sedoheptulose 1-7-bisphosphate-13C6	database	C7H16O13P2	Sedoheptulose 1-7-bisphosphate	13C6	13C
-Sedoheptulose 1-7-bisphosphate-13C7	database	C7H16O13P2	Sedoheptulose 1-7-bisphosphate	13C7	13C
-Succinate-13C0	direct_to_standard	C4H6O4	Succinate	13C0	13C
-Succinate-13C1	indirect_to_standard	C4H6O4	Succinate	13C1	13C
-Succinate-13C2	indirect_to_standard	C4H6O4	Succinate	13C2	13C
-Succinate-13C3	indirect_to_standard	C4H6O4	Succinate	13C3	13C
-Succinate-13C4	indirect_to_standard	C4H6O4	Succinate	13C4	13C
-Succinic acid semialdehyde 2-Methyl-3-oxopropanoic acid-13C0	database	C4H6O3	Succinic acid semialdehyde 2-Methyl-3-oxopropanoic acid	13C0	13C
-Succinic acid semialdehyde 2-Methyl-3-oxopropanoic acid-13C1	database	C4H6O3	Succinic acid semialdehyde 2-Methyl-3-oxopropanoic acid	13C1	13C
-Succinic acid semialdehyde 2-Methyl-3-oxopropanoic acid-13C2	database	C4H6O3	Succinic acid semialdehyde 2-Methyl-3-oxopropanoic acid	13C2	13C
-Succinic acid semialdehyde 2-Methyl-3-oxopropanoic acid-13C3	database	C4H6O3	Succinic acid semialdehyde 2-Methyl-3-oxopropanoic acid	13C3	13C
-Succinic acid semialdehyde 2-Methyl-3-oxopropanoic acid-13C4	database	C4H6O3	Succinic acid semialdehyde 2-Methyl-3-oxopropanoic acid	13C4	13C
-Taurine-13C0	direct_to_standard	C2H7N1O3S1	Taurine	13C0	13C
-Taurine-13C1	indirect_to_standard	C2H7N1O3S1	Taurine	13C1	13C
-Thiamine pyrophosphate-13C0	direct_to_standard	C12H19N4O7P2S1	Thiamine pyrophosphate	13C0	13C
-Thiamine pyrophosphate-13C1	indirect_to_standard	C12H19N4O7P2S1	Thiamine pyrophosphate	13C1	13C
-Thiosulfate-13C0	direct_to_standard	H2O3S2	Thiosulfate	13C0	13C
-Threonic acid-13C0	database	C4H8O5	Threonic acid	13C0	13C
-Threonic acid-13C1	database	C4H8O5	Threonic acid	13C1	13C
-UDP-13C0	direct_to_standard	C9H14N2O12P2	UDP	13C0	13C
-UDP-13C1	indirect_to_standard	C9H14N2O12P2	UDP	13C1	13C
-UDP-13C2	indirect_to_standard	C9H14N2O12P2	UDP	13C2	13C
-UDP-13C3	indirect_to_standard	C9H14N2O12P2	UDP	13C3	13C
-UDP-13C4	indirect_to_standard	C9H14N2O12P2	UDP	13C4	13C
-UDP-13C5	indirect_to_standard	C9H14N2O12P2	UDP	13C5	13C
-UDP-13C6	indirect_to_standard	C9H14N2O12P2	UDP	13C6	13C
-UDP-13C7	indirect_to_standard	C9H14N2O12P2	UDP	13C7	13C
-UDP-13C8	indirect_to_standard	C9H14N2O12P2	UDP	13C8	13C
-UDP-13C9	indirect_to_standard	C9H14N2O12P2	UDP	13C9	13C
-UDP-GalNAc-13C0	direct_to_standard	C17H27N3O17P2	UDP-GalNAc	13C0	13C
-UDP-GalNAc-13C1	indirect_to_standard	C17H27N3O17P2	UDP-GalNAc	13C1	13C
-UDP-GalNAc-13C10	indirect_to_standard	C17H27N3O17P2	UDP-GalNAc	13C10	13C
-UDP-GalNAc-13C11	indirect_to_standard	C17H27N3O17P2	UDP-GalNAc	13C11	13C
-UDP-GalNAc-13C12	indirect_to_standard	C17H27N3O17P2	UDP-GalNAc	13C12	13C
-UDP-GalNAc-13C13	indirect_to_standard	C17H27N3O17P2	UDP-GalNAc	13C13	13C
-UDP-GalNAc-13C14	indirect_to_standard	C17H27N3O17P2	UDP-GalNAc	13C14	13C
-UDP-GalNAc-13C15	indirect_to_standard	C17H27N3O17P2	UDP-GalNAc	13C15	13C
-UDP-GalNAc-13C16	indirect_to_standard	C17H27N3O17P2	UDP-GalNAc	13C16	13C
-UDP-GalNAc-13C17	indirect_to_standard	C17H27N3O17P2	UDP-GalNAc	13C17	13C
-UDP-GalNAc-13C2	indirect_to_standard	C17H27N3O17P2	UDP-GalNAc	13C2	13C
-UDP-GalNAc-13C3	indirect_to_standard	C17H27N3O17P2	UDP-GalNAc	13C3	13C
-UDP-GalNAc-13C4	indirect_to_standard	C17H27N3O17P2	UDP-GalNAc	13C4	13C
-UDP-GalNAc-13C5	indirect_to_standard	C17H27N3O17P2	UDP-GalNAc	13C5	13C
-UDP-GalNAc-13C6	indirect_to_standard	C17H27N3O17P2	UDP-GalNAc	13C6	13C
-UDP-GalNAc-13C7	indirect_to_standard	C17H27N3O17P2	UDP-GalNAc	13C7	13C
-UDP-GalNAc-13C8	indirect_to_standard	C17H27N3O17P2	UDP-GalNAc	13C8	13C
-UDP-GalNAc-13C9	indirect_to_standard	C17H27N3O17P2	UDP-GalNAc	13C9	13C
-UDP-GlcNAc-13C0	direct_to_standard	C17H27N3O17P2	UDP-GlcNAc	13C0	13C
-UDP-GlcNAc-13C1	indirect_to_standard	C17H27N3O17P2	UDP-GlcNAc	13C1	13C
-UDP-GlcNAc-13C10	indirect_to_standard	C17H27N3O17P2	UDP-GlcNAc	13C10	13C
-UDP-GlcNAc-13C11	indirect_to_standard	C17H27N3O17P2	UDP-GlcNAc	13C11	13C
-UDP-GlcNAc-13C12	indirect_to_standard	C17H27N3O17P2	UDP-GlcNAc	13C12	13C
-UDP-GlcNAc-13C13	indirect_to_standard	C17H27N3O17P2	UDP-GlcNAc	13C13	13C
-UDP-GlcNAc-13C14	indirect_to_standard	C17H27N3O17P2	UDP-GlcNAc	13C14	13C
-UDP-GlcNAc-13C15	indirect_to_standard	C17H27N3O17P2	UDP-GlcNAc	13C15	13C
-UDP-GlcNAc-13C16	indirect_to_standard	C17H27N3O17P2	UDP-GlcNAc	13C16	13C
-UDP-GlcNAc-13C17	indirect_to_standard	C17H27N3O17P2	UDP-GlcNAc	13C17	13C
-UDP-GlcNAc-13C2	indirect_to_standard	C17H27N3O17P2	UDP-GlcNAc	13C2	13C
-UDP-GlcNAc-13C3	indirect_to_standard	C17H27N3O17P2	UDP-GlcNAc	13C3	13C
-UDP-GlcNAc-13C4	indirect_to_standard	C17H27N3O17P2	UDP-GlcNAc	13C4	13C
-UDP-GlcNAc-13C5	indirect_to_standard	C17H27N3O17P2	UDP-GlcNAc	13C5	13C
-UDP-GlcNAc-13C6	indirect_to_standard	C17H27N3O17P2	UDP-GlcNAc	13C6	13C
-UDP-GlcNAc-13C7	indirect_to_standard	C17H27N3O17P2	UDP-GlcNAc	13C7	13C
-UDP-GlcNAc-13C8	indirect_to_standard	C17H27N3O17P2	UDP-GlcNAc	13C8	13C
-UDP-GlcNAc-13C9	indirect_to_standard	C17H27N3O17P2	UDP-GlcNAc	13C9	13C
-UMP-13C0	direct_to_standard	C9H13N2O9P1	UMP	13C0	13C
-UMP-13C1	indirect_to_standard	C9H13N2O9P1	UMP	13C1	13C
-UMP-13C2	indirect_to_standard	C9H13N2O9P1	UMP	13C2	13C
-UMP-13C3	indirect_to_standard	C9H13N2O9P1	UMP	13C3	13C
-UMP-13C4	indirect_to_standard	C9H13N2O9P1	UMP	13C4	13C
-UMP-13C5	indirect_to_standard	C9H13N2O9P1	UMP	13C5	13C
-UMP-13C6	indirect_to_standard	C9H13N2O9P1	UMP	13C6	13C
-UMP-13C7	indirect_to_standard	C9H13N2O9P1	UMP	13C7	13C
-UMP-13C8	indirect_to_standard	C9H13N2O9P1	UMP	13C8	13C
-UMP-13C9	indirect_to_standard	C9H13N2O9P1	UMP	13C9	13C
-UTP@mzUDP-13C0	direct_to_standard	C9H14N2O12P2	UTP@mzUDP	13C0	13C
-UTP@mzUDP-13C1	indirect_to_standard	C9H14N2O12P2	UTP@mzUDP	13C1	13C
-UTP@mzUDP-13C2	indirect_to_standard	C9H14N2O12P2	UTP@mzUDP	13C2	13C
-UTP@mzUDP-13C3	indirect_to_standard	C9H14N2O12P2	UTP@mzUDP	13C3	13C
-UTP@mzUDP-13C4	indirect_to_standard	C9H14N2O12P2	UTP@mzUDP	13C4	13C
-UTP@mzUDP-13C5	indirect_to_standard	C9H14N2O12P2	UTP@mzUDP	13C5	13C
-UTP@mzUDP-13C6	indirect_to_standard	C9H14N2O12P2	UTP@mzUDP	13C6	13C
-UTP@mzUDP-13C7	indirect_to_standard	C9H14N2O12P2	UTP@mzUDP	13C7	13C
-UTP@mzUDP-13C8	indirect_to_standard	C9H14N2O12P2	UTP@mzUDP	13C8	13C
-UTP@mzUDP-13C9	indirect_to_standard	C9H14N2O12P2	UTP@mzUDP	13C9	13C
-Uridine diphosphate glucose-13C0	direct_to_standard	C15H24N2O17P2	Uridine diphosphate glucose	13C0	13C
-Uridine diphosphate glucose-13C1	indirect_to_standard	C15H24N2O17P2	Uridine diphosphate glucose	13C1	13C
-Uridine diphosphate glucose-13C10	indirect_to_standard	C15H24N2O17P2	Uridine diphosphate glucose	13C10	13C
-Uridine diphosphate glucose-13C11	indirect_to_standard	C15H24N2O17P2	Uridine diphosphate glucose	13C11	13C
-Uridine diphosphate glucose-13C12	indirect_to_standard	C15H24N2O17P2	Uridine diphosphate glucose	13C12	13C
-Uridine diphosphate glucose-13C13	indirect_to_standard	C15H24N2O17P2	Uridine diphosphate glucose	13C13	13C
-Uridine diphosphate glucose-13C14	indirect_to_standard	C15H24N2O17P2	Uridine diphosphate glucose	13C14	13C
-Uridine diphosphate glucose-13C2	indirect_to_standard	C15H24N2O17P2	Uridine diphosphate glucose	13C2	13C
-Uridine diphosphate glucose-13C3	indirect_to_standard	C15H24N2O17P2	Uridine diphosphate glucose	13C3	13C
-Uridine diphosphate glucose-13C4	indirect_to_standard	C15H24N2O17P2	Uridine diphosphate glucose	13C4	13C
-Uridine diphosphate glucose-13C5	indirect_to_standard	C15H24N2O17P2	Uridine diphosphate glucose	13C5	13C
-Uridine diphosphate glucose-13C6	indirect_to_standard	C15H24N2O17P2	Uridine diphosphate glucose	13C6	13C
-Uridine diphosphate glucose-13C7	indirect_to_standard	C15H24N2O17P2	Uridine diphosphate glucose	13C7	13C
-Uridine diphosphate glucose-13C8	indirect_to_standard	C15H24N2O17P2	Uridine diphosphate glucose	13C8	13C
-Uridine diphosphate glucose-13C9	indirect_to_standard	C15H24N2O17P2	Uridine diphosphate glucose	13C9	13C
-Uridine diphosphategalactose-13C0	direct_to_standard	C15H24N2O17P2	Uridine diphosphategalactose	13C0	13C
-Uridine diphosphategalactose-13C1	indirect_to_standard	C15H24N2O17P2	Uridine diphosphategalactose	13C1	13C
-Uridine diphosphategalactose-13C11	indirect_to_standard	C15H24N2O17P2	Uridine diphosphategalactose	13C11	13C
-Uridine diphosphategalactose-13C2	indirect_to_standard	C15H24N2O17P2	Uridine diphosphategalactose	13C2	13C
-Uridine diphosphategalactose-13C5	indirect_to_standard	C15H24N2O17P2	Uridine diphosphategalactose	13C5	13C
-Uridine diphosphategalactose-13C6	indirect_to_standard	C15H24N2O17P2	Uridine diphosphategalactose	13C6	13C
-Uridine diphosphategalactose-13C7	indirect_to_standard	C15H24N2O17P2	Uridine diphosphategalactose	13C7	13C
-Uridine diphosphategalactose-13C8	indirect_to_standard	C15H24N2O17P2	Uridine diphosphategalactose	13C8	13C
-Uridine-13C0	direct_to_standard	C9H12N2O6	Uridine	13C0	13C
-Uridine-13C1	indirect_to_standard	C9H12N2O6	Uridine	13C1	13C
-Uridine-13C5	indirect_to_standard	C9H12N2O6	Uridine	13C5	13C
-XMP-13C0	database	C10H13N4O9P1	XMP	13C0	13C
-XMP-13C1	database	C10H13N4O9P1	XMP	13C1	13C
-alpha-Ketoglutarate-13C0	direct_to_standard	C5H6O5	alpha-Ketoglutarate	13C0	13C
-alpha-Ketoglutarate-13C1	indirect_to_standard	C5H6O5	alpha-Ketoglutarate	13C1	13C
-alpha-Ketoglutarate-13C2	indirect_to_standard	C5H6O5	alpha-Ketoglutarate	13C2	13C
-alpha-Ketoglutarate-13C3	indirect_to_standard	C5H6O5	alpha-Ketoglutarate	13C3	13C
-alpha-Ketoglutarate-13C4	indirect_to_standard	C5H6O5	alpha-Ketoglutarate	13C4	13C
-alpha-Ketoglutarate-13C5	indirect_to_standard	C5H6O5	alpha-Ketoglutarate	13C5	13C
-cis-Aconitate-13C0	direct_to_standard	C6H6O6	cis-Aconitate	13C0	13C
-cis-Aconitate-13C1	indirect_to_standard	C6H6O6	cis-Aconitate	13C1	13C
-cis-Aconitate-13C2	indirect_to_standard	C6H6O6	cis-Aconitate	13C2	13C
-cis-Aconitate-13C3	indirect_to_standard	C6H6O6	cis-Aconitate	13C3	13C
-cis-Aconitate-13C4	indirect_to_standard	C6H6O6	cis-Aconitate	13C4	13C
-cis-Aconitate-13C5	indirect_to_standard	C6H6O6	cis-Aconitate	13C5	13C
-cis-Aconitate-13C6	indirect_to_standard	C6H6O6	cis-Aconitate	13C6	13C
-dTDP-13C0	direct_to_standard	C10H16N2O11P2	dTDP	13C0	13C
-dTDP-13C1	indirect_to_standard	C10H16N2O11P2	dTDP	13C1	13C
-dTDP-13C10	indirect_to_standard	C10H16N2O11P2	dTDP	13C10	13C
-dTDP-13C3	indirect_to_standard	C10H16N2O11P2	dTDP	13C3	13C
-dTDP-13C4	indirect_to_standard	C10H16N2O11P2	dTDP	13C4	13C
-dTDP-13C5	indirect_to_standard	C10H16N2O11P2	dTDP	13C5	13C
-dTDP-13C6	indirect_to_standard	C10H16N2O11P2	dTDP	13C6	13C
-dTDP-13C7	indirect_to_standard	C10H16N2O11P2	dTDP	13C7	13C
-dTMP-13C0	direct_to_standard	C10H15N2O8P1	dTMP	13C0	13C
-dTMP-13C1	indirect_to_standard	C10H15N2O8P1	dTMP	13C1	13C
-dTMP-13C10	indirect_to_standard	C10H15N2O8P1	dTMP	13C10	13C
-dTMP-13C2	indirect_to_standard	C10H15N2O8P1	dTMP	13C2	13C
-dTMP-13C3	indirect_to_standard	C10H15N2O8P1	dTMP	13C3	13C
-dTMP-13C4	indirect_to_standard	C10H15N2O8P1	dTMP	13C4	13C
-dTMP-13C5	indirect_to_standard	C10H15N2O8P1	dTMP	13C5	13C
-dTMP-13C6	indirect_to_standard	C10H15N2O8P1	dTMP	13C6	13C
-dTMP-13C7	indirect_to_standard	C10H15N2O8P1	dTMP	13C7	13C
-dTMP-13C9	indirect_to_standard	C10H15N2O8P1	dTMP	13C9	13C
-dUMP-13C0	direct_to_standard	C9H13N2O8P1	dUMP	13C0	13C
-dUMP-13C1	indirect_to_standard	C9H13N2O8P1	dUMP	13C1	13C
-dUMP-13C2	indirect_to_standard	C9H13N2O8P1	dUMP	13C2	13C
-dUMP-13C3	indirect_to_standard	C9H13N2O8P1	dUMP	13C3	13C
-dUMP-13C4	indirect_to_standard	C9H13N2O8P1	dUMP	13C4	13C
-dUMP-13C5	indirect_to_standard	C9H13N2O8P1	dUMP	13C5	13C
-dUMP-13C6	indirect_to_standard	C9H13N2O8P1	dUMP	13C6	13C
-dUMP-13C7	indirect_to_standard	C9H13N2O8P1	dUMP	13C7	13C
-dUMP-13C8	indirect_to_standard	C9H13N2O8P1	dUMP	13C8	13C
-dUMP-13C9	indirect_to_standard	C9H13N2O8P1	dUMP	13C9	13C
-METABOLITES_END
-MS_METABOLITE_DATA:UNITS         	natural abundance corrected and protein normalized peak area
-#PROJECT
-PR:ADDRESS                       	Gerhard C. Hildebrandt, MD, Room no. CC401A, Ben Roach Building, Markey Cancer
-PR:ADDRESS                       	Center University of Kentucky, Lexington, 40536
-PR:DEPARTMENT                    	Markey Cancer Center, Hematology and Blood and Marrow Transplant
-PR:EMAIL                         	gerhard.hildebrandt@uky.edu
-PR:FIRST_NAME                    	Gerhard
-PR:INSTITUTE                     	University of Kentucky
-PR:LAST_NAME                     	Hildebrandt
-PR:PHONE                         	800-333-8874
-PR:PROJECT_SUMMARY               	Allogeneic hematopoietic cell transplantation (allo-HCT) is a potentially
-PR:PROJECT_SUMMARY               	curative treatment option for a variety of hematological malignancies.
-PR:PROJECT_SUMMARY               	Interactions between the donor immune system and the patient tissue result in a
-PR:PROJECT_SUMMARY               	disease, called GVHD. The pathophysiology of acute GVHD can be hypothesized in
-PR:PROJECT_SUMMARY               	three sequential phases: cytokine storm and activation of the antigen-presenting
-PR:PROJECT_SUMMARY               	cells (APC), donor T cell activation and effector cell phase. Idiopathic
-PR:PROJECT_SUMMARY               	pneumonia syndrome (IPS) is one of the most deleterious complications after
-PR:PROJECT_SUMMARY               	allogeneic HCT and is considered not only to be related to conditioning regimen
-PR:PROJECT_SUMMARY               	toxicity but also represents an end organ damage caused by allo-reactive T cells,
-PR:PROJECT_SUMMARY               	therefore making the lung susceptible to a two-pronged attack, one of which
-PR:PROJECT_SUMMARY               	overlaps with GVHD causing other target organ injury. IPS results in mortality of
-PR:PROJECT_SUMMARY               	up to 90% of patients. We will use a murine model of IPS and GVHD which is well
-PR:PROJECT_SUMMARY               	established in our group, and in which disease evolves either across disparities
-PR:PROJECT_SUMMARY               	in major histocompatibility complex (MCH) class I and II, minor
-PR:PROJECT_SUMMARY               	histocompatibility antigens (miHags) or both. Metabolomics changes following
-PR:PROJECT_SUMMARY               	syngeneic and allogeneic HCT at post-transplantation Days +7 (cytokine storm
-PR:PROJECT_SUMMARY               	phase) and Days +42 (cellular effector phase) are compared to baseline wild-type
-PR:PROJECT_SUMMARY               	(naive) controls. Prior to analysis, naïve - and experimental mice (N=3 from each
-PR:PROJECT_SUMMARY               	group) were fed with semi-liquid diet supplemented with tracers (13C6-glucose )
-PR:PROJECT_SUMMARY               	over 24 hours. At the end of 7 days or 42 days, respectively, feces and aGVHD
-PR:PROJECT_SUMMARY               	target organs (colon, liver and lung) were collected from all groups and further
-PR:PROJECT_SUMMARY               	processed and / or analyzed. We expect to reveal metabolic pathways affected
-PR:PROJECT_SUMMARY               	after allo-HCT which contribute to immune cell mediated lung injury (IPS) and
-PR:PROJECT_SUMMARY               	will potentially identify different metabolic pathways in other GVHD target
-PR:PROJECT_SUMMARY               	organs.
-PR:PROJECT_TITLE                 	Metabolomics of lung injury after allogeneic hematopoietic cell transplantation
-#SAMPLEPREP
-SP:SAMPLEPREP_PROTOCOL_FILENAME  	No tissue_quench file.;No frozen_tissue_grind
-SP:SAMPLEPREP_PROTOCOL_FILENAME  	file.;4B_Extract_Polar_Lipid_Prot_Fan_070417.pdf;['4D_17Jun4_Fan_Prot_Quant.pdf',
-SP:SAMPLEPREP_PROTOCOL_FILENAME  	'4B_Extract_Polar_Lipid_Prot_Fan_070417.pdf'];No IC-FTMS_preparation file.
-SP:SAMPLEPREP_PROTOCOL_ID        	
-SP:SAMPLEPREP_PROTOCOL_ID        	tissue_quench;frozen_tissue_grind;polar_extraction;protein_extraction;IC-FTMS_preparation
-SP:SAMPLEPREP_SUMMARY            	Tissue is frozen in liquid nitrogen to stop metabolic processes.;Frozen tissue is
-SP:SAMPLEPREP_SUMMARY            	ground in a SPEX grinder under liquid nitrogen to homogenize the sample.;Polar
-SP:SAMPLEPREP_SUMMARY            	extraction from homogenate, lypholized, and frozen.;Protein extraction and
-SP:SAMPLEPREP_SUMMARY            	quantification.;Before going into the IC-FTMS the frozen sample is reconstituted
-SP:SAMPLEPREP_SUMMARY            	in water.
-#STUDY
-ST:ADDRESS                       	CTW-453, 900 South Limestone street. UKY. Lexington, Kentucky-40536
-ST:DEPARTMENT                    	MCC
-ST:EMAIL                         	gerhard.hildebrandt@uky.edu
-ST:FIRST_NAME                    	Gerhard
-ST:INSTITUTE                     	University of Kentucky
-ST:LAST_NAME                     	Hildebrandt
-ST:PHONE                         	800-333-8874
-ST:STUDY_SUMMARY                 	Allogeneic hematopoietic cell transplantation (allo-HCT) is a potentially
-ST:STUDY_SUMMARY                 	curative treatment option for a variety of hematological malignancies.
-ST:STUDY_SUMMARY                 	Interactions between the donor immune system and the patient tissue result in a
-ST:STUDY_SUMMARY                 	disease, called GVHD. The pathophysiology of acute GVHD can be hypothesized in
-ST:STUDY_SUMMARY                 	three sequential phases: cytokine storm and activation of the antigen-presenting
-ST:STUDY_SUMMARY                 	cells (APC), donor T cell activation and effector cell phase. Idiopathic
-ST:STUDY_SUMMARY                 	pneumonia syndrome (IPS) is one of the most deleterious complications after
-ST:STUDY_SUMMARY                 	allogeneic HCT and is considered not only to be related to conditioning regimen
-ST:STUDY_SUMMARY                 	toxicity but also represents an end organ damage caused by allo-reactive T cells,
-ST:STUDY_SUMMARY                 	therefore making the lung susceptible to a two-pronged attack, one of which
-ST:STUDY_SUMMARY                 	overlaps with GVHD causing other target organ injury. IPS results in mortality of
-ST:STUDY_SUMMARY                 	up to 90% of patients. We will use a murine model of IPS and GVHD which is well
-ST:STUDY_SUMMARY                 	established in our group, and in which disease evolves either across disparities
-ST:STUDY_SUMMARY                 	in major histocompatibility complex (MCH) class I and II, minor
-ST:STUDY_SUMMARY                 	histocompatibility antigens (miHags) or both. Metabolomics changes following
-ST:STUDY_SUMMARY                 	syngeneic and allogeneic HCT at post-transplantation Days +7 (cytokine storm
-ST:STUDY_SUMMARY                 	phase) and Days +42 (cellular effector phase) are compared to baseline wild-type
-ST:STUDY_SUMMARY                 	(naive) controls. Prior to analysis, naïve - and experimental mice (N=3 from each
-ST:STUDY_SUMMARY                 	group) were fed with semi-liquid diet supplemented with tracers (13C6-glucose )
-ST:STUDY_SUMMARY                 	over 24 hours. At the end of 7 days or 42 days, respectively, feces and aGVHD
-ST:STUDY_SUMMARY                 	target organs (colon, liver and lung) were collected from all groups and further
-ST:STUDY_SUMMARY                 	processed and / or analyzed. We expect to reveal metabolic pathways affected
-ST:STUDY_SUMMARY                 	after allo-HCT which contribute to immune cell mediated lung injury (IPS) and
-ST:STUDY_SUMMARY                 	will potentially identify different metabolic pathways in other GVHD target
-ST:STUDY_SUMMARY                 	organs.
-ST:STUDY_TITLE                   	Metabolomics of lung injury after allogeneic hematopoietic cell transplantation -
-ST:STUDY_TITLE                   	Lung ICMS
-#SUBJECT
-SU:SUBJECT_SPECIES               	Mus musculus
-SU:SUBJECT_TYPE                  	Mouse
-SU:TAXONOMY_ID                   	10090
-#SUBJECT_SAMPLE_FACTORS:         	SUBJECT(optional)[tab]SAMPLE[tab]FACTORS(NAME:VALUE pairs separated by |)[tab]Additional sample data
-SUBJECT_SAMPLE_FACTORS                                 	01_A0_naive_0days_UKy_GCH_rep1	16_A0_Lung_naive_0days_170427_UKy_GCH_rep1-polar-ICMS_A	Treatment:naive | Time Point:0	lineage0_id=01_A0_naive_0days_UKy_GCH_rep1;lineage0_protocol.id=['naive'];lineage0_replicate=1;lineage0_species=Mus musculus;lineage0_species_type=Mouse;lineage0_taxonomy_id=10090;lineage0_time_point=0;lineage0_type=subject;lineage1_id=16_A0_Lung_naive_0days_170427_UKy_GCH_rep1;lineage1_protocol.id=['mouse_tissue_collection', 'tissue_quench', 'frozen_tissue_grind'];lineage1_type=sample;lineage2_id=16_A0_Lung_naive_0days_170427_UKy_GCH_rep1-protein;lineage2_protein_weight=0.6757957582975501;lineage2_protein_weight%units=mg;lineage2_protocol.id=['protein_extraction'];lineage2_type=sample
-SUBJECT_SAMPLE_FACTORS                                 	02_A1_naive_0days_UKy_GCH_rep2	17_A1_Lung_naive_0days_170427_UKy_GCH_rep2-polar-ICMS_A	Treatment:naive | Time Point:0	lineage0_id=02_A1_naive_0days_UKy_GCH_rep2;lineage0_protocol.id=['naive'];lineage0_replicate=2;lineage0_species=Mus musculus;lineage0_species_type=Mouse;lineage0_taxonomy_id=10090;lineage0_time_point=0;lineage0_type=subject;lineage1_id=17_A1_Lung_naive_0days_170427_UKy_GCH_rep2;lineage1_protocol.id=['mouse_tissue_collection', 'tissue_quench', 'frozen_tissue_grind'];lineage1_type=sample;lineage2_id=17_A1_Lung_naive_0days_170427_UKy_GCH_rep2-protein;lineage2_protein_weight=0.6112704400619461;lineage2_protein_weight%units=mg;lineage2_protocol.id=['protein_extraction'];lineage2_type=sample
-SUBJECT_SAMPLE_FACTORS                                 	03_A2_naive_0days_UKy_GCH_rep3	18_A2_Lung_naive_0days_170427_UKy_GCH_rep3-polar-ICMS_A	Treatment:naive | Time Point:0	lineage0_id=03_A2_naive_0days_UKy_GCH_rep3;lineage0_protocol.id=['naive'];lineage0_replicate=3;lineage0_species=Mus musculus;lineage0_species_type=Mouse;lineage0_taxonomy_id=10090;lineage0_time_point=0;lineage0_type=subject;lineage1_id=18_A2_Lung_naive_0days_170427_UKy_GCH_rep3;lineage1_protocol.id=['mouse_tissue_collection', 'tissue_quench', 'frozen_tissue_grind'];lineage1_type=sample;lineage2_id=18_A2_Lung_naive_0days_170427_UKy_GCH_rep3-protein;lineage2_protein_weight=0.14664251664539998;lineage2_protein_weight%units=mg;lineage2_protocol.id=['protein_extraction'];lineage2_type=sample
-SUBJECT_SAMPLE_FACTORS                                 	04_B0_syngenic_42days_UKy_GCH_rep1	19_B0_Lung_syngenic_42days_170427_UKy_GCH_rep1-polar-ICMS_A	Treatment:syngenic | Time Point:42	lineage0_id=04_B0_syngenic_42days_UKy_GCH_rep1;lineage0_protocol.id=['syngenic'];lineage0_replicate=1;lineage0_species=Mus musculus;lineage0_species_type=Mouse;lineage0_taxonomy_id=10090;lineage0_time_point=42;lineage0_type=subject;lineage1_id=19_B0_Lung_syngenic_42days_170427_UKy_GCH_rep1;lineage1_protocol.id=['mouse_tissue_collection', 'tissue_quench', 'frozen_tissue_grind'];lineage1_type=sample;lineage2_id=19_B0_Lung_syngenic_42days_170427_UKy_GCH_rep1-protein;lineage2_protein_weight=0.5600416771907997;lineage2_protein_weight%units=mg;lineage2_protocol.id=['protein_extraction'];lineage2_type=sample
-SUBJECT_SAMPLE_FACTORS                                 	05_B1_syngenic_42days_UKy_GCH_rep2	20_B1_Lung_syngenic_42days_170427_UKy_GCH_rep2-polar-ICMS_A	Treatment:syngenic | Time Point:42	lineage0_id=05_B1_syngenic_42days_UKy_GCH_rep2;lineage0_protocol.id=['syngenic'];lineage0_replicate=2;lineage0_species=Mus musculus;lineage0_species_type=Mouse;lineage0_taxonomy_id=10090;lineage0_time_point=42;lineage0_type=subject;lineage1_id=20_B1_Lung_syngenic_42days_170427_UKy_GCH_rep2;lineage1_protocol.id=['mouse_tissue_collection', 'tissue_quench', 'frozen_tissue_grind'];lineage1_type=sample;lineage2_id=20_B1_Lung_syngenic_42days_170427_UKy_GCH_rep2-protein;lineage2_protein_weight=0.2959754761535626;lineage2_protein_weight%units=mg;lineage2_protocol.id=['protein_extraction'];lineage2_type=sample
-SUBJECT_SAMPLE_FACTORS                                 	06_B2_syngenic_42days_UKy_GCH_rep3	21_B2_Lung_syngenic_42days_170427_UKy_GCH_rep3-polar-ICMS_A	Treatment:syngenic | Time Point:42	lineage0_id=06_B2_syngenic_42days_UKy_GCH_rep3;lineage0_protocol.id=['syngenic'];lineage0_replicate=3;lineage0_species=Mus musculus;lineage0_species_type=Mouse;lineage0_taxonomy_id=10090;lineage0_time_point=42;lineage0_type=subject;lineage1_id=21_B2_Lung_syngenic_42days_170427_UKy_GCH_rep3;lineage1_protocol.id=['mouse_tissue_collection', 'tissue_quench', 'frozen_tissue_grind'];lineage1_type=sample;lineage2_id=21_B2_Lung_syngenic_42days_170427_UKy_GCH_rep3-protein;lineage2_protein_weight=0.3382559813306206;lineage2_protein_weight%units=mg;lineage2_protocol.id=['protein_extraction'];lineage2_type=sample
-SUBJECT_SAMPLE_FACTORS                                 	07_C1-1_allogenic_42days_UKy_GCH_rep1	22_C1-1_Lung_allogenic_42days_170427_UKy_GCH_rep1-polar-ICMS_A	Treatment:allogenic | Time Point:42	lineage0_id=07_C1-1_allogenic_42days_UKy_GCH_rep1;lineage0_protocol.id=['allogenic'];lineage0_replicate=1;lineage0_species=Mus musculus;lineage0_species_type=Mouse;lineage0_taxonomy_id=10090;lineage0_time_point=42;lineage0_type=subject;lineage1_id=22_C1-1_Lung_allogenic_42days_170427_UKy_GCH_rep1;lineage1_protocol.id=['mouse_tissue_collection', 'tissue_quench', 'frozen_tissue_grind'];lineage1_type=sample;lineage2_id=22_C1-1_Lung_allogenic_42days_170427_UKy_GCH_rep1-protein;lineage2_protein_weight=1.3767591694919588;lineage2_protein_weight%units=mg;lineage2_protocol.id=['protein_extraction'];lineage2_type=sample
-SUBJECT_SAMPLE_FACTORS                                 	08_C1-2_allogenic_42days_UKy_GCH_rep2	23_C1-2_Lung_allogenic_42days_170427_UKy_GCH_rep2-polar-ICMS_A	Treatment:allogenic | Time Point:42	lineage0_id=08_C1-2_allogenic_42days_UKy_GCH_rep2;lineage0_protocol.id=['allogenic'];lineage0_replicate=2;lineage0_species=Mus musculus;lineage0_species_type=Mouse;lineage0_taxonomy_id=10090;lineage0_time_point=42;lineage0_type=subject;lineage1_id=23_C1-2_Lung_allogenic_42days_170427_UKy_GCH_rep2;lineage1_protocol.id=['mouse_tissue_collection', 'tissue_quench', 'frozen_tissue_grind'];lineage1_type=sample;lineage2_id=23_C1-2_Lung_allogenic_42days_170427_UKy_GCH_rep2-protein;lineage2_protein_weight=1.1547210188083492;lineage2_protein_weight%units=mg;lineage2_protocol.id=['protein_extraction'];lineage2_type=sample
-SUBJECT_SAMPLE_FACTORS                                 	09_C2-0_allogenic_42days_UKy_GCH_rep1	24_C2-0_Lung_allogenic_42days_170427_UKy_GCH_rep1-polar-ICMS_A	Treatment:allogenic | Time Point:42	lineage0_id=09_C2-0_allogenic_42days_UKy_GCH_rep1;lineage0_protocol.id=['allogenic'];lineage0_replicate=1;lineage0_species=Mus musculus;lineage0_species_type=Mouse;lineage0_taxonomy_id=10090;lineage0_time_point=42;lineage0_type=subject;lineage1_id=24_C2-0_Lung_allogenic_42days_170427_UKy_GCH_rep1;lineage1_protocol.id=['mouse_tissue_collection', 'tissue_quench', 'frozen_tissue_grind'];lineage1_type=sample;lineage2_id=24_C2-0_Lung_allogenic_42days_170427_UKy_GCH_rep1-protein;lineage2_protein_weight=0.6075844437094541;lineage2_protein_weight%units=mg;lineage2_protocol.id=['protein_extraction'];lineage2_type=sample
-SUBJECT_SAMPLE_FACTORS                                 	10_B1-0_syngenic_7days_UKy_GCH_rep1	25_B1-0_Lung_syngenic_7days_170427_UKy_GCH_rep1-polar-ICMS_A	Treatment:syngenic | Time Point:7	lineage0_id=10_B1-0_syngenic_7days_UKy_GCH_rep1;lineage0_protocol.id=['syngenic'];lineage0_replicate=1;lineage0_species=Mus musculus;lineage0_species_type=Mouse;lineage0_taxonomy_id=10090;lineage0_time_point=7;lineage0_type=subject;lineage1_id=25_B1-0_Lung_syngenic_7days_170427_UKy_GCH_rep1;lineage1_protocol.id=['mouse_tissue_collection', 'tissue_quench', 'frozen_tissue_grind'];lineage1_type=sample;lineage2_id=25_B1-0_Lung_syngenic_7days_170427_UKy_GCH_rep1-protein;lineage2_protein_weight=0.47147932892528355;lineage2_protein_weight%units=mg;lineage2_protocol.id=['protein_extraction'];lineage2_type=sample
-SUBJECT_SAMPLE_FACTORS                                 	11_B1-1_syngenic_7days_UKy_GCH_rep2	26_B1-1_Lung_syngenic_7days_170427_UKy_GCH_rep2-polar-ICMS_A	Treatment:syngenic | Time Point:7	lineage0_id=11_B1-1_syngenic_7days_UKy_GCH_rep2;lineage0_protocol.id=['syngenic'];lineage0_replicate=2;lineage0_species=Mus musculus;lineage0_species_type=Mouse;lineage0_taxonomy_id=10090;lineage0_time_point=7;lineage0_type=subject;lineage1_id=26_B1-1_Lung_syngenic_7days_170427_UKy_GCH_rep2;lineage1_protocol.id=['mouse_tissue_collection', 'tissue_quench', 'frozen_tissue_grind'];lineage1_type=sample;lineage2_id=26_B1-1_Lung_syngenic_7days_170427_UKy_GCH_rep2-protein;lineage2_protein_weight=0.34798720067708344;lineage2_protein_weight%units=mg;lineage2_protocol.id=['protein_extraction'];lineage2_type=sample
-SUBJECT_SAMPLE_FACTORS                                 	12_B1-2_syngenic_7days_UKy_GCH_rep3	27_B1-2_Lung_syngenic_7days_170427_UKy_GCH_rep3-polar-ICMS_A	Treatment:syngenic | Time Point:7	lineage0_id=12_B1-2_syngenic_7days_UKy_GCH_rep3;lineage0_protocol.id=['syngenic'];lineage0_replicate=3;lineage0_species=Mus musculus;lineage0_species_type=Mouse;lineage0_taxonomy_id=10090;lineage0_time_point=7;lineage0_type=subject;lineage1_id=27_B1-2_Lung_syngenic_7days_170427_UKy_GCH_rep3;lineage1_protocol.id=['mouse_tissue_collection', 'tissue_quench', 'frozen_tissue_grind'];lineage1_type=sample;lineage2_id=27_B1-2_Lung_syngenic_7days_170427_UKy_GCH_rep3-protein;lineage2_protein_weight=0.3397343460300001;lineage2_protein_weight%units=mg;lineage2_protocol.id=['protein_extraction'];lineage2_type=sample
-SUBJECT_SAMPLE_FACTORS                                 	13_C1-1_allogenic_7days_UKy_GCH_rep1	28_C1-1_Lung_allogenic_7days_170427_UKy_GCH_rep1-polar-ICMS_A	Treatment:allogenic | Time Point:7	lineage0_id=13_C1-1_allogenic_7days_UKy_GCH_rep1;lineage0_protocol.id=['allogenic'];lineage0_replicate=1;lineage0_species=Mus musculus;lineage0_species_type=Mouse;lineage0_taxonomy_id=10090;lineage0_time_point=7;lineage0_type=subject;lineage1_id=28_C1-1_Lung_allogenic_7days_170427_UKy_GCH_rep1;lineage1_protocol.id=['mouse_tissue_collection', 'tissue_quench', 'frozen_tissue_grind'];lineage1_type=sample;lineage2_id=28_C1-1_Lung_allogenic_7days_170427_UKy_GCH_rep1-protein;lineage2_protein_weight=0.37226618572882475;lineage2_protein_weight%units=mg;lineage2_protocol.id=['protein_extraction'];lineage2_type=sample
-SUBJECT_SAMPLE_FACTORS                                 	14_C1-2_allogenic_7days_UKy_GCH_rep2	29_C1-2_Lung_allogenic_7days_170427_UKy_GCH_rep2-polar-ICMS_A	Treatment:allogenic | Time Point:7	lineage0_id=14_C1-2_allogenic_7days_UKy_GCH_rep2;lineage0_protocol.id=['allogenic'];lineage0_replicate=2;lineage0_species=Mus musculus;lineage0_species_type=Mouse;lineage0_taxonomy_id=10090;lineage0_time_point=7;lineage0_type=subject;lineage1_id=29_C1-2_Lung_allogenic_7days_170427_UKy_GCH_rep2;lineage1_protocol.id=['mouse_tissue_collection', 'tissue_quench', 'frozen_tissue_grind'];lineage1_type=sample;lineage2_id=29_C1-2_Lung_allogenic_7days_170427_UKy_GCH_rep2-protein;lineage2_protein_weight=0.31985855339373337;lineage2_protein_weight%units=mg;lineage2_protocol.id=['protein_extraction'];lineage2_type=sample
-SUBJECT_SAMPLE_FACTORS                                 	15_C1-20_allogenic_7days_UKy_GCH_rep3	30_C1-20_Lung_allogenic_7days_170427_UKy_GCH_rep3-polar-ICMS_A	Treatment:allogenic | Time Point:7	lineage0_id=15_C1-20_allogenic_7days_UKy_GCH_rep3;lineage0_protocol.id=['allogenic'];lineage0_replicate=3;lineage0_species=Mus musculus;lineage0_species_type=Mouse;lineage0_taxonomy_id=10090;lineage0_time_point=7;lineage0_type=subject;lineage1_id=30_C1-20_Lung_allogenic_7days_170427_UKy_GCH_rep3;lineage1_protocol.id=['mouse_tissue_collection', 'tissue_quench', 'frozen_tissue_grind'];lineage1_type=sample;lineage2_id=30_C1-20_Lung_allogenic_7days_170427_UKy_GCH_rep3-protein;lineage2_protein_weight=0.4930096320820004;lineage2_protein_weight%units=mg;lineage2_protocol.id=['protein_extraction'];lineage2_type=sample
-#TREATMENT
-TR:TREATMENT_PROTOCOL_FILENAME   	study_treatments.pdf;study_treatments.pdf;study_treatments.pdf
-TR:TREATMENT_PROTOCOL_ID         	allogenic;naive;syngenic
-TR:TREATMENT_SUMMARY             	Mouse with allogenic bone marrow transplant. Fed with semi-liquid diet
-TR:TREATMENT_SUMMARY             	supplemented with fully labeled glucose for 24 hours before harvest.;Mouse with
-TR:TREATMENT_SUMMARY             	no treatment. Fed with semi-liquid diet supplemented with fully labeled glucose
-TR:TREATMENT_SUMMARY             	for 24 hours before harvest.;Mouse with syngenic bone marrow transplant. Fed with
-TR:TREATMENT_SUMMARY             	semi-liquid diet supplemented with fully labeled glucose for 24 hours before
-TR:TREATMENT_SUMMARY             	harvest.
 #END

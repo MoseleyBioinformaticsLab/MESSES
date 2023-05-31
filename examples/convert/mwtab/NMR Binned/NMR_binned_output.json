@@ -1,18 +1,9 @@
 {
-  "ANALYSIS": {
-    "ANALYSIS_TYPE": "NM"
-  },
-  "COLLECTION": {
-    "COLLECTION_PROTOCOL_FILENAME": "mouse_tissue_procedure.pdf",
-    "COLLECTION_PROTOCOL_ID": "mouse_tissue_collection",
-    "COLLECTION_SUMMARY": "Mouse is sacrificed and tissues are harvested.",
-    "SAMPLE_TYPE": "mouse"
-  },
   "METABOLOMICS WORKBENCH": {
-    "ANALYSIS_ID": "AN000000",
-    "CREATED_ON": "2023-04-04",
     "STUDY_ID": "ST000000",
-    "VERSION": "1"
+    "ANALYSIS_ID": "AN000000",
+    "VERSION": "1",
+    "CREATED_ON": "2023-05-31"
   },
   "PROJECT": {
     "ADDRESS": "Gerhard C. Hildebrandt, MD, Room no. CC401A, Ben Roach Building, Markey Cancer Center University of Kentucky, Lexington, 40536",
@@ -24,11 +15,6 @@
     "PHONE": "800-333-8874",
     "PROJECT_SUMMARY": "Allogeneic hematopoietic cell transplantation (allo-HCT) is a potentially curative treatment option for a variety of hematological malignancies. Interactions between the donor immune system and the patient tissue result in a disease, called GVHD. The pathophysiology of acute GVHD can be hypothesized in three sequential phases: cytokine storm and activation of the antigen-presenting cells (APC), donor T cell activation and effector cell phase. Idiopathic pneumonia syndrome (IPS) is one of the most deleterious complications after allogeneic HCT and is considered not only to be related to conditioning regimen toxicity but also represents an end organ damage caused by allo-reactive T cells, therefore making the lung susceptible to a two-pronged attack, one of which overlaps with GVHD causing other target organ injury. IPS results in mortality of up to 90% of patients. We will use a murine model of IPS and GVHD which is well established in our group, and in which disease evolves either across disparities in major histocompatibility complex (MCH) class I and II, minor histocompatibility antigens (miHags) or both. Metabolomics changes following syngeneic and allogeneic HCT at post-transplantation Days +7 (cytokine storm phase) and Days +42 (cellular effector phase) are compared to baseline wild-type (naive) controls. Prior to analysis, na\u00efve - and experimental mice (N=3 from each group) were fed with semi-liquid diet supplemented with tracers (13C6-glucose ) over 24 hours. At the end of 7 days or 42 days, respectively, feces and aGVHD target organs (colon, liver and lung) were collected from all groups and further processed and / or analyzed. We expect to reveal metabolic pathways affected after allo-HCT which contribute to immune cell mediated lung injury (IPS) and will potentially identify different metabolic pathways in other GVHD target organs.",
     "PROJECT_TITLE": "Metabolomics of lung injury after allogeneic hematopoietic cell transplantation"
-  },
-  "SAMPLEPREP": {
-    "SAMPLEPREP_PROTOCOL_FILENAME": "No tissue_quench file.;No frozen_tissue_grind file.;4B_Extract_Polar_Lipid_Prot_Fan_070417.pdf;['4D_17Jun4_Fan_Prot_Quant.pdf', '4B_Extract_Polar_Lipid_Prot_Fan_070417.pdf'];4A2_Media Extraction with acetone ppt step.pdf",
-    "SAMPLEPREP_PROTOCOL_ID": "tissue_quench;frozen_tissue_grind;polar_extraction;protein_extraction;acetone_extraction",
-    "SAMPLEPREP_SUMMARY": "Tissue is frozen in liquid nitrogen to stop metabolic processes.;Frozen tissue is ground in a SPEX grinder under liquid nitrogen to homogenize the sample.;Polar extraction from homogenate, lypholized, and frozen.;Protein extraction and quantification.;acetone extraction of polar metabolites"
   },
   "STUDY": {
     "ADDRESS": "CTW-453, 900 South Limestone street. UKY. Lexington, Kentucky-40536",
@@ -438,10 +424,24 @@
       }
     }
   ],
+  "COLLECTION": {
+    "COLLECTION_PROTOCOL_FILENAME": "mouse_tissue_procedure.pdf",
+    "COLLECTION_PROTOCOL_ID": "mouse_tissue_collection",
+    "COLLECTION_SUMMARY": "Mouse is sacrificed and tissues are harvested.",
+    "SAMPLE_TYPE": "mouse"
+  },
   "TREATMENT": {
     "TREATMENT_PROTOCOL_FILENAME": "study_treatments.pdf;study_treatments.pdf;study_treatments.pdf",
     "TREATMENT_PROTOCOL_ID": "allogenic;naive;syngenic",
     "TREATMENT_SUMMARY": "Mouse with allogenic bone marrow transplant. Fed with semi-liquid diet supplemented with fully labeled glucose for 24 hours before harvest.;Mouse with no treatment. Fed with semi-liquid diet supplemented with fully labeled glucose for 24 hours before harvest.;Mouse with syngenic bone marrow transplant. Fed with semi-liquid diet supplemented with fully labeled glucose for 24 hours before harvest."
+  },
+  "SAMPLEPREP": {
+    "SAMPLEPREP_PROTOCOL_FILENAME": "No tissue_quench file.;No frozen_tissue_grind file.;4B_Extract_Polar_Lipid_Prot_Fan_070417.pdf;['4D_17Jun4_Fan_Prot_Quant.pdf', '4B_Extract_Polar_Lipid_Prot_Fan_070417.pdf'];4A2_Media Extraction with acetone ppt step.pdf",
+    "SAMPLEPREP_PROTOCOL_ID": "tissue_quench;frozen_tissue_grind;polar_extraction;protein_extraction;acetone_extraction",
+    "SAMPLEPREP_SUMMARY": "Tissue is frozen in liquid nitrogen to stop metabolic processes.;Frozen tissue is ground in a SPEX grinder under liquid nitrogen to homogenize the sample.;Polar extraction from homogenate, lypholized, and frozen.;Protein extraction and quantification.;acetone extraction of polar metabolites"
+  },
+  "ANALYSIS": {
+    "ANALYSIS_TYPE": "NM"
   },
   "NM": {
     "ACQUISITION_TIME": "2 s",
@@ -462,6 +462,7 @@
     "WATER_SUPPRESSION": "presaturation"
   },
   "NMR_BINNED_DATA": {
+    "Units": "normalized peak area",
     "Data": [
       {
         "Bin range(ppm)": "0.1114075023667116-737.3158495462656",
@@ -2703,7 +2704,6 @@
         "Bin range(ppm)": "995.9544739459224-998.7274326373293",
         "19_B0_Lung_syngenic_42days_170427_UKy_GCH_rep1-polar-NMR_A": "0.9788092707551024"
       }
-    ],
-    "Units": "normalized peak area"
+    ]
   }
 }
