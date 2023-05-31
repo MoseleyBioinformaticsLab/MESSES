@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>messes.convert.convert &mdash; MESSES 0.1.dev1+g80469ef documentation</title>
+  <title>messes.convert.convert &mdash; MESSES 0.1.dev1+g5bab6cc documentation</title>
       <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/css/custom_css.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/sphinxcontrib-images/LightBox2/lightbox2/dist/css/lightbox.css" type="text/css" />
@@ -32,7 +32,7 @@
             <a href="../../../index.html" class="icon icon-home"> MESSES
           </a>
               <div class="version">
-                0.1.dev1+g80469ef
+                0.1.dev1+g5bab6cc
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
@@ -342,8 +342,44 @@
         <span class="c1"># with open(args[&quot;&lt;output-name&gt;&quot;], &#39;w&#39;, encoding=&quot;utf-8&quot;) as outfile:</span>
         <span class="c1">#     mwfile.write(outfile, file_format=&quot;mwtab&quot;)</span>
         
+        <span class="n">mwtab_key_order</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;METABOLOMICS WORKBENCH&#39;</span><span class="p">:[</span><span class="s1">&#39;STUDY_ID&#39;</span><span class="p">,</span> <span class="s1">&#39;ANALYSIS_ID&#39;</span><span class="p">,</span> <span class="s1">&#39;VERSION&#39;</span><span class="p">,</span> <span class="s1">&#39;CREATED_ON&#39;</span><span class="p">],</span> 
+                           <span class="s1">&#39;PROJECT&#39;</span><span class="p">:[],</span> 
+                           <span class="s1">&#39;STUDY&#39;</span><span class="p">:[],</span> 
+                           <span class="s1">&#39;SUBJECT&#39;</span><span class="p">:[],</span> 
+                           <span class="s1">&#39;SUBJECT_SAMPLE_FACTORS&#39;</span><span class="p">:[],</span> 
+                           <span class="s1">&#39;COLLECTION&#39;</span><span class="p">:[],</span> 
+                           <span class="s1">&#39;TREATMENT&#39;</span><span class="p">:[],</span> 
+                           <span class="s1">&#39;SAMPLEPREP&#39;</span><span class="p">:[],</span> 
+                           <span class="s1">&#39;CHROMATOGRAPHY&#39;</span><span class="p">:[],</span> 
+                           <span class="s1">&#39;ANALYSIS&#39;</span><span class="p">:[],</span> 
+                           <span class="p">}</span>
+                
+        <span class="n">extended_key_order</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;ms&quot;</span><span class="p">:{</span><span class="s1">&#39;MS&#39;</span><span class="p">:[],</span> 
+                                    <span class="s1">&#39;MS_METABOLITE_DATA&#39;</span><span class="p">:[</span><span class="s1">&#39;Units&#39;</span><span class="p">,</span> <span class="s1">&#39;Data&#39;</span><span class="p">,</span> <span class="s1">&#39;Metabolites&#39;</span><span class="p">,</span> <span class="s1">&#39;Extended&#39;</span><span class="p">]},</span>
+                              <span class="s2">&quot;nmr&quot;</span><span class="p">:{</span><span class="s1">&#39;NM&#39;</span><span class="p">:[],</span> 
+                                     <span class="s1">&#39;NMR_METABOLITE_DATA&#39;</span><span class="p">:[</span><span class="s1">&#39;Units&#39;</span><span class="p">,</span> <span class="s1">&#39;Data&#39;</span><span class="p">,</span> <span class="s1">&#39;Metabolites&#39;</span><span class="p">,</span> <span class="s1">&#39;Extended&#39;</span><span class="p">]},</span>
+                              <span class="s2">&quot;nmr_binned&quot;</span><span class="p">:{</span><span class="s1">&#39;NM&#39;</span><span class="p">:[],</span> 
+                                            <span class="s1">&#39;NMR_BINNED_DATA&#39;</span><span class="p">:[</span><span class="s1">&#39;Units&#39;</span><span class="p">,</span> <span class="s1">&#39;Data&#39;</span><span class="p">]}}</span>
+        
+        <span class="n">mwtab_key_order</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">extended_key_order</span><span class="p">[</span><span class="n">sub_command</span><span class="p">])</span>
+        
+        
         <span class="n">mwtabfile</span> <span class="o">=</span> <span class="n">mwtab</span><span class="o">.</span><span class="n">mwtab</span><span class="o">.</span><span class="n">MWTabFile</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
-        <span class="n">mwtabfile</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">output_json</span><span class="p">)</span>
+        
+        <span class="c1">## The mwtab package doesn&#39;t ensure correct ordering itself, so we have to make sure everything is ordered correctly.</span>
+        <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">sub_keys</span> <span class="ow">in</span> <span class="n">mwtab_key_order</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">if</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">output_json</span><span class="p">:</span>
+                <span class="n">mwtabfile</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
+                <span class="k">for</span> <span class="n">sub_key</span> <span class="ow">in</span> <span class="n">sub_keys</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="n">sub_key</span> <span class="ow">in</span> <span class="n">output_json</span><span class="p">[</span><span class="n">key</span><span class="p">]:</span>
+                        <span class="n">mwtabfile</span><span class="p">[</span><span class="n">key</span><span class="p">][</span><span class="n">sub_key</span><span class="p">]</span> <span class="o">=</span> <span class="n">output_json</span><span class="p">[</span><span class="n">key</span><span class="p">][</span><span class="n">sub_key</span><span class="p">]</span>
+                <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">output_json</span><span class="p">[</span><span class="n">key</span><span class="p">],</span> <span class="nb">dict</span><span class="p">):</span>
+                    <span class="n">mwtabfile</span><span class="p">[</span><span class="n">key</span><span class="p">]</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">output_json</span><span class="p">[</span><span class="n">key</span><span class="p">])</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">mwtabfile</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">output_json</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
+        
+        <span class="c1">## If you just update the dict then things can be out of order, so switched to the above method until mwtab is improved.</span>
+        <span class="c1"># mwtabfile.update(output_json)</span>
         <span class="n">mwtabfile</span><span class="o">.</span><span class="n">header</span> <span class="o">=</span> <span class="s2">&quot; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
             <span class="p">[</span><span class="s2">&quot;#METABOLOMICS WORKBENCH&quot;</span><span class="p">]</span>
             <span class="o">+</span> <span class="p">[</span><span class="n">item</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot;:&quot;</span> <span class="o">+</span> <span class="n">item</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">mwtabfile</span><span class="p">[</span><span class="s2">&quot;METABOLOMICS WORKBENCH&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="n">item</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;VERSION&quot;</span><span class="p">,</span> <span class="s2">&quot;CREATED_ON&quot;</span><span class="p">]]</span>

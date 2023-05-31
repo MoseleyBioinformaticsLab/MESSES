@@ -68,6 +68,14 @@ run the following commands:
            python3 -m pip install openpyxl  # On Linux, Mac OS X
            py -3 -m pip install openpyxl    # On Windows
            
+    * xlsxwriter_ for saving Excel files in pandas.
+       * To install the xlsxwriter_ Python library, run the following:
+
+         .. code:: bash
+
+            python3 -m pip install xlsxwriter  # On Linux, Mac OS X
+            py -3 -m pip install xlsxwriter    # On Windows
+           
     * jellyfish_ for saving Excel files in pandas.
        * To install the jellyfish_ Python library, run the following:
 
@@ -102,5 +110,6 @@ and pull requests.
 .. _jsonschema: https://pypi.org/project/jsonschema/
 .. _pandas: https://pypi.org/project/pandas/
 .. _openpyxl: https://pypi.org/project/openpyxl/
+.. _xlsxwriter: https://pypi.org/project/xlsxwriter/
 .. _jellyfish: https://pypi.org/project/jellyfish/
 .. _mwtab: https://pypi.org/project/mwtab/
