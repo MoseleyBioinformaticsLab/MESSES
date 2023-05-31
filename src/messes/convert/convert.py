@@ -258,8 +258,44 @@ def main() :
         # with open(args["<output-name>"], 'w', encoding="utf-8") as outfile:
         #     mwfile.write(outfile, file_format="mwtab")
         
+        mwtab_key_order = {'METABOLOMICS WORKBENCH':['STUDY_ID', 'ANALYSIS_ID', 'VERSION', 'CREATED_ON'], 
+                           'PROJECT':[], 
+                           'STUDY':[], 
+                           'SUBJECT':[], 
+                           'SUBJECT_SAMPLE_FACTORS':[], 
+                           'COLLECTION':[], 
+                           'TREATMENT':[], 
+                           'SAMPLEPREP':[], 
+                           'CHROMATOGRAPHY':[], 
+                           'ANALYSIS':[], 
+                           }
+                
+        extended_key_order = {"ms":{'MS':[], 
+                                    'MS_METABOLITE_DATA':['Units', 'Data', 'Metabolites', 'Extended']},
+                              "nmr":{'NM':[], 
+                                     'NMR_METABOLITE_DATA':['Units', 'Data', 'Metabolites', 'Extended']},
+                              "nmr_binned":{'NM':[], 
+                                            'NMR_BINNED_DATA':['Units', 'Data']}}
+        
+        mwtab_key_order.update(extended_key_order[sub_command])
+        
+        
         mwtabfile = mwtab.mwtab.MWTabFile("")
-        mwtabfile.update(output_json)
+        
+        ## The mwtab package doesn't ensure correct ordering itself, so we have to make sure everything is ordered correctly.
+        for key, sub_keys in mwtab_key_order.items():
+            if key in output_json:
+                mwtabfile[key] = {}
+                for sub_key in sub_keys:
+                    if sub_key in output_json[key]:
+                        mwtabfile[key][sub_key] = output_json[key][sub_key]
+                if isinstance(output_json[key], dict):
+                    mwtabfile[key].update(output_json[key])
+                else:
+                    mwtabfile[key] = output_json[key]
+        
+        ## If you just update the dict then things can be out of order, so switched to the above method until mwtab is improved.
+        # mwtabfile.update(output_json)
         mwtabfile.header = " ".join(
             ["#METABOLOMICS WORKBENCH"]
             + [item[0] + ":" + item[1] for item in mwtabfile["METABOLOMICS WORKBENCH"].items() if item[0] not in ["VERSION", "CREATED_ON"]]

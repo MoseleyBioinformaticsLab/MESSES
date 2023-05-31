@@ -79,6 +79,7 @@ The "cd-to-json-schema" command will read in conversion directives and create a 
 template file that can be filled in and used to validate files that will be converted using those directives.
 """
 
+## TODO What about adding a check so that attribute fields of list fields have to be the same length as the parent field? for data_files and data_files%entity_id
 
 import re
 import sys

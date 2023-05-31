@@ -1,72 +1,23 @@
 {
-  "ANALYSIS": {
-    "ANALYSIS_TYPE": {
-      "id": "ANALYSIS_TYPE",
-      "override": "NM",
-      "value_type": "str"
-    }
-  },
-  "COLLECTION": {
-    "COLLECTION_PROTOCOL_FILENAME": {
-      "fields": [
-        "filename"
-      ],
-      "id": "COLLECTION_PROTOCOL_FILENAME",
-      "required": "False",
-      "table": "protocol",
-      "test": "type=collection",
-      "value_type": "str"
-    },
-    "COLLECTION_PROTOCOL_ID": {
-      "fields": [
-        "id"
-      ],
-      "id": "COLLECTION_PROTOCOL_ID",
-      "required": "True",
-      "table": "protocol",
-      "test": "type=collection",
-      "value_type": "str"
-    },
-    "COLLECTION_SUMMARY": {
-      "fields": [
-        "description"
-      ],
-      "id": "COLLECTION_SUMMARY",
-      "required": "True",
-      "table": "protocol",
-      "test": "type=collection",
-      "value_type": "str"
-    },
-    "SAMPLE_TYPE": {
-      "fields": [
-        "sample_type"
-      ],
-      "id": "SAMPLE_TYPE",
-      "required": "True",
-      "table": "protocol",
-      "test": "type=collection",
-      "value_type": "str"
-    }
-  },
   "METABOLOMICS WORKBENCH": {
-    "ANALYSIS_ID": {
-      "id": "ANALYSIS_ID",
-      "override": "AN000000",
-      "value_type": "str"
-    },
-    "CREATED_ON": {
-      "code": "str(datetime.datetime.now().date())",
-      "id": "CREATED_ON",
-      "value_type": "str"
-    },
     "STUDY_ID": {
       "id": "STUDY_ID",
       "override": "ST000000",
       "value_type": "str"
     },
+    "ANALYSIS_ID": {
+      "id": "ANALYSIS_ID",
+      "override": "AN000000",
+      "value_type": "str"
+    },
     "VERSION": {
       "id": "VERSION",
       "override": "1",
+      "value_type": "str"
+    },
+    "CREATED_ON": {
+      "code": "str(datetime.datetime.now().date())",
+      "id": "CREATED_ON",
       "value_type": "str"
     }
   },
@@ -150,56 +101,6 @@
       ],
       "id": "PROJECT_TITLE",
       "table": "project",
-      "value_type": "str"
-    }
-  },
-  "SAMPLEPREP": {
-    "SAMPLEPREP_PROTOCOL_FILENAME": {
-      "delimiter": ";",
-      "fields": [
-        "filename"
-      ],
-      "for_each": "True",
-      "id": "SAMPLEPREP_PROTOCOL_FILENAME",
-      "required": "False",
-      "sort_by": [
-        "order"
-      ],
-      "sort_order": "ascending",
-      "table": "protocol",
-      "test": "type=sample_prep",
-      "value_type": "str"
-    },
-    "SAMPLEPREP_PROTOCOL_ID": {
-      "delimiter": ";",
-      "fields": [
-        "id"
-      ],
-      "for_each": "True",
-      "id": "SAMPLEPREP_PROTOCOL_ID",
-      "required": "True",
-      "sort_by": [
-        "order"
-      ],
-      "sort_order": "ascending",
-      "table": "protocol",
-      "test": "type=sample_prep",
-      "value_type": "str"
-    },
-    "SAMPLEPREP_SUMMARY": {
-      "delimiter": ";",
-      "fields": [
-        "description"
-      ],
-      "for_each": "True",
-      "id": "SAMPLEPREP_SUMMARY",
-      "required": "True",
-      "sort_by": [
-        "order"
-      ],
-      "sort_order": "ascending",
-      "table": "protocol",
-      "test": "type=sample_prep",
       "value_type": "str"
     }
   },
@@ -326,6 +227,48 @@
       "required": "True"
     }
   },
+  "COLLECTION": {
+    "COLLECTION_PROTOCOL_FILENAME": {
+      "fields": [
+        "filename"
+      ],
+      "id": "COLLECTION_PROTOCOL_FILENAME",
+      "required": "False",
+      "table": "protocol",
+      "test": "type=collection",
+      "value_type": "str"
+    },
+    "COLLECTION_PROTOCOL_ID": {
+      "fields": [
+        "id"
+      ],
+      "id": "COLLECTION_PROTOCOL_ID",
+      "required": "True",
+      "table": "protocol",
+      "test": "type=collection",
+      "value_type": "str"
+    },
+    "COLLECTION_SUMMARY": {
+      "fields": [
+        "description"
+      ],
+      "id": "COLLECTION_SUMMARY",
+      "required": "True",
+      "table": "protocol",
+      "test": "type=collection",
+      "value_type": "str"
+    },
+    "SAMPLE_TYPE": {
+      "fields": [
+        "sample_type"
+      ],
+      "id": "SAMPLE_TYPE",
+      "required": "True",
+      "table": "protocol",
+      "test": "type=collection",
+      "value_type": "str"
+    }
+  },
   "TREATMENT": {
     "TREATMENT_PROTOCOL_FILENAME": {
       "delimiter": ";",
@@ -373,6 +316,63 @@
       "sort_order": "ascending",
       "table": "protocol",
       "test": "type=treatment",
+      "value_type": "str"
+    }
+  },
+  "SAMPLEPREP": {
+    "SAMPLEPREP_PROTOCOL_FILENAME": {
+      "delimiter": ";",
+      "fields": [
+        "filename"
+      ],
+      "for_each": "True",
+      "id": "SAMPLEPREP_PROTOCOL_FILENAME",
+      "required": "False",
+      "sort_by": [
+        "order"
+      ],
+      "sort_order": "ascending",
+      "table": "protocol",
+      "test": "type=sample_prep",
+      "value_type": "str"
+    },
+    "SAMPLEPREP_PROTOCOL_ID": {
+      "delimiter": ";",
+      "fields": [
+        "id"
+      ],
+      "for_each": "True",
+      "id": "SAMPLEPREP_PROTOCOL_ID",
+      "required": "True",
+      "sort_by": [
+        "order"
+      ],
+      "sort_order": "ascending",
+      "table": "protocol",
+      "test": "type=sample_prep",
+      "value_type": "str"
+    },
+    "SAMPLEPREP_SUMMARY": {
+      "delimiter": ";",
+      "fields": [
+        "description"
+      ],
+      "for_each": "True",
+      "id": "SAMPLEPREP_SUMMARY",
+      "required": "True",
+      "sort_by": [
+        "order"
+      ],
+      "sort_order": "ascending",
+      "table": "protocol",
+      "test": "type=sample_prep",
+      "value_type": "str"
+    }
+  },
+  "ANALYSIS": {
+    "ANALYSIS_TYPE": {
+      "id": "ANALYSIS_TYPE",
+      "override": "NM",
       "value_type": "str"
     }
   },
@@ -551,6 +551,15 @@
     }
   },
   "NMR_BINNED_DATA": {
+    "Units": {
+      "required": "True",
+      "fields": [
+        "intensity%type"
+      ],
+      "id": "Units",
+      "table": "measurement",
+      "value_type": "str"
+    },
     "Data": {
       "required": "True",
       "collate": "assignment",
@@ -566,15 +575,6 @@
       "table": "measurement",
       "value_type": "matrix",
       "values_to_str": "True"
-    },
-    "Units": {
-      "required": "True",
-      "fields": [
-        "intensity%type"
-      ],
-      "id": "Units",
-      "table": "measurement",
-      "value_type": "str"
     }
   }
 }

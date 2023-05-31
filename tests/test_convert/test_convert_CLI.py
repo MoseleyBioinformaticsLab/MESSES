@@ -863,3 +863,81 @@ def test_input_json_is_not_json_error():
         
     assert "Error: An error was encountered when trying to read in the <input_JSON>, ../import_test.py." in output
 
+
+def test_unordered_directives_mwtab_MS():
+    """Test that unordered conversion directives create the mwtab in the correct order."""
+    
+    test_file = "MS_base_input_truncated.json"
+    
+    command = "messes convert mwtab ms ../" + test_file  + " output --override ../mwtab_ms_conversion_directives_unordered.json" 
+    command = command.split(" ")
+    subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
+    output = subp.stderr
+
+        
+    assert output_path_txt.exists()
+    
+    with open(output_path_txt, "r", encoding = "utf-8") as f:
+        output_txt = "".join(f.readlines())
+        
+    with open(pathlib.Path("MS_output_compare_truncated.txt"), "r", encoding = "utf-8") as f:
+        output_compare_txt = "".join(f.readlines())
+        
+    output_txt = re.sub(r"^CREATED_ON.*$", "", output_txt, flags=re.MULTILINE)
+    output_compare_txt = re.sub(r"^CREATED_ON.*$", "", output_compare_txt, flags=re.MULTILINE)
+    assert output_txt == output_compare_txt
+    
+    assert output == ""
+    
+
+def test_unordered_directives_mwtab_NMR():
+    """Test that unordered conversion directives create the mwtab in the correct order."""
+    
+    test_file = "NMR_base_input.json"
+    
+    command = "messes convert mwtab nmr ../" + test_file  + " output --override ../mwtab_nmr_conversion_directives_unordered.json" 
+    command = command.split(" ")
+    subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
+    output = subp.stderr
+
+        
+    assert output_path_txt.exists()
+    
+    with open(output_path_txt, "r", encoding = "utf-8") as f:
+        output_txt = "".join(f.readlines())
+        
+    with open(pathlib.Path("NMR_output_compare.txt"), "r", encoding = "utf-8") as f:
+        output_compare_txt = "".join(f.readlines())
+        
+    output_txt = re.sub(r"^CREATED_ON.*$", "", output_txt, flags=re.MULTILINE)
+    output_compare_txt = re.sub(r"^CREATED_ON.*$", "", output_compare_txt, flags=re.MULTILINE)
+    assert output_txt == output_compare_txt
+    
+    assert output == ""
+
+
+def test_unordered_directives_mwtab_NMR_binned():
+    """Test that unordered conversion directives create the mwtab in the correct order."""
+    
+    test_file = "NMR_binned_base_input.json"
+    
+    command = "messes convert mwtab nmr_binned ../" + test_file  + " output --override ../mwtab_nmr_binned_conversion_directives_unordered.json" 
+    command = command.split(" ")
+    subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
+    output = subp.stderr
+
+        
+    assert output_path_txt.exists()
+    
+    with open(output_path_txt, "r", encoding = "utf-8") as f:
+        output_txt = "".join(f.readlines())
+        
+    with open(pathlib.Path("NMR_binned_output_compare.txt"), "r", encoding = "utf-8") as f:
+        output_compare_txt = "".join(f.readlines())
+        
+    output_txt = re.sub(r"^CREATED_ON.*$", "", output_txt, flags=re.MULTILINE)
+    output_compare_txt = re.sub(r"^CREATED_ON.*$", "", output_compare_txt, flags=re.MULTILINE)
+    assert output_txt == output_compare_txt
+    
+    assert output == ""
+
