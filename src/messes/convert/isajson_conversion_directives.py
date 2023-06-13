@@ -141,6 +141,9 @@ conversion tags for the ISA-JSON format
 ## and calling_record_attributes that can be used in the code. We already planned on passing these around for context anyway.
 ## We can implement the ontology annotion similarly, just make it a function that can be called.
 
+## TODO Add which file the properties for each JSON object comes from. For example, the "measurementType" comes from the investigation file for assay objects.
+## Check to see if ISAtools looks for duplicate @id, for example if 2 people have the same one.
+
 
 ## TODO There are a couple of things that need to be verified with the ISA people.
 ## 1. What are the "configs" about when validating ISA-JSON?
@@ -150,6 +153,10 @@ conversion tags for the ISA-JSON format
 ## 4. Does derivesFrom in samples have to be a source? 
 ##    Are you supposed to the collapse the lineage for each sample so that derivesFrom is the source and not the most recent sample?
 ##    The derivesFrom field is an array of source_schema, not sample_schema.
+## 5. Critical errors that prevent JSON creation will sometimes show up as warnings in the output. For example a sample name in an 
+##    assay that is not in the study will be a warning, but is a fatal error.
+## 6. It is said in the specification that source to sample must have a sample collection type protocol, but the example doesn't follow this.
+## 7. The provided JSON examples and what is generated when you use convert are different. Comments (PRIDE Accession) appear on data files (in provided example) when they should be on the process (in converted).
 
 directives = \
 {
@@ -203,16 +210,54 @@ directives = \
      "no_id_needed": {
          "value_type": "section_matrix",
          "required": "True",
+         "optional_headers": [
+             "address",
+             "affiliation",
+             "email",
+             "phone",
+             "fax",
+             "midInitials",
+             "firstName",
+             "lastName"
+             ],
          "headers": [
-           "\"@id\"=\"#person/\"PI_first_name",  ## TODO, either make it so you can mix literal and field values or add @id's at the end of the program.
-           "\"address\"=address",
-           "\"affiliation\"=institution",
-           "\"email\"=PI_email",
-           "\"firstName\"=PI_first_name",
-           "\"lastName\"=PI_last_name",
-           "\"phone\"=PI_phone"
+           "\"@id\"=/people%@id",
+           "\"roles\"=/people%roles"
          ],
-         "table": "project"
+         "table": "people"
+         }
+     },
+ "people%@id": {
+     "no_id_needed": {
+         "value_type": "section_str",
+         "required": "False",
+         "fields": [
+             "\"#people/\"",
+             "firstName",
+             "\"_\"",
+             "lastName"
+             ],
+         "table": "people",
+         "test": "id=^id"
+         }
+     },
+ ## Alternative way to do the @id.
+ # "people%@id": {
+ #     "no_id_needed": {
+ #         "value_type": "str",
+ #         "required": "False",
+ #         "code": "f\"#people/{calling_record_attributes['firstName']}_{calling_record_attributes['lastName']}\"",
+ #         }
+ #     },
+ ## TODO, maybe add a "built-in" keyword that will run certain built-in functions 
+ ## only and automatically supply the extra variables so the user doesn't have to include them in the "code" keyword.
+ ## Could have signature like function(record_field_name) or function("literal_value") to make it even easier.
+ ## TODO, maybe add "silent" as a keyword that can override the global silent.
+ "people%roles": {
+     "no_id_needed": {
+         "code": "parse_ontology_annotation(calling_record_attributes['roles'])",
+         "value_type": "section",
+         "required": "False"
          }
      },
  "studies": {

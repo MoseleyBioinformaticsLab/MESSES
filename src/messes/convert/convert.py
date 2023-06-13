@@ -358,6 +358,167 @@ def _sort_by_getter(pair: tuple[str,dict], keys: list[str]) -> list:
 #     return table_records
 
 
+def parse_ontology_annotation(annotations: str|list, 
+                              conversion_table: str, conversion_record_name: str, 
+                              record_table: str, record_name: str, record_field: str|int,
+                              required: bool, silent: bool) -> dict|list[dict]|None:
+    """Create ontology annotation dict or list of dicts from str or list of str.
+    
+    Args:
+        annotations: str or list of str in expected "source:accession:value:comment" format.
+        conversion_table: the name of the table the conversion record came from, used for good error messaging.
+        conversion_record_name: the name of the conversion record, used for good error messaging.
+        record_table: the name of the table the record came from, used for good error messaging.
+        record_name: the name of the record, used for good error messaging.
+        record_field: the field the annotation came from, used for good error messaging.
+        required: if True then any problems during execution are errors and the program should exit, else it's just a warning.
+        silent: if True don't print warning messages.
+        
+    Returns:
+        If the annotations parameter is a string, then return a ISA ontologyAnnotation dictionary.
+        If the annotations parameter is a list, then return a list of ISA ontologyAnnotation dictionaries.
+    """
+    annotations_is_string = False
+    if isinstance(annotations, str):
+        annotations = [annotations]
+        annotations_is_string = True
+    
+    parsed_annotation_dicts = []
+    for annotation in annotations:
+        annotation_dict = {}
+        annotation_parts = annotation.split(":")
+        if len(annotation_parts) != 4:
+            message = (f"When creating the \"{conversion_record_name}\" conversion "
+                       f"for the \"{conversion_table}\" table, a record, \"{record_name}\","
+                       f"in the table, \"{record_table}\", has a malformed ontology annotation, \"{annotation}\", "
+                       f"in the field, \"{record_field}\". It must have 3 colons (:) separating its values.")
+            return _handle_errors(required, silent, message)
+        for i, value in enumerate(annotation_parts):
+            if value:
+                match i:
+                    case 0:
+                        annotation_dict["termSource"] = value
+                    case 1:
+                        annotation_dict["termAccession"] = value
+                    case 2:
+                        annotation_dict["annotationValue"] = value
+                    case 3:
+                        annotation_dict["comments"] = [{"value":value}]
+                        
+        parsed_annotation_dicts.append(annotation_dict)
+    
+    if annotations_is_string:
+        return parsed_annotation_dicts[0]
+    else:
+        return parsed_annotation_dicts
+ 
+
+def to_dict(field_values: str|list, 
+            conversion_table: str, conversion_record_name: str, 
+            record_table: str, record_name: str, record_field: str|int,
+            required: bool, silent: bool) -> dict|list[dict]|None:
+    """Create dict or list of dicts from str or list of str.
+    
+    Args:
+        field_values: str or list of str in expected "key:value,key:value..." format.
+        conversion_table: the name of the table the conversion record came from, used for good error messaging.
+        conversion_record_name: the name of the conversion record, used for good error messaging.
+        record_table: the name of the table the record came from, used for good error messaging.
+        record_name: the name of the record, used for good error messaging.
+        record_field: the field the annotation came from, used for good error messaging.
+        required: if True then any problems during execution are errors and the program should exit, else it's just a warning.
+        silent: if True don't print warning messages.
+        
+    Returns:
+        If the field_value parameter is a string, then return a ISA ontologyAnnotation dictionary.
+        If the field_value parameter is a list, then return a list of ISA ontologyAnnotation dictionaries.
+    """
+    field_values_is_string = False
+    if isinstance(field_values, str):
+        field_values = [field_values]
+        field_values_is_string = True
+    
+    parsed_field_value_dicts = []
+    for field_value in field_values:
+        field_value_dict = {}
+        field_value_parts = field_value.split(",")
+        for pair in field_value_parts:
+            try:
+                key, value = pair.split(":")
+            except ValueError:
+                message = (f"When creating the \"{conversion_record_name}\" conversion "
+                           f"for the \"{conversion_table}\" table, a record, \"{record_name}\","
+                           f"in the table, \"{record_table}\", has a malformed dictionary, \"{field_value}\", "
+                           f"in the field, \"{record_field}\". It must have a form like \"key:value,key:value...\".")
+                return _handle_errors(required, silent, message)
+            field_value_dict[key] = value
+                        
+        parsed_field_value_dicts.append(field_value_dict)
+    
+    if field_values_is_string:
+        return parsed_field_value_dicts[0]
+    else:
+        return parsed_field_value_dicts
+    
+                    
+        
+
+
+def _parse_test_attribute(attribute_value: str, conversion_table: str, conversion_record_name: str, conversion_attributes: dict,
+                          calling_record_table: str|int, calling_record_name: str|int, calling_record_attributes: dict,
+                          required: bool, silent: bool) -> tuple[str, str]|tuple[None, None]:
+    """Parse the test string into field and value.
+    
+    Args:
+        attribute_value: the value of the test attribute for conversion directive to be parsed.
+        conversion_table: the name of the table the conversion record came from, used for good error messaging.
+        conversion_record_name: the name of the conversion record, used for good error messaging.
+        conversion_attributes: the fields and values of the conversion record.
+        calling_record_table: if this is a nested directive, then this should be the table of the record the directive was called on, else None.
+        calling_record_name: if this is a nested directive, then this should be the key of the record the directive was called on, else None.
+        calling_record_attributes: if this is a nested directive, then this should be the attributes of the record the directive was called on, else None.
+        required: if True then any problems during execution are errors and the program should exit, else it's just a warning.
+        silent: if True don't print warning messages.
+    
+    Returns:
+        Either a tuple of field and value or None and None if there was an error.
+    """
+    
+    split = attribute_value.split("=")
+    test_field = split[0].strip()
+    test_value = split[1].strip()
+    
+    if match := re.match(calling_record_regex, test_value):
+        if calling_record_attributes:
+            if record_value := calling_record_attributes.get(match.group(1)):
+                test_value = record_value
+            else:
+                message = "When creating the \"" + conversion_record_name + \
+                          "\" conversion for the \"" + conversion_table + "\" table, the value for \"test\", \"" + \
+                          conversion_attributes["test"] + "\", indicates to use a calling record's attribute value, but that attribute, \"" + \
+                          match.group(1) + "\", does not exist in the calling record, \"" + \
+                          calling_record_name + "\", in the calling table, \"" + calling_record_table + "\"."
+                _handle_errors(required, silent, message)
+                return None, None
+        else:
+            message = "When creating the \"" + conversion_record_name + \
+                      "\" conversion for the \"" + conversion_table + "\" table, the value for \"test\", \"" + \
+                      conversion_attributes["test"] + "\", indicates to use a calling record's attribute value, " + \
+                      "but this conversion directive is not a nested directive and therefore there is no calling record."
+            _handle_errors(required, silent, message)
+            return None, None
+    elif match := re.match(literal_regex, test_value):
+        test_value = match.group(1)
+        
+    if match := re.match(literal_regex, test_field):
+        test_field = match.group(1)
+        
+    return test_field, test_value
+        
+        
+    
+
+
 def _build_table_records(has_test: bool, conversion_record_name: str, conversion_table: str, conversion_attributes: dict, 
                          input_json: dict, required: bool, silent: bool, test_field: str="", test_value: str="") -> dict:
     """Loop over a table in the input_json and pull the correct records and sort if necessary.
@@ -454,6 +615,9 @@ def handle_code_field(input_json: dict, conversion_table: str, conversion_record
         try:
             value = eval(code)
         except Exception:
+            ## TODO Possibly add a different message for nested directives or not display a message for them.
+            ## Nested directives with required = False are more likely to be spurious messages that aren't needed.
+            ## Maybe add an option to the directive or the CLI to not print messages for required=False.
             message = "The code conversion directive to create the \"" + conversion_record_name + \
                       "\" record in the \"" + conversion_table + "\" table encountered an error while executing.\n"
             message += traceback.format_exc()
@@ -756,7 +920,8 @@ def _determine_directive_table_value(input_json: dict, conversion_table: str, co
     return directive_table_output
 
 
-
+## TODO Make it so matrix type conversions can call another directive, and make 
+## it so that if a called directive is required=False that that header is not created and a warning is printed.
 def _build_matrix_record_dict(input_json: dict,
                               matrix_dict: dict, 
                               collate_key: str, 
@@ -843,6 +1008,7 @@ def _build_matrix_record_dict(input_json: dict,
     return matrix_dict
 
 
+## TODO refactor this so input key and output key share more code.
 def _determine_header_input_keys(input_json: dict, header: str, record_name: str, record_attributes: dict, conversion_table: str, 
                                  conversion_record_name: str, conversion_attributes: dict, conversion_directives: dict, 
                                  values_to_str: bool, required: bool, calling_record_table: str|int=None, 
@@ -1024,9 +1190,11 @@ def compute_string_value(input_json: dict, conversion_table: str, conversion_rec
     test_value = ""
     if test := conversion_attributes.get("test"):
         has_test = True
-        split = test.split("=")
-        test_field = split[0].strip()
-        test_value = split[1].strip()
+        test_field, test_value = _parse_test_attribute(test, conversion_table, conversion_record_name, conversion_attributes,
+                                                       calling_record_table, calling_record_name, calling_record_attributes,
+                                                       required, silent)
+        if test_value is None:
+            return None
     
     ## for_each
     for_each = False
@@ -1165,9 +1333,11 @@ def compute_matrix_value(input_json: dict, conversion_table: str, conversion_rec
     test_value = ""
     if test := conversion_attributes.get("test"):
         has_test = True
-        split = test.split("=")
-        test_field = split[0].strip()
-        test_value = split[1].strip()
+        test_field, test_value = _parse_test_attribute(test, conversion_table, conversion_record_name, conversion_attributes,
+                                                       calling_record_table, calling_record_name, calling_record_attributes,
+                                                       required, silent)
+        if test_value is None:
+            return None
     
     exclusion_headers = conversion_attributes.get("exclusion_headers", [])
     
