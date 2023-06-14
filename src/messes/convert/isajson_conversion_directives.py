@@ -253,6 +253,7 @@ directives = \
  ## only and automatically supply the extra variables so the user doesn't have to include them in the "code" keyword.
  ## Could have signature like function(record_field_name) or function("literal_value") to make it even easier.
  ## TODO, maybe add "silent" as a keyword that can override the global silent.
+ ## " \+ ([^+]*) \+ ["\\]  {\1}
  "people%roles": {
      "no_id_needed": {
          "code": "parse_ontology_annotation(calling_record_attributes['roles'])",

@@ -116,7 +116,7 @@ def main() :
                         ## Have to trim the extra newline off the end of buffer.
                         print(buffer.getvalue()[0:-1], file=sys.stderr)
                     elif default_sheet_name:
-                        print("Error: No sheet name was given for the file, so the default name " +\
+                        print("Error: No sheet name was given for the file, so the default name "
                               "of #convert was used, but it was not found in the file.", file=sys.stderr)
                     sys.exit()
             except Exception as e:
@@ -171,13 +171,13 @@ def main() :
     
     ## Read in files.
     if not pathlib.Path(args["<input_JSON>"]).exists():
-        print("Error: The value entered for <input_JSON>, " + args["<input_JSON>"] + ", is not a valid file path or does not exist.", file=sys.stderr)
+        print(f"Error: The value entered for <input_JSON>, {args['<input_JSON>']}, is not a valid file path or does not exist.", file=sys.stderr)
         sys.exit()
     try:
         with open(args["<input_JSON>"], 'r') as jsonFile:
             input_json = json.load(jsonFile)
     except Exception as e:
-        print("\nError: An error was encountered when trying to read in the <input_JSON>, " + args["<input_JSON>"] + ".\n", file=sys.stderr)
+        print(f"\nError: An error was encountered when trying to read in the <input_JSON>, {args['<input_JSON>']}.\n", file=sys.stderr)
         raise e
     
     
@@ -493,18 +493,18 @@ def _parse_test_attribute(attribute_value: str, conversion_table: str, conversio
             if record_value := calling_record_attributes.get(match.group(1)):
                 test_value = record_value
             else:
-                message = "When creating the \"" + conversion_record_name + \
-                          "\" conversion for the \"" + conversion_table + "\" table, the value for \"test\", \"" + \
-                          conversion_attributes["test"] + "\", indicates to use a calling record's attribute value, but that attribute, \"" + \
-                          match.group(1) + "\", does not exist in the calling record, \"" + \
-                          calling_record_name + "\", in the calling table, \"" + calling_record_table + "\"."
+                message = (f"When creating the \"{conversion_record_name}"
+                          f"\" conversion for the \"{conversion_table}\" table, the value for \"test\", \""
+                          f"{conversion_attributes['test']}\", indicates to use a calling record's attribute value, but that attribute, \""
+                          f"{match.group(1)}\", does not exist in the calling record, \""
+                          f"{calling_record_name}\", in the calling table, \"{calling_record_table}\".")
                 _handle_errors(required, silent, message)
                 return None, None
         else:
-            message = "When creating the \"" + conversion_record_name + \
-                      "\" conversion for the \"" + conversion_table + "\" table, the value for \"test\", \"" + \
-                      conversion_attributes["test"] + "\", indicates to use a calling record's attribute value, " + \
-                      "but this conversion directive is not a nested directive and therefore there is no calling record."
+            message = (f"When creating the \"{conversion_record_name}"
+                      f"\" conversion for the \"{conversion_table}\" table, the value for \"test\", \""
+                      f"{conversion_attributes['test']}\", indicates to use a calling record's attribute value, "
+                      f"but this conversion directive is not a nested directive and therefore there is no calling record.")
             _handle_errors(required, silent, message)
             return None, None
     elif match := re.match(literal_regex, test_value):
@@ -539,8 +539,8 @@ def _build_table_records(has_test: bool, conversion_record_name: str, conversion
     """
     
     if not conversion_attributes["table"] in input_json:
-        message = "The \"table\" field value, \"" + conversion_attributes["table"] + "\", for conversion, \"" + conversion_record_name + \
-                  "\", in conversion table, \"" + conversion_table + "\", does not exist in the input JSON."
+        message = (f"The \"table\" field value, \"{conversion_attributes['table']}\", for conversion, \"{conversion_record_name}"
+                  f"\", in conversion table, \"{conversion_table}\", does not exist in the input JSON.")
         return _handle_errors(required, silent, message)
     
     if has_test:
@@ -550,16 +550,16 @@ def _build_table_records(has_test: bool, conversion_record_name: str, conversion
         
     if not table_records:
         if has_test:
-            message = "When creating the \"" + conversion_record_name + \
-                      "\" conversion for the \"" + conversion_table + "\" table, no records in the \"" + \
-                      conversion_attributes["table"] + "\" table matched the test value, \"" + \
-                      test_value + "\", for the test field, \"" + \
-                      test_field + "\", indicated in the \"test\" field of the conversion. " +\
-                      "This could be from no records containing the test field or no records matching the test value for that field."
+            message = (f"When creating the \"{conversion_record_name}"
+                      f"\" conversion for the \"{conversion_table}\" table, no records in the \""
+                      f"{conversion_attributes['table']}\" table matched the test value, \""
+                      f"{test_value}\", for the test field, \""
+                      f"{test_field}\", indicated in the \"test\" field of the conversion. "
+                      f"This could be from no records containing the test field or no records matching the test value for that field.")
         else:
-            message = "When creating the \"" + conversion_record_name + \
-                      "\" conversion for the \"" + conversion_table + "\" table, there were no records in the indicated \"" + \
-                      conversion_attributes["table"] + "\" table."
+            message = (f"When creating the \"{conversion_record_name}"
+                      f"\" conversion for the \"{conversion_table}\" table, there were no records in the indicated \""
+                      f"{conversion_attributes['table']}\" table.")
         
         return _handle_errors(required, silent, message)
     
@@ -569,10 +569,10 @@ def _build_table_records(has_test: bool, conversion_record_name: str, conversion
             ## table_records used to be a list of dicts and this was the sort, leaving it here in case it is needed.
             # table_records = sorted(table_records, key = operator.itemgetter(*sort_by), reverse = conversion_attributes["sort_order"] == "descending")
         except KeyError as e:
-            message = "The record, \"" + e.pair[0] + "\", in the \"" + conversion_attributes["table"] + \
-                      "\" table does not have the field, " + str(e) + \
-                      ", required by the \"sort_by\" field for the conversion, \"" + \
-                      conversion_record_name + "\", in the conversion table, \"" + conversion_table + "\"."
+            message = (f"The record, \"{e.pair[0]}\", in the \"{conversion_attributes['table']}"
+                      f"\" table does not have the field, {e}"
+                      f", required by the \"sort_by\" field for the conversion, \""
+                      f"{conversion_record_name}\", in the conversion table, \"{conversion_table}\".")
             return _handle_errors(required, silent, message)
         
     return table_records
@@ -603,8 +603,8 @@ def handle_code_field(input_json: dict, conversion_table: str, conversion_record
     if import_path := conversion_attributes.get("import"):
         import_pathlib = pathlib.Path(import_path)
         if not import_pathlib.exists():
-            message = "The path given to import a Python file in the \"import\" field of the conversion record \"" + \
-                      conversion_record_name + "\" in the \"" + conversion_table + "\" table does not exist."
+            message = (f"The path given to import a Python file in the \"import\" field of the conversion record \""
+                      f"{conversion_record_name}\" in the \"{conversion_table}\" table does not exist.")
             return _handle_errors(required, silent, message)
         
         import_name = import_pathlib.stem
@@ -618,8 +618,8 @@ def handle_code_field(input_json: dict, conversion_table: str, conversion_record
             ## TODO Possibly add a different message for nested directives or not display a message for them.
             ## Nested directives with required = False are more likely to be spurious messages that aren't needed.
             ## Maybe add an option to the directive or the CLI to not print messages for required=False.
-            message = "The code conversion directive to create the \"" + conversion_record_name + \
-                      "\" record in the \"" + conversion_table + "\" table encountered an error while executing.\n"
+            message = (f"The code conversion directive to create the \"{conversion_record_name}"
+                      f"\" record in the \"{conversion_table}\" table encountered an error while executing.\n")
             message += traceback.format_exc()
             return _handle_errors(required, silent, message)
         
@@ -714,10 +714,10 @@ def _build_string_value(input_json: dict, fields: list[str], conversion_table: s
                 
                 ## If the field is not a literal value and it's not in the record print an error.
                 if field not in record_attributes:
-                    message = "The conversion directive to create the \"" + conversion_record_name + \
-                              "\" record in the \"" + conversion_table + "\" table matched a record in the input \"" + \
-                              record_table + "\" table, \"" + record_name + "\", that did not contain the \"" + \
-                              field + "\" field indicated by the directive."
+                    message = (f"The conversion directive to create the \"{conversion_record_name}"
+                              f"\" record in the \"{conversion_table}\" table matched a record in the input \""
+                              f"{record_table}\" table, \"{record_name}\", that did not contain the \""
+                              f"{field}\" field indicated by the directive.")
                     _handle_errors(required, silent, message)
                     continue
             
@@ -753,17 +753,17 @@ def _is_field_in_calling_record(string_to_test: str, conversion_table: str, conv
         calling_field = re_match.group(1)
         
         if not calling_record_attributes:
-            message = "The conversion directive to create the \"" + conversion_record_name + \
-                      "\" record in the \"" + conversion_table + "\" table tries to use fields from a calling record, " +\
-                      "but the directive is not a nested directive, and therefore has no calling record."
+            message = (f"The conversion directive to create the \"{conversion_record_name}"
+                      f"\" record in the \"{conversion_table}\" table tries to use fields from a calling record, "
+                      f"but the directive is not a nested directive, and therefore has no calling record.")
             _handle_errors(required, silent, message)
             return True, None
         
         if calling_field not in calling_record_attributes:
-            message = "The conversion directive to create the \"" + conversion_record_name + \
-                      "\" record in the \"" + conversion_table + "\" table tries to use the field, " +\
-                      calling_field + ", from the calling record, \"" + calling_record_name + \
-                      "\", in the table, \"" + calling_record_table + "\", but that field is not in the record.\""
+            message = (f"The conversion directive to create the \"{conversion_record_name}"
+                      f"\" record in the \"{conversion_table}\" table tries to use the field, "
+                      f"{calling_field}, from the calling record, \"{calling_record_name}"
+                      f"\", in the table, \"{calling_record_table}\", but that field is not in the record.\"")
             _handle_errors(required, silent, message)
             return True, None
         
@@ -797,9 +797,9 @@ def _is_field_a_nested_directive(string_to_test: str,
         directive = re_match.group(1)
         
         if directive not in conversion_directives:
-            message = "The conversion directive to create the \"" + conversion_record_name + \
-                      "\" record in the \"" + conversion_table + "\" table tries to call a nested directive, " +\
-                      directive + ", but that directive is not in the conversion directives.\""
+            message = (f"The conversion directive to create the \"{conversion_record_name}"
+                      f"\" record in the \"{conversion_table}\" table tries to call a nested directive, "
+                      f"{directive}, but that directive is not in the conversion directives.\"")
             _handle_errors(required, silent, message)
             return True, None
         
@@ -886,22 +886,22 @@ def _determine_directive_table_value(input_json: dict, conversion_table: str, co
         if value is None:
             if default is None:
                 if required:
-                    print("Error: The conversion directive to create the \"" + conversion_record_name + \
-                          "\" record in the \"" + conversion_table + "\" table did not return a value.", 
+                    print("Error: The conversion directive to create the \"{conversion_record_name}"
+                          "\" record in the \"{conversion_table}\" table did not return a value.", 
                           file=sys.stderr)
                     sys.exit()
                 else:
                     if not silent:
-                        print("Warning: The non-required conversion directive to create the \"" + \
-                              conversion_record_name + "\" record in the \"" + conversion_table + "\" table could not be created.", 
+                        print("Warning: The non-required conversion directive to create the \""
+                              "{conversion_record_name}\" record in the \"{conversion_table}\" table could not be created.", 
                               file=sys.stderr)
                     continue
             else:
                 value = default
                 if not silent:
-                    print("The conversion directive to create the \"" + conversion_record_name + \
-                          "\" record in the \"" + conversion_table + \
-                          "\" table could not be created, and reverted to its given default value, \"" + default + "\".", 
+                    print("The conversion directive to create the \"{conversion_record_name}"
+                          "\" record in the \"{conversion_table}"
+                          "\" table could not be created, and reverted to its given default value, \"{default}\".", 
                           file=sys.stderr)
         
         # if value is None and required:
@@ -987,9 +987,9 @@ def _build_matrix_record_dict(input_json: dict,
                                                                                                 silent)
         
         if collate_key is not None and input_key_value in matrix_dict and output_key_value != matrix_dict[input_key_value]:
-            print("Warning: When creating the \"" + conversion_record_name + \
-                  "\" matrix for the \"" + conversion_table + "\" table different values for the output key, \"" + \
-                  output_key + "\", were found for the collate key \"" + collate_key + \
+            print("Warning: When creating the \"{conversion_record_name}"
+                  "\" matrix for the \"{conversion_table}\" table different values for the output key, \""
+                  "{output_key}\", were found for the collate key \"{collate_key}"
                   "\". Only the last value will be used.", 
                   file=sys.stderr)
         
@@ -1080,10 +1080,10 @@ def _determine_header_input_keys(input_json: dict, header: str, record_name: str
     
     else:    
         if input_key not in record_attributes:
-            message = "The record, \"" + record_name + "\", in the \"" + conversion_attributes["table"] + \
-                      "\" table does not have the field, \"" + input_key + \
-                      "\", required by the \"headers\" field for the conversion, \"" + \
-                      conversion_record_name + "\", in the conversion table, \"" + conversion_table + "\"."
+            message = (f"The record, \"{record_name}\", in the \"{conversion_attributes['table']}"
+                      f"\" table does not have the field, \"{input_key}"
+                      f"\", required by the \"headers\" field for the conversion, \""
+                      f"{conversion_record_name}\", in the conversion table, \"{conversion_table}\".")
             return _handle_errors(required, silent, message)
         
         output_key_value = str(record_attributes[input_key]) if values_to_str else record_attributes[input_key]
@@ -1126,10 +1126,10 @@ def _determine_header_input_keys(input_json: dict, header: str, record_name: str
     
     else:
         if output_key not in record_attributes:
-            message = "The record, \"" + record_name + "\", in the \"" + conversion_attributes["table"] + \
-                      "\" table does not have the field, \"" + output_key + \
-                      "\", required by the \"headers\" field for the conversion, \"" + \
-                      conversion_record_name + "\", in the conversion table, \"" + conversion_table + "\"."
+            message = (f"The record, \"{record_name}\", in the \"{conversion_attributes['table']}"
+                      f"\" table does not have the field, \"{output_key}"
+                      f"\", required by the \"headers\" field for the conversion, \""
+                      f"{conversion_record_name}\", in the conversion table, \"{conversion_table}\".")
             return _handle_errors(required, silent, message)
         
         input_key_value = str(record_attributes[output_key]) if values_to_str else record_attributes[output_key]
@@ -1172,8 +1172,8 @@ def compute_string_value(input_json: dict, conversion_table: str, conversion_rec
             
     if value is not None:
         if not isinstance(value, str):
-            print("Error: The code conversion directive to create the \"" + conversion_record_name + \
-                  "\" record in the \"" + conversion_table + "\" table did not return a string type value.", 
+            print("Error: The code conversion directive to create the \"{conversion_record_name}"
+                  "\" record in the \"{conversion_table}\" table did not return a string type value.", 
                   file=sys.stderr)
             sys.exit()
         
@@ -1239,10 +1239,10 @@ def compute_string_value(input_json: dict, conversion_table: str, conversion_rec
     ## record_id
     if conversion_attributes.get("record_id"):
         if not conversion_attributes["record_id"] in table_records:
-            message = "The \"record_id\" field value, \"" + conversion_attributes["record_id"] + \
-                      "\", for conversion, \"" + conversion_record_name + \
-                      "\", in conversion table, \"" + conversion_table + "\", does not exist in the \"" + \
-                      conversion_attributes["table"] + "\" table of the input JSON."
+            message = (f"The \"record_id\" field value, \"{conversion_attributes['record_id']}"
+                      f"\", for conversion, \"{conversion_record_name}"
+                      f"\", in conversion table, \"{conversion_table}\", does not exist in the \""
+                      f"{conversion_attributes['table']}\" table of the input JSON.")
             return _handle_errors(required, silent, message)
         record_attributes = table_records[conversion_attributes["record_id"]]
         record_name = conversion_attributes["record_id"]
@@ -1300,8 +1300,8 @@ def compute_matrix_value(input_json: dict, conversion_table: str, conversion_rec
             
     if value is not None:
         if not isinstance(value, list) or not all([isinstance(record, dict) for record in value]):
-            print("Error: The code conversion directive to create the \"" + conversion_record_name + \
-                  "\" record in the \"" + conversion_table + "\" table did not return a matrix type value.", 
+            print("Error: The code conversion directive to create the \"{conversion_record_name}"
+                  "\" record in the \"{conversion_table}\" table did not return a matrix type value.", 
                   file=sys.stderr)
             sys.exit()
         
@@ -1356,10 +1356,10 @@ def compute_matrix_value(input_json: dict, conversion_table: str, conversion_rec
         records = {}
         for record_name, record_attributes in table_records.items():
             if collate not in record_attributes:
-                message = "The record, \"" + record_name + "\", in the \"" + conversion_attributes["table"] + \
-                          "\" table does not have the field, \"" + collate + \
-                          "\", required by the \"collate\" field for the conversion, \"" + \
-                          conversion_record_name + "\", in the conversion table, \"" + conversion_table + "\"."
+                message = (f"The record, \"{record_name}\", in the \"{conversion_attributes['table']}"
+                          f"\" table does not have the field, \"{collate}"
+                          f"\", required by the \"collate\" field for the conversion, \""
+                          f"{conversion_record_name}\", in the conversion table, \"{conversion_table}\".")
                 return _handle_errors(required, silent, message)
             collate_key = record_attributes[collate]
             
