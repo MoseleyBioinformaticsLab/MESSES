@@ -1,0 +1,12 @@
+{
+  "TREATMENT": {
+    "directive1": {
+      "value_type": "section",
+      "code": "['a', 'b']"
+    },
+    "directive2": {
+      "override": "asdf",
+      "value_type": "str"
+    }
+  }
+}

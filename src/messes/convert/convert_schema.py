@@ -17,7 +17,7 @@ directives_schema = \
      "additionalProperties":{
          "type":"object",
          "properties":{
-             "value_type":{"type":"string", "enum":["str", "section", "matrix"]}
+             "value_type":{"type":"string", "enum":["str", "section", "matrix", "section_str", "section_matrix"]}
              },
          "required":["value_type"],
          "allOf":[
@@ -34,7 +34,7 @@ directives_schema = \
                      "table":{"type":["string", "null"]},
                      "for_each":{"type":["string", "null", "boolean"], "pattern":"(?i)^true|false$"},
                      "fields":{"type":["array", "null"], "minItems":1, "items":{"type":"string", "minLength":1}},
-                     "test":{"type":["string", "null"], "pattern":"^.+=.+$"},
+                     "test":{"type":["string", "null"], "pattern":"^((.+=.+)((and|or|\||\&)(.+=.+))?)+$"},
                      "required":{"type":["string", "null", "boolean"], "pattern":"(?i)^true|false$"},
                      "delimiter":{"type":["string", "null"]},
                      "sort_by":{"type":["array", "null"], "minItems":1, "items":{"type":"string", "minLength":1}},
@@ -78,7 +78,7 @@ directives_schema = \
                      "code":{"type":["string", "null"]},
                      "import":{"type":["string", "null"]},
                      "table":{"type":["string", "null"]},
-                     "test":{"type":["string", "null"], "pattern":"^.+=.+$"},
+                     "test":{"type":["string", "null"], "pattern":"^((.+=.+)((and|or|\||\&)(.+=.+))?)+$"},
                      "required":{"type":["string", "null", "boolean"], "pattern":"(?i)^true|false$"},
                      "sort_by":{"type":["array", "null"], "minItems":1, "items":{"type":"string", "minLength":1}},
                      "sort_order":{"type":["string", "null"], "pattern":"(?i)^descending|ascending$"},

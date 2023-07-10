@@ -12,6 +12,10 @@ Support the ISA-Tab format.
 If the user says to read from stdin but does not supply a file, then it will run indefinitely. This is 
 normal behavior for that situation in other programs, but we could add a timeout on waiting.
 
+Add a conversion from JSON to SQLite.
+Use SQLite for validation and replace JSON Schema.
+Eventually make extraction from files to SQLite one step.
+
 
 Possible Improvements to Extract
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -61,3 +65,6 @@ Possible Improvements to Convert
 Make it so save-directives can output to stdout if user supplies "-" for filename.
 
 For matrix directives add an option so that fields in "headers" don't have to be in the records.
+
+Add a smart_parse_ontology_annotation that does what dumb_parse_ontology_annotation does, but tries to fill in missing values and goes to the web.
+For example a string like "OBI:0500020:time series design:comment" would be able to look up OBI:0500020 and validate it and fill in the URL like ISA wants.

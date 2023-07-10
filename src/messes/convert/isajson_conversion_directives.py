@@ -252,8 +252,9 @@ directives = \
  ## TODO, maybe add a "built-in" keyword that will run certain built-in functions 
  ## only and automatically supply the extra variables so the user doesn't have to include them in the "code" keyword.
  ## Could have signature like function(record_field_name) or function("literal_value") to make it even easier.
+ ## A better name may be something to do with formats, since this is more specifically to transform strings into something else.
+ ## I think this might have to be a nested directive keyword only.
  ## TODO, maybe add "silent" as a keyword that can override the global silent.
- ## " \+ ([^+]*) \+ ["\\]  {\1}
  "people%roles": {
      "no_id_needed": {
          "code": "parse_ontology_annotation(calling_record_attributes['roles'])",
@@ -279,13 +280,13 @@ directives = \
            "\"processSequence\"=#studies/process",
            "\"factors\"=#studies/factors",
            "\"characteristicCategories\"=#studies/characteristicCategories",
-           "\"unitCategories\"=#studies/unitCategories",
-           "\"comments\"=#studies/comments"
+           "\"unitCategories\"=studies%unitCategories()",
+           "\"comments\"=studies%comments()"
          ],
          "table": "study"
          }
      },
- "studies/assays": {
+ "studies%assays": {
      "no_id_needed": {
          "value_type": "section_matrix",
          "required": "True",

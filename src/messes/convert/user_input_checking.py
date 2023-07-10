@@ -41,7 +41,7 @@ def validate_conversion_directives(conversion_directives: dict, schema: dict):
                 value_type_map = ["str", "matrix", "section"]
                 value_type = value_type_map[e.schema_path[3]]
                 
-                if value_type == "str":
+                if value_type == "str" or value_type == "section_str":
                     message += "'str' type directives have 3 valid configurations:\n" +\
                                "\t1. They have an 'override' property.\n" +\
                                "\t2. They have a 'code' property.\n" +\
@@ -49,7 +49,7 @@ def validate_conversion_directives(conversion_directives: dict, schema: dict):
                                "The entry "+ "[%s]" % "][".join(repr(index) for index in e.relative_path) +\
                                " is not one of the valid configurations."
                 
-                if value_type == "matrix":
+                if value_type == "matrix" or value_type == "section_matrix":
                     message += "'matrix' type directives must either have a 'code' property or 'headers' and 'table' properties.\n" +\
                                "The entry "+ "[%s]" % "][".join(repr(index) for index in e.relative_path) +\
                                " is missing one of these properties."
@@ -115,6 +115,25 @@ def validate_conversion_directives(conversion_directives: dict, schema: dict):
             message = message + "The value for " + "[%s]" % "][".join(repr(index) for index in e.relative_path) + custom_message
         print(message, file=sys.stderr)
         sys.exit()
+        
+    
+    ##################################    
+    ## Extra checks beyond JSON Schema
+    ##################################
+    
+    ## Look to see if a section type directive is in the same table as others.
+    ## This can cause an error on top of the fact that it's dumb because the 
+    ## section type would overwrite the others.
+    for conversion_table, conversion_records in conversion_directives.items():
+        if len(conversion_records) > 1:
+            for conversion_name, conversion_attributes in conversion_records.items():
+                if (value_type := conversion_attributes.get("value_type")) and "section" in value_type:
+                    message = (f"ValidationError: In the conversion directives, the table, \"{conversion_table}\","
+                               " has multiple directives and one of them is a section type."
+                               " Section type directives must be the only directive type in"
+                               " a table if it is present.")
+                    print(message, file=sys.stderr)
+                    sys.exit()
 
 
 

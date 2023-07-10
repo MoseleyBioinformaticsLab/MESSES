@@ -95,34 +95,28 @@ malformed_matrix_message = "ValidationError: An error was found in the Conversio
         
         ({"ANALYSIS": {
             "ANALYSIS_TYPE": {
-              "id": "ANALYSIS_TYPE",
               "value_type": "str",
               "fields":["wqer"],
             }}}, malformed_str_message),
         ({"ANALYSIS": {
             "ANALYSIS_TYPE": {
-              "id": "ANALYSIS_TYPE",
             }}}, "ValidationError: An error was found in the Conversion Directives.\nThe entry ['ANALYSIS']['ANALYSIS_TYPE'] is missing the required property 'value_type'."),
         ({"ANALYSIS": {
             "ANALYSIS_TYPE": {
-              "id": "ANALYSIS_TYPE",
               "value_type": "matrix",
             }}}, malformed_matrix_message),
         ({"ANALYSIS": {
             "ANALYSIS_TYPE": {
-              "id": "ANALYSIS_TYPE",
               "value_type":"section"
             }}}, "ValidationError: An error was found in the Conversion Directives.\nThe entry ['ANALYSIS']['ANALYSIS_TYPE'] is missing the required property 'code'."),
         ({"ANALYSIS": {
             "ANALYSIS_TYPE": {
-              "id": "ANALYSIS_TYPE",
               "value_type":"matrix",
               "table":"qwer",
               "headers":["asdf"]
             }}}, "ValidationError: An error was found in the Conversion Directives.\nEach element in the 'headers' property for entry ['ANALYSIS']['ANALYSIS_TYPE'] must have an '=' in the middle. Ex. type=MS"),
         ({"ANALYSIS": {
             "ANALYSIS_TYPE": {
-              "id": "ANALYSIS_TYPE",
               "value_type":"str",
               "table":"qwer",
               "fields":["asdf"],
@@ -131,7 +125,6 @@ malformed_matrix_message = "ValidationError: An error was found in the Conversio
             }}}, "ValidationError: An error was found in the Conversion Directives.\nThe 'test' property for entry ['ANALYSIS']['ANALYSIS_TYPE'] must have an '=' in the middle. Ex. type=MS"),
         ({"ANALYSIS": {
             "ANALYSIS_TYPE": {
-              "id": "ANALYSIS_TYPE",
               "value_type":"str",
               "table":"qwer",
               "fields":["asdf"],
@@ -140,7 +133,6 @@ malformed_matrix_message = "ValidationError: An error was found in the Conversio
             }}}, "ValidationError: An error was found in the Conversion Directives.\nThe 'sort_order' property for entry ['ANALYSIS']['ANALYSIS_TYPE'] must be 'ascending' or 'descending'"),
         ({"ANALYSIS": {
             "ANALYSIS_TYPE": {
-              "id": "ANALYSIS_TYPE",
               "value_type":"str",
               "table":"qwer",
               "fields":["asdf"],
@@ -149,7 +141,6 @@ malformed_matrix_message = "ValidationError: An error was found in the Conversio
             }}}, "ValidationError: An error was found in the Conversion Directives.\nThe 'required' property for entry ['ANALYSIS']['ANALYSIS_TYPE'] must be 'True' or 'False'."),
         ({"ANALYSIS": {
             "ANALYSIS_TYPE": {
-              "id": "ANALYSIS_TYPE",
               "value_type":"str",
               "table":"qwer",
               "fields":["asdf"],
@@ -158,7 +149,6 @@ malformed_matrix_message = "ValidationError: An error was found in the Conversio
             }}}, "ValidationError: An error was found in the Conversion Directives.\nThe 'for_each' property for entry ['ANALYSIS']['ANALYSIS_TYPE'] must be 'True' or 'False'."),
         ({"ANALYSIS": {
             "ANALYSIS_TYPE": {
-              "id": "ANALYSIS_TYPE",
               "value_type":"matrix",
               "table":"qwer",
               "headers":["asdf=qwer"],
@@ -166,7 +156,6 @@ malformed_matrix_message = "ValidationError: An error was found in the Conversio
             }}}, "ValidationError: An error was found in the Conversion Directives.\nThe 'fields_to_headers' property for entry ['ANALYSIS']['ANALYSIS_TYPE'] must be 'True' or 'False'."),
         ({"ANALYSIS": {
             "ANALYSIS_TYPE": {
-              "id": "ANALYSIS_TYPE",
               "value_type":"matrix",
               "table":"qwer",
               "headers":["asdf=qwer"],
@@ -174,12 +163,22 @@ malformed_matrix_message = "ValidationError: An error was found in the Conversio
             }}}, "ValidationError: An error was found in the Conversion Directives.\nThe 'values_to_str' property for entry ['ANALYSIS']['ANALYSIS_TYPE'] must be 'True' or 'False'."),
         ({"ANALYSIS": {
             "ANALYSIS_TYPE": {
-              "id": "ANALYSIS_TYPE",
               "value_type":"asdf",
               "table":"qwer",
               "headers":["asdf=qwer"],
               "values_to_str":"asdf"
             }}}, "ValidationError: An error was found in the Conversion Directives.\nThe value for ['ANALYSIS']['ANALYSIS_TYPE']['value_type'] is not one of ['str', 'section', 'matrix']."),
+        ({"ANALYSIS": {
+            "ANALYSIS_TYPE": {
+              "value_type":"section",
+              "table":"qwer",
+              "code":"asdf"
+            },
+            "ANALYSIS_ASDF": {
+                "value_type":"str",
+                "override":"asdf"
+                }
+            }}, "ValidationError: In the conversion directives, the table, \"ANALYSIS\", has multiple directives and one of them is a section type. Section type directives must be the only directive type in a table if it is present."),
         ])
 
 def test_validate_conversion_directives_malformed_directives_errors(instance, error_message, capsys):
