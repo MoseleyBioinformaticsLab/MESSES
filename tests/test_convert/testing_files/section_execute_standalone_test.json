@@ -1,0 +1,9 @@
+{
+  "directive1": {
+    "name1": {
+      "execute": "dumb_parse_ontology_annotation(\"source : accession:value: comment\")",
+      "required": "True",
+      "value_type": "section"
+    }
+  }
+}

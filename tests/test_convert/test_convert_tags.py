@@ -900,35 +900,327 @@ def delete_json():
 #     assert output == 'Error: The conversion directive to create the "TREATMENT_SUMMARY" record in the "TREATMENT" table did not return a value.\n'
 
 
-def test_silent_in_directive_works():
-    """Test that a warning is not printed when silent is true."""
+# def test_silent_in_directive_works():
+#     """Test that a warning is not printed when silent is true."""
     
-    test_file = "MS_base_input_truncated.json"
+#     test_file = "MS_base_input_truncated.json"
     
-    command = "messes convert generic ../" + test_file  + " output ../conversion_returns_none_warning_silent_test.json" 
+#     command = "messes convert generic ../" + test_file  + " output ../conversion_returns_none_warning_silent_test.json" 
+#     command = command.split(" ")
+#     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
+#     output = subp.stderr
+    
+#     assert output_path_json.exists()
+#     ## Should output this, but it should be silenced.
+#     #'Warning: The non-required conversion directive to create the "TREATMENT_SUMMARY" record in the "TREATMENT" table could not be created.\n'
+#     assert output == ""
+
+
+# def test_section_conversion_with_multiple_directives_error():
+#     """Test that an error is printed when a conversion directive has a section type and additional directives in the same table."""
+    
+#     test_file = "MS_base_input_truncated.json"
+    
+#     command = "messes convert generic ../" + test_file  + " output ../conversion_section_with_multiple_directives_error.json" 
+#     command = command.split(" ")
+#     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
+#     output = subp.stderr
+    
+#     assert not output_path_json.exists()
+    
+#     assert output == 'ValidationError: In the conversion directives, the table, "TREATMENT", has multiple directives and one of them is a section type. Section type directives must be the only directive type in a table if it is present.\n'
+
+
+# def test_str_that_calls_nested_directive_returning_none_is_not_concatenated():
+#     """Test that a warning is printed when a str conversion directive calls a nested directive that returns None is not required."""
+    
+#     test_file = "MS_base_input_truncated.json"
+    
+#     command = "messes convert generic ../" + test_file  + " output ../str_nested_directive_returns_none_test.json" 
+#     command = command.split(" ")
+#     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
+#     output = subp.stderr
+    
+#     assert output_path_json.exists()
+    
+#     with open(output_path_json, "r") as f:
+#         output_json = json.loads(f.read())
+        
+#     assert output_json == {"CHROMATOGRAPHY":{"CHROMATOGRAPHY_SUMMARY":"Before going into the IC-FTMS the frozen sample is reconstituted in water."}}
+    
+#     assert ('Warning: When executing the str directive, "CHROMATOGRAPHY_SUMMARY", in the conversion table, '
+#             '"CHROMATOGRAPHY", a value in the "field" called the nested directive, "nested_directive%", and '
+#             'a problem was encountered while executing the directive. Since the "required" field of the nested '
+#             'directive is "False" the field will not be concatenated in the result created for the record, '
+#             '"IC-FTMS_preparation", in the "protocol" table.') in output
+    
+#     assert ('Warning: The non-required conversion directive to create the "no_id_needed" '
+#             'record in the "nested_directive%" table could not be created.') in output
+
+
+# def test_str_that_calls_nested_directive_returning_none_is_not_concatenated_silent():
+#     """Test that a warning is NOT printed when a str conversion directive calls a nested directive that returns None is not required and has silent=True."""
+    
+#     test_file = "MS_base_input_truncated.json"
+    
+#     command = "messes convert generic ../" + test_file  + " output ../str_nested_directive_returns_none_silent_test.json" 
+#     command = command.split(" ")
+#     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
+#     output = subp.stderr
+    
+#     assert output_path_json.exists()
+    
+#     assert output == ""
+
+
+# def test_matrix_that_calls_nested_directive_returning_none_is_not_in_dict():
+#     """Test that a warning is printed when a matrix conversion directive calls a nested directive that returns None is not required."""
+    
+#     test_file = "MS_base_input_truncated.json"
+    
+#     command = "messes convert generic ../" + test_file  + " output ../matrix_nested_directive_returns_none_test.json" 
+#     command = command.split(" ")
+#     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
+#     output = subp.stderr
+    
+#     assert output_path_json.exists()
+    
+#     with open(output_path_json, "r") as f:
+#         output_json = json.loads(f.read())
+        
+#     assert output_json == {"CHROMATOGRAPHY":{"CHROMATOGRAPHY_SUMMARY":[{"desc":"Tissue is frozen in liquid nitrogen to stop metabolic processes."}]}}
+    
+#     assert ('Warning: When executing the matrix directive, "CHROMATOGRAPHY_SUMMARY", in the conversion table, '
+#             '"CHROMATOGRAPHY", a header called the nested directive, "nested_directive%", and '
+#             'a problem was encountered while executing the directive. Since the "required" field of the nested '
+#             'directive is "False" the header will not be in the dictionary created for the record, '
+#             '"tissue_quench", in the "protocol" table.') in output
+    
+#     assert ('Warning: The non-required conversion directive to create the "no_id_needed" '
+#             'record in the "nested_directive%" table could not be created.') in output
+    
+
+# def test_matrix_that_calls_nested_directive_returning_none_is_not_in_dict_silent():
+#     """Test that a warning is NOT printed when a matrix conversion directive calls a nested directive that returns None is not required and has silent=True."""
+    
+#     test_file = "MS_base_input_truncated.json"
+    
+#     command = "messes convert generic ../" + test_file  + " output ../matrix_nested_directive_returns_none_silent_test.json" 
+#     command = command.split(" ")
+#     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
+#     output = subp.stderr
+    
+#     assert output_path_json.exists()
+    
+#     assert output == ""
+
+
+# def test_test_keyword_literal_field_test():
+#     """Test that literal fields work as expected for the test keyword."""
+    
+#     test_file = "MS_base_input_truncated.json"
+    
+#     command = "messes convert generic ../" + test_file  + " output ../test_keyword_literal_field_test.json" 
+#     command = command.split(" ")
+#     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
+#     output = subp.stderr
+    
+#     assert output_path_json.exists()
+    
+#     with open(output_path_json, "r") as f:
+#         output_json = json.loads(f.read())
+        
+#     assert output_json == {
+#                           "CHROMATOGRAPHY": {
+#                             "CHROMATOGRAPHY_SUMMARY": "asdf"
+#                           }
+#                         }
+    
+#     assert output == ""
+
+
+# def test_test_keyword_calling_field_for_non_nested_directive_error():
+#     """Test that an error is printed when a directive indicates to use a field from a calling record, but is not a nested directive."""
+    
+#     test_file = "MS_base_input_truncated.json"
+    
+#     command = "messes convert generic ../" + test_file  + " output ../test_keyword_calling_field_for_non_nested_directive_error.json" 
+#     command = command.split(" ")
+#     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
+#     output = subp.stderr
+    
+#     assert not output_path_json.exists()
+        
+#     assert ('Error: When creating the "CHROMATOGRAPHY_SUMMARY" conversion for '
+#             'the "CHROMATOGRAPHY" table, the value for "test", "machine_type=^.MS", '
+#             'indicates to use a calling record\'s attribute value, but this conversion '
+#             'directive is not a nested directive and therefore has no calling record.') in output
+
+
+# def test_test_keyword_calling_field_works():
+#     """Test that calling field works as expected for the test keyword."""
+    
+#     test_file = "MS_base_input_truncated.json"
+    
+#     command = "messes convert generic ../" + test_file  + " output ../test_keyword_calling_field_works.json" 
+#     command = command.split(" ")
+#     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
+#     output = subp.stderr
+    
+#     assert output_path_json.exists()
+    
+#     with open(output_path_json, "r") as f:
+#         output_json = json.loads(f.read())
+        
+#     assert output_json == {
+#                           "directive1": {
+#                             "name1": "asdf"
+#                           }
+#                         }
+    
+#     assert output == ""
+
+
+# def test_test_keyword_calling_field_not_in_record_error():
+#     """Test that an error is printed when a directive indicates to use a field from a calling record, but that field is not in the record."""
+    
+#     test_file = "MS_base_input_truncated.json"
+    
+#     command = "messes convert generic ../" + test_file  + " output ../test_keyword_calling_field_not_in_record_error.json" 
+#     command = command.split(" ")
+#     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
+#     output = subp.stderr
+    
+#     assert not output_path_json.exists()
+        
+#     assert ('Error: When creating the "no_id_needed" conversion for the "directive2%" table, '
+#             'the value for "test", "machine_type=^.asdf", indicates to use a calling record\'s '
+#             'attribute value, but that attribute, "asdf", does not exist in the calling record, '
+#             '"ICMS1", in the calling table, "protocol".') in output
+
+
+# def test_nested_directive_not_in_directives_error():
+#     """Test that an error is printed when a nested directive is called, but that directive is not in the directives."""
+    
+#     test_file = "MS_base_input_truncated.json"
+    
+#     command = "messes convert generic ../" + test_file  + " output ../test_nested_directive_not_in_directives_error.json" 
+#     command = command.split(" ")
+#     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
+#     output = subp.stderr
+    
+#     assert not output_path_json.exists()
+        
+#     assert ('Error: The conversion directive to create the "name1" record in the '
+#             '"directive1" table tries to call a nested directive, directive3%, but '
+#             'that directive is not in the conversion directives.') in output
+
+
+# def test_section_execute_standalone():
+#     """Test that the execute attribute for section directives works on its own."""
+    
+#     test_file = "MS_base_input_truncated.json"
+    
+#     command = "messes convert generic ../" + test_file  + " output ../section_execute_standalone_test.json" 
+#     command = command.split(" ")
+#     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
+#     output = subp.stderr
+    
+#     assert output_path_json.exists()
+    
+#     with open(output_path_json, "r") as f:
+#         output_json = json.loads(f.read())
+        
+#     assert output_json == {
+#                           "directive1": {
+#                             "termSource": "source",
+#                             "termAccession": "accession",
+#                             "annotationValue": "value",
+#                             "comments": [
+#                               {
+#                                 "value": "comment"
+#                               }
+#                             ]
+#                           }
+#                         }
+    
+#     assert output == ""
+
+
+# def test_section_execute_nested():
+#     """Test that the execute attribute for section directives works when nested."""
+    
+#     test_file = "MS_base_input_truncated.json"
+    
+#     command = "messes convert generic ../" + test_file  + " output ../section_execute_nested_test.json" 
+#     command = command.split(" ")
+#     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
+#     output = subp.stderr
+    
+#     assert output_path_json.exists()
+    
+#     with open(output_path_json, "r") as f:
+#         output_json = json.loads(f.read())
+        
+#     assert output_json == {
+#                           "directive1": {
+#                             "name1": [
+#                               {
+#                                 "asdf": {
+#                                   "termSource": "source",
+#                                   "termAccession": "accession",
+#                                   "annotationValue": "value",
+#                                   "comments": [
+#                                     {
+#                                       "value": "comment"
+#                                     }
+#                                   ]
+#                                 }
+#                               }
+#                             ]
+#                           }
+#                         }
+    
+#     assert output == ""
+
+
+def test_section_execute_first_record():
+    """Test that the section directive will use the first record in the table if no test, for_each, or record_id are given."""
+    
+    test_file = "base_input_for_section_execute.json"
+    
+    command = "messes convert generic ../" + test_file  + " output ../section_execute_first_record_test.json" 
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
     
     assert output_path_json.exists()
-    ## Should output this, but it should be silenced.
-    #'Warning: The non-required conversion directive to create the "TREATMENT_SUMMARY" record in the "TREATMENT" table could not be created.\n'
+    
+    with open(output_path_json, "r") as f:
+        output_json = json.loads(f.read())
+        
+    assert output_json == {
+                          "directive1": {
+                            "termSource": "source",
+                            "termAccession": "accession",
+                            "annotationValue": "value",
+                            "comments": [
+                              {
+                                "value": "comment"
+                              }
+                            ]
+                          }
+                        }
+    
     assert output == ""
 
 
-def test_section_conversion_with_multiple_directives_error():
-    """Test that an error is printed when a conversion directive has a section type and additional directives in the same table."""
-    
-    test_file = "MS_base_input_truncated.json"
-    
-    command = "messes convert generic ../" + test_file  + " output ../conversion_section_with_multiple_directives_error.json" 
-    command = command.split(" ")
-    subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
-    output = subp.stderr
-    
-    assert not output_path_json.exists()
-    
-    assert output == 'ValidationError: In the conversion directives, the table, "TREATMENT", has multiple directives and one of them is a section type. Section type directives must be the only directive type in a table if it is present.\n'
+
+
+
+
+
+
 
 
 

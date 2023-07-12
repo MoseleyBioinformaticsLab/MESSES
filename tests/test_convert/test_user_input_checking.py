@@ -167,7 +167,7 @@ malformed_matrix_message = "ValidationError: An error was found in the Conversio
               "table":"qwer",
               "headers":["asdf=qwer"],
               "values_to_str":"asdf"
-            }}}, "ValidationError: An error was found in the Conversion Directives.\nThe value for ['ANALYSIS']['ANALYSIS_TYPE']['value_type'] is not one of ['str', 'section', 'matrix']."),
+            }}}, "ValidationError: An error was found in the Conversion Directives.\nThe value for ['ANALYSIS']['ANALYSIS_TYPE']['value_type'] is not one of ['str', 'section', 'matrix', 'section_str', 'section_matrix']."),
         ({"ANALYSIS": {
             "ANALYSIS_TYPE": {
               "value_type":"section",

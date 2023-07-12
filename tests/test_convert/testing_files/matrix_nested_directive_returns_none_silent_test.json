@@ -1,0 +1,23 @@
+{
+  "CHROMATOGRAPHY": {
+    "CHROMATOGRAPHY_SUMMARY": {
+      "headers": [
+        "\"desc\"=description",
+        "\"asdf\"=nested_directive%()"
+      ],
+      "id": "CHROMATOGRAPHY_SUMMARY",
+      "required": "True",
+      "table": "protocol",
+      "test": "id=tissue_quench",
+      "value_type": "matrix"
+    }
+  },
+  "nested_directive%": {
+    "no_id_needed": {
+      "value_type": "section_str",
+      "required": "False",
+      "code": "None",
+      "silent": "True"
+    }
+  }
+}

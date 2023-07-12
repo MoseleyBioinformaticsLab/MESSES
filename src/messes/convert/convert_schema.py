@@ -113,8 +113,24 @@ directives_schema = \
                  "properties":{
                      "code":{"type":["string", "null"]},
                      "import":{"type":["string", "null"]},
+                     "table":{"type":["string", "null"]},
+                     "for_each":{"type":["string", "null", "boolean"], "pattern":"(?i)^true|false$"},
+                     "test":{"type":["string", "null"], "pattern":"^((.+=.+)((and|or|\||\&)(.+=.+))?)+$"},
+                     "required":{"type":["string", "null", "boolean"], "pattern":"(?i)^true|false$"},
+                     "sort_by":{"type":["array", "null"], "minItems":1, "items":{"type":"string", "minLength":1}},
+                     "sort_order":{"type":["string", "null"], "pattern":"(?i)^descending|ascending$"},
+                     "record_id":{"type":["string", "null"]}
                      },
-                 "required":["code"]
+                 "allOf":[
+                     {
+                         "if":{"properties":{"code":{"not":{"type":"string", "minLength":1}}},},
+                         "then":{"required":["execute"]}
+                         },
+                      {
+                          "if":{"properties":{"execute":{"not":{"type":"string", "minLength":1}}},},
+                          "then":{"required":["code"]}
+                          }
+                     ]
                  }
              }
              ]

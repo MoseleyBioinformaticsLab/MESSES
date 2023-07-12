@@ -1,0 +1,24 @@
+{
+  "directive1": {
+    "name1": {
+      "fields": [
+        "directive3%()"
+      ],
+      "required": "True",
+      "table": "protocol",
+      "test": "machine_type=MS",
+      "value_type": "str"
+    }
+  },
+  "directive2%": {
+    "no_id_needed": {
+      "fields": [
+        "\"asdf\""
+      ],
+      "required": "True",
+      "table": "protocol",
+      "test": "machine_type=^.asdf",
+      "value_type": "section_str"
+    }
+  }
+}

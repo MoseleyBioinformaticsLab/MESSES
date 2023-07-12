@@ -1,0 +1,10 @@
+{
+  "directive1": {
+    "name1": {
+      "execute": "dumb_parse_ontology_annotation(ontology_annotation)",
+      "required": "True",
+      "value_type": "section",
+      "table": "protocol"
+    }
+  }
+}

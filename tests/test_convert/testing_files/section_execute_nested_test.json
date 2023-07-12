@@ -1,0 +1,20 @@
+{
+  "directive1": {
+    "name1": {
+      "headers": [
+        "\"asdf\"=directive2%()"
+      ],
+      "required": "False",
+      "table": "protocol",
+      "test": "machine_type=MS",
+      "value_type": "matrix"
+    }
+  },
+  "directive2%": {
+    "name2": {
+      "execute": "dumb_parse_ontology_annotation(\"source : accession:value: comment\")",
+      "required": "True",
+      "value_type": "section"
+    }
+  }
+}

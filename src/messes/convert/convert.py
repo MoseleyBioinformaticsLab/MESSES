@@ -88,9 +88,13 @@ from messes.convert import regexes
 ## str directives to get optionality on all headers.
 
 ## See if the code that does error checking for nested directive fields i.e. uses calling_record_regex can be turned into a function for reuse.
+##  I think I got most of these.
 
 ## Update directives schema for all the new changes, "silent", "test", "section" type, "section_matrix" and "section_str" types, "execute".
 
+## Do the calling record tests that were done for "test" for "fields", "headers", "execute"
+
+## Make sure to test importing and using a built-in function.
 
 ## Add measurement%transformation and measurement%normalization protocol types. Allows us to handle those for ISA. Require parents and that parent be a measurement type.
 ## Try just concatenating fields to condense a list of protocols into 1, look for protocol%order field to determine order, if not there assume the order is correct.
@@ -359,17 +363,17 @@ def _update(original_dict: dict, upgrade_dict: dict) -> dict:
     return original_dict
 
 
-def _nested_set(dic: dict, keys: list[str], value: Any) -> None:
-    """Creates nested dictionaries in dic for all but the last key and creates a key value pair in the last dictionary.
+# def _nested_set(dic: dict, keys: list[str], value: Any) -> None:
+#     """Creates nested dictionaries in dic for all but the last key and creates a key value pair in the last dictionary.
     
-    Args:
-        dic: the dictionary to set the value in.
-        keys: the keys to nest in the dictionaries.
-        value: the value to set the last key to in the deepest dicitonary.
-    """
-    for key in keys[:-1]:
-        dic = dic.setdefault(key, {})
-    dic[keys[-1]] = value
+#     Args:
+#         dic: the dictionary to set the value in.
+#         keys: the keys to nest in the dictionaries.
+#         value: the value to set the last key to in the deepest dicitonary.
+#     """
+#     for key in keys[:-1]:
+#         dic = dic.setdefault(key, {})
+#     dic[keys[-1]] = value
 
 
 def _sort_by_getter(pair: tuple[str,dict], keys: list[str]) -> list:
@@ -405,6 +409,30 @@ def _sort_by_getter(pair: tuple[str,dict], keys: list[str]) -> list:
 #     return table_records
 
 
+def _str_to_boolean_get(default: bool, key: str, input_dict: dict) -> bool:
+    """Read the field and convert to boolean.
+    
+    Args:
+        default: the default boolean value to return if not found.
+        key: the key to the dict to look for the value of.
+        input_dict: the dict to look for the key in.
+    
+    Returns:
+        the vlaue of the key as a bool.
+    """
+    attribute = default
+    if (temp_attribute := input_dict.get(key)) is not None:
+        if isinstance(temp_attribute, bool):
+            attribute = temp_attribute
+        elif isinstance(temp_attribute, str):
+            if temp_attribute.lower() == "false":
+                attribute = False
+            else:
+                attribute = True
+            
+    return attribute
+
+
 
 ###############################
 ## Functions used by directives
@@ -430,34 +458,30 @@ def _parse_test_attribute(attribute_value: str, conversion_table: str, conversio
     Returns:
         Either a string that can be evaled to do the test or None if there was an error.
     """
-    
-    pairs = re.findall(r"(?:(?!\(|\)|\&|\||and|or|=).)+=(?:(?!\(|\)|\&|\||and|or|=).)+(?: *|\&|\||and|or|$)", attribute_value)
+    # pairs = re.findall(r"(?:(?!\(|\)|\s+\&\s+|\s+\|\s+|\s+and\s+|\s+or\s+|=).)+=(?:(?!\(|\)|\s+\&\s+|\s+\|\s+|\s+and\s+|\s+or\s+|=).)+(?: *|\s+\&\s+|\s+\|\s+|\s+and\s+|\s+or\s+|$)", attribute_value)
+    # pairs = re.findall(r"(?:(?!\(|\)|\&|\||and|or|=).)+=(?:(?!\(|\)|\&|\||and|or|=).)+(?: *|\&|\||and|or|$)", attribute_value)
+    pairs = re.split(r'\s+\&\s+|\s+\|\s+|\s+and\s+|\s+or\s+', attribute_value)
     
     for pair in pairs:
         split = pair.split("=")
         test_field = split[0].strip()
         test_value = split[1].strip()
         
-        if match := re.match(calling_record_regex, test_value):
-            field_key = match.group(1)
-            if calling_record_attributes:
-                if record_value := calling_record_attributes.get(field_key):
-                    test_value = record_value
-                else:
-                    message = (f"When creating the \"{conversion_record_name}"
-                              f"\" conversion for the \"{conversion_table}\" table, the value for \"test\", \""
-                              f"{conversion_attributes['test']}\", indicates to use a calling record's attribute value, but that attribute, \""
-                              f"{match.group(1)}\", does not exist in the calling record, \""
-                              f"{calling_record_name}\", in the calling table, \"{calling_record_table}\".")
-                    _handle_errors(required, silent, message)
-                    return None
-            else:
-                message = (f"When creating the \"{conversion_record_name}"
-                          f"\" conversion for the \"{conversion_table}\" table, the value for \"test\", \""
-                          f"{conversion_attributes['test']}\", indicates to use a calling record's attribute value, "
-                          f"but this conversion directive is not a nested directive and therefore there is no calling record.")
-                _handle_errors(required, silent, message)
+        if (calling_field := _is_field_in_calling_record(test_value, 
+                                                         "test", 
+                                                         conversion_attributes["test"], 
+                                                         conversion_table, 
+                                                         conversion_record_name,
+                                                         calling_record_table, 
+                                                         calling_record_name, 
+                                                         calling_record_attributes,
+                                                         required, 
+                                                         silent))[0]:
+            ## No value means it matched the syntax, but there were no fields in the calling record that matched.
+            if calling_field[1] is None:
                 return None
+            test_value = calling_record_attributes[calling_field[1]]
+        
         elif match := re.match(literal_regex, test_value):
             test_value = match.group(1)
             
@@ -584,13 +608,16 @@ def _handle_code_field(input_json: dict, conversion_table: str, conversion_recor
 
 
 
-def _is_field_in_calling_record(string_to_test: str, conversion_table: str, conversion_record_name: str,
+def _is_field_in_calling_record(string_to_test: str, conversion_field_name:str, conversion_field_value: str, 
+                                conversion_table: str, conversion_record_name: str,
                                 calling_record_table: str|int, calling_record_name: str|int, calling_record_attributes: dict,
                                 required: bool, silent: bool) -> tuple[bool, str|None]:
     """Determine if string is meant to access a field in calling record.
     
     Args:
         string_to_test: string to determine if it is pointing to a calling record field.
+        conversion_field_name: the name of the field in the conversion directive that might have a calling field syntax, used for error messaging.
+        conversion_field_value: the value of the field in the conversion directive that might have a calling field syntax, used for error messaging.
         conversion_table: the name of the table the conversion record came from, used for good error messaging.
         conversion_record_name: the name of the conversion record, used for good error messaging.
         calling_record_table: if this is a nested directive, then this should be the table of the record the directive was called on, else None.
@@ -602,23 +629,24 @@ def _is_field_in_calling_record(string_to_test: str, conversion_table: str, conv
     Returns:
         A tuple where the first value is a bool indicating if string_to_test matches the syntax for accessing a calling record's field, 
         and the second value is the field or None.
-    """
-    
+    """        
     if re_match := re.match(calling_record_regex, string_to_test):
         calling_field = re_match.group(1)
         
         if not calling_record_attributes:
-            message = (f"The conversion directive to create the \"{conversion_record_name}"
-                      f"\" record in the \"{conversion_table}\" table tries to use fields from a calling record, "
-                      f"but the directive is not a nested directive, and therefore has no calling record.")
+            message = (f"When creating the \"{conversion_record_name}"
+                      f"\" conversion for the \"{conversion_table}\" table, the value for \"{conversion_field_name}\", \""
+                      f"{conversion_field_value}\", indicates to use a calling record's attribute value, "
+                      f"but this conversion directive is not a nested directive and therefore has no calling record.")
             _handle_errors(required, silent, message)
             return True, None
         
         if calling_field not in calling_record_attributes:
-            message = (f"The conversion directive to create the \"{conversion_record_name}"
-                      f"\" record in the \"{conversion_table}\" table tries to use the field, "
-                      f"{calling_field}, from the calling record, \"{calling_record_name}"
-                      f"\", in the table, \"{calling_record_table}\", but that field is not in the record.\"")
+            message = (f"When creating the \"{conversion_record_name}"
+                      f"\" conversion for the \"{conversion_table}\" table, the value for \"{conversion_field_name}\", \""
+                      f"{conversion_field_value}\", indicates to use a calling record's attribute value, but that attribute, \""
+                      f"{calling_field}\", does not exist in the calling record, \""
+                      f"{calling_record_name}\", in the calling table, \"{calling_record_table}\".")
             _handle_errors(required, silent, message)
             return True, None
         
@@ -654,7 +682,7 @@ def _is_field_a_nested_directive(string_to_test: str,
         if directive not in conversion_directives:
             message = (f"The conversion directive to create the \"{conversion_record_name}"
                       f"\" record in the \"{conversion_table}\" table tries to call a nested directive, "
-                      f"{directive}, but that directive is not in the conversion directives.\"")
+                      f"{directive}, but that directive is not in the conversion directives.")
             _handle_errors(required, silent, message)
             return True, None
         
@@ -719,23 +747,9 @@ def _determine_directive_table_value(input_json: dict, conversion_table: str, co
     """
     directive_table_output = {}
     for conversion_record_name, conversion_attributes in conversion_directives[conversion_table].items():
+        silent = _str_to_boolean_get(silent, "silent", conversion_attributes)
+        required = _str_to_boolean_get(True, "required", conversion_attributes)            
         
-        if (silent_attr := conversion_attributes.get("silent")) is not None:
-            if isinstance(silent_attr, bool):
-                silent = silent_attr
-            elif isinstance(silent_attr, str) and silent_attr.lower() == "false":
-                silent = False
-            elif isinstance(silent_attr, str) and silent_attr.lower() == "true":
-                silent = True
-        
-        required = True
-        if (required_attr := conversion_attributes.get("required")) is not None:
-            if isinstance(required_attr, bool):
-                required = required_attr
-            elif isinstance(required_attr, str) and required_attr.lower() == "false":
-                required = False
-            
-                
         default = conversion_attributes.get("default")
         ## Literal check needs to be here if the user wants to use a space.
         if default and (literal_match := re.match(literal_regex, default)):
@@ -779,6 +793,8 @@ def _determine_directive_table_value(input_json: dict, conversion_table: str, co
             directive_table_output = value
         else:
             directive_table_output[conversion_record_name] = value
+            
+    ##TODO Should there be a check here to see if the entire conversion table returns None and do something?
                 
     return directive_table_output if directive_table_output else None
 
@@ -810,13 +826,7 @@ def compute_section_value(input_json: dict, conversion_table: str, conversion_re
     Returns:
         the value for the directive or None if there was a problem and the directive is not required.
     """
-    if (silent_attr := conversion_attributes.get("silent")) is not None:
-        if isinstance(silent_attr, bool):
-            silent = silent_attr
-        elif isinstance(silent_attr, str) and silent_attr.lower() == "false":
-            silent = False
-        elif isinstance(silent_attr, str) and silent_attr.lower() == "true":
-            silent = True
+    silent = _str_to_boolean_get(silent, "silent", conversion_attributes)
     
     ## code
     value = _handle_code_field(input_json, conversion_table, conversion_record_name, conversion_attributes, conversion_directives, 
@@ -828,43 +838,66 @@ def compute_section_value(input_json: dict, conversion_table: str, conversion_re
     elif value is None and conversion_attributes.get("code") is not None:
         return None
     
-    ## built-in
-    if built_in := conversion_attributes.get("built-in"):
-        if match := re.match(r"(.*)\((.*)\)", built_in.strip()):
+    ## execute
+    if execute := conversion_attributes.get("execute"):
+        if match := re.match(r"(.*)\((.*)\)\s*", execute.strip()):
             function_name = match.group(1)
-            field_name = match.group(2).strip()
+            # function_inputs = match.group(2).split(',')
+            ## Going to go on and strip here, but this may need to change in the 
+            ## future if people have fields with leading or trailing spaces.
+            function_arguments = [word.strip() for word in match.group(2).split(',')]
             
-            if match := re.match(calling_record_regex, field_name):
-                field_name = match.group(1)
-                
-                if not calling_record_attributes:
-                    message = (f"The conversion directive to create the \"{conversion_record_name}"
-                              f"\" record in the \"{conversion_table}\" table tries to use fields from a calling record, "
-                              f"but the directive is not a nested directive, and therefore has no calling record.")
-                    return _handle_errors(required, silent, message)
-                
-                if field_name not in calling_record_attributes:
-                    message = (f"The conversion directive to create the \"{conversion_record_name}"
-                              f"\" record in the \"{conversion_table}\" table indicated to use the field, "
-                              f"\"{field_name}\", with a built-in function, but the calling record, \"{calling_record_name}\", "
-                              f"in the \"{calling_record_table}\" table does not have this field.\n")
-                    return _handle_errors(required, silent, message)
+            ## (bool, value) if the bool is true it means the value needs to be evaled().
+            function_argument_tuples = []
+            for function_argument in function_arguments:
             
-            elif match := re.match(literal_regex, field_name):
-                field_name = match.group(1)
-                            
-            return _run_built_in_function(function_name, calling_record_attributes[field_name], 
-                                          conversion_table, conversion_record_name, 
-                                          calling_record_table, calling_record_name, 
-                                          required, silent)
+                if (calling_field := _is_field_in_calling_record(function_argument, 
+                                                                 "execute", 
+                                                                 conversion_attributes["execute"], 
+                                                                 conversion_table, 
+                                                                 conversion_record_name,
+                                                                 calling_record_table, 
+                                                                 calling_record_name, 
+                                                                 calling_record_attributes,
+                                                                 required, 
+                                                                 silent))[0]:
+                    ## No value means it matched the syntax, but there were no fields in the calling record that matched.
+                    if calling_field[1] is None:
+                        return None
+                    function_argument = (False, calling_record_attributes[calling_field[1]])
+                
+                
+                elif match := re.match(literal_regex, function_argument):
+                    function_argument = (False, match.group(1))
+                
+                else:
+                    function_argument = (True, f"record_attributes['{function_argument}']")
+                
+                function_argument_tuples.append(function_argument)
                         
         else:
             message = (f"The conversion directive to create the \"{conversion_record_name}"
                       f"\" record in the \"{conversion_table}\" table has a malformed value for "
-                      f"its \"built-in\" attribute, \"{built_in}\". It should be of the form \"function_name(field_name)\".\n")
+                      f"its \"execute\" attribute, \"{execute}\". It should be of the form \"function_name(function_input1, function_input2, ...)\".")
             return _handle_errors(required, silent, message)
+        
+        
+        if "table" not in conversion_attributes:
             
-    ## It is assumed that "built-in" will be in the directive because directives should be validated before this is called.
+            if any([entry[0] for entry in function_argument_tuples]):
+                message = (f"The conversion directive to create the \"{conversion_record_name}"
+                          f"\" record in the \"{conversion_table}\" table calls a function in its \"execute\" "
+                          f"attribute, \"{execute}\", that has arguments which are attributes to input records, "
+                          "but this directive does not provide a \"table\" attribute to pull records from.")
+                return _handle_errors(required, silent, message)
+            
+            return _run_built_in_function(function_name, 
+                                          [entry[1] for entry in function_argument_tuples], 
+                                          conversion_table, conversion_record_name, 
+                                          calling_record_table, calling_record_name, 
+                                          required, silent)
+            
+    ## It is assumed that "execute" will be in the directive because directives should be validated before this is called.
     
     has_test = False
     test_string = ""
@@ -877,12 +910,7 @@ def compute_section_value(input_json: dict, conversion_table: str, conversion_re
             return None
     
     ## for_each
-    for_each = False
-    if (for_each_temp := conversion_attributes.get("for_each")) is not None:
-        if isinstance(for_each_temp, bool):
-            for_each = for_each_temp
-        elif isinstance(for_each_temp, str) and for_each_temp.lower() == "true":
-            for_each = True
+    for_each = _str_to_boolean_get(False, "for_each", conversion_attributes)
     
     table_records = _build_table_records(has_test, conversion_record_name, conversion_table, conversion_attributes, 
                                          input_json, required, silent, test_string=test_string)
@@ -894,7 +922,8 @@ def compute_section_value(input_json: dict, conversion_table: str, conversion_re
     if for_each:
         value_for_each_record = []
         for record_name, record_attributes in table_records.items():
-            value = _run_built_in_function(function_name, record_attributes[field_name], 
+            value = _run_built_in_function(function_name, 
+                                           [eval(entry[1], {"record_attributes":record_attributes}) if entry[0] else entry[1] for entry in function_argument_tuples], 
                                            conversion_table, conversion_record_name, 
                                            record_table, record_name, 
                                            required, silent)
@@ -916,14 +945,16 @@ def compute_section_value(input_json: dict, conversion_table: str, conversion_re
         record_name = conversion_attributes["record_id"]
     else:
         record_name, record_attributes = list(table_records.items())[0]
+
     
-    return _run_built_in_function(function_name, record_attributes[field_name], 
+    return _run_built_in_function(function_name, 
+                                  [eval(entry[1], {"record_attributes":record_attributes}) if entry[0] else entry[1] for entry in function_argument_tuples], 
                                   conversion_table, conversion_record_name, 
                                   record_table, record_name, 
                                   required, silent)
 
 
-def _run_built_in_function(function_name: str, function_input: Any, 
+def _run_built_in_function(function_name: str, function_input: list[Any], 
                            conversion_table: str, conversion_record_name: str, 
                            record_table: str|int, record_name: str|int, 
                            required: bool, silent: bool) -> Any:
@@ -943,10 +974,10 @@ def _run_built_in_function(function_name: str, function_input: Any,
         the value returned by the built-in function or None if there was an error.
     """
     try:
-        message, value = built_in_functions[function_name](function_input)
+        message, value = built_in_functions[function_name](*function_input)
     except Exception:
-        message = (f"The built-in conversion directive to create the \"{conversion_record_name}"
-                  f"\" record in the \"{conversion_table}\" table encountered an error while executing.\n")
+        message = (f"The conversion directive to create the \"{conversion_record_name}"
+                  f"\" record in the \"{conversion_table}\" table encountered an error while executing its \"execute\" function.\n")
         message += traceback.format_exc()
         return _handle_errors(required, silent, message)
     
@@ -981,13 +1012,7 @@ def compute_string_value(input_json: dict, conversion_table: str, conversion_rec
     Returns:
         the str value for the directive or None if there was a problem and the directive is not required.
     """
-    if (silent_attr := conversion_attributes.get("silent")) is not None:
-        if isinstance(silent_attr, bool):
-            silent = silent_attr
-        elif isinstance(silent_attr, str) and silent_attr.lower() == "false":
-            silent = False
-        elif isinstance(silent_attr, str) and silent_attr.lower() == "true":
-            silent = True
+    silent = _str_to_boolean_get(silent, "silent", conversion_attributes)
     
     ## override
     if value := conversion_attributes.get("override"):
@@ -1042,12 +1067,7 @@ def compute_string_value(input_json: dict, conversion_table: str, conversion_rec
             return None
     
     ## for_each
-    for_each = False
-    if (for_each_temp := conversion_attributes.get("for_each")) is not None:
-        if isinstance(for_each_temp, bool):
-            for_each = for_each_temp
-        elif isinstance(for_each_temp, str) and for_each_temp.lower() == "true":
-            for_each = True
+    for_each = _str_to_boolean_get(False, "for_each", conversion_attributes)
     
     table_records = _build_table_records(has_test, conversion_record_name, conversion_table, conversion_attributes, 
                                          input_json, required, silent, test_string=test_string)
@@ -1154,7 +1174,9 @@ def _build_string_value(input_json: dict, fields: list[str], conversion_table: s
             
         else:
             ## Determine if the field value is for the calling record or the current one.
-            if (calling_field := _is_field_in_calling_record(field, 
+            if (calling_field := _is_field_in_calling_record(field,
+                                                             "fields",
+                                                             field,
                                                              calling_record_table, 
                                                              conversion_table, 
                                                              conversion_record_name,
@@ -1163,7 +1185,7 @@ def _build_string_value(input_json: dict, fields: list[str], conversion_table: s
                                                              required, 
                                                              silent))[0]:
                 ## No value means it matched the syntax, but there were no fields in the calling record that matched.
-                if not calling_field[1]:
+                if calling_field[1] is None:
                     return None
                         
                 if value:
@@ -1181,9 +1203,9 @@ def _build_string_value(input_json: dict, fields: list[str], conversion_table: s
                     table_value = _determine_directive_table_value(input_json, 
                                                                    directive[1],  
                                                                    conversion_directives,
-                                                                   calling_record_table, 
-                                                                   calling_record_name, 
-                                                                   calling_record_attributes, 
+                                                                   record_table, 
+                                                                   record_name, 
+                                                                   record_attributes, 
                                                                    silent)
                     
                     if table_value is None:
@@ -1192,41 +1214,14 @@ def _build_string_value(input_json: dict, fields: list[str], conversion_table: s
                         nested_required = False
                         nested_silent = False
                         for nested_name, nested_attributes in conversion_directives[directive[1]].items():
-                            if (required_attr := nested_attributes.get("required")) is not None:
-                                if isinstance(required_attr, str):
-                                    if required_attr.lower() == "false":
-                                        required_attr = False
-                                    else:
-                                        required_attr = True
-                            else:
-                                required_attr = True
+                            required_attr = _str_to_boolean_get(True, "required", nested_attributes)
                             nested_required = nested_required or required_attr
                             
-                            if (silent_attr := nested_attributes.get("silent")) is not None:
-                                if isinstance(silent_attr, str):
-                                    if silent_attr.lower() == "false":
-                                        silent_attr = False
-                                    else:
-                                        silent_attr = True
-                            else:
-                                silent_attr = silent
+                            silent_attr = _str_to_boolean_get(silent, "silent", nested_attributes)
                             nested_silent = nested_silent or silent_attr
                         
-                        # if (required_attr := conversion_directives[directive[1]].get("required")) is not None:
-                        #     if isinstance(required_attr, bool):
-                        #         nested_required = required_attr
-                        #     elif isinstance(required_attr, str) and required_attr.lower() == "false":
-                        #         nested_required = False
                                                         
                         if not nested_required:
-                            # nested_silent = silent
-                            # if (silent_attr := conversion_directives[directive[1]].get("silent")) is not None:
-                            #     if isinstance(silent_attr, bool):
-                            #         nested_silent = silent_attr
-                            #     elif isinstance(silent_attr, str) and silent_attr.lower() == "false":
-                            #         nested_silent = False
-                            #     elif isinstance(silent_attr, str) and silent_attr.lower() == "true":
-                            #         nested_silent = True
                             
                             message = (f"When executing the str directive, \"{conversion_record_name}\", "
                                        f"in the conversion table, \"{conversion_table}\", a value in the \"field\" called "
@@ -1234,13 +1229,6 @@ def _build_string_value(input_json: dict, fields: list[str], conversion_table: s
                                        "while executing the directive. Since the \"required\" field of the "
                                        "nested directive is \"False\" the field will not be concatenated in the result "
                                        f"created for the record, \"{record_name}\", in the \"{conversion_attributes['table']}\" table.")
-                            _handle_errors(nested_required, nested_silent, message)
-                            continue
-                        else:
-                            message = (f"When executing the str directive, \"{conversion_record_name}\", "
-                                       f"in the conversion table, \"{conversion_table}\", a value in the \"field\" called "
-                                       f"the nested directive, \"{directive[1]}\", and a problem was encountered "
-                                       "while executing the directive.")
                             _handle_errors(nested_required, nested_silent, message)
                             continue
                     
@@ -1304,14 +1292,8 @@ def compute_matrix_value(input_json: dict, conversion_table: str, conversion_rec
     
     Returns:
         the list of dicts for the directive or None if there was a problem and the directive is not required.
-    """ 
-    if (silent_attr := conversion_attributes.get("silent")) is not None:
-        if isinstance(silent_attr, bool):
-            silent = silent_attr
-        elif isinstance(silent_attr, str) and silent_attr.lower() == "false":
-            silent = False
-        elif isinstance(silent_attr, str) and silent_attr.lower() == "true":
-            silent = True
+    """
+    silent = _str_to_boolean_get(silent, "silent", conversion_attributes)
     
     value = _handle_code_field(input_json, conversion_table, conversion_record_name, conversion_attributes, conversion_directives, 
                                required, calling_record_table, calling_record_name, calling_record_attributes, silent)
@@ -1329,21 +1311,11 @@ def compute_matrix_value(input_json: dict, conversion_table: str, conversion_rec
         return None
         
     ## fields_to_headers
-    fields_to_headers = False
-    if (fields_to_headers_temp := conversion_attributes.get("fields_to_headers")) is not None:
-        if isinstance(fields_to_headers_temp, bool):
-            fields_to_headers = fields_to_headers_temp
-        elif isinstance(fields_to_headers_temp, str) and fields_to_headers_temp.lower() == "true":
-            fields_to_headers = True
+    fields_to_headers = _str_to_boolean_get(False, "fields_to_headers", conversion_attributes)
         
     
     ## values_to_str
-    values_to_str = False
-    if (values_to_str_temp := conversion_attributes.get("values_to_str")) is not None:
-        if isinstance(values_to_str_temp, bool):
-            values_to_str = values_to_str_temp
-        elif isinstance(values_to_str_temp, str) and values_to_str_temp.lower() == "true":
-            values_to_str = True
+    values_to_str = _str_to_boolean_get(False, "values_to_str", conversion_attributes)
         
             
     has_test = False
@@ -1561,7 +1533,9 @@ def _determine_header_input_keys(input_json: dict, header: str, record_name: str
             key = new_key.group(1)
             key_value = key
         
-        elif (calling_field := _is_field_in_calling_record(key, 
+        elif (calling_field := _is_field_in_calling_record(key,
+                                                           "headers",
+                                                           header,
                                                            calling_record_table, 
                                                            conversion_table, 
                                                            conversion_record_name,
@@ -1570,7 +1544,7 @@ def _determine_header_input_keys(input_json: dict, header: str, record_name: str
                                                            required, 
                                                            silent))[0]:
             ## No value means it matched the syntax, but there were no fields in the calling recod that matched.
-            if calling_field[1]:        
+            if calling_field[1] is not None:        
                 key_value = str(calling_record_attributes[calling_field[1]]) if values_to_str else calling_record_attributes[calling_field[1]]
             else:
                 return None, None, None, None, False
@@ -1586,35 +1560,32 @@ def _determine_header_input_keys(input_json: dict, header: str, record_name: str
                 table_value = _determine_directive_table_value(input_json, 
                                                                directive[1],  
                                                                conversion_directives,
-                                                               calling_record_table, 
-                                                               calling_record_name, 
-                                                               calling_record_attributes, 
+                                                               conversion_attributes["table"], 
+                                                               record_name, 
+                                                               record_attributes, 
                                                                silent)
                 
                 if table_value is None:
-                    nested_required = True
-                    if (required_attr := conversion_directives[directive[1]].get("required")) is not None:
-                        if isinstance(required_attr, bool):
-                            nested_required = required_attr
-                        elif isinstance(required_attr, str) and required_attr.lower() == "false":
-                            nested_required = False
+                    ## Look at the silent and required attributes for each 
+                    ## nested directive record to determine the required and silent status for the whole table.
+                    nested_required = False
+                    nested_silent = False
+                    for nested_name, nested_attributes in conversion_directives[directive[1]].items():
+                        required_attr = _str_to_boolean_get(True, "required", nested_attributes)
+                        nested_required = nested_required or required_attr
+                        
+                        silent_attr = _str_to_boolean_get(silent, "silent", nested_attributes)
+                        nested_silent = nested_silent or silent_attr
+                                        
                     
                     if not nested_required:
-                        nested_silent = silent
-                        if (silent_attr := conversion_directives[directive[1]].get("silent")) is not None:
-                            if isinstance(silent_attr, bool):
-                                nested_silent = silent_attr
-                            elif isinstance(silent_attr, str) and silent_attr.lower() == "false":
-                                nested_silent = False
-                            elif isinstance(silent_attr, str) and silent_attr.lower() == "true":
-                                nested_silent = True
                         
                         message = (f"When executing the matrix directive, \"{conversion_record_name}\", "
                                    f"in the conversion table, \"{conversion_table}\", a header called "
                                    f"the nested directive, \"{directive[1]}\", and a problem was encountered "
                                    "while executing the directive. Since the \"required\" field of the "
                                    "nested directive is \"False\" the header will not be in the dictionary "
-                                   "created for the record, \"{record_name}\", in the \"{conversion_attributes['table']}\" table.")
+                                   f"created for the record, \"{record_name}\", in the \"{conversion_attributes['table']}\" table.")
                         _handle_errors(nested_required, nested_silent, message)
                         return None, None, None, None, True
                 

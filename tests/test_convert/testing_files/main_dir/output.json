@@ -1,0 +1,12 @@
+{
+  "directive1": {
+    "termSource": "source",
+    "termAccession": "accession",
+    "annotationValue": "value",
+    "comments": [
+      {
+        "value": "comment"
+      }
+    ]
+  }
+}
