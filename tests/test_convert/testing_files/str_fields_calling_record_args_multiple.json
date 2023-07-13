@@ -1,0 +1,26 @@
+{
+  "directive1": {
+    "name1": {
+      "headers": [
+        "\"asdf\"=directive2%()"
+      ],
+      "required": "False",
+      "table": "protocol",
+      "test": "order=4",
+      "value_type": "matrix"
+    }
+  },
+  "directive2%": {
+    "name2": {
+      "fields": [
+        "\"asdf\"",
+        "^.order",
+        "order"
+      ],
+      "required": "True",
+      "value_type": "section_str",
+      "table": "protocol",
+      "record_id": "polar_extraction"
+    }
+  }
+}

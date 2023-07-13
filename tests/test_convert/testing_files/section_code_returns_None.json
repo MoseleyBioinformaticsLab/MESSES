@@ -1,0 +1,9 @@
+{
+  "directive1": {
+    "name1": {
+      "code": "None",
+      "required": "True",
+      "value_type": "section"
+    }
+  }
+}

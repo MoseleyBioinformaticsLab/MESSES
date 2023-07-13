@@ -23,7 +23,7 @@ directives_schema = \
          "allOf":[
              {
              "if":{
-                 "properties":{"value_type":{"const":"str"}},
+                 "properties":{"value_type":{"anyOf":[{"const":"str"}, {"const":"section_str"}]}},
                  "required":["value_type"]
                },
              "then":{
@@ -47,13 +47,13 @@ directives_schema = \
                              {"properties":{"override":{"not":{"type":"string", "minLength":1}}}},
                              {"properties":{"code":{"not":{"type":"string", "minLength":1}}}},
                              ]},
-                         "then":{"required":["fields", "table"]}
+                         "then":{"required":["fields"]}
                          },
                       {
                           "if":{"allOf":[
                               {"properties":{"code":{"not":{"type":"string", "minLength":1}}}},
                               {"properties":{"table":{"not":{"type":"string", "minLength":1}}}},
-                              {"properties":{"fields":{"not":{"type":"string", "minLength":1}}}}
+                              {"properties":{"fields":{"not":{"type":"array", "minItems":1}}}}
                               ]},
                           "then":{"required":["override"]}
                           },
@@ -61,7 +61,7 @@ directives_schema = \
                           "if":{"allOf":[
                               {"properties":{"override":{"not":{"type":"string", "minLength":1}}}},
                               {"properties":{"table":{"not":{"type":"string", "minLength":1}}}},
-                              {"properties":{"fields":{"not":{"type":"string", "minLength":1}}}}
+                              {"properties":{"fields":{"not":{"type":"array", "minItems":1}}}}
                               ]},
                           "then":{"required":["code"]}
                           }
@@ -70,7 +70,7 @@ directives_schema = \
              },
              {
              "if":{
-                 "properties":{"value_type":{"const":"matrix"}},
+                 "properties":{"value_type":{"anyOf":[{"const":"matrix"}, {"const":"section_matrix"}]}},
                  "required":["value_type"]
                },
              "then":{
@@ -92,7 +92,7 @@ directives_schema = \
                  "allOf":[
                      {
                          "if":{"properties":{"code":{"not":{"type":"string", "minLength":1}}},},
-                         "then":{"required":["headers", "table"]}
+                         "then":{"required":["headers"]}
                          },
                       {
                           "if":{"allOf":[

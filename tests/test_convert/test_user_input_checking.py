@@ -108,7 +108,7 @@ malformed_matrix_message = "ValidationError: An error was found in the Conversio
         ({"ANALYSIS": {
             "ANALYSIS_TYPE": {
               "value_type":"section"
-            }}}, "ValidationError: An error was found in the Conversion Directives.\nThe entry ['ANALYSIS']['ANALYSIS_TYPE'] is missing the required property 'code'."),
+            }}}, "ValidationError: An error was found in the Conversion Directives.\nThe entry ['ANALYSIS']['ANALYSIS_TYPE'] is missing the required property 'execute'."),
         ({"ANALYSIS": {
             "ANALYSIS_TYPE": {
               "value_type":"matrix",

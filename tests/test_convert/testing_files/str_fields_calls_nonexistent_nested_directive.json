@@ -1,0 +1,20 @@
+{
+  "directive1": {
+    "name1": {
+      "fields": [
+        "directive3%()"
+      ],
+      "required": "True",
+      "table": "protocol",
+      "test": "order=4",
+      "value_type": "str"
+    }
+  },
+  "directive2%": {
+    "name2": {
+      "override": "qwer",
+      "required": "True",
+      "value_type": "section_str"
+    }
+  }
+}

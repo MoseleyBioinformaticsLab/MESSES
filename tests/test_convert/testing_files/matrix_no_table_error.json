@@ -1,0 +1,22 @@
+{
+  "directive1": {
+    "name1": {
+      "headers": [
+        "\"asdf\"=directive2%()"
+      ],
+      "required": "True",
+      "table": "protocol",
+      "test": "order=4",
+      "value_type": "matrix"
+    }
+  },
+  "directive2%": {
+    "name2": {
+      "headers": [
+        "\"asdf\"=order"
+      ],
+      "required": "True",
+      "value_type": "section_matrix"
+    }
+  }
+}

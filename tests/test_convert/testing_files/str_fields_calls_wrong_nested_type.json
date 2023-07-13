@@ -1,0 +1,20 @@
+{
+  "directive1": {
+    "name1": {
+      "fields": [
+        "directive2%()"
+      ],
+      "required": "True",
+      "table": "protocol",
+      "test": "order=4",
+      "value_type": "str"
+    }
+  },
+  "directive2%": {
+    "name2": {
+      "code": "[123]",
+      "required": "True",
+      "value_type": "section"
+    }
+  }
+}

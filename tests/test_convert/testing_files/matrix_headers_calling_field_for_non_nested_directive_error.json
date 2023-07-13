@@ -1,0 +1,11 @@
+{
+  "directive1": {
+    "name1": {
+      "headers": ["\"asdf\"=^.order"],
+      "required": "True",
+      "table": "protocol",
+      "test": "order=5",
+      "value_type": "matrix"
+    }
+  }
+}

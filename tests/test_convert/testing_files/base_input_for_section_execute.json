@@ -83,14 +83,16 @@
       "filename": "study_treatments.pdf",
       "id": "naive",
       "parent_protocol": "mouse_experiment",
-      "type": "treatment"
+      "type": "treatment",
+      "number": 1
     },
     "polar_extraction": {
       "description": "Polar extraction from homogenate, lypholized, and frozen.",
       "filename": "4B_Extract_Polar_Lipid_Prot_Fan_070417.pdf",
       "id": "polar_extraction",
       "order": "3",
-      "type": "sample_prep"
+      "type": "sample_prep",
+      "ontology_annotation": "source3 accession3 value3 comment3"
     },
     "protein_extraction": {
       "description": "Protein extraction and quantification.",

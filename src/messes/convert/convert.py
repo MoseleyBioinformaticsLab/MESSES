@@ -92,7 +92,6 @@ from messes.convert import regexes
 
 ## Update directives schema for all the new changes, "silent", "test", "section" type, "section_matrix" and "section_str" types, "execute".
 
-## Do the calling record tests that were done for "test" for "fields", "headers", "execute"
 
 ## Make sure to test importing and using a built-in function.
 
@@ -458,8 +457,6 @@ def _parse_test_attribute(attribute_value: str, conversion_table: str, conversio
     Returns:
         Either a string that can be evaled to do the test or None if there was an error.
     """
-    # pairs = re.findall(r"(?:(?!\(|\)|\s+\&\s+|\s+\|\s+|\s+and\s+|\s+or\s+|=).)+=(?:(?!\(|\)|\s+\&\s+|\s+\|\s+|\s+and\s+|\s+or\s+|=).)+(?: *|\s+\&\s+|\s+\|\s+|\s+and\s+|\s+or\s+|$)", attribute_value)
-    # pairs = re.findall(r"(?:(?!\(|\)|\&|\||and|or|=).)+=(?:(?!\(|\)|\&|\||and|or|=).)+(?: *|\&|\||and|or|$)", attribute_value)
     pairs = re.split(r'\s+\&\s+|\s+\|\s+|\s+and\s+|\s+or\s+', attribute_value)
     
     for pair in pairs:
@@ -780,15 +777,7 @@ def _determine_directive_table_value(input_json: dict, conversion_table: str, co
                           f"\" record in the \"{conversion_table}"
                           f"\" table could not be created, and reverted to its given default value, \"{default}\".", 
                           file=sys.stderr)
-        
-        # if value is None and required:
-        #     print("Error: The conversion directive to create the \"" + conversion_record_name + "\" record in the \"" + conversion_table + "\" table did not return a value.")
-        #     sys.exit()
-        # elif value is None and not required:
-        #     if not args["--silent"]:
-        #         print("Warning: The non-required conversion directive to create the \"" + conversion_record_name + "\" record in the \"" + conversion_table + "\" table could not be created.")
-        #     continue
-        
+                
         if "section" in conversion_attributes["value_type"]:
             directive_table_output = value
         else:
@@ -956,7 +945,7 @@ def compute_section_value(input_json: dict, conversion_table: str, conversion_re
 
 def _run_built_in_function(function_name: str, function_input: list[Any], 
                            conversion_table: str, conversion_record_name: str, 
-                           record_table: str|int, record_name: str|int, 
+                           record_table: str|int|None, record_name: str|int|None,
                            required: bool, silent: bool) -> Any:
     """Execute the built-in function in a try block and handle errors.
     
@@ -974,16 +963,24 @@ def _run_built_in_function(function_name: str, function_input: list[Any],
         the value returned by the built-in function or None if there was an error.
     """
     try:
-        message, value = built_in_functions[function_name](*function_input)
+        built_in_message, value = built_in_functions[function_name](*function_input)
     except Exception:
         message = (f"The conversion directive to create the \"{conversion_record_name}"
                   f"\" record in the \"{conversion_table}\" table encountered an error while executing its \"execute\" function.\n")
         message += traceback.format_exc()
         return _handle_errors(required, silent, message)
     
-    if message is not None:
-        ## built-ins can create error messages that expect to have certain values filled in later.
-        message = message.format(**locals())
+    if built_in_message is not None:
+        message = (f"The conversion directive to create the \"{conversion_record_name}"
+                  f"\" record in the \"{conversion_table}\" table encountered a problem while executing its \"execute\" function ")
+        if record_name is not None and record_table is not None:
+            message += f"for the record, \"{record_name}\", in the table, \"{record_table}\":\n"
+        else:
+            message += ":\n"
+            
+        message += built_in_message
+        # ## built-ins can create error messages that expect to have certain values filled in later.
+        # message = message.format(**locals())
         return _handle_errors(required, silent, message)
     else:
         return value
@@ -1015,27 +1012,27 @@ def compute_string_value(input_json: dict, conversion_table: str, conversion_rec
     silent = _str_to_boolean_get(silent, "silent", conversion_attributes)
     
     ## override
-    if value := conversion_attributes.get("override"):
-        if match := re.match(calling_record_regex, value):
-            field_key = match.group(1)
-            
-            if not calling_record_attributes:
-                message = (f"The conversion directive to create the \"{conversion_record_name}"
-                          f"\" record in the \"{conversion_table}\" table tries to use fields from a calling record, "
-                          f"but the directive is not a nested directive, and therefore has no calling record.")
-                return _handle_errors(required, silent, message)
-            
-            if field_key not in calling_record_attributes:
-                message = (f"The conversion directive to create the \"{conversion_record_name}"
-                          f"\" record in the \"{conversion_table}\" table tries to use the field, "
-                          f"{field_key}, from the calling record, \"{calling_record_name}"
-                          f"\", in the table, \"{calling_record_table}\", but that field is not in the record.\"")
-                return _handle_errors(required, silent, message)
+    if override := conversion_attributes.get("override"):
         
-        elif literal_match := re.match(literal_regex, value):
-            value = literal_match.group(1)
+        if (calling_field := _is_field_in_calling_record(override, 
+                                                         "override", 
+                                                         conversion_attributes["override"], 
+                                                         conversion_table, 
+                                                         conversion_record_name,
+                                                         calling_record_table, 
+                                                         calling_record_name, 
+                                                         calling_record_attributes,
+                                                         required, 
+                                                         silent))[0]:
+            ## No value means it matched the syntax, but there were no fields in the calling record that matched.
+            if calling_field[1] is None:
+                return None
+            override = calling_record_attributes[calling_field[1]]
         
-        return value
+        elif match := re.match(literal_regex, override):
+            override = match.group(1)
+                        
+        return override
     
     ## code
     value = _handle_code_field(input_json, conversion_table, conversion_record_name, conversion_attributes, conversion_directives, 
@@ -1055,6 +1052,30 @@ def compute_string_value(input_json: dict, conversion_table: str, conversion_rec
     
     ## fields
     fields = conversion_attributes["fields"]
+    ## TODO move this to user input checking, do the same with section type for execute field and matrix as well, move the tests from tags to input checking as well.
+    ## I don't think I can move this because I have to do the check again here anyway to know to return early.
+    if "table" not in conversion_attributes:
+        if not all([True if re.match(literal_regex, field) or re.match(calling_record_regex, field) else False for field in fields]):
+            message = (f"The conversion directive to create the \"{conversion_record_name}"
+                      f"\" record in the \"{conversion_table}\" table has elements in its \"fields\" "
+                      f"attribute, \"{fields}\", which are attributes to input records, "
+                      "but this directive does not provide a \"table\" attribute to pull records from.")
+            return _handle_errors(required, silent, message)
+    
+        return _build_string_value(input_json,
+                                   fields, 
+                                   conversion_table, 
+                                   conversion_record_name, 
+                                   conversion_attributes,
+                                   conversion_directives,
+                                   None, 
+                                   None, 
+                                   None, 
+                                   required, 
+                                   calling_record_table, 
+                                   calling_record_name, 
+                                   calling_record_attributes, 
+                                   silent)
     
     has_test = False
     test_string = ""
@@ -1111,10 +1132,6 @@ def compute_string_value(input_json: dict, conversion_table: str, conversion_rec
             return _handle_errors(required, silent, message)
         record_attributes = table_records[conversion_attributes["record_id"]]
         record_name = conversion_attributes["record_id"]
-    # elif has_test:
-    #     for record_name, record_attributes in input_json[conversion_attributes["table"]].items():
-    #         if test_field in record_attributes and record_attributes[test_field] == test_value:
-    #             break
     else:
         record_name, record_attributes = list(table_records.items())[0]
         # record_name, record_attributes = list(input_json[conversion_attributes["table"]].items())[0]
@@ -1177,9 +1194,9 @@ def _build_string_value(input_json: dict, fields: list[str], conversion_table: s
             if (calling_field := _is_field_in_calling_record(field,
                                                              "fields",
                                                              field,
-                                                             calling_record_table, 
                                                              conversion_table, 
                                                              conversion_record_name,
+                                                             calling_record_table,
                                                              calling_record_name, 
                                                              calling_record_attributes,
                                                              required, 
@@ -1334,6 +1351,38 @@ def compute_matrix_value(input_json: dict, conversion_table: str, conversion_rec
     
     optional_headers = conversion_attributes.get("optional_headers", [])
     
+    ## If "table" is not in the attributes and headers doesn't contain any values requiring records then return early.
+    if "table" not in conversion_attributes:
+        ## Chain from itertools is faster, but I don't think the speed is necessary.
+        # header_strings = list(chain.from_iterable([header.split('=') for header in headers]))
+        header_strings = [string for header in headers for string in header.split('=')]
+        if not all([True if re.match(literal_regex, string) or re.match(calling_record_regex, string) else False for string in header_strings]):
+            message = (f"The conversion directive to create the \"{conversion_record_name}"
+                      f"\" record in the \"{conversion_table}\" table has elements in its \"headers\" "
+                      f"attribute, \"{headers}\", which are attributes to input records, "
+                      "but this directive does not provide a \"table\" attribute to pull records from.")
+            return _handle_errors(required, silent, message)
+    
+        return _build_matrix_record_dict(input_json,
+                                         {}, 
+                                         None, 
+                                         headers, 
+                                         None, 
+                                         None, 
+                                         conversion_table, 
+                                         conversion_record_name, 
+                                         conversion_attributes, 
+                                         conversion_directives,
+                                         fields_to_headers,
+                                         exclusion_headers,
+                                         optional_headers,
+                                         values_to_str, 
+                                         required, 
+                                         calling_record_table, 
+                                         calling_record_name, 
+                                         calling_record_attributes,
+                                         silent)
+    
     table_records = _build_table_records(has_test, conversion_record_name, conversion_table, conversion_attributes, 
                                          input_json, required, silent, test_string=test_string)
     if table_records is None:
@@ -1370,6 +1419,9 @@ def compute_matrix_value(input_json: dict, conversion_table: str, conversion_rec
                                                              optional_headers,
                                                              values_to_str, 
                                                              required, 
+                                                             calling_record_table, 
+                                                             calling_record_name, 
+                                                             calling_record_attributes,
                                                              silent)
                                 
         records = list(records.values())
@@ -1392,13 +1444,14 @@ def compute_matrix_value(input_json: dict, conversion_table: str, conversion_rec
                                                    optional_headers,
                                                    values_to_str, 
                                                    required, 
+                                                   calling_record_table, 
+                                                   calling_record_name, 
+                                                   calling_record_attributes,
                                                    silent)
             
             records.append(temp_dict)
     
-    if not records:
-        return None
-    return records
+    return records if records else None
 
 
 ## TODO Check to see if collate and sort fields are a nested directive field that doesn't get added because required=false if it causes an error.
@@ -1536,9 +1589,9 @@ def _determine_header_input_keys(input_json: dict, header: str, record_name: str
         elif (calling_field := _is_field_in_calling_record(key,
                                                            "headers",
                                                            header,
-                                                           calling_record_table, 
                                                            conversion_table, 
                                                            conversion_record_name,
+                                                           calling_record_table,
                                                            calling_record_name, 
                                                            calling_record_attributes,
                                                            required, 
@@ -1606,6 +1659,8 @@ def _determine_header_input_keys(input_json: dict, header: str, record_name: str
         
         else:    
             if key not in record_attributes:
+                ## If required is False then the this header is simply skipped.
+                ## TODO make sure to add to the documentation that headers not found are skipped if required is false.
                 message = (f"The record, \"{record_name}\", in the \"{conversion_attributes['table']}"
                           f"\" table does not have the field, \"{key}"
                           f"\", required by the \"headers\" field for the conversion, \""

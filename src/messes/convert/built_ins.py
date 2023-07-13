@@ -29,11 +29,8 @@ def dumb_parse_ontology_annotation(annotations: str|list) -> dict|list[dict]|Non
         annotation_dict = {}
         annotation_parts = [match.group(1) if (match := re.match(literal_regex, part.strip())) else part.strip() for part in annotation.split(":")]
         if len(annotation_parts) != 4:
-            message = ("When creating the \"{conversion_record_name}\" conversion "
-                       "for the \"{conversion_table}\" table, a record, \"{record_name}\","
-                       "in the table, \"{record_table}\", has a malformed ontology annotation, "
-                       f"\"{annotation}\", "
-                       "in the field, \"{record_field}\". It must have 3 colons (:) separating its values.")
+            message = (f"\"{annotation}\" is a malformed ontology annotation. "
+                       "It must have 3 colons (:) separating its values.")
             return message, None
         for i, value in enumerate(annotation_parts):
             if value:
@@ -80,11 +77,8 @@ def to_dict(field_values: str|list) -> dict|list[dict]|None:
             try:
                 key, value = [match.group(1) if (match := re.match(literal_regex, part.strip())) else part.strip() for part in pair.split(":")]
             except ValueError:
-                message = ("When creating the \"{conversion_record_name}\" conversion "
-                           "for the \"{conversion_table}\" table, a record, \"{record_name}\","
-                           "in the table, \"{record_table}\", has a malformed dictionary, "
-                           f"\"{field_value}\", "
-                           "in the field, \"{record_field}\". It must have a form like \"key:value,key:value...\".")
+                message = (f"\"{field_value}\" is a malformed dictionary. "
+                           "It must have a form like \"key:value,key:value...\".")
                 return message, None
             field_value_dict[key] = value
                         

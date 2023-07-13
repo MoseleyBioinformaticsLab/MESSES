@@ -22,3 +22,6 @@ coverage.xml
 src/messes/_version.py
 /*.png
 isadatasets
+createSimpleISAJSON.py
+ISA_traversal.py
+output.txt
