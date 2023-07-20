@@ -26,3 +26,13 @@ isadatasets
 createSimpleISAJSON.py
 ISA_traversal.py
 output.txt
+tests/output.*
+tests/test_extract/output.*
+tests/test_extract/testing_files/output.*
+tests/test_extract/testing_files/main_dir/output.*
+tests/test_validate/output.*
+tests/test_validate/testing_files/output.*
+tests/test_validate/testing_files/main_dir/output.*
+tests/test_convert/output.*
+tests/test_convert/testing_files/output.*
+tests/test_convert/testing_files/main_dir/output.txt
