@@ -65,27 +65,9 @@ from messes.convert import convert_schema
 from messes.convert import built_ins
 from messes.convert import regexes
 
-## TODO add check to see if a section type directive is in the same table as others and print an error mixing section and other types can cause an error, and it doesn't make sense anyway.
-##   Added this to user_input_checking, needs tested.
-## Is tested in both user_input_checking and convert_tags
-
-## TODO check if "fields" in str directives allows calling of nested directives, if so need to make sure the nested directive returns a string value.
-##      It does, but instead of doing error checking I just cast the result to str(). This needs documenting.
-
-## Make it so for str directives if the nested directive returns None, but is not required it isn't concatenated into the final output, no error, just dropped.
-##   Made this so, but warnings are printed.
-
-## For a matrix type directive if a nested directive is on the left side it must return a string. Make sure the code tests for this.
-##  I added a check and warning that will cast the key to a string.
 
 ## Add all functions imported through the "import" field to the "built_in" list.
 ##  Added this, but needs tested, getmembers(importname, is_function) may need to be getmembers(global_variables[importname], is_function)
-
-## TODO make it so the override field in str directives can be a calling record field.  This is done, need to add to documentation.
-## Add documentation about "silent" being added to directives.
-
-## If headers in a matrix directive have required=false that header is just left out, add documentation explaining this and showing how you can use
-## str directives to get optionality on all headers.
 
 ## See if the code that does error checking for nested directive fields i.e. uses calling_record_regex can be turned into a function for reuse.
 ##  I think I got most of these.
@@ -93,17 +75,27 @@ from messes.convert import regexes
 ## Update directives schema for all the new changes, "silent", "test", "section" type, "section_matrix" and "section_str" types, "execute".
 
 
+## Test "execute" in test_user_input_checking.
+
 ## Make sure to test importing and using a built-in function.
+
+## Add some real examples of nested directives from ISA once that is done.
 
 ## Add measurement%transformation and measurement%normalization protocol types. Allows us to handle those for ISA. Require parents and that parent be a measurement type.
 ## Try just concatenating fields to condense a list of protocols into 1, look for protocol%order field to determine order, if not there assume the order is correct.
 ## For assays find the storage%measurement protocol and work backward to the first collection to find where to start the assay.
-## Leave execute as is for now and don't let it execute nested directives.
+
 ## Add a "skip" keyword to skip directives, also make it so directives with "%" in the name are skip=True by default, but will use skip if present.
+## This can't be done because skip is a directive table level thing, not an individual directive thing.
+
 ## For nested directive argument passing, they have to be key=value pairs, but arbitrary string replacement ones must start with a '$'.
 ##   Search through the values of all fields and look for '$' keys.
 ##   Still have the issue of dealing with users not passing enough values and haveing some left over though, need to think about this.
-## Just leave nested directives in the places you have them now, can extend to other keywords as needed.
+##   Argument passing makes no sense for nested directives that have multiple directives in the table. Should there be a special case
+##   for directive tables with only 1 directive? 
+
+## Add a check for key names in matrix "headers" being the same. Print a warning if a matrix directive tries to use the same key name twice.
+
 
 built_in_functions = {attributes[0]:attributes[1] for attributes in getmembers(built_ins, isfunction)}
 
@@ -829,7 +821,7 @@ def compute_section_value(input_json: dict, conversion_table: str, conversion_re
     
     ## execute
     if execute := conversion_attributes.get("execute"):
-        if match := re.match(r"(.*)\((.*)\)\s*", execute.strip()):
+        if match := re.match(r"(.+)\((.*)\)\s*", execute.strip()):
             function_name = match.group(1)
             # function_inputs = match.group(2).split(',')
             ## Going to go on and strip here, but this may need to change in the 
@@ -1055,7 +1047,9 @@ def compute_string_value(input_json: dict, conversion_table: str, conversion_rec
     ## TODO move this to user input checking, do the same with section type for execute field and matrix as well, move the tests from tags to input checking as well.
     ## I don't think I can move this because I have to do the check again here anyway to know to return early.
     if "table" not in conversion_attributes:
-        if not all([True if re.match(literal_regex, field) or re.match(calling_record_regex, field) else False for field in fields]):
+        if not all([True if re.match(literal_regex, field) or \
+                            re.match(calling_record_regex, field) or \
+                            re.match(nested_directive_regex, field) else False for field in fields]):
             message = (f"The conversion directive to create the \"{conversion_record_name}"
                       f"\" record in the \"{conversion_table}\" table has elements in its \"fields\" "
                       f"attribute, \"{fields}\", which are attributes to input records, "
@@ -1068,9 +1062,9 @@ def compute_string_value(input_json: dict, conversion_table: str, conversion_rec
                                    conversion_record_name, 
                                    conversion_attributes,
                                    conversion_directives,
-                                   None, 
-                                   None, 
-                                   None, 
+                                   calling_record_table, 
+                                   calling_record_name, 
+                                   calling_record_attributes, 
                                    required, 
                                    calling_record_table, 
                                    calling_record_name, 
@@ -1356,19 +1350,22 @@ def compute_matrix_value(input_json: dict, conversion_table: str, conversion_rec
         ## Chain from itertools is faster, but I don't think the speed is necessary.
         # header_strings = list(chain.from_iterable([header.split('=') for header in headers]))
         header_strings = [string for header in headers for string in header.split('=')]
-        if not all([True if re.match(literal_regex, string) or re.match(calling_record_regex, string) else False for string in header_strings]):
+        if not all([True if re.match(literal_regex, string) or \
+                            re.match(calling_record_regex, string) or \
+                            re.match(nested_directive_regex, string) else False for string in header_strings]):
             message = (f"The conversion directive to create the \"{conversion_record_name}"
                       f"\" record in the \"{conversion_table}\" table has elements in its \"headers\" "
                       f"attribute, \"{headers}\", which are attributes to input records, "
                       "but this directive does not provide a \"table\" attribute to pull records from.")
             return _handle_errors(required, silent, message)
     
-        return _build_matrix_record_dict(input_json,
+        return [_build_matrix_record_dict(input_json,
                                          {}, 
                                          None, 
                                          headers, 
-                                         None, 
-                                         None, 
+                                         calling_record_table, 
+                                         calling_record_name, 
+                                         calling_record_attributes,
                                          conversion_table, 
                                          conversion_record_name, 
                                          conversion_attributes, 
@@ -1381,13 +1378,14 @@ def compute_matrix_value(input_json: dict, conversion_table: str, conversion_rec
                                          calling_record_table, 
                                          calling_record_name, 
                                          calling_record_attributes,
-                                         silent)
+                                         silent)]
     
     table_records = _build_table_records(has_test, conversion_record_name, conversion_table, conversion_attributes, 
                                          input_json, required, silent, test_string=test_string)
     if table_records is None:
         return None
     
+    record_table = conversion_attributes["table"]
         
     if collate := conversion_attributes.get("collate"):
         ## TODO think about whether to do collate.strip() here to remove spaces.
@@ -1407,7 +1405,8 @@ def compute_matrix_value(input_json: dict, conversion_table: str, conversion_rec
             records[collate_key] = _build_matrix_record_dict(input_json,
                                                              records[collate_key], 
                                                              collate_key, 
-                                                             headers, 
+                                                             headers,
+                                                             record_table,
                                                              record_name, 
                                                              record_attributes, 
                                                              conversion_table, 
@@ -1432,7 +1431,8 @@ def compute_matrix_value(input_json: dict, conversion_table: str, conversion_rec
             temp_dict =  _build_matrix_record_dict(input_json,
                                                    {}, 
                                                    None, 
-                                                   headers, 
+                                                   headers,
+                                                   record_table,
                                                    record_name, 
                                                    record_attributes, 
                                                    conversion_table, 
@@ -1458,7 +1458,8 @@ def compute_matrix_value(input_json: dict, conversion_table: str, conversion_rec
 def _build_matrix_record_dict(input_json: dict,
                               matrix_dict: dict, 
                               collate_key: str, 
-                              headers: list[str], 
+                              headers: list[str],
+                              record_table: str,
                               record_name: str, 
                               record_attributes: dict, 
                               conversion_table: str, 
@@ -1483,6 +1484,7 @@ def _build_matrix_record_dict(input_json: dict,
         collate_key: a key to group record values around, used to print a warning if 
                      values get overwritten in matrix_dict.
         headers: a list of strings that is used to add keys and values to matrix_dict.
+        record_table: the name of the table the record is from, used for good error messaging.
         record_name: the name of the record, used for good error messaging.
         record_attributes: the fields and values of the record.
         conversion_table: the name of the table the conversion record came from, used for good error messaging.
@@ -1506,6 +1508,7 @@ def _build_matrix_record_dict(input_json: dict,
     for header in headers:
         input_key, input_key_value, output_key, output_key_value, skip_header = _determine_header_input_keys(input_json,
                                                                                                              header, 
+                                                                                                             record_table,
                                                                                                              record_name, 
                                                                                                              record_attributes, 
                                                                                                              conversion_table, 
@@ -1548,7 +1551,7 @@ def _build_matrix_record_dict(input_json: dict,
 
 
 
-def _determine_header_input_keys(input_json: dict, header: str, record_name: str, record_attributes: dict, conversion_table: str, 
+def _determine_header_input_keys(input_json: dict, header: str, record_table: str, record_name: str, record_attributes: dict, conversion_table: str, 
                                  conversion_record_name: str, conversion_attributes: dict, conversion_directives: dict, 
                                  values_to_str: bool, required: bool, calling_record_table: str|int=None, 
                                  calling_record_name: str|int=None, calling_record_attributes: dict=None,  
@@ -1559,6 +1562,7 @@ def _determine_header_input_keys(input_json: dict, header: str, record_name: str
         input_json: the entire input data the output is being created from.
         header: a string of the form "input_key=output_key" where the keys can be literal values or fields from a record.
                 If the keys are literal then they should be returned as is, if not they are fields in record_attributes.
+        record_table: the name of the table the record is from, used for good error messaging.
         record_name: the name of the record, used for good error messaging.
         record_attributes: the fields and values of the record.
         conversion_table: the name of the table the conversion record came from, used for good error messaging.
@@ -1597,8 +1601,17 @@ def _determine_header_input_keys(input_json: dict, header: str, record_name: str
                                                            required, 
                                                            silent))[0]:
             ## No value means it matched the syntax, but there were no fields in the calling recod that matched.
-            if calling_field[1] is not None:        
+            if calling_field[1] is not None:     
                 key_value = str(calling_record_attributes[calling_field[1]]) if values_to_str else calling_record_attributes[calling_field[1]]
+                
+                if key_name == "output_key" and not isinstance(key_value, str):
+                    message = (f"When executing the matrix directive, \"{conversion_record_name}\", "
+                               f"in the conversion table, \"{conversion_table}\", a header used a calling "
+                               f"record attribute, \"{calling_record_attributes[calling_field[1]]}\", and the value was "
+                               f"not a string type. Keys to JSON objects must be string types, so, {key_value}, will "
+                               f"be cast to a string type for the record, \"{record_name}\", in the \"{record_table}\" table.")
+                    _handle_errors(False, silent, message)
+                    key_value = str(key_value)
             else:
                 return None, None, None, None, False
         
@@ -1613,7 +1626,7 @@ def _determine_header_input_keys(input_json: dict, header: str, record_name: str
                 table_value = _determine_directive_table_value(input_json, 
                                                                directive[1],  
                                                                conversion_directives,
-                                                               conversion_attributes["table"], 
+                                                               record_table, 
                                                                record_name, 
                                                                record_attributes, 
                                                                silent)
@@ -1638,7 +1651,7 @@ def _determine_header_input_keys(input_json: dict, header: str, record_name: str
                                    f"the nested directive, \"{directive[1]}\", and a problem was encountered "
                                    "while executing the directive. Since the \"required\" field of the "
                                    "nested directive is \"False\" the header will not be in the dictionary "
-                                   f"created for the record, \"{record_name}\", in the \"{conversion_attributes['table']}\" table.")
+                                   f"created for the record, \"{record_name}\", in the \"{record_table}\" table.")
                         _handle_errors(nested_required, nested_silent, message)
                         return None, None, None, None, True
                 
@@ -1649,7 +1662,7 @@ def _determine_header_input_keys(input_json: dict, header: str, record_name: str
                                f"in the conversion table, \"{conversion_table}\", a header called "
                                f"the nested directive, \"{directive[1]}\", and the returned value was "
                                f"not a string type. Keys to JSON objects must be string types, so, {key_value}, will "
-                               f"be cast to a string type for the record, \"{record_name}\", in the \"{conversion_attributes['table']}\" table.")
+                               f"be cast to a string type for the record, \"{record_name}\", in the \"{record_table}\" table.")
                     _handle_errors(False, silent, message)
                     key_value = str(key_value)
             
@@ -1661,7 +1674,7 @@ def _determine_header_input_keys(input_json: dict, header: str, record_name: str
             if key not in record_attributes:
                 ## If required is False then the this header is simply skipped.
                 ## TODO make sure to add to the documentation that headers not found are skipped if required is false.
-                message = (f"The record, \"{record_name}\", in the \"{conversion_attributes['table']}"
+                message = (f"The record, \"{record_name}\", in the \"{record_table}"
                           f"\" table does not have the field, \"{key}"
                           f"\", required by the \"headers\" field for the conversion, \""
                           f"{conversion_record_name}\", in the conversion table, \"{conversion_table}\".")
@@ -1676,147 +1689,7 @@ def _determine_header_input_keys(input_json: dict, header: str, record_name: str
         else:
             output_key = key
             input_key_value = key_value
-    
-    
-    
-    
-    ## Commenting out in case the above loop change doesn't work.
-    # ############
-    # ## input key
-    # ############    
-    # if new_input_key := re.match(literal_regex, input_key):
-    #     input_key = new_input_key.group(1)
-    #     output_key_value = input_key
-    
-    # elif (calling_field := _is_field_in_calling_record(input_key, 
-    #                                                    calling_record_table, 
-    #                                                    conversion_table, 
-    #                                                    conversion_record_name,
-    #                                                    calling_record_name, 
-    #                                                    calling_record_attributes,
-    #                                                    required, 
-    #                                                    silent))[0]:
-    #     ## No value means it matched the syntax, but there were no fields in the calling recod that matched.
-    #     if calling_field[1]:        
-    #         output_key_value = str(calling_record_attributes[calling_field[1]]) if values_to_str else calling_record_attributes[calling_field[1]]
-    
-    # elif (directive := _is_field_a_nested_directive(input_key, 
-    #                                                 conversion_table, 
-    #                                                 conversion_record_name,
-    #                                                 conversion_directives,
-    #                                                 required, 
-    #                                                 silent))[0]:
-        
-    #     if directive[1]:
-    #         table_value = _determine_directive_table_value(input_json, 
-    #                                                        directive[1],  
-    #                                                        conversion_directives,
-    #                                                        calling_record_table, 
-    #                                                        calling_record_name, 
-    #                                                        calling_record_attributes, 
-    #                                                        silent)
             
-    #         if table_value is None:
-    #             nested_required = True
-    #             if (required_attr := conversion_attributes.get("required")) is not None:
-    #                 if isinstance(required_attr, bool):
-    #                     nested_required = required_attr
-    #                 elif isinstance(required_attr, str) and required_attr.lower() == "false":
-    #                     nested_required = False
-                
-    #             if not nested_required:
-    #                 message = (f"When executing the matrix directive, \"{conversion_record_name}\", "
-    #                            f"in the conversion table, \"{conversion_table}\", a header called "
-    #                            f"the nested directive, \"{directive[1]}\", and a problem was encountered "
-    #                            "while executing the directive. Since the \"required\" field of the "
-    #                            "nested directive is \"False\" the header will not be in the dictionary "
-    #                            "created for the record, \"{record_name}\", in the \"{conversion_attributes['table']}\" table.")
-    #                 _handle_errors(nested_required, 
-    #                                new_silent if (new_silent := conversion_directives[directive[1]].get("silent")) else silent, 
-    #                                message)
-    #                 return None, None, None, None, True
-            
-    #         output_key_value = str(table_value) if values_to_str else table_value
-                
-    
-    # else:    
-    #     if input_key not in record_attributes:
-    #         message = (f"The record, \"{record_name}\", in the \"{conversion_attributes['table']}"
-    #                   f"\" table does not have the field, \"{input_key}"
-    #                   f"\", required by the \"headers\" field for the conversion, \""
-    #                   f"{conversion_record_name}\", in the conversion table, \"{conversion_table}\".")
-    #         _handle_errors(required, silent, message)
-    #         return None, None, None, None, False
-        
-    #     output_key_value = str(record_attributes[input_key]) if values_to_str else record_attributes[input_key]
-        
-    # #############
-    # ## output key
-    # #############
-    # if new_output_key := re.match(literal_regex, output_key):
-    #     output_key = new_output_key.group(1)
-    #     input_key_value = output_key
-    
-    # elif (calling_field := _is_field_in_calling_record(output_key, 
-    #                                                    calling_record_table, 
-    #                                                    conversion_table, 
-    #                                                    conversion_record_name,
-    #                                                    calling_record_name, 
-    #                                                    calling_record_attributes,
-    #                                                    required, 
-    #                                                    silent))[0]:
-    #     ## No value means it matched the syntax, but there were no fields in the calling recod that matched.
-    #     if calling_field[1]:
-    #         input_key_value = str(calling_record_attributes[calling_field[1]]) if values_to_str else calling_record_attributes[calling_field[1]]
-    
-    # elif (directive := _is_field_a_nested_directive(output_key, 
-    #                                                 conversion_table, 
-    #                                                 conversion_record_name,
-    #                                                 conversion_directives,
-    #                                                 required, 
-    #                                                 silent))[0]:
-        
-    #     if directive[1]:
-    #         table_value = _determine_directive_table_value(input_json, 
-    #                                                        directive[1],  
-    #                                                        conversion_directives,
-    #                                                        calling_record_table, 
-    #                                                        calling_record_name, 
-    #                                                        calling_record_attributes, 
-    #                                                        silent)
-    #         if table_value is None:
-    #             nested_required = True
-    #             if (required_attr := conversion_attributes.get("required")) is not None:
-    #                 if isinstance(required_attr, bool):
-    #                     nested_required = required_attr
-    #                 elif isinstance(required_attr, str) and required_attr.lower() == "false":
-    #                     nested_required = False
-                
-    #             if not nested_required:
-    #                 message = (f"When executing the matrix directive, \"{conversion_record_name}\", "
-    #                            f"in the conversion table, \"{conversion_table}\", a header called "
-    #                            f"the nested directive, \"{directive[1]}\", and a problem was encountered "
-    #                            "while executing the directive. Since the \"required\" field of the "
-    #                            "nested directive is \"False\" the header will not be in the dictionary "
-    #                            "created for the record, \"{record_name}\", in the \"{conversion_attributes['table']}\" table.")
-    #                 _handle_errors(nested_required, 
-    #                                new_silent if (new_silent := conversion_directives[directive[1]].get("silent")) else silent, 
-    #                                message)
-    #                 return None, None, None, None, True
-                
-    #         input_key_value = str(table_value) if values_to_str else table_value
-    
-    # else:
-    #     if output_key not in record_attributes:
-    #         message = (f"The record, \"{record_name}\", in the \"{conversion_attributes['table']}"
-    #                   f"\" table does not have the field, \"{output_key}"
-    #                   f"\", required by the \"headers\" field for the conversion, \""
-    #                   f"{conversion_record_name}\", in the conversion table, \"{conversion_table}\".")
-    #         _handle_errors(required, silent, message)
-    #         return None, None, None, None, False
-        
-    #     input_key_value = str(record_attributes[output_key]) if values_to_str else record_attributes[output_key]
-        
     return input_key, input_key_value, output_key, output_key_value, skip_header
 
 

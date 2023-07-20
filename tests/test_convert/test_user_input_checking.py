@@ -2,9 +2,6 @@
 
 import pytest
 
-import os
-import pathlib
-
 from jsonschema import ValidationError
 from contextlib import nullcontext as does_not_raise
 
@@ -79,15 +76,17 @@ def test_validate_conversion_directives_no_error(test_schema):
 
 
 malformed_str_message = "ValidationError: An error was found in the Conversion Directives.\n" +\
-                        "'str' type directives have 3 valid configurations:\n" +\
-                        "\t1. They have an 'override' property.\n" +\
-                        "\t2. They have a 'code' property.\n" +\
-                        "\t3. They have the 'table' and 'fields' properties.\n" +\
-                        "The entry ['ANALYSIS']['ANALYSIS_TYPE']" +\
-                        " is not one of the valid configurations."
+                           "'str' type directives must either have a 'code', 'override', or 'fields' property.\n" +\
+                           "The entry ['ANALYSIS']['ANALYSIS_TYPE']" +\
+                           " is missing one of these properties."
                         
 malformed_matrix_message = "ValidationError: An error was found in the Conversion Directives.\n" +\
-                           "'matrix' type directives must either have a 'code' property or 'headers' and 'table' properties.\n" +\
+                           "'matrix' type directives must either have a 'code' or 'headers' property.\n" +\
+                           "The entry ['ANALYSIS']['ANALYSIS_TYPE']" +\
+                           " is missing one of these properties."
+
+malformed_section_message = "ValidationError: An error was found in the Conversion Directives.\n" +\
+                           "'section' type directives must either have a 'code' or 'execute' property.\n" +\
                            "The entry ['ANALYSIS']['ANALYSIS_TYPE']" +\
                            " is missing one of these properties."
 
@@ -96,7 +95,6 @@ malformed_matrix_message = "ValidationError: An error was found in the Conversio
         ({"ANALYSIS": {
             "ANALYSIS_TYPE": {
               "value_type": "str",
-              "fields":["wqer"],
             }}}, malformed_str_message),
         ({"ANALYSIS": {
             "ANALYSIS_TYPE": {
@@ -108,7 +106,7 @@ malformed_matrix_message = "ValidationError: An error was found in the Conversio
         ({"ANALYSIS": {
             "ANALYSIS_TYPE": {
               "value_type":"section"
-            }}}, "ValidationError: An error was found in the Conversion Directives.\nThe entry ['ANALYSIS']['ANALYSIS_TYPE'] is missing the required property 'execute'."),
+            }}}, malformed_section_message),
         ({"ANALYSIS": {
             "ANALYSIS_TYPE": {
               "value_type":"matrix",

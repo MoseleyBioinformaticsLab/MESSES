@@ -35,27 +35,26 @@ def validate_conversion_directives(conversion_directives: dict, schema: dict):
             message += "The entry " + "[%s]" % "][".join(repr(index) for index in e.relative_path) + " cannot be empty."
         elif e.validator == "required":
             required_property = re.match(r"(\'.*\')", e.message).group(1)
-            special_names = ["'code'", "'table'", "'fields'", "'headers'", "'record_id'", "'for_each'", "'override'"]
+            special_names = ["'code'", "'fields'", "'headers'", "'override'", "'execute'"]
             
             if required_property in special_names:
                 value_type_map = ["str", "matrix", "section"]
                 value_type = value_type_map[e.schema_path[3]]
                 
                 if value_type == "str" or value_type == "section_str":
-                    message += "'str' type directives have 3 valid configurations:\n" +\
-                               "\t1. They have an 'override' property.\n" +\
-                               "\t2. They have a 'code' property.\n" +\
-                               "\t3. They have the 'table' and 'fields' properties.\n" +\
+                    message += "'str' type directives must either have a 'code', 'override', or 'fields' property.\n" +\
                                "The entry "+ "[%s]" % "][".join(repr(index) for index in e.relative_path) +\
-                               " is not one of the valid configurations."
+                               " is missing one of these properties."
                 
                 if value_type == "matrix" or value_type == "section_matrix":
-                    message += "'matrix' type directives must either have a 'code' property or 'headers' and 'table' properties.\n" +\
+                    message += "'matrix' type directives must either have a 'code' or 'headers' property.\n" +\
                                "The entry "+ "[%s]" % "][".join(repr(index) for index in e.relative_path) +\
                                " is missing one of these properties."
                 
                 if value_type == "section":
-                    message += "The entry " + "[%s]" % "][".join(repr(index) for index in e.relative_path) + " is missing the required property " + required_property + "."
+                    message += "'section' type directives must either have a 'code' or 'execute' property.\n" +\
+                               "The entry "+ "[%s]" % "][".join(repr(index) for index in e.relative_path) +\
+                               " is missing one of these properties."
             else:
                 if len(e.relative_path) == 0:
                     message += "The required property " + required_property + " is missing."
@@ -88,7 +87,7 @@ def validate_conversion_directives(conversion_directives: dict, schema: dict):
         elif e.validator == "pattern":
             ## All of the properties except 'headers' are strings, so path will be 3, but headers is a list so path will be 4.
             property_name = e.relative_path[-2] if len(e.relative_path) == 4 else e.relative_path[-1]
-            properties_with_patterns = ["for_each", "required", "fields_to_headers", "values_to_str"]
+            properties_with_patterns = ["for_each", "required", "fields_to_headers", "values_to_str", "execute"]
             if property_name in properties_with_patterns:
                 message += "The '" + property_name + "' property for entry " + \
                            "[%s]" % "][".join(repr(index) for index in list(e.relative_path)[0:-1]) + \
@@ -105,6 +104,10 @@ def validate_conversion_directives(conversion_directives: dict, schema: dict):
                 message += "The '" + property_name + "' property for entry " + \
                            "[%s]" % "][".join(repr(index) for index in list(e.relative_path)[0:-1]) + \
                            " must be 'ascending' or 'descending'"
+            elif property_name == "execute":
+                message += "The '" + property_name + "' property for entry " + \
+                           "[%s]" % "][".join(repr(index) for index in list(e.relative_path)[0:-1]) + \
+                           " must be of the form 'function_name(arg1, arg2, ...)'"
             else:
                 raise e
         else:

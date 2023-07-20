@@ -238,7 +238,7 @@ Directive as JSON
             "value_type": "str",
             "table": "study",
             "fields": ["instrument"],
-            "sort_by": "analysis_type",
+            "sort_by": ["analysis_type"],
             "sort_order": "ascending"
             }
         }
@@ -500,7 +500,11 @@ record_id.
 **test** - a string of the form "field=value" where field is a field in the records being 
 iterated over and value is what the field must be equal to in order to be used to build the 
 string value. Use this as a filter to filter out records that should not be used to build 
-the string value. If for_each is false, this is used to find the first record that matches.
+the string value. If for_each is false, this is used to find the first record that matches. 
+test is also aware of boolean logic, so "and", "or", "&", and "|" can be used to create more 
+complex tests. For example, "field1=value1 and field2=value2" or "field1=value1 or field1=value2". 
+Note that "and" and "&" behave exactly the same, they are just aliases of each other for 
+convenience. "or" and "|" are similarly aliased.
 
 **delimiter** - a string value used to separate the strings built from each record when 
 for_each is true. You can put the value between double quotes if it is difficult to get certain 
@@ -522,6 +526,294 @@ printed and the directive will either use a default value or be skipped.
 **default** - a string value to default to if the directive cannot be built and is not required. 
 If getting specific sequences in the table software used to construct the directive is difficult, 
 you can put the value between double quotes. Ex. " " will be a single space and "asdf" will be asdf.
+
+**silent** - a boolean or string value ("True" or "False") that indicates whether or not to print 
+errors and warnings encountered while executing the directive. Takes precedence over the --silent 
+option.
+
+
+
+Advanced Usage
+--------------
+In response to a need for more complex logic to construct new output formats, new features 
+were added to the conversion directives. This section shows how these new features come into 
+play for str type directives.
+
+section_str
++++++++++++
+Although technically a new value_type, the "section_str" type directive behaves exactly like 
+a "str" type directive except that the record name is ignored and the entire table's value 
+is set to the output of this directive. This is the same output behavior as the "section" type 
+directive, but with the "str" type construction logic. Note that if any "section" type 
+directives are in the directive table there should be no other directives in the same table.
+
+Directive as JSON
+#################
+
+.. code:: console
+
+    {
+    "ANALYSIS": {
+        "name_is_ignored": {
+            "value_type": "section_str",
+            "override": "MS"
+            }
+        }
+    }
+
+Tagged Equivalent
+#################
+
++--------+-----------------+-------------+---------------+
+| #tags  | #ANALYSIS.id    | #.override  | #.value_type  |
++========+=================+=============+===============+
+|        | name_is_ignored | MS          | section_str   |
++--------+-----------------+-------------+---------------+
+
+Output JSON
+###########
+
+.. code:: console
+
+    {
+    "ANALYSIS": "MS"
+    }
+
+
+Calling Record Attributes
++++++++++++++++++++++++++
+The concept of nested directives is fully explained in the `Nested Directives`_ section, 
+but this section shows some examples of str directives being called by other directives 
+in order to illustrate where calling record attributes can be used. To simplify, just 
+understand that when a nested directive is called it should have a record from the 
+input associated with it (the calling record), and the directive can access the attributes 
+from this record. The syntax to access the calling record's attributes instead of 
+accessing a record's attributes normally is to add "^." to the beginning of the 
+attribute name. For str directives these can only be accessed through the "override", 
+"test", and "fields" attributes of the directive. Examples for the "test" attribute are shown 
+in the `Nested Directives`_ section since it is common to all directive types.
+
+override
+########
+Directive as JSON
+$$$$$$$$$$$$$$$$$
+
+.. code:: console
+
+    {
+      "directive1": {
+        "name1": {
+          "fields": ["directive1%field_value()"],
+          "table": "table1",
+          "value_type": "str"
+        }
+      },
+      "directive1field_value%": {
+        "name2": {
+          "override": "^.attribute1",
+          "value_type": "str"
+        }
+      }
+    }
+
+Tagged Equivalent
+$$$$$$$$$$$$$$$$$
+
++-------+----------------------------+--------------------------+--------------+--------------+
+| #tags | #directive1.id             | *#.fields                | #.table      | #.value_type |
++=======+============================+==========================+==============+==============+
+|       | name1                      | directive1%field_value() | table1       | str          |
++-------+----------------------------+--------------------------+--------------+--------------+
+|       |                            |                          |              |              |
++-------+----------------------------+--------------------------+--------------+--------------+
+| #tags | #directive1field_value%.id | #.override               | #.value_type |              |
++-------+----------------------------+--------------------------+--------------+--------------+
+|       | name2                      | ^.attribute1             | str          |              |
++-------+----------------------------+--------------------------+--------------+--------------+
+
+
+Calling Record
+$$$$$$$$$$$$$$
+
+.. code:: console
+
+    {
+    "table1": {
+        "record1": {
+            "attribute1": "value1",
+            "attribute2": "value2",
+            ...
+            }
+        }
+    }
+
+
+Output JSON
+$$$$$$$$$$$
+
+.. code:: console
+
+    {
+      "directive1": {
+        "name1": "{'name2': 'value1'}"
+      }
+    }
+
+Note that this example uses "str" types, but the nested directive returns a dictionary 
+that was represented as a string in the result, "{'name2': 'value1'}". This is because 
+a nested directive is the whole table and not just one individual directive. This is 
+precisely why the "section_str" type was created. If "directive1%field_value" was a "section_str" 
+type instead the output would be:
+
+.. code:: console
+
+    {
+      "directive1": {
+        "name1": "value1"
+      }
+    }
+
+
+fields
+######
+Directive as JSON
+$$$$$$$$$$$$$$$$$
+
+.. code:: console
+
+    {
+      "directive1": {
+        "name1": {
+          "fields": ["directive1%field_value()"],
+          "table": "table1",
+          "value_type": "str"
+        }
+      },
+      "directive1%field_value": {
+        "name2": {
+          "fields": ["\"begin \"", "^.attribute1", "\" end\""],
+          "value_type": "str"
+        }
+      }
+    }
+
+Tagged Equivalent
+$$$$$$$$$$$$$$$$$
+
++-------+----------------------------+------------------------------+--------------+--------------+
+| #tags | #directive1.id             | *#.fields                    | #.table      | #.value_type |
++=======+============================+==============================+==============+==============+
+|       | name1                      | directive1%field_value()     | table1       | str          |
++-------+----------------------------+------------------------------+--------------+--------------+
+|       |                            |                              |              |              |
++-------+----------------------------+------------------------------+--------------+--------------+
+| #tags | #directive1%field_value.id | *#.fields                    | #.value_type |              |
++-------+----------------------------+------------------------------+--------------+--------------+
+|       | name2                      | "begin ",^.attribute1," end" | str          |              |
++-------+----------------------------+------------------------------+--------------+--------------+
+
+Calling Record
+$$$$$$$$$$$$$$
+
+.. code:: console
+
+    {
+    "table1": {
+        "record1": {
+            "attribute1": "value1",
+            "attribute2": "value2",
+            ...
+            }
+        }
+    }
+
+
+Output JSON
+$$$$$$$$$$$
+
+.. code:: console
+
+    {
+      "directive1": {
+        "name1": "{'name2': 'begin value1 end'}"
+      }
+    }
+
+Note that this example uses "str" types, but the nested directive returns a dictionary 
+that was represented as a string in the result, "{'name2': 'begin value1 end'}". This is because 
+a nested directive is the whole table and not just one individual directive. This is 
+precisely why the "section_str" type was created. If "directive1%field_value" was a "section_str" 
+type instead the output would be:
+
+.. code:: console
+
+    {
+      "directive1": {
+        "name1": "begin value1 end"
+      }
+    }
+
+
+Call Signature
+++++++++++++++
+Directives were initially created with the assumption that the user would want to do 
+some operations in the context of an input record or list of records. The assumption 
+was that each directive would first need to assemble a set of records and then filter 
+and/or sort them down to the desired set before proceeding to do its operations. With 
+the addition of `Nested Directives`_ it became clear that that assumption would not 
+always be true. Before the addition of `Nested Directives`_ the "table" field could 
+be required if certain other fields ("fields", "headers", "execute") were present, 
+but now it is entirely conceivable that a user would want to run a directive with 
+only combinations of literal values ("asdf"), nested directives (directive1%field_value()), and 
+calling record attributes (^.attribute1). Due to this change the "table" field is 
+not always required for a directive and the inputs to certain fields are analyzed 
+for what types of values they have to determine if they can be executed without 
+first building a set of records. This results in a few different call signatures 
+and examples are shown below.
+
+Execute With Record Attributes
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+This is the traditional way to call a directive. The example is minimal and requires 
+"table" to be present at minimum, but other fields like "test", "sort_by", etc. can 
+also be included. The example only shows record attributes in "fields", but these 
+could also be a combination of literal values, calling record attributes, and nested 
+directives.
+
+.. code:: console
+
+    {
+      "directive1": {
+        "name1": {
+          "fields": ["record_attribute1", "record_attribute2", ...],
+          "table": "table1",
+          "value_type": "str"
+        }
+      }
+    }
+
+
+Execute Without Record Attributes
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+This is only possible if there are no record attribute fields in "fields". "table" 
+is not required and a set of records won't be determined, the string will be created 
+with the given values.
+
+.. code:: console
+
+    {
+      "directive1": {
+        "name1": {
+          "fields": ["^.calling_attribute1", "\"literal_value\"", ...],
+          "value_type": "str"
+        }
+      }
+    }
+
+
+
+
+
+
 
 
 
@@ -1103,7 +1395,11 @@ Ex. ["Metabolite"=assignment,"sample.id"=sample.id]
 
 **test** - a string of the form "field=value" where field is a field in the records being 
 iterated over and value is what the field must be equal to in order to be used to build the 
-value. Use this as a filter to filter out records that should not be used to build the value.
+value. Use this as a filter to filter out records that should not be used to build the value. 
+test is also aware of boolean logic, so "and", "or", "&", and "|" can be used to create more 
+complex tests. For example, "field1=value1 and field2=value2" or "field1=value1 or field1=value2". 
+Note that "and" and "&" behave exactly the same, they are just aliases of each other for 
+convenience. "or" and "|" are similarly aliased.
 
 **sort_by** - a list of fields to sort the input JSON records by before building the value from them.
 
@@ -1133,21 +1429,389 @@ printed and the directive will either use a default value or be skipped.
 If getting specific sequences in the table software used to construct the directive is difficult, 
 you can put the value between double quotes. Ex. " " will be a single space and "asdf" will be asdf.
 
+**silent** - a boolean or string value ("True" or "False") that indicates whether or not to print 
+errors and warnings encountered while executing the directive. Takes precedence over the --silent 
+option.
+
+
+Advanced Usage
+--------------
+In response to a need for more complex logic to construct new output formats, new features 
+were added to the conversion directives. This section shows how these new features come into 
+play for matrix type directives.
+
+section_matrix
+++++++++++++++
+Although technically a new value_type, the "section_matrix" type directive behaves exactly like 
+a "matrix" type directive except that the record name is ignored and the entire table's value 
+is set to the output of this directive. This is the same output behavior as the "section" type 
+directive, but with the "matrix" type construction logic. Note that if any "section" type 
+directives are in the directive table there should be no other directives in the same table.
+
+Directive as JSON
+#################
+
+.. code:: console
+
+    {
+    "ANALYSIS": {
+        "name_is_ignored": {
+            "value_type": "section_matrix",
+            "headers": ["\"key1\"=\"value1\""]
+            }
+        }
+    }
+
+Tagged Equivalent
+#################
+
++-------+-----------------+-----------------+----------------+
+| #tags | #ANALYSIS.id    | *#.headers      | #.value_type   |
++=======+=================+=================+================+
+|       | name_is_ignored | "key1"="value1" | section_matrix |
++-------+-----------------+-----------------+----------------+
+
+
+Output JSON
+###########
+
+.. code:: console
+
+    {
+    "ANALYSIS": {"key1": "value1"}
+    }
+
+
+Calling Record Attributes
++++++++++++++++++++++++++
+The concept of nested directives is fully explained in the `Nested Directives`_ section, 
+but this section shows some examples of matrix directives being called by other directives 
+in order to illustrate where calling record attributes can be used. To simplify, just 
+understand that when a nested directive is called it should have a record from the 
+input associated with it (the calling record), and the directive can access the attributes 
+from this record. The syntax to access the calling record's attributes instead of 
+accessing a record's attributes normally is to add "^." to the beginning of the 
+attribute name. For matrix directives these can only be accessed through the "headers" 
+and "test" attributes of the directive. Examples for the "test" attribute are shown 
+in the `Nested Directives`_ section since it is common to all directive types.
+
+headers
+#######
+Directive as JSON
+$$$$$$$$$$$$$$$$$
+
+.. code:: console
+
+    {
+      "directive1": {
+        "name1": {
+          "headers": ["\"key\"=directive1%key_value()"],
+          "table": "table1",
+          "value_type": "matrix"
+        }
+      },
+      "directive1%key_value": {
+        "name2": {
+          "headers": ["\"key2\"=^.attribute1"],
+          "value_type": "matrix"
+        }
+      }
+    }
+
+Tagged Equivalent
+$$$$$$$$$$$$$$$$$
+
++-------+--------------------------+------------------------------+--------------+--------------+
+| #tags | #directive1.id           | *#.headers                   | #.table      | #.value_type |
++=======+==========================+==============================+==============+==============+
+|       | name1                    | "key"=directive1%key_value() | table1       | matrix       |
++-------+--------------------------+------------------------------+--------------+--------------+
+|       |                          |                              |              |              |
++-------+--------------------------+------------------------------+--------------+--------------+
+| #tags | #directive1%key_value.id | *#.headers                   | #.value_type |              |
++-------+--------------------------+------------------------------+--------------+--------------+
+|       | name2                    | "key2"=^.attribute1          | matrix       |              |
++-------+--------------------------+------------------------------+--------------+--------------+
+
+Calling Record
+$$$$$$$$$$$$$$
+
+.. code:: console
+
+    {
+    "table1": {
+        "record1": {
+            "attribute1": "value1",
+            "attribute2": "value2",
+            ...
+            }
+        }
+    }
+
+
+Output JSON
+$$$$$$$$$$$
+
+.. code:: console
+
+    {
+      "directive1": {
+        "name1": [
+          {
+            "key": {
+              "name2": [
+                {
+                  "key2": "value1"
+                }
+              ]
+            }
+          }
+        ]
+      }
+    }
+
+Note that this example uses "matrix" types, but the nested directive returns a dictionary 
+, "{'name2': [{"key2": "value1' }]}". This is because 
+a nested directive is the whole table and not just one individual directive. This is 
+precisely why the "section_matrix" type was created. If "directive1%key_value" was a "section_matrix" 
+type instead the output would be:
+
+.. code:: console
+
+    {
+      "directive1": {
+        "name1": [
+          {
+            "key": [
+              {
+                "key2": "value1"
+              }
+            ]
+          }
+        ]
+      }
+    }
+
+Note that calling record attributes can be used as keys or values for headers, but 
+keys must be strings, so they will be forced into a string if the value is not a 
+string and a warning will be printed.
+
+
+Call Signature
+++++++++++++++
+Directives were initially created with the assumption that the user would want to do 
+some operations in the context of an input record or list of records. The assumption 
+was that each directive would first need to assemble a set of records and then filter 
+and/or sort them down to the desired set before proceeding to do its operations. With 
+the addition of `Nested Directives`_ it became clear that that assumption would not 
+always be true. Before the addition of `Nested Directives`_ the "table" field could 
+be required if certain other fields ("fields", "headers", "execute") were present, 
+but now it is entirely conceivable that a user would want to run a directive with 
+only combinations of literal values ("asdf"), nested directives (directive1%field_value()), and 
+calling record attributes (^.attribute1). Due to this change the "table" field is 
+not always required for a directive and the inputs to certain fields are analyzed 
+for what types of values they have to determine if they can be executed without 
+first building a set of records. This results in a few different call signatures 
+and examples are shown below.
+
+Execute With Record Attributes
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+This is the traditional way to call a directive. The example is minimal and requires 
+"table" to be present at minimum, but other fields like "test", "sort_by", etc. can 
+also be included. The example only shows record attributes in "headers", but these 
+could also be a combination of literal values, calling record attributes, and nested 
+directives.
+
+.. code:: console
+
+    {
+      "directive1": {
+        "name1": {
+          "headers": ["\"key1\"=record_attribute1", "\"key2\"=record_attribute2", ... ],
+          "table": "table1",
+          "value_type": "matrix"
+        }
+      }
+    }
+
+
+Execute Without Record Attributes
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+This is only possible if there are no record attribute fields in "headers". "table" 
+is not required and a set of records won't be determined, the matrix will be created 
+with the given values.
+
+.. code:: console
+
+    {
+      "directive1": {
+        "name1": {
+          "headers": [
+              "\"key1\"=^.calling_attribute", 
+              "\"key2\"=\"literal_value\"", 
+              "\"key3\"=directive1%key3_value()",
+               ... ],
+          "value_type": "matrix"
+        }
+      }
+    }
+
+
+
+Header Optionality
+++++++++++++++++++
+Although the "optional_headers" attribute exists it is limited to having the output 
+key names be the same as the attribute names on the records. Using a combination of 
+nested directives and the "required" attribute we can turn every header into an optional 
+header. If the "required" field on a nested directive is False then if it has an error 
+it will not return a value, and if that happens while creating a key value pair in a 
+matrix directive it will drop the pair.
+
+Example
+#######
+Directive as JSON
+$$$$$$$$$$$$$$$$$
+
+.. code:: console
+
+    {
+      "directive1": {
+        "name1": {
+          "headers": [
+              "\"key1\"=directive1%attribute1()", 
+              "\"key2\"=directive1%attribute2()"
+              ],
+          "table": "table1",
+          "value_type": "matrix"
+        }
+      },
+      "directive1%attribute1": {
+        "name2": {
+          "fields": ["^.attribute1"],
+          "value_type": "section_str",
+          "required": "False",
+          "silent": "True"
+        }
+      },
+      "directive1%attribute2": {
+        "name3": {
+          "fields": ["^.attribute2"],
+          "value_type": "section_str",
+          "required": "False",
+          "silent": "True"
+        }
+      }
+    }
+
+Tagged Equivalent
+$$$$$$$$$$$$$$$$$
+
++-------+---------------------------+---------------------------------------------------------------+------------+--------------+--------------+
+| #tags | #directive1.id            | *#.headers                                                    | #.table    | #.value_type |              |
++=======+===========================+===============================================================+============+==============+==============+
+|       | name1                     | "key1"=directive1%attribute1(),"key2"=directive1%attribute2() | table1     | matrix       |              |
++-------+---------------------------+---------------------------------------------------------------+------------+--------------+--------------+
+|       |                           |                                                               |            |              |              |
++-------+---------------------------+---------------------------------------------------------------+------------+--------------+--------------+
+| #tags | #directive1%attribute1.id | *#.fields                                                     | #.required | #.silent     | #.value_type |
++-------+---------------------------+---------------------------------------------------------------+------------+--------------+--------------+
+|       | name2                     | ^.attribute1                                                  | FALSE      | TRUE         | section_str  |
++-------+---------------------------+---------------------------------------------------------------+------------+--------------+--------------+
+|       |                           |                                                               |            |              |              |
++-------+---------------------------+---------------------------------------------------------------+------------+--------------+--------------+
+| #tags | #directive1%attribute2.id | *#.fields                                                     | #.required | #.silent     | #.value_type |
++-------+---------------------------+---------------------------------------------------------------+------------+--------------+--------------+
+|       | name3                     | ^.attribute2                                                  | FALSE      | TRUE         | section_str  |
++-------+---------------------------+---------------------------------------------------------------+------------+--------------+--------------+
+
+
+Calling Record
+$$$$$$$$$$$$$$
+
+.. code:: console
+
+    {
+    "table1": {
+        "record1": {
+            "attribute1": "value1",
+            "attribute2": "value2"
+            },
+        "record2": {
+            "attribute2": "value3"
+            }
+        }
+    }
+
+
+Output JSON
+$$$$$$$$$$$
+
+.. code:: console
+
+    {
+      "directive1": {
+        "name1": [
+          {
+            "key1": "value1",
+            "key2": "value2"
+          },
+          {
+            "key2": "value3"
+          }
+        ]
+      }
+    }
+
+Note how the second dictionary in the list does not have a "key1" because the record 
+"record2" did not have an "attribute1".
+
+
+
 
 
 section Directives
 ~~~~~~~~~~~~~~~~~~
-When you need a more complex structure than is available through the other directives 
-or if you need to specify the entire table at once, the section type directive is 
-what you need. It only has the "code" and "import" fields because you have to supply 
-Python code to tell MESSES how to build the section. One quirk of the directive is 
-that you do still have to specify a record name for the directive, but it is ignored 
-since whatever the code generates will be what the table's value is set to. There is 
-currently one module built into MESSES that contains functions for building a part of 
-the mwTab file, and that is used as the example here.
+Originally, the "section" type directive was simply a catch all to implement functionality 
+that "str" and "matrix" directives could not. It only had "code" and "import" fields 
+to provide Python code to eval and produce output. While that functionality is still 
+there it has evolved to behave more like the "str" directive as well and shares many 
+of its fields. How the "section" type directive determines what records to execute 
+on in the input data is exactly the same as how a "str" type determines it. The difference 
+is that instead of having a "fields" attribute to indicate how to build a string from 
+the record values, the "section" type directive has an "execute" attribute. 
 
-Example
--------
+The "execute" 
+attribute is expected to have a form like "function_name(args1, arg2, ...)", where the 
+"function_name" is an inbuilt function with predefined behavior, and the arguments 
+can be either a literal value ("asdf"), a record attribute name (attribute1), or a 
+calling record attribute name (^.attribute1). The available built-in functions are 
+described in the :doc:`built_ins` section of the documentation, but a user can create 
+their own and import them with the "import" field of any directive. By default all 
+functions imported with the "import" field are added to the list of built-in functions. 
+Most built-in functions are used to transform strings formatted a specific way into 
+more complex data structures. For example, to_dict() will transform a string formatted 
+like "key1:value1, key2:value2" into a Python dictionary/JSON object like {"key1": "value1", "key2": "value2"}. 
+If "for_each" is specified then the function in "execute" is ran for each record and 
+a list of the return values is returned by the directive, otherise the return value 
+of the function is returned by the directive.
+
+There are also other Python functions that are available to the user through directives, 
+but are categorically different from built-in functions and cannot be accessed through 
+the "execute" field. These are functions specific to :doc:`supported_formats`, and 
+were developed for use in creating complex sections of supported formats. They appear 
+in the built-in directives for each format, but were mostly developed for internal 
+use in the niche situation they were created for. They are made available to the user 
+so modifications can be made if necessary, but it should be clear that these are 
+categorically different from built-in functions available in the "execute" field. 
+They are mentioned here just to differentiate them and hopefully avoid confusion. 
+They can be called through the "code" field, and there is an example of doing so 
+below.
+
+Note that if any "section" type directives are in the directive table there should 
+be no other directives in the same table.
+
+Code
+----
 
 Directive as JSON
 +++++++++++++++++
@@ -1245,6 +1909,239 @@ General Output Format
     {
     <table_name>: <code_result>
     }
+    
+    
+
+Record ID
+---------
+If there is a specific record you want to execute with youcan simply use the "record_id" field.
+
+Directive as JSON
++++++++++++++++++
+
+.. code:: console
+
+    {
+    "directive1": {
+        "name1": {
+            "value_type": "section",
+            "table": "table1",
+            "record_id": "record1",
+            "execute": "to_dict(attribute1)"
+            }
+        }
+    }
+
+Tagged Equivalent
++++++++++++++++++
+
++-------+----------------+---------------------+-------------+---------+--------------+
+| #tags | #directive1.id | #.execute           | #.record_id | #.table | #.value_type |
++=======+================+=====================+=============+=========+==============+
+|       | name1          | to_dict(attribute1) | record1     | table1  | section      |
++-------+----------------+---------------------+-------------+---------+--------------+
+
+
+Input JSON
+++++++++++
+
+.. code:: console
+
+    {
+    "table1": {
+        "record1": {
+            "attribute1": "key1:value1, key2:value2"
+            }
+        }
+    }
+
+Output JSON
++++++++++++
+
+.. code:: console
+
+    {
+      "directive1": {
+        "key1": "value1",
+        "key2": "value2"
+      }
+    }
+
+
+First Record
+------------
+Similar to specifying a record ID, if you want to execute with a record 
+but do not know its ID, you can omit the "record_id" field and the first record in 
+the specified table will be used. This alone is generally not enough though and it 
+is recommended to either use the "sort_by" and "sort_order" fields to first sort the 
+records before selecting the first one, or use the "test" field to select the first 
+record that matches the test.
+
+Directive as JSON
++++++++++++++++++
+
+.. code:: console
+
+    # Using test.
+    {
+    "directive1": {
+        "name1": {
+            "value_type": "section",
+            "table": "table1",
+            "execute": "to_dict(attribute1)",
+            "test": "sort_field=2"
+            }
+        }
+    }
+    
+    # Using sort.
+    {
+    "directive1": {
+        "name1": {
+            "value_type": "section",
+            "table": "table1",
+            "execute": "to_dict(attribute1)",
+            "sort_by": ["sort_field"],
+            "sort_order": "descending"
+            }
+        }
+    }
+
+Tagged Equivalent
++++++++++++++++++
+
++-------+----------------+---------------------+---------+--------------+--------------+
+| #tags | #directive1.id | #.execute           | #.table | #.test       | #.value_type |
++=======+================+=====================+=========+==============+==============+
+|       | name1          | to_dict(attribute1) | table1  | sort_field=2 | section      |
++-------+----------------+---------------------+---------+--------------+--------------+
+
+
++-------+----------------+---------------------+-------------+---------------+---------+--------------+
+| #tags | #directive1.id | #.execute           | *#.sort_by  | #.sort_order  | #.table | #.value_type |
++=======+================+=====================+=============+===============+=========+==============+
+|       | name1          | to_dict(attribute1) | sort_field  | descending    | table1  | section      |
++-------+----------------+---------------------+-------------+---------------+---------+--------------+
+
+
+Input JSON
+++++++++++
+
+.. code:: console
+
+    {
+    "table1": {
+        "record1": {
+            "sort_field": "1",
+            "attribute1": "key1:value1, key2:value2"
+            },
+        "record2": {
+            "sort_field": "2",
+            "attribute1": "key3:value3, key4:value4"
+            }
+        }
+    }
+    
+    # After sorting.
+    {
+    "table1": {
+        "record2": {
+            "sort_field": "2",
+            "attribute1": "key3:value3, key4:value4"
+            },
+        "record1": {
+            "sort_field": "1",
+            "attribute1": "key1:value1, key2:value2"
+            }
+        }
+    }
+
+Output JSON
++++++++++++
+
+.. code:: console
+
+    {
+      "directive1": {
+        "key3": "value3",
+        "key4": "value4"
+      }
+    }
+
+
+For Each
+--------
+If a list of return values from a built-in function executed with many records is 
+desired, then use the "for_each" attribute. The function in "execute" will be executed 
+for each record determined by the "table" and "test" attributes, and a list of the 
+return values will be returned by the directive.
+
+Directive as JSON
++++++++++++++++++
+
+.. code:: console
+
+    {
+    "directive1": {
+        "name1": {
+            "for_each": "True",
+            "execute": "to_dict(attribute1)",
+            "sort_by": ["sort_field"],
+            "sort_order": "descending",
+            "table": "table1",
+            "value_type": "section"
+            }
+        }
+    }
+
+Tagged Equivalent
++++++++++++++++++
+
++-------+----------------+---------------------+------------+------------+--------------+---------+--------------+
+| #tags | #directive1.id | #.execute           | #.for_each | *#.sort_by | #.sort_order | #.table | #.value_type |
++=======+================+=====================+============+============+==============+=========+==============+
+|       | name1          | to_dict(attribute1) | TRUE       | sort_field | descending   | table1  | section      |
++-------+----------------+---------------------+------------+------------+--------------+---------+--------------+
+
+
+Input JSON
+++++++++++
+
+.. code:: console
+
+    {
+    "table1": {
+        "record1": {
+            "sort_field": "1",
+            "attribute1": "key1:value1, key2:value2"
+            },
+        "record2": {
+            "sort_field": "2",
+            "attribute1": "key3:value3, key4:value4"
+            }
+        }
+    }
+
+Output JSON
++++++++++++
+
+.. code:: console
+
+    {
+      "directive1": [
+          {
+            "key3": "value3",
+            "key4": "value4"
+          },
+          {
+            "key1": "value1",
+            "key2": "value2"
+          }
+      ]
+    }
+
+
+
 
 
 Meaningful Fields
@@ -1255,6 +2152,640 @@ checked.
 
 **import** - a string that is a filepath to a Python file to be imported. Typically to be used 
 to import functions to run with the code field.
+
+**table** - a string that is the name of the table in the input JSON to pull from to build the 
+list of records to run "execute" with.
+
+**execute** - a string of the form "function_name(arg1, arg2, ...)", where "function_name" is 
+an imported or built-in function and the arguments can be either a literal value ("asdf"), 
+a record attribute name (attribute1), or a calling record attribute name (^.attribute1).
+
+**for_each** - a boolean or string value ("True" or "False") that indicates "execute" is to be 
+run for each record in the indicated table in the input JSON. Takes priority over record_id.
+
+**test** - a string of the form "field=value" where field is a field in the records being 
+iterated over and value is what the field must be equal to in order to be used to build the 
+string value. Use this as a filter to filter out records that should not be used to build 
+the string value. If for_each is false, this is used to find the first record that matches. 
+test is also aware of boolean logic, so "and", "or", "&", and "|" can be used to create more 
+complex tests. For example, "field1=value1 and field2=value2" or "field1=value1 or field1=value2". 
+Note that "and" and "&" behave exactly the same, they are just aliases of each other for 
+convenience. "or" and "|" are similarly aliased.
+
+**sort_by** - a list of fields to sort the input JSON records by before running "execute" with them.
+
+**sort_order** - a string value that is either "ascending" or "descending" to indicate how to sort 
+the input JSON records.
+
+**record_id** - a string value that is the specific record name in the indicated input JSON table 
+to run "execute" with.
+
+**required** - a boolean or string value ("True" or "False") that indicates if the directive is 
+required. If true, then errors encountered will stop the program. If false, a warning will be 
+printed and the directive will either use a default value or be skipped.
+
+**default** - a string value to default to if the directive cannot be built and is not required. 
+If getting specific sequences in the table software used to construct the directive is difficult, 
+you can put the value between double quotes. Ex. " " will be a single space and "asdf" will be asdf.
+
+**silent** - a boolean or string value ("True" or "False") that indicates whether or not to print 
+errors and warnings encountered while executing the directive. Takes precedence over the --silent 
+option.
+
+
+
+Advanced Usage
+--------------
+In response to a need for more complex logic to construct new output formats, new features 
+were added to the conversion directives. This section shows how these new features come into 
+play for section type directives.
+
+
+Calling Record Attributes
++++++++++++++++++++++++++
+The concept of nested directives is fully explained in the `Nested Directives`_ section, 
+but this section shows some examples of "section" directives being called by other directives 
+in order to illustrate where calling record attributes can be used. To simplify, just 
+understand that when a nested directive is called it should have a record from the 
+input associated with it (the calling record), and the directive can access the attributes 
+from this record. The syntax to access the calling record's attributes instead of 
+accessing a record's attributes normally is to add "^." to the beginning of the 
+attribute name. For section directives these can only be accessed through the "execute" 
+and "test" attributes of the directive. Examples for the "test" attribute are shown 
+in the `Nested Directives`_ section since it is common to all directive types.
+
+execute
+#######
+Directive as JSON
+$$$$$$$$$$$$$$$$$
+
+.. code:: console
+
+    {
+      "directive1": {
+        "name1": {
+          "headers": ["\"key\"=directive1%key_value()"],
+          "table": "table1",
+          "value_type": "matrix",
+          "test": "id=record1"
+        }
+      },
+      "directive1%key_value": {
+        "name2": {
+          "execute": "to_dict(^.attribute1)",
+          "value_type": "section"
+        }
+      }
+    }
+
+Tagged Equivalent
+$$$$$$$$$$$$$$$$$
+
++-------+--------------------------+------------------------------+--------------+------------+--------------+
+| #tags | #directive1.id           | *#.headers                   | #.table      | #.test     | #.value_type |
++=======+==========================+==============================+==============+============+==============+
+|       | name1                    | "key"=directive1%key_value() | table1       | id=record1 | matrix       |
++-------+--------------------------+------------------------------+--------------+------------+--------------+
+|       |                          |                              |              |            |              |
++-------+--------------------------+------------------------------+--------------+------------+--------------+
+| #tags | #directive1%key_value.id | #.execute                    | #.value_type |            |              |
++-------+--------------------------+------------------------------+--------------+------------+--------------+
+|       | name2                    | to_dict(^.attribute1)        | section      |            |              |
++-------+--------------------------+------------------------------+--------------+------------+--------------+
+
+Calling Record
+$$$$$$$$$$$$$$
+
+.. code:: console
+
+    {
+    "table1": {
+        "record1": {
+            "id": "record1",
+            "attribute1": "key1:value1, key2:value2",
+            "attribute2": "value2",
+            ...
+            }
+        }
+    }
+
+
+Output JSON
+$$$$$$$$$$$
+
+.. code:: console
+
+    {
+      "directive1": {
+        "name1": [
+          {
+            "key": {
+              "key1": "value1",
+              "key2": "value2"
+            }
+          }
+        ]
+      }
+    }
+
+
+Call Signature
+++++++++++++++
+Directives were initially created with the assumption that the user would want to do 
+some operations in the context of an input record or list of records. The assumption 
+was that each directive would first need to assemble a set of records and then filter 
+and/or sort them down to the desired set before proceeding to do its operations. With 
+the addition of `Nested Directives`_ it became clear that that assumption would not 
+always be true. Before the addition of `Nested Directives`_ the "table" field could 
+be required if certain other fields ("fields", "headers", "execute") were present, 
+but now it is entirely conceivable that a user would want to run a directive with 
+only combinations of literal values ("asdf"), nested directives (directive1%field_value()), and 
+calling record attributes (^.attribute1). Due to this change the "table" field is 
+not always required for a directive and the inputs to certain fields are analyzed 
+for what types of values they have to determine if they can be executed without 
+first building a set of records. This results in a few different call signatures 
+and examples are shown below.
+
+Execute With Record Attributes
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+This is the traditional way to call a directive. The example is minimal and requires 
+"table" to be present at minimum, but other fields like "test", "sort_by", etc. can 
+also be included.
+
+.. code:: console
+
+    {
+      "directive1": {
+        "name1": {
+          "execute": "function_name(record_attribute1, record_attribute2, ...)",
+          "table": "table1",
+          "value_type": "section"
+        }
+      }
+    }
+
+
+Execute Without Record Attributes
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+This is only possible if there are no record attribute fields in "execute". "table" 
+is not required and a set of records won't be determined, "execute" will be executed 
+with the given values.
+Note that nested directives cannot be used as arguments in "execute".
+
+.. code:: console
+
+    {
+      "directive1": {
+        "name1": {
+          "execute": "function_name(^.calling_attribute1, "literal_value", ...)",
+          "value_type": "section"
+        }
+      }
+    }
+
+
+
+
+
+
+
+
+Nested Directives
+~~~~~~~~~~~~~~~~~
+In order to support the creation of more deeply nested formats directives were 
+extended to be nested as well. The basic idea is that directives can call other 
+directives to fill in some values. For example, a matrix directive can call another 
+directive table to fill in a value for one of its headers. This allows for more 
+complex logic and data structures to be created.
+
+Note that nested directive tables do not include the table name in their return 
+value. It executes like a standalone directive table, but where a standalone table 
+would have its name in the resulting output, ex "directive1": {value}, a nested 
+directive table will only return its value to the parent directive.
+
+Along with nested directives came some features that were natural outgrowths from 
+them:
+
+1. The ability to indicate that a directive table is not a standalone directive table, and is 
+   only meant to be ran in a nested way.
+   
+   * This is accomplished through directive table naming.
+   * Directive tables with '%' in the name will not be ran as standalone directives and will be skipped over in the main loop of convert.
+   * Nested directive tables are recommended to be named like: 'parent_name%descriptive_name' so it is easy to track down the root.
+   * An example might be 'studies%assays' where studies is a section_matrix with an 'assays' 
+     header whose value will be filled in by the 'studies%assays' directive table.
+   * For multiple layers of nesting use multiple '%' characters. For example, 'studies%assays%files'
+   
+2. The extension of the "section" type return style to the other directive types.
+
+   * To get the most out of nested table directives it is necessary to be able to return a 
+     single string value or matrix instead of a dictionary.
+   * The "section_str" and "section_matrix" types were thus created which behave 
+     exactly as "str" and "matrix" types, respectively, but the value determined by 
+     the directives is set to the whole directive table like the "section" type directive.
+   
+3. The ability to easily access the attributes of the record the parent directive had in context 
+   when it called the nested directive table.
+   
+   * One of the main use cases for nested directive tables is to do some more complicated 
+     parsing or logic on a record's attribute than can be done in a single directive.
+   * For example, a record's attribute could be a string of the form "key1:value1, key2:value2" 
+     and you want to parse this into a dictionary.
+   * It would be great if you could easily access that attribute from the nested directive 
+     table without having to rebuild a set of records in the same way the parent directive 
+     did.
+   * This was implemented by adding "^." to the beginning of an attribute name in the nested 
+     directive to indicate that the attribute value should come from the record that was in 
+     the parent directive's context when it called the nested directive table.
+   * For example, say a parent "str" type directive calls a nested directive table to 
+     fill in one element for its "fields" attribute. The record at the time of the call 
+     is "record1": {"attribute1": "value1"}. The nested directive table that was called is 
+     a single "section_str" type directive that has an "override" value of "^.attribute1". 
+     The override value would then look up the value of "attribute1" in the record, "value1", 
+     and "value1" is used as the value for "override". The nested directive then returns 
+     this value to the parent directive so it can finish executing normally.
+   * This example is contrived for simplicity, but there are more examples in the Advanced 
+     Usage section of each directive type.
+
+
+
+Directives can call other directives only through certain fields that vary by directive 
+type. The following table lists the fields where a directive can be called from:
+
++----------+----------------+--------------------------------------------------------------------------------------------+
+| Field    | Directive Type | Notes                                                                                      |
++==========+================+============================================================================================+
+| test     | All            |                                                                                            |
++----------+----------------+--------------------------------------------------------------------------------------------+
+| override | str            | Directives that return non-string values will be coerced to strings.                       |
++----------+----------------+--------------------------------------------------------------------------------------------+
+| fields   | str            | Directives that return non-string values will be coerced to strings.                       |
++----------+----------------+--------------------------------------------------------------------------------------------+
+| headers  | matrix         | Directives that return non-string values will be coerced to strings for header key values. |
++----------+----------------+--------------------------------------------------------------------------------------------+
+
+
+Examples
+--------
+
+test
+++++
+Directive as JSON
+$$$$$$$$$$$$$$$$$
+
+.. code:: console
+
+    {
+    "directive1": {
+        "name1": {
+            "fields": ["attribute1"],
+            "table": "table1",
+            "test": "sort_field=directive1%test_value()",
+            "value_type": "str"
+            }
+        },
+    "directive1%test_value": {
+        "name2": {
+            "override": "2",
+            "value_type": "section_str"
+            }
+        }
+    }
+
+Tagged Equivalent
+$$$$$$$$$$$$$$$$$
+
++-------+---------------------------+------------+--------------+------------------------------------+--------------+
+| #tags | #directive1.id            | *#.fields  | #.table      | #.test                             | #.value_type |
++=======+===========================+============+==============+====================================+==============+
+|       | name1                     | attribute1 | table1       | sort_field=directive1%test_value() | str          |
++-------+---------------------------+------------+--------------+------------------------------------+--------------+
+|       |                           |            |              |                                    |              |
++-------+---------------------------+------------+--------------+------------------------------------+--------------+
+| #tags | #directive1%test_value.id | #.override | #.value_type |                                    |              |
++-------+---------------------------+------------+--------------+------------------------------------+--------------+
+|       | name2                     | 2          | section_str  |                                    |              |
++-------+---------------------------+------------+--------------+------------------------------------+--------------+
+
+
+Input JSON
+$$$$$$$$$$
+
+.. code:: console
+
+    {
+    "table1": {
+        "record1": {
+            "sort_field": "1",
+            "attribute1": "key1:value1, key2:value2"
+            },
+        "record2": {
+            "sort_field": "2",
+            "attribute1": "key3:value3, key4:value4"
+            }
+        }
+    }
+
+Output JSON
+$$$$$$$$$$$
+
+.. code:: console
+
+    {
+      "directive1": {
+          "name1": "key3:value3, key4:value4"
+          }
+    }
+
+This example is somewhat contrived, but it should be easy to follow. directive1 
+calls directive1%test_value to fill in the test value, and directive1%test_value 
+is a simple "section_str" type directive that returns the value "2". directive1 
+can then subset the input down to one record and constructs it's value as normal.
+
+
+
+override
+++++++++
+Directive as JSON
+$$$$$$$$$$$$$$$$$
+
+.. code:: console
+
+    {
+    "directive1": {
+        "name1": {
+            "override": "directive1%override_value()",
+            "value_type": "str"
+            }
+        },
+    "directive1%override_value": {
+        "name2": {
+            "override": "2",
+            "value_type": "section_str"
+            }
+        }
+    }
+
+Tagged Equivalent
+$$$$$$$$$$$$$$$$$
+
++-------+-------------------------------+-----------------------------+--------------+
+| #tags | #directive1.id                | #.override                  | #.value_type |
++=======+===============================+=============================+==============+
+|       | name1                         | directive1%override_value() | str          |
++-------+-------------------------------+-----------------------------+--------------+
+|       |                               |                             |              |
++-------+-------------------------------+-----------------------------+--------------+
+| #tags | #directive1%override_value.id | #.override                  | #.value_type |
++-------+-------------------------------+-----------------------------+--------------+
+|       | name2                         | 2                           | section_str  |
++-------+-------------------------------+-----------------------------+--------------+
+
+
+Input JSON
+$$$$$$$$$$
+
+.. code:: console
+
+    {
+    # This example doesn't need input.
+    }
+
+Output JSON
+$$$$$$$$$$$
+
+.. code:: console
+
+    {
+      "directive1": {
+          "name1": "2"
+          }
+    }
+
+Although contrived, this example was made simple on purpose so it is easy to follow. directive1 
+calls directive1%override_value to fill in the override value, and directive1%override_value 
+is a simple "section_str" type directive that returns the value "2". directive1 
+then uses "2" as its override value and executes normally.
+
+
+
+fields
+++++++
+Directive as JSON
+$$$$$$$$$$$$$$$$$
+
+.. code:: console
+
+    {
+    "directive1": {
+        "name1": {
+            "fields": ["attribute1", "\" \"", "directive1%field_value()"],
+            "table": "table1",
+            "value_type": "str"
+            }
+        },
+    "directive1%field_value": {
+        "name2": {
+            "override": "3",
+            "value_type": "section_str"
+            }
+        }
+    }
+
+Tagged Equivalent
+$$$$$$$$$$$$$$$$$
+
++-------+----------------------------+-----------------------------------------+--------------+--------------+
+| #tags | #directive1.id             | *#.fields                               | #.table      | #.value_type |
++=======+============================+=========================================+==============+==============+
+|       | name1                      | attribute1," ",directive1%field_value() | table1       | str          |
++-------+----------------------------+-----------------------------------------+--------------+--------------+
+|       |                            |                                         |              |              |
++-------+----------------------------+-----------------------------------------+--------------+--------------+
+| #tags | #directive1%field_value.id | #.override                              | #.value_type |              |
++-------+----------------------------+-----------------------------------------+--------------+--------------+
+|       | name2                      | 3                                       | section_str  |              |
++-------+----------------------------+-----------------------------------------+--------------+--------------+
+
+
+Input JSON
+$$$$$$$$$$
+
+.. code:: console
+
+    {
+    "table1": {
+        "record1": {
+            "attribute1": "key1:value1, key2:value2"
+            }
+        }
+    }
+
+Output JSON
+$$$$$$$$$$$
+
+.. code:: console
+
+    {
+      "directive1": {
+          "name1": "key1:value1, key2:value2 3"
+          }
+    }
+
+This example is purposefully contrived so it is easy to follow. directive1 
+calls directive1%field_value to fill in one of the values in fields, and directive1%field_value 
+is a simple "section_str" type directive that returns the value "3". directive1 
+then uses "3" for the appropriate element in fields and executes normally.
+
+
+
+headers
++++++++
+Directive as JSON
+$$$$$$$$$$$$$$$$$
+
+.. code:: console
+
+    {
+    "directive1": {
+        "name1": {
+            "headers": ["\"key1\"=attribute1", "\"key2\"=directive1%header_value()"],
+            "table": "table1",
+            "value_type": "matrix"
+            }
+        },
+    "directive1%header_value": {
+        "name2": {
+            "override": "3",
+            "value_type": "section_str"
+            }
+        }
+    }
+
+Tagged Equivalent
+$$$$$$$$$$$$$$$$$
+
++-------+-----------------------------+----------------------------------------------------+--------------+--------------+
+| #tags | #directive1.id              | *#.headers                                         | #.table      | #.value_type |
++=======+=============================+====================================================+==============+==============+
+|       | name1                       | "key1"=attribute1,"key2"=directive1%header_value() | table1       | matrix       |
++-------+-----------------------------+----------------------------------------------------+--------------+--------------+
+|       |                             |                                                    |              |              |
++-------+-----------------------------+----------------------------------------------------+--------------+--------------+
+| #tags | #directive1%header_value.id | #.override                                         | #.value_type |              |
++-------+-----------------------------+----------------------------------------------------+--------------+--------------+
+|       | name2                       | 3                                                  | section_str  |              |
++-------+-----------------------------+----------------------------------------------------+--------------+--------------+
+
+
+Input JSON
+$$$$$$$$$$
+
+.. code:: console
+
+    {
+    "table1": {
+        "record1": {
+            "attribute1": "value1"
+            }
+        }
+    }
+
+Output JSON
+$$$$$$$$$$$
+
+.. code:: console
+
+    {
+      "directive1": {
+          "name1": [
+              {"key1": "value1", "key2": "3"}
+              ]
+          }
+    }
+
+This example is purposefully contrived so it is easy to follow. directive1 
+calls directive1%header_value to fill in the value for key2, and directive1%header_value 
+is a simple "section_str" type directive that returns the value "3". directive1 
+then uses "3" for the value of key2 and executes normally. Note that if there were 
+more records directive1%header_value would have been called for each record.
+
+
+Directive as JSON
+$$$$$$$$$$$$$$$$$
+
+.. code:: console
+
+    {
+    "directive1": {
+        "name1": {
+            "headers": ["\"key1\"=attribute1", "\"key2\"=directive1%header_value()"],
+            "table": "table1",
+            "value_type": "matrix"
+            }
+        },
+    "directive1%header_value": {
+        "name2": {
+            "override": "3",
+            "value_type": "str"
+            }
+        }
+    }
+
+Tagged Equivalent
+$$$$$$$$$$$$$$$$$
+
++-------+-----------------------------+----------------------------------------------------+--------------+--------------+
+| #tags | #directive1.id              | *#.headers                                         | #.table      | #.value_type |
++=======+=============================+====================================================+==============+==============+
+|       | name1                       | "key1"=attribute1,"key2"=directive1%header_value() | table1       | matrix       |
++-------+-----------------------------+----------------------------------------------------+--------------+--------------+
+|       |                             |                                                    |              |              |
++-------+-----------------------------+----------------------------------------------------+--------------+--------------+
+| #tags | #directive1%header_value.id | #.override                                         | #.value_type |              |
++-------+-----------------------------+----------------------------------------------------+--------------+--------------+
+|       | name2                       | 3                                                  | str          |              |
++-------+-----------------------------+----------------------------------------------------+--------------+--------------+
+
+
+Input JSON
+$$$$$$$$$$
+
+.. code:: console
+
+    {
+    "table1": {
+        "record1": {
+            "attribute1": "value1"
+            }
+        }
+    }
+
+Output JSON
+$$$$$$$$$$$
+
+.. code:: console
+
+    {
+      "directive1": {
+          "name1": [
+              {"key1": "value1", "key2": {"name2": "3"}}
+              ]
+          }
+    }
+
+This example is the same as the previous, but the nested directive table is a str 
+type instead of a section_str type. Note how the directive table name for the nested 
+table is automatically ignored, but the entire value of the directive table is now 
+a dictionary instead of a string.
+
+
+
+
+
+
+
+
 
 
 Validation

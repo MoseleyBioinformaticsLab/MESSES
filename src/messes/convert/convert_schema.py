@@ -39,7 +39,8 @@ directives_schema = \
                      "delimiter":{"type":["string", "null"]},
                      "sort_by":{"type":["array", "null"], "minItems":1, "items":{"type":"string", "minLength":1}},
                      "sort_order":{"type":["string", "null"], "pattern":"(?i)^descending|ascending$"},
-                     "record_id":{"type":["string", "null"]}
+                     "record_id":{"type":["string", "null"]},
+                     "silent":{"type":["string", "null", "boolean"], "pattern":"(?i)^true|false$"}
                      },
                  "allOf":[
                      {
@@ -52,7 +53,6 @@ directives_schema = \
                       {
                           "if":{"allOf":[
                               {"properties":{"code":{"not":{"type":"string", "minLength":1}}}},
-                              {"properties":{"table":{"not":{"type":"string", "minLength":1}}}},
                               {"properties":{"fields":{"not":{"type":"array", "minItems":1}}}}
                               ]},
                           "then":{"required":["override"]}
@@ -60,7 +60,6 @@ directives_schema = \
                       {
                           "if":{"allOf":[
                               {"properties":{"override":{"not":{"type":"string", "minLength":1}}}},
-                              {"properties":{"table":{"not":{"type":"string", "minLength":1}}}},
                               {"properties":{"fields":{"not":{"type":"array", "minItems":1}}}}
                               ]},
                           "then":{"required":["code"]}
@@ -87,7 +86,8 @@ directives_schema = \
                      "exclusion_headers":{"type":["array", "null"], "minItems":1, "items":{"type":"string", "minLength":1}},
                      "optional_headers":{"type":["array", "null"], "minItems":1, "items":{"type":"string", "minLength":1}},
                      "fields_to_headers":{"type":["string", "null", "boolean"], "pattern":"(?i)^true|false$"},
-                     "values_to_str":{"type":["string", "null", "boolean"], "pattern":"(?i)^true|false$"}
+                     "values_to_str":{"type":["string", "null", "boolean"], "pattern":"(?i)^true|false$"},
+                     "silent":{"type":["string", "null", "boolean"], "pattern":"(?i)^true|false$"}
                      },
                  "allOf":[
                      {
@@ -97,7 +97,6 @@ directives_schema = \
                       {
                           "if":{"allOf":[
                               {"properties":{"headers":{"not":{"type":"array", "minItems":1}}}},
-                              {"properties":{"table":{"not":{"type":"string", "minLength":1}}}},
                               ]},
                           "then":{"required":["code"]}
                           }
@@ -113,13 +112,15 @@ directives_schema = \
                  "properties":{
                      "code":{"type":["string", "null"]},
                      "import":{"type":["string", "null"]},
+                     "execute":{"type":["string", "null"], "pattern":"^.+\(.*\)"},
                      "table":{"type":["string", "null"]},
                      "for_each":{"type":["string", "null", "boolean"], "pattern":"(?i)^true|false$"},
                      "test":{"type":["string", "null"], "pattern":"^((.+=.+)((and|or|\||\&)(.+=.+))?)+$"},
                      "required":{"type":["string", "null", "boolean"], "pattern":"(?i)^true|false$"},
                      "sort_by":{"type":["array", "null"], "minItems":1, "items":{"type":"string", "minLength":1}},
                      "sort_order":{"type":["string", "null"], "pattern":"(?i)^descending|ascending$"},
-                     "record_id":{"type":["string", "null"]}
+                     "record_id":{"type":["string", "null"]},
+                     "silent":{"type":["string", "null", "boolean"], "pattern":"(?i)^true|false$"}
                      },
                  "allOf":[
                      {

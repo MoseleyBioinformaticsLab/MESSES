@@ -76,7 +76,8 @@
       "filename": "mouse_tissue_procedure.pdf",
       "id": "mouse_tissue_collection",
       "sample_type": "mouse",
-      "type": "collection"
+      "type": "collection",
+      "attribute1": "key1:value1, key2:value2"
     },
     "naive": {
       "description": "Mouse with no treatment. Fed with semi-liquid diet supplemented with fully labeled glucose for 24 hours before harvest.",
