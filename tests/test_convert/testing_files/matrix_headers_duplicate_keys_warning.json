@@ -1,0 +1,12 @@
+{
+  "MS_METABOLITE_DATA": {
+    "Extended": {
+      "headers": [
+        "\"Metabolite\"=type",
+        "\"Metabolite\"=id"
+      ],
+      "table": "protocol",
+      "value_type": "matrix"
+    }
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "directive1": {
+    "name1": {
+      "import": "../import_test.py",
+      "execute": "bar()",
+      "required": "False",
+      "value_type": "section"
+    }
+  }
+}

@@ -109,6 +109,12 @@ malformed_section_message = "ValidationError: An error was found in the Conversi
             }}}, malformed_section_message),
         ({"ANALYSIS": {
             "ANALYSIS_TYPE": {
+              "value_type":"section",
+              "table":"qwer",
+              "execute":"asdf"
+            }}}, "ValidationError: An error was found in the Conversion Directives.\nThe 'execute' property for entry ['ANALYSIS']['ANALYSIS_TYPE'] must be of the form 'function_name(arg1, arg2, ...)'."),
+        ({"ANALYSIS": {
+            "ANALYSIS_TYPE": {
               "value_type":"matrix",
               "table":"qwer",
               "headers":["asdf"]
@@ -128,7 +134,7 @@ malformed_section_message = "ValidationError: An error was found in the Conversi
               "fields":["asdf"],
               "for_each":"True",
               "sort_order":"asdf"
-            }}}, "ValidationError: An error was found in the Conversion Directives.\nThe 'sort_order' property for entry ['ANALYSIS']['ANALYSIS_TYPE'] must be 'ascending' or 'descending'"),
+            }}}, "ValidationError: An error was found in the Conversion Directives.\nThe 'sort_order' property for entry ['ANALYSIS']['ANALYSIS_TYPE'] must be 'ascending' or 'descending'."),
         ({"ANALYSIS": {
             "ANALYSIS_TYPE": {
               "value_type":"str",

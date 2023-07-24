@@ -506,4 +506,29 @@ def test_section_execute_unhandled_error():
     assert ("TypeError: 'int' object is not iterable") in output
 
 
+def test_built_in_import():
+    """Test that importing a built-in function works as expected."""
+    
+    test_file = "base_input_for_section_execute.json"
+    
+    command = "messes convert generic ../" + test_file  + " output ../built_in_import_test.json" 
+    command = command.split(" ")
+    subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
+    output = subp.stderr
+
+    assert output_path_json.exists()
+    
+    assert output == ""
+    
+    with open(output_path_json, "r") as f:
+        output_json = json.loads(f.read())
+        
+    assert output_json == {
+                          "directive1": "asdf"
+                        }
+    
+    
+
+
+
 

@@ -21,7 +21,7 @@ convert
 .. automodule:: messes.convert.user_input_checking
     :members:
 
-.. automodeule:: messes.convert.built_ins
+.. automodule:: messes.convert.built_ins
     :members:
 
 .. automodule:: messes.convert.mwtab_functions

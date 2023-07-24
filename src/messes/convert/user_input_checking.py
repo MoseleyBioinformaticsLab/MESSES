@@ -87,8 +87,8 @@ def validate_conversion_directives(conversion_directives: dict, schema: dict):
         elif e.validator == "pattern":
             ## All of the properties except 'headers' are strings, so path will be 3, but headers is a list so path will be 4.
             property_name = e.relative_path[-2] if len(e.relative_path) == 4 else e.relative_path[-1]
-            properties_with_patterns = ["for_each", "required", "fields_to_headers", "values_to_str", "execute"]
-            if property_name in properties_with_patterns:
+            boolean_pattern_properties = ["for_each", "required", "fields_to_headers", "values_to_str"]
+            if property_name in boolean_pattern_properties:
                 message += "The '" + property_name + "' property for entry " + \
                            "[%s]" % "][".join(repr(index) for index in list(e.relative_path)[0:-1]) + \
                            " must be 'True' or 'False'."
@@ -103,11 +103,11 @@ def validate_conversion_directives(conversion_directives: dict, schema: dict):
             elif property_name == "sort_order":
                 message += "The '" + property_name + "' property for entry " + \
                            "[%s]" % "][".join(repr(index) for index in list(e.relative_path)[0:-1]) + \
-                           " must be 'ascending' or 'descending'"
+                           " must be 'ascending' or 'descending'."
             elif property_name == "execute":
                 message += "The '" + property_name + "' property for entry " + \
                            "[%s]" % "][".join(repr(index) for index in list(e.relative_path)[0:-1]) + \
-                           " must be of the form 'function_name(arg1, arg2, ...)'"
+                           " must be of the form 'function_name(arg1, arg2, ...)'."
             else:
                 raise e
         else:

@@ -19,6 +19,7 @@ Welcome to MESSES's documentation!
    protocol_dependent_schema
    supported_formats
    api
+   built_ins
    license
    todo
 

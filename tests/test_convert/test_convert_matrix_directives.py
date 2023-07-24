@@ -375,7 +375,7 @@ def test_matrix_collate_collision_warning():
     assert output_path_json.exists()
     
     assert 'Warning: When creating the "ENTITY_SUMMARY" matrix for the "ENTITY" ' +\
-            'table different values for the output key, "replicate", were found for the ' +\
+            'table, different values for the output key, "replicate", were found for the ' +\
             'collate key "subject". Only the last value will be used.\n' in output
 
 
@@ -666,6 +666,63 @@ def test_matrix_header_calling_field_not_in_record_error():
             'not exist in the calling record, "protein_extraction", in the calling table, "protocol".') in output
 
 
+def test_matrix_header_duplicate_keys_warning():
+    """Test that a warning is printed when there are headers with the same key name."""
+    
+    test_file = "base_input_for_section_execute.json"
+    
+    command = "messes convert generic ../" + test_file  + " output ../matrix_headers_duplicate_keys_warning.json" 
+    command = command.split(" ")
+    subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
+    output = subp.stderr
+    
+    assert output_path_json.exists()
+        
+    assert ('Warning: When creating the "Extended" matrix for the "MS_METABOLITE_DATA" '
+            'table, the key "Metabolite", was specified twice in the "headers" attribute. '
+            'Only the last value will be used.') in output
 
 
+def test_matrix_fields_to_headers_duplicate_keys_warning():
+    """Test that a warning is printed when there are specified header keys that are the same
+    as what is in the record attributes when fields_to_headers is True."""
+    
+    test_file = "base_input_for_section_execute.json"
+    
+    command = "messes convert generic ../" + test_file  + " output ../matrix_fields_to_headers_duplicate_keys_warning.json" 
+    command = command.split(" ")
+    subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
+    output = subp.stderr
+    
+    assert output_path_json.exists()
+        
+    assert ('Warning: When creating the "Extended" matrix for the "MS_METABOLITE_DATA" table, '
+            'the record, "tissue_quench", has key names in its attributes that are the '
+            'same as key names specified in the "headers" attribute of the directive. '
+            'Since "fields_to_headers" was set to True, the values in the record '
+            'attributes will overwrite the values specified in "headers" for the following keys:\n'
+            'id\n'
+            'type') in output
 
+
+def test_matrix_optional_headers_duplicate_keys_warning():
+    """Test that a warning is printed when there are specified header keys that are the same
+    as what is in the record attributes and optional_headers."""
+    
+    test_file = "base_input_for_section_execute.json"
+    
+    command = "messes convert generic ../" + test_file  + " output ../matrix_optional_headers_duplicate_keys_warning.json" 
+    command = command.split(" ")
+    subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
+    output = subp.stderr
+    
+    assert output_path_json.exists()
+        
+    assert ('Warning: When creating the "Extended" matrix for the "MS_METABOLITE_DATA" table, '
+            'the record, "tissue_quench", has key names in its attributes that are the '
+            'same as key names specified in the "headers" attribute of the directive. '
+            'Since "optional_headers" were given, the values in the record '
+            'attributes that are also in "optional_headers" will overwrite the values '
+            'specified in "headers" for the following keys:\n'
+            'id\n'
+            'type') in output

@@ -66,19 +66,6 @@ from messes.convert import built_ins
 from messes.convert import regexes
 
 
-## Add all functions imported through the "import" field to the "built_in" list.
-##  Added this, but needs tested, getmembers(importname, is_function) may need to be getmembers(global_variables[importname], is_function)
-
-## See if the code that does error checking for nested directive fields i.e. uses calling_record_regex can be turned into a function for reuse.
-##  I think I got most of these.
-
-## Update directives schema for all the new changes, "silent", "test", "section" type, "section_matrix" and "section_str" types, "execute".
-
-
-## Test "execute" in test_user_input_checking.
-
-## Make sure to test importing and using a built-in function.
-
 ## Add some real examples of nested directives from ISA once that is done.
 
 ## Add measurement%transformation and measurement%normalization protocol types. Allows us to handle those for ISA. Require parents and that parent be a measurement type.
@@ -94,7 +81,6 @@ from messes.convert import regexes
 ##   Argument passing makes no sense for nested directives that have multiple directives in the table. Should there be a special case
 ##   for directive tables with only 1 directive? 
 
-## Add a check for key names in matrix "headers" being the same. Print a warning if a matrix directive tries to use the same key name twice.
 
 
 built_in_functions = {attributes[0]:attributes[1] for attributes in getmembers(built_ins, isfunction)}
@@ -578,7 +564,7 @@ def _handle_code_field(input_json: dict, conversion_table: str, conversion_recor
         global_variables = globals()
         global_variables[import_name] = SourceFileLoader(import_name, import_path).load_module()
         ## Add import functions to built-ins.
-        built_in_functions.update({attributes[0]:attributes[1] for attributes in getmembers(import_name, isfunction)})
+        built_in_functions.update({attributes[0]:attributes[1] for attributes in getmembers(global_variables[import_name], isfunction)})
     
     if code := conversion_attributes.get("code"):
         try:
@@ -850,6 +836,10 @@ def compute_section_value(input_json: dict, conversion_table: str, conversion_re
                 
                 elif match := re.match(literal_regex, function_argument):
                     function_argument = (False, match.group(1))
+                
+                ## Have to handle the empty string case.
+                elif not function_argument:
+                    continue
                 
                 else:
                     function_argument = (True, f"record_attributes['{function_argument}']")
@@ -1529,23 +1519,54 @@ def _build_matrix_record_dict(input_json: dict,
             return None
         
         if collate_key is not None and input_key_value in matrix_dict and output_key_value != matrix_dict[input_key_value]:
-            print(f"Warning: When creating the \"{conversion_record_name}"
-                  f"\" matrix for the \"{conversion_table}\" table different values for the output key, \""
-                  f"{output_key}\", were found for the collate key \"{collate_key}"
-                  "\". Only the last value will be used.", 
-                  file=sys.stderr)
+            message = (f"When creating the \"{conversion_record_name}"
+                  f"\" matrix for the \"{conversion_table}\" table, different values for the output key, \""
+                  f"{output_key}\", were found for the collate key \"{collate_key}\". "
+                  "Only the last value will be used.")
+            _handle_errors(False, silent, message)
+        
+        if input_key_value in matrix_dict:
+            message = (f"When creating the \"{conversion_record_name}"
+                  f"\" matrix for the \"{conversion_table}\" table, the key \""
+                  f"{input_key_value}\", was specified twice in the \"headers\" attribute. "
+                  "Only the last value will be used.")
+            _handle_errors(False, silent, message)
         
         matrix_dict[input_key_value] = output_key_value
     
     if fields_to_headers:
+        duplicate_keys = set(matrix_dict.keys()).intersection(record_attributes.keys())
+        if duplicate_keys:
+            duplicate_keys = '\n'.join(duplicate_keys)
+            message = (f"When creating the \"{conversion_record_name}"
+                  f"\" matrix for the \"{conversion_table}\" table, the record, \"{record_name}\", "
+                  "has key names in its attributes that are the same as key names specified in "
+                  "the \"headers\" attribute of the directive. Since \"fields_to_headers\" was "
+                  "set to True, the values in the record attributes will overwrite the values "
+                  "specified in \"headers\" for the following keys:\n"
+                  f"{duplicate_keys}")
+            _handle_errors(False, silent, message)
+        
         if values_to_str:
             matrix_dict.update({field:str(value) for field, value in record_attributes.items() if field not in exclusion_headers})
         else:
             matrix_dict.update({field:value for field, value in record_attributes.items() if field not in exclusion_headers})
     else:
-        for header in optional_headers:
-            if header in record_attributes:
-                matrix_dict[header] = str(record_attributes[header]) if values_to_str else record_attributes[header]
+        optional_headers_to_add = set(record_attributes.keys()).intersection(optional_headers)
+        duplicate_keys = set(matrix_dict.keys()).intersection(optional_headers_to_add)
+        if duplicate_keys:
+            duplicate_keys = '\n'.join(duplicate_keys)
+            message = (f"When creating the \"{conversion_record_name}"
+                  f"\" matrix for the \"{conversion_table}\" table, the record, \"{record_name}\", "
+                  "has key names in its attributes that are the same as key names specified in "
+                  "the \"headers\" attribute of the directive. Since \"optional_headers\" were "
+                  "given, the values in the record attributes that are also in \"optional_headers\" "
+                  "will overwrite the values specified in \"headers\" for the following keys:\n"
+                  f"{duplicate_keys}")
+            _handle_errors(False, silent, message)
+        
+        for header in optional_headers_to_add:
+            matrix_dict[header] = str(record_attributes[header]) if values_to_str else record_attributes[header]
                 
     return matrix_dict
 
