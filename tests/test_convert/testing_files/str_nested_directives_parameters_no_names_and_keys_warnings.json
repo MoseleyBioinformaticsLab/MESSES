@@ -1,0 +1,46 @@
+{
+  "directive0": {
+    "name1": {
+      "fields": [
+        "directive1%()"
+      ],
+      "required": "False",
+      "table": "protocol",
+      "test": "order=3",
+      "value_type": "str"
+    }
+  },
+  "directive1%": {
+    "name1": {
+      "fields": [
+        "directive2%(qwer=\"asdf\", name3.asdf = id, name6.override = ^.id)"
+      ],
+      "required": "False",
+      "table": "protocol",
+      "test": "order=4",
+      "value_type": "str"
+    }
+  },
+  "directive2%": {
+    "name2": {
+      "override": "^.order",
+      "required": "True",
+      "value_type": "str"
+    },
+    "name3": {
+      "override": "zxcv",
+      "required": "True",
+      "value_type": "str"
+    },
+    "name4": {
+      "override": "qwer",
+      "required": "True",
+      "value_type": "str"
+    },
+    "name5": {
+      "override": "qwer",
+      "required": "True",
+      "value_type": "str"
+    }
+  }
+}

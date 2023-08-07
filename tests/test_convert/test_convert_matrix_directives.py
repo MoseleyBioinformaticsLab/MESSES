@@ -235,7 +235,7 @@ def test_matrix_code_error():
     
     assert not output_path_json.exists()
     
-    assert output == 'Error: The code conversion directive to create the "TREATMENT_SUMMARY" record in the "TREATMENT" table did not return a matrix type value.\n'
+    assert output == 'Error:  The code conversion directive to create the "TREATMENT_SUMMARY" record in the "TREATMENT" table did not return a matrix type value.\n'
 
 
 def test_matrix_test():
@@ -317,7 +317,7 @@ def test_matrix_collate_error():
     
     assert not output_path_json.exists()
     
-    assert output == 'Error: The record, ' + \
+    assert output == 'Error:  The record, ' + \
                       '"(S)-2-Acetolactate Glutaric acid Methylsuccinic acid-13C0-01_A0_Colon_naive_0days_170427_UKy_GCH_rep1-polar-ICMS_A", ' + \
                       'in the "measurement" table does not have the field, "asdf", required by the ' + \
                       '"collate" field for the conversion, "Data", in the conversion table, "MS_METABOLITE_DATA".\n'
@@ -336,7 +336,7 @@ def test_matrix_header_no_inputkey_error():
     
     assert not output_path_json.exists()
     
-    assert output == 'Error: The record, '+\
+    assert output == 'Error:  The record, '+\
                       '"(S)-2-Acetolactate Glutaric acid Methylsuccinic acid-13C0-01_A0_Colon_naive_0days_170427_UKy_GCH_rep1-polar-ICMS_A",'+\
                       ' in the "measurement" table does not have the field, "asdf", required by the '+\
                       '"headers" field for the conversion, "Data", in the conversion table, "MS_METABOLITE_DATA".\n'
@@ -355,7 +355,7 @@ def test_matrix_header_no_outputkey_error():
     
     assert not output_path_json.exists()
     
-    assert output == 'Error: The record, '+\
+    assert output == 'Error:  The record, '+\
                       '"(S)-2-Acetolactate Glutaric acid Methylsuccinic acid-13C0-01_A0_Colon_naive_0days_170427_UKy_GCH_rep1-polar-ICMS_A",'+\
                       ' in the "measurement" table does not have the field, "qwer", required by the '+\
                       '"headers" field for the conversion, "Data", in the conversion table, "MS_METABOLITE_DATA".\n'
@@ -374,9 +374,12 @@ def test_matrix_collate_collision_warning():
     
     assert output_path_json.exists()
     
-    assert 'Warning: When creating the "ENTITY_SUMMARY" matrix for the "ENTITY" ' +\
-            'table, different values for the output key, "replicate", were found for the ' +\
-            'collate key "subject". Only the last value will be used.\n' in output
+    assert ('Warning:  When creating the "ENTITY_SUMMARY" matrix for the "ENTITY" table, '
+            'the record, "02_A1_naive_0days_UKy_GCH_rep2", from the "entity" table '
+            'produced a different value for the header, ""replicate"=replicate", than '
+            'what was previously found on other records while collating over "subject". '
+            'The previous value of "1" will be overwritten with the value produced by '
+            'the current record, "2".') in output
 
 
 def test_matrix_conversion_returns_none_error():
@@ -391,7 +394,7 @@ def test_matrix_conversion_returns_none_error():
     
     assert not output_path_json.exists()
     
-    assert output == 'Error: The conversion directive to create the "TREATMENT_SUMMARY" record in the "TREATMENT" table did not return a value.\n'
+    assert output == 'Error:  The conversion directive to create the "TREATMENT_SUMMARY" record in the "TREATMENT" table did not return a value.\n'
     
 
 def test_matrix_that_calls_nested_directive_returning_none_is_not_in_dict():
@@ -411,13 +414,13 @@ def test_matrix_that_calls_nested_directive_returning_none_is_not_in_dict():
         
     assert output_json == {"CHROMATOGRAPHY":{"CHROMATOGRAPHY_SUMMARY":[{"desc":"Tissue is frozen in liquid nitrogen to stop metabolic processes."}]}}
     
-    assert ('Warning: When executing the matrix directive, "CHROMATOGRAPHY_SUMMARY", in the conversion table, '
+    assert ('Warning:  When executing the matrix directive, "CHROMATOGRAPHY_SUMMARY", in the conversion table, '
             '"CHROMATOGRAPHY", a header called the nested directive, "nested_directive%", and '
             'a problem was encountered while executing the directive. Since the "required" field of the nested '
             'directive is "False" the header will not be in the dictionary created for the record, '
             '"tissue_quench", in the "protocol" table.') in output
     
-    assert ('Warning: The non-required conversion directive to create the "no_id_needed" '
+    assert ('Warning:  The non-required conversion directive to create the "no_id_needed" '
             'record in the "nested_directive%" table could not be created.') in output
     
 
@@ -490,7 +493,7 @@ def test_matrix_headers_nested_directive_returns_wrong_type():
                           }
                         }
     
-    assert output == ('Warning: When executing the matrix directive, "name1", in '
+    assert output == ('Warning:  When executing the matrix directive, "name1", in '
                       'the conversion table, "directive1", a header called the nested directive, '
                       '"directive2%", and the returned value was not a string type. Keys to '
                       'JSON objects must be string types, so, 123, will be cast to a '
@@ -526,7 +529,7 @@ def test_matrix_headers_calling_record_attribute_wrong_type():
                           }
                         }
     
-    assert output == ('Warning: When executing the matrix directive, "name2", in '
+    assert output == ('Warning:  When executing the matrix directive, "name2", in '
                       'the conversion table, "directive2%", a header used a calling '
                       'record attribute, "1", and the value was not a string type. '
                       'Keys to JSON objects must be string types, so, 1, will be '
@@ -556,7 +559,7 @@ def test_matrix_record_doesnt_have_header_field():
                           }
                         }
     
-    assert output == ('Warning: The record, "protein_extraction", in the "protocol" '
+    assert output == ('Warning:  The record, "protein_extraction", in the "protocol" '
                       'table does not have the field, "qwer", required by the "headers" '
                       'field for the conversion, "name1", in the conversion table, "directive1".\n')
 
@@ -573,9 +576,9 @@ def test_matrix_headers_calls_nonexistent_nested_directive():
     
     assert not output_path_json.exists()        
     
-    assert output == ('Error: The conversion directive to create the "name1" '
+    assert output == ('Error:  The conversion directive to create the "name1" '
                       'record in the "directive1" table tries to call a nested '
-                      'directive, directive3%, but that directive is not in the '
+                      'directive table, directive3%, but that directive table is not in the '
                       'conversion directives.\n')
 
 
@@ -591,7 +594,7 @@ def test_matrix_headers_calling_field_for_non_nested_directive_error():
     
     assert not output_path_json.exists()
         
-    assert ('Error: When creating the "name1" conversion for the "directive1" '
+    assert ('Error:  When creating the "name1" conversion for the "directive1" '
             'table, the value for "headers", ""asdf"=^.order", indicates to use '
             'a calling record\'s attribute value, but this conversion directive is '
             'not a nested directive and therefore has no calling record.') in output
@@ -641,7 +644,7 @@ def test_matrix_no_table_error():
     
     assert not output_path_json.exists()
         
-    assert output == ('Error: The conversion directive to create the "name2" '
+    assert output == ('Error:  The conversion directive to create the "name2" '
                       'record in the "directive2%" table has elements in its '
                       '"headers" attribute, "[\'"asdf"=order\']", which are '
                       'attributes to input records, but this directive does not '
@@ -660,7 +663,7 @@ def test_matrix_header_calling_field_not_in_record_error():
     
     assert not output_path_json.exists()
         
-    assert ('Error: When creating the "name2" conversion for the "directive2%" '
+    assert ('Error:  When creating the "name2" conversion for the "directive2%" '
             'table, the value for "headers", ""asdf"=^.orde", indicates to use a '
             'calling record\'s attribute value, but that attribute, "orde", does '
             'not exist in the calling record, "protein_extraction", in the calling table, "protocol".') in output
@@ -678,9 +681,10 @@ def test_matrix_header_duplicate_keys_warning():
     
     assert output_path_json.exists()
         
-    assert ('Warning: When creating the "Extended" matrix for the "MS_METABOLITE_DATA" '
-            'table, the key "Metabolite", was specified twice in the "headers" attribute. '
-            'Only the last value will be used.') in output
+    assert ('Warning:  When creating the "Extended" matrix for the "MS_METABOLITE_DATA" '
+            'table, the header, ""Metabolite"=id", produced the same key value, '
+            '"Metabolite", as a previous header. The previous value of "sample_prep" '
+            'will be overwritten with the new value, "IC-FTMS_preparation".') in output
 
 
 def test_matrix_fields_to_headers_duplicate_keys_warning():
@@ -696,11 +700,12 @@ def test_matrix_fields_to_headers_duplicate_keys_warning():
     
     assert output_path_json.exists()
         
-    assert ('Warning: When creating the "Extended" matrix for the "MS_METABOLITE_DATA" table, '
-            'the record, "tissue_quench", has key names in its attributes that are the '
-            'same as key names specified in the "headers" attribute of the directive. '
-            'Since "fields_to_headers" was set to True, the values in the record '
-            'attributes will overwrite the values specified in "headers" for the following keys:\n'
+    assert ('Warning:  When creating the "Extended" matrix for the "MS_METABOLITE_DATA" '
+            'table, the record, "IC-FTMS_preparation", from the "protocol" table has '
+            'key names in its attributes that are the same as key names specified in '
+            'the "headers" attribute of the directive. Since "fields_to_headers" was '
+            'set to True, the values in the record attributes will overwrite the '
+            'values specified in "headers" for the following keys:\n'
             'id\n'
             'type') in output
 
@@ -718,11 +723,256 @@ def test_matrix_optional_headers_duplicate_keys_warning():
     
     assert output_path_json.exists()
         
-    assert ('Warning: When creating the "Extended" matrix for the "MS_METABOLITE_DATA" table, '
-            'the record, "tissue_quench", has key names in its attributes that are the '
-            'same as key names specified in the "headers" attribute of the directive. '
-            'Since "optional_headers" were given, the values in the record '
-            'attributes that are also in "optional_headers" will overwrite the values '
-            'specified in "headers" for the following keys:\n'
+    assert ('Warning:  When creating the "Extended" matrix for the "MS_METABOLITE_DATA" '
+            'table, the record, "IC-FTMS_preparation", from the "protocol" table has '
+            'key names in its attributes that are the same as key names specified in '
+            'the "headers" attribute of the directive. Since "optional_headers" were '
+            'given, the values in the record attributes that are also in "optional_headers" '
+            'will overwrite the values specified in "headers" for the following keys:\n'
             'id\n'
             'type') in output
+
+
+def test_matrix_nested_directives_parameters_work():
+    """Test that passing parameters into nested directives works as expected."""
+    
+    test_file = "base_input_for_section_execute.json"
+    
+    command = "messes convert generic ../" + test_file  + " output ../matrix_nested_directives_parameters_work.json" 
+    command = command.split(" ")
+    subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
+    output = subp.stderr
+    
+    assert output_path_json.exists()
+    
+    with open(output_path_json, "r") as f:
+        output_json = json.loads(f.read())
+        
+    assert output_json == {
+                          "directive0": {
+                            "name1": [
+                              {
+                                "asdf": {
+                                  "name1": [
+                                    {
+                                      "asdf": {
+                                        "name2": "asdf",
+                                        "name3": "protein_extraction",
+                                        "name4": "asdf",
+                                        "name5": "polar_extraction"
+                                      }
+                                    }
+                                  ]
+                                }
+                              }
+                            ]
+                          }
+                        }
+        
+    assert output == ""
+
+
+def test_matrix_nested_directives_parameters_specified_twice_warning():
+    """Test that passing the same parameters twice into nested directives prints warnings."""
+    
+    test_file = "base_input_for_section_execute.json"
+    
+    command = "messes convert generic ../" + test_file  + " output ../matrix_nested_directives_parameters_specified_twice_warning.json" 
+    command = command.split(" ")
+    subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
+    output = subp.stderr
+    
+    assert output_path_json.exists()
+    
+    with open(output_path_json, "r") as f:
+        output_json = json.loads(f.read())
+        
+    assert output_json == {
+                          "directive0": {
+                            "name1": [
+                              {
+                                "asdf": {
+                                  "name1": [
+                                    {
+                                      "asdf": {
+                                        "name2": "yuio",
+                                        "name3": "cvbn",
+                                        "name4": "yuio",
+                                        "name5": "polar_extraction"
+                                      }
+                                    }
+                                  ]
+                                }
+                              }
+                            ]
+                          }
+                        }
+        
+    assert ('Warning:  The conversion directive to create the "name1" record in the '
+            '"directive1%" table calls a nested directive table, directive2%, and '
+            'the parameter, override="yuio", passed to it has a key, "override", '
+            'that was specified  twice. The previously specified value for this '
+            'parameter will be ignored, and only the latest value will be used.') in output
+
+    assert ('Warning:  The conversion directive to create the "name1" record in the '
+            '"directive1%" table calls a nested directive table, directive2%, and '
+            'the parameter, name3.override="cvbn", passed to it has a key, "override", '
+            'that was specified  twice for the "name3" directive. The previously '
+            'specified value for this parameter will be ignored, and only the latest '
+            'value will be used.') in output
+
+
+def test_matrix_nested_directives_malformed_parameters_error():
+    """Test that an error is printed when parameters to nested directives are malformed."""
+    
+    test_file = "base_input_for_section_execute.json"
+    
+    command = "messes convert generic ../" + test_file  + " output ../matrix_nested_directives_malformed_parameters_error.json" 
+    command = command.split(" ")
+    subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
+    output = subp.stderr
+    
+    assert not output_path_json.exists()
+        
+    assert ('Error:  The conversion directive to create the "name1" record in the '
+            '"directive1%" table tries to call a nested directive table, directive2%(override"asdf"), '
+            'but at least one parameter passed to it is malformed. All parameters '
+            'must be of the form "key=value" or "name.key=value".') in output
+
+
+def test_matrix_nested_directives_parameters_no_calling_attribute_warning():
+    """Test that a warning is printed when a parameter indicates to use an attribute from a calling record that the record doesn't have."""
+    
+    test_file = "base_input_for_section_execute.json"
+    
+    command = "messes convert generic ../" + test_file  + " output ../matrix_nested_directives_parameters_no_calling_attribute_warning.json" 
+    command = command.split(" ")
+    subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
+    output = subp.stderr
+    
+    assert output_path_json.exists()
+    
+    with open(output_path_json, "r") as f:
+        output_json = json.loads(f.read())
+        
+    assert output_json == {
+                          "directive0": {
+                            "name1": [
+                              {
+                                "asdf": {
+                                  "name1": [
+                                    {
+                                      "asdf": {
+                                        "name2": "asdf",
+                                        "name3": "protein_extraction",
+                                        "name4": "asdf",
+                                        "name5": "asdf"
+                                      }
+                                    }
+                                  ]
+                                }
+                              }
+                            ]
+                          }
+                        }
+        
+    assert ('Warning:  When creating the "name1" conversion for the "directive1%" '
+            'table, the value for "a nested directive parameter", "name5.override = ^.asdf", '
+            'indicates to use a calling record\'s attribute value, but that attribute, '
+            '"asdf", does not exist in the calling record, "polar_extraction", in the '
+            'calling table, "protocol".') in output
+
+
+def test_matrix_nested_directives_parameters_no_names_and_keys_warnings():
+    """Test that passing the parameters that don't exist and directive names that don't exist into nested directives prints warnings."""
+    
+    test_file = "base_input_for_section_execute.json"
+    
+    command = "messes convert generic ../" + test_file  + " output ../matrix_nested_directives_parameters_no_names_and_keys_warnings.json" 
+    command = command.split(" ")
+    subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
+    output = subp.stderr
+    
+    assert output_path_json.exists()
+    
+    with open(output_path_json, "r") as f:
+        output_json = json.loads(f.read())
+        
+    assert output_json == {
+                          "directive0": {
+                            "name1": [
+                              {
+                                "asdf": {
+                                  "name1": [
+                                    {
+                                      "asdf": {
+                                        "name2": "4",
+                                        "name3": "zxcv",
+                                        "name4": "qwer",
+                                        "name5": "qwer"
+                                      }
+                                    }
+                                  ]
+                                }
+                              }
+                            ]
+                          }
+                        }
+        
+    assert ('Warning:  The conversion directive to create the "name1" record in the '
+            '"directive1%" table calls a nested directive table, directive2%, but '
+            'the parameter, qwer="asdf", passed to it has a key that is not in any '
+            'of the directives within the table. This parameter will be ignored when '
+            'calling the nested directive table.') in output
+
+    assert ('Warning:  The conversion directive to create the "name1" record in the '
+            '"directive1%" table calls a nested directive table, directive2%, but '
+            'the parameter, name3.asdf = id, passed to it has a key, "asdf", that '
+            'is not in the directive, "name3", indicated by the parameter. This '
+            'parameter will be ignored when calling the nested directive table.') in output
+    
+    assert ('Warning:  The conversion directive to create the "name1" record in the '
+            '"directive1%" table calls a nested directive table, directive2%, but '
+            'the parameter, name6.override = ^.id, passed to it has a directive name, '
+            '"name6", that is not in the directive table. This parameter will be '
+            'ignored when calling the nested directive table.') in output
+
+
+def test_matrix_collate_fields_to_headers_overwrite_warning():
+    """Test that a warning is printed when a matrix header value is overwritten while collating."""
+    
+    test_file = "base_input_for_section_execute.json"
+    
+    command = "messes convert generic ../" + test_file  + " output ../matrix_collate_fields_to_headers_overwrite_warning.json" 
+    command = command.split(" ")
+    subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
+    output = subp.stderr
+    
+    assert output_path_json.exists()
+        
+    assert ('Warning:  When creating the "name1" matrix for the "directive1" table, '
+            'the record, "frozen_tissue_grind", from the "protocol" table has a '
+            'different value for "order" than what was previously found on other '
+            'records while collating over "sample_prep". The previous value of "5" '
+            'will be overwritten with the value of the current record, "2".') in output
+    
+    
+def test_matrix_collate_optional_headers_overwrite_warning():
+    """Test that a warning is printed when a matrix header value is overwritten while collating."""
+    
+    test_file = "base_input_for_section_execute.json"
+    
+    command = "messes convert generic ../" + test_file  + " output ../matrix_collate_optional_headers_overwrite_warning.json" 
+    command = command.split(" ")
+    subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
+    output = subp.stderr
+    
+    assert output_path_json.exists()
+        
+    assert ('Warning:  When creating the "name1" matrix for the "directive1" table, '
+            'the record, "frozen_tissue_grind", from the "protocol" table has a '
+            'different value for "id" than what was previously found on other records '
+            'while collating over "sample_prep". The previous value of "IC-FTMS_preparation" '
+            'will be overwritten with the value of the current record, "frozen_tissue_grind".') in output
+
+

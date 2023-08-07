@@ -1,0 +1,17 @@
+{
+  "directive1": {
+    "name1": {
+      "headers": [
+        "\"type\"=type"
+      ],
+      "sort_by": [
+        "id"
+      ],
+      "sort_order": "ascending",
+      "table": "protocol",
+      "value_type": "matrix",
+      "collate": "type",
+      "fields_to_headers": "True"
+    }
+  }
+}

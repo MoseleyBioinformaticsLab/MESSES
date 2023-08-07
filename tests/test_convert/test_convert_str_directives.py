@@ -139,7 +139,7 @@ def test_str_record_id_error():
     
     assert not output_path_json.exists()
     
-    assert output == 'Error: The "record_id" field value, "asdf", for conversion, ' +\
+    assert output == 'Error:  The "record_id" field value, "asdf", for conversion, ' +\
                       '"CHROMATOGRAPHY_SUMMARY", in conversion table, "CHROMATOGRAPHY", ' +\
                       'does not exist in the "protocol" table of the input JSON.' +'\n'
 
@@ -236,7 +236,7 @@ def test_str_code_wrong_value():
 
     assert not output_path_json.exists()
             
-    assert output == 'Error: The code conversion directive to create the "TREATMENT_SUMMARY" record in the "TREATMENT" table did not return a string type value.\n'
+    assert output == 'Error:  The code conversion directive to create the "TREATMENT_SUMMARY" record in the "TREATMENT" table did not return a string type value.\n'
 
 
 def test_str_no_field_error():
@@ -251,7 +251,7 @@ def test_str_no_field_error():
 
     assert not output_path_json.exists()
             
-    assert output == 'Error: The conversion directive to create the "CHROMATOGRAPHY_SUMMARY" record in the "CHROMATOGRAPHY" table matched a record in the input "protocol" table, "ICMS1", that did not contain the "asdf" field indicated by the directive.\n'
+    assert output == 'Error:  The conversion directive to create the "CHROMATOGRAPHY_SUMMARY" record in the "CHROMATOGRAPHY" table matched a record in the input "protocol" table, "ICMS1", that did not contain the "asdf" field indicated by the directive.\n'
 
 
 def test_str_code_error():
@@ -266,7 +266,7 @@ def test_str_code_error():
 
     assert not output_path_json.exists()
             
-    assert 'Error: The code conversion directive to create the "TREATMENT_SUMMARY" record in the "TREATMENT" table encountered an error while executing.' in output
+    assert 'Error:  The code conversion directive to create the "TREATMENT_SUMMARY" record in the "TREATMENT" table encountered an error while executing.' in output
     assert 'Traceback (most recent call last):' in output
     assert "SyntaxError: '(' was never closed" in output
 
@@ -283,7 +283,7 @@ def test_str_no_matching_table_records():
 
     assert not output_path_json.exists()
     
-    assert 'Error: When creating the "TREATMENT_SUMMARY" conversion for the "TREATMENT" table,' in output
+    assert 'Error:  When creating the "TREATMENT_SUMMARY" conversion for the "TREATMENT" table,' in output
     assert 'no records in the "factor" table matched the test, "type=asdf",' in output
     assert 'indicated in the "test" field of the conversion. This could be from no' in output
     assert 'records containing the test field(s) or no records matching the test value(s) for those field(s).' in output
@@ -301,7 +301,7 @@ def test_str_no_matching_table_records_warning():
 
     assert output_path_json.exists()
     
-    assert 'Warning: When creating the "TREATMENT_SUMMARY" conversion for the "TREATMENT" table,' in output
+    assert 'Warning:  When creating the "TREATMENT_SUMMARY" conversion for the "TREATMENT" table,' in output
     assert 'no records in the "factor" table matched the test, "type=asdf",' in output
     assert 'indicated in the "test" field of the conversion. This could be from no' in output
     assert 'records containing the test field(s) or no records matching the test value(s) for those field(s).' in output
@@ -319,7 +319,7 @@ def test_str_no_matching_table_records_bool_warning():
 
     assert output_path_json.exists()
         
-    assert 'Warning: When creating the "TREATMENT_SUMMARY" conversion for the "TREATMENT" table,' in output
+    assert 'Warning:  When creating the "TREATMENT_SUMMARY" conversion for the "TREATMENT" table,' in output
     assert 'no records in the "factor" table matched the test, "type=asdf",' in output
     assert 'indicated in the "test" field of the conversion. This could be from no' in output
     assert 'records containing the test field(s) or no records matching the test value(s) for those field(s).' in output
@@ -337,7 +337,7 @@ def test_str_no_table_records():
 
     assert not output_path_json.exists()
     
-    assert 'Error: When creating the "TREATMENT_SUMMARY" conversion for the "TREATMENT" table, there were no records in the indicated "factor" table.' in output
+    assert 'Error:  When creating the "TREATMENT_SUMMARY" conversion for the "TREATMENT" table, there were no records in the indicated "factor" table.' in output
     
     
 def test_str_no_sort_by_field():
@@ -352,7 +352,7 @@ def test_str_no_sort_by_field():
     
     assert not output_path_json.exists()
     
-    assert 'Error: The record, "Time Point", in the "factor" table does not have the field,' in output 
+    assert 'Error:  The record, "Time Point", in the "factor" table does not have the field,' in output 
     assert '\'asdf\', required by the "sort_by" field for the conversion,' in output
     assert '"TREATMENT_SUMMARY", in the conversion table, "TREATMENT".' in output
 
@@ -393,7 +393,7 @@ def test_str_conversion_returns_none_error():
     
     assert not output_path_json.exists()
     
-    assert output == 'Error: The conversion directive to create the "TREATMENT_SUMMARY" record in the "TREATMENT" table did not return a value.\n'
+    assert output == 'Error:  The conversion directive to create the "TREATMENT_SUMMARY" record in the "TREATMENT" table did not return a value.\n'
 
 
 def test_str_that_calls_nested_directive_returning_none_is_not_concatenated():
@@ -413,13 +413,13 @@ def test_str_that_calls_nested_directive_returning_none_is_not_concatenated():
         
     assert output_json == {"CHROMATOGRAPHY":{"CHROMATOGRAPHY_SUMMARY":"Before going into the IC-FTMS the frozen sample is reconstituted in water."}}
     
-    assert ('Warning: When executing the str directive, "CHROMATOGRAPHY_SUMMARY", in the conversion table, '
+    assert ('Warning:  When executing the str directive, "CHROMATOGRAPHY_SUMMARY", in the conversion table, '
             '"CHROMATOGRAPHY", a value in the "field" called the nested directive, "nested_directive%", and '
             'a problem was encountered while executing the directive. Since the "required" field of the nested '
             'directive is "False" the field will not be concatenated in the result created for the record, '
             '"IC-FTMS_preparation", in the "protocol" table.') in output
     
-    assert ('Warning: The non-required conversion directive to create the "no_id_needed" '
+    assert ('Warning:  The non-required conversion directive to create the "no_id_needed" '
             'record in the "nested_directive%" table could not be created.') in output
 
 
@@ -478,7 +478,7 @@ def test_str_override_calling_record_args_error():
     
     assert not output_path_json.exists()        
     
-    assert output == ('Error: When creating the "name2" conversion for the '
+    assert output == ('Error:  When creating the "name2" conversion for the '
                       '"directive2%" table, the value for "override", "^.orde", '
                       'indicates to use a calling record\'s attribute value, but '
                       'that attribute, "orde", does not exist in the calling record, '
@@ -553,7 +553,7 @@ def test_str_fields_calling_record_args_error():
     
     assert not output_path_json.exists()        
     
-    assert output == ('Error: When creating the "name2" conversion for the "directive2%" '
+    assert output == ('Error:  When creating the "name2" conversion for the "directive2%" '
                       'table, the value for "fields", "^.orde", indicates to use a '
                       'calling record\'s attribute value, but that attribute, "orde", '
                       'does not exist in the calling record, "protein_extraction", '
@@ -581,7 +581,7 @@ def test_str_fields_cals_wrong_nested_type():
                           }
                         }
     
-    assert output == ('Warning: When executing the str directive, "name1", in the '
+    assert output == ('Warning:  When executing the str directive, "name1", in the '
                       'conversion table, "directive1", a value in the "fields" '
                       'called the nested directive, "directive2%", and the returned '
                       'value was not a string type. Return types must be string types, '
@@ -601,9 +601,9 @@ def test_str_fields_calls_nonexistent_nested_directive():
     
     assert not output_path_json.exists()        
     
-    assert output == ('Error: The conversion directive to create the "name1" '
+    assert output == ('Error:  The conversion directive to create the "name1" '
                       'record in the "directive1" table tries to call a nested '
-                      'directive, directive3%, but that directive is not in the '
+                      'directive table, directive3%, but that directive table is not in the '
                       'conversion directives.\n')
 
 
@@ -643,7 +643,7 @@ def test_str_fields_calling_field_for_non_nested_directive_error():
     
     assert not output_path_json.exists()
         
-    assert ('Error: When creating the "name1" conversion for the "directive1" '
+    assert ('Error:  When creating the "name1" conversion for the "directive1" '
             'table, the value for "fields", "^.order", indicates to use a '
             'calling record\'s attribute value, but this conversion directive '
             'is not a nested directive and therefore has no calling record.') in output
@@ -661,7 +661,7 @@ def test_str_no_table_error():
     
     assert not output_path_json.exists()
         
-    assert output == ('Error: The conversion directive to create the "name2" '
+    assert output == ('Error:  The conversion directive to create the "name2" '
                       'record in the "directive2%" table has elements in its '
                       '"fields" attribute, "[\'order\']", which are attributes '
                       'to input records, but this directive does not provide a '
@@ -696,5 +696,152 @@ def test_str_no_table_works():
     assert output == ''
 
 
+def test_str_nested_directives_parameters_work():
+    """Test that passing parameters into nested directives works as expected."""
+    
+    test_file = "base_input_for_section_execute.json"
+    
+    command = "messes convert generic ../" + test_file  + " output ../str_nested_directives_parameters_work.json" 
+    command = command.split(" ")
+    subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
+    output = subp.stderr
+    
+    assert output_path_json.exists()
+    
+    with open(output_path_json, "r") as f:
+        output_json = json.loads(f.read())
+        
+    assert output_json == {
+                          "directive0": {
+                            "name1": "{'name1': \"{'name2': 'asdf', 'name3': 'protein_extraction', 'name4': 'asdf', 'name5': 'polar_extraction'}\"}"
+                          }
+                        }
+    
+    ## There should be warnings about having to convert directive outputs to strings.
+    assert output != ""
 
+
+def test_str_nested_directives_parameters_specified_twice_warning():
+    """Test that passing the same parameters twice into nested directives prints warnings."""
+    
+    test_file = "base_input_for_section_execute.json"
+    
+    command = "messes convert generic ../" + test_file  + " output ../str_nested_directives_parameters_specified_twice_warning.json" 
+    command = command.split(" ")
+    subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
+    output = subp.stderr
+    
+    assert output_path_json.exists()
+    
+    with open(output_path_json, "r") as f:
+        output_json = json.loads(f.read())
+        
+    assert output_json == {
+                          "directive0": {
+                            "name1": "{'name1': \"{'name2': 'yuio', 'name3': 'cvbn', 'name4': 'yuio', 'name5': 'polar_extraction'}\"}"
+                          }
+                        }
+    
+    ## There should also be warnings about having to convert directive outputs to strings.    
+    assert ('Warning:  The conversion directive to create the "name1" record in the '
+            '"directive1%" table calls a nested directive table, directive2%, and '
+            'the parameter, override="yuio", passed to it has a key, "override", '
+            'that was specified  twice. The previously specified value for this '
+            'parameter will be ignored, and only the latest value will be used.') in output
+
+    assert ('Warning:  The conversion directive to create the "name1" record in the '
+            '"directive1%" table calls a nested directive table, directive2%, and '
+            'the parameter, name3.override="cvbn", passed to it has a key, "override", '
+            'that was specified  twice for the "name3" directive. The previously '
+            'specified value for this parameter will be ignored, and only the latest '
+            'value will be used.') in output
+
+
+def test_str_nested_directives_malformed_parameters_error():
+    """Test that an error is printed when parameters to nested directives are malformed."""
+    
+    test_file = "base_input_for_section_execute.json"
+    
+    command = "messes convert generic ../" + test_file  + " output ../str_nested_directives_malformed_parameters_error.json" 
+    command = command.split(" ")
+    subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
+    output = subp.stderr
+    
+    assert not output_path_json.exists()
+        
+    ## There should also be warnings about having to convert directive outputs to strings. 
+    assert ('Error:  The conversion directive to create the "name1" record in the '
+            '"directive1%" table tries to call a nested directive table, directive2%(override"asdf"), '
+            'but at least one parameter passed to it is malformed. All parameters '
+            'must be of the form "key=value" or "name.key=value".') in output
+
+
+def test_str_nested_directives_parameters_no_calling_attribute_warning():
+    """Test that a warning is printed when a parameter indicates to use an attribute from a calling record that the record doesn't have."""
+    
+    test_file = "base_input_for_section_execute.json"
+    
+    command = "messes convert generic ../" + test_file  + " output ../str_nested_directives_parameters_no_calling_attribute_warning.json" 
+    command = command.split(" ")
+    subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
+    output = subp.stderr
+    
+    assert output_path_json.exists()
+    
+    with open(output_path_json, "r") as f:
+        output_json = json.loads(f.read())
+        
+    assert output_json == {
+                          "directive0": {
+                            "name1": "{'name1': \"{'name2': 'asdf', 'name3': 'protein_extraction', 'name4': 'asdf', 'name5': 'asdf'}\"}"
+                          }
+                        }
+     
+    ## There should also be warnings about having to convert directive outputs to strings. 
+    assert ('Warning:  When creating the "name1" conversion for the "directive1%" '
+            'table, the value for "a nested directive parameter", "name5.override = ^.asdf", '
+            'indicates to use a calling record\'s attribute value, but that attribute, '
+            '"asdf", does not exist in the calling record, "polar_extraction", in the '
+            'calling table, "protocol".') in output
+
+
+def test_str_nested_directives_parameters_no_names_and_keys_warnings():
+    """Test that passing the parameters that don't exist and directive names that don't exist into nested directives prints warnings."""
+    
+    test_file = "base_input_for_section_execute.json"
+    
+    command = "messes convert generic ../" + test_file  + " output ../str_nested_directives_parameters_no_names_and_keys_warnings.json" 
+    command = command.split(" ")
+    subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
+    output = subp.stderr
+    
+    assert output_path_json.exists()
+    
+    with open(output_path_json, "r") as f:
+        output_json = json.loads(f.read())
+        
+    assert output_json == {
+                          "directive0": {
+                            "name1": "{'name1': \"{'name2': '4', 'name3': 'zxcv', 'name4': 'qwer', 'name5': 'qwer'}\"}"
+                          }
+                        }
+     
+    ## There should also be warnings about having to convert directive outputs to strings.
+    assert ('Warning:  The conversion directive to create the "name1" record in the '
+            '"directive1%" table calls a nested directive table, directive2%, but '
+            'the parameter, qwer="asdf", passed to it has a key that is not in any '
+            'of the directives within the table. This parameter will be ignored when '
+            'calling the nested directive table.') in output
+
+    assert ('Warning:  The conversion directive to create the "name1" record in the '
+            '"directive1%" table calls a nested directive table, directive2%, but '
+            'the parameter, name3.asdf = id, passed to it has a key, "asdf", that '
+            'is not in the directive, "name3", indicated by the parameter. This '
+            'parameter will be ignored when calling the nested directive table.') in output
+    
+    assert ('Warning:  The conversion directive to create the "name1" record in the '
+            '"directive1%" table calls a nested directive table, directive2%, but '
+            'the parameter, name6.override = ^.id, passed to it has a directive name, '
+            '"name6", that is not in the directive table. This parameter will be '
+            'ignored when calling the nested directive table.') in output
 

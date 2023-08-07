@@ -37,3 +37,5 @@ tests/test_validate/testing_files/main_dir/output.*
 tests/test_convert/output.*
 tests/test_convert/testing_files/output.*
 tests/test_convert/testing_files/main_dir/output.*
+output_std_err.txt
+output_std_out.txt

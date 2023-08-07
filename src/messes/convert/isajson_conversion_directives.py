@@ -30,101 +30,8 @@ conversion tags for the ISA-JSON format
  #         "table": "factor"
  #         }
  #     }
- 
-## Need a way to pass information from calling directive to called directive.
-## One way is caret method shown below, another is making directive calling signature like a function call 
-## and allowing parameters to be passed with it. ex. "\"factorType\"=#studies/factor/type arg1 arg2"
- # "studies/factors": {
- #     "no_id_needed": {
- #         "value_type": "section_matrix",
- #         "required": "True",
- #         "test": "study.id=^id",  ## Possible way to indicate that the id should come from the record that called it. The caret could be special character.
- #         "headers": [
- #           "\"@id\"=\"#factor/\"id",
- #           "\"factorName\"=id",
- #           "\"factorType\"=#studies/factor/type",
- #           "\"comments\"=#studies/factors/comments"
- #         ],
- #         "table": "factor"  ## Table might not matter, or we use this to select a record within a table.
- #         }
- #     }
- 
-## The caret strategy above might eliminate the need to call a nested directive with a limited scope. 
-## I was thinking that you could use the table field to control whether the input_json parameter to the 
-## directive function was the whole json or just a specific table or record, but with the caret (^) notation 
-## we can use the test and record_id fields to limit the directive to the calling record.
-## See "studies/factors/type" below for an example.
-## Caret notation would need special checks to make sure directives are valid. Non-nested directives can't have carets.
+  
 
-## Comments are a list of name value pairs. It's easy to add 1 comment with the current MESSES system, 
-## but multiple is more difficult. Could do something like having pairs such as comment1_name, comment1_value 
-## and then add regex selection to conversion directives. regex selection might be good to add anyway. 
-## Even with regex selection there is not a way in the directives to create a matrix from a single record. 
-## Could add a keyword such as field_collate that would indicate to create a new record in the matrix 
-## based on fields in each record instead of for each record.
-# "Data": {
-#   "required": "True",
-#   "field_collate": "True",
-#   "table": "factor",
-#   "test": "id=^id",
-#   "headers": [
-#       "\"name\"=r\"comment(.*)_name\""
-#       "\"value\"=r\"comment(.*)_value\""
-#       ],
-#   "id": "Data",
-#   "value_type": "matrix"
-# }
-
-## Have to make sure the header doesn't match 2 fields.
-## Have to make sure each group has all of the headers, cant have a group that has a name and no value for example.
-# import re
-
-# record_fields =\
-# {
-#  "comment1_name" : "comment 1 name",
-#  "comment2_name" : "comment 2 name",
-#  "comment1_value" : "comment 1 value",
-#  "comment2_value" : "comment 2 value"
-#  }
-
-# grouping_regex_detector = r"r\"(.*\(.*\).*)\""
-
-# headers = [
-#       "r\"comment(.*)_name\"",
-#       "r\"comment(.*)_value\""
-#       ]
-
-# ## Note headers is just the output keys here.
-# matrix_records = {}
-# for header in headers:
-#     if not (header_regex := re.match(grouping_regex_detector, header)):
-#         continue
-    
-#     header_regex = header_regex.group(1)
-#     field_to_collate_key_map = {field:re_match.group(1) for field in record_fields if (re_match := re.match(header_regex, field))}
-    
-#     collate_key_to_field_map = {}
-#     for field, collate_key in field_to_collate_key_map.items():
-#         if collate_key in collate_key_to_field_map:
-#             print("Error:  header regex matches 2 fields with the same group.")
-#         else:
-#             collate_key_to_field_map[collate_key] = field
-            
-#     for field, collate_key in collate_key_to_field_map.items():
-#         matrix_records.setdefault(collate_key, {})
-#         matrix_records[collate_key][header_input_key] = record_fields[field]
-
-# matrix_records = list(matrix_records.values())
-
-# ## Change this so it accumulates all bad headers and print at the end.
-# for record in matrix_records:
-#     if not set(record.keys()) - header_input_keys:
-#         print("Error:  When collating fields from header regular expressions for the conversion directive {directive_name}, " +\
-#               "not all regular expressions matched a field for each group. The following headers did not have a match for all groups:")
-
-## The above code and idea for field_collate would not be easy to incorporate into the current convert code because the current code 
-## expects each record to produce 1 dictionary instead of multiple. Since this is just here for ISA comments we may be able to just 
-## only allow one comment per record and not worry about it. Actually, we might need something like this for people too.
 
 ## There are spots for comments in several places in ISA, but they end up having to be on one record for MESSES, so they would need 
 ## to be separated with words, such as type_comment_name vs comment_name for factorType comments vs factor comments.
@@ -133,13 +40,6 @@ conversion tags for the ISA-JSON format
 ## can have multiple parameters and parameters can have multiple comments. In order to handle a nested conversion diretive call 
 ## for the comments need to be able to pass a parameter or something with it so we can know which parameter to focus on the context on.
 
-## May need to expand "test" keyword to be able to handle & and |.
-
-
-## We can get nested dictionaries from using nested directives in 2 ways. 1 we can call as usual and execute a new matrix directive, 
-## 2 we can use the "code" keyword to build a dictionary that will be delivered to eval. We just need to add something like calling_record_name, 
-## and calling_record_attributes that can be used in the code. We already planned on passing these around for context anyway.
-## We can implement the ontology annotion similarly, just make it a function that can be called.
 
 ## TODO Add which file the properties for each JSON object comes from. For example, the "measurementType" comes from the investigation file for assay objects.
 ## Check to see if ISAtools looks for duplicate @id, for example if 2 people have the same one.
@@ -221,8 +121,8 @@ directives = \
              "lastName"
              ],
          "headers": [
-           "\"@id\"=/people%@id",
-           "\"roles\"=/people%roles"
+           "\"@id\"=people%@id()",
+           "\"roles\"=people%roles()"
          ],
          "table": "people"
          }
@@ -233,12 +133,10 @@ directives = \
          "required": "False",
          "fields": [
              "\"#people/\"",
-             "firstName",
+             "^.firstName",
              "\"_\"",
-             "lastName"
+             "^.lastName"
              ],
-         "table": "people",
-         "test": "id=^id"
          }
      },
  ## Alternative way to do the @id.
@@ -249,15 +147,9 @@ directives = \
  #         "code": "f\"#people/{calling_record_attributes['firstName']}_{calling_record_attributes['lastName']}\"",
  #         }
  #     },
- ## TODO, maybe add a "built-in" keyword that will run certain built-in functions 
- ## only and automatically supply the extra variables so the user doesn't have to include them in the "code" keyword.
- ## Could have signature like function(record_field_name) or function("literal_value") to make it even easier.
- ## A better name may be something to do with formats, since this is more specifically to transform strings into something else.
- ## I think this might have to be a nested directive keyword only.
- ## TODO, maybe add "silent" as a keyword that can override the global silent.
  "people%roles": {
      "no_id_needed": {
-         "code": "parse_ontology_annotation(calling_record_attributes['roles'])",
+         "execute": "dumb_parse_ontology_annotation(^.roles)",
          "value_type": "section",
          "required": "False"
          }

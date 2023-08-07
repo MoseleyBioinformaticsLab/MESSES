@@ -4,13 +4,13 @@ Built-Ins
 Creating Your Own Built-Ins
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Creating a built-in function to import and use is similar to the process of importing 
-arbitrary Python code and using it through the "code" attribute of a directive, but 
-with 1 major difference. The "code" field expects 1 single return value and blindly 
+arbitrary Python code and using it through the "code" attribute of a directive. However, 
+there is 1 major difference. The "code" field expects 1 single return value and blindly 
 uses that value as the value produced by the directive, but a built-in is expected 
-to return 2 values, an error message and the value. If there is no error and thus 
-no message the value should be None. If the error message value is anything besides 
-None then it will be perceived as an error and the convert command will print an 
-error message about it. The error message allows you to be specific about any mis-formatting 
+to return 2 values: an error message and the value. If there is no error and thus 
+no message, the value should be None. If the error message value is anything besides 
+None, then it will be perceived as an error and the convert command will print an 
+error message about it. The error message allows you to be specific about any misformatting 
 or other problems with the input.
 
 Example Error Message
@@ -28,18 +28,18 @@ by the function and added to the message so the user has a clearer idea about th
 issue that happened.
 
 
-Available Built-Ins
-~~~~~~~~~~~~~~~~~~~
+Built-Ins Available Through The API
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 The details of the Python code for the built-in functions are in the :doc:`api` 
-section of the documentation, but this page will breifly describe how they function 
+section of the documentation, but this page will briefly describe how they function 
 and provide examples.
 
 
 dumb_parse_ontology_annotation
 ------------------------------
-This function takes a string or list of strings in a format like "source:accession:value:comment", 
+This function takes a string or list of strings in a format like "source:accession:value:comment" 
 and creates a dictionary or list of dictionaries, respectively. Spaces are allowed around 
-the colons, "source : accession : value : comment" is the same as "source:accession:value:comment". 
+the colons: "source : accession : value : comment" is the same as "source:accession:value:comment". 
 This function was created to be able to encode ISA ontologyAnnotations as strings in input 
 data and then turn them into the proper dictionary form in the output. There must always be 
 3 colons in the input string, but source, accession, value, and comment can all be left 
@@ -154,10 +154,10 @@ Output JSON
 
 to_dict
 -------
-This function takes a string or list of strings in a format like "key1:value1, key2:value2 ...", 
+This function takes a string or list of strings in a format like "key1:value1, key2:value2 ..." 
 and creates a dictionary or list of dictionaries, respectively. Spaces are allowed around 
-the colons, "key1 : value1, key2 : value2" is the same as "key1:value1, key2:value2". 
-This function was created to be able to encode arbitrary dictionaries as strings in input 
+the colons: "key1 : value1, key2 : value2" is the same as "key1:value1, key2:value2". 
+This function was created to encode arbitrary dictionaries as strings in input 
 data and then turn them into the proper dictionary form in the output. 
 
 

@@ -95,7 +95,7 @@ def test_table_not_in_input_error():
     
     assert not output_path_json.exists()
     
-    assert output == 'Error: The "table" field value, "asdf", for conversion, ' +\
+    assert output == 'Error:  The "table" field value, "asdf", for conversion, ' +\
                       '"TREATMENT_SUMMARY", in conversion table, "TREATMENT", does ' +\
                       'not exist in the input JSON.\n'
 
@@ -112,7 +112,7 @@ def test_table_not_in_input_warning():
     
     assert output_path_json.exists()
     
-    assert 'Warning: The "table" field value, "asdf", for conversion, ' +\
+    assert 'Warning:  The "table" field value, "asdf", for conversion, ' +\
             '"TREATMENT_SUMMARY", in conversion table, "TREATMENT", does ' +\
             'not exist in the input JSON.' in output
 
@@ -129,7 +129,7 @@ def test_conversion_returns_none_warning():
     
     assert output_path_json.exists()
     
-    assert output == 'Warning: The non-required conversion directive to create the "TREATMENT_SUMMARY" record in the "TREATMENT" table could not be created.\n'
+    assert output == 'Warning:  The non-required conversion directive to create the "TREATMENT_SUMMARY" record in the "TREATMENT" table could not be created.\n'
     
 
 def test_code_import():
@@ -170,7 +170,7 @@ def test_code_import_path_does_not_exist():
 
     assert not output_path_json.exists()
     
-    assert output == 'Error: The path given to import a Python file in the "import" ' +\
+    assert output == 'Error:  The path given to import a Python file in the "import" ' +\
                       'field of the conversion record "TREATMENT_SUMMARY" in the "TREATMENT" table does not exist.\n'
 
 
@@ -186,7 +186,7 @@ def test_silent_in_directive_works():
     
     assert output_path_json.exists()
     ## Should output this, but it should be silenced.
-    #'Warning: The non-required conversion directive to create the "TREATMENT_SUMMARY" record in the "TREATMENT" table could not be created.\n'
+    #'Warning:  The non-required conversion directive to create the "TREATMENT_SUMMARY" record in the "TREATMENT" table could not be created.\n'
     assert output == ""
 
 
@@ -242,7 +242,7 @@ def test_test_keyword_calling_field_for_non_nested_directive_error():
     
     assert not output_path_json.exists()
         
-    assert ('Error: When creating the "CHROMATOGRAPHY_SUMMARY" conversion for '
+    assert ('Error:  When creating the "CHROMATOGRAPHY_SUMMARY" conversion for '
             'the "CHROMATOGRAPHY" table, the value for "test", "machine_type=^.MS", '
             'indicates to use a calling record\'s attribute value, but this conversion '
             'directive is not a nested directive and therefore has no calling record.') in output
@@ -284,7 +284,7 @@ def test_test_keyword_calling_field_not_in_record_error():
     
     assert not output_path_json.exists()
         
-    assert ('Error: When creating the "no_id_needed" conversion for the "directive2%" table, '
+    assert ('Error:  When creating the "no_id_needed" conversion for the "directive2%" table, '
             'the value for "test", "machine_type=^.asdf", indicates to use a calling record\'s '
             'attribute value, but that attribute, "asdf", does not exist in the calling record, '
             '"ICMS1", in the calling table, "protocol".') in output
@@ -309,7 +309,7 @@ def test_test_keyword_calling_field_not_in_record_warning():
                           "directive1": None
                         }
         
-    assert ('Warning: When creating the "no_id_needed" conversion for the "directive2%" table, '
+    assert ('Warning:  When creating the "no_id_needed" conversion for the "directive2%" table, '
             'the value for "test", "machine_type=^.asdf", indicates to use a calling record\'s '
             'attribute value, but that attribute, "asdf", does not exist in the calling record, '
             '"ICMS1", in the calling table, "protocol".') in output
@@ -327,9 +327,9 @@ def test_nested_directive_not_in_directives_error():
     
     assert not output_path_json.exists()
         
-    assert ('Error: The conversion directive to create the "name1" record in the '
-            '"directive1" table tries to call a nested directive, directive3%, but '
-            'that directive is not in the conversion directives.') in output
+    assert ('Error:  The conversion directive to create the "name1" record in the '
+            '"directive1" table tries to call a nested directive table, directive3%, but '
+            'that directive table is not in the conversion directives.') in output
 
 
 def test_nested_directive_not_in_directives_warning():
@@ -351,7 +351,9 @@ def test_nested_directive_not_in_directives_warning():
                           "directive1": None
                         }
         
-    assert ('Warning: The conversion directive to create the "name1" record in the '
-            '"directive1" table tries to call a nested directive, directive3%, but '
-            'that directive is not in the conversion directives.') in output
+    assert ('Warning:  The conversion directive to create the "name1" record in the '
+            '"directive1" table tries to call a nested directive table, directive3%, but '
+            'that directive table is not in the conversion directives.') in output
+
+
 

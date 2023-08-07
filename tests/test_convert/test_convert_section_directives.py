@@ -214,7 +214,7 @@ def test_section_execute_for_each_error():
                           ]
                         }
     
-    assert output == ('Warning: The conversion directive to create the "name1" record in the '
+    assert output == ('Warning:  The conversion directive to create the "name1" record in the '
                       '"directive1" table encountered a problem while executing its "execute" '
                       'function for the record, "polar_extraction", in the table, "protocol":\n'
                       '"source3 accession3 value3 comment3" is a malformed ontology annotation. '
@@ -240,7 +240,7 @@ def test_section_execute_for_each_all_None():
                           "directive1": None
                         }
     
-    assert ('Warning: The non-required conversion directive to create the '
+    assert ('Warning:  The non-required conversion directive to create the '
             '"name1" record in the "directive1" table could not be created.\n') in output
 
 
@@ -263,7 +263,7 @@ def test_section_execute_bad_test_keyword():
                           "directive1": None
                         }
     
-    assert ('Warning: The non-required conversion directive to create the '
+    assert ('Warning:  The non-required conversion directive to create the '
             '"name1" record in the "directive1" table could not be created.\n') in output
 
 
@@ -286,10 +286,10 @@ def test_section_execute_no_records_error():
                           "directive1": None
                         }
     
-    assert ('Warning: The non-required conversion directive to create the '
+    assert ('Warning:  The non-required conversion directive to create the '
             '"name1" record in the "directive1" table could not be created.\n') in output
     
-    assert ('Warning: When creating the "name1" conversion for the "directive1" '
+    assert ('Warning:  When creating the "name1" conversion for the "directive1" '
             'table, no records in the "protocol" table matched the test, "order=7", '
             'indicated in the "test" field of the conversion. This could be from '
             'no records containing the test field(s) or no records matching the '
@@ -376,7 +376,7 @@ def test_section_execute_record_id_error():
     
     assert not output_path_json.exists()
         
-    assert output == ('Error: The "record_id" field value, "protein_extractio", '
+    assert output == ('Error:  The "record_id" field value, "protein_extractio", '
                       'for conversion, "name1", in conversion table, "directive1", '
                       'does not exist in the "protocol" table of the input JSON.\n')
 
@@ -393,10 +393,9 @@ def test_section_execute_malformed_value():
     
     assert not output_path_json.exists()
         
-    assert output == ('Error: The conversion directive to create the "name1" record '
-                      'in the "directive1" table has a malformed value for its '
-                      '"execute" attribute, "dumb_parse_ontology_annotation(ontology_annotation". '
-                      'It should be of the form "function_name(function_input1, function_input2, ...)".\n')
+    assert output == ('ValidationError: An error was found in the Conversion Directives.\n'
+                      "The 'execute' property for entry ['directive1']['name1'] must be of "
+                      "the form 'function_name(arg1, arg2, ...)'.\n")
 
 
 def test_section_execute_calling_field_for_non_nested_directive_error():
@@ -411,7 +410,7 @@ def test_section_execute_calling_field_for_non_nested_directive_error():
     
     assert not output_path_json.exists()
         
-    assert ('Error: When creating the "name1" conversion for the "directive1" '
+    assert ('Error:  When creating the "name1" conversion for the "directive1" '
             'table, the value for "execute", "dumb_parse_ontology_annotation(^.order)", '
             'indicates to use a calling record\'s attribute value, but this conversion '
             'directive is not a nested directive and therefore has no calling record.') in output
@@ -429,7 +428,7 @@ def test_section_no_table_error():
     
     assert not output_path_json.exists()
         
-    assert output == ('Error: The conversion directive to create the "name1" '
+    assert output == ('Error:  The conversion directive to create the "name1" '
                       'record in the "directive1" table calls a function in its '
                       '"execute" attribute, "dumb_parse_ontology_annotation(ontology_annotation)", '
                       'that has arguments which are attributes to input records, but '
@@ -448,7 +447,7 @@ def test_section_code_returns_None():
     
     assert not output_path_json.exists()
         
-    assert output == ('Error: The conversion directive to create the "name1" '
+    assert output == ('Error:  The conversion directive to create the "name1" '
                       'record in the "directive1" table did not return a value.\n')
 
 
@@ -464,7 +463,7 @@ def test_section_execute_nested_calling_record_args_error():
     
     assert not output_path_json.exists()        
     
-    assert output == ('Error: When creating the "name2" conversion for the "directive2%" '
+    assert output == ('Error:  When creating the "name2" conversion for the "directive2%" '
                       'table, the value for "execute", "dumb_parse_ontology_annotation(^.ontology_annotatio)", '
                       'indicates to use a calling record\'s attribute value, but that '
                       'attribute, "ontology_annotatio", does not exist in the calling record, '
@@ -483,7 +482,7 @@ def test_section_execute_standalone_error():
     
     assert not output_path_json.exists()        
     
-    assert output == ('Error: The conversion directive to create the "name1" record '
+    assert output == ('Error:  The conversion directive to create the "name1" record '
                       'in the "directive1" table encountered a problem while executing its "execute" function :\n'
                       '"asdf:  xcvb" is a malformed ontology annotation. It must have 3 colons (:) separating its values.\n')
 
@@ -500,7 +499,7 @@ def test_section_execute_unhandled_error():
     
     assert not output_path_json.exists()        
     
-    assert ('Error: The conversion directive to create the "name1" record in the '
+    assert ('Error:  The conversion directive to create the "name1" record in the '
             '"directive1" table encountered an error while executing its "execute" function.') in output
     
     assert ("TypeError: 'int' object is not iterable") in output

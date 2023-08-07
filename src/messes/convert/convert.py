@@ -45,6 +45,7 @@ import sys
 import pathlib
 from importlib.machinery import SourceFileLoader
 import json
+import copy
 import datetime
 import collections.abc
 import traceback
@@ -71,15 +72,33 @@ from messes.convert import regexes
 ## Add measurement%transformation and measurement%normalization protocol types. Allows us to handle those for ISA. Require parents and that parent be a measurement type.
 ## Try just concatenating fields to condense a list of protocols into 1, look for protocol%order field to determine order, if not there assume the order is correct.
 ## For assays find the storage%measurement protocol and work backward to the first collection to find where to start the assay.
-
-## Add a "skip" keyword to skip directives, also make it so directives with "%" in the name are skip=True by default, but will use skip if present.
-## This can't be done because skip is a directive table level thing, not an individual directive thing.
+##   storage%measurement is simply a protocol that connects an entity to a measurement protocol. 
+##   I can't remember now exactly what we said it should have. I know I just wanted to copy the measurement protocol wholesale, 
+##   but I think we settled on having a protocol with some pointers instead, but I can't remember the exact details.
+##   Changed this to the dummy measurements implementation described below.
 
 ## For nested directive argument passing, they have to be key=value pairs, but arbitrary string replacement ones must start with a '$'.
 ##   Search through the values of all fields and look for '$' keys.
 ##   Still have the issue of dealing with users not passing enough values and haveing some left over though, need to think about this.
 ##   Argument passing makes no sense for nested directives that have multiple directives in the table. Should there be a special case
 ##   for directive tables with only 1 directive? 
+
+## Dummy measurements for ISA. Create new proxy-ICMS etc. measurements and have 
+## simple measurement entities that just have an entity.id and protocol.id.
+## This is better than storage%measurement in my opinion because it at least stays 
+## consistent with the workflow already developed for MESSES.
+
+## Possibly add a protocol%sequence type protocol where you can specify protocols that are performed 
+## together in a sequence. Would sort of replace or be another way to list protocols on an entity. 
+## Hunter was more keen than I on this. I think it could be done through just the PDS, but I'm not sure. 
+## I would need to take a swing at it and then get back with Hunter to flesh it out.
+
+## Possibly add a "linked" field or some other name that would indicate whether a protocol 
+## was being placed on the input or the output entity. Hunter was more keen on this than 
+## me. Since it isn't a malleable property and is tied to the protocol type it only opens 
+## up the user to be able to make a mistake and requires additional validation. I think 
+## either putting inputs and output on the protocol or "to_protocol" "from_protocol" on 
+## entitites is better.
 
 
 
@@ -140,7 +159,7 @@ def main() :
                         ## Have to trim the extra newline off the end of buffer.
                         print(buffer.getvalue()[0:-1], file=sys.stderr)
                     elif default_sheet_name:
-                        print("Error: No sheet name was given for the file, so the default name "
+                        print("Error:  No sheet name was given for the file, so the default name "
                               "of #convert was used, but it was not found in the file.", file=sys.stderr)
                     sys.exit()
             except Exception as e:
@@ -152,7 +171,7 @@ def main() :
                 update_conversion_directives = json.load(jsonFile)
         
         else:
-            print("Error: Unknown file type for the conversion directives file.", file=sys.stderr)
+            print("Error:  Unknown file type for the conversion directives file.", file=sys.stderr)
             sys.exit()
             
         if args["--update"]:
@@ -182,7 +201,7 @@ def main() :
             table_to_save = directives_to_table(conversion_directives)
             table_to_save.to_csv(save_name, index=False, header=False)
         else:
-            print("Error: Unknown output filetype.", file=sys.stderr)
+            print("Error:  Unknown output filetype.", file=sys.stderr)
             
         sys.exit()
         
@@ -195,13 +214,13 @@ def main() :
     
     ## Read in files.
     if not pathlib.Path(args["<input_JSON>"]).exists():
-        print(f"Error: The value entered for <input_JSON>, {args['<input_JSON>']}, is not a valid file path or does not exist.", file=sys.stderr)
+        print(f"Error:  The value entered for <input_JSON>, {args['<input_JSON>']}, is not a valid file path or does not exist.", file=sys.stderr)
         sys.exit()
     try:
         with open(args["<input_JSON>"], 'r') as jsonFile:
             input_json = json.load(jsonFile)
     except Exception as e:
-        print(f"\nError: An error was encountered when trying to read in the <input_JSON>, {args['<input_JSON>']}.\n", file=sys.stderr)
+        print(f"\nError:  An error was encountered when trying to read in the <input_JSON>, {args['<input_JSON>']}.\n", file=sys.stderr)
         raise e
     
     
@@ -220,6 +239,7 @@ def main() :
                                                        None, 
                                                        None, 
                                                        None, 
+                                                       None,
                                                        args["--silent"])
         
         output_json[conversion_table] = table_value
@@ -294,7 +314,7 @@ def main() :
             with open(mwtab_save_name, 'w', encoding='utf-8') as outfile:
                 mwtabfile.write(outfile, file_format="mwtab")
         else:
-            print("Error: An error occured when validating the mwtab file.", file=sys.stderr)
+            print("Error:  An error occured when validating the mwtab file.", file=sys.stderr)
             print(errors, file=sys.stderr)
             sys.exit()
 
@@ -315,11 +335,11 @@ def _handle_errors(required: bool, silent: bool, message: str) -> None:
         message: the message to be printed.
     """
     if required:
-        print("Error: " + message, file=sys.stderr)
+        print("Error:  " + message, file=sys.stderr)
         sys.exit()
     else:
         if not silent:
-            print("Warning: " + message, file=sys.stderr)
+            print("Warning:  " + message, file=sys.stderr)
 
 
 def _update(original_dict: dict, upgrade_dict: dict) -> dict:
@@ -632,38 +652,160 @@ def _is_field_in_calling_record(string_to_test: str, conversion_field_name:str, 
 
 
 def _is_field_a_nested_directive(string_to_test: str, 
-                                 conversion_table: str, 
-                                 conversion_record_name: str,
-                                 conversion_directives: dict,
+                                 conversion_table: str, conversion_record_name: str, conversion_directives: dict,
+                                 record_table: str|int, record_name: str|int, record_attributes: dict,
+                                 calling_record_table: str|int, calling_record_name: str|int, calling_record_attributes: dict,
                                  required: bool, silent: bool) -> tuple[bool, str|None]:
     """Determine if string is a nested_directive.
+    
+    Determines if string_to_test is a nested diretive, but also parses any parameters passed 
+    to the directive and does error checking. Parameters can be literal values, fields to 
+    records, or fields to calling records.
     
     Args:
         string_to_test: string to determine if it is pointing to a calling record field.
         conversion_table: the name of the table the conversion record came from, used for good error messaging.
         conversion_record_name: the name of the conversion record, used for good error messaging.
         conversion_directives: the conversion directives, used for calling nested directives.
+        record_table: the name of the table for the record the directive has in context.
+        record_name: the name of the record the directive has in context.
+        record_attributes: the fields and values of the record the directive has in context.
+        calling_record_table: if this is a nested directive, then this should be the table of the record the directive was called on, else None.
+        calling_record_name: if this is a nested directive, then this should be the key of the record the directive was called on, else None.
+        calling_record_attributes: if this is a nested directive, then this should be the attributes of the record the directive was called on, else None.
         required: if True then any problems during execution are errors and the program should exit, else it's just a warning.
         silent: if True don't print warning messages.
         
     Returns:
         A tuple where the first value is a bool indicating if string_to_test matches the syntax for a nested directive, 
-        and the second value is the nested directive name or None.
+        the second value is the nested directive name or None, and the third value is a dictionary of parameters being 
+        passed to the nested directive or None.
     """
     
     if re_match := re.match(nested_directive_regex, string_to_test):
+        ## Parse string to directive and parameters.
         directive = re_match.group(1)
+        parameters = [stripped for word in re_match.group(2).split(',') if (stripped := word.strip())]
         
+        ## Check that directive table exists and that parameters are not malformed.
         if directive not in conversion_directives:
             message = (f"The conversion directive to create the \"{conversion_record_name}"
-                      f"\" record in the \"{conversion_table}\" table tries to call a nested directive, "
-                      f"{directive}, but that directive is not in the conversion directives.")
+                      f"\" record in the \"{conversion_table}\" table tries to call a nested directive table, "
+                      f"{directive}, but that directive table is not in the conversion directives.")
             _handle_errors(required, silent, message)
-            return True, None
+            return True, None, None
         
-        return True, directive
+        if not all([re.match(r".+=.+", parameter) for parameter in parameters]):
+            message = (f"The conversion directive to create the \"{conversion_record_name}"
+                      f"\" record in the \"{conversion_table}\" table tries to call a nested directive table, "
+                      f"{string_to_test}, but at least one parameter passed to it is malformed. "
+                      "All parameters must be of the form \"key=value\" or \"name.key=value\".")
+            _handle_errors(required, silent, message)
+            return True, None, None
+        
+        ## Parse parameters into a dictionary to be easily used later.
+        nested_directive_keys = {key for values in conversion_directives[directive].values() for key in values.keys()}
+        parameters_dict = {"all":{}, "named":{}}
+        for parameter in parameters:
+            split = [word.strip() for word in parameter.split('=')]
+            key_and_name = [word for word in split[0].strip().split('.')]
+            key = key_and_name[1] if len(key_and_name) > 1 else key_and_name[0]
+            name = key_and_name[0] if len(key_and_name) > 1 else None
+            value = split[1].strip()
+            
+            ## Determine if the value is literal, a record field, or a calling field.
+            if (calling_field := _is_field_in_calling_record(value, 
+                                                             "a nested directive parameter", 
+                                                             parameter, 
+                                                             conversion_table, 
+                                                             conversion_record_name,
+                                                             calling_record_table, 
+                                                             calling_record_name, 
+                                                             calling_record_attributes,
+                                                             required, 
+                                                             silent))[0]:
+                ## No value means it matched the syntax, but there were no fields in the calling record that matched.
+                if calling_field[1] is None:
+                    continue
+                value = calling_record_attributes[calling_field[1]]
+            
+            
+            elif match := re.match(literal_regex, value):
+                value = match.group(1)
+                        
+            else:
+                if value not in record_attributes:
+                    message = (f"When creating the \"{conversion_record_name}"
+                              f"\" conversion for the \"{conversion_table}\" table, the value for a nested directive parameter, "
+                              f"\"{parameter}\", indicates to use a record's attribute value, but that attribute, \""
+                              f"{value}\", does not exist in the record, \""
+                              f"{record_name}\", in the table, \"{record_table}\". "
+                              "This parameter will be ignored when calling the nested directive table.")
+                    _handle_errors(False, silent, message)
+                    continue
+                value = record_attributes[value]
+            
+            ## Check that any named parameters exist and that the key exists in the directive.
+            if name:
+                if name not in conversion_directives[directive].keys():
+                    message = (f"The conversion directive to create the \"{conversion_record_name}"
+                              f"\" record in the \"{conversion_table}\" table calls a nested directive table, "
+                              f"{directive}, but the parameter, {parameter}, passed to it has a "
+                              f"directive name, \"{name}\", that is not in the directive table. "
+                              "This parameter will be ignored when calling the nested directive table.")
+                    _handle_errors(False, silent, message)
+                    continue
+                    
+                if key not in nested_directive_keys:
+                    message = (f"The conversion directive to create the \"{conversion_record_name}"
+                              f"\" record in the \"{conversion_table}\" table calls a nested directive table, "
+                              f"{directive}, but the parameter, {parameter}, passed to it has a "
+                              f"key, \"{key}\", that is not in the directive, \"{name}\", indicated by the parameter. "
+                              "This parameter will be ignored when calling the nested directive table.")
+                    _handle_errors(False, silent, message)
+                    continue
+                
+                if name in parameters_dict["named"]:
+                    if key in parameters_dict["named"][name]:
+                        message = (f"The conversion directive to create the \"{conversion_record_name}"
+                                  f"\" record in the \"{conversion_table}\" table calls a nested directive table, "
+                                  f"{directive}, and the parameter, {parameter}, passed to it has a "
+                                  f"key, \"{key}\", that was specified  twice for the \"{name}\" directive. "
+                                  "The previously specified value for this parameter will be ignored, "
+                                  "and only the latest value will be used.")
+                        _handle_errors(False, silent, message)
+                    
+                    parameters_dict["named"][name][key] = value
+                else:
+                    parameters_dict["named"][name] = {key:value}
+                
+                
+                
+            else:
+                ## Check that non-named keys exist somewhere in the directive table.
+                if key not in nested_directive_keys:
+                    message = (f"The conversion directive to create the \"{conversion_record_name}"
+                              f"\" record in the \"{conversion_table}\" table calls a nested directive table, "
+                              f"{directive}, but the parameter, {parameter}, passed to it has a key that "
+                              "is not in any of the directives within the table. "
+                              "This parameter will be ignored when calling the nested directive table.")
+                    _handle_errors(False, silent, message)
+                    continue
+                
+                if key in parameters_dict["all"]:
+                    message = (f"The conversion directive to create the \"{conversion_record_name}"
+                              f"\" record in the \"{conversion_table}\" table calls a nested directive table, "
+                              f"{directive}, and the parameter, {parameter}, passed to it has a "
+                              f"key, \"{key}\", that was specified  twice. "
+                              "The previously specified value for this parameter will be ignored, "
+                              "and only the latest value will be used.")
+                    _handle_errors(False, silent, message)
+                
+                parameters_dict["all"][key] = value
+        
+        return True, directive, parameters_dict
     
-    return False, None
+    return False, None, None
 
 
 
@@ -705,6 +847,7 @@ def _execute_directive(input_json: dict, conversion_table: str, conversion_recor
 
 def _determine_directive_table_value(input_json: dict, conversion_table: str, conversion_directives: dict,
                                      calling_record_table: str|int=None, calling_record_name: str|int=None, calling_record_attributes: dict=None, 
+                                     directive_attribute_replacement: dict=None,
                                      silent: bool=False) -> Any:
     """Call the correct function to execute the directive based on its value_type.
     
@@ -715,6 +858,7 @@ def _determine_directive_table_value(input_json: dict, conversion_table: str, co
         calling_record_table: if this is a nested directive, then this should be the table of the record the directive was called on, else None.
         calling_record_name: if this is a nested directive, then this should be the key of the record the directive was called on, else None.
         calling_record_attributes: if this is a nested directive, then this should be the attributes of the record the directive was called on, else None.
+        directive_attribute_replacement: a dictionary like {'all': {field:value, ...}, 'named': {'directive1': {field:value, ...}, ...}} used to overwrite directive attributes for nested directive tables.
         silent: if True don't print warning messages.
     
     Returns:
@@ -722,8 +866,18 @@ def _determine_directive_table_value(input_json: dict, conversion_table: str, co
     """
     directive_table_output = {}
     for conversion_record_name, conversion_attributes in conversion_directives[conversion_table].items():
+        conversion_attributes = copy.deepcopy(conversion_attributes)
+        if directive_attribute_replacement:
+            for field, value in directive_attribute_replacement["all"].items():
+                if field in conversion_attributes:
+                    conversion_attributes[field] = value
+                if parameters := directive_attribute_replacement["named"].get(conversion_record_name):
+                    for field, value in parameters.items():
+                        if field in conversion_attributes:
+                            conversion_attributes[field] = value
+        
         silent = _str_to_boolean_get(silent, "silent", conversion_attributes)
-        required = _str_to_boolean_get(True, "required", conversion_attributes)            
+        required = _str_to_boolean_get(True, "required", conversion_attributes)       
         
         default = conversion_attributes.get("default")
         ## Literal check needs to be here if the user wants to use a space.
@@ -738,23 +892,22 @@ def _determine_directive_table_value(input_json: dict, conversion_table: str, co
         if value is None:
             if default is None:
                 if required:
-                    print(f"Error: The conversion directive to create the \"{conversion_record_name}"
-                          f"\" record in the \"{conversion_table}\" table did not return a value.", 
-                          file=sys.stderr)
+                    message = (f"The conversion directive to create the \"{conversion_record_name}"
+                               f"\" record in the \"{conversion_table}\" table did not return a value.")
+                    _handle_errors(required, silent, message)
                     sys.exit()
                 else:
-                    if not silent:
-                        print("Warning: The non-required conversion directive to create the \""
-                              f"{conversion_record_name}\" record in the \"{conversion_table}\" table could not be created.", 
-                              file=sys.stderr)
+                    message = ("The non-required conversion directive to create the \""
+                               f"{conversion_record_name}\" record in the \"{conversion_table}\" table could not be created.")
+                    _handle_errors(required, silent, message)
                     continue
             else:
                 value = default
                 if not silent:
-                    print(f"The conversion directive to create the \"{conversion_record_name}"
-                          f"\" record in the \"{conversion_table}"
-                          f"\" table could not be created, and reverted to its given default value, \"{default}\".", 
-                          file=sys.stderr)
+                    message = (f"The conversion directive to create the \"{conversion_record_name}"
+                               f"\" record in the \"{conversion_table}"
+                               f"\" table could not be created, and reverted to its given default value, \"{default}\".")
+                    _handle_errors(required, silent, message)
                 
         if "section" in conversion_attributes["value_type"]:
             directive_table_output = value
@@ -807,51 +960,45 @@ def compute_section_value(input_json: dict, conversion_table: str, conversion_re
     
     ## execute
     if execute := conversion_attributes.get("execute"):
-        if match := re.match(r"(.+)\((.*)\)\s*", execute.strip()):
-            function_name = match.group(1)
-            # function_inputs = match.group(2).split(',')
-            ## Going to go on and strip here, but this may need to change in the 
-            ## future if people have fields with leading or trailing spaces.
-            function_arguments = [word.strip() for word in match.group(2).split(',')]
-            
-            ## (bool, value) if the bool is true it means the value needs to be evaled().
-            function_argument_tuples = []
-            for function_argument in function_arguments:
-            
-                if (calling_field := _is_field_in_calling_record(function_argument, 
-                                                                 "execute", 
-                                                                 conversion_attributes["execute"], 
-                                                                 conversion_table, 
-                                                                 conversion_record_name,
-                                                                 calling_record_table, 
-                                                                 calling_record_name, 
-                                                                 calling_record_attributes,
-                                                                 required, 
-                                                                 silent))[0]:
-                    ## No value means it matched the syntax, but there were no fields in the calling record that matched.
-                    if calling_field[1] is None:
-                        return None
-                    function_argument = (False, calling_record_attributes[calling_field[1]])
-                
-                
-                elif match := re.match(literal_regex, function_argument):
-                    function_argument = (False, match.group(1))
-                
-                ## Have to handle the empty string case.
-                elif not function_argument:
-                    continue
-                
-                else:
-                    function_argument = (True, f"record_attributes['{function_argument}']")
-                
-                function_argument_tuples.append(function_argument)
-                        
-        else:
-            message = (f"The conversion directive to create the \"{conversion_record_name}"
-                      f"\" record in the \"{conversion_table}\" table has a malformed value for "
-                      f"its \"execute\" attribute, \"{execute}\". It should be of the form \"function_name(function_input1, function_input2, ...)\".")
-            return _handle_errors(required, silent, message)
+        match = re.match(r"(.+)\((.*)\)", execute.strip())
+        function_name = match.group(1)
+        # function_inputs = match.group(2).split(',')
+        ## Going to go on and strip here, but this may need to change in the 
+        ## future if people have fields with leading or trailing spaces.
+        function_arguments = [word.strip() for word in match.group(2).split(',')]
         
+        ## (bool, value) if the bool is true it means the value needs to be evaled().
+        function_argument_tuples = []
+        for function_argument in function_arguments:
+        
+            if (calling_field := _is_field_in_calling_record(function_argument, 
+                                                             "execute", 
+                                                             conversion_attributes["execute"], 
+                                                             conversion_table, 
+                                                             conversion_record_name,
+                                                             calling_record_table, 
+                                                             calling_record_name, 
+                                                             calling_record_attributes,
+                                                             required, 
+                                                             silent))[0]:
+                ## No value means it matched the syntax, but there were no fields in the calling record that matched.
+                if calling_field[1] is None:
+                    return None
+                function_argument = (False, calling_record_attributes[calling_field[1]])
+            
+            
+            elif match := re.match(literal_regex, function_argument):
+                function_argument = (False, match.group(1))
+            
+            ## Have to handle the empty string case.
+            elif not function_argument:
+                continue
+            
+            else:
+                function_argument = (True, function_argument)
+            
+            function_argument_tuples.append(function_argument)
+                                
         
         if "table" not in conversion_attributes:
             
@@ -893,8 +1040,19 @@ def compute_section_value(input_json: dict, conversion_table: str, conversion_re
     if for_each:
         value_for_each_record = []
         for record_name, record_attributes in table_records.items():
+            ## Check that any arguments that should be fields to a record exist.
+            for entry in function_argument_tuples:
+                if entry[0] and entry[1] not in record_attributes:
+                    message = (f"When creating the \"{conversion_record_name}"
+                              f"\" conversion for the \"{conversion_table}\" table, the value for \"execute\", \""
+                              f"{conversion_attributes['execute']}\", indicates to use a record's attribute value, but that attribute, \""
+                              f"{entry[1]}\", does not exist in the record, \""
+                              f"{record_name}\", in the table, \"{record_table}\".")
+                    _handle_errors(required, silent, message)
+                    return None
+            
             value = _run_built_in_function(function_name, 
-                                           [eval(entry[1], {"record_attributes":record_attributes}) if entry[0] else entry[1] for entry in function_argument_tuples], 
+                                           [record_attributes[entry[1]] if entry[0] else entry[1] for entry in function_argument_tuples], 
                                            conversion_table, conversion_record_name, 
                                            record_table, record_name, 
                                            required, silent)
@@ -916,10 +1074,21 @@ def compute_section_value(input_json: dict, conversion_table: str, conversion_re
         record_name = conversion_attributes["record_id"]
     else:
         record_name, record_attributes = list(table_records.items())[0]
+    
+    ## Check that any arguments that should be fields to a record exist.
+    for entry in function_argument_tuples:
+        if entry[0] and entry[1] not in record_attributes:
+            message = (f"When creating the \"{conversion_record_name}"
+                      f"\" conversion for the \"{conversion_table}\" table, the value for \"execute\", \""
+                      f"{conversion_attributes['execute']}\", indicates to use a record's attribute value, but that attribute, \""
+                      f"{entry[1]}\", does not exist in the record, \""
+                      f"{record_name}\", in the table, \"{record_table}\".")
+            _handle_errors(required, silent, message)
+            return None
 
     
     return _run_built_in_function(function_name, 
-                                  [eval(entry[1], {"record_attributes":record_attributes}) if entry[0] else entry[1] for entry in function_argument_tuples], 
+                                  [record_attributes[entry[1]] if entry[0] else entry[1] for entry in function_argument_tuples], 
                                   conversion_table, conversion_record_name, 
                                   record_table, record_name, 
                                   required, silent)
@@ -1022,9 +1191,9 @@ def compute_string_value(input_json: dict, conversion_table: str, conversion_rec
             
     if value is not None:
         if not isinstance(value, str):
-            print(f"Error: The code conversion directive to create the \"{conversion_record_name}"
-                  f"\" record in the \"{conversion_table}\" table did not return a string type value.", 
-                  file=sys.stderr)
+            message = (f"The code conversion directive to create the \"{conversion_record_name}"
+                       f"\" record in the \"{conversion_table}\" table did not return a string type value.")
+            _handle_errors(required, silent, message)
             sys.exit()
         
         return value
@@ -1034,8 +1203,6 @@ def compute_string_value(input_json: dict, conversion_table: str, conversion_rec
     
     ## fields
     fields = conversion_attributes["fields"]
-    ## TODO move this to user input checking, do the same with section type for execute field and matrix as well, move the tests from tags to input checking as well.
-    ## I don't think I can move this because I have to do the check again here anyway to know to return early.
     if "table" not in conversion_attributes:
         if not all([True if re.match(literal_regex, field) or \
                             re.match(calling_record_regex, field) or \
@@ -1198,6 +1365,12 @@ def _build_string_value(input_json: dict, fields: list[str], conversion_table: s
                                                             conversion_table, 
                                                             conversion_record_name,
                                                             conversion_directives,
+                                                            record_table,
+                                                            record_name,
+                                                            record_attributes,
+                                                            calling_record_table,
+                                                            calling_record_name,
+                                                            calling_record_attributes,
                                                             required, 
                                                             silent))[0]:
                 if directive[1]:
@@ -1207,6 +1380,7 @@ def _build_string_value(input_json: dict, fields: list[str], conversion_table: s
                                                                    record_table, 
                                                                    record_name, 
                                                                    record_attributes, 
+                                                                   directive[2],
                                                                    silent)
                     
                     if table_value is None:
@@ -1301,9 +1475,9 @@ def compute_matrix_value(input_json: dict, conversion_table: str, conversion_rec
             
     if value is not None:
         if not isinstance(value, list) or not all([isinstance(record, dict) for record in value]):
-            print(f"Error: The code conversion directive to create the \"{conversion_record_name}"
-                  f"\" record in the \"{conversion_table}\" table did not return a matrix type value.", 
-                  file=sys.stderr)
+            message = (f"The code conversion directive to create the \"{conversion_record_name}"
+                       f"\" record in the \"{conversion_table}\" table did not return a matrix type value.")
+            _handle_errors(True, silent, message)
             sys.exit()
         
         return value
@@ -1495,6 +1669,7 @@ def _build_matrix_record_dict(input_json: dict,
         matrix_dict with values filled in from the record.
     """
     
+    left_keys = set()
     for header in headers:
         input_key, input_key_value, output_key, output_key_value, skip_header = _determine_header_input_keys(input_json,
                                                                                                              header, 
@@ -1518,55 +1693,82 @@ def _build_matrix_record_dict(input_json: dict,
         if input_key is None and input_key_value is None and output_key is None and output_key_value is None:
             return None
         
-        if collate_key is not None and input_key_value in matrix_dict and output_key_value != matrix_dict[input_key_value]:
-            message = (f"When creating the \"{conversion_record_name}"
-                  f"\" matrix for the \"{conversion_table}\" table, different values for the output key, \""
-                  f"{output_key}\", were found for the collate key \"{collate_key}\". "
-                  "Only the last value will be used.")
-            _handle_errors(False, silent, message)
-        
-        if input_key_value in matrix_dict:
-            message = (f"When creating the \"{conversion_record_name}"
-                  f"\" matrix for the \"{conversion_table}\" table, the key \""
-                  f"{input_key_value}\", was specified twice in the \"headers\" attribute. "
-                  "Only the last value will be used.")
-            _handle_errors(False, silent, message)
+        if input_key_value in matrix_dict and output_key_value != matrix_dict[input_key_value]:
+            if collate_key is not None:
+                message = (f"When creating the \"{conversion_record_name}"
+                      f"\" matrix for the \"{conversion_table}\" table, the record, \"{record_name}\", "
+                      f"from the \"{record_table}\" table produced a different value for the header, \"{header}\", than "
+                      f"what was previously found on other records while collating over "
+                      f"\"{collate_key}\". The previous value of \"{matrix_dict[input_key_value]}\" will "
+                      f"be overwritten with the value produced by the current record, \"{output_key_value}\".")
+                _handle_errors(False, silent, message)
+            else:
+                message = (f"When creating the \"{conversion_record_name}"
+                      f"\" matrix for the \"{conversion_table}\" table, the header, "
+                      f"\"{header}\", produced the same key value, \"{input_key_value}\", "
+                      f"as a previous header. The previous value of \"{matrix_dict[input_key_value]}\" will "
+                      f"be overwritten with the new value, \"{output_key_value}\".")
+                _handle_errors(False, silent, message)
         
         matrix_dict[input_key_value] = output_key_value
+        left_keys.add(input_key_value)
+    
     
     if fields_to_headers:
-        duplicate_keys = set(matrix_dict.keys()).intersection(record_attributes.keys())
-        if duplicate_keys:
-            duplicate_keys = '\n'.join(duplicate_keys)
+        duplicate_keys = left_keys.intersection(record_attributes.keys())
+        if duplicate_keys and collate_key is None:
+            duplicate_keys = '\n'.join(sorted(duplicate_keys))
             message = (f"When creating the \"{conversion_record_name}"
                   f"\" matrix for the \"{conversion_table}\" table, the record, \"{record_name}\", "
-                  "has key names in its attributes that are the same as key names specified in "
-                  "the \"headers\" attribute of the directive. Since \"fields_to_headers\" was "
-                  "set to True, the values in the record attributes will overwrite the values "
-                  "specified in \"headers\" for the following keys:\n"
+                  f"from the \"{record_table}\" table has key names in its attributes that are the same as key names specified in "
+                  f"the \"headers\" attribute of the directive. Since \"fields_to_headers\" was "
+                  f"set to True, the values in the record attributes will overwrite the values "
+                  f"specified in \"headers\" for the following keys:\n"
                   f"{duplicate_keys}")
             _handle_errors(False, silent, message)
         
-        if values_to_str:
-            matrix_dict.update({field:str(value) for field, value in record_attributes.items() if field not in exclusion_headers})
-        else:
-            matrix_dict.update({field:value for field, value in record_attributes.items() if field not in exclusion_headers})
+        for field, value in record_attributes.items():
+            if field in exclusion_headers:
+                continue
+            
+            value_to_save = str(value) if values_to_str else value
+            if collate_key is not None and field in matrix_dict and value_to_save != matrix_dict[field]:
+                message = (f"When creating the \"{conversion_record_name}"
+                      f"\" matrix for the \"{conversion_table}\" table, the record, \"{record_name}\", "
+                      f"from the \"{record_table}\" table has a different value for \"{field}\" than what was previously found on other "
+                      f"records while collating over \"{collate_key}\". The previous value of \"{matrix_dict[field]}\" will "
+                      f"be overwritten with the value of the current record, \"{value_to_save}\".")
+                _handle_errors(False, silent, message)
+            
+            matrix_dict[field] = value_to_save
+        
     else:
         optional_headers_to_add = set(record_attributes.keys()).intersection(optional_headers)
-        duplicate_keys = set(matrix_dict.keys()).intersection(optional_headers_to_add)
-        if duplicate_keys:
-            duplicate_keys = '\n'.join(duplicate_keys)
+        duplicate_keys = left_keys.intersection(optional_headers_to_add)
+        if duplicate_keys and collate_key is None:
+            duplicate_key_strings = '\n'.join(sorted(duplicate_keys))
             message = (f"When creating the \"{conversion_record_name}"
                   f"\" matrix for the \"{conversion_table}\" table, the record, \"{record_name}\", "
-                  "has key names in its attributes that are the same as key names specified in "
-                  "the \"headers\" attribute of the directive. Since \"optional_headers\" were "
-                  "given, the values in the record attributes that are also in \"optional_headers\" "
-                  "will overwrite the values specified in \"headers\" for the following keys:\n"
-                  f"{duplicate_keys}")
+                  f"from the \"{record_table}\" table has key names in its attributes that are the same as key names specified in "
+                  f"the \"headers\" attribute of the directive. Since \"optional_headers\" were "
+                  f"given, the values in the record attributes that are also in \"optional_headers\" "
+                  f"will overwrite the values specified in \"headers\" for the following keys:\n"
+                  f"{duplicate_key_strings}")
             _handle_errors(False, silent, message)
         
-        for header in optional_headers_to_add:
-            matrix_dict[header] = str(record_attributes[header]) if values_to_str else record_attributes[header]
+        ## Have to loop over optional_headers to preserve order, optional_headers_to_add loses order.
+        for header in optional_headers:
+            if header not in optional_headers_to_add:
+                continue
+            value_to_save = str(record_attributes[header]) if values_to_str else record_attributes[header]
+            if collate_key is not None and header in matrix_dict and value_to_save != matrix_dict[header]:
+                message = (f"When creating the \"{conversion_record_name}"
+                      f"\" matrix for the \"{conversion_table}\" table, the record, \"{record_name}\", "
+                      f"from the \"{record_table}\" table has a different value for \"{header}\" than what was previously found on other "
+                      f"records while collating over \"{collate_key}\". The previous value of \"{matrix_dict[header]}\" will "
+                      f"be overwritten with the value of the current record, \"{value_to_save}\".")
+                _handle_errors(False, silent, message)
+            matrix_dict[header] = value_to_save
                 
     return matrix_dict
 
@@ -1602,7 +1804,7 @@ def _determine_header_input_keys(input_json: dict, header: str, record_table: st
         skip_header is a boolean that indicates if the header should be left out of the dictionary being created.
     """
     skip_header = False
-    split = header.split("=")
+    split = header.split("=", 1)
     output_key = split[0].strip()
     input_key = split[1].strip()
     
@@ -1640,6 +1842,12 @@ def _determine_header_input_keys(input_json: dict, header: str, record_table: st
                                                         conversion_table, 
                                                         conversion_record_name,
                                                         conversion_directives,
+                                                        record_table,
+                                                        record_name,
+                                                        record_attributes,
+                                                        calling_record_table,
+                                                        calling_record_name,
+                                                        calling_record_attributes,
                                                         required, 
                                                         silent))[0]:
             
@@ -1650,6 +1858,7 @@ def _determine_header_input_keys(input_json: dict, header: str, record_table: st
                                                                record_table, 
                                                                record_name, 
                                                                record_attributes, 
+                                                               directive[2],
                                                                silent)
                 
                 if table_value is None:
@@ -1694,7 +1903,6 @@ def _determine_header_input_keys(input_json: dict, header: str, record_table: st
         else:    
             if key not in record_attributes:
                 ## If required is False then the this header is simply skipped.
-                ## TODO make sure to add to the documentation that headers not found are skipped if required is false.
                 message = (f"The record, \"{record_name}\", in the \"{record_table}"
                           f"\" table does not have the field, \"{key}"
                           f"\", required by the \"headers\" field for the conversion, \""

@@ -106,7 +106,6 @@ def test_mwtab_MS_command():
     command = command.split(" ")
     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
     output = subp.stderr
-
     
     assert output_path_json.exists()
     
@@ -714,7 +713,7 @@ def test_xlsx_no_default_sheetname_error():
 
     assert not output_path_json.exists()
         
-    assert output == "Error: No sheet name was given for the file, so the default name " +\
+    assert output == "Error:  No sheet name was given for the file, so the default name " +\
                       "of #convert was used, but it was not found in the file.\n"
 
 
@@ -730,7 +729,7 @@ def test_Google_Sheets_no_default_sheetname_error():
 
     assert not output_path_json.exists()
         
-    assert output == "Error: No sheet name was given for the file, so the default name " +\
+    assert output == "Error:  No sheet name was given for the file, so the default name " +\
                       "of #convert was used, but it was not found in the file.\n"
                       
 
@@ -806,7 +805,7 @@ def test_conversion_directives_wrong_file_type():
 
     assert not output_path_json.exists()
         
-    assert output == "Error: Unknown file type for the conversion directives file.\n"
+    assert output == "Error:  Unknown file type for the conversion directives file.\n"
 
 
 def test_print_directives_wrong_file_type():
@@ -819,7 +818,7 @@ def test_print_directives_wrong_file_type():
 
     assert not output_path_json.exists()
         
-    assert output == "Error: Unknown output filetype.\n"
+    assert output == "Error:  Unknown output filetype.\n"
     
 
 def test_mwtab_validation_error():
@@ -834,7 +833,7 @@ def test_mwtab_validation_error():
 
     assert output_path_json.exists()
     
-    assert 'Error: An error occured when validating the mwtab file.' in output
+    assert 'Error:  An error occured when validating the mwtab file.' in output
     assert 'Status: Contains Validation Errors' in output
     
 
@@ -848,7 +847,7 @@ def test_input_json_does_not_exist_error():
 
     assert not output_path_json.exists()
         
-    assert output == "Error: The value entered for <input_JSON>, ../asdf.json, is not a valid file path or does not exist.\n"
+    assert output == "Error:  The value entered for <input_JSON>, ../asdf.json, is not a valid file path or does not exist.\n"
     
     
 def test_input_json_is_not_json_error():
@@ -861,7 +860,7 @@ def test_input_json_is_not_json_error():
 
     assert not output_path_json.exists()
         
-    assert "Error: An error was encountered when trying to read in the <input_JSON>, ../import_test.py." in output
+    assert "Error:  An error was encountered when trying to read in the <input_JSON>, ../import_test.py." in output
 
 
 def test_unordered_directives_mwtab_MS():
