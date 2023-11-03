@@ -1,0 +1,27 @@
+cff-version: 1.0.0
+message: "If you use this software, please cite it as below."
+authors:
+- family-names: "Thompson"
+  given-names: "Travis"
+  orcid: "https://orcid.org/0000-0002-8198-1327"
+- family-names: "Moseley"
+  given-names: "Hunter"
+  orcid: "https://orcid.org/0000-0003-3995-5368"
+title: "messes"
+version: 1.0.1
+date-released: 2023-05-31
+url: "https://github.com/MoseleyBioinformaticsLab/messes"
+preferred-citation:
+  type: article
+  authors:
+  - family-names: "Thompson"
+    given-names: "Travis"
+    orcid: "https://orcid.org/0000-0002-8198-1327"
+  - family-names: "Moseley"
+    given-names: "Hunter"
+    orcid: "https://orcid.org/0000-0003-3995-5368"
+  doi: "10.3390/metabo13070842"
+  journal: "Metabolites"
+  month: 07
+  title: "MESSES: Software for Transforming Messy Research Datasets into Clean Submissions to Metabolomics Workbench for Public Sharing"
+  year: 2023

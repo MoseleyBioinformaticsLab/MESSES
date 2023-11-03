@@ -504,7 +504,8 @@ the string value. If the for_each field is false, this is used to find the first
 The test field is also aware of boolean logic, so the "and", "or", "&", and "|" operators can be used to create more 
 complex tests. For example, "field1=value1 and field2=value2" or "field1=value1 or field1=value2". 
 Note that the "and" and "&" operators behave exactly the same, they are just aliases of each other for 
-convenience. The "or" and "|" operators are similarly aliased.
+convenience. The "or" and "|" operators are similarly aliased. If the field to test is a list field, 
+then the test looks to see if the value is in the list instead of checking for equality.
 
 **delimiter** - a string value used to separate the strings built from each record when 
 for_each is true. You can put the value between double quotes if it is difficult to get certain 
@@ -1121,7 +1122,8 @@ the string value. If the for_each field is false, this is used to find the first
 The test field is also aware of boolean logic, so the "and", "or", "&", and "|" operators can be used to create more 
 complex tests. For example, "field1=value1 and field2=value2" or "field1=value1 or field1=value2". 
 Note that the "and" and "&" operators behave exactly the same, they are just aliases of each other for 
-convenience. The "or" and "|" operators are similarly aliased.
+convenience. The "or" and "|" operators are similarly aliased. If the field to test is a list field, 
+then the test looks to see if the value is in the list instead of checking for equality.
 
 **sort_by** - a list of fields to sort the input JSON records by before building the value from them.
 
@@ -1564,7 +1566,8 @@ the string value. If the for_each field is false, this is used to find the first
 The test field is also aware of boolean logic, so the "and", "or", "&", and "|" operators can be used to create more 
 complex tests. For example, "field1=value1 and field2=value2" or "field1=value1 or field1=value2". 
 Note that the "and" and "&" operators behave exactly the same, they are just aliases of each other for 
-convenience. The "or" and "|" operators are similarly aliased.
+convenience. The "or" and "|" operators are similarly aliased. If the field to test is a list field, 
+then the test looks to see if the value is in the list instead of checking for equality.
 
 **sort_by** - a list of fields to sort the input JSON records by before running "execute" on them.
 

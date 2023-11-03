@@ -76,6 +76,23 @@ ISA-JSON Description
       
 
 * Not all processes have to execute a protocol. The tab format has protocol processes and other special processes such as normalization and data transformation specifically for assays that don't have protocols associated with them.
+
+* processSequence has no order and actually has multiple process sequences in it. 
+* Process sequences are differentiated by almost all of its object fields.
+
+   * I haven't tested all fields such as date, comments, and performer, but certainly 
+     protocol, inputs, outputs, parameter values, and next and previous process create a new object.
+   * These fields are not directly in the Tab format so it's not straightforward how to affect 
+     the values of these fields by modifying the Tab format.
+     
+* A processSequence with multiple processes with the same protocol, but different inputs and outputs 
+  will not create the same Tab format as a processSequence with 1 process that has all the inputs and 
+  outputs of the multiple porcesses. I tested this on BII-I-1. I converted the tab version to JSON 
+  and then the JSON back to Tab and then I overwrote the processSequence with 1 large process and 
+  the Tab files were different. The 1 large process created 1 row for each combination of input 
+  and output. For example, culture1 was paired with every output sample name instead of only the 
+  C-0.07 samples as it should have been. So you should have only 1 input to multiple outputs or 
+  vice versa. Many to many assumes all combinations.
       
       
 Objects
@@ -995,4 +1012,80 @@ An example unit object is shown below.
 The twenty-fourth and twenty-fifth columns are the same as the twentieth and twenty-first columns, 
 but for the Unit node. These would fill in the "termAccession" and "termSource" properties 
 in the above example.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Determining Studies and Assays
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+The general method Hunter and I came up with was to look at the protocol sequence 
+and work backward to find the first collection protocol. The sequence chronologically 
+before this protocol would be the study and the sequence after would be the assay. 
+This mostly works, but if you have multiple assays and those assays have common 
+sample preps after the collection they should probably be in the study and not 
+the assay. So a better method in that case is to find the common protocol subsequence 
+between the assays.
+
+Trying to determine the number of studies purely by looking at the protocol sequences 
+may be impossible. There is a scenario where all the protocol sequences can have some 
+common subsequences, but other sequences have a longer common subsequence. Example: 
+
+.. code:: console
+
+    [['factor_protocol_0',
+      'mouse_tissue_collection',
+      'tissue_quench',
+      'frozen_tissue_grind',
+      'polar_extraction',
+      'IC-FTMS_preparation',
+      'ICMS1'],
+     ['factor_protocol_0',
+      'mouse_tissue_collection',
+      'tissue_quench',
+      'frozen_tissue_grind',
+      'protein_extraction'],
+     ['factor_protocol_0',
+      'mouse_tissue_collection',
+      'not_quench',
+      'some_other_extraction']]
+      
+This has 2 sets of common subsequences:
+
+.. code:: console
+
+    [['factor_protocol_0',
+      'mouse_tissue_collection',
+      'tissue_quench',
+      'frozen_tissue_grind'],
+     ['factor_protocol_0', 'mouse_tissue_collection']]
+     
+It is logical to have 1 study using only the smaller common subsequence and it is 
+also logical to have 2 studies, one having 2 assays using the longer common subsequence 
+and another with 1 assay using the smaller common subsequence. The decision is arbitrary. 
+You would just have to pick a rule and stick with it. Luckily, we don't have to do 
+this and we require that the user tell us about studies and link them to samples.
+
+
+
+
+
+
+1. The procedure is to create an ISAJSON and then convert to ISATab, should we care about ISAJSON validation if ISATab is fine?
+   If we can get the ISAJSON to convert to ISATab and the ISATab has no errors, should we be concerned if the ISAJSON does have errors?
+
+2. Given that samples cannot derive from samples, do we change them all to otherMaterial extracts or leave them as samples and just make the process sequence correctly?
+Pretty sure Hunter and I decided it was better to leave them as samples and just make the process work correctly.
+
+
+
 

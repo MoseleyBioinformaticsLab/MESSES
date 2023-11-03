@@ -69,19 +69,13 @@ from messes.convert import regexes
 
 ## Add some real examples of nested directives from ISA once that is done.
 
-## Add measurement%transformation and measurement%normalization protocol types. Allows us to handle those for ISA. Require parents and that parent be a measurement type.
+## Add measurement%transformation and measurement%normalization protocol types. Allows us to handle those for ISA. Require parents and that parent be a measurement type. Require the entity.id to be the same.
 ## Try just concatenating fields to condense a list of protocols into 1, look for protocol%order field to determine order, if not there assume the order is correct.
 ## For assays find the storage%measurement protocol and work backward to the first collection to find where to start the assay.
 ##   storage%measurement is simply a protocol that connects an entity to a measurement protocol. 
 ##   I can't remember now exactly what we said it should have. I know I just wanted to copy the measurement protocol wholesale, 
 ##   but I think we settled on having a protocol with some pointers instead, but I can't remember the exact details.
 ##   Changed this to the dummy measurements implementation described below.
-
-## For nested directive argument passing, they have to be key=value pairs, but arbitrary string replacement ones must start with a '$'.
-##   Search through the values of all fields and look for '$' keys.
-##   Still have the issue of dealing with users not passing enough values and haveing some left over though, need to think about this.
-##   Argument passing makes no sense for nested directives that have multiple directives in the table. Should there be a special case
-##   for directive tables with only 1 directive? 
 
 ## Dummy measurements for ISA. Create new proxy-ICMS etc. measurements and have 
 ## simple measurement entities that just have an entity.id and protocol.id.
@@ -99,6 +93,46 @@ from messes.convert import regexes
 ## up the user to be able to make a mistake and requires additional validation. I think 
 ## either putting inputs and output on the protocol or "to_protocol" "from_protocol" on 
 ## entitites is better.
+
+## Should all of the .get() checks specifically check "is None"? A blank string or 
+## empty list will seem like the field isn't there when it actually is. Specifically 
+## for nested directive argument passing it is important because it specifically has 
+## to not be in the directive to be ignored.
+
+## All records might need to have study.id and/or assay.id fields for ISA. I think 
+## this might also mean that study.id needs to be a list and then we need to modify 
+## "test" field in directives so that list fields are converted to "in" instead of "==".
+## For example, study.id=id would need to be "record["id"] in study.id".
+
+## For ISA have 2 options: --compute_studies and --multiple_studies. The default will 
+## assume that there is 1 study and 1 assay in the data. --multiple_studies indicates 
+## that there are multiple studies/assays and that will change which set of directives to 
+## use and require study and assay ID fields for records. If --compute_studies is used 
+## then we will first compute assays and studies based on sample ancestry and add the 
+## IDs to the records ourselves. We can determine studies and assays by computing sample 
+## ancestries, determining protocol sequences from those, and then for each unique protocol 
+## sequence that is 1 new assay. Then you remove the assay part of the protocol sequence 
+## and for each unique truncated sequence that is 1 new study.
+
+## Add a special calling record syntax to pass the while record dict "^.*".
+
+## Double check that validation checks for loops in sample lineage, i.e. no sample is its own ancestor.
+
+## Add documentation explaining how mwtab uses conversion directives to do the complicated 
+## part (subject-sample-factors) as needed, but ISA does a preprocessing step to add 
+## fields to the records first so simple conversion directives can be used.
+
+## Add a check in validate to make sure measurements that have a parent_id have the same entity.id as their parent.
+## For ISA specifically, also look for "assay_id" on measurements and make sure parents have the same ID.
+## "assay_id" must be a string, not a list, measurements can't be in 2 assays.
+
+## Modify validate to propagate ancestor attributes to children for each table, could be errors because someone relied on inheritance from ancestors.
+## Can use _propagate_ancestor_attributes in isa_functions
+
+## Add check in validate for ISA to make sure all entities have a study.id after progagting them from children to ancestors.
+# message = (f"Error:  Not all entities in the \"{entity_table_name}\" table have a "
+#            f"\"{study_key}\" attribute, even after progagating them through lineages. "
+#            "The following entities are affected:")
 
 
 
@@ -482,8 +516,13 @@ def _parse_test_attribute(attribute_value: str, conversion_table: str, conversio
             
         if match := re.match(literal_regex, test_field):
             test_field = match.group(1)
-            
-        replacement_text = f"('{test_field}' in record_attributes and record_attributes['{test_field}'] == '{test_value}')"
+        
+        ## TODO maybe change this so if record_attributes[test_field] is a list it does and 'in' check instead of ==.
+        replacement_text = (f"('{test_field}' in record_attributes and "
+                            f"((isinstance(record_attributes['{test_field}'], str) and "
+                            f"record_attributes['{test_field}'] == '{test_value}') or "
+                            f"(isinstance(record_attributes['{test_field}'], list) and "
+                            f"'{test_value}' in record_attributes['{test_field}'])))")
         attribute_value = attribute_value.replace(pair, replacement_text)
         
     attribute_value = attribute_value.replace("&", "and")
