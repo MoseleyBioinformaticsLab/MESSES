@@ -104,21 +104,24 @@ def determine_ISA_parameters_dumb_parse(protocol_fields: dict) -> list[dict]:
         protocol_fields: the protocol's fields to parse to look for parameters.
     
     Returns:
-        A list of ISA JSON parameter objects or an empty list if no parameters were found.
+        A tuple of (message, parameters), where the message will be None if there are no errors.
+        parameters are a list of ISA JSON parameter objects or an empty list if no parameters were found.
     """
     parameters = []
     for field_name, field_value in protocol_fields.items():
         if (match := re.match(r"(.*)%isa_fieldtype$", field_name)) and field_value == "parameter":
             parameter_name = match.group(1)
             if annotation_string := protocol_fields.get(f"{parameter_name}%ontology_annotation"):
-                annotation_dict = dumb_parse_ontology_annotation(annotation_string)
+                message, annotation_dict = dumb_parse_ontology_annotation(annotation_string)
             else:
+                message = None
                 annotation_dict = {"annotationValue": parameter_name}
             
             parameter_dict = {"@id": f"#parameter/{parameter_name}", "parameterName": annotation_dict}
             parameters.append(parameter_dict)
+    parameters = None if not parameters else parameters
             
-    return parameters
+    return message, parameters
 
 
 
@@ -136,20 +139,132 @@ def determine_ISA_components_dumb_parse(protocol_fields: dict) -> list[dict]:
         protocol_fields: the protocol's fields to parse to look for components.
     
     Returns:
-        A list of ISA JSON component objects or an empty list if no components were found.
+        A tuple of (message, components), where the message will be None if there are no errors.
+        components are a list of ISA JSON component objects or an empty list if no components were found.
     """
     components = []
     for field_name, field_value in protocol_fields.items():
         if (match := re.match(r"(.*)%isa_fieldtype$", field_name)) and field_value == "component":
             component_type = match.group(1)
             if annotation_string := protocol_fields.get(f"{component_type}%ontology_annotation"):
-                annotation_dict = dumb_parse_ontology_annotation(annotation_string)
+                message, annotation_dict = dumb_parse_ontology_annotation(annotation_string)
             else:
+                message = None
                 annotation_dict = {"annotationValue": component_type}
             
             component_dict = {"componentName": protocol_fields[component_type], "componentType": annotation_dict}
             components.append(component_dict)
+    components = None if not components else components
             
-    return components
+    return message, components
 
 
+## Factors and characteristics are similar to components and parameters, but since there is a factor 
+## table we do not need to have an isa_fieldtype field to distinguish them, only a way to mark things 
+## as a characteristic. using isa_fieldtype might still be preferrable for consistency.
+def determine_ISA_characteristics_dumb_parse(entity_fields: dict) -> list[dict]:
+    """Create a list of ISA JSON characteristics from an entity's fields.
+    
+    Loop over the keys in entity_fields and look for keys that match the pattern 
+    (.*)%isa_fieldtype$. If the value of those keys is "characteristic" then look for 
+    other keys like "characteristic%isa_value" and parse its value to 
+    create the dict for that key.
+    
+    Args:
+        entity_fields: the entity's fields to parse to look for characteristics.
+    
+    Returns:
+        A tuple of (message, characteristics), where the message will be None if there are no errors.
+        A list of ISA JSON characteristics objects or an empty list if no characteristics were found.
+    """
+    characteristics = []
+    for field_name, field_value in entity_fields.items():
+        if (match := re.match(r"(.*)%isa_fieldtype$", field_name)) and field_value == "characteristic":
+            characteristic = match.group(1)
+            
+            characteristic_dict = {"value": {"annotationValue": entity_fields[characteristic]}, 
+                                   "category": {"@id": f"#characteristic/{characteristic}"}}
+            
+            if (value := entity_fields.get(f"{characteristic}%isa_value")):
+                message, parsed_value = dumb_parse_ontology_annotation(value)
+                characteristic_dict["value"] = parsed_value
+            
+            if (value := entity_fields.get(f"{characteristic}%isa_unit")):
+                message, parsed_value = dumb_parse_ontology_annotation(value)
+                characteristic_dict["unit"] = parsed_value
+            elif (unit := entity_fields.get(f"{characteristic}%unit")) or (unit := entity_fields.get(f"{characteristic}%units")):
+                characteristic_dict["unit"] = {"annotationValue": unit}
+                
+            characteristics.append(characteristic_dict)
+    characteristics = None if not characteristics else characteristics
+            
+    return message, characteristics
+
+
+
+def determine_ISA_factor_values_dumb_parse(entity_fields: dict) -> list[dict]:
+    """Create a list of ISA JSON factorValues from an entity's fields.
+    
+    Loop over the keys in entity_fields and look for keys that match the pattern 
+    (.*)%isa_factorvalue$. Add the value of the key to a list.
+    
+    Args:
+        entity_fields: the entity's fields to parse to look for factorValues.
+    
+    Returns:
+        A tuple of (message, values), where the message will be None if there are no errors.
+        A list of ISA JSON factorValues objects or an empty list if no factorValues were found.
+    """
+    values = []
+    for field_name, field_value in entity_fields.items():
+        if re.match(r"(.*)%isa_factorvalue$", field_name):
+            values.append(field_value)
+    values = None if not values else values
+            
+    return None, values
+
+
+
+def determine_ISA_factor_type_dumb_parse(fields: dict) -> list[dict]:
+    """Create an ontology annotation for factorType.
+    
+    Look for an "isa_type" field and parse that as an ontology annotation. 
+    Otherwise create a simple annotation using the "id" field.
+    
+    Args:
+        fields: the fields to look for "isa_type".
+    
+    Returns:
+        An annotation object.
+    """
+    if "isa_type" in fields:
+        message, annotation_dict = dumb_parse_ontology_annotation(fields["isa_type"])
+    else:
+        message = None
+        annotation_dict = {"annotationValue": fields["id"]}
+
+            
+    return message, annotation_dict
+
+
+
+def determine_ISA_protocol_type_dumb_parse(fields: dict) -> list[dict]:
+    """Create an ontology annotation for protocolType.
+    
+    Look for an "isa_type" field and parse that as an ontology annotation. 
+    Otherwise create a simple annotation using the "type" field.
+    
+    Args:
+        fields: the fields to look for "isa_type".
+    
+    Returns:
+        An annotation object.
+    """
+    if "isa_type" in fields:
+        message, annotation_dict = dumb_parse_ontology_annotation(fields["isa_type"])
+    else:
+        message = None
+        annotation_dict = {"annotationValue": fields["type"]}
+
+            
+    return message, annotation_dict

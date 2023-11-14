@@ -4,7 +4,9 @@ Convert JSON data to another JSON format.
 
 Usage:
     messes convert mwtab (ms | nmr | nmr_binned) <input_JSON> <output_name> [--update <conversion_directives> | --override <conversion_directives>] [--silent]
+    messes convert isa <input_JSON> <output_name> [--update <conversion_directives> | --override <conversion_directives>] [--silent]
     messes convert save-directives mwtab (ms | nmr | nmr_binned) <output_filetype> [<output_name>]
+    messes convert save-directives isa <output_filetype> [<output_name>]
     messes convert generic <input_JSON> <output_name> <conversion_directives> [--silent]
     messes convert --help
     
@@ -56,15 +58,19 @@ from inspect import getmembers, isfunction
 import pandas
 import docopt
 import mwtab
+from isatools.convert import isatab2json, json2isatab
+from isatools import isajson, isatab
 
 from messes.extract import extract
 from messes import __version__
 from messes.convert import mwtab_conversion_directives
+from messes.convert import isajson_conversion_directives
 from messes.convert import mwtab_functions
 from messes.convert import user_input_checking
 from messes.convert import convert_schema
 from messes.convert import built_ins
 from messes.convert import regexes
+from messes.convert import initializations
 
 
 ## Add some real examples of nested directives from ISA once that is done.
@@ -134,6 +140,23 @@ from messes.convert import regexes
 #            f"\"{study_key}\" attribute, even after progagating them through lineages. "
 #            "The following entities are affected:")
 
+## Add check to validate so study.id is required on factors, unless there is one study, then propagate it everywhere.
+
+## implement assays into the study table by adding a "type" field and requiring a parent_id.
+
+## Add checks in validate to check fields with %isa_fieldtype are the correct 
+## values, parameter or component for protocol and characteristic or factor for entities.
+
+## Add a check on studies and project to look for "filename" for ISA and check that it starts with "i_", "s_", "a_", etc.
+
+## Make sure validate checks that "data_files" on protocol is a list and "data_files%entity_id" and "data_files$isa_type"
+## make sure the lists are the same size as well. And "data_files$isa_type" is one of "Raw Data File", "Derived Data File", or "Image File"
+
+## All of the built-ins that look for parameters, componenets, etc assume the field is a string, so add a check 
+## that validates any fields pointed to by {field_name}%isa_fieldtype are strings.
+## Add an example to show the user how they could modify the conversion directives to create a list of components, parameters, etc
+## instead of adding attributes to fields. Maybe even create a whole new set that assumes they are in lists.
+
 
 
 built_in_functions = {attributes[0]:attributes[1] for attributes in getmembers(built_ins, isfunction)}
@@ -152,16 +175,30 @@ def main() :
     #####################
     ## Determine conversion_directives.
     #####################
-    supported_formats_and_sub_commands = {"mwtab":["ms", "nmr", "nmr_binned"]}
+    supported_formats_and_sub_commands = {"mwtab":{"ms": {"directives": mwtab_conversion_directives.ms,
+                                                          "initialization": initializations.mwtab.initialization},
+                                                   "nmr": {"directives": mwtab_conversion_directives.nmr,
+                                                           "initialization": initializations.mwtab.initialization}, 
+                                                   "nmr_binned": {"directives": mwtab_conversion_directives.nmr_binned,
+                                                                  "initialization": initializations.mwtab.initialization}},
+                                          "isa":{"": {"directives": isajson_conversion_directives.directives,
+                                                      "initialization": initializations.isa.initialization}}}
     conversion_directives = {}
     format_under_operation = "generic"
     for supported_format, sub_commands in supported_formats_and_sub_commands.items():
         if args[supported_format]:
             format_under_operation = supported_format
-            sub_command = [sub_command for sub_command in supported_formats_and_sub_commands[supported_format] if args[sub_command]][0]
-            conversion_directives = eval(supported_format + "_conversion_directives." + sub_command + "_directives")
+            if len(sub_commands) > 1:
+                sub_command = [sub_command for sub_command in sub_commands if args[sub_command]][0]
+            else:
+                sub_command = ""
+            conversion_directives = sub_commands[sub_command]["directives"]
+            initialization = sub_commands[sub_command]["initialization"]
             break
-        
+    
+    ##########################
+    ## Read in conversion directives from a file if necessary.
+    ##########################
     if filepath := next((arg for arg in [args["<conversion_directives>"], args["--update"], args["--override"]] if arg is not None), False):
         if re.search(r".*(\.xls[xm]?|\.csv)", filepath) or extract.TagParser.isGoogleSheetsFile(filepath):
             default_sheet_name = False
@@ -223,7 +260,10 @@ def main() :
             else:
                 save_name = args["<output_name>"] + "." + args["<output_filetype>"]
         else:
-            save_name = format_under_operation + "_" + sub_command + "_conversion_directives." + args["<output_filetype>"]
+            if sub_command:
+                save_name = format_under_operation + "_" + sub_command + "_conversion_directives." + args["<output_filetype>"]
+            else:
+                save_name = format_under_operation + "_conversion_directives." + args["<output_filetype>"]
         
         if args["<output_filetype>"] == "json":
             with open(save_name,'w') as jsonFile:
@@ -256,6 +296,12 @@ def main() :
     except Exception as e:
         print(f"\nError:  An error was encountered when trying to read in the <input_JSON>, {args['<input_JSON>']}.\n", file=sys.stderr)
         raise e
+    
+    
+    #####################
+    ## Run initializations
+    #####################
+    input_json = initialization()
     
     
     #####################
@@ -351,6 +397,16 @@ def main() :
             print("Error:  An error occured when validating the mwtab file.", file=sys.stderr)
             print(errors, file=sys.stderr)
             sys.exit()
+            
+    
+    if args["isa"]:
+        
+        isajson.validate(open(json_save_name))
+        
+        with open(json_save_name) as file_pointer:
+            json2isatab.convert(file_pointer, "ISA_Tab", validate_first=False)
+
+        isatab.validate(open(pathlib.Path("ISA_Tab", "i_investigation.txt")))
 
 
 

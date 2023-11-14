@@ -3,6 +3,8 @@
 conversion tags for the ISA-JSON format
 """
 
+import copy
+
 ## MESSES JSON doesn't have places for more than 1 person, publications, or ontology terms.
 ## There are people under study and investigation in ISA.
 ## Factors have a name and an annotationValue. They can be the same, but it isn't clear what the difference is. annotationValue has to be more scientific. For example a name could be "exposure time", but the AV would be "time".
@@ -297,6 +299,10 @@ directives = \
          "required": "False"
          }
      },
+ 
+ 
+ 
+ 
  "studies": {
      "no_id_needed": {
          "value_type": "section_matrix",
@@ -305,29 +311,20 @@ directives = \
            "\"description\"=description",
            "\"identifier\"=id",
            "\"title\"=title",
-           "\"filename\"=studies%filename()",
+           "\"processSequence\"=process",    ## Created in pre-directive step.
+           "\"characteristicCategories\"=characteristic_categories", ## Created in pre-directive step.
+           "\"unitCategories\"=unit_categories", ## Created in pre-directive step.
+           "\"filename\"=filename",   ## Created in pre-directive step.
            "\"publicReleaseDate\"=studies%release_date()",
            "\"submissionDate\"=studies%release_date()",
-           "\"people\"=studies%people()", 
+           "\"people\"=studies%people()",
+           "\"studyDesignDescriptors\"=studies%descriptors()"
            "\"protocols\"=studies%protocols()",
            "\"assays\"=#studies/assays",
            "\"materials\"=#studies/materials",   ## Needs code
-           "\"processSequence\"=#studies/process", ## Needs code
            "\"factors\"=studies%factors()",
-           "\"characteristicCategories\"=#studies/characteristicCategories", ## Needs code
-           "\"unitCategories\"=studies%unitCategories()", ## Needs code, search factors, protocols, and entities for units
-           "\"comments\"=studies%comments()"
          ],
          "table": "study"
-         }
-     },
- "studies%filename": {
-     "no_id_needed": {
-         "value_type": "section_str",
-         "fields": [
-             "\"s_\"",
-             "^.id",
-             ],
          }
      },
  "studies%release_date": {
@@ -359,202 +356,32 @@ directives = \
          "test": "study.id=^.id"
          }
      },
- "studies%assays": {
+ ## TODO think about adding default empty list value, convert might need a change to allow for adding empty list and dict.
+ "studies%descriptors": {
      "no_id_needed": {
-         "value_type": "section_matrix",
-         "required": "True",
-         "test": "id=^id",
-         "headers": [
-           "\"@id\"=\"#assay/\"assay(.*)_id",
-           "\"filename\"=assay(.*)_filename",
-           "\"technologyPlatform\"=assay(.*)_tech_platform",
-           "\"comments\"=#studies/assays/comments",  ## Same as protocols/comments but assays aren't in thier own table.
-           "\"measurementType\"=#studies/assays/measurement_type",  ## Same as protocols/type, but assays aren't in thier own table.
-           "\"technologyType\"=#studies/assays/technology_type", ## Same as measurementType above.
-           "\"dataFiles\"=#studies/assays/files",
-           "\"materials\"=#studies/assays/materials"
-         ],
-         "table": "study"
+         "execute": "dumb_parse_ontology_annotation(^.descriptors)",
+         "value_type": "section",
+         "required": "False"
          }
      },
- "studies/assays/files": {  
-     "no_id_needed": {
-         "value_type": "section_matrix",
-         "required": "True",
-         "test": "id=^id",  
-         "headers": [
-           "\"@id\"=\"#assay_file/\"assay(.*)_filename(.*)",
-           "\"name\"=assay(.*)_filename(.*)",
-           "\"type\"=assay(.*)_filename(.*)_type",
-           "\"comments\"=#studies/assays/files/comments" ## Same as studies/protocols/comments but need to use parameters or assay(.*)_comment(.*) or something.
-         ],
-         "table": "study"  
-         }
-     },
- "studies/assays/materials": {
-     "samples": {
-         "value_type": "matrix",
-         "required": "True",
-         "table": "entity",
-         "test": "assay_id=PARAM_1 & study.id=^id",  ## No table for assays, so would have to put them in study or something.
-         "headers": [
-           "\"@id\"=\"#sample/\"id",
-           "\"name\"=id",
-           "\"characteristics\"=#studies/assays/materials/samples/characteristics", ## Similar to studies/assays/materials/samples/characteristics but for factors.
-           "\"factorValues\"=#studies/assays/materials/samples/factor_values",
-           "\"derivesFrom\"=#studies/assays/materials/samples/derives_from",
-         ],
-         },
-     "otherMaterials": {
-         "value_type": "matrix",
-         "required": "True",
-         "table": "study",
-         "test": "id=^id",
-         "headers": [
-             "\"@id\"=\"#material/\"assay(.*)_material(.*)_name",
-             "\"name\"=assay(.*)_material(.*)_name",
-             "\"type\"=assay(.*)_material(.*)_type", ## Must be either Extract Name or Labeled Extract Name
-             "\"characteristics\"=", ## Same as studies/assays/materials/samples/characteristics, but materials are on study record maybe.
-             "\"derivesFrom\"="
-             ]
-         }
-     },
- "studies/assays/materials/samples/characteristics": {  
-     "no_id_needed": {
-         "value_type": "section_matrix",
-         "required": "True",
-         "test": "id=^id",  
-         "headers": [
-           "\"@id\"=\"#characteristic/\"characteristic_(.*)_name",
-           "\"category\"=#studies/assays/materials/samples/characteristics/category",
-           "\"value\"=characteristic_(.*)_value",  ## This could a string, number, or ontology annotation. Assuming string/number for now.
-           "\"unit\"=#studies/assays/materials/samples/characteristics/unit" ## This is an ontology annotation just like protocols/type
-         ],
-         "table": "entity"  
-         }
-     },
- "studies/assays/materials/samples/characteristics/category": {
-     "@id": {
-         "value_type": "str",
-         "required": "True",
-         "table": "entity",
-         "record_id": "^id",
-         "fields": [
-           "\"#characteristic_category/\"",
-           "PARAM_1",  ## This needs to be the category name from the category that called it, but I'm not sure how to pass it as a parameter.
-         ],
-         },
-     "characteristicType": { ## This has to be an object, but I don't have an easy way to direct to another directive.
-         "value_type": "object",
-         "required": "True",
-         "table": "entity",
-         "record_id": "^id",
-         "headers": [
-             "\"annotationValue\"=category_name",  ## This would probably need to be PARAM_1_name where the parameter is the category group in the calling directive.
-             "\"termAccession\"=category_url",
-             "\"termSource\"=category_source",
-             "\"comments\"=#studies/assays/materials/samples/characteristics/category/comments"
-             ]
-         }
-     },
- "studies/assays/materials/samples/characteristics/category/comments": {
-     "no_id_needed": {
-         "value_type": "section_matrix",
-         "required": "True",
-         "table": "entity",
-         "test": "id=^id",
-         "headers": [
-             "\"name\"=category_comment_name" ## Note that "category" probably needs to be replaced with a parameter for the category name.
-             "\"value\"=category_comment_value"
-             ]
-         }
-     },
- "studies%materials": {
-     "sources": {
-         "value_type": "matrix",
-         "required": "True",
-         "table": "entity",
-         "test": "study.id=^id and isa_type=source",
-         "headers": [
-           "\"@id\"=studies%materials%sources%@id()",
-           "\"name\"=id",
-           "\"characteristics\"=#studies/assays/materials/samples/characteristics"
-         ],
-         },
-     "samples": {
-         "value_type": "matrix",
-         "required": "True",
-         "table": "entity",
-         "test": "study.id=^id and isa_type=sample",
-         "headers": [
-           "\"@id\"=studies%materials%samples%@id()",
-           "\"name\"=id",
-           "\"characteristics\"=#studies/assays/materials/samples/characteristics",
-           "\"factorValues\"=#studies/assays/materials/samples/factor_values",
-           "\"derivesFrom\"=#studies/assays/materials/samples/derives_from"
-         ],
-         },
-     "otherMaterials": {
-         "value_type": "matrix",
-         "required": "True",
-         "table": "entity",
-         "test": "study.id=^id and isa_type=extract",
-         "headers": [
-             "\"@id\"=studies%materials%otherMaterials%@id()",
-             "\"name\"=assay(.*)_material(.*)_name",
-             "\"type\"=assay(.*)_material(.*)_type", ## Must be either Extract Name or Labeled Extract Name
-             "\"characteristics\"=",
-             "\"derivesFrom\"="
-             ]
-         }
-     },
- "studies%materials%sources%@id": {
-     "no_id_needed": {
-         "value_type": "section_str",
-         "required": "False",
-         "fields": [
-             "\"#source/\"",
-             "^.id"
-             ],
-         }
-     },
- "studies%materials%samples%@id": {
-     "no_id_needed": {
-         "value_type": "section_str",
-         "required": "False",
-         "fields": [
-             "\"#sample/\"",
-             "^.id"
-             ],
-         }
-     },
- "studies%materials%otherMaterials%@id": {
-     "no_id_needed": {
-         "value_type": "section_str",
-         "required": "False",
-         "fields": [
-             "\"#material/\"",
-             "^.id"
-             ],
-         }
-     },
+ 
+ 
  "studies%protocols": {
      "no_id_needed": {
          "value_type": "section_matrix",
          "required": "True",
          "test": "study.id=^id",
          "optional_headers": [
-             "uri",
              "version"
              ],
          "headers": [
            "\"@id\"=\"studies%protocols%@id()",
            "\"name\"=id",
+           "\"uri\"=studies%protocols%uri()",
            "\"description\"=description",
-           "\"comments\"=studies%protocols%comments()",
            "\"protocolType\"=studies%protocols%type()",
            "\"parameters\"=studies%protocols%parameters()",
-           "\"components\"#studies%protocols%components()"
+           "\"components\"=studies%protocols%components()"
          ],
          "table": "protocol"
          }
@@ -568,30 +395,17 @@ directives = \
              ],
          }
      },
- ## A URI can be a path to a local file, so should we look for "filename" or move to "uri"?
- ## For now "uri" is an optional header, but "filename" is what is traditionally used by MESSES.
- # "studies%protocols%uri": {
- #     "no_id_needed": {
- #         "value_type": "section_str",
- #         "fields": [
- #             "\"file:///\"",
- #             "^.filename"
- #             ],
- #         }
- #     },
- ## TODO Going to leave comments as a single field like this for now, but may create a built-in.
- "studies%protocols%comments": {
-     "no_id_needed": {
-         "value_type": "section_matrix",
-         "required": "False",
-         "headers": [
-           "\"value\"=comments", 
-         ],
-         }
-     },
+  "studies%protocols%uri": {
+      "no_id_needed": {
+          "value_type": "section_str",
+          "fields": [
+              "^.filename"
+              ],
+          }
+      },
  "studies%protocols%type": {
      "no_id_needed": {
-         "execute": "dumb_parse_ontology_annotation(^.type)", ## Might need to be protocolType or some other field.
+         "execute": "determine_ISA_protocol_type_dumb_parse(^.*)",
          "value_type": "section",
          "required": "False"
          }
@@ -610,6 +424,137 @@ directives = \
          "execute": "determine_ISA_components_dumb_parse(^.*)"
          }
      },
+ 
+ 
+ 
+ "studies%assays": {
+     "no_id_needed": {
+         "value_type": "section_matrix",
+         "required": "True",
+         "test": "parent_id=^id",
+         "headers": [
+           "\"@id\"=\"studies%assays%@id()",
+           "\"filename\"=filename", ## Added in pre-directive step.
+           "\"technologyPlatform\"=technology_platform",  ## Added in pre-directive step.
+           "\"measurementType\"=measurement_type",   ## Added in pre-directive step.
+           "\"technologyType\"=technology_type",   ## Added in pre-directive step.
+           "\"dataFiles\"=data_files",  ## Added in pre-directive step.
+           "\"characteristicCategories\"=characteristic_categories", ## Created in pre-directive step.
+           "\"unitCategories\"=unit_categories", ## Created in pre-directive step.
+           "\"processSequence\"=process",    ## Created in pre-directive step.
+           "\"materials\"=studies%assays%materials()"
+         ],
+         "table": "study"
+         }
+     },
+ "studies%assays%@id": {
+     "no_id_needed": {
+         "value_type": "section_str",
+         "required": "False",
+         "fields": [
+             "\"#assay/\"",
+             "^.id"
+             ],
+         }
+     },
+ ## assay materials can use almost the same diretives as studies%materials, so it is added below.
+ 
+ 
+ 
+ "studies%materials": {
+     "sources": {
+         "value_type": "matrix",
+         "required": "True",
+         "table": "entity",
+         "test": "study.id=^id and isa_type=source",
+         "headers": [
+           "\"@id\"=studies%materials%sources%@id()",
+           "\"name\"=id",
+           "\"characteristics\"=studies%assays%materials%sources%characteristics()"
+         ],
+         },
+     "samples": {
+         "value_type": "matrix",
+         "required": "True",
+         "table": "entity",
+         "test": "study.id=^id and isa_type=sample",
+         "headers": [
+           "\"@id\"=studies%materials%samples%@id()",
+           "\"name\"=id",
+           "\"characteristics\"=studies%assays%materials%sources%characteristics()",
+           "\"factorValues\"=studies%assays%materials%samples%factorvalues()",
+         ],
+         },
+     "otherMaterials": {
+         "value_type": "matrix",
+         "required": "True",
+         "table": "entity",
+         "test": "study.id=^id and isa_type=material",
+         "headers": [
+             "\"@id\"=studies%materials%otherMaterials%@id()",
+             "\"name\"=id",
+             "\"type\"=studies%assays%materials%otherMaterials%type()", 
+             "\"characteristics\"=studies%assays%materials%sources%characteristics()",
+             ]
+         }
+     },
+ "studies%materials%sources%@id": {
+     "no_id_needed": {
+         "value_type": "section_str",
+         "required": "False",
+         "fields": [
+             "\"#source/\"",
+             "^.id"
+             ],
+         }
+     },
+ "studies%assays%materials%sources%characteristics": {
+     "no_id_needed": {
+         "value_type": "section",
+         "required": "False",
+         "execute": "determine_ISA_characteristics_dumb_parse(^.*)"
+         }
+     },
+ 
+ "studies%materials%samples%@id": {
+     "no_id_needed": {
+         "value_type": "section_str",
+         "required": "False",
+         "fields": [
+             "\"#sample/\"",
+             "^.id"
+             ],
+         }
+     },
+ "studies%assays%materials%samples%factorvalues": {
+     "no_id_needed": {
+         "value_type": "section",
+         "required": "False",
+         "execute": "determine_ISA_factor_values_dumb_parse(^.*)"
+         }
+     },
+ "studies%materials%otherMaterials%@id": {
+     "no_id_needed": {
+         "value_type": "section_str",
+         "required": "False",
+         "fields": [
+             "\"#material/\"",
+             "^.id"
+             ],
+         }
+     },
+ "studies%assays%materials%otherMaterials%type": {
+     "no_id_needed": {
+         "value_type": "section_str",
+         "required": "False",
+         "fields": [
+             "isa_materialtype",
+             ],
+         "default": "Extract Name"
+         }
+     },
+ 
+ 
  "studies/factors": {
      "no_id_needed": {
          "value_type": "section_matrix",
@@ -618,8 +563,7 @@ directives = \
          "headers": [
            "\"@id\"=studies%factors%@id()",
            "\"factorName\"=id",
-           "\"factorType\"=studies%factor%type()", ## This is probably the same as name, should we get rid of this?
-           "\"comments\"=studies%factor%comments()"
+           "\"factorType\"=studies%factor%type()",
          ],
          "table": "factor"
          }
@@ -636,22 +580,15 @@ directives = \
      },
  "studies%factor%type": {
      "no_id_needed": {
-         "execute": "dumb_parse_ontology_annotation(^.type)",
+         "execute": "determine_ISA_factor_type_dumb_parse(^.*)",
          "value_type": "section",
          "required": "False"
-         }
-     },
- "studies%factor%comments": {
-     "no_id_needed": {
-         "value_type": "section_matrix",
-         "required": "False",
-         "headers": [
-           "\"value\"=comments", 
-         ],
          }
      },
 }
 
 
-
+assay_materials = copy.deepcopy(directives["studies%materials"])
+del assay_materials["sources"]
+directives["studies%assays%materials"] = assay_materials
 
