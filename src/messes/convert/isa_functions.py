@@ -5,12 +5,9 @@ Functions For ISA Format
 """
 
 
-def _handle_errors():
-    """
-    """
-
 import re
 
+from messes.convert.convert import _handle_errors
 
 
 tab_warning_codes_to_skip = [3002]
@@ -36,6 +33,27 @@ tab_error_messages_modification = []
 tab_error_supplemental_to_modify = []
 tab_error_supplemental_modification = []
 
+## Used to conveniently import the ISATab settings.
+tab_formatting_dict = {
+    'warning_codes_to_skip': tab_warning_codes_to_skip,
+    'warning_messages_to_skip': tab_warning_messages_to_skip,
+    'warning_supplemental_to_skip': tab_warning_supplemental_to_skip,
+    'warning_codes_to_modify': tab_warning_codes_to_modify,
+    'warning_codes_modification': tab_warning_codes_modification,
+    'warning_messages_to_modify': tab_warning_messages_to_modify,
+    'warning_messages_modification': tab_warning_messages_modification,
+    'warning_supplemental_to_modify': tab_warning_supplemental_to_modify,
+    'warning_supplemental_modification': tab_warning_supplemental_modification,
+    'error_codes_to_skip': tab_error_codes_to_skip,
+    'error_messages_to_skip': tab_error_messages_to_skip,
+    'error_supplemental_to_skip': tab_error_supplemental_to_skip,
+    'error_codes_to_modify': tab_error_codes_to_modify,
+    'error_codes_modification': tab_error_codes_modification,
+    'error_messages_to_modify': tab_error_messages_to_modify,
+    'error_messages_modification': tab_error_messages_modification,
+    'error_supplemental_to_modify': tab_error_supplemental_to_modify,
+    'error_supplemental_modification': tab_error_supplemental_modification
+    }
 
 json_warning_codes_to_skip = [4004, 3002]
 json_warning_messages_to_skip = []
@@ -60,6 +78,27 @@ json_error_messages_modification = []
 json_error_supplemental_to_modify = []
 json_error_supplemental_modification = []
 
+## Used to conveniently import the ISAJSON settings.
+json_formatting_dict = {
+    'warning_codes_to_skip': json_warning_codes_to_skip,
+    'warning_messages_to_skip': json_warning_messages_to_skip,
+    'warning_supplemental_to_skip': json_warning_supplemental_to_skip,
+    'warning_codes_to_modify': json_warning_codes_to_modify,
+    'warning_codes_modification': json_warning_codes_modification,
+    'warning_messages_to_modify': json_warning_messages_to_modify,
+    'warning_messages_modification': json_warning_messages_modification,
+    'warning_supplemental_to_modify': json_warning_supplemental_to_modify,
+    'warning_supplemental_modification': json_warning_supplemental_modification,
+    'error_codes_to_skip': json_error_codes_to_skip,
+    'error_messages_to_skip': json_error_messages_to_skip,
+    'error_supplemental_to_skip': json_error_supplemental_to_skip,
+    'error_codes_to_modify': json_error_codes_to_modify,
+    'error_codes_modification': json_error_codes_modification,
+    'error_messages_to_modify': json_error_messages_to_modify,
+    'error_messages_modification': json_error_messages_modification,
+    'error_supplemental_to_modify': json_error_supplemental_to_modify,
+    'error_supplemental_modification': json_error_supplemental_modification
+    }
 
 
 
