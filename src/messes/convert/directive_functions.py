@@ -11,6 +11,8 @@ from importlib.machinery import SourceFileLoader
 import traceback
 import copy
 import sys
+## This needs to be imported so it is available for use in code type directives.
+import datetime
 
 from messes.convert import built_ins
 from messes.convert import regexes
@@ -75,7 +77,7 @@ def _determine_directive_table_value(input_json: dict, conversion_table: str, co
                                    conversion_attributes, conversion_directives, required, 
                                    calling_record_table, calling_record_name, calling_record_attributes, 
                                    silent)
-                
+        value_defaulted = False        
         if value is None:
             if default is None:
                 if required:
@@ -90,6 +92,7 @@ def _determine_directive_table_value(input_json: dict, conversion_table: str, co
                     continue
             else:
                 value = default
+                value_defaulted = True
                 if not silent:
                     message = (f"The conversion directive to create the \"{conversion_record_name}"
                                f"\" record in the \"{conversion_table}"
@@ -103,7 +106,7 @@ def _determine_directive_table_value(input_json: dict, conversion_table: str, co
             
     ##TODO Should there be a check here to see if the entire conversion table returns None and do something?
                 
-    return directive_table_output if directive_table_output else None
+    return directive_table_output if directive_table_output or value_defaulted else None
 
 
 
@@ -182,7 +185,14 @@ def _parse_test_attribute(attribute_value: str, conversion_table: str, conversio
             ## No value means it matched the syntax, but there were no fields in the calling record that matched.
             if calling_field[1] is None:
                 return None
-            test_value = calling_record_attributes[calling_field[1]]
+            ## The ^.* syntax was created for passing calling record attributes into a built-in function, so it 
+            ## might not be appropriate here. If this does weird stuff during testing it should probably just be 
+            ## removed. I simply went ahead and added this code to all the spots that might be able to use it 
+            ## not just the "execute" keyword.
+            if calling_field[1] == "*":
+                test_value = calling_record_attributes
+            else:
+                test_value = calling_record_attributes[calling_field[1]]
         
         elif match := re.match(literal_regex, test_value):
             test_value = match.group(1)
@@ -190,11 +200,11 @@ def _parse_test_attribute(attribute_value: str, conversion_table: str, conversio
         if match := re.match(literal_regex, test_field):
             test_field = match.group(1)
         
-        replacement_text = (f"('{test_field}' in record_attributes and "
-                            f"((isinstance(record_attributes['{test_field}'], str) and "
-                            f"record_attributes['{test_field}'] == '{test_value}') or "
-                            f"(isinstance(record_attributes['{test_field}'], list) and "
-                            f"'{test_value}' in record_attributes['{test_field}'])))")
+        replacement_text = (f"(\"{test_field}\" in record_attributes and "
+                            f"((isinstance(record_attributes[\"{test_field}\"], str) and "
+                            f"record_attributes[\"{test_field}\"] == \"{test_value}\") or "
+                            f"(isinstance(record_attributes[\"{test_field}\"], list) and "
+                            f"\"{test_value}\" in record_attributes[\"{test_field}\"])))")
         attribute_value = attribute_value.replace(pair, replacement_text)
         
     attribute_value = attribute_value.replace("&", "and")
@@ -238,7 +248,8 @@ def _build_table_records(has_test: bool, conversion_record_name: str, conversion
                       f"\" conversion for the \"{conversion_table}\" table, no records in the \""
                       f"{conversion_attributes['table']}\" table matched the test, \""
                       f"{conversion_attributes['test']}\", indicated in the \"test\" field of the conversion. "
-                      f"This could be from no records containing the test field(s) or no records matching the test value(s) for those field(s).")
+                      f"This could be from no records containing the test field(s) or no records matching the test value(s) for those field(s). "
+                      f"The full translated test code is: \n{test_string}")
         else:
             message = (f"When creating the \"{conversion_record_name}"
                       f"\" conversion for the \"{conversion_table}\" table, there were no records in the indicated \""
@@ -347,7 +358,7 @@ def _is_field_in_calling_record(string_to_test: str, conversion_field_name:str, 
             _handle_errors(required, silent, message)
             return True, None
         
-        if calling_field not in calling_record_attributes:
+        if calling_field not in calling_record_attributes and calling_field != "*":
             message = (f"When creating the \"{conversion_record_name}"
                       f"\" conversion for the \"{conversion_table}\" table, the value for \"{conversion_field_name}\", \""
                       f"{conversion_field_value}\", indicates to use a calling record's attribute value, but that attribute, \""
@@ -438,7 +449,10 @@ def _is_field_a_nested_directive(string_to_test: str,
                 ## No value means it matched the syntax, but there were no fields in the calling record that matched.
                 if calling_field[1] is None:
                     continue
-                value = calling_record_attributes[calling_field[1]]
+                if calling_field[1] == "*":
+                    value = calling_record_attributes
+                else:
+                    value = calling_record_attributes[calling_field[1]]
             
             
             elif match := re.match(literal_regex, value):
@@ -589,8 +603,10 @@ def compute_section_value(input_json: dict, conversion_table: str, conversion_re
                 ## No value means it matched the syntax, but there were no fields in the calling record that matched.
                 if calling_field[1] is None:
                     return None
-                function_argument = (False, calling_record_attributes[calling_field[1]])
-            
+                if calling_field[1] == "*":
+                    function_argument = (False, calling_record_attributes)
+                else:
+                    function_argument = (False, calling_record_attributes[calling_field[1]])
             
             elif match := re.match(literal_regex, function_argument):
                 function_argument = (False, match.group(1))
@@ -783,7 +799,10 @@ def compute_string_value(input_json: dict, conversion_table: str, conversion_rec
             ## No value means it matched the syntax, but there were no fields in the calling record that matched.
             if calling_field[1] is None:
                 return None
-            override = calling_record_attributes[calling_field[1]]
+            if calling_field[1] == "*":
+                override = calling_record_attributes
+            else:
+                override = calling_record_attributes[calling_field[1]]
         
         elif match := re.match(literal_regex, override):
             override = match.group(1)

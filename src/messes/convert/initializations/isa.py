@@ -34,7 +34,15 @@ from messes.convert import built_ins
 ## Test the same assay_id in 2 different studies.
 ## Test what happens when a measurement is done on a non-childless sample, for example 15_C1-20_Colon_allogenic_7days_170427_UKy_GCH_rep3
 
-def initilization(input_json: dict, 
+
+# with open('C:/Users/Sparda/Desktop/Moseley Lab/Code/MESSES/examples/Full_mwtab_example/MS/convert/extracted_result.json', 'r') as jsonFile:
+#     input_json = json.load(jsonFile)
+
+# with open('C:/Users/Sparda/Desktop/Moseley Lab/Code/MESSES/examples/Full_isa_example/MS/extract/extracted_result.json', 'r') as jsonFile:
+#     input_json = json.load(jsonFile)
+
+
+def initialization(input_json: dict, 
                            entity_table_name: str="entity", 
                            entity_type_key: str="type",
                            parent_key: str="parent_id",
@@ -76,7 +84,8 @@ def initilization(input_json: dict,
                                   "value": attributes[parameter_name]}
                 
                 if (unit := attributes.get(f"{parameter_name}%unit")) or (unit := attributes.get(f"{parameter_name}%units")):
-                    parameter_dict["unit"] = unit
+                    parameter_dict["unit"] = {"@id": f"#unit/{unit}",
+                                              "annotationValue": unit}
                 if (value := attributes.get(f"{parameter_name}%isa_unit")):
                     parsed_value = _handle_ontology_parsing(value, 
                                                             f"{parameter_name}%isa_unit", 
@@ -85,7 +94,7 @@ def initilization(input_json: dict,
                                                             protocol)
                     parameter_dict["unit"] = parsed_value
                 
-                parameters.append(parameter_dict)
+                parameters.append({"value_dict": parameter_dict, "field_name": field_name})
         protocol_parameters[protocol] = parameters
     
     ## Studies and assays are both in the study table, so separate them.
@@ -94,8 +103,24 @@ def initilization(input_json: dict,
     for study, attributes in input_json[study_table_name].items():
         if attributes.get("parent_id"):
             input_assays[study] = attributes
+            input_json[study_table_name][study]["type"] = "assay"
         else:
             input_studies[study] = attributes
+            input_json[study_table_name][study]["type"] = "study"
+        
+    ## If there is only one study then make sure all records have it that are expected to.
+    if len(input_studies) == 1:
+        study = list(input_studies.keys())[0]
+        for factor, attributes in input_json[factor_table_name].items():
+            if study_key in attributes:
+                factor_studies = input_json[factor_table_name][factor][study_key]
+                factor_studies = factor_studies if isinstance(factor_studies, list) else [factor_studies]
+                if study not in factor_studies:
+                    factor_studies.append(study)
+            else:
+                factor_studies = [study]
+            
+            input_json[factor_table_name][factor][study_key] = factor_studies
     
     
     #############
@@ -189,7 +214,10 @@ def initilization(input_json: dict,
     
     
     ## Create a processSequence
-    study_process_sequences = _create_process_sequences(unique_sample_chains_by_study)
+    study_process_sequences = _create_process_sequences(input_json, 
+                                                        entity_table_name, 
+                                                        unique_sample_chains_by_study, 
+                                                        protocol_parameters)
     ## Add processes to studies in the input_json so they can be utilized by the conversion directives.
     for study, process_sequence in study_process_sequences.items():
         input_json[study_table_name][study]["process"] = process_sequence
@@ -221,9 +249,9 @@ def initilization(input_json: dict,
                 
             ## It is assumed that all measurements in a lineage have the same assay_id.
             if study_key in input_json[measurement_table_name][measurement]:
-                measurment_studies = input_json[measurement_table_name][measurement][study_key]
-                measurment_studies if isinstance(measurment_studies, list) else [measurment_studies]
-                assay_ids = [study for study in measurment_studies if study in input_assays]
+                measurement_studies = input_json[measurement_table_name][measurement][study_key]
+                measurement_studies if isinstance(measurement_studies, list) else [measurement_studies]
+                assay_ids = [study for study in measurement_studies if study in input_assays]
                 if assay_ids:
                     assay_id = assay_ids[0]
             ## Old when assay_id was used instead of assays being a study.
@@ -327,12 +355,16 @@ def initilization(input_json: dict,
         sample_chains_by_assay[assay] = chain_list
 
     ## Create assay processSequences.
-    assay_process_sequences = _create_process_sequences(sample_chains_by_assay)
+    assay_process_sequences = _create_process_sequences(input_json, 
+                                                        entity_table_name, 
+                                                        sample_chains_by_assay, 
+                                                        protocol_parameters)
     ## Add processes to assays in the input_json so they can be utilized by the conversion directives.
     for assay, process_sequence in assay_process_sequences.items():
         ## If the assay is not in the study table then add it.
         if assay not in input_json[study_table_name]:
-            input_json[study_table_name][assay] = {"process": process_sequence,
+            input_json[study_table_name][assay] = {"id": assay,
+                                                   "process": process_sequence,
                                                    "parent_id": assays[assay]["study"],
                                                    "type": "assay"}
             ## Add to input_assays for convenience.
@@ -343,8 +375,9 @@ def initilization(input_json: dict,
     
     
     #############
-    ## If there is not a filename field in the study/assay, then add one.
+    ## Check if certain attributes exist in studies and add them if they do not.
     #############
+    attributes_to_check = ["unit_categories", "characteristic_categories"]
     for study, attributes in input_json[study_table_name].items():
         if study in input_studies:
             if "filename" not in attributes:
@@ -356,6 +389,12 @@ def initilization(input_json: dict,
                 attributes["filename"] = f"a_{study}.txt"
             elif not re.match(r"a_.*", attributes["filename"]):
                 attributes["filename"] = "a_" + attributes["filename"]
+        
+        for attribute_to_check in attributes_to_check:
+            if attribute_to_check not in attributes:
+                input_json[study_table_name][study][attribute_to_check] = []
+        
+        
             
     
     
@@ -391,6 +430,13 @@ def initilization(input_json: dict,
             if assay not in entity_studies:
                 entity_studies.append(assay)
                 input_json[entity_table_name][entity][study_key] = entity_studies
+            ## The assay entities are only the measurement entities and not the starting sample, so add the assay to the parents as well.
+            parent = sample_lineages[sample]["ancestors"][-1]
+            parent_studies = input_json[entity_table_name][parent][study_key]
+            parent_studies = parent_studies if isinstance(parent_studies, list) else [parent_studies]
+            if assay not in parent_studies:
+                parent_studies.append(assay)
+                input_json[entity_table_name][parent][study_key] = parent_studies
             
         for protocol in attributes["protocols"]:
             protocol_attributes = input_json[protocol_table_name][protocol]
@@ -416,12 +462,11 @@ def initilization(input_json: dict,
     categories_to_studies = {}
     ## Used to track the different units across parameters, factors, and characteristics.
     units_to_studies = {}
-    factor_field_to_id = {attributes["field"]: f"#factor/{factor}" for factor, attributes in input_json[factor_table_name].items()}
     for entity, attributes in input_json[entity_table_name].items():
         ## All entities should have study.id's after propagation.
         entity_studies = attributes[study_key] if isinstance(attributes[study_key], list) else [attributes[study_key]]
         ## categorize characteristics by study and assay.
-        for field_name, field_value in attributes:
+        for field_name, field_value in attributes.items():
             if (match := re.match(r"(.*)%isa_fieldtype$", field_name)) and field_value == "characteristic":
                 characteristic = match.group(1)
                 
@@ -446,7 +491,8 @@ def initilization(input_json: dict,
                                                             entity)
                     unit_category = parsed_value
                 elif (unit := attributes.get(f"{characteristic}%unit")) or (unit := attributes.get(f"{characteristic}%units")):
-                    unit_category = {"annotationValue": unit}
+                    unit_category = {"@id": f"#unit/{unit}",
+                                     "annotationValue": unit}
                 
                 ## Not sure I need this, I just add to study directly below.
                 # if unit_category:
@@ -460,11 +506,8 @@ def initilization(input_json: dict,
                 
                 for study in entity_studies:
                     if unit_category:
-                        if "unit_categories" in input_json[study_table_name][study]:
-                            if unit_category not in input_json[study_table_name][study]["unit_categories"]:
-                                input_json[study_table_name][study]["unit_categories"].append(unit_category)
-                        else:
-                            input_json[study_table_name][study]["unit_categories"] = [unit_category]
+                        if unit_category not in input_json[study_table_name][study]["unit_categories"]:
+                            input_json[study_table_name][study]["unit_categories"].append(unit_category)
                     
                     ## I changed this to check that the category_dict is in the list instead.
                     # if characteristic in categories_to_studies:
@@ -474,53 +517,59 @@ def initilization(input_json: dict,
                     # else:
                     #     categories_to_studies[characteristic] = {study}
                     
-                    if "characteristic_categories" in input_json[study_table_name][study]:
-                        if category_dict not in input_json[study_table_name][study]["characteristic_categories"]:
-                            input_json[study_table_name][study]["characteristic_categories"].append(category_dict)
-                    else:
-                        input_json[study_table_name][study]["characteristic_categories"] = [category_dict]
+                    if category_dict not in input_json[study_table_name][study]["characteristic_categories"]:
+                        input_json[study_table_name][study]["characteristic_categories"].append(category_dict)
                     
                     
         ## Add attributes to factors.
-        for factor, factor_id in factor_field_to_id.items():
-            if factor in attributes and f"{factor}%isa_factorvalue" not in attributes:
-                factor_value_dict = {"value": {"annotationValue": attributes[factor]}, 
-                                     "category": {"@id": factor_id}}
-                
-                if (value := attributes.get(f"{factor}%isa_value")):
-                    parsed_value = _handle_ontology_parsing(value, f"{factor}%isa_value", "factorValues", entity_table_name, entity)
-                    factor_value_dict["value"] = parsed_value
-                
-                if (unit := attributes.get(f"{factor}%unit")) or (unit := attributes.get(f"{factor}%units")):
-                    factor_value_dict["unit"] = {"annotationValue": unit}
-                if (value := attributes.get(f"{factor}%isa_unit")):
-                    parsed_value = _handle_ontology_parsing(value, f"{factor}%isa_unit", "factorValues", entity_table_name, entity)
-                    factor_value_dict["unit"] = parsed_value
+        for factor, factor_attributes in input_json[factor_table_name].items():
+            factor_field = factor_attributes["field"]
+            factor_id = f"#factor/{factor}"
+            ## "isa_factorvalue" is used to store the whole isa factorValue dict, while "isa_value" is an ontology annotation for the 
+            ## value field of a factorValue. Similarly, "isa_unit" is an ontology annotation for the unit field of a factorValue.
+            if factor_field in attributes and f"{factor_field}%isa_factorvalue" not in attributes:
+                ## There should only be 1 value that matches for a factor, but it is possible to have 
+                ## more than 1 and things still make sense. For instance, if there are 2 treatments and 
+                ## you test both on their own and both at the same time. You could technically force 
+                ## the user to make a third factor for both at the same time, but ISA doesn't enforce this.
+                ## Make a list out of the factor value and add a factor_value_dict for each one. Most 
+                ## of the time this will simply be 1 value, such as a time point of 0 or 7 or something.
+                factor_values = attributes[factor_field]
+                factor_values = factor_values if isinstance(factor_values, list) else [factor_values]
+                factor_values = [value for value in factor_values if value in factor_attributes["allowed_values"]]
+                for factor_value in factor_values:
+                    factor_value_dict = {"value": {"annotationValue": factor_value}, 
+                                         "category": {"@id": factor_id}}
                     
-                input_json[entity_table_name][entity][f"{factor}%isa_factorvalue"] = factor_value_dict
-                
-                for study in entity_studies:
+                    if (value := attributes.get(f"{factor_field}%isa_value")):
+                        parsed_value = _handle_ontology_parsing(value, f"{factor_field}%isa_value", "factorValues", entity_table_name, entity)
+                        factor_value_dict["value"] = parsed_value
+                    
+                    if (unit := attributes.get(f"{factor_field}%unit")) or (unit := attributes.get(f"{factor_field}%units")):
+                        factor_value_dict["unit"] = {"@id": f"#unit/{unit}",
+                                                     "annotationValue": unit}
+                    if (value := attributes.get(f"{factor_field}%isa_unit")):
+                        parsed_value = _handle_ontology_parsing(value, f"{factor_field}%isa_unit", "factorValues", entity_table_name, entity)
+                        factor_value_dict["unit"] = parsed_value
+                        
+                    input_json[entity_table_name][entity][f"{factor_field}%isa_factorvalue"] = factor_value_dict
+                    
                     if unit_category := factor_value_dict.get("unit"):
-                        if "unit_categories" in input_json[study_table_name][study]:
+                        for study in entity_studies:    
                             if unit_category not in input_json[study_table_name][study]["unit_categories"]:
                                 input_json[study_table_name][study]["unit_categories"].append(unit_category)
-                        else:
-                            input_json[study_table_name][study]["unit_categories"] = [unit_category]
 
 
     ## Go through protocol parameters and add parameter units to studies.
     ## Studies should have been propagated to protocols in above code.
     for protocol, parameters in protocol_parameters.items():
-        protocol_studies = protocol_attributes[study_key]
+        protocol_studies = input_json[protocol_table_name][protocol][study_key]
         protocol_studies = protocol_studies if isinstance(protocol_studies, list) else [protocol_studies]
         for parameter in parameters:
-            if unit_category := parameter.get("unit"):
+            if unit_category := parameter["value_dict"].get("unit"):
                 for study in protocol_studies:
-                    if "unit_categories" in input_json[study_table_name][study]:
-                        if unit_category not in input_json[study_table_name][study]["unit_categories"]:
-                            input_json[study_table_name][study]["unit_categories"].append(unit_category)
-                    else:
-                        input_json[study_table_name][study]["unit_categories"] = [unit_category]
+                    if unit_category not in input_json[study_table_name][study]["unit_categories"]:
+                        input_json[study_table_name][study]["unit_categories"].append(unit_category)
 
 
     ################
@@ -528,15 +577,17 @@ def initilization(input_json: dict,
     ################
     for assay, attributes in assays.items():
         for protocol in attributes["protocols"]:
-            protocol_attributes = input_json[protocol_table_name]
+            protocol_attributes = input_json[protocol_table_name][protocol]
+            data_files = []
+            technology_platform = None
+            technology_type_dict = None
+            measurement_type_dict = None
             for field_name, field_value in protocol_attributes.items():
                 ## technologyPlatform
-                technology_platform = None
                 if (match := re.match(r"(.*)%isa_fieldtype$", field_name)) and field_value == "technologyplatform":
                     technology_platform = protocol_attributes[match.group(1)]
                                 
                 ## technologyType
-                technology_type_dict = None
                 if (match := re.match(r"(.*)%isa_fieldtype$", field_name)) and field_value == "technologytype":
                     technology_type = match.group(1)
                     
@@ -551,7 +602,6 @@ def initilization(input_json: dict,
                         technology_type_dict["ontologyAnnotation"] = parsed_value
                 
                 ## measurementType
-                measurement_type = None
                 if (match := re.match(r"(.*)%isa_fieldtype$", field_name)) and field_value == "measurementtype":
                     measurement_type = match.group(1)
                     
@@ -566,7 +616,6 @@ def initilization(input_json: dict,
                         measurement_type_dict = parsed_value
                 
                 ## dataFiles
-                data_files = None
                 if field_name == "data_files" and field_value:
                     data_files_list = field_value.copy()
                     data_files = []
@@ -589,15 +638,26 @@ def initilization(input_json: dict,
             if "technology_type" not in assay_attributes:
                 if technology_type_dict:
                     assay_attributes["technology_type"] = technology_type_dict
+                else:
+                    assay_attributes["technology_type"] = {"annotationValue": ""}
             
             if "measurement_type" not in assay_attributes:
                 if measurement_type_dict:
                     assay_attributes["measurement_type"] = measurement_type_dict
+                else:
+                    assay_attributes["measurement_type"] = {"annotationValue": ""}
             
             if "data_files" not in assay_attributes:
-                if data_files:
-                    assay_attributes["data_files"] = data_files
-                    
+                ## There is an error in isatools validation if the dataFiles 
+                ## attribute is not present, so always add data_files even if it is empty.
+                assay_attributes["data_files"] = data_files
+    
+    ## If certain tables don't exist then add an empty one.
+    tables_to_add = ["publication", "ontology_source"]
+    for table_name in tables_to_add:
+        if table_name not in input_json:
+            input_json[table_name] = {}
+                
     return input_json
     
     
@@ -609,7 +669,10 @@ def initilization(input_json: dict,
 
 
 
-def _create_process_sequences(unique_sample_chains_by_identifier: dict, protocol_parameters: dict):
+def _create_process_sequences(input_json: dict, 
+                              entity_table_name: str, 
+                              unique_sample_chains_by_identifier: dict, 
+                              protocol_parameters: dict):
     """
     """
     
@@ -627,26 +690,57 @@ def _create_process_sequences(unique_sample_chains_by_identifier: dict, protocol
                     protocol_chain = pair[0]["protocols"] + pair[1]["protocols"]
                 else:
                     protocol_chain = pair[1]["protocols"]
+                
+                ## Protocols can have different parameter values which require 2 different processes for the same protocol.
+                ## Create a unique identifier from the parameter values.
+                sample_specific_protocol_parameters = []
+                unique_protocol_sequence_id = ""
+                for sample in pair:
+                    ## Protocol parameters are determined from looking at the protocols, but the values 
+                    ## could change and be different, so look for the values on samples.
+                    ## If the "sample" is actually a data file then look for the parameter values on 
+                    ## the closest sample in the chain.
+                    if "#data" in sample["@id"]:
+                        for sub_sample in reversed(sample_chain[0:i+1]):
+                            if sub_sample["name"] in input_json[entity_table_name]:
+                                sample = sub_sample
+                                break
+                    
+                    sample_attributes = input_json[entity_table_name][sample["name"]]
+                    for m, protocol in enumerate(sample["protocols"]):
+                        sample_specific_protocol_parameters.append([parameter["value_dict"] for parameter in protocol_parameters[protocol]])
+                        unique_protocol_sequence_id += f"|{protocol}"
+                        for l, parameter in enumerate(protocol_parameters[protocol]):
+                            field_name = parameter["field_name"]
+                            
+                            if not (value := sample_attributes.get(field_name)):
+                                value = parameter["value_dict"]["category"]["parameterName"]["annotationValue"]
+                            
+                            unique_protocol_sequence_id += f"_{field_name}:{value}"
+                            
+                            sample_specific_protocol_parameters[m][l]["category"]["parameterName"]["annotationValue"] = value
             
                 create_new_sequence = True
-                if str(protocol_chain) in sequence_by_protocol:
+                if unique_protocol_sequence_id in sequence_by_protocol:
                     ## If the same input sample appears for the same protocol sequence then that means it produced 
                     ## multiple samples as output, so add the new output to the already created process.
-                    for k, input_samples in enumerate(sequence_by_protocol[str(protocol_chain)]["input_samples"]):
-                        if pair[0] in input_samples:
+                    for k, input_samples in enumerate(sequence_by_protocol[unique_protocol_sequence_id]["input_samples"]):
+                        if pair[0]["name"] in input_samples:
                             output_dict = {"@id": pair[1]["@id"]}
-                            sequence_by_protocol[str(protocol_chain)]["last_processes"][k]["outputs"].append(output_dict)
-                            sequence_by_protocol[str(protocol_chain)]["output_samples"][k].append([pair[1]["name"]])
+                            if output_dict not in sequence_by_protocol[unique_protocol_sequence_id]["last_processes"][k]["outputs"]:
+                                sequence_by_protocol[unique_protocol_sequence_id]["last_processes"][k]["outputs"].append(output_dict)
+                                sequence_by_protocol[unique_protocol_sequence_id]["output_samples"][k].append([pair[1]["name"]])
                             create_new_sequence = False
                             break
                     
                     ## If the same output sample appears for the same protocol sequence then that means multiple 
                     ## samples were used as input, so add the new input to the already created process.
-                    for k, output_samples in enumerate(sequence_by_protocol[str(protocol_chain)]["output_samples"]):
-                        if pair[1] in output_samples:
+                    for k, output_samples in enumerate(sequence_by_protocol[unique_protocol_sequence_id]["output_samples"]):
+                        if pair[1]["name"] in output_samples:
                             input_dict = {"@id": pair[0]["@id"]}
-                            sequence_by_protocol[str(protocol_chain)]["first_processes"][k]["inputs"].append(input_dict)
-                            sequence_by_protocol[str(protocol_chain)]["input_samples"][k].append([pair[0]["name"]])
+                            if input_dict not in sequence_by_protocol[unique_protocol_sequence_id]["first_processes"][k]["inputs"]:
+                                sequence_by_protocol[unique_protocol_sequence_id]["first_processes"][k]["inputs"].append(input_dict)
+                                sequence_by_protocol[unique_protocol_sequence_id]["input_samples"][k].append([pair[0]["name"]])
                             create_new_sequence = False
                             break
                 
@@ -658,8 +752,10 @@ def _create_process_sequences(unique_sample_chains_by_identifier: dict, protocol
                             protocol_uses[protocol] = 1
                         
                         process = {"@id": f"#process/{protocol}_{protocol_uses[protocol]}",
-                                   "executesProtocol":protocol,
-                                   "parameterValues": protocol_parameters[protocol]}
+                                   "executesProtocol": {"@id": f"#protocol/{protocol}"},
+                                   "parameterValues": sample_specific_protocol_parameters[j],
+                                   "inputs": [],
+                                   "outputs": []}
                         
                         if j == 0:
                             process["inputs"] = [{"@id": pair[0]["@id"]}]
@@ -670,24 +766,25 @@ def _create_process_sequences(unique_sample_chains_by_identifier: dict, protocol
                         
                         temp_sequence.append(process)
                 
-                if str(protocol_chain) not in sequence_by_protocol:
-                    sequence_by_protocol[str(protocol_chain)] = {"first_processes":[first_process], 
+                if unique_protocol_sequence_id not in sequence_by_protocol:
+                    sequence_by_protocol[unique_protocol_sequence_id] = {
+                                                                 "first_processes":[first_process], 
                                                                  "last_processes":[last_process],
                                                                  "input_samples":[[pair[0]["name"]]],
                                                                  "output_samples":[[pair[1]["name"]]]}
                 else:
-                    sequence_by_protocol[str(protocol_chain)]["first_processes"].append(first_process)
-                    sequence_by_protocol[str(protocol_chain)]["last_processes"].append(last_process)
-                    sequence_by_protocol[str(protocol_chain)]["input_samples"].append([pair[0]["name"]])
-                    sequence_by_protocol[str(protocol_chain)]["output_samples"].append([pair[1]["name"]])
+                    sequence_by_protocol[unique_protocol_sequence_id]["first_processes"].append(first_process)
+                    sequence_by_protocol[unique_protocol_sequence_id]["last_processes"].append(last_process)
+                    sequence_by_protocol[unique_protocol_sequence_id]["input_samples"].append([pair[0]["name"]])
+                    sequence_by_protocol[unique_protocol_sequence_id]["output_samples"].append([pair[1]["name"]])
                 
                     
             ## Add nextProcess and previousProcess to all processes.
             for i, process in enumerate(temp_sequence):
                 if i < len(temp_sequence)-1:
-                    process["nextProcess"] = temp_sequence[i+1]["@id"]
+                    process["nextProcess"] = {"@id": temp_sequence[i+1]["@id"]}
                 if i > 0:
-                    process["previousProcess"] = temp_sequence[i-1]["@id"]
+                    process["previousProcess"] = {"@id": temp_sequence[i-1]["@id"]}
             
             process_sequence += temp_sequence
         process_sequences[identifier] = process_sequence
@@ -764,7 +861,7 @@ def _propagate_ancestor_attributes(input_json: dict, lineages: dict, table_name:
     
     for entity, family in lineages.items():
         if ancestors := family["ancestors"]:
-            originator_attributes = copy.deepcopy(ancestors[0])
+            originator_attributes = copy.deepcopy(input_json[table_name][ancestors[0]])
             for ancestor in ancestors[1:]:
                 originator_attributes.update(input_json[table_name][ancestor])
             originator_attributes.update(input_json[table_name][entity])

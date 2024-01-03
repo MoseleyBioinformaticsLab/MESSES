@@ -5,6 +5,12 @@ conversion tags for the ISA-JSON format
 
 import copy
 
+
+## How do you include an arbitrary file in ISA that is not necessarily an input or output to a process?
+## For instance a database or pdf description of a protocol. You can add them to an assay in the JSON form,
+## but if it isn't connected to a process I don't think it will show up in the TAB. Do you just include it 
+## in the directory?
+
 ## MESSES JSON doesn't have places for more than 1 person, publications, or ontology terms.
 ## There are people under study and investigation in ISA.
 ## Factors have a name and an annotationValue. They can be the same, but it isn't clear what the difference is. annotationValue has to be more scientific. For example a name could be "exposure time", but the AV would be "time".
@@ -53,6 +59,8 @@ import copy
 
 ## TODO Add which file the properties for each JSON object comes from. For example, the "measurementType" comes from the investigation file for assay objects.
 ## Check to see if ISAtools looks for duplicate @id, for example if 2 people have the same one.
+## Add a section in the conversion_directives documentation explaining the "pass_through" built-in, 
+## so users can give silent and required fields to individual headers in a matrix.
 
 ## If an otherMaterials object has "extract-" in the "name" it will be removed before 
 ## adding it in the column when converting to Tab. Otherwise it will use the "name" value directly.
@@ -126,6 +134,38 @@ import copy
 ## otherMaterial derive from a sample there is no error. If it follows the same logic 
 ## then otherMaterials can only derive from otherMaterials. The JSON Schema should 
 ## probably be changed to indicate that it can derive from a sample.
+
+## You can only have either 1 sample/material node or 1 data file node as input/output 
+## to a process. 
+## A tab file like:
+# "Sample Name"	"Protocol REF"	"Extract Name"	"Raw Data File"	"Protocol REF"	"Raw Data File"
+# "C-0.07-aliquot1"	"mRNA extraction"	"C-0.07-aliquot1"	"E-MAXD-4-raw-data-426648549.txt"	"biotin labeling"	"E-MAXD-4-raw-data-426648603.txt"
+## Will create a process like:
+# [{'@id': '#process/a992051d-01b0-4d7c-b077-e33c28ba34c6',
+#   'name': '',
+#   'performer': '',
+#   'date': '',
+#   'executesProtocol': {'@id': '#protocol/107ecb45-f09f-4def-9ad1-03dc0b2fd5bb'},
+#   'parameterValues': [],
+#   'inputs': [{'@id': '#sample/7751cb29-6d48-4f74-a272-aea592edc53b'}],
+#   'outputs': [{'@id': '#material/ad9f236d-1a78-44ad-8bf7-e89cb7d35229'}],
+#   'comments': [],
+#   'nextProcess': {'@id': '#process/762c5bf2-4f7f-42d6-b7d5-66f3b9dbe44a'}},
+#  {'@id': '#process/762c5bf2-4f7f-42d6-b7d5-66f3b9dbe44a',
+#   'name': '',
+#   'performer': '',
+#   'date': '',
+#   'executesProtocol': {'@id': '#protocol/0fcd509b-c098-47e1-90f5-97112c86c643'},
+#   'parameterValues': [],
+#   'inputs': [{'@id': '#data_file/08257e1a-c185-43e3-bcf3-26b0b2913749'}],
+#   'outputs': [{'@id': '#data_file/87ce1bce-b7b2-41b7-bb31-64f0b0c41566'}],
+#   'comments': [],
+#   'previousProcess': {'@id': '#process/a992051d-01b0-4d7c-b077-e33c28ba34c6'}}]
+## Notice how the second process in the sequence uses a data_file as input, but the 
+## first process had a material output. There is no way to get the processes pull 
+## both the material and data file in as outputs to the first and inputs to the second.
+## Make sure to separate protocols that produce both into 2 different protocols.
+## Should probably add a check for this in validation.
 
 
 
@@ -203,6 +243,39 @@ import copy
 ##     Protocol REF column it will convert to JSON fine, and validate fine, but if you try to convert 
 ##     the generated JSON back to Tab you get a Key Error. The generated JSON also validates with no 
 ##     messages regarding this issue.
+
+## Note that to see these errors I needed to add code to display the traceback for the keyerror caught in the isajson validation.
+## It's around line 925.
+## 18. There is an error during validation of the JSON if an assay does not have the "dataFiles" attribute.
+##     File "C:\Python310\lib\site-packages\isatools\isajson\validate.py", line 57, in get_data_file_ids
+##       data_file_ids.extend([data_file["@id"] for data_file in assay_json["dataFiles"]])
+##     Either make this a required key in the schema or change this bit of code so it doesn't run if 
+##     the attribute isn't there.
+## 19. Same as 18 but for "outputs" in a process.
+##     File "C:\Python310\lib\site-packages\isatools\isajson\validate.py", line 67, in <listcomp>
+##       for o in process["outputs"]] for process in
+## 20. Same as 18 but for "parameters" in a protocol.
+##     File "C:\Python310\lib\site-packages\isatools\isajson\validate.py", line 179, in <listcomp>
+##       return [elem for iterabl in [[param["@id"] for param in protocol["parameters"]] for protocol in
+## 21. Same as 18 but for "@id" in a category in unitCategories.
+##     File "C:\Python310\lib\site-packages\isatools\isajson\validate.py", line 316, in <listcomp>
+##       return [category["@id"] for category in study_or_assay_json["unitCategories"]]
+## 22. Same as 18 but for "@id" in a characteristic.
+##     File "C:\Python310\lib\site-packages\isatools\isajson\validate.py", line 322, in get_study_unit_category_ids_in_materials_and_processes
+##       [[characteristic["unit"]["@id"] if "unit" in characteristic.keys() else None for
+## 23. Same as 18 but for "publications". Note this also applies for publications in studies.
+##     File "C:\Python310\lib\site-packages\isatools\isajson\validate.py", line 474, in check_dois
+##       for ipub in isa_json["publications"]:
+## 24. Same as 18 but for "ontologySourceReferences".
+##     File "C:\Python310\lib\site-packages\isatools\isajson\validate.py", line 572, in check_ontology_sources
+##       for ontology_source in isa_json["ontologySourceReferences"]:
+
+    
+## 25. On line 675 in isajson/validate.py the function check_measurement_technology_types catches a KeyError and writes a message 
+##     indicating that a configuration could not be loaded. This hides the case when "technologyType" or "measurementType" is 
+##     not in an assay or if they do not have an "annotationValue" field. The real problem is that the assay does not have these 
+##     fields and that is not clearly communicated to the user. Instead they would think there is a file load problem.
+
 directives = \
 {
  ## Top level strings.
@@ -236,6 +309,47 @@ directives = \
          "table": "project"
          }
      },
+ 
+ "ontologySourceReferences": {
+     "no_id_needed": {
+         "value_type": "section_matrix",
+         "required": "False",
+         "optional_headers": [
+             "name",
+             "description",
+             "file",
+             "version"
+             ],
+         "table": "ontology_source",
+         "default": []
+         }
+     },
+ 
+ "publications": {
+     "no_id_needed": {
+         "value_type": "section_matrix",
+         "required": "False",
+         "optional_headers": [
+             "pubMedID",
+             "doi",
+             "authorList",
+             "title"
+             ],
+         "headers": [
+           "\"status\"=publications%status()",
+         ],
+         "table": "publication",
+         "default": []
+         }
+     },
+ "publications%status": {
+     "no_id_needed": {
+         "execute": "dumb_parse_ontology_annotation(^.status)",
+         "value_type": "section",
+         "required": "False"
+         }
+     },
+ 
  "publicReleaseDate": {
      "no_id_needed": {
          "code": "str(datetime.datetime.now().date())",
@@ -318,13 +432,15 @@ directives = \
            "\"publicReleaseDate\"=studies%release_date()",
            "\"submissionDate\"=studies%release_date()",
            "\"people\"=studies%people()",
-           "\"studyDesignDescriptors\"=studies%descriptors()"
+           "\"studyDesignDescriptors\"=studies%descriptors()",
            "\"protocols\"=studies%protocols()",
-           "\"assays\"=#studies/assays",
-           "\"materials\"=#studies/materials",   ## Needs code
+           "\"assays\"=studies%assays()",
+           "\"materials\"=studies%materials()",   ## Needs code
            "\"factors\"=studies%factors()",
+           ## publications keyword is added below since it is very similar to the investigation publication so it is reused.
          ],
-         "table": "study"
+         "table": "study",
+         "test": "type=\"study\""
          }
      },
  "studies%release_date": {
@@ -370,12 +486,12 @@ directives = \
      "no_id_needed": {
          "value_type": "section_matrix",
          "required": "True",
-         "test": "study.id=^id",
+         "test": "study.id=^.id",
          "optional_headers": [
              "version"
              ],
          "headers": [
-           "\"@id\"=\"studies%protocols%@id()",
+           "\"@id\"=studies%protocols%@id()",
            "\"name\"=id",
            "\"uri\"=studies%protocols%uri()",
            "\"description\"=description",
@@ -401,6 +517,7 @@ directives = \
           "fields": [
               "^.filename"
               ],
+          "required": "False"
           }
       },
  "studies%protocols%type": {
@@ -413,14 +530,15 @@ directives = \
  "studies%protocols%parameters": {
      "no_id_needed": {
          "value_type": "section",
-         "required": "True",
-         "execute": "determine_ISA_parameters_dumb_parse(^.*)"
+         "required": "False",
+         "execute": "determine_ISA_parameters_dumb_parse(^.*)",
+         "default": []
          }
      },
  "studies%protocols%components": {
      "no_id_needed": {
          "value_type": "section",
-         "required": "True",
+         "required": "False",
          "execute": "determine_ISA_components_dumb_parse(^.*)"
          }
      },
@@ -431,13 +549,13 @@ directives = \
      "no_id_needed": {
          "value_type": "section_matrix",
          "required": "True",
-         "test": "parent_id=^id",
+         "test": "parent_id=^.id",
          "headers": [
-           "\"@id\"=\"studies%assays%@id()",
+           "\"@id\"=studies%assays%@id()",
            "\"filename\"=filename", ## Added in pre-directive step.
-           "\"technologyPlatform\"=technology_platform",  ## Added in pre-directive step.
-           "\"measurementType\"=measurement_type",   ## Added in pre-directive step.
-           "\"technologyType\"=technology_type",   ## Added in pre-directive step.
+           "\"technologyPlatform\"=studies%assays%technologyPlatform()",  ## Added in pre-directive step.
+           "\"measurementType\"=studies%assays%measurementType()",   ## Added in pre-directive step.
+           "\"technologyType\"=studies%assays%technologyType()",   ## Added in pre-directive step.
            "\"dataFiles\"=data_files",  ## Added in pre-directive step.
            "\"characteristicCategories\"=characteristic_categories", ## Created in pre-directive step.
            "\"unitCategories\"=unit_categories", ## Created in pre-directive step.
@@ -457,7 +575,30 @@ directives = \
              ],
          }
      },
- ## assay materials can use almost the same diretives as studies%materials, so it is added below.
+ "studies%assays%technologyType": {
+     "no_id_needed": {
+         "value_type": "section",
+         "required": "False",
+         "execute": "pass_through(^.technology_type)",
+         }
+     },
+ "studies%assays%technologyPlatform": {
+     "no_id_needed": {
+         "value_type": "section_str",
+         "required": "False",
+         "fields": [
+             "technology_platform"
+             ],
+         }
+     },
+ "studies%assays%measurementType": {
+     "no_id_needed": {
+         "value_type": "section",
+         "required": "False",
+         "execute": "pass_through(^.measurement_type)",
+         }
+     },
+ ## assay materials can use almost the same directives as studies%materials, so it is added below.
  
  
  
@@ -466,7 +607,7 @@ directives = \
          "value_type": "matrix",
          "required": "True",
          "table": "entity",
-         "test": "study.id=^id and isa_type=source",
+         "test": "study.id=^.id and isa_type=source",
          "headers": [
            "\"@id\"=studies%materials%sources%@id()",
            "\"name\"=id",
@@ -477,7 +618,7 @@ directives = \
          "value_type": "matrix",
          "required": "True",
          "table": "entity",
-         "test": "study.id=^id and isa_type=sample",
+         "test": "study.id=^.id and isa_type=sample",
          "headers": [
            "\"@id\"=studies%materials%samples%@id()",
            "\"name\"=id",
@@ -489,7 +630,7 @@ directives = \
          "value_type": "matrix",
          "required": "True",
          "table": "entity",
-         "test": "study.id=^id and isa_type=material",
+         "test": "study.id=^.id and isa_type=material",
          "headers": [
              "\"@id\"=studies%materials%otherMaterials%@id()",
              "\"name\"=id",
@@ -548,14 +689,14 @@ directives = \
          "value_type": "section_str",
          "required": "False",
          "fields": [
-             "isa_materialtype",
+             "^.isa_materialtype",
              ],
          "default": "Extract Name"
          }
      },
  
  
- "studies/factors": {
+ "studies%factors": {
      "no_id_needed": {
          "value_type": "section_matrix",
          "required": "True",
@@ -591,4 +732,10 @@ directives = \
 assay_materials = copy.deepcopy(directives["studies%materials"])
 del assay_materials["sources"]
 directives["studies%assays%materials"] = assay_materials
+
+study_publications = copy.deepcopy(directives["publications"])
+study_publications["no_id_needed"]["test"] = "study.id=^.id"
+directives["studies%publications"] = study_publications
+directives["studies"]["no_id_needed"]["headers"].append("\"publications\"=studies%publications()")
+
 

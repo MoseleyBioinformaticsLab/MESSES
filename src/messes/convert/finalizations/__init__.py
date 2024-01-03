@@ -2,3 +2,7 @@
 """
 init for finalizations
 """
+
+from . import isa
+from . import mwtab
+from . import generic

@@ -96,7 +96,8 @@ import jsonschema
 from messes import __version__
 from messes.extract import extract
 from messes.validate.validate_schema import base_schema, PD_schema, mwtab_schema
-from messes.convert.convert import directives_to_table, literal_regex
+from messes.convert.convert import directives_to_table 
+from messes.convert.regexes import literal_regex
 from messes.convert import user_input_checking
 from messes.convert import convert_schema
 

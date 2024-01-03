@@ -89,17 +89,25 @@ directives_schema = \
                      "values_to_str":{"type":["string", "null", "boolean"], "pattern":"(?i)^true|false$"},
                      "silent":{"type":["string", "null", "boolean"], "pattern":"(?i)^true|false$"}
                      },
-                 "allOf":[
-                     {
-                         "if":{"properties":{"code":{"not":{"type":"string", "minLength":1}}},},
-                         "then":{"required":["headers"]}
-                         },
-                      {
-                          "if":{"allOf":[
-                              {"properties":{"headers":{"not":{"type":"array", "minItems":1}}}},
-                              ]},
-                          "then":{"required":["code"]}
-                          }
+                 ## Previously it was required that a matrix directive had to have "headers" or "code".
+                 ## Now it must have one of "headers", "optional_headers", "code", or "fields_to_headers"
+                 # "allOf":[
+                 #     {
+                 #         "if":{"properties":{"code":{"not":{"type":"string", "minLength":1}}},},
+                 #         "then":{"required":["headers"]}
+                 #         },
+                 #     {
+                 #         "if":{"allOf":[
+                 #                  {"properties":{"headers":{"not":{"type":"array", "minItems":1}}}},
+                 #              ]},
+                 #         "then":{"required":["code"]}
+                 #         }
+                 #     ],
+                 "anyOf":[
+                     {"required":["headers"]},
+                     {"required":["optional_headers"]},
+                     {"required":["code"]},
+                     {"required":["fields_to_headers"]}
                      ]
                  }
              },

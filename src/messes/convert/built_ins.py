@@ -4,6 +4,7 @@ Built-in functions for the convert command.
 """
 
 import re
+from typing import Any
 
 from messes.convert import regexes
 literal_regex = regexes.literal_regex
@@ -108,13 +109,13 @@ def determine_ISA_parameters_dumb_parse(protocol_fields: dict) -> list[dict]:
         parameters are a list of ISA JSON parameter objects or an empty list if no parameters were found.
     """
     parameters = []
+    message = None
     for field_name, field_value in protocol_fields.items():
         if (match := re.match(r"(.*)%isa_fieldtype$", field_name)) and field_value == "parameter":
             parameter_name = match.group(1)
             if annotation_string := protocol_fields.get(f"{parameter_name}%ontology_annotation"):
                 message, annotation_dict = dumb_parse_ontology_annotation(annotation_string)
             else:
-                message = None
                 annotation_dict = {"annotationValue": parameter_name}
             
             parameter_dict = {"@id": f"#parameter/{parameter_name}", "parameterName": annotation_dict}
@@ -143,13 +144,13 @@ def determine_ISA_components_dumb_parse(protocol_fields: dict) -> list[dict]:
         components are a list of ISA JSON component objects or an empty list if no components were found.
     """
     components = []
+    message = None
     for field_name, field_value in protocol_fields.items():
         if (match := re.match(r"(.*)%isa_fieldtype$", field_name)) and field_value == "component":
             component_type = match.group(1)
             if annotation_string := protocol_fields.get(f"{component_type}%ontology_annotation"):
                 message, annotation_dict = dumb_parse_ontology_annotation(annotation_string)
             else:
-                message = None
                 annotation_dict = {"annotationValue": component_type}
             
             component_dict = {"componentName": protocol_fields[component_type], "componentType": annotation_dict}
@@ -178,6 +179,7 @@ def determine_ISA_characteristics_dumb_parse(entity_fields: dict) -> list[dict]:
         A list of ISA JSON characteristics objects or an empty list if no characteristics were found.
     """
     characteristics = []
+    message = None
     for field_name, field_value in entity_fields.items():
         if (match := re.match(r"(.*)%isa_fieldtype$", field_name)) and field_value == "characteristic":
             characteristic = match.group(1)
@@ -193,7 +195,8 @@ def determine_ISA_characteristics_dumb_parse(entity_fields: dict) -> list[dict]:
                 message, parsed_value = dumb_parse_ontology_annotation(value)
                 characteristic_dict["unit"] = parsed_value
             elif (unit := entity_fields.get(f"{characteristic}%unit")) or (unit := entity_fields.get(f"{characteristic}%units")):
-                characteristic_dict["unit"] = {"annotationValue": unit}
+                characteristic_dict["unit"] = {"@id": f"#unit/{unit}",
+                                               "annotationValue": unit}
                 
             characteristics.append(characteristic_dict)
     characteristics = None if not characteristics else characteristics
@@ -237,10 +240,10 @@ def determine_ISA_factor_type_dumb_parse(fields: dict) -> list[dict]:
     Returns:
         An annotation object.
     """
+    message = None
     if "isa_type" in fields:
         message, annotation_dict = dumb_parse_ontology_annotation(fields["isa_type"])
     else:
-        message = None
         annotation_dict = {"annotationValue": fields["id"]}
 
             
@@ -260,11 +263,30 @@ def determine_ISA_protocol_type_dumb_parse(fields: dict) -> list[dict]:
     Returns:
         An annotation object.
     """
+    message = None
     if "isa_type" in fields:
         message, annotation_dict = dumb_parse_ontology_annotation(fields["isa_type"])
     else:
-        message = None
         annotation_dict = {"annotationValue": fields["type"]}
 
             
     return message, annotation_dict
+
+
+
+def pass_through(value: Any) -> Any:
+    """Simply return the value passed to the function.
+    
+    This is simply to give an easy way to have individual options for headers 
+    in a matrix type directive. Use a nested directive with this function as 
+    the execute value and pass a calling record attribute as a parameter so 
+    you can set required and silent fields for individual headers.
+    
+    Args:
+        value: any value, but is meant to be a calling record attribute.
+    """
+    return value
+
+
+
+
