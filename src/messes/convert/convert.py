@@ -169,6 +169,8 @@ from messes.convert import finalizations
 
 ## Add documentation explaining the extra people, pubication, and ontology_source tables for ISA.
 
+## Make sure the documentation makes it clear that protocols in protocol.id are assumed to be in chronological order.
+
 
 BASE_DIR = os.path.dirname(__file__)
 JSON_CONFIG_PATH = os.path.join(BASE_DIR, "isajson_configs")
@@ -178,7 +180,7 @@ def main() :
     input_json_filepath = args["<input_JSON>"]
     silent = args["--silent"]
     isatab_config_dir = args["--tab-config-dir"] if args["--tab-config-dir"] else ""
-    isajson_config_dir = args["--json-config-dir"] if args["--json-config-dir"] else ""
+    isajson_config_dir = args["--json-config-dir"] if args["--json-config-dir"] else JSON_CONFIG_PATH
     
     ## Validate args.
     # user_input_checking.additional_args_checks(args)

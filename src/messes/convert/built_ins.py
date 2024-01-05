@@ -176,7 +176,7 @@ def determine_ISA_characteristics_dumb_parse(entity_fields: dict) -> list[dict]:
     
     Returns:
         A tuple of (message, characteristics), where the message will be None if there are no errors.
-        A list of ISA JSON characteristics objects or an empty list if no characteristics were found.
+        characteristics are a list of ISA JSON characteristics objects or an empty list if no characteristics were found.
     """
     characteristics = []
     message = None
@@ -216,7 +216,7 @@ def determine_ISA_factor_values_dumb_parse(entity_fields: dict) -> list[dict]:
     
     Returns:
         A tuple of (message, values), where the message will be None if there are no errors.
-        A list of ISA JSON factorValues objects or an empty list if no factorValues were found.
+        values are a list of ISA JSON factorValues objects or an empty list if no factorValues were found.
     """
     values = []
     for field_name, field_value in entity_fields.items():
@@ -238,14 +238,13 @@ def determine_ISA_factor_type_dumb_parse(fields: dict) -> list[dict]:
         fields: the fields to look for "isa_type".
     
     Returns:
-        An annotation object.
+        A tuple of (message, annotation_dict), where the message will be None if there are no errors.
     """
     message = None
     if "isa_type" in fields:
         message, annotation_dict = dumb_parse_ontology_annotation(fields["isa_type"])
     else:
         annotation_dict = {"annotationValue": fields["id"]}
-
             
     return message, annotation_dict
 
@@ -261,7 +260,7 @@ def determine_ISA_protocol_type_dumb_parse(fields: dict) -> list[dict]:
         fields: the fields to look for "isa_type".
     
     Returns:
-        An annotation object.
+        A tuple of (message, annotation_dict), where the message will be None if there are no errors.
     """
     message = None
     if "isa_type" in fields:
@@ -284,8 +283,11 @@ def pass_through(value: Any) -> Any:
     
     Args:
         value: any value, but is meant to be a calling record attribute.
+    
+    Returns:
+        A tuple of (None, value).
     """
-    return value
+    return None, value
 
 
 

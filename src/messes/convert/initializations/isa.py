@@ -679,10 +679,12 @@ def _create_process_sequences(input_json: dict,
     process_sequences = {}
     for identifier, sample_chains in unique_sample_chains_by_identifier.items():
         process_sequence = []
+        all_processes = {}
         protocol_uses = {}
         sequence_by_protocol = {}
-        for sample_chain in sample_chains:
+        for chain_num, sample_chain in enumerate(sample_chains):
             temp_sequence = []
+            sequence_order = []
             for i in range(len(sample_chain)-1):
                 pair = sample_chain[i:i+2]
                 
@@ -695,7 +697,11 @@ def _create_process_sequences(input_json: dict,
                 ## Create a unique identifier from the parameter values.
                 sample_specific_protocol_parameters = []
                 unique_protocol_sequence_id = ""
-                for sample in pair:
+                for pair_num, sample in enumerate(pair):
+                    ## Only the first pair needs to get protocols and parameters from the first sample.
+                    if pair_num == 0 and i != 0:
+                        continue
+                    
                     ## Protocol parameters are determined from looking at the protocols, but the values 
                     ## could change and be different, so look for the values on samples.
                     ## If the "sample" is actually a data file then look for the parameter values on 
@@ -729,8 +735,21 @@ def _create_process_sequences(input_json: dict,
                             output_dict = {"@id": pair[1]["@id"]}
                             if output_dict not in sequence_by_protocol[unique_protocol_sequence_id]["last_processes"][k]["outputs"]:
                                 sequence_by_protocol[unique_protocol_sequence_id]["last_processes"][k]["outputs"].append(output_dict)
-                                sequence_by_protocol[unique_protocol_sequence_id]["output_samples"][k].append([pair[1]["name"]])
+                                sequence_by_protocol[unique_protocol_sequence_id]["output_samples"][k].append(pair[1]["name"])
                             create_new_sequence = False
+                            ## Since the sample matched we know that this process is in the sequence, but 
+                            ## we need to add the whole sequence up to it.
+                            matched_process = sequence_by_protocol[unique_protocol_sequence_id]["last_processes"][k]
+                            if matched_process not in sequence_order:
+                                sub_sequence = []
+                                while previous_process := matched_process.get("previousProcess"):
+                                    sub_sequence.append(matched_process)
+                                    matched_process = all_processes[previous_process["@id"]]
+                                sub_sequence.append(matched_process)
+                                sub_sequence.reverse()
+                                for sub_process in sub_sequence:
+                                    if sub_process not in sequence_order:
+                                        sequence_order.append(sub_process)
                             break
                     
                     ## If the same output sample appears for the same protocol sequence then that means multiple 
@@ -740,8 +759,21 @@ def _create_process_sequences(input_json: dict,
                             input_dict = {"@id": pair[0]["@id"]}
                             if input_dict not in sequence_by_protocol[unique_protocol_sequence_id]["first_processes"][k]["inputs"]:
                                 sequence_by_protocol[unique_protocol_sequence_id]["first_processes"][k]["inputs"].append(input_dict)
-                                sequence_by_protocol[unique_protocol_sequence_id]["input_samples"][k].append([pair[0]["name"]])
+                                sequence_by_protocol[unique_protocol_sequence_id]["input_samples"][k].append(pair[0]["name"])
                             create_new_sequence = False
+                            ## Since the sample matched we know that this process is in the sequence, but 
+                            ## we need to add the whole sequence up to it.
+                            matched_process = sequence_by_protocol[unique_protocol_sequence_id]["first_processes"][k]
+                            if matched_process not in sequence_order:
+                                sub_sequence = []
+                                while previous_process := matched_process.get("previousProcess"):
+                                    sub_sequence.append(matched_process)
+                                    matched_process = all_processes[previous_process["@id"]]
+                                sub_sequence.append(matched_process)
+                                sub_sequence.reverse()
+                                for sub_process in sub_sequence:
+                                    if sub_process not in sequence_order:
+                                        sequence_order.append(sub_process)
                             break
                 
                 if create_new_sequence:
@@ -765,26 +797,40 @@ def _create_process_sequences(input_json: dict,
                             last_process = process
                         
                         temp_sequence.append(process)
+                        sequence_order.append(process)
+                        all_processes[process["@id"]] = process
                 
-                if unique_protocol_sequence_id not in sequence_by_protocol:
-                    sequence_by_protocol[unique_protocol_sequence_id] = {
-                                                                 "first_processes":[first_process], 
-                                                                 "last_processes":[last_process],
-                                                                 "input_samples":[[pair[0]["name"]]],
-                                                                 "output_samples":[[pair[1]["name"]]]}
-                else:
-                    sequence_by_protocol[unique_protocol_sequence_id]["first_processes"].append(first_process)
-                    sequence_by_protocol[unique_protocol_sequence_id]["last_processes"].append(last_process)
-                    sequence_by_protocol[unique_protocol_sequence_id]["input_samples"].append([pair[0]["name"]])
-                    sequence_by_protocol[unique_protocol_sequence_id]["output_samples"].append([pair[1]["name"]])
+                    if unique_protocol_sequence_id not in sequence_by_protocol:
+                        sequence_by_protocol[unique_protocol_sequence_id] = {
+                                                                     "first_processes":[first_process], 
+                                                                     "last_processes":[last_process],
+                                                                     "input_samples":[[pair[0]["name"]]],
+                                                                     "output_samples":[[pair[1]["name"]]]}
+                    else:
+                        sequence_by_protocol[unique_protocol_sequence_id]["first_processes"].append(first_process)
+                        sequence_by_protocol[unique_protocol_sequence_id]["last_processes"].append(last_process)
+                        sequence_by_protocol[unique_protocol_sequence_id]["input_samples"].append([pair[0]["name"]])
+                        sequence_by_protocol[unique_protocol_sequence_id]["output_samples"].append([pair[1]["name"]])
                 
                     
             ## Add nextProcess and previousProcess to all processes.
-            for i, process in enumerate(temp_sequence):
-                if i < len(temp_sequence)-1:
-                    process["nextProcess"] = {"@id": temp_sequence[i+1]["@id"]}
+            # for i, process in enumerate(temp_sequence):
+            #     if i < len(temp_sequence)-1:
+            #         process["nextProcess"] = {"@id": temp_sequence[i+1]["@id"]}
+            #     if i > 0:
+            #         process["previousProcess"] = {"@id": temp_sequence[i-1]["@id"]}
+            
+            # print("\n".join([value["@id"] for value in sequence_order]))
+            # print()
+            # if chain_num == 2:
+            #     raise KeyError
+            for i, process in enumerate(sequence_order):
+                if i < len(sequence_order)-1:
+                    if "nextProcess" not in process:
+                        process["nextProcess"] = {"@id": sequence_order[i+1]["@id"]}
                 if i > 0:
-                    process["previousProcess"] = {"@id": temp_sequence[i-1]["@id"]}
+                    if "previousProcess" not in process:
+                        process["previousProcess"] = {"@id": sequence_order[i-1]["@id"]}
             
             process_sequence += temp_sequence
         process_sequences[identifier] = process_sequence
