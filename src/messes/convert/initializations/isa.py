@@ -97,6 +97,12 @@ def initialization(input_json: dict,
                 parameters.append({"value_dict": parameter_dict, "field_name": field_name})
         protocol_parameters[protocol] = parameters
     
+    unique_protocol_ids_to_parameters, entities_to_unique_protocol_ids =\
+        _determine_entity_specific_protocol_parameters(input_json, 
+                                                       entity_table_name, 
+                                                       protocol_key, 
+                                                       protocol_parameters)
+    
     ## Studies and assays are both in the study table, so separate them.
     input_studies = {}
     input_assays = {}
@@ -217,7 +223,9 @@ def initialization(input_json: dict,
     study_process_sequences = _create_process_sequences(input_json, 
                                                         entity_table_name, 
                                                         unique_sample_chains_by_study, 
-                                                        protocol_parameters)
+                                                        protocol_parameters,
+                                                        unique_protocol_ids_to_parameters, 
+                                                        entities_to_unique_protocol_ids)
     ## Add processes to studies in the input_json so they can be utilized by the conversion directives.
     for study, process_sequence in study_process_sequences.items():
         input_json[study_table_name][study]["process"] = process_sequence
@@ -358,7 +366,9 @@ def initialization(input_json: dict,
     assay_process_sequences = _create_process_sequences(input_json, 
                                                         entity_table_name, 
                                                         sample_chains_by_assay, 
-                                                        protocol_parameters)
+                                                        protocol_parameters,
+                                                        unique_protocol_ids_to_parameters, 
+                                                        entities_to_unique_protocol_ids)
     ## Add processes to assays in the input_json so they can be utilized by the conversion directives.
     for assay, process_sequence in assay_process_sequences.items():
         ## If the assay is not in the study table then add it.
@@ -672,7 +682,9 @@ def initialization(input_json: dict,
 def _create_process_sequences(input_json: dict, 
                               entity_table_name: str, 
                               unique_sample_chains_by_identifier: dict, 
-                              protocol_parameters: dict):
+                              protocol_parameters: dict,
+                              unique_protocol_ids_to_parameters: dict, 
+                              entities_to_unique_protocol_ids: dict):
     """
     """
     
@@ -689,103 +701,125 @@ def _create_process_sequences(input_json: dict,
                 pair = sample_chain[i:i+2]
                 
                 if i == 0:
-                    protocol_chain = pair[0]["protocols"] + pair[1]["protocols"]
+                    protocol_chain = {protocol:pair[0] for protocol in pair[0]["protocols"]}
+                    for protocol in pair[1]["protocols"]:
+                        protocol_chain[protocol] = pair[1]
                 else:
-                    protocol_chain = pair[1]["protocols"]
+                    protocol_chain = {protocol:pair[1] for protocol in pair[1]["protocols"]}
                 
-                ## Protocols can have different parameter values which require 2 different processes for the same protocol.
-                ## Create a unique identifier from the parameter values.
-                sample_specific_protocol_parameters = []
-                unique_protocol_sequence_id = ""
-                for pair_num, sample in enumerate(pair):
-                    ## Only the first pair needs to get protocols and parameters from the first sample.
-                    if pair_num == 0 and i != 0:
-                        continue
-                    
-                    ## Protocol parameters are determined from looking at the protocols, but the values 
-                    ## could change and be different, so look for the values on samples.
-                    ## If the "sample" is actually a data file then look for the parameter values on 
-                    ## the closest sample in the chain.
+                
+                unique_protocol_ids = []
+                for protocol, sample in protocol_chain.items():
+                    print(sample)
+                    print()
                     if "#data" in sample["@id"]:
                         for sub_sample in reversed(sample_chain[0:i+1]):
                             if sub_sample["name"] in input_json[entity_table_name]:
                                 sample = sub_sample
                                 break
-                    
-                    sample_attributes = input_json[entity_table_name][sample["name"]]
-                    for m, protocol in enumerate(sample["protocols"]):
-                        sample_specific_protocol_parameters.append([parameter["value_dict"] for parameter in protocol_parameters[protocol]])
-                        unique_protocol_sequence_id += f"|{protocol}"
-                        for l, parameter in enumerate(protocol_parameters[protocol]):
-                            field_name = parameter["field_name"]
+                    try:
+                        unique_protocol_ids.append(entities_to_unique_protocol_ids[sample["name"]][protocol])
+                    except Exception as e:
+                        print(protocol)
+                        print()
+                        print(sample)
+                        print()
+                        raise e
                             
-                            if not (value := sample_attributes.get(field_name)):
-                                value = parameter["value_dict"]["category"]["parameterName"]["annotationValue"]
-                            
-                            unique_protocol_sequence_id += f"_{field_name}:{value}"
-                            
-                            sample_specific_protocol_parameters[m][l]["category"]["parameterName"]["annotationValue"] = value
-            
+                unique_protocol_sequence_id = "|".join(unique_protocol_ids)
+                
+                
                 create_new_sequence = True
                 if unique_protocol_sequence_id in sequence_by_protocol:
+                    input_dict = {"@id": pair[0]["@id"]}
+                    output_dict = {"@id": pair[1]["@id"]}
                     ## If the same input sample appears for the same protocol sequence then that means it produced 
                     ## multiple samples as output, so add the new output to the already created process.
-                    for k, input_samples in enumerate(sequence_by_protocol[unique_protocol_sequence_id]["input_samples"]):
-                        if pair[0]["name"] in input_samples:
-                            output_dict = {"@id": pair[1]["@id"]}
-                            if output_dict not in sequence_by_protocol[unique_protocol_sequence_id]["last_processes"][k]["outputs"]:
-                                sequence_by_protocol[unique_protocol_sequence_id]["last_processes"][k]["outputs"].append(output_dict)
-                                sequence_by_protocol[unique_protocol_sequence_id]["output_samples"][k].append(pair[1]["name"])
+                    for processes in sequence_by_protocol[unique_protocol_sequence_id]["processes"]:
+                        if input_dict in processes[0]["inputs"]:
+                            if output_dict not in processes[-1]["outputs"]:
+                                processes[-1]["outputs"].append(output_dict)
                             create_new_sequence = False
                             ## Since the sample matched we know that this process is in the sequence, but 
                             ## we need to add the whole sequence up to it.
-                            matched_process = sequence_by_protocol[unique_protocol_sequence_id]["last_processes"][k]
-                            if matched_process not in sequence_order:
-                                sub_sequence = []
-                                while previous_process := matched_process.get("previousProcess"):
-                                    sub_sequence.append(matched_process)
-                                    matched_process = all_processes[previous_process["@id"]]
-                                sub_sequence.append(matched_process)
-                                sub_sequence.reverse()
-                                for sub_process in sub_sequence:
-                                    if sub_process not in sequence_order:
-                                        sequence_order.append(sub_process)
+                            for process in processes:
+                                if process not in sequence_order:
+                                    sequence_order.append(process)
                             break
                     
                     ## If the same output sample appears for the same protocol sequence then that means multiple 
                     ## samples were used as input, so add the new input to the already created process.
-                    for k, output_samples in enumerate(sequence_by_protocol[unique_protocol_sequence_id]["output_samples"]):
-                        if pair[1]["name"] in output_samples:
-                            input_dict = {"@id": pair[0]["@id"]}
-                            if input_dict not in sequence_by_protocol[unique_protocol_sequence_id]["first_processes"][k]["inputs"]:
-                                sequence_by_protocol[unique_protocol_sequence_id]["first_processes"][k]["inputs"].append(input_dict)
-                                sequence_by_protocol[unique_protocol_sequence_id]["input_samples"][k].append(pair[0]["name"])
+                        if output_dict in processes[-1]["outputs"]:
+                            if input_dict not in processes[0]["inputs"]:
+                                processes[0]["inputs"].append(input_dict)
                             create_new_sequence = False
                             ## Since the sample matched we know that this process is in the sequence, but 
                             ## we need to add the whole sequence up to it.
-                            matched_process = sequence_by_protocol[unique_protocol_sequence_id]["first_processes"][k]
-                            if matched_process not in sequence_order:
-                                sub_sequence = []
-                                while previous_process := matched_process.get("previousProcess"):
-                                    sub_sequence.append(matched_process)
-                                    matched_process = all_processes[previous_process["@id"]]
-                                sub_sequence.append(matched_process)
-                                sub_sequence.reverse()
-                                for sub_process in sub_sequence:
-                                    if sub_process not in sequence_order:
-                                        sequence_order.append(sub_process)
+                            for process in processes:
+                                if process not in sequence_order:
+                                    sequence_order.append(process)
                             break
                 
+                
+                sub_sequence_of = [sequence_id for sequence_id in sequence_by_protocol 
+                                   if unique_protocol_sequence_id in sequence_id and 
+                                   sequence_id != unique_protocol_sequence_id]
+                if sub_sequence_of:
+                    ## Need to find the subsequence within the matched sequence.
+                    matched_id = sub_sequence_of[0]
+                    protocol_list = list(protocol_chain.keys())
+                    first_protocol = protocol_list[0]
+                    last_protocol = protocol_list[-1]
+                    first_index = sequence_by_protocol[matched_id]["protocol_list"].index(first_protocol)
+                    last_index = sequence_by_protocol[matched_id]["protocol_list"].index(last_protocol)
+                    
+                    input_dict = {"@id": pair[0]["@id"]}
+                    output_dict = {"@id": pair[1]["@id"]}
+                    
+                    for processes in sequence_by_protocol[matched_id]["processes"]:
+                        first_process = processes[first_index]
+                        if input_dict in first_process["inputs"]:
+                            if output_dict not in processes[last_index]["outputs"]:
+                                processes[last_index]["outputs"].append(output_dict)
+                            
+                            for process in processes[first_index:last_index+1]:
+                                if process not in sequence_order:
+                                    sequence_order.append(process)
+                            create_new_sequence = False
+                            break
+                    
+                        last_process = processes[last_index]
+                        if output_dict in last_process["outputs"]:
+                            if input_dict not in processes[first_index]["inputs"]:
+                                processes[first_index]["inputs"].append(input_dict)
+                            
+                            for process in processes[first_index:last_index+1]:
+                                if process not in sequence_order:
+                                    sequence_order.append(process)
+                            create_new_sequence = False
+                            break
+                
+                
                 if create_new_sequence:
-                    for j, protocol in enumerate(protocol_chain):
+                    temp_sequence = []
+                    for j, (protocol, sample) in enumerate(protocol_chain.items()):
                         if protocol in protocol_uses:
                             protocol_uses[protocol] += 1
                         else:
                             protocol_uses[protocol] = 1
                         
+                        # if "#data" in sample["@id"]:
+                        #     for sub_sample in reversed(sample_chain[0:i+1]):
+                        #         if sub_sample["name"] in input_json[entity_table_name]:
+                        #             sample = sub_sample
+                        #             break
+                                
+                        unique_protocol_id = unique_protocol_ids[j]
+                        specific_protocol_parameters = unique_protocol_ids_to_parameters[unique_protocol_id]
+                        
                         process = {"@id": f"#process/{protocol}_{protocol_uses[protocol]}",
                                    "executesProtocol": {"@id": f"#protocol/{protocol}"},
-                                   "parameterValues": sample_specific_protocol_parameters[j],
+                                   "parameterValues": specific_protocol_parameters,
                                    "inputs": [],
                                    "outputs": []}
                         
@@ -802,28 +836,14 @@ def _create_process_sequences(input_json: dict,
                 
                     if unique_protocol_sequence_id not in sequence_by_protocol:
                         sequence_by_protocol[unique_protocol_sequence_id] = {
-                                                                     "first_processes":[first_process], 
-                                                                     "last_processes":[last_process],
-                                                                     "input_samples":[[pair[0]["name"]]],
-                                                                     "output_samples":[[pair[1]["name"]]]}
+                                                                     "processes":[temp_sequence],
+                                                                     "protocol_list":list(protocol_chain.keys())}
                     else:
-                        sequence_by_protocol[unique_protocol_sequence_id]["first_processes"].append(first_process)
-                        sequence_by_protocol[unique_protocol_sequence_id]["last_processes"].append(last_process)
-                        sequence_by_protocol[unique_protocol_sequence_id]["input_samples"].append([pair[0]["name"]])
-                        sequence_by_protocol[unique_protocol_sequence_id]["output_samples"].append([pair[1]["name"]])
+                        sequence_by_protocol[unique_protocol_sequence_id]["processes"].append(temp_sequence)
+                    
+                    process_sequence += temp_sequence
                 
                     
-            ## Add nextProcess and previousProcess to all processes.
-            # for i, process in enumerate(temp_sequence):
-            #     if i < len(temp_sequence)-1:
-            #         process["nextProcess"] = {"@id": temp_sequence[i+1]["@id"]}
-            #     if i > 0:
-            #         process["previousProcess"] = {"@id": temp_sequence[i-1]["@id"]}
-            
-            # print("\n".join([value["@id"] for value in sequence_order]))
-            # print()
-            # if chain_num == 2:
-            #     raise KeyError
             for i, process in enumerate(sequence_order):
                 if i < len(sequence_order)-1:
                     if "nextProcess" not in process:
@@ -832,11 +852,40 @@ def _create_process_sequences(input_json: dict,
                     if "previousProcess" not in process:
                         process["previousProcess"] = {"@id": sequence_order[i-1]["@id"]}
             
-            process_sequence += temp_sequence
         process_sequences[identifier] = process_sequence
     return process_sequences
 
 
+
+
+def _determine_entity_specific_protocol_parameters(input_json: dict, 
+                                                   entity_table_name: str, 
+                                                   protocol_key: str, 
+                                                   protocol_parameters: dict):
+    """
+    """
+    unique_protocol_ids_to_parameters = {}
+    entities_to_unique_protocol_ids = {}
+    for entity, entity_attributes in input_json[entity_table_name].items():
+        for protocol in entity_attributes[protocol_key]:
+            unique_protocol_id = protocol
+            specific_protocol_parameters = [copy.deepcopy(parameter["value_dict"]) for parameter in protocol_parameters[protocol]]
+            for i, parameter in enumerate(protocol_parameters[protocol]):
+                field_name = parameter["field_name"]
+                if not (value := entity_attributes.get(field_name)):
+                    value = parameter["value_dict"]["category"]["parameterName"]["annotationValue"]
+                
+                unique_protocol_id += f"_{field_name}:{value}"
+                specific_protocol_parameters[i]["category"]["parameterName"]["annotationValue"] = value
+                        
+            unique_protocol_ids_to_parameters[unique_protocol_id] = specific_protocol_parameters
+            
+            if entity in entities_to_unique_protocol_ids:
+                entities_to_unique_protocol_ids[entity][protocol] = unique_protocol_id
+            else:
+                entities_to_unique_protocol_ids[entity] = {protocol:unique_protocol_id}
+    
+    return unique_protocol_ids_to_parameters, entities_to_unique_protocol_ids
 
 
 
