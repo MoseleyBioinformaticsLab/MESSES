@@ -43,7 +43,8 @@ def create_sample_lineages(input_json: dict, entity_table_name: str="entity", pa
                 parents = next_parents
                 next_parents = []
                 for parent_name in parents:
-                    ancestors.append(parent_name)
+                    if parent_name not in ancestors:
+                        ancestors.append(parent_name)
                     if parent_name not in input_json[entity_table_name]:
                         print("Error: The parent entity, \"" + parent_name + "\", pulled from the entity \"" + entity_name + \
                               "\" in the \"" + entity_table_name + "\" table is not in the \"" + entity_table_name + "\" table. " +\
