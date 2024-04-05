@@ -9,14 +9,17 @@ import operator
 
 
 def create_sample_lineages(input_json: dict, entity_table_name: str="entity", parent_key: str="parent_id") -> dict:
-    """Determine all the ancestors and siblings for each entity in the entity table.
+    """Determine all the ancestors, parents, and siblings for each entity in the entity table.
     
     The returned dictionary is of the form:
     
     {entity_id:{"ancestors":[ancestor0, ancestor1, ...],
+                "parents":[parent0, parent1, ...],
                 "siblings":[sibling0, sibling1, ...]}
      ...
     }
+    
+    parents are the immediate ancestors an entity comes from. They are also included in the ancestors list.
     
     Args:
         input_json: the dictionary where the entity table is.
@@ -25,32 +28,45 @@ def create_sample_lineages(input_json: dict, entity_table_name: str="entity", pa
         
     Returns:
         a dictionary where the keys are the entity ids and the values are a dictionary 
-        of it's ancestors and siblings.
+        of it's ancestors, parents, and siblings.
     """
     
     lineages = {}
     for entity_name, entity_attributes in input_json[entity_table_name].items():
         ancestors = []
-        while parent_name := entity_attributes.get(parent_key):
-            ancestors.append(parent_name)
-            if parent_name not in input_json[entity_table_name]:
-                print("Error: The parent entity, \"" + parent_name + "\", pulled from the entity \"" + entity_name + \
-                      "\" in the \"" + entity_table_name + "\" table is not in the \"" + entity_table_name + "\" table. " +\
-                      "Parent entities must be in the table with thier children.", file=sys.stderr)
-                sys.exit()
-            entity_attributes = input_json[entity_table_name][parent_name]
-        ancestors.reverse()
-        lineages[entity_name] = {"ancestors":ancestors}
+        immediate_parents = []
+        if parents := entity_attributes.get(parent_key):
+            parents = parents if isinstance(parents, list) else [parents]
+            immediate_parents = parents
+            next_parents = parents
+            while next_parents:
+                parents = next_parents
+                next_parents = []
+                for parent_name in parents:
+                    ancestors.append(parent_name)
+                    if parent_name not in input_json[entity_table_name]:
+                        print("Error: The parent entity, \"" + parent_name + "\", pulled from the entity \"" + entity_name + \
+                              "\" in the \"" + entity_table_name + "\" table is not in the \"" + entity_table_name + "\" table. " +\
+                              "Parent entities must be in the table with thier children.", file=sys.stderr)
+                        sys.exit()
+                    if grandparents := input_json[entity_table_name][parent_name].get(parent_key):
+                        grandparents = grandparents if isinstance(grandparents, list) else [grandparents]
+                        next_parents += grandparents
+            ancestors.reverse()
+        
+        lineages[entity_name] = {"ancestors": ancestors, "parents": immediate_parents}
         
     for entity_name in lineages:
         siblings = []
         if not lineages[entity_name]["ancestors"]:
             lineages[entity_name]["siblings"] = []
             continue
-        parent_name = lineages[entity_name]["ancestors"][-1]
+        parents = lineages[entity_name]["parents"]
         for sibling_name, entity_attributes in input_json[entity_table_name].items():
-            if (sibling_parent_name := entity_attributes.get(parent_key)) and sibling_parent_name == parent_name:
-                siblings.append(sibling_name)
+            if sibling_name != entity_name and (sibling_parents := entity_attributes.get(parent_key)):
+                sibling_parents = sibling_parents if isinstance(sibling_parents, list) else [sibling_parents]
+                if set(sibling_parents).intersection(parents):
+                    siblings.append(sibling_name)
             
         lineages[entity_name]["siblings"] = siblings
 

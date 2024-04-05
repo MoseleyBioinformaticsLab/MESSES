@@ -381,7 +381,7 @@ def test_parent_id_errors():
     
     errors = [
         'Error:  The protocol, "IC-FTMS_preparation", in the "protocol" table has itself ' +\
-        'listed for its parent_id. Records cannot be their own parents.',
+        'listed in its parent_id. Records cannot be their own parents.',
         
         'Error:  The protocol, "ICMS1", does not have the same type as its parent "IC-FTMS_preparation".',
         

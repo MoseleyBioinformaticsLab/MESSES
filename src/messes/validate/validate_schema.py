@@ -87,7 +87,7 @@ base_schema = \
                      "type":"object",
                      "properties":{
                          "id": {"type":"string", "minLength":1},
-                         "parent_id": {"type":"string"},
+                         "parent_id": {"type":["string", "array"]},
                          "protocol.id": {"type":["string", "array"], "minItems":1, "items":{"type":"string", "minLength":1}, "minLength":1},
                          "type": {"type":"string", "enum":["sample", "subject"]}
                          },

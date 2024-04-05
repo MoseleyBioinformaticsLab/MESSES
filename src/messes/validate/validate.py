@@ -964,43 +964,57 @@ def validate_parent_id(table: dict, table_name: str, entity_name: str, check_typ
     """
     has_errors = False
     for entity, attributes in table.items():
-        if parent_name := attributes.get("parent_id"):
+        if parents := attributes.get("parent_id"):
             ancestors = []
-            parent_attributes = attributes
-            while (parent_name := parent_attributes.get("parent_id")):
-                if parent_name in ancestors:
+            parents = parents if isinstance(parents, list) else [parents]
+            no_errors = True
+            next_parents = parents
+            while next_parents and no_errors:
+                parents = next_parents
+                next_parents = []
+                for parent_name in parents:
+                    ancestors.append(parent_name)
+                    if parent_name in table and (grandparents := table[parent_name].get("parent_id")):
+                        grandparents = grandparents if isinstance(grandparents, list) else [grandparents]
+                        for grandparent_name in grandparents:
+                            if grandparent_name in ancestors:
+                                ## Don't print the circular ancestry message if an entity has itself as a parent.
+                                ## This is specifically checked for just below this.
+                                if grandparent_name != entity:
+                                    print("Error:  The " + entity_name + ", \"" + entity + "\", in the \"" + \
+                                          table_name + "\" table has a circular ancestry, i.e., somewhere in the lineage a " + \
+                                          entity_name + " has a \"parent_id\" to a child in the lineage.", file=sys.stderr)
+                                has_errors = True
+                                no_errors = False
+                                break
+                            next_parents.append(grandparent_name)
+                    if not no_errors:
+                        break
+                                    
+            parents = attributes["parent_id"]
+            parents = parents if isinstance(parents, list) else [parents]
+            for parent_name in parents:
+                if parent_name == entity:
                     print("Error:  The " + entity_name + ", \"" + entity + "\", in the \"" + \
-                          table_name + "\" table has a circular ancestry, i.e., somewhere in the lineage a " + \
-                          entity_name + " has a \"parent_id\" to a child in the lineage.", file=sys.stderr)
+                          table_name + "\" table has itself listed in its parent_id. " + \
+                          "Records cannot be their own parents.", file=sys.stderr)
                     has_errors = True
-                    break
-                ancestors.append(parent_name)
-                if not parent_name in table:
-                    break
-                parent_attributes = table[parent_name]
-            
-            parent_name = attributes["parent_id"]
-            if parent_name == entity:
-                print("Error:  The " + entity_name + ", \"" + entity + "\", in the \"" + \
-                      table_name + "\" table has itself listed for its parent_id. " + \
-                      "Records cannot be their own parents.", file=sys.stderr)
-                has_errors = True
-            
-            if parent_name not in table:
-                print("Error:  The parent " + entity_name + ", \"" + parent_name + \
-                      "\", for the " + entity_name + " \"" + entity + \
-                      "\" in the \"" + table_name + "\" table is not itself in the \"" + \
-                      table_name + "\" table. " +\
-                      "Parent entities must be in the table as well.", file=sys.stderr)
-                has_errors = True
-                        
-            elif check_type and (type_to_check := attributes.get(type_keyword)) and \
-               (parent_type := table[parent_name].get(type_keyword)) and \
-               type_to_check != parent_type:
-                print("Error:  The " + entity_name + ", \"" + entity + \
-                      "\", does not have the same " + type_keyword + " as its parent \"" + \
-                      parent_name + "\".", file=sys.stderr)
-                has_errors = True
+                
+                if parent_name not in table:
+                    print("Error:  The parent " + entity_name + ", \"" + parent_name + \
+                          "\", for the " + entity_name + " \"" + entity + \
+                          "\" in the \"" + table_name + "\" table is not itself in the \"" + \
+                          table_name + "\" table. " +\
+                          "Parent entities must be in the table as well.", file=sys.stderr)
+                    has_errors = True
+                            
+                elif check_type and (type_to_check := attributes.get(type_keyword)) and \
+                   (parent_type := table[parent_name].get(type_keyword)) and \
+                   type_to_check != parent_type:
+                    print("Error:  The " + entity_name + ", \"" + entity + \
+                          "\", does not have the same " + type_keyword + " as its parent \"" + \
+                          parent_name + "\".", file=sys.stderr)
+                    has_errors = True
             
     return has_errors
 
