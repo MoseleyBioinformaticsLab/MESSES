@@ -1,5 +1,5 @@
 [build-system]
-requires = ["setuptools", "wheel", "setuptools_scm[toml]>=6.2", "numpy>=1.22.4", "Cython>=3.0.0a11"]
+requires = ["setuptools", "wheel", "build", "setuptools_scm[toml]>=6.2", "numpy>=1.22.4", "Cython>=3.0.0a11"]
 build-backend = "setuptools.build_meta"
 
 [project]
@@ -35,6 +35,3 @@ messes = "messes.__main__:main"
 
 [tool.setuptools_scm]
 write_to = "src/messes/_version.py"
-
-[tool.setuptools.cmdclass]
-build_py = "_custom_build.build_py"
