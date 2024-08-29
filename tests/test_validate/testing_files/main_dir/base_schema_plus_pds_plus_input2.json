@@ -2051,7 +2051,10 @@
             "minLength": 1
           },
           "parent_id": {
-            "type": "string"
+            "type": [
+              "string",
+              "array"
+            ]
           },
           "protocol.id": {
             "type": [
