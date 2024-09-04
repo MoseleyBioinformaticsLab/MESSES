@@ -9,9 +9,10 @@ MESSES
    :target: https://pypi.org/project/messes
    :alt: Supported Python versions
 
-.. image:: https://github.com/MoseleyBioinformaticsLab/messes/actions/workflows/build.yml/badge.svg
-   :target: https://github.com/MoseleyBioinformaticsLab/messes/actions/workflows/build.yml
-   :alt: Build status
+..
+    .. image:: https://github.com/MoseleyBioinformaticsLab/messes/actions/workflows/build.yml/badge.svg
+       :target: https://github.com/MoseleyBioinformaticsLab/messes/actions/workflows/build.yml
+       :alt: Build status
 
 .. image:: https://codecov.io/gh/MoseleyBioinformaticsLab/MESSES/branch/main/graphs/badge.svg?branch=main
    :target: https://codecov.io/gh/MoseleyBioinformaticsLab/MESSES
