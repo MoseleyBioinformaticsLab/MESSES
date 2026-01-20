@@ -1,0 +1,3617 @@
+[
+  {
+    "@id": "#process/naive_1",
+    "executesProtocol": {
+      "@id": "#protocol/naive"
+    },
+    "parameterValues": [],
+    "inputs": [
+      {
+        "@id": "#source/01_A0_naive_0days_UKy_GCH_rep1"
+      }
+    ],
+    "outputs": [],
+    "nextProcess": {
+      "@id": "#process/mouse_tissue_collection_1"
+    }
+  },
+  {
+    "@id": "#process/mouse_tissue_collection_1",
+    "executesProtocol": {
+      "@id": "#protocol/mouse_tissue_collection"
+    },
+    "parameterValues": [],
+    "inputs": [],
+    "outputs": [
+      {
+        "@id": "#sample/01_A0_Plasma_naive_0days_170427_UKy_GCH_rep1"
+      }
+    ],
+    "nextProcess": {
+      "@id": "#process/tissue_quench_1"
+    },
+    "previousProcess": {
+      "@id": "#process/naive_1"
+    }
+  },
+  {
+    "@id": "#process/tissue_quench_1",
+    "executesProtocol": {
+      "@id": "#protocol/tissue_quench"
+    },
+    "parameterValues": [],
+    "inputs": [],
+    "outputs": [],
+    "nextProcess": {
+      "@id": "#process/frozen_tissue_grind_1"
+    },
+    "previousProcess": {
+      "@id": "#process/mouse_tissue_collection_1"
+    }
+  },
+  {
+    "@id": "#process/frozen_tissue_grind_1",
+    "executesProtocol": {
+      "@id": "#protocol/frozen_tissue_grind"
+    },
+    "parameterValues": [],
+    "inputs": [],
+    "outputs": [
+      {
+        "@id": "#sample/01_A0_Colon_naive_0days_170427_UKy_GCH_rep1"
+      },
+      {
+        "@id": "#sample/01_A0_Liver_naive_0days_170427_UKy_GCH_rep1"
+      },
+      {
+        "@id": "#sample/01_A0_SI_naive_0days_170427_UKy_GCH_rep1"
+      },
+      {
+        "@id": "#sample/01_A0_Spleen_naive_0days_170427_UKy_GCH_rep1"
+      },
+      {
+        "@id": "#sample/16_A0_Lung_naive_0days_170427_UKy_GCH_rep1"
+      }
+    ],
+    "nextProcess": {
+      "@id": "#process/polar_extraction_1"
+    },
+    "previousProcess": {
+      "@id": "#process/tissue_quench_1"
+    }
+  },
+  {
+    "@id": "#process/polar_extraction_1",
+    "executesProtocol": {
+      "@id": "#protocol/polar_extraction"
+    },
+    "parameterValues": [],
+    "inputs": [
+      {
+        "@id": "#sample/01_A0_Colon_naive_0days_170427_UKy_GCH_rep1"
+      }
+    ],
+    "outputs": [
+      {
+        "@id": "#sample/01_A0_Colon_naive_0days_170427_UKy_GCH_rep1-polar-FTMS_A"
+      },
+      {
+        "@id": "#sample/01_A0_Colon_naive_0days_170427_UKy_GCH_rep1-polar-FTMS_B"
+      },
+      {
+        "@id": "#sample/01_A0_Colon_naive_0days_170427_UKy_GCH_rep1-polar-FTMS_C"
+      },
+      {
+        "@id": "#sample/01_A0_Colon_naive_0days_170427_UKy_GCH_rep1-polar-ICMS_B"
+      },
+      {
+        "@id": "#sample/01_A0_Colon_naive_0days_170427_UKy_GCH_rep1-polar-NMR_B"
+      }
+    ],
+    "previousProcess": {
+      "@id": "#process/frozen_tissue_grind_1"
+    }
+  },
+  {
+    "@id": "#process/polar_extraction_2",
+    "executesProtocol": {
+      "@id": "#protocol/polar_extraction"
+    },
+    "parameterValues": [],
+    "inputs": [
+      {
+        "@id": "#sample/01_A0_Liver_naive_0days_170427_UKy_GCH_rep1"
+      }
+    ],
+    "outputs": [
+      {
+        "@id": "#sample/01_A0_Liver_naive_0days_170427_UKy_GCH_rep1-polar-FTMS_A"
+      },
+      {
+        "@id": "#sample/01_A0_Liver_naive_0days_170427_UKy_GCH_rep1-polar-FTMS_B"
+      },
+      {
+        "@id": "#sample/01_A0_Liver_naive_0days_170427_UKy_GCH_rep1-polar-FTMS_C"
+      },
+      {
+        "@id": "#sample/01_A0_Liver_naive_0days_170427_UKy_GCH_rep1-polar-ICMS_B"
+      },
+      {
+        "@id": "#sample/01_A0_Liver_naive_0days_170427_UKy_GCH_rep1-polar-NMR_B"
+      }
+    ],
+    "previousProcess": {
+      "@id": "#process/frozen_tissue_grind_1"
+    }
+  },
+  {
+    "@id": "#process/polar_extraction_3",
+    "executesProtocol": {
+      "@id": "#protocol/polar_extraction"
+    },
+    "parameterValues": [],
+    "inputs": [
+      {
+        "@id": "#sample/01_A0_SI_naive_0days_170427_UKy_GCH_rep1"
+      }
+    ],
+    "outputs": [
+      {
+        "@id": "#sample/01_A0_SI_naive_0days_170427_UKy_GCH_rep1-polar-FTMS_A"
+      },
+      {
+        "@id": "#sample/01_A0_SI_naive_0days_170427_UKy_GCH_rep1-polar-FTMS_B"
+      },
+      {
+        "@id": "#sample/01_A0_SI_naive_0days_170427_UKy_GCH_rep1-polar-FTMS_C"
+      },
+      {
+        "@id": "#sample/01_A0_SI_naive_0days_170427_UKy_GCH_rep1-polar-ICMS_B"
+      },
+      {
+        "@id": "#sample/01_A0_SI_naive_0days_170427_UKy_GCH_rep1-polar-NMR_B"
+      }
+    ],
+    "previousProcess": {
+      "@id": "#process/frozen_tissue_grind_1"
+    }
+  },
+  {
+    "@id": "#process/polar_extraction_4",
+    "executesProtocol": {
+      "@id": "#protocol/polar_extraction"
+    },
+    "parameterValues": [],
+    "inputs": [
+      {
+        "@id": "#sample/01_A0_Spleen_naive_0days_170427_UKy_GCH_rep1"
+      }
+    ],
+    "outputs": [
+      {
+        "@id": "#sample/01_A0_Spleen_naive_0days_170427_UKy_GCH_rep1-polar-FTMS_A"
+      },
+      {
+        "@id": "#sample/01_A0_Spleen_naive_0days_170427_UKy_GCH_rep1-polar-FTMS_B"
+      },
+      {
+        "@id": "#sample/01_A0_Spleen_naive_0days_170427_UKy_GCH_rep1-polar-FTMS_C"
+      },
+      {
+        "@id": "#sample/01_A0_Spleen_naive_0days_170427_UKy_GCH_rep1-polar-ICMS_B"
+      },
+      {
+        "@id": "#sample/01_A0_Spleen_naive_0days_170427_UKy_GCH_rep1-polar-NMR_B"
+      }
+    ],
+    "previousProcess": {
+      "@id": "#process/frozen_tissue_grind_1"
+    }
+  },
+  {
+    "@id": "#process/naive_2",
+    "executesProtocol": {
+      "@id": "#protocol/naive"
+    },
+    "parameterValues": [],
+    "inputs": [
+      {
+        "@id": "#source/02_A1_naive_0days_UKy_GCH_rep2"
+      }
+    ],
+    "outputs": [],
+    "nextProcess": {
+      "@id": "#process/mouse_tissue_collection_2"
+    }
+  },
+  {
+    "@id": "#process/mouse_tissue_collection_2",
+    "executesProtocol": {
+      "@id": "#protocol/mouse_tissue_collection"
+    },
+    "parameterValues": [],
+    "inputs": [],
+    "outputs": [
+      {
+        "@id": "#sample/02_A1_Plasma_naive_0days_170427_UKy_GCH_rep2"
+      }
+    ],
+    "nextProcess": {
+      "@id": "#process/tissue_quench_2"
+    },
+    "previousProcess": {
+      "@id": "#process/naive_2"
+    }
+  },
+  {
+    "@id": "#process/tissue_quench_2",
+    "executesProtocol": {
+      "@id": "#protocol/tissue_quench"
+    },
+    "parameterValues": [],
+    "inputs": [],
+    "outputs": [],
+    "nextProcess": {
+      "@id": "#process/frozen_tissue_grind_2"
+    },
+    "previousProcess": {
+      "@id": "#process/mouse_tissue_collection_2"
+    }
+  },
+  {
+    "@id": "#process/frozen_tissue_grind_2",
+    "executesProtocol": {
+      "@id": "#protocol/frozen_tissue_grind"
+    },
+    "parameterValues": [],
+    "inputs": [],
+    "outputs": [
+      {
+        "@id": "#sample/02_A1_Colon_naive_0days_170427_UKy_GCH_rep2"
+      },
+      {
+        "@id": "#sample/02_A1_Liver_naive_0days_170427_UKy_GCH_rep2"
+      },
+      {
+        "@id": "#sample/02_A1_SI_naive_0days_170427_UKy_GCH_rep2"
+      },
+      {
+        "@id": "#sample/02_A1_Spleen_naive_0days_170427_UKy_GCH_rep2"
+      },
+      {
+        "@id": "#sample/17_A1_Lung_naive_0days_170427_UKy_GCH_rep2"
+      }
+    ],
+    "nextProcess": {
+      "@id": "#process/polar_extraction_5"
+    },
+    "previousProcess": {
+      "@id": "#process/tissue_quench_2"
+    }
+  },
+  {
+    "@id": "#process/polar_extraction_5",
+    "executesProtocol": {
+      "@id": "#protocol/polar_extraction"
+    },
+    "parameterValues": [],
+    "inputs": [
+      {
+        "@id": "#sample/02_A1_Colon_naive_0days_170427_UKy_GCH_rep2"
+      }
+    ],
+    "outputs": [
+      {
+        "@id": "#sample/02_A1_Colon_naive_0days_170427_UKy_GCH_rep2-polar-FTMS_A"
+      },
+      {
+        "@id": "#sample/02_A1_Colon_naive_0days_170427_UKy_GCH_rep2-polar-FTMS_B"
+      },
+      {
+        "@id": "#sample/02_A1_Colon_naive_0days_170427_UKy_GCH_rep2-polar-FTMS_C"
+      },
+      {
+        "@id": "#sample/02_A1_Colon_naive_0days_170427_UKy_GCH_rep2-polar-ICMS_B"
+      },
+      {
+        "@id": "#sample/02_A1_Colon_naive_0days_170427_UKy_GCH_rep2-polar-NMR_B"
+      }
+    ],
+    "previousProcess": {
+      "@id": "#process/frozen_tissue_grind_2"
+    }
+  },
+  {
+    "@id": "#process/polar_extraction_6",
+    "executesProtocol": {
+      "@id": "#protocol/polar_extraction"
+    },
+    "parameterValues": [],
+    "inputs": [
+      {
+        "@id": "#sample/02_A1_Liver_naive_0days_170427_UKy_GCH_rep2"
+      }
+    ],
+    "outputs": [
+      {
+        "@id": "#sample/02_A1_Liver_naive_0days_170427_UKy_GCH_rep2-polar-FTMS_A"
+      },
+      {
+        "@id": "#sample/02_A1_Liver_naive_0days_170427_UKy_GCH_rep2-polar-FTMS_B"
+      },
+      {
+        "@id": "#sample/02_A1_Liver_naive_0days_170427_UKy_GCH_rep2-polar-FTMS_C"
+      },
+      {
+        "@id": "#sample/02_A1_Liver_naive_0days_170427_UKy_GCH_rep2-polar-ICMS_B"
+      },
+      {
+        "@id": "#sample/02_A1_Liver_naive_0days_170427_UKy_GCH_rep2-polar-NMR_B"
+      }
+    ],
+    "previousProcess": {
+      "@id": "#process/frozen_tissue_grind_2"
+    }
+  },
+  {
+    "@id": "#process/polar_extraction_7",
+    "executesProtocol": {
+      "@id": "#protocol/polar_extraction"
+    },
+    "parameterValues": [],
+    "inputs": [
+      {
+        "@id": "#sample/02_A1_SI_naive_0days_170427_UKy_GCH_rep2"
+      }
+    ],
+    "outputs": [
+      {
+        "@id": "#sample/02_A1_SI_naive_0days_170427_UKy_GCH_rep2-polar-FTMS_A"
+      },
+      {
+        "@id": "#sample/02_A1_SI_naive_0days_170427_UKy_GCH_rep2-polar-FTMS_B"
+      },
+      {
+        "@id": "#sample/02_A1_SI_naive_0days_170427_UKy_GCH_rep2-polar-FTMS_C"
+      },
+      {
+        "@id": "#sample/02_A1_SI_naive_0days_170427_UKy_GCH_rep2-polar-ICMS_B"
+      },
+      {
+        "@id": "#sample/02_A1_SI_naive_0days_170427_UKy_GCH_rep2-polar-NMR_B"
+      }
+    ],
+    "previousProcess": {
+      "@id": "#process/frozen_tissue_grind_2"
+    }
+  },
+  {
+    "@id": "#process/polar_extraction_8",
+    "executesProtocol": {
+      "@id": "#protocol/polar_extraction"
+    },
+    "parameterValues": [],
+    "inputs": [
+      {
+        "@id": "#sample/02_A1_Spleen_naive_0days_170427_UKy_GCH_rep2"
+      }
+    ],
+    "outputs": [
+      {
+        "@id": "#sample/02_A1_Spleen_naive_0days_170427_UKy_GCH_rep2-polar-FTMS_A"
+      },
+      {
+        "@id": "#sample/02_A1_Spleen_naive_0days_170427_UKy_GCH_rep2-polar-FTMS_B"
+      },
+      {
+        "@id": "#sample/02_A1_Spleen_naive_0days_170427_UKy_GCH_rep2-polar-FTMS_C"
+      },
+      {
+        "@id": "#sample/02_A1_Spleen_naive_0days_170427_UKy_GCH_rep2-polar-ICMS_B"
+      },
+      {
+        "@id": "#sample/02_A1_Spleen_naive_0days_170427_UKy_GCH_rep2-polar-NMR_B"
+      }
+    ],
+    "previousProcess": {
+      "@id": "#process/frozen_tissue_grind_2"
+    }
+  },
+  {
+    "@id": "#process/naive_3",
+    "executesProtocol": {
+      "@id": "#protocol/naive"
+    },
+    "parameterValues": [],
+    "inputs": [
+      {
+        "@id": "#source/03_A2_naive_0days_UKy_GCH_rep3"
+      }
+    ],
+    "outputs": [],
+    "nextProcess": {
+      "@id": "#process/mouse_tissue_collection_3"
+    }
+  },
+  {
+    "@id": "#process/mouse_tissue_collection_3",
+    "executesProtocol": {
+      "@id": "#protocol/mouse_tissue_collection"
+    },
+    "parameterValues": [],
+    "inputs": [],
+    "outputs": [
+      {
+        "@id": "#sample/03_A2_Plasma_naive_0days_170427_UKy_GCH_rep3"
+      }
+    ],
+    "nextProcess": {
+      "@id": "#process/tissue_quench_3"
+    },
+    "previousProcess": {
+      "@id": "#process/naive_3"
+    }
+  },
+  {
+    "@id": "#process/tissue_quench_3",
+    "executesProtocol": {
+      "@id": "#protocol/tissue_quench"
+    },
+    "parameterValues": [],
+    "inputs": [],
+    "outputs": [],
+    "nextProcess": {
+      "@id": "#process/frozen_tissue_grind_3"
+    },
+    "previousProcess": {
+      "@id": "#process/mouse_tissue_collection_3"
+    }
+  },
+  {
+    "@id": "#process/frozen_tissue_grind_3",
+    "executesProtocol": {
+      "@id": "#protocol/frozen_tissue_grind"
+    },
+    "parameterValues": [],
+    "inputs": [],
+    "outputs": [
+      {
+        "@id": "#sample/03_A2_Colon_naive_0days_170427_UKy_GCH_rep3"
+      },
+      {
+        "@id": "#sample/03_A2_Liver_naive_0days_170427_UKy_GCH_rep3"
+      },
+      {
+        "@id": "#sample/03_A2_SI_naive_0days_170427_UKy_GCH_rep3"
+      },
+      {
+        "@id": "#sample/03_A2_Spleen_naive_0days_170427_UKy_GCH_rep3"
+      },
+      {
+        "@id": "#sample/18_A2_Lung_naive_0days_170427_UKy_GCH_rep3"
+      }
+    ],
+    "nextProcess": {
+      "@id": "#process/polar_extraction_9"
+    },
+    "previousProcess": {
+      "@id": "#process/tissue_quench_3"
+    }
+  },
+  {
+    "@id": "#process/polar_extraction_9",
+    "executesProtocol": {
+      "@id": "#protocol/polar_extraction"
+    },
+    "parameterValues": [],
+    "inputs": [
+      {
+        "@id": "#sample/03_A2_Colon_naive_0days_170427_UKy_GCH_rep3"
+      }
+    ],
+    "outputs": [
+      {
+        "@id": "#sample/03_A2_Colon_naive_0days_170427_UKy_GCH_rep3-polar-FTMS_A"
+      },
+      {
+        "@id": "#sample/03_A2_Colon_naive_0days_170427_UKy_GCH_rep3-polar-FTMS_B"
+      },
+      {
+        "@id": "#sample/03_A2_Colon_naive_0days_170427_UKy_GCH_rep3-polar-FTMS_C"
+      },
+      {
+        "@id": "#sample/03_A2_Colon_naive_0days_170427_UKy_GCH_rep3-polar-ICMS_B"
+      },
+      {
+        "@id": "#sample/03_A2_Colon_naive_0days_170427_UKy_GCH_rep3-polar-NMR_B"
+      }
+    ],
+    "previousProcess": {
+      "@id": "#process/frozen_tissue_grind_3"
+    }
+  },
+  {
+    "@id": "#process/polar_extraction_10",
+    "executesProtocol": {
+      "@id": "#protocol/polar_extraction"
+    },
+    "parameterValues": [],
+    "inputs": [
+      {
+        "@id": "#sample/03_A2_Liver_naive_0days_170427_UKy_GCH_rep3"
+      }
+    ],
+    "outputs": [
+      {
+        "@id": "#sample/03_A2_Liver_naive_0days_170427_UKy_GCH_rep3-polar-FTMS_A"
+      },
+      {
+        "@id": "#sample/03_A2_Liver_naive_0days_170427_UKy_GCH_rep3-polar-FTMS_B"
+      },
+      {
+        "@id": "#sample/03_A2_Liver_naive_0days_170427_UKy_GCH_rep3-polar-FTMS_C"
+      },
+      {
+        "@id": "#sample/03_A2_Liver_naive_0days_170427_UKy_GCH_rep3-polar-ICMS_B"
+      },
+      {
+        "@id": "#sample/03_A2_Liver_naive_0days_170427_UKy_GCH_rep3-polar-NMR_B"
+      }
+    ],
+    "previousProcess": {
+      "@id": "#process/frozen_tissue_grind_3"
+    }
+  },
+  {
+    "@id": "#process/polar_extraction_11",
+    "executesProtocol": {
+      "@id": "#protocol/polar_extraction"
+    },
+    "parameterValues": [],
+    "inputs": [
+      {
+        "@id": "#sample/03_A2_SI_naive_0days_170427_UKy_GCH_rep3"
+      }
+    ],
+    "outputs": [
+      {
+        "@id": "#sample/03_A2_SI_naive_0days_170427_UKy_GCH_rep3-polar-FTMS_A"
+      },
+      {
+        "@id": "#sample/03_A2_SI_naive_0days_170427_UKy_GCH_rep3-polar-FTMS_B"
+      },
+      {
+        "@id": "#sample/03_A2_SI_naive_0days_170427_UKy_GCH_rep3-polar-FTMS_C"
+      },
+      {
+        "@id": "#sample/03_A2_SI_naive_0days_170427_UKy_GCH_rep3-polar-ICMS_B"
+      },
+      {
+        "@id": "#sample/03_A2_SI_naive_0days_170427_UKy_GCH_rep3-polar-NMR_B"
+      }
+    ],
+    "previousProcess": {
+      "@id": "#process/frozen_tissue_grind_3"
+    }
+  },
+  {
+    "@id": "#process/polar_extraction_12",
+    "executesProtocol": {
+      "@id": "#protocol/polar_extraction"
+    },
+    "parameterValues": [],
+    "inputs": [
+      {
+        "@id": "#sample/03_A2_Spleen_naive_0days_170427_UKy_GCH_rep3"
+      }
+    ],
+    "outputs": [
+      {
+        "@id": "#sample/03_A2_Spleen_naive_0days_170427_UKy_GCH_rep3-polar-FTMS_A"
+      },
+      {
+        "@id": "#sample/03_A2_Spleen_naive_0days_170427_UKy_GCH_rep3-polar-FTMS_B"
+      },
+      {
+        "@id": "#sample/03_A2_Spleen_naive_0days_170427_UKy_GCH_rep3-polar-FTMS_C"
+      },
+      {
+        "@id": "#sample/03_A2_Spleen_naive_0days_170427_UKy_GCH_rep3-polar-ICMS_B"
+      },
+      {
+        "@id": "#sample/03_A2_Spleen_naive_0days_170427_UKy_GCH_rep3-polar-NMR_B"
+      }
+    ],
+    "previousProcess": {
+      "@id": "#process/frozen_tissue_grind_3"
+    }
+  },
+  {
+    "@id": "#process/syngenic_1",
+    "executesProtocol": {
+      "@id": "#protocol/syngenic"
+    },
+    "parameterValues": [],
+    "inputs": [
+      {
+        "@id": "#source/04_B0_syngenic_42days_UKy_GCH_rep1"
+      }
+    ],
+    "outputs": [],
+    "nextProcess": {
+      "@id": "#process/mouse_tissue_collection_4"
+    }
+  },
+  {
+    "@id": "#process/mouse_tissue_collection_4",
+    "executesProtocol": {
+      "@id": "#protocol/mouse_tissue_collection"
+    },
+    "parameterValues": [],
+    "inputs": [],
+    "outputs": [
+      {
+        "@id": "#sample/04_B0_Plasma_syngenic_42days_170427_UKy_GCH_rep1"
+      }
+    ],
+    "nextProcess": {
+      "@id": "#process/tissue_quench_4"
+    },
+    "previousProcess": {
+      "@id": "#process/syngenic_1"
+    }
+  },
+  {
+    "@id": "#process/tissue_quench_4",
+    "executesProtocol": {
+      "@id": "#protocol/tissue_quench"
+    },
+    "parameterValues": [],
+    "inputs": [],
+    "outputs": [],
+    "nextProcess": {
+      "@id": "#process/frozen_tissue_grind_4"
+    },
+    "previousProcess": {
+      "@id": "#process/mouse_tissue_collection_4"
+    }
+  },
+  {
+    "@id": "#process/frozen_tissue_grind_4",
+    "executesProtocol": {
+      "@id": "#protocol/frozen_tissue_grind"
+    },
+    "parameterValues": [],
+    "inputs": [],
+    "outputs": [
+      {
+        "@id": "#sample/04_B0_Colon_syngenic_42days_170427_UKy_GCH_rep1"
+      },
+      {
+        "@id": "#sample/04_B0_Liver_syngenic_42days_170427_UKy_GCH_rep1"
+      },
+      {
+        "@id": "#sample/04_B0_SI_syngenic_42days_170427_UKy_GCH_rep1"
+      },
+      {
+        "@id": "#sample/04_B0_Spleen_syngenic_42days_170427_UKy_GCH_rep1"
+      },
+      {
+        "@id": "#sample/19_B0_Lung_syngenic_42days_170427_UKy_GCH_rep1"
+      }
+    ],
+    "nextProcess": {
+      "@id": "#process/polar_extraction_13"
+    },
+    "previousProcess": {
+      "@id": "#process/tissue_quench_4"
+    }
+  },
+  {
+    "@id": "#process/polar_extraction_13",
+    "executesProtocol": {
+      "@id": "#protocol/polar_extraction"
+    },
+    "parameterValues": [],
+    "inputs": [
+      {
+        "@id": "#sample/04_B0_Colon_syngenic_42days_170427_UKy_GCH_rep1"
+      }
+    ],
+    "outputs": [
+      {
+        "@id": "#sample/04_B0_Colon_syngenic_42days_170427_UKy_GCH_rep1-polar-FTMS_A"
+      },
+      {
+        "@id": "#sample/04_B0_Colon_syngenic_42days_170427_UKy_GCH_rep1-polar-FTMS_B"
+      },
+      {
+        "@id": "#sample/04_B0_Colon_syngenic_42days_170427_UKy_GCH_rep1-polar-FTMS_C"
+      },
+      {
+        "@id": "#sample/04_B0_Colon_syngenic_42days_170427_UKy_GCH_rep1-polar-ICMS_B"
+      },
+      {
+        "@id": "#sample/04_B0_Colon_syngenic_42days_170427_UKy_GCH_rep1-polar-NMR_B"
+      }
+    ],
+    "previousProcess": {
+      "@id": "#process/frozen_tissue_grind_4"
+    }
+  },
+  {
+    "@id": "#process/polar_extraction_14",
+    "executesProtocol": {
+      "@id": "#protocol/polar_extraction"
+    },
+    "parameterValues": [],
+    "inputs": [
+      {
+        "@id": "#sample/04_B0_Liver_syngenic_42days_170427_UKy_GCH_rep1"
+      }
+    ],
+    "outputs": [
+      {
+        "@id": "#sample/04_B0_Liver_syngenic_42days_170427_UKy_GCH_rep1-polar-FTMS_A"
+      },
+      {
+        "@id": "#sample/04_B0_Liver_syngenic_42days_170427_UKy_GCH_rep1-polar-FTMS_B"
+      },
+      {
+        "@id": "#sample/04_B0_Liver_syngenic_42days_170427_UKy_GCH_rep1-polar-FTMS_C"
+      },
+      {
+        "@id": "#sample/04_B0_Liver_syngenic_42days_170427_UKy_GCH_rep1-polar-ICMS_B"
+      },
+      {
+        "@id": "#sample/04_B0_Liver_syngenic_42days_170427_UKy_GCH_rep1-polar-NMR_B"
+      }
+    ],
+    "previousProcess": {
+      "@id": "#process/frozen_tissue_grind_4"
+    }
+  },
+  {
+    "@id": "#process/polar_extraction_15",
+    "executesProtocol": {
+      "@id": "#protocol/polar_extraction"
+    },
+    "parameterValues": [],
+    "inputs": [
+      {
+        "@id": "#sample/04_B0_SI_syngenic_42days_170427_UKy_GCH_rep1"
+      }
+    ],
+    "outputs": [
+      {
+        "@id": "#sample/04_B0_SI_syngenic_42days_170427_UKy_GCH_rep1-polar-FTMS_A"
+      },
+      {
+        "@id": "#sample/04_B0_SI_syngenic_42days_170427_UKy_GCH_rep1-polar-FTMS_B"
+      },
+      {
+        "@id": "#sample/04_B0_SI_syngenic_42days_170427_UKy_GCH_rep1-polar-FTMS_C"
+      },
+      {
+        "@id": "#sample/04_B0_SI_syngenic_42days_170427_UKy_GCH_rep1-polar-ICMS_B"
+      },
+      {
+        "@id": "#sample/04_B0_SI_syngenic_42days_170427_UKy_GCH_rep1-polar-NMR_B"
+      }
+    ],
+    "previousProcess": {
+      "@id": "#process/frozen_tissue_grind_4"
+    }
+  },
+  {
+    "@id": "#process/polar_extraction_16",
+    "executesProtocol": {
+      "@id": "#protocol/polar_extraction"
+    },
+    "parameterValues": [],
+    "inputs": [
+      {
+        "@id": "#sample/04_B0_Spleen_syngenic_42days_170427_UKy_GCH_rep1"
+      }
+    ],
+    "outputs": [
+      {
+        "@id": "#sample/04_B0_Spleen_syngenic_42days_170427_UKy_GCH_rep1-polar-FTMS_A"
+      },
+      {
+        "@id": "#sample/04_B0_Spleen_syngenic_42days_170427_UKy_GCH_rep1-polar-FTMS_B"
+      },
+      {
+        "@id": "#sample/04_B0_Spleen_syngenic_42days_170427_UKy_GCH_rep1-polar-FTMS_C"
+      },
+      {
+        "@id": "#sample/04_B0_Spleen_syngenic_42days_170427_UKy_GCH_rep1-polar-ICMS_B"
+      },
+      {
+        "@id": "#sample/04_B0_Spleen_syngenic_42days_170427_UKy_GCH_rep1-polar-NMR_B"
+      }
+    ],
+    "previousProcess": {
+      "@id": "#process/frozen_tissue_grind_4"
+    }
+  },
+  {
+    "@id": "#process/syngenic_2",
+    "executesProtocol": {
+      "@id": "#protocol/syngenic"
+    },
+    "parameterValues": [],
+    "inputs": [
+      {
+        "@id": "#source/05_B1_syngenic_42days_UKy_GCH_rep2"
+      }
+    ],
+    "outputs": [],
+    "nextProcess": {
+      "@id": "#process/mouse_tissue_collection_5"
+    }
+  },
+  {
+    "@id": "#process/mouse_tissue_collection_5",
+    "executesProtocol": {
+      "@id": "#protocol/mouse_tissue_collection"
+    },
+    "parameterValues": [],
+    "inputs": [],
+    "outputs": [
+      {
+        "@id": "#sample/05_B1_Plasma_syngenic_42days_170427_UKy_GCH_rep2"
+      }
+    ],
+    "nextProcess": {
+      "@id": "#process/tissue_quench_5"
+    },
+    "previousProcess": {
+      "@id": "#process/syngenic_2"
+    }
+  },
+  {
+    "@id": "#process/tissue_quench_5",
+    "executesProtocol": {
+      "@id": "#protocol/tissue_quench"
+    },
+    "parameterValues": [],
+    "inputs": [],
+    "outputs": [],
+    "nextProcess": {
+      "@id": "#process/frozen_tissue_grind_5"
+    },
+    "previousProcess": {
+      "@id": "#process/mouse_tissue_collection_5"
+    }
+  },
+  {
+    "@id": "#process/frozen_tissue_grind_5",
+    "executesProtocol": {
+      "@id": "#protocol/frozen_tissue_grind"
+    },
+    "parameterValues": [],
+    "inputs": [],
+    "outputs": [
+      {
+        "@id": "#sample/05_B1_Colon_syngenic_42days_170427_UKy_GCH_rep2"
+      },
+      {
+        "@id": "#sample/05_B1_Liver_syngenic_42days_170427_UKy_GCH_rep2"
+      },
+      {
+        "@id": "#sample/05_B1_SI_syngenic_42days_170427_UKy_GCH_rep2"
+      },
+      {
+        "@id": "#sample/05_B1_Spleen_syngenic_42days_170427_UKy_GCH_rep2"
+      },
+      {
+        "@id": "#sample/20_B1_Lung_syngenic_42days_170427_UKy_GCH_rep2"
+      }
+    ],
+    "nextProcess": {
+      "@id": "#process/polar_extraction_17"
+    },
+    "previousProcess": {
+      "@id": "#process/tissue_quench_5"
+    }
+  },
+  {
+    "@id": "#process/polar_extraction_17",
+    "executesProtocol": {
+      "@id": "#protocol/polar_extraction"
+    },
+    "parameterValues": [],
+    "inputs": [
+      {
+        "@id": "#sample/05_B1_Colon_syngenic_42days_170427_UKy_GCH_rep2"
+      }
+    ],
+    "outputs": [
+      {
+        "@id": "#sample/05_B1_Colon_syngenic_42days_170427_UKy_GCH_rep2-polar-FTMS_A"
+      },
+      {
+        "@id": "#sample/05_B1_Colon_syngenic_42days_170427_UKy_GCH_rep2-polar-FTMS_B"
+      },
+      {
+        "@id": "#sample/05_B1_Colon_syngenic_42days_170427_UKy_GCH_rep2-polar-FTMS_C"
+      },
+      {
+        "@id": "#sample/05_B1_Colon_syngenic_42days_170427_UKy_GCH_rep2-polar-ICMS_B"
+      },
+      {
+        "@id": "#sample/05_B1_Colon_syngenic_42days_170427_UKy_GCH_rep2-polar-NMR_B"
+      }
+    ],
+    "previousProcess": {
+      "@id": "#process/frozen_tissue_grind_5"
+    }
+  },
+  {
+    "@id": "#process/polar_extraction_18",
+    "executesProtocol": {
+      "@id": "#protocol/polar_extraction"
+    },
+    "parameterValues": [],
+    "inputs": [
+      {
+        "@id": "#sample/05_B1_Liver_syngenic_42days_170427_UKy_GCH_rep2"
+      }
+    ],
+    "outputs": [
+      {
+        "@id": "#sample/05_B1_Liver_syngenic_42days_170427_UKy_GCH_rep2-polar-FTMS_A"
+      },
+      {
+        "@id": "#sample/05_B1_Liver_syngenic_42days_170427_UKy_GCH_rep2-polar-FTMS_B"
+      },
+      {
+        "@id": "#sample/05_B1_Liver_syngenic_42days_170427_UKy_GCH_rep2-polar-FTMS_C"
+      },
+      {
+        "@id": "#sample/05_B1_Liver_syngenic_42days_170427_UKy_GCH_rep2-polar-ICMS_B"
+      },
+      {
+        "@id": "#sample/05_B1_Liver_syngenic_42days_170427_UKy_GCH_rep2-polar-NMR_B"
+      }
+    ],
+    "previousProcess": {
+      "@id": "#process/frozen_tissue_grind_5"
+    }
+  },
+  {
+    "@id": "#process/polar_extraction_19",
+    "executesProtocol": {
+      "@id": "#protocol/polar_extraction"
+    },
+    "parameterValues": [],
+    "inputs": [
+      {
+        "@id": "#sample/05_B1_SI_syngenic_42days_170427_UKy_GCH_rep2"
+      }
+    ],
+    "outputs": [
+      {
+        "@id": "#sample/05_B1_SI_syngenic_42days_170427_UKy_GCH_rep2-polar-FTMS_A"
+      },
+      {
+        "@id": "#sample/05_B1_SI_syngenic_42days_170427_UKy_GCH_rep2-polar-FTMS_B"
+      },
+      {
+        "@id": "#sample/05_B1_SI_syngenic_42days_170427_UKy_GCH_rep2-polar-FTMS_C"
+      },
+      {
+        "@id": "#sample/05_B1_SI_syngenic_42days_170427_UKy_GCH_rep2-polar-ICMS_B"
+      },
+      {
+        "@id": "#sample/05_B1_SI_syngenic_42days_170427_UKy_GCH_rep2-polar-NMR_B"
+      }
+    ],
+    "previousProcess": {
+      "@id": "#process/frozen_tissue_grind_5"
+    }
+  },
+  {
+    "@id": "#process/polar_extraction_20",
+    "executesProtocol": {
+      "@id": "#protocol/polar_extraction"
+    },
+    "parameterValues": [],
+    "inputs": [
+      {
+        "@id": "#sample/05_B1_Spleen_syngenic_42days_170427_UKy_GCH_rep2"
+      }
+    ],
+    "outputs": [
+      {
+        "@id": "#sample/05_B1_Spleen_syngenic_42days_170427_UKy_GCH_rep2-polar-FTMS_A"
+      },
+      {
+        "@id": "#sample/05_B1_Spleen_syngenic_42days_170427_UKy_GCH_rep2-polar-FTMS_B"
+      },
+      {
+        "@id": "#sample/05_B1_Spleen_syngenic_42days_170427_UKy_GCH_rep2-polar-FTMS_C"
+      },
+      {
+        "@id": "#sample/05_B1_Spleen_syngenic_42days_170427_UKy_GCH_rep2-polar-ICMS_B"
+      },
+      {
+        "@id": "#sample/05_B1_Spleen_syngenic_42days_170427_UKy_GCH_rep2-polar-NMR_B"
+      }
+    ],
+    "previousProcess": {
+      "@id": "#process/frozen_tissue_grind_5"
+    }
+  },
+  {
+    "@id": "#process/syngenic_3",
+    "executesProtocol": {
+      "@id": "#protocol/syngenic"
+    },
+    "parameterValues": [],
+    "inputs": [
+      {
+        "@id": "#source/06_B2_syngenic_42days_UKy_GCH_rep3"
+      }
+    ],
+    "outputs": [],
+    "nextProcess": {
+      "@id": "#process/mouse_tissue_collection_6"
+    }
+  },
+  {
+    "@id": "#process/mouse_tissue_collection_6",
+    "executesProtocol": {
+      "@id": "#protocol/mouse_tissue_collection"
+    },
+    "parameterValues": [],
+    "inputs": [],
+    "outputs": [
+      {
+        "@id": "#sample/06_B2_Plasma_syngenic_42days_170427_UKy_GCH_rep3"
+      }
+    ],
+    "nextProcess": {
+      "@id": "#process/tissue_quench_6"
+    },
+    "previousProcess": {
+      "@id": "#process/syngenic_3"
+    }
+  },
+  {
+    "@id": "#process/tissue_quench_6",
+    "executesProtocol": {
+      "@id": "#protocol/tissue_quench"
+    },
+    "parameterValues": [],
+    "inputs": [],
+    "outputs": [],
+    "nextProcess": {
+      "@id": "#process/frozen_tissue_grind_6"
+    },
+    "previousProcess": {
+      "@id": "#process/mouse_tissue_collection_6"
+    }
+  },
+  {
+    "@id": "#process/frozen_tissue_grind_6",
+    "executesProtocol": {
+      "@id": "#protocol/frozen_tissue_grind"
+    },
+    "parameterValues": [],
+    "inputs": [],
+    "outputs": [
+      {
+        "@id": "#sample/06_B2_Colon_syngenic_42days_170427_UKy_GCH_rep3"
+      },
+      {
+        "@id": "#sample/06_B2_Liver_syngenic_42days_170427_UKy_GCH_rep3"
+      },
+      {
+        "@id": "#sample/06_B2_SI_syngenic_42days_170427_UKy_GCH_rep3"
+      },
+      {
+        "@id": "#sample/06_B2_Spleen_syngenic_42days_170427_UKy_GCH_rep3"
+      },
+      {
+        "@id": "#sample/21_B2_Lung_syngenic_42days_170427_UKy_GCH_rep3"
+      }
+    ],
+    "nextProcess": {
+      "@id": "#process/polar_extraction_21"
+    },
+    "previousProcess": {
+      "@id": "#process/tissue_quench_6"
+    }
+  },
+  {
+    "@id": "#process/polar_extraction_21",
+    "executesProtocol": {
+      "@id": "#protocol/polar_extraction"
+    },
+    "parameterValues": [],
+    "inputs": [
+      {
+        "@id": "#sample/06_B2_Colon_syngenic_42days_170427_UKy_GCH_rep3"
+      }
+    ],
+    "outputs": [
+      {
+        "@id": "#sample/06_B2_Colon_syngenic_42days_170427_UKy_GCH_rep3-polar-FTMS_A"
+      },
+      {
+        "@id": "#sample/06_B2_Colon_syngenic_42days_170427_UKy_GCH_rep3-polar-FTMS_B"
+      },
+      {
+        "@id": "#sample/06_B2_Colon_syngenic_42days_170427_UKy_GCH_rep3-polar-FTMS_C"
+      },
+      {
+        "@id": "#sample/06_B2_Colon_syngenic_42days_170427_UKy_GCH_rep3-polar-ICMS_B"
+      },
+      {
+        "@id": "#sample/06_B2_Colon_syngenic_42days_170427_UKy_GCH_rep3-polar-NMR_B"
+      }
+    ],
+    "previousProcess": {
+      "@id": "#process/frozen_tissue_grind_6"
+    }
+  },
+  {
+    "@id": "#process/polar_extraction_22",
+    "executesProtocol": {
+      "@id": "#protocol/polar_extraction"
+    },
+    "parameterValues": [],
+    "inputs": [
+      {
+        "@id": "#sample/06_B2_Liver_syngenic_42days_170427_UKy_GCH_rep3"
+      }
+    ],
+    "outputs": [
+      {
+        "@id": "#sample/06_B2_Liver_syngenic_42days_170427_UKy_GCH_rep3-polar-FTMS_A"
+      },
+      {
+        "@id": "#sample/06_B2_Liver_syngenic_42days_170427_UKy_GCH_rep3-polar-FTMS_B"
+      },
+      {
+        "@id": "#sample/06_B2_Liver_syngenic_42days_170427_UKy_GCH_rep3-polar-FTMS_C"
+      },
+      {
+        "@id": "#sample/06_B2_Liver_syngenic_42days_170427_UKy_GCH_rep3-polar-ICMS_B"
+      },
+      {
+        "@id": "#sample/06_B2_Liver_syngenic_42days_170427_UKy_GCH_rep3-polar-NMR_B"
+      }
+    ],
+    "previousProcess": {
+      "@id": "#process/frozen_tissue_grind_6"
+    }
+  },
+  {
+    "@id": "#process/polar_extraction_23",
+    "executesProtocol": {
+      "@id": "#protocol/polar_extraction"
+    },
+    "parameterValues": [],
+    "inputs": [
+      {
+        "@id": "#sample/06_B2_SI_syngenic_42days_170427_UKy_GCH_rep3"
+      }
+    ],
+    "outputs": [
+      {
+        "@id": "#sample/06_B2_SI_syngenic_42days_170427_UKy_GCH_rep3-polar-FTMS_A"
+      },
+      {
+        "@id": "#sample/06_B2_SI_syngenic_42days_170427_UKy_GCH_rep3-polar-FTMS_B"
+      },
+      {
+        "@id": "#sample/06_B2_SI_syngenic_42days_170427_UKy_GCH_rep3-polar-FTMS_C"
+      },
+      {
+        "@id": "#sample/06_B2_SI_syngenic_42days_170427_UKy_GCH_rep3-polar-ICMS_B"
+      },
+      {
+        "@id": "#sample/06_B2_SI_syngenic_42days_170427_UKy_GCH_rep3-polar-NMR_B"
+      }
+    ],
+    "previousProcess": {
+      "@id": "#process/frozen_tissue_grind_6"
+    }
+  },
+  {
+    "@id": "#process/polar_extraction_24",
+    "executesProtocol": {
+      "@id": "#protocol/polar_extraction"
+    },
+    "parameterValues": [],
+    "inputs": [
+      {
+        "@id": "#sample/06_B2_Spleen_syngenic_42days_170427_UKy_GCH_rep3"
+      }
+    ],
+    "outputs": [
+      {
+        "@id": "#sample/06_B2_Spleen_syngenic_42days_170427_UKy_GCH_rep3-polar-FTMS_A"
+      },
+      {
+        "@id": "#sample/06_B2_Spleen_syngenic_42days_170427_UKy_GCH_rep3-polar-FTMS_B"
+      },
+      {
+        "@id": "#sample/06_B2_Spleen_syngenic_42days_170427_UKy_GCH_rep3-polar-FTMS_C"
+      },
+      {
+        "@id": "#sample/06_B2_Spleen_syngenic_42days_170427_UKy_GCH_rep3-polar-ICMS_B"
+      },
+      {
+        "@id": "#sample/06_B2_Spleen_syngenic_42days_170427_UKy_GCH_rep3-polar-NMR_B"
+      }
+    ],
+    "previousProcess": {
+      "@id": "#process/frozen_tissue_grind_6"
+    }
+  },
+  {
+    "@id": "#process/allogenic_1",
+    "executesProtocol": {
+      "@id": "#protocol/allogenic"
+    },
+    "parameterValues": [],
+    "inputs": [
+      {
+        "@id": "#source/07_C1-1_allogenic_42days_UKy_GCH_rep1"
+      }
+    ],
+    "outputs": [],
+    "nextProcess": {
+      "@id": "#process/mouse_tissue_collection_7"
+    }
+  },
+  {
+    "@id": "#process/mouse_tissue_collection_7",
+    "executesProtocol": {
+      "@id": "#protocol/mouse_tissue_collection"
+    },
+    "parameterValues": [],
+    "inputs": [],
+    "outputs": [
+      {
+        "@id": "#sample/07_C1-1_Plasma_allogenic_42days_170427_UKy_GCH_rep1"
+      }
+    ],
+    "nextProcess": {
+      "@id": "#process/tissue_quench_7"
+    },
+    "previousProcess": {
+      "@id": "#process/allogenic_1"
+    }
+  },
+  {
+    "@id": "#process/tissue_quench_7",
+    "executesProtocol": {
+      "@id": "#protocol/tissue_quench"
+    },
+    "parameterValues": [],
+    "inputs": [],
+    "outputs": [],
+    "nextProcess": {
+      "@id": "#process/frozen_tissue_grind_7"
+    },
+    "previousProcess": {
+      "@id": "#process/mouse_tissue_collection_7"
+    }
+  },
+  {
+    "@id": "#process/frozen_tissue_grind_7",
+    "executesProtocol": {
+      "@id": "#protocol/frozen_tissue_grind"
+    },
+    "parameterValues": [],
+    "inputs": [],
+    "outputs": [
+      {
+        "@id": "#sample/07_C1-1_Colon_allogenic_42days_170427_UKy_GCH_rep1"
+      },
+      {
+        "@id": "#sample/07_C1-1_Liver_allogenic_42days_170427_UKy_GCH_rep1"
+      },
+      {
+        "@id": "#sample/07_C1-1_SI_allogenic_42days_170427_UKy_GCH_rep1"
+      },
+      {
+        "@id": "#sample/07_C1-1_Spleen_allogenic_42days_170427_UKy_GCH_rep1"
+      },
+      {
+        "@id": "#sample/22_C1-1_Lung_allogenic_42days_170427_UKy_GCH_rep1"
+      }
+    ],
+    "nextProcess": {
+      "@id": "#process/polar_extraction_25"
+    },
+    "previousProcess": {
+      "@id": "#process/tissue_quench_7"
+    }
+  },
+  {
+    "@id": "#process/polar_extraction_25",
+    "executesProtocol": {
+      "@id": "#protocol/polar_extraction"
+    },
+    "parameterValues": [],
+    "inputs": [
+      {
+        "@id": "#sample/07_C1-1_Colon_allogenic_42days_170427_UKy_GCH_rep1"
+      }
+    ],
+    "outputs": [
+      {
+        "@id": "#sample/07_C1-1_Colon_allogenic_42days_170427_UKy_GCH_rep1-polar-FTMS_A"
+      },
+      {
+        "@id": "#sample/07_C1-1_Colon_allogenic_42days_170427_UKy_GCH_rep1-polar-FTMS_B"
+      },
+      {
+        "@id": "#sample/07_C1-1_Colon_allogenic_42days_170427_UKy_GCH_rep1-polar-FTMS_C"
+      },
+      {
+        "@id": "#sample/07_C1-1_Colon_allogenic_42days_170427_UKy_GCH_rep1-polar-ICMS_B"
+      },
+      {
+        "@id": "#sample/07_C1-1_Colon_allogenic_42days_170427_UKy_GCH_rep1-polar-NMR_B"
+      }
+    ],
+    "previousProcess": {
+      "@id": "#process/frozen_tissue_grind_7"
+    }
+  },
+  {
+    "@id": "#process/polar_extraction_26",
+    "executesProtocol": {
+      "@id": "#protocol/polar_extraction"
+    },
+    "parameterValues": [],
+    "inputs": [
+      {
+        "@id": "#sample/07_C1-1_Liver_allogenic_42days_170427_UKy_GCH_rep1"
+      }
+    ],
+    "outputs": [
+      {
+        "@id": "#sample/07_C1-1_Liver_allogenic_42days_170427_UKy_GCH_rep1-polar-FTMS_A"
+      },
+      {
+        "@id": "#sample/07_C1-1_Liver_allogenic_42days_170427_UKy_GCH_rep1-polar-FTMS_B"
+      },
+      {
+        "@id": "#sample/07_C1-1_Liver_allogenic_42days_170427_UKy_GCH_rep1-polar-FTMS_C"
+      },
+      {
+        "@id": "#sample/07_C1-1_Liver_allogenic_42days_170427_UKy_GCH_rep1-polar-ICMS_B"
+      },
+      {
+        "@id": "#sample/07_C1-1_Liver_allogenic_42days_170427_UKy_GCH_rep1-polar-NMR_B"
+      }
+    ],
+    "previousProcess": {
+      "@id": "#process/frozen_tissue_grind_7"
+    }
+  },
+  {
+    "@id": "#process/polar_extraction_27",
+    "executesProtocol": {
+      "@id": "#protocol/polar_extraction"
+    },
+    "parameterValues": [],
+    "inputs": [
+      {
+        "@id": "#sample/07_C1-1_SI_allogenic_42days_170427_UKy_GCH_rep1"
+      }
+    ],
+    "outputs": [
+      {
+        "@id": "#sample/07_C1-1_SI_allogenic_42days_170427_UKy_GCH_rep1-polar-FTMS_A"
+      },
+      {
+        "@id": "#sample/07_C1-1_SI_allogenic_42days_170427_UKy_GCH_rep1-polar-FTMS_B"
+      },
+      {
+        "@id": "#sample/07_C1-1_SI_allogenic_42days_170427_UKy_GCH_rep1-polar-FTMS_C"
+      },
+      {
+        "@id": "#sample/07_C1-1_SI_allogenic_42days_170427_UKy_GCH_rep1-polar-ICMS_B"
+      },
+      {
+        "@id": "#sample/07_C1-1_SI_allogenic_42days_170427_UKy_GCH_rep1-polar-NMR_B"
+      }
+    ],
+    "previousProcess": {
+      "@id": "#process/frozen_tissue_grind_7"
+    }
+  },
+  {
+    "@id": "#process/polar_extraction_28",
+    "executesProtocol": {
+      "@id": "#protocol/polar_extraction"
+    },
+    "parameterValues": [],
+    "inputs": [
+      {
+        "@id": "#sample/07_C1-1_Spleen_allogenic_42days_170427_UKy_GCH_rep1"
+      }
+    ],
+    "outputs": [
+      {
+        "@id": "#sample/07_C1-1_Spleen_allogenic_42days_170427_UKy_GCH_rep1-polar-FTMS_A"
+      },
+      {
+        "@id": "#sample/07_C1-1_Spleen_allogenic_42days_170427_UKy_GCH_rep1-polar-FTMS_B"
+      },
+      {
+        "@id": "#sample/07_C1-1_Spleen_allogenic_42days_170427_UKy_GCH_rep1-polar-FTMS_C"
+      },
+      {
+        "@id": "#sample/07_C1-1_Spleen_allogenic_42days_170427_UKy_GCH_rep1-polar-ICMS_B"
+      },
+      {
+        "@id": "#sample/07_C1-1_Spleen_allogenic_42days_170427_UKy_GCH_rep1-polar-NMR_B"
+      }
+    ],
+    "previousProcess": {
+      "@id": "#process/frozen_tissue_grind_7"
+    }
+  },
+  {
+    "@id": "#process/allogenic_2",
+    "executesProtocol": {
+      "@id": "#protocol/allogenic"
+    },
+    "parameterValues": [],
+    "inputs": [
+      {
+        "@id": "#source/08_C1-2_allogenic_42days_UKy_GCH_rep2"
+      }
+    ],
+    "outputs": [],
+    "nextProcess": {
+      "@id": "#process/mouse_tissue_collection_8"
+    }
+  },
+  {
+    "@id": "#process/mouse_tissue_collection_8",
+    "executesProtocol": {
+      "@id": "#protocol/mouse_tissue_collection"
+    },
+    "parameterValues": [],
+    "inputs": [],
+    "outputs": [
+      {
+        "@id": "#sample/08_C1-2_Plasma_allogenic_42days_170427_UKy_GCH_rep2"
+      }
+    ],
+    "nextProcess": {
+      "@id": "#process/tissue_quench_8"
+    },
+    "previousProcess": {
+      "@id": "#process/allogenic_2"
+    }
+  },
+  {
+    "@id": "#process/tissue_quench_8",
+    "executesProtocol": {
+      "@id": "#protocol/tissue_quench"
+    },
+    "parameterValues": [],
+    "inputs": [],
+    "outputs": [],
+    "nextProcess": {
+      "@id": "#process/frozen_tissue_grind_8"
+    },
+    "previousProcess": {
+      "@id": "#process/mouse_tissue_collection_8"
+    }
+  },
+  {
+    "@id": "#process/frozen_tissue_grind_8",
+    "executesProtocol": {
+      "@id": "#protocol/frozen_tissue_grind"
+    },
+    "parameterValues": [],
+    "inputs": [],
+    "outputs": [
+      {
+        "@id": "#sample/08_C1-2_Colon_allogenic_42days_170427_UKy_GCH_rep2"
+      },
+      {
+        "@id": "#sample/08_C1-2_Liver_allogenic_42days_170427_UKy_GCH_rep2"
+      },
+      {
+        "@id": "#sample/08_C1-2_SI_allogenic_42days_170427_UKy_GCH_rep2"
+      },
+      {
+        "@id": "#sample/08_C1-2_Spleen_allogenic_42days_170427_UKy_GCH_rep2"
+      },
+      {
+        "@id": "#sample/23_C1-2_Lung_allogenic_42days_170427_UKy_GCH_rep2"
+      }
+    ],
+    "nextProcess": {
+      "@id": "#process/polar_extraction_29"
+    },
+    "previousProcess": {
+      "@id": "#process/tissue_quench_8"
+    }
+  },
+  {
+    "@id": "#process/polar_extraction_29",
+    "executesProtocol": {
+      "@id": "#protocol/polar_extraction"
+    },
+    "parameterValues": [],
+    "inputs": [
+      {
+        "@id": "#sample/08_C1-2_Colon_allogenic_42days_170427_UKy_GCH_rep2"
+      }
+    ],
+    "outputs": [
+      {
+        "@id": "#sample/08_C1-2_Colon_allogenic_42days_170427_UKy_GCH_rep2-polar-FTMS_A"
+      },
+      {
+        "@id": "#sample/08_C1-2_Colon_allogenic_42days_170427_UKy_GCH_rep2-polar-FTMS_B"
+      },
+      {
+        "@id": "#sample/08_C1-2_Colon_allogenic_42days_170427_UKy_GCH_rep2-polar-FTMS_C"
+      },
+      {
+        "@id": "#sample/08_C1-2_Colon_allogenic_42days_170427_UKy_GCH_rep2-polar-ICMS_B"
+      },
+      {
+        "@id": "#sample/08_C1-2_Colon_allogenic_42days_170427_UKy_GCH_rep2-polar-NMR_B"
+      }
+    ],
+    "previousProcess": {
+      "@id": "#process/frozen_tissue_grind_8"
+    }
+  },
+  {
+    "@id": "#process/polar_extraction_30",
+    "executesProtocol": {
+      "@id": "#protocol/polar_extraction"
+    },
+    "parameterValues": [],
+    "inputs": [
+      {
+        "@id": "#sample/08_C1-2_Liver_allogenic_42days_170427_UKy_GCH_rep2"
+      }
+    ],
+    "outputs": [
+      {
+        "@id": "#sample/08_C1-2_Liver_allogenic_42days_170427_UKy_GCH_rep2-polar-FTMS_A"
+      },
+      {
+        "@id": "#sample/08_C1-2_Liver_allogenic_42days_170427_UKy_GCH_rep2-polar-FTMS_B"
+      },
+      {
+        "@id": "#sample/08_C1-2_Liver_allogenic_42days_170427_UKy_GCH_rep2-polar-FTMS_C"
+      },
+      {
+        "@id": "#sample/08_C1-2_Liver_allogenic_42days_170427_UKy_GCH_rep2-polar-ICMS_B"
+      },
+      {
+        "@id": "#sample/08_C1-2_Liver_allogenic_42days_170427_UKy_GCH_rep2-polar-NMR_B"
+      }
+    ],
+    "previousProcess": {
+      "@id": "#process/frozen_tissue_grind_8"
+    }
+  },
+  {
+    "@id": "#process/polar_extraction_31",
+    "executesProtocol": {
+      "@id": "#protocol/polar_extraction"
+    },
+    "parameterValues": [],
+    "inputs": [
+      {
+        "@id": "#sample/08_C1-2_SI_allogenic_42days_170427_UKy_GCH_rep2"
+      }
+    ],
+    "outputs": [
+      {
+        "@id": "#sample/08_C1-2_SI_allogenic_42days_170427_UKy_GCH_rep2-polar-FTMS_A"
+      },
+      {
+        "@id": "#sample/08_C1-2_SI_allogenic_42days_170427_UKy_GCH_rep2-polar-FTMS_B"
+      },
+      {
+        "@id": "#sample/08_C1-2_SI_allogenic_42days_170427_UKy_GCH_rep2-polar-FTMS_C"
+      },
+      {
+        "@id": "#sample/08_C1-2_SI_allogenic_42days_170427_UKy_GCH_rep2-polar-ICMS_B"
+      },
+      {
+        "@id": "#sample/08_C1-2_SI_allogenic_42days_170427_UKy_GCH_rep2-polar-NMR_B"
+      }
+    ],
+    "previousProcess": {
+      "@id": "#process/frozen_tissue_grind_8"
+    }
+  },
+  {
+    "@id": "#process/polar_extraction_32",
+    "executesProtocol": {
+      "@id": "#protocol/polar_extraction"
+    },
+    "parameterValues": [],
+    "inputs": [
+      {
+        "@id": "#sample/08_C1-2_Spleen_allogenic_42days_170427_UKy_GCH_rep2"
+      }
+    ],
+    "outputs": [
+      {
+        "@id": "#sample/08_C1-2_Spleen_allogenic_42days_170427_UKy_GCH_rep2-polar-FTMS_A"
+      },
+      {
+        "@id": "#sample/08_C1-2_Spleen_allogenic_42days_170427_UKy_GCH_rep2-polar-FTMS_B"
+      },
+      {
+        "@id": "#sample/08_C1-2_Spleen_allogenic_42days_170427_UKy_GCH_rep2-polar-FTMS_C"
+      },
+      {
+        "@id": "#sample/08_C1-2_Spleen_allogenic_42days_170427_UKy_GCH_rep2-polar-ICMS_B"
+      },
+      {
+        "@id": "#sample/08_C1-2_Spleen_allogenic_42days_170427_UKy_GCH_rep2-polar-NMR_B"
+      }
+    ],
+    "previousProcess": {
+      "@id": "#process/frozen_tissue_grind_8"
+    }
+  },
+  {
+    "@id": "#process/allogenic_3",
+    "executesProtocol": {
+      "@id": "#protocol/allogenic"
+    },
+    "parameterValues": [],
+    "inputs": [
+      {
+        "@id": "#source/09_C2-0_allogenic_42days_UKy_GCH_rep1"
+      }
+    ],
+    "outputs": [],
+    "nextProcess": {
+      "@id": "#process/mouse_tissue_collection_9"
+    }
+  },
+  {
+    "@id": "#process/mouse_tissue_collection_9",
+    "executesProtocol": {
+      "@id": "#protocol/mouse_tissue_collection"
+    },
+    "parameterValues": [],
+    "inputs": [],
+    "outputs": [
+      {
+        "@id": "#sample/09_C2-0_Plasma_allogenic_42days_170427_UKy_GCH_rep1"
+      }
+    ],
+    "nextProcess": {
+      "@id": "#process/tissue_quench_9"
+    },
+    "previousProcess": {
+      "@id": "#process/allogenic_3"
+    }
+  },
+  {
+    "@id": "#process/tissue_quench_9",
+    "executesProtocol": {
+      "@id": "#protocol/tissue_quench"
+    },
+    "parameterValues": [],
+    "inputs": [],
+    "outputs": [],
+    "nextProcess": {
+      "@id": "#process/frozen_tissue_grind_9"
+    },
+    "previousProcess": {
+      "@id": "#process/mouse_tissue_collection_9"
+    }
+  },
+  {
+    "@id": "#process/frozen_tissue_grind_9",
+    "executesProtocol": {
+      "@id": "#protocol/frozen_tissue_grind"
+    },
+    "parameterValues": [],
+    "inputs": [],
+    "outputs": [
+      {
+        "@id": "#sample/09_C2-0_Colon_allogenic_42days_170427_UKy_GCH_rep1"
+      },
+      {
+        "@id": "#sample/09_C2-0_Liver_allogenic_42days_170427_UKy_GCH_rep1"
+      },
+      {
+        "@id": "#sample/09_C2-0_SI_allogenic_42days_170427_UKy_GCH_rep1"
+      },
+      {
+        "@id": "#sample/09_C2-0_Spleen_allogenic_42days_170427_UKy_GCH_rep1"
+      },
+      {
+        "@id": "#sample/24_C2-0_Lung_allogenic_42days_170427_UKy_GCH_rep1"
+      }
+    ],
+    "nextProcess": {
+      "@id": "#process/polar_extraction_33"
+    },
+    "previousProcess": {
+      "@id": "#process/tissue_quench_9"
+    }
+  },
+  {
+    "@id": "#process/polar_extraction_33",
+    "executesProtocol": {
+      "@id": "#protocol/polar_extraction"
+    },
+    "parameterValues": [],
+    "inputs": [
+      {
+        "@id": "#sample/09_C2-0_Colon_allogenic_42days_170427_UKy_GCH_rep1"
+      }
+    ],
+    "outputs": [
+      {
+        "@id": "#sample/09_C2-0_Colon_allogenic_42days_170427_UKy_GCH_rep1-polar-FTMS_A"
+      },
+      {
+        "@id": "#sample/09_C2-0_Colon_allogenic_42days_170427_UKy_GCH_rep1-polar-FTMS_B"
+      },
+      {
+        "@id": "#sample/09_C2-0_Colon_allogenic_42days_170427_UKy_GCH_rep1-polar-FTMS_C"
+      },
+      {
+        "@id": "#sample/09_C2-0_Colon_allogenic_42days_170427_UKy_GCH_rep1-polar-ICMS_B"
+      },
+      {
+        "@id": "#sample/09_C2-0_Colon_allogenic_42days_170427_UKy_GCH_rep1-polar-NMR_B"
+      }
+    ],
+    "previousProcess": {
+      "@id": "#process/frozen_tissue_grind_9"
+    }
+  },
+  {
+    "@id": "#process/polar_extraction_34",
+    "executesProtocol": {
+      "@id": "#protocol/polar_extraction"
+    },
+    "parameterValues": [],
+    "inputs": [
+      {
+        "@id": "#sample/09_C2-0_Liver_allogenic_42days_170427_UKy_GCH_rep1"
+      }
+    ],
+    "outputs": [
+      {
+        "@id": "#sample/09_C2-0_Liver_allogenic_42days_170427_UKy_GCH_rep1-polar-FTMS_A"
+      },
+      {
+        "@id": "#sample/09_C2-0_Liver_allogenic_42days_170427_UKy_GCH_rep1-polar-FTMS_B"
+      },
+      {
+        "@id": "#sample/09_C2-0_Liver_allogenic_42days_170427_UKy_GCH_rep1-polar-FTMS_C"
+      },
+      {
+        "@id": "#sample/09_C2-0_Liver_allogenic_42days_170427_UKy_GCH_rep1-polar-ICMS_B"
+      },
+      {
+        "@id": "#sample/09_C2-0_Liver_allogenic_42days_170427_UKy_GCH_rep1-polar-NMR_B"
+      }
+    ],
+    "previousProcess": {
+      "@id": "#process/frozen_tissue_grind_9"
+    }
+  },
+  {
+    "@id": "#process/polar_extraction_35",
+    "executesProtocol": {
+      "@id": "#protocol/polar_extraction"
+    },
+    "parameterValues": [],
+    "inputs": [
+      {
+        "@id": "#sample/09_C2-0_SI_allogenic_42days_170427_UKy_GCH_rep1"
+      }
+    ],
+    "outputs": [
+      {
+        "@id": "#sample/09_C2-0_SI_allogenic_42days_170427_UKy_GCH_rep1-polar-FTMS_A"
+      },
+      {
+        "@id": "#sample/09_C2-0_SI_allogenic_42days_170427_UKy_GCH_rep1-polar-FTMS_B"
+      },
+      {
+        "@id": "#sample/09_C2-0_SI_allogenic_42days_170427_UKy_GCH_rep1-polar-FTMS_C"
+      },
+      {
+        "@id": "#sample/09_C2-0_SI_allogenic_42days_170427_UKy_GCH_rep1-polar-ICMS_B"
+      },
+      {
+        "@id": "#sample/09_C2-0_SI_allogenic_42days_170427_UKy_GCH_rep1-polar-NMR_B"
+      }
+    ],
+    "previousProcess": {
+      "@id": "#process/frozen_tissue_grind_9"
+    }
+  },
+  {
+    "@id": "#process/polar_extraction_36",
+    "executesProtocol": {
+      "@id": "#protocol/polar_extraction"
+    },
+    "parameterValues": [],
+    "inputs": [
+      {
+        "@id": "#sample/09_C2-0_Spleen_allogenic_42days_170427_UKy_GCH_rep1"
+      }
+    ],
+    "outputs": [
+      {
+        "@id": "#sample/09_C2-0_Spleen_allogenic_42days_170427_UKy_GCH_rep1-polar-FTMS_A"
+      },
+      {
+        "@id": "#sample/09_C2-0_Spleen_allogenic_42days_170427_UKy_GCH_rep1-polar-FTMS_B"
+      },
+      {
+        "@id": "#sample/09_C2-0_Spleen_allogenic_42days_170427_UKy_GCH_rep1-polar-FTMS_C"
+      },
+      {
+        "@id": "#sample/09_C2-0_Spleen_allogenic_42days_170427_UKy_GCH_rep1-polar-ICMS_B"
+      },
+      {
+        "@id": "#sample/09_C2-0_Spleen_allogenic_42days_170427_UKy_GCH_rep1-polar-NMR_B"
+      }
+    ],
+    "previousProcess": {
+      "@id": "#process/frozen_tissue_grind_9"
+    }
+  },
+  {
+    "@id": "#process/syngenic_4",
+    "executesProtocol": {
+      "@id": "#protocol/syngenic"
+    },
+    "parameterValues": [],
+    "inputs": [
+      {
+        "@id": "#source/10_B1-0_syngenic_7days_UKy_GCH_rep1"
+      }
+    ],
+    "outputs": [],
+    "nextProcess": {
+      "@id": "#process/mouse_tissue_collection_10"
+    }
+  },
+  {
+    "@id": "#process/mouse_tissue_collection_10",
+    "executesProtocol": {
+      "@id": "#protocol/mouse_tissue_collection"
+    },
+    "parameterValues": [],
+    "inputs": [],
+    "outputs": [
+      {
+        "@id": "#sample/10_B1-0_Plasma_syngenic_7days_170427_UKy_GCH_rep1"
+      }
+    ],
+    "nextProcess": {
+      "@id": "#process/tissue_quench_10"
+    },
+    "previousProcess": {
+      "@id": "#process/syngenic_4"
+    }
+  },
+  {
+    "@id": "#process/tissue_quench_10",
+    "executesProtocol": {
+      "@id": "#protocol/tissue_quench"
+    },
+    "parameterValues": [],
+    "inputs": [],
+    "outputs": [],
+    "nextProcess": {
+      "@id": "#process/frozen_tissue_grind_10"
+    },
+    "previousProcess": {
+      "@id": "#process/mouse_tissue_collection_10"
+    }
+  },
+  {
+    "@id": "#process/frozen_tissue_grind_10",
+    "executesProtocol": {
+      "@id": "#protocol/frozen_tissue_grind"
+    },
+    "parameterValues": [],
+    "inputs": [],
+    "outputs": [
+      {
+        "@id": "#sample/10_B1-0_Colon_syngenic_7days_170427_UKy_GCH_rep1"
+      },
+      {
+        "@id": "#sample/10_B1-0_Liver_syngenic_7days_170427_UKy_GCH_rep1"
+      },
+      {
+        "@id": "#sample/10_B1-0_SI_syngenic_7days_170427_UKy_GCH_rep1"
+      },
+      {
+        "@id": "#sample/10_B1-0_Spleen_syngenic_7days_170427_UKy_GCH_rep1"
+      },
+      {
+        "@id": "#sample/25_B1-0_Lung_syngenic_7days_170427_UKy_GCH_rep1"
+      }
+    ],
+    "nextProcess": {
+      "@id": "#process/polar_extraction_37"
+    },
+    "previousProcess": {
+      "@id": "#process/tissue_quench_10"
+    }
+  },
+  {
+    "@id": "#process/polar_extraction_37",
+    "executesProtocol": {
+      "@id": "#protocol/polar_extraction"
+    },
+    "parameterValues": [],
+    "inputs": [
+      {
+        "@id": "#sample/10_B1-0_Colon_syngenic_7days_170427_UKy_GCH_rep1"
+      }
+    ],
+    "outputs": [
+      {
+        "@id": "#sample/10_B1-0_Colon_syngenic_7days_170427_UKy_GCH_rep1-polar-FTMS_A"
+      },
+      {
+        "@id": "#sample/10_B1-0_Colon_syngenic_7days_170427_UKy_GCH_rep1-polar-FTMS_B"
+      },
+      {
+        "@id": "#sample/10_B1-0_Colon_syngenic_7days_170427_UKy_GCH_rep1-polar-FTMS_C"
+      },
+      {
+        "@id": "#sample/10_B1-0_Colon_syngenic_7days_170427_UKy_GCH_rep1-polar-ICMS_B"
+      },
+      {
+        "@id": "#sample/10_B1-0_Colon_syngenic_7days_170427_UKy_GCH_rep1-polar-NMR_B"
+      }
+    ],
+    "previousProcess": {
+      "@id": "#process/frozen_tissue_grind_10"
+    }
+  },
+  {
+    "@id": "#process/polar_extraction_38",
+    "executesProtocol": {
+      "@id": "#protocol/polar_extraction"
+    },
+    "parameterValues": [],
+    "inputs": [
+      {
+        "@id": "#sample/10_B1-0_Liver_syngenic_7days_170427_UKy_GCH_rep1"
+      }
+    ],
+    "outputs": [
+      {
+        "@id": "#sample/10_B1-0_Liver_syngenic_7days_170427_UKy_GCH_rep1-polar-FTMS_A"
+      },
+      {
+        "@id": "#sample/10_B1-0_Liver_syngenic_7days_170427_UKy_GCH_rep1-polar-FTMS_B"
+      },
+      {
+        "@id": "#sample/10_B1-0_Liver_syngenic_7days_170427_UKy_GCH_rep1-polar-FTMS_C"
+      },
+      {
+        "@id": "#sample/10_B1-0_Liver_syngenic_7days_170427_UKy_GCH_rep1-polar-ICMS_B"
+      },
+      {
+        "@id": "#sample/10_B1-0_Liver_syngenic_7days_170427_UKy_GCH_rep1-polar-NMR_B"
+      }
+    ],
+    "previousProcess": {
+      "@id": "#process/frozen_tissue_grind_10"
+    }
+  },
+  {
+    "@id": "#process/polar_extraction_39",
+    "executesProtocol": {
+      "@id": "#protocol/polar_extraction"
+    },
+    "parameterValues": [],
+    "inputs": [
+      {
+        "@id": "#sample/10_B1-0_SI_syngenic_7days_170427_UKy_GCH_rep1"
+      }
+    ],
+    "outputs": [
+      {
+        "@id": "#sample/10_B1-0_SI_syngenic_7days_170427_UKy_GCH_rep1-polar-FTMS_A"
+      },
+      {
+        "@id": "#sample/10_B1-0_SI_syngenic_7days_170427_UKy_GCH_rep1-polar-FTMS_B"
+      },
+      {
+        "@id": "#sample/10_B1-0_SI_syngenic_7days_170427_UKy_GCH_rep1-polar-FTMS_C"
+      },
+      {
+        "@id": "#sample/10_B1-0_SI_syngenic_7days_170427_UKy_GCH_rep1-polar-ICMS_B"
+      },
+      {
+        "@id": "#sample/10_B1-0_SI_syngenic_7days_170427_UKy_GCH_rep1-polar-NMR_B"
+      }
+    ],
+    "previousProcess": {
+      "@id": "#process/frozen_tissue_grind_10"
+    }
+  },
+  {
+    "@id": "#process/polar_extraction_40",
+    "executesProtocol": {
+      "@id": "#protocol/polar_extraction"
+    },
+    "parameterValues": [],
+    "inputs": [
+      {
+        "@id": "#sample/10_B1-0_Spleen_syngenic_7days_170427_UKy_GCH_rep1"
+      }
+    ],
+    "outputs": [
+      {
+        "@id": "#sample/10_B1-0_Spleen_syngenic_7days_170427_UKy_GCH_rep1-polar-FTMS_A"
+      },
+      {
+        "@id": "#sample/10_B1-0_Spleen_syngenic_7days_170427_UKy_GCH_rep1-polar-FTMS_B"
+      },
+      {
+        "@id": "#sample/10_B1-0_Spleen_syngenic_7days_170427_UKy_GCH_rep1-polar-FTMS_C"
+      },
+      {
+        "@id": "#sample/10_B1-0_Spleen_syngenic_7days_170427_UKy_GCH_rep1-polar-ICMS_B"
+      },
+      {
+        "@id": "#sample/10_B1-0_Spleen_syngenic_7days_170427_UKy_GCH_rep1-polar-NMR_B"
+      }
+    ],
+    "previousProcess": {
+      "@id": "#process/frozen_tissue_grind_10"
+    }
+  },
+  {
+    "@id": "#process/syngenic_5",
+    "executesProtocol": {
+      "@id": "#protocol/syngenic"
+    },
+    "parameterValues": [],
+    "inputs": [
+      {
+        "@id": "#source/11_B1-1_syngenic_7days_UKy_GCH_rep2"
+      }
+    ],
+    "outputs": [],
+    "nextProcess": {
+      "@id": "#process/mouse_tissue_collection_11"
+    }
+  },
+  {
+    "@id": "#process/mouse_tissue_collection_11",
+    "executesProtocol": {
+      "@id": "#protocol/mouse_tissue_collection"
+    },
+    "parameterValues": [],
+    "inputs": [],
+    "outputs": [
+      {
+        "@id": "#sample/11_B1-1_Plasma_syngenic_7days_170427_UKy_GCH_rep2"
+      }
+    ],
+    "nextProcess": {
+      "@id": "#process/tissue_quench_11"
+    },
+    "previousProcess": {
+      "@id": "#process/syngenic_5"
+    }
+  },
+  {
+    "@id": "#process/tissue_quench_11",
+    "executesProtocol": {
+      "@id": "#protocol/tissue_quench"
+    },
+    "parameterValues": [],
+    "inputs": [],
+    "outputs": [],
+    "nextProcess": {
+      "@id": "#process/frozen_tissue_grind_11"
+    },
+    "previousProcess": {
+      "@id": "#process/mouse_tissue_collection_11"
+    }
+  },
+  {
+    "@id": "#process/frozen_tissue_grind_11",
+    "executesProtocol": {
+      "@id": "#protocol/frozen_tissue_grind"
+    },
+    "parameterValues": [],
+    "inputs": [],
+    "outputs": [
+      {
+        "@id": "#sample/11_B1-1_Colon_syngenic_7days_170427_UKy_GCH_rep2"
+      },
+      {
+        "@id": "#sample/11_B1-1_Liver_syngenic_7days_170427_UKy_GCH_rep2"
+      },
+      {
+        "@id": "#sample/11_B1-1_SI_syngenic_7days_170427_UKy_GCH_rep2"
+      },
+      {
+        "@id": "#sample/11_B1-1_Spleen_syngenic_7days_170427_UKy_GCH_rep2"
+      },
+      {
+        "@id": "#sample/26_B1-1_Lung_syngenic_7days_170427_UKy_GCH_rep2"
+      }
+    ],
+    "nextProcess": {
+      "@id": "#process/polar_extraction_41"
+    },
+    "previousProcess": {
+      "@id": "#process/tissue_quench_11"
+    }
+  },
+  {
+    "@id": "#process/polar_extraction_41",
+    "executesProtocol": {
+      "@id": "#protocol/polar_extraction"
+    },
+    "parameterValues": [],
+    "inputs": [
+      {
+        "@id": "#sample/11_B1-1_Colon_syngenic_7days_170427_UKy_GCH_rep2"
+      }
+    ],
+    "outputs": [
+      {
+        "@id": "#sample/11_B1-1_Colon_syngenic_7days_170427_UKy_GCH_rep2-polar-FTMS_A"
+      },
+      {
+        "@id": "#sample/11_B1-1_Colon_syngenic_7days_170427_UKy_GCH_rep2-polar-FTMS_B"
+      },
+      {
+        "@id": "#sample/11_B1-1_Colon_syngenic_7days_170427_UKy_GCH_rep2-polar-FTMS_C"
+      },
+      {
+        "@id": "#sample/11_B1-1_Colon_syngenic_7days_170427_UKy_GCH_rep2-polar-ICMS_B"
+      },
+      {
+        "@id": "#sample/11_B1-1_Colon_syngenic_7days_170427_UKy_GCH_rep2-polar-NMR_B"
+      }
+    ],
+    "previousProcess": {
+      "@id": "#process/frozen_tissue_grind_11"
+    }
+  },
+  {
+    "@id": "#process/polar_extraction_42",
+    "executesProtocol": {
+      "@id": "#protocol/polar_extraction"
+    },
+    "parameterValues": [],
+    "inputs": [
+      {
+        "@id": "#sample/11_B1-1_Liver_syngenic_7days_170427_UKy_GCH_rep2"
+      }
+    ],
+    "outputs": [
+      {
+        "@id": "#sample/11_B1-1_Liver_syngenic_7days_170427_UKy_GCH_rep2-polar-FTMS_A"
+      },
+      {
+        "@id": "#sample/11_B1-1_Liver_syngenic_7days_170427_UKy_GCH_rep2-polar-FTMS_B"
+      },
+      {
+        "@id": "#sample/11_B1-1_Liver_syngenic_7days_170427_UKy_GCH_rep2-polar-FTMS_C"
+      },
+      {
+        "@id": "#sample/11_B1-1_Liver_syngenic_7days_170427_UKy_GCH_rep2-polar-ICMS_B"
+      },
+      {
+        "@id": "#sample/11_B1-1_Liver_syngenic_7days_170427_UKy_GCH_rep2-polar-NMR_B"
+      }
+    ],
+    "previousProcess": {
+      "@id": "#process/frozen_tissue_grind_11"
+    }
+  },
+  {
+    "@id": "#process/polar_extraction_43",
+    "executesProtocol": {
+      "@id": "#protocol/polar_extraction"
+    },
+    "parameterValues": [],
+    "inputs": [
+      {
+        "@id": "#sample/11_B1-1_SI_syngenic_7days_170427_UKy_GCH_rep2"
+      }
+    ],
+    "outputs": [
+      {
+        "@id": "#sample/11_B1-1_SI_syngenic_7days_170427_UKy_GCH_rep2-polar-FTMS_A"
+      },
+      {
+        "@id": "#sample/11_B1-1_SI_syngenic_7days_170427_UKy_GCH_rep2-polar-FTMS_B"
+      },
+      {
+        "@id": "#sample/11_B1-1_SI_syngenic_7days_170427_UKy_GCH_rep2-polar-FTMS_C"
+      },
+      {
+        "@id": "#sample/11_B1-1_SI_syngenic_7days_170427_UKy_GCH_rep2-polar-ICMS_B"
+      },
+      {
+        "@id": "#sample/11_B1-1_SI_syngenic_7days_170427_UKy_GCH_rep2-polar-NMR_B"
+      }
+    ],
+    "previousProcess": {
+      "@id": "#process/frozen_tissue_grind_11"
+    }
+  },
+  {
+    "@id": "#process/polar_extraction_44",
+    "executesProtocol": {
+      "@id": "#protocol/polar_extraction"
+    },
+    "parameterValues": [],
+    "inputs": [
+      {
+        "@id": "#sample/11_B1-1_Spleen_syngenic_7days_170427_UKy_GCH_rep2"
+      }
+    ],
+    "outputs": [
+      {
+        "@id": "#sample/11_B1-1_Spleen_syngenic_7days_170427_UKy_GCH_rep2-polar-FTMS_A"
+      },
+      {
+        "@id": "#sample/11_B1-1_Spleen_syngenic_7days_170427_UKy_GCH_rep2-polar-FTMS_B"
+      },
+      {
+        "@id": "#sample/11_B1-1_Spleen_syngenic_7days_170427_UKy_GCH_rep2-polar-FTMS_C"
+      },
+      {
+        "@id": "#sample/11_B1-1_Spleen_syngenic_7days_170427_UKy_GCH_rep2-polar-ICMS_B"
+      },
+      {
+        "@id": "#sample/11_B1-1_Spleen_syngenic_7days_170427_UKy_GCH_rep2-polar-NMR_B"
+      }
+    ],
+    "previousProcess": {
+      "@id": "#process/frozen_tissue_grind_11"
+    }
+  },
+  {
+    "@id": "#process/syngenic_6",
+    "executesProtocol": {
+      "@id": "#protocol/syngenic"
+    },
+    "parameterValues": [],
+    "inputs": [
+      {
+        "@id": "#source/12_B1-2_syngenic_7days_UKy_GCH_rep3"
+      }
+    ],
+    "outputs": [],
+    "nextProcess": {
+      "@id": "#process/mouse_tissue_collection_12"
+    }
+  },
+  {
+    "@id": "#process/mouse_tissue_collection_12",
+    "executesProtocol": {
+      "@id": "#protocol/mouse_tissue_collection"
+    },
+    "parameterValues": [],
+    "inputs": [],
+    "outputs": [
+      {
+        "@id": "#sample/12_B1-2_Plasma_syngenic_7days_170427_UKy_GCH_rep3"
+      }
+    ],
+    "nextProcess": {
+      "@id": "#process/tissue_quench_12"
+    },
+    "previousProcess": {
+      "@id": "#process/syngenic_6"
+    }
+  },
+  {
+    "@id": "#process/tissue_quench_12",
+    "executesProtocol": {
+      "@id": "#protocol/tissue_quench"
+    },
+    "parameterValues": [],
+    "inputs": [],
+    "outputs": [],
+    "nextProcess": {
+      "@id": "#process/frozen_tissue_grind_12"
+    },
+    "previousProcess": {
+      "@id": "#process/mouse_tissue_collection_12"
+    }
+  },
+  {
+    "@id": "#process/frozen_tissue_grind_12",
+    "executesProtocol": {
+      "@id": "#protocol/frozen_tissue_grind"
+    },
+    "parameterValues": [],
+    "inputs": [],
+    "outputs": [
+      {
+        "@id": "#sample/12_B1-2_Colon_syngenic_7days_170427_UKy_GCH_rep3"
+      },
+      {
+        "@id": "#sample/12_B1-2_Liver_syngenic_7days_170427_UKy_GCH_rep3"
+      },
+      {
+        "@id": "#sample/12_B1-2_SI_syngenic_7days_170427_UKy_GCH_rep3"
+      },
+      {
+        "@id": "#sample/12_B1-2_Spleen_syngenic_7days_170427_UKy_GCH_rep3"
+      },
+      {
+        "@id": "#sample/27_B1-2_Lung_syngenic_7days_170427_UKy_GCH_rep3"
+      }
+    ],
+    "nextProcess": {
+      "@id": "#process/polar_extraction_45"
+    },
+    "previousProcess": {
+      "@id": "#process/tissue_quench_12"
+    }
+  },
+  {
+    "@id": "#process/polar_extraction_45",
+    "executesProtocol": {
+      "@id": "#protocol/polar_extraction"
+    },
+    "parameterValues": [],
+    "inputs": [
+      {
+        "@id": "#sample/12_B1-2_Colon_syngenic_7days_170427_UKy_GCH_rep3"
+      }
+    ],
+    "outputs": [
+      {
+        "@id": "#sample/12_B1-2_Colon_syngenic_7days_170427_UKy_GCH_rep3-polar-FTMS_A"
+      },
+      {
+        "@id": "#sample/12_B1-2_Colon_syngenic_7days_170427_UKy_GCH_rep3-polar-FTMS_B"
+      },
+      {
+        "@id": "#sample/12_B1-2_Colon_syngenic_7days_170427_UKy_GCH_rep3-polar-FTMS_C"
+      },
+      {
+        "@id": "#sample/12_B1-2_Colon_syngenic_7days_170427_UKy_GCH_rep3-polar-ICMS_B"
+      },
+      {
+        "@id": "#sample/12_B1-2_Colon_syngenic_7days_170427_UKy_GCH_rep3-polar-NMR_B"
+      }
+    ],
+    "previousProcess": {
+      "@id": "#process/frozen_tissue_grind_12"
+    }
+  },
+  {
+    "@id": "#process/polar_extraction_46",
+    "executesProtocol": {
+      "@id": "#protocol/polar_extraction"
+    },
+    "parameterValues": [],
+    "inputs": [
+      {
+        "@id": "#sample/12_B1-2_Liver_syngenic_7days_170427_UKy_GCH_rep3"
+      }
+    ],
+    "outputs": [
+      {
+        "@id": "#sample/12_B1-2_Liver_syngenic_7days_170427_UKy_GCH_rep3-polar-FTMS_A"
+      },
+      {
+        "@id": "#sample/12_B1-2_Liver_syngenic_7days_170427_UKy_GCH_rep3-polar-FTMS_B"
+      },
+      {
+        "@id": "#sample/12_B1-2_Liver_syngenic_7days_170427_UKy_GCH_rep3-polar-FTMS_C"
+      },
+      {
+        "@id": "#sample/12_B1-2_Liver_syngenic_7days_170427_UKy_GCH_rep3-polar-ICMS_B"
+      },
+      {
+        "@id": "#sample/12_B1-2_Liver_syngenic_7days_170427_UKy_GCH_rep3-polar-NMR_B"
+      }
+    ],
+    "previousProcess": {
+      "@id": "#process/frozen_tissue_grind_12"
+    }
+  },
+  {
+    "@id": "#process/polar_extraction_47",
+    "executesProtocol": {
+      "@id": "#protocol/polar_extraction"
+    },
+    "parameterValues": [],
+    "inputs": [
+      {
+        "@id": "#sample/12_B1-2_SI_syngenic_7days_170427_UKy_GCH_rep3"
+      }
+    ],
+    "outputs": [
+      {
+        "@id": "#sample/12_B1-2_SI_syngenic_7days_170427_UKy_GCH_rep3-polar-FTMS_A"
+      },
+      {
+        "@id": "#sample/12_B1-2_SI_syngenic_7days_170427_UKy_GCH_rep3-polar-FTMS_B"
+      },
+      {
+        "@id": "#sample/12_B1-2_SI_syngenic_7days_170427_UKy_GCH_rep3-polar-FTMS_C"
+      },
+      {
+        "@id": "#sample/12_B1-2_SI_syngenic_7days_170427_UKy_GCH_rep3-polar-ICMS_B"
+      },
+      {
+        "@id": "#sample/12_B1-2_SI_syngenic_7days_170427_UKy_GCH_rep3-polar-NMR_B"
+      }
+    ],
+    "previousProcess": {
+      "@id": "#process/frozen_tissue_grind_12"
+    }
+  },
+  {
+    "@id": "#process/polar_extraction_48",
+    "executesProtocol": {
+      "@id": "#protocol/polar_extraction"
+    },
+    "parameterValues": [],
+    "inputs": [
+      {
+        "@id": "#sample/12_B1-2_Spleen_syngenic_7days_170427_UKy_GCH_rep3"
+      }
+    ],
+    "outputs": [
+      {
+        "@id": "#sample/12_B1-2_Spleen_syngenic_7days_170427_UKy_GCH_rep3-polar-FTMS_A"
+      },
+      {
+        "@id": "#sample/12_B1-2_Spleen_syngenic_7days_170427_UKy_GCH_rep3-polar-FTMS_B"
+      },
+      {
+        "@id": "#sample/12_B1-2_Spleen_syngenic_7days_170427_UKy_GCH_rep3-polar-FTMS_C"
+      },
+      {
+        "@id": "#sample/12_B1-2_Spleen_syngenic_7days_170427_UKy_GCH_rep3-polar-ICMS_B"
+      },
+      {
+        "@id": "#sample/12_B1-2_Spleen_syngenic_7days_170427_UKy_GCH_rep3-polar-NMR_B"
+      }
+    ],
+    "previousProcess": {
+      "@id": "#process/frozen_tissue_grind_12"
+    }
+  },
+  {
+    "@id": "#process/allogenic_4",
+    "executesProtocol": {
+      "@id": "#protocol/allogenic"
+    },
+    "parameterValues": [],
+    "inputs": [
+      {
+        "@id": "#source/13_C1-1_allogenic_7days_UKy_GCH_rep1"
+      }
+    ],
+    "outputs": [],
+    "nextProcess": {
+      "@id": "#process/mouse_tissue_collection_13"
+    }
+  },
+  {
+    "@id": "#process/mouse_tissue_collection_13",
+    "executesProtocol": {
+      "@id": "#protocol/mouse_tissue_collection"
+    },
+    "parameterValues": [],
+    "inputs": [],
+    "outputs": [
+      {
+        "@id": "#sample/13_C1-1_Plasma_allogenic_7days_170427_UKy_GCH_rep1"
+      }
+    ],
+    "nextProcess": {
+      "@id": "#process/tissue_quench_13"
+    },
+    "previousProcess": {
+      "@id": "#process/allogenic_4"
+    }
+  },
+  {
+    "@id": "#process/tissue_quench_13",
+    "executesProtocol": {
+      "@id": "#protocol/tissue_quench"
+    },
+    "parameterValues": [],
+    "inputs": [],
+    "outputs": [],
+    "nextProcess": {
+      "@id": "#process/frozen_tissue_grind_13"
+    },
+    "previousProcess": {
+      "@id": "#process/mouse_tissue_collection_13"
+    }
+  },
+  {
+    "@id": "#process/frozen_tissue_grind_13",
+    "executesProtocol": {
+      "@id": "#protocol/frozen_tissue_grind"
+    },
+    "parameterValues": [],
+    "inputs": [],
+    "outputs": [
+      {
+        "@id": "#sample/13_C1-1_Colon_allogenic_7days_170427_UKy_GCH_rep1"
+      },
+      {
+        "@id": "#sample/13_C1-1_Liver_allogenic_7days_170427_UKy_GCH_rep1"
+      },
+      {
+        "@id": "#sample/13_C1-1_SI_allogenic_7days_170427_UKy_GCH_rep1"
+      },
+      {
+        "@id": "#sample/13_C1-1_Spleen_allogenic_7days_170427_UKy_GCH_rep1"
+      },
+      {
+        "@id": "#sample/28_C1-1_Lung_allogenic_7days_170427_UKy_GCH_rep1"
+      }
+    ],
+    "nextProcess": {
+      "@id": "#process/polar_extraction_49"
+    },
+    "previousProcess": {
+      "@id": "#process/tissue_quench_13"
+    }
+  },
+  {
+    "@id": "#process/polar_extraction_49",
+    "executesProtocol": {
+      "@id": "#protocol/polar_extraction"
+    },
+    "parameterValues": [],
+    "inputs": [
+      {
+        "@id": "#sample/13_C1-1_Colon_allogenic_7days_170427_UKy_GCH_rep1"
+      }
+    ],
+    "outputs": [
+      {
+        "@id": "#sample/13_C1-1_Colon_allogenic_7days_170427_UKy_GCH_rep1-polar-FTMS_A"
+      },
+      {
+        "@id": "#sample/13_C1-1_Colon_allogenic_7days_170427_UKy_GCH_rep1-polar-FTMS_B"
+      },
+      {
+        "@id": "#sample/13_C1-1_Colon_allogenic_7days_170427_UKy_GCH_rep1-polar-FTMS_C"
+      },
+      {
+        "@id": "#sample/13_C1-1_Colon_allogenic_7days_170427_UKy_GCH_rep1-polar-ICMS_B"
+      },
+      {
+        "@id": "#sample/13_C1-1_Colon_allogenic_7days_170427_UKy_GCH_rep1-polar-NMR_B"
+      }
+    ],
+    "previousProcess": {
+      "@id": "#process/frozen_tissue_grind_13"
+    }
+  },
+  {
+    "@id": "#process/polar_extraction_50",
+    "executesProtocol": {
+      "@id": "#protocol/polar_extraction"
+    },
+    "parameterValues": [],
+    "inputs": [
+      {
+        "@id": "#sample/13_C1-1_Liver_allogenic_7days_170427_UKy_GCH_rep1"
+      }
+    ],
+    "outputs": [
+      {
+        "@id": "#sample/13_C1-1_Liver_allogenic_7days_170427_UKy_GCH_rep1-polar-FTMS_A"
+      },
+      {
+        "@id": "#sample/13_C1-1_Liver_allogenic_7days_170427_UKy_GCH_rep1-polar-FTMS_B"
+      },
+      {
+        "@id": "#sample/13_C1-1_Liver_allogenic_7days_170427_UKy_GCH_rep1-polar-FTMS_C"
+      },
+      {
+        "@id": "#sample/13_C1-1_Liver_allogenic_7days_170427_UKy_GCH_rep1-polar-ICMS_B"
+      },
+      {
+        "@id": "#sample/13_C1-1_Liver_allogenic_7days_170427_UKy_GCH_rep1-polar-NMR_B"
+      }
+    ],
+    "previousProcess": {
+      "@id": "#process/frozen_tissue_grind_13"
+    }
+  },
+  {
+    "@id": "#process/polar_extraction_51",
+    "executesProtocol": {
+      "@id": "#protocol/polar_extraction"
+    },
+    "parameterValues": [],
+    "inputs": [
+      {
+        "@id": "#sample/13_C1-1_SI_allogenic_7days_170427_UKy_GCH_rep1"
+      }
+    ],
+    "outputs": [
+      {
+        "@id": "#sample/13_C1-1_SI_allogenic_7days_170427_UKy_GCH_rep1-polar-FTMS_A"
+      },
+      {
+        "@id": "#sample/13_C1-1_SI_allogenic_7days_170427_UKy_GCH_rep1-polar-FTMS_B"
+      },
+      {
+        "@id": "#sample/13_C1-1_SI_allogenic_7days_170427_UKy_GCH_rep1-polar-FTMS_C"
+      },
+      {
+        "@id": "#sample/13_C1-1_SI_allogenic_7days_170427_UKy_GCH_rep1-polar-ICMS_B"
+      },
+      {
+        "@id": "#sample/13_C1-1_SI_allogenic_7days_170427_UKy_GCH_rep1-polar-NMR_B"
+      }
+    ],
+    "previousProcess": {
+      "@id": "#process/frozen_tissue_grind_13"
+    }
+  },
+  {
+    "@id": "#process/polar_extraction_52",
+    "executesProtocol": {
+      "@id": "#protocol/polar_extraction"
+    },
+    "parameterValues": [],
+    "inputs": [
+      {
+        "@id": "#sample/13_C1-1_Spleen_allogenic_7days_170427_UKy_GCH_rep1"
+      }
+    ],
+    "outputs": [
+      {
+        "@id": "#sample/13_C1-1_Spleen_allogenic_7days_170427_UKy_GCH_rep1-polar-FTMS_A"
+      },
+      {
+        "@id": "#sample/13_C1-1_Spleen_allogenic_7days_170427_UKy_GCH_rep1-polar-FTMS_B"
+      },
+      {
+        "@id": "#sample/13_C1-1_Spleen_allogenic_7days_170427_UKy_GCH_rep1-polar-FTMS_C"
+      },
+      {
+        "@id": "#sample/13_C1-1_Spleen_allogenic_7days_170427_UKy_GCH_rep1-polar-ICMS_B"
+      },
+      {
+        "@id": "#sample/13_C1-1_Spleen_allogenic_7days_170427_UKy_GCH_rep1-polar-NMR_B"
+      }
+    ],
+    "previousProcess": {
+      "@id": "#process/frozen_tissue_grind_13"
+    }
+  },
+  {
+    "@id": "#process/allogenic_5",
+    "executesProtocol": {
+      "@id": "#protocol/allogenic"
+    },
+    "parameterValues": [],
+    "inputs": [
+      {
+        "@id": "#source/14_C1-2_allogenic_7days_UKy_GCH_rep2"
+      }
+    ],
+    "outputs": [],
+    "nextProcess": {
+      "@id": "#process/mouse_tissue_collection_14"
+    }
+  },
+  {
+    "@id": "#process/mouse_tissue_collection_14",
+    "executesProtocol": {
+      "@id": "#protocol/mouse_tissue_collection"
+    },
+    "parameterValues": [],
+    "inputs": [],
+    "outputs": [
+      {
+        "@id": "#sample/14_C1-2_Plasma_allogenic_7days_170427_UKy_GCH_rep2"
+      }
+    ],
+    "nextProcess": {
+      "@id": "#process/tissue_quench_14"
+    },
+    "previousProcess": {
+      "@id": "#process/allogenic_5"
+    }
+  },
+  {
+    "@id": "#process/tissue_quench_14",
+    "executesProtocol": {
+      "@id": "#protocol/tissue_quench"
+    },
+    "parameterValues": [],
+    "inputs": [],
+    "outputs": [],
+    "nextProcess": {
+      "@id": "#process/frozen_tissue_grind_14"
+    },
+    "previousProcess": {
+      "@id": "#process/mouse_tissue_collection_14"
+    }
+  },
+  {
+    "@id": "#process/frozen_tissue_grind_14",
+    "executesProtocol": {
+      "@id": "#protocol/frozen_tissue_grind"
+    },
+    "parameterValues": [],
+    "inputs": [],
+    "outputs": [
+      {
+        "@id": "#sample/14_C1-2_Colon_allogenic_7days_170427_UKy_GCH_rep2"
+      },
+      {
+        "@id": "#sample/14_C1-2_Liver_allogenic_7days_170427_UKy_GCH_rep2"
+      },
+      {
+        "@id": "#sample/14_C1-2_SI_allogenic_7days_170427_UKy_GCH_rep2"
+      },
+      {
+        "@id": "#sample/14_C1-2_Spleen_allogenic_7days_170427_UKy_GCH_rep2"
+      },
+      {
+        "@id": "#sample/29_C1-2_Lung_allogenic_7days_170427_UKy_GCH_rep2"
+      }
+    ],
+    "nextProcess": {
+      "@id": "#process/polar_extraction_53"
+    },
+    "previousProcess": {
+      "@id": "#process/tissue_quench_14"
+    }
+  },
+  {
+    "@id": "#process/polar_extraction_53",
+    "executesProtocol": {
+      "@id": "#protocol/polar_extraction"
+    },
+    "parameterValues": [],
+    "inputs": [
+      {
+        "@id": "#sample/14_C1-2_Colon_allogenic_7days_170427_UKy_GCH_rep2"
+      }
+    ],
+    "outputs": [
+      {
+        "@id": "#sample/14_C1-2_Colon_allogenic_7days_170427_UKy_GCH_rep2-polar-FTMS_A"
+      },
+      {
+        "@id": "#sample/14_C1-2_Colon_allogenic_7days_170427_UKy_GCH_rep2-polar-FTMS_B"
+      },
+      {
+        "@id": "#sample/14_C1-2_Colon_allogenic_7days_170427_UKy_GCH_rep2-polar-FTMS_C"
+      },
+      {
+        "@id": "#sample/14_C1-2_Colon_allogenic_7days_170427_UKy_GCH_rep2-polar-ICMS_B"
+      },
+      {
+        "@id": "#sample/14_C1-2_Colon_allogenic_7days_170427_UKy_GCH_rep2-polar-NMR_B"
+      }
+    ],
+    "previousProcess": {
+      "@id": "#process/frozen_tissue_grind_14"
+    }
+  },
+  {
+    "@id": "#process/polar_extraction_54",
+    "executesProtocol": {
+      "@id": "#protocol/polar_extraction"
+    },
+    "parameterValues": [],
+    "inputs": [
+      {
+        "@id": "#sample/14_C1-2_Liver_allogenic_7days_170427_UKy_GCH_rep2"
+      }
+    ],
+    "outputs": [
+      {
+        "@id": "#sample/14_C1-2_Liver_allogenic_7days_170427_UKy_GCH_rep2-polar-FTMS_A"
+      },
+      {
+        "@id": "#sample/14_C1-2_Liver_allogenic_7days_170427_UKy_GCH_rep2-polar-FTMS_B"
+      },
+      {
+        "@id": "#sample/14_C1-2_Liver_allogenic_7days_170427_UKy_GCH_rep2-polar-FTMS_C"
+      },
+      {
+        "@id": "#sample/14_C1-2_Liver_allogenic_7days_170427_UKy_GCH_rep2-polar-ICMS_B"
+      },
+      {
+        "@id": "#sample/14_C1-2_Liver_allogenic_7days_170427_UKy_GCH_rep2-polar-NMR_B"
+      }
+    ],
+    "previousProcess": {
+      "@id": "#process/frozen_tissue_grind_14"
+    }
+  },
+  {
+    "@id": "#process/polar_extraction_55",
+    "executesProtocol": {
+      "@id": "#protocol/polar_extraction"
+    },
+    "parameterValues": [],
+    "inputs": [
+      {
+        "@id": "#sample/14_C1-2_SI_allogenic_7days_170427_UKy_GCH_rep2"
+      }
+    ],
+    "outputs": [
+      {
+        "@id": "#sample/14_C1-2_SI_allogenic_7days_170427_UKy_GCH_rep2-polar-FTMS_A"
+      },
+      {
+        "@id": "#sample/14_C1-2_SI_allogenic_7days_170427_UKy_GCH_rep2-polar-FTMS_B"
+      },
+      {
+        "@id": "#sample/14_C1-2_SI_allogenic_7days_170427_UKy_GCH_rep2-polar-FTMS_C"
+      },
+      {
+        "@id": "#sample/14_C1-2_SI_allogenic_7days_170427_UKy_GCH_rep2-polar-ICMS_B"
+      },
+      {
+        "@id": "#sample/14_C1-2_SI_allogenic_7days_170427_UKy_GCH_rep2-polar-NMR_B"
+      }
+    ],
+    "previousProcess": {
+      "@id": "#process/frozen_tissue_grind_14"
+    }
+  },
+  {
+    "@id": "#process/polar_extraction_56",
+    "executesProtocol": {
+      "@id": "#protocol/polar_extraction"
+    },
+    "parameterValues": [],
+    "inputs": [
+      {
+        "@id": "#sample/14_C1-2_Spleen_allogenic_7days_170427_UKy_GCH_rep2"
+      }
+    ],
+    "outputs": [
+      {
+        "@id": "#sample/14_C1-2_Spleen_allogenic_7days_170427_UKy_GCH_rep2-polar-FTMS_A"
+      },
+      {
+        "@id": "#sample/14_C1-2_Spleen_allogenic_7days_170427_UKy_GCH_rep2-polar-FTMS_B"
+      },
+      {
+        "@id": "#sample/14_C1-2_Spleen_allogenic_7days_170427_UKy_GCH_rep2-polar-FTMS_C"
+      },
+      {
+        "@id": "#sample/14_C1-2_Spleen_allogenic_7days_170427_UKy_GCH_rep2-polar-ICMS_B"
+      },
+      {
+        "@id": "#sample/14_C1-2_Spleen_allogenic_7days_170427_UKy_GCH_rep2-polar-NMR_B"
+      }
+    ],
+    "previousProcess": {
+      "@id": "#process/frozen_tissue_grind_14"
+    }
+  },
+  {
+    "@id": "#process/allogenic_6",
+    "executesProtocol": {
+      "@id": "#protocol/allogenic"
+    },
+    "parameterValues": [],
+    "inputs": [
+      {
+        "@id": "#source/15_C1-20_allogenic_7days_UKy_GCH_rep3"
+      }
+    ],
+    "outputs": [],
+    "nextProcess": {
+      "@id": "#process/mouse_tissue_collection_15"
+    }
+  },
+  {
+    "@id": "#process/mouse_tissue_collection_15",
+    "executesProtocol": {
+      "@id": "#protocol/mouse_tissue_collection"
+    },
+    "parameterValues": [],
+    "inputs": [],
+    "outputs": [
+      {
+        "@id": "#sample/15_C1-20_Plasma_allogenic_7days_170427_UKy_GCH_rep3"
+      }
+    ],
+    "nextProcess": {
+      "@id": "#process/tissue_quench_15"
+    },
+    "previousProcess": {
+      "@id": "#process/allogenic_6"
+    }
+  },
+  {
+    "@id": "#process/tissue_quench_15",
+    "executesProtocol": {
+      "@id": "#protocol/tissue_quench"
+    },
+    "parameterValues": [],
+    "inputs": [],
+    "outputs": [],
+    "nextProcess": {
+      "@id": "#process/frozen_tissue_grind_15"
+    },
+    "previousProcess": {
+      "@id": "#process/mouse_tissue_collection_15"
+    }
+  },
+  {
+    "@id": "#process/frozen_tissue_grind_15",
+    "executesProtocol": {
+      "@id": "#protocol/frozen_tissue_grind"
+    },
+    "parameterValues": [],
+    "inputs": [],
+    "outputs": [
+      {
+        "@id": "#sample/15_C1-20_Colon_allogenic_7days_170427_UKy_GCH_rep3"
+      },
+      {
+        "@id": "#sample/15_C1-20_Liver_allogenic_7days_170427_UKy_GCH_rep3"
+      },
+      {
+        "@id": "#sample/15_C1-20_SI_allogenic_7days_170427_UKy_GCH_rep3"
+      },
+      {
+        "@id": "#sample/15_C1-20_Spleen_allogenic_7days_170427_UKy_GCH_rep3"
+      },
+      {
+        "@id": "#sample/30_C1-20_Lung_allogenic_7days_170427_UKy_GCH_rep3"
+      }
+    ],
+    "nextProcess": {
+      "@id": "#process/polar_extraction_57"
+    },
+    "previousProcess": {
+      "@id": "#process/tissue_quench_15"
+    }
+  },
+  {
+    "@id": "#process/polar_extraction_57",
+    "executesProtocol": {
+      "@id": "#protocol/polar_extraction"
+    },
+    "parameterValues": [],
+    "inputs": [
+      {
+        "@id": "#sample/15_C1-20_Colon_allogenic_7days_170427_UKy_GCH_rep3"
+      }
+    ],
+    "outputs": [
+      {
+        "@id": "#sample/15_C1-20_Colon_allogenic_7days_170427_UKy_GCH_rep3-polar-FTMS_A"
+      },
+      {
+        "@id": "#sample/15_C1-20_Colon_allogenic_7days_170427_UKy_GCH_rep3-polar-FTMS_B"
+      },
+      {
+        "@id": "#sample/15_C1-20_Colon_allogenic_7days_170427_UKy_GCH_rep3-polar-FTMS_C"
+      },
+      {
+        "@id": "#sample/15_C1-20_Colon_allogenic_7days_170427_UKy_GCH_rep3-polar-ICMS_B"
+      },
+      {
+        "@id": "#sample/15_C1-20_Colon_allogenic_7days_170427_UKy_GCH_rep3-polar-NMR_B"
+      }
+    ],
+    "previousProcess": {
+      "@id": "#process/frozen_tissue_grind_15"
+    }
+  },
+  {
+    "@id": "#process/polar_extraction_58",
+    "executesProtocol": {
+      "@id": "#protocol/polar_extraction"
+    },
+    "parameterValues": [],
+    "inputs": [
+      {
+        "@id": "#sample/15_C1-20_Liver_allogenic_7days_170427_UKy_GCH_rep3"
+      }
+    ],
+    "outputs": [
+      {
+        "@id": "#sample/15_C1-20_Liver_allogenic_7days_170427_UKy_GCH_rep3-polar-FTMS_A"
+      },
+      {
+        "@id": "#sample/15_C1-20_Liver_allogenic_7days_170427_UKy_GCH_rep3-polar-FTMS_B"
+      },
+      {
+        "@id": "#sample/15_C1-20_Liver_allogenic_7days_170427_UKy_GCH_rep3-polar-FTMS_C"
+      },
+      {
+        "@id": "#sample/15_C1-20_Liver_allogenic_7days_170427_UKy_GCH_rep3-polar-ICMS_B"
+      },
+      {
+        "@id": "#sample/15_C1-20_Liver_allogenic_7days_170427_UKy_GCH_rep3-polar-NMR_B"
+      }
+    ],
+    "previousProcess": {
+      "@id": "#process/frozen_tissue_grind_15"
+    }
+  },
+  {
+    "@id": "#process/polar_extraction_59",
+    "executesProtocol": {
+      "@id": "#protocol/polar_extraction"
+    },
+    "parameterValues": [],
+    "inputs": [
+      {
+        "@id": "#sample/15_C1-20_SI_allogenic_7days_170427_UKy_GCH_rep3"
+      }
+    ],
+    "outputs": [
+      {
+        "@id": "#sample/15_C1-20_SI_allogenic_7days_170427_UKy_GCH_rep3-polar-FTMS_A"
+      },
+      {
+        "@id": "#sample/15_C1-20_SI_allogenic_7days_170427_UKy_GCH_rep3-polar-FTMS_B"
+      },
+      {
+        "@id": "#sample/15_C1-20_SI_allogenic_7days_170427_UKy_GCH_rep3-polar-FTMS_C"
+      },
+      {
+        "@id": "#sample/15_C1-20_SI_allogenic_7days_170427_UKy_GCH_rep3-polar-ICMS_B"
+      },
+      {
+        "@id": "#sample/15_C1-20_SI_allogenic_7days_170427_UKy_GCH_rep3-polar-NMR_B"
+      }
+    ],
+    "previousProcess": {
+      "@id": "#process/frozen_tissue_grind_15"
+    }
+  },
+  {
+    "@id": "#process/polar_extraction_60",
+    "executesProtocol": {
+      "@id": "#protocol/polar_extraction"
+    },
+    "parameterValues": [],
+    "inputs": [
+      {
+        "@id": "#sample/15_C1-20_Spleen_allogenic_7days_170427_UKy_GCH_rep3"
+      }
+    ],
+    "outputs": [
+      {
+        "@id": "#sample/15_C1-20_Spleen_allogenic_7days_170427_UKy_GCH_rep3-polar-FTMS_A"
+      },
+      {
+        "@id": "#sample/15_C1-20_Spleen_allogenic_7days_170427_UKy_GCH_rep3-polar-FTMS_B"
+      },
+      {
+        "@id": "#sample/15_C1-20_Spleen_allogenic_7days_170427_UKy_GCH_rep3-polar-FTMS_C"
+      },
+      {
+        "@id": "#sample/15_C1-20_Spleen_allogenic_7days_170427_UKy_GCH_rep3-polar-ICMS_B"
+      },
+      {
+        "@id": "#sample/15_C1-20_Spleen_allogenic_7days_170427_UKy_GCH_rep3-polar-NMR_B"
+      }
+    ],
+    "previousProcess": {
+      "@id": "#process/frozen_tissue_grind_15"
+    }
+  },
+  {
+    "@id": "#process/polar_extraction_61",
+    "executesProtocol": {
+      "@id": "#protocol/polar_extraction"
+    },
+    "parameterValues": [],
+    "inputs": [
+      {
+        "@id": "#sample/16_A0_Lung_naive_0days_170427_UKy_GCH_rep1"
+      }
+    ],
+    "outputs": [
+      {
+        "@id": "#sample/16_A0_Lung_naive_0days_170427_UKy_GCH_rep1-polar-FTMS_A"
+      },
+      {
+        "@id": "#sample/16_A0_Lung_naive_0days_170427_UKy_GCH_rep1-polar-FTMS_B"
+      },
+      {
+        "@id": "#sample/16_A0_Lung_naive_0days_170427_UKy_GCH_rep1-polar-FTMS_C"
+      },
+      {
+        "@id": "#sample/16_A0_Lung_naive_0days_170427_UKy_GCH_rep1-polar-ICMS_B"
+      },
+      {
+        "@id": "#sample/16_A0_Lung_naive_0days_170427_UKy_GCH_rep1-polar-NMR_B"
+      }
+    ],
+    "previousProcess": {
+      "@id": "#process/frozen_tissue_grind_1"
+    }
+  },
+  {
+    "@id": "#process/polar_extraction_62",
+    "executesProtocol": {
+      "@id": "#protocol/polar_extraction"
+    },
+    "parameterValues": [],
+    "inputs": [
+      {
+        "@id": "#sample/17_A1_Lung_naive_0days_170427_UKy_GCH_rep2"
+      }
+    ],
+    "outputs": [
+      {
+        "@id": "#sample/17_A1_Lung_naive_0days_170427_UKy_GCH_rep2-polar-FTMS_A"
+      },
+      {
+        "@id": "#sample/17_A1_Lung_naive_0days_170427_UKy_GCH_rep2-polar-FTMS_B"
+      },
+      {
+        "@id": "#sample/17_A1_Lung_naive_0days_170427_UKy_GCH_rep2-polar-FTMS_C"
+      },
+      {
+        "@id": "#sample/17_A1_Lung_naive_0days_170427_UKy_GCH_rep2-polar-ICMS_B"
+      },
+      {
+        "@id": "#sample/17_A1_Lung_naive_0days_170427_UKy_GCH_rep2-polar-NMR_B"
+      }
+    ],
+    "previousProcess": {
+      "@id": "#process/frozen_tissue_grind_2"
+    }
+  },
+  {
+    "@id": "#process/polar_extraction_63",
+    "executesProtocol": {
+      "@id": "#protocol/polar_extraction"
+    },
+    "parameterValues": [],
+    "inputs": [
+      {
+        "@id": "#sample/18_A2_Lung_naive_0days_170427_UKy_GCH_rep3"
+      }
+    ],
+    "outputs": [
+      {
+        "@id": "#sample/18_A2_Lung_naive_0days_170427_UKy_GCH_rep3-polar-FTMS_A"
+      },
+      {
+        "@id": "#sample/18_A2_Lung_naive_0days_170427_UKy_GCH_rep3-polar-FTMS_B"
+      },
+      {
+        "@id": "#sample/18_A2_Lung_naive_0days_170427_UKy_GCH_rep3-polar-FTMS_C"
+      },
+      {
+        "@id": "#sample/18_A2_Lung_naive_0days_170427_UKy_GCH_rep3-polar-ICMS_B"
+      },
+      {
+        "@id": "#sample/18_A2_Lung_naive_0days_170427_UKy_GCH_rep3-polar-NMR_B"
+      }
+    ],
+    "previousProcess": {
+      "@id": "#process/frozen_tissue_grind_3"
+    }
+  },
+  {
+    "@id": "#process/polar_extraction_64",
+    "executesProtocol": {
+      "@id": "#protocol/polar_extraction"
+    },
+    "parameterValues": [],
+    "inputs": [
+      {
+        "@id": "#sample/19_B0_Lung_syngenic_42days_170427_UKy_GCH_rep1"
+      }
+    ],
+    "outputs": [
+      {
+        "@id": "#sample/19_B0_Lung_syngenic_42days_170427_UKy_GCH_rep1-polar-FTMS_A"
+      },
+      {
+        "@id": "#sample/19_B0_Lung_syngenic_42days_170427_UKy_GCH_rep1-polar-FTMS_B"
+      },
+      {
+        "@id": "#sample/19_B0_Lung_syngenic_42days_170427_UKy_GCH_rep1-polar-FTMS_C"
+      },
+      {
+        "@id": "#sample/19_B0_Lung_syngenic_42days_170427_UKy_GCH_rep1-polar-ICMS_B"
+      },
+      {
+        "@id": "#sample/19_B0_Lung_syngenic_42days_170427_UKy_GCH_rep1-polar-NMR_B"
+      }
+    ],
+    "previousProcess": {
+      "@id": "#process/frozen_tissue_grind_4"
+    }
+  },
+  {
+    "@id": "#process/polar_extraction_65",
+    "executesProtocol": {
+      "@id": "#protocol/polar_extraction"
+    },
+    "parameterValues": [],
+    "inputs": [
+      {
+        "@id": "#sample/20_B1_Lung_syngenic_42days_170427_UKy_GCH_rep2"
+      }
+    ],
+    "outputs": [
+      {
+        "@id": "#sample/20_B1_Lung_syngenic_42days_170427_UKy_GCH_rep2-polar-FTMS_A"
+      },
+      {
+        "@id": "#sample/20_B1_Lung_syngenic_42days_170427_UKy_GCH_rep2-polar-FTMS_B"
+      },
+      {
+        "@id": "#sample/20_B1_Lung_syngenic_42days_170427_UKy_GCH_rep2-polar-FTMS_C"
+      },
+      {
+        "@id": "#sample/20_B1_Lung_syngenic_42days_170427_UKy_GCH_rep2-polar-ICMS_B"
+      },
+      {
+        "@id": "#sample/20_B1_Lung_syngenic_42days_170427_UKy_GCH_rep2-polar-NMR_B"
+      }
+    ],
+    "previousProcess": {
+      "@id": "#process/frozen_tissue_grind_5"
+    }
+  },
+  {
+    "@id": "#process/polar_extraction_66",
+    "executesProtocol": {
+      "@id": "#protocol/polar_extraction"
+    },
+    "parameterValues": [],
+    "inputs": [
+      {
+        "@id": "#sample/21_B2_Lung_syngenic_42days_170427_UKy_GCH_rep3"
+      }
+    ],
+    "outputs": [
+      {
+        "@id": "#sample/21_B2_Lung_syngenic_42days_170427_UKy_GCH_rep3-polar-FTMS_A"
+      },
+      {
+        "@id": "#sample/21_B2_Lung_syngenic_42days_170427_UKy_GCH_rep3-polar-FTMS_B"
+      },
+      {
+        "@id": "#sample/21_B2_Lung_syngenic_42days_170427_UKy_GCH_rep3-polar-FTMS_C"
+      },
+      {
+        "@id": "#sample/21_B2_Lung_syngenic_42days_170427_UKy_GCH_rep3-polar-ICMS_B"
+      },
+      {
+        "@id": "#sample/21_B2_Lung_syngenic_42days_170427_UKy_GCH_rep3-polar-NMR_B"
+      }
+    ],
+    "previousProcess": {
+      "@id": "#process/frozen_tissue_grind_6"
+    }
+  },
+  {
+    "@id": "#process/polar_extraction_67",
+    "executesProtocol": {
+      "@id": "#protocol/polar_extraction"
+    },
+    "parameterValues": [],
+    "inputs": [
+      {
+        "@id": "#sample/22_C1-1_Lung_allogenic_42days_170427_UKy_GCH_rep1"
+      }
+    ],
+    "outputs": [
+      {
+        "@id": "#sample/22_C1-1_Lung_allogenic_42days_170427_UKy_GCH_rep1-polar-FTMS_A"
+      },
+      {
+        "@id": "#sample/22_C1-1_Lung_allogenic_42days_170427_UKy_GCH_rep1-polar-FTMS_B"
+      },
+      {
+        "@id": "#sample/22_C1-1_Lung_allogenic_42days_170427_UKy_GCH_rep1-polar-FTMS_C"
+      },
+      {
+        "@id": "#sample/22_C1-1_Lung_allogenic_42days_170427_UKy_GCH_rep1-polar-ICMS_B"
+      },
+      {
+        "@id": "#sample/22_C1-1_Lung_allogenic_42days_170427_UKy_GCH_rep1-polar-NMR_B"
+      }
+    ],
+    "previousProcess": {
+      "@id": "#process/frozen_tissue_grind_7"
+    }
+  },
+  {
+    "@id": "#process/polar_extraction_68",
+    "executesProtocol": {
+      "@id": "#protocol/polar_extraction"
+    },
+    "parameterValues": [],
+    "inputs": [
+      {
+        "@id": "#sample/23_C1-2_Lung_allogenic_42days_170427_UKy_GCH_rep2"
+      }
+    ],
+    "outputs": [
+      {
+        "@id": "#sample/23_C1-2_Lung_allogenic_42days_170427_UKy_GCH_rep2-polar-FTMS_A"
+      },
+      {
+        "@id": "#sample/23_C1-2_Lung_allogenic_42days_170427_UKy_GCH_rep2-polar-FTMS_B"
+      },
+      {
+        "@id": "#sample/23_C1-2_Lung_allogenic_42days_170427_UKy_GCH_rep2-polar-FTMS_C"
+      },
+      {
+        "@id": "#sample/23_C1-2_Lung_allogenic_42days_170427_UKy_GCH_rep2-polar-ICMS_B"
+      },
+      {
+        "@id": "#sample/23_C1-2_Lung_allogenic_42days_170427_UKy_GCH_rep2-polar-NMR_B"
+      }
+    ],
+    "previousProcess": {
+      "@id": "#process/frozen_tissue_grind_8"
+    }
+  },
+  {
+    "@id": "#process/polar_extraction_69",
+    "executesProtocol": {
+      "@id": "#protocol/polar_extraction"
+    },
+    "parameterValues": [],
+    "inputs": [
+      {
+        "@id": "#sample/24_C2-0_Lung_allogenic_42days_170427_UKy_GCH_rep1"
+      }
+    ],
+    "outputs": [
+      {
+        "@id": "#sample/24_C2-0_Lung_allogenic_42days_170427_UKy_GCH_rep1-polar-FTMS_A"
+      },
+      {
+        "@id": "#sample/24_C2-0_Lung_allogenic_42days_170427_UKy_GCH_rep1-polar-FTMS_B"
+      },
+      {
+        "@id": "#sample/24_C2-0_Lung_allogenic_42days_170427_UKy_GCH_rep1-polar-FTMS_C"
+      },
+      {
+        "@id": "#sample/24_C2-0_Lung_allogenic_42days_170427_UKy_GCH_rep1-polar-ICMS_B"
+      },
+      {
+        "@id": "#sample/24_C2-0_Lung_allogenic_42days_170427_UKy_GCH_rep1-polar-NMR_B"
+      }
+    ],
+    "previousProcess": {
+      "@id": "#process/frozen_tissue_grind_9"
+    }
+  },
+  {
+    "@id": "#process/polar_extraction_70",
+    "executesProtocol": {
+      "@id": "#protocol/polar_extraction"
+    },
+    "parameterValues": [],
+    "inputs": [
+      {
+        "@id": "#sample/25_B1-0_Lung_syngenic_7days_170427_UKy_GCH_rep1"
+      }
+    ],
+    "outputs": [
+      {
+        "@id": "#sample/25_B1-0_Lung_syngenic_7days_170427_UKy_GCH_rep1-polar-FTMS_A"
+      },
+      {
+        "@id": "#sample/25_B1-0_Lung_syngenic_7days_170427_UKy_GCH_rep1-polar-FTMS_B"
+      },
+      {
+        "@id": "#sample/25_B1-0_Lung_syngenic_7days_170427_UKy_GCH_rep1-polar-FTMS_C"
+      },
+      {
+        "@id": "#sample/25_B1-0_Lung_syngenic_7days_170427_UKy_GCH_rep1-polar-ICMS_B"
+      },
+      {
+        "@id": "#sample/25_B1-0_Lung_syngenic_7days_170427_UKy_GCH_rep1-polar-NMR_B"
+      }
+    ],
+    "previousProcess": {
+      "@id": "#process/frozen_tissue_grind_10"
+    }
+  },
+  {
+    "@id": "#process/polar_extraction_71",
+    "executesProtocol": {
+      "@id": "#protocol/polar_extraction"
+    },
+    "parameterValues": [],
+    "inputs": [
+      {
+        "@id": "#sample/26_B1-1_Lung_syngenic_7days_170427_UKy_GCH_rep2"
+      }
+    ],
+    "outputs": [
+      {
+        "@id": "#sample/26_B1-1_Lung_syngenic_7days_170427_UKy_GCH_rep2-polar-FTMS_A"
+      },
+      {
+        "@id": "#sample/26_B1-1_Lung_syngenic_7days_170427_UKy_GCH_rep2-polar-FTMS_B"
+      },
+      {
+        "@id": "#sample/26_B1-1_Lung_syngenic_7days_170427_UKy_GCH_rep2-polar-FTMS_C"
+      },
+      {
+        "@id": "#sample/26_B1-1_Lung_syngenic_7days_170427_UKy_GCH_rep2-polar-ICMS_B"
+      },
+      {
+        "@id": "#sample/26_B1-1_Lung_syngenic_7days_170427_UKy_GCH_rep2-polar-NMR_B"
+      }
+    ],
+    "previousProcess": {
+      "@id": "#process/frozen_tissue_grind_11"
+    }
+  },
+  {
+    "@id": "#process/polar_extraction_72",
+    "executesProtocol": {
+      "@id": "#protocol/polar_extraction"
+    },
+    "parameterValues": [],
+    "inputs": [
+      {
+        "@id": "#sample/27_B1-2_Lung_syngenic_7days_170427_UKy_GCH_rep3"
+      }
+    ],
+    "outputs": [
+      {
+        "@id": "#sample/27_B1-2_Lung_syngenic_7days_170427_UKy_GCH_rep3-polar-FTMS_A"
+      },
+      {
+        "@id": "#sample/27_B1-2_Lung_syngenic_7days_170427_UKy_GCH_rep3-polar-FTMS_B"
+      },
+      {
+        "@id": "#sample/27_B1-2_Lung_syngenic_7days_170427_UKy_GCH_rep3-polar-FTMS_C"
+      },
+      {
+        "@id": "#sample/27_B1-2_Lung_syngenic_7days_170427_UKy_GCH_rep3-polar-ICMS_B"
+      },
+      {
+        "@id": "#sample/27_B1-2_Lung_syngenic_7days_170427_UKy_GCH_rep3-polar-NMR_B"
+      }
+    ],
+    "previousProcess": {
+      "@id": "#process/frozen_tissue_grind_12"
+    }
+  },
+  {
+    "@id": "#process/polar_extraction_73",
+    "executesProtocol": {
+      "@id": "#protocol/polar_extraction"
+    },
+    "parameterValues": [],
+    "inputs": [
+      {
+        "@id": "#sample/28_C1-1_Lung_allogenic_7days_170427_UKy_GCH_rep1"
+      }
+    ],
+    "outputs": [
+      {
+        "@id": "#sample/28_C1-1_Lung_allogenic_7days_170427_UKy_GCH_rep1-polar-FTMS_A"
+      },
+      {
+        "@id": "#sample/28_C1-1_Lung_allogenic_7days_170427_UKy_GCH_rep1-polar-FTMS_B"
+      },
+      {
+        "@id": "#sample/28_C1-1_Lung_allogenic_7days_170427_UKy_GCH_rep1-polar-FTMS_C"
+      },
+      {
+        "@id": "#sample/28_C1-1_Lung_allogenic_7days_170427_UKy_GCH_rep1-polar-ICMS_B"
+      },
+      {
+        "@id": "#sample/28_C1-1_Lung_allogenic_7days_170427_UKy_GCH_rep1-polar-NMR_B"
+      }
+    ],
+    "previousProcess": {
+      "@id": "#process/frozen_tissue_grind_13"
+    }
+  },
+  {
+    "@id": "#process/polar_extraction_74",
+    "executesProtocol": {
+      "@id": "#protocol/polar_extraction"
+    },
+    "parameterValues": [],
+    "inputs": [
+      {
+        "@id": "#sample/29_C1-2_Lung_allogenic_7days_170427_UKy_GCH_rep2"
+      }
+    ],
+    "outputs": [
+      {
+        "@id": "#sample/29_C1-2_Lung_allogenic_7days_170427_UKy_GCH_rep2-polar-FTMS_A"
+      },
+      {
+        "@id": "#sample/29_C1-2_Lung_allogenic_7days_170427_UKy_GCH_rep2-polar-FTMS_B"
+      },
+      {
+        "@id": "#sample/29_C1-2_Lung_allogenic_7days_170427_UKy_GCH_rep2-polar-FTMS_C"
+      },
+      {
+        "@id": "#sample/29_C1-2_Lung_allogenic_7days_170427_UKy_GCH_rep2-polar-ICMS_B"
+      },
+      {
+        "@id": "#sample/29_C1-2_Lung_allogenic_7days_170427_UKy_GCH_rep2-polar-NMR_B"
+      }
+    ],
+    "previousProcess": {
+      "@id": "#process/frozen_tissue_grind_14"
+    }
+  },
+  {
+    "@id": "#process/polar_extraction_75",
+    "executesProtocol": {
+      "@id": "#protocol/polar_extraction"
+    },
+    "parameterValues": [],
+    "inputs": [
+      {
+        "@id": "#sample/30_C1-20_Lung_allogenic_7days_170427_UKy_GCH_rep3"
+      }
+    ],
+    "outputs": [
+      {
+        "@id": "#sample/30_C1-20_Lung_allogenic_7days_170427_UKy_GCH_rep3-polar-FTMS_A"
+      },
+      {
+        "@id": "#sample/30_C1-20_Lung_allogenic_7days_170427_UKy_GCH_rep3-polar-FTMS_B"
+      },
+      {
+        "@id": "#sample/30_C1-20_Lung_allogenic_7days_170427_UKy_GCH_rep3-polar-FTMS_C"
+      },
+      {
+        "@id": "#sample/30_C1-20_Lung_allogenic_7days_170427_UKy_GCH_rep3-polar-ICMS_B"
+      },
+      {
+        "@id": "#sample/30_C1-20_Lung_allogenic_7days_170427_UKy_GCH_rep3-polar-NMR_B"
+      }
+    ],
+    "previousProcess": {
+      "@id": "#process/frozen_tissue_grind_15"
+    }
+  }
+]

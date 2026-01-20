@@ -58,16 +58,13 @@ import docopt
 
 from messes.extract import extract
 from messes import __version__
-from messes.convert import mwtab_conversion_directives
-from messes.convert import isajson_conversion_directives
+from messes.convert import formats
 from messes.convert import directive_functions
 from messes.convert import mwtab_functions
 from messes.convert import isa_functions
 from messes.convert import helper_functions
 from messes.convert import user_input_checking
 from messes.convert import convert_schema
-from messes.convert import initializations
-from messes.convert import finalizations
 
 
 ## Add some real examples of nested directives from ISA once that is done.
@@ -119,41 +116,18 @@ from messes.convert import finalizations
 
 ## Add a special calling record syntax to pass the while record dict "^.*".
 
-## Double check that validation checks for loops in sample lineage, i.e. no sample is its own ancestor.
-
 ## Add documentation explaining how mwtab uses conversion directives to do the complicated 
 ## part (subject-sample-factors) as needed, but ISA does a preprocessing step to add 
 ## fields to the records first so simple conversion directives can be used.
 
-## Add a check in validate to make sure measurements that have a parent_id have the same entity.id as their parent.
-## For ISA specifically, also look for "assay_id" on measurements and make sure parents have the same ID.
-## "assay_id" must be a string, not a list, measurements can't be in 2 assays.
-
 ## Modify validate to propagate ancestor attributes to children for each table, could be errors because someone relied on inheritance from ancestors.
-## Can use _propagate_ancestor_attributes in isa_functions
-
-## Add check in validate for ISA to make sure all entities have a study.id after progagting them from children to ancestors.
-# message = (f"Error:  Not all entities in the \"{entity_table_name}\" table have a "
-#            f"\"{study_key}\" attribute, even after progagating them through lineages. "
-#            "The following entities are affected:")
-
-## Add check to validate so study.id is required on factors, unless there is one study, then propagate it everywhere.
+## Can use _propagate_ancestor_attributes in isa.processing
+## I once thought this was a good idea and was doing it for ISA, but there ended up being some pretty major issues, but I can't remember
+## specifically what they were. I think basically it is that we don't classify the attributes on entities and not all should be inherited. 
+## If we classified them like ISA does into "characteristics" then certain classes could be inheritable. Or we could add an "%inheritable" attribute.
 
 ## implement assays into the study table by adding a "type" field and requiring a parent_id.
 ## "type" is not required, but will be added in convert initializations.
-
-## Add checks in validate to check fields with %isa_fieldtype are the correct 
-## values, parameter or component for protocol and characteristic or factor for entities.
-
-## Add a check on studies and project to look for "filename" for ISA and check that it starts with "i_", "s_", "a_", etc.
-
-## Make sure validate checks that "data_files" on protocol is a list and "data_files%entity_id" and "data_files$isa_type"
-## make sure the lists are the same size as well. And "data_files$isa_type" is one of "Raw Data File", "Derived Data File", or "Image File"
-
-## All of the built-ins that look for parameters, componenets, etc assume the field is a string, so add a check 
-## that validates any fields pointed to by {field_name}%isa_fieldtype are strings.
-## Add an example to show the user how they could modify the conversion directives to create a list of components, parameters, etc
-## instead of adding attributes to fields. Maybe even create a whole new set that assumes they are in lists.
 
 ## Due to the initializations adding things to the input_json there should probably be 2 validations. 
 ## One validation if the user intends to use the initializations and another if they don't.
@@ -166,10 +140,60 @@ from messes.convert import finalizations
 ## keywords are present.
 ## ValidationError: {'value_type': 'section_matrix', 'required': 'False', 'table': 'ontology_sources', 'default': []} is not valid under any of the given schemas
 ## Failed validating 'anyOf' in schema['additionalProperties']['additionalProperties']['allOf'][1]['then']:
+## In user_input_checking.validate_conversion_directives I changed the if section for "required". 
+## I added "optional_headers" and "fields_to_headers" to special_names, added "section_str" and "section_matrix" 
+## to value_type_map, and changed the matrix message to include "optional_headers" and "fields_to_headers". 
+## This needs to be tested and we need seperate tests for the section_str and section_matrix.
 
 ## Add documentation explaining the extra people, pubication, and ontology_source tables for ISA.
 
 ## Make sure the documentation makes it clear that protocols in protocol.id are assumed to be in chronological order.
+
+## In validate, add inheritance to measurements, and make sure inherited measurements have the same entity.id as their parents.
+## Ask Hunter about this. Not sure that child measurements should always have the same entity as their parents.
+
+## When converting from JSON to ISA-Tab all non-JSON files in the same directory will be copied 
+## into the same directory where the investigation, assay, and study files are created. Be sure to 
+## mention this in the documentation and tell the user to only run with files they want to include 
+## with the ISA-Tab deposition (measurement files for example).
+
+## Once ISA accepts the changes to validate add no_config option to CLI.
+
+## Make it so samples can have multiple parents. Validation needs changed and mwtab code and documentation.
+## For ISA measurements can have parents, think about whether they can have multiple parents and if they need to 
+## be added to the validation checks for parents and if it should be the old check that requires 1 parent and no more.
+
+
+
+## Validations to add for ISA:
+    
+## Add a check in validate to make sure measurements that have a parent_id have the same entity.id as their parent.
+## For ISA specifically, also look for "assay_id" on measurements and make sure parents have the same ID.
+## "assay_id" must be a string, not a list, measurements can't be in 2 assays.
+
+## Add check in validate for ISA to make sure all entities have a study.id after progagting them from children to ancestors.
+# message = (f"Error:  Not all entities in the \"{entity_table_name}\" table have a "
+#            f"\"{study_key}\" attribute, even after progagating them through lineages. "
+#            "The following entities are affected:")
+
+## Add check to validate so study.id is required on factors, unless there is one study, then propagate it everywhere.
+
+## Add checks in validate to check fields with %isa_fieldtype are the correct 
+## values, parameter or component for protocol and characteristic or factor for entities.
+
+## Add a check on studies and project to look for "filename" for ISA and check that it starts with "i_", "s_", "a_", etc.
+
+## Make sure validate checks that "data_files" on protocol is a list and "data_files%entity_id" and "data_files$isa_type"
+## make sure the lists are the same size as well. And "data_files$isa_type" is one of the allowed ISA types.
+
+## All of the built-ins that look for parameters, componenets, etc assume the field is a string, so add a check 
+## that validates any fields pointed to by {field_name}%isa_fieldtype are strings.
+## Add an example to show the user how they could modify the conversion directives to create a list of components, parameters, etc
+## instead of adding attributes to fields. Maybe even create a whole new set that assumes they are in lists.
+## I can't remember specifically what I had in mind here, but I think you could have a single field in a protocol 
+## like "isa_components" and it could be a list of dicts that are already in the right form or something.
+
+
 
 
 BASE_DIR = os.path.dirname(__file__)
@@ -178,6 +202,7 @@ JSON_CONFIG_PATH = os.path.join(BASE_DIR, "isajson_configs")
 def main() :
     args = docopt.docopt(__doc__, version=__version__)
     input_json_filepath = args["<input_JSON>"]
+    output_filename = args["<output_name>"]
     silent = args["--silent"]
     isatab_config_dir = args["--tab-config-dir"] if args["--tab-config-dir"] else ""
     isajson_config_dir = args["--json-config-dir"] if args["--json-config-dir"] else JSON_CONFIG_PATH
@@ -186,23 +211,38 @@ def main() :
     # user_input_checking.additional_args_checks(args)
     
     #####################
-    ## Determine conversion format to set initializations, conversion_directives, and finalizations.
+    ## Determine conversion format to set preprocessing, conversion_directives, and postprocessing.
     #####################
-    supported_formats_and_sub_commands = {"mwtab":{"ms": {"directives": mwtab_conversion_directives.ms_directives,
-                                                          "initialization": initializations.mwtab.initialization,
-                                                          "finalization": finalizations.mwtab.finalization},
-                                                   "nmr": {"directives": mwtab_conversion_directives.nmr_directives,
-                                                           "initialization": initializations.mwtab.initialization,
-                                                           "finalization": finalizations.mwtab.finalization}, 
-                                                   "nmr_binned": {"directives": mwtab_conversion_directives.nmr_binned_directives,
-                                                                  "initialization": initializations.mwtab.initialization,
-                                                                  "finalization": finalizations.mwtab.finalization}},
-                                          "isa":{"": {"directives": isajson_conversion_directives.directives,
-                                                      "initialization": initializations.isa.initialization,
-                                                      "finalization": finalizations.isa.finalization}},
-                                          "generic":{"": {"directives": {},
-                                                          "initialization": initializations.generic.initialization,
-                                                          "finalization": finalizations.generic.finalization}}}
+    supported_formats_and_sub_commands = \
+        {
+        "mwtab":{
+            "ms": {
+                "directives": formats.mwtab.directives.ms_directives,
+                "preprocessing": formats.mwtab.processing.preprocessing,
+                "postprocessing": formats.mwtab.processing.postprocessing},
+                                                   
+            "nmr": {
+                "directives": formats.mwtab.directives.nmr_directives,
+                "preprocessing": formats.mwtab.processing.preprocessing,
+                "postprocessing": formats.mwtab.processing.postprocessing}, 
+                                                   
+            "nmr_binned": {
+                "directives": formats.mwtab.directives.nmr_binned_directives,
+                "preprocessing": formats.mwtab.processing.preprocessing,
+                "postprocessing": formats.mwtab.processing.postprocessing}},
+                                          
+        "isa":{
+            "": {
+                "directives": formats.isa.directives.directives,
+                "preprocessing": formats.isa.processing.preprocessing,
+                "postprocessing": formats.isa.processing.postprocessing}},
+                                          
+        "generic":{
+            "": {
+                "directives": {},
+                "preprocessing": lambda: None,
+                "postprocessing": lambda: None}}}
+        
     # conversion_directives = {}
     # format_under_operation = "generic"
     for supported_format, sub_commands in supported_formats_and_sub_commands.items():
@@ -213,10 +253,10 @@ def main() :
             else:
                 sub_command = ""
             conversion_directives = sub_commands[sub_command]["directives"]
-            initialization = sub_commands[sub_command]["initialization"]
-            finalization = sub_commands[sub_command]["finalization"]
-            ## The argument names must correspond to variables in main available when finalization is ran.
-            finalization_argument_names = inspect.getfullargspec(finalization).args
+            preprocessing = sub_commands[sub_command]["preprocessing"]
+            postprocessing = sub_commands[sub_command]["postprocessing"]
+            # ## The argument names must correspond to variables in main available when postprocessing is ran.
+            # postprocessing_argument_names = inspect.getfullargspec(postprocessing).args
             break
     
     ##########################
@@ -322,10 +362,10 @@ def main() :
     
     
     #####################
-    ## Run initializations
+    ## Run preprocessing
     #####################
-    input_json = initialization(input_json)
-    # with open('C:/Users/Sparda/Desktop/Moseley Lab/Code/MESSES/examples/Full_isa_example/MS/extract/initialization_output.json','w') as jsonFile:
+    input_json = preprocessing(input_json)
+    # with open('C:/Users/Sparda/Desktop/Moseley Lab/Code/MESSES/examples/Full_isa_example/MS/extract/preprocessing_output.json','w') as jsonFile:
     #     jsonFile.write(json.dumps(input_json, indent=2))
     
     
@@ -360,12 +400,22 @@ def main() :
     
     
     #####################
-    ## Run finalizations
+    ## Run postprocessing
     #####################
-    finalization_arguments = {}
-    for variable_name in finalization_argument_names:
-        finalization_arguments[variable_name] = locals()[variable_name]
-    finalization(**finalization_arguments)
+    postprocessing_arguments = {"mwtab":{"output_json": output_json,
+                                         "input_json_filepath": input_json_filepath,
+                                         "output_filename": output_filename,
+                                         "sub_command": sub_command},
+                              "isa":{"json_save_name": json_save_name,
+                                     "silent": silent,
+                                     "isatab_config_dir": isatab_config_dir,
+                                     "isajson_config_dir": isajson_config_dir},
+                              "generic":{}}
+    postprocessing(**postprocessing_arguments[format_under_operation])
+    # postprocessing_arguments = {}
+    # for variable_name in postprocessing_argument_names:
+    #     postprocessing_arguments[variable_name] = locals()[variable_name]
+    # postprocessing(**postprocessing_arguments)
     
 
 

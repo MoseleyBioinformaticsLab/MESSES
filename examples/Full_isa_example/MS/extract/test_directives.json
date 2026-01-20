@@ -1,0 +1,39 @@
+{
+  "studies": {
+    "no_id_needed": {
+      "value_type": "section_matrix",
+      "required": "True",
+      "headers": [
+        "\"assays\"=studies%assays()"
+      ],
+      "table": "study",
+      "test": "type=\"study\""
+    }
+  },
+  "studies%assays": {
+    "no_id_needed": {
+      "value_type": "section_matrix",
+      "required": "True",
+      "test": "parent_id=^.id",
+      "headers": [
+        "\"measurementType\"=studies%assays%measurementType()",
+        "\"technologyType\"=studies%assays%technologyType()"
+      ],
+      "table": "study"
+    }
+  },
+  "studies%assays%technologyType": {
+    "no_id_needed": {
+      "value_type": "section",
+      "required": "False",
+      "execute": "pass_through(^.technology_type)"
+    }
+  },
+  "studies%assays%measurementType": {
+    "no_id_needed": {
+      "value_type": "section",
+      "required": "False",
+      "execute": "pass_through(^.measurement_type)"
+    }
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "protocol": {
+    "tissue_quench": {
+      "description": "Tissue is frozen in liquid nitrogen to stop metabolic processes.",
+      "filename": "No tissue_quench file.",
+      "id": "tissue_quench",
+      "order": "1",
+      "type": "sample_prep"
+    }
+  }
+}

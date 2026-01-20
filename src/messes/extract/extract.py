@@ -506,6 +506,16 @@ class RecordMaker(object) :
         child.addColumnOperand(parentIDIndex)
         
         return child
+    
+    # @staticmethod
+    # def crecord(parent: RecordMaker, table: str) -> RecordMaker:
+    #     """
+    #     """
+    #     child = RecordMaker()
+    #     child.table = table
+    #     child.fieldMakers = [ maker.shallowClone() for maker in parent.fieldMakers ]
+    #     return child
+        
 
     def create(self, row: pandas.core.series.Series) -> tuple[str,dict]:
         """Returns record created from given row.
@@ -745,7 +755,8 @@ class TagParser(object):
                 return False
         
         return True
-
+    
+    # TODO update description to reflact dict input instead of tuples.
     def _determineTableField(self, params: tuple[str]|tuple[str,str]|tuple[str,str,str]) -> tuple[str,str]:
         """Returns table and field based on params tuple and last table and field set.
         
@@ -762,17 +773,20 @@ class TagParser(object):
         Raises:
             TagParserError: if the table or field name are undefined.
         """
-        if len(params) > 1 :
-            table = params[0]
-            field = params[1]
-            if len(params) > 2 :
-                attribute = params[2]
-            else :
-                attribute = ""
-        else :
-            table = ""
-            field = ""
-            attribute = params[0]
+        table = params.get('table', '')
+        field = params.get('field', '')
+        attribute = params.get('attribute', '')
+        # if len(params) > 1 :
+        #     table = params[0]
+        #     field = params[1]
+        #     if len(params) > 2 :
+        #         attribute = params[2]
+        #     else :
+        #         attribute = ""
+        # else :
+        #     table = ""
+        #     field = ""
+        #     attribute = params[0]
             
         if table == "" :
             if self.lastTable == "" :
@@ -795,20 +809,58 @@ class TagParser(object):
         
         return table, field
 
+    
+    
+    childFieldDetector = re.compile(r'#(?P<table>\w*)\%(?P<child_tag>child|crecord)\.(?P<field>\w+)$')
+    childFieldAttributeDetector = re.compile(r'#(?P<table>\w*)\%(?P<child_tag>child|crecord)\.(?P<field>\w+)\%(?P<attribute>\w+)$')
+    emptyChildDetector = re.compile(r'#(\w*)\%(?P<child_tag>child|crecord)$')
+    def _handleChildLikeTags(self, token: str, tokens: list[str], recordMakers: RecordMaker, childWithoutID: bool, fieldMakerClass):
+        """
+        """
+        if reMatch := re.match(TagParser.emptyChildDetector, token) :
+            raise TagParserError(f"{reMatch['child_tag']} tag with no field", self.fileName, self.sheetName, self.rowIndex, self.columnIndex)
+        elif (reMatch := re.match(TagParser.childFieldAttributeDetector, token)) or (reMatch := re.match(TagParser.childFieldDetector, token)) :  # #table%child.field.attribute combinations
+            child_tag = reMatch['child_tag']
+            if not recordMakers[1].hasValidID() :
+                raise TagParserError("no id field in parent record", self.fileName, self.sheetName, self.rowIndex, self.columnIndex)
+            table, field = self._determineTableField(reMatch.groupdict())
+            if field != "id" and len(tokens) > 0 and tokens[0] == "=" :
+                raise TagParserError(f"no assignment allowed with explicit {child_tag} field", self.fileName, self.sheetName, self.rowIndex, self.columnIndex)
+            if field != "id" and childWithoutID[child_tag] :
+                raise TagParserError(f"second explicit non-id {child_tag} field specified", self.fileName, self.sheetName, self.rowIndex, self.columnIndex)
+            if field == "id" and childWithoutID[child_tag] and table != recordMakers[-1].table :
+                raise TagParserError(f"second explicit non-id {child_tag} field specified", self.fileName, self.sheetName, self.rowIndex, self.columnIndex)
+            if not childWithoutID[child_tag] :
+                if child_tag == 'child':
+                    recordMakers.append(RecordMaker.child(recordMakers[0], table, recordMakers[1].shortField("id").operands[0].value))
+                else:
+                    recordMakers.append(copy.deepcopy(recordMakers[0]))
+            ## As far as I can tell this error is impossible to reach from the CLI. Trying to create duplicate fields will lead to triggering one of 
+            ## second explicit errors above.
+            if recordMakers[-1].isInvalidDuplicateField(table, field, fieldMakerClass) :
+                raise TagParserError(str("field \"") + field + "\" specified twice in " + table + " record", self.fileName, self.sheetName, self.rowIndex, self.columnIndex)
+            recordMakers[-1].addField(table, field, fieldMakerClass)
+            if field == "id" :
+                childWithoutID = False
+                if len(tokens) > 0 and tokens[0] == "=" :
+                    recordMakers[-1].addColumnOperand(recordMakers[1].shortField("id").operands[0].value)
+                else :                                
+                    recordMakers[-1].addColumnOperand(self.columnIndex)
+            else :
+                childWithoutID = True
+                recordMakers[-1].addColumnOperand(self.columnIndex)
 
+
+    childDetector = re.compile(r'#.*\%(child|crecord)')
     cellSplitter = re.compile(r'([*=+;,]|\"[^\"]*\"|#\w+\s*\w+\.(?:\w+\s*\w+%\w+\s*\w+|\w+\s*\w+))|\s+')
     stringExtractor = re.compile(r'\"(.*)\"$')
     operatorDetector = re.compile(r'[=+]')
     wordDetector = re.compile(r'\w+')
     wordOnlyDetector = re.compile('\w+$')
     tagDetector = re.compile(r'#')
-    childDetector = re.compile(r'#.*\%child')
-    childFieldDetector = re.compile(r'#(\w*)\%child\.(\w+)$')
-    childFieldAttributeDetector = re.compile(r'#(\w*)\%child\.(\w+)\%(\w+)$')
-    emptyChildDetector = re.compile(r'#(\w*)\%child$')
-    tableFieldAttributeDetector = re.compile(r'#(\w*)\.(\w+)\%(\w+)$')
-    tableFieldDetector = re.compile(r'#([\w\s-]*)\.(\w+|\w+\.id)$')
-    attributeDetector = re.compile('#\%(\w+)$')
+    tableFieldAttributeDetector = re.compile(r'#(?P<table>\w*)\.(?P<field>\w+)\%(?P<attribute>\w+)$')
+    tableFieldDetector = re.compile(r'#(?P<table>[\w\s-]*)\.(?P<field>\w+|\w+\.id)$')
+    attributeDetector = re.compile('#\%(?P<attribute>\w+)$')
     trackFieldDetector = re.compile(r'#(\w*)\%track$')
     untrackFieldDetector = re.compile(r'#(\w*)\%untrack$')
     def _parseHeaderCell(self, recordMakers: list[RecordMaker], cellString: str, childWithoutID: bool) -> bool:
@@ -827,8 +879,8 @@ class TagParser(object):
         Raises:
             TagParserError: If any of the tags are misformed an error will be raised.
         """
-        if self.columnIndex == 0 and (re.search(TagParser.childDetector, cellString)) :
-            raise TagParserError("#.%child tag not allowed in first column", self.fileName, self.sheetName, self.rowIndex, self.columnIndex)
+        if self.columnIndex == 0 and (reMatch := re.search(TagParser.childDetector, cellString)) :
+            raise TagParserError(f"#.%{reMatch.group(1)} tag not allowed in first column", self.fileName, self.sheetName, self.rowIndex, self.columnIndex)
         if self.columnIndex != 0 and re.search('#tags', cellString) :
             raise TagParserError("#tags only allowed in first column", self.fileName, self.sheetName, self.rowIndex, self.columnIndex)
             
@@ -867,34 +919,66 @@ class TagParser(object):
                     raise TagParserError("#table tag without assignment", self.fileName, self.sheetName, self.rowIndex, self.columnIndex)
                 tokens.pop(0)
                 self.lastTable = tokens.pop(0)
-            elif re.match(TagParser.emptyChildDetector, token) :
-                raise TagParserError("child tag with no field", self.fileName, self.sheetName, self.rowIndex, self.columnIndex)
+            elif reMatch := re.match(TagParser.emptyChildDetector, token) :
+                raise TagParserError(f"{reMatch['child_tag']} tag with no field", self.fileName, self.sheetName, self.rowIndex, self.columnIndex)
             elif (reMatch := re.match(TagParser.childFieldAttributeDetector, token)) or (reMatch := re.match(TagParser.childFieldDetector, token)) :  # #table%child.field.attribute combinations
+                child_tag = reMatch['child_tag']
                 if not recordMakers[1].hasValidID() :
                     raise TagParserError("no id field in parent record", self.fileName, self.sheetName, self.rowIndex, self.columnIndex)
-                table, field = self._determineTableField(reMatch.groups())
+                table, field = self._determineTableField(reMatch.groupdict())
                 if field != "id" and len(tokens) > 0 and tokens[0] == "=" :
-                    raise TagParserError("no assignment allowed with explicit child field", self.fileName, self.sheetName, self.rowIndex, self.columnIndex)
-                if field != "id" and childWithoutID :
-                    raise TagParserError("second explicit non-id child field specified", self.fileName, self.sheetName, self.rowIndex, self.columnIndex)
-                if field == "id" and childWithoutID and table != recordMakers[-1].table :
-                    raise TagParserError("second explicit non-id child field specified", self.fileName, self.sheetName, self.rowIndex, self.columnIndex)
-                if not childWithoutID :
-                    recordMakers.append(RecordMaker.child(recordMakers[0], table, recordMakers[1].shortField("id").operands[0].value))
+                    raise TagParserError(f"no assignment allowed with explicit {child_tag} field", self.fileName, self.sheetName, self.rowIndex, self.columnIndex)
+                if field != "id" and childWithoutID[child_tag] :
+                    raise TagParserError(f"second explicit non-id {child_tag} field specified", self.fileName, self.sheetName, self.rowIndex, self.columnIndex)
+                if field == "id" and childWithoutID[child_tag] and table != recordMakers[-1].table :
+                    raise TagParserError(f"second explicit non-id {child_tag} field specified", self.fileName, self.sheetName, self.rowIndex, self.columnIndex)
+                if not childWithoutID[child_tag] :
+                    if child_tag == 'child':
+                        recordMakers.append(RecordMaker.child(recordMakers[0], table, recordMakers[1].shortField("id").operands[0].value))
+                    else:
+                        recordMakers.append(copy.deepcopy(recordMakers[0]))
                 ## As far as I can tell this error is impossible to reach from the CLI. Trying to create duplicate fields will lead to triggering one of 
                 ## second explicit errors above.
                 if recordMakers[-1].isInvalidDuplicateField(table, field, fieldMakerClass) :
                     raise TagParserError(str("field \"") + field + "\" specified twice in " + table + " record", self.fileName, self.sheetName, self.rowIndex, self.columnIndex)
                 recordMakers[-1].addField(table, field, fieldMakerClass)
                 if field == "id" :
-                    childWithoutID = False
-                    if len(tokens) > 0 and tokens[0] == "=" :
+                    childWithoutID[child_tag] = False
+                    if len(tokens) > 0 and tokens[0] == "=" and child_tag == 'child':
                         recordMakers[-1].addColumnOperand(recordMakers[1].shortField("id").operands[0].value)
                     else :                                
                         recordMakers[-1].addColumnOperand(self.columnIndex)
                 else :
-                    childWithoutID = True
-                    recordMakers[-1].addColumnOperand(self.columnIndex)                                
+                    childWithoutID[child_tag] = True
+                    recordMakers[-1].addColumnOperand(self.columnIndex)
+            # elif re.match(TagParser.emptyChildDetector, token) :
+            #     raise TagParserError("child tag with no field", self.fileName, self.sheetName, self.rowIndex, self.columnIndex)
+            # elif (reMatch := re.match(TagParser.childFieldAttributeDetector, token)) or (reMatch := re.match(TagParser.childFieldDetector, token)) :  # #table%child.field.attribute combinations
+            #     if not recordMakers[1].hasValidID() :
+            #         raise TagParserError("no id field in parent record", self.fileName, self.sheetName, self.rowIndex, self.columnIndex)
+            #     table, field = self._determineTableField(reMatch.groups())
+            #     if field != "id" and len(tokens) > 0 and tokens[0] == "=" :
+            #         raise TagParserError("no assignment allowed with explicit child field", self.fileName, self.sheetName, self.rowIndex, self.columnIndex)
+            #     if field != "id" and childWithoutID :
+            #         raise TagParserError("second explicit non-id child field specified", self.fileName, self.sheetName, self.rowIndex, self.columnIndex)
+            #     if field == "id" and childWithoutID and table != recordMakers[-1].table :
+            #         raise TagParserError("second explicit non-id child field specified", self.fileName, self.sheetName, self.rowIndex, self.columnIndex)
+            #     if not childWithoutID :
+            #         recordMakers.append(RecordMaker.child(recordMakers[0], table, recordMakers[1].shortField("id").operands[0].value))
+            #     ## As far as I can tell this error is impossible to reach from the CLI. Trying to create duplicate fields will lead to triggering one of 
+            #     ## second explicit errors above.
+            #     if recordMakers[-1].isInvalidDuplicateField(table, field, fieldMakerClass) :
+            #         raise TagParserError(str("field \"") + field + "\" specified twice in " + table + " record", self.fileName, self.sheetName, self.rowIndex, self.columnIndex)
+            #     recordMakers[-1].addField(table, field, fieldMakerClass)
+            #     if field == "id" :
+            #         childWithoutID = False
+            #         if len(tokens) > 0 and tokens[0] == "=" :
+            #             recordMakers[-1].addColumnOperand(recordMakers[1].shortField("id").operands[0].value)
+            #         else :                                
+            #             recordMakers[-1].addColumnOperand(self.columnIndex)
+            #     else :
+            #         childWithoutID = True
+            #         recordMakers[-1].addColumnOperand(self.columnIndex)                                
             elif (reMatch := re.match(TagParser.trackFieldDetector, token)) :
                 if len(tokens) < 2 or tokens[0] != "=":
                     raise TagParserError("Incorrectly formatted track tag, \"=\" must follow \"track\" and \"table.field\" or \"table.field%attribute\" must follow \"=\"", self.fileName, self.sheetName, self.rowIndex, self.columnIndex)
@@ -970,7 +1054,7 @@ class TagParser(object):
                     else:
                         break
             elif (reMatch := re.match(TagParser.tableFieldAttributeDetector, token)) or (reMatch := re.match(TagParser.tableFieldDetector, token)) or (reMatch := re.match(TagParser.attributeDetector, token)) : #table.field.attribute combinations
-                table, field = self._determineTableField(reMatch.groups())
+                table, field = self._determineTableField(reMatch.groupdict())
                 currentTable = recordMakers[-1].table
                 if currentTable != "" and currentTable != table:
                     raise TagParserError("second table specified after first table, if trying to specify an id to another table use #.table.id", self.fileName, self.sheetName, self.rowIndex, self.columnIndex)
@@ -1030,7 +1114,7 @@ class TagParser(object):
         self.lastField = ""
         
         recordMakers = [ RecordMaker(), RecordMaker() ]
-        childWithoutID = False
+        childWithoutID = {'child': False, 'crecord':False}
         for self.columnIndex in range(0, len(row)) :
             cellString = xstr(row.iloc[self.columnIndex]).strip()
             if re.match('[*]?#', cellString) :
@@ -1038,8 +1122,9 @@ class TagParser(object):
         
         self.columnIndex = -1
 
-        if childWithoutID :
-            raise TagParserError("#.child record without id", self.fileName, self.sheetName, self.rowIndex, self.columnIndex)
+        for tag_type, no_id in childWithoutID.items() :
+            if no_id:
+                raise TagParserError(f"#.{tag_type} record without id", self.fileName, self.sheetName, self.rowIndex, self.columnIndex)
         
         recordMakers.pop(0)    # pop example RecordMaker used to hold global literals.    
         return recordMakers

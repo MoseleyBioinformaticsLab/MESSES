@@ -304,7 +304,7 @@ Output JSON
 
     {
     "ANALYSIS": {
-        "Instrument": "Orbitrap"
+        "INSTRUMENT": "Orbitrap"
         }
     }
 

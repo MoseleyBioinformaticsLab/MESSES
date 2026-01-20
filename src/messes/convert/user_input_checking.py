@@ -35,10 +35,10 @@ def validate_conversion_directives(conversion_directives: dict, schema: dict):
             message += "The entry " + "[%s]" % "][".join(repr(index) for index in e.relative_path) + " cannot be empty."
         elif e.validator == "required":
             required_property = re.match(r"(\'.*\')", e.message).group(1)
-            special_names = ["'code'", "'fields'", "'headers'", "'override'", "'execute'"]
+            special_names = ["'code'", "'fields'", "'headers'", "'override'", "'execute'", "'optional_headers'", "'fields_to_headers'"]
             
             if required_property in special_names:
-                value_type_map = ["str", "matrix", "section"]
+                value_type_map = ["str", "section_str", "matrix", "section_matrix", "section"]
                 value_type = value_type_map[e.schema_path[3]]
                 
                 if value_type == "str" or value_type == "section_str":
@@ -47,7 +47,8 @@ def validate_conversion_directives(conversion_directives: dict, schema: dict):
                                " is missing one of these properties."
                 
                 if value_type == "matrix" or value_type == "section_matrix":
-                    message += "'matrix' type directives must either have a 'code' or 'headers' property.\n" +\
+                    message += "'matrix' type directives must either have a 'code', 'headers', " +\
+                               "'optional_headers', or 'fields_to_headers' property.\n" +\
                                "The entry "+ "[%s]" % "][".join(repr(index) for index in e.relative_path) +\
                                " is missing one of these properties."
                 

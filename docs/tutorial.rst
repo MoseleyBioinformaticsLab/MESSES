@@ -617,7 +617,7 @@ the value is a string type. This is accomplished by converting the string value 
 those keywords. As an example, say we have an "intensity" field whose value is "1234" as a string type. If you would like to validate 
 that all intensity fields are greater than 0 you can use the "minimum" keyword in JSON schema. Normally, this wouldn't work as the value 
 is a string type, but if you add a "format" keyword and set the format to "numeric" then the validate command will convert intensity fields 
-to floats before doing the normal JSON schema validation. The import thing to be aware of here is NOT to set the "type" keyword to "string" 
+to floats before doing the normal JSON schema validation. The important thing to be aware of here is NOT to set the "type" keyword to "string" 
 for any field that you use the "integer" or "numeric" format on because it will throw a wrong type validation error after the conversion to 
 a numeric type. If you need to enforce a string type and also want the benefits of the "integer" and "numeric" formats, then use the "str_integer" 
 and "str_numeric" formats. They operate the same as their "integer" and "numeric" counterparts, but also validate that the value is a string 

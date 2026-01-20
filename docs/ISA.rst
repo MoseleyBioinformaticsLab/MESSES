@@ -1089,3 +1089,34 @@ Pretty sure Hunter and I decided it was better to leave them as samples and just
 
 
 
+
+
+Message to Users About ISA
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+ISA is not super well defined. There are inconsistencies between the specification, JSON Schemas, and 
+code. There are inconsistencies between tools within isatools. For instance, the converters and 
+the validators. End point users who utilize "ISA" also don't necessarily use official ISA tools. 
+They may extend the specification or require stricter validation. Currently, MESSES simply makes 
+a best attempt to generate a data set that validates against the "isatools" package, but depending 
+on a users desired end point there may be work needed after MESSES. We don't have the datasets or 
+expertise to create data sets that are valid for each possible end point that utilize some form of ISA. 
+We are however happy to respond to issues and add extensions to MESSES to support specific end points. 
+If you want to try MESSES to help with your workflow and run into issues please create an Issue on 
+the GitHub repository and we will be happy to help, especially if it gives us a new dataset for a new 
+use case.
+
+
+
+Known Possibly Spurious Warnings and Errors
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+[WARNING]: rules_40xx.py(check_protocol_fields:276) >> (W) Protocol REF column is not followed by a material or data node in file 'filename'
+
+If a protocol does not produce a data file or a new material this warning is safe to ignore. For example, 
+an assay to measure the protein content of a sample to use for normalization only produces a single measurement, 
+"protein weight". To get rid of the warning you can put these weight measurements in a file and add it to 
+the data appropriately, or it can be placed on the sample as a characteristic and then this warning will 
+appear. Either way, the weight information is recorded, but one way produces a warning message.
+
+
+

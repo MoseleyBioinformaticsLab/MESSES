@@ -1,0 +1,92 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name
+Term Source File
+Term Source Version
+Term Source Description
+INVESTIGATION
+Investigation Identifier	GH_Spleen
+Investigation Title	Metabolomics of lung injury after allogeneic hematopoietic cell transplantation
+Investigation Description	Allogeneic hematopoietic cell transplantation (allo-HCT) is a potentially curative treatment option for a variety of hematological malignancies. Interactions between the donor immune system and the patient tissue result in a disease, called GVHD. The pathophysiology of acute GVHD can be hypothesized in three sequential phases: cytokine storm and activation of the antigen-presenting cells (APC), donor T cell activation and effector cell phase. Idiopathic pneumonia syndrome (IPS) is one of the most deleterious complications after allogeneic HCT and is considered not only to be related to conditioning regimen toxicity but also represents an end organ damage caused by allo-reactive T cells, therefore making the lung susceptible to a two-pronged attack, one of which overlaps with GVHD causing other target organ injury. IPS results in mortality of up to 90% of patients. We will use a murine model of IPS and GVHD which is well established in our group, and in which disease evolves either across disparities in major histocompatibility complex (MCH) class I and II, minor histocompatibility antigens (miHags) or both. Metabolomics changes following syngeneic and allogeneic HCT at post-transplantation Days +7 (cytokine storm phase) and Days +42 (cellular effector phase) are compared to baseline wild-type (naive) controls. Prior to analysis, naïve - and experimental mice (N=3 from each group) were fed with semi-liquid diet supplemented with tracers (13C6-glucose ) over 24 hours. At the end of 7 days or 42 days, respectively, feces and aGVHD target organs (colon, liver and lung) were collected from all groups and further processed and / or analyzed. We expect to reveal metabolic pathways affected after allo-HCT which contribute to immune cell mediated lung injury (IPS) and will potentially identify different metabolic pathways in other GVHD target organs.
+Investigation Submission Date	2024-01-30
+Investigation Public Release Date	2024-01-30
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name	Hildebrandt
+Investigation Person First Name	Gerhard
+Investigation Person Mid Initials	
+Investigation Person Email	gerhard.hildebrandt@uky.edu
+Investigation Person Phone	800-333-8874
+Investigation Person Fax	
+Investigation Person Address	Gerhard C. Hildebrandt, MD, Room no. CC401A, Ben Roach Building, Markey Cancer Center University of Kentucky, Lexington, 40536
+Investigation Person Affiliation	University of Kentucky
+Investigation Person Roles	PI
+Investigation Person Roles Term Accession Number	
+Investigation Person Roles Term Source REF	
+STUDY
+Study Identifier	GH_Spleen
+Study Title	Metabolomics of lung injury after allogeneic hematopoietic cell transplantation
+Study Description	Allogeneic hematopoietic cell transplantation (allo-HCT) is a potentially curative treatment option for a variety of hematological malignancies. Interactions between the donor immune system and the patient tissue result in a disease, called GVHD. The pathophysiology of acute GVHD can be hypothesized in three sequential phases: cytokine storm and activation of the antigen-presenting cells (APC), donor T cell activation and effector cell phase. Idiopathic pneumonia syndrome (IPS) is one of the most deleterious complications after allogeneic HCT and is considered not only to be related to conditioning regimen toxicity but also represents an end organ damage caused by allo-reactive T cells, therefore making the lung susceptible to a two-pronged attack, one of which overlaps with GVHD causing other target organ injury. IPS results in mortality of up to 90% of patients. We will use a murine model of IPS and GVHD which is well established in our group, and in which disease evolves either across disparities in major histocompatibility complex (MCH) class I and II, minor histocompatibility antigens (miHags) or both. Metabolomics changes following syngeneic and allogeneic HCT at post-transplantation Days +7 (cytokine storm phase) and Days +42 (cellular effector phase) are compared to baseline wild-type (naive) controls. Prior to analysis, naïve - and experimental mice (N=3 from each group) were fed with semi-liquid diet supplemented with tracers (13C6-glucose ) over 24 hours. At the end of 7 days or 42 days, respectively, feces and aGVHD target organs (colon, liver and lung) were collected from all groups and further processed and / or analyzed. We expect to reveal metabolic pathways affected after allo-HCT which contribute to immune cell mediated lung injury (IPS) and will potentially identify different metabolic pathways in other GVHD target organs.
+Study Submission Date	2024-01-30
+Study Public Release Date	2024-01-30
+Study File Name	s_GH_Spleen.txt
+STUDY DESIGN DESCRIPTORS
+Study Design Type
+Study Design Type Term Accession Number
+Study Design Type Term Source REF
+STUDY PUBLICATIONS
+Study PubMed ID
+Study Publication DOI
+Study Publication Author List
+Study Publication Title
+Study Publication Status
+Study Publication Status Term Accession Number
+Study Publication Status Term Source REF
+STUDY FACTORS
+Study Factor Name	Time Point	Treatment
+Study Factor Type	Time Point	Treatment
+Study Factor Type Term Accession Number		
+Study Factor Type Term Source REF		
+STUDY ASSAYS
+Study Assay File Name	a_GH_Spleen_['DI-FTMS1'].txt	a_GH_Spleen_['ICMS1'].txt	a_GH_Spleen_['NMR1'].txt	a_GH_Spleen_['NMR2'].txt	a_GH_Spleen_['protein_measurement'].txt
+Study Assay Measurement Type					
+Study Assay Measurement Type Term Accession Number					
+Study Assay Measurement Type Term Source REF					
+Study Assay Technology Type					
+Study Assay Technology Type Term Accession Number					
+Study Assay Technology Type Term Source REF					
+Study Assay Technology Platform					
+STUDY PROTOCOLS
+Study Protocol Name	DI-FTMS1	IC-FTMS_preparation	ICMS1	NMR1	NMR2	acetone_extraction	allogenic	frozen_tissue_grind	lipid_extraction	mouse_tissue_collection	naive	polar_extraction	protein_extraction	protein_measurement	syngenic	tissue_quench
+Study Protocol Type	measurement	sample_prep	measurement	measurement	measurement	sample_prep	treatment	sample_prep	sample_prep	collection	treatment	sample_prep	sample_prep	measurement	treatment	sample_prep
+Study Protocol Type Term Accession Number																
+Study Protocol Type Term Source REF																
+Study Protocol Description	Measurements made using direct infusion (nano-electrospray) FTMS.	Before going into the IC-FTMS the frozen sample is reconstituted in water.	"ICMS Analytical Experiment with detection of compounds by comparison to standards. 
+Thermo RAW files are loaded into TraceFinder and peaks are manually curated. The area under the chromatograms is then exported to an Excel file. The area is then corrected for natural abundance. The natural abundance corrected area is then used to calculate the concentration of each compound for each sample. This calculation is done using standards. The first sample ran on the ICMS is a standard that has known concentrations of certain compounds. Then a number of samples are ran (typically 3-4) followed by another standard. The equation to calculate the concentration is ""intensity in sample""/(""intensity in first standard"" + ((""intensity in second standard"" - ""intensity in first standard"")/# of samples) * ""known concentration in standard"", where the ""intensity"" is the aforementioned natural abundance corrected area, and the unlabeled intensity from the standard is used for all isotopologues of the compound. The reconstitution volume is simply the volume that the polar part of the sample was reconstituted to before going into the ICMS. The injection volume is how much of the reconstitution volume was injected into the ICMS. The protein is how much protein was in the entire sample (not only the small portion that was aliquoted for the ICMS). The polar split ratio is the fraction of the polar part of the sample that was aliquoted for the ICMS. This is calculated by dividing the weight of the polar aliquot for ICMS by the total weight of the polar portion of the sample. The protein normalized concentration is calculated using the equation, concentration * (reconstitution volume / 1000 / polar split ratio / protein)."	NMR Analytical Experiment with detection of compounds by comparison to standards.	NMR Analytical Experiment with detection of compounds by comparison to standards.	acetone extraction of polar metabolites	Mouse with allogenic bone marrow transplant. Fed with semi-liquid diet supplemented with fully labeled glucose for 24 hours before harvest.	Frozen tissue is ground in a SPEX grinder under liquid nitrogen to homogenize the sample.	Lipid extraction from homogenate.	Mouse is sacrificed and tissues are harvested.	Mouse with no treatment. Fed with semi-liquid diet supplemented with fully labeled glucose for 24 hours before harvest.	Polar extraction from homogenate, lypholized, and frozen.	Protein extraction and quantification.	The weight of the extracted protein is measured.	Mouse with syngenic bone marrow transplant. Fed with semi-liquid diet supplemented with fully labeled glucose for 24 hours before harvest.	Tissue is frozen in liquid nitrogen to stop metabolic processes.
+Study Protocol URI		No IC-FTMS_preparation file.				4A2_Media Extraction with acetone ppt step.pdf	study_treatments.pdf	No frozen_tissue_grind file.	4B_Extract_Polar_Lipid_Prot_Fan_070417.pdf	mouse_tissue_procedure.pdf	study_treatments.pdf	4B_Extract_Polar_Lipid_Prot_Fan_070417.pdf	['4D_17Jun4_Fan_Prot_Quant.pdf', '4B_Extract_Polar_Lipid_Prot_Fan_070417.pdf']		study_treatments.pdf	No tissue_quench file.
+Study Protocol Version																
+Study Protocol Parameters Name	instrument_type;ion_mode;ionization	injection_volume;reconstitution_volume	chromatography_type;instrument_type;ion_mode;ionization	NMR_experiment_type;NMR_probe;NMR_solvent;NMR_tube_size;acquisition_time;baseline_correction_method;chemical_shift_ref_cpd;pulse_sequence;relaxation_delay;shimming_method;spectrometer_frequency;standard_concentration;temperature;water_suppression	NMR_experiment_type;NMR_probe;NMR_solvent;NMR_tube_size;acquisition_time;baseline_correction_method;chemical_shift_ref_cpd;pulse_sequence;relaxation_delay;shimming_method;spectrometer_frequency;standard_concentration;temperature;water_suppression											
+Study Protocol Parameters Name Term Accession Number	;;	;	;;;	;;;;;;;;;;;;;	;;;;;;;;;;;;;											
+Study Protocol Parameters Name Term Source REF	;;	;	;;;	;;;;;;;;;;;;;	;;;;;;;;;;;;;											
+Study Protocol Components Name	Orbitrap Fusion		Thermo Dionex ICS-5000+;Dionex IonPac AS11-HC-4um 2 mm i.d. x 250 mm;Orbitrap Fusion	Agilent 600	Agilent 600											
+Study Protocol Components Type	instrument		chromatography_instrument_name;column_name;instrument	instrument	instrument											
+Study Protocol Components Type Term Accession Number			;;													
+Study Protocol Components Type Term Source REF			;;													
+STUDY CONTACTS
+Study Person Last Name	Hildebrandt
+Study Person First Name	Gerhard
+Study Person Mid Initials	
+Study Person Email	gerhard.hildebrandt@uky.edu
+Study Person Phone	800-333-8874
+Study Person Fax	
+Study Person Address	Gerhard C. Hildebrandt, MD, Room no. CC401A, Ben Roach Building, Markey Cancer Center University of Kentucky, Lexington, 40536
+Study Person Affiliation	University of Kentucky
+Study Person Roles	PI
+Study Person Roles Term Accession Number	
+Study Person Roles Term Source REF	

@@ -39,3 +39,11 @@ tests/test_convert/testing_files/output.*
 tests/test_convert/testing_files/main_dir/output.*
 output_std_err.txt
 output_std_out.txt
+src/messes/convert/scratch.py
+src/messes/convert/scratch2.py
+simple_validate_test.py
+Questions for meeting.txt
+model_investigation.txt
+isajson_validation_messaging_examples.txt
+examples/extract/~$MS_colon_measurements_truncated.xlsx
+examples/extract/~$mouse_experiment_metadata.xlsx

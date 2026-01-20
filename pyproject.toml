@@ -8,7 +8,7 @@ description = "Extract, validate, and convert tabular data for deposition into r
 readme = "README.rst"
 requires-python = ">=3.10"
 keywords = ["mwtab", "metabolomics workbench"]
-license = {file = "LICENSE"}
+license-files = ["LICENSE"]
 classifiers = [
 	'Environment :: Console',
         'Intended Audience :: Developers',

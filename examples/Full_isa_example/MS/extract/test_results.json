@@ -1,0 +1,48 @@
+{
+  "studies": [
+    {
+      "assays": [
+        {
+          "measurementType": {
+            "annotationValue": ""
+          },
+          "technologyType": {
+            "annotationValue": ""
+          }
+        },
+        {
+          "measurementType": {
+            "annotationValue": ""
+          },
+          "technologyType": {
+            "annotationValue": ""
+          }
+        },
+        {
+          "measurementType": {
+            "annotationValue": ""
+          },
+          "technologyType": {
+            "annotationValue": ""
+          }
+        },
+        {
+          "measurementType": {
+            "annotationValue": ""
+          },
+          "technologyType": {
+            "annotationValue": ""
+          }
+        },
+        {
+          "measurementType": {
+            "annotationValue": ""
+          },
+          "technologyType": {
+            "annotationValue": ""
+          }
+        }
+      ]
+    }
+  ]
+}

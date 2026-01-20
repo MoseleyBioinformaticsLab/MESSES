@@ -62,10 +62,17 @@ def initialization(input_json: dict,
     ## Find parameter values to add processes for all protocols. Will be used later.    
     ## Need to add parameters to children from parents first.
     protocol_lineages, _ = _determine_lineages_and_sequences(input_json, protocol_table_name, parent_key)
-    _propagate_ancestor_attributes(input_json, protocol_lineages, protocol_table_name)
     
     protocol_parameters = {}
     for protocol, attributes in input_json[protocol_table_name].items():
+        ## For collection type protocols, set the isat_type to "sample collection".
+        ## ISA validations specifically need "sample collection" as type to not give a warning.
+        if (protocol_type := attributes.get(protocol_type_key)) and \
+           protocol_type == "collection" and \
+           "isa_type" not in attributes:
+            input_json[protocol_table_name][protocol]["isa_type"] = "sample collection"
+        
+        
         parameters = []
         for field_name, field_value in attributes.items():
             if (match := re.match(r"(.*)%isa_fieldtype$", field_name)) and field_value == "parameter":
@@ -97,11 +104,6 @@ def initialization(input_json: dict,
                 parameters.append({"value_dict": parameter_dict, "field_name": field_name})
         protocol_parameters[protocol] = parameters
     
-    unique_protocol_ids_to_parameters, entities_to_unique_protocol_ids =\
-        _determine_entity_specific_protocol_parameters(input_json, 
-                                                       entity_table_name, 
-                                                       protocol_key, 
-                                                       protocol_parameters)
     
     ## Studies and assays are both in the study table, so separate them.
     input_studies = {}
@@ -133,7 +135,6 @@ def initialization(input_json: dict,
     ## Studies
     #############
     sample_lineages, _ = _determine_lineages_and_sequences(input_json, entity_table_name, parent_key)
-    _propagate_ancestor_attributes(input_json, sample_lineages, entity_table_name)
     
     all_ancestors = [ancestor for sample, sample_attributes in sample_lineages.items() for ancestor in sample_attributes["ancestors"]]
     childless_samples = [sample for sample in sample_lineages if sample not in all_ancestors]
@@ -207,6 +208,18 @@ def initialization(input_json: dict,
                 if isinstance(protocols, str):
                     protocols = [protocols]
                 
+                ## Determine entity specific protocol parameters.
+                specific_protocol_parameters_list = []
+                unique_protocol_ids = []
+                for protocol in protocols:
+                    specific_protocol_parameters, unique_protocol_id = \
+                        _determine_entity_specific_protocol_parameters(protocol_parameters, 
+                                                                       protocol, 
+                                                                       input_json[entity_table_name][ancestor],
+                                                                       {})
+                    specific_protocol_parameters_list.append(specific_protocol_parameters)
+                    unique_protocol_ids.append(unique_protocol_id)
+                
                 isa_type = "source" if i == 0 else "sample"
                 
                 if "isa_type" not in input_json[entity_table_name][ancestor]:
@@ -214,6 +227,8 @@ def initialization(input_json: dict,
                 
                 psuedo_process.append({"name": ancestor,
                                        "protocols": protocols,
+                                       "protocol_parameters": specific_protocol_parameters_list,
+                                       "unique_protocol_ids": unique_protocol_ids,
                                        "@id": f"#{isa_type}/{ancestor}"})
             
             unique_sample_chains_by_study[study].append(psuedo_process)
@@ -222,10 +237,7 @@ def initialization(input_json: dict,
     ## Create a processSequence
     study_process_sequences = _create_process_sequences(input_json, 
                                                         entity_table_name, 
-                                                        unique_sample_chains_by_study, 
-                                                        protocol_parameters,
-                                                        unique_protocol_ids_to_parameters, 
-                                                        entities_to_unique_protocol_ids)
+                                                        unique_sample_chains_by_study)
     ## Add processes to studies in the input_json so they can be utilized by the conversion directives.
     for study, process_sequence in study_process_sequences.items():
         input_json[study_table_name][study]["process"] = process_sequence
@@ -237,14 +249,15 @@ def initialization(input_json: dict,
     #############
     measurement_lineages, measurement_sequences = _determine_lineages_and_sequences(input_json, measurement_table_name, parent_key)
     ordered_unique_measurement_sequences = _order_sequences(measurement_sequences, measurement_lineages)
-    _propagate_ancestor_attributes(input_json, measurement_lineages, measurement_table_name)
     
     ## Find unique measurement_protocol_sequences.
-    measurement_protocol_sequences = []
-    measurement_protocol_sequence_to_entities = {}
+    # measurement_protocol_sequences = []
+    # measurement_protocol_sequence_to_entities = {}
     assays = {}
     for sequence in ordered_unique_measurement_sequences:
         protocol_sequence = []
+        ## Need to map each protocol to the measurement so we can search for parameters later.
+        protocol_to_measurement = {}
         assay_id = None
         for measurement in sequence:
             protocol = input_json[measurement_table_name][measurement][protocol_key]
@@ -254,6 +267,7 @@ def initialization(input_json: dict,
             
             for protocol_name in protocol_list:
                 protocol_sequence.append(protocol_name)
+                protocol_to_measurement[protocol_name] = measurement
                 
             ## It is assumed that all measurements in a lineage have the same assay_id.
             if study_key in input_json[measurement_table_name][measurement]:
@@ -266,20 +280,20 @@ def initialization(input_json: dict,
             # if assay_key in input_json[measurement_table_name][measurement]:
             #     assay_id = input_json[measurement_table_name][measurement][assay_key]
         
-        if protocol_sequence not in measurement_protocol_sequences:
-            measurement_protocol_sequences.append(protocol_sequence)
+        # if protocol_sequence not in measurement_protocol_sequences:
+        #     measurement_protocol_sequences.append(protocol_sequence)
         
         str_protocol_sequence = str(protocol_sequence)
         if not assay_id:
             assay_id = str_protocol_sequence
-        if str_protocol_sequence not in measurement_protocol_sequence_to_entities:
-            measurement_protocol_sequence_to_entities[str_protocol_sequence] = {"assay_ids": set([assay_id]),
-                                                                                 "sequence": protocol_sequence, 
-                                                                                 "entities": set([entity])
-                                                                                 }
-        else:
-            measurement_protocol_sequence_to_entities[str_protocol_sequence]["entities"].add(entity)
-            measurement_protocol_sequence_to_entities[str_protocol_sequence]["assay_ids"].add(assay_id)
+        # if str_protocol_sequence not in measurement_protocol_sequence_to_entities:
+        #     measurement_protocol_sequence_to_entities[str_protocol_sequence] = {"assay_ids": set([assay_id]),
+        #                                                                          "sequence": protocol_sequence, 
+        #                                                                          "entities": set([entity])
+        #                                                                          }
+        # else:
+        #     measurement_protocol_sequence_to_entities[str_protocol_sequence]["entities"].add(entity)
+        #     measurement_protocol_sequence_to_entities[str_protocol_sequence]["assay_ids"].add(assay_id)
         
         ## TODO should measurement entites only be in 1 study? 
         ## If they have multiple studies then this code will duplicate that row for each study-assay combination.
@@ -289,14 +303,17 @@ def initialization(input_json: dict,
             unique_assay_id = f"{study}_{assay_id}"
             if unique_assay_id in assays:
                 if entity in assays[unique_assay_id]["entities"]:
-                    if protocol_sequence not in assays[unique_assay_id]["entities"][entity]:
-                        assays[unique_assay_id]["entities"][entity].append(protocol_sequence)
+                    if protocol_sequence not in assays[unique_assay_id]["entities"][entity]["protocol_sequence"]:
+                        assays[unique_assay_id]["entities"][entity]["protocol_sequence"].append(protocol_sequence)
+                        assays[unique_assay_id]["entities"][entity]["protocol_to_measurements"].append(protocol_to_measurement)
                 else:
-                    assays[unique_assay_id]["entities"][entity] = [protocol_sequence]
+                    assays[unique_assay_id]["entities"][entity] = {"protocol_sequences": [protocol_sequence],
+                                                                   "protocol_to_measurements": [protocol_to_measurement]}
                 
                 assays[unique_assay_id]["protocols"] = assays[unique_assay_id]["protocols"].union(protocol_sequence)
             else:
-                assays[unique_assay_id] = {"entities": {entity:[protocol_sequence]}, 
+                assays[unique_assay_id] = {"entities": {entity: {"protocol_sequences": [protocol_sequence],
+                                                                 "protocol_to_measurements": [protocol_to_measurement]}},
                                            "protocols":set(),
                                            "study": study}
             
@@ -305,12 +322,24 @@ def initialization(input_json: dict,
     sample_chains_by_assay = {}
     for assay, attributes in assays.items():
         chain_list = []
-        for sample, measurement_sequences in attributes["entities"].items():
+        for sample, protocol_sequences_attributes in attributes["entities"].items():
             base_chain = []
             
             protocols = input_json[entity_table_name][sample][protocol_key]
             if isinstance(protocols, str):
                 protocols = [protocols]
+            
+            ## Determine entity specific protocol parameters.
+            specific_protocol_parameters_list = []
+            unique_protocol_ids = []
+            for protocol in protocols:
+                specific_protocol_parameters, unique_protocol_id = \
+                    _determine_entity_specific_protocol_parameters(protocol_parameters, 
+                                                                   protocol, 
+                                                                   input_json[entity_table_name][sample],
+                                                                   {})
+                specific_protocol_parameters_list.append(specific_protocol_parameters)
+                unique_protocol_ids.append(unique_protocol_id)
             
             if "isa_type" in input_json[entity_table_name][sample]:
                 isa_type = input_json[entity_table_name][sample]["isa_type"]
@@ -332,21 +361,37 @@ def initialization(input_json: dict,
                 
                 base_chain.append({"name": sample_lineages[sample]["ancestors"][-1],
                                    "protocols": [],
+                                   "protocol_parameters":[],
+                                   "unique_protocol_ids": [],
                                    "@id": f"#sample/{sample_lineages[sample]['ancestors'][-1]}"})
                 base_chain.append({"name": sample,
                                    "protocols": protocols,
+                                   "protocol_parameters": specific_protocol_parameters_list,
+                                   "unique_protocol_ids": unique_protocol_ids,
                                    "@id": f"#material/{sample}"})
                 
             else:
                 base_chain.append({"name": sample,
                                    "protocols": protocols,
+                                   "protocol_parameters": specific_protocol_parameters_list,
+                                   "unique_protocol_ids": unique_protocol_ids,
                                    "@id": f"#sample/{sample}"})
             
             
-            for measurement_sequence in measurement_sequences:
+            for measurement_protocol_sequence in protocol_sequences_attributes["protocol_sequences"]:
                 sample_chain = copy.deepcopy(base_chain)
-                for measurement_protocol in measurement_sequence:
+                for i, measurement_protocol in enumerate(measurement_protocol_sequence):
+                    measurement_name = protocol_sequences_attributes["protocol_to_measurements"][i][measurement_protocol]
                     measurement_protocol_attributes = input_json[protocol_table_name][measurement_protocol]
+                    measurement_attributes = input_json[measurement_table_name][measurement_name]
+                    
+                    ## Determine entity specific protocol parameters.
+                    specific_protocol_parameters, unique_protocol_id = \
+                        _determine_entity_specific_protocol_parameters(protocol_parameters, 
+                                                                       measurement_protocol, 
+                                                                       input_json[entity_table_name][sample],
+                                                                       measurement_attributes)
+                    
                     ## Find data files and simply treat them like samples, so add to sample_chain.
                     if "data_files" in measurement_protocol_attributes and \
                        "data_files%entity_id" in measurement_protocol_attributes and \
@@ -355,9 +400,13 @@ def initialization(input_json: dict,
                            data_file = measurement_protocol_attributes["data_files"][index]
                            sample_chain.append({"name": data_file,
                                                 "protocols": [measurement_protocol],
+                                                "protocol_parameters": [specific_protocol_parameters],
+                                                "unique_protocol_ids": [unique_protocol_id],
                                                 "@id": f"#data/{data_file}"})
                     else:
                         sample_chain[-1]["protocols"].append(measurement_protocol)
+                        sample_chain[-1]["protocol_parameters"].append(specific_protocol_parameters)
+                        sample_chain[-1]["unique_protocol_ids"].append(unique_protocol_id)
             
                 chain_list.append(sample_chain)
         sample_chains_by_assay[assay] = chain_list
@@ -365,10 +414,7 @@ def initialization(input_json: dict,
     ## Create assay processSequences.
     assay_process_sequences = _create_process_sequences(input_json, 
                                                         entity_table_name, 
-                                                        sample_chains_by_assay, 
-                                                        protocol_parameters,
-                                                        unique_protocol_ids_to_parameters, 
-                                                        entities_to_unique_protocol_ids)
+                                                        sample_chains_by_assay)
     ## Add processes to assays in the input_json so they can be utilized by the conversion directives.
     for assay, process_sequence in assay_process_sequences.items():
         ## If the assay is not in the study table then add it.
@@ -434,7 +480,7 @@ def initialization(input_json: dict,
     ## This could be moved into the loop that creates the sample_chains_by_assay if speed is needed.
     for assay, attributes in assays.items():
         study = attributes["study"]
-        for entity, measurement_sequences in attributes["entities"].items():
+        for entity in attributes["entities"]:
             entity_studies = input_json[entity_table_name][entity][study_key]
             entity_studies = entity_studies if isinstance(entity_studies, list) else [entity_studies]
             if assay not in entity_studies:
@@ -483,7 +529,8 @@ def initialization(input_json: dict,
                 category_dict = {"@id": f"#characteristic/{characteristic}",
                                  "characteristicType": {"annotationValue": characteristic}}
                 ## TODO think about whether this is a good idea, it would be better if the categories were in 1 place, but
-                ## this has the potential to have the same category with 2 different types.
+                ## this has the potential to have the same category with 2 different types because 2 entities could have 
+                ## the same characteristic but different types.
                 if (value := attributes.get(f"{characteristic}%isa_characteristictype")):
                     category_dict["characteristicType"] = _handle_ontology_parsing(value, 
                                                                                    f"{characteristic}%isa_characteristictype", 
@@ -569,6 +616,22 @@ def initialization(input_json: dict,
                             if unit_category not in input_json[study_table_name][study]["unit_categories"]:
                                 input_json[study_table_name][study]["unit_categories"].append(unit_category)
 
+    ## It is possible for earlier ancestors in a sample lineage to have factors specified for them 
+    ## that need to be propogated to it's descendants. Specifically, if protocol.id is a factor 
+    ## then descendants won't get the factor created for them.
+    for entity, family in sample_lineages.items():
+        if ancestors := family["ancestors"]:
+            originator_factor_attributes = {attribute:factor_dict for attribute, factor_dict in 
+                                            input_json[entity_table_name][ancestors[0]].items() 
+                                            if attribute.endswith("%isa_factorvalue")}
+            for ancestor in ancestors[1:]:
+                factor_attributes = {attribute:factor_dict for attribute, factor_dict in 
+                                     input_json[entity_table_name][ancestor].items()
+                                     if attribute.endswith("%isa_factorvalue")}
+                originator_factor_attributes.update(factor_attributes)
+            for attribute, factor_dict in originator_factor_attributes.items():
+                if attribute not in input_json[entity_table_name][entity]:
+                    input_json[entity_table_name][entity][attribute] = factor_dict
 
     ## Go through protocol parameters and add parameter units to studies.
     ## Studies should have been propagated to protocols in above code.
@@ -631,11 +694,12 @@ def initialization(input_json: dict,
                     data_files = []
                     for data_file in data_files_list:
                         data_file_dict = {"@id": f"#data/{data_file}",
-                                          "name": data_file}
+                                          "name": data_file,
+                                          "type": "Raw Data File"}
                         data_files.append(data_file_dict)
                     
                     if data_types := protocol_attributes.get("data_files%isa_type"):
-                        for i, data_type in data_types:
+                        for i, data_type in enumerate(data_types):
                             data_files[i]["type"] = data_type
                         
                         
@@ -681,10 +745,7 @@ def initialization(input_json: dict,
 
 def _create_process_sequences(input_json: dict, 
                               entity_table_name: str, 
-                              unique_sample_chains_by_identifier: dict, 
-                              protocol_parameters: dict,
-                              unique_protocol_ids_to_parameters: dict, 
-                              entities_to_unique_protocol_ids: dict):
+                              unique_sample_chains_by_identifier: dict):
     """
     """
     
@@ -700,33 +761,45 @@ def _create_process_sequences(input_json: dict,
             for i in range(len(sample_chain)-1):
                 pair = sample_chain[i:i+2]
                 
+                protocol_chain = {}
+                unique_protocol_sequence_id = ""
                 if i == 0:
-                    protocol_chain = {protocol:pair[0] for protocol in pair[0]["protocols"]}
-                    for protocol in pair[1]["protocols"]:
-                        protocol_chain[protocol] = pair[1]
+                    for sample in pair:
+                        for k, protocol in enumerate(sample["protocols"]):
+                            protocol_chain[protocol] = sample["protocol_parameters"][k]
+                            unique_protocol_sequence_id = unique_protocol_sequence_id + "|" + sample["unique_protocol_ids"][k]
+                    
+                    # protocol_chain = {protocol:pair[0] for protocol in pair[0]["protocols"]}
+                    # for protocol in pair[1]["protocols"]:
+                    #     protocol_chain[protocol] = pair[1]
                 else:
-                    protocol_chain = {protocol:pair[1] for protocol in pair[1]["protocols"]}
+                    for k, protocol in enumerate(pair[1]["protocols"]):
+                        protocol_chain[protocol] = pair[1]["protocol_parameters"][k]
+                        unique_protocol_sequence_id = unique_protocol_sequence_id + "|" + pair[1]["unique_protocol_ids"][k]
+                                        
+                    # protocol_chain = {protocol:pair[1] for protocol in pair[1]["protocols"]}
                 
                 
-                unique_protocol_ids = []
-                for protocol, sample in protocol_chain.items():
-                    print(sample)
-                    print()
-                    if "#data" in sample["@id"]:
-                        for sub_sample in reversed(sample_chain[0:i+1]):
-                            if sub_sample["name"] in input_json[entity_table_name]:
-                                sample = sub_sample
-                                break
-                    try:
-                        unique_protocol_ids.append(entities_to_unique_protocol_ids[sample["name"]][protocol])
-                    except Exception as e:
-                        print(protocol)
-                        print()
-                        print(sample)
-                        print()
-                        raise e
+                
+                # unique_protocol_ids = []
+                # for protocol, sample in protocol_chain.items():
+                #     print(sample)
+                #     print()
+                #     if "#data" in sample["@id"]:
+                #         for sub_sample in reversed(sample_chain[0:i+1]):
+                #             if sub_sample["name"] in input_json[entity_table_name]:
+                #                 sample = sub_sample
+                #                 break
+                #     try:
+                #         unique_protocol_ids.append(entities_to_unique_protocol_ids[sample["name"]][protocol])
+                #     except Exception as e:
+                #         print(protocol)
+                #         print()
+                #         print(sample)
+                #         print()
+                #         raise e
                             
-                unique_protocol_sequence_id = "|".join(unique_protocol_ids)
+                # unique_protocol_sequence_id = "|".join(unique_protocol_ids)
                 
                 
                 create_new_sequence = True
@@ -802,24 +875,19 @@ def _create_process_sequences(input_json: dict,
                 
                 if create_new_sequence:
                     temp_sequence = []
-                    for j, (protocol, sample) in enumerate(protocol_chain.items()):
+                    for j, (protocol, parameters) in enumerate(protocol_chain.items()):
                         if protocol in protocol_uses:
                             protocol_uses[protocol] += 1
                         else:
                             protocol_uses[protocol] = 1
                         
-                        # if "#data" in sample["@id"]:
-                        #     for sub_sample in reversed(sample_chain[0:i+1]):
-                        #         if sub_sample["name"] in input_json[entity_table_name]:
-                        #             sample = sub_sample
-                        #             break
                                 
-                        unique_protocol_id = unique_protocol_ids[j]
-                        specific_protocol_parameters = unique_protocol_ids_to_parameters[unique_protocol_id]
+                        # unique_protocol_id = unique_protocol_ids[j]
+                        # specific_protocol_parameters = unique_protocol_ids_to_parameters[unique_protocol_id]
                         
                         process = {"@id": f"#process/{protocol}_{protocol_uses[protocol]}",
                                    "executesProtocol": {"@id": f"#protocol/{protocol}"},
-                                   "parameterValues": specific_protocol_parameters,
+                                   "parameterValues": parameters,
                                    "inputs": [],
                                    "outputs": []}
                         
@@ -858,34 +926,50 @@ def _create_process_sequences(input_json: dict,
 
 
 
-def _determine_entity_specific_protocol_parameters(input_json: dict, 
-                                                   entity_table_name: str, 
-                                                   protocol_key: str, 
-                                                   protocol_parameters: dict):
+def _determine_entity_specific_protocol_parameters(protocol_parameters: dict,
+                                                   protocol: str,
+                                                   entity_attributes: dict,
+                                                   measurement_attributes: dict):
     """
     """
-    unique_protocol_ids_to_parameters = {}
-    entities_to_unique_protocol_ids = {}
-    for entity, entity_attributes in input_json[entity_table_name].items():
-        for protocol in entity_attributes[protocol_key]:
-            unique_protocol_id = protocol
-            specific_protocol_parameters = [copy.deepcopy(parameter["value_dict"]) for parameter in protocol_parameters[protocol]]
-            for i, parameter in enumerate(protocol_parameters[protocol]):
-                field_name = parameter["field_name"]
-                if not (value := entity_attributes.get(field_name)):
-                    value = parameter["value_dict"]["category"]["parameterName"]["annotationValue"]
-                
-                unique_protocol_id += f"_{field_name}:{value}"
-                specific_protocol_parameters[i]["category"]["parameterName"]["annotationValue"] = value
-                        
-            unique_protocol_ids_to_parameters[unique_protocol_id] = specific_protocol_parameters
-            
-            if entity in entities_to_unique_protocol_ids:
-                entities_to_unique_protocol_ids[entity][protocol] = unique_protocol_id
-            else:
-                entities_to_unique_protocol_ids[entity] = {protocol:unique_protocol_id}
+    unique_protocol_id = protocol
+    specific_protocol_parameters = [copy.deepcopy(parameter["value_dict"]) for parameter in protocol_parameters[protocol]]
+    for i, parameter in enumerate(protocol_parameters[protocol]):
+        field_name = parameter["field_name"]
+        if not (value := entity_attributes.get(field_name)):
+            value = parameter["value_dict"]["category"]["parameterName"]["annotationValue"]
+        elif not (value := measurement_attributes.get(field_name)):
+            value = parameter["value_dict"]["category"]["parameterName"]["annotationValue"]
+        
+        specific_protocol_parameters[i]["category"]["parameterName"]["annotationValue"] = value
+        unique_protocol_id += f"_{field_name}:{value}"
     
-    return unique_protocol_ids_to_parameters, entities_to_unique_protocol_ids
+    return specific_protocol_parameters, unique_protocol_id
+    
+    
+    
+    # unique_protocol_ids_to_parameters = {}
+    # entities_to_unique_protocol_ids = {}
+    # for entity, entity_attributes in input_json[entity_table_name].items():
+    #     for protocol in entity_attributes[protocol_key]:
+    #         unique_protocol_id = protocol
+    #         specific_protocol_parameters = [copy.deepcopy(parameter["value_dict"]) for parameter in protocol_parameters[protocol]]
+    #         for i, parameter in enumerate(protocol_parameters[protocol]):
+    #             field_name = parameter["field_name"]
+    #             if not (value := entity_attributes.get(field_name)):
+    #                 value = parameter["value_dict"]["category"]["parameterName"]["annotationValue"]
+                
+    #             unique_protocol_id += f"_{field_name}:{value}"
+    #             specific_protocol_parameters[i]["category"]["parameterName"]["annotationValue"] = value
+                        
+    #         unique_protocol_ids_to_parameters[unique_protocol_id] = specific_protocol_parameters
+            
+    #         if entity in entities_to_unique_protocol_ids:
+    #             entities_to_unique_protocol_ids[entity][protocol] = unique_protocol_id
+    #         else:
+    #             entities_to_unique_protocol_ids[entity] = {protocol:unique_protocol_id}
+    
+    # return unique_protocol_ids_to_parameters, entities_to_unique_protocol_ids
 
 
 

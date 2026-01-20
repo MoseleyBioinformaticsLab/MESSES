@@ -6,3 +6,4 @@ jellyfish >= 0.9.0
 mwtab >= 1.2.5
 numpy >= 1.22.4
 xlsxwriter >= 3.0.3
+setuptools >= 61.0.0

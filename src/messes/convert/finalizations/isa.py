@@ -6,6 +6,7 @@ Code for finalizing ISA conversion.
 import pathlib
 import re
 import os
+import time
 
 from isatools.convert import json2isatab
 from isatools import isajson, isatab
@@ -18,24 +19,49 @@ JSON_CONFIG_PATH = os.path.join(BASE_DIR, "..", "isajson_configs")
 
 
 def finalization(json_save_name: str, silent: bool, 
-                 isatab_config_dir: str = "",
+                 isatab_config_dir: str|None = None,
                  isajson_config_dir: str = JSON_CONFIG_PATH) -> None:
     """
     """
+    ## The highest log level is CRITICAL which is 50, so set higher than that for total silence.
+    log_level = None if silent else 20
     
-    if isajson_config_dir:
-        validation_messages = isajson.validate(open(json_save_name), config_dir = isajson_config_dir)
-    else:
-        validation_messages = isajson.validate(open(json_save_name))
-    isa_validation_message_formatting(validation_messages, silent, **json_formatting_dict)
+    # if isajson_config_dir:
+    #     validation_messages = isajson.validate(open(json_save_name), 
+    #                                            config_dir = isajson_config_dir,
+    #                                            log_level = log_level)
+    # else:
+    #     validation_messages = isajson.validate(open(json_save_name), 
+    #                                            config_dir = None,
+    #                                            log_level = log_level)
+    # isa_validation_message_formatting(validation_messages, silent, **json_formatting_dict)
     
-    with open(json_save_name) as file_pointer:
-        json2isatab.convert(file_pointer, "ISA_Tab", validate_first=False)
+    ## Try to create the ISA_Tab folder to save the ISA-Tab files in.
+    # path = pathlib.Path("ISA_Tab")
+    # if not path.exists():
+    #     os.mkdir("ISA_Tab")
+    # time_to_wait = 10
+    # time_counter = 0
+    # while not path.exists():
+    #     time.sleep(1)
+    #     time_counter += 1
+    #     if time_counter > time_to_wait:
+    #         raise FileExistsError("The \"ISA_Tab\" folder to save the ISA-Tab files into could not be created.")
+            
+    
+    # with open(pathlib.Path(json_save_name).resolve()) as file_pointer:
+    #     json2isatab.convert(file_pointer, "ISA_Tab", validate_first=False)
 
-    if isatab_config_dir:    
-        validation_messages = isatab.validate(open(pathlib.Path("ISA_Tab", "i_investigation.txt")), config_dir = isatab_config_dir)
+    if isatab_config_dir: 
+        validation_messages = isatab.validate(open(pathlib.Path("ISA_Tab", "i_investigation.txt")), 
+                                              config_dir = isatab_config_dir,
+                                              log_level = log_level)
     else:
-        validation_messages = isatab.validate(open(pathlib.Path("ISA_Tab", "i_investigation.txt")))
+        validation_messages = isatab.validate(open(pathlib.Path("ISA_Tab", "i_investigation.txt")),
+                                              # rules = {'investigation':{}, 
+                                              #           'studies':{'available_rules':[], 'rules_to_run':[]}, 
+                                              #           'assays':{'available_rules':[], 'rules_to_run':[]}},
+                                              log_level = log_level)
     isa_validation_message_formatting(validation_messages, silent, **tab_formatting_dict)
 
 
@@ -154,7 +180,7 @@ def isa_validation_message_formatting(validation_messages: dict, silent: bool,
                                       error_supplemental_modification: list[str]):
     """
     """
-    if validation_messages["validation_finished"]:
+    if not validation_messages["validation_finished"]:
         message = ("An unknown error was encountered when validating the ISA format. "
                    "Due to this, the validation was not able to be completed.")
         _handle_errors(True, silent, message)
