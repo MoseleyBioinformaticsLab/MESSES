@@ -22,3 +22,4 @@ coverage.xml
 src/messes/_version.py
 /*.png
 isadatasets
+src/messes/extract/cythonized_tagSheet_.pyx

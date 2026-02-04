@@ -61,3 +61,36 @@ Possible Improvements to Convert
 Make it so save-directives can output to stdout if user supplies "-" for filename.
 
 For matrix directives add an option so that fields in "headers" don't have to be in the records.
+
+
+
+Add explanation in documentation that tags are read from right to left, so some things must be specified first. 
+For example, a child tag must have it's parent ID specified on the left before it.
+
+Do we want to force child tags to specify child.id always? 
+This example:
+#tags	#sample.id	#%child.id;#.field1=asdf	#%child.id;#.field1=qwer
+	sample1	-child1	-child2
+
+will create children with IDs "-child1" and "-child2" without having the parent ID prepended. There is not an example like this 
+in the documentation though. If we want this to be an option, then we should add an example like this.
+
+Currently, you can make child records that are in a different table from the parent. I think this is a relic from when 
+we had subject and sample tables instead of an entity table with a required field for subject or sample. Double check with Hunter and fix.
+Add to documentation that children must be in the same table, same with crecords.
+
+Add to documentation that additional fields afer crecords only get added to those crecords. 
+For example:    #%crecord.id=#.assignment+"-sample1"	#.field2	#%crecord.id=#.assignment+"-sample2"
+"field2" will only appear in "-sample1" records, not "-sample2", similar to child records.
+
+Add to documentation that if 2 headers in automation tags match to the same header/column, then it is a collision and the automation 
+won't match, and there won't be a message. (Maybe add a message). This is only the case when the tags aren't creating a new column.
+For instance 2 automation tags can use the same column to create a new column, but 2 cannot try to add tags to the same column.
+
+
+
+
+
+
+
+

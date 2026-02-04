@@ -381,7 +381,7 @@ This example replaces the "compound" field with value "(S)-2-Acetolactate_Glutar
 +---------+---------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------+------------+
 | #tags   | #measurement.compound.value                                   | #measurement.id.regex                                                                                                      | #match=all |
 +=========+===============================================================+============================================================================================================================+============+
-|         | (S)-2-Acetolactate_Glutaric acid_Methylsuccinic acid_MP_NoStd | r'\(S\)-2-Acetolactate_Glutaric acid_Methylsuccinic acid_MP_NoStd',r'(S)-2-Acetolactate Glutaric acid Methylsuccinic acid' |            |
+|         | (S)-2-Acetolactate_Glutaric acid_Methylsuccinic acid_MP_NoStd | r'\\(S\\)-2-Acetolactate_Glutaric acid_Methylsuccinic acid_MP_NoStd',r'(S)-2-Acetolactate Glutaric acid Methylsuccinic acid' |            |
 +---------+---------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------+------------+
 |         | ...                                                           | ...                                                                                                                        |            |
 +---------+---------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------+------------+
@@ -551,7 +551,7 @@ There are 6 modifications that can be done, "assign", "append", "prepend", "rege
     +---------+---------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------+
     | #tags   | #measurement.compound.value                                   | #measurement.id.regex                                                                                                      |
     +=========+===============================================================+============================================================================================================================+
-    |         | (S)-2-Acetolactate_Glutaric acid_Methylsuccinic acid_MP_NoStd | r'\(S\)-2-Acetolactate_Glutaric acid_Methylsuccinic acid_MP_NoStd',r'(S)-2-Acetolactate Glutaric acid Methylsuccinic acid' | 
+    |         | (S)-2-Acetolactate_Glutaric acid_Methylsuccinic acid_MP_NoStd | r'\\(S\\)-2-Acetolactate_Glutaric acid_Methylsuccinic acid_MP_NoStd',r'(S)-2-Acetolactate Glutaric acid Methylsuccinic acid' | 
     +---------+---------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------+
     |         | ...                                                           | ...                                                                                                                        |
     +---------+---------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------+
@@ -632,7 +632,7 @@ Tag Format Reference:
 * ***#[table_name].field_name[%attribute].assign** identifies field to assign and that the associated column values are a list type.
 * **#[table_name].field_name[%attribute].append** identifies field to append to and associated column with its value.
 * ***#[table_name].field_name[%attribute].append** identifies field to append to and that the associated column values are a list type.
-* ***#[table_name].field_name[%attribute].prepend** identifies field to prepend to and associated column with its value.
+* **#[table_name].field_name[%attribute].prepend** identifies field to prepend to and associated column with its value.
 * ***#[table_name].field_name[%attribute].prepend** identifies field to prepend to and that the associated column values are a list type.
 * **#[table_name].field_name[%attribute].regex** identifies field to apply regex substitution to and associated column with the pair of regex strings of the form r"...",r"...".
 * **#[table_name].field_name[%attribute].delete** identifies field to delete.
@@ -785,10 +785,10 @@ The Tags
     * Cell contents are stripped of leading and trailing white space before comparison with the header value.
     * A new column will be created if the headers and literals in quotes are combined with plus signs.
        
-       * Example: Name+"-"+Isopotologue+"-"+r'^\d+\w+ Isotope$'
+       * Example: Name+"-"+Isopotologue+"-"+r'^\\d+\\w+ Isotope$'
        * This functionality means that certain characters can't be used for literal matching outside of a regex.
        * For example, if a header name in a data table is "protein+solvent", then you can't simply put protein+solvent under **#header** because it will be interpreted as a concatenation of a "protein" header and a separate "solvent" header.
-       * The easiest way to solve this issue is to use a regular expression. r'protein\+solvent' will match the header correctly.
+       * The easiest way to solve this issue is to use a regular expression. r'protein\\+solvent' will match the header correctly.
        * In general, if you are having difficulty matching a header, try using a regex.
     
     * An eval function can be used in the form "eval(...)".
@@ -812,19 +812,19 @@ The Tags
 
     * Example:
     
-    +-------+---------------------------------------------------+-------------------------------------+
+    +-------+---------------------------------------------------+-------------------------+-----------+
     | #tags | #header                                           | #add                    | #required |
-    +-------+---------------------------------------------------+-------------------------------------+
+    +-------+---------------------------------------------------+-------------------------+-----------+
     |       | Compound+"-13C"+C_isomers+"-"+SamplID             | #measurement.id         | true      |
-    +-------+---------------------------------------------------+-------------------------------------+
+    +-------+---------------------------------------------------+-------------------------+-----------+
     |       | Compound+"-13C"+C_isomers                         | #measurement.assignment | true      |
-    +-------+---------------------------------------------------+-------------------------------------+
+    +-------+---------------------------------------------------+-------------------------+-----------+
     |       | Compound                                          | #measurement.compound   | true      |
-    +-------+---------------------------------------------------+-------------------------------------+
+    +-------+---------------------------------------------------+-------------------------+-----------+
     |       | Mol_Formula                                       | #measurement.formula    | false     |
-    +-------+---------------------------------------------------+-------------------------------------+
+    +-------+---------------------------------------------------+-------------------------+-----------+
     |       | SamplID                                           | #sample.id              | true      |
-    +-------+---------------------------------------------------+-------------------------------------+
+    +-------+---------------------------------------------------+-------------------------+-----------+
     
     If the Mol_Formula header is not found, the tags will still be added, but without the Mol_Formula ones.
 
@@ -834,19 +834,19 @@ The Tags
     * If a header matches the exclude string or regex, then the tags are not inserted regardless of whether the headers match.
     * Example:
     
-    +-------+---------------------------------------------------+---------------------------------------------------------------+
+    +-------+---------------------------------------------------+-------------------------+-------------------------------------+
     | #tags | #header                                           | #add                    | #exclude=r'Cell Type|Mouse Species' |
-    +-------+---------------------------------------------------+---------------------------------------------------------------+
+    +-------+---------------------------------------------------+-------------------------+-------------------------------------+
     |       | Compound+"-13C"+C_isomers+"-"+SamplID             | #measurement.id         |                                     |
-    +-------+---------------------------------------------------+---------------------------------------------------------------+
+    +-------+---------------------------------------------------+-------------------------+-------------------------------------+
     |       | Compound+"-13C"+C_isomers                         | #measurement.assignment |                                     |
-    +-------+---------------------------------------------------+---------------------------------------------------------------+
+    +-------+---------------------------------------------------+-------------------------+-------------------------------------+
     |       | Compound                                          | #measurement.compound   |                                     |
-    +-------+---------------------------------------------------+---------------------------------------------------------------+
+    +-------+---------------------------------------------------+-------------------------+-------------------------------------+
     |       | Mol_Formula                                       | #measurement.formula    |                                     |
-    +-------+---------------------------------------------------+---------------------------------------------------------------+
+    +-------+---------------------------------------------------+-------------------------+-------------------------------------+
     |       | SamplID                                           | #sample.id              |                                     |
-    +-------+---------------------------------------------------+---------------------------------------------------------------+
+    +-------+---------------------------------------------------+-------------------------+-------------------------------------+
     
     If the "Cell Type" or "Mouse Species" headers are in the row, then don't add the tags.
 
