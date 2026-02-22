@@ -18,7 +18,7 @@ def findMatchingHeaders(headerTests, row, rowIndex, automationGroupNum, duplicat
     header2ColumnIndex = {}
     columnIndex2Header = {}
     for headerString, headerTest in headerTests.items():
-        columnIndeces = [ columnIndex for columnIndex in range(0 if transpose else 1,len(row)) if re.search(headerTest, extract.xstr(row[columnIndex]).strip()) ]
+        columnIndeces = [ columnIndex for columnIndex in range(0 if transpose else 1, len(row)) if re.search(headerTest, extract.xstr(row[columnIndex]).strip()) ]
         if len(columnIndeces) == 1 or (len(columnIndeces) > 0 and headerString in duplicatesHeaders): # must be unique match
             header2ColumnIndex[headerString] = columnIndeces
             for index in columnIndeces:
@@ -158,7 +158,7 @@ def tagSheet(taggingDirectives, str[:,:] worksheet, silent):
             insert = False
             rowIndex = 0
             while rowIndex < len(worksheet[:, 0]):
-                if rowIndex in usedRows:
+                if rowIndex in usedRows and 'copy' not in taggingGroup:
                     rowIndex += 1
                     continue
 
@@ -206,12 +206,17 @@ def tagSheet(taggingDirectives, str[:,:] worksheet, silent):
                 collidingHeaders = False
                 for columnIndex, headers in columnIndex2Header.items():
                     count = 0
+                    matchedHeaders = []
                     for header in headers:
                         if not header in newColumnHeaders:
                             count += 1
+                            matchedHeaders.append(header)
                     if count > 1:
                         collidingHeaders = True
                         break
+                        print('Warning: The headers, ' + ', '.join([headerString for headerString in matchedHeaders]) + 
+                              ', in automation group, ' + str(i) + ', were matched to the same column near or on row, ' + 
+                              str(rowIndex) + ', in the tagged export.', file=sys.stderr)
                 
 
                 ## At least 1 header is found, all required headers found, and the same one isn't tagged twice.
@@ -243,6 +248,25 @@ def tagSheet(taggingDirectives, str[:,:] worksheet, silent):
                             usedRows.update(range(rowIndex,rowIndex+insertNum))
                             rowIndex += insertNum
                             endingRowIndex += insertNum
+                        
+                        # print(numpy.asarray(worksheet))
+                        if 'copy' in taggingGroup:
+                            temp_array = worksheet[rowIndex:endingRowIndex, :]
+                            blank_row = numpy.full((1, temp_array.shape[1]), "", dtype=object)
+                            insertNum = temp_array.shape[0] + 1
+                            worksheet = numpy.concatenate((worksheet[0:endingRowIndex, :], blank_row, temp_array, worksheet[endingRowIndex:, :]), axis=0, dtype=object)
+                            usedRows = set(index if index < endingRowIndex else index+insertNum for index in usedRows)
+                            rowIndex += insertNum
+                            endingRowIndex += insertNum
+                        # print()
+                        # print()
+                        # print(numpy.asarray(worksheet))
+                        # print()
+                        # print()
+                        # print(numpy.asarray(worksheet[rowIndex, :]))
+                        # print()
+                        # print(rowIndex)
+                        # print()
 
                         # Insert #tags row and the #tags and #ignore tags.
                         worksheet = numpy.concatenate((worksheet[0:rowIndex+1,:], worksheet[rowIndex:,:]), axis=0, dtype=object)
@@ -280,11 +304,16 @@ def tagSheet(taggingDirectives, str[:,:] worksheet, silent):
                             elif "field_maker" not in taggingGroup["header_tag_descriptions"][tdIndex] and taggingGroup["header_tag_descriptions"][tdIndex]["header_list"][0] in header2ColumnIndex:
                                 originalTDColumnIndeces[tdIndex] = header2ColumnIndex[taggingGroup["header_tag_descriptions"][tdIndex]["header_list"][0]]
 
+                        print()
+                        print(header2ColumnIndex)
+                        print(originalTDColumnIndeces)
+                        print()
                         newTDColumnIndeces = copy.deepcopy(originalTDColumnIndeces)
                         for tdIndex in range(len(taggingGroup["header_tag_descriptions"])):
                             for j, columnIndex in enumerate(newTDColumnIndeces[tdIndex]):
                                 flatNewTDColumnIndeces = newTDColumnIndeces[tdIndex][j:] + [index for indeces_list in newTDColumnIndeces[tdIndex+1:] for index in indeces_list] + [len(worksheet[0,:])]
                                 minColumnIndex = min(flatNewTDColumnIndeces)
+                                print(minColumnIndex)
                                 # insert new column if needed
                                 ## The COLUMN_ORDER_CONSTANT_PLUS values always need a new column for themselves, but the values less than COLUMN_ORDER_CONSTANT only need a new column if they need to be reordered.
                                 ## The second condition looks to see if the header tag under study needs to be reordered by seeing if there are any header tags that have a column index less than it. 
@@ -314,6 +343,11 @@ def tagSheet(taggingDirectives, str[:,:] worksheet, silent):
                             #     newTDColumnIndeces[tdIndex+1:] = [ index+1 if index >= minColumnIndex and index < COLUMN_ORDER_CONSTANT else index for index in newTDColumnIndeces[tdIndex+1:] ]
 
                         # Add tags. Some will be modified later.
+                        print()
+                        print(numpy.asarray(worksheet[rowIndex, :]))
+                        print(header2ColumnIndex)
+                        print()
+                        row = worksheet[rowIndex, :]
                         record = {headerString:extract.xstr(row[cIndeces[0]]).strip() for headerString, cIndeces in header2ColumnIndex.items()}
                         for tdIndex in range(len(taggingGroup["header_tag_descriptions"])):
                             placedTags = {}
@@ -326,8 +360,10 @@ def tagSheet(taggingDirectives, str[:,:] worksheet, silent):
                                             header = taggingGroup["header_tag_descriptions"][tdIndex]["field_maker"].create(record, row)
                                         else:
                                             header = '_'.join(taggingGroup["header_tag_descriptions"][tdIndex]["header_tests"].keys())
-                                    else:
+                                    elif columnIndex != COLUMN_ORDER_CONSTANT_PLUS:
                                         header = row[columnIndex]
+                                    else:
+                                        header = tag
                                     
                                     modifiedTag = tag.replace('#HEADER#', header)
                                     modifiedTag = modifiedTag.replace('#INCREMENT#', str(placedTags[tag]))
@@ -341,7 +377,7 @@ def tagSheet(taggingDirectives, str[:,:] worksheet, silent):
                         # makerIndeces2TDIndeces = {j: tdIndex for tdIndex, colIndeces in enumerate(newTDColumnIndeces) for j, colIndex in enumerate(colIndeces) if originalTDColumnIndeces[tdIndex][j] == COLUMN_ORDER_CONSTANT_PLUS}
                         # makerIndeces = [tdIndex for tdIndex in range(len(taggingGroup["header_tag_descriptions"])) if COLUMN_ORDER_CONSTANT_PLUS in originalTDColumnIndeces[tdIndex]]
                         tdIndeces2MakerIndeces = {tdIndex:[j for j, colIndex in enumerate(colIndeces) if originalTDColumnIndeces[tdIndex][j] == COLUMN_ORDER_CONSTANT_PLUS] for tdIndex, colIndeces in enumerate(newTDColumnIndeces)}
-                        headerRow = row = worksheet[rowIndex, :]
+                        headerRow = worksheet[rowIndex, :]
                         for rIndex in range(rowIndex + 2, endingRowIndex):
                             row = worksheet[rIndex, :]
                             for tdIndex, newColIndeces in tdIndeces2MakerIndeces.items():
@@ -405,8 +441,17 @@ def tagSheet(taggingDirectives, str[:,:] worksheet, silent):
                             #             worksheet[rIndex, newTDColumnIndeces[tdIndex]] = taggingGroup["header_tag_descriptions"][tdIndex]["field_maker"].evaluate(record)
                                         
                         wasTaggingDirectiveUsed[i] = True
-                else:
-                        rowIndex += 1
+                        # print()
+                        # print(numpy.asarray(worksheet))
+                        # print()
+                    # print()
+                    # print(taggingGroup)
+                    # print(rowIndex)
+                    # print()
+                rowIndex += 1
+                
+                # else:
+                #         rowIndex += 1
 
     return numpy.array(worksheet), wasTaggingDirectiveUsed
 

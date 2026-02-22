@@ -83,6 +83,10 @@ Keyword Tags
 * **#tags** - identifies tag header rows. Must be in the first column of a row.
 
    * Additional tag-value pairs in a cell with #tags are applied to all child records in this section, but are ignored for non-child records.
+   
+* **#transpose** - indicates that the table below this tag needs to be transposed to align with the provided tags.
+
+   * Should be specified after "#tags", i.e. "#tags;#transpose".
 
 * **#ignore** - ignore this row. Must be put in the first column of a row.
 
@@ -235,10 +239,10 @@ Child Tag Format
    
    * The child tag indicates the creation of a new record.
    * Subsequent normal tags identify fields in the new child record.
-   * A special parentID field is added using the first ID tag indicated in the header row.
+   * A special parent_id field is added using the first ID tag indicated in the header row.
    * Format: **#%child.id=id_sub_string**
       
-      * The value for id_sub_string will be appended to the ID of the child's parent (parentID) to create the child ID.
+      * The value for id_sub_string will be appended to the ID of the child's parent (parent_id) to create the child ID.
       
 Example:
 
@@ -265,13 +269,13 @@ Output JSON:
           "dry_weight": "4.2",
           "dry_weight%units": "mg",
           "id": "KO labelled_1-media-0h",
-          "parentID": "KO labelled_1"
+          "parent_id": "KO labelled_1"
         },
         "KO labelled_1-media-3h": {
           "dry_weight": "8.5",
           "dry_weight%units": "mg",
           "id": "KO labelled_1-media-3h",
-          "parentID": "KO labelled_1"
+          "parent_id": "KO labelled_1"
         },
         "KO labelled_2": {
           "id": "KO labelled_2"
@@ -280,16 +284,91 @@ Output JSON:
           "dry_weight": "4.7",
           "dry_weight%units": "mg",
           "id": "KO labelled_2-media-0h",
-          "parentID": "KO labelled_2"
+          "parent_id": "KO labelled_2"
         },
         "KO labelled_2-media-3h": {
           "dry_weight": "9.7",
           "dry_weight%units": "mg",
           "id": "KO labelled_2-media-3h",
-          "parentID": "KO labelled_2"
+          "parent_id": "KO labelled_2"
         }
       }
     }
+
+
+crecord Tags
+------------
+* Short for column record, this tag provides a way to indicate that a column should become a new record.
+* Similar to child tags, but without the parent-child relationship.
+* All fields specified to the left of the crecord tag will be included in the newly created records, but each row in the crecord column will create a new record.
+* In the case of multiple crecord tags, additional fields to the right of the crecord will only be added to the crecord on the left of that field.
+* An example that utulizes automation tags is in the Common Use Case Examples.
+
+Example:
+
++---------+------------------------------------------+---------------+-----------------------------+-------------+----------+----------------+------------+--------------------------------------------------------------------------------+---------------------------------------------------------------------------------+
+| #tags   | #measurement.assignment                  | #.ion_species | *.inchi_key                 | #.msi_level | #.m_z    | #.ret_time     | #.esi_mode | #%crecord.id=#.assignment+"-sample1";#.intensity;#.intensity%units="peak area" | #%crecord.id=#.assignment+"-sample2";#.intensity;#.intensity%units="peak area"  |
++=========+==========================================+===============+=============================+=============+==========+================+============+================================================================================+=================================================================================+
+| #ignore | annotation                               | ion species   | InChiKey                    | MSI level   | m/z      | ret.time (min) | ESI mode   | 1                                                                              | 2                                                                               |
++---------+------------------------------------------+---------------+-----------------------------+-------------+----------+----------------+------------+--------------------------------------------------------------------------------+---------------------------------------------------------------------------------+
+|         | (dehydro)ornithine                       | [M+H]+        | KFZHLVSVDLIACX-UHFFFAOYSA-N | 3           | 131.0872 | 2.363          | ESI pos    | 349                                                                            | 995                                                                             |
++---------+------------------------------------------+---------------+-----------------------------+-------------+----------+----------------+------------+--------------------------------------------------------------------------------+---------------------------------------------------------------------------------+
+|         | .beta.-Nicotinamide adenine dinucleotide | [M+2H]2+      | BAWFJGJZGIEFAR-OWXIGJDBSA-N | 2           | 332.5639 | 2.423          | ESI pos    | 229                                                                            | 1030                                                                            |
++---------+------------------------------------------+---------------+-----------------------------+-------------+----------+----------------+------------+--------------------------------------------------------------------------------+---------------------------------------------------------------------------------+
+
+Output JSON:
+
+.. code:: console
+
+    {
+      "measurement": {
+        "(dehydro)ornithine-sample1": {
+          "assignment": "(dehydro)ornithine",
+          "esi_mode": "ESI pos",
+          "id": "(dehydro)ornithine-sample1",
+          "intensity": "349",
+          "intensity%units": "peak area",
+          "ion_species": "[M+H]+",
+          "m_z": "131.0872",
+          "msi_level": "3",
+          "ret_time": "2.363"
+        },
+        "(dehydro)ornithine-sample2": {
+          "assignment": "(dehydro)ornithine",
+          "esi_mode": "ESI pos",
+          "id": "(dehydro)ornithine-sample2",
+          "intensity": "995",
+          "intensity%units": "peak area",
+          "ion_species": "[M+H]+",
+          "m_z": "131.0872",
+          "msi_level": "3",
+          "ret_time": "2.363"
+        },
+        ".beta.-Nicotinamide adenine dinucleotide-sample1": {
+          "assignment": ".beta.-Nicotinamide adenine dinucleotide",
+          "esi_mode": "ESI pos",
+          "id": ".beta.-Nicotinamide adenine dinucleotide-sample1",
+          "intensity": "229",
+          "intensity%units": "peak area",
+          "ion_species": "[M+2H]2+",
+          "m_z": "332.5639",
+          "msi_level": "2",
+          "ret_time": "2.423"
+        },
+        ".beta.-Nicotinamide adenine dinucleotide-sample2": {
+          "assignment": ".beta.-Nicotinamide adenine dinucleotide",
+          "esi_mode": "ESI pos",
+          "id": ".beta.-Nicotinamide adenine dinucleotide-sample2",
+          "intensity": "1030",
+          "intensity%units": "peak area",
+          "ion_species": "[M+2H]2+",
+          "m_z": "332.5639",
+          "msi_level": "2",
+          "ret_time": "2.423"
+        }
+      }
+    }
+
 
 
 Field Tracking Tags
@@ -355,6 +434,36 @@ Output JSON:
         }
       }
     }
+    
+
+Transposed Data
+---------------
+* The transpose tag provides a way to read in data where the headers are row-wise instead of column-wise.
+* The transpose tag assumes there is a header column in the 2nd position from the left and inserts an ignore tag in the first row after transposing the data.
+
+Example:
+
++------------------+---------------+---------------------------------------------------------+---------------------------------------------------------+
+| #tags;#transpose | #sample.id    | #%child.id=-media-0h;#.dry_weight;#.dry_weight%units=mg | #%child.id=-media-3h;#.dry_weight;#.dry_weight%units=mg |
++------------------+---------------+---------------------------------------------------------+---------------------------------------------------------+
+|                  | Sample Name   | KO labelled_1                                           | KO labelled_2                                           |
++------------------+---------------+---------------------------------------------------------+---------------------------------------------------------+
+|                  | Dry Weight 0h | 4.2                                                     | 4.7                                                     |
++------------------+---------------+---------------------------------------------------------+---------------------------------------------------------+
+|                  | Dry Weight 3h | 8.5                                                     | 9.7                                                     |
++------------------+---------------+---------------------------------------------------------+---------------------------------------------------------+
+
+Will become:
+
++---------+---------------+---------------------------------------------------------+---------------------------------------------------------+
+| #tags   | #sample.id    | #%child.id=-media-0h;#.dry_weight;#.dry_weight%units=mg | #%child.id=-media-3h;#.dry_weight;#.dry_weight%units=mg |
++---------+---------------+---------------------------------------------------------+---------------------------------------------------------+
+| #ignore | Sample Name   | Dry Weight 0h                                           | Dry Weight 3h                                           |
++---------+---------------+---------------------------------------------------------+---------------------------------------------------------+
+|         | KO labelled_1 | 4.2                                                     | 8.5                                                     |
++---------+---------------+---------------------------------------------------------+---------------------------------------------------------+
+|         | KO labelled_2 | 4.7                                                     | 9.7                                                     |
++---------+---------------+---------------------------------------------------------+---------------------------------------------------------+
 
 
 Modification Tags
@@ -776,6 +885,47 @@ JSON Output:
     }
 
 
+A #transpose tag can be specified to indicate that the data to be tagged is row-wise instead of column-wise. 
+
+Example:
+++++++++
+
+Data:
+
++---------------+---------------------------------------------------------+---------------------------------------------------------+
+| Sample Name   | KO labelled_1                                           | KO labelled_2                                           |
++---------------+---------------------------------------------------------+---------------------------------------------------------+
+| Dry Weight 0h | 4.2                                                     | 4.7                                                     |
++---------------+---------------------------------------------------------+---------------------------------------------------------+
+| Dry Weight 3h | 8.5                                                     | 9.7                                                     |
++---------------+---------------------------------------------------------+---------------------------------------------------------+
+
+Header Tags:
+
++------------------+---------------+---------------------------------------------------------+
+| #tags;#transpose | #header       | #add                                                    |
++------------------+---------------+---------------------------------------------------------+
+|                  | Sample Name   | #sample.id                                              |
++------------------+---------------+---------------------------------------------------------+
+|                  | Dry Weight 0h | #%child.id=-media-0h;#.dry_weight;#.dry_weight%units=mg |
++------------------+---------------+---------------------------------------------------------+
+|                  | Dry Weight 3h | #%child.id=-media-3h;#.dry_weight;#.dry_weight%units=mg |
++------------------+---------------+---------------------------------------------------------+
+
+After Automation:
+
++------------------+---------------+---------------------------------------------------------+---------------------------------------------------------+
+| #tags;#transpose | #sample.id    | #%child.id=-media-0h;#.dry_weight;#.dry_weight%units=mg | #%child.id=-media-3h;#.dry_weight;#.dry_weight%units=mg |
++------------------+---------------+---------------------------------------------------------+---------------------------------------------------------+
+|                  | Sample Name   | KO labelled_1                                           | KO labelled_2                                           |
++------------------+---------------+---------------------------------------------------------+---------------------------------------------------------+
+|                  | Dry Weight 0h | 4.2                                                     | 4.7                                                     |
++------------------+---------------+---------------------------------------------------------+---------------------------------------------------------+
+|                  | Dry Weight 3h | 8.5                                                     | 9.7                                                     |
++------------------+---------------+---------------------------------------------------------+---------------------------------------------------------+
+
+
+
 The Tags
 ++++++++
 * **#header** - header value to match to. Can be a regular expression of the form r'...'.  
@@ -783,18 +933,20 @@ The Tags
     * All tag blocks must contain a **#header** tag.
     * Additional column headers can be included with blank corresponding tags to help make header row identification unique.
     * Cell contents are stripped of leading and trailing white space before comparison with the header value.
-    * A new column will be created if the headers and literals in quotes are combined with plus signs.
+    * A new column will be created if the headers, literals in quotes, and/or regular expressions are combined with plus signs.
        
        * Example: Name+"-"+Isopotologue+"-"+r'^\\d+\\w+ Isotope$'
        * This functionality means that certain characters can't be used for literal matching outside of a regex.
        * For example, if a header name in a data table is "protein+solvent", then you can't simply put protein+solvent under **#header** because it will be interpreted as a concatenation of a "protein" header and a separate "solvent" header.
        * The easiest way to solve this issue is to use a regular expression. r'protein\\+solvent' will match the header correctly.
        * In general, if you are having difficulty matching a header, try using a regex.
+       * If multiple headers or regular expressions in the #header column match the same header in the data, then there will be an error because 2 sets of tags cannot be placed in the same spot.
+       * The above does not apply when creating a new column, however. The same column in the data can be used to create multiple new columns.
     
     * An eval function can be used in the form "eval(...)".
        
        * "#header_name#" and "#r'...'#" can be used to indicate specific columns in the row.
-       * All Python language operators can be used.  But remember to use "float(#field_name#)" to convert strings to floating point numbers. 
+       * All Python language operators can be used. But remember to use "float(#field_name#)" to convert strings to floating point numbers. 
        * Example: eval(float(#Intensity#) / float(#r'.*Normalization'#) * 5)
        * If the eval returns a list of items, it is converted into a string separated by semicolons.
        
@@ -806,8 +958,48 @@ The Tags
     * All tag blocks must contain a **#add** tag.
     * The actual value under **#add** does not have to be a valid tag, the value will be copied as is.
     * Leave this value blank to add headers that are required to match a block, but don't need tags.
+    * "#HEADER#" and "#INCREMENT#" are 2 reserved words that can be used to build tags based on the headers.
+    
+        * #HEADER# will be replaced with the value of the header that was matched to the value given in #header.
+        * #INCREMENT# will be replaced with the number of the match. For example, if the value in #header is r'Sample_\\d', the value for #INCREMENT# will be 0 for first header to match, 1 for the second, etc.
+        * Example:
+        
+        Data:
+        
+        +----+----+----+----+----+----+-----+
+        | A  | B  | C  | D  | E  | F  | G   |
+        +----+----+----+----+----+----+-----+
+        | a1 | b1 | c1 | d1 | e1 | f1 | g1  |
+        +----+----+----+----+----+----+-----+
+        
+        Header Tags:
+        
+        +---------+---------------+------------------------------------------+--------------------+
+        | #tags   | #header       | #add                                     | #allow_duplicates  |
+        +---------+---------------+------------------------------------------+--------------------+
+        |         | A             | #measurement.id                          |                    |
+        +---------+---------------+------------------------------------------+--------------------+
+        |         | r'F|G'        | #measurement.field3_#HEADER#_#INCREMENT# | true               |
+        +---------+---------------+------------------------------------------+--------------------+
+        |         | r'B|C'+r'F|G' | #measurement.#HEADER#_#INCREMENT#        | true               |
+        +---------+---------------+------------------------------------------+--------------------+
+        
+        After Automation:
+        
+        +---------+-----------------+----+----+----+----+-------------------------+-------------------------+-------------------+-------------------+-------------------+--------------------+
+        | #ignore | A               | B  | C  | D  | E  | F                       | G                       |                   |                   |                   |                    |
+        +---------+-----------------+----+----+----+----+-------------------------+-------------------------+-------------------+-------------------+-------------------+--------------------+
+        | #tags   | #measurement.id |    |    |    |    | #measurement.field3_F_0 | #measurement.field3_G_1 | #measurement.BF_0 | #measurement.BG_1 | #measurement.CF_2 | #measurement.CG_3  |
+        +---------+-----------------+----+----+----+----+-------------------------+-------------------------+-------------------+-------------------+-------------------+--------------------+
+        |         | a1              | b1 | c1 | d1 | e1 | f1                      | g1                      | b1f1              | b1g1              | c1f1              | c1g1               |
+        +---------+-----------------+----+----+----+----+-------------------------+-------------------------+-------------------+-------------------+-------------------+--------------------+
+        |         | a2              | b2 | c2 | d2 | e2 | f2                      | g2                      | b2f2              | b2g2              | c2f2              | c2g2               |
+        +---------+-----------------+----+----+----+----+-------------------------+-------------------------+-------------------+-------------------+-------------------+--------------------+
+        
+        This is a contrived example to illustrate how the reserved words work, but a more common way to use these are in the Common Use Case Examples below.
+        Note that the header "r'B|C'+r'F|G'" created 4 new columns instead of just 1 because a new one is created for each combination of matches to the regular expressions.
 
-         
+      
 * **#required** - true|false whether this header description is required. The default is that all header descriptions are required.
 
     * Example:
@@ -827,6 +1019,12 @@ The Tags
     +-------+---------------------------------------------------+-------------------------+-----------+
     
     If the Mol_Formula header is not found, the tags will still be added, but without the Mol_Formula ones.
+
+
+* **#allow_duplicates#** - true|false whether this header description can match multiple times in the same row and add tags to each match. The default is that duplicates are not allowed.
+
+    * If this is true, then #HEADER# and/or #INCREMENT# must be used in the tag(s) under #add to ensure the uniqueness of tags.
+    * See the example above in the #add section to see an example using this tag.
 
 
 * **#exclude=test_string** - test string or regular expression to use for excluding a given header row.
@@ -1082,6 +1280,26 @@ Adding Additional Fields
 
 This will add an additional "assignment%method" field to the measurement records whose "assignment" 
 field matches the ".value" column.
+
+
+
+The next example uses a new set of measurement data.
+
+Automating crecords
++++++++++++++++++++
+
+Measurement Data:
+
++------------------------------------------+-------------+-----------------------------+-----------+----------+----------------+----------+-----+-------+
+| annotation                               | ion species | InChiKey                    | MSI level | m/z      | ret.time (min) | ESI mode | 1   | 2     |
++==========================================+=============+=============================+===========+==========+================+==========+=====+=======+
+| (dehydro)ornithine                       | [M+H]+      | KFZHLVSVDLIACX-UHFFFAOYSA-N | 3         | 131.0872 | 2.363          | ESI pos  | 349 | 995   |
++------------------------------------------+-------------+-----------------------------+-----------+----------+----------------+----------+-----+-------+
+| .beta.-Nicotinamide adenine dinucleotide | [M+2H]2+    | BAWFJGJZGIEFAR-OWXIGJDBSA-N | 2         | 332.5639 | 2.423          | ESI pos  | 229 | 1030  |
++------------------------------------------+-------------+-----------------------------+-----------+----------+----------------+----------+-----+-------+
+
+Automation Tags:
+
 
 
 

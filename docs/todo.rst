@@ -64,7 +64,7 @@ For matrix directives add an option so that fields in "headers" don't have to be
 
 
 
-Add explanation in documentation that tags are read from right to left, so some things must be specified first. 
+Add explanation in documentation that tags are read from left to right, so some things must be specified first. 
 For example, a child tag must have it's parent ID specified on the left before it.
 
 Do we want to force child tags to specify child.id always? 
@@ -79,18 +79,13 @@ Currently, you can make child records that are in a different table from the par
 we had subject and sample tables instead of an entity table with a required field for subject or sample. Double check with Hunter and fix.
 Add to documentation that children must be in the same table, same with crecords.
 
-Add to documentation that additional fields afer crecords only get added to those crecords. 
-For example:    #%crecord.id=#.assignment+"-sample1"	#.field2	#%crecord.id=#.assignment+"-sample2"
-"field2" will only appear in "-sample1" records, not "-sample2", similar to child records.
-
-Add to documentation that if 2 headers in automation tags match to the same header/column, then it is a collision and the automation 
-won't match, and there won't be a message. (Maybe add a message). This is only the case when the tags aren't creating a new column.
-For instance 2 automation tags can use the same column to create a new column, but 2 cannot try to add tags to the same column.
+For automation, check whether reordering occurs to match the order specified in automation, if not ask Hunter if we want it to.
 
 
-
-
-
-
+Make sure modify tests still work and add tests that modify "id" list fields and list field attributes. 
+For example, #tags	#entity.field1.value	*#entity.protocol.id.assign    and   #tags	#entity.field1.value	*#entity.field%attribute.assign
+The modify tags were not working for id fields and field attributes if they were lists. This seemed to be intentional in the code, but 
+it does not follow what is now allowed and required. You could construct list fields for ids and attributes when exporting, but for some 
+reason can't assign, prepend, etc. Doesn't make sense. Changed the modifications so they can, add tests accordingly.
 
 
