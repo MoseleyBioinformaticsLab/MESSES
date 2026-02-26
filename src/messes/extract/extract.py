@@ -1282,10 +1282,7 @@ class TagParser(object):
                     self.extraction[recordMakers[0].table] = {}
             
             workingDF = worksheet.loc[rowsToParse.index, :]
-            # TODO erase prints
-            print("In parse sheet")
-            print(workingDF)
-            print()
+            # TODO test transpoe tags again after changes to cythonized_tagSheet.
             if '#transpose' in worksheet.loc[headerRowIndex,:].iloc[0]:
                 print(workingDF.transpose())
                 print()

@@ -8,6 +8,7 @@ from itertools import product
 
 import numpy
 cimport numpy
+import pandas
 
 from messes.extract import extract
 
@@ -34,10 +35,12 @@ def findMatchingHeaders(headerTests, row, rowIndex, automationGroupNum, duplicat
     
     return header2ColumnIndex, columnIndex2Header
 
-def findEndingRowIndex(rowIndex, worksheet, usedRows):
+def findEndingRowIndex(rowIndex, worksheet, usedRows, copiedRows, isCopy):
     found = False
     for endingRowIndex in range(rowIndex+1, len(worksheet[:, 0])):
-        if extract.TagParser._isEmptyRow(worksheet[endingRowIndex, :]) or re.match('#tags$', extract.xstr(worksheet[endingRowIndex,0]).strip()) or endingRowIndex in usedRows:
+        if extract.TagParser._isEmptyRow(worksheet[endingRowIndex, :]) or \
+           re.match('#tags$', extract.xstr(worksheet[endingRowIndex,0]).strip()) or \
+           endingRowIndex in copiedRows or (not isCopy and endingRowIndex in usedRows):
             found = True
             break
 
@@ -67,10 +70,22 @@ def tagSheet(taggingDirectives, str[:,:] worksheet, silent):
 
         if not any([cell == "#tags" for cell in worksheet[:, 0]]) and not all([cell == '' for cell in worksheet[:, 0]]):
             worksheet = numpy.insert(worksheet, 0, "", axis=1)
-
+        
+        # TODO create a copiedUsedRows to prevent copying a copy.
         usedRows = set()
+        copiedRows = set()
         # Process each tagging group.
         for i, taggingGroup in enumerate(taggingDirectives):
+            isCopy = any(word in taggingGroup for word in ['copy', 'transpose', 'sort', 'filter'])
+            print(i)
+            print()
+            print(numpy.asarray(worksheet))
+            print()
+            print(usedRows)
+            print()
+            print(copiedRows)
+            print()
+            print()
             if "header_tag_descriptions" not in taggingGroup:
                 # Insert at the beginning of the sheet
                 if "insert" in taggingGroup and len(taggingGroup["insert"]):
@@ -158,7 +173,7 @@ def tagSheet(taggingDirectives, str[:,:] worksheet, silent):
             insert = False
             rowIndex = 0
             while rowIndex < len(worksheet[:, 0]):
-                if rowIndex in usedRows and 'copy' not in taggingGroup:
+                if (rowIndex in usedRows and not isCopy) or rowIndex in copiedRows:
                     rowIndex += 1
                     continue
 
@@ -187,18 +202,13 @@ def tagSheet(taggingDirectives, str[:,:] worksheet, silent):
                 if len(header2ColumnIndex) == 1 and 'transpose' in taggingGroup:
                     columnIndexMatch = list(columnIndex2Header.keys())[0]
                     column = worksheet[rowIndex:, columnIndexMatch]
-                    endingRowIndex = findEndingRowIndex(rowIndex, worksheet, usedRows)
+                    endingRowIndex = findEndingRowIndex(rowIndex, worksheet, usedRows, copiedRows, True)
                     column = column[0:endingRowIndex]
                     header2ColumnIndex, columnIndex2Header = findMatchingHeaders(headerTests, column, rowIndex, i, duplicatesHeaders, silent, True)
                     # Update indexes to match where they actually need to be.
                     header2ColumnIndex = {header: [index + columnIndexMatch for index in indexes] for header, indexes in header2ColumnIndex.items()}
                     columnIndex2Header = {index + columnIndexMatch: header for index, header in columnIndex2Header.items()}
-                    maxRowIndex = max([index for index in columnIndex2Header.keys()])
-                    numOfColumns = len(worksheet[0, :])
-                    # TODO test that this code works to add the correct amount of columns.
-                    if maxRowIndex+1 > numOfColumns:
-                        for j in range(maxRowIndex+1 - numOfColumns):
-                            worksheet = numpy.insert(worksheet, len(worksheet[0, :]), "", axis=1)
+                    
                     
 
                 ## If 2 tests match to the same header it is not always a collision to be skipped.
@@ -221,7 +231,8 @@ def tagSheet(taggingDirectives, str[:,:] worksheet, silent):
 
                 ## At least 1 header is found, all required headers found, and the same one isn't tagged twice.
                 if header2ColumnIndex and all([headerString in header2ColumnIndex for headerString in requiredHeaders]) and not collidingHeaders:
-                    endingRowIndex = findEndingRowIndex(rowIndex, worksheet, usedRows)
+                    endingRowIndex = findEndingRowIndex(rowIndex, worksheet, usedRows, copiedRows, isCopy)
+                    print(str(i), str(rowIndex), str(endingRowIndex))
                     # found = False
                     # endingRowIndex = rowIndex+1
                     # for endingRowIndex in range(rowIndex+1, len(worksheet[:, 0])):
@@ -231,8 +242,9 @@ def tagSheet(taggingDirectives, str[:,:] worksheet, silent):
 
                     # if not found:
                     #     endingRowIndex = len(worksheet[:, 0])
-                    
                     if endingRowIndex != rowIndex+1: # Ignore header row with empty line after it.
+                        print("Headers Found " + str(i))
+                        print()
                         if "insert" in taggingGroup and len(taggingGroup["insert"]) and (not insert or taggingGroup["insert_multiple"]):
                             insert = True
                             insertNum = len(taggingGroup["insert"])
@@ -246,18 +258,106 @@ def tagSheet(taggingDirectives, str[:,:] worksheet, silent):
                             worksheet = numpy.concatenate((worksheet[0:rowIndex, :], temp_array, worksheet[rowIndex:, :]), axis=0, dtype=object)
                             usedRows = set(index if index < rowIndex else index+insertNum for index in usedRows)
                             usedRows.update(range(rowIndex,rowIndex+insertNum))
+                            copiedRows = set(index if index < rowIndex else index+insertNum for index in copiedRows)
                             rowIndex += insertNum
                             endingRowIndex += insertNum
                         
-                        # print(numpy.asarray(worksheet))
-                        if 'copy' in taggingGroup:
+                        if isCopy:
+                            if 'transpose' in taggingGroup:
+                                maxRowIndex = max([index for index in columnIndex2Header.keys()])
+                                numOfColumns = len(worksheet[0, :])
+                                # TODO test that this code works to add the correct amount of columns.
+                                if maxRowIndex+1 > numOfColumns:
+                                    for j in range(maxRowIndex+1 - numOfColumns):
+                                        worksheet = numpy.insert(worksheet, len(worksheet[0, :]), "", axis=1)
+                            
                             temp_array = worksheet[rowIndex:endingRowIndex, :]
+                            if 'transpose' in taggingGroup:
+                                temp_array = numpy.transpose(temp_array)[1:, :]
+                            if 'sort' in taggingGroup:
+                                temp_array = numpy.asarray(temp_array)
+                                df = pandas.DataFrame(temp_array[1:, :], columns = temp_array[0, :])
+                                sortPairs = [pair.strip() for pair in taggingGroup['sort'].split(',')]
+                                headers = []
+                                sortOrders = []
+                                for pair in sortPairs:
+                                    if reMatch := re.match(r'"(.+)"\s*:\s*(ascending|descending)', pair):
+                                        pass
+                                    elif reMatch := re.match(r'([^:]+)\s*:\s*(ascending|descending)', pair):
+                                        pass
+                                    else:
+                                        raise Exception("Error: A #sort tag in automation group " + str(i) + 
+                                                        " has a badly constructed header:sortorder pair, " +
+                                                        pair + ". It should be of the form \"header:ascending\" or \"header:descending\". "
+                                                        "Put double quotes around the header if it contains a colon.")
+                                    headers.append(reMatch.group(1).strip())
+                                    sortOrders.append(reMatch.group(2).strip())
+                                missingHeaders = [header for header in headers if header not in df.columns]
+                                if missingHeaders:
+                                    raise Exception("Error: The following header(s) in the #sort tag of automation group " + str(i) +
+                                                    " were not found in the data: " + str(missingHeaders))
+                                df = df.sort_values(headers, axis = 1, ascending = [True if order == 'ascending' else False for order in sortOrders])
+                                temp_array[1:, :] = df.to_numpy()
+                            if 'filter' in taggingGroup:
+                                # Find all header:filter combos.
+                                filterPairs = re.findall(r'((?:[^()&|]+|".+")\s*:\s*(?:[^()&|]+|".+"))', taggingGroup['filter'])
+                                # Split headers and filters to process separately.
+                                headers = []
+                                filterStrings = []
+                                for pair in filterPairs:
+                                    if reMatch := re.match(r'"(.+)"\s*:\s*"(.+)"', pair):
+                                        pass
+                                    elif reMatch := re.match(r'"(.+)"\s*:\s*([^:]+)', pair):
+                                        pass
+                                    elif reMatch := re.match(r'([^:]+)\s*:\s*"(.+)"', pair):
+                                        pass
+                                    elif reMatch := re.match(r'([^:]+)\s*:\s*([^:]+)', pair):
+                                        pass
+                                    else:
+                                        raise Exception("Error: A #filter tag in automation group " + str(i) + 
+                                                        " has a badly constructed header:filter pair, " +
+                                                        pair + ". It should be of the form \"header:filter\". "
+                                                        "Put double quotes around the header or filter if it contains a colon.")
+                                    headers.append(reMatch.group(1).strip())
+                                    filterStrings.append(reMatch.group(2).strip())
+                                # Match headers to column indexes.
+                                filterHeader2ColumnIndex, _ = findMatchingHeaders({header:'^'+header+'$'}, row, rowIndex, i, [], silent, False)
+                                missingHeaders = [header for header in headers if header not in filterHeader2ColumnIndex]
+                                if missingHeaders:
+                                    raise Exception("Error: The following header(s) in the #filter tag of automation group " + str(i) +
+                                                    " were not found in the data: " + str(missingHeaders))
+                                # Turn filter strings into conditions.
+                                conditions = []
+                                for j, filterString in enumerate(filterStrings):
+                                    columnIndex = filterHeader2ColumnIndex[headers[j]][0]
+                                    if filterString == 'unique':
+                                        unique_values, unique_indeces = numpy.unique(temp_array[:, columnIndex], return_index=True)
+                                        bool_array = numpy.zeros(temp_array.shape[0], dtype=bool)
+                                        bool_array[unique_indeces] = True
+                                        conditions.append(bool_array)
+                                    elif reMatch := re.match(extract.Evaluator.reDetector, filterString):
+                                        compiledRegex = re.compile(reMatch.group(1))
+                                        vmatch = numpy.vectorize(lambda x:bool(compiledRegex.match(x)))
+                                        conditions.append(vmatch(temp_array[:, columnIndex]))
+                                    else:
+                                        conditions.append(temp_array[:, columnIndex] == filterStrings)
+                                
+                                evalString = taggingGroup['filter']
+                                for j, pair in enumerate(filterPairs):
+                                    evalString = evalString.replace(pair, 'conditions[' + str(j) + ']')
+                                temp_array = numpy.asarray(temp_array)
+                                temp_array = temp_array[eval(evalString, {'conditions':conditions})]
+                                
                             blank_row = numpy.full((1, temp_array.shape[1]), "", dtype=object)
-                            insertNum = temp_array.shape[0] + 1
+                            insertNum = worksheet[rowIndex:endingRowIndex, :].shape[0] + 1
                             worksheet = numpy.concatenate((worksheet[0:endingRowIndex, :], blank_row, temp_array, worksheet[endingRowIndex:, :]), axis=0, dtype=object)
                             usedRows = set(index if index < endingRowIndex else index+insertNum for index in usedRows)
+                            copiedRows = set(index if index < endingRowIndex else index+insertNum for index in copiedRows)
                             rowIndex += insertNum
-                            endingRowIndex += insertNum
+                            endingRowIndex += temp_array.shape[0] + 1
+                            
+                        
+                            
                         # print()
                         # print()
                         # print(numpy.asarray(worksheet))
@@ -270,20 +370,33 @@ def tagSheet(taggingDirectives, str[:,:] worksheet, silent):
 
                         # Insert #tags row and the #tags and #ignore tags.
                         worksheet = numpy.concatenate((worksheet[0:rowIndex+1,:], worksheet[rowIndex:,:]), axis=0, dtype=object)
-                        if 'transpose' in taggingGroup:
-                            worksheet[rowIndex,:] = ""
-                            worksheet[rowIndex,0] = '#tags;#transpose'
-                            endingRowIndex += 1
-                            usedRows.update(range(rowIndex, rowIndex + endingRowIndex))
-                            rowIndex -= 1
-                        else:
-                            worksheet[rowIndex+1,:] = ""
-                            worksheet[rowIndex,0] = "#ignore"
-                            worksheet[rowIndex+1,0] = '#tags'
-                            endingRowIndex += 1
+                        # if 'transpose' in taggingGroup:
+                        #     worksheet[rowIndex,:] = ""
+                        #     worksheet[rowIndex,0] = '#tags;#transpose'
+                        #     endingRowIndex += 1
+                        #     usedRows.update(range(rowIndex, rowIndex + endingRowIndex))
+                        #     rowIndex -= 1
+                        # else:
+                        #     worksheet[rowIndex+1,:] = ""
+                        #     worksheet[rowIndex,0] = "#ignore"
+                        #     worksheet[rowIndex+1,0] = '#tags'
+                        #     endingRowIndex += 1
     
-                            usedRows = set(index if index < rowIndex+1 else index+1 for index in usedRows)
-                            usedRows.update(range(rowIndex,endingRowIndex))
+                        #     usedRows = set(index if index < rowIndex+1 else index+1 for index in usedRows)
+                        #     usedRows.update(range(rowIndex,endingRowIndex))
+                        
+                        worksheet[rowIndex+1,:] = ""
+                        worksheet[rowIndex,0] = "#ignore"
+                        worksheet[rowIndex+1,0] = '#tags'
+                        endingRowIndex += 1
+
+                        usedRows = set(index if index < rowIndex+1 else index+1 for index in usedRows)
+                        usedRows.update(range(rowIndex,endingRowIndex))
+                        copiedRows = set(index if index < rowIndex+1 else index+1 for index in copiedRows)
+                        if isCopy:
+                            copiedRows.update(range(rowIndex,endingRowIndex))
+
+                        
 
                         # Create correct relative column order.
                         originalTDColumnIndeces = [ [COLUMN_ORDER_CONSTANT] for x in range(len(taggingGroup["header_tag_descriptions"])) ]
@@ -304,16 +417,11 @@ def tagSheet(taggingDirectives, str[:,:] worksheet, silent):
                             elif "field_maker" not in taggingGroup["header_tag_descriptions"][tdIndex] and taggingGroup["header_tag_descriptions"][tdIndex]["header_list"][0] in header2ColumnIndex:
                                 originalTDColumnIndeces[tdIndex] = header2ColumnIndex[taggingGroup["header_tag_descriptions"][tdIndex]["header_list"][0]]
 
-                        print()
-                        print(header2ColumnIndex)
-                        print(originalTDColumnIndeces)
-                        print()
                         newTDColumnIndeces = copy.deepcopy(originalTDColumnIndeces)
                         for tdIndex in range(len(taggingGroup["header_tag_descriptions"])):
                             for j, columnIndex in enumerate(newTDColumnIndeces[tdIndex]):
                                 flatNewTDColumnIndeces = newTDColumnIndeces[tdIndex][j:] + [index for indeces_list in newTDColumnIndeces[tdIndex+1:] for index in indeces_list] + [len(worksheet[0,:])]
                                 minColumnIndex = min(flatNewTDColumnIndeces)
-                                print(minColumnIndex)
                                 # insert new column if needed
                                 ## The COLUMN_ORDER_CONSTANT_PLUS values always need a new column for themselves, but the values less than COLUMN_ORDER_CONSTANT only need a new column if they need to be reordered.
                                 ## The second condition looks to see if the header tag under study needs to be reordered by seeing if there are any header tags that have a column index less than it. 
@@ -343,10 +451,6 @@ def tagSheet(taggingDirectives, str[:,:] worksheet, silent):
                             #     newTDColumnIndeces[tdIndex+1:] = [ index+1 if index >= minColumnIndex and index < COLUMN_ORDER_CONSTANT else index for index in newTDColumnIndeces[tdIndex+1:] ]
 
                         # Add tags. Some will be modified later.
-                        print()
-                        print(numpy.asarray(worksheet[rowIndex, :]))
-                        print(header2ColumnIndex)
-                        print()
                         row = worksheet[rowIndex, :]
                         record = {headerString:extract.xstr(row[cIndeces[0]]).strip() for headerString, cIndeces in header2ColumnIndex.items()}
                         for tdIndex in range(len(taggingGroup["header_tag_descriptions"])):
