@@ -302,16 +302,24 @@ def main() :
         )            
         
         mwtabfile.source = args["<input_JSON>"]
-        validated_file, errors = mwtab.validator.validate_file(mwtabfile)
+        string_errors, json_errors = mwtab.validator.validate_file(mwtabfile)
+        warning_count = 0
+        for error in json_errors:
+            if error['message'].startswith('Warning'):
+                warning_count += 1
         
-        if "Status: Passing" in errors:
-            mwtab_save_name = args["<output_name>"] + ".txt"
-            with open(mwtab_save_name, 'w', encoding='utf-8') as outfile:
-                mwtabfile.write(outfile, file_format="mwtab")
+        if warning_count == len(json_errors):
+            if warning_count > 0:
+                print("Warning: There were warnings when validating the mwtab file.", file=sys.stderr)
+                print(string_errors, file=sys.stderr)
         else:
             print("Error: An error occured when validating the mwtab file.", file=sys.stderr)
-            print(errors, file=sys.stderr)
-            sys.exit()
+            print(string_errors, file=sys.stderr)
+        
+        mwtab_save_name = args["<output_name>"] + ".txt"
+        with open(mwtab_save_name, 'w', encoding='utf-8') as outfile:
+            mwtabfile.write(outfile, file_format="mwtab")
+        
 
 
 

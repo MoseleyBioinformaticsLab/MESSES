@@ -163,8 +163,8 @@ The CHROMATOGRAPHY, MS, and NM sections are filled out by selecting the first pr
 of either "MS" or "NMR". That protocol is expected to have certain fields that differ slightly based on whether the value is 
 "MS" or "NMR". 
 For a "MS" submission the "chromatography_type", "column_name", "chromatography_instrument_name", "instrument", 
-"instrument_type", "ion_mode", and "ionization" fields are required on the protocol, and "description" and 
-"chromatography_description" are optional.
+"instrument_type", "ion_mode", "ionization", "solvent_a", "solvent_b", "column_temperature", "flow_gradient", and "flow_rate" 
+fields are required on the protocol, and "description" and "chromatography_description" are optional.
 For a "NMR" submission the "instrument", "instrument_type", "NMR_experiment_type", "spectrometer_frequency",
 and "spectrometer_frequency%units" fields are required on the protocol, and "acquisition_time", "acquisition_time%units", 
 "baseline_correction_method", "chemical_shift_ref_cpd", "NMR_probe", "NMR_solvent", "NMR_tube_size", "NMR_tube_size%units", 

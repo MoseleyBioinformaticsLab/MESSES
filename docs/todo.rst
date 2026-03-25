@@ -88,4 +88,46 @@ The modify tags were not working for id fields and field attributes if they were
 it does not follow what is now allowed and required. You could construct list fields for ids and attributes when exporting, but for some 
 reason can't assign, prepend, etc. Doesn't make sense. Changed the modifications so they can, add tests accordingly.
 
+Add documentation for copy, filter, sort. 
 
+Add MSI level description explanation to the documentation somewhere.
+
+Add a feature to make replicates. Something like REPLICATES(column1, column2, ...) The idea is to tell the program which 
+columns to filter down to, and then count the duplicates basically. df.groupby([column1, column2], dropna=False).cumcount() + 1
+
+Add a feature to modification tags to pull values from other records. 
+For instance, change the entity.id field in a measurement record by matching to a field in the entity records.
+See the West Coast data for this example.
+
+Finish adding example for crecord at the bottom of tagging documentation.
+
+Look in the tagging documentation and see if it is said anywhere that you can use previously defined field values when building 
+new values for new tags. Ex:
+#tags	#entity.id	#.assignment	#.field1=#.assignment+"zxcv"
+	A	asdf	
+#.assignment is used in #.field.
+
+Update the #INCREMENT# example in tagging.rst. It doesn't work that way anymore.
+
+Add feature to create pooled smaples. Would look like child.id or crecord.id, but would create a record with parents for every row in the table.
+
+Add non_biological type to entity table and propogate to validations. Make sure to document this new type well.
+
+Check what documentation says about lineages for mwtab. Add to or change documentation to explain how lineages work now.
+A level is computed based on the length of ancestors in an entities tree. Entities at the same level have thier ID and 
+fields put into the same list for this level, so all entities at the same level are expected to have the same fields. 
+If some reason entities at the same level don't have the same fields, then the lists won't line up. For now, only ID 
+is used by default, so this isn't a problem when using default values. The lower the lineage level number, the higher 
+it is in the inheritance tree. So 0 would be the original subject.
+
+Recompute and update the mwtab examples.
+
+Change factor warning slightly:
+Warning: The following samples do not have the full set of factors:
+Blank_1
+Pool_2
+Pool_1
+Pool_3
+Blank_2
+Blank_3
+Add exception for pool and blanks.

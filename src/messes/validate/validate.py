@@ -596,12 +596,12 @@ def mwtab_checks(input_json: dict) -> None:
     Args:
         input_json: the JSON to perform the checks on.
     """
+    has_machine_type = False
+    is_first_collection_type = True
+    has_collection_type = False
+    has_sample_prep_type = False
+    has_treatment_type = False
     if protocol_table := input_json.get("protocol"):
-        has_machine_type = False
-        is_first_collection_type = True
-        has_collection_type = False
-        has_sample_prep_type = False
-        has_treatment_type = False
         for protocol, attributes in protocol_table.items():
             if "machine_type" in attributes:
                 has_machine_type = True
@@ -874,7 +874,10 @@ def build_PD_schema(pds: JSON) -> JSON:
                 allOf[table] = [allof_subschema]
                 
     for table, schema in allOf.items():
-        base_schema["properties"][table]["additionalProperties"]["allOf"] = schema
+        if 'allOf' not in base_schema["properties"][table]["additionalProperties"]:
+            base_schema["properties"][table]["additionalProperties"]["allOf"] = schema
+        else:
+            base_schema["properties"][table]["additionalProperties"]["allOf"] = schema + base_schema["properties"][table]["additionalProperties"]["allOf"]
         
     return base_schema
 
@@ -928,19 +931,25 @@ def id_check(JSON_file: JSON) -> None:
                     if table_name == "protocol" :
                         continue
                     
-                    if field_value not in table_records:
-                        print("Error:  In the " + table_name + " table of the input JSON, the record \"" + \
-                              record_name + "\" has a parent_id, " + field_value + ", but this parent is not in the " + \
-                              table_name + " table.", file=sys.stderr)
+                    if not isinstance(field_value, list):
+                        field_values = [field_value]
+                    else:
+                        field_values = field_value
                     
-                    ## If a subject has a parent_id it must be a sample.
-                    elif table_name == "entity" :
-                                                
-                        if "type" in record_fields:
-                            if record_fields["type"] == "subject" and "type" in table_records[field_value] and not table_records[field_value]["type"] == "sample":
-                                print("Error:  In the " + table_name + " table of the input JSON, the subject type record \"" + \
-                                      record_name + "\" has a parent_id, " + field_value + \
-                                      ", but this parent is not a sample.", file=sys.stderr)
+                    for field_value in field_values:
+                        if field_value not in table_records:
+                            print("Error:  In the " + table_name + " table of the input JSON, the record \"" + \
+                                  record_name + "\" has a parent_id, " + field_value + ", but this parent is not in the " + \
+                                  table_name + " table.", file=sys.stderr)
+                        
+                        ## If a subject has a parent_id it must be a sample.
+                        elif table_name == "entity" :
+                                                    
+                            if "type" in record_fields:
+                                if record_fields["type"] == "subject" and "type" in table_records[field_value] and not table_records[field_value]["type"] == "sample":
+                                    print("Error:  In the " + table_name + " table of the input JSON, the subject type record \"" + \
+                                          record_name + "\" has a parent_id, " + field_value + \
+                                          ", but this parent is not a sample.", file=sys.stderr)
 
                 ## The logic to let the id field be blank here is because it is checked elsewhere and we don't want to double print messages.
                 elif field_name == "id" and not "".join(field_value.split()) == "" and not field_value == record_name:
@@ -1072,18 +1081,24 @@ def SS_protocol_check(input_json: JSON) -> None:
             if (entity_type := entity_fields.get("type")):
             
                 if entity_type == "sample" and (parent := entity_fields.get("parent_id")):
-                    ## If the sample has a parent and it is a sample then it must have a sample_prep type protocol.
-                    if (parent_attributes := input_json["entity"].get(parent)) and \
-                       (parent_type := parent_attributes.get("type")):
-                        
-                        if parent_type == "sample" and not has_type_sample_prep: 
-                            print("Error:  Sample " + entity_name + \
-                                  " came from a sample, but does not have a sample_prep protocol.", file=sys.stderr)
+                    if not isinstance(parent, list):
+                        parents = [parent]
+                    else:
+                        parents = parent
+                    
+                    for parent in parents:
+                        ## If the sample has a parent and it is a sample then it must have a sample_prep type protocol.
+                        if (parent_attributes := input_json["entity"].get(parent)) and \
+                           (parent_type := parent_attributes.get("type")):
                             
-                        ## If the sample has a parent and it is a subject then it must have a collection type protocol.        
-                        elif parent_type == "subject" and not has_type_collection:
-                            print("Error:  Sample " + entity_name + \
-                                  " came from a subject, but does not have a collection protocol.", file=sys.stderr)                
+                            if parent_type == "sample" and not has_type_sample_prep: 
+                                print("Error:  Sample " + entity_name + \
+                                      " came from a sample(s), but does not have a sample_prep protocol.", file=sys.stderr)
+                                
+                            ## If the sample has a parent and it is a subject then it must have a collection type protocol.        
+                            elif parent_type == "subject" and not has_type_collection:
+                                print("Error:  Sample " + entity_name + \
+                                      " came from a subject(s), but does not have a collection protocol.", file=sys.stderr)                
                         
                 ## Check that each subject has a treatment type protocol.            
                 if entity_type == "subject" and not has_type_treatment:

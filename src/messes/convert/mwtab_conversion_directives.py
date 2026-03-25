@@ -418,6 +418,56 @@ ms_directives = \
       "table": "protocol",
       "test": "machine_type=MS",
       "value_type": "str"
+    },
+    "FLOW_GRADIENT": {
+      "fields": [
+        "flow_gradient"
+      ],
+      "id": "FLOW_GRADIENT",
+      "required": "True",
+      "table": "protocol",
+      "test": "machine_type=MS",
+      "value_type": "str"
+    },
+    "FLOW_RATE": {
+      "fields": [
+        "flow_rate"
+      ],
+      "id": "FLOW_RATE",
+      "required": "True",
+      "table": "protocol",
+      "test": "machine_type=MS",
+      "value_type": "str"
+    },
+    "COLUMN_TEMPERATURE": {
+      "fields": [
+        "column_temperature"
+      ],
+      "id": "COLUMN_TEMPERATURE",
+      "required": "True",
+      "table": "protocol",
+      "test": "machine_type=MS",
+      "value_type": "str"
+    },
+    "SOLVENT_A": {
+      "fields": [
+        "solvent_a"
+      ],
+      "id": "SOLVENT_A",
+      "required": "True",
+      "table": "protocol",
+      "test": "machine_type=MS",
+      "value_type": "str"
+    },
+    "SOLVENT_B": {
+      "fields": [
+        "solvent_b"
+      ],
+      "id": "SOLVENT_B",
+      "required": "True",
+      "table": "protocol",
+      "test": "machine_type=MS",
+      "value_type": "str"
     }
   },
   "ANALYSIS": {

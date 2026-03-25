@@ -89,12 +89,21 @@ base_schema = \
                          "id": {"type":"string", "minLength":1},
                          "parent_id": {"type":["string", "array"]},
                          "protocol.id": {"type":["string", "array"], "minItems":1, "items":{"type":"string", "minLength":1}, "minLength":1},
-                         "type": {"type":"string", "enum":["sample", "subject"]}
+                         "type": {"type":"string", "enum":["sample", "subject", "non_biological"]}
                          },
-                     "required": ["id", "type", "protocol.id"],
-                     "if":{"properties":{"type":{"const":"sample"}},
-                           "required":["type"]},
-                     "then":{"required":["parent_id"]}
+                     "required": ["id", "type"],
+                     "allOf":[
+                         {
+                         "if":{"properties":{"type":{"const":"sample"}},
+                               "required":["type"]},
+                         "then":{"required":["protocol.id", "parent_id"]}
+                         },
+                         {
+                         "if":{"properties":{"type":{"const":"subject"}},
+                               "required":["type"]},
+                         "then":{"required":["protocol.id"]}
+                         }
+                     ]
                      }
              },
     "measurement":{
@@ -281,7 +290,12 @@ mwtab_schema = \
             "type": "object",
             "properties":{
                 "assignment":{"type":"string", "minLength":1},
-                "intensity":{"type":["string", "number"], "minLength":1, "format":"numeric"},
+                "intensity":{"type":["string", "number"], 
+                             "if":{"minLength":1},
+                             "then":{
+                                 "format":"numeric"
+                                 }
+                             },
                 "intensity%type":{"type":"string", "minLength":1}
                 },
             "required":["assignment", "intensity", "intensity%type"]

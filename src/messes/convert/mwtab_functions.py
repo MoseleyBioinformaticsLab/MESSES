@@ -74,6 +74,15 @@ def create_sample_lineages(input_json: dict, entity_table_name: str="entity", pa
     return lineages
 
 
+def _determine_lineage_level(lineages: dict, entity_name: str) -> int:
+    """
+    """
+    level = 0
+    while lineages[entity_name]['parents']:
+        level += 1
+        entity_name = lineages[entity_name]['parents'][0]
+    return level
+
 
 def create_subject_sample_factors(input_json: dict, 
                                   measurement_table_name: str="measurement", 
@@ -93,7 +102,7 @@ def create_subject_sample_factors(input_json: dict,
                                   measurement_type_value: str="measurement",
                                   data_files_key: str="data_files",
                                   data_files_attribute_key: str="data_files%entity_id",
-                                  lineage_field_exclusion_list: list[str]|tuple[str] =("study.id", "project.id", "parent_id")) -> list[dict]:
+                                  lineage_field_inclusion_list: list[str]|tuple[str] =("id")) -> list[dict]:
     """Create the SUBJECT_SAMPLE_FACTORS section of the mwTab JSON.
     
     Args:
@@ -115,7 +124,7 @@ def create_subject_sample_factors(input_json: dict,
         measurement_type_value: the value in the type key that means the protocol is a measurement type.
         data_files_key: the field in a measurement type protocol record where the file names are located.
         data_files_attribute_key: the field in a measurement type protocol record where the corresponding entity_id to raw file names are located.
-        lineage_field_exclusion_list: the fields in entity records that should not be added as additional data.
+        lineage_field_inclusion_list: the fields in entity records that should be added as additional data.
         
     Returns:
         a list of SUBJECT_SAMPLE_FACTORS.
@@ -160,7 +169,7 @@ def create_subject_sample_factors(input_json: dict,
     
     lineages = create_sample_lineages(input_json, entity_table_name=entity_table_name, parent_key=parent_key)
     
-    factor_fields = {factor_attributes[factor_field_key]:{"name":factor, "allowed_values":factor_attributes[factor_allowed_values_key]} for factor, factor_attributes in input_json[factor_table_name].items()}
+    factor_fields = {factor_attributes[factor_field_key]:{"name":factor} for factor, factor_attributes in input_json[factor_table_name].items()}
     
     ss_factors = []
     for sample in samples:
@@ -172,48 +181,83 @@ def create_subject_sample_factors(input_json: dict,
         additional_sample_data = {}
         # raw_files = []
         factors = {}
+        ancestor_factors = {}
+        factors_blacklist = []
+        subjects = {}
         subject_id = ""
-        lineage_count = 0
         ## Loop over all of the sample's ancestors and add them to additional data as well find all the factors, and the closest subject.
         for ancestor in lineages[sample]["ancestors"]:
+            lineage_level = _determine_lineage_level(lineages, ancestor)
             for field, field_value in input_json[entity_table_name][ancestor].items():
-                if field in lineage_field_exclusion_list:
-                    continue
-                additional_sample_data["lineage" + str(lineage_count) + "_" + field] = str(field_value)
+                if field in factor_fields and factor_fields[field]['name'] not in factors_blacklist:
+                    factor_name = factor_fields[field]["name"]
+                    if factor_name not in ancestor_factors:
+                        if isinstance(field_value, str):
+                            ancestor_factors[factor_name] = field_value
+                        elif isinstance(field_value, list):
+                            ancestor_factors[factor_name] = field_values[0] if len(field_values) == 1 else str(field_values)
+                    else:
+                        # If a sample has multiple ancestors with conflicting factors, then don't add that factor.
+                        # An example is pooled samples that mix cancer and non-cancer together.
+                        if isinstance(field_value, str):
+                            factor_value = field_value
+                        elif isinstance(field_value, list):
+                            factor_value = field_values[0] if len(field_values) == 1 else str(field_values)
+                        if factor_value != ancestor_factors[factor_name]:
+                            factors_blacklist.append(factor_name)
+                            del ancestor_factors[factor_name]
+                    
+                if field == entity_type_key and field_value == subject_type_value:
+                    subjects.setdefault(lineage_level, [])
+                    subjects[lineage_level].append(ancestor)
+                # if not subject_id and field == entity_type_key and field_value == subject_type_value:
+                #     subject_id = ancestor
                 
-                if field in factor_fields and factor_fields[field]["name"] not in factors:
-                    if isinstance(field_value,str) and field_value in factor_fields[field]["allowed_values"]:
-                        factors[factor_fields[field]["name"]] = field_value
-                    elif isinstance(field_value,list) and (field_values := [value for value in field_value if value in factor_fields[field]["allowed_values"]]):
-                        factors[factor_fields[field]["name"]] = field_values[0] if len(field_values) == 1 else str(field_values)
+                if field not in lineage_field_inclusion_list:
+                    continue
+                # additional_sample_data["lineage" + str(lineage_count) + "_" + field] = str(field_value)
+                add_data_key = "lineage" + str(lineage_level) + "_" + field
+                additional_sample_data.setdefault(add_data_key, []) 
+                additional_sample_data[add_data_key].append(str(field_value))
+                
+                # if field in factor_fields and factor_fields[field]["name"] not in factors:
+                #     if isinstance(field_value,str) and field_value in factor_fields[field]["allowed_values"]:
+                #         factors[factor_fields[field]["name"]] = field_value
+                #     elif isinstance(field_value,list) and (field_values := [value for value in field_value if value in factor_fields[field]["allowed_values"]]):
+                #         factors[factor_fields[field]["name"]] = field_values[0] if len(field_values) == 1 else str(field_values)
+        
+        factors.update(ancestor_factors)
+        # Pooled samples can inherit from multiple subjects. In that case we just want to have a blank subject.
+        if subjects:
+            lowest_lineage_level = min(subjects.keys())
+            if len(subjects[lowest_lineage_level]) == 1:
+                subject_id = subjects[lowest_lineage_level][0]
                     
-                if not subject_id and field == entity_type_key and field_value == subject_type_value:
-                    subject_id = ancestor
-            
-                    
-            lineage_count += 1
         
         ## Look for siblings to add to additional data if sibling_match_field is given.
         if sibling_match_field and sibling_match_value:
             for sibling in lineages[sample]["siblings"]:
+                lineage_level = _determine_lineage_level(lineages, sibling)
                 match_field_value = input_json[entity_table_name][sibling][sibling_match_field]
                 if sibling_match_field in input_json[entity_table_name][sibling] and \
                    ((isinstance(match_field_value, str) and sibling_match_value == match_field_value) or\
                    (isinstance(match_field_value, list) and sibling_match_value in match_field_value)):
                        for field, field_value in input_json[entity_table_name][sibling].items():
-                           if field in lineage_field_exclusion_list:
+                           if field not in lineage_field_inclusion_list:
                                continue
-                           additional_sample_data["lineage" + str(lineage_count) + "_" + field] = str(field_value)
+                           # additional_sample_data["lineage" + str(lineage_level) + "_" + field] = str(field_value)
+                           add_data_key = "lineage" + str(lineage_level) + "_" + field
+                           additional_sample_data.setdefault(add_data_key, []) 
+                           additional_sample_data[add_data_key].append(str(field_value))
                        
                 
-                       lineage_count += 1
         
         ## Look for factors on the sample itself.
         for field, field_value in input_json[entity_table_name][sample].items():            
-            if field in factor_fields and factor_fields[field]["name"] not in factors:
-                if isinstance(field_value,str) and field_value in factor_fields[field]["allowed_values"]:
+            if field in factor_fields and factor_fields[field]["name"]:
+                if isinstance(field_value, str):
                     factors[factor_fields[field]["name"]] = field_value
-                elif isinstance(field_value,list) and (field_values := [value for value in field_value if value in factor_fields[field]["allowed_values"]]):
+                elif isinstance(field_value, list):
                     factors[factor_fields[field]["name"]] = field_values[0] if len(field_values) == 1 else str(field_values)
                     
         
@@ -221,7 +265,8 @@ def create_subject_sample_factors(input_json: dict,
         if raw_file := raw_file_dict.get(sample):
             additional_sample_data["RAW_FILE_NAME"] = raw_file
             
-        
+        for key, value in additional_sample_data.items():
+            additional_sample_data[key] = ', '.join(value) if isinstance(value, list) else str(value)
         ss_factors.append({"Subject ID":subject_id, "Sample ID":sample, "Factors":factors, "Additional sample data":additional_sample_data})
         
     ## Run some error checking on factors found.

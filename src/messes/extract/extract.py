@@ -632,12 +632,14 @@ class RecordMaker(object) :
         Returns:
             True if there is a valid id field, False otherwise.
         """
+        # TODO test and delete commented out lines.
         # return self.hasShortField("id") and type(self.shortField("id").operands[0]) is ColumnOperand and not type(self.shortField("id")) == ListFieldMaker
         has_id = self.hasShortField("id")
-        correct_operands = has_id and (isinstance(self.shortField("id").operands[0], ColumnOperand) or \
-                                       any(isinstance(operand, VariableOperand) for operand in self.shortField("id").operands))
+        # correct_operands = has_id and (isinstance(self.shortField("id").operands[0], ColumnOperand) or \
+        #                                any(isinstance(operand, VariableOperand) for operand in self.shortField("id").operands))
         is_not_listfield = has_id and not isinstance(self.shortField("id"), ListFieldMaker)
-        return correct_operands and is_not_listfield
+        return is_not_listfield
+        # return correct_operands and is_not_listfield
 
     def properField(self, table: str, field: str) -> str:
         """Returns proper field name based on given table and field and internal self.table.
@@ -1112,7 +1114,7 @@ class TagParser(object):
                         raise TagParserError("the field or attribute value used for assignment is not previously defined in record", self.fileName, self.sheetName, self.rowIndex, self.columnIndex)
                     recordMakers[-1].addVariableOperand(table, field)
                 else :
-                    if recordMakers[-1].isInvalidDuplicateField(table, field, fieldMakerClass) :
+                    if recordMakers[-1].isInvalidDuplicateField(table, field, fieldMakerClass):
                         raise TagParserError(str("field \"") + field + "\" specified twice in " + table + " record", self.fileName, self.sheetName, self.rowIndex, self.columnIndex)
                     recordMakers[-1].addField(table, field, fieldMakerClass)
                     if len(tokens) == 0 or tokens[0] == ';' :
@@ -1284,16 +1286,16 @@ class TagParser(object):
             workingDF = worksheet.loc[rowsToParse.index, :]
             # TODO test transpoe tags again after changes to cythonized_tagSheet.
             if '#transpose' in worksheet.loc[headerRowIndex,:].iloc[0]:
-                print(workingDF.transpose())
-                print()
+                # print(workingDF.transpose())
+                # print()
                 workingDF = workingDF.transpose().iloc[2:, :]
-                print(workingDF)
-                print()
+                # print(workingDF)
+                # print()
                 workingDF.insert(0, '#tags', '')
                 emptyWorkingRows = (workingDF=="").all(axis=1)
                 workingDF = workingDF.drop(workingDF.loc[emptyWorkingRows, :].index)
-                print(workingDF)
-                print()
+                # print(workingDF)
+                # print()
             
             for index in workingDF.index:
                 self._parseRow(recordMakers, workingDF.loc[index, :])
@@ -1910,6 +1912,7 @@ class TagParser(object):
                             duplicatesIndex = self.columnIndex
                         elif (reMatch := re.match('\s*#exclude\s*=\s*(.+)\s*$', cellString)):
                             currAutomationGroup["exclusion_test"]=reMatch.group(1)
+                        # TODO add requirement that #copy tag must be given if filter and/or sort is given.
                         elif (reMatch := re.match('\s*#filter\s*=\s*(.+)\s*$', cellString)):
                             currAutomationGroup["filter"]=reMatch.group(1)
                         elif (reMatch := re.match('\s*#sort\s*=\s*(.+)\s*$', cellString)):
@@ -1955,7 +1958,7 @@ class TagParser(object):
                     localRequired = True if requiredIndex == -1 or re.match("[Tt]rue$", xstr(worksheet.iloc[self.rowIndex, requiredIndex]).strip()) else False
                     localDuplicates = False if duplicatesIndex == -1 else True if re.match("[Tt]rue$", xstr(worksheet.iloc[self.rowIndex, duplicatesIndex]).strip()) else False
 
-                    if headerValue not in usedHeaders:
+                    if headerValue not in usedHeaders or headerValue == '':
                         usedHeaders.add(headerValue)
                         currAutomationGroup["header_tag_descriptions"].append({ "header" : headerValue, "tag" : newTagValue, "required" : localRequired, "duplicates" : localDuplicates})
                     elif not silent:
