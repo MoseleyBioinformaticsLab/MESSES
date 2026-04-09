@@ -276,9 +276,9 @@ def tagSheet(taggingDirectives, str[:,:] worksheet, silent):
                                 headers = []
                                 sortOrders = []
                                 for pair in sortPairs:
-                                    if reMatch := re.match(r'"(.+)"\s*:\s*(ascending|descending)', pair):
+                                    if reMatch := re.match(r'"(.+)"\s*:\s*(ascending|descending)$', pair):
                                         pass
-                                    elif reMatch := re.match(r'([^:]+)\s*:\s*(ascending|descending)', pair):
+                                    elif reMatch := re.match(r'([^:]+)\s*:\s*(ascending|descending)$', pair):
                                         pass
                                     else:
                                         raise Exception("Error: A #sort tag in automation group " + str(i) + 
@@ -314,13 +314,13 @@ def tagSheet(taggingDirectives, str[:,:] worksheet, silent):
                                 headers = []
                                 filterStrings = []
                                 for pair in filterPairs:
-                                    if reMatch := re.match(r'"(.+)"\s*:\s*"(.+)"', pair):
+                                    if reMatch := re.match(r'"(.+)"\s*:\s*"(.+)"$', pair):
                                         pass
-                                    elif reMatch := re.match(r'"(.+)"\s*:\s*([^:]+)', pair):
+                                    elif reMatch := re.match(r'"(.+)"\s*:\s*([^:]+)$', pair):
                                         pass
-                                    elif reMatch := re.match(r'([^:]+)\s*:\s*"(.+)"', pair):
+                                    elif reMatch := re.match(r'([^:]+)\s*:\s*"(.+)"$', pair):
                                         pass
-                                    elif reMatch := re.match(r'([^:]+)\s*:\s*([^:]+)', pair):
+                                    elif reMatch := re.match(r'([^:]+)\s*:\s*([^:]+)$', pair):
                                         pass
                                     else:
                                         raise Exception("Error: A #filter tag in automation group " + str(i) + 
@@ -330,7 +330,7 @@ def tagSheet(taggingDirectives, str[:,:] worksheet, silent):
                                     headers.append(reMatch.group(1).strip())
                                     filterStrings.append(reMatch.group(2).strip())
                                 # Match headers to column indexes.
-                                filterHeader2ColumnIndex, _ = findMatchingHeaders({header:'^'+header+'$'}, row, rowIndex, i, [], silent, False)
+                                filterHeader2ColumnIndex, _ = findMatchingHeaders({header:'^'+header+'$' for header in headers}, row, rowIndex, i, [], silent, False)
                                 missingHeaders = [header for header in headers if header not in filterHeader2ColumnIndex]
                                 if missingHeaders:
                                     raise Exception("Error: The following header(s) in the #filter tag of automation group " + str(i) +
@@ -340,29 +340,32 @@ def tagSheet(taggingDirectives, str[:,:] worksheet, silent):
                                 for j, filterString in enumerate(filterStrings):
                                     columnIndex = filterHeader2ColumnIndex[headers[j]][0]
                                     if filterString == 'unique':
-                                        unique_values, unique_indeces = numpy.unique(temp_array[:, columnIndex], return_index=True)
-                                        bool_array = numpy.zeros(temp_array.shape[0], dtype=bool)
+                                        unique_values, unique_indeces = numpy.unique(temp_array[1:, columnIndex], return_index=True)
+                                        bool_array = numpy.zeros(temp_array.shape[0]-1, dtype=bool)
                                         bool_array[unique_indeces] = True
                                         conditions.append(bool_array)
                                     elif reMatch := re.match(extract.Evaluator.reDetector, filterString):
                                         compiledRegex = re.compile(reMatch.group(1))
                                         vmatch = numpy.vectorize(lambda x:bool(compiledRegex.match(x)))
-                                        conditions.append(vmatch(temp_array[:, columnIndex]))
+                                        conditions.append(vmatch(temp_array[1:, columnIndex]))
                                     else:
-                                        conditions.append(temp_array[:, columnIndex] == filterStrings)
+                                        conditions.append(numpy.asarray(temp_array[1:, columnIndex]) == filterStrings)
                                 
                                 evalString = taggingGroup['filter']
                                 for j, pair in enumerate(filterPairs):
                                     evalString = evalString.replace(pair, 'conditions[' + str(j) + ']')
-                                temp_array = numpy.asarray(temp_array)
-                                temp_array = temp_array[eval(evalString, {'conditions':conditions})]
+                                temp_array_values = numpy.asarray(temp_array[1:, :])
+                                temp_array_values = temp_array_values[eval(evalString, {'conditions':conditions})]
+                                # Note the "temp_array[0:1,:]" below. You need "0:1" instead of just "0" or 
+                                # the shape of the slice will be off and then the concatenate will error.
+                                temp_array = numpy.concatenate((temp_array[0:1,:], temp_array_values), axis=0, dtype=object)
                                 
-                            blank_row = numpy.full((1, temp_array.shape[1]), "", dtype=object)
-                            insertNum = worksheet[rowIndex:endingRowIndex, :].shape[0] + 1
+                            blank_row = numpy.full((1, worksheet.shape[1]), "", dtype=object)
+                            insertNum = temp_array.shape[0] + 1
                             worksheet = numpy.concatenate((worksheet[0:endingRowIndex, :], blank_row, temp_array, worksheet[endingRowIndex:, :]), axis=0, dtype=object)
                             usedRows = set(index if index < endingRowIndex else index+insertNum for index in usedRows)
                             copiedRows = set(index if index < endingRowIndex else index+insertNum for index in copiedRows)
-                            rowIndex += insertNum
+                            rowIndex += worksheet[rowIndex:endingRowIndex, :].shape[0] + 1
                             endingRowIndex += temp_array.shape[0] + 1
                             
                         

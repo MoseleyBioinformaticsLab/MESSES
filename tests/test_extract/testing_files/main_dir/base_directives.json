@@ -65,61 +65,73 @@
     {
       "header_tag_descriptions": [
         {
+          "duplicates": false,
           "header": "Compound+\"-13C\"+C_isomers+\"-\"+SamplID",
           "required": true,
           "tag": "#measurement.id"
         },
         {
+          "duplicates": false,
           "header": "Compound+\"-13C\"+C_isomers",
           "required": true,
           "tag": "#measurement.assignment"
         },
         {
+          "duplicates": false,
           "header": "Compound",
           "required": true,
           "tag": "#measurement.compound"
         },
         {
+          "duplicates": false,
           "header": "Mol_Formula",
           "required": true,
           "tag": "#measurement.formula"
         },
         {
+          "duplicates": false,
           "header": "SamplID",
           "required": true,
           "tag": "#.sample.id"
         },
         {
+          "duplicates": false,
           "header": "\"13C\"+C_isomers",
           "required": true,
           "tag": "#measurement.isotopologue;#%type=\"13C\""
         },
         {
+          "duplicates": false,
           "header": "Intensity",
           "required": true,
           "tag": "#measurement.raw_intensity;#%type=\"spectrometer peak area\""
         },
         {
+          "duplicates": false,
           "header": "Renormalized",
           "required": true,
           "tag": "#measurement.corrected_raw_intensity;#%type=\"natural abundance corrected peak area\""
         },
         {
+          "duplicates": false,
           "header": "Quantified_uM_sequence_ratio",
           "required": true,
           "tag": "#measurement.concentration;#%units=uM;#%type=\"calculated from standard\""
         },
         {
+          "duplicates": false,
           "header": "Amount_ProteinAdj_uMol_g_protein_SequenceBased",
           "required": true,
           "tag": "#measurement.normalized_concentration;#%type=\"protein normalized\";#%units=\"uMol/g\""
         },
         {
+          "duplicates": false,
           "header": "eval(float(#Renormalized#) / float(#protein_mg#))",
           "required": true,
           "tag": "#measurement.intensity;#%type=\"natural abundance corrected and protein normalized peak area\";#%units=\"area/g\""
         },
         {
+          "duplicates": false,
           "header": "",
           "required": true,
           "tag": "#.protocol.id=ICMS1"

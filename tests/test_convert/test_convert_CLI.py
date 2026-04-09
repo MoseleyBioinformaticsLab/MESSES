@@ -835,7 +835,7 @@ def test_mwtab_validation_error():
     assert output_path_json.exists()
     
     assert 'Error: An error occured when validating the mwtab file.' in output
-    assert 'Status: Contains Validation Errors' in output
+    assert 'Status: Contains Validation Issues' in output
     
 
 def test_input_json_does_not_exist_error():
@@ -941,3 +941,17 @@ def test_unordered_directives_mwtab_NMR_binned():
     
     assert output == ""
 
+
+def test_mwtab_warnings_only():
+    """Test that mwtab files with only warnings have a special message."""
+    
+    test_file = "MS_base_input_truncated_warnings_only.json"
+    
+    command = "messes convert mwtab ms ../" + test_file  + " output" 
+    command = command.split(" ")
+    subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
+    output = subp.stderr
+
+    assert output_path_txt.exists()
+            
+    assert "Warning: There were warnings when validating the mwtab file." in output

@@ -46,7 +46,7 @@ Regular Expression Format:
 
  Directives JSON Format:
    {
-    "modification" : { table : { field :  { "(exact|regex|levenshtein)\-(first|first\-nowarn|unique|all)" :
+    "modification" : { table : { field :  { "(exact|regex|levenshtein)-(first|first-nowarn|unique|all)" :
                       { field_value : { "assign" : { field : value,... }, "append" : { field : value,... }, "prepend" : { field : value,... },
                                         "regex" : { field : regex_pair,... }, "delete" : [ field,... ], "rename" : { old_field : new_field } } } } } }
     "automation" : [ { "header_tag_descriptions" : [ { "header" : column_description, "tag" : tag_description, "required" : true|false } ],   "exclusion_test" : exclusion_value, "insert" : [ [ cell_content, ... ] ] } ]
@@ -500,7 +500,7 @@ class RecordMaker(object) :
         child.table = table
         child.fieldMakers = [ maker.shallowClone() for maker in example.fieldMakers ]
         for maker in child.fieldMakers :
-            if (reMatch := re.match('(\w*)\.(.*)$', maker.field)) and reMatch.group(1) == table :
+            if (reMatch := re.match(r'(\w*)\.(.*)$', maker.field)) and reMatch.group(1) == table :
                 maker.field = reMatch.group(2)
         child.addField(table,"parent_id")
         child.addColumnOperand(parentIDIndex)
@@ -811,7 +811,7 @@ class TagParser(object):
     stringExtractor = re.compile(r'\"(.*)\"$')
     operatorDetector = re.compile(r'[=+]')
     wordDetector = re.compile(r'\w+')
-    wordOnlyDetector = re.compile('\w+$')
+    wordOnlyDetector = re.compile(r'\w+$')
     tagDetector = re.compile(r'#')
     specialTagDetector = re.compile(r'#.*\%(child|crecord)')
     # childFieldDetector = re.compile(r'#(?P<table>\w*)\%(?P<child_tag>child|crecord)\.(?P<field>\w+)$')
@@ -825,7 +825,7 @@ class TagParser(object):
     emptyCrecordDetector = re.compile(r'#(\w*)\%crecord$')
     tableFieldAttributeDetector = re.compile(r'#(?P<table>\w*)\.(?P<field>\w+)\%(?P<attribute>\w+)$')
     tableFieldDetector = re.compile(r'#(?P<table>[\w\s-]*)\.(?P<field>\w+|\w+\.id)$')
-    attributeDetector = re.compile('#\%(?P<attribute>\w+)$')
+    attributeDetector = re.compile(r'#\%(?P<attribute>\w+)$')
     trackingFieldDetector = re.compile(r'#(\w*)\%(track|untrack)$')
     # TODO delete after confirming the trackingFieldDetector replaces these.
     # trackFieldDetector = re.compile(r'#(\w*)\%track$')
@@ -863,7 +863,7 @@ class TagParser(object):
             # check for common errors
             ## This cannot be triggered from the CLI with #tags in assignment. It will hit another error about #tags only being on the first column first.
             if assignment and (token == '#table' or token == "#tags" or re.match(TagParser.specialTagDetector, token)) :
-                raise TagParserError("#table, #tags, #%child, or #%crecord tags  in assignment", self.fileName, self.sheetName, self.rowIndex, self.columnIndex)
+                raise TagParserError("#table, #tags, #%child, or #%crecord tags in assignment", self.fileName, self.sheetName, self.rowIndex, self.columnIndex)
             if len(tokens) > 0 and re.match(TagParser.operatorDetector,token) and re.match(TagParser.operatorDetector,tokens[0]) :
                 raise TagParserError("tandem +/= operators without intervening operand", self.fileName, self.sheetName, self.rowIndex, self.columnIndex)
             if len(tokens) > 0 and re.search(TagParser.wordDetector,token) and re.search(TagParser.wordDetector,tokens[0]) :
@@ -888,8 +888,8 @@ class TagParser(object):
                 tokens.pop(0)
                 self.lastTable = tokens.pop(0)
             # Child tags
-            # elif re.match(TagParser.emptyChildDetector, token) :
-            #     raise TagParserError("child tag with no field", self.fileName, self.sheetName, self.rowIndex, self.columnIndex)
+            elif re.match(TagParser.emptyChildDetector, token) :
+                raise TagParserError("child tag with no field", self.fileName, self.sheetName, self.rowIndex, self.columnIndex)
             # elif (reMatch := re.match(TagParser.childFieldAttributeDetector, token)) or (reMatch := re.match(TagParser.childFieldDetector, token)) :  # #table%child.field.attribute combinations
             #     child_tag = reMatch['child_tag']
             #     if not recordMakers[1].hasValidID() :
@@ -973,7 +973,7 @@ class TagParser(object):
                 
             # track and untrack tags
             elif (reMatch := re.match(TagParser.trackingFieldDetector, token)) :
-                tag = reMatch[1]
+                tag = reMatch[2]
                 if len(tokens) < 2 or tokens[0] != "=":
                     raise TagParserError(f"Incorrectly formatted {tag} tag, \"=\" must follow \"{tag}\" and \"table.field\" or \"table.field%attribute\" must follow \"=\"", self.fileName, self.sheetName, self.rowIndex, self.columnIndex)
                 ## Munch the =.
@@ -1134,7 +1134,7 @@ class TagParser(object):
             elif token == ";" :
                 assignment = False
                 fieldMakerClass = FieldMaker
-            elif re.match('#',token) : # malformed tags
+            elif re.match(r'#',token) : # malformed tags
                 raise TagParserError("malformed or unrecognized tag \"" + token + "\"", self.fileName, self.sheetName, self.rowIndex, self.columnIndex)
             elif assignment : # literals
                 recordMakers[-1].addLiteralOperand(token)
@@ -1164,7 +1164,7 @@ class TagParser(object):
         crecordFound = False
         for self.columnIndex in range(0, len(row)) :
             cellString = xstr(row.iloc[self.columnIndex]).strip()
-            if re.match('[*]?#', cellString) :
+            if re.match(r'[*]?#', cellString) :
                 childWithoutID, crecordFound = self._parseHeaderCell(recordMakers, cellString, childWithoutID) 
         
         self.columnIndex = -1
@@ -1589,7 +1589,7 @@ class TagParser(object):
     def _parseModificationSheet(self, fileName: str, sheetName: str, worksheet: pandas.core.frame.DataFrame):
         """Extracts modification directives from a given worksheet.
 
-        "modification" : { table : { field :  { "(exact|regex|levenshtein)\-(first|first\-nowarn|unique|all)" :
+        "modification" : { table : { field :  { "(exact|regex|levenshtein)-(first|first-nowarn|unique|all)" :
                           { field_value : { "assign" : { field : value,... }, "append" : { field : value,... }, "prepend" : { field : value,... },
                                             "regex" : { field : regex_pair,... }, "delete" : [ field,... ], "rename" : { old_field : new_field } } } } } }
         
@@ -1614,7 +1614,7 @@ class TagParser(object):
         parsing = False
         for self.rowIndex in range(len(aColumn)):
             try:
-                if re.match('\s*#tags\s*$', xstr(aColumn.iloc[self.rowIndex]).strip()):
+                if re.match(r'\s*#tags\s*$', xstr(aColumn.iloc[self.rowIndex]).strip()):
                     parsing = True
                     valueIndex = -1
                     comparisonIndex = -1
@@ -1637,17 +1637,17 @@ class TagParser(object):
                     renameFieldMap = {}
                     for self.columnIndex in range(1, len(worksheet.iloc[self.rowIndex, :])):
                         cellString = xstr(worksheet.iloc[self.rowIndex, self.columnIndex]).strip()
-                        if (reMatch := re.match('\s*#(\w+)\.(\w+|\w+%\w+|\w+\.id)\.value\s*$', cellString)):
+                        if (reMatch := re.match(r'\s*#(\w+)\.(\w+|\w+%\w+|\w+\.id)\.value\s*$', cellString)):
                             valueIndex = self.columnIndex
                             table = reMatch.group(1)
                             fieldID = reMatch.group(2)
-                        elif reMatch := re.match('\s*#(\w+)?\.(\w+|\w+%\w+|\w+\.id)\.delete\s*$', cellString):
+                        elif reMatch := re.match(r'\s*#(\w+)?\.(\w+|\w+%\w+|\w+\.id)\.delete\s*$', cellString):
                             if valueIndex == -1:
                                 raise TagParserError("#table_name.field_name.delete in column before #table_name.field_name.value", self.fileName, self.sheetName, self.rowIndex, self.columnIndex)
                             if reMatch.group(1) is not None and reMatch.group(1) != table:
                                 raise TagParserError("Table name does not match between #table_name.field_name.value and #table_name.field_name.delete modification tags", self.fileName, self.sheetName, self.rowIndex, self.columnIndex)
                             deletionFields.append(reMatch.group(2))
-                        elif reMatch := re.match('\s*#(\w+)?\.(\w+|\w+%\w+|\w+\.id)\.rename\.(\w+|\w+%\w+|\w+\.id)\s*$', cellString):
+                        elif reMatch := re.match(r'\s*#(\w+)?\.(\w+|\w+%\w+|\w+\.id)\.rename\.(\w+|\w+%\w+|\w+\.id)\s*$', cellString):
                             if valueIndex == -1:
                                 raise TagParserError("#table_name.field_name.rename in column before #table_name.field_name.value", self.fileName, self.sheetName, self.rowIndex, self.columnIndex)
                             if reMatch.group(1) is not None and reMatch.group(1) != table:
@@ -1657,9 +1657,9 @@ class TagParser(object):
                             if reMatch.group(2) == "id":
                                 raise TagParserError("Not allowed to rename \"id\" fields", self.fileName, self.sheetName, self.rowIndex, self.columnIndex)
                             renameFieldMap[reMatch.group(2)] = reMatch.group(3)
-                        elif reMatch := re.match('\s*#(\w+)?\.(\w+|\w+%\w+|\w+\.id)\.rename\s*$', cellString):
+                        elif reMatch := re.match(r'\s*#(\w+)?\.(\w+|\w+%\w+|\w+\.id)\.rename\s*$', cellString):
                             raise TagParserError("Incorrect rename directive format.  Should be #[table_name].field_name.rename.new_field_name", self.fileName, self.sheetName, self.rowIndex, self.columnIndex)
-                        elif reMatch := re.match('\s*(\*#|#)(\w+)?\.(\w+|\w+%\w+|\w+\.id)\.assign\s*$', cellString):
+                        elif reMatch := re.match(r'\s*(\*#|#)(\w+)?\.(\w+|\w+%\w+|\w+\.id)\.assign\s*$', cellString):
                             if valueIndex == -1:
                                 raise TagParserError("#table_name.field_name.assign in column before #table_name.field_name.value", self.fileName, self.sheetName, self.rowIndex, self.columnIndex)
                             if reMatch.group(2) is not None and reMatch.group(2) != table:
@@ -1667,7 +1667,7 @@ class TagParser(object):
                             assignIndeces.append(self.columnIndex)
                             assignFieldTypes.append(reMatch.group(1))
                             assignFields.append(reMatch.group(3))
-                        elif reMatch := re.match('\s*(\*#|#)(\w+)?\.(\w+|\w+%\w+|\w+\.id)\.append\s*$', cellString):
+                        elif reMatch := re.match(r'\s*(\*#|#)(\w+)?\.(\w+|\w+%\w+|\w+\.id)\.append\s*$', cellString):
                             if valueIndex == -1:
                                 raise TagParserError("#table_name.field_name.append in column before #table_name.field_name.value", self.fileName, self.sheetName, self.rowIndex, self.columnIndex)
                             if reMatch.group(2) is not None and reMatch.group(2) != table:
@@ -1675,7 +1675,7 @@ class TagParser(object):
                             appendIndeces.append(self.columnIndex)
                             appendFieldTypes.append(reMatch.group(1))
                             appendFields.append(reMatch.group(3))
-                        elif reMatch := re.match('\s*(\*#|#)(\w+)?\.(\w+|\w+%\w+|\w+\.id)\.prepend\s*$', cellString):
+                        elif reMatch := re.match(r'\s*(\*#|#)(\w+)?\.(\w+|\w+%\w+|\w+\.id)\.prepend\s*$', cellString):
                             if valueIndex == -1:
                                 raise TagParserError("#table_name.field_name.prepend in column before #table_name.field_name.value", self.fileName, self.sheetName, self.rowIndex, self.columnIndex)
                             if reMatch.group(2) is not None and reMatch.group(2) != table:
@@ -1683,25 +1683,25 @@ class TagParser(object):
                             prependIndeces.append(self.columnIndex)
                             prependFieldTypes.append(reMatch.group(1))
                             prependFields.append(reMatch.group(3))
-                        elif reMatch := re.match('\s*#(\w+)?\.(\w+|\w+%\w+|\w+\.id)\.regex\s*$', cellString):
+                        elif reMatch := re.match(r'\s*#(\w+)?\.(\w+|\w+%\w+|\w+\.id)\.regex\s*$', cellString):
                             if valueIndex == -1:
                                 raise TagParserError("#table_name.field_name.regex in column before #table_name.field_name.value", self.fileName, self.sheetName, self.rowIndex, self.columnIndex)
                             if reMatch.group(1) is not None and reMatch.group(1) != table:
                                 raise TagParserError("Table name does not match between #table_name.field_name.value and #table_name.field_name.regex modification tags", self.fileName, self.sheetName, self.rowIndex, self.columnIndex)
                             regexIndeces.append(self.columnIndex)
                             regexFields.append(reMatch.group(2))
-                        elif (reMatch := re.match('\s*#comparison\s*=\s*(exact|regex|regex\|exact|levenshtein)\s*$', cellString)):
+                        elif (reMatch := re.match(r'\s*#comparison\s*=\s*(exact|regex|regex\|exact|levenshtein)\s*$', cellString)):
                             comparisonType=reMatch.group(1)
                             userSpecifiedType = True
-                        elif re.match('\s*#comparison\s*$', cellString):
+                        elif re.match(r'\s*#comparison\s*$', cellString):
                             comparisonIndex = self.columnIndex
-                        elif re.match('\s*#match\s*=.*$', cellString):
-                            if (reMatch := re.match('\s*#match\s*=\s*(first|first-nowarn|unique|all)\s*$', cellString)):
+                        elif re.match(r'\s*#match\s*=.*$', cellString):
+                            if (reMatch := re.match(r'\s*#match\s*=\s*(first|first-nowarn|unique|all)\s*$', cellString)):
                                 matchType = reMatch.group(1)
                             else:
-                                badType = re.match('\s*#match\s*=(.*)$', cellString).group(1)
+                                badType = re.match(r'\s*#match\s*=(.*)$', cellString).group(1)
                                 raise TagParserError("Unknown match type \"" + badType + "\"", self.fileName, self.sheetName, self.rowIndex, self.columnIndex)
-                        elif re.match('\s*#match\s*$', cellString):
+                        elif re.match(r'\s*#match\s*$', cellString):
                             matchIndex = self.columnIndex
                         self.columnIndex = -1
                     if valueIndex == -1 or (len(assignIndeces) == 0 and len(appendIndeces) == 0 and len(prependIndeces) == 0 and len(regexIndeces) == 0 and len(deletionFields) == 0 and not renameFieldMap):
@@ -1712,7 +1712,7 @@ class TagParser(object):
                         self.modificationDirectives[table] = {}
                     if not fieldID in self.modificationDirectives[table]:
                         self.modificationDirectives[table][fieldID] = {}
-                elif re.match('#ignore$', xstr(aColumn.iloc[self.rowIndex]).strip()):
+                elif re.match(r'#ignore$', xstr(aColumn.iloc[self.rowIndex]).strip()):
                     pass
                 elif TagParser._isEmptyRow(worksheet.iloc[self.rowIndex, :]):
                     parsing = False
@@ -1884,7 +1884,7 @@ class TagParser(object):
                 aColumnValue = xstr(aColumn.iloc[self.rowIndex]).strip()
                 aColumnSplit = aColumnValue.split(';')
                 if re.match(r'#tags\s*', aColumnSplit[0]):
-                # if re.match('\s*(#tags|#tags\s*;\s*#transpose)\s*$', aColumnValue):
+                # if re.match(r'\s*(#tags|#tags\s*;\s*#transpose)\s*$', aColumnValue):
                     parsing = True
                     headerIndex = -1
                     tagIndex = -1
@@ -1902,29 +1902,32 @@ class TagParser(object):
                     self.automationDirectives.append(currAutomationGroup)
                     for self.columnIndex in range(1, len(worksheet.iloc[self.rowIndex, :])):
                         cellString = xstr(worksheet.iloc[self.rowIndex, self.columnIndex]).strip()
-                        if re.match('\s*#header\s*$', cellString):
+                        if re.match(r'\s*#header\s*$', cellString):
                             headerIndex = self.columnIndex
-                        elif re.match('\s*#add\s*$', cellString):
+                        elif re.match(r'\s*#add\s*$', cellString):
                             tagIndex = self.columnIndex
-                        elif re.match('\s*#required\s*$', cellString):
+                        elif re.match(r'\s*#required\s*$', cellString):
                             requiredIndex = self.columnIndex
-                        elif re.match('\s*#allow_duplicates\s*$', cellString):
+                        elif re.match(r'\s*#allow_duplicates\s*$', cellString):
                             duplicatesIndex = self.columnIndex
-                        elif (reMatch := re.match('\s*#exclude\s*=\s*(.+)\s*$', cellString)):
+                        elif (reMatch := re.match(r'\s*#exclude\s*=\s*(.+)\s*$', cellString)):
                             currAutomationGroup["exclusion_test"]=reMatch.group(1)
-                        # TODO add requirement that #copy tag must be given if filter and/or sort is given.
-                        elif (reMatch := re.match('\s*#filter\s*=\s*(.+)\s*$', cellString)):
+                        elif (reMatch := re.match(r'\s*#filter\s*=\s*(.+)\s*$', cellString)):
                             currAutomationGroup["filter"]=reMatch.group(1)
-                        elif (reMatch := re.match('\s*#sort\s*=\s*(.+)\s*$', cellString)):
+                            if '#copy' not in aColumnValue:
+                                raise TagParserError("\"#copy\" must be specified in #tags column if \"#filter\" is specified.", self.fileName, self.sheetName, self.rowIndex, self.columnIndex)
+                        elif (reMatch := re.match(r'\s*#sort\s*=\s*(.+)\s*$', cellString)):
                             currAutomationGroup["sort"]=reMatch.group(1)
+                            if '#copy' not in aColumnValue:
+                                raise TagParserError("\"#copy\" must be specified in #tags column if \"#sort\" is specified.", self.fileName, self.sheetName, self.rowIndex, self.columnIndex)
                     self.columnIndex = -1
                     if headerIndex == -1:
                         raise TagParserError("Missing #header tag", self.fileName, self.sheetName, self.rowIndex, self.columnIndex)
                     if tagIndex == -1:
                         raise TagParserError("Missing #add tag", self.fileName, self.sheetName, self.rowIndex, self.columnIndex)
-                elif re.match('#ignore$', xstr(aColumn.iloc[self.rowIndex]).strip()):
+                elif re.match(r'#ignore$', xstr(aColumn.iloc[self.rowIndex]).strip()):
                     pass
-                elif re.match('#insert$', xstr(aColumn.iloc[self.rowIndex]).strip()):
+                elif re.match(r'#insert$', xstr(aColumn.iloc[self.rowIndex]).strip()):
                     ## If #insert is found inside of #tags then it needs to be added to the current tag group, otherwise make a new one.
                     if not parsing:
                         currAutomationGroup = {}
@@ -1935,15 +1938,15 @@ class TagParser(object):
                         currAutomationGroup["insert_multiple"] = False
                         for self.columnIndex in range(1, len(worksheet.iloc[self.rowIndex, :])):
                             cellString = xstr(worksheet.iloc[self.rowIndex, self.columnIndex]).strip()
-                            if re.match('\s*#multiple\s*=\s*[Tt]rue\s*$', cellString):
+                            if re.match(r'\s*#multiple\s*=\s*[Tt]rue\s*$', cellString):
                                 currAutomationGroup["insert_multiple"] = True
-                            elif re.match('\s*#multiple\s*=\s*[Ff]alse\s*$', cellString):
+                            elif re.match(r'\s*#multiple\s*=\s*[Ff]alse\s*$', cellString):
                                 currAutomationGroup["insert_multiple"] = False
 
                     endTagFound = False
                     while self.rowIndex < len(aColumn)-1:
                         self.rowIndex += 1
-                        if re.match('#end$', xstr(aColumn.iloc[self.rowIndex]).strip()):
+                        if re.match(r'#end$', xstr(aColumn.iloc[self.rowIndex]).strip()):
                             endTagFound = True
                             break
                         currAutomationGroup["insert"].append([xstr(worksheet.iloc[self.rowIndex, self.columnIndex]).strip() for self.columnIndex in range(0, len(worksheet.iloc[self.rowIndex, :]))])
@@ -1955,8 +1958,8 @@ class TagParser(object):
                 elif parsing:
                     headerValue = xstr(worksheet.iloc[self.rowIndex, headerIndex]).strip()
                     newTagValue = xstr(worksheet.iloc[self.rowIndex, tagIndex]).strip()
-                    localRequired = True if requiredIndex == -1 or re.match("[Tt]rue$", xstr(worksheet.iloc[self.rowIndex, requiredIndex]).strip()) else False
-                    localDuplicates = False if duplicatesIndex == -1 else True if re.match("[Tt]rue$", xstr(worksheet.iloc[self.rowIndex, duplicatesIndex]).strip()) else False
+                    localRequired = True if requiredIndex == -1 or re.match(r"[Tt]rue$", xstr(worksheet.iloc[self.rowIndex, requiredIndex]).strip()) else False
+                    localDuplicates = False if duplicatesIndex == -1 else True if re.match(r"[Tt]rue$", xstr(worksheet.iloc[self.rowIndex, duplicatesIndex]).strip()) else False
 
                     if headerValue not in usedHeaders or headerValue == '':
                         usedHeaders.add(headerValue)

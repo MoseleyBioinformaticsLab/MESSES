@@ -39,7 +39,8 @@ directives_schema = \
                      "delimiter":{"type":["string", "null"]},
                      "sort_by":{"type":["array", "null"], "minItems":1, "items":{"type":"string", "minLength":1}},
                      "sort_order":{"type":["string", "null"], "pattern":"(?i)^descending|ascending$"},
-                     "record_id":{"type":["string", "null"]}
+                     "record_id":{"type":["string", "null"]},
+                     "skip":{"type":["string", "null", "boolean"], "pattern":"(?i)^true|false$"}
                      },
                  "allOf":[
                      {
@@ -84,10 +85,12 @@ directives_schema = \
                      "sort_order":{"type":["string", "null"], "pattern":"(?i)^descending|ascending$"},
                      "headers":{"type":["array", "null"], "minItems":1, "items":{"type":"string", "minLength":1, "pattern":"^.+=.+$"}},
                      "collate":{"type":["string", "null"]},
+                     "fill_headers":{"type":["string", "null"]},
                      "exclusion_headers":{"type":["array", "null"], "minItems":1, "items":{"type":"string", "minLength":1}},
                      "optional_headers":{"type":["array", "null"], "minItems":1, "items":{"type":"string", "minLength":1}},
                      "fields_to_headers":{"type":["string", "null", "boolean"], "pattern":"(?i)^true|false$"},
-                     "values_to_str":{"type":["string", "null", "boolean"], "pattern":"(?i)^true|false$"}
+                     "values_to_str":{"type":["string", "null", "boolean"], "pattern":"(?i)^true|false$"},
+                     "skip":{"type":["string", "null", "boolean"], "pattern":"(?i)^true|false$"}
                      },
                  "allOf":[
                      {
@@ -113,6 +116,7 @@ directives_schema = \
                  "properties":{
                      "code":{"type":["string", "null"]},
                      "import":{"type":["string", "null"]},
+                     "skip":{"type":["string", "null", "boolean"], "pattern":"(?i)^true|false$"}
                      },
                  "required":["code"]
                  }

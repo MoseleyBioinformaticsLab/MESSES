@@ -523,6 +523,9 @@ printed and the directive will either use a default value or be skipped.
 If getting specific sequences in the table software used to construct the directive is difficult, 
 you can put the value between double quotes. Ex. " " will be a single space and "asdf" will be asdf.
 
+**skip** - a boolean or string value ("True" or "False") that indicates the directive should 
+be skipped. Mostly useful for modifying built in directives using the --update option for the convert command.
+
 
 
 matrix Directives
@@ -1122,6 +1125,11 @@ field is True.
 **optional_headers** - a list of field names that will be copied into the output if they exist in the 
 record. Use "values_to_str" to cast the values to a string.
 
+**fill_headers** - if given, make all dictionaries in the matrix have the same headers, filling with the 
+given value for records that don't have the header. For example if an input record has a field, "field1", 
+but another input record does not have that field, then the output record from the input record without the 
+"field1" field will have a "field1" header with the value specified in "fill_headers".
+
 **values_to_str** - a boolean or string value ("True" or "False") that causes field values to be converted 
 into a string type in the output.
 
@@ -1132,6 +1140,9 @@ printed and the directive will either use a default value or be skipped.
 **default** - a string value to default to if the directive cannot be built and is not required. 
 If getting specific sequences in the table software used to construct the directive is difficult, 
 you can put the value between double quotes. Ex. " " will be a single space and "asdf" will be asdf.
+
+**skip** - a boolean or string value ("True" or "False") that indicates the directive should 
+be skipped. Mostly useful for modifying built in directives using the --update option for the convert command.
 
 
 
@@ -1255,6 +1266,9 @@ checked.
 
 **import** - a string that is a filepath to a Python file to be imported. Typically to be used 
 to import functions to run with the code field.
+
+**skip** - a boolean or string value ("True" or "False") that indicates the directive should 
+be skipped. Mostly useful for modifying built in directives using the --update option for the convert command.
 
 
 Validation

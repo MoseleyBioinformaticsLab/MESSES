@@ -296,8 +296,12 @@
               "string",
               "number"
             ],
-            "minLength": 1,
-            "format": "numeric"
+            "if": {
+              "minLength": 1
+            },
+            "then": {
+              "format": "numeric"
+            }
           },
           "intensity%type": {
             "type": "string",

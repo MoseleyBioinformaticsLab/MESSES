@@ -169,7 +169,8 @@ def create_subject_sample_factors(input_json: dict,
     
     lineages = create_sample_lineages(input_json, entity_table_name=entity_table_name, parent_key=parent_key)
     
-    factor_fields = {factor_attributes[factor_field_key]:{"name":factor} for factor, factor_attributes in input_json[factor_table_name].items()}
+    factor_fields = {factor_attributes[factor_field_key]:{"name":factor, "allowed_values":factor_attributes[factor_allowed_values_key]} 
+                     for factor, factor_attributes in input_json[factor_table_name].items()}
     
     ss_factors = []
     for sample in samples:
@@ -185,25 +186,28 @@ def create_subject_sample_factors(input_json: dict,
         factors_blacklist = []
         subjects = {}
         subject_id = ""
-        ## Loop over all of the sample's ancestors and add them to additional data as well find all the factors, and the closest subject.
+        ## Loop over all of the sample's ancestors and add them to additional data as well as find all the factors, and the closest subject.
         for ancestor in lineages[sample]["ancestors"]:
             lineage_level = _determine_lineage_level(lineages, ancestor)
             for field, field_value in input_json[entity_table_name][ancestor].items():
                 if field in factor_fields and factor_fields[field]['name'] not in factors_blacklist:
                     factor_name = factor_fields[field]["name"]
                     if factor_name not in ancestor_factors:
-                        if isinstance(field_value, str):
+                        if isinstance(field_value, str) and field_value in factor_fields[field]["allowed_values"]:
                             ancestor_factors[factor_name] = field_value
-                        elif isinstance(field_value, list):
-                            ancestor_factors[factor_name] = field_values[0] if len(field_values) == 1 else str(field_values)
+                        elif isinstance(field_value, list) and (allowed_field_values := [value for value in field_value if value in factor_fields[field]["allowed_values"]]):
+                            ancestor_factors[factor_name] = allowed_field_values[0] if len(allowed_field_values) == 1 else sorted(allowed_field_values)
                     else:
                         # If a sample has multiple ancestors with conflicting factors, then don't add that factor.
                         # An example is pooled samples that mix cancer and non-cancer together.
-                        if isinstance(field_value, str):
+                        field_is_allowed = False
+                        if isinstance(field_value, str) and field_value in factor_fields[field]["allowed_values"]:
                             factor_value = field_value
-                        elif isinstance(field_value, list):
-                            factor_value = field_values[0] if len(field_values) == 1 else str(field_values)
-                        if factor_value != ancestor_factors[factor_name]:
+                            field_is_allowed = True
+                        elif isinstance(field_value, list) and (allowed_field_values := [value for value in field_value if value in factor_fields[field]["allowed_values"]]):
+                            factor_value = allowed_field_values[0] if len(allowed_field_values) == 1 else sorted(allowed_field_values)
+                            field_is_allowed = True
+                        if field_is_allowed and factor_value != ancestor_factors[factor_name]:
                             factors_blacklist.append(factor_name)
                             del ancestor_factors[factor_name]
                     
@@ -223,8 +227,8 @@ def create_subject_sample_factors(input_json: dict,
                 # if field in factor_fields and factor_fields[field]["name"] not in factors:
                 #     if isinstance(field_value,str) and field_value in factor_fields[field]["allowed_values"]:
                 #         factors[factor_fields[field]["name"]] = field_value
-                #     elif isinstance(field_value,list) and (field_values := [value for value in field_value if value in factor_fields[field]["allowed_values"]]):
-                #         factors[factor_fields[field]["name"]] = field_values[0] if len(field_values) == 1 else str(field_values)
+                #     elif isinstance(field_value,list) and (field_value := [value for value in field_value if value in factor_fields[field]["allowed_values"]]):
+                #         factors[factor_fields[field]["name"]] = field_value[0] if len(field_value) == 1 else str(field_value)
         
         factors.update(ancestor_factors)
         # Pooled samples can inherit from multiple subjects. In that case we just want to have a blank subject.
@@ -255,10 +259,10 @@ def create_subject_sample_factors(input_json: dict,
         ## Look for factors on the sample itself.
         for field, field_value in input_json[entity_table_name][sample].items():            
             if field in factor_fields and factor_fields[field]["name"]:
-                if isinstance(field_value, str):
+                if isinstance(field_value, str) and field_value in factor_fields[field]["allowed_values"]:
                     factors[factor_fields[field]["name"]] = field_value
-                elif isinstance(field_value, list):
-                    factors[factor_fields[field]["name"]] = field_values[0] if len(field_values) == 1 else str(field_values)
+                elif isinstance(field_value, list) and (field_value := [value for value in field_value if value in factor_fields[field]["allowed_values"]]):
+                    factors[factor_fields[field]["name"]] = field_value[0] if len(field_value) == 1 else str(field_value)
                     
         
         ## Add raw files as a key to additional sample data.

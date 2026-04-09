@@ -2,7 +2,7 @@
   "ANALYSIS": {
     "ANALYSIS_TYPE": {
       "id": "ANALYSIS_TYPE",
-      "override": "NM",
+      "override": "NMR",
       "value_type": "str"
     }
   },
@@ -565,7 +565,8 @@
       "sort_order": "ascending",
       "table": "measurement",
       "value_type": "matrix",
-      "values_to_str": "True"
+      "values_to_str": "True",
+      "fill_headers": ""
     },
     "Units": {
       "required": "True",

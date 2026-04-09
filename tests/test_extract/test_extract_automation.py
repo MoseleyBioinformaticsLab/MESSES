@@ -98,7 +98,7 @@ def test_missing_id_in_header():
     
     assert output_path.exists()
     
-    assert output == "Warning: The header row at index 1 in the compiled export sheet does not have an \"id\" tag, so it will not be in the JSON output." + "\n"
+    assert output == "Warning: The header row at index 0 in the compiled export sheet does not have an \"id\" tag, so it will not be in the JSON output." + "\n"
 
 
 
@@ -160,7 +160,7 @@ def test_duplicate_columns():
     
     assert output_path.exists()
     
-    assert output == "Warning: The header, Intensity, in automation group, 1, was matched to more than 1 column near or on row, 3, in the tagged export.\nWarning: Automation directive number 1 was never used." + "\n"
+    assert output == "Warning: The header, Intensity, in automation group, 1, was matched to more than 1 column near or on row, 4, in the tagged export.\nWarning: Automation directive number 1 was never used." + "\n"
 
 
 
@@ -563,7 +563,7 @@ def test_automation_untracking_no_equal_sign_error():
     
     assert not output_path.exists()
     
-    assert 'Incorrectly formatted untrack tag, "=" must follow "track" and "table.field" or "table.field%attribute" must follow "=" at cell' in output
+    assert 'Incorrectly formatted untrack tag, "=" must follow "untrack" and "table.field" or "table.field%attribute" must follow "=" at cell' in output
     assert "untracking_no_equal_sign_error.xlsx:#export[B14]" in output
 
 
@@ -580,7 +580,7 @@ def test_automation_untracking_not_enough_tokens_error():
     
     assert not output_path.exists()
     
-    assert 'Incorrectly formatted untrack tag, "=" must follow "track" and "table.field" or "table.field%attribute" must follow "=" at cell' in output
+    assert 'Incorrectly formatted untrack tag, "=" must follow "untrack" and "table.field" or "table.field%attribute" must follow "=" at cell' in output
     assert "untracking_not_enough_tokens_error.xlsx:#export[B14]" in output
 
 
@@ -670,3 +670,200 @@ def test_automation_spaces_in_header():
     assert output_json == output_compare_json
             
     assert output == ""
+
+
+def test_automation_transpose():
+    """Test that the #transpose works in automate."""
+    
+    test_file = "automation_transpose.xlsx"
+    
+    command = "messes extract ../" + test_file + " --output " + output_path.as_posix()
+    command = command.split(" ")
+    subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
+    output = subp.stderr
+
+    
+    assert output_path.exists()
+    
+    with open(output_path, "r") as f:
+        output_json = json.loads(f.read())
+        
+    with open(pathlib.Path("output_compare2.json"), "r") as f:
+        output_compare_json = json.loads(f.read())
+        
+    assert output_json == output_compare_json
+            
+    assert output == ""
+
+
+def test_automation_header_and_increment():
+    """Test that the #HEADER# and #INCREMENT# keywords work in automate."""
+    
+    test_file = "automation_header_and_increment.xlsx"
+    
+    command = "messes extract ../" + test_file + " --output " + output_path.as_posix()
+    command = command.split(" ")
+    subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
+    output = subp.stderr
+
+    
+    assert output_path.exists()
+    
+    with open(output_path, "r") as f:
+        output_json = json.loads(f.read())
+        
+    with open(pathlib.Path("output_compare3.json"), "r") as f:
+        output_compare_json = json.loads(f.read())
+        
+    assert output_json == output_compare_json
+            
+    assert output == ""
+
+
+def test_automation_filter():
+    """Test that the #filter works in automate."""
+    
+    test_file = "automation_filter.xlsx"
+    
+    command = "messes extract ../" + test_file + " --output " + output_path.as_posix()
+    command = command.split(" ")
+    subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
+    output = subp.stderr
+
+    
+    assert output_path.exists()
+    
+    with open(output_path, "r") as f:
+        output_json = json.loads(f.read())
+        
+    with open(pathlib.Path("output_compare4.json"), "r") as f:
+        output_compare_json = json.loads(f.read())
+        
+    assert output_json == output_compare_json
+            
+    assert output == ""
+
+
+def test_automation_sort():
+    """Test that the #sort works in automate."""
+    
+    test_file = "automation_sort.xlsx"
+    
+    command = "messes extract ../" + test_file + " --output " + output_path.as_posix()
+    command = command.split(" ")
+    subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
+    output = subp.stderr
+
+    
+    assert output_path.exists()
+    
+    with open(output_path, "r") as f:
+        output_json = json.loads(f.read())
+        
+    with open(pathlib.Path("output_compare5.json"), "r") as f:
+        output_compare_json = json.loads(f.read())
+        
+    assert output_json == output_compare_json
+            
+    assert output == ""
+
+
+def test_automation_sort_bad_tag():
+    """Test that a badly constructed #sort tag produces an error."""
+    
+    test_file = "automation_sort_bad_tag.xlsx"
+    
+    command = "messes extract ../" + test_file + " --output " + output_path.as_posix()
+    command = command.split(" ")
+    subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
+    output = subp.stderr
+
+    
+    assert not output_path.exists()
+            
+    assert ('Exception: Error: A #sort tag in automation group 0 has a badly '
+            'constructed header:sortorder pair, asdf:qwer:zxcv. It should be '
+            'of the form "header:ascending" or "header:descending". Put double '
+            'quotes around the header if it contains a colon.') in output
+
+
+def test_automation_sort_header_not_found():
+    """Test that when a header in #sort is not found it produces an error."""
+    
+    test_file = "automation_sort_header_not_found.xlsx"
+    
+    command = "messes extract ../" + test_file + " --output " + output_path.as_posix()
+    command = command.split(" ")
+    subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
+    output = subp.stderr
+
+    
+    assert not output_path.exists()
+            
+    assert ("Error: The following header(s) in the #sort tag of automation group 0 were not found in the data: ['asdf']") in output
+
+
+def test_automation_filter_bad_tag():
+    """Test that a badly constructed #filter tag produces an error."""
+    
+    test_file = "automation_filter_bad_tag.xlsx"
+    
+    command = "messes extract ../" + test_file + " --output " + output_path.as_posix()
+    command = command.split(" ")
+    subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
+    output = subp.stderr
+
+    
+    assert not output_path.exists()
+            
+    assert ('Error: A #filter tag in automation group 0 has a badly constructed '
+            'header:filter pair, asdf:zxcv:qwer:unique. It should be of the form '
+            '"header:filter". Put double quotes around the header or filter if it contains a colon.') in output
+
+
+def test_automation_filter_header_not_found():
+    """Test that when a header in #filter is not found it produces an error."""
+    
+    test_file = "automation_filter_header_not_found.xlsx"
+    
+    command = "messes extract ../" + test_file + " --output " + output_path.as_posix()
+    command = command.split(" ")
+    subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
+    output = subp.stderr
+
+    
+    assert not output_path.exists()
+            
+    assert ("Error: The following header(s) in the #filter tag of automation group 0 were not found in the data: ['asdf']") in output
+
+
+def test_automation_sort_not_copy_error():
+    """Test that when #copy is not given with #sort it produces an error."""
+    
+    test_file = "automation_sort_no_copy.xlsx"
+    
+    command = "messes extract ../" + test_file + " --output " + output_path.as_posix()
+    command = command.split(" ")
+    subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
+    output = subp.stderr
+
+    
+    assert not output_path.exists()
+            
+    assert ('"#copy" must be specified in #tags column if "#sort" is specified. ') in output
+
+
+def test_automation_filter_not_copy_error():
+    """Test that when #copy is not given with #filter it produces an error."""
+    
+    test_file = "automation_filter_no_copy.xlsx"
+    
+    command = "messes extract ../" + test_file + " --output " + output_path.as_posix()
+    command = command.split(" ")
+    subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
+    output = subp.stderr
+
+    
+    assert not output_path.exists()
+            
+    assert ('"#copy" must be specified in #tags column if "#filter" is specified. ') in output

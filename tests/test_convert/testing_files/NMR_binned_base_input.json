@@ -4543,7 +4543,7 @@
       "standard_concentration": "0.5",
       "standard_concentration%units": "mM",
       "temperature": "15",
-      "temperature%units": "celsius",
+      "temperature%units": "C",
       "type": "measurement",
       "machine_type": "NMR",
       "water_suppression": "presaturation",

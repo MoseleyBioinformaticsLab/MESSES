@@ -1,0 +1,57 @@
+{
+  "protocol": {
+    "LC-MS-MS2": {
+      "data_files": [
+        "Helsley0007_MX780462_negBA_1-001.wiff",
+        "Helsley0016_MX780462_negBA_2-002.wiff",
+        "Helsley0013_MX780462_negBA_3-003.wiff",
+        "Helsley0008_MX780462_negBA_4-004.wiff",
+        "Helsley0014_MX780462_negBA_5-005.wiff",
+        "Helsley0010_MX780462_negBA_6-006.wiff",
+        "Helsley0012_MX780462_negBA_7-007.wiff",
+        "Helsley0017_MX780462_negBA_8-008.wiff",
+        "Helsley0006_MX780462_negBA_9-009.wiff",
+        "Helsley0003_MX780462_negBA_10-010.wiff",
+        "Helsley0002_MX780462_negBA_11-011.wiff",
+        "Helsley0001_MX780462_negBA_12-012.wiff",
+        "Helsley0011_MX780462_negBA_13-013.wiff",
+        "Helsley0015_MX780462_negBA_14-014.wiff",
+        "Helsley0004_MX780462_negBA_15-015.wiff",
+        "Helsley0005_MX780462_negBA_16-016.wiff",
+        "Helsley0009_MX780462_negBA_17-017.wiff",
+        "PoolQC001_MX780462_negBA_preHelsley0001.wiff",
+        "PoolQC002_MX780462_negBA_postHelsley0010.wiff",
+        "PoolQC003_MX780462_negBA_postHelsley0017.wiff",
+        "MtdBlank001_MX780462_negBA_preHelsley0001.wiff",
+        "MtdBlank002_MX780462_negBA_postHelsley0010.wiff",
+        "MtdBlank003_MX780462_negBA_postHelsley0017.wiff"
+      ],
+      "data_files%entity_id": [
+        "1-Helsley0007_MX780462_negBA_1-001.wiff",
+        "2-Helsley0016_MX780462_negBA_2-002.wiff",
+        "3-Helsley0013_MX780462_negBA_3-003.wiff",
+        "4-Helsley0008_MX780462_negBA_4-004.wiff",
+        "5-Helsley0014_MX780462_negBA_5-005.wiff",
+        "6-Helsley0010_MX780462_negBA_6-006.wiff",
+        "7-Helsley0012_MX780462_negBA_7-007.wiff",
+        "8-Helsley0017_MX780462_negBA_8-008.wiff",
+        "9-Helsley0006_MX780462_negBA_9-009.wiff",
+        "10-Helsley0003_MX780462_negBA_10-010.wiff",
+        "11-Helsley0002_MX780462_negBA_11-011.wiff",
+        "12-Helsley0001_MX780462_negBA_12-012.wiff",
+        "13-Helsley0011_MX780462_negBA_13-013.wiff",
+        "14-Helsley0015_MX780462_negBA_14-014.wiff",
+        "15-Helsley0004_MX780462_negBA_15-015.wiff",
+        "16-Helsley0005_MX780462_negBA_16-016.wiff",
+        "17-Helsley0009_MX780462_negBA_17-017.wiff",
+        "Pool-PoolQC001_MX780462_negBA_preHelsley0001.wiff",
+        "Pool-PoolQC002_MX780462_negBA_postHelsley0010.wiff",
+        "Pool-PoolQC003_MX780462_negBA_postHelsley0017.wiff",
+        "Blank-MtdBlank001_MX780462_negBA_preHelsley0001.wiff",
+        "Blank-MtdBlank002_MX780462_negBA_postHelsley0010.wiff",
+        "Blank-MtdBlank003_MX780462_negBA_postHelsley0017.wiff"
+      ],
+      "id": "LC-MS-MS2"
+    }
+  }
+}

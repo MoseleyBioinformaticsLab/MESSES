@@ -11,7 +11,8 @@
         "formula",
         "compound",
         "isotopologue",
-        "isotopologue%type"
+        "isotopologue%type",
+        "isotopologue_type"
       ],
       "fields_to_headers": "True",
       "headers": [

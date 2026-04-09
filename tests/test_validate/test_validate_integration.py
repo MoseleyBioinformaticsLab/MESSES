@@ -420,11 +420,11 @@ def test_SS_protocol_errors():
     output = subp.stderr
     
     errors = [
-        'Error:  Sample 29_C1-2_Lung_allogenic_7days_170427_UKy_GCH_rep2 came from a subject, ' +\
+        'Error:  Sample 29_C1-2_Lung_allogenic_7days_170427_UKy_GCH_rep2 came from a subject(s), ' +\
         'but does not have a collection protocol.',
         
         'Error:  Sample 30_C1-20_Lung_allogenic_7days_170427_UKy_GCH_rep3-polar-ICMS_A came from ' +\
-        'a sample, but does not have a sample_prep protocol.',
+        'a sample(s), but does not have a sample_prep protocol.',
         
         'Error:  Subject 15_C1-20_allogenic_7days_UKy_GCH_rep3 does not have a treatment type protocol.'
         ]

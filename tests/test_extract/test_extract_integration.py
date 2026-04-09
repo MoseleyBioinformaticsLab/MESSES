@@ -335,7 +335,7 @@ def test_table_in_assignment_error():
     
     assert not output_path.exists()
         
-    assert "#table, #tags, or #%child tags  in assignment at cell " in output  
+    assert "#table, #tags, #%child, or #%crecord tags in assignment at cell " in output  
     assert "table_in_assignment_error.xlsx:#export[C1]" in output
      
     
@@ -353,7 +353,7 @@ def test_child_in_assignment_error():
     
     assert not output_path.exists()
         
-    assert "#table, #tags, or #%child tags  in assignment at cell " in output  
+    assert "#table, #tags, #%child, or #%crecord tags in assignment at cell " in output  
     assert "child_in_assignment_error.xlsx:#export[C1]" in output
     
     
@@ -1056,3 +1056,113 @@ def test_second_table_specified():
     assert "second_table_error.xlsx:#export[C1]" in output
 
 
+def test_crecord_tag():
+    """Test that the #crecord tag works as expected."""
+    
+    test_file = "crecord_test.csv"
+    
+    command = "messes extract ../" + test_file + " --output " + output_path.as_posix()
+    command = command.split(" ")
+    subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
+    output = subp.stderr
+
+    
+    assert output_path.exists()
+    
+    with open(output_path, "r") as f:
+        output_json = json.loads(f.read())
+        
+    with open(pathlib.Path("output_compare3.json"), "r") as f:
+        output_compare_json = json.loads(f.read())
+        
+    assert output_json == output_compare_json
+            
+    assert output == ""
+
+
+def test_transpose_tag():
+    """Test that the #transpose tag works as expected."""
+    
+    test_file = "transpose_test.xlsx"
+    
+    command = "messes extract ../" + test_file + " --output " + output_path.as_posix()
+    command = command.split(" ")
+    subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
+    output = subp.stderr
+
+    
+    assert output_path.exists()
+    
+    with open(output_path, "r") as f:
+        output_json = json.loads(f.read())
+        
+    with open(pathlib.Path("output_compare6.json"), "r") as f:
+        output_compare_json = json.loads(f.read())
+        
+    assert output_json == output_compare_json
+            
+    assert output == ""
+
+
+def test_crecord_bad_table():
+    """Test that if a #crecord tag gives a bad table an error is printed."""
+    
+    test_file = "crecord_bad_table.csv"
+    
+    command = "messes extract ../" + test_file + " --output " + output_path.as_posix()
+    command = command.split(" ")
+    subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
+    output = subp.stderr
+
+    
+    assert not output_path.exists()
+                
+    assert 'crecord tag must be for the same table as parent tags ' in output
+
+
+def test_crecord_no_id():
+    """Test that if a #crecord tag does not have an id field an error is printed."""
+    
+    test_file = "crecord_no_id.csv"
+    
+    command = "messes extract ../" + test_file + " --output " + output_path.as_posix()
+    command = command.split(" ")
+    subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
+    output = subp.stderr
+
+    
+    assert not output_path.exists()
+                
+    assert 'crecord tag must have an id field ' in output
+
+
+def test_crecord_bad_id():
+    """Test that if a #crecord tag has a bad id field an error is printed."""
+    
+    test_file = "crecord_bad_id.csv"
+    
+    command = "messes extract ../" + test_file + " --output " + output_path.as_posix()
+    command = command.split(" ")
+    subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
+    output = subp.stderr
+
+    
+    assert not output_path.exists()
+                
+    assert 'crecord tag id field must be assigned directly with an \\\'=\\\' ' in output
+
+
+def test_crecord_id_before_crecord():
+    """Test that if an id field is given before a #crecord tag an error is printed."""
+    
+    test_file = "crecord_id_before_crecord.csv"
+    
+    command = "messes extract ../" + test_file + " --output " + output_path.as_posix()
+    command = command.split(" ")
+    subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
+    output = subp.stderr
+
+    
+    assert not output_path.exists()
+                
+    assert 'id field cannot specified before crecord ' in output

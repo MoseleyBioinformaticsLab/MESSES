@@ -131,3 +131,16 @@ Pool_3
 Blank_2
 Blank_3
 Add exception for pool and blanks.
+
+Add a key to conversion directives that will skip them. "skip", "ignore", something like that. For the West Coast data 
+the Extended section was not needed, but I had to use the override option and completely replace the directives to remove 
+the section instead of just being able to update. Would be easier if you could just update the directive with a single keyword.
+
+Add a key to conversion matrix directives to normalize all keys with a fill value. For instance if something like [{'a':1, 'b':2}, {'a':3}]
+is generated, then we want to add 'b':'' to the second dict.
+
+After adding validations on METABOLITES columns in the mwtab package our recommended naming convention for attributes, assignment%method to 
+augment an assignment field for example, causes some warnings now. Need to think about either allowing naming conventions like that 
+through or possibly getting rid of it for any fields that will end up in METABOLITES.
+
+Make sure run_conversion_directives_to_json_schema_command in validate.py works with new keywords in directives.

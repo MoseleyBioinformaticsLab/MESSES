@@ -66,6 +66,9 @@ Export Tags
     
 * Cells on this row will have tags over the columns to be exported.
 * Subsequent non-blank rows are interpreted as data unless the tag **'#ignore'** is used in the left most column.
+* Tags are read and executed from left to right, so order can matter. 
+
+    * For example, an "id" field must be specified before any "child" fields.
 
 Basic Example:
 

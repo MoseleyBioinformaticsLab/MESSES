@@ -16,7 +16,7 @@ Usage:
 Options:
     -h, --help                           - show this screen.
     -v, --version                        - show version.
-    --silent                             - silence all warnings.
+    --silent                             - silence all conversion warnings. (validation messages still printed)
     --update <conversion_directives>     - conversion directives that will be used to update the built-in directives for the format.
                                            This is intended to be used for simple changes such as updating the value of 
                                            the analysis ID. You only have to specify what needs to change, any values 
@@ -186,6 +186,15 @@ def main() :
     output_json = {}
     for conversion_table, conversion_records in conversion_directives.items():
         for conversion_record_name, conversion_attributes in conversion_records.items():
+            skip = False
+            if (skip_attr := conversion_attributes.get("skip")) is not None:
+                if isinstance(skip_attr, bool):
+                    skip = skip_attr
+                elif isinstance(skip_attr, str) and skip_attr.lower() == "true":
+                    skip = True
+            if skip:
+                continue
+            
             required = True
             if (required_attr := conversion_attributes.get("required")) is not None:
                 if isinstance(required_attr, bool):
@@ -245,10 +254,13 @@ def main() :
     ## Save the generated json.
     #########################
     json_save_name = args["<output_name>"] + ".json"
-    with open(json_save_name,'w') as jsonFile:
-        jsonFile.write(json.dumps(output_json, indent=2))
+    
+    if args['generic']:
+        with open(json_save_name,'w') as jsonFile:
+            jsonFile.write(json.dumps(output_json, indent=2))
     
     if args["mwtab"]:
+        # TODO delete this after testing.
         ## Optional way to do things compared to the code block below this.
         # with tempfile.TemporaryFile(mode="w+", encoding="utf-8") as tp:
         #     tp.write(json.dumps(output_json))
@@ -258,50 +270,54 @@ def main() :
         # with open(args["<output-name>"], 'w', encoding="utf-8") as outfile:
         #     mwfile.write(outfile, file_format="mwtab")
         
-        mwtab_key_order = {'METABOLOMICS WORKBENCH':['STUDY_ID', 'ANALYSIS_ID', 'VERSION', 'CREATED_ON'], 
-                           'PROJECT':[], 
-                           'STUDY':[], 
-                           'SUBJECT':[], 
-                           'SUBJECT_SAMPLE_FACTORS':[], 
-                           'COLLECTION':[], 
-                           'TREATMENT':[], 
-                           'SAMPLEPREP':[], 
-                           'CHROMATOGRAPHY':[], 
-                           'ANALYSIS':[], 
-                           }
-                
-        extended_key_order = {"ms":{'MS':[], 
-                                    'MS_METABOLITE_DATA':['Units', 'Data', 'Metabolites', 'Extended']},
-                              "nmr":{'NM':[], 
-                                     'NMR_METABOLITE_DATA':['Units', 'Data', 'Metabolites', 'Extended']},
-                              "nmr_binned":{'NM':[], 
-                                            'NMR_BINNED_DATA':['Units', 'Data']}}
         
-        mwtab_key_order.update(extended_key_order[sub_command])
+        # mwtab_key_order = {'METABOLOMICS WORKBENCH':['STUDY_ID', 'ANALYSIS_ID', 'VERSION', 'CREATED_ON'], 
+        #                    'PROJECT':[], 
+        #                    'STUDY':[], 
+        #                    'SUBJECT':[], 
+        #                    'SUBJECT_SAMPLE_FACTORS':[], 
+        #                    'COLLECTION':[], 
+        #                    'TREATMENT':[], 
+        #                    'SAMPLEPREP':[], 
+        #                    'CHROMATOGRAPHY':[], 
+        #                    'ANALYSIS':[], 
+        #                    }
+                
+        # extended_key_order = {"ms":{'MS':[], 
+        #                             'MS_METABOLITE_DATA':['Units', 'Data', 'Metabolites', 'Extended']},
+        #                       "nmr":{'NM':[], 
+        #                              'NMR_METABOLITE_DATA':['Units', 'Data', 'Metabolites', 'Extended']},
+        #                       "nmr_binned":{'NM':[], 
+        #                                     'NMR_BINNED_DATA':['Units', 'Data']}}
+        
+        # mwtab_key_order.update(extended_key_order[sub_command])
         
         
         mwtabfile = mwtab.mwtab.MWTabFile("")
         
+        # TODO delete this after testing.
         ## The mwtab package doesn't ensure correct ordering itself, so we have to make sure everything is ordered correctly.
-        for key, sub_keys in mwtab_key_order.items():
-            if key in output_json:
-                mwtabfile[key] = {}
-                for sub_key in sub_keys:
-                    if sub_key in output_json[key]:
-                        mwtabfile[key][sub_key] = output_json[key][sub_key]
-                if isinstance(output_json[key], dict):
-                    mwtabfile[key].update(output_json[key])
-                else:
-                    mwtabfile[key] = output_json[key]
+        # for key, sub_keys in mwtab_key_order.items():
+        #     if key in output_json:
+        #         mwtabfile[key] = {}
+        #         for sub_key in sub_keys:
+        #             if sub_key in output_json[key]:
+        #                 mwtabfile[key][sub_key] = output_json[key][sub_key]
+        #         if isinstance(output_json[key], dict):
+        #             mwtabfile[key].update(output_json[key])
+        #         else:
+        #             mwtabfile[key] = output_json[key]
         
         ## If you just update the dict then things can be out of order, so switched to the above method until mwtab is improved.
         # mwtabfile.update(output_json)
-        mwtabfile.header = " ".join(
-            ["#METABOLOMICS WORKBENCH"]
-            + [item[0] + ":" + item[1] for item in mwtabfile["METABOLOMICS WORKBENCH"].items() if item[0] not in ["VERSION", "CREATED_ON"]]
-        )            
+        # mwtabfile.header = " ".join(
+        #     ["#METABOLOMICS WORKBENCH"]
+        #     + [item[0] + ":" + item[1] for item in mwtabfile["METABOLOMICS WORKBENCH"].items() if item[0] not in ["VERSION", "CREATED_ON"]]
+        # )            
         
         mwtabfile.source = args["<input_JSON>"]
+        mwtabfile.read_from_str(json.dumps(output_json))
+        
         string_errors, json_errors = mwtab.validator.validate_file(mwtabfile)
         warning_count = 0
         for error in json_errors:
@@ -319,6 +335,8 @@ def main() :
         mwtab_save_name = args["<output_name>"] + ".txt"
         with open(mwtab_save_name, 'w', encoding='utf-8') as outfile:
             mwtabfile.write(outfile, file_format="mwtab")
+        with open(json_save_name, 'w', encoding='utf-8') as outfile:
+            mwtabfile.write(outfile, file_format="json")
         
 
 
@@ -876,7 +894,8 @@ def compute_matrix_value(input_json: dict, conversion_table: str, conversion_rec
     if table_records is None:
         return None
     
-        
+    
+    all_keys = {}
     if collate := conversion_attributes.get("collate"):
         ## TODO think about whether to do collate.strip() here to remove spaces.
         records = {}
@@ -892,20 +911,22 @@ def compute_matrix_value(input_json: dict, conversion_table: str, conversion_rec
             if collate_key not in records:
                 records[collate_key] = {}
             
-            records[collate_key] = _build_matrix_record_dict(records[collate_key], 
-                                                             collate_key, 
-                                                             headers, 
-                                                             record_name, 
-                                                             record_attributes, 
-                                                             conversion_table, 
-                                                             conversion_record_name, 
-                                                             conversion_attributes, 
-                                                             fields_to_headers,
-                                                             exclusion_headers,
-                                                             optional_headers,
-                                                             values_to_str, 
-                                                             required, 
-                                                             silent)
+            temp_dict = _build_matrix_record_dict(records[collate_key], 
+                                                          collate_key, 
+                                                          headers, 
+                                                          record_name, 
+                                                          record_attributes, 
+                                                          conversion_table, 
+                                                          conversion_record_name, 
+                                                          conversion_attributes, 
+                                                          fields_to_headers,
+                                                          exclusion_headers,
+                                                          optional_headers,
+                                                          values_to_str, 
+                                                          required, 
+                                                          silent)
+            records[collate_key] = temp_dict
+            all_keys.update(temp_dict)
                                 
         records = list(records.values())
     
@@ -928,6 +949,14 @@ def compute_matrix_value(input_json: dict, conversion_table: str, conversion_rec
                                                    silent)
             
             records.append(temp_dict)
+            all_keys.update(temp_dict)
+    
+    if conversion_attributes.get("fill_headers") is not None:
+        fill = conversion_attributes['fill_headers']
+        for i, record in enumerate(records):
+            temp_dict = {key: fill for key in all_keys}
+            temp_dict.update(record)
+            records[i] = temp_dict
     
     if not records:
         return None

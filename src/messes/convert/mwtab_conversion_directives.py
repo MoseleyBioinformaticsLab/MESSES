@@ -553,7 +553,8 @@ ms_directives = \
       "sort_order": "ascending",
       "table": "measurement",
       "value_type": "matrix",
-      "values_to_str": "True"
+      "values_to_str": "True",
+      "fill_headers": ""
     },
     "Metabolites": {
       "required": "True",
@@ -575,7 +576,8 @@ ms_directives = \
       "sort_order": "ascending",
       "table": "measurement",
       "value_type": "matrix",
-      "values_to_str": "True"
+      "values_to_str": "True",
+      "fill_headers": ""
     },
     "Extended": {
       "required": "False",
@@ -605,7 +607,8 @@ ms_directives = \
       "sort_order": "ascending",
       "table": "measurement",
       "value_type": "matrix",
-      "values_to_str": "True"
+      "values_to_str": "True",
+      "fill_headers": ""
     }
   }
 }
@@ -617,7 +620,7 @@ del nmr_directives["MS"]
 del nmr_directives["MS_METABOLITE_DATA"]
 
 
-nmr_directives["ANALYSIS"]["ANALYSIS_TYPE"]["override"] = "NM"
+nmr_directives["ANALYSIS"]["ANALYSIS_TYPE"]["override"] = "NMR"
 nmr_directives["NM"] = {
     "ACQUISITION_TIME": {
       "fields": [
@@ -817,7 +820,8 @@ nmr_directives["NMR_METABOLITE_DATA"] = {
       "sort_order": "ascending",
       "table": "measurement",
       "value_type": "matrix",
-      "values_to_str": "True"
+      "values_to_str": "True",
+      "fill_headers": ""
     },
     "Metabolites": {
       "required": "True",
@@ -844,7 +848,8 @@ nmr_directives["NMR_METABOLITE_DATA"] = {
       "sort_order": "ascending",
       "table": "measurement",
       "value_type": "matrix",
-      "values_to_str": "True"
+      "values_to_str": "True",
+      "fill_headers": ""
     },
     "Extended": {
       "required": "False",
@@ -879,7 +884,8 @@ nmr_directives["NMR_METABOLITE_DATA"] = {
       "sort_order": "ascending",
       "table": "measurement",
       "value_type": "matrix",
-      "values_to_str": "True"
+      "values_to_str": "True",
+      "fill_headers": ""
     }
   }
 
@@ -909,6 +915,7 @@ nmr_binned_directives["NMR_BINNED_DATA"] = {
       "sort_order": "ascending",
       "table": "measurement",
       "value_type": "matrix",
-      "values_to_str": "True"
+      "values_to_str": "True",
+      "fill_headers": ""
     }
   }

@@ -191,4 +191,17 @@ But if you do need to make a change, then all of the parameters for the function
 
 
 
+Supported Sources
+-----------------
+The examples folder on the GitHub_ repository has examples of depositions into different formats from various sources. 
+For example, there are examples for depositions into the mwTab format from the Center for Environmental and Systems Biochemistry (CESB)
+and from the West Coast Metabolomics Center at UC Davis. The examples include data and detailed README files that explain 
+how to replicate the examples and other pertinent information.
+
+
+
+
+
+
 .. _Metabolomics Workbench: http://www.metabolomicsworkbench.org
+.. _GitHub: https://github.com/MoseleyBioinformaticsLab/messes

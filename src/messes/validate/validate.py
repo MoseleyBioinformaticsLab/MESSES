@@ -900,7 +900,7 @@ def id_check(JSON_file: JSON) -> None:
         for record_name, record_fields in table_records.items():
             for field_name, field_value in record_fields.items():
             
-                if re_match := re.match("(.*)\.(.*)", field_name):
+                if re_match := re.match(r"(.*)\.(.*)", field_name):
                         if re_match.group(2) != "id":
                             print("Error:  In the " + table_name + " table of the input JSON, the record \"" +\
                                   record_name + "\" has a field, " + field_name + \

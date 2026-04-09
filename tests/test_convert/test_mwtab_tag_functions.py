@@ -75,7 +75,7 @@ def test_measurement_sample_not_in_entity_table_error(mwtab_json, capsys):
 
 
 def test_data_files_less_than_attribute(mwtab_json, capsys):
-    """Test that if data_files has fewere elements than data_files%entity_id a warning is printed."""
+    """Test that if data_files has fewer elements than data_files%entity_id a warning is printed."""
     working_json = copy.deepcopy(mwtab_json)
     del working_json["protocol"]["ICMS1"]["data_files"][-1]
     ss_factors = create_subject_sample_factors(working_json)
@@ -204,8 +204,6 @@ def test_factors_not_found_warning(mwtab_json, capsys):
                             'These factors are: Test Factor' + '\n'
     
 
-
-
 def test_sample_missing_factor(mwtab_json, capsys):
     """Test when a sample is missing a factor a warning is printed."""
     working_json = copy.deepcopy(mwtab_json)
@@ -223,5 +221,75 @@ def test_sample_missing_factor(mwtab_json, capsys):
     captured = capsys.readouterr()
     assert 'Warning: The following samples do not have the full set of factors: ' +\
            '\ntest_sample' + '\n' in captured.err
+
     
+def test_ancestor_factors():
+    """Test that ancestor factors get pulled in as expected."""
+    working_json = {'factor':{}, 'entity':{}, 'measurement':{}, 'protocol':{}}
+    working_json['factor']['test_factor'] =  {
+                                               "allowed_values": [
+                                                 "cancer",
+                                                 "non-cancer"
+                                               ],
+                                               "field": "test_factor",
+                                               "id": "Test Factor"
+                                             }
+    working_json["entity"]["test_sample1"] = {"protocol.id": [
+                                                            "polar_extraction",
+                                                            "IC-FTMS_preparation",
+                                                            "ICMS_file_storage16"
+                                                            ],
+                                             'parent_id': ['test_ancestor1', 'test_ancestor2']
+                                              }
+    working_json['entity']['test_ancestor1'] = {'test_factor': 'cancer',
+                                               'protocol.id': ['fake_protocol1']}
+    working_json['entity']['test_ancestor2'] = {'test_factor': 'cancer',
+                                               'protocol.id': ['fake_protocol2']}
+    working_json["entity"]["test_sample2"] = {"protocol.id": [
+                                                            "polar_extraction",
+                                                            "IC-FTMS_preparation",
+                                                            "ICMS_file_storage16"
+                                                            ],
+                                             'parent_id': ['test_ancestor3', 'test_ancestor4']
+                                              }
+    working_json['entity']['test_ancestor3'] = {'test_factor': ['cancer'],
+                                               'protocol.id': ['fake_protocol1']}
+    working_json['entity']['test_ancestor4'] = {'test_factor': 'non-cancer',
+                                               'protocol.id': ['fake_protocol2']}
+    working_json["entity"]["test_sample3"] = {"protocol.id": [
+                                                            "polar_extraction",
+                                                            "IC-FTMS_preparation",
+                                                            "ICMS_file_storage16"
+                                                            ],
+                                             'parent_id': ['test_ancestor5', 'test_ancestor6']
+                                              }
+    working_json['entity']['test_ancestor5'] = {'test_factor': ['cancer', 'non-cancer'],
+                                               'protocol.id': ['fake_protocol1']}
+    working_json['entity']['test_ancestor6'] = {'test_factor': ['non-cancer', 'cancer'],
+                                               'protocol.id': ['fake_protocol2']}
+    working_json["measurement"]["test_measurement1"] = {"id":"test_measurement1", 
+                                                       "entity.id":"test_sample1",
+                                                       'protocol.id':['test_measurement_protocol']}
+    working_json["measurement"]["test_measurement2"] = {"id":"test_measurement2", 
+                                                       "entity.id":"test_sample2",
+                                                       'protocol.id':['test_measurement_protocol']}
+    working_json["measurement"]["test_measurement3"] = {"id":"test_measurement3", 
+                                                       "entity.id":"test_sample3",
+                                                       'protocol.id':['test_measurement_protocol']}
+    
+    with does_not_raise():
+        ss_factors = create_subject_sample_factors(working_json)
+    
+    assert ss_factors == [{'Subject ID': '',
+                          'Sample ID': 'test_sample1',
+                          'Factors': {'test_factor': 'cancer'},
+                          'Additional sample data': {}},
+                         {'Subject ID': '',
+                          'Sample ID': 'test_sample2',
+                          'Factors': {},
+                          'Additional sample data': {}},
+                         {'Subject ID': '',
+                          'Sample ID': 'test_sample3',
+                          'Factors': {'test_factor': ['cancer', 'non-cancer']},
+                          'Additional sample data': {}}]
 

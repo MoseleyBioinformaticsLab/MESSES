@@ -213,8 +213,7 @@
         "\"Metabolite\"=assignment",
         "\"formula\"=formula",
         "\"compound\"=compound",
-        "\"isotopologue\"=isotopologue",
-        "\"isotopologue%type\"=isotopologue%type"
+        "\"isotopologue\"=isotopologue"
       ],
       "id": "Metabolites",
       "sort_by": [

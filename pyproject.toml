@@ -37,3 +37,6 @@ messes = "messes.__main__:main"
 
 [tool.setuptools_scm]
 write_to = "src/messes/_version.py"
+
+[tool.coverage.run]
+patch = ["subprocess"]

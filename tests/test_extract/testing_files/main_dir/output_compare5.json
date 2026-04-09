@@ -1,0 +1,134 @@
+{
+  "entity": {
+    "Patient 1": {
+      "id": "Patient 1",
+      "protocol.id": [
+        "cancer_surgery",
+        "cancer_surgery"
+      ],
+      "sex": "Female",
+      "species": "Homo sapiens",
+      "species_type": "Human",
+      "taxonomy_id": "9606",
+      "treatment": [
+        "Cancerous",
+        "Normal adjacent"
+      ],
+      "type": "subject"
+    },
+    "Patient 2": {
+      "id": "Patient 2",
+      "protocol.id": [
+        "cancer_surgery",
+        "cancer_surgery"
+      ],
+      "sex": "Male",
+      "species": "Homo sapiens",
+      "species_type": "Human",
+      "taxonomy_id": "9606",
+      "treatment": [
+        "Cancerous",
+        "Normal adjacent"
+      ],
+      "type": "subject"
+    },
+    "Patient 3": {
+      "id": "Patient 3",
+      "protocol.id": [
+        "cancer_surgery",
+        "cancer_surgery"
+      ],
+      "sex": "Male",
+      "species": "Homo sapiens",
+      "species_type": "Human",
+      "taxonomy_id": "9606",
+      "treatment": [
+        "Cancerous",
+        "Normal adjacent"
+      ],
+      "type": "subject"
+    },
+    "Patient 4": {
+      "id": "Patient 4",
+      "protocol.id": [
+        "cancer_surgery",
+        "cancer_surgery"
+      ],
+      "sex": "Female",
+      "species": "Homo sapiens",
+      "species_type": "Human",
+      "taxonomy_id": "9606",
+      "treatment": [
+        "Cancerous",
+        "Normal adjacent"
+      ],
+      "type": "subject"
+    },
+    "Patient 5": {
+      "id": "Patient 5",
+      "protocol.id": [
+        "cancer_surgery",
+        "cancer_surgery"
+      ],
+      "sex": "Male",
+      "species": "Homo sapiens",
+      "species_type": "Human",
+      "taxonomy_id": "9606",
+      "treatment": [
+        "Cancerous",
+        "Normal adjacent"
+      ],
+      "type": "subject"
+    },
+    "Patient 6": {
+      "id": "Patient 6",
+      "protocol.id": [
+        "cancer_surgery",
+        "cancer_surgery",
+        "cancer_surgery"
+      ],
+      "sex": "Female",
+      "species": "Homo sapiens",
+      "species_type": "Human",
+      "taxonomy_id": "9606",
+      "treatment": [
+        "Cancerous",
+        "Normal adjacent",
+        "Normal adjacent"
+      ],
+      "type": "subject"
+    },
+    "Patient 7": {
+      "id": "Patient 7",
+      "protocol.id": [
+        "cancer_surgery",
+        "cancer_surgery"
+      ],
+      "sex": "Male",
+      "species": "Homo sapiens",
+      "species_type": "Human",
+      "taxonomy_id": "9606",
+      "treatment": [
+        "Cancerous",
+        "Normal adjacent"
+      ],
+      "type": "subject"
+    },
+    "Patient 8": {
+      "id": "Patient 8",
+      "protocol.id": [
+        "cancer_surgery",
+        "cancer_surgery"
+      ],
+      "sex": "Female",
+      "species": "Homo sapiens",
+      "species_type": "Human",
+      "taxonomy_id": "9606",
+      "treatment": [
+        "Cancerous",
+        "Normal adjacent"
+      ],
+      "type": "subject"
+    }
+  }
+}

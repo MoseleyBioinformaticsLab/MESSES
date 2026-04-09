@@ -628,6 +628,27 @@ def test_optional_headers_test():
                         }
     
     assert output == ""
+
+
+def test_skip_test():
+    """Test that skip field works as expected."""
+    
+    test_file = "MS_base_input_truncated.json"
+    
+    command = "messes convert generic ../" + test_file  + " output ../matrix_skip_test.json" 
+    command = command.split(" ")
+    subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
+    output = subp.stderr
+
+    
+    assert output_path_json.exists()
+    
+    with open(output_path_json, "r") as f:
+        output_json = json.loads(f.read())
+        
+    assert output_json == {}
+    
+    assert output == ""
     
 
 def test_matrix_collate_error():

@@ -1957,30 +1957,15 @@
             "type": "string",
             "enum": [
               "sample",
-              "subject"
+              "subject",
+              "non_biological"
             ]
           }
         },
         "required": [
           "id",
-          "type",
-          "protocol.id"
+          "type"
         ],
-        "if": {
-          "properties": {
-            "type": {
-              "const": "sample"
-            }
-          },
-          "required": [
-            "type"
-          ]
-        },
-        "then": {
-          "required": [
-            "parent_id"
-          ]
-        },
         "allOf": [
           {
             "if": {
@@ -3393,6 +3378,41 @@
               },
               "required": [
                 "replicate"
+              ]
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "type": {
+                  "const": "sample"
+                }
+              },
+              "required": [
+                "type"
+              ]
+            },
+            "then": {
+              "required": [
+                "protocol.id",
+                "parent_id"
+              ]
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "type": {
+                  "const": "subject"
+                }
+              },
+              "required": [
+                "type"
+              ]
+            },
+            "then": {
+              "required": [
+                "protocol.id"
               ]
             }
           }
