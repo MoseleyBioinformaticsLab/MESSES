@@ -1,25 +1,25 @@
+
+
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="./">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Tagging &mdash; MESSES 1.0.2 documentation</title>
-      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="_static/css/custom_css.css" type="text/css" />
-      <link rel="stylesheet" href="_static/sphinxcontrib-images/LightBox2/lightbox2/dist/css/lightbox.css" type="text/css" />
-  <!--[if lt IE 9]>
-    <script src="_static/js/html5shiv.min.js"></script>
-  <![endif]-->
+  <title>Tagging &mdash; MESSES 1.1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/custom_css.css?v=9359fcaf" />
+      <link rel="stylesheet" type="text/css" href="_static/sphinxcontrib-images/LightBox2/lightbox2/dist/css/lightbox.min.css?v=6e7d0de0" />
+      <link rel="stylesheet" type="text/css" href="_static/sphinxcontrib-images/LightBox2/lightbox2-customize/pointer.css?v=c97663ff" />
+
   
-        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-        <script src="_static/jquery.js"></script>
-        <script src="_static/underscore.js"></script>
-        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script src="_static/doctools.js"></script>
-        <script src="_static/sphinx_highlight.js"></script>
-        <script src="_static/sphinxcontrib-images/LightBox2/lightbox2/dist/js/lightbox-plus-jquery.min.js"></script>
-        <script src="_static/sphinxcontrib-images/LightBox2/lightbox2-customize/jquery-noconflict.js"></script>
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=fc837d61"></script>
+      <script src="_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="_static/sphinxcontrib-images/LightBox2/lightbox2/dist/js/lightbox-plus-jquery.min.js?v=f0ca4bb6"></script>
+      <script src="_static/sphinxcontrib-images/LightBox2/lightbox2-customize/jquery-noconflict.js?v=12818e64"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -32,14 +32,15 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="index.html" class="icon icon-home"> MESSES
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            MESSES
           </a>
-              <div class="version">
-                1.0.2
-              </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -60,7 +61,9 @@
 <li class="toctree-l3"><a class="reference internal" href="#id-field-format">ID Field Format</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#list-field-format">List Field Format</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#child-tag-format">Child Tag Format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#crecord-tags">crecord Tags</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#field-tracking-tags">Field Tracking Tags</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#transposed-data">Transposed Data</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#modification-tags">Modification Tags</a><ul>
@@ -91,6 +94,7 @@
 <li class="toctree-l4"><a class="reference internal" href="#changing-entity-ids">Changing Entity IDs</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#changing-ids">Changing IDs</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#adding-additional-fields">Adding Additional Fields</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#automating-crecords">Automating crecords</a></li>
 </ul>
 </li>
 </ul>
@@ -101,6 +105,7 @@
 <li class="toctree-l1"><a class="reference internal" href="experiment_description_specification.html">Experiment Description Specification</a></li>
 <li class="toctree-l1"><a class="reference internal" href="protocol_dependent_schema.html">Protocol-Dependent Schema</a></li>
 <li class="toctree-l1"><a class="reference internal" href="supported_formats.html">Supported Conversion Formats</a></li>
+<li class="toctree-l1"><a class="reference internal" href="common_conventions.html">Common Conventions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="api.html">API</a></li>
 <li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
 <li class="toctree-l1"><a class="reference internal" href="todo.html">TODO List</a></li>
@@ -119,8 +124,8 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>Tagging</li>
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Tagging</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/tagging.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -131,9 +136,9 @@
            <div itemprop="articleBody">
              
   <section id="tagging">
-<h1>Tagging<a class="headerlink" href="#tagging" title="Permalink to this heading"></a></h1>
+<h1>Tagging<a class="headerlink" href="#tagging" title="Link to this heading"></a></h1>
 <section id="terminology">
-<h2>Terminology<a class="headerlink" href="#terminology" title="Permalink to this heading"></a></h2>
+<h2>Terminology<a class="headerlink" href="#terminology" title="Link to this heading"></a></h2>
 <ul>
 <li><p><strong>header</strong> - a descriptive label at the top of a column in a table of data.</p>
 <blockquote>
@@ -154,7 +159,7 @@
 </ul>
 </section>
 <section id="introduction">
-<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading"></a></h2>
+<h2>Introduction<a class="headerlink" href="#introduction" title="Link to this heading"></a></h2>
 <p>In order to extract data from arbitrary tables programmatically, some kind of system has to be devised.
 This could be something as simple as requiring a table be on the very first row and for the starting
 row to have column names for every column, but a system such as that would then be fragile. We decided
@@ -191,7 +196,7 @@ command are in the <a class="reference internal" href="tutorial.html"><span clas
 <a class="reference external" href="https://github.com/MoseleyBioinformaticsLab/messes">GitHub</a> repository.</p>
 </section>
 <section id="export-tags">
-<h2>Export Tags<a class="headerlink" href="#export-tags" title="Permalink to this heading"></a></h2>
+<h2>Export Tags<a class="headerlink" href="#export-tags" title="Link to this heading"></a></h2>
 <ul>
 <li><p>Tag rows are identified by putting <strong>‘#tags’</strong> in the left most column of the data file.</p>
 <blockquote>
@@ -204,15 +209,16 @@ command are in the <a class="reference internal" href="tutorial.html"><span clas
 </li>
 <li><p>Cells on this row will have tags over the columns to be exported.</p></li>
 <li><p>Subsequent non-blank rows are interpreted as data unless the tag <strong>‘#ignore’</strong> is used in the left most column.</p></li>
+<li><p>Tags are read and executed from left to right, so order can matter.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>For example, an “id” field must be specified before any “child” fields.</p></li>
+</ul>
+</div></blockquote>
+</li>
 </ul>
 <p>Basic Example:</p>
 <table class="docutils align-default">
-<colgroup>
-<col style="width: 15%" />
-<col style="width: 23%" />
-<col style="width: 37%" />
-<col style="width: 25%" />
-</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>#tags</p></th>
 <th class="head"><p>#sample.id</p></th>
@@ -234,12 +240,19 @@ command are in the <a class="reference internal" href="tutorial.html"><span clas
 </tbody>
 </table>
 <section id="keyword-tags">
-<h3>Keyword Tags<a class="headerlink" href="#keyword-tags" title="Permalink to this heading"></a></h3>
+<h3>Keyword Tags<a class="headerlink" href="#keyword-tags" title="Link to this heading"></a></h3>
 <ul>
 <li><p><strong>#tags</strong> - identifies tag header rows. Must be in the first column of a row.</p>
 <blockquote>
 <div><ul class="simple">
 <li><p>Additional tag-value pairs in a cell with #tags are applied to all child records in this section, but are ignored for non-child records.</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p><strong>#transpose</strong> - indicates that the table below this tag needs to be transposed to align with the provided tags.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Should be specified after “#tags”, i.e. “#tags;#transpose”.</p></li>
 </ul>
 </div></blockquote>
 </li>
@@ -254,7 +267,7 @@ command are in the <a class="reference internal" href="tutorial.html"><span clas
 </ul>
 </section>
 <section id="column-field-format">
-<h3>Column Field Format<a class="headerlink" href="#column-field-format" title="Permalink to this heading"></a></h3>
+<h3>Column Field Format<a class="headerlink" href="#column-field-format" title="Link to this heading"></a></h3>
 <ul>
 <li><p>Tags begin with a ‘#’ symbol and identify a specific relational database table, field, and optionally a field-attribute.</p>
 <blockquote>
@@ -347,7 +360,7 @@ command are in the <a class="reference internal" href="tutorial.html"><span clas
 </ul>
 </section>
 <section id="value-field-format">
-<h3>Value Field Format<a class="headerlink" href="#value-field-format" title="Permalink to this heading"></a></h3>
+<h3>Value Field Format<a class="headerlink" href="#value-field-format" title="Link to this heading"></a></h3>
 <ul>
 <li><p>Values for a tag field can be specified directly using an equal sign “=”.</p>
 <blockquote>
@@ -417,7 +430,7 @@ command are in the <a class="reference internal" href="tutorial.html"><span clas
 <blockquote>
 <div><ul class="simple">
 <li><p>study - the study table.</p></li>
-<li><p>“labeled mouse study 278 ” - part of value for the study title field.</p></li>
+<li><p>“labeled mouse study 278 “ - part of value for the study title field.</p></li>
 <li><p>#.type - part of value of the study title field taken from the study type field.</p></li>
 </ul>
 </div></blockquote>
@@ -431,7 +444,7 @@ command are in the <a class="reference internal" href="tutorial.html"><span clas
 </ul>
 </section>
 <section id="id-field-format">
-<h3>ID Field Format<a class="headerlink" href="#id-field-format" title="Permalink to this heading"></a></h3>
+<h3>ID Field Format<a class="headerlink" href="#id-field-format" title="Link to this heading"></a></h3>
 <ul>
 <li><p>ID tags indicate an identifier for a record in a table.</p></li>
 <li><p>The ID must uniquely identify a record.</p></li>
@@ -473,7 +486,7 @@ command are in the <a class="reference internal" href="tutorial.html"><span clas
 </ul>
 </section>
 <section id="list-field-format">
-<h3>List Field Format<a class="headerlink" href="#list-field-format" title="Permalink to this heading"></a></h3>
+<h3>List Field Format<a class="headerlink" href="#list-field-format" title="Link to this heading"></a></h3>
 <ul>
 <li><p>List field tags begin with <strong>‘*#’</strong> (<strong>asterisk followed by the pound sign</strong>) and identify a specific relational database table, field, and optionally a field-attribute that has multiple values.</p></li>
 <li><p>They have the same format as normal column field tags.</p>
@@ -520,18 +533,18 @@ command are in the <a class="reference internal" href="tutorial.html"><span clas
 </ul>
 </section>
 <section id="child-tag-format">
-<h3>Child Tag Format<a class="headerlink" href="#child-tag-format" title="Permalink to this heading"></a></h3>
+<h3>Child Tag Format<a class="headerlink" href="#child-tag-format" title="Link to this heading"></a></h3>
 <ul>
-<li><p>Child record tags provides a mechanism for indicating parent-child relationships between records in the same table or between tables.</p>
+<li><p>Child record tags provides a mechanism for indicating parent-child relationships between records in the same table.</p>
 <blockquote>
 <div><ul>
 <li><p>The child tag indicates the creation of a new record.</p></li>
 <li><p>Subsequent normal tags identify fields in the new child record.</p></li>
-<li><p>A special parentID field is added using the first ID tag indicated in the header row.</p></li>
+<li><p>A special parent_id field is added using the first ID tag indicated in the header row.</p></li>
 <li><p>Format: <strong>#%child.id=id_sub_string</strong></p>
 <blockquote>
 <div><ul class="simple">
-<li><p>The value for id_sub_string will be appended to the ID of the child’s parent (parentID) to create the child ID.</p></li>
+<li><p>The value for id_sub_string will be appended to the ID of the child’s parent (parent_id) to create the child ID.</p></li>
 </ul>
 </div></blockquote>
 </li>
@@ -539,14 +552,8 @@ command are in the <a class="reference internal" href="tutorial.html"><span clas
 </div></blockquote>
 </li>
 </ul>
-<p>Example:</p>
+<p>Example 1:</p>
 <table class="docutils align-default">
-<colgroup>
-<col style="width: 5%" />
-<col style="width: 11%" />
-<col style="width: 42%" />
-<col style="width: 42%" />
-</colgroup>
 <tbody>
 <tr class="row-odd"><td><p>#tags</p></td>
 <td><p>#sample.id</p></td>
@@ -580,13 +587,13 @@ command are in the <a class="reference internal" href="tutorial.html"><span clas
 <span class="go">      &quot;dry_weight&quot;: &quot;4.2&quot;,</span>
 <span class="go">      &quot;dry_weight%units&quot;: &quot;mg&quot;,</span>
 <span class="go">      &quot;id&quot;: &quot;KO labelled_1-media-0h&quot;,</span>
-<span class="go">      &quot;parentID&quot;: &quot;KO labelled_1&quot;</span>
+<span class="go">      &quot;parent_id&quot;: &quot;KO labelled_1&quot;</span>
 <span class="go">    },</span>
 <span class="go">    &quot;KO labelled_1-media-3h&quot;: {</span>
 <span class="go">      &quot;dry_weight&quot;: &quot;8.5&quot;,</span>
 <span class="go">      &quot;dry_weight%units&quot;: &quot;mg&quot;,</span>
 <span class="go">      &quot;id&quot;: &quot;KO labelled_1-media-3h&quot;,</span>
-<span class="go">      &quot;parentID&quot;: &quot;KO labelled_1&quot;</span>
+<span class="go">      &quot;parent_id&quot;: &quot;KO labelled_1&quot;</span>
 <span class="go">    },</span>
 <span class="go">    &quot;KO labelled_2&quot;: {</span>
 <span class="go">      &quot;id&quot;: &quot;KO labelled_2&quot;</span>
@@ -595,13 +602,166 @@ command are in the <a class="reference internal" href="tutorial.html"><span clas
 <span class="go">      &quot;dry_weight&quot;: &quot;4.7&quot;,</span>
 <span class="go">      &quot;dry_weight%units&quot;: &quot;mg&quot;,</span>
 <span class="go">      &quot;id&quot;: &quot;KO labelled_2-media-0h&quot;,</span>
-<span class="go">      &quot;parentID&quot;: &quot;KO labelled_2&quot;</span>
+<span class="go">      &quot;parent_id&quot;: &quot;KO labelled_2&quot;</span>
 <span class="go">    },</span>
 <span class="go">    &quot;KO labelled_2-media-3h&quot;: {</span>
 <span class="go">      &quot;dry_weight&quot;: &quot;9.7&quot;,</span>
 <span class="go">      &quot;dry_weight%units&quot;: &quot;mg&quot;,</span>
 <span class="go">      &quot;id&quot;: &quot;KO labelled_2-media-3h&quot;,</span>
-<span class="go">      &quot;parentID&quot;: &quot;KO labelled_2&quot;</span>
+<span class="go">      &quot;parent_id&quot;: &quot;KO labelled_2&quot;</span>
+<span class="go">    }</span>
+<span class="go">  }</span>
+<span class="go">}</span>
+</pre></div>
+</div>
+<p>Example 2:
+This is not the expected way to use child tags, but it can work if you only need to capture
+the parent child relationship.</p>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>#tags</p></td>
+<td><p>#sample.id</p></td>
+<td><p>#%child.id;#.field1=value1</p></td>
+<td><p>#%child.id;#.field1=value2</p></td>
+</tr>
+<tr class="row-even"><td></td>
+<td><p>KO labelled_1</p></td>
+<td><p>child1</p></td>
+<td><p>child2</p></td>
+</tr>
+</tbody>
+</table>
+<p>Output JSON:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">{</span>
+<span class="go">  &quot;sample&quot;: {</span>
+<span class="go">    &quot;child1&quot;: {</span>
+<span class="go">      &quot;field1&quot;: &quot;value1&quot;,</span>
+<span class="go">      &quot;id&quot;: &quot;child1&quot;,</span>
+<span class="go">      &quot;parent_id&quot;: &quot;KO labelled_1&quot;</span>
+<span class="go">    },</span>
+<span class="go">    &quot;-child2&quot;: {</span>
+<span class="go">      &quot;field1&quot;: &quot;value2&quot;,</span>
+<span class="go">      &quot;id&quot;: &quot;child2&quot;,</span>
+<span class="go">      &quot;parent_id&quot;: &quot;KO labelled_1&quot;</span>
+<span class="go">    },</span>
+<span class="go">    &quot;KO labelled_1&quot;: {</span>
+<span class="go">      &quot;id&quot;: &quot;KO labelled_1&quot;</span>
+<span class="go">    }</span>
+<span class="go">  }</span>
+<span class="go">}</span>
+</pre></div>
+</div>
+</section>
+<section id="crecord-tags">
+<h3>crecord Tags<a class="headerlink" href="#crecord-tags" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>Short for column record, this tag provides a way to indicate that a column should become a new record.</p></li>
+<li><p>Similar to child tags, but without the parent-child relationship.</p></li>
+<li><p>All fields specified to the left of the crecord tag will be included in the newly created records, but each row in the crecord column will create a new record.</p></li>
+<li><p>In the case of multiple crecord tags, additional fields to the right of the crecord will only be added to the crecord on the left of that field.</p></li>
+<li><p>An example that utilizes automation tags is in the Common Use Case Examples.</p></li>
+</ul>
+<p>Example:</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>#tags</p></th>
+<th class="head"><p>#measurement.assignment</p></th>
+<th class="head"><p>#.ion_species</p></th>
+<th class="head"><p>#.inchi_key</p></th>
+<th class="head"><p>#.msi_level</p></th>
+<th class="head"><p>#.m_z</p></th>
+<th class="head"><p>#.ret_time</p></th>
+<th class="head"><p>#.esi_mode</p></th>
+<th class="head"><p>#%crecord.id=#.assignment+”-sample1”;#.intensity;#.intensity%units=”peak area”</p></th>
+<th class="head"><p>#%crecord.id=#.assignment+”-sample2”;#.intensity;#.intensity%units=”peak area”</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>#ignore</p></td>
+<td><p>annotation</p></td>
+<td><p>ion species</p></td>
+<td><p>InChiKey</p></td>
+<td><p>MSI level</p></td>
+<td><p>m/z</p></td>
+<td><p>ret.time (min)</p></td>
+<td><p>ESI mode</p></td>
+<td><p>1</p></td>
+<td><p>2</p></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p>(dehydro)ornithine</p></td>
+<td><p>[M+H]+</p></td>
+<td><p>KFZHLVSVDLIACX-UHFFFAOYSA-N</p></td>
+<td><p>3</p></td>
+<td><p>131.0872</p></td>
+<td><p>2.363</p></td>
+<td><p>ESI pos</p></td>
+<td><p>349</p></td>
+<td><p>995</p></td>
+</tr>
+<tr class="row-even"><td></td>
+<td><p>.beta.-Nicotinamide adenine dinucleotide</p></td>
+<td><p>[M+2H]2+</p></td>
+<td><p>BAWFJGJZGIEFAR-OWXIGJDBSA-N</p></td>
+<td><p>2</p></td>
+<td><p>332.5639</p></td>
+<td><p>2.423</p></td>
+<td><p>ESI pos</p></td>
+<td><p>229</p></td>
+<td><p>1030</p></td>
+</tr>
+</tbody>
+</table>
+<p>Output JSON:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">{</span>
+<span class="go">  &quot;measurement&quot;: {</span>
+<span class="go">    &quot;(dehydro)ornithine-sample1&quot;: {</span>
+<span class="go">      &quot;assignment&quot;: &quot;(dehydro)ornithine&quot;,</span>
+<span class="go">      &quot;esi_mode&quot;: &quot;ESI pos&quot;,</span>
+<span class="go">      &quot;id&quot;: &quot;(dehydro)ornithine-sample1&quot;,</span>
+<span class="go">      &quot;inchi_key&quot;: &quot;KFZHLVSVDLIACX-UHFFFAOYSA-N&quot;,</span>
+<span class="go">      &quot;intensity&quot;: &quot;349&quot;,</span>
+<span class="go">      &quot;intensity%units&quot;: &quot;peak area&quot;,</span>
+<span class="go">      &quot;ion_species&quot;: &quot;[M+H]+&quot;,</span>
+<span class="go">      &quot;m_z&quot;: &quot;131.0872&quot;,</span>
+<span class="go">      &quot;msi_level&quot;: &quot;3&quot;,</span>
+<span class="go">      &quot;ret_time&quot;: &quot;2.363&quot;</span>
+<span class="go">    },</span>
+<span class="go">    &quot;(dehydro)ornithine-sample2&quot;: {</span>
+<span class="go">      &quot;assignment&quot;: &quot;(dehydro)ornithine&quot;,</span>
+<span class="go">      &quot;esi_mode&quot;: &quot;ESI pos&quot;,</span>
+<span class="go">      &quot;id&quot;: &quot;(dehydro)ornithine-sample2&quot;,</span>
+<span class="go">      &quot;inchi_key&quot;: &quot;KFZHLVSVDLIACX-UHFFFAOYSA-N&quot;,</span>
+<span class="go">      &quot;intensity&quot;: &quot;995&quot;,</span>
+<span class="go">      &quot;intensity%units&quot;: &quot;peak area&quot;,</span>
+<span class="go">      &quot;ion_species&quot;: &quot;[M+H]+&quot;,</span>
+<span class="go">      &quot;m_z&quot;: &quot;131.0872&quot;,</span>
+<span class="go">      &quot;msi_level&quot;: &quot;3&quot;,</span>
+<span class="go">      &quot;ret_time&quot;: &quot;2.363&quot;</span>
+<span class="go">    },</span>
+<span class="go">    &quot;.beta.-Nicotinamide adenine dinucleotide-sample1&quot;: {</span>
+<span class="go">      &quot;assignment&quot;: &quot;.beta.-Nicotinamide adenine dinucleotide&quot;,</span>
+<span class="go">      &quot;esi_mode&quot;: &quot;ESI pos&quot;,</span>
+<span class="go">      &quot;id&quot;: &quot;.beta.-Nicotinamide adenine dinucleotide-sample1&quot;,</span>
+<span class="go">      &quot;inchi_key&quot;: &quot;BAWFJGJZGIEFAR-OWXIGJDBSA-N&quot;,</span>
+<span class="go">      &quot;intensity&quot;: &quot;229&quot;,</span>
+<span class="go">      &quot;intensity%units&quot;: &quot;peak area&quot;,</span>
+<span class="go">      &quot;ion_species&quot;: &quot;[M+2H]2+&quot;,</span>
+<span class="go">      &quot;m_z&quot;: &quot;332.5639&quot;,</span>
+<span class="go">      &quot;msi_level&quot;: &quot;2&quot;,</span>
+<span class="go">      &quot;ret_time&quot;: &quot;2.423&quot;</span>
+<span class="go">    },</span>
+<span class="go">    &quot;.beta.-Nicotinamide adenine dinucleotide-sample2&quot;: {</span>
+<span class="go">      &quot;assignment&quot;: &quot;.beta.-Nicotinamide adenine dinucleotide&quot;,</span>
+<span class="go">      &quot;esi_mode&quot;: &quot;ESI pos&quot;,</span>
+<span class="go">      &quot;id&quot;: &quot;.beta.-Nicotinamide adenine dinucleotide-sample2&quot;,</span>
+<span class="go">      &quot;inchi_key&quot;: &quot;BAWFJGJZGIEFAR-OWXIGJDBSA-N&quot;,</span>
+<span class="go">      &quot;intensity&quot;: &quot;1030&quot;,</span>
+<span class="go">      &quot;intensity%units&quot;: &quot;peak area&quot;,</span>
+<span class="go">      &quot;ion_species&quot;: &quot;[M+2H]2+&quot;,</span>
+<span class="go">      &quot;m_z&quot;: &quot;332.5639&quot;,</span>
+<span class="go">      &quot;msi_level&quot;: &quot;2&quot;,</span>
+<span class="go">      &quot;ret_time&quot;: &quot;2.423&quot;</span>
 <span class="go">    }</span>
 <span class="go">  }</span>
 <span class="go">}</span>
@@ -609,7 +769,7 @@ command are in the <a class="reference internal" href="tutorial.html"><span clas
 </div>
 </section>
 <section id="field-tracking-tags">
-<h3>Field Tracking Tags<a class="headerlink" href="#field-tracking-tags" title="Permalink to this heading"></a></h3>
+<h3>Field Tracking Tags<a class="headerlink" href="#field-tracking-tags" title="Link to this heading"></a></h3>
 <ul>
 <li><p>Field tracking tags provide a mechanism for copying the latest field value from one table into the records of another.</p>
 <blockquote>
@@ -643,10 +803,6 @@ command are in the <a class="reference internal" href="tutorial.html"><span clas
 </ul>
 <p>Example:</p>
 <table class="docutils align-default">
-<colgroup>
-<col style="width: 16%" />
-<col style="width: 84%" />
-</colgroup>
 <tbody>
 <tr class="row-odd"><td><p>#tags</p></td>
 <td><p>#sample%track=project.id</p></td>
@@ -695,9 +851,66 @@ command are in the <a class="reference internal" href="tutorial.html"><span clas
 </pre></div>
 </div>
 </section>
+<section id="transposed-data">
+<h3>Transposed Data<a class="headerlink" href="#transposed-data" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>The transpose tag provides a way to read in data where the headers are row-wise instead of column-wise.</p></li>
+<li><p>The transpose tag assumes there is a header column in the 2nd position from the left and inserts an ignore tag in the first row after transposing the data.</p></li>
+</ul>
+<p>Example:</p>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>#tags;#transpose</p></td>
+<td><p>#sample.id</p></td>
+<td><p>#%child.id=-media-0h;#.dry_weight;#.dry_weight%units=mg</p></td>
+<td><p>#%child.id=-media-3h;#.dry_weight;#.dry_weight%units=mg</p></td>
+</tr>
+<tr class="row-even"><td></td>
+<td><p>Sample Name</p></td>
+<td><p>KO labelled_1</p></td>
+<td><p>KO labelled_2</p></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p>Dry Weight 0h</p></td>
+<td><p>4.2</p></td>
+<td><p>4.7</p></td>
+</tr>
+<tr class="row-even"><td></td>
+<td><p>Dry Weight 3h</p></td>
+<td><p>8.5</p></td>
+<td><p>9.7</p></td>
+</tr>
+</tbody>
+</table>
+<p>Will become:</p>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>#tags</p></td>
+<td><p>#sample.id</p></td>
+<td><p>#%child.id=-media-0h;#.dry_weight;#.dry_weight%units=mg</p></td>
+<td><p>#%child.id=-media-3h;#.dry_weight;#.dry_weight%units=mg</p></td>
+</tr>
+<tr class="row-even"><td><p>#ignore</p></td>
+<td><p>Sample Name</p></td>
+<td><p>Dry Weight 0h</p></td>
+<td><p>Dry Weight 3h</p></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p>KO labelled_1</p></td>
+<td><p>4.2</p></td>
+<td><p>8.5</p></td>
+</tr>
+<tr class="row-even"><td></td>
+<td><p>KO labelled_2</p></td>
+<td><p>4.7</p></td>
+<td><p>9.7</p></td>
+</tr>
+</tbody>
+</table>
+</section>
 </section>
 <section id="modification-tags">
-<h2>Modification Tags<a class="headerlink" href="#modification-tags" title="Permalink to this heading"></a></h2>
+<h2>Modification Tags<a class="headerlink" href="#modification-tags" title="Link to this heading"></a></h2>
 <p>Similar to export tags, the modification tag rows are indicated by <strong>#tags</strong> in the left most column, and
 <strong>#ignore</strong> can be used to ignore rows. The general idea behind the modification system is that you
 first use tags to indicate a field in a table to match to. Then underneath that tag indicate the value in
@@ -706,20 +919,12 @@ record that has the matching field and what modification to do. Underneath that 
 to do the modification with.</p>
 <p>Basic Examples:</p>
 <table class="docutils align-default">
-<colgroup>
-<col style="width: 7%" />
-<col style="width: 46%" />
-<col style="width: 39%" />
-<col style="width: 9%" />
-</colgroup>
-<thead>
-<tr class="row-odd"><th class="head"><p>#tags</p></th>
-<th class="head"><p>#measurement.compound.value</p></th>
-<th class="head"><p>#measurement.compound.assign</p></th>
-<th class="head"><p>#match=all</p></th>
-</tr>
-</thead>
 <tbody>
+<tr class="row-odd"><td><p>#tags</p></td>
+<td><p>#measurement.compound.value</p></td>
+<td><p>#measurement.compound.assign</p></td>
+<td><p>#match=all</p></td>
+</tr>
 <tr class="row-even"><td></td>
 <td><p>(S)-2-Acetolactate_Glutaric acid_Methylsuccinic acid_MP_NoStd</p></td>
 <td><p>(S)-2-Acetolactate Glutaric acid Methylsuccinic acid</p></td>
@@ -734,23 +939,15 @@ to do the modification with.</p>
 </table>
 <p>This example replaces the “compound” field with value “(S)-2-Acetolactate_Glutaric acid_Methylsuccinic acid_MP_NoStd” in “measurement” table records with “(S)-2-Acetolactate Glutaric acid Methylsuccinic acid”.</p>
 <table class="docutils align-default">
-<colgroup>
-<col style="width: 4%" />
-<col style="width: 30%" />
-<col style="width: 60%" />
-<col style="width: 6%" />
-</colgroup>
-<thead>
-<tr class="row-odd"><th class="head"><p>#tags</p></th>
-<th class="head"><p>#measurement.compound.value</p></th>
-<th class="head"><p>#measurement.id.regex</p></th>
-<th class="head"><p>#match=all</p></th>
-</tr>
-</thead>
 <tbody>
+<tr class="row-odd"><td><p>#tags</p></td>
+<td><p>#measurement.compound.value</p></td>
+<td><p>#measurement.id.regex</p></td>
+<td><p>#match=all</p></td>
+</tr>
 <tr class="row-even"><td></td>
 <td><p>(S)-2-Acetolactate_Glutaric acid_Methylsuccinic acid_MP_NoStd</p></td>
-<td><p>r’(S)-2-Acetolactate_Glutaric acid_Methylsuccinic acid_MP_NoStd’,r’(S)-2-Acetolactate Glutaric acid Methylsuccinic acid’</p></td>
+<td><p>r’\(S\)-2-Acetolactate_Glutaric acid_Methylsuccinic acid_MP_NoStd’,r’(S)-2-Acetolactate Glutaric acid Methylsuccinic acid’</p></td>
 <td></td>
 </tr>
 <tr class="row-odd"><td></td>
@@ -763,7 +960,7 @@ to do the modification with.</p>
 <p>This example does a regex substitution on the “id” field of records in the “measurement” table if their “compound” field matches “(S)-2-Acetolactate_Glutaric acid_Methylsuccinic acid_MP_NoStd”.
 In the “id” field “(S)-2-Acetolactate_Glutaric acid_Methylsuccinic acid_MP_NoStd” is substituted with “(S)-2-Acetolactate Glutaric acid Methylsuccinic acid”.</p>
 <section id="value-tag">
-<h3>Value Tag<a class="headerlink" href="#value-tag" title="Permalink to this heading"></a></h3>
+<h3>Value Tag<a class="headerlink" href="#value-tag" title="Link to this heading"></a></h3>
 <ul>
 <li><p>All modification tag rows must start with a value tag after <strong>#tags</strong>.</p></li>
 <li><p>This tag indicates which table and field to compare with.</p></li>
@@ -783,7 +980,7 @@ In the “id” field “(S)-2-Acetolactate_Glutaric acid_Methylsuccinic acid_MP
 </ul>
 </section>
 <section id="comparison-type">
-<h3>Comparison Type<a class="headerlink" href="#comparison-type" title="Permalink to this heading"></a></h3>
+<h3>Comparison Type<a class="headerlink" href="#comparison-type" title="Link to this heading"></a></h3>
 <p>The comparison type is controlled through the <strong>#comparison</strong> tag. It can be used to specify the type for
 each row individually, or for the whole column by using the = sign. Ex. <strong>#comparison=exact</strong></p>
 <p>There are 4 comparison types, “exact”, “regex”, “levenshtein”, and “regex|exact”.</p>
@@ -806,7 +1003,7 @@ each row individually, or for the whole column by using the = sign. Ex. <strong>
 </div></blockquote>
 </section>
 <section id="match-type">
-<h3>Match Type<a class="headerlink" href="#match-type" title="Permalink to this heading"></a></h3>
+<h3>Match Type<a class="headerlink" href="#match-type" title="Link to this heading"></a></h3>
 <p>Match behavior can be altered further using the <strong>#match</strong> tag. It can be used to specify the type for
 each row individually, or for the whole column by using the = sign. Ex. <strong>#match=all</strong></p>
 <p>There are 4 match types, “first”, “first-nowarn”, “unique”, and “all”.</p>
@@ -827,7 +1024,7 @@ each row individually, or for the whole column by using the = sign. Ex. <strong>
 </div></blockquote>
 </section>
 <section id="modifications">
-<h3>Modifications<a class="headerlink" href="#modifications" title="Permalink to this heading"></a></h3>
+<h3>Modifications<a class="headerlink" href="#modifications" title="Link to this heading"></a></h3>
 <p>There are 6 modifications that can be done, “assign”, “append”, “prepend”, “regex”, “delete”, and “rename”.</p>
 <ul>
 <li><p><strong>assign</strong> - will overwrite whatever value is in the field with the indicated assignment value.</p>
@@ -871,11 +1068,6 @@ each row individually, or for the whole column by using the = sign. Ex. <strong>
 </ul>
 <p>Example:</p>
 <table class="docutils align-default">
-<colgroup>
-<col style="width: 7%" />
-<col style="width: 50%" />
-<col style="width: 43%" />
-</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>#tags</p></th>
 <th class="head"><p>#measurement.compound.value</p></th>
@@ -928,11 +1120,6 @@ each row individually, or for the whole column by using the = sign. Ex. <strong>
 </ul>
 <p>Example:</p>
 <table class="docutils align-default">
-<colgroup>
-<col style="width: 7%" />
-<col style="width: 50%" />
-<col style="width: 43%" />
-</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>#tags</p></th>
 <th class="head"><p>#measurement.compound.value</p></th>
@@ -985,11 +1172,6 @@ each row individually, or for the whole column by using the = sign. Ex. <strong>
 </ul>
 <p>Example:</p>
 <table class="docutils align-default">
-<colgroup>
-<col style="width: 7%" />
-<col style="width: 50%" />
-<col style="width: 43%" />
-</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>#tags</p></th>
 <th class="head"><p>#measurement.compound.value</p></th>
@@ -1024,11 +1206,6 @@ each row individually, or for the whole column by using the = sign. Ex. <strong>
 </ul>
 <p>Example:</p>
 <table class="docutils align-default">
-<colgroup>
-<col style="width: 5%" />
-<col style="width: 32%" />
-<col style="width: 63%" />
-</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>#tags</p></th>
 <th class="head"><p>#measurement.compound.value</p></th>
@@ -1038,7 +1215,7 @@ each row individually, or for the whole column by using the = sign. Ex. <strong>
 <tbody>
 <tr class="row-even"><td></td>
 <td><p>(S)-2-Acetolactate_Glutaric acid_Methylsuccinic acid_MP_NoStd</p></td>
-<td><p>r’(S)-2-Acetolactate_Glutaric acid_Methylsuccinic acid_MP_NoStd’,r’(S)-2-Acetolactate Glutaric acid Methylsuccinic acid’</p></td>
+<td><p>r’\(S\)-2-Acetolactate_Glutaric acid_Methylsuccinic acid_MP_NoStd’,r’(S)-2-Acetolactate Glutaric acid Methylsuccinic acid’</p></td>
 </tr>
 <tr class="row-odd"><td></td>
 <td><p>…</p></td>
@@ -1063,11 +1240,6 @@ each row individually, or for the whole column by using the = sign. Ex. <strong>
 </ul>
 <p>Example:</p>
 <table class="docutils align-default">
-<colgroup>
-<col style="width: 9%" />
-<col style="width: 60%" />
-<col style="width: 31%" />
-</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>#tags</p></th>
 <th class="head"><p>#measurement.compound.value</p></th>
@@ -1103,11 +1275,6 @@ each row individually, or for the whole column by using the = sign. Ex. <strong>
 </ul>
 <p>Example:</p>
 <table class="docutils align-default">
-<colgroup>
-<col style="width: 7%" />
-<col style="width: 51%" />
-<col style="width: 41%" />
-</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>#tags</p></th>
 <th class="head"><p>#measurement.compound.value</p></th>
@@ -1168,7 +1335,7 @@ each row individually, or for the whole column by using the = sign. Ex. <strong>
 <li><p><strong>*#[table_name].field_name[%attribute].assign</strong> identifies field to assign and that the associated column values are a list type.</p></li>
 <li><p><strong>#[table_name].field_name[%attribute].append</strong> identifies field to append to and associated column with its value.</p></li>
 <li><p><strong>*#[table_name].field_name[%attribute].append</strong> identifies field to append to and that the associated column values are a list type.</p></li>
-<li><p><strong>*#[table_name].field_name[%attribute].prepend</strong> identifies field to prepend to and associated column with its value.</p></li>
+<li><p><strong>#[table_name].field_name[%attribute].prepend</strong> identifies field to prepend to and associated column with its value.</p></li>
 <li><p><strong>*#[table_name].field_name[%attribute].prepend</strong> identifies field to prepend to and that the associated column values are a list type.</p></li>
 <li><p><strong>#[table_name].field_name[%attribute].regex</strong> identifies field to apply regex substitution to and associated column with the pair of regex strings of the form r”…”,r”…”.</p></li>
 <li><p><strong>#[table_name].field_name[%attribute].delete</strong> identifies field to delete.</p></li>
@@ -1177,7 +1344,7 @@ each row individually, or for the whole column by using the = sign. Ex. <strong>
 </section>
 </section>
 <section id="automation-tags">
-<h2>Automation Tags<a class="headerlink" href="#automation-tags" title="Permalink to this heading"></a></h2>
+<h2>Automation Tags<a class="headerlink" href="#automation-tags" title="Link to this heading"></a></h2>
 <p>Automation tag rows, like the other tag rows, are indicated by <strong>#tags</strong> in the left most column with
 <strong>#ignore</strong> used to ignore rows, but <strong>#insert</strong> and <strong>#end</strong> tags are also introduced. There are 2
 main functions in the automation system. One is to specify a table of header-tag pairs that will be used
@@ -1185,7 +1352,7 @@ to automatically add the tags associated with the headers underneath of the head
 in the data. The other is to specify a block of rows to add to the data exactly as is. This is what
 introduces the <strong>#insert</strong> and <strong>#end</strong> tags.</p>
 <section id="insert">
-<h3>Insert<a class="headerlink" href="#insert" title="Permalink to this heading"></a></h3>
+<h3>Insert<a class="headerlink" href="#insert" title="Link to this heading"></a></h3>
 <p>The insertion functionality is easy to understand. You simply write whatever you want to add into the
 data and add <strong>#insert</strong> above it in the left most column and <strong>#end</strong> below it in the left most column.
 Everything in between <strong>#insert</strong> and <strong>#end</strong> is simply added as is into the data before it is parsed
@@ -1196,15 +1363,6 @@ sure everything in the insert block is valid under the export tagging. It can be
 a tagging error here because extract won’t be able to tell you that the issue is in the insert block.</p>
 <p>Example:</p>
 <table class="docutils align-default">
-<colgroup>
-<col style="width: 10%" />
-<col style="width: 15%" />
-<col style="width: 9%" />
-<col style="width: 18%" />
-<col style="width: 13%" />
-<col style="width: 15%" />
-<col style="width: 20%" />
-</colgroup>
 <tbody>
 <tr class="row-odd"><td><p>#insert</p></td>
 <td></td>
@@ -1250,7 +1408,7 @@ a tagging error here because extract won’t be able to tell you that the issue 
 </table>
 </section>
 <section id="header-tagging">
-<h3>Header Tagging<a class="headerlink" href="#header-tagging" title="Permalink to this heading"></a></h3>
+<h3>Header Tagging<a class="headerlink" href="#header-tagging" title="Link to this heading"></a></h3>
 <p>The header tagging allows you to automatically put export tags under a cell in tabular data based on
 the value in the cell. Typically, a table will already have descriptive human readable headers to identify
 what type of data is in the column. These headers are used to match to and put the associated export tags
@@ -1260,17 +1418,9 @@ block. An entire block is matched as a whole to a row in the data, so if you hav
 tags to you should created multiple tag blocks. There are additional tags to help control how a blank is
 matched, detailed below.</p>
 <section id="example">
-<h4>Example:<a class="headerlink" href="#example" title="Permalink to this heading"></a></h4>
+<h4>Example:<a class="headerlink" href="#example" title="Link to this heading"></a></h4>
 <p>Data:</p>
 <table class="docutils align-default">
-<colgroup>
-<col style="width: 36%" />
-<col style="width: 7%" />
-<col style="width: 6%" />
-<col style="width: 32%" />
-<col style="width: 7%" />
-<col style="width: 11%" />
-</colgroup>
 <tbody>
 <tr class="row-odd"><td><p>Compound</p></td>
 <td><p>Mol_Formula</p></td>
@@ -1297,11 +1447,6 @@ matched, detailed below.</p>
 </table>
 <p>Header Tags:</p>
 <table class="docutils align-default">
-<colgroup>
-<col style="width: 4%" />
-<col style="width: 30%" />
-<col style="width: 66%" />
-</colgroup>
 <tbody>
 <tr class="row-odd"><td><p>#tags</p></td>
 <td><p>#header</p></td>
@@ -1347,33 +1492,8 @@ matched, detailed below.</p>
 </table>
 <p>After Automation:</p>
 <table class="docutils align-default">
-<colgroup>
-<col style="width: 2%" />
-<col style="width: 21%" />
-<col style="width: 12%" />
-<col style="width: 11%" />
-<col style="width: 4%" />
-<col style="width: 2%" />
-<col style="width: 9%" />
-<col style="width: 7%" />
-<col style="width: 10%" />
-<col style="width: 19%" />
-<col style="width: 3%" />
-</colgroup>
 <tbody>
-<tr class="row-odd"><td><p>#ignore</p></td>
-<td></td>
-<td></td>
-<td><p>Compound</p></td>
-<td><p>Mol_Formula</p></td>
-<td><p>C_isomers</p></td>
-<td><p>SamplID</p></td>
-<td></td>
-<td><p>Intensity</p></td>
-<td></td>
-<td></td>
-</tr>
-<tr class="row-even"><td><p>#tags</p></td>
+<tr class="row-odd"><td><p>#tags</p></td>
 <td><p>#measurement.id</p></td>
 <td><p>#measurement.assignment</p></td>
 <td><p>#measurement.compound</p></td>
@@ -1384,6 +1504,18 @@ matched, detailed below.</p>
 <td><p>#measurement.raw_intensity;#%type=”spectrometer peak area”</p></td>
 <td><p>#measurement.intensity;#%type=”natural abundance corrected and protein normalized peak area”;#%units=”area/g”</p></td>
 <td><p>#protocol.id=ICMS1</p></td>
+</tr>
+<tr class="row-even"><td><p>#ignore</p></td>
+<td></td>
+<td></td>
+<td><p>Compound</p></td>
+<td><p>Mol_Formula</p></td>
+<td><p>C_isomers</p></td>
+<td><p>SamplID</p></td>
+<td></td>
+<td><p>Intensity</p></td>
+<td></td>
+<td></td>
 </tr>
 <tr class="row-odd"><td></td>
 <td><p>(S)-2-Acetolactate_Glutaric acid_Methylsuccinic acid_MP_NoStd-13C0-01_A0_Colon_T03-2017_naive_170427_UKy_GCB_rep1-quench</p></td>
@@ -1450,7 +1582,7 @@ matched, detailed below.</p>
 </div>
 </section>
 <section id="the-tags">
-<h4>The Tags<a class="headerlink" href="#the-tags" title="Permalink to this heading"></a></h4>
+<h4>The Tags<a class="headerlink" href="#the-tags" title="Link to this heading"></a></h4>
 <ul>
 <li><p><strong>#header</strong> - header value to match to. Can be a regular expression of the form r’…’.</p>
 <blockquote>
@@ -1458,14 +1590,16 @@ matched, detailed below.</p>
 <li><p>All tag blocks must contain a <strong>#header</strong> tag.</p></li>
 <li><p>Additional column headers can be included with blank corresponding tags to help make header row identification unique.</p></li>
 <li><p>Cell contents are stripped of leading and trailing white space before comparison with the header value.</p></li>
-<li><p>A new column will be created if the headers and literals in quotes are combined with plus signs.</p>
+<li><p>A new column will be created if the headers, literals in quotes, and/or regular expressions are combined with plus signs.</p>
 <blockquote>
 <div><ul class="simple">
-<li><p>Example: Name+”-“+Isopotologue+”-“+r’^d+w+ Isotope$’</p></li>
+<li><p>Example: Name+”-“+Isopotologue+”-“+r’^\d+\w+ Isotope$’</p></li>
 <li><p>This functionality means that certain characters can’t be used for literal matching outside of a regex.</p></li>
 <li><p>For example, if a header name in a data table is “protein+solvent”, then you can’t simply put protein+solvent under <strong>#header</strong> because it will be interpreted as a concatenation of a “protein” header and a separate “solvent” header.</p></li>
-<li><p>The easiest way to solve this issue is to use a regular expression. r’protein+solvent’ will match the header correctly.</p></li>
+<li><p>The easiest way to solve this issue is to use a regular expression. r’protein\+solvent’ will match the header correctly.</p></li>
 <li><p>In general, if you are having difficulty matching a header, try using a regex.</p></li>
+<li><p>If multiple headers or regular expressions in the #header column match the same header in the data, then there will be an error because 2 sets of tags cannot be placed in the same spot.</p></li>
+<li><p>The above does not apply when creating a new column, however. The same column in the data can be used to create multiple new columns.</p></li>
 </ul>
 </div></blockquote>
 </li>
@@ -1473,7 +1607,7 @@ matched, detailed below.</p>
 <blockquote>
 <div><ul>
 <li><p>“#header_name#” and “#r’…’#” can be used to indicate specific columns in the row.</p></li>
-<li><p>All Python language operators can be used.  But remember to use “float(#field_name#)” to convert strings to floating point numbers.</p></li>
+<li><p>All Python language operators can be used. But remember to use “float(#field_name#)” to convert strings to floating point numbers.</p></li>
 <li><p>Example: eval(float(#Intensity#) / float(#r’.*Normalization’#) * 5)</p></li>
 <li><p>If the eval returns a list of items, it is converted into a string separated by semicolons.</p>
 <blockquote>
@@ -1490,10 +1624,132 @@ matched, detailed below.</p>
 </li>
 <li><p><strong>#add</strong> - tags to add in an inserted row below the column header row.</p>
 <blockquote>
-<div><ul class="simple">
+<div><ul>
 <li><p>All tag blocks must contain a <strong>#add</strong> tag.</p></li>
 <li><p>The actual value under <strong>#add</strong> does not have to be a valid tag, the value will be copied as is.</p></li>
 <li><p>Leave this value blank to add headers that are required to match a block, but don’t need tags.</p></li>
+<li><p>“#HEADER#” and “#INCREMENT#” are 2 reserved words that can be used to build tags based on the headers.</p>
+<blockquote>
+<div><ul>
+<li><p>#HEADER# will be replaced with the value of the header that was matched to the value given in #header.</p></li>
+<li><p>#INCREMENT# will be replaced with the number of the match.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>For example, if the value in #header is r’Sample_\d’, the value for #INCREMENT# will be 1 for first header to match, 2 for the second, etc.</p></li>
+<li><p>The number only goes up when the exact same header to be created tries to be created.</p></li>
+<li><p>For example, in the below example the increment went to 2 because there were 2 “G” columns in the data so #measurment.field3_G was attempted to be created twice, so there is a field3_G_1 and field3_G_2.</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>Example:</p></li>
+</ul>
+<p>Data:</p>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>A</p></td>
+<td><p>B</p></td>
+<td><p>C</p></td>
+<td><p>D</p></td>
+<td><p>E</p></td>
+<td><p>F</p></td>
+<td><p>G</p></td>
+<td><p>G</p></td>
+</tr>
+<tr class="row-even"><td><p>a1</p></td>
+<td><p>b1</p></td>
+<td><p>c1</p></td>
+<td><p>d1</p></td>
+<td><p>e1</p></td>
+<td><p>f1</p></td>
+<td><p>g1</p></td>
+<td><p>g2</p></td>
+</tr>
+</tbody>
+</table>
+<p>Header Tags:</p>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>#tags</p></td>
+<td><p>#header</p></td>
+<td><p>#add</p></td>
+<td><p>#allow_duplicates</p></td>
+</tr>
+<tr class="row-even"><td></td>
+<td><p>A</p></td>
+<td><p>#measurement.id</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p>r’F|G’</p></td>
+<td><p>#measurement.field3_#HEADER#_#INCREMENT#</p></td>
+<td><p>true</p></td>
+</tr>
+<tr class="row-even"><td></td>
+<td><p>r’B|C’+r’F|G’</p></td>
+<td><p>#measurement.#HEADER#_#INCREMENT#</p></td>
+<td><p>true</p></td>
+</tr>
+</tbody>
+</table>
+<p>After Automation:</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>#tags</p></th>
+<th class="head"><p>#measurement.id</p></th>
+<th class="head"></th>
+<th class="head"></th>
+<th class="head"></th>
+<th class="head"></th>
+<th class="head"><p>#measurement.field3_F_1</p></th>
+<th class="head"><p>#measurement.field3_G_1</p></th>
+<th class="head"><p>#measurement.field3_G_2</p></th>
+<th class="head"><p>#measurement.BF_1</p></th>
+<th class="head"><p>#measurement.BG_1</p></th>
+<th class="head"><p>#measurement.BG_2</p></th>
+<th class="head"><p>#measurement.CF_1</p></th>
+<th class="head"><p>#measurement.CG_1</p></th>
+<th class="head"><p>#measurement.CG_2</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>#ignore</p></td>
+<td><p>A</p></td>
+<td><p>B</p></td>
+<td><p>C</p></td>
+<td><p>D</p></td>
+<td><p>E</p></td>
+<td><p>F</p></td>
+<td><p>G</p></td>
+<td><p>G</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p>a1</p></td>
+<td><p>b1</p></td>
+<td><p>c1</p></td>
+<td><p>d1</p></td>
+<td><p>e1</p></td>
+<td><p>f1</p></td>
+<td><p>g1</p></td>
+<td><p>g2</p></td>
+<td><p>b1f1</p></td>
+<td><p>b1g1</p></td>
+<td><p>b1g2</p></td>
+<td><p>c1f1</p></td>
+<td><p>c1g1</p></td>
+<td><p>c1g2</p></td>
+</tr>
+</tbody>
+</table>
+<p>This is a contrived example to illustrate how the reserved words work, but a more common way to use these are in the Common Use Case Examples below.
+Note that the header “r’B|C’+r’F|G’” created 6 new columns instead of just 1 because a new one is created for each combination of matches to the regular expressions.</p>
+</div></blockquote>
+</li>
 </ul>
 </div></blockquote>
 </li>
@@ -1503,39 +1759,48 @@ matched, detailed below.</p>
 <li><p>Example:</p></li>
 </ul>
 <table class="docutils align-default">
-<colgroup>
-<col style="width: 7%" />
-<col style="width: 54%" />
-<col style="width: 39%" />
-</colgroup>
 <tbody>
 <tr class="row-odd"><td><p>#tags</p></td>
 <td><p>#header</p></td>
-<td><p>#add                    | #required</p></td>
+<td><p>#add</p></td>
+<td><p>#required</p></td>
 </tr>
 <tr class="row-even"><td></td>
 <td><p>Compound+”-13C”+C_isomers+”-“+SamplID</p></td>
-<td><p>#measurement.id         | true</p></td>
+<td><p>#measurement.id</p></td>
+<td><p>true</p></td>
 </tr>
 <tr class="row-odd"><td></td>
 <td><p>Compound+”-13C”+C_isomers</p></td>
-<td><p>#measurement.assignment | true</p></td>
+<td><p>#measurement.assignment</p></td>
+<td><p>true</p></td>
 </tr>
 <tr class="row-even"><td></td>
 <td><p>Compound</p></td>
-<td><p>#measurement.compound   | true</p></td>
+<td><p>#measurement.compound</p></td>
+<td><p>true</p></td>
 </tr>
 <tr class="row-odd"><td></td>
 <td><p>Mol_Formula</p></td>
-<td><p>#measurement.formula    | false</p></td>
+<td><p>#measurement.formula</p></td>
+<td><p>false</p></td>
 </tr>
 <tr class="row-even"><td></td>
 <td><p>SamplID</p></td>
-<td><p>#sample.id              | true</p></td>
+<td><p>#sample.id</p></td>
+<td><p>true</p></td>
 </tr>
 </tbody>
 </table>
 <p>If the Mol_Formula header is not found, the tags will still be added, but without the Mol_Formula ones.</p>
+</div></blockquote>
+</li>
+<li><p><strong>#allow_duplicates#</strong> - true|false whether this header description can match multiple times in the same row and add tags to each match. The default is that duplicates are not allowed.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>If this is true, then #HEADER# and/or #INCREMENT# must be used in the tag(s) under #add to ensure the uniqueness of tags.</p></li>
+<li><p>See the example above in the #add section to see an example using this tag.</p></li>
+</ul>
 </div></blockquote>
 </li>
 <li><p><strong>#exclude=test_string</strong> - test string or regular expression to use for excluding a given header row.</p>
@@ -1545,35 +1810,36 @@ matched, detailed below.</p>
 <li><p>Example:</p></li>
 </ul>
 <table class="docutils align-default">
-<colgroup>
-<col style="width: 6%" />
-<col style="width: 42%" />
-<col style="width: 52%" />
-</colgroup>
 <tbody>
 <tr class="row-odd"><td><p>#tags</p></td>
 <td><p>#header</p></td>
-<td><p>#add                    | #exclude=r’Cell Type|Mouse Species’</p></td>
+<td><p>#add</p></td>
+<td><p>#exclude=r’Cell Type|Mouse Species’</p></td>
 </tr>
 <tr class="row-even"><td></td>
 <td><p>Compound+”-13C”+C_isomers+”-“+SamplID</p></td>
-<td><p>#measurement.id         |</p></td>
+<td><p>#measurement.id</p></td>
+<td></td>
 </tr>
 <tr class="row-odd"><td></td>
 <td><p>Compound+”-13C”+C_isomers</p></td>
-<td><p>#measurement.assignment |</p></td>
+<td><p>#measurement.assignment</p></td>
+<td></td>
 </tr>
 <tr class="row-even"><td></td>
 <td><p>Compound</p></td>
-<td><p>#measurement.compound   |</p></td>
+<td><p>#measurement.compound</p></td>
+<td></td>
 </tr>
 <tr class="row-odd"><td></td>
 <td><p>Mol_Formula</p></td>
-<td><p>#measurement.formula    |</p></td>
+<td><p>#measurement.formula</p></td>
+<td></td>
 </tr>
 <tr class="row-even"><td></td>
 <td><p>SamplID</p></td>
-<td><p>#sample.id              |</p></td>
+<td><p>#sample.id</p></td>
+<td></td>
 </tr>
 </tbody>
 </table>
@@ -1584,39 +1850,632 @@ matched, detailed below.</p>
 <p>Insertions can be inside of header tag blocks, so they are inserted only when a match is made to the header rows.
 They function just like when they are on their own, except that there is an additional <strong>#multiple</strong> tag that
 can be used to control whether the insert happens every time the tag block matches or only the first time.</p>
-<ul class="simple">
+<ul>
 <li><p><strong>#multiple=true</strong> - will insert on every match.</p></li>
 <li><p><strong>#multiple=false</strong> - will only insert on the first match, this is the default behavior if <strong>#multiple</strong> is not specified.</p></li>
+<li><p><strong>#transpose</strong> - indicates that the table to add tags to is row wise instead of column wise.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Example:</p></li>
+</ul>
+<p>Data:</p>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>Sample Name</p></td>
+<td><p>KO labelled_1</p></td>
+<td><p>KO labelled_2</p></td>
+</tr>
+<tr class="row-even"><td><p>Dry Weight 0h</p></td>
+<td><p>4.2</p></td>
+<td><p>4.7</p></td>
+</tr>
+<tr class="row-odd"><td><p>Dry Weight 3h</p></td>
+<td><p>8.5</p></td>
+<td><p>9.7</p></td>
+</tr>
+</tbody>
+</table>
+<p>Header Tags:</p>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>#tags;#transpose</p></td>
+<td><p>#header</p></td>
+<td><p>#add</p></td>
+</tr>
+<tr class="row-even"><td></td>
+<td><p>Sample Name</p></td>
+<td><p>#sample.id</p></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p>Dry Weight 0h</p></td>
+<td><p>#%child.id=-media-0h;#.dry_weight;#.dry_weight%units=mg</p></td>
+</tr>
+<tr class="row-even"><td></td>
+<td><p>Dry Weight 3h</p></td>
+<td><p>#%child.id=-media-3h;#.dry_weight;#.dry_weight%units=mg</p></td>
+</tr>
+</tbody>
+</table>
+<p>After Automation:</p>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>#tags;#transpose</p></td>
+<td><p>#sample.id</p></td>
+<td><p>#%child.id=-media-0h;#.dry_weight;#.dry_weight%units=mg</p></td>
+<td><p>#%child.id=-media-3h;#.dry_weight;#.dry_weight%units=mg</p></td>
+</tr>
+<tr class="row-even"><td></td>
+<td><p>Sample Name</p></td>
+<td><p>KO labelled_1</p></td>
+<td><p>KO labelled_2</p></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p>Dry Weight 0h</p></td>
+<td><p>4.2</p></td>
+<td><p>4.7</p></td>
+</tr>
+<tr class="row-even"><td></td>
+<td><p>Dry Weight 3h</p></td>
+<td><p>8.5</p></td>
+<td><p>9.7</p></td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+</li>
+<li><p><strong>#copy</strong> - indicates that the table to add tags to should be copied before adding tags.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>This is useful for when you need to use the same data multiple times to create new records.</p></li>
+<li><p>The below example uses one core table to create a parent entities, children, and grandchildren.</p></li>
+<li><p>Example:</p></li>
+</ul>
+<p>Data:</p>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>patient</p></td>
+<td><p>Sample volume</p></td>
+</tr>
+<tr class="row-even"><td><p>Patient 1</p></td>
+<td><p>10.8 mg</p></td>
+</tr>
+<tr class="row-odd"><td><p>Patient 2</p></td>
+<td><p>25.2 mg</p></td>
+</tr>
+</tbody>
+</table>
+<p>Header Tags:</p>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>#tags;#copy</p></td>
+<td><p>#header</p></td>
+<td><p>#add</p></td>
+</tr>
+<tr class="row-even"><td></td>
+<td><p>patient</p></td>
+<td><p>#entity.id;#.type=sample;#.sample_type=experimental</p></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p>Sample volume</p></td>
+<td><p>#entity.resected_tissue_weight;#%units=mg</p></td>
+</tr>
+<tr class="row-even"><td></td>
+<td></td>
+<td><p>*#.protocol.id=resected_tissue_collection,tissue_quench,frozen_tissue_slice</p></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td></td>
+<td><p>#entity%child.id=-polar_extraction;#.type=sample;#.sample_type=experimental;*#.protocol.id=polar_extraction</p></td>
+</tr>
+<tr class="row-even"><td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>#tags;#copy</p></td>
+<td><p>#header</p></td>
+<td><p>#add</p></td>
+</tr>
+<tr class="row-even"><td></td>
+<td><p>patient+’-polar_extraction’</p></td>
+<td><p>#entity.id</p></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td></td>
+<td><p>#entity%child.id=-metabolism;#.type=sample;*#.protocol.id=GC-MS_preparation;#.injection_volume=0.5;#%units=uL;#.reconstitution_volume=100;#%units=uL;#.extracted_volume=110;#%units=uL</p></td>
+</tr>
+</tbody>
+</table>
+<p>After Automation:</p>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td></td>
+<td><p>patient</p></td>
+<td><p>Sample volume</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td></td>
+<td><p>Patient 1</p></td>
+<td><p>10.8 mg</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p>Patient 2</p></td>
+<td><p>25.2 mg</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>#tags</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td><p>#entity.id</p></td>
+<td><p>#entity%child.id=-metabolism;#.type=sample;*#.protocol.id=GC-MS_preparation;#.injection_volume=0.5;#%units=uL;#.reconstitution_volume=100;#%units=uL;#.extracted_volume=110;#%units=uL</p></td>
+</tr>
+<tr class="row-even"><td><p>#ignore</p></td>
+<td><p>patient</p></td>
+<td><p>Sample volume</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p>Patient 1</p></td>
+<td><p>10.8 mg</p></td>
+<td></td>
+<td></td>
+<td><p>Patient 1-polar_extraction</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td></td>
+<td><p>Patient 2</p></td>
+<td><p>25.2 mg</p></td>
+<td></td>
+<td></td>
+<td><p>Patient 2-polar_extraction</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>#tags</p></td>
+<td><p>#entity.id;#.type=sample;#.sample_type=experimental</p></td>
+<td><p>#entity.resected_tissue_weight;#%units=mg</p></td>
+<td><p>*#.protocol.id=resected_tissue_collection,tissue_quench,frozen_tissue_slice</p></td>
+<td><p>#entity%child.id=-polar_extraction;#.type=sample;#.sample_type=experimental;*#.protocol.id=polar_extraction</p></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>#ignore</p></td>
+<td><p>patient</p></td>
+<td><p>Sample volume</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td></td>
+<td><p>Patient 1</p></td>
+<td><p>10.8 mg</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p>Patient 2</p></td>
+<td><p>25.2 mg</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>JSON Output:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">{</span>
+<span class="go">  &quot;entity&quot;: {</span>
+<span class="go">    &quot;Patient 1&quot;: {</span>
+<span class="go">      &quot;id&quot;: &quot;Patient 1&quot;,</span>
+<span class="go">      &quot;protocol.id&quot;: [</span>
+<span class="go">        &quot;resected_tissue_collection&quot;,</span>
+<span class="go">        &quot;tissue_quench&quot;,</span>
+<span class="go">        &quot;frozen_tissue_slice&quot;</span>
+<span class="go">      ],</span>
+<span class="go">      &quot;resected_tissue_weight&quot;: &quot;10.8 mg&quot;,</span>
+<span class="go">      &quot;resected_tissue_weight%units&quot;: &quot;mg&quot;,</span>
+<span class="go">      &quot;sample_type&quot;: &quot;experimental&quot;,</span>
+<span class="go">      &quot;type&quot;: &quot;sample&quot;</span>
+<span class="go">    },</span>
+<span class="go">    &quot;Patient 1-polar_extraction&quot;: {</span>
+<span class="go">      &quot;id&quot;: &quot;Patient 1-polar_extraction&quot;,</span>
+<span class="go">      &quot;parent_id&quot;: &quot;Patient 1&quot;,</span>
+<span class="go">      &quot;protocol.id&quot;: [</span>
+<span class="go">        &quot;polar_extraction&quot;</span>
+<span class="go">      ],</span>
+<span class="go">      &quot;sample_type&quot;: &quot;experimental&quot;,</span>
+<span class="go">      &quot;type&quot;: &quot;sample&quot;</span>
+<span class="go">    },</span>
+<span class="go">    &quot;Patient 1-polar_extraction-metabolism&quot;: {</span>
+<span class="go">      &quot;extracted_volume&quot;: &quot;110&quot;,</span>
+<span class="go">      &quot;extracted_volume%units&quot;: &quot;uL&quot;,</span>
+<span class="go">      &quot;id&quot;: &quot;Patient 1-polar_extraction-metabolism&quot;,</span>
+<span class="go">      &quot;injection_volume&quot;: &quot;0.5&quot;,</span>
+<span class="go">      &quot;injection_volume%units&quot;: &quot;uL&quot;,</span>
+<span class="go">      &quot;parent_id&quot;: &quot;Patient 1-polar_extraction&quot;,</span>
+<span class="go">      &quot;protocol.id&quot;: [</span>
+<span class="go">        &quot;GC-MS_preparation&quot;</span>
+<span class="go">      ],</span>
+<span class="go">      &quot;reconstitution_volume&quot;: &quot;100&quot;,</span>
+<span class="go">      &quot;reconstitution_volume%units&quot;: &quot;uL&quot;,</span>
+<span class="go">      &quot;type&quot;: &quot;sample&quot;</span>
+<span class="go">    },</span>
+<span class="go">    &quot;Patient 2&quot;: {</span>
+<span class="go">      &quot;id&quot;: &quot;Patient 2&quot;,</span>
+<span class="go">      &quot;protocol.id&quot;: [</span>
+<span class="go">        &quot;resected_tissue_collection&quot;,</span>
+<span class="go">        &quot;tissue_quench&quot;,</span>
+<span class="go">        &quot;frozen_tissue_slice&quot;</span>
+<span class="go">      ],</span>
+<span class="go">      &quot;resected_tissue_weight&quot;: &quot;25.2 mg&quot;,</span>
+<span class="go">      &quot;resected_tissue_weight%units&quot;: &quot;mg&quot;,</span>
+<span class="go">      &quot;sample_type&quot;: &quot;experimental&quot;,</span>
+<span class="go">      &quot;type&quot;: &quot;sample&quot;</span>
+<span class="go">    },</span>
+<span class="go">    &quot;Patient 2-polar_extraction&quot;: {</span>
+<span class="go">      &quot;id&quot;: &quot;Patient 2-polar_extraction&quot;,</span>
+<span class="go">      &quot;parent_id&quot;: &quot;Patient 2&quot;,</span>
+<span class="go">      &quot;protocol.id&quot;: [</span>
+<span class="go">        &quot;polar_extraction&quot;</span>
+<span class="go">      ],</span>
+<span class="go">      &quot;sample_type&quot;: &quot;experimental&quot;,</span>
+<span class="go">      &quot;type&quot;: &quot;sample&quot;</span>
+<span class="go">    },</span>
+<span class="go">    &quot;Patient 2-polar_extraction-metabolism&quot;: {</span>
+<span class="go">      &quot;extracted_volume&quot;: &quot;110&quot;,</span>
+<span class="go">      &quot;extracted_volume%units&quot;: &quot;uL&quot;,</span>
+<span class="go">      &quot;id&quot;: &quot;Patient 2-polar_extraction-metabolism&quot;,</span>
+<span class="go">      &quot;injection_volume&quot;: &quot;0.5&quot;,</span>
+<span class="go">      &quot;injection_volume%units&quot;: &quot;uL&quot;,</span>
+<span class="go">      &quot;parent_id&quot;: &quot;Patient 2-polar_extraction&quot;,</span>
+<span class="go">      &quot;protocol.id&quot;: [</span>
+<span class="go">        &quot;GC-MS_preparation&quot;</span>
+<span class="go">      ],</span>
+<span class="go">      &quot;reconstitution_volume&quot;: &quot;100&quot;,</span>
+<span class="go">      &quot;reconstitution_volume%units&quot;: &quot;uL&quot;,</span>
+<span class="go">      &quot;type&quot;: &quot;sample&quot;</span>
+<span class="go">    }</span>
+<span class="go">  }</span>
+<span class="go">}</span>
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p><strong>#filter</strong> - indicates that the data to be tagged should be filtered before being tagged.</p>
+<blockquote>
+<div><ul>
+<li><p>If a #filter tag is used, the #copy tag must also be used.</p></li>
+<li><p>The general structure of the #filter tag is #filter=expressions.</p></li>
+<li><p>There are 3 kinds of expressions.</p>
+<blockquote>
+<div><ul>
+<li><p>Match using an identical single value will only keep the rows where the indicated column has the indicated value.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Ex: column1:value1</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>Match using a regular expression will keep the rows where the value in the indicated column matches the given regular expression.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Ex: column1:r’your_regex’</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>Match using the keyword “unique” will keep the rows with first instance of a unique value in the indicated column.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Ex: column1:unique</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>You can put double quotes around an expression value to enforce an indentical match.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Ex: column1:”unique” will match only rows that have the value unique (without double quotes).</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>Logical and (&amp;) and or (|) operators can be used to filter with multiple columns.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Ex: column1:unique &amp; column2:value1</p></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>Example:</p></li>
+</ul>
+<p>Data:</p>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>patient</p></td>
+<td><p>Sample volume</p></td>
+</tr>
+<tr class="row-even"><td><p>Patient 1</p></td>
+<td><p>10.8 mg</p></td>
+</tr>
+<tr class="row-odd"><td><p>Patient 2</p></td>
+<td><p>25.2 mg</p></td>
+</tr>
+</tbody>
+</table>
+<p>Header Tags:</p>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>#tags;#copy</p></td>
+<td><p>#header</p></td>
+<td><p>#add</p></td>
+<td><p>#filter=patient:Patient 1</p></td>
+</tr>
+<tr class="row-even"><td></td>
+<td><p>patient</p></td>
+<td><p>#entity.id;#.type=sample;#.sample_type=experimental</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p>Sample volume</p></td>
+<td><p>#entity.resected_tissue_weight;#%units=mg</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td></td>
+<td></td>
+<td><p>*#.protocol.id=resected_tissue_collection,tissue_quench,frozen_tissue_slice</p></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>After Automation:</p>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td></td>
+<td><p>patient</p></td>
+<td><p>Sample volume</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td></td>
+<td><p>Patient 1</p></td>
+<td><p>10.8 mg</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p>Patient 2</p></td>
+<td><p>25.2 mg</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>#tags</p></td>
+<td><p>#entity.id;#.type=sample;#.sample_type=experimental</p></td>
+<td><p>#entity.resected_tissue_weight;#%units=mg</p></td>
+<td><p>*#.protocol.id=resected_tissue_collection,tissue_quench,frozen_tissue_slice</p></td>
+</tr>
+<tr class="row-even"><td><p>#ignore</p></td>
+<td><p>patient</p></td>
+<td><p>Sample volume</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p>Patient 1</p></td>
+<td><p>10.8 mg</p></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>JSON Output:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">{</span>
+<span class="go">  &quot;entity&quot;: {</span>
+<span class="go">    &quot;Patient 1&quot;: {</span>
+<span class="go">      &quot;id&quot;: &quot;Patient 1&quot;,</span>
+<span class="go">      &quot;protocol.id&quot;: [</span>
+<span class="go">        &quot;resected_tissue_collection&quot;,</span>
+<span class="go">        &quot;tissue_quench&quot;,</span>
+<span class="go">        &quot;frozen_tissue_slice&quot;</span>
+<span class="go">      ],</span>
+<span class="go">      &quot;resected_tissue_weight&quot;: &quot;10.8 mg&quot;,</span>
+<span class="go">      &quot;resected_tissue_weight%units&quot;: &quot;mg&quot;,</span>
+<span class="go">      &quot;sample_type&quot;: &quot;experimental&quot;,</span>
+<span class="go">      &quot;type&quot;: &quot;sample&quot;</span>
+<span class="go">    }</span>
+<span class="go">  }</span>
+<span class="go">}</span>
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p><strong>#sort</strong> - indicates that the data to be tagged should be sorted before being tagged.</p>
+<blockquote>
+<div><ul>
+<li><p>If a #sort tag is used, the #copy tag must also be used.</p></li>
+<li><p>The general structure of the #sort tag is #sort=column_name1:ascending,column_name2:descending.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>The part after the “=” is a comma separated list of column headers and either “ascending” or “descending”, separated by a colon.</p></li>
+<li><p>The order of the columns in the list is the order they will be sorted in.</p></li>
+<li><p>Ex: #sort=column_name1:ascending,column_name2:descending will sort column_name1 in ascending order and then column_name2 in descending order.</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>Example:</p></li>
+</ul>
+<p>Data:</p>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>patient</p></td>
+<td><p>Sample volume</p></td>
+</tr>
+<tr class="row-even"><td><p>Patient 1</p></td>
+<td><p>10.8 mg</p></td>
+</tr>
+<tr class="row-odd"><td><p>Patient 2</p></td>
+<td><p>25.2 mg</p></td>
+</tr>
+</tbody>
+</table>
+<p>Header Tags:</p>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>#tags;#copy</p></td>
+<td><p>#header</p></td>
+<td><p>#add</p></td>
+<td><p>#sort=patient:descending</p></td>
+</tr>
+<tr class="row-even"><td></td>
+<td><p>patient</p></td>
+<td><p>#entity.id;#.type=sample;#.sample_type=experimental</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p>Sample volume</p></td>
+<td><p>#entity.resected_tissue_weight;#%units=mg</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td></td>
+<td></td>
+<td><p>*#.protocol.id=resected_tissue_collection,tissue_quench,frozen_tissue_slice</p></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>After Automation:</p>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td></td>
+<td><p>patient</p></td>
+<td><p>Sample volume</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td></td>
+<td><p>Patient 1</p></td>
+<td><p>10.8 mg</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p>Patient 2</p></td>
+<td><p>25.2 mg</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>#tags</p></td>
+<td><p>#entity.id;#.type=sample;#.sample_type=experimental</p></td>
+<td><p>#entity.resected_tissue_weight;#%units=mg</p></td>
+<td><p>*#.protocol.id=resected_tissue_collection,tissue_quench,frozen_tissue_slice</p></td>
+</tr>
+<tr class="row-even"><td><p>#ignore</p></td>
+<td><p>patient</p></td>
+<td><p>Sample volume</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p>Patient 2</p></td>
+<td><p>25.2 mg</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td></td>
+<td><p>Patient 1</p></td>
+<td><p>10.8 mg</p></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>JSON Output:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">{</span>
+<span class="go">  &quot;entity&quot;: {</span>
+<span class="go">    &quot;Patient 1&quot;: {</span>
+<span class="go">      &quot;id&quot;: &quot;Patient 1&quot;,</span>
+<span class="go">      &quot;protocol.id&quot;: [</span>
+<span class="go">        &quot;resected_tissue_collection&quot;,</span>
+<span class="go">        &quot;tissue_quench&quot;,</span>
+<span class="go">        &quot;frozen_tissue_slice&quot;</span>
+<span class="go">      ],</span>
+<span class="go">      &quot;resected_tissue_weight&quot;: &quot;10.8 mg&quot;,</span>
+<span class="go">      &quot;resected_tissue_weight%units&quot;: &quot;mg&quot;,</span>
+<span class="go">      &quot;sample_type&quot;: &quot;experimental&quot;,</span>
+<span class="go">      &quot;type&quot;: &quot;sample&quot;</span>
+<span class="go">    },</span>
+<span class="go">    &quot;Patient 2&quot;: {</span>
+<span class="go">      &quot;id&quot;: &quot;Patient 2&quot;,</span>
+<span class="go">      &quot;protocol.id&quot;: [</span>
+<span class="go">        &quot;resected_tissue_collection&quot;,</span>
+<span class="go">        &quot;tissue_quench&quot;,</span>
+<span class="go">        &quot;frozen_tissue_slice&quot;</span>
+<span class="go">      ],</span>
+<span class="go">      &quot;resected_tissue_weight&quot;: &quot;25.2 mg&quot;,</span>
+<span class="go">      &quot;resected_tissue_weight%units&quot;: &quot;mg&quot;,</span>
+<span class="go">      &quot;sample_type&quot;: &quot;experimental&quot;,</span>
+<span class="go">      &quot;type&quot;: &quot;sample&quot;</span>
+<span class="go">    }</span>
+<span class="go">  }</span>
+<span class="go">}</span>
+</pre></div>
+</div>
+<p>Note that the JSON output is not in descending order. This is because the JSON is sorted before saving so
+that there is consistency if key orderings are different. Sorting can still be used for other things such as
+sorting the order of lists.</p>
+</div></blockquote>
+</li>
 </ul>
 </section>
 </section>
 </section>
 <section id="common-use-case-examples">
-<h2>Common Use Case Examples<a class="headerlink" href="#common-use-case-examples" title="Permalink to this heading"></a></h2>
+<h2>Common Use Case Examples<a class="headerlink" href="#common-use-case-examples" title="Link to this heading"></a></h2>
 <p>For a real example you can see some in the examples folder of the <a class="reference external" href="https://github.com/MoseleyBioinformaticsLab/messes">GitHub</a> repository under the extract folder.
 The following are excerpts from those examples.</p>
 <section id="id1">
-<h3>Export Tags<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h3>
+<h3>Export Tags<a class="headerlink" href="#id1" title="Link to this heading"></a></h3>
 <section id="tagging-subject-entities">
-<h4>Tagging Subject Entities<a class="headerlink" href="#tagging-subject-entities" title="Permalink to this heading"></a></h4>
+<h4>Tagging Subject Entities<a class="headerlink" href="#tagging-subject-entities" title="Link to this heading"></a></h4>
 <table class="docutils align-default">
-<colgroup>
-<col style="width: 5%" />
-<col style="width: 2%" />
-<col style="width: 54%" />
-<col style="width: 8%" />
-<col style="width: 1%" />
-<col style="width: 9%" />
-<col style="width: 10%" />
-<col style="width: 11%" />
-</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>#tags</p></th>
 <th class="head"></th>
 <th class="head"><p>#entity.id;#entity.species=”Mus musculus”;#.species_type=Mouse;#.taxonomy_id=10090;#.type=subject</p></th>
 <th class="head"></th>
 <th class="head"></th>
-<th class="head"><p><a href="#id2"><span class="problematic" id="id3">*</span></a>#.protocol.id</p></th>
+<th class="head"><p>*#.protocol.id</p></th>
 <th class="head"><p>#entity.replicate</p></th>
 <th class="head"><p>#entity.time_point</p></th>
 </tr>
@@ -1708,24 +2567,12 @@ The following are excerpts from those examples.</p>
 <p>You can see that the original header row is ignored with “#ignore” and the important columns are tagged with appropriate field names.
 Not all of the columns are tagged. What needs to be tagged or what is important will vary according to your needs and application.
 MESSES is largely meant for converting for deposition into a repository so information that is not important or relevant to the repository
-you are targeting will likely be untagged. Note that the <a href="#id4"><span class="problematic" id="id5">*</span></a>#.protocol.id tag is a list field even though it has single values underneath.
+you are targeting will likely be untagged. Note that the *#.protocol.id tag is a list field even though it has single values underneath.
 This is be consistent with field types as other records can have multiple protocols associated with them.</p>
 </section>
 <section id="creating-samples-from-parents">
-<h4>Creating Samples From Parents<a class="headerlink" href="#creating-samples-from-parents" title="Permalink to this heading"></a></h4>
+<h4>Creating Samples From Parents<a class="headerlink" href="#creating-samples-from-parents" title="Link to this heading"></a></h4>
 <table class="docutils align-default">
-<colgroup>
-<col style="width: 3%" />
-<col style="width: 3%" />
-<col style="width: 16%" />
-<col style="width: 7%" />
-<col style="width: 4%" />
-<col style="width: 4%" />
-<col style="width: 5%" />
-<col style="width: 5%" />
-<col style="width: 49%" />
-<col style="width: 5%" />
-</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>#tags</p></th>
 <th class="head"></th>
@@ -1848,31 +2695,10 @@ the one shown for ICSM_A.</p>
 </section>
 </section>
 <section id="modification-and-automation-tags">
-<h3>Modification and Automation Tags<a class="headerlink" href="#modification-and-automation-tags" title="Permalink to this heading"></a></h3>
+<h3>Modification and Automation Tags<a class="headerlink" href="#modification-and-automation-tags" title="Link to this heading"></a></h3>
 <p>The examples here will both use a common set of measurement data.</p>
 <p>Measurement Data:</p>
 <table class="docutils align-default">
-<colgroup>
-<col style="width: 10%" />
-<col style="width: 2%" />
-<col style="width: 2%" />
-<col style="width: 9%" />
-<col style="width: 2%" />
-<col style="width: 2%" />
-<col style="width: 3%" />
-<col style="width: 2%" />
-<col style="width: 2%" />
-<col style="width: 2%" />
-<col style="width: 3%" />
-<col style="width: 5%" />
-<col style="width: 4%" />
-<col style="width: 3%" />
-<col style="width: 2%" />
-<col style="width: 3%" />
-<col style="width: 7%" />
-<col style="width: 8%" />
-<col style="width: 29%" />
-</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Compound</p></th>
 <th class="head"><p>Mol_Formula</p></th>
@@ -2100,25 +2926,8 @@ the one shown for ICSM_A.</p>
 </table>
 <p>Not all of the columns will be used and this is just a small portion of a much larger dataset.</p>
 <section id="adding-a-protocol">
-<h4>Adding a Protocol<a class="headerlink" href="#adding-a-protocol" title="Permalink to this heading"></a></h4>
+<h4>Adding a Protocol<a class="headerlink" href="#adding-a-protocol" title="Link to this heading"></a></h4>
 <table class="docutils align-default">
-<colgroup>
-<col style="width: 3%" />
-<col style="width: 4%" />
-<col style="width: 4%" />
-<col style="width: 4%" />
-<col style="width: 5%" />
-<col style="width: 3%" />
-<col style="width: 4%" />
-<col style="width: 5%" />
-<col style="width: 1%" />
-<col style="width: 24%" />
-<col style="width: 10%" />
-<col style="width: 6%" />
-<col style="width: 13%" />
-<col style="width: 8%" />
-<col style="width: 6%" />
-</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>#insert</p></th>
 <th class="head"></th>
@@ -2207,14 +3016,8 @@ the one shown for ICSM_A.</p>
 <p>This would be one set of directives in the #automate sheet or file. The description tag has been shortened.</p>
 </section>
 <section id="automating-tags">
-<h4>Automating Tags<a class="headerlink" href="#automating-tags" title="Permalink to this heading"></a></h4>
+<h4>Automating Tags<a class="headerlink" href="#automating-tags" title="Link to this heading"></a></h4>
 <table class="docutils align-default">
-<colgroup>
-<col style="width: 4%" />
-<col style="width: 30%" />
-<col style="width: 1%" />
-<col style="width: 65%" />
-</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>#tags</p></th>
 <th class="head"><p>#header</p></th>
@@ -2289,15 +3092,8 @@ the one shown for ICSM_A.</p>
 #add column will be newly created or added on top of the column in the measurement data.</p>
 </section>
 <section id="changing-entity-ids">
-<h4>Changing Entity IDs<a class="headerlink" href="#changing-entity-ids" title="Permalink to this heading"></a></h4>
+<h4>Changing Entity IDs<a class="headerlink" href="#changing-entity-ids" title="Link to this heading"></a></h4>
 <table class="docutils align-default">
-<colgroup>
-<col style="width: 5%" />
-<col style="width: 37%" />
-<col style="width: 39%" />
-<col style="width: 10%" />
-<col style="width: 8%" />
-</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>#tags</p></th>
 <th class="head"><p>#measurement.entity.id.value</p></th>
@@ -2332,15 +3128,8 @@ the “.value” column. Something like this may be necessary when there is a na
 measurement data.</p>
 </section>
 <section id="changing-ids">
-<h4>Changing IDs<a class="headerlink" href="#changing-ids" title="Permalink to this heading"></a></h4>
+<h4>Changing IDs<a class="headerlink" href="#changing-ids" title="Link to this heading"></a></h4>
 <table class="docutils align-default">
-<colgroup>
-<col style="width: 3%" />
-<col style="width: 27%" />
-<col style="width: 54%" />
-<col style="width: 7%" />
-<col style="width: 9%" />
-</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>#tags</p></th>
 <th class="head"><p>#measurement.id.value</p></th>
@@ -2376,15 +3165,8 @@ the column that will become the entity.id field (SamplID). In order to make thin
 to make the same change in the id field, but we can’t simply use an assign, thus the use of regex.</p>
 </section>
 <section id="adding-additional-fields">
-<h4>Adding Additional Fields<a class="headerlink" href="#adding-additional-fields" title="Permalink to this heading"></a></h4>
+<h4>Adding Additional Fields<a class="headerlink" href="#adding-additional-fields" title="Link to this heading"></a></h4>
 <table class="docutils align-default">
-<colgroup>
-<col style="width: 5%" />
-<col style="width: 45%" />
-<col style="width: 30%" />
-<col style="width: 11%" />
-<col style="width: 9%" />
-</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>#tags</p></th>
 <th class="head"><p>#measurement.assignment.value</p></th>
@@ -2458,6 +3240,220 @@ to make the same change in the id field, but we can’t simply use an assign, th
 </table>
 <p>This will add an additional “assignment%method” field to the measurement records whose “assignment”
 field matches the “.value” column.</p>
+<p>The next example uses a new set of measurement data.</p>
+</section>
+<section id="automating-crecords">
+<h4>Automating crecords<a class="headerlink" href="#automating-crecords" title="Link to this heading"></a></h4>
+<p>Measurement Data:</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>identifier</p></th>
+<th class="head"><p>annotation</p></th>
+<th class="head"><p>ion species</p></th>
+<th class="head"><p>InChiKey</p></th>
+<th class="head"><p>MSI level</p></th>
+<th class="head"><p>m/z</p></th>
+<th class="head"><p>ret.time (min)</p></th>
+<th class="head"><p>ESI mode</p></th>
+<th class="head"><p>1</p></th>
+<th class="head"><p>2</p></th>
+<th class="head"><p>3</p></th>
+<th class="head"><p>Pool</p></th>
+<th class="head"><p>Pool</p></th>
+<th class="head"><p>Blank</p></th>
+<th class="head"><p>Blank</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>2.36_131.09</p></td>
+<td><p>(dehydro)ornithine</p></td>
+<td><p>[M+H]+</p></td>
+<td><p>KFZHLVSVDLIACX-UHFFFAOYSA-N</p></td>
+<td><p>3</p></td>
+<td><p>131.0872</p></td>
+<td><p>2.36</p></td>
+<td><p>ESI pos</p></td>
+<td><p>349</p></td>
+<td><p>995</p></td>
+<td><p>597</p></td>
+<td><p>651</p></td>
+<td><p>722</p></td>
+<td><p>195</p></td>
+<td><p>216</p></td>
+</tr>
+<tr class="row-odd"><td><p>2.42_332.56</p></td>
+<td><p>.beta.-Nicotinamide adenine dinucleotide</p></td>
+<td><p>[M+2H]2+</p></td>
+<td><p>BAWFJGJZGIEFAR-OWXIGJDBSA-N</p></td>
+<td><p>2</p></td>
+<td><p>332.5639</p></td>
+<td><p>2.42</p></td>
+<td><p>ESI pos</p></td>
+<td><p>229</p></td>
+<td><p>1030</p></td>
+<td><p>1482</p></td>
+<td><p>1242</p></td>
+<td><p>1409</p></td>
+<td><p>6</p></td>
+<td><p>6</p></td>
+</tr>
+</tbody>
+</table>
+<p>Automation Tags:</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>#tags</p></th>
+<th class="head"><p>#header</p></th>
+<th class="head"><p>#add</p></th>
+<th class="head"><p>#allow_duplicates</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td></td>
+<td><p>identifier</p></td>
+<td><p>#measurement.identifier</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p>annotation</p></td>
+<td><p>#measurement.assignment</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td></td>
+<td><p>ion species</p></td>
+<td><p>#measurement.ion</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p>InChiKey</p></td>
+<td><p>#measurement.inchi_key</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td></td>
+<td><p>MSI level</p></td>
+<td><p>#measurement.msi_level;#.msi_level%type=MSI_2014</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p>m/z</p></td>
+<td><p>#measurement.moverz_quant</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td></td>
+<td><p>ret.time (min)</p></td>
+<td><p>#measurement.retention_time;#%units=min</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p>ESI mode</p></td>
+<td><p>#measurement.esi_mode</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td></td>
+<td><p>r’^d+$’</p></td>
+<td><p>#%crecord.id=#.identifier+”-“+#.assignment+”-#HEADER#”+”-“+#.esi_mode;#.intensity;#.intensity%units=”peak height”;#.intensity%type=”peak height normalized to the sum of internal standards”;#.entity.id=”#HEADER#”;#.protocol.id=LC-MS-MS1</p></td>
+<td><p>TRUE</p></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p>r’^Pool|Blank$’</p></td>
+<td><p>#%crecord.id=#.identifier+”-“+#.assignment+”-#HEADER#-#INCREMENT#”+”-“+#.esi_mode;#.intensity;#.intensity%units=”peak height”;#.intensity%type=”peak height normalized to the sum of internal standards”;#.entity.id=”#HEADER#_#INCREMENT#”;#.protocol.id=LC-MS-MS1</p></td>
+<td><p>TRUE</p></td>
+</tr>
+</tbody>
+</table>
+<p>After Automation:</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>#tags</p></th>
+<th class="head"><p>#measurement.identifier</p></th>
+<th class="head"><p>#measurement.assignment</p></th>
+<th class="head"><p>#measurement.ion</p></th>
+<th class="head"><p>#measurement.inchi_key</p></th>
+<th class="head"><p>#measurement.msi_level;#.msi_level%type=MSI_2014</p></th>
+<th class="head"><p>#measurement.moverz_quant</p></th>
+<th class="head"><p>#measurement.retention_time;#%units=min</p></th>
+<th class="head"><p>#measurement.esi_mode</p></th>
+<th class="head"><p>#%crecord.id=#.identifier+”-“+#.assignment+”-1”+”-“+#.esi_mode;#.intensity;#.intensity%units=”peak height”;#.intensity%type=”peak height normalized to the sum of internal standards”;#.entity.id=”1”;#.protocol.id=LC-MS-MS1</p></th>
+<th class="head"><p>#%crecord.id=#.identifier+”-“+#.assignment+”-2”+”-“+#.esi_mode;#.intensity;#.intensity%units=”peak height”;#.intensity%type=”peak height normalized to the sum of internal standards”;#.entity.id=”2”;#.protocol.id=LC-MS-MS1</p></th>
+<th class="head"><p>#%crecord.id=#.identifier+”-“+#.assignment+”-3”+”-“+#.esi_mode;#.intensity;#.intensity%units=”peak height”;#.intensity%type=”peak height normalized to the sum of internal standards”;#.entity.id=”3”;#.protocol.id=LC-MS-MS1</p></th>
+<th class="head"><p>#%crecord.id=#.identifier+”-“+#.assignment+”-Pool-1”+”-“+#.esi_mode;#.intensity;#.intensity%units=”peak height”;#.intensity%type=”peak height normalized to the sum of internal standards”;#.entity.id=”Pool_1”;#.protocol.id=LC-MS-MS1</p></th>
+<th class="head"><p>#%crecord.id=#.identifier+”-“+#.assignment+”-Pool-2”+”-“+#.esi_mode;#.intensity;#.intensity%units=”peak height”;#.intensity%type=”peak height normalized to the sum of internal standards”;#.entity.id=”Pool_2”;#.protocol.id=LC-MS-MS1</p></th>
+<th class="head"><p>#%crecord.id=#.identifier+”-“+#.assignment+”-Blank-1”+”-“+#.esi_mode;#.intensity;#.intensity%units=”peak height”;#.intensity%type=”peak height normalized to the sum of internal standards”;#.entity.id=”Blank_1”;#.protocol.id=LC-MS-MS1</p></th>
+<th class="head"><p>#%crecord.id=#.identifier+”-“+#.assignment+”-Blank-2”+”-“+#.esi_mode;#.intensity;#.intensity%units=”peak height”;#.intensity%type=”peak height normalized to the sum of internal standards”;#.entity.id=”Blank_2”;#.protocol.id=LC-MS-MS1</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>#ignore</p></td>
+<td><p>identifier</p></td>
+<td><p>annotation</p></td>
+<td><p>ion species</p></td>
+<td><p>InChiKey</p></td>
+<td><p>MSI level</p></td>
+<td><p>m/z</p></td>
+<td><p>ret.time (min)</p></td>
+<td><p>ESI mode</p></td>
+<td><p>1</p></td>
+<td><p>2</p></td>
+<td><p>3</p></td>
+<td><p>Pool</p></td>
+<td><p>Pool</p></td>
+<td><p>Blank</p></td>
+<td><p>Blank</p></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p>2.36_131.09</p></td>
+<td><p>(dehydro)ornithine</p></td>
+<td><p>[M+H]+</p></td>
+<td><p>KFZHLVSVDLIACX-UHFFFAOYSA-N</p></td>
+<td><p>3</p></td>
+<td><p>131.0872</p></td>
+<td><p>2.363</p></td>
+<td><p>ESI pos</p></td>
+<td><p>349</p></td>
+<td><p>995</p></td>
+<td><p>597</p></td>
+<td><p>651</p></td>
+<td><p>722</p></td>
+<td><p>195</p></td>
+<td><p>216</p></td>
+</tr>
+<tr class="row-even"><td></td>
+<td><p>2.42_332.56</p></td>
+<td><p>.beta.-Nicotinamide adenine dinucleotide</p></td>
+<td><p>[M+2H]2+</p></td>
+<td><p>BAWFJGJZGIEFAR-OWXIGJDBSA-N</p></td>
+<td><p>2</p></td>
+<td><p>332.5639</p></td>
+<td><p>2.423</p></td>
+<td><p>ESI pos</p></td>
+<td><p>229</p></td>
+<td><p>1030</p></td>
+<td><p>1482</p></td>
+<td><p>1242</p></td>
+<td><p>1409</p></td>
+<td><p>6</p></td>
+<td><p>6</p></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>This is a real example taken from an upload of West Coast Metabolomics data. The full example is in the examples folder on <a class="reference external" href="https://github.com/MoseleyBioinformaticsLab/messes">GitHub</a>.</p>
 </section>
 </section>
 </section>

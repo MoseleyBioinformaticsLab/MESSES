@@ -1,25 +1,25 @@
+
+
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="./">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Tutorial &mdash; MESSES 1.0.2 documentation</title>
-      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="_static/css/custom_css.css" type="text/css" />
-      <link rel="stylesheet" href="_static/sphinxcontrib-images/LightBox2/lightbox2/dist/css/lightbox.css" type="text/css" />
-  <!--[if lt IE 9]>
-    <script src="_static/js/html5shiv.min.js"></script>
-  <![endif]-->
+  <title>Tutorial &mdash; MESSES 1.1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/custom_css.css?v=9359fcaf" />
+      <link rel="stylesheet" type="text/css" href="_static/sphinxcontrib-images/LightBox2/lightbox2/dist/css/lightbox.min.css?v=6e7d0de0" />
+      <link rel="stylesheet" type="text/css" href="_static/sphinxcontrib-images/LightBox2/lightbox2-customize/pointer.css?v=c97663ff" />
+
   
-        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-        <script src="_static/jquery.js"></script>
-        <script src="_static/underscore.js"></script>
-        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script src="_static/doctools.js"></script>
-        <script src="_static/sphinx_highlight.js"></script>
-        <script src="_static/sphinxcontrib-images/LightBox2/lightbox2/dist/js/lightbox-plus-jquery.min.js"></script>
-        <script src="_static/sphinxcontrib-images/LightBox2/lightbox2-customize/jquery-noconflict.js"></script>
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=fc837d61"></script>
+      <script src="_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="_static/sphinxcontrib-images/LightBox2/lightbox2/dist/js/lightbox-plus-jquery.min.js?v=f0ca4bb6"></script>
+      <script src="_static/sphinxcontrib-images/LightBox2/lightbox2-customize/jquery-noconflict.js?v=12818e64"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -32,14 +32,15 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="index.html" class="icon icon-home"> MESSES
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            MESSES
           </a>
-              <div class="version">
-                1.0.2
-              </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -106,6 +107,7 @@
 <li class="toctree-l1"><a class="reference internal" href="experiment_description_specification.html">Experiment Description Specification</a></li>
 <li class="toctree-l1"><a class="reference internal" href="protocol_dependent_schema.html">Protocol-Dependent Schema</a></li>
 <li class="toctree-l1"><a class="reference internal" href="supported_formats.html">Supported Conversion Formats</a></li>
+<li class="toctree-l1"><a class="reference internal" href="common_conventions.html">Common Conventions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="api.html">API</a></li>
 <li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
 <li class="toctree-l1"><a class="reference internal" href="todo.html">TODO List</a></li>
@@ -124,8 +126,8 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>Tutorial</li>
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Tutorial</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/tutorial.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -136,7 +138,7 @@
            <div itemprop="articleBody">
              
   <section id="tutorial">
-<h1>Tutorial<a class="headerlink" href="#tutorial" title="Permalink to this heading"></a></h1>
+<h1>Tutorial<a class="headerlink" href="#tutorial" title="Link to this heading"></a></h1>
 <p>MESSES is intended to be used solely as a command line program. This
 tutorial describes each command and its options. Before running the program you
 will likely want to review the <a class="reference internal" href="experiment_description_specification.html"><span class="doc">Experiment Description Specification</span></a> page and the
@@ -160,7 +162,7 @@ For example:
 The highest level usage is simply a gateway to the other commands and has very few options. You can see the version with the -v option,
 print the usage with -h option or print all of the commands usage’s with the –full-help option.</p>
 <section id="extract">
-<h2>Extract<a class="headerlink" href="#extract" title="Permalink to this heading"></a></h2>
+<h2>Extract<a class="headerlink" href="#extract" title="Link to this heading"></a></h2>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span> Usage:
     messes extract &lt;metadata_source&gt;... [--delete &lt;metadata_section&gt;...] [options]
     messes extract --help
@@ -205,7 +207,7 @@ Regular Expression Format:
 
  Directives JSON Format:
    {
-    &quot;modification&quot; : { table : { field :  { &quot;(exact|regex|levenshtein)\-(first|first\-nowarn|unique|all)&quot; :
+    &quot;modification&quot; : { table : { field :  { &quot;(exact|regex|levenshtein)-(first|first-nowarn|unique|all)&quot; :
                       { field_value : { &quot;assign&quot; : { field : value,... }, &quot;append&quot; : { field : value,... }, &quot;prepend&quot; : { field : value,... },
                                         &quot;regex&quot; : { field : regex_pair,... }, &quot;delete&quot; : [ field,... ], &quot;rename&quot; : { old_field : new_field } } } } } }
     &quot;automation&quot; : [ { &quot;header_tag_descriptions&quot; : [ { &quot;header&quot; : column_description, &quot;tag&quot; : tag_description, &quot;required&quot; : true|false } ],   &quot;exclusion_test&quot; : exclusion_value, &quot;insert&quot; : [ [ cell_content, ... ] ] } ]
@@ -216,7 +218,7 @@ Regular Expression Format:
 <p>The extract command is used to extract tabular data in an Excel workbook or CSV file to JSON. It has several hard to describe options
 and functionality.</p>
 <section id="options">
-<h3>Options<a class="headerlink" href="#options" title="Permalink to this heading"></a></h3>
+<h3>Options<a class="headerlink" href="#options" title="Link to this heading"></a></h3>
 <dl class="option-list">
 <dt><kbd><span class="option">--silent</span></kbd></dt>
 <dd><p>This option will silence all warning messages. Errors will still be printed.</p>
@@ -272,17 +274,11 @@ will keep all the tables that match the regular expressions.</p>
 </dl>
 </section>
 <section id="examples">
-<h3>Examples<a class="headerlink" href="#examples" title="Permalink to this heading"></a></h3>
+<h3>Examples<a class="headerlink" href="#examples" title="Link to this heading"></a></h3>
 <section id="basic-run">
-<h4>Basic Run<a class="headerlink" href="#basic-run" title="Permalink to this heading"></a></h4>
+<h4>Basic Run<a class="headerlink" href="#basic-run" title="Link to this heading"></a></h4>
 <p>Input File:</p>
 <table class="docutils align-default">
-<colgroup>
-<col style="width: 5%" />
-<col style="width: 11%" />
-<col style="width: 42%" />
-<col style="width: 42%" />
-</colgroup>
 <tbody>
 <tr class="row-odd"><td><p>#tags</p></td>
 <td><p>#sample.id</p></td>
@@ -349,15 +345,9 @@ will keep all the tables that match the regular expressions.</p>
 </div>
 </section>
 <section id="compare-option">
-<h4>Compare Option<a class="headerlink" href="#compare-option" title="Permalink to this heading"></a></h4>
+<h4>Compare Option<a class="headerlink" href="#compare-option" title="Link to this heading"></a></h4>
 <p>Input File:</p>
 <table class="docutils align-default">
-<colgroup>
-<col style="width: 6%" />
-<col style="width: 11%" />
-<col style="width: 41%" />
-<col style="width: 41%" />
-</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>#tags</p></th>
 <th class="head"><p>#sample.id</p></th>
@@ -493,14 +483,9 @@ will keep all the tables that match the regular expressions.</p>
 </div>
 </section>
 <section id="modify-option">
-<h4>Modify Option<a class="headerlink" href="#modify-option" title="Permalink to this heading"></a></h4>
+<h4>Modify Option<a class="headerlink" href="#modify-option" title="Link to this heading"></a></h4>
 <p>#export Sheet:</p>
 <table class="docutils align-default">
-<colgroup>
-<col style="width: 10%" />
-<col style="width: 20%" />
-<col style="width: 71%" />
-</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>#tags</p></th>
 <th class="head"><p>#sample.id</p></th>
@@ -520,11 +505,6 @@ will keep all the tables that match the regular expressions.</p>
 </table>
 <p>#modify sheet:</p>
 <table class="docutils align-default">
-<colgroup>
-<col style="width: 14%" />
-<col style="width: 32%" />
-<col style="width: 54%" />
-</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>#tags</p></th>
 <th class="head"><p>#sample.id.value</p></th>
@@ -561,13 +541,9 @@ will keep all the tables that match the regular expressions.</p>
 </div>
 </section>
 <section id="automate-option">
-<h4>Automate Option<a class="headerlink" href="#automate-option" title="Permalink to this heading"></a></h4>
+<h4>Automate Option<a class="headerlink" href="#automate-option" title="Link to this heading"></a></h4>
 <p>#export Sheet:</p>
 <table class="docutils align-default">
-<colgroup>
-<col style="width: 64%" />
-<col style="width: 36%" />
-</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Sample ID</p></th>
 <th class="head"><p>Weight</p></th>
@@ -584,11 +560,6 @@ will keep all the tables that match the regular expressions.</p>
 </table>
 <p>#automate Sheet:</p>
 <table class="docutils align-default">
-<colgroup>
-<col style="width: 14%" />
-<col style="width: 21%" />
-<col style="width: 65%" />
-</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>#tags</p></th>
 <th class="head"><p>#header</p></th>
@@ -629,13 +600,9 @@ will keep all the tables that match the regular expressions.</p>
 </div>
 </section>
 <section id="save-directives-option">
-<h4>Save Directives Option<a class="headerlink" href="#save-directives-option" title="Permalink to this heading"></a></h4>
+<h4>Save Directives Option<a class="headerlink" href="#save-directives-option" title="Link to this heading"></a></h4>
 <p>#export Sheet:</p>
 <table class="docutils align-default">
-<colgroup>
-<col style="width: 64%" />
-<col style="width: 36%" />
-</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Sample ID</p></th>
 <th class="head"><p>Weight</p></th>
@@ -652,11 +619,6 @@ will keep all the tables that match the regular expressions.</p>
 </table>
 <p>#automate Sheet:</p>
 <table class="docutils align-default">
-<colgroup>
-<col style="width: 14%" />
-<col style="width: 21%" />
-<col style="width: 65%" />
-</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>#tags</p></th>
 <th class="head"><p>#header</p></th>
@@ -676,11 +638,6 @@ will keep all the tables that match the regular expressions.</p>
 </table>
 <p>#modify Sheet:</p>
 <table class="docutils align-default">
-<colgroup>
-<col style="width: 14%" />
-<col style="width: 32%" />
-<col style="width: 54%" />
-</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>#tags</p></th>
 <th class="head"><p>#sample.id.value</p></th>
@@ -754,13 +711,9 @@ will keep all the tables that match the regular expressions.</p>
 </div>
 </section>
 <section id="save-export-option">
-<h4>Save Export Option<a class="headerlink" href="#save-export-option" title="Permalink to this heading"></a></h4>
+<h4>Save Export Option<a class="headerlink" href="#save-export-option" title="Link to this heading"></a></h4>
 <p>#export Sheet:</p>
 <table class="docutils align-default">
-<colgroup>
-<col style="width: 64%" />
-<col style="width: 36%" />
-</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Sample ID</p></th>
 <th class="head"><p>Weight</p></th>
@@ -777,11 +730,6 @@ will keep all the tables that match the regular expressions.</p>
 </table>
 <p>#automate Sheet:</p>
 <table class="docutils align-default">
-<colgroup>
-<col style="width: 14%" />
-<col style="width: 21%" />
-<col style="width: 65%" />
-</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>#tags</p></th>
 <th class="head"><p>#header</p></th>
@@ -822,11 +770,6 @@ will keep all the tables that match the regular expressions.</p>
 </div>
 <p>Export Output:</p>
 <table class="docutils align-default">
-<colgroup>
-<col style="width: 16%" />
-<col style="width: 25%" />
-<col style="width: 59%" />
-</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>#ignore</p></th>
 <th class="head"><p>Sample ID</p></th>
@@ -850,15 +793,9 @@ will keep all the tables that match the regular expressions.</p>
 </table>
 </section>
 <section id="show-option">
-<h4>Show Option<a class="headerlink" href="#show-option" title="Permalink to this heading"></a></h4>
+<h4>Show Option<a class="headerlink" href="#show-option" title="Link to this heading"></a></h4>
 <p>Input File:</p>
 <table class="docutils align-default">
-<colgroup>
-<col style="width: 6%" />
-<col style="width: 11%" />
-<col style="width: 41%" />
-<col style="width: 41%" />
-</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>#tags</p></th>
 <th class="head"><p>#sample.id</p></th>
@@ -956,7 +893,7 @@ will keep all the tables that match the regular expressions.</p>
 </section>
 </section>
 <section id="validate">
-<h2>Validate<a class="headerlink" href="#validate" title="Permalink to this heading"></a></h2>
+<h2>Validate<a class="headerlink" href="#validate" title="Link to this heading"></a></h2>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Usage:
     messes validate json &lt;input_JSON&gt; [--pds=&lt;pds&gt; [--csv | --xlsx | --json | --gs] | --no_base_schema] 
                                       [--no_extra_checks]
@@ -1067,14 +1004,14 @@ the value is a string type. This is accomplished by converting the string value 
 those keywords. As an example, say we have an “intensity” field whose value is “1234” as a string type. If you would like to validate
 that all intensity fields are greater than 0 you can use the “minimum” keyword in JSON schema. Normally, this wouldn’t work as the value
 is a string type, but if you add a “format” keyword and set the format to “numeric” then the validate command will convert intensity fields
-to floats before doing the normal JSON schema validation. The import thing to be aware of here is NOT to set the “type” keyword to “string”
+to floats before doing the normal JSON schema validation. The important thing to be aware of here is NOT to set the “type” keyword to “string”
 for any field that you use the “integer” or “numeric” format on because it will throw a wrong type validation error after the conversion to
 a numeric type. If you need to enforce a string type and also want the benefits of the “integer” and “numeric” formats, then use the “str_integer”
 and “str_numeric” formats. They operate the same as their “integer” and “numeric” counterparts, but also validate that the value is a string
 type. Again, DO NOT set a “type” field equal to “string” at the same time when using any of these formats because it will throw a wrong type
 validation error. “string” can be included in a list of types, but cannot be the only type.</p>
 <section id="id1">
-<h3>Options<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h3>
+<h3>Options<a class="headerlink" href="#id1" title="Link to this heading"></a></h3>
 <dl class="option-list">
 <dt><kbd><span class="option">--silent</span></kbd></dt>
 <dd><p>This option specifies what warnings should be printed. “full” will silence all warnings, “nuisance” will only silence warnings that
@@ -1129,115 +1066,115 @@ an input JSON file to reproduce the schema from the “json” command exactly.<
 </dl>
 </section>
 <section id="id2">
-<h3>Examples<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h3>
+<h3>Examples<a class="headerlink" href="#id2" title="Link to this heading"></a></h3>
 <p>The inputs and outputs are too large to demonstrate readily inline, but there are examples available in the examples folder on the <a class="reference external" href="https://github.com/MoseleyBioinformaticsLab/messes">GitHub</a> repository.</p>
 <section id="basic-json-validation">
-<h4>Basic JSON Validation<a class="headerlink" href="#basic-json-validation" title="Permalink to this heading"></a></h4>
+<h4>Basic JSON Validation<a class="headerlink" href="#basic-json-validation" title="Link to this heading"></a></h4>
 <p>Command Line:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">messes validate json input.json</span>
 </pre></div>
 </div>
 </section>
 <section id="json-validation-against-a-supported-format">
-<h4>JSON Validation Against A Supported Format<a class="headerlink" href="#json-validation-against-a-supported-format" title="Permalink to this heading"></a></h4>
+<h4>JSON Validation Against A Supported Format<a class="headerlink" href="#json-validation-against-a-supported-format" title="Link to this heading"></a></h4>
 <p>Command Line:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">messes validate json input.json --format mwtab_MS</span>
 </pre></div>
 </div>
 </section>
 <section id="json-validation-with-a-protocol-dependent-schema">
-<h4>JSON Validation With A Protocol-Dependent Schema<a class="headerlink" href="#json-validation-with-a-protocol-dependent-schema" title="Permalink to this heading"></a></h4>
+<h4>JSON Validation With A Protocol-Dependent Schema<a class="headerlink" href="#json-validation-with-a-protocol-dependent-schema" title="Link to this heading"></a></h4>
 <p>Command Line:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">messes validate json input.json --pds PDS_file.json</span>
 </pre></div>
 </div>
 </section>
 <section id="json-validation-with-added-user-schema">
-<h4>JSON Validation With Added User Schema<a class="headerlink" href="#json-validation-with-added-user-schema" title="Permalink to this heading"></a></h4>
+<h4>JSON Validation With Added User Schema<a class="headerlink" href="#json-validation-with-added-user-schema" title="Link to this heading"></a></h4>
 <p>Command Line:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">messes validate json input.json --additional user_schema.json</span>
 </pre></div>
 </div>
 </section>
 <section id="json-validation-with-only-added-user-schema">
-<h4>JSON Validation With Only Added User Schema<a class="headerlink" href="#json-validation-with-only-added-user-schema" title="Permalink to this heading"></a></h4>
+<h4>JSON Validation With Only Added User Schema<a class="headerlink" href="#json-validation-with-only-added-user-schema" title="Link to this heading"></a></h4>
 <p>Command Line:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">messes validate json input.json --additional user_schema.json --no_base_schema --no_extra_checks</span>
 </pre></div>
 </div>
 </section>
 <section id="read-input-json-from-stdin">
-<h4>Read Input JSON From STDIN<a class="headerlink" href="#read-input-json-from-stdin" title="Permalink to this heading"></a></h4>
+<h4>Read Input JSON From STDIN<a class="headerlink" href="#read-input-json-from-stdin" title="Link to this heading"></a></h4>
 <p>Command Line:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">messes validate json -</span>
 </pre></div>
 </div>
 </section>
 <section id="read-protocol-dependent-schema-from-stdin">
-<h4>Read Protocol-Dependent Schema From STDIN<a class="headerlink" href="#read-protocol-dependent-schema-from-stdin" title="Permalink to this heading"></a></h4>
+<h4>Read Protocol-Dependent Schema From STDIN<a class="headerlink" href="#read-protocol-dependent-schema-from-stdin" title="Link to this heading"></a></h4>
 <p>Command Line:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">messes validate json input.json --pds - --json</span>
 </pre></div>
 </div>
 </section>
 <section id="save-base-schema">
-<h4>Save Base Schema<a class="headerlink" href="#save-base-schema" title="Permalink to this heading"></a></h4>
+<h4>Save Base Schema<a class="headerlink" href="#save-base-schema" title="Link to this heading"></a></h4>
 <p>Command Line:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">messes validate save-schema output_name.json</span>
 </pre></div>
 </div>
 </section>
 <section id="save-composite-schema">
-<h4>Save Composite Schema<a class="headerlink" href="#save-composite-schema" title="Permalink to this heading"></a></h4>
+<h4>Save Composite Schema<a class="headerlink" href="#save-composite-schema" title="Link to this heading"></a></h4>
 <p>Command Line:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">messes validate save-schema output_name.json --pds PDS_file.json --input input.json</span>
 </pre></div>
 </div>
 </section>
 <section id="save-format-schema">
-<h4>Save Format Schema<a class="headerlink" href="#save-format-schema" title="Permalink to this heading"></a></h4>
+<h4>Save Format Schema<a class="headerlink" href="#save-format-schema" title="Link to this heading"></a></h4>
 <p>Command Line:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">messes validate save-schema output_name.json --format mwtab_MS</span>
 </pre></div>
 </div>
 </section>
 <section id="validate-a-json-schema">
-<h4>Validate A JSON Schema<a class="headerlink" href="#validate-a-json-schema" title="Permalink to this heading"></a></h4>
+<h4>Validate A JSON Schema<a class="headerlink" href="#validate-a-json-schema" title="Link to this heading"></a></h4>
 <p>Command Line:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">messes validate schema input_schema.json</span>
 </pre></div>
 </div>
 </section>
 <section id="validate-a-protocol-dependent-schema">
-<h4>Validate A Protocol-Dependent Schema<a class="headerlink" href="#validate-a-protocol-dependent-schema" title="Permalink to this heading"></a></h4>
+<h4>Validate A Protocol-Dependent Schema<a class="headerlink" href="#validate-a-protocol-dependent-schema" title="Link to this heading"></a></h4>
 <p>Command Line:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">messes validate pds PDS_file.json</span>
 </pre></div>
 </div>
 </section>
 <section id="save-the-json-schema-created-from-the-protocol-dependent-schema">
-<h4>Save The JSON Schema Created From The Protocol-Dependent Schema<a class="headerlink" href="#save-the-json-schema-created-from-the-protocol-dependent-schema" title="Permalink to this heading"></a></h4>
+<h4>Save The JSON Schema Created From The Protocol-Dependent Schema<a class="headerlink" href="#save-the-json-schema-created-from-the-protocol-dependent-schema" title="Link to this heading"></a></h4>
 <p>Command Line:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">messes validate pds PDS_file.json --save PDS_JSON_Schema.json</span>
 </pre></div>
 </div>
 </section>
 <section id="transform-a-jsonized-protocol-dependent-schema-to-a-table">
-<h4>Transform A JSONized Protocol-Dependent Schema To A Table<a class="headerlink" href="#transform-a-jsonized-protocol-dependent-schema-to-a-table" title="Permalink to this heading"></a></h4>
+<h4>Transform A JSONized Protocol-Dependent Schema To A Table<a class="headerlink" href="#transform-a-jsonized-protocol-dependent-schema-to-a-table" title="Link to this heading"></a></h4>
 <p>Command Line:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">messes validate pds-to-table PDS_file.json tabular_PDS_file.csv</span>
 </pre></div>
 </div>
 </section>
 <section id="transform-a-tabular-protocol-dependent-schema-to-json">
-<h4>Transform A Tabular Protocol-Dependent Schema To JSON<a class="headerlink" href="#transform-a-tabular-protocol-dependent-schema-to-json" title="Permalink to this heading"></a></h4>
+<h4>Transform A Tabular Protocol-Dependent Schema To JSON<a class="headerlink" href="#transform-a-tabular-protocol-dependent-schema-to-json" title="Link to this heading"></a></h4>
 <p>Command Line:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">messes validate pds-to-json PDS_file.csv JSONized_PDS_file.json</span>
 </pre></div>
 </div>
 </section>
 <section id="create-a-json-schema-from-conversion-directives">
-<h4>Create A JSON Schema From Conversion Directives<a class="headerlink" href="#create-a-json-schema-from-conversion-directives" title="Permalink to this heading"></a></h4>
+<h4>Create A JSON Schema From Conversion Directives<a class="headerlink" href="#create-a-json-schema-from-conversion-directives" title="Link to this heading"></a></h4>
 <p>Command Line:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">messes validate cd-to-json-schema directives.json directives_schema.json</span>
 </pre></div>
@@ -1246,7 +1183,7 @@ an input JSON file to reproduce the schema from the “json” command exactly.<
 </section>
 </section>
 <section id="convert">
-<h2>Convert<a class="headerlink" href="#convert" title="Permalink to this heading"></a></h2>
+<h2>Convert<a class="headerlink" href="#convert" title="Link to this heading"></a></h2>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Usage:
     messes convert mwtab (ms | nmr | nmr_binned) &lt;input_JSON&gt; &lt;output_name&gt; [--update &lt;conversion_directives&gt; | --override &lt;conversion_directives&gt;] [--silent]
     messes convert save-directives mwtab (ms | nmr | nmr_binned) &lt;output_filetype&gt; [&lt;output_name&gt;]
@@ -1261,7 +1198,7 @@ an input JSON file to reproduce the schema from the “json” command exactly.<
 Options:
     -h, --help                           - show this screen.
     -v, --version                        - show version.
-    --silent                             - silence all warnings.
+    --silent                             - silence all conversion warnings. (validation messages still printed)
     --update &lt;conversion_directives&gt;     - conversion directives that will be used to update the built-in directives for the format.
                                            This is intended to be used for simple changes such as updating the value of 
                                            the analysis ID. You only have to specify what needs to change, any values 
@@ -1290,7 +1227,7 @@ the user supply conversion directives. The supported formats may have additional
 each supported format are in the <a class="reference internal" href="supported_formats.html"><span class="doc">Supported Conversion Formats</span></a> section, and it is HIGHLY recommended to read through that section and look at examples before
 attempting a conversion.</p>
 <section id="id3">
-<h3>Options<a class="headerlink" href="#id3" title="Permalink to this heading"></a></h3>
+<h3>Options<a class="headerlink" href="#id3" title="Link to this heading"></a></h3>
 <dl class="option-list">
 <dt><kbd><span class="option">--update</span></kbd></dt>
 <dd><p>For supported formats, allows the user to specify a file of conversion directives that will be used to update the built-in directives for the format.
@@ -1308,38 +1245,38 @@ will not be used and these will be used instead.</p>
 </dl>
 </section>
 <section id="id4">
-<h3>Examples<a class="headerlink" href="#id4" title="Permalink to this heading"></a></h3>
+<h3>Examples<a class="headerlink" href="#id4" title="Link to this heading"></a></h3>
 <p>The inputs and outputs are too large to demonstrate readily inline, but there are examples available in the examples folder on the <a class="reference external" href="https://github.com/MoseleyBioinformaticsLab/messes">GitHub</a> repository.</p>
 <section id="basic-supported-format-run">
-<h4>Basic Supported Format Run<a class="headerlink" href="#basic-supported-format-run" title="Permalink to this heading"></a></h4>
+<h4>Basic Supported Format Run<a class="headerlink" href="#basic-supported-format-run" title="Link to this heading"></a></h4>
 <p>Command Line:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">messes convert mwtab ms input_file.json my_output_name</span>
 </pre></div>
 </div>
 </section>
 <section id="updating-built-in-directives-for-supported-format-run">
-<h4>Updating Built-In Directives For Supported Format Run<a class="headerlink" href="#updating-built-in-directives-for-supported-format-run" title="Permalink to this heading"></a></h4>
+<h4>Updating Built-In Directives For Supported Format Run<a class="headerlink" href="#updating-built-in-directives-for-supported-format-run" title="Link to this heading"></a></h4>
 <p>Command Line:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">messes convert mwtab ms input_file.json my_output_name --update directive_changes.json</span>
 </pre></div>
 </div>
 </section>
 <section id="overriding-built-in-directives-for-supported-format-run">
-<h4>Overriding Built-In Directives For Supported Format Run<a class="headerlink" href="#overriding-built-in-directives-for-supported-format-run" title="Permalink to this heading"></a></h4>
+<h4>Overriding Built-In Directives For Supported Format Run<a class="headerlink" href="#overriding-built-in-directives-for-supported-format-run" title="Link to this heading"></a></h4>
 <p>Command Line:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">messes convert mwtab ms input_file.json my_output_name --override new_directives.json</span>
 </pre></div>
 </div>
 </section>
 <section id="save-built-in-directives-for-supported-formats">
-<h4>Save Built-In Directives For Supported Formats<a class="headerlink" href="#save-built-in-directives-for-supported-formats" title="Permalink to this heading"></a></h4>
+<h4>Save Built-In Directives For Supported Formats<a class="headerlink" href="#save-built-in-directives-for-supported-formats" title="Link to this heading"></a></h4>
 <p>Command Line:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">messes convert save-directives ms json</span>
 </pre></div>
 </div>
 </section>
 <section id="basic-generic-run">
-<h4>Basic Generic Run<a class="headerlink" href="#basic-generic-run" title="Permalink to this heading"></a></h4>
+<h4>Basic Generic Run<a class="headerlink" href="#basic-generic-run" title="Link to this heading"></a></h4>
 <p>Command Line:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">messes convert generic input_file.json my_output_name my_conversion_directives.json</span>
 </pre></div>

@@ -1,24 +1,24 @@
+
+
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../../../">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>messes.convert.convert &mdash; MESSES 1.0.2 documentation</title>
-      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../../../_static/css/custom_css.css" type="text/css" />
-      <link rel="stylesheet" href="../../../_static/sphinxcontrib-images/LightBox2/lightbox2/dist/css/lightbox.css" type="text/css" />
-  <!--[if lt IE 9]>
-    <script src="../../../_static/js/html5shiv.min.js"></script>
-  <![endif]-->
+  <title>messes.convert.convert &mdash; MESSES 1.1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/custom_css.css?v=9359fcaf" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/sphinxcontrib-images/LightBox2/lightbox2/dist/css/lightbox.min.css?v=6e7d0de0" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/sphinxcontrib-images/LightBox2/lightbox2-customize/pointer.css?v=c97663ff" />
+
   
-        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
-        <script src="../../../_static/jquery.js"></script>
-        <script src="../../../_static/underscore.js"></script>
-        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script src="../../../_static/doctools.js"></script>
-        <script src="../../../_static/sphinx_highlight.js"></script>
-        <script src="../../../_static/sphinxcontrib-images/LightBox2/lightbox2/dist/js/lightbox-plus-jquery.min.js"></script>
-        <script src="../../../_static/sphinxcontrib-images/LightBox2/lightbox2-customize/jquery-noconflict.js"></script>
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../_static/documentation_options.js?v=fc837d61"></script>
+      <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../../../_static/sphinxcontrib-images/LightBox2/lightbox2/dist/js/lightbox-plus-jquery.min.js?v=f0ca4bb6"></script>
+      <script src="../../../_static/sphinxcontrib-images/LightBox2/lightbox2-customize/jquery-noconflict.js?v=12818e64"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" /> 
@@ -29,14 +29,15 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../../../index.html" class="icon icon-home"> MESSES
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            MESSES
           </a>
-              <div class="version">
-                1.0.2
-              </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -52,6 +53,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../experiment_description_specification.html">Experiment Description Specification</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../protocol_dependent_schema.html">Protocol-Dependent Schema</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../supported_formats.html">Supported Conversion Formats</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../common_conventions.html">Common Conventions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../api.html">API</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../license.html">License</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../todo.html">TODO List</a></li>
@@ -70,9 +72,9 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="../../index.html">Module code</a> &raquo;</li>
-      <li>messes.convert.convert</li>
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">messes.convert.convert</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -100,7 +102,7 @@
 <span class="sd">Options:</span>
 <span class="sd">    -h, --help                           - show this screen.</span>
 <span class="sd">    -v, --version                        - show version.</span>
-<span class="sd">    --silent                             - silence all warnings.</span>
+<span class="sd">    --silent                             - silence all conversion warnings. (validation messages still printed)</span>
 <span class="sd">    --update &lt;conversion_directives&gt;     - conversion directives that will be used to update the built-in directives for the format.</span>
 <span class="sd">                                           This is intended to be used for simple changes such as updating the value of </span>
 <span class="sd">                                           the analysis ID. You only have to specify what needs to change, any values </span>
@@ -123,35 +125,35 @@
 
 <span class="sd">&quot;&quot;&quot;</span>
 
-<span class="kn">import</span> <span class="nn">operator</span>
-<span class="kn">import</span> <span class="nn">re</span>
-<span class="kn">import</span> <span class="nn">sys</span>
-<span class="kn">import</span> <span class="nn">pathlib</span>
-<span class="kn">from</span> <span class="nn">importlib.machinery</span> <span class="kn">import</span> <span class="n">SourceFileLoader</span>
-<span class="kn">import</span> <span class="nn">json</span>
-<span class="kn">import</span> <span class="nn">datetime</span>
-<span class="kn">import</span> <span class="nn">collections.abc</span>
-<span class="kn">import</span> <span class="nn">traceback</span>
-<span class="kn">import</span> <span class="nn">io</span>
-<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">operator</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">re</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pathlib</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">importlib.machinery</span><span class="w"> </span><span class="kn">import</span> <span class="n">SourceFileLoader</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">datetime</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">collections.abc</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">traceback</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">io</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span>
 
-<span class="kn">import</span> <span class="nn">pandas</span>
-<span class="kn">import</span> <span class="nn">docopt</span>
-<span class="kn">import</span> <span class="nn">mwtab</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">docopt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">mwtab</span>
 
-<span class="kn">from</span> <span class="nn">messes.extract</span> <span class="kn">import</span> <span class="n">extract</span>
-<span class="kn">from</span> <span class="nn">messes</span> <span class="kn">import</span> <span class="n">__version__</span>
-<span class="kn">from</span> <span class="nn">messes.convert</span> <span class="kn">import</span> <span class="n">mwtab_conversion_directives</span>
-<span class="kn">from</span> <span class="nn">messes.convert</span> <span class="kn">import</span> <span class="n">mwtab_functions</span>
-<span class="kn">from</span> <span class="nn">messes.convert</span> <span class="kn">import</span> <span class="n">user_input_checking</span>
-<span class="kn">from</span> <span class="nn">messes.convert</span> <span class="kn">import</span> <span class="n">convert_schema</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">messes.extract</span><span class="w"> </span><span class="kn">import</span> <span class="n">extract</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">messes</span><span class="w"> </span><span class="kn">import</span> <span class="n">__version__</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">messes.convert</span><span class="w"> </span><span class="kn">import</span> <span class="n">mwtab_conversion_directives</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">messes.convert</span><span class="w"> </span><span class="kn">import</span> <span class="n">mwtab_functions</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">messes.convert</span><span class="w"> </span><span class="kn">import</span> <span class="n">user_input_checking</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">messes.convert</span><span class="w"> </span><span class="kn">import</span> <span class="n">convert_schema</span>
 
 <span class="c1">## TODO add check to see if a section type directive is in the same table as others and print a warning because the section type overwrites the others.</span>
 
 
 <span class="n">supported_formats_and_sub_commands</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;mwtab&quot;</span><span class="p">:[</span><span class="s2">&quot;ms&quot;</span><span class="p">,</span> <span class="s2">&quot;nmr&quot;</span><span class="p">,</span> <span class="s2">&quot;nmr_binned&quot;</span><span class="p">]}</span>
 
-<span class="k">def</span> <span class="nf">main</span><span class="p">()</span> <span class="p">:</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span> <span class="p">:</span>
     <span class="n">args</span> <span class="o">=</span> <span class="n">docopt</span><span class="o">.</span><span class="n">docopt</span><span class="p">(</span><span class="vm">__doc__</span><span class="p">,</span> <span class="n">version</span><span class="o">=</span><span class="n">__version__</span><span class="p">)</span>
     
     <span class="c1">## Validate args.</span>
@@ -270,6 +272,15 @@
     <span class="n">output_json</span> <span class="o">=</span> <span class="p">{}</span>
     <span class="k">for</span> <span class="n">conversion_table</span><span class="p">,</span> <span class="n">conversion_records</span> <span class="ow">in</span> <span class="n">conversion_directives</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
         <span class="k">for</span> <span class="n">conversion_record_name</span><span class="p">,</span> <span class="n">conversion_attributes</span> <span class="ow">in</span> <span class="n">conversion_records</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="n">skip</span> <span class="o">=</span> <span class="kc">False</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">skip_attr</span> <span class="o">:=</span> <span class="n">conversion_attributes</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;skip&quot;</span><span class="p">))</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">skip_attr</span><span class="p">,</span> <span class="nb">bool</span><span class="p">):</span>
+                    <span class="n">skip</span> <span class="o">=</span> <span class="n">skip_attr</span>
+                <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">skip_attr</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span> <span class="ow">and</span> <span class="n">skip_attr</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="s2">&quot;true&quot;</span><span class="p">:</span>
+                    <span class="n">skip</span> <span class="o">=</span> <span class="kc">True</span>
+            <span class="k">if</span> <span class="n">skip</span><span class="p">:</span>
+                <span class="k">continue</span>
+            
             <span class="n">required</span> <span class="o">=</span> <span class="kc">True</span>
             <span class="k">if</span> <span class="p">(</span><span class="n">required_attr</span> <span class="o">:=</span> <span class="n">conversion_attributes</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;required&quot;</span><span class="p">))</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
                 <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">required_attr</span><span class="p">,</span> <span class="nb">bool</span><span class="p">):</span>
@@ -329,80 +340,45 @@
     <span class="c1">## Save the generated json.</span>
     <span class="c1">#########################</span>
     <span class="n">json_save_name</span> <span class="o">=</span> <span class="n">args</span><span class="p">[</span><span class="s2">&quot;&lt;output_name&gt;&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot;.json&quot;</span>
-    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">json_save_name</span><span class="p">,</span><span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">jsonFile</span><span class="p">:</span>
-        <span class="n">jsonFile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">output_json</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">2</span><span class="p">))</span>
+    
+    <span class="k">if</span> <span class="n">args</span><span class="p">[</span><span class="s1">&#39;generic&#39;</span><span class="p">]:</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">json_save_name</span><span class="p">,</span><span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">jsonFile</span><span class="p">:</span>
+            <span class="n">jsonFile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">output_json</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">2</span><span class="p">))</span>
     
     <span class="k">if</span> <span class="n">args</span><span class="p">[</span><span class="s2">&quot;mwtab&quot;</span><span class="p">]:</span>
-        <span class="c1">## Optional way to do things compared to the code block below this.</span>
-        <span class="c1"># with tempfile.TemporaryFile(mode=&quot;w+&quot;, encoding=&quot;utf-8&quot;) as tp:</span>
-        <span class="c1">#     tp.write(json.dumps(output_json))</span>
-        <span class="c1">#     tp.seek(0)</span>
-        <span class="c1">#     mwfile = mwtab.mwtab.MWTabFile(&quot;&quot;)</span>
-        <span class="c1">#     mwfile.read(tp)</span>
-        <span class="c1"># with open(args[&quot;&lt;output-name&gt;&quot;], &#39;w&#39;, encoding=&quot;utf-8&quot;) as outfile:</span>
-        <span class="c1">#     mwfile.write(outfile, file_format=&quot;mwtab&quot;)</span>
-        
-        <span class="n">mwtab_key_order</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;METABOLOMICS WORKBENCH&#39;</span><span class="p">:[</span><span class="s1">&#39;STUDY_ID&#39;</span><span class="p">,</span> <span class="s1">&#39;ANALYSIS_ID&#39;</span><span class="p">,</span> <span class="s1">&#39;VERSION&#39;</span><span class="p">,</span> <span class="s1">&#39;CREATED_ON&#39;</span><span class="p">],</span> 
-                           <span class="s1">&#39;PROJECT&#39;</span><span class="p">:[],</span> 
-                           <span class="s1">&#39;STUDY&#39;</span><span class="p">:[],</span> 
-                           <span class="s1">&#39;SUBJECT&#39;</span><span class="p">:[],</span> 
-                           <span class="s1">&#39;SUBJECT_SAMPLE_FACTORS&#39;</span><span class="p">:[],</span> 
-                           <span class="s1">&#39;COLLECTION&#39;</span><span class="p">:[],</span> 
-                           <span class="s1">&#39;TREATMENT&#39;</span><span class="p">:[],</span> 
-                           <span class="s1">&#39;SAMPLEPREP&#39;</span><span class="p">:[],</span> 
-                           <span class="s1">&#39;CHROMATOGRAPHY&#39;</span><span class="p">:[],</span> 
-                           <span class="s1">&#39;ANALYSIS&#39;</span><span class="p">:[],</span> 
-                           <span class="p">}</span>
-                
-        <span class="n">extended_key_order</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;ms&quot;</span><span class="p">:{</span><span class="s1">&#39;MS&#39;</span><span class="p">:[],</span> 
-                                    <span class="s1">&#39;MS_METABOLITE_DATA&#39;</span><span class="p">:[</span><span class="s1">&#39;Units&#39;</span><span class="p">,</span> <span class="s1">&#39;Data&#39;</span><span class="p">,</span> <span class="s1">&#39;Metabolites&#39;</span><span class="p">,</span> <span class="s1">&#39;Extended&#39;</span><span class="p">]},</span>
-                              <span class="s2">&quot;nmr&quot;</span><span class="p">:{</span><span class="s1">&#39;NM&#39;</span><span class="p">:[],</span> 
-                                     <span class="s1">&#39;NMR_METABOLITE_DATA&#39;</span><span class="p">:[</span><span class="s1">&#39;Units&#39;</span><span class="p">,</span> <span class="s1">&#39;Data&#39;</span><span class="p">,</span> <span class="s1">&#39;Metabolites&#39;</span><span class="p">,</span> <span class="s1">&#39;Extended&#39;</span><span class="p">]},</span>
-                              <span class="s2">&quot;nmr_binned&quot;</span><span class="p">:{</span><span class="s1">&#39;NM&#39;</span><span class="p">:[],</span> 
-                                            <span class="s1">&#39;NMR_BINNED_DATA&#39;</span><span class="p">:[</span><span class="s1">&#39;Units&#39;</span><span class="p">,</span> <span class="s1">&#39;Data&#39;</span><span class="p">]}}</span>
-        
-        <span class="n">mwtab_key_order</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">extended_key_order</span><span class="p">[</span><span class="n">sub_command</span><span class="p">])</span>
-        
         
         <span class="n">mwtabfile</span> <span class="o">=</span> <span class="n">mwtab</span><span class="o">.</span><span class="n">mwtab</span><span class="o">.</span><span class="n">MWTabFile</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
-        
-        <span class="c1">## The mwtab package doesn&#39;t ensure correct ordering itself, so we have to make sure everything is ordered correctly.</span>
-        <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">sub_keys</span> <span class="ow">in</span> <span class="n">mwtab_key_order</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-            <span class="k">if</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">output_json</span><span class="p">:</span>
-                <span class="n">mwtabfile</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
-                <span class="k">for</span> <span class="n">sub_key</span> <span class="ow">in</span> <span class="n">sub_keys</span><span class="p">:</span>
-                    <span class="k">if</span> <span class="n">sub_key</span> <span class="ow">in</span> <span class="n">output_json</span><span class="p">[</span><span class="n">key</span><span class="p">]:</span>
-                        <span class="n">mwtabfile</span><span class="p">[</span><span class="n">key</span><span class="p">][</span><span class="n">sub_key</span><span class="p">]</span> <span class="o">=</span> <span class="n">output_json</span><span class="p">[</span><span class="n">key</span><span class="p">][</span><span class="n">sub_key</span><span class="p">]</span>
-                <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">output_json</span><span class="p">[</span><span class="n">key</span><span class="p">],</span> <span class="nb">dict</span><span class="p">):</span>
-                    <span class="n">mwtabfile</span><span class="p">[</span><span class="n">key</span><span class="p">]</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">output_json</span><span class="p">[</span><span class="n">key</span><span class="p">])</span>
-                <span class="k">else</span><span class="p">:</span>
-                    <span class="n">mwtabfile</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">output_json</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
-        
-        <span class="c1">## If you just update the dict then things can be out of order, so switched to the above method until mwtab is improved.</span>
-        <span class="c1"># mwtabfile.update(output_json)</span>
-        <span class="n">mwtabfile</span><span class="o">.</span><span class="n">header</span> <span class="o">=</span> <span class="s2">&quot; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
-            <span class="p">[</span><span class="s2">&quot;#METABOLOMICS WORKBENCH&quot;</span><span class="p">]</span>
-            <span class="o">+</span> <span class="p">[</span><span class="n">item</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot;:&quot;</span> <span class="o">+</span> <span class="n">item</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">mwtabfile</span><span class="p">[</span><span class="s2">&quot;METABOLOMICS WORKBENCH&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="n">item</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;VERSION&quot;</span><span class="p">,</span> <span class="s2">&quot;CREATED_ON&quot;</span><span class="p">]]</span>
-        <span class="p">)</span>            
-        
+                
         <span class="n">mwtabfile</span><span class="o">.</span><span class="n">source</span> <span class="o">=</span> <span class="n">args</span><span class="p">[</span><span class="s2">&quot;&lt;input_JSON&gt;&quot;</span><span class="p">]</span>
-        <span class="n">validated_file</span><span class="p">,</span> <span class="n">errors</span> <span class="o">=</span> <span class="n">mwtab</span><span class="o">.</span><span class="n">validator</span><span class="o">.</span><span class="n">validate_file</span><span class="p">(</span><span class="n">mwtabfile</span><span class="p">)</span>
+        <span class="n">mwtabfile</span><span class="o">.</span><span class="n">read_from_str</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">output_json</span><span class="p">))</span>
         
-        <span class="k">if</span> <span class="s2">&quot;Status: Passing&quot;</span> <span class="ow">in</span> <span class="n">errors</span><span class="p">:</span>
-            <span class="n">mwtab_save_name</span> <span class="o">=</span> <span class="n">args</span><span class="p">[</span><span class="s2">&quot;&lt;output_name&gt;&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot;.txt&quot;</span>
-            <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">mwtab_save_name</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">outfile</span><span class="p">:</span>
-                <span class="n">mwtabfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">outfile</span><span class="p">,</span> <span class="n">file_format</span><span class="o">=</span><span class="s2">&quot;mwtab&quot;</span><span class="p">)</span>
+        <span class="n">string_errors</span><span class="p">,</span> <span class="n">json_errors</span> <span class="o">=</span> <span class="n">mwtab</span><span class="o">.</span><span class="n">validator</span><span class="o">.</span><span class="n">validate_file</span><span class="p">(</span><span class="n">mwtabfile</span><span class="p">)</span>
+        <span class="n">warning_count</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">for</span> <span class="n">error</span> <span class="ow">in</span> <span class="n">json_errors</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">error</span><span class="p">[</span><span class="s1">&#39;message&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;Warning&#39;</span><span class="p">):</span>
+                <span class="n">warning_count</span> <span class="o">+=</span> <span class="mi">1</span>
+        
+        <span class="k">if</span> <span class="n">warning_count</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">json_errors</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">warning_count</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Warning: There were warnings when validating the mwtab file.&quot;</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="p">)</span>
+                <span class="nb">print</span><span class="p">(</span><span class="n">string_errors</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Error: An error occured when validating the mwtab file.&quot;</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="p">)</span>
-            <span class="nb">print</span><span class="p">(</span><span class="n">errors</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="p">)</span>
-            <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">()</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">string_errors</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="p">)</span>
+        
+        <span class="n">mwtab_save_name</span> <span class="o">=</span> <span class="n">args</span><span class="p">[</span><span class="s2">&quot;&lt;output_name&gt;&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot;.txt&quot;</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">mwtab_save_name</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">outfile</span><span class="p">:</span>
+            <span class="n">mwtabfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">outfile</span><span class="p">,</span> <span class="n">file_format</span><span class="o">=</span><span class="s2">&quot;mwtab&quot;</span><span class="p">)</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">json_save_name</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">outfile</span><span class="p">:</span>
+            <span class="n">mwtabfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">outfile</span><span class="p">,</span> <span class="n">file_format</span><span class="o">=</span><span class="s2">&quot;json&quot;</span><span class="p">)</span>
+        
 
 
 
 
 <span class="n">literal_regex</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;^</span><span class="se">\&quot;</span><span class="s2">(.*)</span><span class="se">\&quot;</span><span class="s2">$&quot;</span>
 
-<span class="k">def</span> <span class="nf">_handle_errors</span><span class="p">(</span><span class="n">required</span><span class="p">:</span> <span class="nb">bool</span><span class="p">,</span> <span class="n">silent</span><span class="p">:</span> <span class="nb">bool</span><span class="p">,</span> <span class="n">message</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">_handle_errors</span><span class="p">(</span><span class="n">required</span><span class="p">:</span> <span class="nb">bool</span><span class="p">,</span> <span class="n">silent</span><span class="p">:</span> <span class="nb">bool</span><span class="p">,</span> <span class="n">message</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;If required is True print message as error and exit, else print message as warning if silent is False.</span>
 <span class="sd">    </span>
 <span class="sd">    Args:</span>
@@ -418,7 +394,9 @@
             <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Warning: &quot;</span> <span class="o">+</span> <span class="n">message</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="p">)</span>
 
 
-<div class="viewcode-block" id="update"><a class="viewcode-back" href="../../../api.html#messes.convert.convert.update">[docs]</a><span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="n">original_dict</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span> <span class="n">upgrade_dict</span><span class="p">:</span> <span class="nb">dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+<div class="viewcode-block" id="update">
+<a class="viewcode-back" href="../../../api.html#messes.convert.convert.update">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">update</span><span class="p">(</span><span class="n">original_dict</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span> <span class="n">upgrade_dict</span><span class="p">:</span> <span class="nb">dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Update a dictionary in a nested fashion.</span>
 <span class="sd">    </span>
 <span class="sd">    Args:</span>
@@ -436,7 +414,8 @@
     <span class="k">return</span> <span class="n">original_dict</span></div>
 
 
-<span class="k">def</span> <span class="nf">_nested_set</span><span class="p">(</span><span class="n">dic</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span> <span class="n">keys</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">value</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_nested_set</span><span class="p">(</span><span class="n">dic</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span> <span class="n">keys</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">value</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Creates nested dictionaries in dic for all but the last key and creates a key value pair in the last dictionary.</span>
 <span class="sd">    </span>
 <span class="sd">    Args:</span>
@@ -449,7 +428,7 @@
     <span class="n">dic</span><span class="p">[</span><span class="n">keys</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]]</span> <span class="o">=</span> <span class="n">value</span>
 
 
-<span class="k">def</span> <span class="nf">_sort_by_getter</span><span class="p">(</span><span class="n">pair</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span><span class="nb">dict</span><span class="p">],</span> <span class="n">keys</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">:</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">_sort_by_getter</span><span class="p">(</span><span class="n">pair</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span><span class="nb">dict</span><span class="p">],</span> <span class="n">keys</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Piece of a sorted call to return the values of certain keys in a dictionary.</span>
 <span class="sd">    </span>
 <span class="sd">    Args:</span>
@@ -482,7 +461,7 @@
 <span class="c1">#     return table_records</span>
 
 
-<span class="k">def</span> <span class="nf">_build_table_records</span><span class="p">(</span><span class="n">has_test</span><span class="p">:</span> <span class="nb">bool</span><span class="p">,</span> <span class="n">conversion_record_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">conversion_table</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">conversion_attributes</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span> 
+<span class="k">def</span><span class="w"> </span><span class="nf">_build_table_records</span><span class="p">(</span><span class="n">has_test</span><span class="p">:</span> <span class="nb">bool</span><span class="p">,</span> <span class="n">conversion_record_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">conversion_table</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">conversion_attributes</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span> 
                          <span class="n">input_json</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span> <span class="n">required</span><span class="p">:</span> <span class="nb">bool</span><span class="p">,</span> <span class="n">silent</span><span class="p">:</span> <span class="nb">bool</span><span class="p">,</span> <span class="n">test_field</span><span class="p">:</span> <span class="nb">str</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">test_value</span><span class="p">:</span> <span class="nb">str</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Loop over a table in the input_json and pull the correct records and sort if necessary.</span>
 <span class="sd">    </span>
@@ -541,7 +520,9 @@
     <span class="k">return</span> <span class="n">table_records</span>
 
 
-<div class="viewcode-block" id="handle_code_field"><a class="viewcode-back" href="../../../api.html#messes.convert.convert.handle_code_field">[docs]</a><span class="k">def</span> <span class="nf">handle_code_field</span><span class="p">(</span><span class="n">input_json</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span> <span class="n">conversion_table</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">conversion_record_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> 
+<div class="viewcode-block" id="handle_code_field">
+<a class="viewcode-back" href="../../../api.html#messes.convert.convert.handle_code_field">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">handle_code_field</span><span class="p">(</span><span class="n">input_json</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span> <span class="n">conversion_table</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">conversion_record_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> 
                       <span class="n">conversion_attributes</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span> <span class="n">required</span><span class="p">:</span> <span class="nb">bool</span><span class="p">,</span> <span class="n">silent</span><span class="p">:</span> <span class="nb">bool</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;If conversion_attributes has code and/or import fields then import and run the code appropriately.</span>
 <span class="sd">    </span>
@@ -583,7 +564,8 @@
 
 
 
-<span class="k">def</span> <span class="nf">_build_string_value</span><span class="p">(</span><span class="n">fields</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span><span class="nb">bool</span><span class="p">]],</span> <span class="n">conversion_table</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">conversion_record_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> 
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_build_string_value</span><span class="p">(</span><span class="n">fields</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span><span class="nb">bool</span><span class="p">]],</span> <span class="n">conversion_table</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">conversion_record_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> 
                         <span class="n">record_table</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">record_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">record_attributes</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span> <span class="n">required</span><span class="p">:</span> <span class="nb">bool</span><span class="p">,</span> <span class="n">silent</span><span class="p">:</span> <span class="nb">bool</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="o">|</span><span class="kc">None</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Build a single string value from the input record and conversion record.</span>
 <span class="sd">    </span>
@@ -627,7 +609,7 @@
 
 
 
-<span class="k">def</span> <span class="nf">_build_matrix_record_dict</span><span class="p">(</span><span class="n">matrix_dict</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span> 
+<span class="k">def</span><span class="w"> </span><span class="nf">_build_matrix_record_dict</span><span class="p">(</span><span class="n">matrix_dict</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span> 
                               <span class="n">collate_key</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> 
                               <span class="n">headers</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">dict</span><span class="p">],</span> 
                               <span class="n">record_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> 
@@ -700,7 +682,7 @@
     <span class="k">return</span> <span class="n">matrix_dict</span>
 
 
-<span class="k">def</span> <span class="nf">_determine_header_input_keys</span><span class="p">(</span><span class="n">header</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span> <span class="n">record_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">record_attributes</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span> <span class="n">conversion_table</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> 
+<span class="k">def</span><span class="w"> </span><span class="nf">_determine_header_input_keys</span><span class="p">(</span><span class="n">header</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span> <span class="n">record_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">record_attributes</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span> <span class="n">conversion_table</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> 
                                  <span class="n">conversion_record_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">conversion_attributes</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span> <span class="n">values_to_str</span><span class="p">:</span> <span class="nb">bool</span><span class="p">,</span> 
                                  <span class="n">required</span><span class="p">:</span> <span class="nb">bool</span><span class="p">,</span> <span class="n">silent</span><span class="p">:</span> <span class="nb">bool</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Based on the header dict pull the correct values from the record_attributes.</span>
@@ -750,7 +732,9 @@
 
 
 
-<div class="viewcode-block" id="compute_string_value"><a class="viewcode-back" href="../../../api.html#messes.convert.convert.compute_string_value">[docs]</a><span class="k">def</span> <span class="nf">compute_string_value</span><span class="p">(</span><span class="n">input_json</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span> <span class="n">conversion_table</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">conversion_record_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> 
+<div class="viewcode-block" id="compute_string_value">
+<a class="viewcode-back" href="../../../api.html#messes.convert.convert.compute_string_value">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">compute_string_value</span><span class="p">(</span><span class="n">input_json</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span> <span class="n">conversion_table</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">conversion_record_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> 
                          <span class="n">conversion_attributes</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span> <span class="n">required</span><span class="p">:</span> <span class="nb">bool</span><span class="p">,</span> <span class="n">silent</span><span class="p">:</span> <span class="nb">bool</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="o">|</span><span class="kc">None</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Determine the string value for the conversion directive.</span>
 <span class="sd">    </span>
@@ -861,10 +845,13 @@
             
     <span class="k">return</span> <span class="n">value</span></div>
 
+
                 
                 
     
-<div class="viewcode-block" id="compute_matrix_value"><a class="viewcode-back" href="../../../api.html#messes.convert.convert.compute_matrix_value">[docs]</a><span class="k">def</span> <span class="nf">compute_matrix_value</span><span class="p">(</span><span class="n">input_json</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span> <span class="n">conversion_table</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">conversion_record_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> 
+<div class="viewcode-block" id="compute_matrix_value">
+<a class="viewcode-back" href="../../../api.html#messes.convert.convert.compute_matrix_value">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">compute_matrix_value</span><span class="p">(</span><span class="n">input_json</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span> <span class="n">conversion_table</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">conversion_record_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> 
                          <span class="n">conversion_attributes</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span> <span class="n">required</span><span class="p">:</span> <span class="nb">bool</span><span class="p">,</span> <span class="n">silent</span><span class="p">:</span> <span class="nb">bool</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">dict</span><span class="p">]</span><span class="o">|</span><span class="kc">None</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Determine the matrix value for the conversion directive.</span>
 <span class="sd">    </span>
@@ -952,7 +939,8 @@
     <span class="k">if</span> <span class="n">table_records</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
         <span class="k">return</span> <span class="kc">None</span>
     
-        
+    
+    <span class="n">all_keys</span> <span class="o">=</span> <span class="p">{}</span>
     <span class="k">if</span> <span class="n">collate</span> <span class="o">:=</span> <span class="n">conversion_attributes</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;collate&quot;</span><span class="p">):</span>
         <span class="c1">## TODO think about whether to do collate.strip() here to remove spaces.</span>
         <span class="n">records</span> <span class="o">=</span> <span class="p">{}</span>
@@ -968,20 +956,22 @@
             <span class="k">if</span> <span class="n">collate_key</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">records</span><span class="p">:</span>
                 <span class="n">records</span><span class="p">[</span><span class="n">collate_key</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
             
-            <span class="n">records</span><span class="p">[</span><span class="n">collate_key</span><span class="p">]</span> <span class="o">=</span> <span class="n">_build_matrix_record_dict</span><span class="p">(</span><span class="n">records</span><span class="p">[</span><span class="n">collate_key</span><span class="p">],</span> 
-                                                             <span class="n">collate_key</span><span class="p">,</span> 
-                                                             <span class="n">headers</span><span class="p">,</span> 
-                                                             <span class="n">record_name</span><span class="p">,</span> 
-                                                             <span class="n">record_attributes</span><span class="p">,</span> 
-                                                             <span class="n">conversion_table</span><span class="p">,</span> 
-                                                             <span class="n">conversion_record_name</span><span class="p">,</span> 
-                                                             <span class="n">conversion_attributes</span><span class="p">,</span> 
-                                                             <span class="n">fields_to_headers</span><span class="p">,</span>
-                                                             <span class="n">exclusion_headers</span><span class="p">,</span>
-                                                             <span class="n">optional_headers</span><span class="p">,</span>
-                                                             <span class="n">values_to_str</span><span class="p">,</span> 
-                                                             <span class="n">required</span><span class="p">,</span> 
-                                                             <span class="n">silent</span><span class="p">)</span>
+            <span class="n">temp_dict</span> <span class="o">=</span> <span class="n">_build_matrix_record_dict</span><span class="p">(</span><span class="n">records</span><span class="p">[</span><span class="n">collate_key</span><span class="p">],</span> 
+                                                          <span class="n">collate_key</span><span class="p">,</span> 
+                                                          <span class="n">headers</span><span class="p">,</span> 
+                                                          <span class="n">record_name</span><span class="p">,</span> 
+                                                          <span class="n">record_attributes</span><span class="p">,</span> 
+                                                          <span class="n">conversion_table</span><span class="p">,</span> 
+                                                          <span class="n">conversion_record_name</span><span class="p">,</span> 
+                                                          <span class="n">conversion_attributes</span><span class="p">,</span> 
+                                                          <span class="n">fields_to_headers</span><span class="p">,</span>
+                                                          <span class="n">exclusion_headers</span><span class="p">,</span>
+                                                          <span class="n">optional_headers</span><span class="p">,</span>
+                                                          <span class="n">values_to_str</span><span class="p">,</span> 
+                                                          <span class="n">required</span><span class="p">,</span> 
+                                                          <span class="n">silent</span><span class="p">)</span>
+            <span class="n">records</span><span class="p">[</span><span class="n">collate_key</span><span class="p">]</span> <span class="o">=</span> <span class="n">temp_dict</span>
+            <span class="n">all_keys</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">temp_dict</span><span class="p">)</span>
                                 
         <span class="n">records</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">records</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
     
@@ -1004,6 +994,14 @@
                                                    <span class="n">silent</span><span class="p">)</span>
             
             <span class="n">records</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">temp_dict</span><span class="p">)</span>
+            <span class="n">all_keys</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">temp_dict</span><span class="p">)</span>
+    
+    <span class="k">if</span> <span class="n">conversion_attributes</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;fill_headers&quot;</span><span class="p">)</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">fill</span> <span class="o">=</span> <span class="n">conversion_attributes</span><span class="p">[</span><span class="s1">&#39;fill_headers&#39;</span><span class="p">]</span>
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">record</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">records</span><span class="p">):</span>
+            <span class="n">temp_dict</span> <span class="o">=</span> <span class="p">{</span><span class="n">key</span><span class="p">:</span> <span class="n">fill</span> <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">all_keys</span><span class="p">}</span>
+            <span class="n">temp_dict</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">record</span><span class="p">)</span>
+            <span class="n">records</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">temp_dict</span>
     
     <span class="k">if</span> <span class="ow">not</span> <span class="n">records</span><span class="p">:</span>
         <span class="k">return</span> <span class="kc">None</span>
@@ -1011,8 +1009,11 @@
 
 
 
+
     
-<div class="viewcode-block" id="directives_to_table"><a class="viewcode-back" href="../../../api.html#messes.convert.convert.directives_to_table">[docs]</a><span class="k">def</span> <span class="nf">directives_to_table</span><span class="p">(</span><span class="n">conversion_directives</span><span class="p">:</span> <span class="nb">dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pandas</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">frame</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+<div class="viewcode-block" id="directives_to_table">
+<a class="viewcode-back" href="../../../api.html#messes.convert.convert.directives_to_table">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">directives_to_table</span><span class="p">(</span><span class="n">conversion_directives</span><span class="p">:</span> <span class="nb">dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pandas</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">frame</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Convert conversion directives to a tagged table form.</span>
 <span class="sd">    </span>
 <span class="sd">    Args:</span>
@@ -1063,6 +1064,7 @@
             <span class="n">df_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">pandas</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">rows</span><span class="p">))</span>
             
     <span class="k">return</span> <span class="n">pandas</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">df_list</span><span class="p">)</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span></div>
+
             
                     
                 

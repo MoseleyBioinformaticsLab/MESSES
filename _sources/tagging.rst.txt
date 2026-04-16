@@ -66,6 +66,9 @@ Export Tags
     
 * Cells on this row will have tags over the columns to be exported.
 * Subsequent non-blank rows are interpreted as data unless the tag **'#ignore'** is used in the left most column.
+* Tags are read and executed from left to right, so order can matter. 
+
+    * For example, an "id" field must be specified before any "child" fields.
 
 Basic Example:
 
@@ -83,6 +86,10 @@ Keyword Tags
 * **#tags** - identifies tag header rows. Must be in the first column of a row.
 
    * Additional tag-value pairs in a cell with #tags are applied to all child records in this section, but are ignored for non-child records.
+   
+* **#transpose** - indicates that the table below this tag needs to be transposed to align with the provided tags.
+
+   * Should be specified after "#tags", i.e. "#tags;#transpose".
 
 * **#ignore** - ignore this row. Must be put in the first column of a row.
 
@@ -231,16 +238,16 @@ List Field Format
 
 Child Tag Format
 ----------------
-* Child record tags provides a mechanism for indicating parent-child relationships between records in the same table or between tables.
+* Child record tags provides a mechanism for indicating parent-child relationships between records in the same table.
    
    * The child tag indicates the creation of a new record.
    * Subsequent normal tags identify fields in the new child record.
-   * A special parentID field is added using the first ID tag indicated in the header row.
+   * A special parent_id field is added using the first ID tag indicated in the header row.
    * Format: **#%child.id=id_sub_string**
       
-      * The value for id_sub_string will be appended to the ID of the child's parent (parentID) to create the child ID.
+      * The value for id_sub_string will be appended to the ID of the child's parent (parent_id) to create the child ID.
       
-Example:
+Example 1:
 
 +-------+---------------+---------------------------------------------------------+---------------------------------------------------------+
 | #tags | #sample.id    | #%child.id=-media-0h;#.dry_weight;#.dry_weight%units=mg | #%child.id=-media-3h;#.dry_weight;#.dry_weight%units=mg |
@@ -265,13 +272,13 @@ Output JSON:
           "dry_weight": "4.2",
           "dry_weight%units": "mg",
           "id": "KO labelled_1-media-0h",
-          "parentID": "KO labelled_1"
+          "parent_id": "KO labelled_1"
         },
         "KO labelled_1-media-3h": {
           "dry_weight": "8.5",
           "dry_weight%units": "mg",
           "id": "KO labelled_1-media-3h",
-          "parentID": "KO labelled_1"
+          "parent_id": "KO labelled_1"
         },
         "KO labelled_2": {
           "id": "KO labelled_2"
@@ -280,16 +287,127 @@ Output JSON:
           "dry_weight": "4.7",
           "dry_weight%units": "mg",
           "id": "KO labelled_2-media-0h",
-          "parentID": "KO labelled_2"
+          "parent_id": "KO labelled_2"
         },
         "KO labelled_2-media-3h": {
           "dry_weight": "9.7",
           "dry_weight%units": "mg",
           "id": "KO labelled_2-media-3h",
-          "parentID": "KO labelled_2"
+          "parent_id": "KO labelled_2"
         }
       }
     }
+
+Example 2:
+This is not the expected way to use child tags, but it can work if you only need to capture 
+the parent child relationship.
+
++-------+---------------+----------------------------+----------------------------+
+| #tags | #sample.id    | #%child.id;#.field1=value1 | #%child.id;#.field1=value2 |
++-------+---------------+----------------------------+----------------------------+
+|       | KO labelled_1 | child1                     | child2                     |
++-------+---------------+----------------------------+----------------------------+
+
+Output JSON:
+
+.. code:: console
+
+    {
+      "sample": {
+        "child1": {
+          "field1": "value1",
+          "id": "child1",
+          "parent_id": "KO labelled_1"
+        },
+        "-child2": {
+          "field1": "value2",
+          "id": "child2",
+          "parent_id": "KO labelled_1"
+        },
+        "KO labelled_1": {
+          "id": "KO labelled_1"
+        }
+      }
+    }
+
+
+crecord Tags
+------------
+* Short for column record, this tag provides a way to indicate that a column should become a new record.
+* Similar to child tags, but without the parent-child relationship.
+* All fields specified to the left of the crecord tag will be included in the newly created records, but each row in the crecord column will create a new record.
+* In the case of multiple crecord tags, additional fields to the right of the crecord will only be added to the crecord on the left of that field.
+* An example that utilizes automation tags is in the Common Use Case Examples.
+
+Example:
+
++---------+------------------------------------------+---------------+-----------------------------+-------------+----------+----------------+------------+--------------------------------------------------------------------------------+---------------------------------------------------------------------------------+
+| #tags   | #measurement.assignment                  | #.ion_species | #.inchi_key                 | #.msi_level | #.m_z    | #.ret_time     | #.esi_mode | #%crecord.id=#.assignment+"-sample1";#.intensity;#.intensity%units="peak area" | #%crecord.id=#.assignment+"-sample2";#.intensity;#.intensity%units="peak area"  |
++=========+==========================================+===============+=============================+=============+==========+================+============+================================================================================+=================================================================================+
+| #ignore | annotation                               | ion species   | InChiKey                    | MSI level   | m/z      | ret.time (min) | ESI mode   | 1                                                                              | 2                                                                               |
++---------+------------------------------------------+---------------+-----------------------------+-------------+----------+----------------+------------+--------------------------------------------------------------------------------+---------------------------------------------------------------------------------+
+|         | (dehydro)ornithine                       | [M+H]+        | KFZHLVSVDLIACX-UHFFFAOYSA-N | 3           | 131.0872 | 2.363          | ESI pos    | 349                                                                            | 995                                                                             |
++---------+------------------------------------------+---------------+-----------------------------+-------------+----------+----------------+------------+--------------------------------------------------------------------------------+---------------------------------------------------------------------------------+
+|         | .beta.-Nicotinamide adenine dinucleotide | [M+2H]2+      | BAWFJGJZGIEFAR-OWXIGJDBSA-N | 2           | 332.5639 | 2.423          | ESI pos    | 229                                                                            | 1030                                                                            |
++---------+------------------------------------------+---------------+-----------------------------+-------------+----------+----------------+------------+--------------------------------------------------------------------------------+---------------------------------------------------------------------------------+
+
+Output JSON:
+
+.. code:: console
+
+    {
+      "measurement": {
+        "(dehydro)ornithine-sample1": {
+          "assignment": "(dehydro)ornithine",
+          "esi_mode": "ESI pos",
+          "id": "(dehydro)ornithine-sample1",
+          "inchi_key": "KFZHLVSVDLIACX-UHFFFAOYSA-N",
+          "intensity": "349",
+          "intensity%units": "peak area",
+          "ion_species": "[M+H]+",
+          "m_z": "131.0872",
+          "msi_level": "3",
+          "ret_time": "2.363"
+        },
+        "(dehydro)ornithine-sample2": {
+          "assignment": "(dehydro)ornithine",
+          "esi_mode": "ESI pos",
+          "id": "(dehydro)ornithine-sample2",
+          "inchi_key": "KFZHLVSVDLIACX-UHFFFAOYSA-N",
+          "intensity": "995",
+          "intensity%units": "peak area",
+          "ion_species": "[M+H]+",
+          "m_z": "131.0872",
+          "msi_level": "3",
+          "ret_time": "2.363"
+        },
+        ".beta.-Nicotinamide adenine dinucleotide-sample1": {
+          "assignment": ".beta.-Nicotinamide adenine dinucleotide",
+          "esi_mode": "ESI pos",
+          "id": ".beta.-Nicotinamide adenine dinucleotide-sample1",
+          "inchi_key": "BAWFJGJZGIEFAR-OWXIGJDBSA-N",
+          "intensity": "229",
+          "intensity%units": "peak area",
+          "ion_species": "[M+2H]2+",
+          "m_z": "332.5639",
+          "msi_level": "2",
+          "ret_time": "2.423"
+        },
+        ".beta.-Nicotinamide adenine dinucleotide-sample2": {
+          "assignment": ".beta.-Nicotinamide adenine dinucleotide",
+          "esi_mode": "ESI pos",
+          "id": ".beta.-Nicotinamide adenine dinucleotide-sample2",
+          "inchi_key": "BAWFJGJZGIEFAR-OWXIGJDBSA-N",
+          "intensity": "1030",
+          "intensity%units": "peak area",
+          "ion_species": "[M+2H]2+",
+          "m_z": "332.5639",
+          "msi_level": "2",
+          "ret_time": "2.423"
+        }
+      }
+    }
+
 
 
 Field Tracking Tags
@@ -355,6 +473,36 @@ Output JSON:
         }
       }
     }
+    
+
+Transposed Data
+---------------
+* The transpose tag provides a way to read in data where the headers are row-wise instead of column-wise.
+* The transpose tag assumes there is a header column in the 2nd position from the left and inserts an ignore tag in the first row after transposing the data.
+
+Example:
+
++------------------+---------------+---------------------------------------------------------+---------------------------------------------------------+
+| #tags;#transpose | #sample.id    | #%child.id=-media-0h;#.dry_weight;#.dry_weight%units=mg | #%child.id=-media-3h;#.dry_weight;#.dry_weight%units=mg |
++------------------+---------------+---------------------------------------------------------+---------------------------------------------------------+
+|                  | Sample Name   | KO labelled_1                                           | KO labelled_2                                           |
++------------------+---------------+---------------------------------------------------------+---------------------------------------------------------+
+|                  | Dry Weight 0h | 4.2                                                     | 4.7                                                     |
++------------------+---------------+---------------------------------------------------------+---------------------------------------------------------+
+|                  | Dry Weight 3h | 8.5                                                     | 9.7                                                     |
++------------------+---------------+---------------------------------------------------------+---------------------------------------------------------+
+
+Will become:
+
++---------+---------------+---------------------------------------------------------+---------------------------------------------------------+
+| #tags   | #sample.id    | #%child.id=-media-0h;#.dry_weight;#.dry_weight%units=mg | #%child.id=-media-3h;#.dry_weight;#.dry_weight%units=mg |
++---------+---------------+---------------------------------------------------------+---------------------------------------------------------+
+| #ignore | Sample Name   | Dry Weight 0h                                           | Dry Weight 3h                                           |
++---------+---------------+---------------------------------------------------------+---------------------------------------------------------+
+|         | KO labelled_1 | 4.2                                                     | 8.5                                                     |
++---------+---------------+---------------------------------------------------------+---------------------------------------------------------+
+|         | KO labelled_2 | 4.7                                                     | 9.7                                                     |
++---------+---------------+---------------------------------------------------------+---------------------------------------------------------+
 
 
 Modification Tags
@@ -370,7 +518,7 @@ Basic Examples:
 
 +---------+---------------------------------------------------------------+------------------------------------------------------+------------+
 | #tags   | #measurement.compound.value                                   | #measurement.compound.assign                         | #match=all |
-+=========+===============================================================+======================================================+============+
++---------+---------------------------------------------------------------+------------------------------------------------------+------------+
 |         | (S)-2-Acetolactate_Glutaric acid_Methylsuccinic acid_MP_NoStd | (S)-2-Acetolactate Glutaric acid Methylsuccinic acid |            |
 +---------+---------------------------------------------------------------+------------------------------------------------------+------------+
 |         | ...                                                           | ...                                                  |            |
@@ -378,13 +526,13 @@ Basic Examples:
 
 This example replaces the "compound" field with value "(S)-2-Acetolactate_Glutaric acid_Methylsuccinic acid_MP_NoStd" in "measurement" table records with "(S)-2-Acetolactate Glutaric acid Methylsuccinic acid".
 
-+---------+---------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------+------------+
-| #tags   | #measurement.compound.value                                   | #measurement.id.regex                                                                                                      | #match=all |
-+=========+===============================================================+============================================================================================================================+============+
-|         | (S)-2-Acetolactate_Glutaric acid_Methylsuccinic acid_MP_NoStd | r'\(S\)-2-Acetolactate_Glutaric acid_Methylsuccinic acid_MP_NoStd',r'(S)-2-Acetolactate Glutaric acid Methylsuccinic acid' |            |
-+---------+---------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------+------------+
-|         | ...                                                           | ...                                                                                                                        |            |
-+---------+---------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------+------------+
++---------+---------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------+------------+
+| #tags   | #measurement.compound.value                                   | #measurement.id.regex                                                                                                        | #match=all |
++---------+---------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------+------------+
+|         | (S)-2-Acetolactate_Glutaric acid_Methylsuccinic acid_MP_NoStd | r'\\(S\\)-2-Acetolactate_Glutaric acid_Methylsuccinic acid_MP_NoStd',r'(S)-2-Acetolactate Glutaric acid Methylsuccinic acid' |            |
++---------+---------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------+------------+
+|         | ...                                                           | ...                                                                                                                          |            |
++---------+---------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------+------------+
 
 This example does a regex substitution on the "id" field of records in the "measurement" table if their "compound" field matches "(S)-2-Acetolactate_Glutaric acid_Methylsuccinic acid_MP_NoStd".
 In the "id" field "(S)-2-Acetolactate_Glutaric acid_Methylsuccinic acid_MP_NoStd" is substituted with "(S)-2-Acetolactate Glutaric acid Methylsuccinic acid".
@@ -548,13 +696,13 @@ There are 6 modifications that can be done, "assign", "append", "prepend", "rege
 
     Example:
     
-    +---------+---------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------+
-    | #tags   | #measurement.compound.value                                   | #measurement.id.regex                                                                                                      |
-    +=========+===============================================================+============================================================================================================================+
-    |         | (S)-2-Acetolactate_Glutaric acid_Methylsuccinic acid_MP_NoStd | r'\(S\)-2-Acetolactate_Glutaric acid_Methylsuccinic acid_MP_NoStd',r'(S)-2-Acetolactate Glutaric acid Methylsuccinic acid' | 
-    +---------+---------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------+
-    |         | ...                                                           | ...                                                                                                                        |
-    +---------+---------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------+
+    +---------+---------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------+
+    | #tags   | #measurement.compound.value                                   | #measurement.id.regex                                                                                                        |
+    +=========+===============================================================+==============================================================================================================================+
+    |         | (S)-2-Acetolactate_Glutaric acid_Methylsuccinic acid_MP_NoStd | r'\\(S\\)-2-Acetolactate_Glutaric acid_Methylsuccinic acid_MP_NoStd',r'(S)-2-Acetolactate Glutaric acid Methylsuccinic acid' | 
+    +---------+---------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------+
+    |         | ...                                                           | ...                                                                                                                          |
+    +---------+---------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------+
 
 
 * **delete** - will remove the field from the record.
@@ -632,7 +780,7 @@ Tag Format Reference:
 * ***#[table_name].field_name[%attribute].assign** identifies field to assign and that the associated column values are a list type.
 * **#[table_name].field_name[%attribute].append** identifies field to append to and associated column with its value.
 * ***#[table_name].field_name[%attribute].append** identifies field to append to and that the associated column values are a list type.
-* ***#[table_name].field_name[%attribute].prepend** identifies field to prepend to and associated column with its value.
+* **#[table_name].field_name[%attribute].prepend** identifies field to prepend to and associated column with its value.
 * ***#[table_name].field_name[%attribute].prepend** identifies field to prepend to and that the associated column values are a list type.
 * **#[table_name].field_name[%attribute].regex** identifies field to apply regex substitution to and associated column with the pair of regex strings of the form r"...",r"...".
 * **#[table_name].field_name[%attribute].delete** identifies field to delete.
@@ -727,9 +875,9 @@ Header Tags:
 After Automation:
 
 +---------+--------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------+---------------------------------------------------------------+----------------------+------------+-------------------------------------------------------+----------------------------------------+------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------+--------------------+
-| #ignore |                                                                                                                          |                                                                    | Compound                                                      | Mol_Formula          | C_isomers  | SamplID                                               |                                        | Intensity                                                  |                                                                                                               |                    |
-+---------+--------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------+---------------------------------------------------------------+----------------------+------------+-------------------------------------------------------+----------------------------------------+------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------+--------------------+
 | #tags   | #measurement.id                                                                                                          | #measurement.assignment                                            | #measurement.compound                                         | #measurement.formula |            | #sample.id                                            | #measurement.isotopologue;#%type="13C" | #measurement.raw_intensity;#%type="spectrometer peak area" | #measurement.intensity;#%type="natural abundance corrected and protein normalized peak area";#%units="area/g" | #protocol.id=ICMS1 |
++---------+--------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------+---------------------------------------------------------------+----------------------+------------+-------------------------------------------------------+----------------------------------------+------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------+--------------------+
+| #ignore |                                                                                                                          |                                                                    | Compound                                                      | Mol_Formula          | C_isomers  | SamplID                                               |                                        | Intensity                                                  |                                                                                                               |                    |
 +---------+--------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------+---------------------------------------------------------------+----------------------+------------+-------------------------------------------------------+----------------------------------------+------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------+--------------------+
 |         | (S)-2-Acetolactate_Glutaric acid_Methylsuccinic acid_MP_NoStd-13C0-01_A0_Colon_T03-2017_naive_170427_UKy_GCB_rep1-quench | (S)-2-Acetolactate_Glutaric acid_Methylsuccinic acid_MP_NoStd-13C0 | (S)-2-Acetolactate_Glutaric acid_Methylsuccinic acid_MP_NoStd | C5H8O4               | 0          | 01_A0_Colon_T03-2017_naive_170427_UKy_GCB_rep1-quench | 13C0                                   | 7989221.834                                                | 12923845.19                                                                                                   |                    |
 +---------+--------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------+---------------------------------------------------------------+----------------------+------------+-------------------------------------------------------+----------------------------------------+------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------+--------------------+
@@ -776,6 +924,8 @@ JSON Output:
     }
 
 
+
+
 The Tags
 ++++++++
 * **#header** - header value to match to. Can be a regular expression of the form r'...'.  
@@ -783,18 +933,20 @@ The Tags
     * All tag blocks must contain a **#header** tag.
     * Additional column headers can be included with blank corresponding tags to help make header row identification unique.
     * Cell contents are stripped of leading and trailing white space before comparison with the header value.
-    * A new column will be created if the headers and literals in quotes are combined with plus signs.
+    * A new column will be created if the headers, literals in quotes, and/or regular expressions are combined with plus signs.
        
-       * Example: Name+"-"+Isopotologue+"-"+r'^\d+\w+ Isotope$'
+       * Example: Name+"-"+Isopotologue+"-"+r'^\\d+\\w+ Isotope$'
        * This functionality means that certain characters can't be used for literal matching outside of a regex.
        * For example, if a header name in a data table is "protein+solvent", then you can't simply put protein+solvent under **#header** because it will be interpreted as a concatenation of a "protein" header and a separate "solvent" header.
-       * The easiest way to solve this issue is to use a regular expression. r'protein\+solvent' will match the header correctly.
+       * The easiest way to solve this issue is to use a regular expression. r'protein\\+solvent' will match the header correctly.
        * In general, if you are having difficulty matching a header, try using a regex.
+       * If multiple headers or regular expressions in the #header column match the same header in the data, then there will be an error because 2 sets of tags cannot be placed in the same spot.
+       * The above does not apply when creating a new column, however. The same column in the data can be used to create multiple new columns.
     
     * An eval function can be used in the form "eval(...)".
        
        * "#header_name#" and "#r'...'#" can be used to indicate specific columns in the row.
-       * All Python language operators can be used.  But remember to use "float(#field_name#)" to convert strings to floating point numbers. 
+       * All Python language operators can be used. But remember to use "float(#field_name#)" to convert strings to floating point numbers. 
        * Example: eval(float(#Intensity#) / float(#r'.*Normalization'#) * 5)
        * If the eval returns a list of items, it is converted into a string separated by semicolons.
        
@@ -806,27 +958,76 @@ The Tags
     * All tag blocks must contain a **#add** tag.
     * The actual value under **#add** does not have to be a valid tag, the value will be copied as is.
     * Leave this value blank to add headers that are required to match a block, but don't need tags.
+    * "#HEADER#" and "#INCREMENT#" are 2 reserved words that can be used to build tags based on the headers.
+    
+        * #HEADER# will be replaced with the value of the header that was matched to the value given in #header.
+        * #INCREMENT# will be replaced with the number of the match. 
+        
+            * For example, if the value in #header is r'Sample\_\\d', the value for #INCREMENT# will be 1 for first header to match, 2 for the second, etc.
+            * The number only goes up when the exact same header to be created tries to be created.
+            * For example, in the below example the increment went to 2 because there were 2 "G" columns in the data so #measurment.field3_G was attempted to be created twice, so there is a field3_G_1 and field3_G_2.
+        
+        * Example:
+        
+        Data:
+        
+        +----+----+----+----+----+----+-----+-----+
+        | A  | B  | C  | D  | E  | F  | G   | G   |
+        +----+----+----+----+----+----+-----+-----+
+        | a1 | b1 | c1 | d1 | e1 | f1 | g1  | g2  |
+        +----+----+----+----+----+----+-----+-----+
+        
+        Header Tags:
+        
+        +---------+---------------+------------------------------------------+--------------------+
+        | #tags   | #header       | #add                                     | #allow_duplicates  |
+        +---------+---------------+------------------------------------------+--------------------+
+        |         | A             | #measurement.id                          |                    |
+        +---------+---------------+------------------------------------------+--------------------+
+        |         | r'F|G'        | #measurement.field3_#HEADER#_#INCREMENT# | true               |
+        +---------+---------------+------------------------------------------+--------------------+
+        |         | r'B|C'+r'F|G' | #measurement.#HEADER#_#INCREMENT#        | true               |
+        +---------+---------------+------------------------------------------+--------------------+
+        
+        After Automation:
+        
+        +---------+-----------------+----+----+----+----+-------------------------+-------------------------+-------------------------+-------------------+-------------------+-------------------+-------------------+-------------------+--------------------+
+        | #tags   | #measurement.id |    |    |    |    | #measurement.field3_F_1 | #measurement.field3_G_1 | #measurement.field3_G_2 | #measurement.BF_1 | #measurement.BG_1 | #measurement.BG_2 | #measurement.CF_1 | #measurement.CG_1 | #measurement.CG_2  |
+        +=========+=================+====+====+====+====+=========================+=========================+=========================+===================+===================+===================+===================+===================+====================+
+        | #ignore | A               | B  | C  | D  | E  | F                       | G                       | G                       |                   |                   |                   |                   |                   |                    |
+        +---------+-----------------+----+----+----+----+-------------------------+-------------------------+-------------------------+-------------------+-------------------+-------------------+-------------------+-------------------+--------------------+
+        |         | a1              | b1 | c1 | d1 | e1 | f1                      | g1                      | g2                      | b1f1              | b1g1              | b1g2              | c1f1              | c1g1              | c1g2               |
+        +---------+-----------------+----+----+----+----+-------------------------+-------------------------+-------------------------+-------------------+-------------------+-------------------+-------------------+-------------------+--------------------+
+        
+        This is a contrived example to illustrate how the reserved words work, but a more common way to use these are in the Common Use Case Examples below.
+        Note that the header "r'B|C'+r'F|G'" created 6 new columns instead of just 1 because a new one is created for each combination of matches to the regular expressions.
 
-         
+      
 * **#required** - true|false whether this header description is required. The default is that all header descriptions are required.
 
     * Example:
     
-    +-------+---------------------------------------------------+-------------------------------------+
+    +-------+---------------------------------------------------+-------------------------+-----------+
     | #tags | #header                                           | #add                    | #required |
-    +-------+---------------------------------------------------+-------------------------------------+
+    +-------+---------------------------------------------------+-------------------------+-----------+
     |       | Compound+"-13C"+C_isomers+"-"+SamplID             | #measurement.id         | true      |
-    +-------+---------------------------------------------------+-------------------------------------+
+    +-------+---------------------------------------------------+-------------------------+-----------+
     |       | Compound+"-13C"+C_isomers                         | #measurement.assignment | true      |
-    +-------+---------------------------------------------------+-------------------------------------+
+    +-------+---------------------------------------------------+-------------------------+-----------+
     |       | Compound                                          | #measurement.compound   | true      |
-    +-------+---------------------------------------------------+-------------------------------------+
+    +-------+---------------------------------------------------+-------------------------+-----------+
     |       | Mol_Formula                                       | #measurement.formula    | false     |
-    +-------+---------------------------------------------------+-------------------------------------+
+    +-------+---------------------------------------------------+-------------------------+-----------+
     |       | SamplID                                           | #sample.id              | true      |
-    +-------+---------------------------------------------------+-------------------------------------+
+    +-------+---------------------------------------------------+-------------------------+-----------+
     
     If the Mol_Formula header is not found, the tags will still be added, but without the Mol_Formula ones.
+
+
+* **#allow_duplicates#** - true|false whether this header description can match multiple times in the same row and add tags to each match. The default is that duplicates are not allowed.
+
+    * If this is true, then #HEADER# and/or #INCREMENT# must be used in the tag(s) under #add to ensure the uniqueness of tags.
+    * See the example above in the #add section to see an example using this tag.
 
 
 * **#exclude=test_string** - test string or regular expression to use for excluding a given header row.
@@ -834,19 +1035,19 @@ The Tags
     * If a header matches the exclude string or regex, then the tags are not inserted regardless of whether the headers match.
     * Example:
     
-    +-------+---------------------------------------------------+---------------------------------------------------------------+
+    +-------+---------------------------------------------------+-------------------------+-------------------------------------+
     | #tags | #header                                           | #add                    | #exclude=r'Cell Type|Mouse Species' |
-    +-------+---------------------------------------------------+---------------------------------------------------------------+
+    +-------+---------------------------------------------------+-------------------------+-------------------------------------+
     |       | Compound+"-13C"+C_isomers+"-"+SamplID             | #measurement.id         |                                     |
-    +-------+---------------------------------------------------+---------------------------------------------------------------+
+    +-------+---------------------------------------------------+-------------------------+-------------------------------------+
     |       | Compound+"-13C"+C_isomers                         | #measurement.assignment |                                     |
-    +-------+---------------------------------------------------+---------------------------------------------------------------+
+    +-------+---------------------------------------------------+-------------------------+-------------------------------------+
     |       | Compound                                          | #measurement.compound   |                                     |
-    +-------+---------------------------------------------------+---------------------------------------------------------------+
+    +-------+---------------------------------------------------+-------------------------+-------------------------------------+
     |       | Mol_Formula                                       | #measurement.formula    |                                     |
-    +-------+---------------------------------------------------+---------------------------------------------------------------+
+    +-------+---------------------------------------------------+-------------------------+-------------------------------------+
     |       | SamplID                                           | #sample.id              |                                     |
-    +-------+---------------------------------------------------+---------------------------------------------------------------+
+    +-------+---------------------------------------------------+-------------------------+-------------------------------------+
     
     If the "Cell Type" or "Mouse Species" headers are in the row, then don't add the tags.
 
@@ -858,8 +1059,371 @@ can be used to control whether the insert happens every time the tag block match
 * **#multiple=true** - will insert on every match.
 * **#multiple=false** - will only insert on the first match, this is the default behavior if **#multiple** is not specified.
 
+* **#transpose** - indicates that the table to add tags to is row wise instead of column wise.
 
+    * Example:
+    
+    Data:
+    
+    +---------------+---------------------------------------------------------+---------------------------------------------------------+
+    | Sample Name   | KO labelled_1                                           | KO labelled_2                                           |
+    +---------------+---------------------------------------------------------+---------------------------------------------------------+
+    | Dry Weight 0h | 4.2                                                     | 4.7                                                     |
+    +---------------+---------------------------------------------------------+---------------------------------------------------------+
+    | Dry Weight 3h | 8.5                                                     | 9.7                                                     |
+    +---------------+---------------------------------------------------------+---------------------------------------------------------+
+    
+    Header Tags:
+    
+    +------------------+---------------+---------------------------------------------------------+
+    | #tags;#transpose | #header       | #add                                                    |
+    +------------------+---------------+---------------------------------------------------------+
+    |                  | Sample Name   | #sample.id                                              |
+    +------------------+---------------+---------------------------------------------------------+
+    |                  | Dry Weight 0h | #%child.id=-media-0h;#.dry_weight;#.dry_weight%units=mg |
+    +------------------+---------------+---------------------------------------------------------+
+    |                  | Dry Weight 3h | #%child.id=-media-3h;#.dry_weight;#.dry_weight%units=mg |
+    +------------------+---------------+---------------------------------------------------------+
+    
+    After Automation:
+    
+    +------------------+---------------+---------------------------------------------------------+---------------------------------------------------------+
+    | #tags;#transpose | #sample.id    | #%child.id=-media-0h;#.dry_weight;#.dry_weight%units=mg | #%child.id=-media-3h;#.dry_weight;#.dry_weight%units=mg |
+    +------------------+---------------+---------------------------------------------------------+---------------------------------------------------------+
+    |                  | Sample Name   | KO labelled_1                                           | KO labelled_2                                           |
+    +------------------+---------------+---------------------------------------------------------+---------------------------------------------------------+
+    |                  | Dry Weight 0h | 4.2                                                     | 4.7                                                     |
+    +------------------+---------------+---------------------------------------------------------+---------------------------------------------------------+
+    |                  | Dry Weight 3h | 8.5                                                     | 9.7                                                     |
+    +------------------+---------------+---------------------------------------------------------+---------------------------------------------------------+
 
+* **#copy** - indicates that the table to add tags to should be copied before adding tags.
+
+    * This is useful for when you need to use the same data multiple times to create new records. 
+    * The below example uses one core table to create a parent entities, children, and grandchildren.
+
+    * Example:
+    
+    Data:
+    
+    +-----------+----------------+
+    | patient   | Sample volume  |
+    +-----------+----------------+
+    | Patient 1 | 10.8 mg        |
+    +-----------+----------------+
+    | Patient 2 | 25.2 mg        |
+    +-----------+----------------+
+    
+    Header Tags:
+    
+    +-------------+--------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+    | #tags;#copy | #header                              | #add                                                                                                                                                                                                  |
+    +-------------+--------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+    |             | patient                              | #entity.id;#.type=sample;#.sample_type=experimental                                                                                                                                                   |
+    +-------------+--------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+    |             | Sample volume                        | #entity.resected_tissue_weight;#%units=mg                                                                                                                                                             |
+    +-------------+--------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+    |             |                                      | \*#.protocol.id=resected_tissue_collection,tissue_quench,frozen_tissue_slice                                                                                                                          |
+    +-------------+--------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+    |             |                                      | #entity%child.id=-polar_extraction;#.type=sample;#.sample_type=experimental;*#.protocol.id=polar_extraction                                                                                           |
+    +-------------+--------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+    |             |                                      |                                                                                                                                                                                                       |
+    +-------------+--------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+    | #tags;#copy | #header                              | #add                                                                                                                                                                                                  |
+    +-------------+--------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+    |             | patient+'-polar_extraction'          | #entity.id                                                                                                                                                                                            |
+    +-------------+--------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+    |             |                                      | #entity%child.id=-metabolism;#.type=sample;*#.protocol.id=GC-MS_preparation;#.injection_volume=0.5;#%units=uL;#.reconstitution_volume=100;#%units=uL;#.extracted_volume=110;#%units=uL                |
+    +-------------+--------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+    
+    After Automation:
+    
+    +---------+-----------------------------------------------------+-------------------------------------------+------------------------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------+----------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+    |         | patient                                             | Sample volume                             |                                                                              |                                                                                                             |                            |                                                                                                                                                                                         |
+    +---------+-----------------------------------------------------+-------------------------------------------+------------------------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------+----------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+    |         | Patient 1                                           | 10.8 mg                                   |                                                                              |                                                                                                             |                            |                                                                                                                                                                                         |
+    +---------+-----------------------------------------------------+-------------------------------------------+------------------------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------+----------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+    |         | Patient 2                                           | 25.2 mg                                   |                                                                              |                                                                                                             |                            |                                                                                                                                                                                         |
+    +---------+-----------------------------------------------------+-------------------------------------------+------------------------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------+----------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+    |         |                                                     |                                           |                                                                              |                                                                                                             |                            |                                                                                                                                                                                         |
+    +---------+-----------------------------------------------------+-------------------------------------------+------------------------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------+----------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+    | #tags   |                                                     |                                           |                                                                              |                                                                                                             | #entity.id                 | #entity%child.id=-metabolism;#.type=sample;*#.protocol.id=GC-MS_preparation;#.injection_volume=0.5;#%units=uL;#.reconstitution_volume=100;#%units=uL;#.extracted_volume=110;#%units=uL  |
+    +---------+-----------------------------------------------------+-------------------------------------------+------------------------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------+----------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+    | #ignore | patient                                             | Sample volume                             |                                                                              |                                                                                                             |                            |                                                                                                                                                                                         |
+    +---------+-----------------------------------------------------+-------------------------------------------+------------------------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------+----------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+    |         | Patient 1                                           | 10.8 mg                                   |                                                                              |                                                                                                             | Patient 1-polar_extraction |                                                                                                                                                                                         |
+    +---------+-----------------------------------------------------+-------------------------------------------+------------------------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------+----------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+    |         | Patient 2                                           | 25.2 mg                                   |                                                                              |                                                                                                             | Patient 2-polar_extraction |                                                                                                                                                                                         |
+    +---------+-----------------------------------------------------+-------------------------------------------+------------------------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------+----------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+    |         |                                                     |                                           |                                                                              |                                                                                                             |                            |                                                                                                                                                                                         |
+    +---------+-----------------------------------------------------+-------------------------------------------+------------------------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------+----------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+    | #tags   | #entity.id;#.type=sample;#.sample_type=experimental | #entity.resected_tissue_weight;#%units=mg | \*#.protocol.id=resected_tissue_collection,tissue_quench,frozen_tissue_slice | #entity%child.id=-polar_extraction;#.type=sample;#.sample_type=experimental;*#.protocol.id=polar_extraction |                            |                                                                                                                                                                                         |
+    +---------+-----------------------------------------------------+-------------------------------------------+------------------------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------+----------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+    | #ignore | patient                                             | Sample volume                             |                                                                              |                                                                                                             |                            |                                                                                                                                                                                         |
+    +---------+-----------------------------------------------------+-------------------------------------------+------------------------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------+----------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+    |         | Patient 1                                           | 10.8 mg                                   |                                                                              |                                                                                                             |                            |                                                                                                                                                                                         |
+    +---------+-----------------------------------------------------+-------------------------------------------+------------------------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------+----------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+    |         | Patient 2                                           | 25.2 mg                                   |                                                                              |                                                                                                             |                            |                                                                                                                                                                                         |
+    +---------+-----------------------------------------------------+-------------------------------------------+------------------------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------+----------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+    
+    JSON Output:
+    
+    .. code:: console
+    
+        {
+          "entity": {
+            "Patient 1": {
+              "id": "Patient 1",
+              "protocol.id": [
+                "resected_tissue_collection",
+                "tissue_quench",
+                "frozen_tissue_slice"
+              ],
+              "resected_tissue_weight": "10.8 mg",
+              "resected_tissue_weight%units": "mg",
+              "sample_type": "experimental",
+              "type": "sample"
+            },
+            "Patient 1-polar_extraction": {
+              "id": "Patient 1-polar_extraction",
+              "parent_id": "Patient 1",
+              "protocol.id": [
+                "polar_extraction"
+              ],
+              "sample_type": "experimental",
+              "type": "sample"
+            },
+            "Patient 1-polar_extraction-metabolism": {
+              "extracted_volume": "110",
+              "extracted_volume%units": "uL",
+              "id": "Patient 1-polar_extraction-metabolism",
+              "injection_volume": "0.5",
+              "injection_volume%units": "uL",
+              "parent_id": "Patient 1-polar_extraction",
+              "protocol.id": [
+                "GC-MS_preparation"
+              ],
+              "reconstitution_volume": "100",
+              "reconstitution_volume%units": "uL",
+              "type": "sample"
+            },
+            "Patient 2": {
+              "id": "Patient 2",
+              "protocol.id": [
+                "resected_tissue_collection",
+                "tissue_quench",
+                "frozen_tissue_slice"
+              ],
+              "resected_tissue_weight": "25.2 mg",
+              "resected_tissue_weight%units": "mg",
+              "sample_type": "experimental",
+              "type": "sample"
+            },
+            "Patient 2-polar_extraction": {
+              "id": "Patient 2-polar_extraction",
+              "parent_id": "Patient 2",
+              "protocol.id": [
+                "polar_extraction"
+              ],
+              "sample_type": "experimental",
+              "type": "sample"
+            },
+            "Patient 2-polar_extraction-metabolism": {
+              "extracted_volume": "110",
+              "extracted_volume%units": "uL",
+              "id": "Patient 2-polar_extraction-metabolism",
+              "injection_volume": "0.5",
+              "injection_volume%units": "uL",
+              "parent_id": "Patient 2-polar_extraction",
+              "protocol.id": [
+                "GC-MS_preparation"
+              ],
+              "reconstitution_volume": "100",
+              "reconstitution_volume%units": "uL",
+              "type": "sample"
+            }
+          }
+        }
+
+* **#filter** - indicates that the data to be tagged should be filtered before being tagged. 
+    
+    * If a #filter tag is used, the #copy tag must also be used.
+    * The general structure of the #filter tag is #filter=expressions.
+    * There are 3 kinds of expressions.
+    
+        * Match using an identical single value will only keep the rows where the indicated column has the indicated value. 
+        
+            * Ex: column1:value1
+        
+        * Match using a regular expression will keep the rows where the value in the indicated column matches the given regular expression.
+        
+            * Ex: column1:r'your_regex'
+        
+        * Match using the keyword "unique" will keep the rows with first instance of a unique value in the indicated column.
+        
+            * Ex: column1:unique        
+        
+        * You can put double quotes around an expression value to enforce an indentical match.
+        
+            * Ex: column1:"unique" will match only rows that have the value unique (without double quotes).
+    
+        * Logical and (&) and or (|) operators can be used to filter with multiple columns.
+        
+            * Ex: column1:unique & column2:value1
+
+    * Example:
+    
+    Data:
+    
+    +-----------+----------------+
+    | patient   | Sample volume  |
+    +-----------+----------------+
+    | Patient 1 | 10.8 mg        |
+    +-----------+----------------+
+    | Patient 2 | 25.2 mg        |
+    +-----------+----------------+
+    
+    Header Tags:
+    
+    +-------------+---------------+------------------------------------------------------------------------------+----------------------------+
+    | #tags;#copy | #header       | #add                                                                         | #filter=patient:Patient 1  |
+    +-------------+---------------+------------------------------------------------------------------------------+----------------------------+
+    |             | patient       | #entity.id;#.type=sample;#.sample_type=experimental                          |                            |
+    +-------------+---------------+------------------------------------------------------------------------------+----------------------------+
+    |             | Sample volume | #entity.resected_tissue_weight;#%units=mg                                    |                            |
+    +-------------+---------------+------------------------------------------------------------------------------+----------------------------+
+    |             |               | \*#.protocol.id=resected_tissue_collection,tissue_quench,frozen_tissue_slice |                            |
+    +-------------+---------------+------------------------------------------------------------------------------+----------------------------+
+    
+    After Automation:
+    
+    +---------+-----------------------------------------------------+-------------------------------------------+-------------------------------------------------------------------------------+
+    |         | patient                                             | Sample volume                             |                                                                               |
+    +---------+-----------------------------------------------------+-------------------------------------------+-------------------------------------------------------------------------------+
+    |         | Patient 1                                           | 10.8 mg                                   |                                                                               |
+    +---------+-----------------------------------------------------+-------------------------------------------+-------------------------------------------------------------------------------+
+    |         | Patient 2                                           | 25.2 mg                                   |                                                                               |
+    +---------+-----------------------------------------------------+-------------------------------------------+-------------------------------------------------------------------------------+
+    |         |                                                     |                                           |                                                                               |
+    +---------+-----------------------------------------------------+-------------------------------------------+-------------------------------------------------------------------------------+
+    | #tags   | #entity.id;#.type=sample;#.sample_type=experimental | #entity.resected_tissue_weight;#%units=mg | \*#.protocol.id=resected_tissue_collection,tissue_quench,frozen_tissue_slice  |
+    +---------+-----------------------------------------------------+-------------------------------------------+-------------------------------------------------------------------------------+
+    | #ignore | patient                                             | Sample volume                             |                                                                               |
+    +---------+-----------------------------------------------------+-------------------------------------------+-------------------------------------------------------------------------------+
+    |         | Patient 1                                           | 10.8 mg                                   |                                                                               |
+    +---------+-----------------------------------------------------+-------------------------------------------+-------------------------------------------------------------------------------+
+    
+    
+    JSON Output:
+    
+    .. code:: console
+    
+        {
+          "entity": {
+            "Patient 1": {
+              "id": "Patient 1",
+              "protocol.id": [
+                "resected_tissue_collection",
+                "tissue_quench",
+                "frozen_tissue_slice"
+              ],
+              "resected_tissue_weight": "10.8 mg",
+              "resected_tissue_weight%units": "mg",
+              "sample_type": "experimental",
+              "type": "sample"
+            }
+          }
+        }
+
+* **#sort** - indicates that the data to be tagged should be sorted before being tagged. 
+    
+    * If a #sort tag is used, the #copy tag must also be used.
+    * The general structure of the #sort tag is #sort=column_name1:ascending,column_name2:descending.
+    
+        * The part after the "=" is a comma separated list of column headers and either "ascending" or "descending", separated by a colon.
+        * The order of the columns in the list is the order they will be sorted in.
+        * Ex: #sort=column_name1:ascending,column_name2:descending will sort column_name1 in ascending order and then column_name2 in descending order.
+
+    * Example:
+    
+    Data:
+    
+    +-----------+----------------+
+    | patient   | Sample volume  |
+    +-----------+----------------+
+    | Patient 1 | 10.8 mg        |
+    +-----------+----------------+
+    | Patient 2 | 25.2 mg        |
+    +-----------+----------------+
+    
+    Header Tags:
+    
+    +-------------+---------------+------------------------------------------------------------------------------+----------------------------+
+    | #tags;#copy | #header       | #add                                                                         | #sort=patient:descending   |
+    +-------------+---------------+------------------------------------------------------------------------------+----------------------------+
+    |             | patient       | #entity.id;#.type=sample;#.sample_type=experimental                          |                            |
+    +-------------+---------------+------------------------------------------------------------------------------+----------------------------+
+    |             | Sample volume | #entity.resected_tissue_weight;#%units=mg                                    |                            |
+    +-------------+---------------+------------------------------------------------------------------------------+----------------------------+
+    |             |               | \*#.protocol.id=resected_tissue_collection,tissue_quench,frozen_tissue_slice |                            |
+    +-------------+---------------+------------------------------------------------------------------------------+----------------------------+
+    
+    After Automation:
+    
+    +---------+-----------------------------------------------------+-------------------------------------------+-------------------------------------------------------------------------------+
+    |         | patient                                             | Sample volume                             |                                                                               |
+    +---------+-----------------------------------------------------+-------------------------------------------+-------------------------------------------------------------------------------+
+    |         | Patient 1                                           | 10.8 mg                                   |                                                                               |
+    +---------+-----------------------------------------------------+-------------------------------------------+-------------------------------------------------------------------------------+
+    |         | Patient 2                                           | 25.2 mg                                   |                                                                               |
+    +---------+-----------------------------------------------------+-------------------------------------------+-------------------------------------------------------------------------------+
+    |         |                                                     |                                           |                                                                               |
+    +---------+-----------------------------------------------------+-------------------------------------------+-------------------------------------------------------------------------------+
+    | #tags   | #entity.id;#.type=sample;#.sample_type=experimental | #entity.resected_tissue_weight;#%units=mg | \*#.protocol.id=resected_tissue_collection,tissue_quench,frozen_tissue_slice  |
+    +---------+-----------------------------------------------------+-------------------------------------------+-------------------------------------------------------------------------------+
+    | #ignore | patient                                             | Sample volume                             |                                                                               |
+    +---------+-----------------------------------------------------+-------------------------------------------+-------------------------------------------------------------------------------+
+    |         | Patient 2                                           | 25.2 mg                                   |                                                                               |
+    +---------+-----------------------------------------------------+-------------------------------------------+-------------------------------------------------------------------------------+
+    |         | Patient 1                                           | 10.8 mg                                   |                                                                               |
+    +---------+-----------------------------------------------------+-------------------------------------------+-------------------------------------------------------------------------------+
+    
+    JSON Output:
+    
+    .. code:: console
+    
+        {
+          "entity": {
+            "Patient 1": {
+              "id": "Patient 1",
+              "protocol.id": [
+                "resected_tissue_collection",
+                "tissue_quench",
+                "frozen_tissue_slice"
+              ],
+              "resected_tissue_weight": "10.8 mg",
+              "resected_tissue_weight%units": "mg",
+              "sample_type": "experimental",
+              "type": "sample"
+            },
+            "Patient 2": {
+              "id": "Patient 2",
+              "protocol.id": [
+                "resected_tissue_collection",
+                "tissue_quench",
+                "frozen_tissue_slice"
+              ],
+              "resected_tissue_weight": "25.2 mg",
+              "resected_tissue_weight%units": "mg",
+              "sample_type": "experimental",
+              "type": "sample"
+            }
+          }
+        }
+    
+    Note that the JSON output is not in descending order. This is because the JSON is sorted before saving so 
+    that there is consistency if key orderings are different. Sorting can still be used for other things such as 
+    sorting the order of lists.
 
 
 Common Use Case Examples
@@ -873,32 +1437,32 @@ Export Tags
 Tagging Subject Entities
 ++++++++++++++++++++++++
 
-+---------+----+---------------------------------------------------------------------------------------------------+--------------+--+----------------+-------------------+--------------------+
-| #tags   |    | #entity.id;#entity.species="Mus musculus";#.species_type=Mouse;#.taxonomy_id=10090;#.type=subject |              |  | *#.protocol.id | #entity.replicate | #entity.time_point |
-+=========+====+===================================================================================================+==============+==+================+===================+====================+
-| #ignore |    |                                                                                                   | mouse number |  | protocol       | replicate         | time_point         |
-+---------+----+---------------------------------------------------------------------------------------------------+--------------+--+----------------+-------------------+--------------------+
-|         | 01 | 01_A0_naive_0days_UKy_GCH_rep1                                                                    | A0           |  | naive          | 1                 | 0                  |
-+---------+----+---------------------------------------------------------------------------------------------------+--------------+--+----------------+-------------------+--------------------+
-|         | 02 | 02_A1_naive_0days_UKy_GCH_rep2                                                                    | A1           |  | naive          | 2                 | 0                  |
-+---------+----+---------------------------------------------------------------------------------------------------+--------------+--+----------------+-------------------+--------------------+
-|         | 03 | 03_A2_naive_0days_UKy_GCH_rep3                                                                    | A2           |  | naive          | 3                 | 0                  |
-+---------+----+---------------------------------------------------------------------------------------------------+--------------+--+----------------+-------------------+--------------------+
-|         | 04 | 04_B0_syngenic_42days_UKy_GCH_rep1                                                                | B0           |  | syngenic       | 1                 | 42                 |
-+---------+----+---------------------------------------------------------------------------------------------------+--------------+--+----------------+-------------------+--------------------+
-|         | 05 | 05_B1_syngenic_42days_UKy_GCH_rep2                                                                | B1           |  | syngenic       | 2                 | 42                 |
-+---------+----+---------------------------------------------------------------------------------------------------+--------------+--+----------------+-------------------+--------------------+
-|         | 06 | 06_B2_syngenic_42days_UKy_GCH_rep3                                                                | B2           |  | syngenic       | 3                 | 42                 |
-+---------+----+---------------------------------------------------------------------------------------------------+--------------+--+----------------+-------------------+--------------------+
-|         | 07 | 07_C1-1_allogenic_42days_UKy_GCH_rep1                                                             | C1-1         |  | allogenic      | 1                 | 42                 |
-+---------+----+---------------------------------------------------------------------------------------------------+--------------+--+----------------+-------------------+--------------------+
-|         | 08 | 08_C1-2_allogenic_42days_UKy_GCH_rep2                                                             | C1-2         |  | allogenic      | 2                 | 42                 |
-+---------+----+---------------------------------------------------------------------------------------------------+--------------+--+----------------+-------------------+--------------------+
++---------+----+---------------------------------------------------------------------------------------------------+--------------+--+-----------------+-------------------+--------------------+
+| #tags   |    | #entity.id;#entity.species="Mus musculus";#.species_type=Mouse;#.taxonomy_id=10090;#.type=subject |              |  | \*#.protocol.id | #entity.replicate | #entity.time_point |
++=========+====+===================================================================================================+==============+==+=================+===================+====================+
+| #ignore |    |                                                                                                   | mouse number |  | protocol        | replicate         | time_point         |
++---------+----+---------------------------------------------------------------------------------------------------+--------------+--+-----------------+-------------------+--------------------+
+|         | 01 | 01_A0_naive_0days_UKy_GCH_rep1                                                                    | A0           |  | naive           | 1                 | 0                  |
++---------+----+---------------------------------------------------------------------------------------------------+--------------+--+-----------------+-------------------+--------------------+
+|         | 02 | 02_A1_naive_0days_UKy_GCH_rep2                                                                    | A1           |  | naive           | 2                 | 0                  |
++---------+----+---------------------------------------------------------------------------------------------------+--------------+--+-----------------+-------------------+--------------------+
+|         | 03 | 03_A2_naive_0days_UKy_GCH_rep3                                                                    | A2           |  | naive           | 3                 | 0                  |
++---------+----+---------------------------------------------------------------------------------------------------+--------------+--+-----------------+-------------------+--------------------+
+|         | 04 | 04_B0_syngenic_42days_UKy_GCH_rep1                                                                | B0           |  | syngenic        | 1                 | 42                 |
++---------+----+---------------------------------------------------------------------------------------------------+--------------+--+-----------------+-------------------+--------------------+
+|         | 05 | 05_B1_syngenic_42days_UKy_GCH_rep2                                                                | B1           |  | syngenic        | 2                 | 42                 |
++---------+----+---------------------------------------------------------------------------------------------------+--------------+--+-----------------+-------------------+--------------------+
+|         | 06 | 06_B2_syngenic_42days_UKy_GCH_rep3                                                                | B2           |  | syngenic        | 3                 | 42                 |
++---------+----+---------------------------------------------------------------------------------------------------+--------------+--+-----------------+-------------------+--------------------+
+|         | 07 | 07_C1-1_allogenic_42days_UKy_GCH_rep1                                                             | C1-1         |  | allogenic       | 1                 | 42                 |
++---------+----+---------------------------------------------------------------------------------------------------+--------------+--+-----------------+-------------------+--------------------+
+|         | 08 | 08_C1-2_allogenic_42days_UKy_GCH_rep2                                                             | C1-2         |  | allogenic       | 2                 | 42                 |
++---------+----+---------------------------------------------------------------------------------------------------+--------------+--+-----------------+-------------------+--------------------+
 
 You can see that the original header row is ignored with "#ignore" and the important columns are tagged with appropriate field names. 
 Not all of the columns are tagged. What needs to be tagged or what is important will vary according to your needs and application. 
 MESSES is largely meant for converting for deposition into a repository so information that is not important or relevant to the repository 
-you are targeting will likely be untagged. Note that the *#.protocol.id tag is a list field even though it has single values underneath. 
+you are targeting will likely be untagged. Note that the \*#.protocol.id tag is a list field even though it has single values underneath. 
 This is be consistent with field types as other records can have multiple protocols associated with them.
 
 
@@ -1082,6 +1646,66 @@ Adding Additional Fields
 
 This will add an additional "assignment%method" field to the measurement records whose "assignment" 
 field matches the ".value" column.
+
+
+
+The next example uses a new set of measurement data.
+
+Automating crecords
++++++++++++++++++++
+
+Measurement Data:
+
++-------------+------------------------------------------+-------------+-----------------------------+-----------+----------+----------------+----------+-----+------+------+------+------+-------+--------+
+| identifier  | annotation                               | ion species | InChiKey                    | MSI level | m/z      | ret.time (min) | ESI mode | 1   | 2    | 3    | Pool | Pool | Blank | Blank  |
++=============+==========================================+=============+=============================+===========+==========+================+==========+=====+======+======+======+======+=======+========+
+| 2.36_131.09 | (dehydro)ornithine                       | [M+H]+      | KFZHLVSVDLIACX-UHFFFAOYSA-N | 3         | 131.0872 | 2.36           | ESI pos  | 349 | 995  | 597  | 651  | 722  | 195   | 216    |
++-------------+------------------------------------------+-------------+-----------------------------+-----------+----------+----------------+----------+-----+------+------+------+------+-------+--------+
+| 2.42_332.56 | .beta.-Nicotinamide adenine dinucleotide | [M+2H]2+    | BAWFJGJZGIEFAR-OWXIGJDBSA-N | 2         | 332.5639 | 2.42           | ESI pos  | 229 | 1030 | 1482 | 1242 | 1409 | 6     | 6      |
++-------------+------------------------------------------+-------------+-----------------------------+-----------+----------+----------------+----------+-----+------+------+------+------+-------+--------+
+
+Automation Tags:
+
++-------+-----------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------+
+| #tags | #header         | #add                                                                                                                                                                                                                                                                | #allow_duplicates  |
++=======+=================+=====================================================================================================================================================================================================================================================================+====================+
+|       | identifier      | #measurement.identifier                                                                                                                                                                                                                                             |                    |
++-------+-----------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------+
+|       | annotation      | #measurement.assignment                                                                                                                                                                                                                                             |                    |
++-------+-----------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------+
+|       | ion species     | #measurement.ion                                                                                                                                                                                                                                                    |                    |
++-------+-----------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------+
+|       | InChiKey        | #measurement.inchi_key                                                                                                                                                                                                                                              |                    |
++-------+-----------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------+
+|       | MSI level       | #measurement.msi_level;#.msi_level%type=MSI_2014                                                                                                                                                                                                                    |                    |
++-------+-----------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------+
+|       | m/z             | #measurement.moverz_quant                                                                                                                                                                                                                                           |                    |
++-------+-----------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------+
+|       | ret.time (min)  | #measurement.retention_time;#%units=min                                                                                                                                                                                                                             |                    |
++-------+-----------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------+
+|       | ESI mode        | #measurement.esi_mode                                                                                                                                                                                                                                               |                    |
++-------+-----------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------+
+|       | r'^\d+$'        | #%crecord.id=#.identifier+"-"+#.assignment+"-#HEADER#"+"-"+#.esi_mode;#.intensity;#.intensity%units="peak height";#.intensity%type="peak height normalized to the sum of internal standards";#.entity.id="#HEADER#";#.protocol.id=LC-MS-MS1                         | TRUE               |
++-------+-----------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------+
+|       | r'^Pool|Blank$' | #%crecord.id=#.identifier+"-"+#.assignment+"-#HEADER#-#INCREMENT#"+"-"+#.esi_mode;#.intensity;#.intensity%units="peak height";#.intensity%type="peak height normalized to the sum of internal standards";#.entity.id="#HEADER#_#INCREMENT#";#.protocol.id=LC-MS-MS1 | TRUE               |
++-------+-----------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------+
+
+After Automation:
+
++---------+-------------------------+------------------------------------------+------------------+-----------------------------+--------------------------------------------------+---------------------------+-----------------------------------------+-----------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| #tags   | #measurement.identifier | #measurement.assignment                  | #measurement.ion | #measurement.inchi_key      | #measurement.msi_level;#.msi_level%type=MSI_2014 | #measurement.moverz_quant | #measurement.retention_time;#%units=min | #measurement.esi_mode | #%crecord.id=#.identifier+"-"+#.assignment+"-1"+"-"+#.esi_mode;#.intensity;#.intensity%units="peak height";#.intensity%type="peak height normalized to the sum of internal standards";#.entity.id="1";#.protocol.id=LC-MS-MS1 | #%crecord.id=#.identifier+"-"+#.assignment+"-2"+"-"+#.esi_mode;#.intensity;#.intensity%units="peak height";#.intensity%type="peak height normalized to the sum of internal standards";#.entity.id="2";#.protocol.id=LC-MS-MS1 | #%crecord.id=#.identifier+"-"+#.assignment+"-3"+"-"+#.esi_mode;#.intensity;#.intensity%units="peak height";#.intensity%type="peak height normalized to the sum of internal standards";#.entity.id="3";#.protocol.id=LC-MS-MS1 | #%crecord.id=#.identifier+"-"+#.assignment+"-Pool-1"+"-"+#.esi_mode;#.intensity;#.intensity%units="peak height";#.intensity%type="peak height normalized to the sum of internal standards";#.entity.id="Pool_1";#.protocol.id=LC-MS-MS1 | #%crecord.id=#.identifier+"-"+#.assignment+"-Pool-2"+"-"+#.esi_mode;#.intensity;#.intensity%units="peak height";#.intensity%type="peak height normalized to the sum of internal standards";#.entity.id="Pool_2";#.protocol.id=LC-MS-MS1 | #%crecord.id=#.identifier+"-"+#.assignment+"-Blank-1"+"-"+#.esi_mode;#.intensity;#.intensity%units="peak height";#.intensity%type="peak height normalized to the sum of internal standards";#.entity.id="Blank_1";#.protocol.id=LC-MS-MS1 | #%crecord.id=#.identifier+"-"+#.assignment+"-Blank-2"+"-"+#.esi_mode;#.intensity;#.intensity%units="peak height";#.intensity%type="peak height normalized to the sum of internal standards";#.entity.id="Blank_2";#.protocol.id=LC-MS-MS1  |
++=========+=========================+==========================================+==================+=============================+==================================================+===========================+=========================================+=======================+===============================================================================================================================================================================================================================+===============================================================================================================================================================================================================================+===============================================================================================================================================================================================================================+=========================================================================================================================================================================================================================================+=========================================================================================================================================================================================================================================+===========================================================================================================================================================================================================================================+============================================================================================================================================================================================================================================+
+| #ignore | identifier              | annotation                               | ion species      | InChiKey                    | MSI level                                        | m/z                       | ret.time (min)                          | ESI mode              | 1                                                                                                                                                                                                                             | 2                                                                                                                                                                                                                             | 3                                                                                                                                                                                                                             | Pool                                                                                                                                                                                                                                    | Pool                                                                                                                                                                                                                                    | Blank                                                                                                                                                                                                                                     | Blank                                                                                                                                                                                                                                      |
++---------+-------------------------+------------------------------------------+------------------+-----------------------------+--------------------------------------------------+---------------------------+-----------------------------------------+-----------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+|         | 2.36_131.09             | (dehydro)ornithine                       | [M+H]+           | KFZHLVSVDLIACX-UHFFFAOYSA-N | 3                                                | 131.0872                  | 2.363                                   | ESI pos               | 349                                                                                                                                                                                                                           | 995                                                                                                                                                                                                                           | 597                                                                                                                                                                                                                           | 651                                                                                                                                                                                                                                     | 722                                                                                                                                                                                                                                     | 195                                                                                                                                                                                                                                       | 216                                                                                                                                                                                                                                        |
++---------+-------------------------+------------------------------------------+------------------+-----------------------------+--------------------------------------------------+---------------------------+-----------------------------------------+-----------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+|         | 2.42_332.56             | .beta.-Nicotinamide adenine dinucleotide | [M+2H]2+         | BAWFJGJZGIEFAR-OWXIGJDBSA-N | 2                                                | 332.5639                  | 2.423                                   | ESI pos               | 229                                                                                                                                                                                                                           | 1030                                                                                                                                                                                                                          | 1482                                                                                                                                                                                                                          | 1242                                                                                                                                                                                                                                    | 1409                                                                                                                                                                                                                                    | 6                                                                                                                                                                                                                                         | 6                                                                                                                                                                                                                                          |
++---------+-------------------------+------------------------------------------+------------------+-----------------------------+--------------------------------------------------+---------------------------+-----------------------------------------+-----------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+|         |                         |                                          |                  |                             |                                                  |                           |                                         |                       |                                                                                                                                                                                                                               |                                                                                                                                                                                                                               |                                                                                                                                                                                                                               |                                                                                                                                                                                                                                         |                                                                                                                                                                                                                                         |                                                                                                                                                                                                                                           |                                                                                                                                                                                                                                            |
++---------+-------------------------+------------------------------------------+------------------+-----------------------------+--------------------------------------------------+---------------------------+-----------------------------------------+-----------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+This is a real example taken from an upload of West Coast Metabolomics data. The full example is in the examples folder on GitHub_.
+
 
 
 

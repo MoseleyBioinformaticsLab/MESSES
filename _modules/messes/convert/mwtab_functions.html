@@ -1,24 +1,24 @@
+
+
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../../../">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>messes.convert.mwtab_functions &mdash; MESSES 1.0.2 documentation</title>
-      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../../../_static/css/custom_css.css" type="text/css" />
-      <link rel="stylesheet" href="../../../_static/sphinxcontrib-images/LightBox2/lightbox2/dist/css/lightbox.css" type="text/css" />
-  <!--[if lt IE 9]>
-    <script src="../../../_static/js/html5shiv.min.js"></script>
-  <![endif]-->
+  <title>messes.convert.mwtab_functions &mdash; MESSES 1.1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/custom_css.css?v=9359fcaf" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/sphinxcontrib-images/LightBox2/lightbox2/dist/css/lightbox.min.css?v=6e7d0de0" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/sphinxcontrib-images/LightBox2/lightbox2-customize/pointer.css?v=c97663ff" />
+
   
-        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
-        <script src="../../../_static/jquery.js"></script>
-        <script src="../../../_static/underscore.js"></script>
-        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script src="../../../_static/doctools.js"></script>
-        <script src="../../../_static/sphinx_highlight.js"></script>
-        <script src="../../../_static/sphinxcontrib-images/LightBox2/lightbox2/dist/js/lightbox-plus-jquery.min.js"></script>
-        <script src="../../../_static/sphinxcontrib-images/LightBox2/lightbox2-customize/jquery-noconflict.js"></script>
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../_static/documentation_options.js?v=fc837d61"></script>
+      <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../../../_static/sphinxcontrib-images/LightBox2/lightbox2/dist/js/lightbox-plus-jquery.min.js?v=f0ca4bb6"></script>
+      <script src="../../../_static/sphinxcontrib-images/LightBox2/lightbox2-customize/jquery-noconflict.js?v=12818e64"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" /> 
@@ -29,14 +29,15 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../../../index.html" class="icon icon-home"> MESSES
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            MESSES
           </a>
-              <div class="version">
-                1.0.2
-              </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -52,6 +53,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../experiment_description_specification.html">Experiment Description Specification</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../protocol_dependent_schema.html">Protocol-Dependent Schema</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../supported_formats.html">Supported Conversion Formats</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../common_conventions.html">Common Conventions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../api.html">API</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../license.html">License</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../todo.html">TODO List</a></li>
@@ -70,9 +72,9 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="../../index.html">Module code</a> &raquo;</li>
-      <li>messes.convert.mwtab_functions</li>
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">messes.convert.mwtab_functions</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -88,11 +90,13 @@
 <span class="sd">--------------------------</span>
 <span class="sd">&quot;&quot;&quot;</span>
 
-<span class="kn">import</span> <span class="nn">sys</span>
-<span class="kn">import</span> <span class="nn">operator</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">operator</span>
 
 
-<div class="viewcode-block" id="create_sample_lineages"><a class="viewcode-back" href="../../../api.html#messes.convert.mwtab_functions.create_sample_lineages">[docs]</a><span class="k">def</span> <span class="nf">create_sample_lineages</span><span class="p">(</span><span class="n">input_json</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span> <span class="n">entity_table_name</span><span class="p">:</span> <span class="nb">str</span><span class="o">=</span><span class="s2">&quot;entity&quot;</span><span class="p">,</span> <span class="n">parent_key</span><span class="p">:</span> <span class="nb">str</span><span class="o">=</span><span class="s2">&quot;parent_id&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+<div class="viewcode-block" id="create_sample_lineages">
+<a class="viewcode-back" href="../../../api.html#messes.convert.mwtab_functions.create_sample_lineages">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">create_sample_lineages</span><span class="p">(</span><span class="n">input_json</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span> <span class="n">entity_table_name</span><span class="p">:</span> <span class="nb">str</span><span class="o">=</span><span class="s2">&quot;entity&quot;</span><span class="p">,</span> <span class="n">parent_key</span><span class="p">:</span> <span class="nb">str</span><span class="o">=</span><span class="s2">&quot;parent_id&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Determine all the ancestors, parents, and siblings for each entity in the entity table.</span>
 <span class="sd">    </span>
 <span class="sd">    The returned dictionary is of the form:</span>
@@ -159,7 +163,19 @@
 
 
 
-<div class="viewcode-block" id="create_subject_sample_factors"><a class="viewcode-back" href="../../../api.html#messes.convert.mwtab_functions.create_subject_sample_factors">[docs]</a><span class="k">def</span> <span class="nf">create_subject_sample_factors</span><span class="p">(</span><span class="n">input_json</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span> 
+<span class="k">def</span><span class="w"> </span><span class="nf">_determine_lineage_level</span><span class="p">(</span><span class="n">lineages</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span> <span class="n">entity_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">level</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">while</span> <span class="n">lineages</span><span class="p">[</span><span class="n">entity_name</span><span class="p">][</span><span class="s1">&#39;parents&#39;</span><span class="p">]:</span>
+        <span class="n">level</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="n">entity_name</span> <span class="o">=</span> <span class="n">lineages</span><span class="p">[</span><span class="n">entity_name</span><span class="p">][</span><span class="s1">&#39;parents&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">level</span>
+
+
+<div class="viewcode-block" id="create_subject_sample_factors">
+<a class="viewcode-back" href="../../../api.html#messes.convert.mwtab_functions.create_subject_sample_factors">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">create_subject_sample_factors</span><span class="p">(</span><span class="n">input_json</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span> 
                                   <span class="n">measurement_table_name</span><span class="p">:</span> <span class="nb">str</span><span class="o">=</span><span class="s2">&quot;measurement&quot;</span><span class="p">,</span> 
                                   <span class="n">sibling_match_field</span><span class="p">:</span> <span class="nb">str</span><span class="o">=</span><span class="s2">&quot;protocol.id&quot;</span><span class="p">,</span> 
                                   <span class="n">sibling_match_value</span><span class="p">:</span> <span class="nb">str</span><span class="o">=</span><span class="s2">&quot;protein_extraction&quot;</span><span class="p">,</span>
@@ -177,7 +193,7 @@
                                   <span class="n">measurement_type_value</span><span class="p">:</span> <span class="nb">str</span><span class="o">=</span><span class="s2">&quot;measurement&quot;</span><span class="p">,</span>
                                   <span class="n">data_files_key</span><span class="p">:</span> <span class="nb">str</span><span class="o">=</span><span class="s2">&quot;data_files&quot;</span><span class="p">,</span>
                                   <span class="n">data_files_attribute_key</span><span class="p">:</span> <span class="nb">str</span><span class="o">=</span><span class="s2">&quot;data_files</span><span class="si">%e</span><span class="s2">ntity_id&quot;</span><span class="p">,</span>
-                                  <span class="n">lineage_field_exclusion_list</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span><span class="o">|</span><span class="nb">tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span><span class="p">(</span><span class="s2">&quot;study.id&quot;</span><span class="p">,</span> <span class="s2">&quot;project.id&quot;</span><span class="p">,</span> <span class="s2">&quot;parent_id&quot;</span><span class="p">))</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">dict</span><span class="p">]:</span>
+                                  <span class="n">lineage_field_inclusion_list</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span><span class="o">|</span><span class="nb">tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span><span class="p">(</span><span class="s2">&quot;id&quot;</span><span class="p">))</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">dict</span><span class="p">]:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Create the SUBJECT_SAMPLE_FACTORS section of the mwTab JSON.</span>
 <span class="sd">    </span>
 <span class="sd">    Args:</span>
@@ -199,7 +215,7 @@
 <span class="sd">        measurement_type_value: the value in the type key that means the protocol is a measurement type.</span>
 <span class="sd">        data_files_key: the field in a measurement type protocol record where the file names are located.</span>
 <span class="sd">        data_files_attribute_key: the field in a measurement type protocol record where the corresponding entity_id to raw file names are located.</span>
-<span class="sd">        lineage_field_exclusion_list: the fields in entity records that should not be added as additional data.</span>
+<span class="sd">        lineage_field_inclusion_list: the fields in entity records that should be added as additional data.</span>
 <span class="sd">        </span>
 <span class="sd">    Returns:</span>
 <span class="sd">        a list of SUBJECT_SAMPLE_FACTORS.</span>
@@ -244,7 +260,8 @@
     
     <span class="n">lineages</span> <span class="o">=</span> <span class="n">create_sample_lineages</span><span class="p">(</span><span class="n">input_json</span><span class="p">,</span> <span class="n">entity_table_name</span><span class="o">=</span><span class="n">entity_table_name</span><span class="p">,</span> <span class="n">parent_key</span><span class="o">=</span><span class="n">parent_key</span><span class="p">)</span>
     
-    <span class="n">factor_fields</span> <span class="o">=</span> <span class="p">{</span><span class="n">factor_attributes</span><span class="p">[</span><span class="n">factor_field_key</span><span class="p">]:{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span><span class="n">factor</span><span class="p">,</span> <span class="s2">&quot;allowed_values&quot;</span><span class="p">:</span><span class="n">factor_attributes</span><span class="p">[</span><span class="n">factor_allowed_values_key</span><span class="p">]}</span> <span class="k">for</span> <span class="n">factor</span><span class="p">,</span> <span class="n">factor_attributes</span> <span class="ow">in</span> <span class="n">input_json</span><span class="p">[</span><span class="n">factor_table_name</span><span class="p">]</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
+    <span class="n">factor_fields</span> <span class="o">=</span> <span class="p">{</span><span class="n">factor_attributes</span><span class="p">[</span><span class="n">factor_field_key</span><span class="p">]:{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span><span class="n">factor</span><span class="p">,</span> <span class="s2">&quot;allowed_values&quot;</span><span class="p">:</span><span class="n">factor_attributes</span><span class="p">[</span><span class="n">factor_allowed_values_key</span><span class="p">]}</span> 
+                     <span class="k">for</span> <span class="n">factor</span><span class="p">,</span> <span class="n">factor_attributes</span> <span class="ow">in</span> <span class="n">input_json</span><span class="p">[</span><span class="n">factor_table_name</span><span class="p">]</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
     
     <span class="n">ss_factors</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="k">for</span> <span class="n">sample</span> <span class="ow">in</span> <span class="n">samples</span><span class="p">:</span>
@@ -256,56 +273,89 @@
         <span class="n">additional_sample_data</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="c1"># raw_files = []</span>
         <span class="n">factors</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="n">ancestor_factors</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="n">factors_blacklist</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">subjects</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="n">subject_id</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
-        <span class="n">lineage_count</span> <span class="o">=</span> <span class="mi">0</span>
-        <span class="c1">## Loop over all of the sample&#39;s ancestors and add them to additional data as well find all the factors, and the closest subject.</span>
+        <span class="c1">## Loop over all of the sample&#39;s ancestors and add them to additional data as well as find all the factors, and the closest subject.</span>
         <span class="k">for</span> <span class="n">ancestor</span> <span class="ow">in</span> <span class="n">lineages</span><span class="p">[</span><span class="n">sample</span><span class="p">][</span><span class="s2">&quot;ancestors&quot;</span><span class="p">]:</span>
+            <span class="n">lineage_level</span> <span class="o">=</span> <span class="n">_determine_lineage_level</span><span class="p">(</span><span class="n">lineages</span><span class="p">,</span> <span class="n">ancestor</span><span class="p">)</span>
             <span class="k">for</span> <span class="n">field</span><span class="p">,</span> <span class="n">field_value</span> <span class="ow">in</span> <span class="n">input_json</span><span class="p">[</span><span class="n">entity_table_name</span><span class="p">][</span><span class="n">ancestor</span><span class="p">]</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-                <span class="k">if</span> <span class="n">field</span> <span class="ow">in</span> <span class="n">lineage_field_exclusion_list</span><span class="p">:</span>
-                    <span class="k">continue</span>
-                <span class="n">additional_sample_data</span><span class="p">[</span><span class="s2">&quot;lineage&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">lineage_count</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;_&quot;</span> <span class="o">+</span> <span class="n">field</span><span class="p">]</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">field_value</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">field</span> <span class="ow">in</span> <span class="n">factor_fields</span> <span class="ow">and</span> <span class="n">factor_fields</span><span class="p">[</span><span class="n">field</span><span class="p">][</span><span class="s1">&#39;name&#39;</span><span class="p">]</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">factors_blacklist</span><span class="p">:</span>
+                    <span class="n">factor_name</span> <span class="o">=</span> <span class="n">factor_fields</span><span class="p">[</span><span class="n">field</span><span class="p">][</span><span class="s2">&quot;name&quot;</span><span class="p">]</span>
+                    <span class="k">if</span> <span class="n">factor_name</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">ancestor_factors</span><span class="p">:</span>
+                        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">field_value</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span> <span class="ow">and</span> <span class="n">field_value</span> <span class="ow">in</span> <span class="n">factor_fields</span><span class="p">[</span><span class="n">field</span><span class="p">][</span><span class="s2">&quot;allowed_values&quot;</span><span class="p">]:</span>
+                            <span class="n">ancestor_factors</span><span class="p">[</span><span class="n">factor_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">field_value</span>
+                        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">field_value</span><span class="p">,</span> <span class="nb">list</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">allowed_field_values</span> <span class="o">:=</span> <span class="p">[</span><span class="n">value</span> <span class="k">for</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">field_value</span> <span class="k">if</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">factor_fields</span><span class="p">[</span><span class="n">field</span><span class="p">][</span><span class="s2">&quot;allowed_values&quot;</span><span class="p">]]):</span>
+                            <span class="n">ancestor_factors</span><span class="p">[</span><span class="n">factor_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">allowed_field_values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">allowed_field_values</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span> <span class="k">else</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">allowed_field_values</span><span class="p">)</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="c1"># If a sample has multiple ancestors with conflicting factors, then don&#39;t add that factor.</span>
+                        <span class="c1"># An example is pooled samples that mix cancer and non-cancer together.</span>
+                        <span class="n">field_is_allowed</span> <span class="o">=</span> <span class="kc">False</span>
+                        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">field_value</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span> <span class="ow">and</span> <span class="n">field_value</span> <span class="ow">in</span> <span class="n">factor_fields</span><span class="p">[</span><span class="n">field</span><span class="p">][</span><span class="s2">&quot;allowed_values&quot;</span><span class="p">]:</span>
+                            <span class="n">factor_value</span> <span class="o">=</span> <span class="n">field_value</span>
+                            <span class="n">field_is_allowed</span> <span class="o">=</span> <span class="kc">True</span>
+                        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">field_value</span><span class="p">,</span> <span class="nb">list</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">allowed_field_values</span> <span class="o">:=</span> <span class="p">[</span><span class="n">value</span> <span class="k">for</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">field_value</span> <span class="k">if</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">factor_fields</span><span class="p">[</span><span class="n">field</span><span class="p">][</span><span class="s2">&quot;allowed_values&quot;</span><span class="p">]]):</span>
+                            <span class="n">factor_value</span> <span class="o">=</span> <span class="n">allowed_field_values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">allowed_field_values</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span> <span class="k">else</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">allowed_field_values</span><span class="p">)</span>
+                            <span class="n">field_is_allowed</span> <span class="o">=</span> <span class="kc">True</span>
+                        <span class="k">if</span> <span class="n">field_is_allowed</span> <span class="ow">and</span> <span class="n">factor_value</span> <span class="o">!=</span> <span class="n">ancestor_factors</span><span class="p">[</span><span class="n">factor_name</span><span class="p">]:</span>
+                            <span class="n">factors_blacklist</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">factor_name</span><span class="p">)</span>
+                            <span class="k">del</span> <span class="n">ancestor_factors</span><span class="p">[</span><span class="n">factor_name</span><span class="p">]</span>
+                    
+                <span class="k">if</span> <span class="n">field</span> <span class="o">==</span> <span class="n">entity_type_key</span> <span class="ow">and</span> <span class="n">field_value</span> <span class="o">==</span> <span class="n">subject_type_value</span><span class="p">:</span>
+                    <span class="n">subjects</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="n">lineage_level</span><span class="p">,</span> <span class="p">[])</span>
+                    <span class="n">subjects</span><span class="p">[</span><span class="n">lineage_level</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ancestor</span><span class="p">)</span>
+                <span class="c1"># if not subject_id and field == entity_type_key and field_value == subject_type_value:</span>
+                <span class="c1">#     subject_id = ancestor</span>
                 
-                <span class="k">if</span> <span class="n">field</span> <span class="ow">in</span> <span class="n">factor_fields</span> <span class="ow">and</span> <span class="n">factor_fields</span><span class="p">[</span><span class="n">field</span><span class="p">][</span><span class="s2">&quot;name&quot;</span><span class="p">]</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">factors</span><span class="p">:</span>
-                    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">field_value</span><span class="p">,</span><span class="nb">str</span><span class="p">)</span> <span class="ow">and</span> <span class="n">field_value</span> <span class="ow">in</span> <span class="n">factor_fields</span><span class="p">[</span><span class="n">field</span><span class="p">][</span><span class="s2">&quot;allowed_values&quot;</span><span class="p">]:</span>
-                        <span class="n">factors</span><span class="p">[</span><span class="n">factor_fields</span><span class="p">[</span><span class="n">field</span><span class="p">][</span><span class="s2">&quot;name&quot;</span><span class="p">]]</span> <span class="o">=</span> <span class="n">field_value</span>
-                    <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">field_value</span><span class="p">,</span><span class="nb">list</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">field_values</span> <span class="o">:=</span> <span class="p">[</span><span class="n">value</span> <span class="k">for</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">field_value</span> <span class="k">if</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">factor_fields</span><span class="p">[</span><span class="n">field</span><span class="p">][</span><span class="s2">&quot;allowed_values&quot;</span><span class="p">]]):</span>
-                        <span class="n">factors</span><span class="p">[</span><span class="n">factor_fields</span><span class="p">[</span><span class="n">field</span><span class="p">][</span><span class="s2">&quot;name&quot;</span><span class="p">]]</span> <span class="o">=</span> <span class="n">field_values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">field_values</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span> <span class="k">else</span> <span class="nb">str</span><span class="p">(</span><span class="n">field_values</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">field</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">lineage_field_inclusion_list</span><span class="p">:</span>
+                    <span class="k">continue</span>
+                <span class="c1"># additional_sample_data[&quot;lineage&quot; + str(lineage_count) + &quot;_&quot; + field] = str(field_value)</span>
+                <span class="n">add_data_key</span> <span class="o">=</span> <span class="s2">&quot;lineage&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">lineage_level</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;_&quot;</span> <span class="o">+</span> <span class="n">field</span>
+                <span class="n">additional_sample_data</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="n">add_data_key</span><span class="p">,</span> <span class="p">[])</span> 
+                <span class="n">additional_sample_data</span><span class="p">[</span><span class="n">add_data_key</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">field_value</span><span class="p">))</span>
+        
+        <span class="n">factors</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">ancestor_factors</span><span class="p">)</span>
+        <span class="c1"># Pooled samples can inherit from multiple subjects. In that case we just want to have a blank subject.</span>
+        <span class="k">if</span> <span class="n">subjects</span><span class="p">:</span>
+            <span class="n">lowest_lineage_level</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">subjects</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">subjects</span><span class="p">[</span><span class="n">lowest_lineage_level</span><span class="p">])</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="n">subject_id</span> <span class="o">=</span> <span class="n">subjects</span><span class="p">[</span><span class="n">lowest_lineage_level</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
                     
-                <span class="k">if</span> <span class="ow">not</span> <span class="n">subject_id</span> <span class="ow">and</span> <span class="n">field</span> <span class="o">==</span> <span class="n">entity_type_key</span> <span class="ow">and</span> <span class="n">field_value</span> <span class="o">==</span> <span class="n">subject_type_value</span><span class="p">:</span>
-                    <span class="n">subject_id</span> <span class="o">=</span> <span class="n">ancestor</span>
-            
-                    
-            <span class="n">lineage_count</span> <span class="o">+=</span> <span class="mi">1</span>
         
         <span class="c1">## Look for siblings to add to additional data if sibling_match_field is given.</span>
         <span class="k">if</span> <span class="n">sibling_match_field</span> <span class="ow">and</span> <span class="n">sibling_match_value</span><span class="p">:</span>
             <span class="k">for</span> <span class="n">sibling</span> <span class="ow">in</span> <span class="n">lineages</span><span class="p">[</span><span class="n">sample</span><span class="p">][</span><span class="s2">&quot;siblings&quot;</span><span class="p">]:</span>
+                <span class="n">lineage_level</span> <span class="o">=</span> <span class="n">_determine_lineage_level</span><span class="p">(</span><span class="n">lineages</span><span class="p">,</span> <span class="n">sibling</span><span class="p">)</span>
                 <span class="n">match_field_value</span> <span class="o">=</span> <span class="n">input_json</span><span class="p">[</span><span class="n">entity_table_name</span><span class="p">][</span><span class="n">sibling</span><span class="p">][</span><span class="n">sibling_match_field</span><span class="p">]</span>
                 <span class="k">if</span> <span class="n">sibling_match_field</span> <span class="ow">in</span> <span class="n">input_json</span><span class="p">[</span><span class="n">entity_table_name</span><span class="p">][</span><span class="n">sibling</span><span class="p">]</span> <span class="ow">and</span> \
                    <span class="p">((</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">match_field_value</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span> <span class="ow">and</span> <span class="n">sibling_match_value</span> <span class="o">==</span> <span class="n">match_field_value</span><span class="p">)</span> <span class="ow">or</span>\
                    <span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">match_field_value</span><span class="p">,</span> <span class="nb">list</span><span class="p">)</span> <span class="ow">and</span> <span class="n">sibling_match_value</span> <span class="ow">in</span> <span class="n">match_field_value</span><span class="p">)):</span>
                        <span class="k">for</span> <span class="n">field</span><span class="p">,</span> <span class="n">field_value</span> <span class="ow">in</span> <span class="n">input_json</span><span class="p">[</span><span class="n">entity_table_name</span><span class="p">][</span><span class="n">sibling</span><span class="p">]</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-                           <span class="k">if</span> <span class="n">field</span> <span class="ow">in</span> <span class="n">lineage_field_exclusion_list</span><span class="p">:</span>
+                           <span class="k">if</span> <span class="n">field</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">lineage_field_inclusion_list</span><span class="p">:</span>
                                <span class="k">continue</span>
-                           <span class="n">additional_sample_data</span><span class="p">[</span><span class="s2">&quot;lineage&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">lineage_count</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;_&quot;</span> <span class="o">+</span> <span class="n">field</span><span class="p">]</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">field_value</span><span class="p">)</span>
+                           <span class="c1"># additional_sample_data[&quot;lineage&quot; + str(lineage_level) + &quot;_&quot; + field] = str(field_value)</span>
+                           <span class="n">add_data_key</span> <span class="o">=</span> <span class="s2">&quot;lineage&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">lineage_level</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;_&quot;</span> <span class="o">+</span> <span class="n">field</span>
+                           <span class="n">additional_sample_data</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="n">add_data_key</span><span class="p">,</span> <span class="p">[])</span> 
+                           <span class="n">additional_sample_data</span><span class="p">[</span><span class="n">add_data_key</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">field_value</span><span class="p">))</span>
                        
                 
-                       <span class="n">lineage_count</span> <span class="o">+=</span> <span class="mi">1</span>
         
         <span class="c1">## Look for factors on the sample itself.</span>
         <span class="k">for</span> <span class="n">field</span><span class="p">,</span> <span class="n">field_value</span> <span class="ow">in</span> <span class="n">input_json</span><span class="p">[</span><span class="n">entity_table_name</span><span class="p">][</span><span class="n">sample</span><span class="p">]</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>            
-            <span class="k">if</span> <span class="n">field</span> <span class="ow">in</span> <span class="n">factor_fields</span> <span class="ow">and</span> <span class="n">factor_fields</span><span class="p">[</span><span class="n">field</span><span class="p">][</span><span class="s2">&quot;name&quot;</span><span class="p">]</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">factors</span><span class="p">:</span>
-                <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">field_value</span><span class="p">,</span><span class="nb">str</span><span class="p">)</span> <span class="ow">and</span> <span class="n">field_value</span> <span class="ow">in</span> <span class="n">factor_fields</span><span class="p">[</span><span class="n">field</span><span class="p">][</span><span class="s2">&quot;allowed_values&quot;</span><span class="p">]:</span>
+            <span class="k">if</span> <span class="n">field</span> <span class="ow">in</span> <span class="n">factor_fields</span> <span class="ow">and</span> <span class="n">factor_fields</span><span class="p">[</span><span class="n">field</span><span class="p">][</span><span class="s2">&quot;name&quot;</span><span class="p">]:</span>
+                <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">field_value</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span> <span class="ow">and</span> <span class="n">field_value</span> <span class="ow">in</span> <span class="n">factor_fields</span><span class="p">[</span><span class="n">field</span><span class="p">][</span><span class="s2">&quot;allowed_values&quot;</span><span class="p">]:</span>
                     <span class="n">factors</span><span class="p">[</span><span class="n">factor_fields</span><span class="p">[</span><span class="n">field</span><span class="p">][</span><span class="s2">&quot;name&quot;</span><span class="p">]]</span> <span class="o">=</span> <span class="n">field_value</span>
-                <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">field_value</span><span class="p">,</span><span class="nb">list</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">field_values</span> <span class="o">:=</span> <span class="p">[</span><span class="n">value</span> <span class="k">for</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">field_value</span> <span class="k">if</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">factor_fields</span><span class="p">[</span><span class="n">field</span><span class="p">][</span><span class="s2">&quot;allowed_values&quot;</span><span class="p">]]):</span>
-                    <span class="n">factors</span><span class="p">[</span><span class="n">factor_fields</span><span class="p">[</span><span class="n">field</span><span class="p">][</span><span class="s2">&quot;name&quot;</span><span class="p">]]</span> <span class="o">=</span> <span class="n">field_values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">field_values</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span> <span class="k">else</span> <span class="nb">str</span><span class="p">(</span><span class="n">field_values</span><span class="p">)</span>
+                <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">field_value</span><span class="p">,</span> <span class="nb">list</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">field_value</span> <span class="o">:=</span> <span class="p">[</span><span class="n">value</span> <span class="k">for</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">field_value</span> <span class="k">if</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">factor_fields</span><span class="p">[</span><span class="n">field</span><span class="p">][</span><span class="s2">&quot;allowed_values&quot;</span><span class="p">]]):</span>
+                    <span class="n">factors</span><span class="p">[</span><span class="n">factor_fields</span><span class="p">[</span><span class="n">field</span><span class="p">][</span><span class="s2">&quot;name&quot;</span><span class="p">]]</span> <span class="o">=</span> <span class="n">field_value</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">field_value</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span> <span class="k">else</span> <span class="nb">str</span><span class="p">(</span><span class="n">field_value</span><span class="p">)</span>
                     
         
         <span class="c1">## Add raw files as a key to additional sample data.</span>
         <span class="k">if</span> <span class="n">raw_file</span> <span class="o">:=</span> <span class="n">raw_file_dict</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">sample</span><span class="p">):</span>
             <span class="n">additional_sample_data</span><span class="p">[</span><span class="s2">&quot;RAW_FILE_NAME&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">raw_file</span>
             
-        
+        <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">additional_sample_data</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="n">additional_sample_data</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">value</span><span class="p">)</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="nb">list</span><span class="p">)</span> <span class="k">else</span> <span class="nb">str</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
         <span class="n">ss_factors</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s2">&quot;Subject ID&quot;</span><span class="p">:</span><span class="n">subject_id</span><span class="p">,</span> <span class="s2">&quot;Sample ID&quot;</span><span class="p">:</span><span class="n">sample</span><span class="p">,</span> <span class="s2">&quot;Factors&quot;</span><span class="p">:</span><span class="n">factors</span><span class="p">,</span> <span class="s2">&quot;Additional sample data&quot;</span><span class="p">:</span><span class="n">additional_sample_data</span><span class="p">})</span>
         
     <span class="c1">## Run some error checking on factors found.</span>
@@ -316,7 +366,9 @@
               <span class="s2">&quot;</span><span class="se">\&quot;</span><span class="s2"> table that were not found when determining the subject-sample-factors. These factors are: &quot;</span> <span class="o">+</span>\
               <span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">missing_factors</span><span class="p">),</span> <span class="n">file</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="p">)</span>
     
-    <span class="n">samples_without_all_factors</span> <span class="o">=</span> <span class="p">[</span><span class="n">ss_factor</span><span class="p">[</span><span class="s2">&quot;Sample ID&quot;</span><span class="p">]</span> <span class="k">for</span> <span class="n">ss_factor</span> <span class="ow">in</span> <span class="n">ss_factors</span> <span class="k">if</span> <span class="n">found_factors</span> <span class="o">-</span> <span class="nb">set</span><span class="p">(</span><span class="n">ss_factor</span><span class="p">[</span><span class="s2">&quot;Factors&quot;</span><span class="p">])]</span>
+    <span class="n">samples_without_all_factors</span> <span class="o">=</span> <span class="p">[</span><span class="n">ss_factor</span><span class="p">[</span><span class="s2">&quot;Sample ID&quot;</span><span class="p">]</span> <span class="k">for</span> <span class="n">ss_factor</span> <span class="ow">in</span> <span class="n">ss_factors</span> <span class="k">if</span> <span class="n">found_factors</span> <span class="o">-</span> <span class="nb">set</span><span class="p">(</span><span class="n">ss_factor</span><span class="p">[</span><span class="s2">&quot;Factors&quot;</span><span class="p">])</span> <span class="ow">and</span> 
+                                                                                         <span class="s1">&#39;pool&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">ss_factor</span><span class="p">[</span><span class="s2">&quot;Sample ID&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="ow">and</span>
+                                                                                         <span class="s1">&#39;blank&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">ss_factor</span><span class="p">[</span><span class="s2">&quot;Sample ID&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">lower</span><span class="p">()]</span>
     <span class="k">if</span> <span class="n">samples_without_all_factors</span><span class="p">:</span>
        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Warning: The following samples do not have the full set of factors: </span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">samples_without_all_factors</span><span class="p">),</span> <span class="n">file</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="p">)</span>
     
@@ -324,6 +376,7 @@
     <span class="n">ss_factors</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">ss_factors</span><span class="p">,</span> <span class="n">key</span> <span class="o">=</span> <span class="n">operator</span><span class="o">.</span><span class="n">itemgetter</span><span class="p">(</span><span class="o">*</span><span class="p">[</span><span class="s2">&quot;Subject ID&quot;</span><span class="p">,</span> <span class="s2">&quot;Sample ID&quot;</span><span class="p">]))</span>
         
     <span class="k">return</span> <span class="n">ss_factors</span></div>
+
 </pre></div>
 
            </div>

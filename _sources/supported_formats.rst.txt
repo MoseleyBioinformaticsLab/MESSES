@@ -163,8 +163,8 @@ The CHROMATOGRAPHY, MS, and NM sections are filled out by selecting the first pr
 of either "MS" or "NMR". That protocol is expected to have certain fields that differ slightly based on whether the value is 
 "MS" or "NMR". 
 For a "MS" submission the "chromatography_type", "column_name", "chromatography_instrument_name", "instrument", 
-"instrument_type", "ion_mode", and "ionization" fields are required on the protocol, and "description" and 
-"chromatography_description" are optional.
+"instrument_type", "ion_mode", "ionization", "solvent_a", "solvent_b", "column_temperature", "flow_gradient", and "flow_rate" 
+fields are required on the protocol, and "description" and "chromatography_description" are optional.
 For a "NMR" submission the "instrument", "instrument_type", "NMR_experiment_type", "spectrometer_frequency",
 and "spectrometer_frequency%units" fields are required on the protocol, and "acquisition_time", "acquisition_time%units", 
 "baseline_correction_method", "chemical_shift_ref_cpd", "NMR_probe", "NMR_solvent", "NMR_tube_size", "NMR_tube_size%units", 
@@ -191,4 +191,17 @@ But if you do need to make a change, then all of the parameters for the function
 
 
 
+Supported Sources
+-----------------
+The examples folder on the GitHub_ repository has examples of depositions into different formats from various sources. 
+For example, there are examples for depositions into the mwTab format from the Center for Environmental and Systems Biochemistry (CESB)
+and from the West Coast Metabolomics Center at UC Davis. The examples include data and detailed README files that explain 
+how to replicate the examples and other pertinent information.
+
+
+
+
+
+
 .. _Metabolomics Workbench: http://www.metabolomicsworkbench.org
+.. _GitHub: https://github.com/MoseleyBioinformaticsLab/messes

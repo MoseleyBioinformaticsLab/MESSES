@@ -1,25 +1,25 @@
+
+
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="./">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Experiment Description Specification &mdash; MESSES 1.0.2 documentation</title>
-      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="_static/css/custom_css.css" type="text/css" />
-      <link rel="stylesheet" href="_static/sphinxcontrib-images/LightBox2/lightbox2/dist/css/lightbox.css" type="text/css" />
-  <!--[if lt IE 9]>
-    <script src="_static/js/html5shiv.min.js"></script>
-  <![endif]-->
+  <title>Experiment Description Specification &mdash; MESSES 1.1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/custom_css.css?v=9359fcaf" />
+      <link rel="stylesheet" type="text/css" href="_static/sphinxcontrib-images/LightBox2/lightbox2/dist/css/lightbox.min.css?v=6e7d0de0" />
+      <link rel="stylesheet" type="text/css" href="_static/sphinxcontrib-images/LightBox2/lightbox2-customize/pointer.css?v=c97663ff" />
+
   
-        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-        <script src="_static/jquery.js"></script>
-        <script src="_static/underscore.js"></script>
-        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script src="_static/doctools.js"></script>
-        <script src="_static/sphinx_highlight.js"></script>
-        <script src="_static/sphinxcontrib-images/LightBox2/lightbox2/dist/js/lightbox-plus-jquery.min.js"></script>
-        <script src="_static/sphinxcontrib-images/LightBox2/lightbox2-customize/jquery-noconflict.js"></script>
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=fc837d61"></script>
+      <script src="_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="_static/sphinxcontrib-images/LightBox2/lightbox2/dist/js/lightbox-plus-jquery.min.js?v=f0ca4bb6"></script>
+      <script src="_static/sphinxcontrib-images/LightBox2/lightbox2-customize/jquery-noconflict.js?v=12818e64"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -32,14 +32,15 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="index.html" class="icon icon-home"> MESSES
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            MESSES
           </a>
-              <div class="version">
-                1.0.2
-              </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -97,6 +98,7 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="protocol_dependent_schema.html">Protocol-Dependent Schema</a></li>
 <li class="toctree-l1"><a class="reference internal" href="supported_formats.html">Supported Conversion Formats</a></li>
+<li class="toctree-l1"><a class="reference internal" href="common_conventions.html">Common Conventions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="api.html">API</a></li>
 <li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
 <li class="toctree-l1"><a class="reference internal" href="todo.html">TODO List</a></li>
@@ -115,8 +117,8 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>Experiment Description Specification</li>
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Experiment Description Specification</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/experiment_description_specification.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -127,9 +129,9 @@
            <div itemprop="articleBody">
              
   <section id="experiment-description-specification">
-<h1>Experiment Description Specification<a class="headerlink" href="#experiment-description-specification" title="Permalink to this heading"></a></h1>
+<h1>Experiment Description Specification<a class="headerlink" href="#experiment-description-specification" title="Link to this heading"></a></h1>
 <section id="terminology">
-<h2>Terminology<a class="headerlink" href="#terminology" title="Permalink to this heading"></a></h2>
+<h2>Terminology<a class="headerlink" href="#terminology" title="Link to this heading"></a></h2>
 <ul>
 <li><p><strong>record/entry</strong> - collection of fields and attributes with a unique identifier organized together.</p>
 <blockquote>
@@ -148,7 +150,7 @@
 </ul>
 </section>
 <section id="overview-of-tables">
-<h2>Overview of Tables<a class="headerlink" href="#overview-of-tables" title="Permalink to this heading"></a></h2>
+<h2>Overview of Tables<a class="headerlink" href="#overview-of-tables" title="Link to this heading"></a></h2>
 <dl class="simple">
 <dt>The data schema developed for MESSES was designed to capture generalized experimental descriptions and data in an abstract way.</dt><dd><ul class="simple">
 <li><p>The data schema is organized into several tables with a unique record identifier and a flexible collection of fields.</p></li>
@@ -169,7 +171,7 @@
 </dd>
 </dl>
 <section id="project">
-<h3>project<a class="headerlink" href="#project" title="Permalink to this heading"></a></h3>
+<h3>project<a class="headerlink" href="#project" title="Link to this heading"></a></h3>
 <dl class="simple">
 <dt><strong>A project generally refers to a research project with multiple analytical datasets derived from one or more experimental designs.</strong></dt><dd><ul class="simple">
 <li><p>It is somewhat arbitrary how to categorize a project, but defining one project per group of related analytical datasets derived from a single experiment is a good start.</p></li>
@@ -178,7 +180,7 @@
 </dl>
 </section>
 <section id="study">
-<h3>study<a class="headerlink" href="#study" title="Permalink to this heading"></a></h3>
+<h3>study<a class="headerlink" href="#study" title="Link to this heading"></a></h3>
 <dl class="simple">
 <dt><strong>A study is generally one experimental design or analytical experiment inside of the project.</strong></dt><dd><ul class="simple">
 <li><p>For instance, if you are testing the effectiveness of a treatment on lung cancer and you try the treatment on both cell lines and mice, the cell line experiment would be one study and the mouse experiment another.</p></li>
@@ -187,7 +189,7 @@
 </dl>
 </section>
 <section id="protocol">
-<h3>protocol<a class="headerlink" href="#protocol" title="Permalink to this heading"></a></h3>
+<h3>protocol<a class="headerlink" href="#protocol" title="Link to this heading"></a></h3>
 <dl class="simple">
 <dt><strong>A protocol describes an operation or set of operations done on a subject or sample entity.</strong></dt><dd><ul class="simple">
 <li><p>For example, if mouse organs are frozen in liquid nitrogen and then ground into powder, this could be either 1 protocol to describe both operations or 2 to separate the freezing step and grinding step.</p></li>
@@ -198,9 +200,9 @@
 </dl>
 </section>
 <section id="entity">
-<h3>entity<a class="headerlink" href="#entity" title="Permalink to this heading"></a></h3>
+<h3>entity<a class="headerlink" href="#entity" title="Link to this heading"></a></h3>
 <dl class="simple">
-<dt><strong>Entities are either subjects or samples which are similar to each other and interconnected.</strong></dt><dd><ul class="simple">
+<dt><strong>Entities are either subjects, samples, or non_biological which are similar to each other and interconnected.</strong></dt><dd><ul class="simple">
 <li><dl class="simple">
 <dt>A subject is something that receives a treatment, or is subjected to different experimental factors.</dt><dd><ul>
 <li><p>For example, if you are testing a treatment on a cell line in 6 different petri dishes (1 treatment with 3 replicates and 1 null with 3 replicates), each petri dish would be a separate subject.</p></li>
@@ -224,13 +226,14 @@
 </dd>
 </dl>
 </li>
-<li><p>Entities must have a “type” field that indicates whether it is a “subject” or “sample”.</p></li>
+<li><p>Entities must have a “type” field that indicates whether it is a “subject”, “sample”, or “non_biological”.</p></li>
+<li><p>“non_biological” entities are something like blanks or QC samples, and do not have any protocol or inheritance requirements.</p></li>
 </ul>
 </dd>
 </dl>
 </section>
 <section id="measurement">
-<h3>measurement<a class="headerlink" href="#measurement" title="Permalink to this heading"></a></h3>
+<h3>measurement<a class="headerlink" href="#measurement" title="Link to this heading"></a></h3>
 <dl class="simple">
 <dt><strong>A measurement is typically the results acquired after putting a sample through an assay or a sophisticated machine such as a mass spec or NMR, as well as any calculations on these results that is used for analysis.</strong></dt><dd><ul class="simple">
 <li><p>This is what people will typically think of as data while the information in the other tables would be experimental metadata.</p></li>
@@ -239,7 +242,7 @@
 </dl>
 </section>
 <section id="factor">
-<h3>factor<a class="headerlink" href="#factor" title="Permalink to this heading"></a></h3>
+<h3>factor<a class="headerlink" href="#factor" title="Link to this heading"></a></h3>
 <dl class="simple">
 <dt><strong>A factor is a controlled independent variable of the experimental design. Experimental factors are conditions set in the experiment. Other factors may be other classifications such as male or female gender.</strong></dt><dd><ul class="simple">
 <li><p>For example, if there are different treatments done to cell lines this would be a factor.</p></li>
@@ -251,19 +254,25 @@
 </section>
 </section>
 <section id="additional-rules">
-<h2>Additional Rules<a class="headerlink" href="#additional-rules" title="Permalink to this heading"></a></h2>
+<h2>Additional Rules<a class="headerlink" href="#additional-rules" title="Link to this heading"></a></h2>
 <section id="id-fields">
-<h3>ID Fields<a class="headerlink" href="#id-fields" title="Permalink to this heading"></a></h3>
-<dl class="simple">
-<dt><strong>Any field for any record that ends in “.id” must be an id to an existing record in that field’s table.</strong></dt><dd><ul class="simple">
+<h3>ID Fields<a class="headerlink" href="#id-fields" title="Link to this heading"></a></h3>
+<dl>
+<dt><strong>Any field for any record that ends in “.id” must be an id to an existing record in that field’s table.</strong></dt><dd><ul>
 <li><p>For instance, if the field “protocol.id” : “tissue_extraction” is in a sample record then the protocol table must contain a record with the id “tissue_extraction”.</p></li>
-<li><p>Similarly, if a record has the “parent_id” field the value must be an existing id in the same table as that record. For example, if “parent_id” : “tissue_extraction” is in a record in the protocol table then the protocol table must contain a record with the id “tissue_extraction”.</p></li>
+<li><p>Similarly, if a record has the “parent_id” field the value must be an existing id in the same table as that record. For example, if “parent_id” : “tissue_extraction” is in a record in the protocol table then the protocol table must contain a record with the id “tissue_extraction”.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Note that “parent_id” is treated this way in every table, but “parent_id” does not necessarily have a meaning for every table. For instance, in the “protocol” table a protocol with a “parent_id” pointing to another protocol has no meaning in the specification. This is in contrast to the “entity” table where a “parent_id” means that entity came from the indicated parent.</p></li>
+</ul>
+</div></blockquote>
+</li>
 </ul>
 </dd>
 </dl>
 </section>
 <section id="subject-sample-inheritance-rules">
-<h3>Subject/Sample Inheritance Rules<a class="headerlink" href="#subject-sample-inheritance-rules" title="Permalink to this heading"></a></h3>
+<h3>Subject/Sample Inheritance Rules<a class="headerlink" href="#subject-sample-inheritance-rules" title="Link to this heading"></a></h3>
 <blockquote>
 <div><ul class="simple">
 <li><p>If a sample comes from a sample, it must have a sample_prep type protocol.</p></li>
@@ -274,7 +283,7 @@
 </section>
 </section>
 <section id="overview-of-protocol-types">
-<h2>Overview of Protocol Types<a class="headerlink" href="#overview-of-protocol-types" title="Permalink to this heading"></a></h2>
+<h2>Overview of Protocol Types<a class="headerlink" href="#overview-of-protocol-types" title="Link to this heading"></a></h2>
 <dl class="simple">
 <dt><strong>There are currently 5 different types of protocols:</strong></dt><dd><ul class="simple">
 <li><p>treatment</p></li>
@@ -286,7 +295,7 @@
 </dd>
 </dl>
 <section id="treatment">
-<h3>treatment<a class="headerlink" href="#treatment" title="Permalink to this heading"></a></h3>
+<h3>treatment<a class="headerlink" href="#treatment" title="Link to this heading"></a></h3>
 <dl class="simple">
 <dt><strong>A treatment protocol is used to describe the experimental factors done to subject entities.</strong></dt><dd><ul class="simple">
 <li><p>For example, if a cell line is given 2 different media solutions to observe the different growth behavior between the 2, then this would be a treatment type protocol.</p></li>
@@ -296,7 +305,7 @@
 </dl>
 </section>
 <section id="collection">
-<h3>collection<a class="headerlink" href="#collection" title="Permalink to this heading"></a></h3>
+<h3>collection<a class="headerlink" href="#collection" title="Link to this heading"></a></h3>
 <dl class="simple">
 <dt><strong>A collection protocol is used to describe how samples are collected from subject entities.</strong></dt><dd><ul class="simple">
 <li><p>For example, if media is taken out of a cell culture at various time points, this would be a collection protocol.</p></li>
@@ -306,7 +315,7 @@
 </dl>
 </section>
 <section id="sample-prep">
-<h3>sample_prep<a class="headerlink" href="#sample-prep" title="Permalink to this heading"></a></h3>
+<h3>sample_prep<a class="headerlink" href="#sample-prep" title="Link to this heading"></a></h3>
 <dl class="simple">
 <dt><strong>A sample_prep protocol is used to describe operations done to sample entities.</strong></dt><dd><ul class="simple">
 <li><p>Typically, these operations would be done or are necessary in preparation for going into a measuring device.</p></li>
@@ -319,7 +328,7 @@
 </dl>
 </section>
 <section id="id1">
-<h3>measurement<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h3>
+<h3>measurement<a class="headerlink" href="#id1" title="Link to this heading"></a></h3>
 <dl class="simple">
 <dt><strong>A measurement protocol is used to describe operations done on samples to measure features about them.</strong></dt><dd><ul class="simple">
 <li><p>For example, if a sample is put through a mass spectrometer or into an NMR.</p></li>
@@ -330,7 +339,7 @@
 </dl>
 </section>
 <section id="storage">
-<h3>storage<a class="headerlink" href="#storage" title="Permalink to this heading"></a></h3>
+<h3>storage<a class="headerlink" href="#storage" title="Link to this heading"></a></h3>
 <dl class="simple">
 <dt><strong>A storage protocol is used to describe where things are stored.</strong></dt><dd><ul class="simple">
 <li><p>This was created mostly to help keep track of where samples were physically stored in freezers or where measurement data files were located on a share drive.</p></li>
@@ -341,7 +350,7 @@
 </section>
 </section>
 <section id="best-practices-for-designing-your-experiment-description-data-schema">
-<h2>Best Practices For Designing Your Experiment Description Data Schema<a class="headerlink" href="#best-practices-for-designing-your-experiment-description-data-schema" title="Permalink to this heading"></a></h2>
+<h2>Best Practices For Designing Your Experiment Description Data Schema<a class="headerlink" href="#best-practices-for-designing-your-experiment-description-data-schema" title="Link to this heading"></a></h2>
 <p>So far, this document has focused on the mechanics or rules of the experiment description specification, but there are many different
 ways to create a data schema for the same experiment description. Creating an experimental description data schema is a balance between
 storing data in a human readable way, storing data in a space saving way (not repeating fields), and storing data in a machine
@@ -360,13 +369,13 @@ capture the temperature they are stored at because the repository doesn’t have
 to them. However, repository deposition requirements do change. So if it is easy to capture it, it is better to capture it, because
 you may need it eventually.</p>
 <section id="protocols">
-<h3>Protocols<a class="headerlink" href="#protocols" title="Permalink to this heading"></a></h3>
+<h3>Protocols<a class="headerlink" href="#protocols" title="Link to this heading"></a></h3>
 <p>You may understand every step that was taken in your experimental design, but determining how to group and categorize the steps
 into protocols can be challenging. It is a good idea to write out everything that was done in an experiment in order to get a
 measurement. Using a flowchart can be very effective at identifying protocols needed to capture the whole experimental process.
 This can then be used to help group and categorize what was done into the types of protocols defined by the data schema.</p>
 <section id="id2">
-<h4>treatment<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h4>
+<h4>treatment<a class="headerlink" href="#id2" title="Link to this heading"></a></h4>
 <ul>
 <li><p>A treatment protocol will usually be the first protocol and there will often be at least 2 because the control should be considered
 a separate treatment protocol.</p>
@@ -387,7 +396,7 @@ between treatments. Always make sure to put a good description in the descriptio
 the protocol in much more detail can be given in a filename field.</p>
 </section>
 <section id="id3">
-<h4>collection<a class="headerlink" href="#id3" title="Permalink to this heading"></a></h4>
+<h4>collection<a class="headerlink" href="#id3" title="Link to this heading"></a></h4>
 <ul>
 <li><p>A collection is only made from a subject, and subjects must receive a treatment. So it is a good idea to start by identifying
 what the treatment is, which will identify the subjects.</p></li>
@@ -415,7 +424,7 @@ Always make sure to put a good description in the description field. A filename 
 in much more detail can be given in a filename field.</p>
 </section>
 <section id="id4">
-<h4>sample_prep<a class="headerlink" href="#id4" title="Permalink to this heading"></a></h4>
+<h4>sample_prep<a class="headerlink" href="#id4" title="Link to this heading"></a></h4>
 <ul>
 <li><p>sample_prep protocols are typically procedures done to samples to enable a measurement or preserve a sample for later use.</p></li>
 <li><p>Most of the steps done to samples will likely fall into this type of protocol.</p></li>
@@ -458,7 +467,7 @@ Always make sure to put a good description in the description field. A filename 
 in much more detail can be given in a filename field.</p>
 </section>
 <section id="id5">
-<h4>measurement<a class="headerlink" href="#id5" title="Permalink to this heading"></a></h4>
+<h4>measurement<a class="headerlink" href="#id5" title="Link to this heading"></a></h4>
 <ul class="simple">
 <li><p>measurement protocols are typically the last thing done to a sample in order to quantify something of interest, but if the measurement
 is non-destructive then there may be more later.</p></li>
@@ -477,7 +486,7 @@ Always make sure to put a good description in the description field. A filename 
 in much more detail can be given in a filename field.</p>
 </section>
 <section id="id6">
-<h4>storage<a class="headerlink" href="#id6" title="Permalink to this heading"></a></h4>
+<h4>storage<a class="headerlink" href="#id6" title="Link to this heading"></a></h4>
 <ul>
 <li><p>storage protocols are for indicating when something was stored.</p>
 <blockquote>
@@ -503,7 +512,7 @@ associated with. Determine what is best for your situation.</p>
 </section>
 </section>
 <section id="entities">
-<h3>Entities<a class="headerlink" href="#entities" title="Permalink to this heading"></a></h3>
+<h3>Entities<a class="headerlink" href="#entities" title="Link to this heading"></a></h3>
 <p>Entities and protocols have an interdependent relationship. Entities must have at least 1 protocol associated with them, and
 protocols describe what was done to the entities. Two of the biggest challenges are determining how to break up the experiment
 procedures into protocols and how to create entities from experiment subjects and samples. Due to their interdependence, this
@@ -547,7 +556,7 @@ a diagram depicting the mouse, each tissue, and each test tube after that. This 
 connecting one to the next. An example is shown below.</p>
 <figure class="">
             <a 
-               data-lightbox="group-9d321da2-d253-4f3d-b24f-8e99efd69a57"
+               data-lightbox="group-6e8ae036-a968-407e-b9fa-742a5b977c71"
                href="_images/mouse_diagram.png"
                title="Diagram showing an example experiment. The first layer depicts the real physical samples and places
 protocols along the way. The second layer is a written description of each step. The third layer is
@@ -572,7 +581,7 @@ examples folder of the GitHub repository. Note that not everything is shown. Onl
 shown and only the aliquot that ended in a measurement is shown.</figcaption>
             </figure></section>
 <section id="measurements">
-<h3>Measurements<a class="headerlink" href="#measurements" title="Permalink to this heading"></a></h3>
+<h3>Measurements<a class="headerlink" href="#measurements" title="Link to this heading"></a></h3>
 <p>There are usually many measurements taken during an experiment, but not all of them need to go in the “measurement” table. Generally,
 experiments result in one or more end point measurements and these are what will go in the “measurement” table. Assuming you are
 uploading to a repository that repository might also influence what goes in the “measurement” table. For example, a mouse experiment
@@ -646,10 +655,10 @@ the specific fields required for your repository upload. Also notice the “fiel
 for the measurement values. Attributes are the recommended way to indicate additional information about a measurement value.</p>
 </section>
 <section id="useful-patterns">
-<h3>Useful Patterns<a class="headerlink" href="#useful-patterns" title="Permalink to this heading"></a></h3>
+<h3>Useful Patterns<a class="headerlink" href="#useful-patterns" title="Link to this heading"></a></h3>
 <p>The following are some problems and ways to deal with them.</p>
 <section id="connecting-records-to-file-names">
-<span id="raw-files-method"></span><h4>Connecting Records to File Names<a class="headerlink" href="#connecting-records-to-file-names" title="Permalink to this heading"></a></h4>
+<span id="raw-files-method"></span><h4>Connecting Records to File Names<a class="headerlink" href="#connecting-records-to-file-names" title="Link to this heading"></a></h4>
 <p>One common problem is the need to associate raw files with both the sample that was measured to generate them and the
 measurements pulled from them. There are a few ways to do this and they all have advantages and disadvantages. You should
 choose a way that is best for your situation.</p>

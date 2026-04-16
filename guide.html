@@ -1,25 +1,25 @@
+
+
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="./">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>User Guide &mdash; MESSES 1.0.2 documentation</title>
-      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="_static/css/custom_css.css" type="text/css" />
-      <link rel="stylesheet" href="_static/sphinxcontrib-images/LightBox2/lightbox2/dist/css/lightbox.css" type="text/css" />
-  <!--[if lt IE 9]>
-    <script src="_static/js/html5shiv.min.js"></script>
-  <![endif]-->
+  <title>User Guide &mdash; MESSES 1.1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/custom_css.css?v=9359fcaf" />
+      <link rel="stylesheet" type="text/css" href="_static/sphinxcontrib-images/LightBox2/lightbox2/dist/css/lightbox.min.css?v=6e7d0de0" />
+      <link rel="stylesheet" type="text/css" href="_static/sphinxcontrib-images/LightBox2/lightbox2-customize/pointer.css?v=c97663ff" />
+
   
-        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-        <script src="_static/jquery.js"></script>
-        <script src="_static/underscore.js"></script>
-        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script src="_static/doctools.js"></script>
-        <script src="_static/sphinx_highlight.js"></script>
-        <script src="_static/sphinxcontrib-images/LightBox2/lightbox2/dist/js/lightbox-plus-jquery.min.js"></script>
-        <script src="_static/sphinxcontrib-images/LightBox2/lightbox2-customize/jquery-noconflict.js"></script>
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=fc837d61"></script>
+      <script src="_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="_static/sphinxcontrib-images/LightBox2/lightbox2/dist/js/lightbox-plus-jquery.min.js?v=f0ca4bb6"></script>
+      <script src="_static/sphinxcontrib-images/LightBox2/lightbox2-customize/jquery-noconflict.js?v=12818e64"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -32,14 +32,15 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="index.html" class="icon icon-home"> MESSES
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            MESSES
           </a>
-              <div class="version">
-                1.0.2
-              </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -72,6 +73,7 @@
 <li class="toctree-l1"><a class="reference internal" href="experiment_description_specification.html">Experiment Description Specification</a></li>
 <li class="toctree-l1"><a class="reference internal" href="protocol_dependent_schema.html">Protocol-Dependent Schema</a></li>
 <li class="toctree-l1"><a class="reference internal" href="supported_formats.html">Supported Conversion Formats</a></li>
+<li class="toctree-l1"><a class="reference internal" href="common_conventions.html">Common Conventions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="api.html">API</a></li>
 <li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
 <li class="toctree-l1"><a class="reference internal" href="todo.html">TODO List</a></li>
@@ -90,8 +92,8 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>User Guide</li>
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">User Guide</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/guide.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -102,14 +104,17 @@
            <div itemprop="articleBody">
              
   <section id="user-guide">
-<h1>User Guide<a class="headerlink" href="#user-guide" title="Permalink to this heading"></a></h1>
+<h1>User Guide<a class="headerlink" href="#user-guide" title="Link to this heading"></a></h1>
 <section id="messes">
-<h2>MESSES<a class="headerlink" href="#messes" title="Permalink to this heading"></a></h2>
-<a class="reference external image-reference" href="https://pypi.org/project/messes"><img alt="Current library version" src="https://img.shields.io/pypi/v/messes.svg" /></a>
-<a class="reference external image-reference" href="https://pypi.org/project/messes"><img alt="Supported Python versions" src="https://img.shields.io/pypi/pyversions/messes.svg" /></a>
-<a class="reference external image-reference" href="https://github.com/MoseleyBioinformaticsLab/messes/actions/workflows/build.yml"><img alt="Build status" src="https://github.com/MoseleyBioinformaticsLab/messes/actions/workflows/build.yml/badge.svg" /></a>
-<a class="reference external image-reference" href="https://codecov.io/gh/MoseleyBioinformaticsLab/MESSES"><img alt="Code coverage information" src="https://codecov.io/gh/MoseleyBioinformaticsLab/MESSES/branch/main/graphs/badge.svg?branch=main" /></a>
-<a class="reference external image-reference" href="https://github.com/MoseleyBioinformaticsLab/messes"><img alt="GitHub project" src="https://img.shields.io/github/stars/MoseleyBioinformaticsLab/messes.svg?style=social&amp;label=Star" /></a>
+<h2>MESSES<a class="headerlink" href="#messes" title="Link to this heading"></a></h2>
+<a class="reference external image-reference" href="https://pypi.org/project/messes"><img alt="Current library version" src="https://img.shields.io/pypi/v/messes.svg" />
+</a>
+<a class="reference external image-reference" href="https://pypi.org/project/messes"><img alt="Supported Python versions" src="https://img.shields.io/pypi/pyversions/messes.svg" />
+</a>
+<a class="reference external image-reference" href="https://codecov.io/gh/MoseleyBioinformaticsLab/MESSES"><img alt="Code coverage information" src="https://codecov.io/gh/MoseleyBioinformaticsLab/MESSES/branch/main/graphs/badge.svg?branch=main" />
+</a>
+<a class="reference external image-reference" href="https://github.com/MoseleyBioinformaticsLab/messes"><img alt="GitHub project" src="https://img.shields.io/github/stars/MoseleyBioinformaticsLab/messes.svg?style=social&amp;label=Star" />
+</a>
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
@@ -154,7 +159,7 @@ line with your project parameters and data schema.</p>
 used as a library and extended to handle additional data conversion use-cases.</p>
 </section>
 <section id="links">
-<h2>Links<a class="headerlink" href="#links" title="Permalink to this heading"></a></h2>
+<h2>Links<a class="headerlink" href="#links" title="Link to this heading"></a></h2>
 <blockquote>
 <div><ul class="simple">
 <li><p>MESSES &#64; <a class="reference external" href="https://github.com/MoseleyBioinformaticsLab/messes">GitHub</a></p></li>
@@ -165,30 +170,30 @@ used as a library and extended to handle additional data conversion use-cases.</
 </div></blockquote>
 </section>
 <section id="installation">
-<h2>Installation<a class="headerlink" href="#installation" title="Permalink to this heading"></a></h2>
+<h2>Installation<a class="headerlink" href="#installation" title="Link to this heading"></a></h2>
 <p>The MESSES package runs under Python 3.10+. Use <a class="reference external" href="https://pip.pypa.io">pip</a> to install.
 Starting with Python 3.4, <a class="reference external" href="https://pip.pypa.io">pip</a> is included by default. Be sure to use the latest
 version of pip as older versions are known to have issues grabbing all dependencies.</p>
 <section id="install-on-linux-mac-os-x">
-<h3>Install on Linux, Mac OS X<a class="headerlink" href="#install-on-linux-mac-os-x" title="Permalink to this heading"></a></h3>
+<h3>Install on Linux, Mac OS X<a class="headerlink" href="#install-on-linux-mac-os-x" title="Link to this heading"></a></h3>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python3<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>messes
 </pre></div>
 </div>
 </section>
 <section id="install-on-windows">
-<h3>Install on Windows<a class="headerlink" href="#install-on-windows" title="Permalink to this heading"></a></h3>
+<h3>Install on Windows<a class="headerlink" href="#install-on-windows" title="Link to this heading"></a></h3>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>py<span class="w"> </span>-3<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>messes
 </pre></div>
 </div>
 </section>
 <section id="upgrade-on-linux-mac-os-x">
-<h3>Upgrade on Linux, Mac OS X<a class="headerlink" href="#upgrade-on-linux-mac-os-x" title="Permalink to this heading"></a></h3>
+<h3>Upgrade on Linux, Mac OS X<a class="headerlink" href="#upgrade-on-linux-mac-os-x" title="Link to this heading"></a></h3>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python3<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>messes<span class="w"> </span>--upgrade
 </pre></div>
 </div>
 </section>
 <section id="upgrade-on-windows">
-<h3>Upgrade on Windows<a class="headerlink" href="#upgrade-on-windows" title="Permalink to this heading"></a></h3>
+<h3>Upgrade on Windows<a class="headerlink" href="#upgrade-on-windows" title="Link to this heading"></a></h3>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>py<span class="w"> </span>-3<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>messes<span class="w"> </span>--upgrade
 </pre></div>
 </div>
@@ -198,7 +203,7 @@ version of pip as older versions are known to have issues grabbing all dependenc
 </section>
 </section>
 <section id="quickstart">
-<h2>Quickstart<a class="headerlink" href="#quickstart" title="Permalink to this heading"></a></h2>
+<h2>Quickstart<a class="headerlink" href="#quickstart" title="Link to this heading"></a></h2>
 <p>It is unlikely that you will have data that is tagged and ready to be converted, so
 it is highly recommended to first read the documentation on <a class="reference external" href="https://moseleybioinformaticslab.github.io/MESSES/tagging.html">tagging</a>
 and the <a class="reference external" href="https://moseleybioinformaticslab.github.io/MESSES/experiment_description_specification.html">Experiment Description Specification</a> so
@@ -219,7 +224,7 @@ messes<span class="w"> </span>convert<span class="w"> </span>desired_format<span
 There are also examples available in the examples folder on the <a class="reference external" href="https://github.com/MoseleyBioinformaticsLab/messes">GitHub</a> repository and in a <a class="reference external" href="https://doi.org/10.6084/m9.figshare.23148224.v1">figshare</a>.</p>
 </section>
 <section id="mac-os-note">
-<h2>Mac OS Note<a class="headerlink" href="#mac-os-note" title="Permalink to this heading"></a></h2>
+<h2>Mac OS Note<a class="headerlink" href="#mac-os-note" title="Link to this heading"></a></h2>
 <p>When you try to run the program on Mac OS, you may get an SSL error.</p>
 <blockquote>
 <div><p>certificate verify failed: unable to get local issuer certificate</p>
@@ -229,11 +234,11 @@ folder in Applications and run the Install Certificates.command shell command
 in the /Applications/Python 3.x folder. This should fix the issue.</p>
 </section>
 <section id="license">
-<h2>License<a class="headerlink" href="#license" title="Permalink to this heading"></a></h2>
+<h2>License<a class="headerlink" href="#license" title="Link to this heading"></a></h2>
 <p>This package is distributed under the BSD <a class="reference external" href="https://moseleybioinformaticslab.github.io/MESSES/license.html">license</a>.</p>
 </section>
 <section id="get-the-source-code">
-<h2>Get the source code<a class="headerlink" href="#get-the-source-code" title="Permalink to this heading"></a></h2>
+<h2>Get the source code<a class="headerlink" href="#get-the-source-code" title="Link to this heading"></a></h2>
 <p>Code is available on GitHub: <a class="reference external" href="https://github.com/MoseleyBioinformaticsLab/messes">https://github.com/MoseleyBioinformaticsLab/messes</a></p>
 <p>You can either clone the public repository:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>https://github.com/MoseleyBioinformaticsLab/messes.git
@@ -252,7 +257,7 @@ or install it into your system site-packages easily:</p>
 </div>
 </section>
 <section id="dependencies">
-<h2>Dependencies<a class="headerlink" href="#dependencies" title="Permalink to this heading"></a></h2>
+<h2>Dependencies<a class="headerlink" href="#dependencies" title="Link to this heading"></a></h2>
 <p>The MESSES package depends on several Python libraries. The <code class="docutils literal notranslate"><span class="pre">pip</span></code> command
 will install all dependencies automatically, but if you wish to install them manually,
 run the following commands:</p>
@@ -350,7 +355,7 @@ py<span class="w"> </span>-3<span class="w"> </span>-m<span class="w"> </span>pi
 </div></blockquote>
 </section>
 <section id="developers">
-<h2>Developers<a class="headerlink" href="#developers" title="Permalink to this heading"></a></h2>
+<h2>Developers<a class="headerlink" href="#developers" title="Link to this heading"></a></h2>
 <p>Any developers that wish to contribute should do so through <a class="reference external" href="https://github.com/MoseleyBioinformaticsLab/MESSES/issues">GitHub Issues</a>
 and pull requests.</p>
 </section>

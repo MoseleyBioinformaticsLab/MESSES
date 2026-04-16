@@ -1,24 +1,24 @@
+
+
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../../../">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>messes.validate.validate &mdash; MESSES 1.0.2 documentation</title>
-      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../../../_static/css/custom_css.css" type="text/css" />
-      <link rel="stylesheet" href="../../../_static/sphinxcontrib-images/LightBox2/lightbox2/dist/css/lightbox.css" type="text/css" />
-  <!--[if lt IE 9]>
-    <script src="../../../_static/js/html5shiv.min.js"></script>
-  <![endif]-->
+  <title>messes.validate.validate &mdash; MESSES 1.1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/custom_css.css?v=9359fcaf" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/sphinxcontrib-images/LightBox2/lightbox2/dist/css/lightbox.min.css?v=6e7d0de0" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/sphinxcontrib-images/LightBox2/lightbox2-customize/pointer.css?v=c97663ff" />
+
   
-        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
-        <script src="../../../_static/jquery.js"></script>
-        <script src="../../../_static/underscore.js"></script>
-        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script src="../../../_static/doctools.js"></script>
-        <script src="../../../_static/sphinx_highlight.js"></script>
-        <script src="../../../_static/sphinxcontrib-images/LightBox2/lightbox2/dist/js/lightbox-plus-jquery.min.js"></script>
-        <script src="../../../_static/sphinxcontrib-images/LightBox2/lightbox2-customize/jquery-noconflict.js"></script>
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../_static/documentation_options.js?v=fc837d61"></script>
+      <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../../../_static/sphinxcontrib-images/LightBox2/lightbox2/dist/js/lightbox-plus-jquery.min.js?v=f0ca4bb6"></script>
+      <script src="../../../_static/sphinxcontrib-images/LightBox2/lightbox2-customize/jquery-noconflict.js?v=12818e64"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" /> 
@@ -29,14 +29,15 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../../../index.html" class="icon icon-home"> MESSES
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            MESSES
           </a>
-              <div class="version">
-                1.0.2
-              </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -52,6 +53,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../experiment_description_specification.html">Experiment Description Specification</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../protocol_dependent_schema.html">Protocol-Dependent Schema</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../supported_formats.html">Supported Conversion Formats</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../common_conventions.html">Common Conventions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../api.html">API</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../license.html">License</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../todo.html">TODO List</a></li>
@@ -70,9 +72,9 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="../../index.html">Module code</a> &raquo;</li>
-      <li>messes.validate.validate</li>
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">messes.validate.validate</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -165,28 +167,28 @@
 
 <span class="c1">## TODO What about adding a check so that attribute fields of list fields have to be the same length as the parent field? for data_files and data_files%entity_id</span>
 
-<span class="kn">import</span> <span class="nn">re</span>
-<span class="kn">import</span> <span class="nn">sys</span>
-<span class="kn">import</span> <span class="nn">io</span>
-<span class="kn">import</span> <span class="nn">json</span>
-<span class="kn">import</span> <span class="nn">pathlib</span>
-<span class="kn">import</span> <span class="nn">itertools</span>
-<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span>
-<span class="kn">from</span> <span class="nn">collections.abc</span> <span class="kn">import</span> <span class="n">Iterable</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">re</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">io</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pathlib</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">itertools</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">collections.abc</span><span class="w"> </span><span class="kn">import</span> <span class="n">Iterable</span>
 
-<span class="kn">import</span> <span class="nn">docopt</span>
-<span class="kn">import</span> <span class="nn">jsonschema</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">docopt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">jsonschema</span>
 
-<span class="kn">from</span> <span class="nn">messes</span> <span class="kn">import</span> <span class="n">__version__</span>
-<span class="kn">from</span> <span class="nn">messes.extract</span> <span class="kn">import</span> <span class="n">extract</span>
-<span class="kn">from</span> <span class="nn">messes.validate.validate_schema</span> <span class="kn">import</span> <span class="n">base_schema</span><span class="p">,</span> <span class="n">PD_schema</span><span class="p">,</span> <span class="n">mwtab_schema</span>
-<span class="kn">from</span> <span class="nn">messes.convert.convert</span> <span class="kn">import</span> <span class="n">directives_to_table</span><span class="p">,</span> <span class="n">literal_regex</span>
-<span class="kn">from</span> <span class="nn">messes.convert</span> <span class="kn">import</span> <span class="n">user_input_checking</span>
-<span class="kn">from</span> <span class="nn">messes.convert</span> <span class="kn">import</span> <span class="n">convert_schema</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">messes</span><span class="w"> </span><span class="kn">import</span> <span class="n">__version__</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">messes.extract</span><span class="w"> </span><span class="kn">import</span> <span class="n">extract</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">messes.validate.validate_schema</span><span class="w"> </span><span class="kn">import</span> <span class="n">base_schema</span><span class="p">,</span> <span class="n">PD_schema</span><span class="p">,</span> <span class="n">mwtab_schema</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">messes.convert.convert</span><span class="w"> </span><span class="kn">import</span> <span class="n">directives_to_table</span><span class="p">,</span> <span class="n">literal_regex</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">messes.convert</span><span class="w"> </span><span class="kn">import</span> <span class="n">user_input_checking</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">messes.convert</span><span class="w"> </span><span class="kn">import</span> <span class="n">convert_schema</span>
 
 <span class="n">supported_formats</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;mwtab&quot;</span><span class="p">]</span>
 
-<span class="k">def</span> <span class="nf">main</span><span class="p">()</span> <span class="p">:</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span> <span class="p">:</span>
     <span class="n">args</span> <span class="o">=</span> <span class="n">docopt</span><span class="o">.</span><span class="n">docopt</span><span class="p">(</span><span class="vm">__doc__</span><span class="p">,</span> <span class="n">version</span><span class="o">=</span><span class="n">__version__</span><span class="p">)</span>
     
     <span class="n">args</span><span class="p">[</span><span class="s2">&quot;--silent&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">args</span><span class="p">[</span><span class="s2">&quot;--silent&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
@@ -259,7 +261,9 @@
 <span class="c1">## User defined types.</span>
 <span class="n">JSON</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span><span class="o">|</span><span class="nb">list</span><span class="o">|</span><span class="nb">str</span><span class="o">|</span><span class="nb">int</span><span class="o">|</span><span class="nb">float</span><span class="o">|</span><span class="kc">None</span>
     
-<div class="viewcode-block" id="check"><a class="viewcode-back" href="../../../api.html#messes.validate.validate.check">[docs]</a><span class="k">def</span> <span class="nf">check</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">instance</span><span class="p">:</span> <span class="nb">object</span><span class="p">,</span> <span class="nb">format</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<div class="viewcode-block" id="check">
+<a class="viewcode-back" href="../../../api.html#messes.validate.validate.check">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">check</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">instance</span><span class="p">:</span> <span class="nb">object</span><span class="p">,</span> <span class="nb">format</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Check whether the instance conforms to the given format.</span>
 <span class="sd">    </span>
 <span class="sd">    Modified from jsonschema.FormatChecker.check. Used to raise an error on </span>
@@ -296,7 +300,10 @@
         <span class="k">raise</span> <span class="n">jsonschema</span><span class="o">.</span><span class="n">exceptions</span><span class="o">.</span><span class="n">FormatError</span><span class="p">(</span><span class="s2">&quot;not str&quot;</span><span class="p">,</span> <span class="n">cause</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="convert_formats"><a class="viewcode-back" href="../../../api.html#messes.validate.validate.convert_formats">[docs]</a><span class="k">def</span> <span class="nf">convert_formats</span><span class="p">(</span><span class="n">validator</span><span class="p">:</span> <span class="n">jsonschema</span><span class="o">.</span><span class="n">protocols</span><span class="o">.</span><span class="n">Validator</span><span class="p">,</span> <span class="n">instance</span><span class="p">:</span> <span class="nb">dict</span><span class="o">|</span><span class="nb">str</span><span class="o">|</span><span class="nb">list</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="o">|</span><span class="nb">str</span><span class="o">|</span><span class="nb">list</span><span class="p">:</span>
+
+<div class="viewcode-block" id="convert_formats">
+<a class="viewcode-back" href="../../../api.html#messes.validate.validate.convert_formats">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">convert_formats</span><span class="p">(</span><span class="n">validator</span><span class="p">:</span> <span class="n">jsonschema</span><span class="o">.</span><span class="n">protocols</span><span class="o">.</span><span class="n">Validator</span><span class="p">,</span> <span class="n">instance</span><span class="p">:</span> <span class="nb">dict</span><span class="o">|</span><span class="nb">str</span><span class="o">|</span><span class="nb">list</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="o">|</span><span class="nb">str</span><span class="o">|</span><span class="nb">list</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Convert &quot;integer&quot; and &quot;numeric&quot; formats to int and float.</span>
 <span class="sd">    </span>
 <span class="sd">    Special function to iterate over JSON schema errors and if the custom &quot;integer&quot;, </span>
@@ -331,9 +338,12 @@
     <span class="n">jsonschema</span><span class="o">.</span><span class="n">FormatChecker</span><span class="o">.</span><span class="n">check</span> <span class="o">=</span> <span class="n">original_check</span>
     
     <span class="k">return</span> <span class="n">instance</span></div>
+
     
     
-<div class="viewcode-block" id="print_better_error_messages"><a class="viewcode-back" href="../../../api.html#messes.validate.validate.print_better_error_messages">[docs]</a><span class="k">def</span> <span class="nf">print_better_error_messages</span><span class="p">(</span><span class="n">errors_generator</span><span class="p">:</span> <span class="n">Iterable</span><span class="p">[</span><span class="n">jsonschema</span><span class="o">.</span><span class="n">exceptions</span><span class="o">.</span><span class="n">ValidationError</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<div class="viewcode-block" id="print_better_error_messages">
+<a class="viewcode-back" href="../../../api.html#messes.validate.validate.print_better_error_messages">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">print_better_error_messages</span><span class="p">(</span><span class="n">errors_generator</span><span class="p">:</span> <span class="n">Iterable</span><span class="p">[</span><span class="n">jsonschema</span><span class="o">.</span><span class="n">exceptions</span><span class="o">.</span><span class="n">ValidationError</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Print better error messages for jsonschema validation errors.</span>
 <span class="sd">    </span>
 <span class="sd">    Args:</span>
@@ -404,9 +414,12 @@
             <span class="n">message</span> <span class="o">=</span> <span class="n">message</span> <span class="o">+</span> <span class="s2">&quot;The value for &quot;</span> <span class="o">+</span> <span class="s2">&quot;[</span><span class="si">%s</span><span class="s2">]&quot;</span> <span class="o">%</span> <span class="s2">&quot;][&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">repr</span><span class="p">(</span><span class="n">index</span><span class="p">)</span> <span class="k">for</span> <span class="n">index</span> <span class="ow">in</span> <span class="n">error</span><span class="o">.</span><span class="n">relative_path</span><span class="p">)</span> <span class="o">+</span> <span class="n">custom_message</span>
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Error:  &quot;</span> <span class="o">+</span> <span class="n">message</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">has_errors</span></div>
+
     
     
-<div class="viewcode-block" id="read_and_validate_PDS"><a class="viewcode-back" href="../../../api.html#messes.validate.validate.read_and_validate_PDS">[docs]</a><span class="k">def</span> <span class="nf">read_and_validate_PDS</span><span class="p">(</span><span class="n">filepath</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">is_csv</span><span class="p">:</span> <span class="nb">bool</span><span class="p">,</span> <span class="n">is_xlsx</span><span class="p">:</span> <span class="nb">bool</span><span class="p">,</span> 
+<div class="viewcode-block" id="read_and_validate_PDS">
+<a class="viewcode-back" href="../../../api.html#messes.validate.validate.read_and_validate_PDS">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">read_and_validate_PDS</span><span class="p">(</span><span class="n">filepath</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">is_csv</span><span class="p">:</span> <span class="nb">bool</span><span class="p">,</span> <span class="n">is_xlsx</span><span class="p">:</span> <span class="nb">bool</span><span class="p">,</span> 
                           <span class="n">is_json</span><span class="p">:</span> <span class="nb">bool</span><span class="p">,</span> <span class="n">is_gs</span><span class="p">:</span> <span class="nb">bool</span><span class="p">,</span> <span class="n">no_last_message</span><span class="p">:</span> <span class="nb">bool</span><span class="p">,</span> <span class="n">silent</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">JSON</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Read in the protocol-dependent schema from filepath and validate it.</span>
 <span class="sd">    </span>
@@ -440,7 +453,10 @@
     <span class="k">return</span> <span class="n">PDS</span>    </div>
 
 
-<div class="viewcode-block" id="read_json_or_tabular_file"><a class="viewcode-back" href="../../../api.html#messes.validate.validate.read_json_or_tabular_file">[docs]</a><span class="k">def</span> <span class="nf">read_json_or_tabular_file</span><span class="p">(</span><span class="n">filepath</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">is_csv</span><span class="p">:</span> <span class="nb">bool</span><span class="p">,</span> <span class="n">is_xlsx</span><span class="p">:</span> <span class="nb">bool</span><span class="p">,</span> 
+
+<div class="viewcode-block" id="read_json_or_tabular_file">
+<a class="viewcode-back" href="../../../api.html#messes.validate.validate.read_json_or_tabular_file">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">read_json_or_tabular_file</span><span class="p">(</span><span class="n">filepath</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">is_csv</span><span class="p">:</span> <span class="nb">bool</span><span class="p">,</span> <span class="n">is_xlsx</span><span class="p">:</span> <span class="nb">bool</span><span class="p">,</span> 
                               <span class="n">is_json</span><span class="p">:</span> <span class="nb">bool</span><span class="p">,</span> <span class="n">is_gs</span><span class="p">:</span> <span class="nb">bool</span><span class="p">,</span> <span class="n">file_title</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> 
                               <span class="n">default_sheet_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">silent</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">JSON</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Read in a file from filepath.</span>
@@ -538,9 +554,12 @@
         <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">()</span>
         
     <span class="k">return</span> <span class="n">file_contents</span></div>
+
             
        
-<div class="viewcode-block" id="read_in_JSON_file"><a class="viewcode-back" href="../../../api.html#messes.validate.validate.read_in_JSON_file">[docs]</a><span class="k">def</span> <span class="nf">read_in_JSON_file</span><span class="p">(</span><span class="n">filepath</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">description</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">JSON</span><span class="p">:</span>
+<div class="viewcode-block" id="read_in_JSON_file">
+<a class="viewcode-back" href="../../../api.html#messes.validate.validate.read_in_JSON_file">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">read_in_JSON_file</span><span class="p">(</span><span class="n">filepath</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">description</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">JSON</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Read in a JSON file from filepath.</span>
 <span class="sd">    </span>
 <span class="sd">    Args:</span>
@@ -578,7 +597,10 @@
     <span class="k">return</span> <span class="n">user_json</span>  </div>
 
 
-<div class="viewcode-block" id="save_out_JSON_file"><a class="viewcode-back" href="../../../api.html#messes.validate.validate.save_out_JSON_file">[docs]</a><span class="k">def</span> <span class="nf">save_out_JSON_file</span><span class="p">(</span><span class="n">filepath</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">json_to_save</span><span class="p">:</span> <span class="nb">dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+
+<div class="viewcode-block" id="save_out_JSON_file">
+<a class="viewcode-back" href="../../../api.html#messes.validate.validate.save_out_JSON_file">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">save_out_JSON_file</span><span class="p">(</span><span class="n">filepath</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">json_to_save</span><span class="p">:</span> <span class="nb">dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Handle renaming and directing JSON to the correct output.</span>
 <span class="sd">    </span>
 <span class="sd">    Args:</span>
@@ -595,9 +617,12 @@
         
         <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">json_save_name</span><span class="p">,</span><span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">jsonFile</span><span class="p">:</span>
             <span class="n">jsonFile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">json_to_save</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">2</span><span class="p">))</span></div>
+
             
 
-<div class="viewcode-block" id="validate_JSON_schema"><a class="viewcode-back" href="../../../api.html#messes.validate.validate.validate_JSON_schema">[docs]</a><span class="k">def</span> <span class="nf">validate_JSON_schema</span><span class="p">(</span><span class="n">user_json_schema</span><span class="p">:</span> <span class="n">JSON</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<div class="viewcode-block" id="validate_JSON_schema">
+<a class="viewcode-back" href="../../../api.html#messes.validate.validate.validate_JSON_schema">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">validate_JSON_schema</span><span class="p">(</span><span class="n">user_json_schema</span><span class="p">:</span> <span class="n">JSON</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Validate an arbitrary JSON schema.</span>
 <span class="sd">    </span>
 <span class="sd">    Args:</span>
@@ -617,7 +642,10 @@
     <span class="k">return</span> <span class="n">has_errors</span></div>
 
 
-<div class="viewcode-block" id="create_validator"><a class="viewcode-back" href="../../../api.html#messes.validate.validate.create_validator">[docs]</a><span class="k">def</span> <span class="nf">create_validator</span><span class="p">(</span><span class="n">schema</span><span class="p">:</span> <span class="n">JSON</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">jsonschema</span><span class="o">.</span><span class="n">protocols</span><span class="o">.</span><span class="n">Validator</span><span class="p">:</span>
+
+<div class="viewcode-block" id="create_validator">
+<a class="viewcode-back" href="../../../api.html#messes.validate.validate.create_validator">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">create_validator</span><span class="p">(</span><span class="n">schema</span><span class="p">:</span> <span class="n">JSON</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">jsonschema</span><span class="o">.</span><span class="n">protocols</span><span class="o">.</span><span class="n">Validator</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Create a validator for the given schema.</span>
 <span class="sd">    </span>
 <span class="sd">    Args:</span>
@@ -630,7 +658,7 @@
     <span class="n">validator</span> <span class="o">=</span> <span class="n">jsonschema</span><span class="o">.</span><span class="n">validators</span><span class="o">.</span><span class="n">validator_for</span><span class="p">(</span><span class="n">schema</span><span class="p">)</span>
     <span class="n">format_checker</span> <span class="o">=</span> <span class="n">jsonschema</span><span class="o">.</span><span class="n">FormatChecker</span><span class="p">()</span>
     <span class="nd">@format_checker</span><span class="o">.</span><span class="n">checks</span><span class="p">(</span><span class="s1">&#39;integer&#39;</span><span class="p">)</span> 
-    <span class="k">def</span> <span class="nf">is_integer</span><span class="p">(</span><span class="n">value</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">is_integer</span><span class="p">(</span><span class="n">value</span><span class="p">):</span>
         <span class="k">if</span> <span class="n">value</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
             <span class="k">try</span><span class="p">:</span>
                 <span class="nb">float</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
@@ -639,7 +667,7 @@
             <span class="k">return</span> <span class="kc">True</span>
         <span class="k">return</span> <span class="kc">True</span>
     <span class="nd">@format_checker</span><span class="o">.</span><span class="n">checks</span><span class="p">(</span><span class="s1">&#39;str_integer&#39;</span><span class="p">)</span> 
-    <span class="k">def</span> <span class="nf">is_str_integer</span><span class="p">(</span><span class="n">value</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">is_str_integer</span><span class="p">(</span><span class="n">value</span><span class="p">):</span>
         <span class="k">if</span> <span class="n">value</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
             <span class="k">try</span><span class="p">:</span>
                 <span class="nb">float</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
@@ -648,7 +676,7 @@
             <span class="k">return</span> <span class="kc">True</span>
         <span class="k">return</span> <span class="kc">True</span>
     <span class="nd">@format_checker</span><span class="o">.</span><span class="n">checks</span><span class="p">(</span><span class="s1">&#39;numeric&#39;</span><span class="p">)</span> 
-    <span class="k">def</span> <span class="nf">is_float</span><span class="p">(</span><span class="n">value</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">is_float</span><span class="p">(</span><span class="n">value</span><span class="p">):</span>
         <span class="k">if</span> <span class="n">value</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
             <span class="k">try</span><span class="p">:</span>
                 <span class="nb">float</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
@@ -657,7 +685,7 @@
             <span class="k">return</span> <span class="kc">True</span>
         <span class="k">return</span> <span class="kc">True</span>
     <span class="nd">@format_checker</span><span class="o">.</span><span class="n">checks</span><span class="p">(</span><span class="s1">&#39;str_numeric&#39;</span><span class="p">)</span> 
-    <span class="k">def</span> <span class="nf">is_str_float</span><span class="p">(</span><span class="n">value</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">is_str_float</span><span class="p">(</span><span class="n">value</span><span class="p">):</span>
         <span class="k">if</span> <span class="n">value</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
             <span class="k">try</span><span class="p">:</span>
                 <span class="nb">float</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
@@ -668,7 +696,10 @@
     <span class="k">return</span> <span class="n">validator</span><span class="p">(</span><span class="n">schema</span><span class="o">=</span><span class="n">schema</span><span class="p">,</span> <span class="n">format_checker</span><span class="o">=</span><span class="n">format_checker</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="mwtab_checks"><a class="viewcode-back" href="../../../api.html#messes.validate.validate.mwtab_checks">[docs]</a><span class="k">def</span> <span class="nf">mwtab_checks</span><span class="p">(</span><span class="n">input_json</span><span class="p">:</span> <span class="nb">dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+
+<div class="viewcode-block" id="mwtab_checks">
+<a class="viewcode-back" href="../../../api.html#messes.validate.validate.mwtab_checks">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">mwtab_checks</span><span class="p">(</span><span class="n">input_json</span><span class="p">:</span> <span class="nb">dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Check that the input_json is ready for mwtab conversion.</span>
 <span class="sd">    </span>
 <span class="sd">    Run checks that cannot be done by JSON Schema. They are the following:</span>
@@ -680,12 +711,12 @@
 <span class="sd">    Args:</span>
 <span class="sd">        input_json: the JSON to perform the checks on.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">has_machine_type</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="n">is_first_collection_type</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="n">has_collection_type</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="n">has_sample_prep_type</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="n">has_treatment_type</span> <span class="o">=</span> <span class="kc">False</span>
     <span class="k">if</span> <span class="n">protocol_table</span> <span class="o">:=</span> <span class="n">input_json</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;protocol&quot;</span><span class="p">):</span>
-        <span class="n">has_machine_type</span> <span class="o">=</span> <span class="kc">False</span>
-        <span class="n">is_first_collection_type</span> <span class="o">=</span> <span class="kc">True</span>
-        <span class="n">has_collection_type</span> <span class="o">=</span> <span class="kc">False</span>
-        <span class="n">has_sample_prep_type</span> <span class="o">=</span> <span class="kc">False</span>
-        <span class="n">has_treatment_type</span> <span class="o">=</span> <span class="kc">False</span>
         <span class="k">for</span> <span class="n">protocol</span><span class="p">,</span> <span class="n">attributes</span> <span class="ow">in</span> <span class="n">protocol_table</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
             <span class="k">if</span> <span class="s2">&quot;machine_type&quot;</span> <span class="ow">in</span> <span class="n">attributes</span><span class="p">:</span>
                 <span class="n">has_machine_type</span> <span class="o">=</span> <span class="kc">True</span>
@@ -733,7 +764,10 @@
 
 
 
-<div class="viewcode-block" id="validate_PDS_parent_protocols"><a class="viewcode-back" href="../../../api.html#messes.validate.validate.validate_PDS_parent_protocols">[docs]</a><span class="k">def</span> <span class="nf">validate_PDS_parent_protocols</span><span class="p">(</span><span class="n">pds</span><span class="p">:</span> <span class="n">JSON</span><span class="p">,</span> <span class="n">silent</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+
+<div class="viewcode-block" id="validate_PDS_parent_protocols">
+<a class="viewcode-back" href="../../../api.html#messes.validate.validate.validate_PDS_parent_protocols">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">validate_PDS_parent_protocols</span><span class="p">(</span><span class="n">pds</span><span class="p">:</span> <span class="n">JSON</span><span class="p">,</span> <span class="n">silent</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Validate the parent_protocols table of the protocol-dependent schema.</span>
 <span class="sd">    </span>
 <span class="sd">    Args:</span>
@@ -801,7 +835,10 @@
 
 
 
-<div class="viewcode-block" id="add_protocols_to_PDS"><a class="viewcode-back" href="../../../api.html#messes.validate.validate.add_protocols_to_PDS">[docs]</a><span class="k">def</span> <span class="nf">add_protocols_to_PDS</span><span class="p">(</span><span class="n">protocol_table</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span> <span class="n">pds</span><span class="p">:</span> <span class="n">JSON</span><span class="p">,</span> <span class="n">silent</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">JSON</span><span class="p">:</span>
+
+<div class="viewcode-block" id="add_protocols_to_PDS">
+<a class="viewcode-back" href="../../../api.html#messes.validate.validate.add_protocols_to_PDS">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">add_protocols_to_PDS</span><span class="p">(</span><span class="n">protocol_table</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span> <span class="n">pds</span><span class="p">:</span> <span class="n">JSON</span><span class="p">,</span> <span class="n">silent</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">JSON</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Add the protocols from the table to the protocol-dependent schema.</span>
 <span class="sd">    </span>
 <span class="sd">    Args:</span>
@@ -845,7 +882,10 @@
     <span class="k">return</span> <span class="n">pds</span></div>
 
 
-<div class="viewcode-block" id="build_PD_schema"><a class="viewcode-back" href="../../../api.html#messes.validate.validate.build_PD_schema">[docs]</a><span class="k">def</span> <span class="nf">build_PD_schema</span><span class="p">(</span><span class="n">pds</span><span class="p">:</span> <span class="n">JSON</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">JSON</span><span class="p">:</span>
+
+<div class="viewcode-block" id="build_PD_schema">
+<a class="viewcode-back" href="../../../api.html#messes.validate.validate.build_PD_schema">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">build_PD_schema</span><span class="p">(</span><span class="n">pds</span><span class="p">:</span> <span class="n">JSON</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">JSON</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Build a JSON schema from the protocol-dependent schema.</span>
 <span class="sd">    </span>
 <span class="sd">    Args:</span>
@@ -958,12 +998,18 @@
                 <span class="n">allOf</span><span class="p">[</span><span class="n">table</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">allof_subschema</span><span class="p">]</span>
                 
     <span class="k">for</span> <span class="n">table</span><span class="p">,</span> <span class="n">schema</span> <span class="ow">in</span> <span class="n">allOf</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-        <span class="n">base_schema</span><span class="p">[</span><span class="s2">&quot;properties&quot;</span><span class="p">][</span><span class="n">table</span><span class="p">][</span><span class="s2">&quot;additionalProperties&quot;</span><span class="p">][</span><span class="s2">&quot;allOf&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">schema</span>
+        <span class="k">if</span> <span class="s1">&#39;allOf&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">base_schema</span><span class="p">[</span><span class="s2">&quot;properties&quot;</span><span class="p">][</span><span class="n">table</span><span class="p">][</span><span class="s2">&quot;additionalProperties&quot;</span><span class="p">]:</span>
+            <span class="n">base_schema</span><span class="p">[</span><span class="s2">&quot;properties&quot;</span><span class="p">][</span><span class="n">table</span><span class="p">][</span><span class="s2">&quot;additionalProperties&quot;</span><span class="p">][</span><span class="s2">&quot;allOf&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">schema</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">base_schema</span><span class="p">[</span><span class="s2">&quot;properties&quot;</span><span class="p">][</span><span class="n">table</span><span class="p">][</span><span class="s2">&quot;additionalProperties&quot;</span><span class="p">][</span><span class="s2">&quot;allOf&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">schema</span> <span class="o">+</span> <span class="n">base_schema</span><span class="p">[</span><span class="s2">&quot;properties&quot;</span><span class="p">][</span><span class="n">table</span><span class="p">][</span><span class="s2">&quot;additionalProperties&quot;</span><span class="p">][</span><span class="s2">&quot;allOf&quot;</span><span class="p">]</span>
         
     <span class="k">return</span> <span class="n">base_schema</span></div>
 
 
-<div class="viewcode-block" id="id_check"><a class="viewcode-back" href="../../../api.html#messes.validate.validate.id_check">[docs]</a><span class="k">def</span> <span class="nf">id_check</span><span class="p">(</span><span class="n">JSON_file</span><span class="p">:</span> <span class="n">JSON</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+
+<div class="viewcode-block" id="id_check">
+<a class="viewcode-back" href="../../../api.html#messes.validate.validate.id_check">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">id_check</span><span class="p">(</span><span class="n">JSON_file</span><span class="p">:</span> <span class="n">JSON</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Validate id fields for records in JSON_file.</span>
 <span class="sd">    </span>
 <span class="sd">    Loops over JSON_file and makes sure each field with a period in the name is an id, that each id points to an </span>
@@ -981,7 +1027,7 @@
         <span class="k">for</span> <span class="n">record_name</span><span class="p">,</span> <span class="n">record_fields</span> <span class="ow">in</span> <span class="n">table_records</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
             <span class="k">for</span> <span class="n">field_name</span><span class="p">,</span> <span class="n">field_value</span> <span class="ow">in</span> <span class="n">record_fields</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
             
-                <span class="k">if</span> <span class="n">re_match</span> <span class="o">:=</span> <span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="s2">&quot;(.*)\.(.*)&quot;</span><span class="p">,</span> <span class="n">field_name</span><span class="p">):</span>
+                <span class="k">if</span> <span class="n">re_match</span> <span class="o">:=</span> <span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;(.*)\.(.*)&quot;</span><span class="p">,</span> <span class="n">field_name</span><span class="p">):</span>
                         <span class="k">if</span> <span class="n">re_match</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="o">!=</span> <span class="s2">&quot;id&quot;</span><span class="p">:</span>
                             <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Error:  In the &quot;</span> <span class="o">+</span> <span class="n">table_name</span> <span class="o">+</span> <span class="s2">&quot; table of the input JSON, the record </span><span class="se">\&quot;</span><span class="s2">&quot;</span> <span class="o">+</span>\
                                   <span class="n">record_name</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\&quot;</span><span class="s2"> has a field, &quot;</span> <span class="o">+</span> <span class="n">field_name</span> <span class="o">+</span> \
@@ -1012,19 +1058,25 @@
                     <span class="k">if</span> <span class="n">table_name</span> <span class="o">==</span> <span class="s2">&quot;protocol&quot;</span> <span class="p">:</span>
                         <span class="k">continue</span>
                     
-                    <span class="k">if</span> <span class="n">field_value</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">table_records</span><span class="p">:</span>
-                        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Error:  In the &quot;</span> <span class="o">+</span> <span class="n">table_name</span> <span class="o">+</span> <span class="s2">&quot; table of the input JSON, the record </span><span class="se">\&quot;</span><span class="s2">&quot;</span> <span class="o">+</span> \
-                              <span class="n">record_name</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\&quot;</span><span class="s2"> has a parent_id, &quot;</span> <span class="o">+</span> <span class="n">field_value</span> <span class="o">+</span> <span class="s2">&quot;, but this parent is not in the &quot;</span> <span class="o">+</span> \
-                              <span class="n">table_name</span> <span class="o">+</span> <span class="s2">&quot; table.&quot;</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="p">)</span>
+                    <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">field_value</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
+                        <span class="n">field_values</span> <span class="o">=</span> <span class="p">[</span><span class="n">field_value</span><span class="p">]</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="n">field_values</span> <span class="o">=</span> <span class="n">field_value</span>
                     
-                    <span class="c1">## If a subject has a parent_id it must be a sample.</span>
-                    <span class="k">elif</span> <span class="n">table_name</span> <span class="o">==</span> <span class="s2">&quot;entity&quot;</span> <span class="p">:</span>
-                                                
-                        <span class="k">if</span> <span class="s2">&quot;type&quot;</span> <span class="ow">in</span> <span class="n">record_fields</span><span class="p">:</span>
-                            <span class="k">if</span> <span class="n">record_fields</span><span class="p">[</span><span class="s2">&quot;type&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;subject&quot;</span> <span class="ow">and</span> <span class="s2">&quot;type&quot;</span> <span class="ow">in</span> <span class="n">table_records</span><span class="p">[</span><span class="n">field_value</span><span class="p">]</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">table_records</span><span class="p">[</span><span class="n">field_value</span><span class="p">][</span><span class="s2">&quot;type&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;sample&quot;</span><span class="p">:</span>
-                                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Error:  In the &quot;</span> <span class="o">+</span> <span class="n">table_name</span> <span class="o">+</span> <span class="s2">&quot; table of the input JSON, the subject type record </span><span class="se">\&quot;</span><span class="s2">&quot;</span> <span class="o">+</span> \
-                                      <span class="n">record_name</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\&quot;</span><span class="s2"> has a parent_id, &quot;</span> <span class="o">+</span> <span class="n">field_value</span> <span class="o">+</span> \
-                                      <span class="s2">&quot;, but this parent is not a sample.&quot;</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="p">)</span>
+                    <span class="k">for</span> <span class="n">field_value</span> <span class="ow">in</span> <span class="n">field_values</span><span class="p">:</span>
+                        <span class="k">if</span> <span class="n">field_value</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">table_records</span><span class="p">:</span>
+                            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Error:  In the &quot;</span> <span class="o">+</span> <span class="n">table_name</span> <span class="o">+</span> <span class="s2">&quot; table of the input JSON, the record </span><span class="se">\&quot;</span><span class="s2">&quot;</span> <span class="o">+</span> \
+                                  <span class="n">record_name</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\&quot;</span><span class="s2"> has a parent_id, &quot;</span> <span class="o">+</span> <span class="n">field_value</span> <span class="o">+</span> <span class="s2">&quot;, but this parent is not in the &quot;</span> <span class="o">+</span> \
+                                  <span class="n">table_name</span> <span class="o">+</span> <span class="s2">&quot; table.&quot;</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="p">)</span>
+                        
+                        <span class="c1">## If a subject has a parent_id it must be a sample.</span>
+                        <span class="k">elif</span> <span class="n">table_name</span> <span class="o">==</span> <span class="s2">&quot;entity&quot;</span> <span class="p">:</span>
+                                                    
+                            <span class="k">if</span> <span class="s2">&quot;type&quot;</span> <span class="ow">in</span> <span class="n">record_fields</span><span class="p">:</span>
+                                <span class="k">if</span> <span class="n">record_fields</span><span class="p">[</span><span class="s2">&quot;type&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;subject&quot;</span> <span class="ow">and</span> <span class="s2">&quot;type&quot;</span> <span class="ow">in</span> <span class="n">table_records</span><span class="p">[</span><span class="n">field_value</span><span class="p">]</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">table_records</span><span class="p">[</span><span class="n">field_value</span><span class="p">][</span><span class="s2">&quot;type&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;sample&quot;</span><span class="p">:</span>
+                                    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Error:  In the &quot;</span> <span class="o">+</span> <span class="n">table_name</span> <span class="o">+</span> <span class="s2">&quot; table of the input JSON, the subject type record </span><span class="se">\&quot;</span><span class="s2">&quot;</span> <span class="o">+</span> \
+                                          <span class="n">record_name</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\&quot;</span><span class="s2"> has a parent_id, &quot;</span> <span class="o">+</span> <span class="n">field_value</span> <span class="o">+</span> \
+                                          <span class="s2">&quot;, but this parent is not a sample.&quot;</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="p">)</span>
 
                 <span class="c1">## The logic to let the id field be blank here is because it is checked elsewhere and we don&#39;t want to double print messages.</span>
                 <span class="k">elif</span> <span class="n">field_name</span> <span class="o">==</span> <span class="s2">&quot;id&quot;</span> <span class="ow">and</span> <span class="ow">not</span> <span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">field_value</span><span class="o">.</span><span class="n">split</span><span class="p">())</span> <span class="o">==</span> <span class="s2">&quot;&quot;</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">field_value</span> <span class="o">==</span> <span class="n">record_name</span><span class="p">:</span>
@@ -1033,7 +1085,10 @@
                           <span class="s2">&quot;, but this is not the same as its own name.&quot;</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="validate_parent_id"><a class="viewcode-back" href="../../../api.html#messes.validate.validate.validate_parent_id">[docs]</a><span class="k">def</span> <span class="nf">validate_parent_id</span><span class="p">(</span><span class="n">table</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span> <span class="n">table_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">entity_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">check_type</span><span class="p">:</span> <span class="nb">bool</span><span class="p">,</span> <span class="n">type_keyword</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;type&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>    
+
+<div class="viewcode-block" id="validate_parent_id">
+<a class="viewcode-back" href="../../../api.html#messes.validate.validate.validate_parent_id">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">validate_parent_id</span><span class="p">(</span><span class="n">table</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span> <span class="n">table_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">entity_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">check_type</span><span class="p">:</span> <span class="nb">bool</span><span class="p">,</span> <span class="n">type_keyword</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;type&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>    
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Validate the &quot;parent_id&quot; fields for the table.</span>
 <span class="sd">    </span>
 <span class="sd">    Args:</span>
@@ -1103,7 +1158,10 @@
     <span class="k">return</span> <span class="n">has_errors</span></div>
 
 
-<div class="viewcode-block" id="iterate_string_or_list"><a class="viewcode-back" href="../../../api.html#messes.validate.validate.iterate_string_or_list">[docs]</a><span class="k">def</span> <span class="nf">iterate_string_or_list</span><span class="p">(</span><span class="n">str_or_list</span><span class="p">:</span> <span class="nb">str</span><span class="o">|</span><span class="nb">list</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">:</span>
+
+<div class="viewcode-block" id="iterate_string_or_list">
+<a class="viewcode-back" href="../../../api.html#messes.validate.validate.iterate_string_or_list">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">iterate_string_or_list</span><span class="p">(</span><span class="n">str_or_list</span><span class="p">:</span> <span class="nb">str</span><span class="o">|</span><span class="nb">list</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;If str_or_list is a string then make it into a list and return the items for looping.</span>
 <span class="sd">    </span>
 <span class="sd">    If str_or_list is a list then return it as is.</span>
@@ -1118,9 +1176,12 @@
         <span class="k">return</span> <span class="n">str_or_list</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="k">return</span> <span class="p">[</span><span class="n">str_or_list</span><span class="p">]</span></div>
+
     
     
-<div class="viewcode-block" id="SS_protocol_check"><a class="viewcode-back" href="../../../api.html#messes.validate.validate.SS_protocol_check">[docs]</a><span class="k">def</span> <span class="nf">SS_protocol_check</span><span class="p">(</span><span class="n">input_json</span><span class="p">:</span> <span class="n">JSON</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<div class="viewcode-block" id="SS_protocol_check">
+<a class="viewcode-back" href="../../../api.html#messes.validate.validate.SS_protocol_check">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">SS_protocol_check</span><span class="p">(</span><span class="n">input_json</span><span class="p">:</span> <span class="n">JSON</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Validates the subjects and samples protocols.</span>
 <span class="sd">    </span>
 <span class="sd">    Loops over the entity table in input_json and makes sure that each sample/subject </span>
@@ -1156,25 +1217,34 @@
             <span class="k">if</span> <span class="p">(</span><span class="n">entity_type</span> <span class="o">:=</span> <span class="n">entity_fields</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;type&quot;</span><span class="p">)):</span>
             
                 <span class="k">if</span> <span class="n">entity_type</span> <span class="o">==</span> <span class="s2">&quot;sample&quot;</span> <span class="ow">and</span> <span class="p">(</span><span class="n">parent</span> <span class="o">:=</span> <span class="n">entity_fields</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;parent_id&quot;</span><span class="p">)):</span>
-                    <span class="c1">## If the sample has a parent and it is a sample then it must have a sample_prep type protocol.</span>
-                    <span class="k">if</span> <span class="p">(</span><span class="n">parent_attributes</span> <span class="o">:=</span> <span class="n">input_json</span><span class="p">[</span><span class="s2">&quot;entity&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">parent</span><span class="p">))</span> <span class="ow">and</span> \
-                       <span class="p">(</span><span class="n">parent_type</span> <span class="o">:=</span> <span class="n">parent_attributes</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;type&quot;</span><span class="p">)):</span>
-                        
-                        <span class="k">if</span> <span class="n">parent_type</span> <span class="o">==</span> <span class="s2">&quot;sample&quot;</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">has_type_sample_prep</span><span class="p">:</span> 
-                            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Error:  Sample &quot;</span> <span class="o">+</span> <span class="n">entity_name</span> <span class="o">+</span> \
-                                  <span class="s2">&quot; came from a sample, but does not have a sample_prep protocol.&quot;</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="p">)</span>
+                    <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">parent</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
+                        <span class="n">parents</span> <span class="o">=</span> <span class="p">[</span><span class="n">parent</span><span class="p">]</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="n">parents</span> <span class="o">=</span> <span class="n">parent</span>
+                    
+                    <span class="k">for</span> <span class="n">parent</span> <span class="ow">in</span> <span class="n">parents</span><span class="p">:</span>
+                        <span class="c1">## If the sample has a parent and it is a sample then it must have a sample_prep type protocol.</span>
+                        <span class="k">if</span> <span class="p">(</span><span class="n">parent_attributes</span> <span class="o">:=</span> <span class="n">input_json</span><span class="p">[</span><span class="s2">&quot;entity&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">parent</span><span class="p">))</span> <span class="ow">and</span> \
+                           <span class="p">(</span><span class="n">parent_type</span> <span class="o">:=</span> <span class="n">parent_attributes</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;type&quot;</span><span class="p">)):</span>
                             
-                        <span class="c1">## If the sample has a parent and it is a subject then it must have a collection type protocol.        </span>
-                        <span class="k">elif</span> <span class="n">parent_type</span> <span class="o">==</span> <span class="s2">&quot;subject&quot;</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">has_type_collection</span><span class="p">:</span>
-                            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Error:  Sample &quot;</span> <span class="o">+</span> <span class="n">entity_name</span> <span class="o">+</span> \
-                                  <span class="s2">&quot; came from a subject, but does not have a collection protocol.&quot;</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="p">)</span>                
+                            <span class="k">if</span> <span class="n">parent_type</span> <span class="o">==</span> <span class="s2">&quot;sample&quot;</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">has_type_sample_prep</span><span class="p">:</span> 
+                                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Error:  Sample &quot;</span> <span class="o">+</span> <span class="n">entity_name</span> <span class="o">+</span> \
+                                      <span class="s2">&quot; came from a sample(s), but does not have a sample_prep protocol.&quot;</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="p">)</span>
+                                
+                            <span class="c1">## If the sample has a parent and it is a subject then it must have a collection type protocol.        </span>
+                            <span class="k">elif</span> <span class="n">parent_type</span> <span class="o">==</span> <span class="s2">&quot;subject&quot;</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">has_type_collection</span><span class="p">:</span>
+                                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Error:  Sample &quot;</span> <span class="o">+</span> <span class="n">entity_name</span> <span class="o">+</span> \
+                                      <span class="s2">&quot; came from a subject(s), but does not have a collection protocol.&quot;</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="p">)</span>                
                         
                 <span class="c1">## Check that each subject has a treatment type protocol.            </span>
                 <span class="k">if</span> <span class="n">entity_type</span> <span class="o">==</span> <span class="s2">&quot;subject&quot;</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">has_type_treatment</span><span class="p">:</span>
                     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Error:  Subject &quot;</span> <span class="o">+</span> <span class="n">entity_name</span> <span class="o">+</span> <span class="s2">&quot; does not have a treatment type protocol.&quot;</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="measurement_protocol_check"><a class="viewcode-back" href="../../../api.html#messes.validate.validate.measurement_protocol_check">[docs]</a><span class="k">def</span> <span class="nf">measurement_protocol_check</span><span class="p">(</span><span class="n">input_json</span><span class="p">:</span> <span class="n">JSON</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+
+<div class="viewcode-block" id="measurement_protocol_check">
+<a class="viewcode-back" href="../../../api.html#messes.validate.validate.measurement_protocol_check">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">measurement_protocol_check</span><span class="p">(</span><span class="n">input_json</span><span class="p">:</span> <span class="n">JSON</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Loops over the measurement table in input_json and makes sure that each measurement </span>
 <span class="sd">    has at least one measurement type protocol.</span>
 <span class="sd">    </span>
@@ -1201,7 +1271,10 @@
                       <span class="s2">&quot; does not have a measurement type protocol.&quot;</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="protocol_all_used_check"><a class="viewcode-back" href="../../../api.html#messes.validate.validate.protocol_all_used_check">[docs]</a><span class="k">def</span> <span class="nf">protocol_all_used_check</span><span class="p">(</span><span class="n">input_json</span><span class="p">:</span> <span class="n">JSON</span><span class="p">,</span> <span class="n">tables_with_protocols</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+
+<div class="viewcode-block" id="protocol_all_used_check">
+<a class="viewcode-back" href="../../../api.html#messes.validate.validate.protocol_all_used_check">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">protocol_all_used_check</span><span class="p">(</span><span class="n">input_json</span><span class="p">:</span> <span class="n">JSON</span><span class="p">,</span> <span class="n">tables_with_protocols</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Validates that all protocols in the protocol table are used at least once.</span>
 <span class="sd">    </span>
 <span class="sd">    Compiles a list of all of the protocols used by the records in tables_with_protocols </span>
@@ -1232,7 +1305,10 @@
               <span class="s2">&quot;, in the protocol table of the input JSON is not used by any of the entities or measurements.&quot;</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="indexes_of_duplicates_in_list"><a class="viewcode-back" href="../../../api.html#messes.validate.validate.indexes_of_duplicates_in_list">[docs]</a><span class="k">def</span> <span class="nf">indexes_of_duplicates_in_list</span><span class="p">(</span><span class="n">list_of_interest</span><span class="p">:</span> <span class="nb">list</span><span class="p">,</span> <span class="n">value_to_find</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">]:</span>
+
+<div class="viewcode-block" id="indexes_of_duplicates_in_list">
+<a class="viewcode-back" href="../../../api.html#messes.validate.validate.indexes_of_duplicates_in_list">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">indexes_of_duplicates_in_list</span><span class="p">(</span><span class="n">list_of_interest</span><span class="p">:</span> <span class="nb">list</span><span class="p">,</span> <span class="n">value_to_find</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">]:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Returns a list of all of the indexes in list_of_interest where the value equals value_to_find.</span>
 <span class="sd">    </span>
 <span class="sd">    Args:</span>
@@ -1258,7 +1334,10 @@
     <span class="k">return</span> <span class="n">indexes</span></div>
 
 
-<div class="viewcode-block" id="protocol_description_check"><a class="viewcode-back" href="../../../api.html#messes.validate.validate.protocol_description_check">[docs]</a><span class="k">def</span> <span class="nf">protocol_description_check</span><span class="p">(</span><span class="n">input_json</span><span class="p">:</span> <span class="n">JSON</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+
+<div class="viewcode-block" id="protocol_description_check">
+<a class="viewcode-back" href="../../../api.html#messes.validate.validate.protocol_description_check">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">protocol_description_check</span><span class="p">(</span><span class="n">input_json</span><span class="p">:</span> <span class="n">JSON</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Checks that every description field for the protocols in the protocol table of the metadata are unique.</span>
 <span class="sd">    </span>
 <span class="sd">    Args:</span>
@@ -1279,9 +1358,12 @@
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">protocols_with_matching_descriptions</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
             <span class="n">protocols_to_print</span> <span class="o">=</span> <span class="p">[</span><span class="n">protocols_with_descriptions</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="k">for</span> <span class="n">index</span> <span class="ow">in</span> <span class="n">protocols_with_matching_descriptions</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span>
             <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Warning: The protocols: </span><span class="se">\n\n</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">protocols_to_print</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n\n</span><span class="s2">have the exact same descriptions.&quot;</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="p">)</span></div>
+
                 
 
-<div class="viewcode-block" id="factors_checks"><a class="viewcode-back" href="../../../api.html#messes.validate.validate.factors_checks">[docs]</a><span class="k">def</span> <span class="nf">factors_checks</span><span class="p">(</span><span class="n">input_json</span><span class="p">:</span> <span class="n">JSON</span><span class="p">,</span> <span class="n">silent</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<div class="viewcode-block" id="factors_checks">
+<a class="viewcode-back" href="../../../api.html#messes.validate.validate.factors_checks">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">factors_checks</span><span class="p">(</span><span class="n">input_json</span><span class="p">:</span> <span class="n">JSON</span><span class="p">,</span> <span class="n">silent</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Validates some logic about the factors.</span>
 <span class="sd">    </span>
 <span class="sd">    Checks that every factor in the factor table is used at least once by an entity. </span>
@@ -1349,7 +1431,8 @@
                           <span class="s2">&quot;, in the factor table of the input JSON is not used by any of the entities.&quot;</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="p">)</span></div>
 
 
-<span class="k">def</span> <span class="nf">_check_format</span><span class="p">(</span><span class="n">format_check</span><span class="p">:</span> <span class="nb">str</span><span class="o">|</span><span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_check_format</span><span class="p">(</span><span class="n">format_check</span><span class="p">:</span> <span class="nb">str</span><span class="o">|</span><span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Check that format_check is a supported format.</span>
 <span class="sd">    </span>
 <span class="sd">    If format_check is not in supported_formats then print an error and close the program.</span>
@@ -1365,7 +1448,9 @@
             <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">()</span>
 
 
-<div class="viewcode-block" id="run_json_command"><a class="viewcode-back" href="../../../api.html#messes.validate.validate.run_json_command">[docs]</a><span class="k">def</span> <span class="nf">run_json_command</span><span class="p">(</span><span class="n">input_json_source</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">pds_source</span><span class="p">:</span> <span class="nb">str</span><span class="o">|</span><span class="kc">None</span><span class="p">,</span> <span class="n">additional_schema_sources</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> 
+<div class="viewcode-block" id="run_json_command">
+<a class="viewcode-back" href="../../../api.html#messes.validate.validate.run_json_command">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">run_json_command</span><span class="p">(</span><span class="n">input_json_source</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">pds_source</span><span class="p">:</span> <span class="nb">str</span><span class="o">|</span><span class="kc">None</span><span class="p">,</span> <span class="n">additional_schema_sources</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> 
                      <span class="n">no_base_schema</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">no_extra_checks</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">is_csv</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> 
                      <span class="n">is_xlsx</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">is_json</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">is_gs</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">silent</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;none&quot;</span><span class="p">,</span> 
                      <span class="n">format_check</span><span class="p">:</span> <span class="nb">str</span><span class="o">|</span><span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
@@ -1456,7 +1541,10 @@
             <span class="n">mwtab_checks</span><span class="p">(</span><span class="n">input_json</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="run_save_schema_command"><a class="viewcode-back" href="../../../api.html#messes.validate.validate.run_save_schema_command">[docs]</a><span class="k">def</span> <span class="nf">run_save_schema_command</span><span class="p">(</span><span class="n">pds_source</span><span class="p">:</span> <span class="nb">str</span><span class="o">|</span><span class="kc">None</span><span class="p">,</span> <span class="n">output_schema_path</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">input_json_path</span><span class="p">:</span> <span class="nb">str</span><span class="o">|</span><span class="kc">None</span><span class="p">,</span>
+
+<div class="viewcode-block" id="run_save_schema_command">
+<a class="viewcode-back" href="../../../api.html#messes.validate.validate.run_save_schema_command">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">run_save_schema_command</span><span class="p">(</span><span class="n">pds_source</span><span class="p">:</span> <span class="nb">str</span><span class="o">|</span><span class="kc">None</span><span class="p">,</span> <span class="n">output_schema_path</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">input_json_path</span><span class="p">:</span> <span class="nb">str</span><span class="o">|</span><span class="kc">None</span><span class="p">,</span>
                             <span class="n">is_csv</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">is_xlsx</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">is_json</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> 
                             <span class="n">is_gs</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">silent</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;none&quot;</span><span class="p">,</span> <span class="n">format_check</span><span class="p">:</span> <span class="nb">str</span><span class="o">|</span><span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Run the save-schema command.</span>
@@ -1492,10 +1580,13 @@
         <span class="n">composite_schema</span> <span class="o">=</span> <span class="n">base_schema</span>
     
     <span class="n">save_out_JSON_file</span><span class="p">(</span><span class="n">output_schema_path</span><span class="p">,</span> <span class="n">composite_schema</span><span class="p">)</span></div>
+
     
 
 
-<div class="viewcode-block" id="run_schema_command"><a class="viewcode-back" href="../../../api.html#messes.validate.validate.run_schema_command">[docs]</a><span class="k">def</span> <span class="nf">run_schema_command</span><span class="p">(</span><span class="n">input_schema_source</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<div class="viewcode-block" id="run_schema_command">
+<a class="viewcode-back" href="../../../api.html#messes.validate.validate.run_schema_command">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">run_schema_command</span><span class="p">(</span><span class="n">input_schema_source</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Run the schema command.</span>
 <span class="sd">    </span>
 <span class="sd">    Args:</span>
@@ -1506,7 +1597,10 @@
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;No errors. This is a valid JSON schema.&quot;</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="run_pds_command"><a class="viewcode-back" href="../../../api.html#messes.validate.validate.run_pds_command">[docs]</a><span class="k">def</span> <span class="nf">run_pds_command</span><span class="p">(</span><span class="n">pds_source</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">output_path</span><span class="p">:</span> <span class="nb">str</span><span class="o">|</span><span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">is_csv</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">is_xlsx</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> 
+
+<div class="viewcode-block" id="run_pds_command">
+<a class="viewcode-back" href="../../../api.html#messes.validate.validate.run_pds_command">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">run_pds_command</span><span class="p">(</span><span class="n">pds_source</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">output_path</span><span class="p">:</span> <span class="nb">str</span><span class="o">|</span><span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">is_csv</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">is_xlsx</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> 
                    <span class="n">is_json</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">is_gs</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">silent</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;none&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Run the pds command.</span>
 <span class="sd">    </span>
@@ -1528,7 +1622,10 @@
         <span class="n">save_out_JSON_file</span><span class="p">(</span><span class="n">output_path</span><span class="p">,</span> <span class="n">composite_schema</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="run_pds_to_table_command"><a class="viewcode-back" href="../../../api.html#messes.validate.validate.run_pds_to_table_command">[docs]</a><span class="k">def</span> <span class="nf">run_pds_to_table_command</span><span class="p">(</span><span class="n">pds_source</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">output_path</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">output_filetype</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">silent</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;none&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+
+<div class="viewcode-block" id="run_pds_to_table_command">
+<a class="viewcode-back" href="../../../api.html#messes.validate.validate.run_pds_to_table_command">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">run_pds_to_table_command</span><span class="p">(</span><span class="n">pds_source</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">output_path</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">output_filetype</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">silent</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;none&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Run the pds-to-table command.</span>
 <span class="sd">    </span>
 <span class="sd">    Args:</span>
@@ -1558,9 +1655,12 @@
             <span class="n">table_to_save</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">save_name</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Error:  Unknown output filetype.&quot;</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="p">)</span></div>
+
     
 
-<div class="viewcode-block" id="run_pds_to_json_command"><a class="viewcode-back" href="../../../api.html#messes.validate.validate.run_pds_to_json_command">[docs]</a><span class="k">def</span> <span class="nf">run_pds_to_json_command</span><span class="p">(</span><span class="n">pds_source</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">is_csv</span><span class="p">:</span> <span class="nb">bool</span><span class="p">,</span> <span class="n">is_xlsx</span><span class="p">:</span> <span class="nb">bool</span><span class="p">,</span> <span class="n">is_gs</span><span class="p">:</span> <span class="nb">bool</span><span class="p">,</span> 
+<div class="viewcode-block" id="run_pds_to_json_command">
+<a class="viewcode-back" href="../../../api.html#messes.validate.validate.run_pds_to_json_command">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">run_pds_to_json_command</span><span class="p">(</span><span class="n">pds_source</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">is_csv</span><span class="p">:</span> <span class="nb">bool</span><span class="p">,</span> <span class="n">is_xlsx</span><span class="p">:</span> <span class="nb">bool</span><span class="p">,</span> <span class="n">is_gs</span><span class="p">:</span> <span class="nb">bool</span><span class="p">,</span> 
                             <span class="n">output_path</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">silent</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;none&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Run the pds-to-json command.</span>
 <span class="sd">    </span>
@@ -1575,9 +1675,12 @@
     <span class="n">PDS</span> <span class="o">=</span> <span class="n">read_and_validate_PDS</span><span class="p">(</span><span class="n">pds_source</span><span class="p">,</span> <span class="n">is_csv</span><span class="p">,</span> <span class="n">is_xlsx</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="n">is_gs</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="n">silent</span><span class="p">)</span>
     
     <span class="n">save_out_JSON_file</span><span class="p">(</span><span class="n">output_path</span><span class="p">,</span> <span class="n">PDS</span><span class="p">)</span>    </div>
+
         
 
-<div class="viewcode-block" id="run_conversion_directives_to_json_schema_command"><a class="viewcode-back" href="../../../api.html#messes.validate.validate.run_conversion_directives_to_json_schema_command">[docs]</a><span class="k">def</span> <span class="nf">run_conversion_directives_to_json_schema_command</span><span class="p">(</span><span class="n">conversion_directives_source</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> 
+<div class="viewcode-block" id="run_conversion_directives_to_json_schema_command">
+<a class="viewcode-back" href="../../../api.html#messes.validate.validate.run_conversion_directives_to_json_schema_command">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">run_conversion_directives_to_json_schema_command</span><span class="p">(</span><span class="n">conversion_directives_source</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> 
                                                  <span class="n">is_csv</span><span class="p">:</span> <span class="nb">bool</span><span class="p">,</span> <span class="n">is_xlsx</span><span class="p">:</span> <span class="nb">bool</span><span class="p">,</span> <span class="n">is_json</span><span class="p">:</span> <span class="nb">bool</span><span class="p">,</span> 
                                                  <span class="n">is_gs</span><span class="p">:</span> <span class="nb">bool</span><span class="p">,</span> <span class="n">output_schema_path</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> 
                                                  <span class="n">silent</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
@@ -1600,11 +1703,11 @@
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Error:  The conversion directives are not valid, so a JSON schema could not be created.&quot;</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="p">)</span>
         <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">()</span>
         
-    <span class="k">def</span> <span class="nf">add_table</span><span class="p">(</span><span class="n">schema</span><span class="p">,</span> <span class="n">table</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">add_table</span><span class="p">(</span><span class="n">schema</span><span class="p">,</span> <span class="n">table</span><span class="p">):</span>
         <span class="k">if</span> <span class="n">table</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">schema</span><span class="p">[</span><span class="s2">&quot;properties&quot;</span><span class="p">]:</span>
             <span class="n">schema</span><span class="p">[</span><span class="s2">&quot;properties&quot;</span><span class="p">][</span><span class="n">table</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span><span class="s2">&quot;object&quot;</span><span class="p">,</span> <span class="s2">&quot;additionalProperties&quot;</span><span class="p">:{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span><span class="s2">&quot;object&quot;</span><span class="p">,</span> <span class="s2">&quot;properties&quot;</span><span class="p">:{}}}</span>
         
-    <span class="k">def</span> <span class="nf">add_field</span><span class="p">(</span><span class="n">schema</span><span class="p">,</span> <span class="n">table</span><span class="p">,</span> <span class="n">field</span><span class="p">,</span> <span class="n">required</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">add_field</span><span class="p">(</span><span class="n">schema</span><span class="p">,</span> <span class="n">table</span><span class="p">,</span> <span class="n">field</span><span class="p">,</span> <span class="n">required</span><span class="p">):</span>
         <span class="n">schema</span><span class="p">[</span><span class="s2">&quot;properties&quot;</span><span class="p">][</span><span class="n">table</span><span class="p">][</span><span class="s2">&quot;additionalProperties&quot;</span><span class="p">][</span><span class="s2">&quot;properties&quot;</span><span class="p">][</span><span class="n">field</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="k">if</span> <span class="n">required</span><span class="p">:</span>
             <span class="k">if</span> <span class="s2">&quot;required&quot;</span> <span class="ow">in</span> <span class="n">schema</span><span class="p">[</span><span class="s2">&quot;properties&quot;</span><span class="p">][</span><span class="n">table</span><span class="p">][</span><span class="s2">&quot;additionalProperties&quot;</span><span class="p">]:</span>
@@ -1676,6 +1779,7 @@
                 
     
     <span class="n">save_out_JSON_file</span><span class="p">(</span><span class="n">output_schema_path</span><span class="p">,</span> <span class="n">new_schema</span><span class="p">)</span></div>
+
 
 
 </pre></div>

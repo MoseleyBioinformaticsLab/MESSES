@@ -1,25 +1,25 @@
+
+
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="./">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Conversion Directives &mdash; MESSES 1.0.2 documentation</title>
-      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="_static/css/custom_css.css" type="text/css" />
-      <link rel="stylesheet" href="_static/sphinxcontrib-images/LightBox2/lightbox2/dist/css/lightbox.css" type="text/css" />
-  <!--[if lt IE 9]>
-    <script src="_static/js/html5shiv.min.js"></script>
-  <![endif]-->
+  <title>Conversion Directives &mdash; MESSES 1.1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/custom_css.css?v=9359fcaf" />
+      <link rel="stylesheet" type="text/css" href="_static/sphinxcontrib-images/LightBox2/lightbox2/dist/css/lightbox.min.css?v=6e7d0de0" />
+      <link rel="stylesheet" type="text/css" href="_static/sphinxcontrib-images/LightBox2/lightbox2-customize/pointer.css?v=c97663ff" />
+
   
-        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-        <script src="_static/jquery.js"></script>
-        <script src="_static/underscore.js"></script>
-        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script src="_static/doctools.js"></script>
-        <script src="_static/sphinx_highlight.js"></script>
-        <script src="_static/sphinxcontrib-images/LightBox2/lightbox2/dist/js/lightbox-plus-jquery.min.js"></script>
-        <script src="_static/sphinxcontrib-images/LightBox2/lightbox2-customize/jquery-noconflict.js"></script>
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=fc837d61"></script>
+      <script src="_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="_static/sphinxcontrib-images/LightBox2/lightbox2/dist/js/lightbox-plus-jquery.min.js?v=f0ca4bb6"></script>
+      <script src="_static/sphinxcontrib-images/LightBox2/lightbox2-customize/jquery-noconflict.js?v=12818e64"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -32,14 +32,15 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="index.html" class="icon icon-home"> MESSES
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            MESSES
           </a>
-              <div class="version">
-                1.0.2
-              </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -70,21 +71,21 @@
 <li class="toctree-l4"><a class="reference internal" href="#id4">Directive as JSON</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#id5">Tagged Equivalent</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#input-json">Input JSON</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id8">Output JSON</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id6">Output JSON</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#first-record">First Record</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#id9">Directive as JSON</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id10">Tagged Equivalent</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id17">Input JSON</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id18">Output JSON</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id7">Directive as JSON</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id8">Tagged Equivalent</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id9">Input JSON</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id10">Output JSON</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#for-each">For Each</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#id19">Directive as JSON</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id20">Tagged Equivalent</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id25">Input JSON</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id26">Output JSON</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id11">Directive as JSON</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id12">Tagged Equivalent</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id13">Input JSON</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id14">Output JSON</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#general-output-format">General Output Format</a></li>
@@ -92,46 +93,46 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#matrix-directives">matrix Directives</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id27">Code</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#id28">Directive as JSON</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id29">Tagged Equivalent</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id30">Output JSON</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id15">Code</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id16">Directive as JSON</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id17">Tagged Equivalent</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id18">Output JSON</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#headers">Headers</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#id31">Directive as JSON</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id32">Tagged Equivalent</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id37">Input JSON</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id38">Output JSON</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id19">Directive as JSON</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id20">Tagged Equivalent</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id21">Input JSON</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id22">Output JSON</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#collate">Collate</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#id39">Directive as JSON</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id40">Tagged Equivalent</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id45">Input JSON</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id46">Output JSON</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id23">Directive as JSON</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id24">Tagged Equivalent</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id25">Input JSON</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id26">Output JSON</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#fields-to-headers">Fields to Headers</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#id47">Directive as JSON</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id48">Tagged Equivalent</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id55">Input JSON</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id56">Output JSON</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id27">Directive as JSON</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id28">Tagged Equivalent</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id29">Input JSON</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id30">Output JSON</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#id57">General Output Format</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id58">Meaningful Fields</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id31">General Output Format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id32">Meaningful Fields</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#section-directives">section Directives</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#example">Example</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#id59">Directive as JSON</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id60">Tagged Equivalent</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id61">Output JSON</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id33">Directive as JSON</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id34">Tagged Equivalent</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id35">Output JSON</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#id62">General Output Format</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id63">Meaningful Fields</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id36">General Output Format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id37">Meaningful Fields</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#validation">Validation</a></li>
@@ -140,6 +141,7 @@
 <li class="toctree-l1"><a class="reference internal" href="experiment_description_specification.html">Experiment Description Specification</a></li>
 <li class="toctree-l1"><a class="reference internal" href="protocol_dependent_schema.html">Protocol-Dependent Schema</a></li>
 <li class="toctree-l1"><a class="reference internal" href="supported_formats.html">Supported Conversion Formats</a></li>
+<li class="toctree-l1"><a class="reference internal" href="common_conventions.html">Common Conventions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="api.html">API</a></li>
 <li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
 <li class="toctree-l1"><a class="reference internal" href="todo.html">TODO List</a></li>
@@ -158,8 +160,8 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>Conversion Directives</li>
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Conversion Directives</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/conversion_directives.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -170,9 +172,9 @@
            <div itemprop="articleBody">
              
   <section id="conversion-directives">
-<h1>Conversion Directives<a class="headerlink" href="#conversion-directives" title="Permalink to this heading"></a></h1>
+<h1>Conversion Directives<a class="headerlink" href="#conversion-directives" title="Link to this heading"></a></h1>
 <section id="introduction">
-<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading"></a></h2>
+<h2>Introduction<a class="headerlink" href="#introduction" title="Link to this heading"></a></h2>
 <p>The convert command is used to convert extracted and validated data from it’s intermediate JSON form to
 the final desired format. The command was largely created with the goal of putting data into its
 preferred format for deposition into an online data repository such as <a class="reference external" href="http://www.metabolomicsworkbench.org">Metabolomics Workbench</a>.
@@ -204,12 +206,6 @@ section of this documentation, and tagged tabular files are acceptable input for
 conversion directives of the convert command. The JSON structure above is shown below using
 export tags.</p>
 <table class="docutils align-default">
-<colgroup>
-<col style="width: 12%" />
-<col style="width: 31%" />
-<col style="width: 28%" />
-<col style="width: 28%" />
-</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>#tags</p></th>
 <th class="head"><p>#&lt;table_name_1&gt;.id</p></th>
@@ -237,17 +233,17 @@ anything, but what is produced is for the whole table. Examples and more detail 
 value_type are given below.</p>
 </section>
 <section id="str-directives">
-<h2>str Directives<a class="headerlink" href="#str-directives" title="Permalink to this heading"></a></h2>
+<h2>str Directives<a class="headerlink" href="#str-directives" title="Link to this heading"></a></h2>
 <p>The str directive assumes that you want to create a string value from information in the
 input JSON, and that that information is contained within a single table. The value can
 be built from a single record in the table or by iterating over all of them, and the
 records can be sorted and filtered before building. There are a few common patterns to
 building a str directive.</p>
 <section id="override">
-<h3>Override<a class="headerlink" href="#override" title="Permalink to this heading"></a></h3>
+<h3>Override<a class="headerlink" href="#override" title="Link to this heading"></a></h3>
 <p>To simply specify the string value directly use the “override” field.</p>
 <section id="directive-as-json">
-<h4>Directive as JSON<a class="headerlink" href="#directive-as-json" title="Permalink to this heading"></a></h4>
+<h4>Directive as JSON<a class="headerlink" href="#directive-as-json" title="Link to this heading"></a></h4>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">{</span>
 <span class="go">&quot;ANALYSIS&quot;: {</span>
 <span class="go">    &quot;ANALYSIS_TYPE&quot;: {</span>
@@ -260,14 +256,8 @@ building a str directive.</p>
 </div>
 </section>
 <section id="tagged-equivalent">
-<h4>Tagged Equivalent<a class="headerlink" href="#tagged-equivalent" title="Permalink to this heading"></a></h4>
+<h4>Tagged Equivalent<a class="headerlink" href="#tagged-equivalent" title="Link to this heading"></a></h4>
 <table class="docutils align-default">
-<colgroup>
-<col style="width: 16%" />
-<col style="width: 29%" />
-<col style="width: 25%" />
-<col style="width: 29%" />
-</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>#tags</p></th>
 <th class="head"><p>#ANALYSIS.id</p></th>
@@ -285,7 +275,7 @@ building a str directive.</p>
 </table>
 </section>
 <section id="output-json">
-<h4>Output JSON<a class="headerlink" href="#output-json" title="Permalink to this heading"></a></h4>
+<h4>Output JSON<a class="headerlink" href="#output-json" title="Link to this heading"></a></h4>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">{</span>
 <span class="go">&quot;ANALYSIS&quot;: {</span>
 <span class="go">    &quot;ANALYSIS_TYPE&quot;: &quot;MS&quot;</span>
@@ -296,7 +286,7 @@ building a str directive.</p>
 </section>
 </section>
 <section id="code">
-<h3>Code<a class="headerlink" href="#code" title="Permalink to this heading"></a></h3>
+<h3>Code<a class="headerlink" href="#code" title="Link to this heading"></a></h3>
 <p>If you need to generate a string value from the input JSON in a more complex way
 than can be done with the current supported directives, you can use the “code” field
 to give the program Python code directly to evaluate. What is in the code field will
@@ -304,7 +294,7 @@ be delivered directly to eval(), and the name of the internal variable for the i
 JSON is “input_json”. You can also use the “import” field to import any user created
 libraries into the program. The “import” value should be a path to the file to import.</p>
 <section id="id1">
-<h4>Directive as JSON<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h4>
+<h4>Directive as JSON<a class="headerlink" href="#id1" title="Link to this heading"></a></h4>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">{</span>
 <span class="go">&quot;METABOLOMICS WORKBENCH&quot;: {</span>
 <span class="go">    &quot;CREATED_ON&quot;: {</span>
@@ -317,14 +307,8 @@ libraries into the program. The “import” value should be a path to the file 
 </div>
 </section>
 <section id="id2">
-<h4>Tagged Equivalent<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h4>
+<h4>Tagged Equivalent<a class="headerlink" href="#id2" title="Link to this heading"></a></h4>
 <table class="docutils align-default">
-<colgroup>
-<col style="width: 9%" />
-<col style="width: 32%" />
-<col style="width: 42%" />
-<col style="width: 17%" />
-</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>#tags</p></th>
 <th class="head"><p>#METABOLOMICS WORKBENCH.id</p></th>
@@ -342,7 +326,7 @@ libraries into the program. The “import” value should be a path to the file 
 </table>
 </section>
 <section id="id3">
-<h4>Output JSON<a class="headerlink" href="#id3" title="Permalink to this heading"></a></h4>
+<h4>Output JSON<a class="headerlink" href="#id3" title="Link to this heading"></a></h4>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">{</span>
 <span class="go">&quot;METABOLOMICS WORKBENCH&quot;: {</span>
 <span class="go">    &quot;CREATED_ON&quot;: &quot;2023-01-04&quot;    # Will change to be date when the program is ran.</span>
@@ -353,12 +337,12 @@ libraries into the program. The “import” value should be a path to the file 
 </section>
 </section>
 <section id="record-id">
-<h3>Record ID<a class="headerlink" href="#record-id" title="Permalink to this heading"></a></h3>
+<h3>Record ID<a class="headerlink" href="#record-id" title="Link to this heading"></a></h3>
 <p>If the value is simply in a field or combination of fields in a record of the input
 JSON, use the “record_id” field to point to that record directly and build the value
 from its fields.</p>
 <section id="id4">
-<h4>Directive as JSON<a class="headerlink" href="#id4" title="Permalink to this heading"></a></h4>
+<h4>Directive as JSON<a class="headerlink" href="#id4" title="Link to this heading"></a></h4>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">{</span>
 <span class="go">&quot;ANALYSIS&quot;: {</span>
 <span class="go">    &quot;ANALYSIS_TYPE&quot;: {</span>
@@ -373,22 +357,14 @@ from its fields.</p>
 </div>
 </section>
 <section id="id5">
-<h4>Tagged Equivalent<a class="headerlink" href="#id5" title="Permalink to this heading"></a></h4>
+<h4>Tagged Equivalent<a class="headerlink" href="#id5" title="Link to this heading"></a></h4>
 <table class="docutils align-default">
-<colgroup>
-<col style="width: 10%" />
-<col style="width: 19%" />
-<col style="width: 19%" />
-<col style="width: 13%" />
-<col style="width: 22%" />
-<col style="width: 18%" />
-</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>#tags</p></th>
 <th class="head"><p>#ANALYSIS.id</p></th>
 <th class="head"><p>#.value_type</p></th>
 <th class="head"><p>#.table</p></th>
-<th class="head"><p><a href="#id6"><span class="problematic" id="id7">*</span></a>#.fields</p></th>
+<th class="head"><p>*#.fields</p></th>
 <th class="head"><p>#.record_id</p></th>
 </tr>
 </thead>
@@ -404,7 +380,7 @@ from its fields.</p>
 </table>
 </section>
 <section id="input-json">
-<h4>Input JSON<a class="headerlink" href="#input-json" title="Permalink to this heading"></a></h4>
+<h4>Input JSON<a class="headerlink" href="#input-json" title="Link to this heading"></a></h4>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">{</span>
 <span class="go">&quot;study&quot;: {</span>
 <span class="go">    &quot;Study 1&quot;: {</span>
@@ -418,8 +394,8 @@ from its fields.</p>
 </pre></div>
 </div>
 </section>
-<section id="id8">
-<h4>Output JSON<a class="headerlink" href="#id8" title="Permalink to this heading"></a></h4>
+<section id="id6">
+<h4>Output JSON<a class="headerlink" href="#id6" title="Link to this heading"></a></h4>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">{</span>
 <span class="go">&quot;ANALYSIS&quot;: {</span>
 <span class="go">    &quot;ANALYSIS_TYPE&quot;: &quot;MS&quot;</span>
@@ -430,15 +406,15 @@ from its fields.</p>
 </section>
 </section>
 <section id="first-record">
-<h3>First Record<a class="headerlink" href="#first-record" title="Permalink to this heading"></a></h3>
+<h3>First Record<a class="headerlink" href="#first-record" title="Link to this heading"></a></h3>
 <p>Similar to specifying a record ID, if you want to build the string value from a record
 but do not know its ID, you can omit the “record_id” field and the first record in
 the specified table will be used. This alone is generally not enough though and it
 is recommended to either use the “sort_by” and “sort_order” fields to first sort the
 records before selecting the first one, or use the “test” field to select the first
 record that matches the test.</p>
-<section id="id9">
-<h4>Directive as JSON<a class="headerlink" href="#id9" title="Permalink to this heading"></a></h4>
+<section id="id7">
+<h4>Directive as JSON<a class="headerlink" href="#id7" title="Link to this heading"></a></h4>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp"># </span>Using<span class="w"> </span>test.
 <span class="go">{</span>
 <span class="go">&quot;ANALYSIS&quot;: {</span>
@@ -466,23 +442,15 @@ record that matches the test.</p>
 </pre></div>
 </div>
 </section>
-<section id="id10">
-<h4>Tagged Equivalent<a class="headerlink" href="#id10" title="Permalink to this heading"></a></h4>
+<section id="id8">
+<h4>Tagged Equivalent<a class="headerlink" href="#id8" title="Link to this heading"></a></h4>
 <table class="docutils align-default">
-<colgroup>
-<col style="width: 10%" />
-<col style="width: 18%" />
-<col style="width: 18%" />
-<col style="width: 12%" />
-<col style="width: 17%" />
-<col style="width: 25%" />
-</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>#tags</p></th>
 <th class="head"><p>#ANALYSIS.id</p></th>
 <th class="head"><p>#.value_type</p></th>
 <th class="head"><p>#.table</p></th>
-<th class="head"><p><a href="#id11"><span class="problematic" id="id12">*</span></a>#.fields</p></th>
+<th class="head"><p>*#.fields</p></th>
 <th class="head"><p>#.test</p></th>
 </tr>
 </thead>
@@ -497,22 +465,13 @@ record that matches the test.</p>
 </tbody>
 </table>
 <table class="docutils align-default">
-<colgroup>
-<col style="width: 9%" />
-<col style="width: 16%" />
-<col style="width: 16%" />
-<col style="width: 11%" />
-<col style="width: 13%" />
-<col style="width: 18%" />
-<col style="width: 16%" />
-</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>#tags</p></th>
 <th class="head"><p>#ANALYSIS.id</p></th>
 <th class="head"><p>#.value_type</p></th>
 <th class="head"><p>#.table</p></th>
-<th class="head"><p><a href="#id13"><span class="problematic" id="id14">*</span></a>#.fields</p></th>
-<th class="head"><p><a href="#id15"><span class="problematic" id="id16">*</span></a>#.sort_by</p></th>
+<th class="head"><p>*#.fields</p></th>
+<th class="head"><p>*#.sort_by</p></th>
 <th class="head"><p>#.sort_order</p></th>
 </tr>
 </thead>
@@ -528,8 +487,8 @@ record that matches the test.</p>
 </tbody>
 </table>
 </section>
-<section id="id17">
-<h4>Input JSON<a class="headerlink" href="#id17" title="Permalink to this heading"></a></h4>
+<section id="id9">
+<h4>Input JSON<a class="headerlink" href="#id9" title="Link to this heading"></a></h4>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">{</span>
 <span class="go">&quot;study&quot;: {</span>
 <span class="go">    &quot;Study 1&quot;: {</span>
@@ -565,11 +524,11 @@ record that matches the test.</p>
 </pre></div>
 </div>
 </section>
-<section id="id18">
-<h4>Output JSON<a class="headerlink" href="#id18" title="Permalink to this heading"></a></h4>
+<section id="id10">
+<h4>Output JSON<a class="headerlink" href="#id10" title="Link to this heading"></a></h4>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">{</span>
 <span class="go">&quot;ANALYSIS&quot;: {</span>
-<span class="go">    &quot;Instrument&quot;: &quot;Orbitrap&quot;</span>
+<span class="go">    &quot;INSTRUMENT&quot;: &quot;Orbitrap&quot;</span>
 <span class="go">    }</span>
 <span class="go">}</span>
 </pre></div>
@@ -577,15 +536,15 @@ record that matches the test.</p>
 </section>
 </section>
 <section id="for-each">
-<h3>For Each<a class="headerlink" href="#for-each" title="Permalink to this heading"></a></h3>
+<h3>For Each<a class="headerlink" href="#for-each" title="Link to this heading"></a></h3>
 <p>If the information to build the value is spread across several records, then use the
 “for_each” field to loop over all the records in the table and build the value by
 concatenating the values with a delimiter. Use the “delimiter” field to specify the
 delimiter to use. The default is no delimiter aka the empty string. Generally, simply
 looping over all records is not enough, so use the “test” field to only use the records
 matching some test.</p>
-<section id="id19">
-<h4>Directive as JSON<a class="headerlink" href="#id19" title="Permalink to this heading"></a></h4>
+<section id="id11">
+<h4>Directive as JSON<a class="headerlink" href="#id11" title="Link to this heading"></a></h4>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">{</span>
 <span class="go">&quot;SAMPLEPREP&quot;: {</span>
 <span class="go">    &quot;SAMPLEPREP_SUMMARY&quot;: {</span>
@@ -609,30 +568,17 @@ matching some test.</p>
 </pre></div>
 </div>
 </section>
-<section id="id20">
-<h4>Tagged Equivalent<a class="headerlink" href="#id20" title="Permalink to this heading"></a></h4>
+<section id="id12">
+<h4>Tagged Equivalent<a class="headerlink" href="#id12" title="Link to this heading"></a></h4>
 <table class="docutils align-default">
-<colgroup>
-<col style="width: 5%" />
-<col style="width: 14%" />
-<col style="width: 9%" />
-<col style="width: 9%" />
-<col style="width: 8%" />
-<col style="width: 8%" />
-<col style="width: 8%" />
-<col style="width: 10%" />
-<col style="width: 6%" />
-<col style="width: 12%" />
-<col style="width: 10%" />
-</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>#tags</p></th>
 <th class="head"><p>#SAMPLEPREP.id</p></th>
 <th class="head"><p>#.delimiter</p></th>
-<th class="head"><p><a href="#id21"><span class="problematic" id="id22">*</span></a>#.fields</p></th>
+<th class="head"><p>*#.fields</p></th>
 <th class="head"><p>#.for_each</p></th>
 <th class="head"><p>#.required</p></th>
-<th class="head"><p><a href="#id23"><span class="problematic" id="id24">*</span></a>#.sort_by</p></th>
+<th class="head"><p>*#.sort_by</p></th>
 <th class="head"><p>#.sort_order</p></th>
 <th class="head"><p>#.table</p></th>
 <th class="head"><p>#.test</p></th>
@@ -642,7 +588,7 @@ matching some test.</p>
 <tbody>
 <tr class="row-even"><td></td>
 <td><p>SAMPLEPREP_SUMMARY</p></td>
-<td><p>” “</p></td>
+<td><p>“ “</p></td>
 <td><p>description</p></td>
 <td><p>True</p></td>
 <td></td>
@@ -655,8 +601,8 @@ matching some test.</p>
 </tbody>
 </table>
 </section>
-<section id="id25">
-<h4>Input JSON<a class="headerlink" href="#id25" title="Permalink to this heading"></a></h4>
+<section id="id13">
+<h4>Input JSON<a class="headerlink" href="#id13" title="Link to this heading"></a></h4>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">{</span>
 <span class="go">&quot;protocol&quot;: {</span>
 <span class="go">    &quot;3_IC-FTMS_preparation&quot;: {</span>
@@ -749,8 +695,8 @@ matching some test.</p>
 </pre></div>
 </div>
 </section>
-<section id="id26">
-<h4>Output JSON<a class="headerlink" href="#id26" title="Permalink to this heading"></a></h4>
+<section id="id14">
+<h4>Output JSON<a class="headerlink" href="#id14" title="Link to this heading"></a></h4>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">{</span>
 <span class="go">&quot;SAMPLEPREP&quot;: {</span>
 <span class="go">    &quot;SAMPLEPREP_SUMMARY&quot;: &quot;Tissue is frozen in liquid nitrogen to stop metabolic processes. Frozen tissue is ground in a SPEX grinder under liquid nitrogen to homogenize the sample. Before going into the IC-FTMS the frozen sample is reconstituted in water. acetone extraction of polar metabolites Lipid extraction from homogenate. Polar extraction from homogenate, lypholized, and frozen. Protein extraction and quantification.&quot;</span>
@@ -761,7 +707,7 @@ matching some test.</p>
 </section>
 </section>
 <section id="general-output-format">
-<h3>General Output Format<a class="headerlink" href="#general-output-format" title="Permalink to this heading"></a></h3>
+<h3>General Output Format<a class="headerlink" href="#general-output-format" title="Link to this heading"></a></h3>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">{</span>
 <span class="go">&lt;table_name&gt;: {</span>
 <span class="go">    &lt;record_name&gt;: &lt;string_value&gt;</span>
@@ -771,11 +717,11 @@ matching some test.</p>
 </div>
 </section>
 <section id="meaningful-fields">
-<h3>Meaningful Fields<a class="headerlink" href="#meaningful-fields" title="Permalink to this heading"></a></h3>
+<h3>Meaningful Fields<a class="headerlink" href="#meaningful-fields" title="Link to this heading"></a></h3>
 <p><strong>override</strong> - a string value that will be used as the value for the record directly.
 Takes priority over other fields. You can put the value between double quotes if it
 is difficult to get certain sequences in the table software used to construct the directive.
-Ex. ” ” will be a single space and “asdf” will be asdf.</p>
+Ex. “ “ will be a single space and “asdf” will be asdf.</p>
 <p><strong>code</strong> - a string of valid Python code to be delivered to eval() that must return a string type
 value. Takes priority after override.</p>
 <p><strong>import</strong> - a string that is a filepath to a Python file to be imported. Typically to be used
@@ -795,7 +741,7 @@ string value. Use this as a filter to filter out records that should not be used
 the string value. If for_each is false, this is used to find the first record that matches.</p>
 <p><strong>delimiter</strong> - a string value used to separate the strings built from each record when
 for_each is true. You can put the value between double quotes if it is difficult to get certain
-sequences in the table software used to construct the directive. Ex. ” ” will be a single
+sequences in the table software used to construct the directive. Ex. “ “ will be a single
 space and “asdf” will be asdf.</p>
 <p><strong>sort_by</strong> - a list of fields to sort the input JSON records by before building the value from them.</p>
 <p><strong>sort_order</strong> - a string value that is either “ascending” or “descending” to indicate how to sort
@@ -807,11 +753,13 @@ required. If true, then errors encountered will stop the program. If false, a wa
 printed and the directive will either use a default value or be skipped.</p>
 <p><strong>default</strong> - a string value to default to if the directive cannot be built and is not required.
 If getting specific sequences in the table software used to construct the directive is difficult,
-you can put the value between double quotes. Ex. ” ” will be a single space and “asdf” will be asdf.</p>
+you can put the value between double quotes. Ex. “ “ will be a single space and “asdf” will be asdf.</p>
+<p><strong>skip</strong> - a boolean or string value (“True” or “False”) that indicates the directive should
+be skipped. Mostly useful for modifying built in directives using the –update option for the convert command.</p>
 </section>
 </section>
 <section id="matrix-directives">
-<h2>matrix Directives<a class="headerlink" href="#matrix-directives" title="Permalink to this heading"></a></h2>
+<h2>matrix Directives<a class="headerlink" href="#matrix-directives" title="Link to this heading"></a></h2>
 <p>The matrix directive assumes that you want to create a list of dictionaries (aka array of
 objects) from information in the input JSON, and that that information is contained within
 a single table. By default, this directive will loop over all records in the indicated table
@@ -819,8 +767,8 @@ and build a dictionary for each record. The records can be sorted and filtered b
 in the same way that the str directives can be, using the “sort_by”, “sort_order”, and “test” fields.
 The “collate” field can also be used to group data together across records. The below
 examples illustrate some common uses.</p>
-<section id="id27">
-<h3>Code<a class="headerlink" href="#id27" title="Permalink to this heading"></a></h3>
+<section id="id15">
+<h3>Code<a class="headerlink" href="#id15" title="Link to this heading"></a></h3>
 <p>If you need to generate a list of dictionaries from the input JSON in a more complex way
 than what is currently possible with the supported directives, you can use the “code” field
 to give the program Python code directly to evaluate. What is in the code field will
@@ -829,8 +777,8 @@ JSON is “input_json”. You can also use the “import” field to import any 
 libraries into the program. The “import” value should be a path to the file to import.
 For the matrix directive specifically, the “code” field is a good way to supply the
 value directly.</p>
-<section id="id28">
-<h4>Directive as JSON<a class="headerlink" href="#id28" title="Permalink to this heading"></a></h4>
+<section id="id16">
+<h4>Directive as JSON<a class="headerlink" href="#id16" title="Link to this heading"></a></h4>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">{</span>
 <span class="go">&quot;MS_METABOLITE_DATA&quot;: {</span>
 <span class="go">    &quot;Data&quot;: {</span>
@@ -842,15 +790,9 @@ value directly.</p>
 </pre></div>
 </div>
 </section>
-<section id="id29">
-<h4>Tagged Equivalent<a class="headerlink" href="#id29" title="Permalink to this heading"></a></h4>
+<section id="id17">
+<h4>Tagged Equivalent<a class="headerlink" href="#id17" title="Link to this heading"></a></h4>
 <table class="docutils align-default">
-<colgroup>
-<col style="width: 8%" />
-<col style="width: 26%" />
-<col style="width: 15%" />
-<col style="width: 51%" />
-</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>#tags</p></th>
 <th class="head"><p>#MS_METABOLITE_DATA.id</p></th>
@@ -867,8 +809,8 @@ value directly.</p>
 </tbody>
 </table>
 </section>
-<section id="id30">
-<h4>Output JSON<a class="headerlink" href="#id30" title="Permalink to this heading"></a></h4>
+<section id="id18">
+<h4>Output JSON<a class="headerlink" href="#id18" title="Link to this heading"></a></h4>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">{</span>
 <span class="go">&quot;MS_METABOLITE_DATA&quot;: {</span>
 <span class="go">    &quot;Data&quot;: [{&quot;Metabolite&quot;:&quot;Glucose&quot;, &quot;Sample 1&quot;:&quot;1234.5&quot;}]</span>
@@ -879,14 +821,14 @@ value directly.</p>
 </section>
 </section>
 <section id="headers">
-<h3>Headers<a class="headerlink" href="#headers" title="Permalink to this heading"></a></h3>
+<h3>Headers<a class="headerlink" href="#headers" title="Link to this heading"></a></h3>
 <p>Similar to the “fields” field for str directives, the “headers” field is the backbone
 of most matrix directives. Use this field to specify how to build the dictionaries by
 supplying key-value pairs. The value should be a list of strings, “key=value”, where
 the keys and values can be either the names of fields in the input records or literal
 values. Literal values need to be surrounded with double quotes.</p>
-<section id="id31">
-<h4>Directive as JSON<a class="headerlink" href="#id31" title="Permalink to this heading"></a></h4>
+<section id="id19">
+<h4>Directive as JSON<a class="headerlink" href="#id19" title="Link to this heading"></a></h4>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">{</span>
 <span class="go">&quot;MS_METABOLITE_DATA&quot;: {</span>
 <span class="go">    &quot;Data&quot;: {</span>
@@ -901,25 +843,16 @@ values. Literal values need to be surrounded with double quotes.</p>
 </pre></div>
 </div>
 </section>
-<section id="id32">
-<h4>Tagged Equivalent<a class="headerlink" href="#id32" title="Permalink to this heading"></a></h4>
+<section id="id20">
+<h4>Tagged Equivalent<a class="headerlink" href="#id20" title="Link to this heading"></a></h4>
 <table class="docutils align-default">
-<colgroup>
-<col style="width: 6%" />
-<col style="width: 18%" />
-<col style="width: 11%" />
-<col style="width: 10%" />
-<col style="width: 34%" />
-<col style="width: 10%" />
-<col style="width: 11%" />
-</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>#tags</p></th>
 <th class="head"><p>#MS_METABOLITE_DATA.id</p></th>
 <th class="head"><p>#.value_type</p></th>
 <th class="head"><p>#.table</p></th>
-<th class="head"><p><a href="#id33"><span class="problematic" id="id34">*</span></a>#.headers</p></th>
-<th class="head"><p><a href="#id35"><span class="problematic" id="id36">*</span></a>#.sort_by</p></th>
+<th class="head"><p>*#.headers</p></th>
+<th class="head"><p>*#.sort_by</p></th>
 <th class="head"><p>#.sort_order</p></th>
 </tr>
 </thead>
@@ -935,8 +868,8 @@ values. Literal values need to be surrounded with double quotes.</p>
 </tbody>
 </table>
 </section>
-<section id="id37">
-<h4>Input JSON<a class="headerlink" href="#id37" title="Permalink to this heading"></a></h4>
+<section id="id21">
+<h4>Input JSON<a class="headerlink" href="#id21" title="Link to this heading"></a></h4>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">{</span>
 <span class="go">&quot;measurement&quot;: {</span>
 <span class="go">    &quot;(S)-2-Acetolactate Glutaric acid Methylsuccinic acid-13C0-16_A0_Lung_naive_0days_170427_UKy_GCH_rep1-polar-ICMS_A&quot;: {</span>
@@ -992,8 +925,8 @@ values. Literal values need to be surrounded with double quotes.</p>
 </pre></div>
 </div>
 </section>
-<section id="id38">
-<h4>Output JSON<a class="headerlink" href="#id38" title="Permalink to this heading"></a></h4>
+<section id="id22">
+<h4>Output JSON<a class="headerlink" href="#id22" title="Link to this heading"></a></h4>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">{</span>
 <span class="go">&quot;MS_METABOLITE_DATA&quot;: {</span>
 <span class="go">    &quot;Data&quot;: [</span>
@@ -1012,14 +945,14 @@ values. Literal values need to be surrounded with double quotes.</p>
 </section>
 </section>
 <section id="collate">
-<h3>Collate<a class="headerlink" href="#collate" title="Permalink to this heading"></a></h3>
+<h3>Collate<a class="headerlink" href="#collate" title="Link to this heading"></a></h3>
 <p>The “headers” field will create a new dictionary for every record in the indicated table,
 but sometimes you might need to pull data from multiple records into a single new
 dictionary, and the “collate” field gives a mechanism for this. The value of the field
 is a string that needs to be one of the fields in the input records. If given, the
 record data will be grouped into dictionaries based on their field value.</p>
-<section id="id39">
-<h4>Directive as JSON<a class="headerlink" href="#id39" title="Permalink to this heading"></a></h4>
+<section id="id23">
+<h4>Directive as JSON<a class="headerlink" href="#id23" title="Link to this heading"></a></h4>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">{</span>
 <span class="go">&quot;MS_METABOLITE_DATA&quot;: {</span>
 <span class="go">    &quot;Data&quot;: {</span>
@@ -1035,26 +968,16 @@ record data will be grouped into dictionaries based on their field value.</p>
 </pre></div>
 </div>
 </section>
-<section id="id40">
-<h4>Tagged Equivalent<a class="headerlink" href="#id40" title="Permalink to this heading"></a></h4>
+<section id="id24">
+<h4>Tagged Equivalent<a class="headerlink" href="#id24" title="Link to this heading"></a></h4>
 <table class="docutils align-default">
-<colgroup>
-<col style="width: 5%" />
-<col style="width: 17%" />
-<col style="width: 10%" />
-<col style="width: 9%" />
-<col style="width: 31%" />
-<col style="width: 9%" />
-<col style="width: 10%" />
-<col style="width: 9%" />
-</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>#tags</p></th>
 <th class="head"><p>#MS_METABOLITE_DATA.id</p></th>
 <th class="head"><p>#.value_type</p></th>
 <th class="head"><p>#.table</p></th>
-<th class="head"><p><a href="#id41"><span class="problematic" id="id42">*</span></a>#.headers</p></th>
-<th class="head"><p><a href="#id43"><span class="problematic" id="id44">*</span></a>#.sort_by</p></th>
+<th class="head"><p>*#.headers</p></th>
+<th class="head"><p>*#.sort_by</p></th>
 <th class="head"><p>#.sort_order</p></th>
 <th class="head"><p>#.collate</p></th>
 </tr>
@@ -1072,8 +995,8 @@ record data will be grouped into dictionaries based on their field value.</p>
 </tbody>
 </table>
 </section>
-<section id="id45">
-<h4>Input JSON<a class="headerlink" href="#id45" title="Permalink to this heading"></a></h4>
+<section id="id25">
+<h4>Input JSON<a class="headerlink" href="#id25" title="Link to this heading"></a></h4>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">{</span>
 <span class="go">&quot;measurement&quot;: {</span>
 <span class="go">    &quot;(S)-2-Acetolactate Glutaric acid Methylsuccinic acid-13C0-16_A0_Lung_naive_0days_170427_UKy_GCH_rep1-polar-ICMS_A&quot;: {</span>
@@ -1177,8 +1100,8 @@ record data will be grouped into dictionaries based on their field value.</p>
 </pre></div>
 </div>
 </section>
-<section id="id46">
-<h4>Output JSON<a class="headerlink" href="#id46" title="Permalink to this heading"></a></h4>
+<section id="id26">
+<h4>Output JSON<a class="headerlink" href="#id26" title="Link to this heading"></a></h4>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">{</span>
 <span class="go">&quot;MS_METABOLITE_DATA&quot;: {</span>
 <span class="go">    &quot;Data&quot;: [</span>
@@ -1199,13 +1122,13 @@ record data will be grouped into dictionaries based on their field value.</p>
 </section>
 </section>
 <section id="fields-to-headers">
-<h3>Fields to Headers<a class="headerlink" href="#fields-to-headers" title="Permalink to this heading"></a></h3>
+<h3>Fields to Headers<a class="headerlink" href="#fields-to-headers" title="Link to this heading"></a></h3>
 <p>The “fields_to_headers” field changes the behavior of the matrix directive so that
 by default all fields from input records are copied as is into the dictionary. The
 “exclusion_headers” field can then be used to exclude fields from being added.
 The “values_to_str” field can also be used to convert all of the field values to strings.</p>
-<section id="id47">
-<h4>Directive as JSON<a class="headerlink" href="#id47" title="Permalink to this heading"></a></h4>
+<section id="id27">
+<h4>Directive as JSON<a class="headerlink" href="#id27" title="Link to this heading"></a></h4>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">{</span>
 <span class="go">&quot;MS_METABOLITE_DATA&quot;: {</span>
 <span class="go">    &quot;Extended&quot;: {</span>
@@ -1223,32 +1146,20 @@ The “values_to_str” field can also be used to convert all of the field value
 </pre></div>
 </div>
 </section>
-<section id="id48">
-<h4>Tagged Equivalent<a class="headerlink" href="#id48" title="Permalink to this heading"></a></h4>
+<section id="id28">
+<h4>Tagged Equivalent<a class="headerlink" href="#id28" title="Link to this heading"></a></h4>
 <table class="docutils align-default">
-<colgroup>
-<col style="width: 3%" />
-<col style="width: 9%" />
-<col style="width: 5%" />
-<col style="width: 5%" />
-<col style="width: 16%" />
-<col style="width: 4%" />
-<col style="width: 5%" />
-<col style="width: 8%" />
-<col style="width: 6%" />
-<col style="width: 39%" />
-</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>#tags</p></th>
 <th class="head"><p>#MS_METABOLITE_DATA.id</p></th>
 <th class="head"><p>#.value_type</p></th>
 <th class="head"><p>#.table</p></th>
-<th class="head"><p><a href="#id49"><span class="problematic" id="id50">*</span></a>#.headers</p></th>
-<th class="head"><p><a href="#id51"><span class="problematic" id="id52">*</span></a>#.sort_by</p></th>
+<th class="head"><p>*#.headers</p></th>
+<th class="head"><p>*#.sort_by</p></th>
 <th class="head"><p>#.sort_order</p></th>
 <th class="head"><p>#.fields_to_headers</p></th>
 <th class="head"><p>#.values_to_str</p></th>
-<th class="head"><p><a href="#id53"><span class="problematic" id="id54">*</span></a>#.exclusion_headers</p></th>
+<th class="head"><p>*#.exclusion_headers</p></th>
 </tr>
 </thead>
 <tbody>
@@ -1266,8 +1177,8 @@ The “values_to_str” field can also be used to convert all of the field value
 </tbody>
 </table>
 </section>
-<section id="id55">
-<h4>Input JSON<a class="headerlink" href="#id55" title="Permalink to this heading"></a></h4>
+<section id="id29">
+<h4>Input JSON<a class="headerlink" href="#id29" title="Link to this heading"></a></h4>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">{</span>
 <span class="go">&quot;measurement&quot;: {</span>
 <span class="go">    &quot;(S)-2-Acetolactate Glutaric acid Methylsuccinic acid-13C0-16_A0_Lung_naive_0days_170427_UKy_GCH_rep1-polar-ICMS_A&quot;: {</span>
@@ -1371,8 +1282,8 @@ The “values_to_str” field can also be used to convert all of the field value
 </pre></div>
 </div>
 </section>
-<section id="id56">
-<h4>Output JSON<a class="headerlink" href="#id56" title="Permalink to this heading"></a></h4>
+<section id="id30">
+<h4>Output JSON<a class="headerlink" href="#id30" title="Link to this heading"></a></h4>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">{</span>
 <span class="go">&quot;MS_METABOLITE_DATA&quot;: {</span>
 <span class="go">    &quot;Extended&quot;: [</span>
@@ -1446,8 +1357,8 @@ The “values_to_str” field can also be used to convert all of the field value
 </div>
 </section>
 </section>
-<section id="id57">
-<h3>General Output Format<a class="headerlink" href="#id57" title="Permalink to this heading"></a></h3>
+<section id="id31">
+<h3>General Output Format<a class="headerlink" href="#id31" title="Link to this heading"></a></h3>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">{</span>
 <span class="go">&lt;table_name&gt;: {</span>
 <span class="go">    &lt;record_name&gt;: [{&lt;field_name&gt;:&lt;field_value&gt;, ...}, ...]</span>
@@ -1456,8 +1367,8 @@ The “values_to_str” field can also be used to convert all of the field value
 </pre></div>
 </div>
 </section>
-<section id="id58">
-<h3>Meaningful Fields<a class="headerlink" href="#id58" title="Permalink to this heading"></a></h3>
+<section id="id32">
+<h3>Meaningful Fields<a class="headerlink" href="#id32" title="Link to this heading"></a></h3>
 <p><strong>code</strong> - a string of valid Python code to be delivered to eval() that must return a list of
 dictionaries. Takes priority over headers.</p>
 <p><strong>import</strong> - a string that is a filepath to a Python library to be imported. Typically to be used
@@ -1481,6 +1392,10 @@ copy all fields in the input records into the output.</p>
 field is True.</p>
 <p><strong>optional_headers</strong> - a list of field names that will be copied into the output if they exist in the
 record. Use “values_to_str” to cast the values to a string.</p>
+<p><strong>fill_headers</strong> - if given, make all dictionaries in the matrix have the same headers, filling with the
+given value for records that don’t have the header. For example if an input record has a field, “field1”,
+but another input record does not have that field, then the output record from the input record without the
+“field1” field will have a “field1” header with the value specified in “fill_headers”.</p>
 <p><strong>values_to_str</strong> - a boolean or string value (“True” or “False”) that causes field values to be converted
 into a string type in the output.</p>
 <p><strong>required</strong> - a boolean or string value (“True” or “False”) that indicates if the directive is
@@ -1488,11 +1403,13 @@ required. If true, then errors encountered will stop the program. If false, a wa
 printed and the directive will either use a default value or be skipped.</p>
 <p><strong>default</strong> - a string value to default to if the directive cannot be built and is not required.
 If getting specific sequences in the table software used to construct the directive is difficult,
-you can put the value between double quotes. Ex. ” ” will be a single space and “asdf” will be asdf.</p>
+you can put the value between double quotes. Ex. “ “ will be a single space and “asdf” will be asdf.</p>
+<p><strong>skip</strong> - a boolean or string value (“True” or “False”) that indicates the directive should
+be skipped. Mostly useful for modifying built in directives using the –update option for the convert command.</p>
 </section>
 </section>
 <section id="section-directives">
-<h2>section Directives<a class="headerlink" href="#section-directives" title="Permalink to this heading"></a></h2>
+<h2>section Directives<a class="headerlink" href="#section-directives" title="Link to this heading"></a></h2>
 <p>When you need a more complex structure than is available through the other directives
 or if you need to specify the entire table at once, the section type directive is
 what you need. It only has the “code” and “import” fields because you have to supply
@@ -1502,9 +1419,9 @@ since whatever the code generates will be what the table’s value is set to. Th
 currently one module built into MESSES that contains functions for building a part of
 the mwTab file, and that is used as the example here.</p>
 <section id="example">
-<h3>Example<a class="headerlink" href="#example" title="Permalink to this heading"></a></h3>
-<section id="id59">
-<h4>Directive as JSON<a class="headerlink" href="#id59" title="Permalink to this heading"></a></h4>
+<h3>Example<a class="headerlink" href="#example" title="Link to this heading"></a></h3>
+<section id="id33">
+<h4>Directive as JSON<a class="headerlink" href="#id33" title="Link to this heading"></a></h4>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">{</span>
 <span class="go">&quot;SUBJECT_SAMPLE_FACTORS&quot;: {</span>
 <span class="go">  &quot;no_id_needed&quot;: {</span>
@@ -1517,15 +1434,9 @@ the mwTab file, and that is used as the example here.</p>
 </pre></div>
 </div>
 </section>
-<section id="id60">
-<h4>Tagged Equivalent<a class="headerlink" href="#id60" title="Permalink to this heading"></a></h4>
+<section id="id34">
+<h4>Tagged Equivalent<a class="headerlink" href="#id34" title="Link to this heading"></a></h4>
 <table class="docutils align-default">
-<colgroup>
-<col style="width: 7%" />
-<col style="width: 25%" />
-<col style="width: 55%" />
-<col style="width: 13%" />
-</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>#tags</p></th>
 <th class="head"><p>#SUBJECT_SAMPLE_FACTORS.id</p></th>
@@ -1542,8 +1453,8 @@ the mwTab file, and that is used as the example here.</p>
 </tbody>
 </table>
 </section>
-<section id="id61">
-<h4>Output JSON<a class="headerlink" href="#id61" title="Permalink to this heading"></a></h4>
+<section id="id35">
+<h4>Output JSON<a class="headerlink" href="#id35" title="Link to this heading"></a></h4>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">{</span>
 <span class="go">&quot;ANALYSIS&quot;: [</span>
 <span class="go">    {</span>
@@ -1605,25 +1516,27 @@ the mwTab file, and that is used as the example here.</p>
 </div>
 </section>
 </section>
-<section id="id62">
-<h3>General Output Format<a class="headerlink" href="#id62" title="Permalink to this heading"></a></h3>
+<section id="id36">
+<h3>General Output Format<a class="headerlink" href="#id36" title="Link to this heading"></a></h3>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">{</span>
 <span class="go">&lt;table_name&gt;: &lt;code_result&gt;</span>
 <span class="go">}</span>
 </pre></div>
 </div>
 </section>
-<section id="id63">
-<h3>Meaningful Fields<a class="headerlink" href="#id63" title="Permalink to this heading"></a></h3>
+<section id="id37">
+<h3>Meaningful Fields<a class="headerlink" href="#id37" title="Link to this heading"></a></h3>
 <p><strong>code</strong> - a string of valid Python code to be delivered to eval(). The entire table is assigned
 the value returned by eval() with no type checking, unlike the other directives which are type
 checked.</p>
 <p><strong>import</strong> - a string that is a filepath to a Python file to be imported. Typically to be used
 to import functions to run with the code field.</p>
+<p><strong>skip</strong> - a boolean or string value (“True” or “False”) that indicates the directive should
+be skipped. Mostly useful for modifying built in directives using the –update option for the convert command.</p>
 </section>
 </section>
 <section id="validation">
-<h2>Validation<a class="headerlink" href="#validation" title="Permalink to this heading"></a></h2>
+<h2>Validation<a class="headerlink" href="#validation" title="Link to this heading"></a></h2>
 <p>Conversion directives are validated before use in the convert command using JSON Schema.</p>
 <p>Validation Schema:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>{
@@ -1659,7 +1572,8 @@ to import functions to run with the code field.</p>
                      &quot;delimiter&quot;:{&quot;type&quot;:[&quot;string&quot;, &quot;null&quot;]},
                      &quot;sort_by&quot;:{&quot;type&quot;:[&quot;array&quot;, &quot;null&quot;], &quot;minItems&quot;:1, &quot;items&quot;:{&quot;type&quot;:&quot;string&quot;, &quot;minLength&quot;:1}},
                      &quot;sort_order&quot;:{&quot;type&quot;:[&quot;string&quot;, &quot;null&quot;], &quot;pattern&quot;:&quot;(?i)^descending|ascending$&quot;},
-                     &quot;record_id&quot;:{&quot;type&quot;:[&quot;string&quot;, &quot;null&quot;]}
+                     &quot;record_id&quot;:{&quot;type&quot;:[&quot;string&quot;, &quot;null&quot;]},
+                     &quot;skip&quot;:{&quot;type&quot;:[&quot;string&quot;, &quot;null&quot;, &quot;boolean&quot;], &quot;pattern&quot;:&quot;(?i)^true|false$&quot;}
                      },
                  &quot;allOf&quot;:[
                      {
@@ -1704,10 +1618,12 @@ to import functions to run with the code field.</p>
                      &quot;sort_order&quot;:{&quot;type&quot;:[&quot;string&quot;, &quot;null&quot;], &quot;pattern&quot;:&quot;(?i)^descending|ascending$&quot;},
                      &quot;headers&quot;:{&quot;type&quot;:[&quot;array&quot;, &quot;null&quot;], &quot;minItems&quot;:1, &quot;items&quot;:{&quot;type&quot;:&quot;string&quot;, &quot;minLength&quot;:1, &quot;pattern&quot;:&quot;^.+=.+$&quot;}},
                      &quot;collate&quot;:{&quot;type&quot;:[&quot;string&quot;, &quot;null&quot;]},
+                     &quot;fill_headers&quot;:{&quot;type&quot;:[&quot;string&quot;, &quot;null&quot;]},
                      &quot;exclusion_headers&quot;:{&quot;type&quot;:[&quot;array&quot;, &quot;null&quot;], &quot;minItems&quot;:1, &quot;items&quot;:{&quot;type&quot;:&quot;string&quot;, &quot;minLength&quot;:1}},
                      &quot;optional_headers&quot;:{&quot;type&quot;:[&quot;array&quot;, &quot;null&quot;], &quot;minItems&quot;:1, &quot;items&quot;:{&quot;type&quot;:&quot;string&quot;, &quot;minLength&quot;:1}},
                      &quot;fields_to_headers&quot;:{&quot;type&quot;:[&quot;string&quot;, &quot;null&quot;, &quot;boolean&quot;], &quot;pattern&quot;:&quot;(?i)^true|false$&quot;},
-                     &quot;values_to_str&quot;:{&quot;type&quot;:[&quot;string&quot;, &quot;null&quot;, &quot;boolean&quot;], &quot;pattern&quot;:&quot;(?i)^true|false$&quot;}
+                     &quot;values_to_str&quot;:{&quot;type&quot;:[&quot;string&quot;, &quot;null&quot;, &quot;boolean&quot;], &quot;pattern&quot;:&quot;(?i)^true|false$&quot;},
+                     &quot;skip&quot;:{&quot;type&quot;:[&quot;string&quot;, &quot;null&quot;, &quot;boolean&quot;], &quot;pattern&quot;:&quot;(?i)^true|false$&quot;}
                      },
                  &quot;allOf&quot;:[
                      {
@@ -1733,6 +1649,7 @@ to import functions to run with the code field.</p>
                  &quot;properties&quot;:{
                      &quot;code&quot;:{&quot;type&quot;:[&quot;string&quot;, &quot;null&quot;]},
                      &quot;import&quot;:{&quot;type&quot;:[&quot;string&quot;, &quot;null&quot;]},
+                     &quot;skip&quot;:{&quot;type&quot;:[&quot;string&quot;, &quot;null&quot;, &quot;boolean&quot;], &quot;pattern&quot;:&quot;(?i)^true|false$&quot;}
                      },
                  &quot;required&quot;:[&quot;code&quot;]
                  }

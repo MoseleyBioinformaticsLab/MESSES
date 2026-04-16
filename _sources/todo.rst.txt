@@ -12,6 +12,10 @@ Support the ISA-Tab format.
 If the user says to read from stdin but does not supply a file, then it will run indefinitely. This is 
 normal behavior for that situation in other programs, but we could add a timeout on waiting.
 
+After adding validations on METABOLITES columns in the mwtab package our recommended naming convention for attributes, assignment%method to 
+augment an assignment field for example, causes some warnings now. Need to think about either allowing naming conventions like that 
+through or possibly getting rid of it for any fields that will end up in METABOLITES.
+
 
 Possible Improvements to Extract
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -44,6 +48,15 @@ Add an option to not sort JSON output keys.
 
 Add a way to filter the tables and records. This could probably be done with modification tags.
 
+Add feature to create pooled samples. Would look like child.id or crecord.id, (pooled.id) but would create a record with parents for every row in the table.
+
+Add a feature to modification tags to pull values from other records. 
+For instance, change the entity.id field in a measurement record by matching to a field in the entity records.
+See the West Coast data for this example.
+
+Add a feature to make replicates. Something like REPLICATES(column1, column2, ...) The idea is to tell the program which 
+columns to filter down to, and then count the duplicates basically. df.groupby([column1, column2], dropna=False).cumcount() + 1
+
 
 Possible Improvements to Validate
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -61,3 +74,8 @@ Possible Improvements to Convert
 Make it so save-directives can output to stdout if user supplies "-" for filename.
 
 For matrix directives add an option so that fields in "headers" don't have to be in the records.
+
+
+
+
+

@@ -46,7 +46,7 @@ protocol
 
 entity
 ------
-**Entities are either subjects or samples which are similar to each other and interconnected.**
+**Entities are either subjects, samples, or non_biological which are similar to each other and interconnected.**
    * A subject is something that receives a treatment, or is subjected to different experimental factors. 
       * For example, if you are testing a treatment on a cell line in 6 different petri dishes (1 treatment with 3 replicates and 1 null with 3 replicates), each petri dish would be a separate subject. 
    * Samples are collected from subjects. 
@@ -55,7 +55,8 @@ entity
       * Samples can also become subjects if they are subjected to a treatment. 
          * For example, when a cancer sample is extracted from a person and then pieces are implanted in mice for testing with specific treatments, the mice are subjects with sample parents. 
       * Determining what is a sample and a subject can be confusing, but largely the key is whether or not the thing in question underwent a treatment or has an experimental factor of interest. 
-   * Entities must have a "type" field that indicates whether it is a "subject" or "sample".
+   * Entities must have a "type" field that indicates whether it is a "subject", "sample", or "non_biological".
+   * "non_biological" entities are something like blanks or QC samples, and do not have any protocol or inheritance requirements.
     
 measurement
 -----------
@@ -89,6 +90,8 @@ ID Fields
 **Any field for any record that ends in ".id" must be an id to an existing record in that field's table.**
    * For instance, if the field "protocol.id" : "tissue_extraction" is in a sample record then the protocol table must contain a record with the id "tissue_extraction". 
    * Similarly, if a record has the "parent_id" field the value must be an existing id in the same table as that record. For example, if "parent_id" : "tissue_extraction" is in a record in the protocol table then the protocol table must contain a record with the id "tissue_extraction". 
+      
+       * Note that "parent_id" is treated this way in every table, but "parent_id" does not necessarily have a meaning for every table. For instance, in the "protocol" table a protocol with a "parent_id" pointing to another protocol has no meaning in the specification. This is in contrast to the "entity" table where a "parent_id" means that entity came from the indicated parent.
 
 Subject/Sample Inheritance Rules
 --------------------------------

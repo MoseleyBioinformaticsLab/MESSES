@@ -171,11 +171,11 @@ Directive as JSON
 Tagged Equivalent
 +++++++++++++++++
 
-+--------+---------------+---------------+----------+-----------------+--------------+
-| #tags  | #ANALYSIS.id  | #.value_type  | #.table  | *#.fields       | #.record_id  |
-+========+===============+===============+==========+=================+==============+
-|        | ANALYSIS_TYPE | str           | study    | analysis_type   | Study 1      |
-+--------+---------------+---------------+----------+-----------------+--------------+
++--------+---------------+---------------+----------+------------------+--------------+
+| #tags  | #ANALYSIS.id  | #.value_type  | #.table  | \*#.fields       | #.record_id  |
++========+===============+===============+==========+==================+==============+
+|        | ANALYSIS_TYPE | str           | study    | analysis_type    | Study 1      |
++--------+---------------+---------------+----------+------------------+--------------+
 
 Input JSON
 ++++++++++
@@ -247,17 +247,17 @@ Directive as JSON
 Tagged Equivalent
 +++++++++++++++++
 
-+--------+---------------+---------------+----------+--------------+---------------------+
-| #tags  | #ANALYSIS.id  | #.value_type  | #.table  | *#.fields    | #.test              |
-+========+===============+===============+==========+==============+=====================+
-|        | INSTRUMENT    | str           | study    | instrument   | analysis_type=MS    |
-+--------+---------------+---------------+----------+--------------+---------------------+
++--------+---------------+---------------+----------+---------------+---------------------+
+| #tags  | #ANALYSIS.id  | #.value_type  | #.table  | \*#.fields    | #.test              |
++========+===============+===============+==========+===============+=====================+
+|        | INSTRUMENT    | str           | study    | instrument    | analysis_type=MS    |
++--------+---------------+---------------+----------+---------------+---------------------+
 
-+--------+---------------+---------------+----------+------------+----------------+---------------+
-| #tags  | #ANALYSIS.id  | #.value_type  | #.table  | *#.fields  | *#.sort_by     | #.sort_order  |
-+========+===============+===============+==========+============+================+===============+
-|        | INSTRUMENT    | str           | study    | instrument | analysis_type  | ascending     |
-+--------+---------------+---------------+----------+------------+----------------+---------------+
++--------+---------------+---------------+----------+-------------+-----------------+---------------+
+| #tags  | #ANALYSIS.id  | #.value_type  | #.table  | \*#.fields  | \*#.sort_by     | #.sort_order  |
++========+===============+===============+==========+=============+=================+===============+
+|        | INSTRUMENT    | str           | study    | instrument  | analysis_type   | ascending     |
++--------+---------------+---------------+----------+-------------+-----------------+---------------+
 
 Input JSON
 ++++++++++
@@ -304,7 +304,7 @@ Output JSON
 
     {
     "ANALYSIS": {
-        "Instrument": "Orbitrap"
+        "INSTRUMENT": "Orbitrap"
         }
     }
 
@@ -347,11 +347,11 @@ Directive as JSON
 Tagged Equivalent
 +++++++++++++++++
 
-+--------+---------------------+--------------+--------------+-------------+-------------+-------------+---------------+----------+-------------------+---------------+
-| #tags  | #SAMPLEPREP.id      | #.delimiter  | *#.fields    | #.for_each  | #.required  | *#.sort_by  | #.sort_order  | #.table  | #.test            | #.value_type  |
-+========+=====================+==============+==============+=============+=============+=============+===============+==========+===================+===============+
-|        | SAMPLEPREP_SUMMARY  | " "          | description  | True        |             | id          | ascending     | protocol | type=sample_prep  | str           |
-+--------+---------------------+--------------+--------------+-------------+-------------+-------------+---------------+----------+-------------------+---------------+
++--------+---------------------+--------------+---------------+-------------+-------------+--------------+---------------+----------+-------------------+---------------+
+| #tags  | #SAMPLEPREP.id      | #.delimiter  | \*#.fields    | #.for_each  | #.required  | \*#.sort_by  | #.sort_order  | #.table  | #.test            | #.value_type  |
++========+=====================+==============+===============+=============+=============+==============+===============+==========+===================+===============+
+|        | SAMPLEPREP_SUMMARY  | " "          | description   | True        |             | id           | ascending     | protocol | type=sample_prep  | str           |
++--------+---------------------+--------------+---------------+-------------+-------------+--------------+---------------+----------+-------------------+---------------+
 
 Input JSON
 ++++++++++
@@ -523,6 +523,9 @@ printed and the directive will either use a default value or be skipped.
 If getting specific sequences in the table software used to construct the directive is difficult, 
 you can put the value between double quotes. Ex. " " will be a single space and "asdf" will be asdf.
 
+**skip** - a boolean or string value ("True" or "False") that indicates the directive should 
+be skipped. Mostly useful for modifying built in directives using the --update option for the convert command.
+
 
 
 matrix Directives
@@ -609,11 +612,11 @@ Directive as JSON
 Tagged Equivalent
 +++++++++++++++++
 
-+--------+-------------------------+---------------+--------------+----------------------------------------------+-------------+---------------+
-| #tags  | #MS_METABOLITE_DATA.id  | #.value_type  | #.table      | *#.headers                                   | *#.sort_by  | #.sort_order  |
-+========+=========================+===============+==============+==============================================+=============+===============+
-|        | Data                    | matrix        | measurement  | "Metabolite"=assignment,sample.id=intensity  | assignment  | ascending     |
-+--------+-------------------------+---------------+--------------+----------------------------------------------+-------------+---------------+
++--------+-------------------------+---------------+--------------+-----------------------------------------------+--------------+---------------+
+| #tags  | #MS_METABOLITE_DATA.id  | #.value_type  | #.table      | \*#.headers                                   | \*#.sort_by  | #.sort_order  |
++========+=========================+===============+==============+===============================================+==============+===============+
+|        | Data                    | matrix        | measurement  | "Metabolite"=assignment,sample.id=intensity   | assignment   | ascending     |
++--------+-------------------------+---------------+--------------+-----------------------------------------------+--------------+---------------+
 
 Input JSON
 ++++++++++
@@ -722,11 +725,11 @@ Directive as JSON
 Tagged Equivalent
 +++++++++++++++++
 
-+--------+-------------------------+---------------+--------------+----------------------------------------------+-------------+---------------+-------------+
-| #tags  | #MS_METABOLITE_DATA.id  | #.value_type  | #.table      | *#.headers                                   | *#.sort_by  | #.sort_order  | #.collate   |
-+========+=========================+===============+==============+==============================================+=============+===============+=============+
-|        | Data                    | matrix        | measurement  | "Metabolite"=assignment,sample.id=intensity  | assignment  | ascending     | assignment  |
-+--------+-------------------------+---------------+--------------+----------------------------------------------+-------------+---------------+-------------+
++--------+-------------------------+---------------+--------------+-----------------------------------------------+--------------+---------------+-------------+
+| #tags  | #MS_METABOLITE_DATA.id  | #.value_type  | #.table      | \*#.headers                                   | \*#.sort_by  | #.sort_order  | #.collate   |
++========+=========================+===============+==============+===============================================+==============+===============+=============+
+|        | Data                    | matrix        | measurement  | "Metabolite"=assignment,sample.id=intensity   | assignment   | ascending     | assignment  |
++--------+-------------------------+---------------+--------------+-----------------------------------------------+--------------+---------------+-------------+
 
 Input JSON
 ++++++++++
@@ -886,11 +889,11 @@ Directive as JSON
 Tagged Equivalent
 +++++++++++++++++
 
-+--------+-------------------------+---------------+--------------+------------------------------------------------+-------------+---------------+----------------------+------------------+-------------------------------------------------------------------------------------------------------------------+
-| #tags  | #MS_METABOLITE_DATA.id  | #.value_type  | #.table      | *#.headers                                     | *#.sort_by  | #.sort_order  | #.fields_to_headers  | #.values_to_str  | *#.exclusion_headers                                                                                              |
-+========+=========================+===============+==============+================================================+=============+===============+======================+==================+===================================================================================================================+
-|        | Extended                | matrix        | measurement  | "Metabolite"=assignment,"sample_id"=sample.id  | assignment  | ascending     | True                 | True             | id,intensity,intensity%type,intensity%units,assignment,sample.id,formula,compound,isotopologue,isotopologue%type  |
-+--------+-------------------------+---------------+--------------+------------------------------------------------+-------------+---------------+----------------------+------------------+-------------------------------------------------------------------------------------------------------------------+
++--------+-------------------------+---------------+--------------+-------------------------------------------------+--------------+---------------+----------------------+------------------+--------------------------------------------------------------------------------------------------------------------+
+| #tags  | #MS_METABOLITE_DATA.id  | #.value_type  | #.table      | \*#.headers                                     | \*#.sort_by  | #.sort_order  | #.fields_to_headers  | #.values_to_str  | \*#.exclusion_headers                                                                                              |
++========+=========================+===============+==============+=================================================+==============+===============+======================+==================+====================================================================================================================+
+|        | Extended                | matrix        | measurement  | "Metabolite"=assignment,"sample_id"=sample.id   | assignment   | ascending     | True                 | True             | id,intensity,intensity%type,intensity%units,assignment,sample.id,formula,compound,isotopologue,isotopologue%type   |
++--------+-------------------------+---------------+--------------+-------------------------------------------------+--------------+---------------+----------------------+------------------+--------------------------------------------------------------------------------------------------------------------+
 
 Input JSON
 ++++++++++
@@ -1122,6 +1125,11 @@ field is True.
 **optional_headers** - a list of field names that will be copied into the output if they exist in the 
 record. Use "values_to_str" to cast the values to a string.
 
+**fill_headers** - if given, make all dictionaries in the matrix have the same headers, filling with the 
+given value for records that don't have the header. For example if an input record has a field, "field1", 
+but another input record does not have that field, then the output record from the input record without the 
+"field1" field will have a "field1" header with the value specified in "fill_headers".
+
 **values_to_str** - a boolean or string value ("True" or "False") that causes field values to be converted 
 into a string type in the output.
 
@@ -1132,6 +1140,9 @@ printed and the directive will either use a default value or be skipped.
 **default** - a string value to default to if the directive cannot be built and is not required. 
 If getting specific sequences in the table software used to construct the directive is difficult, 
 you can put the value between double quotes. Ex. " " will be a single space and "asdf" will be asdf.
+
+**skip** - a boolean or string value ("True" or "False") that indicates the directive should 
+be skipped. Mostly useful for modifying built in directives using the --update option for the convert command.
 
 
 
@@ -1255,6 +1266,9 @@ checked.
 
 **import** - a string that is a filepath to a Python file to be imported. Typically to be used 
 to import functions to run with the code field.
+
+**skip** - a boolean or string value ("True" or "False") that indicates the directive should 
+be skipped. Mostly useful for modifying built in directives using the --update option for the convert command.
 
 
 Validation
