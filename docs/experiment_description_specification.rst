@@ -46,7 +46,7 @@ protocol
 
 entity
 ------
-**Entities are either subjects or samples which are similar to each other and interconnected.**
+**Entities are either subjects, samples, or non_biological which are similar to each other and interconnected.**
    * A subject is something that receives a treatment, or is subjected to different experimental factors. 
       * For example, if you are testing a treatment on a cell line in 6 different petri dishes (1 treatment with 3 replicates and 1 null with 3 replicates), each petri dish would be a separate subject. 
    * Samples are collected from subjects. 
@@ -55,7 +55,8 @@ entity
       * Samples can also become subjects if they are subjected to a treatment. 
          * For example, when a cancer sample is extracted from a person and then pieces are implanted in mice for testing with specific treatments, the mice are subjects with sample parents. 
       * Determining what is a sample and a subject can be confusing, but largely the key is whether or not the thing in question underwent a treatment or has an experimental factor of interest. 
-   * Entities must have a "type" field that indicates whether it is a "subject" or "sample".
+   * Entities must have a "type" field that indicates whether it is a "subject", "sample", or "non_biological".
+   * "non_biological" entities are something like blanks or QC samples, and do not have any protocol or inheritance requirements.
     
 measurement
 -----------

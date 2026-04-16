@@ -1,3 +1,7 @@
+NOTE: NMR BINNED DATA IS DEPRECATED IN THE METABOLOMICS WORKBENCH AND SHOULD NOT BE USED.
+THIS EXAMPLE REMAINS FOR POSTERITY, BUT ANY BINNED DATA SHOULD SIMPLY BE PUT INTO A RESULTS FILE.
+
+
 To reproduce the outputs from the input run the following command:
 
     messes convert mwtab nmr_binned NMR_binned_base_input.json NMR_binned_output

@@ -13,6 +13,9 @@ result run the Run Command given below. Note that --silent can be left out to se
 that can be safely ignored. If you cannot reproduce extracted_result.json then don't use the --silent option and troubleshoot the errors 
 and warnings.
 
+Note that in the ICMS1 protocol there are 5 fields that have the value "unknown". flow_gradient, flow_rate, column_temperature, solvent_a, and solvent_b 
+are all newly required fields that were added after depositing this dataset, so please ignore any warnings or errors associated with those fields.
+
 Study Summary:
 Allogeneic hematopoietic cell transplantation (allo-HCT) is a potentially curative treatment option for a variety of 
 hematological malignancies. Interactions between the donor immune system and the patient tissue result in a disease, 

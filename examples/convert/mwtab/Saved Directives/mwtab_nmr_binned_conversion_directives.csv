@@ -53,7 +53,7 @@
 ,SAMPLEPREP_SUMMARY,;,description,True,True,order,ascending,protocol,type=sample_prep,str
 ,,,,,,,,,,
 #tags,#ANALYSIS.id,#.override,#.value_type,,,,,,,
-,ANALYSIS_TYPE,NM,str,,,,,,,
+,ANALYSIS_TYPE,NMR,str,,,,,,,
 ,,,,,,,,,,
 #tags,#NM.id,*#.fields,#.required,#.table,#.test,#.value_type,,,,
 ,ACQUISITION_TIME,"acquisition_time,"" "",acquisition_time%units",False,protocol,machine_type=NMR,str,,,,
@@ -76,6 +76,6 @@
 #tags,#NMR_BINNED_DATA.id,*#.fields,#.required,#.table,#.value_type,,,,,
 ,Units,intensity%type,True,measurement,str,,,,,
 ,,,,,,,,,,
-#tags,#NMR_BINNED_DATA.id,#.collate,*#.headers,#.required,*#.sort_by,#.sort_order,#.table,#.value_type,#.values_to_str,
-,Data,assignment,"""Bin range(ppm)""=assignment,entity.id=intensity",True,assignment,ascending,measurement,matrix,True,
+#tags,#NMR_BINNED_DATA.id,#.collate,#.fill_headers,*#.headers,#.required,*#.sort_by,#.sort_order,#.table,#.value_type,#.values_to_str
+,Data,assignment,,"""Bin range(ppm)""=assignment,entity.id=intensity",True,assignment,ascending,measurement,matrix,True
 ,,,,,,,,,,

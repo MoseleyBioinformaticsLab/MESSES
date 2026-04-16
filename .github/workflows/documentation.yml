@@ -2,24 +2,24 @@ name: Publish Documentation
 
 on:
   workflow_call:
+  workflow_dispatch:
 
 jobs:
   publish-documentation:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v4
-    - uses: actions/setup-python@v5
+    - uses: actions/checkout@v5
+    - uses: actions/setup-python@v6
       with:
         python-version: '3.x'
     - name: Upgrade pip, install package, install requirements, build docs
       run: |
         pip install --upgrade pip
-        pip install .
-        if [ -f ./docs/requirements.txt ]; then pip install -r ./docs/requirements.txt; fi
+        pip install -r ./docs/requirements.txt
         pip install sphinx
         sphinx-build docs ./docs/_build/html/
     # Create an artifact of the html output.
-    - uses: actions/upload-artifact@v1
+    - uses: actions/upload-artifact@v4
       with:
         name: DocumentationHTML
         path: docs/_build/html/

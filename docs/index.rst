@@ -18,6 +18,7 @@ Welcome to MESSES's documentation!
    experiment_description_specification
    protocol_dependent_schema
    supported_formats
+   common_conventions
    api
    license
    todo

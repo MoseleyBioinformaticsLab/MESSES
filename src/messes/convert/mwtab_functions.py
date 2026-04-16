@@ -223,12 +223,6 @@ def create_subject_sample_factors(input_json: dict,
                 add_data_key = "lineage" + str(lineage_level) + "_" + field
                 additional_sample_data.setdefault(add_data_key, []) 
                 additional_sample_data[add_data_key].append(str(field_value))
-                
-                # if field in factor_fields and factor_fields[field]["name"] not in factors:
-                #     if isinstance(field_value,str) and field_value in factor_fields[field]["allowed_values"]:
-                #         factors[factor_fields[field]["name"]] = field_value
-                #     elif isinstance(field_value,list) and (field_value := [value for value in field_value if value in factor_fields[field]["allowed_values"]]):
-                #         factors[factor_fields[field]["name"]] = field_value[0] if len(field_value) == 1 else str(field_value)
         
         factors.update(ancestor_factors)
         # Pooled samples can inherit from multiple subjects. In that case we just want to have a blank subject.
@@ -281,7 +275,9 @@ def create_subject_sample_factors(input_json: dict,
               "\" table that were not found when determining the subject-sample-factors. These factors are: " +\
               ", ".join(missing_factors), file=sys.stderr)
     
-    samples_without_all_factors = [ss_factor["Sample ID"] for ss_factor in ss_factors if found_factors - set(ss_factor["Factors"])]
+    samples_without_all_factors = [ss_factor["Sample ID"] for ss_factor in ss_factors if found_factors - set(ss_factor["Factors"]) and 
+                                                                                         'pool' not in ss_factor["Sample ID"].lower() and
+                                                                                         'blank' not in ss_factor["Sample ID"].lower()]
     if samples_without_all_factors:
        print("Warning: The following samples do not have the full set of factors: \n" + "\n".join(samples_without_all_factors), file=sys.stderr)
     

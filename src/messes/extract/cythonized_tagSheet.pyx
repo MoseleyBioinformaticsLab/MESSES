@@ -313,22 +313,36 @@ def tagSheet(taggingDirectives, str[:,:] worksheet, silent):
                                 # Split headers and filters to process separately.
                                 headers = []
                                 filterStrings = []
-                                for pair in filterPairs:
-                                    if reMatch := re.match(r'"(.+)"\s*:\s*"(.+)"$', pair):
-                                        pass
-                                    elif reMatch := re.match(r'"(.+)"\s*:\s*([^:]+)$', pair):
-                                        pass
-                                    elif reMatch := re.match(r'([^:]+)\s*:\s*"(.+)"$', pair):
-                                        pass
-                                    elif reMatch := re.match(r'([^:]+)\s*:\s*([^:]+)$', pair):
-                                        pass
+                                filterStringWasQuoted = []
+                                for j, pair in enumerate(filterPairs):
+                                    if reMatch := re.match(r'([^:]+)\s*:\s*([^:]+)$', pair):
+                                        header = reMatch.group(1).strip()
+                                        if headerMatch := re.match(r'"(.+)"', header):
+                                            header = headerMatch.group(1)
+                                        filterString = reMatch.group(2).strip()
+                                        filterStringWasQuoted.append(False)
+                                        if filterMatch := re.match(r'"(.+)"', filterString):
+                                            filterString = filterMatch.group(1)
+                                            filterStringWasQuoted[j] = True
+                                    # if reMatch := re.match(r'((?:".+")|(?:([^:]+)))\s*:\s*((?:".+")|(?:([^:]+)))', pair):
+                                    #     pass
+                                    # if reMatch := re.match(r'"(.+)"\s*:\s*"(.+)"$', pair):
+                                    #     pass
+                                    # elif reMatch := re.match(r'"(.+)"\s*:\s*([^:]+)$', pair):
+                                    #     pass
+                                    # elif reMatch := re.match(r'([^:]+)\s*:\s*"(.+)"$', pair):
+                                    #     pass
+                                    # elif reMatch := re.match(r'([^:]+)\s*:\s*([^:]+)$', pair):
+                                    #     pass
                                     else:
                                         raise Exception("Error: A #filter tag in automation group " + str(i) + 
                                                         " has a badly constructed header:filter pair, " +
                                                         pair + ". It should be of the form \"header:filter\". "
                                                         "Put double quotes around the header or filter if it contains a colon.")
-                                    headers.append(reMatch.group(1).strip())
-                                    filterStrings.append(reMatch.group(2).strip())
+                                    # headers.append(reMatch.group(1).strip())
+                                    # filterStrings.append(reMatch.group(2).strip())
+                                    headers.append(header)
+                                    filterStrings.append(filterString)
                                 # Match headers to column indexes.
                                 filterHeader2ColumnIndex, _ = findMatchingHeaders({header:'^'+header+'$' for header in headers}, row, rowIndex, i, [], silent, False)
                                 missingHeaders = [header for header in headers if header not in filterHeader2ColumnIndex]
@@ -339,12 +353,12 @@ def tagSheet(taggingDirectives, str[:,:] worksheet, silent):
                                 conditions = []
                                 for j, filterString in enumerate(filterStrings):
                                     columnIndex = filterHeader2ColumnIndex[headers[j]][0]
-                                    if filterString == 'unique':
+                                    if filterString == 'unique' and not filterStringWasQuoted[j]:
                                         unique_values, unique_indeces = numpy.unique(temp_array[1:, columnIndex], return_index=True)
                                         bool_array = numpy.zeros(temp_array.shape[0]-1, dtype=bool)
                                         bool_array[unique_indeces] = True
                                         conditions.append(bool_array)
-                                    elif reMatch := re.match(extract.Evaluator.reDetector, filterString):
+                                    elif (reMatch := re.match(extract.Evaluator.reDetector, filterString)) and not filterStringWasQuoted[j]:
                                         compiledRegex = re.compile(reMatch.group(1))
                                         vmatch = numpy.vectorize(lambda x:bool(compiledRegex.match(x)))
                                         conditions.append(vmatch(temp_array[1:, columnIndex]))

@@ -28,6 +28,9 @@ To run with these new settings:
 
    messes convert mwtab ms extracted_result.json output --update update_directives.json
 
+Note that you will see errors about "FLOW_RATE" and "COLUMN_TEMPERATURE" in the output, but they should be ignored.
+FLOW_GRADIENT, FLOW_RATE, COLUMN_TEMPERATURE,SOLVENT_A, and SOLVENT_B are all newly required fields 
+that were added after depositing this dataset, so please ignore any warnings or errors associated with those fields.
 
 Input Files:
 extracted_result.json

@@ -529,6 +529,34 @@ def test_modification_comparison_type_regex_or_exact():
     assert "Warning: modification directive #measurement.compound.exact-all.asdf never matched." in output
 
 
+def test_modifications_on_list_ids():
+    """Test that modifications work for id fields that are lists."""
+    
+    test_file = "modification_list_ids.xlsx"
+    
+    command = "messes extract ../" + test_file + " --output " + output_path.as_posix()
+    command = command.split(" ")
+    subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
+    output = subp.stderr
+
+    
+    assert output_path.exists()
+    
+    with open(output_path, "r") as f:
+        output_json = json.loads(f.read())
+        
+        
+    assert output_json["entity"]['1']['protocol.id'] == ['qwer']
+    assert output_json["entity"]['2']['protocol.id'] == ['asdfqwer']
+    assert output_json["entity"]['3']['protocol.id'] == ['qwerasdf']
+    assert output_json["entity"]['4']['protocol.id'] == ['awef']
+    assert 'protocol.id' not in output_json["entity"]['5']
+    assert 'protocol.id' not in output_json["entity"]['6']
+    assert 'new_name' in output_json["entity"]['6']
+
+    assert output == ''
+
+
 
 
 def test_modification_assign_after_assign_warning():
@@ -1828,6 +1856,8 @@ def test_regex_in_eval():
     assert output_json["sample"]["01_A0_Spleen_naive_0days_170427_UKy_GCH_rep1"]["asdf"] == "zxcv cvbn"
     
     assert output == ""
+
+
 
 
 

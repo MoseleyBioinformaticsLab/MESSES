@@ -684,22 +684,23 @@ def test_two_child_fields_without_id_error():
     assert "two_child_fields_without_id_error.xlsx:#export[C1]" in output
     
     
+# The code for this check in extract.py was commented out for now since it can never run.
+# This can probably be removed in the future.
+# def test_child_table_change_error():
+#     """Test that error is printed when 2 child tags specify a field that isn't an id."""
     
-def test_child_table_change_error():
-    """Test that error is printed when 2 child tags specify a field that isn't an id."""
+#     test_file = "child_table_change_error.xlsx"
     
-    test_file = "child_table_change_error.xlsx"
-    
-    command = "messes extract ../" + test_file  + " --output " + output_path.as_posix()
-    command = command.split(" ")
-    subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
-    output = subp.stderr
+#     command = "messes extract ../" + test_file  + " --output " + output_path.as_posix()
+#     command = command.split(" ")
+#     subp = subprocess.run(command, capture_output=True, encoding="UTF-8")
+#     output = subp.stderr
 
     
-    assert not output_path.exists()
+#     assert not output_path.exists()
         
-    assert "second explicit non-id child field specified at cell" in output  
-    assert "child_table_change_error.xlsx:#export[C1]" in output
+#     assert "second explicit non-id child field specified at cell" in output  
+#     assert "child_table_change_error.xlsx:#export[C1]" in output
 
 
 
